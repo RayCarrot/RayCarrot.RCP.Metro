@@ -1,0 +1,133 @@
+﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.GameOptions"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                  xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                  xmlns:wpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                  Title="{Binding Path=DisplayName}"
+                  Height="450" Width="800"
+                  Loaded="GameOptions_OnLoadedAsync"
+                  Closing="GameOptions_OnClosingAsync"
+                  mc:Ignorable="d"
+                  d:DataContext="{d:DesignInstance local:GameOptionsViewModel}">
+    <ScrollViewer Padding="10">
+        <StackPanel>
+            <i:Interaction.Behaviors>
+                <wpf:UnifiedMarginBehavior Margin="0 5" />
+            </i:Interaction.Behaviors>
+
+            <!-- Header -->
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Image -->
+
+                <Image Grid.Column="0"
+                       Source="{Binding Path=IconSource, Mode=OneTime}"
+                       Height="64" Width="64"/>
+
+                <!-- Title -->
+
+                <TextBlock Grid.Column="1"
+                           Style="{StaticResource LargeHeaderTextBlock}"
+                           Text="{Binding Path=DisplayName, Mode=OneTime}"
+                           VerticalAlignment="Center"
+                           Margin="20 0 0 0"/>
+
+                <!-- Actions -->
+
+                <Button Grid.Column="2"
+                        Width="48"
+                        Height="48"
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource MetroCircleButtonStyle}"
+                        Command="{Binding Path=RemoveCommand}">
+
+                    <iconPacks:PackIconMaterial Kind="Delete"
+                                                Width="20"
+                                                Height="20"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center" />
+
+                </Button>
+
+            </Grid>
+
+            <Separator wpf:UserLevelTag.MinUserLevel="Technical" />
+
+            <!-- Technical Information -->
+
+            <Grid wpf:UserLevelTag.MinUserLevel="Technical"
+                  Grid.IsSharedSizeScope="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"
+                                      SharedSizeGroup="A"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Grid.Row="0"
+                           Text="Launch path: "
+                           FontWeight="Bold" />
+
+                <TextBlock Grid.Column="1"
+                           Grid.Row="0"
+                           Text="{Binding Path=LaunchPath}"
+                           TextWrapping="Wrap"/>
+
+                <TextBlock Grid.Column="0"
+                           Grid.Row="1"
+                           Text="Launch arguments:       "
+                           FontWeight="Bold" />
+
+                <TextBlock Grid.Column="1"
+                           Grid.Row="1"
+                           Text="{Binding Path=LaunchArguments}"
+                           TextWrapping="Wrap" />
+
+                <TextBlock Grid.Column="0"
+                           Grid.Row="2"
+                           Text="Game type: "
+                           FontWeight="Bold" />
+
+                <TextBlock Grid.Column="1"
+                           Grid.Row="2"
+                           Text="{Binding Path=GameType}"
+                           TextWrapping="Wrap" />
+
+                <TextBlock Grid.Column="0"
+                           Grid.Row="3"
+                           Text="Install directory: "
+                           FontWeight="Bold" />
+
+                <TextBlock Grid.Column="1"
+                           Grid.Row="3"
+                           Text="{Binding Path=InstallDirectory}"
+                           TextWrapping="Wrap" />
+
+            </Grid>
+
+            <Separator />
+
+            <!-- Options -->
+
+            <ContentPresenter x:Name="ConfigContentPresenter" />
+
+        </StackPanel>
+    </ScrollViewer>
+</local:BaseWindow>

@@ -1,0 +1,44 @@
+﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.MainWindow"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                  xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                  Title="Rayman Control Panel (Metro Beta)"
+                  Height="600"
+                  Width="800"
+                  Loaded="MainWindow_OnLoadedAsync"
+                  Closing="MainWindow_OnClosingAsync">
+
+    <metro:MetroAnimatedTabControl Padding="5">
+        <TabItem Header="Games">
+            <local:GamesPage x:Name="GamesPage" />
+        </TabItem>
+
+        <TabItem Header="Backup/Restore">
+
+        </TabItem>
+
+        <TabItem Header="Utilities">
+
+        </TabItem>
+
+        <TabItem Header="Settings">
+            <local:SettingsPage />
+        </TabItem>
+
+        <TabItem Header="Help">
+
+        </TabItem>
+
+        <TabItem Header="About">
+
+        </TabItem>
+
+        <TabItem Header="Debug"
+                 rwpf:UserLevelTag.MinUserLevel="Debug">
+            <local:DebugPage />
+        </TabItem>
+
+    </metro:MetroAnimatedTabControl>
+</local:BaseWindow>

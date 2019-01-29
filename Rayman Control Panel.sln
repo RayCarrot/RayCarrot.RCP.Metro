@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{879B35F2-0456-4C5F-B4B8-F9088D687423}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.Windows.Shell", "..\..\Carrot Framework Extensions\RayCarrot.Windows.Shell\RayCarrot.Windows.Shell.csproj", "{55F49D1E-C9BD-4CC4-9FF0-D646D9F42A21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.WPF", "..\..\Carrot WPF\RayCarrot.WPF\RayCarrot.WPF.csproj", "{9B10DC81-CB32-45A1-B52B-FBB3E4D056A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.Metro", "RayCarrot.RCP.Metro\RayCarrot.RCP.Metro.csproj", "{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.Rayman", "..\RCP 2.0.0\RayCarrot.Rayman\RayCarrot.Rayman.csproj", "{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3DD96B81-9DAB-4BCD-9771-A5AC17305D0F}"
+	ProjectSection(SolutionItems) = preProject
+		TODO.txt = TODO.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55F49D1E-C9BD-4CC4-9FF0-D646D9F42A21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55F49D1E-C9BD-4CC4-9FF0-D646D9F42A21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55F49D1E-C9BD-4CC4-9FF0-D646D9F42A21}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{55F49D1E-C9BD-4CC4-9FF0-D646D9F42A21}.Debug|x86.Build.0 = Debug|Any CPU
+		{55F49D1E-C9BD-4CC4-9FF0-D646D9F42A21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55F49D1E-C9BD-4CC4-9FF0-D646D9F42A21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55F49D1E-C9BD-4CC4-9FF0-D646D9F42A21}.Release|x86.ActiveCfg = Release|Any CPU
+		{55F49D1E-C9BD-4CC4-9FF0-D646D9F42A21}.Release|x86.Build.0 = Release|Any CPU
+		{9B10DC81-CB32-45A1-B52B-FBB3E4D056A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B10DC81-CB32-45A1-B52B-FBB3E4D056A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B10DC81-CB32-45A1-B52B-FBB3E4D056A0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9B10DC81-CB32-45A1-B52B-FBB3E4D056A0}.Debug|x86.Build.0 = Debug|Any CPU
+		{9B10DC81-CB32-45A1-B52B-FBB3E4D056A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B10DC81-CB32-45A1-B52B-FBB3E4D056A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B10DC81-CB32-45A1-B52B-FBB3E4D056A0}.Release|x86.ActiveCfg = Release|Any CPU
+		{9B10DC81-CB32-45A1-B52B-FBB3E4D056A0}.Release|x86.Build.0 = Release|Any CPU
+		{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}.Debug|x86.Build.0 = Debug|Any CPU
+		{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}.Release|x86.ActiveCfg = Release|Any CPU
+		{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}.Release|x86.Build.0 = Release|Any CPU
+		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Debug|x86.Build.0 = Debug|Any CPU
+		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Release|x86.ActiveCfg = Release|Any CPU
+		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{55F49D1E-C9BD-4CC4-9FF0-D646D9F42A21} = {879B35F2-0456-4C5F-B4B8-F9088D687423}
+		{9B10DC81-CB32-45A1-B52B-FBB3E4D056A0} = {879B35F2-0456-4C5F-B4B8-F9088D687423}
+		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57} = {879B35F2-0456-4C5F-B4B8-F9088D687423}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
+	EndGlobalSection
+EndGlobal

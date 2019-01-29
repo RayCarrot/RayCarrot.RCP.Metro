@@ -1,0 +1,81 @@
+﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.LogViewer"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                  xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                  mc:Ignorable="d"
+                  Title="Log Viewer"
+                  Loaded="BaseWindow_Loaded"
+                  Height="450" Width="800" 
+                  d:DataContext="{d:DesignInstance rwpf:LogViewerViewModel}">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Top Row -->
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <WrapPanel Orientation="Horizontal">
+                <rwpf:RadioButtonExtended Content="Trace"
+                                          IsChecked="{Binding Path=ShowLogLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Trace}"
+                                          Margin="5"/>
+
+                <rwpf:RadioButtonExtended Content="Debug"
+                                              IsChecked="{Binding Path=ShowLogLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Debug}"
+                                              Margin="5"/>
+
+                <rwpf:RadioButtonExtended Content="Information"
+                                              IsChecked="{Binding Path=ShowLogLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Information}"
+                                              Margin="5"/>
+
+                <rwpf:RadioButtonExtended Content="Warning"
+                                              IsChecked="{Binding Path=ShowLogLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Warning}"
+                                              Margin="5"/>
+
+                <rwpf:RadioButtonExtended Content="Error"
+                                              IsChecked="{Binding Path=ShowLogLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Error}"
+                                              Margin="5"/>
+
+                <rwpf:RadioButtonExtended Content="Critical"
+                                              IsChecked="{Binding Path=ShowLogLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Critical}"
+                                              Margin="5"/>
+
+                <rwpf:RadioButtonExtended Content="None"
+                                              IsChecked="{Binding Path=ShowLogLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=None}"
+                                              Margin="5"/>
+
+            </WrapPanel>
+
+            <Button Click="Button_Click"
+                    Grid.Column="1"
+                    Content="Copy log to clipboard"
+                    VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Log List -->
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      x:Name="MainScrollViewer"
+                      Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Path=DisplayLog}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Message, Mode=OneTime}"
+                                   Foreground="{Binding Path=LogLevel, Converter={local:LogTypeToBrushConverter}, Mode=OneTime}"
+                                   Margin="5"
+                                   TextWrapping="Wrap"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</local:BaseWindow>

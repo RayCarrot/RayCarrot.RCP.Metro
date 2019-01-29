@@ -1,0 +1,144 @@
+﻿<local:BaseUserControl x:Class="RayCarrot.RCP.Metro.SettingsPage"
+                       x:TypeArguments="local:SettingsPageViewModel"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                       xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                       xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                       xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                       xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                       mc:Ignorable="d"
+                       d:DesignHeight="450" d:DesignWidth="800"
+                       d:DataContext="{d:DesignInstance local:SettingsPageViewModel}">
+    <ScrollViewer>
+        <StackPanel>
+            <i:Interaction.Behaviors>
+                <rwpf:UnifiedMarginBehavior Margin="2 8" />
+            </i:Interaction.Behaviors>
+
+            <Expander Header="User Level"
+                      DataContext="{Binding Path=AppUserData}">
+
+                <StackPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                    </i:Interaction.Behaviors>
+
+                    <!-- User Levels -->
+
+                    <WrapPanel>
+
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="0 0 8 0" />
+                        </i:Interaction.Behaviors>
+
+                        <!-- Normal -->
+
+                        <rwpf:RadioButtonExtended Content="Normal"
+                                                  ToolTip="Normal user level - for users who want all the default features without any of the more advanced options or technical details"
+                                                  IsChecked="{Binding Path=UserLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Normal}" />
+
+                        <!-- Advanced -->
+
+                        <rwpf:RadioButtonExtended Content="Advanced"
+                                                  ToolTip="Advanced user level - for users who want more advanced features above the default ones, but without the technical details"
+                                                  IsChecked="{Binding Path=UserLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Advanced}" />
+
+                        <!-- Technical -->
+
+                        <rwpf:RadioButtonExtended Content="Technical"
+                                                  ToolTip="Technical user level - for users who want more advanced features above the default ones as well as the technical details"
+                                                  IsChecked="{Binding Path=UserLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Technical}" />
+
+                        <!-- Debug -->
+
+                        <rwpf:RadioButtonExtended Content="Debug"
+                                                  ToolTip="Debug user level - for app and plugin developers and testers who want advanced debug options and information"
+                                                  IsChecked="{Binding Path=UserLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Debug}"
+                                                  rwpf:UserLevelTag.MinUserLevel="Technical" />
+
+                    </WrapPanel>
+
+                </StackPanel>
+
+            </Expander>
+
+            <Expander Header="Design"
+                      DataContext="{Binding Path=AppUserData}">
+                <StackPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                    </i:Interaction.Behaviors>
+
+                    <metro:ToggleSwitch IsChecked="{Binding Path=DarkMode}"
+                                        HorizontalAlignment="Left"
+                                        OnLabel="Dark"
+                                        OffLabel="Light" />
+
+                    <CheckBox Content="Show success messages"
+                              IsChecked="{Binding Path=ShowActionComplete}" />
+
+                    <CheckBox rwpf:UserLevelTag.MinUserLevel="Debug"
+                              Content="Show all dialogs as new windows"
+                              IsChecked="{Binding Path=DialogAsWindow}" />
+
+                </StackPanel>
+            </Expander>
+
+            <Expander Header="DosBox"
+                      DataContext="{Binding Path=AppUserData}">
+
+                <StackPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                    </i:Interaction.Behaviors>
+
+                    <StackPanel>
+
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                   Text="DosBox path"
+                                   Margin="0 0 0 8"/>
+
+                        <rwpf:BrowseBox FileFilter="Exe Files (.exe)|*.exe|All Files (*.*)|*.*"
+                                        FilePath="{Binding Path=DosBoxPath}"
+                                        BrowseType="File"
+                                        PathValidation="FileExists" />
+
+                    </StackPanel>
+
+                    <StackPanel rwpf:UserLevelTag.MinUserLevel="Advanced">
+
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                   Text="DosBox configuration path (optional)"
+                                   Margin="0 0 0 8"/>
+
+                        <rwpf:BrowseBox FileFilter="Exe Files (.exe)|*.exe|All Files (*.*)|*.*"
+                                        FilePath="{Binding Path=DosBoxConfig}"
+                                        BrowseType="File"
+                                        PathValidation="FileExists" />
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Expander>
+
+            <Expander Header="Other">
+                <StackPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                    </i:Interaction.Behaviors>
+
+                    <WrapPanel>
+                        <Button Content="Reset"
+                                Command="{Binding Path=ResetCommand}" />
+                    </WrapPanel>
+
+                </StackPanel>
+            </Expander>
+
+        </StackPanel>
+    </ScrollViewer>
+</local:BaseUserControl>

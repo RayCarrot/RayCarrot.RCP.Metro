@@ -1,0 +1,46 @@
+﻿<local:BaseUserControl x:Class="RayCarrot.RCP.Metro.GamesPage"
+                       x:TypeArguments="local:GamesPageViewModel"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                       xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                       mc:Ignorable="d" 
+                       d:DesignHeight="450" d:DesignWidth="800"
+                       d:DataContext="{d:DesignInstance local:GamesPageViewModel}">
+    <ScrollViewer>
+        <StackPanel>
+            <StackPanel.Resources>
+                <Style x:Key="GamesDisplay" TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}">
+                    <Setter Property="ItemTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <local:GameDisplay DataContext="{Binding}" 
+                                                   HorizontalAlignment="Left"
+                                                   Padding="10"/>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </StackPanel.Resources>
+
+            <Expander Header="Installed">
+                <ItemsControl Style="{StaticResource GamesDisplay}"
+                              ItemsSource="{Binding Path=InstalledGames}" />
+            </Expander>
+
+            <Expander Header="Not Installed"
+                      IsExpanded="False">
+                <ItemsControl Style="{StaticResource GamesDisplay}"
+                              ItemsSource="{Binding Path=NotInstalledGames}" />
+            </Expander>
+        </StackPanel>
+    </ScrollViewer>
+</local:BaseUserControl>

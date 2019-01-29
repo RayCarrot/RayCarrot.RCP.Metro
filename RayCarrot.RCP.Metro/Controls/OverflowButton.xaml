@@ -1,0 +1,165 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.OverflowButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             mc:Ignorable="d" d:DesignWidth="100" d:DataContext="{d:DesignInstance local:OverflowButton}">
+
+    <Grid UseLayoutRounding="True" x:Name="ContainerGrid">
+        <Border x:Name="MainBorder"
+                Background="Transparent"
+                BorderBrush="{DynamicResource BlackColorBrush}"
+                BorderThickness="1"
+                SnapsToDevicePixels="True">
+
+            <mah:ClipBorder SnapsToDevicePixels="True">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"
+                            Click="MainButton_OnClick"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            Background="{DynamicResource WhiteColorBrush}"
+                            BorderBrush="{DynamicResource BlackColorBrush}"
+                            Foreground="{DynamicResource BlackColorBrush}"
+                            SnapsToDevicePixels="True"
+                            Command="{Binding Path=MainCommand}"
+                            Style="{DynamicResource ButtonSplitStyle}">
+
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="{Binding Path=MainIconKind}"
+                                                        VerticalAlignment="Center"
+                                                        HorizontalAlignment="Center" />
+
+                            <mah:ContentControlEx Margin="5 2 0 2"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  Content="{Binding Path=MainContent}"
+                                                  RecognizesAccessKey="True"
+                                                  SnapsToDevicePixels="True"
+                                                  UseLayoutRounding="False" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button Grid.Column="1"
+                            Width="20"
+                            Background="{DynamicResource WhiteColorBrush}"
+                            BorderBrush="{DynamicResource BlackColorBrush}"
+                            Foreground="{DynamicResource BlackColorBrush}"
+                            SnapsToDevicePixels="True"
+                            Style="{DynamicResource ButtonSplitArrowStyle}"
+                            Click="ExpanderButton_OnClick"
+                            Visibility="{Binding Path=OverflowItemSource, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
+
+                        <ContentControl Width="9"
+                                        Height="9"
+                                        Content="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                                        Style="{DynamicResource PathIconContentControlStyle}" />
+
+                    </Button>
+                </Grid>
+            </mah:ClipBorder>
+        </Border>
+
+        <Popup x:Name="PopupControl"
+               AllowsTransparency="True"
+               Focusable="False"
+               PlacementTarget="{Binding ElementName=MainBorder}"
+               PopupAnimation="Fade"
+               Opened="PopupOpened"
+               Closed="PopupClosed"
+               StaysOpen="True">
+
+            <ItemsControl x:Name="MainItemsControl"
+                          MinWidth="{Binding ActualWidth, ElementName=ContainerGrid}"
+                          ItemsSource="{Binding Path=OverflowItemSource}"
+                          Margin="0"
+                          BorderBrush="{DynamicResource BlackColorBrush}"
+                          BorderThickness="1"
+                          SnapsToDevicePixels="True">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="local:OverflowButtonItemViewModel">
+                        <Grid Background="{StaticResource ControlBackgroundBrush}">
+                            <MenuItem Header="{Binding Path=Header}"
+                                      Command="{Binding Path=Command}"
+                                      Visibility="{Binding Path=IsSeparator, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
+                                      Click="MenuItem_OnClick">
+                                <MenuItem.Style>
+                                    <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=IconSource}" Value="{x:Null}">
+                                                <Setter Property="Icon">
+                                                    <Setter.Value>
+                                                        <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
+                                                                                    VerticalAlignment="Center"
+                                                                                    HorizontalAlignment="Center" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                        <Setter Property="Icon">
+                                            <Setter.Value>
+                                                <Image Source="{Binding Path=IconSource}" />
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type MenuItem}">
+                                                    <Grid SnapsToDevicePixels="True">
+                                                        <Rectangle x:Name="Bg" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1" />
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto" MinWidth="24" SharedSizeGroup="MenuItemIconColumnGroup" />
+                                                                <ColumnDefinition Width="4" />
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="6" />
+                                                                <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIGTColumnGroup" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="1" VerticalAlignment="Center" ContentSource="Icon" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                                            <Path x:Name="GlyphPanel" Grid.Column="0" Margin="5 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" Data="{StaticResource Checkmark}"
+                                                                  Fill="{DynamicResource CheckmarkFill}" FlowDirection="LeftToRight" Visibility="Collapsed" />
+                                                            <ContentPresenter Grid.Column="2" Margin="{TemplateBinding Padding}" ContentSource="Header"
+                                                                              RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                                        </Grid>
+                                                    </Grid>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="Icon" Value="{x:Null}">
+                                                            <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsChecked" Value="True">
+                                                            <Setter TargetName="GlyphPanel" Property="Visibility" Value="Visible" />
+                                                            <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsHighlighted" Value="True">
+                                                            <Setter TargetName="Bg" Property="Fill" Value="{DynamicResource MenuItemSelectionFill}" />
+                                                            <Setter TargetName="Bg" Property="Stroke" Value="{DynamicResource MenuItemSelectionStroke}" />
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled" Value="False">
+                                                            <Setter Property="Foreground" Value="{DynamicResource DisabledMenuItemForeground}" />
+                                                            <Setter TargetName="GlyphPanel" Property="Fill" Value="{DynamicResource DisabledMenuItemGlyphPanel}" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </MenuItem.Style>
+                            </MenuItem>
+                            <Separator Visibility="{Binding Path=IsSeparator, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Popup>
+    </Grid>
+</UserControl>
