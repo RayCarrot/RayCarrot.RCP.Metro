@@ -187,8 +187,6 @@ namespace RayCarrot.RCP.Metro
                 AddSingleton(new AppHandler()).
                 // Add a file manager
                 AddTransient<RCPFileManager>().
-                // Add a game manager
-                AddTransient<GameManager>().
                 // Add a dialog manager
                 AddDialogBaseManager<RCPDialogBaseManager>().
                 // Add Rayman defaults

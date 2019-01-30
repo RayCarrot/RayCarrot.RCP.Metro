@@ -1,6 +1,7 @@
 ﻿using RayCarrot.CarrotFramework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -33,10 +34,7 @@ namespace RayCarrot.RCP.Metro
                 argument += "-c \"imgmount d '" + mountPath.FullPath + "' -t iso -fs iso\" ";
 
             //Adds user defined code to the argument
-            foreach (string line in code)
-                if (!line.IsNullOrEmpty())
-                    //Replaces " with ' since " will mark the end of the code after -c
-                    argument += "-c \"" + line.Replace('\"', '\'') + "\" ";
+            argument = code.Where(line => !line.IsNullOrEmpty()).Aggregate(argument, (current, line) => current + "-c \"" + line.Replace('\"', '\'') + "\" ");
 
             argument += "-c \"MOUNT C '" + installPath.FullPath + "'\" -c C: -c \"" + exe + "\" -noconsole -c exit";
 

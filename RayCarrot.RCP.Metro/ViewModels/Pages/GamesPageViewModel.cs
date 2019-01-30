@@ -58,6 +58,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RefreshAsync()
         {
+            RCF.Logger.LogInformationSource($"The displayed games are being refreshed...");
+
             using (await AsyncLock.LockAsync())
             {
                 InstalledGames.Clear();
@@ -87,6 +89,8 @@ namespace RayCarrot.RCP.Metro
 
                         NotInstalledGames.Add(game.GetDisplayViewModel());
 
+                        RCF.Logger.LogInformationSource($"The game {game} has been removed due to not being valid");
+
                         continue;
                     }
 
@@ -94,6 +98,8 @@ namespace RayCarrot.RCP.Metro
                     InstalledGames.Add(game.GetDisplayViewModel());
                 }
             }
+
+            RCF.Logger.LogInformationSource($"The displayed games have been refreshed");
         }
 
         #endregion

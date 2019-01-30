@@ -32,10 +32,13 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public Rayman2ConfigViewModel()
         {
+            // Set default properties
             IsHorizontalWidescreen = true;
 
+            // Create the async lock
             AsyncLock = new AsyncLock();
 
+            // Create the commands
             SaveCommand = new AsyncRelayCommand(SaveAsync);
         }
 
@@ -55,6 +58,9 @@ namespace RayCarrot.RCP.Metro
 
         #region Private Properties
 
+        /// <summary>
+        /// The async lock to use for saving the configuration
+        /// </summary>
         private AsyncLock AsyncLock { get; }
 
         #endregion
@@ -106,6 +112,7 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 _widescreenSupport = value;
+                UnsavedChanges = true;
 
                 if (value && LockToScreenRes)
                     ResX = (int)SystemParameters.PrimaryScreenWidth;
@@ -154,7 +161,11 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task SetupAsync()
         {
+            RCF.Logger.LogInformationSource("Rayman 2 config is being set up");
+
             ConfigPath = GetUbiIniPath();
+
+            RCF.Logger.LogInformationSource($"The ubi.ini path has been retrieved as {ConfigPath}");
 
             // If the file does not exist, create a new one
             if (!ConfigPath.FileExists)
@@ -170,6 +181,8 @@ namespace RayCarrot.RCP.Metro
                 {
                     // Create the file
                     File.Create(newFile);
+
+                    RCF.Logger.LogInformationSource($"A new ubi.ini file has been created under {newFile}");
                 }
                 catch (Exception ex)
                 {
@@ -185,14 +198,21 @@ namespace RayCarrot.RCP.Metro
             // Load the configuration data
             ConfigData = new R2UbiIniHandler(ConfigPath);
 
+            RCF.Logger.LogInformationSource($"The ubi.ini file has been loaded");
+
             // Re-create the section if it doesn't exist
             if (!ConfigData.Exists)
+            {
                 ConfigData.ReCreate();
+                RCF.Logger.LogInformationSource($"The ubi.ini section for Rayman 2 was recreated");
+            }
 
             ResX = ConfigData.FormattedGLI_Mode.ResX;
             ResY = ConfigData.FormattedGLI_Mode.ResY;
 
             UnsavedChanges = false;
+
+            RCF.Logger.LogInformationSource($"All section properties have been loaded");
         }
 
         /// <summary>
@@ -203,6 +223,8 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
+                RCF.Logger.LogInformationSource($"Rayman 2 configuration is saving...");
+
                 try
                 {
                     ConfigData.GLI_Mode = new RayGLI_Mode()
@@ -214,11 +236,14 @@ namespace RayCarrot.RCP.Metro
                     }.ToString();
 
                     await SetAspectRatioAsync();
-                    // TODO: If widescreen support is true, edit .exe file - if false, edit to make sure it's removed from previous sessions
 
                     ConfigData.Save();
 
                     UnsavedChanges = false;
+
+                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("Your changes have been saved");
+
+                    RCF.Logger.LogInformationSource($"Rayman 2 configuration has been saved");
                 }
                 catch (Exception ex)
                 {
@@ -240,18 +265,18 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
+                RCF.Logger.LogInformationSource($"The Rayman 2 aspect ratio is being set...");
+
                 // Get the file path
                 FileSystemPath path = Games.Rayman2.GetLaunchInfo().Path;
 
                 // Make sure the file exists
                 if (!path.FileExists)
                 {
-                    // TODO: Fill out
+                    RCF.Logger.LogWarningSource("The Rayman 2 executable could not be found");
 
                     if (WidescreenSupport)
-                        await RCF.MessageUI.DisplayMessageAsync("", "Error", MessageType.Error);
-                    else
-                        RCF.Logger.LogWarningSource("");
+                        await RCF.MessageUI.DisplayMessageAsync("The aspect ratio could not be set due to the game executable not being found.", "Error", MessageType.Error);
 
                     return;
                 }
@@ -270,15 +295,15 @@ namespace RayCarrot.RCP.Metro
                 else if ((int)length.Bytes == 1468928)
                     location = 640152;
 
+                RCF.Logger.LogDebugSource($"The aspect ratio byte location has been detected as {location}");
+
                 // Cancel if unknown version
                 if (location == 0)
                 {
-                    // TODO: Fill out
+                    RCF.Logger.LogInformationSource($"The Rayman 2 executable file size of {length} does not match any supported version");
 
                     if (WidescreenSupport)
-                        await RCF.MessageUI.DisplayMessageAsync("", "Error", MessageType.Error);
-                    else
-                        RCF.Logger.LogWarningSource("");
+                        await RCF.MessageUI.DisplayMessageAsync("The aspect ratio could not be set due to the game executable not being valid.", "Error", MessageType.Error);
 
                     return;
                 }
@@ -301,6 +326,8 @@ namespace RayCarrot.RCP.Metro
                         .Select(x => Convert.ToByte(value.Substring(x, 2), 16))
                         .ToArray();
 
+                    RCF.Logger.LogDebugSource($"The Rayman 2 aspect ratio bytes detected as {input.JoinItems(", ")}");
+
                     // Open the file
                     using (Stream stream = File.Open(path, FileMode.Open))
                     {
@@ -310,6 +337,8 @@ namespace RayCarrot.RCP.Metro
                         // Write the bytes
                         await stream.WriteAsync(input, 0, input.Length);
                     }
+
+                    RCF.Logger.LogInformationSource($"The Rayman 2 aspect ratio has been set");
                 }
                 // Restore to 4/3 if modified previously
                 else
@@ -329,6 +358,8 @@ namespace RayCarrot.RCP.Metro
                         // Check if the data has been modified
                         if (buffer[0] != 0 || buffer[1] != 0 || buffer[2] != 128 || buffer[3] != 63)
                         {
+                            RCF.Logger.LogInformationSource($"The Rayman 2 aspect ratio has been detected as modified");
+
                             // Set the position
                             stream.Position = location;
 
@@ -340,6 +371,8 @@ namespace RayCarrot.RCP.Metro
                                 128,
                                 63
                             }, 0, 4);
+
+                            RCF.Logger.LogInformationSource($"The Rayman 2 aspect ratio has been restored");
                         }
                     }
                 }

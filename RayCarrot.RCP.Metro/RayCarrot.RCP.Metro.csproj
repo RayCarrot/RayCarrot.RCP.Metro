@@ -262,7 +262,6 @@
     <Compile Include="DataModels\GameFileLink.cs" />
     <Compile Include="Extensions\GamesExtensions.cs" />
     <Compile Include="Extensions\MessageUIManagerExtensions.cs" />
-    <Compile Include="Framework\Implementations\GameManager.cs" />
     <Compile Include="Framework\Implementations\RCPDialogBaseManager.cs" />
     <Compile Include="Framework\Implementations\RCPWPFBrowseUIManager.cs" />
     <Compile Include="Framework\Implementations\RCPMessageUIManager.cs" />

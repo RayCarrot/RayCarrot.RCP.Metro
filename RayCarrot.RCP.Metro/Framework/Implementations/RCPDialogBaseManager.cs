@@ -34,8 +34,12 @@ namespace RayCarrot.RCP.Metro
             {
                 DialogShowing = true;
 
+                RCF.Logger.LogInformationSource($"A dialog is being created...");
+
                 if (RCFRCP.Data.DialogAsWindow || DialogShowing)
                 {
+                    RCF.Logger.LogInformationSource($"The dialog is showing as a BaseWindow");
+
                     using (dialog)
                     {
                         // Create the window
@@ -119,6 +123,8 @@ namespace RayCarrot.RCP.Metro
                         else
                             window.Owner = Application.Current?.Windows.Cast<Window>().FindItem(x => x.IsActive);
 
+                        RCF.Logger.LogInformationSource($"The owner window has been set to {window.Owner?.ToString() ?? "null"}");
+
                         // Set startup location
                         window.WindowStartupLocation = window.Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
 
@@ -133,16 +139,22 @@ namespace RayCarrot.RCP.Metro
                         // Close window on request
                         dialog.CloseDialog += Dialog_CloseDialog;
 
+                        RCF.Logger.LogInformationSource($"A dialog has been created and is showing...");
+
                         // Show window as dialog
                         window.ShowDialog();
 
                         // Unsubscribe
                         dialog.CloseDialog -= Dialog_CloseDialog;
 
+                        RCF.Logger.LogInformationSource($"The dialog has closed");
+
                         // Return the result
                         return dialog.GetResult();
                     }
                 }
+
+                RCF.Logger.LogInformationSource($"The dialog is showing as a MetroDialog");
 
                 // Get the main window
                 var win = Application.Current.MainWindow.CastTo<MainWindow>();

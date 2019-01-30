@@ -34,6 +34,7 @@ namespace RayCarrot.RCP.Metro
             // Set startup location
             WindowStartupLocation = Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
 
+            RCF.Logger.LogInformationSource($"The window {this} has been created");
         }
     }
 }

@@ -71,10 +71,15 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task AddNewGameAsync(Games game, GameType type, FileSystemPath? installDirectory = null)
         {
+            RCF.Logger.LogInformationSource($"The game {game} is being added of type {type}...");
+
             // Make sure the game hasn't already been added
             if (game.IsAdded())
             {
-                // TODO: Handle error
+                RCF.Logger.LogInformationSource($"The game {game} has already been added");
+
+                // TODO: Show error message
+
                 return;
             }
 
@@ -105,10 +110,14 @@ namespace RayCarrot.RCP.Metro
                     // TODO: Handle error
                     return;
                 }
+
+                RCF.Logger.LogInformationSource($"The game {game} install directory was retrieved as {installDirectory}");
             }
 
             // Add the game
             RCFRCP.Data.Games.Add(game, new GameInfo(type, installDirectory ?? FileSystemPath.EmptyPath));
+
+            RCF.Logger.LogInformationSource($"The game {game} has been added");
 
             // Refresh
             OnRefreshRequired();
@@ -147,6 +156,8 @@ namespace RayCarrot.RCP.Metro
         public void ResetData()
         {
             RCFData.UserDataCollection.ForEach(x => x.Reset());
+
+            RCF.Logger.LogInformationSource($"The application user data was reset");
 
             OnRefreshRequired();
         }

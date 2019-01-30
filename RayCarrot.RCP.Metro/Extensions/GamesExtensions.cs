@@ -181,10 +181,12 @@ namespace RayCarrot.RCP.Metro
                     actions.Add(new OverflowButtonItemViewModel("Open store page", PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
                     {
                         await RCFRCP.File.OpenExplorerLocationAsync($"https://store.steampowered.com/app/" + game.GetSteamID());
+                        RCF.Logger.LogTraceSource($"The game {game} Steam store page was opened");
                     })));
                     actions.Add(new OverflowButtonItemViewModel("Open community page", PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
                     {
                         await RCFRCP.File.OpenExplorerLocationAsync($"https://steamcommunity.com/app/" + game.GetSteamID());
+                        RCF.Logger.LogTraceSource($"The game {game} Steam community page was opened");
                     })));
 
                     actions.Add(new OverflowButtonItemViewModel());
@@ -196,6 +198,7 @@ namespace RayCarrot.RCP.Metro
                     actions.Add(new OverflowButtonItemViewModel("Open Location", PackIconMaterialKind.FolderOutline, new AsyncRelayCommand(async () =>
                     {
                         await RCFRCP.File.OpenExplorerLocationAsync(game.GetInfo().InstallDirectory);
+                        RCF.Logger.LogTraceSource($"The game {game} install location was opened");
                     })));
 
                     actions.Add(new OverflowButtonItemViewModel());
@@ -204,6 +207,7 @@ namespace RayCarrot.RCP.Metro
                 // Add game options
                 actions.Add(new OverflowButtonItemViewModel("Options", PackIconMaterialKind.SettingsOutline, new RelayCommand(() =>
                 {
+                    RCF.Logger.LogTraceSource($"The game {game} options dialog is opening...");
                     new GameOptions(game).ShowDialog();
                 })));
 
@@ -213,8 +217,12 @@ namespace RayCarrot.RCP.Metro
                         // Get the launch info
                         var launchInfo = game.GetLaunchInfo();
 
+                        RCF.Logger.LogTraceSource($"The game {game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
+
                         // Launch the game
                         await RCFRCP.File.LaunchFileAsync(launchInfo.Path, false, launchInfo.Args);
+
+                        RCF.Logger.LogInformationSource($"The game {game} has been launched");
                     })) , actions);
             }
             else
@@ -244,13 +252,17 @@ namespace RayCarrot.RCP.Metro
                 // Create the command
                 var locateCommand = new AsyncRelayCommand(async () =>
                 {
-                    // TODO: Logging
                     try
                     {
+                        RCF.Logger.LogTraceSource($"The game {game} is being located...");
+
+                        // TODO: Create UI manager
                         var typeResult = await game.GetGameTypeAsync();
 
                         if (typeResult.CanceledByUser)
                             return;
+
+                        RCF.Logger.LogInformationSource($"The game {game} type has been detected as {typeResult.SelectedType}");
 
                         switch (typeResult.SelectedType)
                         {
@@ -272,12 +284,16 @@ namespace RayCarrot.RCP.Metro
                                 // Make sure the game is valid
                                 if (!game.IsValid(typeResult.SelectedType, result.SelectedDirectory))
                                 {
+                                    RCF.Logger.LogInformationSource($"The selected install directory for {game} is not valid");
+
                                     await RCF.MessageUI.DisplayMessageAsync("The selected directory is not valid for this game", "Invalid Location", MessageType.Error);
                                     return;
                                 }
 
                                 // Add the game
                                 await RCFRCP.App.AddNewGameAsync(game, typeResult.SelectedType, result.SelectedDirectory);
+
+                                RCF.Logger.LogInformationSource($"The game {game} has been added");
 
                                 break;
 
@@ -286,12 +302,16 @@ namespace RayCarrot.RCP.Metro
                                 // Make sure the game is valid
                                 if (!game.IsValid(typeResult.SelectedType, FileSystemPath.EmptyPath))
                                 {
+                                    RCF.Logger.LogInformationSource($"The {game} was not found under Steam Apps");
+
                                     await RCF.MessageUI.DisplayMessageAsync("The game could not be found. Try choosing desktop app as the type instead.", "Game not found", MessageType.Error);
                                     return;
                                 }
 
                                 // Add the game
                                 await RCFRCP.App.AddNewGameAsync(game, typeResult.SelectedType);
+
+                                RCF.Logger.LogInformationSource($"The game {game} has been added");
 
                                 break;
 
@@ -633,7 +653,7 @@ namespace RayCarrot.RCP.Metro
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);
             }
 
-            // TODO: Move to UI manager?
+            // TODO: Move to UI manager
             // Create and show the dialog and return the result
             return await new GameTypeSelectionDialog(vm).ShowDialogAsync();
         }
