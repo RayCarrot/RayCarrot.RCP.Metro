@@ -13,121 +13,130 @@
                   Closing="GameOptions_OnClosingAsync"
                   mc:Ignorable="d"
                   d:DataContext="{d:DesignInstance local:GameOptionsViewModel}">
-    <ScrollViewer Padding="10">
-        <StackPanel>
-            <i:Interaction.Behaviors>
-                <wpf:UnifiedMarginBehavior Margin="0 5" />
-            </i:Interaction.Behaviors>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <!-- Header -->
+        <i:Interaction.Behaviors>
+            <wpf:UnifiedMarginBehavior Margin="0 5" />
+        </i:Interaction.Behaviors>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+        <!-- Header -->
 
-                <!-- Image -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-                <Image Grid.Column="0"
-                       Source="{Binding Path=IconSource, Mode=OneTime}"
-                       Height="64" Width="64"/>
+            <!-- Image -->
 
-                <!-- Title -->
+            <Image Grid.Column="0"
+                   Source="{Binding Path=IconSource, Mode=OneTime}"
+                   Height="64" Width="64" />
 
-                <TextBlock Grid.Column="1"
-                           Style="{StaticResource LargeHeaderTextBlock}"
-                           Text="{Binding Path=DisplayName, Mode=OneTime}"
-                           VerticalAlignment="Center"
-                           Margin="20 0 0 0"/>
+            <!-- Title -->
 
-                <!-- Actions -->
+            <TextBlock Grid.Column="1"
+                       Style="{StaticResource LargeHeaderTextBlock}"
+                       Text="{Binding Path=DisplayName, Mode=OneTime}"
+                       VerticalAlignment="Center"
+                       Margin="20 0 0 0" />
 
-                <Button Grid.Column="2"
-                        Width="48"
-                        Height="48"
-                        HorizontalAlignment="Right"
-                        Style="{StaticResource MetroCircleButtonStyle}"
-                        Command="{Binding Path=RemoveCommand}">
+            <!-- Actions -->
 
-                    <iconPacks:PackIconMaterial Kind="Delete"
-                                                Width="20"
-                                                Height="20"
-                                                VerticalAlignment="Center"
-                                                HorizontalAlignment="Center" />
+            <Button Grid.Column="2"
+                    Width="48"
+                    Height="48"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource MetroCircleButtonStyle}"
+                    Command="{Binding Path=RemoveCommand}">
 
-                </Button>
+                <iconPacks:PackIconMaterial Kind="Delete"
+                                            Width="20"
+                                            Height="20"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center" />
 
-            </Grid>
+            </Button>
 
-            <Separator wpf:UserLevelTag.MinUserLevel="Technical" />
+        </Grid>
 
-            <!-- Technical Information -->
+        <Separator Grid.Row="1"
+                   wpf:UserLevelTag.MinUserLevel="Technical" />
 
-            <Grid wpf:UserLevelTag.MinUserLevel="Technical"
-                  Grid.IsSharedSizeScope="True">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"
-                                      SharedSizeGroup="A"/>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+        <!-- Technical Information -->
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+        <Grid Grid.Row="2"
+              wpf:UserLevelTag.MinUserLevel="Technical"
+              Grid.IsSharedSizeScope="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"
+                                  SharedSizeGroup="A" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0"
-                           Grid.Row="0"
-                           Text="Launch path: "
-                           FontWeight="Bold" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-                <TextBlock Grid.Column="1"
-                           Grid.Row="0"
-                           Text="{Binding Path=LaunchPath}"
-                           TextWrapping="Wrap"/>
+            <TextBlock Grid.Column="0"
+                       Grid.Row="0"
+                       Text="Launch path: "
+                       FontWeight="Bold" />
 
-                <TextBlock Grid.Column="0"
-                           Grid.Row="1"
-                           Text="Launch arguments:       "
-                           FontWeight="Bold" />
+            <TextBlock Grid.Column="1"
+                       Grid.Row="0"
+                       Text="{Binding Path=LaunchPath}"
+                       TextWrapping="Wrap" />
 
-                <TextBlock Grid.Column="1"
-                           Grid.Row="1"
-                           Text="{Binding Path=LaunchArguments}"
-                           TextWrapping="Wrap" />
+            <TextBlock Grid.Column="0"
+                       Grid.Row="1"
+                       Text="Launch arguments:       "
+                       FontWeight="Bold" />
 
-                <TextBlock Grid.Column="0"
-                           Grid.Row="2"
-                           Text="Game type: "
-                           FontWeight="Bold" />
+            <TextBlock Grid.Column="1"
+                       Grid.Row="1"
+                       Text="{Binding Path=LaunchArguments}"
+                       TextWrapping="Wrap" />
 
-                <TextBlock Grid.Column="1"
-                           Grid.Row="2"
-                           Text="{Binding Path=GameType}"
-                           TextWrapping="Wrap" />
+            <TextBlock Grid.Column="0"
+                       Grid.Row="2"
+                       Text="Game type: "
+                       FontWeight="Bold" />
 
-                <TextBlock Grid.Column="0"
-                           Grid.Row="3"
-                           Text="Install directory: "
-                           FontWeight="Bold" />
+            <TextBlock Grid.Column="1"
+                       Grid.Row="2"
+                       Text="{Binding Path=GameType}"
+                       TextWrapping="Wrap" />
 
-                <TextBlock Grid.Column="1"
-                           Grid.Row="3"
-                           Text="{Binding Path=InstallDirectory}"
-                           TextWrapping="Wrap" />
+            <TextBlock Grid.Column="0"
+                       Grid.Row="3"
+                       Text="Install directory: "
+                       FontWeight="Bold" />
 
-            </Grid>
+            <TextBlock Grid.Column="1"
+                       Grid.Row="3"
+                       Text="{Binding Path=InstallDirectory}"
+                       TextWrapping="Wrap" />
 
-            <Separator />
+        </Grid>
 
-            <!-- Options -->
+        <Separator Grid.Row="3" />
 
-            <ContentPresenter x:Name="ConfigContentPresenter" />
+        <!-- Options -->
 
-        </StackPanel>
-    </ScrollViewer>
+        <ContentPresenter x:Name="ConfigContentPresenter"
+                          Grid.Row="4" />
+
+    </Grid>
 </local:BaseWindow>
