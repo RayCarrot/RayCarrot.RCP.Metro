@@ -160,10 +160,7 @@ namespace RayCarrot.RCP.Metro
                 var win = Application.Current.MainWindow.CastTo<MainWindow>();
 
                 // Create the settings
-                var settings = new MetroDialogSettings()
-                {
-                    
-                };
+                var settings = new MetroDialogSettings();
 
                 using (dialog)
                 {

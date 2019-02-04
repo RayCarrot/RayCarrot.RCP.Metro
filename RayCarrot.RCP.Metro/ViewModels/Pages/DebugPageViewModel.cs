@@ -23,9 +23,21 @@ namespace RayCarrot.RCP.Metro
             ShowLogCommand = new RelayCommand(ShowLog);
 
             // Show log viewer if a debugger is attached
-            if (Debugger.IsAttached)
+            if (_firstConstruction && Debugger.IsAttached)
+            {
                 ShowLog();
+                _firstConstruction = false;
+            }
         }
+
+        #endregion
+
+        #region Private Static Properties
+
+        /// <summary>
+        /// Indicates if this is the first time the class has been constructed
+        /// </summary>
+        private static bool _firstConstruction = true;
 
         #endregion
 

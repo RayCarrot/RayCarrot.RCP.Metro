@@ -76,7 +76,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure the game hasn't already been added
             if (game.IsAdded())
             {
-                RCF.Logger.LogInformationSource($"The game {game} has already been added");
+                RCF.Logger.LogWarningSource($"The game {game} has already been added");
 
                 // TODO: Show error message
 

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
-using MahApps.Metro.Controls;
+using System.Windows.Input;
 using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro

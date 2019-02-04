@@ -126,7 +126,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Hard code the current directory
-            Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+            Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? Directory.GetCurrentDirectory());
 
             // Set up the framework
             await SetupFrameworkAsync(args);

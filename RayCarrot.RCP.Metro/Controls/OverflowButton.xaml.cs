@@ -35,7 +35,7 @@ namespace RayCarrot.RCP.Metro
             set => SetValue(OverflowItemSourceProperty, value);
         }
 
-        public static readonly DependencyProperty OverflowItemSourceProperty = DependencyProperty.Register(nameof(OverflowItemSource), typeof(IEnumerable<OverflowButtonItemViewModel>), typeof(OverflowButton));
+        public static readonly DependencyProperty OverflowItemSourceProperty = DependencyProperty.Register(nameof(OverflowItemSource), typeof(IEnumerable<OverflowButtonItemViewModel>), typeof(OverflowButton), new PropertyMetadata(new OverflowButtonItemViewModel[0]));
 
         public object MainContent
         {

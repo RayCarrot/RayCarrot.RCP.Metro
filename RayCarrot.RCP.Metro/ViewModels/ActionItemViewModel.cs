@@ -28,7 +28,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor for an action
         /// </summary>
-        /// <param name="header">The item header</pSaram>
+        /// <param name="header">The item header</param>
         /// <param name="iconSource">The icon source</param>
         /// <param name="command">The item command</param>
         public ActionItemViewModel(string header, ImageSource iconSource, ICommand command)

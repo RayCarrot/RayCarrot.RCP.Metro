@@ -245,7 +245,15 @@
     <Compile Include="Controls\UserControls\Config\Rayman2Config.xaml.cs">
       <DependentUpon>Rayman2Config.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\KeyToHotKeyConverter.cs" />
+    <Compile Include="Converters\KeyToStringConverter.cs" />
     <Compile Include="Converters\LogTypeToBrushConverter.cs" />
+    <Compile Include="Files\Files.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Files.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ValidationRules\R2HotKeyValidationRule.cs" />
     <Compile Include="ViewModels\Dialogs\GameTypeSelectionResult.cs" />
     <Compile Include="ViewModels\Dialogs\GameTypeSelectionViewModel.cs" />
     <Compile Include="Controls\GameDisplay.xaml.cs">
@@ -323,6 +331,11 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="Files\Files.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Files.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Img\Images.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Images.Designer.cs</LastGenOutput>
@@ -407,7 +420,10 @@
   <ItemGroup>
     <Resource Include="Img\MessageIcons\Question.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Files\Rayman2\dinput_controller.dll" />
+    <Content Include="Files\Rayman2\dinput_mapping.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

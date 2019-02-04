@@ -17,7 +17,8 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.Row="0">
+        <ScrollViewer x:Name="scrollViewer"
+                      Grid.Row="0">
             <StackPanel>
                 <i:Interaction.Behaviors>
                     <rwpf:UnifiedMarginBehavior Margin="0 8" />
@@ -27,22 +28,16 @@
                            Text="Resolution" />
 
                 <StackPanel Orientation="Horizontal">
-                    <mah:NumericUpDown HorizontalAlignment="Left"
-                                       HideUpDownButtons="True"
-                                       TextAlignment="Left"
-                                       MinWidth="50"
-                                       Value="{Binding Path=ResX}"
+                    <mah:NumericUpDown Value="{Binding Path=ResX}"
                                        Minimum="1"
                                        Maximum="99999"
                                        IsEnabled="{Binding Path=LockToScreenRes, Converter={rwpf:InvertedBooleanConverter}}" />
+
                     <TextBlock Text="  x  "
                                VerticalAlignment="Center"
                                FontSize="14" />
-                    <mah:NumericUpDown HorizontalAlignment="Left"
-                                       HideUpDownButtons="True"
-                                       TextAlignment="Left"
-                                       MinWidth="50"
-                                       Value="{Binding Path=ResY}"
+
+                    <mah:NumericUpDown Value="{Binding Path=ResY}"
                                        Minimum="1"
                                        Maximum="99999"
                                        IsEnabled="{Binding Path=LockToScreenRes, Converter={rwpf:InvertedBooleanConverter}}" />
@@ -75,15 +70,104 @@
 
                 </WrapPanel>
 
+                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                           Text="Language" />
+
+                <ComboBox ItemsSource="{Binding Path=CurrentLanguage, Converter={rwpf:EnumToListConverter}}"
+                          SelectedIndex="{Binding Path=CurrentLanguage, Converter={rwpf:EnumToIntConverter}}"
+                          HorizontalAlignment="Left" />
+
+                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                           Text="Controller" />
+
+                <CheckBox Content="Enable native controller support"
+                          IsChecked="{Binding Path=ControllerSupport}"
+                          IsEnabled="{Binding Path=AllowDinputHack}" />
+
+                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                           Text="Button mapping" />
+
+                <Grid IsEnabled="{Binding Path=AllowDinputHack}">
+                    <DataGrid ItemsSource="{Binding Path=KeyItems}"
+                              IsEnabled="{Binding Path=ControllerSupport, Converter={rwpf:InvertedBooleanConverter}}"
+                              AutoGenerateColumns="False"
+                              CanUserDeleteRows="False"
+                              CanUserAddRows="False"
+                              CanUserReorderColumns="False"
+                              CanUserResizeColumns="False"
+                              CanUserResizeRows="False"
+                              CanUserSortColumns="False"
+                              SelectionMode="Single"
+                              VerticalScrollBarVisibility="Disabled"
+                              ScrollViewer.CanContentScroll="False"
+                              PreviewMouseWheel="UIElement_OnPreviewMouseWheel">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Action"
+                                                Width="*"
+                                                IsReadOnly="True"
+                                                CanUserReorder="False"
+                                                CanUserResize="False"
+                                                CanUserSort="False"
+                                                Binding="{Binding Path=ActionName, Mode=OneTime}" />
+                            <DataGridTemplateColumn Header="Key"
+                                                    Width="*"
+                                                    CanUserReorder="False"
+                                                    CanUserResize="False"
+                                                    CanUserSort="False">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=NewKey, Converter={local:KeyToStringConverter}}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="10" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <mah:HotKeyBox Grid.Column="0">
+                                                <mah:HotKeyBox.HotKey>
+                                                    <Binding Path="NewKey" Converter="{local:KeyToHotKeyConverter}"
+                                                             UpdateSourceTrigger="PropertyChanged">
+                                                        <Binding.ValidationRules>
+                                                            <local:R2HotKeyValidationRule ValidatesOnTargetUpdated="True" />
+                                                        </Binding.ValidationRules>
+                                                    </Binding>
+                                                </mah:HotKeyBox.HotKey>
+                                            </mah:HotKeyBox>
+                                            
+                                            <Button Grid.Column="2" 
+                                                    Content="Reset"
+                                                    Command="{Binding Path=ResetCommand}"/>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+
             </StackPanel>
         </ScrollViewer>
 
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
+
+            <Button Content="Cancel"
+                    Margin="0 0 10 0"
+                    IsCancel="True"
+                    Click="ButtonBase_OnClick" />
+
             <Button Content="Save"
                     IsEnabled="{Binding Path=UnsavedChanges}"
                     Command="{Binding Path=SaveCommand}" />
+
         </StackPanel>
 
     </Grid>

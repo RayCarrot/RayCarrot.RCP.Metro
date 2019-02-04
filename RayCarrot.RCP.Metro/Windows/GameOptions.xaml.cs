@@ -3,7 +3,6 @@ using System.ComponentModel;
 using RayCarrot.CarrotFramework;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
@@ -23,7 +22,7 @@ namespace RayCarrot.RCP.Metro
         {
             InitializeComponent();
             ViewModel = new GameOptionsViewModel(game);
-            ConfigContentPresenter.Content = Type.GetType($"RayCarrot.RCP.Metro.{game}Config").CreateInstance();
+            ConfigContentPresenter.Content = Type.GetType($"RayCarrot.RCP.Metro.{game}Config").CreateInstance(this);
         }
 
         #endregion

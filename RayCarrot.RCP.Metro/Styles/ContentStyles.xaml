@@ -59,4 +59,12 @@
 
     </Style>
 
+    <!-- Default NumericUpDown -->
+
+    <Style TargetType="{x:Type metro:NumericUpDown}" BasedOn="{StaticResource {x:Type metro:NumericUpDown}}">
+        <Setter Property="HideUpDownButtons" Value="True" />
+        <Setter Property="TextAlignment" Value="Left" />
+        <Setter Property="MinWidth" Value="50" />
+    </Style>
+
 </ResourceDictionary>

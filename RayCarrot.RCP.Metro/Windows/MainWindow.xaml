@@ -9,8 +9,10 @@
                   Width="800"
                   Loaded="MainWindow_OnLoadedAsync"
                   Closing="MainWindow_OnClosingAsync">
-
-    <metro:MetroAnimatedTabControl Padding="5">
+    <Window.Resources>
+        <local:DebugPageViewModel x:Key="VM" />
+    </Window.Resources>
+    <metro:MetroAnimatedTabControl Padding="5" DataContext="{Binding Source={StaticResource VM}}">
         <TabItem Header="Games">
             <local:GamesPage x:Name="GamesPage" />
         </TabItem>
