@@ -1,9 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using RayCarrot.CarrotFramework;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -22,7 +20,7 @@ namespace RayCarrot.RCP.Metro
         {
             InitializeComponent();
             ViewModel = new GameOptionsViewModel(game);
-            ConfigContentPresenter.Content = Type.GetType($"RayCarrot.RCP.Metro.{game}Config").CreateInstance(this);
+            ConfigContentPresenter.Content = Type.GetType($"RayCarrot.RCP.Metro.{game}Config")?.CreateInstance(this);
         }
 
         #endregion
@@ -53,7 +51,10 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                await ConfigViewModel.SetupAsync();
+                if (ConfigViewModel == null)
+                    await RCF.MessageUI.DisplayMessageAsync("Configuration model not found", "Error", MessageType.Error);
+                else
+                    await ConfigViewModel.SetupAsync();
             }
             catch (Exception ex)
             {
@@ -83,124 +84,5 @@ namespace RayCarrot.RCP.Metro
         }
 
         #endregion
-    }
-
-    /// <summary>
-    /// View model for a game options dialog
-    /// </summary>
-    public class GameOptionsViewModel : BaseViewModel
-    {
-        #region Constructor
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        /// <param name="game">The game to show the options for</param>
-        public GameOptionsViewModel(Games game)
-        {
-            RemoveCommand = new AsyncRelayCommand(RemoveAsync);
-
-            Game = game;
-            DisplayName = game.GetDisplayName();
-            IconSource = game.GetIconSource();
-
-            var launchInfo = game.GetLaunchInfo();
-            LaunchPath = launchInfo.Path;
-            LaunchArguments = launchInfo.Args;
-
-            var info = game.GetInfo();
-            GameType = info.GameType;
-            InstallDirectory = info.InstallDirectory;
-        }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// The game
-        /// </summary>
-        public Games Game { get; }
-
-        /// <summary>
-        /// The display name
-        /// </summary>
-        public string DisplayName { get; }
-
-        /// <summary>
-        /// The icons source
-        /// </summary>
-        public string IconSource { get; }
-
-        /// <summary>
-        /// The launch path
-        /// </summary>
-        public FileSystemPath LaunchPath { get; }
-
-        /// <summary>
-        /// The launch arguments
-        /// </summary>
-        public string LaunchArguments { get; }
-
-        /// <summary>
-        /// The game type
-        /// </summary>
-        public GameType GameType { get; }
-
-        /// <summary>
-        /// The install directory
-        /// </summary>
-        public FileSystemPath InstallDirectory { get; }
-
-        #endregion
-
-        #region Commands
-
-        /// <summary>
-        /// The command for removing the game from the program
-        /// </summary>
-        public ICommand RemoveCommand { get; }
-
-        #endregion
-
-        #region Public Methods
-
-        /// <summary>
-        /// Removes the game from the program
-        /// </summary>
-        /// <returns>The task</returns>
-        public async Task RemoveAsync()
-        {
-            // Ask the user
-            if (!await RCF.MessageUI.DisplayMessageAsync($"Are you sure you want to remove {DisplayName} from the Rayman Control Panel? This will not remove the game from " +
-                                                        $"your computer or any of its files, including the backups created using this program. Changes made using the utilities " +
-                                                        $"may also remain.", "Confirm remove", MessageType.Question, true))
-                return;
-
-            // Remove the game
-            RCFRCP.Data.Games.Remove(Game);
-
-            // Refresh the games
-            RCFRCP.App.OnRefreshRequired();
-        }
-
-        #endregion
-    }
-
-    /// <summary>
-    /// View model for a game configuration
-    /// </summary>
-    public abstract class GameConfigViewModel : BaseViewModel
-    {
-        /// <summary>
-        /// Indicates if there are any unsaved changes
-        /// </summary>
-        public bool UnsavedChanges { get; set; }
-
-        /// <summary>
-        /// Loads and sets up the current configuration properties
-        /// </summary>
-        /// <returns>The task</returns>
-        public abstract Task SetupAsync();
     }
 }

@@ -115,12 +115,12 @@
                                                     CanUserResize="False"
                                                     CanUserSort="False">
                                 <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
+                                    <DataTemplate DataType="local:R2KeyItemViewModel">
                                         <TextBlock Text="{Binding Path=NewKey, Converter={local:KeyToStringConverter}}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                                 <DataGridTemplateColumn.CellEditingTemplate>
-                                    <DataTemplate>
+                                    <DataTemplate DataType="local:R2KeyItemViewModel">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*" />

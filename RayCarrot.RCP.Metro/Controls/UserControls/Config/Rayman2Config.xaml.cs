@@ -84,19 +84,14 @@ namespace RayCarrot.RCP.Metro
                 new R2KeyItemViewModel("Strafe", Key.LeftCtrl, this),
                 new R2KeyItemViewModel("Camera Right", Key.Q, this),
                 new R2KeyItemViewModel("Camera Left", Key.W, this),
+                new R2KeyItemViewModel("Center camera", Key.End, this),
+                new R2KeyItemViewModel("Look mode", Key.NumPad0, this),
+                new R2KeyItemViewModel("Screenshot", Key.F8, this),
+                new R2KeyItemViewModel("Show HUD", Key.J, this),
+                new R2KeyItemViewModel("The Knowledge of the World", Key.F1, this),
                 new R2KeyItemViewModel("Confirm", Key.Enter, this),
                 new R2KeyItemViewModel("Cancel", Key.Escape, this)
             };
-
-            /*
-                F8 = take screenshot
-                J = Show HUD
-                F1 = Think/Trance/Show Lore/whatever
-                End = Reposition Camera
-                Num0 = first person view
-             */
-
-            OtherKeyItems = new HashSet<KeyMappingItem>();
 
             // Create the async lock
             AsyncLock = new AsyncLock();
@@ -129,11 +124,6 @@ namespace RayCarrot.RCP.Metro
         /// The async lock to use for saving the configuration
         /// </summary>
         private AsyncLock AsyncLock { get; }
-
-        /// <summary>
-        /// Other key mapping items
-        /// </summary>
-        private HashSet<KeyMappingItem> OtherKeyItems { get; }
 
         #endregion
 
@@ -404,12 +394,7 @@ namespace RayCarrot.RCP.Metro
                     // If one was found, set the new key
                     if (r2Item != null)
                         r2Item.SetInitialNewKey(R2ButtonMappingManager.GetKey(item.NewKey));
-                    // If one was not found, save the item for later
-                    else
-                        OtherKeyItems.Add(item);
                 }
-
-                RCF.Logger.LogDebugSource($"{OtherKeyItems.Count} items were stored under {nameof(OtherKeyItems)}");
             }
         }
 
@@ -472,9 +457,6 @@ namespace RayCarrot.RCP.Metro
                             Select(x => new KeyMappingItem(R2ButtonMappingManager.GetKeyCode(x.OriginalKey), R2ButtonMappingManager.GetKeyCode(x.NewKey))).
                             // Convert to a list
                             ToList();
-
-                        // Add the other items
-                        items.AddRange(OtherKeyItems);
 
                         if (items.Any())
                         {

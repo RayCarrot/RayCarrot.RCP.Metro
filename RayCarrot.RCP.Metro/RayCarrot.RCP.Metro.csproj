@@ -133,8 +133,8 @@
     <Reference Include="PropertyChanged, Version=2.6.0.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\PropertyChanged.Fody.2.6.0\lib\net452\PropertyChanged.dll</HintPath>
     </Reference>
-    <Reference Include="RayCarrot.CarrotFramework, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\RayCarrot.CarrotFramework.2.0.3\lib\netstandard2.0\RayCarrot.CarrotFramework.dll</HintPath>
+    <Reference Include="RayCarrot.CarrotFramework, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\RayCarrot.CarrotFramework.2.0.4\lib\netstandard2.0\RayCarrot.CarrotFramework.dll</HintPath>
     </Reference>
     <Reference Include="RayCarrot.UserData, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\RayCarrot.UserData.2.0.1\lib\netstandard2.0\RayCarrot.UserData.dll</HintPath>
@@ -303,10 +303,12 @@
     <Compile Include="ViewModels\OverflowButtonItemViewModel.cs" />
     <Compile Include="Windows\Base\BaseWindow.cs" />
     <Compile Include="DataModels\GameInfo.cs" />
-    <Compile Include="ViewModels\GameDisplayViewModel.cs" />
+    <Compile Include="ViewModels\Game\GameDisplayViewModel.cs" />
+    <Compile Include="ViewModels\Game\GameConfigViewModel.cs" />
     <Compile Include="Windows\GameOptions.xaml.cs">
       <DependentUpon>GameOptions.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Game\GameOptionsViewModel.cs" />
     <Compile Include="Windows\LogViewer.xaml.cs">
       <DependentUpon>LogViewer.xaml</DependentUpon>
     </Compile>

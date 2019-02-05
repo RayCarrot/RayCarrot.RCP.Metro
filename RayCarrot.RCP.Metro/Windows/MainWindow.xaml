@@ -13,16 +13,15 @@
         <local:DebugPageViewModel x:Key="VM" />
     </Window.Resources>
     <metro:MetroAnimatedTabControl Padding="5" DataContext="{Binding Source={StaticResource VM}}">
+
         <TabItem Header="Games">
             <local:GamesPage x:Name="GamesPage" />
         </TabItem>
 
         <TabItem Header="Backup/Restore">
-
-        </TabItem>
-
-        <TabItem Header="Utilities">
-
+            <Viewbox Margin="50">
+                <TextBlock Text="Not Implemented" />
+            </Viewbox>
         </TabItem>
 
         <TabItem Header="Settings">
@@ -30,11 +29,89 @@
         </TabItem>
 
         <TabItem Header="Help">
-
+            <Viewbox Margin="50">
+                <TextBlock Text="Not Implemented" />
+            </Viewbox>
         </TabItem>
 
         <TabItem Header="About">
-
+            <ScrollViewer>
+                <TextBlock>
+                    Known issues:
+                    <LineBreak />
+                    - Rayman 2 button button mapping text box does not allow modifier keys (Ctrl, Shift, Win or Alt)
+                    <LineBreak />
+                    <LineBreak />
+                    Finished features:
+                    <LineBreak />
+                    - Games list in the Games page
+                    <LineBreak />
+                    - Locating DosBox, Steam or Desktop games
+                    <LineBreak />
+                    - Launching game, game config and Steam links
+                    <LineBreak />
+                    - Removing game from options dialog
+                    <LineBreak />
+                    - Rayman 2 configuration dialog
+                    <LineBreak />
+                    <LineBreak />
+                    Unfinished features:
+                    <LineBreak />
+                    - Locate Windows Store games
+                    <LineBreak />
+                    - Automatic game finder
+                    <LineBreak />
+                    - Backup/Restore game save files
+                    <LineBreak />
+                    - Missing settings
+                    <LineBreak />
+                    - Import settings from RCP 3.0
+                    <LineBreak />
+                    - Help page
+                    <LineBreak />
+                    - About page
+                    <LineBreak />
+                    - Remove write protection on ubi.ini file on first launch
+                    <LineBreak />
+                    - Configuration dialogs for:
+                    <LineBreak />
+                    -- DosBox games
+                    <LineBreak />
+                    -- Rayman M/Arena
+                    <LineBreak />
+                    -- Rayman 3
+                    <LineBreak />
+                    -- Rayman Raving Rabbids
+                    <LineBreak />
+                    -- Rayman Origins
+                    <LineBreak />
+                    -- Rayman Legends
+                    <LineBreak />
+                    - Disc installers
+                    <LineBreak />
+                    - Port utilities:
+                    <LineBreak />
+                    -- R1 PlayStation soundtrack (checkbox in config to launch in this mode)
+                    <LineBreak />
+                    -- Replace Rayman Forever incomplete soundtrack (checkbox in config, disabled if soundtrack not found)
+                    <LineBreak />
+                    -- Replace RayKit files (button in config)
+                    <LineBreak />
+                    -- Create missing RayKit config (automatically upon saving RayKit config changes)
+                    <LineBreak />
+                    -- R2 translation (button with "Unofficial translations" next to language combo box)
+                    <LineBreak />
+                    -- Rayman M/Arena/3 controller patch (checkbox in config to enable native controller support)
+                    <LineBreak />
+                    -- RO 60fps videos
+                    <LineBreak />
+                    -- RO updater
+                    <LineBreak />
+                    -- RO debug commands
+                    <LineBreak />
+                    -- RL UbiRay
+                </TextBlock>
+            </ScrollViewer>
         </TabItem>
 
         <TabItem Header="Debug"
