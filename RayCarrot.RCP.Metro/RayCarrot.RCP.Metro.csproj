@@ -223,7 +223,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\FirstLaunchInfoDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\GameOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\LicenseDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,9 +250,13 @@
     <Compile Include="Controls\Dialogs\GameTypeSelectionDialog.xaml.cs">
       <DependentUpon>GameTypeSelectionDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataModels\KeyMappingItem.cs" />
+    <Compile Include="Helpers\R2ButtonMappingManager.cs" />
+    <Compile Include="ViewModels\R2KeyItemViewModel.cs" />
     <Compile Include="Controls\UserControls\Config\Rayman2Config.xaml.cs">
       <DependentUpon>Rayman2Config.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Config\Rayman2ConfigViewModel.cs" />
     <Compile Include="Converters\KeyToHotKeyConverter.cs" />
     <Compile Include="Converters\KeyToStringConverter.cs" />
     <Compile Include="Converters\LogTypeToBrushConverter.cs" />
@@ -305,10 +317,16 @@
     <Compile Include="DataModels\GameInfo.cs" />
     <Compile Include="ViewModels\Game\GameDisplayViewModel.cs" />
     <Compile Include="ViewModels\Game\GameConfigViewModel.cs" />
+    <Compile Include="Windows\FirstLaunchInfoDialog.xaml.cs">
+      <DependentUpon>FirstLaunchInfoDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\GameOptions.xaml.cs">
       <DependentUpon>GameOptions.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Game\GameOptionsViewModel.cs" />
+    <Compile Include="Windows\LicenseDialog.xaml.cs">
+      <DependentUpon>LicenseDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\LogViewer.xaml.cs">
       <DependentUpon>LogViewer.xaml</DependentUpon>
     </Compile>

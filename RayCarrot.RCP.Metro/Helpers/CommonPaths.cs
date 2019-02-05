@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using RayCarrot.CarrotFramework;
+using RayCarrot.Windows.Registry;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -33,5 +34,15 @@ namespace RayCarrot.RCP.Metro
         /// The second common path to the ubi.ini file
         /// </summary>
         public static FileSystemPath UbiIniPath2 => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore\\Windows\\Ubisoft\\Ubi.ini");
+
+        /// <summary>
+        /// The registry base key
+        /// </summary>
+        public const string RegistryBaseKey = RCFRegistryPaths.BasePath + @"\RCP_Metro";
+
+        /// <summary>
+        /// The license accepted value name
+        /// </summary>
+        public static string RegistryLicenseValue => "LicenseAccepted";
     }
 }

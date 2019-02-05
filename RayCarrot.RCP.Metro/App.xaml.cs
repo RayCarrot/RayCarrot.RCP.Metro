@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Microsoft.Extensions.Logging;
+using Microsoft.Win32;
 using RayCarrot.CarrotFramework;
 using RayCarrot.Rayman;
 using RayCarrot.UserData;
@@ -48,13 +49,6 @@ namespace RayCarrot.RCP.Metro
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            // Verify that the requires .NET Framework version is installed
-            if (!VerifyFrameworkVersion())
-            {
-                Shutdown();
-                return;
-            }
-
             try
             {
                 if (!Mutex.WaitOne(0, false))
@@ -146,7 +140,8 @@ namespace RayCarrot.RCP.Metro
             // Run post-update code
             await PostUpdateAsync();
 
-            // TODO: Clean temp folder
+            // Clean temp folder
+            RCFRCP.File.DeleteDirectory(CommonPaths.TempPath);
 
             // Create the temp folder
             Directory.CreateDirectory(CommonPaths.TempPath);
@@ -236,60 +231,33 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if it was accepted, false if not</returns>
         private static bool ShowLicense()
         {
-            // TODO: Implement
-
-            return true;
-        }
-
-        /// <summary>
-        /// Verifies that the required .NET Framework version is installed
-        /// </summary>
-        /// <returns>True if succeeded, false if not</returns>
-        private static bool VerifyFrameworkVersion()
-        {
             try
             {
-                var required = new Version(4, 7, 0);
+                // Get the license value, if one exists
+                int regValue = Registry.GetValue(CommonPaths.RegistryBaseKey, CommonPaths.RegistryLicenseValue, 0)?.CastTo<int>() ?? 0;
 
-                var netDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
-                    @"Reference Assemblies\Microsoft\Framework\.NETFramework");
+                // Check if it has been accepted
+                if (regValue == 1)
+                    return true;
 
-                if (!Directory.Exists(netDir))
-                {
-                    MessageBox.Show("The required .NET Framework version could not be verified. To run this program, .NET Framework 4.7 is required.");
-                    return false;
-                }
+                // Create license popup dialog
+                var ld = new LicenseDialog();
 
-                var dirs = Directory.GetDirectories(netDir);
+                // Show the dialog
+                ld.ShowDialog();
 
-                foreach (var dir in dirs)
-                {
-                    var versionName = Path.GetFileName(dir.Replace("v", String.Empty));
+                // Set Registry value if accepted
+                if (ld.Accepted)
+                    Registry.SetValue(CommonPaths.RegistryBaseKey, CommonPaths.RegistryLicenseValue, 1);
 
-                    if (!Version.TryParse(versionName, out Version version))
-                        continue;
-
-                    if (version >= required)
-                        return true;
-                }
-            }
-            catch (FileNotFoundException)
-            {
-
+                // Return if it was accepted
+                return ld.Accepted;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred when verifying the required .NET Framework version. Error message: " + ex.Message);
+                MessageBox.Show($"The license verification failed with the message of: {ex.Message}", "License error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
             }
-
-            var result = MessageBox.Show("This program requires .NET Framework 4.7. Do you want to go to the Microsoft .NET Framework download page?", "Outdated References", MessageBoxButton.YesNoCancel);
-
-            if (result == MessageBoxResult.Yes)
-                Process.Start("https://dotnet.microsoft.com/download/dotnet-framework-runtime")?.Dispose();
-            else if (result == MessageBoxResult.No)
-                return true;
-
-            return false;
         }
 
         /// <summary>
@@ -335,9 +303,7 @@ namespace RayCarrot.RCP.Metro
 
             // Show first launch info
             if (RCFRCP.Data.IsFirstLaunch)
-            {
-                // TODO: Show first launch info
-            }
+                new FirstLaunchInfoDialog().ShowDialog();
         }
 
         /// <summary>

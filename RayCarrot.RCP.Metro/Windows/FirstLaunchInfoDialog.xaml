@@ -1,0 +1,73 @@
+﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.FirstLaunchInfoDialog"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                  mc:Ignorable="d"
+                  Title="Welcome to the Rayman Control Panel" 
+                  Height="450" Width="800">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <ScrollViewer Padding="10">
+                    <StackPanel>
+                        <TextBlock HorizontalAlignment="Center"
+                                   Style="{StaticResource LargeHeaderTextBlock}"
+                                   TextWrapping="Wrap">
+                            Welcome to the Rayman Control Panel
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap"
+                                   FontSize="14"
+                                   Margin="0 10 0 0">
+                            This program allows quick and easy access to all your installed Rayman games on your computer. From here you'll be able
+                            to launch them and their configuration programs, configure them directly from this program with added options (such as button
+                            mapping, widescreen support and more) and backup/restore each game's save files.
+                            <LineBreak />
+                            Missing any Rayman games on your computer? You can easily access the available digital shops to purchase them or use the
+                            disc installer to install from any disc.
+                            <LineBreak />
+                            <LineBreak />
+                            To get started, check the boxes you want below and press 'Continue' to get to the game selection menu.
+                        </TextBlock>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <WrapPanel Grid.Row="1" IsEnabled="False">
+                    <CheckBox Content="Automatically check for installed games" 
+                              Margin="10"/>
+                    <CheckBox Content="Automatically check for program updates"
+                              Margin="10"/>
+                </WrapPanel>
+
+            </Grid>
+
+            <Image Grid.Column="1"
+                   Source="../Img/MessageIcons/Question.png"
+                   Height="256"
+                   Width="256" 
+                   RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+
+        </Grid>
+
+        <Button Grid.Row="1"
+                HorizontalAlignment="Right"
+                Content="Continue" />
+
+    </Grid>
+</local:BaseWindow>
