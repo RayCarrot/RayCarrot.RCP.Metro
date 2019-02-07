@@ -251,6 +251,8 @@
       <DependentUpon>GameTypeSelectionDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModels\KeyMappingItem.cs" />
+    <Compile Include="GameFinder\GameFinderActionResult.cs" />
+    <Compile Include="GameFinder\GameFinderManager.cs" />
     <Compile Include="Helpers\R2ButtonMappingManager.cs" />
     <Compile Include="ViewModels\R2KeyItemViewModel.cs" />
     <Compile Include="Controls\UserControls\Config\Rayman2Config.xaml.cs">

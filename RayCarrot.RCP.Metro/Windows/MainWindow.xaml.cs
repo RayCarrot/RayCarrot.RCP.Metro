@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Globalization;
 using System.Windows;
-using System.Windows.Input;
 using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro
@@ -48,6 +46,15 @@ namespace RayCarrot.RCP.Metro
         private async void MainWindow_OnLoadedAsync(object sender, RoutedEventArgs e)
         {
             await GamesPage.ViewModel.RefreshAsync();
+
+            // Save settings
+            await RCFRCP.App.SaveUserDataAsync();
+
+            // Check for installed games
+            if (RCFRCP.Data.AutoLocateGames)
+                await RCFRCP.App.RunGameFinderAsync();
+
+            // TODO: Check for updates
         }
 
         private async void MainWindow_OnClosingAsync(object sender, CancelEventArgs e)

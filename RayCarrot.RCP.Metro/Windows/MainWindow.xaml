@@ -46,6 +46,8 @@
                     <LineBreak />
                     - License dialog
                     <LineBreak />
+                    - Automatic game finder
+                    <LineBreak />
                     - Games list in the Games page
                     <LineBreak />
                     - Locating DosBox, Steam or Desktop games
@@ -60,8 +62,6 @@
                     Unfinished features:
                     <LineBreak />
                     - Locate Windows Store games
-                    <LineBreak />
-                    - Automatic game finder
                     <LineBreak />
                     - Backup/Restore game save files
                     <LineBreak />

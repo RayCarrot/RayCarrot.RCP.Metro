@@ -51,6 +51,7 @@ namespace RayCarrot.RCP.Metro
             DosBoxPath = FileSystemPath.EmptyPath;
             DosBoxConfig = FileSystemPath.EmptyPath;
             DialogAsWindow = true;
+            AutoLocateGames = true;
         }
 
         #endregion
@@ -126,6 +127,11 @@ namespace RayCarrot.RCP.Metro
         /// as metro dialogs
         /// </summary>
         public bool DialogAsWindow { get; set; }
+
+        /// <summary>
+        /// Indicates if games should be automatically located on startup
+        /// </summary>
+        public bool AutoLocateGames { get; set; }
 
         #endregion
     }

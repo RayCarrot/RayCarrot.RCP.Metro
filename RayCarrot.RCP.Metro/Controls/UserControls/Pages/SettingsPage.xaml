@@ -131,6 +131,10 @@
                         <rwpf:UnifiedMarginBehavior Margin="2 8" />
                     </i:Interaction.Behaviors>
 
+                    <CheckBox Content="Automatically locate installed games" 
+                              IsChecked="{Binding Path=AutoLocateGames}"
+                              DataContext="{Binding Path=AppUserData}"/>
+
                     <WrapPanel>
                         <Button Content="Reset"
                                 Command="{Binding Path=ResetCommand}" />

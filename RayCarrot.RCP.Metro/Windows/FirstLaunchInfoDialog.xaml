@@ -8,12 +8,16 @@
                   Title="Welcome to the Rayman Control Panel" 
                   Height="450" Width="800">
     <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="555*"/>
+            <ColumnDefinition Width="227*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -48,17 +52,19 @@
                     </StackPanel>
                 </ScrollViewer>
 
-                <WrapPanel Grid.Row="1" IsEnabled="False">
-                    <CheckBox Content="Automatically check for installed games" 
-                              Margin="10"/>
-                    <CheckBox Content="Automatically check for program updates"
+                <WrapPanel Grid.Row="1"
+                           DataContext="{Binding Source={x:Static local:RCFRCP.Data}}">
+                    <CheckBox Content="Automatically locate installed games" 
+                              Margin="10"
+                              IsChecked="{Binding Path=AutoLocateGames}"/>
+                    <CheckBox Content="Automatically check for program updates" IsEnabled="False"
                               Margin="10"/>
                 </WrapPanel>
 
             </Grid>
 
             <Image Grid.Column="1"
-                   Source="../Img/MessageIcons/Question.png"
+                   Source="../Img/MessageIcons/Info.png"
                    Height="256"
                    Width="256" 
                    RenderOptions.BitmapScalingMode="NearestNeighbor"/>
@@ -66,8 +72,12 @@
         </Grid>
 
         <Button Grid.Row="1"
+                Grid.Column="1"
                 HorizontalAlignment="Right"
-                Content="Continue" />
+                Content="Continue"
+                IsDefault="True"
+                IsCancel="True"
+                Click="ButtonBase_OnClick"/>
 
     </Grid>
 </local:BaseWindow>

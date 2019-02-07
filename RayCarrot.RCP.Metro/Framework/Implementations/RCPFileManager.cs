@@ -202,5 +202,26 @@ namespace RayCarrot.RCP.Metro
 
             RCF.Logger.LogDebugSource($"The file {source} was moved to {destination}");
         }
+
+        /// <summary>
+        /// Checks if the specified file has write access
+        /// </summary>
+        /// <param name="path">The file to check</param>
+        /// <returns>True if the file can be written to, otherwise false</returns>
+        public bool CheckFileWriteAccess(FileSystemPath path)
+        {
+            if (!path.FileExists)
+                return false;
+            try
+            {
+                using (File.Open(path, FileMode.Open, FileAccess.ReadWrite))
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleExpected("Checking for file write access");
+                return false;
+            }
+        }
     }
 }

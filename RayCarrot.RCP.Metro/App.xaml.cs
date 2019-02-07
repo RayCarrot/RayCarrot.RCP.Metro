@@ -135,7 +135,7 @@ namespace RayCarrot.RCP.Metro
             PresentationTraceSources.DataBindingSource.Listeners.Add(new RCPTraceListener());
 
             // Run basic startup
-            BasicStartup();
+            await BasicStartupAsync();
 
             // Run post-update code
             await PostUpdateAsync();
@@ -263,7 +263,8 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Runs the basic startup
         /// </summary>
-        private static void BasicStartup()
+        /// <returns>The task</returns>
+        private static async Task BasicStartupAsync()
         {
             // Check for reset argument
             if (RCF.Data.Arguments.Contains("-reset"))
@@ -304,6 +305,8 @@ namespace RayCarrot.RCP.Metro
             // Show first launch info
             if (RCFRCP.Data.IsFirstLaunch)
                 new FirstLaunchInfoDialog().ShowDialog();
+
+            await RCFRCP.App.EnableUbiIniWriteAccessAsync();
         }
 
         /// <summary>
