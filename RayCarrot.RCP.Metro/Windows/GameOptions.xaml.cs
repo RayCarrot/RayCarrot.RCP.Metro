@@ -20,7 +20,7 @@ namespace RayCarrot.RCP.Metro
         {
             InitializeComponent();
             ViewModel = new GameOptionsViewModel(game);
-            ConfigContentPresenter.Content = Type.GetType($"RayCarrot.RCP.Metro.{game}Config")?.CreateInstance(this);
+            ConfigContentPresenter.Content = game.GetConfigContent(this);
         }
 
         #endregion

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using MahApps.Metro.IconPacks;
 using Microsoft.Win32;
 using RayCarrot.CarrotFramework;
@@ -250,84 +251,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Create the command
-                var locateCommand = new AsyncRelayCommand(async () =>
-                {
-                    try
-                    {
-                        RCF.Logger.LogTraceSource($"The game {game} is being located...");
-
-                        // TODO: Create UI manager
-                        var typeResult = await game.GetGameTypeAsync();
-
-                        if (typeResult.CanceledByUser)
-                            return;
-
-                        RCF.Logger.LogInformationSource($"The game {game} type has been detected as {typeResult.SelectedType}");
-
-                        switch (typeResult.SelectedType)
-                        {
-                            case GameType.Win32:
-                            case GameType.DosBox:
-                                var result = await RCF.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
-                                {
-                                    Title = "Select Install Directory",
-                                    DefaultDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
-                                    MultiSelection = false
-                                });
-
-                                if (result.CanceledByUser)
-                                    return;
-
-                                if (!result.SelectedDirectory.DirectoryExists)
-                                    return;
-
-                                // Make sure the game is valid
-                                if (!game.IsValid(typeResult.SelectedType, result.SelectedDirectory))
-                                {
-                                    RCF.Logger.LogInformationSource($"The selected install directory for {game} is not valid");
-
-                                    await RCF.MessageUI.DisplayMessageAsync("The selected directory is not valid for this game", "Invalid Location", MessageType.Error);
-                                    return;
-                                }
-
-                                // Add the game
-                                await RCFRCP.App.AddNewGameAsync(game, typeResult.SelectedType, result.SelectedDirectory);
-
-                                RCF.Logger.LogInformationSource($"The game {game} has been added");
-
-                                break;
-
-                            case GameType.Steam:
-
-                                // Make sure the game is valid
-                                if (!game.IsValid(typeResult.SelectedType, FileSystemPath.EmptyPath))
-                                {
-                                    RCF.Logger.LogInformationSource($"The {game} was not found under Steam Apps");
-
-                                    await RCF.MessageUI.DisplayMessageAsync("The game could not be found. Try choosing desktop app as the type instead.", "Game not found", MessageType.Error);
-                                    return;
-                                }
-
-                                // Add the game
-                                await RCFRCP.App.AddNewGameAsync(game, typeResult.SelectedType);
-
-                                RCF.Logger.LogInformationSource($"The game {game} has been added");
-
-                                break;
-
-                            case GameType.WinStore:
-                                break;
-
-                            default:
-                                throw new ArgumentOutOfRangeException(nameof(typeResult.SelectedType), typeResult.SelectedType, null);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.HandleError("Locating game");
-                        // TODO: Error message
-                    }
-                });
+                var locateCommand = new AsyncRelayCommand(async () => await RCFRCP.Game.LocateGameAsync(game));
 
                 // Return the view model
                 return new GameDisplayViewModel(game.GetDisplayName(), game.GetIconSource(),
@@ -538,6 +462,7 @@ namespace RayCarrot.RCP.Metro
                     return new GameLaunchInfo("shell:appsFolder\\" + $"{game.GetLaunchName()}!App", null);
 
                 case GameType.DosBox:
+                    // TODO: Mount path & commands
                     return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, DosBoxHelpers.GetDosBoxArgument(RCFRCP.Data.DosBoxConfig, info.InstallDirectory, "", new string[0], game.GetLaunchName()));
 
                 default:
@@ -656,6 +581,60 @@ namespace RayCarrot.RCP.Metro
             // TODO: Move to UI manager
             // Create and show the dialog and return the result
             return await new GameTypeSelectionDialog(vm).ShowDialogAsync();
+        }
+
+        /// <summary>
+        /// Gets the config content for the specified game
+        /// </summary>
+        /// <param name="game">The game to get the config content for</param>
+        /// <param name="parentDialogWindow">The parent dialog window</param>
+        /// <returns>The config content</returns>
+        public static FrameworkElement GetConfigContent(this Games game, Window parentDialogWindow)
+        {
+            switch (game)
+            {
+                case Games.Rayman1:
+                    return new DosBoxConfig(parentDialogWindow, game);
+
+                case Games.RaymanDesigner:
+                    return new DosBoxConfig(parentDialogWindow, game);
+
+                case Games.RaymanByHisFans:
+                    return new DosBoxConfig(parentDialogWindow, game);
+
+                case Games.Rayman60Levels:
+                    return new DosBoxConfig(parentDialogWindow, game);
+
+                case Games.Rayman2:
+                    return new Rayman2Config(parentDialogWindow);
+
+                case Games.RaymanM:
+                    return null;
+
+                case Games.RaymanArena:
+                    return null;
+
+                case Games.Rayman3:
+                    return null;
+
+                case Games.RaymanRavingRabbids:
+                    return null;
+
+                case Games.RaymanOrigins:
+                    return null;
+
+                case Games.RaymanLegends:
+                    return null;
+
+                case Games.RaymanJungleRun:
+                    return null;
+
+                case Games.RaymanFiestaRun:
+                    return null;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(game), game, null);
+            }
         }
     }
 }

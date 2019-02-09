@@ -147,6 +147,19 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Protected Methods
+
+        /// <summary>
+        /// Fires the <see cref="RefreshRequired"/> event
+        /// </summary>
+        /// <param name="e">The event arguments, or null to use the default ones</param>
+        protected void OnRefreshRequired(EventArgs e = null)
+        {
+            RefreshRequired?.Invoke(this, e ?? EventArgs.Empty);
+        }
+
+        #endregion
+
         #region Public Methods
 
         /// <summary>
@@ -204,10 +217,31 @@ namespace RayCarrot.RCP.Metro
             // Add the game
             RCFRCP.Data.Games.Add(game, new GameInfo(type, installDirectory ?? FileSystemPath.EmptyPath));
 
+            // If it's a DosBox game, add the DosBox options
+            if (type == GameType.DosBox && !RCFRCP.Data.DosBoxGames.ContainsKey(game))
+                RCFRCP.Data.DosBoxGames.Add(game, new DosBoxOptions());
+
             RCF.Logger.LogInformationSource($"The game {game} has been added");
 
             // Refresh
             OnRefreshRequired();
+        }
+
+        /// <summary>
+        /// Removes the specified game
+        /// </summary>
+        /// <param name="game">The game to remove</param>
+        public void RemoveGame(Games game)
+        {
+            // Remove the game
+            RCFRCP.Data.Games.Remove(game);
+
+            // If there is DosBox options saved, remove those as well
+            if (RCFRCP.Data.DosBoxGames.ContainsKey(game))
+                RCFRCP.Data.DosBoxGames.Remove(game);
+
+            // Refresh the games
+            RCFRCP.App.OnRefreshRequired();
         }
 
         /// <summary>
@@ -247,15 +281,6 @@ namespace RayCarrot.RCP.Metro
             RCF.Logger.LogInformationSource($"The application user data was reset");
 
             OnRefreshRequired();
-        }
-
-        /// <summary>
-        /// Fires the <see cref="RefreshRequired"/> event
-        /// </summary>
-        /// <param name="e">The event arguments, or null to use the default ones</param>
-        public void OnRefreshRequired(EventArgs e = null)
-        {
-            RefreshRequired?.Invoke(this, e ?? EventArgs.Empty);
         }
 
         /// <summary>

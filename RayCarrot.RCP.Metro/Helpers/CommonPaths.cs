@@ -13,7 +13,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The base user data directory
         /// </summary>
-        public static FileSystemPath UserDataBaseDir => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Rayman Control Panel", "3.0");
+        public static FileSystemPath UserDataBaseDir => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Rayman Control Panel", "RCP_Metro");
 
         /// <summary>
         /// The <see cref="AppUserData"/> file path
@@ -21,9 +21,14 @@ namespace RayCarrot.RCP.Metro
         public static FileSystemPath AppUserDataPath => UserDataBaseDir + "appuserdata.json";
 
         /// <summary>
+        /// The log file path
+        /// </summary>
+        public static FileSystemPath LogFile => UserDataBaseDir + "Temp\\Log.txt";
+
+        /// <summary>
         /// The path for temporary files in this application
         /// </summary>
-        public static FileSystemPath TempPath => Path.Combine(Path.GetTempPath(), "Rayman Control Panel 3.0");
+        public static FileSystemPath TempPath => Path.Combine(Path.GetTempPath(), "RCP_Metro");
 
         /// <summary>
         /// The common path to the ubi.ini file

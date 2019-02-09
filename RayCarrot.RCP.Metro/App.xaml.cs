@@ -122,6 +122,8 @@ namespace RayCarrot.RCP.Metro
             // Hard code the current directory
             Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? Directory.GetCurrentDirectory());
 
+            // TODO: Remove log file if over 2 mb
+
             // Set up the framework
             await SetupFrameworkAsync(args);
 
@@ -162,8 +164,8 @@ namespace RayCarrot.RCP.Metro
         private static async Task SetupFrameworkAsync(string[] args)
         {
             new FrameworkConstruction().
-                // Add console, debug and session loggers
-                AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, LogLevel.Trace).
+                // Add console, debug, session and file loggers
+                AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, LogLevel.Trace, builder => builder.AddProvider(new BaseLogProvider<FileLogger>())).
                 // Add a serializer
                 AddSerializer(DefaultSerializers.Json).
                 // Add exception handler
@@ -186,6 +188,8 @@ namespace RayCarrot.RCP.Metro
                 AddDialogBaseManager<RCPDialogBaseManager>().
                 // Add Rayman defaults
                 AddRaymanDefaults().
+                // Add game manager
+                AddTransient<GameManager>().
                 // Build the framework
                 Build();
 

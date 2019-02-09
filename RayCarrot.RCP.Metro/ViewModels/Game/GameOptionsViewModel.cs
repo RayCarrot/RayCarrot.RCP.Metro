@@ -97,10 +97,7 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Remove the game
-            RCFRCP.Data.Games.Remove(Game);
-
-            // Refresh the games
-            RCFRCP.App.OnRefreshRequired();
+            RCFRCP.App.RemoveGame(Game);
         }
 
         #endregion

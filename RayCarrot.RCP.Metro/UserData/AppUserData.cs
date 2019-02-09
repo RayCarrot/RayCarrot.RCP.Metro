@@ -42,6 +42,7 @@ namespace RayCarrot.RCP.Metro
         public void Reset()
         {
             Games = new Dictionary<Games, GameInfo>();
+            DosBoxGames = new Dictionary<Games, DosBoxOptions>();
             UserLevel = UserLevel.Normal;
             IsFirstLaunch = true;
             LastVersion = RCFRCP.App.CurrentVersion;
@@ -68,6 +69,11 @@ namespace RayCarrot.RCP.Metro
         /// The saved games
         /// </summary>
         public Dictionary<Games, GameInfo> Games { get; set; }
+
+        /// <summary>
+        /// The DosBox games options
+        /// </summary>
+        public Dictionary<Games, DosBoxOptions> DosBoxGames { get; set; }
 
         /// <summary>
         /// The current user level
@@ -134,5 +140,16 @@ namespace RayCarrot.RCP.Metro
         public bool AutoLocateGames { get; set; }
 
         #endregion
+    }
+
+    /// <summary>
+    /// Options for a DosBox game
+    /// </summary>
+    public class DosBoxOptions
+    {
+        /// <summary>
+        /// The file or directory to mount
+        /// </summary>
+        public FileSystemPath MountPath { get; set; }
     }
 }
