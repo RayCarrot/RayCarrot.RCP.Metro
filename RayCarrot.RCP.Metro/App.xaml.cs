@@ -310,6 +310,8 @@ namespace RayCarrot.RCP.Metro
             if (RCFRCP.Data.IsFirstLaunch)
                 new FirstLaunchInfoDialog().ShowDialog();
 
+            // TODO: Create a symbolic link for ubi.ini with source being in C:\Windows\Ubisoft and other being in AppData
+
             await RCFRCP.App.EnableUbiIniWriteAccessAsync();
         }
 

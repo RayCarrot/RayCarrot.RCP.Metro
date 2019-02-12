@@ -1,5 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using System.Net.Mime;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Data;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework;
 
@@ -20,6 +24,9 @@ namespace RayCarrot.RCP.Metro
             AsyncLock = new AsyncLock();
             InstalledGames = new ObservableCollection<GameDisplayViewModel>();
             NotInstalledGames = new ObservableCollection<GameDisplayViewModel>();
+
+            BindingOperations.EnableCollectionSynchronization(InstalledGames, Application.Current);
+            BindingOperations.EnableCollectionSynchronization(NotInstalledGames, Application.Current);
 
             RCFRCP.App.RefreshRequired += async (s, e) => await RefreshAsync();
             RCF.Data.UserLevelChanged += async (s, e) => await RefreshAsync();

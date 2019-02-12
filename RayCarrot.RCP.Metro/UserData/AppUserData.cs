@@ -141,15 +141,4 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
     }
-
-    /// <summary>
-    /// Options for a DosBox game
-    /// </summary>
-    public class DosBoxOptions
-    {
-        /// <summary>
-        /// The file or directory to mount
-        /// </summary>
-        public FileSystemPath MountPath { get; set; }
-    }
 }

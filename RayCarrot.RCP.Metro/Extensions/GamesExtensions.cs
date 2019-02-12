@@ -462,8 +462,8 @@ namespace RayCarrot.RCP.Metro
                     return new GameLaunchInfo("shell:appsFolder\\" + $"{game.GetLaunchName()}!App", null);
 
                 case GameType.DosBox:
-                    // TODO: Mount path & commands
-                    return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, DosBoxHelpers.GetDosBoxArgument(RCFRCP.Data.DosBoxConfig, info.InstallDirectory, "", new string[0], game.GetLaunchName()));
+                    var dosBoxConfig = RCFRCP.Data.DosBoxGames[game];
+                    return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, DosBoxHelpers.GetDosBoxArgument(RCFRCP.Data.DosBoxConfig, info.InstallDirectory, dosBoxConfig.MountPath, dosBoxConfig.Commands, game.GetLaunchName()));
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(info.GameType));

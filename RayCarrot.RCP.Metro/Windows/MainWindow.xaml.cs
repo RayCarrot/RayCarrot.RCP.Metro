@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using RayCarrot.CarrotFramework;
 
@@ -52,7 +53,7 @@ namespace RayCarrot.RCP.Metro
 
             // Check for installed games
             if (RCFRCP.Data.AutoLocateGames)
-                await RCFRCP.App.RunGameFinderAsync();
+                await Task.Run(RCFRCP.App.RunGameFinderAsync);
 
             // TODO: Check for updates
         }

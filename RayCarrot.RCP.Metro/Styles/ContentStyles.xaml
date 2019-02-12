@@ -49,15 +49,15 @@
 
     <!-- Default toggle switch -->
 
-    <Style TargetType="{x:Type metro:ToggleSwitch}" BasedOn="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}">
-
-    </Style>
+    <Style TargetType="{x:Type metro:ToggleSwitch}" BasedOn="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" />
 
     <!-- Default radio button extended -->
 
-    <Style TargetType="{x:Type rwpf:RadioButtonExtended}" BasedOn="{StaticResource {x:Type RadioButton}}">
+    <Style TargetType="{x:Type rwpf:RadioButtonExtended}" BasedOn="{StaticResource {x:Type RadioButton}}" />
 
-    </Style>
+    <!-- Default multi data grid -->
+
+    <Style TargetType="{x:Type rwpf:MultiDataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}" />
 
     <!-- Default NumericUpDown -->
 
