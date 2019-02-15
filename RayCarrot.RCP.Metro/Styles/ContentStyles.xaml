@@ -65,6 +65,7 @@
         <Setter Property="HideUpDownButtons" Value="True" />
         <Setter Property="TextAlignment" Value="Left" />
         <Setter Property="MinWidth" Value="50" />
+        <Setter Property="NumericInputMode" Value="Numbers" />
     </Style>
 
 </ResourceDictionary>

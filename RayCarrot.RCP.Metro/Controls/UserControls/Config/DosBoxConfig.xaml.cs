@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro
 {
+    // TODO: Add RL debug commands using Uplay exe and fix R2 installer to not use .dat files, but GOG exe
+
     /// <summary>
     /// Interaction logic for DosBoxConfig.xaml
     /// </summary>
@@ -87,6 +87,59 @@ namespace RayCarrot.RCP.Metro
 
             for (int height = minHeight; height <= maxHeight; height = height + minHeight)
                 AvailableResolutionValues.Add($"{height * ratio}x{height}");
+
+            // Set available DosBox outputs
+            AvailableDosBoxOutputs = new string[]
+            {
+                "default",
+                "surface",
+                "overlay",
+                "opengl",
+                "openglnb",
+                "ddraw"
+            };
+
+            // Set available DosBox scalers
+            AvailableDosBoxScalers = new string[]
+            {
+                "default",
+                "none",
+                "normal2x",
+                "normal3x",
+                "advmame2x",
+                "advmame3x",
+                "hq2x",
+                "hq3x",
+                "2xsai",
+                "super2xsai",
+                "supereagle",
+                "advinterp2x",
+                "advinterp3x",
+                "tv2x",
+                "tv3x",
+                "rgb2x",
+                "rgb3x",
+                "scan2x",
+                "scan3x"
+            };
+
+            // Set available DosBox core modes
+            AvailableDosBoxCoreModes = new string[]
+            {
+                "default",
+                "normal",
+                "simple",
+                "dynamic",
+                "auto"
+            };
+
+            // Set available DosBox cycle modes
+            AvailableDosBoxCycleModes = new string[]
+            {
+                "default",
+                "auto",
+                "max"
+            };
         }
 
         #endregion
@@ -99,11 +152,25 @@ namespace RayCarrot.RCP.Metro
 
         private bool? _fullDoubleEnabled;
 
-        private string _customCommands;
+        private bool? _aspectCorrectionEnabled;
+
+        private double? _memorySize;
+
+        private double? _frameskip;
+
+        private string _selectedOutput;
 
         private string _fullscreenResolution;
 
         private string _windowedResolution;
+
+        private string _selectedScaler;
+
+        private string _selectedCoreMode;
+
+        private string _selectedCycles;
+
+        private string _customCommands;
 
         #endregion
 
@@ -113,9 +180,23 @@ namespace RayCarrot.RCP.Metro
 
         private const string FullDoubleKey = "fulldouble";
 
+        private const string AspectCorrectionKey = "aspect";
+
+        private const string MemorySizeKey = "memsize";
+
+        private const string FrameskipKey = "frameskip";
+
+        private const string OutputKey = "output";
+
         private const string FullscreenResolutionKey = "fullresolution";
 
         private const string WindowedResolutionKey = "windowresolution";
+
+        private const string ScalerKey = "scaler";
+
+        private const string CoreKey = "core";
+
+        private const string CyclesKey = "cycles";
 
         #endregion
 
@@ -139,6 +220,26 @@ namespace RayCarrot.RCP.Metro
         /// The available resolution values to use
         /// </summary>
         public ObservableCollection<string> AvailableResolutionValues { get; }
+
+        /// <summary>
+        /// The available DosBox outputs to use
+        /// </summary>
+        public string[] AvailableDosBoxOutputs { get; }
+
+        /// <summary>
+        /// The available DosBox scalers to use
+        /// </summary>
+        public string[] AvailableDosBoxScalers { get; }
+
+        /// <summary>
+        /// The available DosBox core modes to use
+        /// </summary>
+        public string[] AvailableDosBoxCoreModes { get; }
+
+        /// <summary>
+        /// The available DosBox cycle modes to use
+        /// </summary>
+        public string[] AvailableDosBoxCycleModes { get; }
 
         /// <summary>
         /// The file or directory to mount
@@ -180,6 +281,58 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
+        /// Indicates if aspect ratio correction has been enabled
+        /// </summary>
+        public bool? AspectCorrectionEnabled
+        {
+            get => _aspectCorrectionEnabled;
+            set
+            {
+                _aspectCorrectionEnabled = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
+        /// The selected memory size
+        /// </summary>
+        public double? MemorySize
+        {
+            get => _memorySize;
+            set
+            {
+                _memorySize = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
+        /// The selected frame skip value
+        /// </summary>
+        public double? Frameskip
+        {
+            get => _frameskip;
+            set
+            {
+                _frameskip = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
+        /// The selected output to use
+        /// </summary>
+        public string SelectedOutput
+        {
+            get => _selectedOutput;
+            set
+            {
+                _selectedOutput = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
         /// The selected fullscreen resolution
         /// </summary>
         public string FullscreenResolution
@@ -201,6 +354,45 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 _windowedResolution = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
+        /// The selected scaler to use
+        /// </summary>
+        public string SelectedScaler
+        {
+            get => _selectedScaler;
+            set
+            {
+                _selectedScaler = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
+        /// The selected core mode to use
+        /// </summary>
+        public string SelectedCoreMode
+        {
+            get => _selectedCoreMode;
+            set
+            {
+                _selectedCoreMode = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
+        /// The selected cycles to use
+        /// </summary>
+        public string SelectedCycles
+        {
+            get => _selectedCycles;
+            set
+            {
+                _selectedCycles = value;
                 UnsavedChanges = true;
             }
         }
@@ -240,12 +432,20 @@ namespace RayCarrot.RCP.Metro
             var options = RCFRCP.Data.DosBoxGames[Game];
 
             MountPath = options.MountPath;
-            CustomCommands = options.Commands.JoinItems(Environment.NewLine);
 
             FullscreenEnabled = GetBool(FullScreenKey);
             FullDoubleEnabled = GetBool(FullDoubleKey);
+            AspectCorrectionEnabled = GetBool(AspectCorrectionKey);
+            MemorySize = GetDouble(MemorySizeKey);
+            Frameskip = GetDouble(FrameskipKey);
+            SelectedOutput = GetString(OutputKey, "default");
             FullscreenResolution = GetString(FullscreenResolutionKey, "Original");
             WindowedResolution = GetString(WindowedResolutionKey, "Original");
+            SelectedScaler = GetString(ScalerKey, "default");
+            SelectedCoreMode = GetString(CoreKey, "default");
+            SelectedCycles = GetString(CyclesKey, "default");
+
+            CustomCommands = options.Commands.JoinItems(Environment.NewLine);
 
             UnsavedChanges = false;
 
@@ -254,6 +454,7 @@ namespace RayCarrot.RCP.Metro
             // Helper methods for getting properties
             bool? GetBool(string propName) => Boolean.TryParse(options.ConfigCommands.TryGetValue(propName), out bool output) ? (bool?)output : null;
             string GetString(string propName, string defaultValue = null) => options.ConfigCommands.TryGetValue(propName) ?? defaultValue;
+            double? GetDouble(string propName) => Double.TryParse(options.ConfigCommands.TryGetValue(propName), out double output) ? (double?)output : null;
         }
 
         /// <summary>
@@ -276,15 +477,22 @@ namespace RayCarrot.RCP.Metro
 
                     SetProp(FullScreenKey, FullscreenEnabled);
                     SetProp(FullDoubleKey, FullDoubleEnabled);
+                    SetProp(AspectCorrectionKey, AspectCorrectionEnabled);
+                    SetProp(MemorySizeKey, MemorySize);
+                    SetProp(FrameskipKey, Frameskip);
+                    SetProp(OutputKey, SelectedOutput, true);
                     SetProp(FullscreenResolutionKey, FullscreenResolution);
                     SetProp(WindowedResolutionKey, WindowedResolution);
+                    SetProp(ScalerKey, SelectedScaler, true);
+                    SetProp(CoreKey, SelectedCoreMode, true);
+                    SetProp(CyclesKey, SelectedCycles, true);
 
                     RCF.Logger.LogInformationSource($"DosBox configuration for {Game} has been saved");
 
                     // Helper methods for setting properties
-                    void SetProp(string propName, object value)
+                    void SetProp(string propName, object value, bool ignoreDefault = false)
                     {
-                        if (value == null && options.ConfigCommands.ContainsKey(propName))
+                        if ((value == null || (ignoreDefault && value.ToString().Equals("default", StringComparison.CurrentCultureIgnoreCase))) && options.ConfigCommands.ContainsKey(propName))
                             options.ConfigCommands.Remove(propName);
                         else if (value != null)
                             options.ConfigCommands[propName] = value.ToString();
@@ -308,51 +516,13 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void UseRecommended()
         {
-            // TODO: Fill out
+            AspectCorrectionEnabled = false;
+            MemorySize = 30;
+            Frameskip = 0;
+            SelectedOutput = "default";
+            SelectedCycles = "20000";
         }
 
         #endregion
     }
-
-    /*
-     CONFIG -set 'memsize=30'
-     CONFIG -set 'frameskip=1'
-     CONFIG -set 'cycles=20000'
-     
-     [sdl]
-       # output -- What to use for output: surface,overlay,opengl,openglnb,ddraw.
-       
-       output=overlay
-       
-       [dosbox]
-       # memsize -- Amount of memory DOSBox has in megabytes.
-       
-       memsize=16
-       
-       [render]
-       # frameskip -- How many frames DOSBox skips before drawing one.
-       # aspect -- Do aspect correction, if your output method doesn't support scaling this can slow things down!.
-       # scaler -- Scaler used to enlarge/enhance low resolution modes.
-       #           Supported are none,normal2x,normal3x,advmame2x,advmame3x,hq2x,hq3x,
-       #                         2xsai,super2xsai,supereagle,advinterp2x,advinterp3x,
-       #                         tv2x,tv3x,rgb2x,rgb3x,scan2x,scan3x.
-       #           If forced is appended (like scaler=hq2x forced), the scaler will be used
-       #           even if the result might not be desired.
-       
-       frameskip=0
-       aspect=false
-       scaler=normal2x
-       
-       [cpu]
-       # core -- CPU Core used in emulation: normal,simple,dynamic,auto.
-       #         auto switches from normal to dynamic if appropriate.
-       # cycles -- Amount of instructions DOSBox tries to emulate each millisecond.
-       #           Setting this value too high results in sound dropouts and lags.
-       #           You can also let DOSBox guess the correct value by setting it to max.
-       #           The default setting (auto) switches to max if appropriate.
-       
-       core=normal
-       cycles=80000
-          
-     */
 }

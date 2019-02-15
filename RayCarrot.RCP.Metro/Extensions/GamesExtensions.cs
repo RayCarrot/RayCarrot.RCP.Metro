@@ -101,6 +101,7 @@ namespace RayCarrot.RCP.Metro
         {
             switch (type)
             {
+                case GameType.DosBox:
                 case GameType.Win32:
                     return (installDir + game.GetLaunchName()).FileExists;
 
@@ -108,10 +109,6 @@ namespace RayCarrot.RCP.Metro
                     return RCFWinReg.RegistryManager.KeyExists(RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {game.GetSteamID()}"), RegistryView.Registry64);
 
                 case GameType.WinStore:
-                    // TODO: Add check
-                    return true;
-
-                case GameType.DosBox:
                     // TODO: Add check
                     return true;
 
@@ -463,7 +460,7 @@ namespace RayCarrot.RCP.Metro
 
                 case GameType.DosBox:
                     var dosBoxConfig = RCFRCP.Data.DosBoxGames[game];
-                    return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, DosBoxHelpers.GetDosBoxArgument(RCFRCP.Data.DosBoxConfig, info.InstallDirectory, dosBoxConfig.MountPath, dosBoxConfig.Commands, game.GetLaunchName()));
+                    return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, DosBoxHelpers.GetDosBoxArgument(RCFRCP.Data.DosBoxConfig, info.InstallDirectory, dosBoxConfig.MountPath, dosBoxConfig.GetCommands(), game.GetLaunchName()));
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(info.GameType));
@@ -483,10 +480,10 @@ namespace RayCarrot.RCP.Metro
                     return "Rayman.exe";
 
                 case Games.RaymanDesigner:
-                    return "RAYKIT.EXE ver=usa";
+                    return "RAYKIT.bat";
 
                 case Games.RaymanByHisFans:
-                    return "@rayfan ver=usa";
+                    return "rayfan.bat";
 
                 case Games.Rayman60Levels:
                     return "Rayman.bat";
@@ -578,9 +575,8 @@ namespace RayCarrot.RCP.Metro
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);
             }
 
-            // TODO: Move to UI manager
             // Create and show the dialog and return the result
-            return await new GameTypeSelectionDialog(vm).ShowDialogAsync();
+            return await RCFRCP.UI.SelectGameTypeAsync(vm);
         }
 
         /// <summary>

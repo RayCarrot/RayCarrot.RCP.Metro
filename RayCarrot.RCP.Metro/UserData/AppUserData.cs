@@ -53,6 +53,7 @@ namespace RayCarrot.RCP.Metro
             DosBoxConfig = FileSystemPath.EmptyPath;
             DialogAsWindow = true;
             AutoLocateGames = true;
+            AutoUpdate = true;
         }
 
         #endregion
@@ -138,6 +139,11 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if games should be automatically located on startup
         /// </summary>
         public bool AutoLocateGames { get; set; }
+
+        /// <summary>
+        /// Indicates if updates should automatically be check for
+        /// </summary>
+        public bool AutoUpdate { get; set; }
 
         #endregion
     }

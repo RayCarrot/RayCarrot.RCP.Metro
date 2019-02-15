@@ -347,8 +347,7 @@ namespace RayCarrot.RCP.Metro
                     var r2Item = KeyItems.FindItem(x => x.OriginalKey == originalKey);
 
                     // If one was found, set the new key
-                    if (r2Item != null)
-                        r2Item.SetInitialNewKey(R2ButtonMappingManager.GetKey(item.NewKey));
+                    r2Item?.SetInitialNewKey(R2ButtonMappingManager.GetKey(item.NewKey));
                 }
             }
         }
@@ -472,21 +471,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Gets a value indicating if the aspect ratio for the Rayman 2 executable file
-        /// has been modified
-        /// </summary>
-        /// <param name="ratio">The aspect ratio bytes</param>
-        /// <returns>True if the aspect ratio is modified, false if it's the original value</returns>
-        private bool CheckAspectRatio(IReadOnlyList<byte> ratio)
-        {
-            // Check if the data has been modified
-            if (ratio[0] != 0 || ratio[1] != 0 || ratio[2] != 128 || ratio[3] != 63)
-                return true;
-
-            return false;
-        }
-
-        /// <summary>
         /// Sets the aspect ratio for the Rayman 2 executable file
         /// </summary>
         /// <returns>The task</returns>
@@ -607,6 +591,21 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Private Static Methods
+
+        /// <summary>
+        /// Gets a value indicating if the aspect ratio for the Rayman 2 executable file
+        /// has been modified
+        /// </summary>
+        /// <param name="ratio">The aspect ratio bytes</param>
+        /// <returns>True if the aspect ratio is modified, false if it's the original value</returns>
+        private static bool CheckAspectRatio(IReadOnlyList<byte> ratio)
+        {
+            // Check if the data has been modified
+            if (ratio[0] != 0 || ratio[1] != 0 || ratio[2] != 128 || ratio[3] != 63)
+                return true;
+
+            return false;
+        }
 
         /// <summary>
         /// Gets the aspect ratio location for a Rayman 2 executable file

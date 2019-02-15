@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using ByteSizeLib;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using RayCarrot.CarrotFramework;
@@ -69,28 +70,37 @@ namespace RayCarrot.RCP.Metro
 
         private void Application_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            // TODO: Clean up this
-
-            if (RCF.IsBuilt)
+            try
             {
-                // Handle the exception
-                e.Exception.HandleCritical("Unhandled exception");
+                if (RCF.IsBuilt)
+                {
+                    // Handle the exception
+                    e.Exception.HandleCritical("Unhandled exception");
 
-                RCF.Logger.LogCriticalSource("An unhandled exception has occurred");
+                    RCF.Logger.LogCriticalSource("An unhandled exception has occurred");
+                }
+
+                // Get the path to log to
+                FileSystemPath logPath = Path.Combine(Directory.GetCurrentDirectory(), "crashlog.txt");
+
+                // Write log
+                File.WriteAllLines(logPath, SessionLogger.Logs?.Select(x => $"[{x.LogLevel}] {x.Message}") ?? new string[] { "Service not available" });
+
+                // Notify user
+                MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e.Exception.Message}{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}" +
+                                $"A crash log has been created under {logPath}.", "Critical error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            // Get the path to log to
-            FileSystemPath logPath = Path.Combine(Directory.GetCurrentDirectory(), "crashlog.txt");
-
-            // Write log
-            File.WriteAllLines(logPath, SessionLogger.Logs?.Select(x => $"[{x.LogLevel}] {x.Message}") ?? new string[] { "Service not available" });
-
-            // Notify user
-            MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e.Exception.Message}{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}" +
-                $"A crash log has been created under {logPath}.");
-
-            // Dispose mutex
-            Mutex?.Dispose();
+            catch (Exception)
+            {
+                // Notify user
+                MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e.Exception.Message}{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}" +
+                                $"The log can be found under {CommonPaths.LogFile}.", "Critical error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                // Dispose mutex
+                Mutex?.Dispose();
+            }
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
@@ -122,7 +132,9 @@ namespace RayCarrot.RCP.Metro
             // Hard code the current directory
             Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? Directory.GetCurrentDirectory());
 
-            // TODO: Remove log file if over 2 mb
+            // Remove log file if over 2 mb
+            if (CommonPaths.LogFile.GetSize() > ByteSize.FromMegaBytes(2))
+                File.Delete(CommonPaths.LogFile);
 
             // Set up the framework
             await SetupFrameworkAsync(args);
@@ -190,6 +202,8 @@ namespace RayCarrot.RCP.Metro
                 AddRaymanDefaults().
                 // Add game manager
                 AddTransient<GameManager>().
+                // Add App UI manager
+                AddTransient<AppUIManager>().
                 // Build the framework
                 Build();
 
@@ -308,7 +322,10 @@ namespace RayCarrot.RCP.Metro
 
             // Show first launch info
             if (RCFRCP.Data.IsFirstLaunch)
+            {
                 new FirstLaunchInfoDialog().ShowDialog();
+                RCFRCP.Data.IsFirstLaunch = false;
+            }
 
             // TODO: Create a symbolic link for ubi.ini with source being in C:\Windows\Ubisoft and other being in AppData
 

@@ -12,13 +12,13 @@
                        mc:Ignorable="d"
                        d:DesignHeight="450" d:DesignWidth="800"
                        d:DataContext="{d:DesignInstance local:SettingsPageViewModel}">
-    <ScrollViewer>
+    <ScrollViewer Padding="5">
         <StackPanel>
             <i:Interaction.Behaviors>
                 <rwpf:UnifiedMarginBehavior Margin="2 8" />
             </i:Interaction.Behaviors>
 
-            <Expander Header="User Level"
+            <GroupBox Header="User Level"
                       DataContext="{Binding Path=AppUserData}">
 
                 <StackPanel>
@@ -63,9 +63,9 @@
 
                 </StackPanel>
 
-            </Expander>
+            </GroupBox>
 
-            <Expander Header="Design"
+            <GroupBox Header="Design"
                       DataContext="{Binding Path=AppUserData}">
                 <StackPanel>
                     <i:Interaction.Behaviors>
@@ -85,9 +85,9 @@
                               IsChecked="{Binding Path=DialogAsWindow}" />
 
                 </StackPanel>
-            </Expander>
+            </GroupBox>
 
-            <Expander Header="DosBox"
+            <GroupBox Header="DosBox"
                       DataContext="{Binding Path=AppUserData}">
 
                 <StackPanel>
@@ -123,9 +123,9 @@
 
                 </StackPanel>
 
-            </Expander>
+            </GroupBox>
 
-            <Expander Header="Other">
+            <GroupBox Header="Other">
                 <StackPanel>
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="2 8" />
@@ -135,13 +135,17 @@
                               IsChecked="{Binding Path=AutoLocateGames}"
                               DataContext="{Binding Path=AppUserData}"/>
 
+                    <CheckBox Content="Automatically check for program updates"
+                              IsChecked="{Binding Path=AutoUpdate}"
+                              DataContext="{Binding Path=AppUserData}"/>
+
                     <WrapPanel>
                         <Button Content="Reset"
                                 Command="{Binding Path=ResetCommand}" />
                     </WrapPanel>
 
                 </StackPanel>
-            </Expander>
+            </GroupBox>
 
         </StackPanel>
     </ScrollViewer>

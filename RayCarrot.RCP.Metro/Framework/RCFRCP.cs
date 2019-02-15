@@ -27,5 +27,10 @@ namespace RayCarrot.RCP.Metro
         /// The game manager
         /// </summary>
         public static GameManager Game => RCF.GetService<GameManager>();
+
+        /// <summary>
+        /// The App UI manager
+        /// </summary>
+        public static AppUIManager UI => RCF.GetService<AppUIManager>();
     }
 }

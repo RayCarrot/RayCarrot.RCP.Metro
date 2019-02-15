@@ -178,7 +178,7 @@ namespace RayCarrot.RCP.Metro
             {
                 RCF.Logger.LogWarningSource($"The game {game} has already been added");
 
-                // TODO: Show error message
+                await RCF.MessageUI.DisplayMessageAsync($"The game {game} has already been added", "Error adding new game", MessageType.Error);
 
                 return;
             }
@@ -412,7 +412,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     foreach (string startMenuItem in startMenuItems)
                     {
-                        if (!Path.GetFileName(startMenuItem)?.Contains(name) ?? false)
+                        if (Path.GetFileName(startMenuItem)?.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) < 0)
                             continue;
 
                         FileSystemPath path;
@@ -531,7 +531,52 @@ namespace RayCarrot.RCP.Metro
                 // Run the checker and get the results
                 var result = await manager.RunAsync();
 
-                // TODO: Find DosBox as well
+                if (!File.Exists(RCFRCP.Data.DosBoxPath))
+                    FindDosBox();
+
+                void FindDosBox()
+                {
+                    var actions = new Func<GameFinderActionResult>[]
+                    {
+                        // Uninstall
+                        () => CheckUninstall("DosBox", "Dos Box"),
+
+                        // Start menu
+                        () => CheckStartMenu("DosBox", "DOSBox.exe"),
+                    };
+
+                    // Run every check action until one is successful
+                    foreach (var action in actions)
+                    {
+                        // Stop running the check actions if the file has been found
+                        if (File.Exists(RCFRCP.Data.DosBoxPath))
+                            break;
+
+                        try
+                        {
+                            // Get the result from the action
+                            var dosBoxCheckResult = action();
+
+                            var filePath = dosBoxCheckResult.Path + "DOSBox.exe";
+
+                            // Check if the file exists
+                            if (!filePath.FileExists)
+                                continue;
+
+                            RCF.Logger.LogTraceSource($"The DosBox executable was found from the game checker with the source {dosBoxCheckResult.Source}");
+
+                            RCFRCP.Data.DosBoxPath = filePath;
+
+                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            ex.HandleUnexpected("DosBox check action", action);
+                        }
+                    }
+                }
+
+                // 
 
                 // Check Rayman Forever
                 if (!Games.Rayman1.IsAdded() &&
@@ -558,8 +603,9 @@ namespace RayCarrot.RCP.Metro
                             Games.RaymanByHisFans
                         });
 
-                        // TODO: Only add dosbox path if not already existing
-                        RCFRCP.Data.DosBoxPath = Path.Combine(dir, "DosBox\\DOSBox.exe");
+                        if (!File.Exists(RCFRCP.Data.DosBoxPath))
+                            RCFRCP.Data.DosBoxPath = Path.Combine(dir, "DosBox\\DOSBox.exe");
+
                         RCFRCP.Data.DosBoxConfig = Path.Combine(dir, "dosboxRayman.conf");
 
                         // Add the games
@@ -569,8 +615,11 @@ namespace RayCarrot.RCP.Metro
 
                         RCF.Logger.LogInformationSource($"The games in Rayman Forever has been added from the game finder");
 
-                        // TODO: Add mount path
-                        //Games.Rayman1.GetGame().MountDir = Games.RaymanDesigner.GetGame().MountDir = Games.RaymanByHisFans.GetGame().MountDir = mountFileA.FileExists ? mountFileA : mountFileB;
+                        var mountPath = mountFileA.FileExists ? mountFileA : mountFileB;
+
+                        RCFRCP.Data.DosBoxGames[Games.Rayman1].MountPath = mountPath;
+                        RCFRCP.Data.DosBoxGames[Games.RaymanDesigner].MountPath = mountPath;
+                        RCFRCP.Data.DosBoxGames[Games.RaymanByHisFans].MountPath = mountPath;
                     }
                 }
 

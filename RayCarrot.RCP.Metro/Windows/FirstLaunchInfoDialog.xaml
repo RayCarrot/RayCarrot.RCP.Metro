@@ -57,8 +57,9 @@
                     <CheckBox Content="Automatically locate installed games" 
                               Margin="10"
                               IsChecked="{Binding Path=AutoLocateGames}"/>
-                    <CheckBox Content="Automatically check for program updates" IsEnabled="False"
-                              Margin="10"/>
+                    <CheckBox Content="Automatically check for program updates"
+                              Margin="10"
+                              IsChecked="{Binding Path=AutoUpdate}"/>
                 </WrapPanel>
 
             </Grid>

@@ -20,7 +20,6 @@ namespace RayCarrot.RCP.Metro
             {
                 RCF.Logger.LogTraceSource($"The game {game} is being located...");
 
-                // TODO: Create UI manager
                 var typeResult = await game.GetGameTypeAsync();
 
                 if (typeResult.CanceledByUser)
@@ -89,7 +88,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Locating game");
-                // TODO: Error message
+                await RCF.MessageUI.DisplayMessageAsync("An error occurred when locating the game", "Error locating game", MessageType.Error);
             }
         }
     }

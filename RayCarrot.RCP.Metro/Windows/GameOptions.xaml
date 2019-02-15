@@ -69,12 +69,12 @@
         </Grid>
 
         <Separator Grid.Row="1"
-                   wpf:UserLevelTag.MinUserLevel="Technical" />
+                   wpf:UserLevelTag.MinUserLevel="Debug" />
 
         <!-- Technical Information -->
 
         <Grid Grid.Row="2"
-              wpf:UserLevelTag.MinUserLevel="Technical"
+              wpf:UserLevelTag.MinUserLevel="Debug"
               Grid.IsSharedSizeScope="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"

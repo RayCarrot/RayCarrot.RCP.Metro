@@ -38,6 +38,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Img\Rayman Control Panel Icon.ico</ApplicationIcon>
@@ -137,8 +138,8 @@
     <Reference Include="PropertyChanged, Version=2.6.0.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\PropertyChanged.Fody.2.6.0\lib\net452\PropertyChanged.dll</HintPath>
     </Reference>
-    <Reference Include="RayCarrot.CarrotFramework, Version=2.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\RayCarrot.CarrotFramework.2.0.5\lib\netstandard2.0\RayCarrot.CarrotFramework.dll</HintPath>
+    <Reference Include="RayCarrot.CarrotFramework, Version=2.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\RayCarrot.CarrotFramework.2.0.6\lib\netstandard2.0\RayCarrot.CarrotFramework.dll</HintPath>
     </Reference>
     <Reference Include="RayCarrot.UserData, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\RayCarrot.UserData.2.0.1\lib\netstandard2.0\RayCarrot.UserData.dll</HintPath>
@@ -261,6 +262,7 @@
     <Compile Include="Controls\UserControls\Config\DosBoxConfig.xaml.cs">
       <DependentUpon>DosBoxConfig.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Framework\Implementations\AppUIManager.cs" />
     <Compile Include="Framework\Implementations\FileLogger.cs" />
     <Compile Include="DataModels\KeyMappingItem.cs" />
     <Compile Include="Framework\Implementations\GameManager.cs" />
@@ -268,6 +270,7 @@
     <Compile Include="GameFinder\GameFinderManager.cs" />
     <Compile Include="Helpers\R2ButtonMappingManager.cs" />
     <Compile Include="DataModels\DosBoxOptions.cs" />
+    <Compile Include="ValidationRules\DosBoxCyclesValidationRule.cs" />
     <Compile Include="ValidationRules\DosBoxResolutionValidationRule.cs" />
     <Compile Include="ViewModels\R2KeyItemViewModel.cs" />
     <Compile Include="Controls\UserControls\Config\Rayman2Config.xaml.cs">
@@ -377,6 +380,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Images.Designer.cs</LastGenOutput>
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
