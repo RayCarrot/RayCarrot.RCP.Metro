@@ -15,6 +15,8 @@ using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {
+    // TODO: Add RL debug commands using Uplay exe and fix R2 installer to not use .dat files, but GOG exe
+
     /// <summary>
     /// Handles common actions and events for this application
     /// </summary>
@@ -56,7 +58,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(0, 0, 0, 0);
+        public Version CurrentVersion => new Version(4, 0, 0, 0);
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -207,7 +209,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 else
                 {
-                    // TODO: Handle error
+                    RCF.Logger.LogErrorSource($"The game {game} can not be added due to the install directory being null");
                     return;
                 }
 
@@ -293,15 +295,16 @@ namespace RayCarrot.RCP.Metro
             {
                 if (!CommonPaths.UbiIniPath1.FileExists)
                 {
-                    // TODO: Handle/Log
+                    RCF.Logger.LogInformationSource("The ubi.ini file was not found");
                     return;
                 }
 
                 // Check if we have write access
                 if (RCFRCP.File.CheckFileWriteAccess(CommonPaths.UbiIniPath1))
+                {
+                    RCF.Logger.LogDebugSource("The ubi.ini file has write access");
                     return;
-
-                // TODO: Log
+                }
 
                 await RCF.MessageUI.DisplayMessageAsync("To be able to configure the Rayman games without running this program as administrator you will " +
                                                         "need to accept the following admin prompt");
@@ -315,7 +318,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Changing ubi.ini file permissions");
-                // TODO: Handle/Log
+                await RCF.MessageUI.DisplayMessageAsync("An error occurred when attempting to enable write access for the Rayman configuration file", "Error", MessageType.Error);
             }
         }
 
@@ -641,6 +644,26 @@ namespace RayCarrot.RCP.Metro
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Cleans the temporary files of the application
+        /// </summary>
+        public void CleanTemp()
+        {
+            lock (this)
+            {
+                try
+                {
+                    RCFRCP.File.DeleteDirectory(CommonPaths.TempPath);
+
+                    RCF.Logger.LogInformationSource($"The application temp was cleaned");
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleCritical("Cleaning temp");
+                }
+            }
         }
 
         #endregion

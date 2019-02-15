@@ -81,7 +81,8 @@ namespace RayCarrot.RCP.Metro
 
                 RCF.Logger.LogInformationSource($"The application is exiting...");
 
-                // TODO: Clean the temp
+                // Clean the temp
+                RCFRCP.App.CleanTemp();
 
                 // Save all user data
                 await RCFRCP.App.SaveUserDataAsync();

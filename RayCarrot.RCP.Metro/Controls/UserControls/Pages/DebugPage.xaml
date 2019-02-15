@@ -13,28 +13,57 @@
     <ScrollViewer Padding="10">
         <StackPanel>
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                <rwpf:UnifiedMarginBehavior Margin="2 10" />
             </i:Interaction.Behaviors>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*" />
-                    <ColumnDefinition Width="20" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <GroupBox Header="Dialogs">
 
-                <ComboBox Grid.Column="0" 
-                          ItemsSource="{Binding Path=SelectedDialog, Converter={rwpf:EnumToListConverter}}"
-                          SelectedIndex="{Binding Path=SelectedDialog, Converter={rwpf:EnumToIntConverter}}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="2" 
-                        Content="Show Dialog"
-                        Command="{Binding Path=ShowDialogCommand}" />
-            </Grid>
+                    <ComboBox Grid.Column="0" 
+                              ItemsSource="{Binding Path=SelectedDialog, Converter={rwpf:EnumToListConverter}}"
+                              SelectedIndex="{Binding Path=SelectedDialog, Converter={rwpf:EnumToIntConverter}}"/>
 
-            <Button Content="Show Log"
-                    Command="{Binding Path=ShowLogCommand}"
-                    HorizontalAlignment="Left"/>
+                    <Button Grid.Column="2" 
+                            Content="Show Dialog"
+                            Command="{Binding Path=ShowDialogCommand}" />
+                </Grid>
+
+            </GroupBox>
+
+            <GroupBox Header="Debug Tools">
+                <WrapPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="0 5" />
+                    </i:Interaction.Behaviors>
+
+                    <Button Content="Show Log"
+                            Command="{Binding Path=ShowLogCommand}"/>
+
+                    <Button Content="Open App Data location"
+                            Command="{Binding Path=OpenAppDataCommand}"/>
+
+                </WrapPanel>
+
+            </GroupBox>
+
+            <GroupBox Header="Experimental Features">
+                <WrapPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="0 5" />
+                    </i:Interaction.Behaviors>
+
+                    <Button Content="Create ubi.ini symbolic link"
+                            Command="{Binding Path=UbiIniLinkCommand}"/>
+
+                </WrapPanel>
+
+            </GroupBox>
 
         </StackPanel>
     </ScrollViewer>

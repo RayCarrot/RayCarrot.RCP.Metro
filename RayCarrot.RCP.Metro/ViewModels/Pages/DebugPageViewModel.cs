@@ -21,6 +21,8 @@ namespace RayCarrot.RCP.Metro
         {
             ShowDialogCommand = new AsyncRelayCommand(ShowDialogAsync);
             ShowLogCommand = new RelayCommand(ShowLog);
+            OpenAppDataCommand = new AsyncRelayCommand(OpenAppDataAsync);
+            UbiIniLinkCommand = new AsyncRelayCommand(SetupUbiIniLinkAsync);
 
             // Show log viewer if a debugger is attached
             if (_firstConstruction && Debugger.IsAttached)
@@ -133,6 +135,24 @@ namespace RayCarrot.RCP.Metro
             new LogViewer().Show();
         }
 
+        /// <summary>
+        /// Opens the app data directory
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task OpenAppDataAsync()
+        {
+            await RCFRCP.File.OpenExplorerLocationAsync(CommonPaths.UserDataBaseDir);
+        }
+
+        /// <summary>
+        /// Sets up the ubi.ini file symbolic link
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task SetupUbiIniLinkAsync()
+        {
+            await RCF.MessageUI.DisplayMessageAsync("This feature has not been implemented");
+        }
+
         #endregion
 
         #region Commands
@@ -140,6 +160,10 @@ namespace RayCarrot.RCP.Metro
         public ICommand ShowDialogCommand { get; }
 
         public ICommand ShowLogCommand { get; }
+
+        public ICommand OpenAppDataCommand { get; }
+
+        public ICommand UbiIniLinkCommand { get; }
 
         #endregion
     }

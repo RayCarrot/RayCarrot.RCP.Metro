@@ -18,6 +18,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -232,6 +233,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\AppNewsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\FirstLaunchInfoDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -262,6 +267,7 @@
     <Compile Include="Controls\UserControls\Config\DosBoxConfig.xaml.cs">
       <DependentUpon>DosBoxConfig.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Config\DosBoxConfigViewModel.cs" />
     <Compile Include="Framework\Implementations\AppUIManager.cs" />
     <Compile Include="Framework\Implementations\FileLogger.cs" />
     <Compile Include="DataModels\KeyMappingItem.cs" />
@@ -337,6 +343,9 @@
     <Compile Include="DataModels\GameInfo.cs" />
     <Compile Include="ViewModels\Game\GameDisplayViewModel.cs" />
     <Compile Include="ViewModels\Game\GameConfigViewModel.cs" />
+    <Compile Include="Windows\AppNewsDialog.xaml.cs">
+      <DependentUpon>AppNewsDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\FirstLaunchInfoDialog.xaml.cs">
       <DependentUpon>FirstLaunchInfoDialog.xaml</DependentUpon>
     </Compile>
@@ -372,9 +381,10 @@
       <SubType>Code</SubType>
     </Compile>
     <EmbeddedResource Include="Files\Files.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Files.Designer.cs</LastGenOutput>
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Img\Images.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -462,8 +472,10 @@
     <Resource Include="Img\MessageIcons\Question.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Files\About.txt" />
     <Content Include="Files\Rayman2\dinput_controller.dll" />
     <Content Include="Files\Rayman2\dinput_mapping.dll" />
+    <Resource Include="Files\VersionHistory.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

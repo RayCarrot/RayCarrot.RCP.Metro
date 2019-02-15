@@ -581,7 +581,9 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                // TODO: Fill out
+                ex.HandleError("Setting R2 aspect ratio");
+
+                await RCF.MessageUI.DisplayMessageAsync("An error occurred when setting the Rayman 2 aspect ratio", "Error", MessageType.Error);
 
                 if (WidescreenSupport)
                     throw;

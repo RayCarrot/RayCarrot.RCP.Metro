@@ -11,19 +11,6 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class AppUserData : BaseViewModel, IUserData
     {
-        #region Constructor
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public AppUserData()
-        {
-            // Reset the properties
-            Reset();
-        }
-
-        #endregion
-
         #region Interface Implementation
 
         /// <summary>
@@ -45,7 +32,7 @@ namespace RayCarrot.RCP.Metro
             DosBoxGames = new Dictionary<Games, DosBoxOptions>();
             UserLevel = UserLevel.Normal;
             IsFirstLaunch = true;
-            LastVersion = RCFRCP.App.CurrentVersion;
+            LastVersion = new Version(0, 0, 0, 0);
             WindowState = null;
             DarkMode = true;
             ShowActionComplete = true;
@@ -93,7 +80,11 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The last used version of the program
         /// </summary>
-        public Version LastVersion { get; set; }
+        public Version LastVersion
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// The previous Window session state

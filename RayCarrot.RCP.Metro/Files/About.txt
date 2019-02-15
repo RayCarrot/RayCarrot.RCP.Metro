@@ -1,0 +1,43 @@
+﻿Known issues:
+- Rayman 2 button button mapping text box does not allow modifier keys (Ctrl, Shift, Win or Alt)
+
+Finished features:
+
+- License dialog
+- Automatic game finder
+- Games list in the Games page
+- Locating DosBox, Steam or Desktop games
+- Launching game, game config and Steam links
+- Removing game from options dialog
+- Rayman 2 configuration dialog
+- DosBox configuration dialog
+
+Unfinished features:
+
+- Allow user to create game shortcuts
+- Add control tool tips
+- Locate Windows Store games
+- Backup/Restore game save files
+- Missing settings
+- Import settings from RCP 3.0
+- Help page
+- About page
+- Remove write protection on ubi.ini file on first launch
+- Configuration dialogs for:
+-- Rayman M/Arena
+-- Rayman 3
+-- Rayman Raving Rabbids
+-- Rayman Origins
+-- Rayman Legends
+- Disc installers
+- Port utilities:
+-- R1 PlayStation soundtrack (checkbox in config to launch in this mode)
+-- Replace Rayman Forever incomplete soundtrack (checkbox in config, disabled if soundtrack not found)
+-- Replace RayKit files (button in config)
+-- Create missing RayKit config (automatically upon saving RayKit config changes)
+-- R2 translation (button with "Unofficial translations" next to language combo box)
+-- Rayman M/Arena/3 controller patch (checkbox in config to enable native controller support)
+-- RO 60fps videos
+-- RO updater
+-- RO debug commands
+-- RL UbiRay

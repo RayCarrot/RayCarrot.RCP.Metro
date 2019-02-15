@@ -327,8 +327,6 @@ namespace RayCarrot.RCP.Metro
                 RCFRCP.Data.IsFirstLaunch = false;
             }
 
-            // TODO: Create a symbolic link for ubi.ini with source being in C:\Windows\Ubisoft and other being in AppData
-
             await RCFRCP.App.EnableUbiIniWriteAccessAsync();
         }
 
@@ -338,7 +336,7 @@ namespace RayCarrot.RCP.Metro
         private static async Task PostUpdateAsync()
         {
             RCF.Logger.LogInformationSource($"Current version is {RCFRCP.App.CurrentVersion}");
-
+            var l = RCFRCP.Data;
             // Make sure this is a new version
             if (!(RCFRCP.Data.LastVersion < RCFRCP.App.CurrentVersion))
             {
@@ -354,7 +352,8 @@ namespace RayCarrot.RCP.Metro
                 return;
             }
 
-            // TODO: Show app news
+            // Show app news
+            new AppNewsDialog().ShowDialog();
 
             // Update the last version
             RCFRCP.Data.LastVersion = RCFRCP.App.CurrentVersion;

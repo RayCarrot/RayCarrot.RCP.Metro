@@ -22,7 +22,7 @@ namespace RayCarrot.RCP.Metro {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Files {
+    public class Files {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace RayCarrot.RCP.Metro {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RayCarrot.RCP.Metro.Files.Files", typeof(Files).Assembly);
@@ -51,7 +51,7 @@ namespace RayCarrot.RCP.Metro {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,36 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Known issues:
+        ///- Rayman 2 button button mapping text box does not allow modifier keys (Ctrl, Shift, Win or Alt)
+        ///
+        ///Finished features:
+        ///
+        ///- License dialog
+        ///- Automatic game finder
+        ///- Games list in the Games page
+        ///- Locating DosBox, Steam or Desktop games
+        ///- Launching game, game config and Steam links
+        ///- Removing game from options dialog
+        ///- Rayman 2 configuration dialog
+        ///- DosBox configuration dialog
+        ///
+        ///Unfinished features:
+        ///
+        ///- Allow user to create game shortcuts
+        ///- Add control tool tips
+        ///- Locate Windows St [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] dinput_controller {
+        public static byte[] dinput_controller {
             get {
                 object obj = ResourceManager.GetObject("dinput_controller", resourceCulture);
                 return ((byte[])(obj));
@@ -73,10 +100,32 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] dinput_mapping {
+        public static byte[] dinput_mapping {
             get {
                 object obj = ResourceManager.GetObject("dinput_mapping", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -----   Version 4.0.0 - March ? 2019   -----
+        ///
+        ///• Updated the program to use WPF instead of WinForms
+        ///• Changed the theme to Metro theme with dark/light modes
+        ///• Simplified game selection and utilities
+        ///• 
+        ///
+        ///Other changes:
+        ///• Rayman M/Arena are not treated as separate games
+        ///• Common DosBox commands can now be set using the new DosBox configuration dialog
+        ///• Rayman 2 utilities have been integrated into its configuration dialog. It now also shows the currently selected button mapping.
+        ///• 
+        ///
+        ///Removed feature [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string VersionHistory {
+            get {
+                return ResourceManager.GetString("VersionHistory", resourceCulture);
             }
         }
     }
