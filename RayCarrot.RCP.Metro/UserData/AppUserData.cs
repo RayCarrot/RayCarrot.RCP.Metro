@@ -41,6 +41,7 @@ namespace RayCarrot.RCP.Metro
             DialogAsWindow = true;
             AutoLocateGames = true;
             AutoUpdate = true;
+            IsFiestaRunWin10Edition = true;
         }
 
         #endregion
@@ -135,6 +136,11 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if updates should automatically be check for
         /// </summary>
         public bool AutoUpdate { get; set; }
+
+        /// <summary>
+        /// Indicates if the version of Rayman Fiesta Run is the Windows 10 Edition
+        /// </summary>
+        public bool IsFiestaRunWin10Edition { get; set; }
 
         #endregion
     }

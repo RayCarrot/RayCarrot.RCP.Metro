@@ -4,12 +4,14 @@ using System.IO.Packaging;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Windows.Management.Deployment;
 using MahApps.Metro.IconPacks;
 using Microsoft.Win32;
 using RayCarrot.CarrotFramework;
 using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
+using Package = Windows.ApplicationModel.Package;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -110,8 +112,7 @@ namespace RayCarrot.RCP.Metro
                     return RCFWinReg.RegistryManager.KeyExists(RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {game.GetSteamID()}"), RegistryView.Registry64);
 
                 case GameType.WinStore:
-                    // TODO: Add check
-                    return true;
+                    return game.GetGamePackage() != null;
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
@@ -210,19 +211,8 @@ namespace RayCarrot.RCP.Metro
                     new GameOptions(game).ShowDialog();
                 })));
 
-                return new GameDisplayViewModel(game.GetDisplayName(), game.GetIconSource(), 
-                    new ActionItemViewModel("Launch", PackIconMaterialKind.Play, new AsyncRelayCommand(async () =>
-                    {
-                        // Get the launch info
-                        var launchInfo = game.GetLaunchInfo();
-
-                        RCF.Logger.LogTraceSource($"The game {game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
-
-                        // Launch the game
-                        await RCFRCP.File.LaunchFileAsync(launchInfo.Path, false, launchInfo.Args);
-
-                        RCF.Logger.LogInformationSource($"The game {game} has been launched");
-                    })) , actions);
+                return new GameDisplayViewModel(game.GetDisplayName(), game.GetIconSource(),
+                    new ActionItemViewModel("Launch", PackIconMaterialKind.Play, new AsyncRelayCommand(async () => await RCFRCP.Game.LaunchGameAsync(game))), actions);
             }
             else
             {
@@ -457,7 +447,8 @@ namespace RayCarrot.RCP.Metro
                     return new GameLaunchInfo(@"steam://rungameid/" + game.GetSteamID(), null);
 
                 case GameType.WinStore:
-                    return new GameLaunchInfo("shell:appsFolder\\" + $"{game.GetLaunchName()}!App", null);
+                    throw new ArgumentOutOfRangeException(nameof(info.GameType), info.GameType, "Launch info can not be obtained for a Windows Store application");
+                    //return new GameLaunchInfo("shell:appsFolder\\" + $"{game.GetLaunchName()}!App", null);
 
                 case GameType.DosBox:
                     var dosBoxConfig = RCFRCP.Data.DosBoxGames[game];
@@ -511,11 +502,8 @@ namespace RayCarrot.RCP.Metro
                     return "Rayman Legends.exe";
 
                 case Games.RaymanJungleRun:
-                    return "UbisoftEntertainment.RaymanJungleRun_dbgk1hhpxymar";
-
-                // TODO: Support Win10 and preload editions
                 case Games.RaymanFiestaRun:
-                    return "Ubisoft.RaymanFiestaRun_ngz4m417e0mpw";
+                    throw new ArgumentOutOfRangeException(nameof(game), game, "A launch name can not be obtained from a Windows Store application");
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);
@@ -632,6 +620,43 @@ namespace RayCarrot.RCP.Metro
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);
             }
+        }
+
+        /// <summary>
+        /// Gets the game package for a Windows Store game
+        /// </summary>
+        /// <param name="game">The game to get the package for</param>
+        /// <returns>The package or null if not found</returns>
+        public static Package GetGamePackage(this Games game)
+        {
+            // Make sure version is at least Windows 8
+            if (Environment.OSVersion.Version < new Version(6, 2, 0, 0))
+                return null;
+
+            switch (game)
+            {
+                case Games.RaymanJungleRun:
+                case Games.RaymanFiestaRun:
+                    return new PackageManager().FindPackagesForUser(String.Empty).FindItem(x => x.Id.Name == game.GetPackageName());
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(game), game, "A game package can only be retrieved for Rayman Jungle Run or Rayman Fiesta Run");
+            }
+        }
+
+        /// <summary>
+        /// Gets the package name for a Windows Store game
+        /// </summary>
+        /// <param name="game">The game to get the package name for</param>
+        /// <returns>The package name</returns>
+        public static string GetPackageName(this Games game)
+        {
+            if (game == Games.RaymanJungleRun)
+                return "UbisoftEntertainment.RaymanJungleRun";
+            else if (game == Games.RaymanFiestaRun)
+                return RCFRCP.Data.IsFiestaRunWin10Edition ? "Ubisoft.RaymanFiestaRunWindows10Edition" : "Ubisoft.RaymanFiestaRun";
+
+            throw new ArgumentOutOfRangeException(nameof(game), game, "A package name can not be obtained from the specified game");
         }
     }
 }

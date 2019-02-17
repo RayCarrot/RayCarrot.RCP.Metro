@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Windows.Devices.SmartCards;
 using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro
@@ -79,6 +81,48 @@ namespace RayCarrot.RCP.Metro
                         break;
 
                     case GameType.WinStore:
+                        // Helper method for finding and adding a Windows Store app
+                        async Task<bool> FindWinStoreAppAsync()
+                        {
+                            // Check if the game is installed
+                            if (!game.IsValid(GameType.WinStore, FileSystemPath.EmptyPath))
+                                return false;
+
+                            // Add the game
+                            await RCFRCP.App.AddNewGameAsync(game, GameType.WinStore);
+
+                            RCF.Logger.LogInformationSource($"The game {game.GetDisplayName()} has been added");
+
+                            return true;
+                        }
+
+                        bool found;
+
+                        if (game == Games.RaymanFiestaRun)
+                        {
+                            RCFRCP.Data.IsFiestaRunWin10Edition = true;
+
+                            found = await FindWinStoreAppAsync();
+
+                            if (!found)
+                            {
+                                RCFRCP.Data.IsFiestaRunWin10Edition = false;
+
+                                found = await FindWinStoreAppAsync();
+                            }
+                        }
+                        else
+                        {
+                            found = await FindWinStoreAppAsync();
+                        }
+
+                        if (!found)
+                        {
+                            RCF.Logger.LogInformationSource($"The {game} was not found under Windows Store packages");
+
+                            await RCF.MessageUI.DisplayMessageAsync("The game could not be found.", "Game not found", MessageType.Error);
+                        }
+
                         break;
 
                     default:
@@ -90,6 +134,39 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Locating game");
                 await RCF.MessageUI.DisplayMessageAsync("An error occurred when locating the game", "Error locating game", MessageType.Error);
             }
+        }
+
+        /// <summary>
+        /// Launches the specified game
+        /// </summary>
+        /// <param name="game">The game to launch</param>
+        /// <returns>The task</returns>
+        public async Task LaunchGameAsync(Games game)
+        {
+            // If it's a Windows Store app, launch the first package app entry instead
+            if (game.GetInfo().GameType == GameType.WinStore)
+            {
+                try
+                {
+                    // Launch the first app entry for the package
+                    await (await game.GetGamePackage().GetAppListEntriesAsync()).First().LaunchAsync();
+                }
+                catch (Exception ex)
+                {
+                    // TODO: Log/Handle
+                }
+                return;
+            }
+
+            // Get the launch info
+            var launchInfo = game.GetLaunchInfo();
+
+            RCF.Logger.LogTraceSource($"The game {game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
+
+            // Launch the game
+            await RCFRCP.File.LaunchFileAsync(launchInfo.Path, false, launchInfo.Args);
+
+            RCF.Logger.LogInformationSource($"The game {game} has been launched");
         }
     }
 }

@@ -205,7 +205,18 @@ namespace RayCarrot.RCP.Metro
                 }
                 else if (type == GameType.WinStore)
                 {
-                    // TODO: Use Win10 API in .NET 4.8
+                    try
+                    {
+                        // Get the package
+                        var package = game.GetGamePackage();
+
+                        if (package != null)
+                            installDirectory = package.InstalledLocation.Path;
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleError("Getting Windows Store game install directory");
+                    }
                 }
                 else
                 {
@@ -328,8 +339,6 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if new games were found, otherwise false</returns>
         public async Task<bool> RunGameFinderAsync()
         {
-            // TODO: Have way to find WinStore games
-
             try
             {
                 // Create the manager
@@ -579,7 +588,38 @@ namespace RayCarrot.RCP.Metro
                     }
                 }
 
-                // 
+                // Helper method for finding and adding a Windows Store app
+                async Task FindWinStoreAppAsync(Games game)
+                {
+                    // Check if the game is installed
+                    if (game.IsValid(GameType.WinStore, FileSystemPath.EmptyPath))
+                    {
+                        result.Add(game);
+
+                        // Add the game
+                        await RCFRCP.App.AddNewGameAsync(game, GameType.WinStore);
+
+                        RCF.Logger.LogInformationSource($"The game {game.GetDisplayName()} has been added from the game finder");
+                    }
+                }
+
+                // Check Windows Store apps
+                if (!Games.RaymanJungleRun.IsAdded())
+                    await FindWinStoreAppAsync(Games.RaymanJungleRun);
+
+                if (!Games.RaymanFiestaRun.IsAdded())
+                {
+                    RCFRCP.Data.IsFiestaRunWin10Edition = true;
+
+                    await FindWinStoreAppAsync(Games.RaymanFiestaRun);
+                }
+
+                if (!Games.RaymanFiestaRun.IsAdded())
+                {
+                    RCFRCP.Data.IsFiestaRunWin10Edition = false;
+
+                    await FindWinStoreAppAsync(Games.RaymanFiestaRun);
+                }
 
                 // Check Rayman Forever
                 if (!Games.Rayman1.IsAdded() &&

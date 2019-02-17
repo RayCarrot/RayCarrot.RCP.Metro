@@ -23,13 +23,21 @@ namespace RayCarrot.RCP.Metro
             DisplayName = game.GetDisplayName();
             IconSource = game.GetIconSource();
 
-            var launchInfo = game.GetLaunchInfo();
-            LaunchPath = launchInfo.Path;
-            LaunchArguments = launchInfo.Args;
-
             var info = game.GetInfo();
             GameType = info.GameType;
             InstallDirectory = info.InstallDirectory;
+
+            if (GameType == GameType.WinStore)
+            {
+                // TODO: Have other fields for WinStore games like full package name etc.
+                LaunchPath = "await (await game.GetGamePackage().GetAppListEntriesAsync()).First().LaunchAsync()";
+            }
+            else
+            {
+                var launchInfo = game.GetLaunchInfo();
+                LaunchPath = launchInfo.Path;
+                LaunchArguments = launchInfo.Args;
+            }
         }
 
         #endregion
