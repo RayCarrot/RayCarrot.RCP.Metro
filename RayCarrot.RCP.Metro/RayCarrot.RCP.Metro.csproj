@@ -231,6 +231,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\DuoGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\GameDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -286,9 +290,13 @@
     <Compile Include="Controls\Dialogs\GameTypeSelectionDialog.xaml.cs">
       <DependentUpon>GameTypeSelectionDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DuoGrid.xaml.cs">
+      <DependentUpon>DuoGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserControls\Config\DosBoxConfig.xaml.cs">
       <DependentUpon>DosBoxConfig.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\GameTypeExtensions.cs" />
     <Compile Include="Legacy\LegacyAppUserData.cs" />
     <Compile Include="Legacy\LegacyGames.cs" />
     <Compile Include="Legacy\LegacyGameType.cs" />

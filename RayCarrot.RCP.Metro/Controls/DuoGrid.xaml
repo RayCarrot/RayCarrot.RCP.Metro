@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.DuoGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
+    <ItemsControl x:Name="DuoGridItemsControl"
+                  Grid.IsSharedSizeScope="True"
+                  ItemsSource="{Binding Path=Items}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate DataType="{x:Type local:DuoGridItemViewModel}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"
+                                          SharedSizeGroup="A" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding Path=Header}"
+                               FontWeight="Bold" />
+
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding Path=Text}"
+                               TextWrapping="Wrap" />
+
+                </Grid>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</UserControl>

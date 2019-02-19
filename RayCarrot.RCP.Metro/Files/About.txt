@@ -11,8 +11,8 @@ Unfinished features:
 -- Option to close a configuration dialog upon saving
 -- Backup location
 -- Progress on task bar icon
-- Import settings from RCP 3.0
 - Help page
+-- Cheat codes (add reverse code for R3)
 - About page
 - Configuration dialogs for:
 -- Rayman M/Arena

@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.ApplicationModel;
 using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro
@@ -23,20 +26,40 @@ namespace RayCarrot.RCP.Metro
             DisplayName = game.GetDisplayName();
             IconSource = game.GetIconSource();
 
-            var info = game.GetInfo();
-            GameType = info.GameType;
-            InstallDirectory = info.InstallDirectory;
+            InfoItems = new ObservableCollection<DuoGridItemViewModel>();
 
-            if (GameType == GameType.WinStore)
+            var info = game.GetInfo();
+            var gameType = info.GameType;
+
+            if (gameType == GameType.WinStore)
             {
-                // TODO: Have other fields for WinStore games like full package name etc.
-                LaunchPath = "await (await game.GetGamePackage().GetAppListEntriesAsync()).First().LaunchAsync()";
+                Package package = game.GetGamePackage();
+
+                AddDuoGridItem(UserLevel.Debug, "Dependencies", package.Dependencies.Select(x => x.Id.Name).JoinItems(", "));
+                AddDuoGridItem(UserLevel.Debug, "Full name", package.Id.FullName);
+                AddDuoGridItem(UserLevel.Technical, "Architecture", package.Id.Architecture.ToString());
+                AddDuoGridItem(UserLevel.Advanced, "Version", $"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}");
+                AddDuoGridItem(UserLevel.Normal, "Installed", package.InstalledDate.DateTime.ToLongDateString());
+                AddDuoGridItem(UserLevel.Normal, "Install location", info.InstallDirectory);
             }
             else
             {
                 var launchInfo = game.GetLaunchInfo();
-                LaunchPath = launchInfo.Path;
-                LaunchArguments = launchInfo.Args;
+
+                AddDuoGridItem(UserLevel.Technical, "Launch path", launchInfo.Path);
+                AddDuoGridItem(UserLevel.Technical, "Launch arguments", launchInfo.Args);
+                AddDuoGridItem(UserLevel.Advanced, "Game type", gameType.GetDisplayName());
+                AddDuoGridItem(UserLevel.Normal, "Install location", info.InstallDirectory);
+            }
+
+            void AddDuoGridItem(UserLevel minUserLevel, string header, string text)
+            {
+                if (RCFRCP.Data.UserLevel >= minUserLevel)
+                    InfoItems.Add(new DuoGridItemViewModel()
+                    {
+                        Header = header + ":  ",
+                        Text = text
+                    });
             }
         }
 
@@ -60,24 +83,9 @@ namespace RayCarrot.RCP.Metro
         public string IconSource { get; }
 
         /// <summary>
-        /// The launch path
+        /// The info items to show
         /// </summary>
-        public FileSystemPath LaunchPath { get; }
-
-        /// <summary>
-        /// The launch arguments
-        /// </summary>
-        public string LaunchArguments { get; }
-
-        /// <summary>
-        /// The game type
-        /// </summary>
-        public GameType GameType { get; }
-
-        /// <summary>
-        /// The install directory
-        /// </summary>
-        public FileSystemPath InstallDirectory { get; }
+        public ObservableCollection<DuoGridItemViewModel> InfoItems { get; }
 
         #endregion
 

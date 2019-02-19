@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using RayCarrot.CarrotFramework;
 using System.Windows;
 
@@ -21,7 +22,20 @@ namespace RayCarrot.RCP.Metro
             InitializeComponent();
             ViewModel = new GameOptionsViewModel(game);
             ConfigContentPresenter.Content = game.GetConfigContent(this);
+
+            Height = ConfigViewModel != null ? 700 : 300;
+            Width = 600;
         }
+
+        #endregion
+
+        #region Private Properties
+
+        /// <summary>
+        /// Indicates if the window should be closed
+        /// even though there are unsaved changes
+        /// </summary>
+        private bool ForceClose { get; set; }
 
         #endregion
 
@@ -51,9 +65,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                if (ConfigViewModel == null)
-                    await RCF.MessageUI.DisplayMessageAsync("Configuration model not found", "Error", MessageType.Error);
-                else
+                if (ConfigViewModel != null)
                     await ConfigViewModel.SetupAsync();
             }
             catch (Exception ex)
@@ -70,17 +82,19 @@ namespace RayCarrot.RCP.Metro
 
         private async void GameOptions_OnClosingAsync(object sender, CancelEventArgs e)
         {
-            if (ConfigViewModel?.UnsavedChanges == true)
+            if (ForceClose || ConfigViewModel?.UnsavedChanges != true)
             {
-                // TODO: Since this is async the window might close before it sets the cancel property
-                if (!await RCF.MessageUI.DisplayMessageAsync("Your changes have not been saved. Do you want to exit and discard them?", "Confirm exit", MessageType.Question, true))
-                {
-                    e.Cancel = true;
-                    return;
-                }
+                RCFRCP.App.RefreshRequired -= App_RefreshRequired;
+                return;
             }
 
-            RCFRCP.App.RefreshRequired -= App_RefreshRequired;
+            e.Cancel = true;
+
+            if (!await RCF.MessageUI.DisplayMessageAsync("Your changes have not been saved. Do you want to exit and discard them?", "Confirm exit", MessageType.Question, true))
+                return;
+
+            ForceClose = true;
+            _ = Task.Run(() => Dispatcher.Invoke(Close));
         }
 
         #endregion

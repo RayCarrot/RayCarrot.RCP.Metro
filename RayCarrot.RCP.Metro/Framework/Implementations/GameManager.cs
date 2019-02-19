@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Devices.SmartCards;
@@ -143,8 +144,10 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task LaunchGameAsync(Games game)
         {
+            var type = game.GetInfo().GameType;
+
             // If it's a Windows Store app, launch the first package app entry instead
-            if (game.GetInfo().GameType == GameType.WinStore)
+            if (type == GameType.WinStore)
             {
                 try
                 {
@@ -157,6 +160,24 @@ namespace RayCarrot.RCP.Metro
                     await RCF.MessageUI.DisplayMessageAsync($"An error occurred when attempting to run {game.GetDisplayName()}", "Error", MessageType.Error);
                 }
                 return;
+            }
+
+            // Run extra checks if it's a DosBox game
+            if (type == GameType.DosBox)
+            {
+                // Make sure the DosBox executable exists
+                if (!File.Exists(RCFRCP.Data.DosBoxPath))
+                {
+                    await RCF.MessageUI.DisplayMessageAsync("DosBox could not be found. Specify a valid path under settings to run this game.", MessageType.Error);
+                    return;
+                }
+
+                // Make sure the mount path exists
+                if (!RCFRCP.Data.DosBoxGames[game].MountPath.Exists)
+                {
+                    await RCF.MessageUI.DisplayMessageAsync("The mount path could not be found. Specify a valid path under the game options to run this game.", MessageType.Error);
+                    return;
+                }
             }
 
             // Get the launch info
