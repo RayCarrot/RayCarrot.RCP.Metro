@@ -388,7 +388,7 @@ namespace RayCarrot.RCP.Metro
         public override Task SetupAsync()
         {
             // Get the current DosBox options for the specified game
-            var options = RCFRCP.Data.DosBoxGames[Game];
+            var options = Data.DosBoxGames[Game];
 
             MountPath = options.MountPath;
 
@@ -431,7 +431,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Get the current DosBox options for the specified game
-                    var options = RCFRCP.Data.DosBoxGames[Game];
+                    var options = Data.DosBoxGames[Game];
 
                     options.MountPath = MountPath;
                     options.Commands = CustomCommands.Split(new[] { Environment.NewLine }, StringSplitOptions.None);

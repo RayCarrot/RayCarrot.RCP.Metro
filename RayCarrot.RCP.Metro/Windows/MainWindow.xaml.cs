@@ -53,7 +53,7 @@ namespace RayCarrot.RCP.Metro
 
             // Check for installed games
             if (RCFRCP.Data.AutoLocateGames)
-                await Task.Run(RCFRCP.App.RunGameFinderAsync);
+                await RCFRCP.App.RunGameFinderAsync();
 
             // TODO: Check for updates
         }

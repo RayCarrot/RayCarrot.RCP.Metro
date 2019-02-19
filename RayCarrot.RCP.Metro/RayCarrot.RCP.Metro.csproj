@@ -177,10 +177,12 @@
     <Reference Include="System.Runtime.WindowsRuntime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Files\WinRT\System.Runtime.WindowsRuntime.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Runtime.WindowsRuntime.UI.Xaml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Files\WinRT\System.Runtime.WindowsRuntime.UI.Xaml.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System.Security.AccessControl, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Security.AccessControl.4.5.0\lib\net461\System.Security.AccessControl.dll</HintPath>
@@ -210,9 +212,11 @@
     </Reference>
     <Reference Include="Windows.Foundation.FoundationContract">
       <HintPath>..\..\..\Files\WinRT\Windows.Foundation.FoundationContract.winmd</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Windows.Foundation.UniversalApiContract">
       <HintPath>..\..\..\Files\WinRT\Windows.Foundation.UniversalApiContract.winmd</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -285,6 +289,14 @@
     <Compile Include="Controls\UserControls\Config\DosBoxConfig.xaml.cs">
       <DependentUpon>DosBoxConfig.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Legacy\LegacyAppUserData.cs" />
+    <Compile Include="Legacy\LegacyGames.cs" />
+    <Compile Include="Legacy\LegacyGameType.cs" />
+    <Compile Include="Legacy\LegacyGameUserData.cs" />
+    <Compile Include="Legacy\LegacyRaymanGame.cs" />
+    <Compile Include="Legacy\LegacyTPLSDOSBoxVersion.cs" />
+    <Compile Include="Legacy\LegacyTPLSRaymanVersion.cs" />
+    <Compile Include="ViewModels\Base\BaseRCPViewModel.cs" />
     <Compile Include="ViewModels\Config\DosBoxConfigViewModel.cs" />
     <Compile Include="Framework\Implementations\AppUIManager.cs" />
     <Compile Include="Framework\Implementations\FileLogger.cs" />
@@ -351,7 +363,7 @@
     </Compile>
     <Compile Include="UserData\AppUserData.cs" />
     <Compile Include="ViewModels\ActionItemViewModel.cs" />
-    <Compile Include="ViewModels\AppHandler.cs" />
+    <Compile Include="Framework\AppViewModel.cs" />
     <Compile Include="DataModels\Enums\DebugDialogTypes.cs" />
     <Compile Include="ViewModels\Pages\DebugPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\SettingsPageViewModel.cs" />

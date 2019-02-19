@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for the settings page
     /// </summary>
-    public class SettingsPageViewModel : BaseViewModel
+    public class SettingsPageViewModel : BaseRCPViewModel
     {
         #region Constructor
 
@@ -17,15 +17,6 @@ namespace RayCarrot.RCP.Metro
         {
             ResetCommand = new RelayCommand(RCFRCP.App.ResetData);
         }
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Shortcut to the app user data
-        /// </summary>
-        public AppUserData AppUserData => RCFRCP.Data;
 
         #endregion
 

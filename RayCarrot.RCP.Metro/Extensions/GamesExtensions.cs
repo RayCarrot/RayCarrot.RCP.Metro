@@ -27,7 +27,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The icon source</returns>
         public static string GetIconSource(this Games game)
         {
-            return $"{AppHandler.ApplicationBasePath}Img/GameIcons/{game}.png";
+            return $"{AppViewModel.ApplicationBasePath}Img/GameIcons/{game}.png";
         }
 
         /// <summary>
@@ -329,7 +329,7 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanRavingRabbids:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink("Get from Steam", AppHandler.SteamStoreBaseUrl + game.GetSteamID()),
+                        new GamePurchaseLink("Get from Steam", AppViewModel.SteamStoreBaseUrl + game.GetSteamID()),
                         new GamePurchaseLink("Get from GOG", "https://www.gog.com/game/rayman_raving_rabbids"),
                         new GamePurchaseLink("Get from Uplay", "https://store.ubi.com/eu/rayman-raving-rabbids/56c4948888a7e300458b47de.html")
                     };
@@ -337,7 +337,7 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanOrigins:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink("Get from Steam", AppHandler.SteamStoreBaseUrl + game.GetSteamID()),
+                        new GamePurchaseLink("Get from Steam", AppViewModel.SteamStoreBaseUrl + game.GetSteamID()),
                         new GamePurchaseLink("Get from GOG", "https://www.gog.com/game/rayman_origins"),
                         new GamePurchaseLink("Get from Uplay", "https://store.ubi.com/eu/rayman-origins/56c4948888a7e300458b47dc.html")
                     };
@@ -345,7 +345,7 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanLegends:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink("Get from Steam", AppHandler.SteamStoreBaseUrl + game.GetSteamID()),
+                        new GamePurchaseLink("Get from Steam", AppViewModel.SteamStoreBaseUrl + game.GetSteamID()),
                         new GamePurchaseLink("Get from Uplay", "https://store.ubi.com/eu/rayman--legends/56c4948888a7e300458b47da.html")
                     };
 
@@ -447,8 +447,8 @@ namespace RayCarrot.RCP.Metro
                     return new GameLaunchInfo(@"steam://rungameid/" + game.GetSteamID(), null);
 
                 case GameType.WinStore:
-                    throw new ArgumentOutOfRangeException(nameof(info.GameType), info.GameType, "Launch info can not be obtained for a Windows Store application");
-                    //return new GameLaunchInfo("shell:appsFolder\\" + $"{game.GetLaunchName()}!App", null);
+                    // throw new ArgumentOutOfRangeException(nameof(info.GameType), info.GameType, "Launch info can not be obtained for a Windows Store application");
+                    return new GameLaunchInfo("shell:appsFolder\\" + $"{game.GetLaunchName()}!App", null);
 
                 case GameType.DosBox:
                     var dosBoxConfig = RCFRCP.Data.DosBoxGames[game];
@@ -502,8 +502,11 @@ namespace RayCarrot.RCP.Metro
                     return "Rayman Legends.exe";
 
                 case Games.RaymanJungleRun:
+                    return "UbisoftEntertainment.RaymanJungleRun_dbgk1hhpxymar";
+
                 case Games.RaymanFiestaRun:
-                    throw new ArgumentOutOfRangeException(nameof(game), game, "A launch name can not be obtained from a Windows Store application");
+                    return RCFRCP.Data.IsFiestaRunWin10Edition ? "Ubisoft.RaymanFiestaRunWindows10Edition_ngz4m417e0mpw" : "Ubisoft.RaymanFiestaRun_ngz4m417e0mpw";
+                    // throw new ArgumentOutOfRangeException(nameof(game), game, "A launch name can not be obtained from a Windows Store application");
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);

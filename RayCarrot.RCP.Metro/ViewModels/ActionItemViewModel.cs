@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for a action item
     /// </summary>
-    public class ActionItemViewModel : BaseViewModel
+    public class ActionItemViewModel : BaseRCPViewModel
     {
         #region Constructors
 

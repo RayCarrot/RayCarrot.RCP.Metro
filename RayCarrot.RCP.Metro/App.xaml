@@ -26,11 +26,4 @@
         </ResourceDictionary>
     </Application.Resources>
 
-    <JumpList.JumpList>
-        <JumpList>
-
-
-        </JumpList>
-    </JumpList.JumpList>
-
 </Application>

@@ -25,7 +25,7 @@ namespace RayCarrot.RCP.Metro
             TitleCharacterCasing = CharacterCasing.Normal;
 
             // Set icon style
-            Icon = new ImageSourceConverter().ConvertFromString(AppHandler.ApplicationBasePath + "/Img/Rayman Control Panel Icon.ico") as ImageSource;
+            Icon = new ImageSourceConverter().ConvertFromString(AppViewModel.ApplicationBasePath + "/Img/Rayman Control Panel Icon.ico") as ImageSource;
             IconBitmapScalingMode = BitmapScalingMode.NearestNeighbor;
 
             // Set owner window

@@ -7,12 +7,15 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Shell;
 using System.Windows.Threading;
 using ByteSizeLib;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 using RayCarrot.CarrotFramework;
 using RayCarrot.Rayman;
+using RayCarrot.RCP.Metro.Legacy;
 using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
 using RayCarrot.WPF;
@@ -109,6 +112,34 @@ namespace RayCarrot.RCP.Metro
             Mutex?.Dispose();
         }
 
+        private void App_RefreshRequired(object sender, EventArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                // Create a jump list
+                new JumpList(RCFRCP.App.GetGames.
+                        // Add only games which have been added
+                        Where(x => x.IsAdded()).
+                        // Create a jump task item for each game
+                        Select(x =>
+                        {
+                            var launchInfo = x.GetLaunchInfo();
+                            var info = x.GetInfo();
+                            return new JumpTask()
+                            {
+                                Title = x.GetDisplayName(),
+                                Description = $"Launch {x.GetDisplayName()}",
+                                ApplicationPath = launchInfo.Path,
+                                Arguments = launchInfo.Args,
+                                CustomCategory = "Game Shortcuts",
+                                IconResourcePath = info.GameType == GameType.DosBox || info.GameType == GameType.Steam ? info.InstallDirectory + x.GetLaunchName() : launchInfo.Path
+                            };
+                        }), false, false).
+                    // Apply the new jump list
+                    Apply();
+            });
+        }
+
         #endregion
 
         #region Private Methods
@@ -138,6 +169,9 @@ namespace RayCarrot.RCP.Metro
 
             // Set up the framework
             await SetupFrameworkAsync(args);
+
+            // Subscribe to when games need to be refreshed
+            RCFRCP.App.RefreshRequired += App_RefreshRequired;
 
             // Log the current environment
             LogEnvironment();
@@ -193,7 +227,7 @@ namespace RayCarrot.RCP.Metro
                 // Add registry browse UI manager
                 AddRegistryBrowseUIManager<DefaultWPFRegistryBrowseUIManager>().
                 // Add app handler
-                AddSingleton(new AppHandler()).
+                AddSingleton(new AppViewModel()).
                 // Add a file manager
                 AddTransient<RCPFileManager>().
                 // Add a dialog manager
@@ -224,7 +258,8 @@ namespace RayCarrot.RCP.Metro
                 RCFRCP.Data.Reset();
             }
 
-            // TODO: Convert old data
+            if (RCFRCP.Data.IsFirstLaunch)
+                await ImportLegacyDataAsync();
         }
 
         /// <summary>
@@ -357,6 +392,78 @@ namespace RayCarrot.RCP.Metro
 
             // Update the last version
             RCFRCP.Data.LastVersion = RCFRCP.App.CurrentVersion;
+        }
+
+        /// <summary>
+        /// Imports legacy app data from version 2.x to 3.x
+        /// </summary>
+        /// <returns>The task</returns>
+        private static async Task ImportLegacyDataAsync()
+        {
+            try
+            {
+                // Get the legacy file locations
+                FileSystemPath baseDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Rayman Control Panel");
+                var appDataLocation = baseDir + "appuserdata.json";
+                var gameDataLocation = baseDir + "gameuserdata.json";
+
+                // Make sure the files exist
+                if (!appDataLocation.FileExists || !gameDataLocation.FileExists)
+                    return;
+
+                // Create the serializer
+                var s = JsonSerializer.Create(new JsonSerializerSettings()
+                {
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                });
+
+                // Load the data
+                LegacyAppUserData appData = new StringReader(File.ReadAllText(appDataLocation)).RunAndDispose(x =>
+                    new JsonTextReader(x).RunAndDispose(y => s.Deserialize<LegacyAppUserData>(y)));
+                LegacyGameUserData gameData = new StringReader(File.ReadAllText(gameDataLocation)).RunAndDispose(x =>
+                    new JsonTextReader(x).RunAndDispose(y => s.Deserialize<LegacyGameUserData>(y)));
+
+                RCF.Logger.LogInformationSource($"Legacy app data found from version {appData.LastVersion}");
+
+                // Ask the user
+                if (!await RCF.MessageUI.DisplayMessageAsync($"Application data was found for version {appData.LastVersion}. Do you want to import it?", "Import data", MessageType.Question, true))
+                    return;
+
+                // Get current app data
+                var data = RCFRCP.Data;
+
+                // Import app data properties
+                data.AutoLocateGames = appData.AutoGameCheck;
+                data.AutoUpdate = appData.AutoUpdateCheck;
+                // TODO: Import yet to be created properties
+                //appData.AutoClose;
+                //appData.AutoCloseConfig;
+                //appData.BackupLocation;
+                //appData.DisplayExceptionLevel;
+                data.ShowActionComplete = appData.ShowActionComplete;
+                //appData.ShowTaskBarProgress;
+                data.UserLevel = appData.UserLevel;
+
+                // Import game data properties
+                if (gameData.DosBoxConfig.FileExists)
+                    data.DosBoxConfig = gameData.DosBoxConfig;
+                if (gameData.DosBoxExe.FileExists)
+                    data.DosBoxPath = gameData.DosBoxExe;
+                //gameData.TPLSDOSBoxVersion;
+                //gameData.TPLSDir;
+                //gameData.TPLSIsInstalled;
+                //gameData.TPLSRaymanVersion;
+
+                foreach (LegacyRaymanGame game in gameData.RayGames)
+                {
+                    // TODO: Import game data    
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Import legacy data");
+                await RCF.MessageUI.DisplayMessageAsync("An error occurred when importing legacy data", MessageType.Error);
+            }
         }
 
         #endregion

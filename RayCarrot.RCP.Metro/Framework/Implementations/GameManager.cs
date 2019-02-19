@@ -153,7 +153,8 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    // TODO: Log/Handle
+                    ex.HandleError("Launching Windows Store application");
+                    await RCF.MessageUI.DisplayMessageAsync($"An error occurred when attempting to run {game.GetDisplayName()}", "Error", MessageType.Error);
                 }
                 return;
             }

@@ -10,7 +10,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for the debug page
     /// </summary>
-    public class DebugPageViewModel : BaseViewModel
+    public class DebugPageViewModel : BaseRCPViewModel
     {
         #region Constructor
 

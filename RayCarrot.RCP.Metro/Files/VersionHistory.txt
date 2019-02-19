@@ -9,14 +9,13 @@ Other changes:
 • Rayman M/Arena are not treated as separate games
 • Common DosBox commands can now be set using the new DosBox configuration dialog
 • Rayman 2 utilities have been integrated into its configuration dialog. It now also shows the currently selected button mapping.
+• Windows Store games are now be found and launched using the WinRT Api rather than Explorer
 • 
 
 Removed features:
 • The links page has been removed. Some links can still be found in the about page
 • The game file name can no longer be changed
 • Games can no longer be run as administrator. To solve this, force the game executable to run as administrator manually by going to its properties window.
-• The option to close the program when launching a game has been removed
-• The option to close a configuration dialog upon saving has been removed
 • Configuration paths can no longer be set up manually
 • The game finder only runs on startup now
 • The WinForms folder dialog can no longer be used

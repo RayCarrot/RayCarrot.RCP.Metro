@@ -19,7 +19,7 @@
             </i:Interaction.Behaviors>
 
             <GroupBox Header="User Level"
-                      DataContext="{Binding Path=AppUserData}">
+                      DataContext="{Binding Path=Data}">
 
                 <StackPanel>
                     <i:Interaction.Behaviors>
@@ -66,7 +66,7 @@
             </GroupBox>
 
             <GroupBox Header="Design"
-                      DataContext="{Binding Path=AppUserData}">
+                      DataContext="{Binding Path=Data}">
                 <StackPanel>
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="2 8" />
@@ -80,6 +80,9 @@
                     <CheckBox Content="Show success messages"
                               IsChecked="{Binding Path=ShowActionComplete}" />
 
+                    <CheckBox Content="Show not installed games"
+                              IsChecked="{Binding Path=ShowNotInstalledGames}" />
+
                     <CheckBox rwpf:UserLevelTag.MinUserLevel="Debug"
                               Content="Show all dialogs as new windows"
                               IsChecked="{Binding Path=DialogAsWindow}" />
@@ -88,7 +91,7 @@
             </GroupBox>
 
             <GroupBox Header="DosBox"
-                      DataContext="{Binding Path=AppUserData}">
+                      DataContext="{Binding Path=Data}">
 
                 <StackPanel>
                     <i:Interaction.Behaviors>
@@ -133,11 +136,11 @@
 
                     <CheckBox Content="Automatically locate installed games" 
                               IsChecked="{Binding Path=AutoLocateGames}"
-                              DataContext="{Binding Path=AppUserData}"/>
+                              DataContext="{Binding Path=Data}"/>
 
                     <CheckBox Content="Automatically check for program updates"
                               IsChecked="{Binding Path=AutoUpdate}"
-                              DataContext="{Binding Path=AppUserData}"/>
+                              DataContext="{Binding Path=Data}"/>
 
                     <WrapPanel>
                         <Button Content="Reset"

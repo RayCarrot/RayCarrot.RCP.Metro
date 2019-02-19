@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for a game options dialog
     /// </summary>
-    public class GameOptionsViewModel : BaseViewModel
+    public class GameOptionsViewModel : BaseRCPViewModel
     {
         #region Constructor
 

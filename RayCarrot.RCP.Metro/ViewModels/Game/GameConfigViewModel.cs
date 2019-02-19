@@ -1,12 +1,11 @@
 ﻿using System.Threading.Tasks;
-using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// View model for a game configuration
     /// </summary>
-    public abstract class GameConfigViewModel : BaseViewModel
+    public abstract class GameConfigViewModel : BaseRCPViewModel
     {
         /// <summary>
         /// Indicates if there are any unsaved changes

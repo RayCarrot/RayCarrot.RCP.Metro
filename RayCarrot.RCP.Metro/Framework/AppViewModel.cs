@@ -20,14 +20,14 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Handles common actions and events for this application
     /// </summary>
-    public class AppHandler
+    public class AppViewModel : BaseRCPViewModel
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public AppHandler()
+        public AppViewModel()
         {
             SaveUserDataAsyncLock = new AsyncLock();
         }
@@ -64,6 +64,11 @@ namespace RayCarrot.RCP.Metro
         /// Gets a collection of the available <see cref="Games"/>
         /// </summary>
         public IEnumerable<Games> GetGames => Enum.GetValues(typeof(Games)).Cast<Games>();
+
+        /// <summary>
+        /// Indicates if the game finder is currently running
+        /// </summary>
+        public bool IsGameFinderRunning { get; set; }
 
         #endregion
 
@@ -228,11 +233,11 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Add the game
-            RCFRCP.Data.Games.Add(game, new GameInfo(type, installDirectory ?? FileSystemPath.EmptyPath));
+            Data.Games.Add(game, new GameInfo(type, installDirectory ?? FileSystemPath.EmptyPath));
 
             // If it's a DosBox game, add the DosBox options
-            if (type == GameType.DosBox && !RCFRCP.Data.DosBoxGames.ContainsKey(game))
-                RCFRCP.Data.DosBoxGames.Add(game, new DosBoxOptions());
+            if (type == GameType.DosBox && !Data.DosBoxGames.ContainsKey(game))
+                Data.DosBoxGames.Add(game, new DosBoxOptions());
 
             RCF.Logger.LogInformationSource($"The game {game} has been added");
 
@@ -247,14 +252,14 @@ namespace RayCarrot.RCP.Metro
         public void RemoveGame(Games game)
         {
             // Remove the game
-            RCFRCP.Data.Games.Remove(game);
+            Data.Games.Remove(game);
 
             // If there is DosBox options saved, remove those as well
-            if (RCFRCP.Data.DosBoxGames.ContainsKey(game))
-                RCFRCP.Data.DosBoxGames.Remove(game);
+            if (Data.DosBoxGames.ContainsKey(game))
+                Data.DosBoxGames.Remove(game);
 
             // Refresh the games
-            RCFRCP.App.OnRefreshRequired();
+            OnRefreshRequired();
         }
 
         /// <summary>
@@ -339,128 +344,135 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if new games were found, otherwise false</returns>
         public async Task<bool> RunGameFinderAsync()
         {
-            try
+            if (IsGameFinderRunning)
+                return false;
+
+            IsGameFinderRunning = true;
+
+            return await Task.Run(async () =>
             {
-                // Create the manager
-                var manager = new GameFinderManager();
-
-                // Helper method for checking if the specified games are being checked for
-                bool AreGamesIncluded(params Games[] games)
-                {
-                    return games.Any(game => manager.GameItems.ContainsKey(game));
-                }
-
-                // The ubi.ini data
-                IniData iniData = null;
                 try
                 {
-                    // Make sure the following games are being checked for
-                    if (AreGamesIncluded(Games.Rayman2, Games.RaymanM, Games.RaymanArena, Games.Rayman3))
-                    {
-                        // Make sure the file exists
-                        if (CommonPaths.UbiIniPath1.FileExists)
-                        {
-                            // Create the ini data parser
-                            iniData = new FileIniDataParser(new UbiIniDataParser()).ReadFile(CommonPaths.UbiIniPath1);
+                    // Create the manager
+                    var manager = new GameFinderManager();
 
-                            RCF.Logger.LogTraceSource("The ubi.ini file data was parsed for the game checker");
+                    // Helper method for checking if the specified games are being checked for
+                    bool AreGamesIncluded(params Games[] games)
+                    {
+                        return games.Any(game => manager.GameItems.ContainsKey(game));
+                    }
+
+                    // The ubi.ini data
+                    IniData iniData = null;
+                    try
+                    {
+                        // Make sure the following games are being checked for
+                        if (AreGamesIncluded(Games.Rayman2, Games.RaymanM, Games.RaymanArena, Games.Rayman3))
+                        {
+                            // Make sure the file exists
+                            if (CommonPaths.UbiIniPath1.FileExists)
+                            {
+                                // Create the ini data parser
+                                iniData = new FileIniDataParser(new UbiIniDataParser()).ReadFile(CommonPaths.UbiIniPath1);
+
+                                RCF.Logger.LogTraceSource("The ubi.ini file data was parsed for the game checker");
+                            }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleUnexpected("Reading ubi.ini file for game checker");
-                }
-
-                // Registry uninstall programs
-                List<InstalledProgram> programs = new List<InstalledProgram>();
-                try
-                {
-                    if (manager.GameItems.Any())
+                    catch (Exception ex)
                     {
-                        // Get installed programs
-                        programs.AddRange(GetInstalledPrograms());
-
-                        RCF.Logger.LogTraceSource("The Registry uninstall programs were retrieved for the game checker");
+                        ex.HandleUnexpected("Reading ubi.ini file for game checker");
                     }
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleUnexpected("Getting installed programs for game checker");
-                }
 
-                // Start menu items
-                List<string> startMenuItems = new List<string>();
-                try
-                {
-                    if (manager.GameItems.Any())
+                    // Registry uninstall programs
+                    List<InstalledProgram> programs = new List<InstalledProgram>();
+                    try
                     {
-                        // Get items from user start menu
-                        startMenuItems.AddRange(Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu), "*.lnk", SearchOption.AllDirectories));
-
-                        RCF.Logger.LogTraceSource("The user start menu programs were retrieved for the game checker");
-
-                        // Get items from common start menu
-                        startMenuItems.AddRange(Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "*.lnk", SearchOption.AllDirectories));
-
-                        RCF.Logger.LogTraceSource("The common start menu programs were retrieved for the game checker");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleUnexpected("Getting start menu programs for game checker");
-                }
-
-                // Helper methods
-                GameFinderActionResult CheckUbiIni(string sectionName, GameType type = GameType.Win32) => new GameFinderActionResult(iniData?[sectionName]?["Directory"], type, "ubi.ini");
-                GameFinderActionResult CheckUninstall(params string[] names)
-                {
-                    var program = programs.Find(x => x.DisplayName.Equals(StringComparison.CurrentCultureIgnoreCase, names));
-                    var path = program?.InstallLocation ?? FileSystemPath.EmptyPath;
-                    var type = program == null ? GameType.Win32 : program.IsSteamGame ? GameType.Steam : GameType.Win32;
-                    return new GameFinderActionResult(path, type, "RegistryUninstall");
-                }
-                GameFinderActionResult CheckStartMenu(string name, string requiredFile)
-                {
-                    foreach (string startMenuItem in startMenuItems)
-                    {
-                        if (Path.GetFileName(startMenuItem)?.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) < 0)
-                            continue;
-
-                        FileSystemPath path;
-
-                        try
+                        if (manager.GameItems.Any())
                         {
-                            path = WindowsHelpers.GetShortCutTarget(startMenuItem).Parent;
-                        }
-                        catch (Exception ex)
-                        {
-                            ex.HandleUnexpected("Getting start menu item shortcut target for game checker", startMenuItem);
-                            continue;
-                        }
+                            // Get installed programs
+                            programs.AddRange(GetInstalledPrograms());
 
-                        if (!path.DirectoryExists || !(path + requiredFile).FileExists)
-                            continue;
-
-                        return new GameFinderActionResult(path, GameType.Win32, "StartMenu");
+                            RCF.Logger.LogTraceSource("The Registry uninstall programs were retrieved for the game checker");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleUnexpected("Getting installed programs for game checker");
                     }
 
-                    return new GameFinderActionResult(FileSystemPath.EmptyPath, GameType.Win32, "None");
-                }
+                    // Start menu items
+                    List<string> startMenuItems = new List<string>();
+                    try
+                    {
+                        if (manager.GameItems.Any())
+                        {
+                            // Get items from user start menu
+                            startMenuItems.AddRange(Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu), "*.lnk", SearchOption.AllDirectories));
 
-                // Helper method for adding actions
-                void AddActions(Games game, IEnumerable<Func<GameFinderActionResult>> actions)
-                {
-                    // Make sure the game is being checked for
-                    if (!manager.GameItems.ContainsKey(game))
-                        return;
+                            RCF.Logger.LogTraceSource("The user start menu programs were retrieved for the game checker");
 
-                    manager.GameItems[game].AddRange(actions);
-                }
+                            // Get items from common start menu
+                            startMenuItems.AddRange(Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "*.lnk", SearchOption.AllDirectories));
 
-                // Rayman 2
-                AddActions(Games.Rayman2, new Func<GameFinderActionResult>[]
-                {
+                            RCF.Logger.LogTraceSource("The common start menu programs were retrieved for the game checker");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleUnexpected("Getting start menu programs for game checker");
+                    }
+
+                    // Helper methods
+                    GameFinderActionResult CheckUbiIni(string sectionName, GameType type = GameType.Win32) => new GameFinderActionResult(iniData?[sectionName]?["Directory"], type, "ubi.ini");
+                    GameFinderActionResult CheckUninstall(params string[] names)
+                    {
+                        var program = programs.Find(x => x.DisplayName.Equals(StringComparison.CurrentCultureIgnoreCase, names));
+                        var path = program?.InstallLocation ?? FileSystemPath.EmptyPath;
+                        var type = program == null ? GameType.Win32 : program.IsSteamGame ? GameType.Steam : GameType.Win32;
+                        return new GameFinderActionResult(path, type, "RegistryUninstall");
+                    }
+                    GameFinderActionResult CheckStartMenu(string name, string requiredFile)
+                    {
+                        foreach (string startMenuItem in startMenuItems)
+                        {
+                            if (Path.GetFileName(startMenuItem)?.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) < 0)
+                                continue;
+
+                            FileSystemPath path;
+
+                            try
+                            {
+                                path = WindowsHelpers.GetShortCutTarget(startMenuItem).Parent;
+                            }
+                            catch (Exception ex)
+                            {
+                                ex.HandleUnexpected("Getting start menu item shortcut target for game checker", startMenuItem);
+                                continue;
+                            }
+
+                            if (!path.DirectoryExists || !(path + requiredFile).FileExists)
+                                continue;
+
+                            return new GameFinderActionResult(path, GameType.Win32, "StartMenu");
+                        }
+
+                        return new GameFinderActionResult(FileSystemPath.EmptyPath, GameType.Win32, "None");
+                    }
+
+                    // Helper method for adding actions
+                    void AddActions(Games game, IEnumerable<Func<GameFinderActionResult>> actions)
+                    {
+                        // Make sure the game is being checked for
+                        if (!manager.GameItems.ContainsKey(game))
+                            return;
+
+                        manager.GameItems[game].AddRange(actions);
+                    }
+
+                    // Rayman 2
+                    AddActions(Games.Rayman2, new Func<GameFinderActionResult>[]
+                    {
                     // Ubi.ini
                     () => CheckUbiIni(R2UbiIniHandler.SectionName),
 
@@ -469,11 +481,11 @@ namespace RayCarrot.RCP.Metro
 
                     // Start menu
                     () => CheckStartMenu("Rayman 2", Games.Rayman2.GetLaunchName()),
-                });
+                    });
 
-                // Rayman M
-                AddActions(Games.RaymanM, new Func<GameFinderActionResult>[]
-                {
+                    // Rayman M
+                    AddActions(Games.RaymanM, new Func<GameFinderActionResult>[]
+                    {
                     // Ubi.ini
                     () => CheckUbiIni(RMUbiIniHandler.SectionName),
                             
@@ -482,11 +494,11 @@ namespace RayCarrot.RCP.Metro
 
                     // Start menu
                     () => CheckStartMenu("Rayman M", Games.RaymanM.GetLaunchName()),
-                });
+                    });
 
-                // Rayman Arena
-                AddActions(Games.RaymanArena, new Func<GameFinderActionResult>[]
-                {
+                    // Rayman Arena
+                    AddActions(Games.RaymanArena, new Func<GameFinderActionResult>[]
+                    {
                     // Ubi.ini
                     () => CheckUbiIni(RAUbiIniHandler.SectionName),
                         
@@ -495,11 +507,11 @@ namespace RayCarrot.RCP.Metro
 
                     // Start menu
                     () => CheckStartMenu("Rayman Arena", Games.RaymanArena.GetLaunchName()),
-                });
+                    });
 
-                // Rayman 3
-                AddActions(Games.Rayman3, new Func<GameFinderActionResult>[]
-                {
+                    // Rayman 3
+                    AddActions(Games.Rayman3, new Func<GameFinderActionResult>[]
+                    {
                     // Ubi.ini
                     () => CheckUbiIni(R3UbiIniHandler.SectionName),
 
@@ -508,182 +520,184 @@ namespace RayCarrot.RCP.Metro
 
                     // Start menu
                     () => CheckStartMenu("Rayman 3", Games.Rayman3.GetLaunchName()),
-                });
+                    });
 
-                // Rayman Raving Rabbids
-                AddActions(Games.RaymanRavingRabbids, new Func<GameFinderActionResult>[]
-                {
+                    // Rayman Raving Rabbids
+                    AddActions(Games.RaymanRavingRabbids, new Func<GameFinderActionResult>[]
+                    {
                     // Uninstall
                     () => CheckUninstall("Rayman: Raving Rabbids", "Rayman Raving Rabbids"),
 
                     // Start menu
                     () => CheckStartMenu("Rayman Raving Rabbids", Games.RaymanRavingRabbids.GetLaunchName()),
-                });
+                    });
 
-                // Rayman Origins
-                AddActions(Games.RaymanOrigins, new Func<GameFinderActionResult>[]
-                {
+                    // Rayman Origins
+                    AddActions(Games.RaymanOrigins, new Func<GameFinderActionResult>[]
+                    {
                     // Uninstall
                     () => CheckUninstall("Rayman Origins", "RaymanOrigins"),
 
                     // Start menu
                     () => CheckStartMenu("Rayman Origins", Games.RaymanOrigins.GetLaunchName()),
-                });
+                    });
 
-                // Rayman Legends
-                AddActions(Games.RaymanLegends, new Func<GameFinderActionResult>[]
-                {
+                    // Rayman Legends
+                    AddActions(Games.RaymanLegends, new Func<GameFinderActionResult>[]
+                    {
                     // Uninstall
                     () => CheckUninstall("Rayman Legends", "RaymanLegends"),
 
                     // Start menu
                     () => CheckStartMenu("Rayman Legends", Games.RaymanLegends.GetLaunchName()),
-                });
+                    });
 
-                // Run the checker and get the results
-                var result = await manager.RunAsync();
+                    // Run the checker and get the results
+                    var result = await manager.RunAsync();
 
-                if (!File.Exists(RCFRCP.Data.DosBoxPath))
-                    FindDosBox();
+                    if (!File.Exists(Data.DosBoxPath))
+                        FindDosBox();
 
-                void FindDosBox()
-                {
-                    var actions = new Func<GameFinderActionResult>[]
+                    void FindDosBox()
                     {
+                        var actions = new Func<GameFinderActionResult>[]
+                        {
                         // Uninstall
                         () => CheckUninstall("DosBox", "Dos Box"),
 
                         // Start menu
                         () => CheckStartMenu("DosBox", "DOSBox.exe"),
-                    };
+                        };
 
-                    // Run every check action until one is successful
-                    foreach (var action in actions)
-                    {
-                        // Stop running the check actions if the file has been found
-                        if (File.Exists(RCFRCP.Data.DosBoxPath))
-                            break;
-
-                        try
+                        // Run every check action until one is successful
+                        foreach (var action in actions)
                         {
-                            // Get the result from the action
-                            var dosBoxCheckResult = action();
+                            // Stop running the check actions if the file has been found
+                            if (File.Exists(Data.DosBoxPath))
+                                break;
 
-                            var filePath = dosBoxCheckResult.Path + "DOSBox.exe";
+                            try
+                            {
+                                // Get the result from the action
+                                var dosBoxCheckResult = action();
 
-                            // Check if the file exists
-                            if (!filePath.FileExists)
-                                continue;
+                                var filePath = dosBoxCheckResult.Path + "DOSBox.exe";
 
-                            RCF.Logger.LogTraceSource($"The DosBox executable was found from the game checker with the source {dosBoxCheckResult.Source}");
+                                // Check if the file exists
+                                if (!filePath.FileExists)
+                                    continue;
 
-                            RCFRCP.Data.DosBoxPath = filePath;
+                                RCF.Logger.LogTraceSource($"The DosBox executable was found from the game checker with the source {dosBoxCheckResult.Source}");
 
-                            break;
-                        }
-                        catch (Exception ex)
-                        {
-                            ex.HandleUnexpected("DosBox check action", action);
+                                Data.DosBoxPath = filePath;
+
+                                break;
+                            }
+                            catch (Exception ex)
+                            {
+                                ex.HandleUnexpected("DosBox check action", action);
+                            }
                         }
                     }
-                }
 
-                // Helper method for finding and adding a Windows Store app
-                async Task FindWinStoreAppAsync(Games game)
-                {
-                    // Check if the game is installed
-                    if (game.IsValid(GameType.WinStore, FileSystemPath.EmptyPath))
+                    // Helper method for finding and adding a Windows Store app
+                    async Task FindWinStoreAppAsync(Games game)
                     {
-                        result.Add(game);
-
-                        // Add the game
-                        await RCFRCP.App.AddNewGameAsync(game, GameType.WinStore);
-
-                        RCF.Logger.LogInformationSource($"The game {game.GetDisplayName()} has been added from the game finder");
-                    }
-                }
-
-                // Check Windows Store apps
-                if (!Games.RaymanJungleRun.IsAdded())
-                    await FindWinStoreAppAsync(Games.RaymanJungleRun);
-
-                if (!Games.RaymanFiestaRun.IsAdded())
-                {
-                    RCFRCP.Data.IsFiestaRunWin10Edition = true;
-
-                    await FindWinStoreAppAsync(Games.RaymanFiestaRun);
-                }
-
-                if (!Games.RaymanFiestaRun.IsAdded())
-                {
-                    RCFRCP.Data.IsFiestaRunWin10Edition = false;
-
-                    await FindWinStoreAppAsync(Games.RaymanFiestaRun);
-                }
-
-                // Check Rayman Forever
-                if (!Games.Rayman1.IsAdded() &&
-                    !Games.Rayman1.IsAdded() &&
-                    !Games.RaymanDesigner.IsAdded() &&
-                    !Games.RaymanByHisFans.IsAdded())
-                {
-                    var dir = CheckUninstall("Rayman Forever").Path;
-
-                    FileSystemPath mountFileA = Path.Combine(dir, "game.inst");
-                    FileSystemPath mountFileB = Path.Combine(dir, "Music\\game.inst");
-
-                    if ((mountFileA.FileExists || mountFileB.FileExists) &&
-                        File.Exists(Path.Combine(dir, "Rayman\\RAYMAN.EXE")) &&
-                        File.Exists(Path.Combine(dir, "RayKit\\RayKit.exe")) &&
-                        File.Exists(Path.Combine(dir, "RayFan\\RayFan.exe")) &&
-                        File.Exists(Path.Combine(dir, "DosBox\\DOSBox.exe")) &&
-                        File.Exists(Path.Combine(dir, "dosboxRayman.conf")))
-                    {
-                        result.InsertRange(0, new Games[]
+                        // Check if the game is installed
+                        if (game.IsValid(GameType.WinStore, FileSystemPath.EmptyPath))
                         {
+                            result.Add(game);
+
+                            // Add the game
+                            await AddNewGameAsync(game, GameType.WinStore);
+
+                            RCF.Logger.LogInformationSource($"The game {game.GetDisplayName()} has been added from the game finder");
+                        }
+                    }
+
+                    // Check Windows Store apps
+                    if (!Games.RaymanJungleRun.IsAdded())
+                        await FindWinStoreAppAsync(Games.RaymanJungleRun);
+
+                    if (!Games.RaymanFiestaRun.IsAdded())
+                    {
+                        Data.IsFiestaRunWin10Edition = true;
+
+                        await FindWinStoreAppAsync(Games.RaymanFiestaRun);
+                    }
+
+                    if (!Games.RaymanFiestaRun.IsAdded())
+                    {
+                        Data.IsFiestaRunWin10Edition = false;
+
+                        await FindWinStoreAppAsync(Games.RaymanFiestaRun);
+                    }
+
+                    // Check Rayman Forever
+                    if (!Games.Rayman1.IsAdded() &&
+                        !Games.Rayman1.IsAdded() &&
+                        !Games.RaymanDesigner.IsAdded() &&
+                        !Games.RaymanByHisFans.IsAdded())
+                    {
+                        var dir = CheckUninstall("Rayman Forever").Path;
+
+                        FileSystemPath mountFileA = Path.Combine(dir, "game.inst");
+                        FileSystemPath mountFileB = Path.Combine(dir, "Music\\game.inst");
+
+                        if ((mountFileA.FileExists || mountFileB.FileExists) &&
+                            File.Exists(Path.Combine(dir, "Rayman\\RAYMAN.EXE")) &&
+                            File.Exists(Path.Combine(dir, "RayKit\\RayKit.exe")) &&
+                            File.Exists(Path.Combine(dir, "RayFan\\RayFan.exe")) &&
+                            File.Exists(Path.Combine(dir, "DosBox\\DOSBox.exe")) &&
+                            File.Exists(Path.Combine(dir, "dosboxRayman.conf")))
+                        {
+                            result.InsertRange(0, new Games[]
+                            {
                             Games.Rayman1,
                             Games.RaymanDesigner,
                             Games.RaymanByHisFans
-                        });
+                            });
 
-                        if (!File.Exists(RCFRCP.Data.DosBoxPath))
-                            RCFRCP.Data.DosBoxPath = Path.Combine(dir, "DosBox\\DOSBox.exe");
+                            if (!File.Exists(Data.DosBoxPath))
+                                Data.DosBoxPath = Path.Combine(dir, "DosBox\\DOSBox.exe");
 
-                        RCFRCP.Data.DosBoxConfig = Path.Combine(dir, "dosboxRayman.conf");
+                            Data.DosBoxConfig = Path.Combine(dir, "dosboxRayman.conf");
 
-                        // Add the games
-                        await RCFRCP.App.AddNewGameAsync(Games.Rayman1, GameType.DosBox, dir + "Rayman");
-                        await RCFRCP.App.AddNewGameAsync(Games.RaymanDesigner, GameType.DosBox, dir + "RayKit");
-                        await RCFRCP.App.AddNewGameAsync(Games.RaymanByHisFans, GameType.DosBox, dir + "RayFan");
+                            // Add the games
+                            await AddNewGameAsync(Games.Rayman1, GameType.DosBox, dir + "Rayman");
+                            await AddNewGameAsync(Games.RaymanDesigner, GameType.DosBox, dir + "RayKit");
+                            await AddNewGameAsync(Games.RaymanByHisFans, GameType.DosBox, dir + "RayFan");
 
-                        RCF.Logger.LogInformationSource($"The games in Rayman Forever has been added from the game finder");
+                            RCF.Logger.LogInformationSource($"The games in Rayman Forever has been added from the game finder");
 
-                        var mountPath = mountFileA.FileExists ? mountFileA : mountFileB;
+                            var mountPath = mountFileA.FileExists ? mountFileA : mountFileB;
 
-                        RCFRCP.Data.DosBoxGames[Games.Rayman1].MountPath = mountPath;
-                        RCFRCP.Data.DosBoxGames[Games.RaymanDesigner].MountPath = mountPath;
-                        RCFRCP.Data.DosBoxGames[Games.RaymanByHisFans].MountPath = mountPath;
+                            Data.DosBoxGames[Games.Rayman1].MountPath = mountPath;
+                            Data.DosBoxGames[Games.RaymanDesigner].MountPath = mountPath;
+                            Data.DosBoxGames[Games.RaymanByHisFans].MountPath = mountPath;
+                        }
+                    }
+
+                    if (result.Count > 0)
+                    {
+                        await RCF.MessageUI.DisplayMessageAsync($"The following new games were found:{Environment.NewLine}{Environment.NewLine}• {result.JoinItems(Environment.NewLine + "• ", x => x.GetDisplayName())}", "Installed games found", MessageType.Success);
+                        RCF.Logger.LogInformationSource($"The game finder found the following games {result.JoinItems(", ")}");
+                        return true;
                     }
                 }
-
-                if (result.Count > 0)
+                catch (Exception ex)
                 {
-                    await RCF.MessageUI.DisplayMessageAsync($"The following new games were found:{Environment.NewLine}{Environment.NewLine}• {result.JoinItems(Environment.NewLine + "• ", x => x.GetDisplayName())}", "Installed games found", MessageType.Success);
-                    RCF.Logger.LogInformationSource($"The game finder found the following games {result.JoinItems(", ")}");
-                    return true;
+                    ex.HandleError("Game finder");
+                    await RCF.MessageUI.DisplayMessageAsync("An error occurred during the game finder operation");
                 }
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Game finder");
-                await RCF.MessageUI.DisplayMessageAsync("An error occurred during the game finder operation");
-            }
-            finally
-            {
-                await RCFRCP.App.SaveUserDataAsync();
-            }
+                finally
+                {
+                    await SaveUserDataAsync();
+                    IsGameFinderRunning = false;
+                }
 
-            return false;
+                return false;
+            });
         }
 
         /// <summary>

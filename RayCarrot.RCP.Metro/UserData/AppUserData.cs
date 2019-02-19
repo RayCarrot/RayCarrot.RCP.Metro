@@ -42,6 +42,7 @@ namespace RayCarrot.RCP.Metro
             AutoLocateGames = true;
             AutoUpdate = true;
             IsFiestaRunWin10Edition = true;
+            ShowNotInstalledGames = true;
         }
 
         #endregion
@@ -141,6 +142,11 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the version of Rayman Fiesta Run is the Windows 10 Edition
         /// </summary>
         public bool IsFiestaRunWin10Edition { get; set; }
+
+        /// <summary>
+        /// Indicates if not installed games should be shown
+        /// </summary>
+        public bool ShowNotInstalledGames { get; set; }
 
         #endregion
     }

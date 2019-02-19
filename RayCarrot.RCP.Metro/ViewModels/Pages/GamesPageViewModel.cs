@@ -10,7 +10,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for the games page
     /// </summary>
-    public class GamesPageViewModel : BaseViewModel
+    public class GamesPageViewModel : BaseRCPViewModel
     {
         #region Constructor
 

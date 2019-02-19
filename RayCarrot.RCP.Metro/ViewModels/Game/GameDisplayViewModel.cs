@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// View model for a game display
     /// </summary>
-    public class GameDisplayViewModel : BaseViewModel
+    public class GameDisplayViewModel : BaseRCPViewModel
     {
         /// <summary>
         /// Default constructor

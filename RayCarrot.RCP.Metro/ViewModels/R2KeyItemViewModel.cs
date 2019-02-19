@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// A Rayman 2 key item view model
     /// </summary>
-    public class R2KeyItemViewModel : BaseViewModel
+    public class R2KeyItemViewModel : BaseRCPViewModel
     {
         #region Constructor
 
