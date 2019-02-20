@@ -46,8 +46,15 @@ namespace RayCarrot.RCP.Metro
             {
                 var launchInfo = game.GetLaunchInfo();
 
-                AddDuoGridItem(UserLevel.Technical, "Launch path", launchInfo.Path);
-                AddDuoGridItem(UserLevel.Technical, "Launch arguments", launchInfo.Args);
+                if (gameType != GameType.Steam)
+                {
+                    AddDuoGridItem(UserLevel.Technical, "Launch path", launchInfo.Path);
+                    AddDuoGridItem(UserLevel.Technical, "Launch arguments", launchInfo.Args);
+                }
+                else
+                {
+                    AddDuoGridItem(UserLevel.Advanced, "Steam ID", game.GetSteamID());
+                }
                 AddDuoGridItem(UserLevel.Advanced, "Game type", gameType.GetDisplayName());
                 AddDuoGridItem(UserLevel.Normal, "Install location", info.InstallDirectory);
             }

@@ -239,6 +239,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\HelpIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\OverflowButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -292,6 +296,9 @@
     </Compile>
     <Compile Include="Controls\DuoGrid.xaml.cs">
       <DependentUpon>DuoGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HelpIcon.xaml.cs">
+      <DependentUpon>HelpIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\UserControls\Config\DosBoxConfig.xaml.cs">
       <DependentUpon>DosBoxConfig.xaml</DependentUpon>

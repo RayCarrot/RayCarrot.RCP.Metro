@@ -23,7 +23,7 @@ namespace RayCarrot.RCP.Metro
             ViewModel = new GameOptionsViewModel(game);
             ConfigContentPresenter.Content = game.GetConfigContent(this);
 
-            Height = ConfigViewModel != null ? 700 : 300;
+            Height = ConfigContentPresenter.Content != null ? 700 : 300;
             Width = 600;
         }
 

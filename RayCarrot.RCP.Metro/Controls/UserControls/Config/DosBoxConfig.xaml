@@ -54,9 +54,14 @@
 
                 <!-- General settings -->
 
-                <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="DosBox Settings"
-                           ToolTip="If you disable one of the below options the default value will be used" />
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBlock Style="{StaticResource HeaderTextBlock}"
+                               Text="DosBox Settings" />
+                    
+                    <local:HelpIcon Text="Setting one of the below options to disabled or empty will use the default value specified in the DosBox configuration file" />
+
+                </StackPanel>
 
                 <WrapPanel>
                     <i:Interaction.Behaviors>

@@ -15,13 +15,23 @@
     <ScrollViewer Padding="5">
         <StackPanel>
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                <rwpf:UnifiedMarginBehavior Margin="2 5" />
             </i:Interaction.Behaviors>
 
-            <GroupBox Header="User Level"
-                      DataContext="{Binding Path=Data}">
+            <StackPanel>
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                </i:Interaction.Behaviors>
 
-                <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="User Level"
+                               Style="{StaticResource LargeHeaderTextBlock}" />
+
+                    <local:HelpIcon Text="The user level determines which options and information is available in the application. The higher the user level, the more advanced options and information will be shown." />
+
+                </StackPanel>
+
+                <StackPanel DataContext="{Binding Path=Data}">
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="2 8" />
                     </i:Interaction.Behaviors>
@@ -63,11 +73,17 @@
 
                 </StackPanel>
 
-            </GroupBox>
+            </StackPanel>
 
-            <GroupBox Header="Design"
-                      DataContext="{Binding Path=Data}">
-                <StackPanel>
+            <StackPanel>
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                </i:Interaction.Behaviors>
+
+                <TextBlock Text="Design"
+                           Style="{StaticResource LargeHeaderTextBlock}" />
+
+                <StackPanel DataContext="{Binding Path=Data}">
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="2 8" />
                     </i:Interaction.Behaviors>
@@ -88,12 +104,17 @@
                               IsChecked="{Binding Path=DialogAsWindow}" />
 
                 </StackPanel>
-            </GroupBox>
 
-            <GroupBox Header="DosBox"
-                      DataContext="{Binding Path=Data}">
+            </StackPanel>
 
-                <StackPanel>
+            <StackPanel>
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                </i:Interaction.Behaviors>
+                <TextBlock Text="DosBox"
+                           Style="{StaticResource LargeHeaderTextBlock}" />
+
+                <StackPanel DataContext="{Binding Path=Data}">
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="2 8" />
                     </i:Interaction.Behaviors>
@@ -102,7 +123,7 @@
 
                         <TextBlock Style="{StaticResource HeaderTextBlock}"
                                    Text="DosBox path"
-                                   Margin="0 0 0 8"/>
+                                   Margin="0 0 0 8" />
 
                         <rwpf:BrowseBox FileFilter="Exe Files (.exe)|*.exe|All Files (*.*)|*.*"
                                         FilePath="{Binding Path=DosBoxPath}"
@@ -115,7 +136,7 @@
 
                         <TextBlock Style="{StaticResource HeaderTextBlock}"
                                    Text="DosBox configuration path (optional)"
-                                   Margin="0 0 0 8"/>
+                                   Margin="0 0 0 8" />
 
                         <rwpf:BrowseBox FileFilter="Exe Files (.exe)|*.exe|All Files (*.*)|*.*"
                                         FilePath="{Binding Path=DosBoxConfig}"
@@ -126,21 +147,27 @@
 
                 </StackPanel>
 
-            </GroupBox>
+            </StackPanel>
 
-            <GroupBox Header="Other">
+            <StackPanel>
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                </i:Interaction.Behaviors>
+                <TextBlock Text="Other"
+                           Style="{StaticResource LargeHeaderTextBlock}" />
+
                 <StackPanel>
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="2 8" />
                     </i:Interaction.Behaviors>
 
-                    <CheckBox Content="Automatically locate installed games" 
+                    <CheckBox Content="Automatically locate installed games"
                               IsChecked="{Binding Path=AutoLocateGames}"
-                              DataContext="{Binding Path=Data}"/>
+                              DataContext="{Binding Path=Data}" />
 
                     <CheckBox Content="Automatically check for program updates"
                               IsChecked="{Binding Path=AutoUpdate}"
-                              DataContext="{Binding Path=Data}"/>
+                              DataContext="{Binding Path=Data}" />
 
                     <WrapPanel>
                         <Button Content="Reset"
@@ -148,7 +175,8 @@
                     </WrapPanel>
 
                 </StackPanel>
-            </GroupBox>
+
+            </StackPanel>
 
         </StackPanel>
     </ScrollViewer>
