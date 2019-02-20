@@ -6,9 +6,6 @@ Unfinished features:
 - Allow user to create game shortcuts
 - Add control tool tips
 - Backup/Restore game save files
-- Missing settings
--- Backup location
--- Progress on task bar icon
 - Help page
 -- Cheat codes (add reverse code for R3)
 - About page

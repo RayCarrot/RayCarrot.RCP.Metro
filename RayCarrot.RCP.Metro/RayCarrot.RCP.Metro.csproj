@@ -304,6 +304,7 @@
       <DependentUpon>DosBoxConfig.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\GameTypeExtensions.cs" />
+    <Compile Include="Framework\Implementations\RCPExceptionHandler.cs" />
     <Compile Include="Legacy\LegacyAppUserData.cs" />
     <Compile Include="Legacy\LegacyGames.cs" />
     <Compile Include="Legacy\LegacyGameType.cs" />

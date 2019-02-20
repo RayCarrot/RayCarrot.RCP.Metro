@@ -45,6 +45,9 @@ namespace RayCarrot.RCP.Metro
             ShowNotInstalledGames = true;
             CloseAppOnGameLaunch = false;
             CloseConfigOnSave = false;
+            BackupLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            ShowProgressOnTaskBar = true;
+            DisplayExceptionLevel = ExceptionLevel.Critical;
         }
 
         #endregion
@@ -159,6 +162,21 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if configuration dialogs should close upon saving
         /// </summary>
         public bool CloseConfigOnSave { get; set; }
+
+        /// <summary>
+        /// The backup directory path
+        /// </summary>
+        public FileSystemPath BackupLocation { get; set; }
+
+        /// <summary>
+        /// Indicates if progress should be shown on the task bar
+        /// </summary>
+        public bool ShowProgressOnTaskBar { get; set; }
+
+        /// <summary>
+        /// The minimum exception level to display
+        /// </summary>
+        public ExceptionLevel DisplayExceptionLevel { get; set; }
 
         #endregion
     }

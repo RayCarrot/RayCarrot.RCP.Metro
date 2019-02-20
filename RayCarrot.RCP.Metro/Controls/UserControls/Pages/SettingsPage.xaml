@@ -99,10 +99,6 @@
                     <CheckBox Content="Show not installed games"
                               IsChecked="{Binding Path=ShowNotInstalledGames}" />
 
-                    <CheckBox rwpf:UserLevelTag.MinUserLevel="Debug"
-                              Content="Show all dialogs as new windows"
-                              IsChecked="{Binding Path=DialogAsWindow}" />
-
                 </StackPanel>
 
             </StackPanel>
@@ -149,6 +145,37 @@
 
             </StackPanel>
 
+            <StackPanel rwpf:UserLevelTag.MinUserLevel="Debug">
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                </i:Interaction.Behaviors>
+
+                <TextBlock Text="Debug"
+                           Style="{StaticResource LargeHeaderTextBlock}" />
+
+                <StackPanel DataContext="{Binding Path=Data}">
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                    </i:Interaction.Behaviors>
+
+                    <CheckBox Content="Show all dialogs as new windows"
+                              IsChecked="{Binding Path=DialogAsWindow}" />
+
+                    <StackPanel>
+
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                   Text="Display exception level"
+                                   Margin="0 0 0 8" />
+
+                        <ComboBox ItemsSource="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToListConverter}, Mode=OneTime}"
+                                  SelectedIndex="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToIntConverter}}" />
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </StackPanel>
+
             <StackPanel>
                 <i:Interaction.Behaviors>
                     <rwpf:UnifiedMarginBehavior Margin="0 2" />
@@ -176,6 +203,23 @@
                     <CheckBox Content="Close configuration dialog when saving"
                               IsChecked="{Binding Path=CloseConfigOnSave}"
                               DataContext="{Binding Path=Data}" />
+
+                    <CheckBox Content="Show progress on task bar icon"
+                              IsChecked="{Binding Path=ShowProgressOnTaskBar}"
+                              DataContext="{Binding Path=Data}" />
+
+                    <StackPanel>
+
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                   Text="Backup location"
+                                   Margin="0 0 0 8" />
+
+                        <rwpf:BrowseBox FilePath="{Binding Path=BackupLocation, UpdateSourceTrigger=LostFocus}"
+                                        BrowseType="Directory"
+                                        PathValidation="DirectoryExistsAndNotEmpty"
+                                        DataContext="{Binding Path=Data}"/>
+
+                    </StackPanel>
 
                     <Button Content="Reset"
                             Command="{Binding Path=ResetCommand}"

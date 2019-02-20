@@ -223,7 +223,7 @@ namespace RayCarrot.RCP.Metro
                 // Add a serializer
                 AddSerializer(DefaultSerializers.Json).
                 // Add exception handler
-                AddExceptionHandler<DefaultExceptionHandler>().
+                AddExceptionHandler<RCPExceptionHandler>().
                 // Add user data manager
                 AddUserDataManager().
                 // Add message UI manager
@@ -442,21 +442,22 @@ namespace RayCarrot.RCP.Metro
 
                 // Import app data properties
                 data.AutoLocateGames = appData.AutoGameCheck;
-                data.AutoUpdate = appData.AutoUpdateCheck;
+                data.AutoUpdate = appData.AutoUpdateCheck;  
                 data.CloseAppOnGameLaunch = appData.AutoClose;
                 data.CloseConfigOnSave = appData.AutoCloseConfig;
-                // TODO: Import yet to be created properties
-                //appData.BackupLocation;
-                //appData.DisplayExceptionLevel;
+                data.BackupLocation = appData.BackupLocation;
                 data.ShowActionComplete = appData.ShowActionComplete;
-                //appData.ShowTaskBarProgress;
+                data.ShowProgressOnTaskBar = appData.ShowTaskBarProgress;
                 data.UserLevel = appData.UserLevel;
+                data.DisplayExceptionLevel = appData.DisplayExceptionLevel;
 
                 // Import game data properties
                 if (gameData.DosBoxConfig.FileExists)
                     data.DosBoxConfig = gameData.DosBoxConfig;
                 if (gameData.DosBoxExe.FileExists)
                     data.DosBoxPath = gameData.DosBoxExe;
+
+                // TODO: Import yet to be created properties
                 //gameData.TPLSDOSBoxVersion;
                 //gameData.TPLSDir;
                 //gameData.TPLSIsInstalled;
