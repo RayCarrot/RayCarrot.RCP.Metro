@@ -1,5 +1,6 @@
 ﻿-----   Version 4.0.0 - March ? 2019   -----
 
+• Windows Vista or higher is required to run the application
 • Updated the program to use WPF instead of WinForms
 • Changed the theme to Metro theme with dark/light modes
 • Simplified game selection and utilities
@@ -19,7 +20,6 @@ Removed features:
 • Configuration paths can no longer be set up manually
 • The game finder only runs on startup now
 • The WinForms folder dialog can no longer be used
-• The experimental features have been removed or integrated into the new debug page
 
 
 -----   Version 3.2.1 - January 31 2019   -----

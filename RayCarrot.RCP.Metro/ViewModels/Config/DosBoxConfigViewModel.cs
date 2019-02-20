@@ -469,6 +469,8 @@ namespace RayCarrot.RCP.Metro
                 UnsavedChanges = false;
 
                 await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("Your changes have been saved");
+
+                OnSave();
             }
         }
 

@@ -65,8 +65,15 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                if (ConfigViewModel != null)
-                    await ConfigViewModel.SetupAsync();
+                if (ConfigViewModel == null)
+                    return;
+
+                ConfigViewModel.OnSave = () =>
+                {
+                    if (RCFRCP.Data.CloseConfigOnSave)
+                        Close();
+                };
+                await ConfigViewModel.SetupAsync();
             }
             catch (Exception ex)
             {
@@ -85,6 +92,10 @@ namespace RayCarrot.RCP.Metro
             if (ForceClose || ConfigViewModel?.UnsavedChanges != true)
             {
                 RCFRCP.App.RefreshRequired -= App_RefreshRequired;
+
+                if (ConfigViewModel != null)
+                    ConfigViewModel.OnSave = null;
+
                 return;
             }
 

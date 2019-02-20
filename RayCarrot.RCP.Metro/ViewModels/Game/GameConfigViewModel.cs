@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -17,5 +18,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <returns>The task</returns>
         public abstract Task SetupAsync();
+
+        /// <summary>
+        /// Action to run upon saving
+        /// </summary>
+        public Action OnSave { get; set; }
     }
 }

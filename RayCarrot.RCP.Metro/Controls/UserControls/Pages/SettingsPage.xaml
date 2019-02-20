@@ -169,10 +169,17 @@
                               IsChecked="{Binding Path=AutoUpdate}"
                               DataContext="{Binding Path=Data}" />
 
-                    <WrapPanel>
-                        <Button Content="Reset"
-                                Command="{Binding Path=ResetCommand}" />
-                    </WrapPanel>
+                    <CheckBox Content="Close application when launching a game"
+                              IsChecked="{Binding Path=CloseAppOnGameLaunch}"
+                              DataContext="{Binding Path=Data}" />
+
+                    <CheckBox Content="Close configuration dialog when saving"
+                              IsChecked="{Binding Path=CloseConfigOnSave}"
+                              DataContext="{Binding Path=Data}" />
+
+                    <Button Content="Reset"
+                            Command="{Binding Path=ResetCommand}"
+                            HorizontalAlignment="Left"/>
 
                 </StackPanel>
 

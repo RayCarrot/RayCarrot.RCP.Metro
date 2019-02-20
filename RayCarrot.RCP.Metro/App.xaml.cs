@@ -12,6 +12,7 @@ using System.Windows.Threading;
 using ByteSizeLib;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using Newtonsoft.Json;
 using RayCarrot.CarrotFramework;
 using RayCarrot.Rayman;
@@ -66,6 +67,13 @@ namespace RayCarrot.RCP.Metro
             {
                 // Break if debugging
                 Debugger.Break();
+            }
+
+            // Make sure we are on Windows Vista or higher for the Windows API Code Pack
+            if (!CommonFileDialog.IsPlatformSupported)
+            {
+                MessageBox.Show("Windows Vista or higher is required to run this application", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
 
             AppStartupAsync(e.Args);
@@ -435,9 +443,9 @@ namespace RayCarrot.RCP.Metro
                 // Import app data properties
                 data.AutoLocateGames = appData.AutoGameCheck;
                 data.AutoUpdate = appData.AutoUpdateCheck;
+                data.CloseAppOnGameLaunch = appData.AutoClose;
+                data.CloseConfigOnSave = appData.AutoCloseConfig;
                 // TODO: Import yet to be created properties
-                //appData.AutoClose;
-                //appData.AutoCloseConfig;
                 //appData.BackupLocation;
                 //appData.DisplayExceptionLevel;
                 data.ShowActionComplete = appData.ShowActionComplete;

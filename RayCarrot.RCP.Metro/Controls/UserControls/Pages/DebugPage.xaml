@@ -13,10 +13,21 @@
     <ScrollViewer Padding="10">
         <StackPanel>
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="2 10" />
+                <rwpf:UnifiedMarginBehavior Margin="2 5" />
             </i:Interaction.Behaviors>
 
-            <GroupBox Header="Dialogs">
+            <StackPanel>
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                </i:Interaction.Behaviors>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Dialogs"
+                               Style="{StaticResource LargeHeaderTextBlock}" />
+
+                    <local:HelpIcon Text="Below is a list of the available dialogs in this application. Each dialog returns a dialog result, which in this debug panel is ignored." />
+
+                </StackPanel>
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -34,36 +45,49 @@
                             Command="{Binding Path=ShowDialogCommand}" />
                 </Grid>
 
-            </GroupBox>
+            </StackPanel>
 
-            <GroupBox Header="Debug Tools">
-                <WrapPanel>
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="0 5" />
-                    </i:Interaction.Behaviors>
+            <StackPanel>
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                </i:Interaction.Behaviors>
 
-                    <Button Content="Show Log"
-                            Command="{Binding Path=ShowLogCommand}"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Debug Tools"
+                               Style="{StaticResource LargeHeaderTextBlock}" />
 
-                    <Button Content="Open App Data location"
-                            Command="{Binding Path=OpenAppDataCommand}"/>
+                    <local:HelpIcon Text="Below are some available debug tools for this application" />
 
-                </WrapPanel>
+                </StackPanel>
 
-            </GroupBox>
+                <Button Content="Show Log"
+                        Command="{Binding Path=ShowLogCommand}"
+                        HorizontalAlignment="Left"/>
 
-            <GroupBox Header="Experimental Features">
-                <WrapPanel>
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="0 5" />
-                    </i:Interaction.Behaviors>
+                <Button Content="Open App Data location"
+                        Command="{Binding Path=OpenAppDataCommand}"
+                        HorizontalAlignment="Left"/>
 
-                    <Button Content="Create ubi.ini symbolic link"
-                            Command="{Binding Path=UbiIniLinkCommand}"/>
+            </StackPanel>
 
-                </WrapPanel>
+            <StackPanel>
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                </i:Interaction.Behaviors>
 
-            </GroupBox>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Experimental Features"
+                               Style="{StaticResource LargeHeaderTextBlock}" />
+
+                    <local:HelpIcon Text="These features are experimental and have not been tested. Use on your own risk." />
+
+                </StackPanel>
+
+                <Button Content="Create ubi.ini symbolic link"
+                        Command="{Binding Path=UbiIniLinkCommand}"
+                        HorizontalAlignment="Left"/>
+
+            </StackPanel>
 
         </StackPanel>
     </ScrollViewer>

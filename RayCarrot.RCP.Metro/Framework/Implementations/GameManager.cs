@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using Windows.Devices.SmartCards;
 using RayCarrot.CarrotFramework;
 
@@ -153,6 +154,11 @@ namespace RayCarrot.RCP.Metro
                 {
                     // Launch the first app entry for the package
                     await (await game.GetGamePackage().GetAppListEntriesAsync()).First().LaunchAsync();
+
+                    RCF.Logger.LogInformationSource($"The game {game} has been launched");
+
+                    if (RCFRCP.Data.CloseAppOnGameLaunch)
+                        Application.Current.Shutdown();
                 }
                 catch (Exception ex)
                 {
@@ -189,6 +195,9 @@ namespace RayCarrot.RCP.Metro
             await RCFRCP.File.LaunchFileAsync(launchInfo.Path, false, launchInfo.Args);
 
             RCF.Logger.LogInformationSource($"The game {game} has been launched");
+
+            if (RCFRCP.Data.CloseAppOnGameLaunch)
+                Application.Current.Shutdown();
         }
     }
 }

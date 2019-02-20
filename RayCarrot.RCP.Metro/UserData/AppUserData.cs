@@ -43,6 +43,8 @@ namespace RayCarrot.RCP.Metro
             AutoUpdate = true;
             IsFiestaRunWin10Edition = true;
             ShowNotInstalledGames = true;
+            CloseAppOnGameLaunch = false;
+            CloseConfigOnSave = false;
         }
 
         #endregion
@@ -147,6 +149,16 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if not installed games should be shown
         /// </summary>
         public bool ShowNotInstalledGames { get; set; }
+
+        /// <summary>
+        /// Indicates if the application should close when a game is launched
+        /// </summary>
+        public bool CloseAppOnGameLaunch { get; set; }
+
+        /// <summary>
+        /// Indicates if configuration dialogs should close upon saving
+        /// </summary>
+        public bool CloseConfigOnSave { get; set; }
 
         #endregion
     }

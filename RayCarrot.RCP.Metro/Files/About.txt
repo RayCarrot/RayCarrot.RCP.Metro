@@ -7,8 +7,6 @@ Unfinished features:
 - Add control tool tips
 - Backup/Restore game save files
 - Missing settings
--- Close when launching an application
--- Option to close a configuration dialog upon saving
 -- Backup location
 -- Progress on task bar icon
 - Help page
