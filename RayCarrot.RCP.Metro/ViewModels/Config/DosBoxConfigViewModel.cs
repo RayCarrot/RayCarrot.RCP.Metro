@@ -135,27 +135,27 @@ namespace RayCarrot.RCP.Metro
 
         #region Private Constants
 
-        private const string FullScreenKey = "fullscreen";
+        public const string FullScreenKey = "fullscreen";
 
-        private const string FullDoubleKey = "fulldouble";
+        public const string FullDoubleKey = "fulldouble";
 
-        private const string AspectCorrectionKey = "aspect";
+        public const string AspectCorrectionKey = "aspect";
 
-        private const string MemorySizeKey = "memsize";
+        public const string MemorySizeKey = "memsize";
 
-        private const string FrameskipKey = "frameskip";
+        public const string FrameskipKey = "frameskip";
 
-        private const string OutputKey = "output";
+        public const string OutputKey = "output";
 
-        private const string FullscreenResolutionKey = "fullresolution";
+        public const string FullscreenResolutionKey = "fullresolution";
 
-        private const string WindowedResolutionKey = "windowresolution";
+        public const string WindowedResolutionKey = "windowresolution";
 
-        private const string ScalerKey = "scaler";
+        public const string ScalerKey = "scaler";
 
-        private const string CoreKey = "core";
+        public const string CoreKey = "core";
 
-        private const string CyclesKey = "cycles";
+        public const string CyclesKey = "cycles";
 
         #endregion
 

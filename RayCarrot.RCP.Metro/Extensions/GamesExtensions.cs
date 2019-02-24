@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Packaging;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,6 +42,59 @@ namespace RayCarrot.RCP.Metro
             {
                 case Games.Rayman1:
                     return "Rayman";
+
+                case Games.RaymanDesigner:
+                    return "Rayman Designer";
+
+                case Games.RaymanByHisFans:
+                    return "Rayman by his Fans";
+
+                case Games.Rayman60Levels:
+                    return "Rayman 60 Levels";
+
+                case Games.Rayman2:
+                    return "Rayman 2";
+
+                case Games.RaymanM:
+                    return "Rayman M";
+
+                case Games.RaymanArena:
+                    return "Rayman Arena";
+
+                case Games.Rayman3:
+                    return "Rayman 3";
+
+                case Games.RaymanRavingRabbids:
+                    return "Rayman Raving Rabbids";
+
+                case Games.RaymanOrigins:
+                    return "Rayman Origins";
+
+                case Games.RaymanLegends:
+                    return "Rayman Legends";
+
+                case Games.RaymanJungleRun:
+                    return "Rayman Jungle Run";
+
+                case Games.RaymanFiestaRun:
+                    return "Rayman Fiesta Run";
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(game), game, null);
+            }
+        }
+
+        /// <summary>
+        /// Gets the backup name for the specified game
+        /// </summary>
+        /// <param name="game">The game to get the backup name for</param>
+        /// <returns>The backup name</returns>
+        public static string GetBackupName(this Games game)
+        {
+            switch (game)
+            {
+                case Games.Rayman1:
+                    return "Rayman 1";
 
                 case Games.RaymanDesigner:
                     return "Rayman Designer";
@@ -236,6 +290,20 @@ namespace RayCarrot.RCP.Metro
                             // Return the item
                             return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
                         }));
+                }
+
+                // Add disc installer options for specific games
+                if (game == Games.Rayman2 || game == Games.RaymanM || game == Games.RaymanArena)
+                {
+                    // Add separator if there are previous actions
+                    if (actions.Any())
+                        actions.Add(new OverflowButtonItemViewModel());
+
+                    // Add disc installer action
+                    actions.Add(new OverflowButtonItemViewModel("Install from disc", PackIconMaterialKind.Disk, new AsyncRelayCommand(async () =>
+                    {
+                        // TODO: Disc installer
+                    })));
                 }
 
                 // Create the command
@@ -660,6 +728,253 @@ namespace RayCarrot.RCP.Metro
                 return RCFRCP.Data.IsFiestaRunWin10Edition ? "Ubisoft.RaymanFiestaRunWindows10Edition" : "Ubisoft.RaymanFiestaRun";
 
             throw new ArgumentOutOfRangeException(nameof(game), game, "A package name can not be obtained from the specified game");
+        }
+
+        /// <summary>
+        /// Gets the backup directory for the specified game
+        /// </summary>
+        /// <param name="game">The game to get the backup directory for</param>
+        /// <returns>The backup directory</returns>
+        public static FileSystemPath GetBackupDir(this Games game)
+        {
+            return RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + game.GetBackupName(); 
+        }
+
+        /// <summary>
+        /// Gets the backup info for the specified game
+        /// </summary>
+        /// <param name="game">The game to get the backup info for</param>
+        /// <returns>The game backup info</returns>
+        public static List<BackupDir> GetBackupInfo(this Games game)
+        {
+            // Get the game info
+            var gameInfo = game.GetInfo();
+
+            switch (game)
+            {
+                case Games.Rayman1:
+                    return new List<BackupDir>()
+                    {
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory,
+                            SearchOption = SearchOption.TopDirectoryOnly,
+                            ExtensionFilter = "*.sav",
+                            ID = "0"
+                        },
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory,
+                            SearchOption = SearchOption.TopDirectoryOnly,
+                            ExtensionFilter = "*.cfg",
+                            ID = "1"
+                        },
+                    };
+
+                case Games.RaymanDesigner:
+                    return new List<BackupDir>()
+                    {
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory,
+                            SearchOption = SearchOption.TopDirectoryOnly,
+                            ExtensionFilter = "*.cfg",
+                            ID = "0"
+                        },
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory + "PCMAP",
+                            SearchOption = SearchOption.TopDirectoryOnly,
+                            ExtensionFilter = "*.sct",
+                            ID = "1"
+                        },
+                        //
+                        // Note:
+                        // This will backup the pre-installed maps and the world files as well. This is due to how the backup manager works.
+                        // In the future I might make a separate manager for the maps again, in which case the search pattern "MAPS???" should get the
+                        // correct mapper directories withing each world directory
+                        //
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory + "CAKE",
+                            SearchOption = SearchOption.AllDirectories,
+                            ExtensionFilter = "*",
+                            ID = "Mapper0"
+                        },
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory + "CAVE",
+                            SearchOption = SearchOption.AllDirectories,
+                            ExtensionFilter = "*",
+                            ID = "Mapper1"
+                        },
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory + "IMAGE",
+                            SearchOption = SearchOption.AllDirectories,
+                            ExtensionFilter = "*",
+                            ID = "Mapper2"
+                        },
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory + "JUNGLE",
+                            SearchOption = SearchOption.AllDirectories,
+                            ExtensionFilter = "*",
+                            ID = "Mapper3"
+                        },
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory + "MOUNTAIN",
+                            SearchOption = SearchOption.AllDirectories,
+                            ExtensionFilter = "*",
+                            ID = "Mapper4"
+                        },
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory + "MUSIC",
+                            SearchOption = SearchOption.AllDirectories,
+                            ExtensionFilter = "*",
+                            ID = "Mapper5"
+                        },
+                    };
+
+                case Games.RaymanByHisFans:
+                    return new List<BackupDir>()
+                    {
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory,
+                            SearchOption = SearchOption.TopDirectoryOnly,
+                            ExtensionFilter = "*.cfg",
+                            ID = "1"
+                        },
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory + "PCMAP",
+                            SearchOption = SearchOption.TopDirectoryOnly,
+                            ExtensionFilter = "*.sct",
+                            ID = "1"
+                        },
+                    };
+
+                case Games.Rayman60Levels:
+                    return new List<BackupDir>()
+                    {
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory,
+                            SearchOption = SearchOption.TopDirectoryOnly,
+                            ExtensionFilter = "*.cfg",
+                            ID = "0"
+                        },
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory + "PCMAP",
+                            SearchOption = SearchOption.TopDirectoryOnly,
+                            ExtensionFilter = "*.sct",
+                            ID = "1"
+                        },
+                    };
+
+                case Games.Rayman2:
+                    return new List<BackupDir>()
+                    {
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory + "Data\\SaveGame",
+                            SearchOption = SearchOption.AllDirectories,
+                            ID = "0"
+                        },
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory + "Data\\Options",
+                            SearchOption = SearchOption.AllDirectories,
+                            ID = "1"
+                        },
+                    };
+
+                case Games.Rayman3:
+                    return new List<BackupDir>()
+                    {
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory + "GAMEDATA\\SaveGame",
+                            SearchOption = SearchOption.TopDirectoryOnly,
+                            ID = "0"
+                        }
+                    };
+
+                case Games.RaymanM:
+                case Games.RaymanArena:
+                    return new List<BackupDir>()
+                    {
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory + "Menu\\SaveGame",
+                            SearchOption = SearchOption.TopDirectoryOnly,
+                            ID = "0"
+                        }
+                    };
+
+                case Games.RaymanRavingRabbids:
+                    return new List<BackupDir>()
+                    {
+                        new BackupDir()
+                        {
+                            DirPath = RCFRCP.Data.RRRIsSaveDataInInstallDir ? gameInfo.InstallDirectory : new FileSystemPath(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore\\Program Files(x86)\\Ubisoft\\Rayman Raving Rabbids")),
+                            SearchOption = SearchOption.TopDirectoryOnly,
+                            ExtensionFilter = ".sav",
+                            ID = "0"
+                        }
+                    };
+
+                case Games.RaymanOrigins:
+                    return new List<BackupDir>()
+                    {
+                        new BackupDir()
+                        {
+                            DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My games\\Rayman origins"),
+                            SearchOption = SearchOption.AllDirectories,
+                            ID = "0"
+                        }
+                    };
+
+                case Games.RaymanLegends:
+                    return new List<BackupDir>()
+                    {
+                        new BackupDir()
+                        {
+                            DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Rayman Legends"),
+                            SearchOption = SearchOption.AllDirectories,
+                            ID = "0"
+                        }
+                    };
+
+                case Games.RaymanJungleRun:
+                    return new List<BackupDir>()
+                    {
+                        new BackupDir()
+                        {
+                            DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Packages", game.GetLaunchName()),
+                            SearchOption = SearchOption.AllDirectories,
+                            ID = "0"
+                        }
+                    };
+
+                case Games.RaymanFiestaRun:
+                    return new List<BackupDir>()
+                    {
+                        new BackupDir()
+                        {
+                            DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Packages", game.GetLaunchName()),
+                            SearchOption = SearchOption.AllDirectories,
+                            ID = "0"
+                        }
+                    };
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(game), game, null);
+            }
         }
     }
 }

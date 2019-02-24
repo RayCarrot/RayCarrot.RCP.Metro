@@ -246,6 +246,8 @@ namespace RayCarrot.RCP.Metro
                 AddTransient<GameManager>().
                 // Add App UI manager
                 AddTransient<AppUIManager>().
+                // Add backup manager
+                AddTransient<BackupManager>().
                 // Build the framework
                 Build();
 
@@ -445,11 +447,13 @@ namespace RayCarrot.RCP.Metro
                 data.AutoUpdate = appData.AutoUpdateCheck;  
                 data.CloseAppOnGameLaunch = appData.AutoClose;
                 data.CloseConfigOnSave = appData.AutoCloseConfig;
-                data.BackupLocation = appData.BackupLocation;
                 data.ShowActionComplete = appData.ShowActionComplete;
                 data.ShowProgressOnTaskBar = appData.ShowTaskBarProgress;
                 data.UserLevel = appData.UserLevel;
                 data.DisplayExceptionLevel = appData.DisplayExceptionLevel;
+
+                if (appData.BackupLocation.DirectoryExists)
+                    data.BackupLocation = appData.BackupLocation;
 
                 // Import game data properties
                 if (gameData.DosBoxConfig.FileExists)
@@ -462,10 +466,32 @@ namespace RayCarrot.RCP.Metro
                 //gameData.TPLSDir;
                 //gameData.TPLSIsInstalled;
                 //gameData.TPLSRaymanVersion;
-
+                
+                // Import games
                 foreach (LegacyRaymanGame game in gameData.RayGames)
                 {
-                    // TODO: Import game data    
+                    // Convert legacy values
+                    var currentGame = game.Game.GetCurrent();
+                    var currentType = game.Type.GetCurrent();
+
+                    // Make sure we got current valid values
+                    if (currentGame == null || currentType == null)
+                        continue;
+
+                    // Ignore Windows store games
+                    if (currentType == GameType.WinStore)
+                        continue;
+
+                    // Make sure the game is valid
+                    if (!currentGame.Value.IsValid(currentType.Value, game.Dir))
+                        continue;
+
+                    // Add the game
+                    await RCFRCP.App.AddNewGameAsync(currentGame.Value, currentType.Value, game.Dir.DirectoryExists ? game.Dir : null);
+
+                    // Add mount directory if DosBox game
+                    if (currentType == GameType.DosBox)
+                        RCFRCP.Data.DosBoxGames[currentGame.Value].MountPath = game.MountDir;
                 }
             }
             catch (Exception ex)

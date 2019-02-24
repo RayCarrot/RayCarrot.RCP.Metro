@@ -48,6 +48,7 @@ namespace RayCarrot.RCP.Metro
             BackupLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             ShowProgressOnTaskBar = true;
             DisplayExceptionLevel = ExceptionLevel.Critical;
+            RRRIsSaveDataInInstallDir = true;
         }
 
         #endregion
@@ -177,6 +178,11 @@ namespace RayCarrot.RCP.Metro
         /// The minimum exception level to display
         /// </summary>
         public ExceptionLevel DisplayExceptionLevel { get; set; }
+
+        /// <summary>
+        /// Indicates if the Rayman Raving Rabbids save data is in the install directory
+        /// </summary>
+        public bool RRRIsSaveDataInInstallDir { get; set; }
 
         #endregion
     }

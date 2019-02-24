@@ -3,9 +3,7 @@
 
 Unfinished features:
 
-- Allow user to create game shortcuts
 - Add control tool tips
-- Backup/Restore game save files
 - Help page
 -- Cheat codes (add reverse code for R3)
 - About page

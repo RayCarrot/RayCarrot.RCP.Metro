@@ -1,9 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.ApplicationModel;
 using RayCarrot.CarrotFramework;
+using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -21,6 +23,7 @@ namespace RayCarrot.RCP.Metro
         public GameOptionsViewModel(Games game)
         {
             RemoveCommand = new AsyncRelayCommand(RemoveAsync);
+            ShortcutCommand = new AsyncRelayCommand(CreateShortcutAsync);
 
             Game = game;
             DisplayName = game.GetDisplayName();
@@ -103,6 +106,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public ICommand RemoveCommand { get; }
 
+        /// <summary>
+        /// The command for creating a shortcut to launch the game
+        /// </summary>
+        public ICommand ShortcutCommand { get; }
+
         #endregion
 
         #region Public Methods
@@ -121,6 +129,48 @@ namespace RayCarrot.RCP.Metro
 
             // Remove the game
             RCFRCP.App.RemoveGame(Game);
+        }
+
+        /// <summary>
+        /// Creates a shortcut to launch the game
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task CreateShortcutAsync()
+        {
+            try
+            {
+                var result = await RCF.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                {
+                    DefaultDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                    Title = "Select shortcut destination"
+                });
+
+                if (result.CanceledByUser)
+                    return;
+
+                var gameInfo = Game.GetInfo();
+                var shortcutName = $"Launch {Game.GetDisplayName()}";
+
+                if (gameInfo.GameType == GameType.Steam)
+                {
+                    WindowsHelpers.CreateURLShortcut(shortcutName, result.SelectedDirectory, $@"steam://rungameid/{Game.GetSteamID()}");
+
+                    RCF.Logger.LogTraceSource($"A shortcut was created for {Game} under {result.SelectedDirectory}");
+
+                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("Shortcut created successfully");
+                }
+                else
+                {
+                    var launchInfo = Game.GetLaunchInfo();
+
+                    await RCFRCP.File.CreateFileShortcutAsync(shortcutName, result.SelectedDirectory, launchInfo.Path, launchInfo.Args);
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Creating desktop shortcut", Game);
+                await RCF.MessageUI.DisplayMessageAsync("The shortcut could not be created", "Shortcut creation failed", MessageType.Error);
+            }
         }
 
         #endregion

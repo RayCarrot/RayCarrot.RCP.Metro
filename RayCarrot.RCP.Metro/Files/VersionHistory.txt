@@ -4,14 +4,12 @@
 • Updated the program to use WPF instead of WinForms
 • Changed the theme to Metro theme with dark/light modes
 • Simplified game selection and utilities
-• 
 
 Other changes:
 • Rayman M/Arena are not treated as separate games
 • Common DosBox commands can now be set using the new DosBox configuration dialog
 • Rayman 2 utilities have been integrated into its configuration dialog. It now also shows the currently selected button mapping.
 • Windows Store games are now be found and launched using the WinRT Api rather than Explorer
-• 
 
 Removed features:
 • The links page has been removed. Some links can still be found in the about page
@@ -20,6 +18,8 @@ Removed features:
 • Configuration paths can no longer be set up manually
 • The game finder only runs on startup now
 • The WinForms folder dialog can no longer be used
+• Shortcuts can no longer be created for the game configuration tools
+• Backups can no longer be created for multiple games at once
 
 
 -----   Version 3.2.1 - January 31 2019   -----

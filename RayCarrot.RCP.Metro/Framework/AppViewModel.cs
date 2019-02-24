@@ -46,6 +46,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public const string SteamStoreBaseUrl = "https://store.steampowered.com/app/";
 
+        /// <summary>
+        /// The name of the backup directory for this application
+        /// </summary>
+        public const string BackupFamily = "Rayman Game Backups";
+
         #endregion
 
         #region Public Properties
@@ -231,6 +236,10 @@ namespace RayCarrot.RCP.Metro
 
                 RCF.Logger.LogInformationSource($"The game {game} install directory was retrieved as {installDirectory}");
             }
+
+            // TODO: Set default save data location based on version (Steam/Win32) and allow to be modified from config
+            //if (game == Games.RaymanRavingRabbids)
+            //    Data.RRRIsSaveDataInInstallDir = 
 
             // Add the game
             Data.Games.Add(game, new GameInfo(type, installDirectory ?? FileSystemPath.EmptyPath));

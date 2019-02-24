@@ -19,9 +19,7 @@
         </TabItem>
 
         <TabItem Header="Backup/Restore">
-            <Viewbox Margin="50">
-                <TextBlock Text="Not Implemented" />
-            </Viewbox>
+            <local:BackupPage />
         </TabItem>
 
         <TabItem Header="Settings">

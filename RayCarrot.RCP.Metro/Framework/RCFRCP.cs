@@ -32,5 +32,10 @@ namespace RayCarrot.RCP.Metro
         /// The App UI manager
         /// </summary>
         public static AppUIManager UI => RCF.GetService<AppUIManager>();
+
+        /// <summary>
+        /// The backup manager
+        /// </summary>
+        public static BackupManager Backup => RCF.GetService<BackupManager>();
     }
 }

@@ -1,0 +1,16 @@
+﻿<Button x:Class="RayCarrot.RCP.Metro.IconButton"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        Width="48"
+        Height="48"
+        Style="{StaticResource MetroCircleButtonStyle}">
+
+    <iconPacks:PackIconMaterial x:Name="PackIconMaterial"
+                                Kind="{Binding Path=IconKind}"
+                                Width="20"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center" />
+
+</Button>

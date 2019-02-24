@@ -27,8 +27,13 @@
 
                 <!-- Mount path -->
 
-                <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Mount path" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource HeaderTextBlock}"
+                               Text="Mount path" />
+
+                    <local:HelpIcon Text="The mount path can either be a file or a drive. If you're using the GOG version it'll be the 'game.inst' file. If you have a disc image it is usually the .cue file. Otherwise use the drive letter of the game disc." />
+
+                </StackPanel>
 
                 <rwpf:BrowseBox FilePath="{Binding Path=MountPath, Converter={rwpf:FileSystemPathToStringConverter}, UpdateSourceTrigger=LostFocus}"
                                 BrowseType="File">

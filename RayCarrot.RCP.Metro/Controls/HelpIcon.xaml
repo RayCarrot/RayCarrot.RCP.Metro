@@ -6,7 +6,8 @@
              VerticalAlignment="Center">
     <iconPacks:PackIconMaterial x:Name="HelpIconRoot"
                                 Kind="HelpCircleOutline"
-                                VerticalAlignment="Center">
+                                VerticalAlignment="Center"
+                                Background="Transparent">
         <iconPacks:PackIconMaterial.ToolTip>
             <TextBlock Text="{Binding Path=Text}" MaxWidth="400" TextWrapping="WrapWithOverflow" />
         </iconPacks:PackIconMaterial.ToolTip>

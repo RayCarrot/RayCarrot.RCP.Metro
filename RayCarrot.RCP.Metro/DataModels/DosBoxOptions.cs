@@ -16,7 +16,18 @@ namespace RayCarrot.RCP.Metro
         public DosBoxOptions()
         {
             MountPath = FileSystemPath.EmptyPath;
-            ConfigCommands = new Dictionary<string, string>();
+            ConfigCommands = new Dictionary<string, string>()
+            {
+                {
+                    DosBoxConfigViewModel.MemorySizeKey, "30"
+                },
+                {
+                    DosBoxConfigViewModel.FrameskipKey, "0"
+                },
+                {
+                    DosBoxConfigViewModel.CyclesKey, "20000"
+                },
+            };
             Commands = new string[0];
         }
 

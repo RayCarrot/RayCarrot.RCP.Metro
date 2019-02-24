@@ -50,20 +50,19 @@
 
             <!-- Actions -->
 
-            <Button Grid.Column="2"
-                    Width="48"
-                    Height="48"
-                    HorizontalAlignment="Right"
-                    Style="{StaticResource MetroCircleButtonStyle}"
-                    Command="{Binding Path=RemoveCommand}">
+            <StackPanel Grid.Column="2" 
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
 
-                <iconPacks:PackIconMaterial Kind="Delete"
-                                            Width="20"
-                                            Height="20"
-                                            VerticalAlignment="Center"
-                                            HorizontalAlignment="Center" />
+                <local:IconButton IconKind="Link"
+                                  Command="{Binding Path=ShortcutCommand}"
+                                  ToolTip="Create shortcut" />
 
-            </Button>
+                <local:IconButton IconKind="Delete"
+                                  Command="{Binding Path=RemoveCommand}"
+                                  ToolTip="Remove from program" />
+
+            </StackPanel>
 
         </Grid>
 

@@ -25,8 +25,13 @@
                     <rwpf:UnifiedMarginBehavior Margin="0 8" />
                 </i:Interaction.Behaviors>
 
-                <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Resolution" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource HeaderTextBlock}"
+                               Text="Resolution" />
+
+                    <local:HelpIcon Text="If the widescreen support is not enabled the game will stretch if set to an aspect ratio other than 4:3" />
+
+                </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <mah:NumericUpDown Value="{Binding Path=ResX}"
@@ -71,22 +76,37 @@
 
                 </WrapPanel>
 
-                <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Language" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource HeaderTextBlock}"
+                               Text="Language" />
+
+                    <local:HelpIcon Text="This sets the default language selected when launching the game. The language can still be changed from the game menu." />
+
+                </StackPanel>
 
                 <ComboBox ItemsSource="{Binding Path=CurrentLanguage, Converter={rwpf:EnumToListConverter}}"
                           SelectedIndex="{Binding Path=CurrentLanguage, Converter={rwpf:EnumToIntConverter}}"
                           HorizontalAlignment="Left" />
 
-                <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Controller" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource HeaderTextBlock}"
+                               Text="Controller" />
+
+                    <local:HelpIcon Text="If your controller is not recognized you can enable controller support here. This will remove any custom button mapping." />
+
+                </StackPanel>
 
                 <CheckBox Content="Enable native controller support"
                           IsChecked="{Binding Path=ControllerSupport}"
                           IsEnabled="{Binding Path=AllowDinputHack}" />
 
-                <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Button mapping" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource HeaderTextBlock}"
+                               Text="Button mapping" />
+
+                    <local:HelpIcon Text="As the game doesn't allow native button remapping you change it here. This will not work for controllers." />
+
+                </StackPanel>
 
                 <Grid IsEnabled="{Binding Path=AllowDinputHack}">
                     <DataGrid ItemsSource="{Binding Path=KeyItems}"
