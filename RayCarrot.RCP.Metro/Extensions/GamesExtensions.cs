@@ -293,17 +293,14 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Add disc installer options for specific games
-                if (game == Games.Rayman2 || game == Games.RaymanM || game == Games.RaymanArena)
+                if (game.GetInstallerGifs()?.Any() == true)
                 {
                     // Add separator if there are previous actions
                     if (actions.Any())
                         actions.Add(new OverflowButtonItemViewModel());
 
                     // Add disc installer action
-                    actions.Add(new OverflowButtonItemViewModel("Install from disc", PackIconMaterialKind.Disk, new AsyncRelayCommand(async () =>
-                    {
-                        // TODO: Disc installer
-                    })));
+                    actions.Add(new OverflowButtonItemViewModel("Install from disc", PackIconMaterialKind.Disk, new RelayCommand(() => new GameInstaller(game).ShowDialog())));
                 }
 
                 // Create the command
@@ -975,6 +972,67 @@ namespace RayCarrot.RCP.Metro
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);
             }
+        }
+
+        /// <summary>
+        /// Gets the installer gif sources for a game
+        /// </summary>
+        /// <param name="game">The game to get the gif sources for</param>
+        /// <returns>The gif sources, if any</returns>
+        public static string[] GetInstallerGifs(this Games game)
+        {
+            var basePath = $"{AppViewModel.ApplicationBasePath}Installer/InstallerGifs/";
+
+            if (game == Games.Rayman2)
+            {
+                return new string[]
+                {
+                    basePath + "ASTRO.gif",
+                    basePath + "BAST.gif",
+                    basePath + "CASK.gif",
+                    basePath + "CHASE.gif",
+                    basePath + "GLOB.gif",
+                    basePath + "SKI.gif",
+                    basePath + "WHALE.gif"
+                };
+            }
+            else if (game == Games.RaymanM || game == Games.RaymanArena)
+            {
+                return new string[]
+                {
+                    basePath + "BAST.gif",
+                    basePath + "CHASE.gif",
+                    basePath + "GLOB.gif",
+                    basePath + "RAY.gif"
+                };
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the installer items for the specified game
+        /// </summary>
+        /// <param name="game">The game to get the installer items for</param>
+        /// <param name="outputPath">The output path for the installation</param>
+        /// <returns>The installer items</returns>
+        public static List<RayGameInstallItem> GetInstallerItems(this Games game, FileSystemPath outputPath)
+        {
+            // Create the result
+            var result = new List<RayGameInstallItem>();
+
+            // Attempt to get the text file
+            if (!(InstallerGames.ResourceManager.GetObject($"{game}.txt") is string file))
+                throw new Exception("Installer item not found");
+
+            using (StringReader reader = new StringReader(file))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                    result.Add(new RayGameInstallItem(line, outputPath + line, line.StartsWith(" ")));
+            }
+
+            return result;
         }
     }
 }

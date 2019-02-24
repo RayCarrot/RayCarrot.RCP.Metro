@@ -436,8 +436,8 @@ namespace RayCarrot.RCP.Metro
                 RCF.Logger.LogInformationSource($"Legacy app data found from version {appData.LastVersion}");
 
                 // Ask the user
-                if (!await RCF.MessageUI.DisplayMessageAsync($"Application data was found for version {appData.LastVersion}. Do you want to import it?", "Import data", MessageType.Question, true))
-                    return;
+                //if (!await RCF.MessageUI.DisplayMessageAsync($"Application data was found for version {appData.LastVersion}. Do you want to import it?", "Import data", MessageType.Question, true))
+                //    return;
 
                 // Get current app data
                 var data = RCFRCP.Data;
@@ -493,6 +493,10 @@ namespace RayCarrot.RCP.Metro
                     if (currentType == GameType.DosBox)
                         RCFRCP.Data.DosBoxGames[currentGame.Value].MountPath = game.MountDir;
                 }
+
+                // Remove old data
+                RCFRCP.File.DeleteFile(appDataLocation);
+                RCFRCP.File.DeleteFile(gameDataLocation);
             }
             catch (Exception ex)
             {

@@ -221,6 +221,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="XamlAnimatedGif, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\XamlAnimatedGif.1.2.1\lib\net45\XamlAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -266,6 +269,10 @@
     <Page Include="Controls\UserControls\Pages\BackupPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Installer\GameInstaller.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\TextStyles.xaml">
       <SubType>Designer</SubType>
@@ -320,6 +327,20 @@
     <Compile Include="Design\DesignTimeVM.cs" />
     <Compile Include="DataModels\BackupDir.cs" />
     <Compile Include="Framework\Implementations\BackupManager.cs" />
+    <Compile Include="Installer\GameInstaller.xaml.cs">
+      <DependentUpon>GameInstaller.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Installer\Games\InstallerGames.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InstallerGames.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Installer\RayGameDriveInfo.cs" />
+    <Compile Include="Installer\RayGameInstaller.cs" />
+    <Compile Include="Installer\RayGameInstallerData.cs" />
+    <Compile Include="Installer\RayGameInstallerResult.cs" />
+    <Compile Include="Installer\RayGameInstallItem.cs" />
+    <Compile Include="Installer\RayGameInstallItemStage.cs" />
     <Compile Include="Legacy\Extensions\LegacyGameTypeExtensions.cs" />
     <Compile Include="Legacy\Extensions\LegacyGamesExtensions.cs" />
     <Compile Include="ViewModels\Pages\BackupPageViewModel.cs" />
@@ -454,10 +475,15 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Img\Images.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Images.Designer.cs</LastGenOutput>
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Installer\Games\InstallerGames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>InstallerGames.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
     </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
@@ -539,6 +565,20 @@
     <Resource Include="Img\MessageIcons\Question.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Installer\InstallerGifs\ASTRO.gif" />
+    <Resource Include="Installer\InstallerGifs\BAST.gif" />
+    <Resource Include="Installer\InstallerGifs\CASK.gif" />
+    <Resource Include="Installer\InstallerGifs\CHASE.gif" />
+    <Resource Include="Installer\InstallerGifs\GLOB.gif" />
+    <Resource Include="Installer\InstallerGifs\MORB.gif" />
+    <Resource Include="Installer\InstallerGifs\RAY.gif" />
+    <Resource Include="Installer\InstallerGifs\RODEO.gif" />
+    <Resource Include="Installer\InstallerGifs\SKI.gif" />
+    <Resource Include="Installer\InstallerGifs\WHALE.gif" />
+    <Resource Include="Img\GameLogos\Rayman2_Logo.png" />
+    <Resource Include="Installer\Games\Rayman2.txt" />
+    <Resource Include="Installer\Games\RaymanArena.txt" />
+    <Resource Include="Installer\Games\RaymanM.txt" />
     <Resource Include="Files\About.txt" />
     <Content Include="Files\Rayman2\dinput_controller.dll" />
     <Content Include="Files\Rayman2\dinput_mapping.dll" />
