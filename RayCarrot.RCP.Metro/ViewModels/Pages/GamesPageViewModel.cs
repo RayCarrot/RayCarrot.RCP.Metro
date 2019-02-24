@@ -76,7 +76,7 @@ namespace RayCarrot.RCP.Metro
                     // Check if it has been added
                     if (!game.IsAdded())
                     {
-                        NotInstalledGames.Add(game.GetDisplayViewModel());
+                        Application.Current.Dispatcher.Invoke(() => NotInstalledGames.Add(game.GetDisplayViewModel()));
                         continue;
                     }
 
@@ -92,7 +92,7 @@ namespace RayCarrot.RCP.Metro
                         // Remove the game from app data
                         RCFRCP.Data.Games.Remove(game);
 
-                        NotInstalledGames.Add(game.GetDisplayViewModel());
+                        Application.Current.Dispatcher.Invoke(() => NotInstalledGames.Add(game.GetDisplayViewModel()));
 
                         RCF.Logger.LogInformationSource($"The game {game} has been removed due to not being valid");
 
@@ -100,7 +100,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Add the game to the collection
-                    InstalledGames.Add(game.GetDisplayViewModel());
+                    Application.Current.Dispatcher.Invoke(() => InstalledGames.Add(game.GetDisplayViewModel()));
                 }
             }
 

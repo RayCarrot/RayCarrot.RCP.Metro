@@ -554,11 +554,11 @@ namespace RayCarrot.RCP.Metro
                     // Rayman Legends
                     AddActions(Games.RaymanLegends, new Func<GameFinderActionResult>[]
                     {
-                    // Uninstall
-                    () => CheckUninstall("Rayman Legends", "RaymanLegends"),
+                        // Uninstall
+                        () => CheckUninstall("Rayman Legends", "RaymanLegends"),
 
-                    // Start menu
-                    () => CheckStartMenu("Rayman Legends", Games.RaymanLegends.GetLaunchName()),
+                        // Start menu
+                        () => CheckStartMenu("Rayman Legends", Games.RaymanLegends.GetLaunchName()),
                     });
 
                     // Run the checker and get the results
@@ -571,11 +571,11 @@ namespace RayCarrot.RCP.Metro
                     {
                         var actions = new Func<GameFinderActionResult>[]
                         {
-                        // Uninstall
-                        () => CheckUninstall("DosBox", "Dos Box"),
+                            // Uninstall
+                            () => CheckUninstall("DosBox", "Dos Box"),
 
-                        // Start menu
-                        () => CheckStartMenu("DosBox", "DOSBox.exe"),
+                            // Start menu
+                            () => CheckStartMenu("DosBox", "DOSBox.exe"),
                         };
 
                         // Run every check action until one is successful

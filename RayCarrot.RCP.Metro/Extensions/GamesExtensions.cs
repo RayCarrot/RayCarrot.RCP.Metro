@@ -1022,7 +1022,7 @@ namespace RayCarrot.RCP.Metro
             var result = new List<RayGameInstallItem>();
 
             // Attempt to get the text file
-            if (!(InstallerGames.ResourceManager.GetObject($"{game}.txt") is string file))
+            if (!(InstallerGames.ResourceManager.GetObject($"{game}") is string file))
                 throw new Exception("Installer item not found");
 
             using (StringReader reader = new StringReader(file))

@@ -13,7 +13,7 @@
                   ResizeMode="NoResize" d:DataContext="{d:DesignInstance local:GameInstallerViewModel}">
     <StackPanel Margin="20">
         <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="0 0 0 10" />
+            <rwpf:UnifiedMarginBehavior Margin="0 0 0 15" />
         </i:Interaction.Behaviors>
 
         <rwpf:BrowseBox BrowseType="Directory"
@@ -55,7 +55,36 @@
             </Grid>
         </Border>
 
-        <!-- TODO: Add progress bars and output info for technical UL -->
+        <StackPanel>
+            <TextBlock Text="Total Progress"
+                       FontSize="14"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 5"/>
+            <ProgressBar Value="{Binding Path=TotalCurrentProgress}"
+                         Maximum="{Binding Path=TotalMaxProgress}" />
+        </StackPanel>
+
+        <StackPanel>
+            <TextBlock Text="Current File Progress"
+                       FontSize="14"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 5"/>
+            <ProgressBar Value="{Binding Path=ItemCurrentProgress}"
+                         Maximum="{Binding Path=ItemMaxProgress}" />
+        </StackPanel>
+
+        <TextBlock Text="{Binding Path=CurrentItemInfo}"
+                   Visibility="{Binding Path=InstallerRunning, Converter={rwpf:BooleanToVisibilityConverter}}"
+                   HorizontalAlignment="Center"
+                   rwpf:UserLevelTag.MinUserLevel="Advanced"/>
+
+        <Button Content="Install"
+                Command="{Binding Path=InstallCommand}"
+                IsEnabled="{Binding Path=InstallerRunning, Converter={rwpf:InvertedBooleanConverter}}"/>
+
+        <Button Content="Cancel"
+                Command="{Binding Path=CancelCommand}"
+                IsEnabled="{Binding Path=InstallerRunning}" />
 
     </StackPanel>
 </local:BaseWindow>

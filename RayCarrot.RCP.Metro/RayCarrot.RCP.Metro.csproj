@@ -330,6 +330,7 @@
     <Compile Include="Installer\GameInstaller.xaml.cs">
       <DependentUpon>GameInstaller.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Installer\GameInstallerViewModel.cs" />
     <Compile Include="Installer\Games\InstallerGames.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -565,6 +566,8 @@
     <Resource Include="Img\MessageIcons\Question.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\GameLogos\RaymanArena_Logo.png" />
+    <Resource Include="Img\GameLogos\RaymanM_Logo.png" />
     <Resource Include="Installer\InstallerGifs\ASTRO.gif" />
     <Resource Include="Installer\InstallerGifs\BAST.gif" />
     <Resource Include="Installer\InstallerGifs\CASK.gif" />

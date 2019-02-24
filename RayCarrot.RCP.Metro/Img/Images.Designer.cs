@@ -183,6 +183,16 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap RaymanArena_Logo {
+            get {
+                object obj = ResourceManager.GetObject("RaymanArena_Logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap RaymanByHisFans {
             get {
                 object obj = ResourceManager.GetObject("RaymanByHisFans", resourceCulture);
@@ -236,6 +246,16 @@ namespace RayCarrot.RCP.Metro {
         public static System.Drawing.Bitmap RaymanM {
             get {
                 object obj = ResourceManager.GetObject("RaymanM", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap RaymanM_Logo {
+            get {
+                object obj = ResourceManager.GetObject("RaymanM_Logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
