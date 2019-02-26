@@ -262,6 +262,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\UserControls\Pages\HelpPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\UserControls\Pages\DebugPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -321,6 +325,9 @@
     <Compile Include="Controls\UserControls\Config\DosBoxConfig.xaml.cs">
       <DependentUpon>DosBoxConfig.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UserControls\Pages\HelpPage.xaml.cs">
+      <DependentUpon>HelpPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserControls\Pages\BackupPage.xaml.cs">
       <DependentUpon>BackupPage.xaml</DependentUpon>
     </Compile>
@@ -344,6 +351,7 @@
     <Compile Include="Installer\RayGameInstallItemStage.cs" />
     <Compile Include="Legacy\Extensions\LegacyGameTypeExtensions.cs" />
     <Compile Include="Legacy\Extensions\LegacyGamesExtensions.cs" />
+    <Compile Include="ViewModels\HelpItemViewModel.cs" />
     <Compile Include="ViewModels\Pages\BackupPageViewModel.cs" />
     <Compile Include="Extensions\GameTypeExtensions.cs" />
     <Compile Include="Framework\Implementations\RCPExceptionHandler.cs" />

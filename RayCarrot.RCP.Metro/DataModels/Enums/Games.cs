@@ -1,5 +1,7 @@
 ﻿namespace RayCarrot.RCP.Metro
 {
+    // TODO: Add support for educational games, RRR2, print studio, TT and BG&E
+
     /// <summary>
     /// The available games
     /// </summary>

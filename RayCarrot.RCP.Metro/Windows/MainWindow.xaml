@@ -27,9 +27,7 @@
         </TabItem>
 
         <TabItem Header="Help">
-            <Viewbox Margin="50">
-                <TextBlock Text="Not Implemented" />
-            </Viewbox>
+            <local:HelpPage />
         </TabItem>
 
         <TabItem Header="About">

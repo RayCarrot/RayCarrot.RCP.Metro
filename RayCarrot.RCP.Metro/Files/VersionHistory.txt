@@ -4,22 +4,31 @@
 • Updated the program to use WPF instead of WinForms
 • Changed the theme to Metro theme with dark/light modes
 • Simplified game selection and utilities
+• Common DosBox commands can now be set using the new DosBox configuration dialog
 
 Other changes:
-• Rayman M/Arena are not treated as separate games
-• Common DosBox commands can now be set using the new DosBox configuration dialog
+• Rayman M/Arena are now treated as separate games
 • Rayman 2 utilities have been integrated into its configuration dialog. It now also shows the currently selected button mapping.
 • Windows Store games are now be found and launched using the WinRT Api rather than Explorer
+• Minor bug fixes
 
 Removed features:
-• The links page has been removed. Some links can still be found in the about page
-• The game file name can no longer be changed
-• Games can no longer be run as administrator. To solve this, force the game executable to run as administrator manually by going to its properties window.
+• The links page has been removed. Some links can still be found in the about page.
+• The game file names can no longer be changed
+• Games can no longer be run as administrator. To solve this, force the game executable to run as administrator manually by going to its properties window in Explorer.
 • Configuration paths can no longer be set up manually
-• The game finder only runs on startup now
+• The game finder can not be run manually from the settings
 • The WinForms folder dialog can no longer be used
-• Shortcuts can no longer be created for the game configuration tools
+• Shortcuts can no longer be created for the game configuration tools. This can still be done manually by right-clicking on the executable in Explorer and creating a new shortcut.
 • Backups can no longer be created for multiple games at once
+• Several Rayman 2 configuration options were removed, including the nGlide settings. These can still be accessed from the game's native configuration tools.
+• The Rayman Fiesta Run version can no longer be chosen. If both are installed, the Windows 10 edition is prioritized.
+
+
+-----   Version 3.2.2 - February 21, 2019   -----
+
+• Fixed a bug which caused the game file name do be blank when reset to its default value
+• Fixed a bug which caused the program to crash when a message box appeared prior to the app data being loaded
 
 
 -----   Version 3.2.1 - January 31 2019   -----
