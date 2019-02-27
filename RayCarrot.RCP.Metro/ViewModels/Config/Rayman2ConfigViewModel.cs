@@ -242,7 +242,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Create the file
-                    File.Create(newFile);
+                    RCFRCP.File.CreateFile(newFile);
 
                     RCF.Logger.LogInformationSource($"A new ubi.ini file has been created under {newFile}");
                 }
@@ -269,8 +269,18 @@ namespace RayCarrot.RCP.Metro
                 RCF.Logger.LogInformationSource($"The ubi.ini section for Rayman 2 was recreated");
             }
 
-            ResX = ConfigData.FormattedGLI_Mode.ResX;
-            ResY = ConfigData.FormattedGLI_Mode.ResY;
+            var gliMode = ConfigData.FormattedGLI_Mode;
+
+            if (gliMode != null)
+            {
+                ResX = gliMode.ResX;
+                ResY = gliMode.ResY;
+            }
+            else
+            {
+                LockToScreenRes = true;
+            }
+
             CurrentLanguage = ConfigData.FormattedLanguage ?? R2Languages.English;
 
             // Check if the aspect ratio has been modified

@@ -662,7 +662,7 @@ namespace RayCarrot.RCP.Metro
                     return new Rayman2Config(parentDialogWindow);
 
                 case Games.RaymanM:
-                    return null;
+                    return new RaymanMConfig(parentDialogWindow);
 
                 case Games.RaymanArena:
                     return null;

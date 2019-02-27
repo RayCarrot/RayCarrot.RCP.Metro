@@ -258,6 +258,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\UserControls\Config\RaymanMConfig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\UserControls\Config\Rayman2Config.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -324,6 +328,9 @@
     </Compile>
     <Compile Include="Controls\UserControls\Config\DosBoxConfig.xaml.cs">
       <DependentUpon>DosBoxConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserControls\Config\RaymanMConfig.xaml.cs">
+      <DependentUpon>RaymanMConfig.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\UserControls\Pages\HelpPage.xaml.cs">
       <DependentUpon>HelpPage.xaml</DependentUpon>

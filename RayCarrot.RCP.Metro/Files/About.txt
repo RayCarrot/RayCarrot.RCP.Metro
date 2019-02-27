@@ -5,12 +5,14 @@ Unfinished features:
 
 - Add control tool tips
 - About page
+
 - Configuration dialogs for:
 -- Rayman M/Arena
 -- Rayman 3
 -- Rayman Raving Rabbids
 -- Rayman Origins
 -- Rayman Legends
+
 - Port utilities:
 -- R1 PlayStation soundtrack (checkbox in config to launch in this mode)
 -- Replace Rayman Forever incomplete soundtrack (checkbox in config, disabled if soundtrack not found)

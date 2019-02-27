@@ -123,6 +123,26 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
+        /// Creates a new empty file
+        /// </summary>
+        /// <param name="filePath">The file path</param>
+        /// <param name="overwrite">Indicates if an existing file with the same name should be overwritten or else ignored</param>
+        public void CreateFile(FileSystemPath filePath, bool overwrite = true)
+        {
+            // Check if the file exists
+            if (filePath.FileExists && !overwrite)
+                return;
+
+            // Create the parent directory
+            Directory.CreateDirectory(filePath.Parent);
+
+            // Create the file
+            File.Create(filePath);
+
+            RCF.Logger.LogDebugSource($"The file {filePath} was created");
+        }
+
+        /// <summary>
         /// Deletes a file if it exists
         /// </summary>
         /// <param name="filePath">The file path</param>
