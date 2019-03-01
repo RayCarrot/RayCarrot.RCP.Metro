@@ -7,7 +7,7 @@ Unfinished features:
 - About page
 
 - Configuration dialogs for:
--- Rayman M/Arena
+-- Rayman Arena
 -- Rayman 3
 -- Rayman Raving Rabbids
 -- Rayman Origins

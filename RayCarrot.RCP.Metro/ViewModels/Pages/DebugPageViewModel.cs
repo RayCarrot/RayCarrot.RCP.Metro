@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework;
@@ -23,6 +24,8 @@ namespace RayCarrot.RCP.Metro
             ShowLogCommand = new RelayCommand(ShowLog);
             OpenAppDataCommand = new AsyncRelayCommand(OpenAppDataAsync);
             UbiIniLinkCommand = new AsyncRelayCommand(SetupUbiIniLinkAsync);
+            OpenPrimaryUbiIniCommand = new AsyncRelayCommand(OpenPrimaryUbiIniAsync);
+            OpenSecondaryUbiIniCommand = new AsyncRelayCommand(OpenSecondaryUbiIniAsync);
 
             // Show log viewer if a debugger is attached
             if (_firstConstruction && Debugger.IsAttached)
@@ -153,6 +156,24 @@ namespace RayCarrot.RCP.Metro
             await RCF.MessageUI.DisplayMessageAsync("This feature has not been implemented");
         }
 
+        /// <summary>
+        /// Opens the primary ubi.ini file
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task OpenPrimaryUbiIniAsync()
+        {
+            await RCFRCP.File.LaunchFileAsync(CommonPaths.UbiIniPath1);
+        }
+
+        /// <summary>
+        /// Opens the secondary ubi.ini file
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task OpenSecondaryUbiIniAsync()
+        {
+            await RCFRCP.File.LaunchFileAsync(CommonPaths.UbiIniPath2);
+        }
+
         #endregion
 
         #region Commands
@@ -162,6 +183,10 @@ namespace RayCarrot.RCP.Metro
         public ICommand ShowLogCommand { get; }
 
         public ICommand OpenAppDataCommand { get; }
+
+        public ICommand OpenPrimaryUbiIniCommand { get; }
+
+        public ICommand OpenSecondaryUbiIniCommand { get; }
 
         public ICommand UbiIniLinkCommand { get; }
 

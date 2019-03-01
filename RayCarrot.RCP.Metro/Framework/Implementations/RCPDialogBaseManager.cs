@@ -42,115 +42,118 @@ namespace RayCarrot.RCP.Metro
 
                     using (dialog)
                     {
-                        // Create the window
-                        var window = new BaseWindow()
+                        return Application.Current.Dispatcher.Invoke(() =>
                         {
-                            Content = dialog.DialogContent,
-                            ResizeMode = dialog.Resizable ? ResizeMode.CanResize : ResizeMode.NoResize,
-                            Title = dialog.ViewModel.Title,
-                            SizeToContent = dialog.Resizable ? SizeToContent.Manual : SizeToContent.WidthAndHeight
-                        };
+                            // Create the window
+                            var window = new BaseWindow()
+                            {
+                                Content = dialog.DialogContent,
+                                ResizeMode = dialog.Resizable ? ResizeMode.CanResize : ResizeMode.NoResize,
+                                Title = dialog.ViewModel.Title,
+                                SizeToContent = dialog.Resizable ? SizeToContent.Manual : SizeToContent.WidthAndHeight
+                            };
 
-                        // Set size properties
-                        switch (dialog.BaseSize)
-                        {
-                            case DialogBaseSize.Smallest:
-                                if (dialog.Resizable)
-                                {
-                                    window.Height = 100;
-                                    window.Width = 150;
-                                }
+                            // Set size properties
+                            switch (dialog.BaseSize)
+                            {
+                                case DialogBaseSize.Smallest:
+                                    if (dialog.Resizable)
+                                    {
+                                        window.Height = 100;
+                                        window.Width = 150;
+                                    }
 
-                                window.MinHeight = 100;
-                                window.MinWidth = 150;
+                                    window.MinHeight = 100;
+                                    window.MinWidth = 150;
 
-                                break;
+                                    break;
 
-                            case DialogBaseSize.Small:
-                                if (dialog.Resizable)
-                                {
-                                    window.Height = 200;
-                                    window.Width = 250;
-                                }
+                                case DialogBaseSize.Small:
+                                    if (dialog.Resizable)
+                                    {
+                                        window.Height = 200;
+                                        window.Width = 250;
+                                    }
 
-                                window.MinHeight = 200;
-                                window.MinWidth = 250;
+                                    window.MinHeight = 200;
+                                    window.MinWidth = 250;
 
-                                break;
+                                    break;
 
-                            case DialogBaseSize.Medium:
-                                if (dialog.Resizable)
-                                {
-                                    window.Height = 350;
-                                    window.Width = 500;
-                                }
+                                case DialogBaseSize.Medium:
+                                    if (dialog.Resizable)
+                                    {
+                                        window.Height = 350;
+                                        window.Width = 500;
+                                    }
 
-                                window.MinHeight = 300;
-                                window.MinWidth = 400;
+                                    window.MinHeight = 300;
+                                    window.MinWidth = 400;
 
-                                break;
+                                    break;
 
-                            case DialogBaseSize.Large:
-                                if (dialog.Resizable)
-                                {
-                                    window.Height = 475;
-                                    window.Width = 750;
-                                }
+                                case DialogBaseSize.Large:
+                                    if (dialog.Resizable)
+                                    {
+                                        window.Height = 475;
+                                        window.Width = 750;
+                                    }
 
-                                window.MinHeight = 350;
-                                window.MinWidth = 500;
+                                    window.MinHeight = 350;
+                                    window.MinWidth = 500;
 
-                                break;
+                                    break;
 
-                            case DialogBaseSize.Largest:
-                                if (dialog.Resizable)
-                                {
-                                    window.Height = 600;
-                                    window.Width = 900;
-                                }
+                                case DialogBaseSize.Largest:
+                                    if (dialog.Resizable)
+                                    {
+                                        window.Height = 600;
+                                        window.Width = 900;
+                                    }
 
-                                window.MinHeight = 500;
-                                window.MinWidth = 650;
+                                    window.MinHeight = 500;
+                                    window.MinWidth = 650;
 
-                                break;
-                        }
+                                    break;
+                            }
 
-                        // Set owner
-                        if (owner is Window ow)
-                            window.Owner = ow;
-                        else if (owner is IntPtr oi)
-                            new WindowInteropHelper(window).Owner = oi;
-                        else
-                            window.Owner = Application.Current?.Windows.Cast<Window>().FindItem(x => x.IsActive);
+                            // Set owner
+                            if (owner is Window ow)
+                                window.Owner = ow;
+                            else if (owner is IntPtr oi)
+                                new WindowInteropHelper(window).Owner = oi;
+                            else
+                                window.Owner = Application.Current?.Windows.Cast<Window>().FindItem(x => x.IsActive);
 
-                        RCF.Logger.LogInformationSource($"The owner window has been set to {window.Owner?.ToString() ?? "null"}");
+                            RCF.Logger.LogInformationSource($"The owner window has been set to {window.Owner?.ToString() ?? "null"}");
 
-                        // Set startup location
-                        window.WindowStartupLocation = window.Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
+                            // Set startup location
+                            window.WindowStartupLocation = window.Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
 
-                        // Attempt to get default Window style from Framework
-                        window.Style = RCF.GetService<IWPFStyle>(false)?.WindowStyle ?? window.Style;
+                            // Attempt to get default Window style from Framework
+                            window.Style = RCF.GetService<IWPFStyle>(false)?.WindowStyle ?? window.Style;
 
-                        void Dialog_CloseDialog(object sender, EventArgs e)
-                        {
-                            window.Close();
-                        }
+                            void Dialog_CloseDialog(object sender, EventArgs e)
+                            {
+                                window.Close();
+                            }
 
-                        // Close window on request
-                        dialog.CloseDialog += Dialog_CloseDialog;
+                            // Close window on request
+                            dialog.CloseDialog += Dialog_CloseDialog;
 
-                        RCF.Logger.LogInformationSource($"A dialog has been created and is showing...");
+                            RCF.Logger.LogInformationSource($"A dialog has been created and is showing...");
 
-                        // Show window as dialog
-                        window.ShowDialog();
+                            // Show window as dialog
+                            window.ShowDialog();
 
-                        // Unsubscribe
-                        dialog.CloseDialog -= Dialog_CloseDialog;
+                            // Unsubscribe
+                            dialog.CloseDialog -= Dialog_CloseDialog;
 
-                        RCF.Logger.LogInformationSource($"The dialog has closed");
+                            RCF.Logger.LogInformationSource($"The dialog has closed");
 
-                        // Return the result
-                        return dialog.GetResult();
+                            // Return the result
+                            return dialog.GetResult();
+                        });
                     }
                 }
 

@@ -1028,8 +1028,19 @@ namespace RayCarrot.RCP.Metro
             using (StringReader reader = new StringReader(file))
             {
                 string line;
+
                 while ((line = reader.ReadLine()) != null)
-                    result.Add(new RayGameInstallItem(line, outputPath + line, line.StartsWith(" ")));
+                {
+                    // Check if the item is optional, in which case
+                    // it has a blank space before the path
+                    bool optional = line.StartsWith(" ");
+
+                    // Remove the blank space if optional
+                    if (optional)
+                        line = line.Substring(1);
+
+                    result.Add(new RayGameInstallItem(line, outputPath + line, optional));
+                }
             }
 
             return result;

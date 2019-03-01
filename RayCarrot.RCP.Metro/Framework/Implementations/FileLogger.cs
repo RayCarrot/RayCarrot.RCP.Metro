@@ -10,6 +10,11 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class FileLogger : BaseLogger
     {
+        public FileLogger()
+        {
+            LoggerLogLevel = LogLevel.Information;
+        }
+
         /// <summary>Writes a log entry</summary>
         /// <param name="logLevel">Entry will be written on this level</param>
         /// <param name="message">The message to write</param>

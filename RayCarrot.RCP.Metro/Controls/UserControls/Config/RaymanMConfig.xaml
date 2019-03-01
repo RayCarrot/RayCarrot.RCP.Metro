@@ -54,8 +54,8 @@
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
                            Text="Graphics" />
 
-                <CheckBox Content="TriLnear"
-                          IsChecked="{Binding Path=TriLnear}" />
+                <CheckBox Content="TriLinear"
+                          IsChecked="{Binding Path=TriLinear}" />
 
                 <CheckBox Content="Transform and Lightning"
                           IsChecked="{Binding Path=TnL}" />
@@ -65,8 +65,10 @@
 
                 <StackPanel Orientation="Horizontal">
                     <RadioButton Content="16 bit"
-                                 Margin="0 0 10 0"/>
-                    <RadioButton Content="32 bit" />
+                                 Margin="0 0 10 0"
+                                 IsChecked="{Binding Path=IsTextures32Bit, Converter={rwpf:InvertedBooleanConverter}}"/>
+                    <RadioButton Content="32 bit"
+                                 IsChecked="{Binding Path=IsTextures32Bit}"/>
                 </StackPanel>
 
                 <CheckBox Content="Compressed"
@@ -77,7 +79,8 @@
 
                 <StackPanel>
 
-                    <Slider Maximum="5"
+                    <Slider Maximum="4"
+                            Value="{Binding Path=VideoQuality}"
                             TickPlacement="BottomRight"
                             IsSnapToTickEnabled="True"
                             Width="200"
@@ -96,8 +99,10 @@
 
                 <StackPanel Orientation="Horizontal">
                     <RadioButton Content="16 bits per pixel"
-                                 Margin="0 0 10 0"/>
-                    <RadioButton Content="32 bits per pixel" />
+                                 Margin="0 0 10 0"
+                                 IsChecked="{Binding Path=IsVideo32Bpp, Converter={rwpf:InvertedBooleanConverter}}"/>
+                    <RadioButton Content="32 bits per pixel"
+                                 IsChecked="{Binding Path=IsVideo32Bpp}"/>
                 </StackPanel>
 
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
@@ -106,6 +111,18 @@
                 <ComboBox ItemsSource="{Binding Path=CurrentLanguage, Converter={rwpf:EnumToListConverter}}"
                           SelectedIndex="{Binding Path=CurrentLanguage, Converter={rwpf:EnumToIntConverter}}"
                           HorizontalAlignment="Left" />
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource HeaderTextBlock}"
+                               Text="Controller" />
+
+                    <local:HelpIcon Text="If your controller is not recognized you can enable controller support here" />
+
+                </StackPanel>
+
+                <CheckBox Content="Enable native controller support"
+                          IsChecked="{Binding Path=ControllerSupport}"
+                          IsEnabled="{Binding Path=AllowDinputHack}"/>
 
             </StackPanel>
         </ScrollViewer>

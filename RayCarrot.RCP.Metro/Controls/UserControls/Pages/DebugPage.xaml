@@ -68,6 +68,14 @@
                         Command="{Binding Path=OpenAppDataCommand}"
                         HorizontalAlignment="Left"/>
 
+                <Button Content="Open primary ubi.ini"
+                        Command="{Binding Path=OpenPrimaryUbiIniCommand}"
+                        HorizontalAlignment="Left"/>
+
+                <Button Content="Open secondary ubi.ini"
+                        Command="{Binding Path=OpenSecondaryUbiIniCommand}"
+                        HorizontalAlignment="Left"/>
+
             </StackPanel>
 
             <StackPanel>

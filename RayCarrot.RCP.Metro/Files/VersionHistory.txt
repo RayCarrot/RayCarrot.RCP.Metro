@@ -10,6 +10,7 @@ Other changes:
 • Rayman M/Arena are now treated as separate games
 • Rayman 2 utilities have been integrated into its configuration dialog. It now also shows the currently selected button mapping.
 • Windows Store games are now be found and launched using the WinRT Api rather than Explorer
+• Improved the game installer
 • Minor bug fixes
 
 Removed features:

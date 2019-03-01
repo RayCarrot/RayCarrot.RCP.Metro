@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Shell;
 using RayCarrot.CarrotFramework;
 
@@ -68,32 +69,35 @@ namespace RayCarrot.RCP.Metro
 
         private void VM_StatusUpdated(object sender, OperationProgressEventArgs e)
         {
-            // Set the progress
-            TaskbarItemInfo.ProgressValue = e.Progress.TotalProgress.Percentage;
-
-            // Set the state
-            switch (e.State)
+            Dispatcher.Invoke(() =>
             {
-                case OperationState.None:
-                    TaskbarItemInfo.ProgressState = TaskbarItemProgressState.None;
-                    break;
+                // Set the progress
+                TaskbarItemInfo.ProgressValue = e.Progress.TotalProgress.Percentage / 100;
 
-                case OperationState.Running:
-                    TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Normal;
-                    break;
+                // Set the state
+                switch (e.State)
+                {
+                    case OperationState.None:
+                        TaskbarItemInfo.ProgressState = TaskbarItemProgressState.None;
+                        break;
 
-                case OperationState.Paused:
-                    TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Paused;
-                    break;
+                    case OperationState.Running:
+                        TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Normal;
+                        break;
 
-                case OperationState.Error:
-                    TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Error;
-                    break;
+                    case OperationState.Paused:
+                        TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Paused;
+                        break;
 
-                default:
-                    TaskbarItemInfo.ProgressState = TaskbarItemProgressState.None;
-                    break;
-            }
+                    case OperationState.Error:
+                        TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Error;
+                        break;
+
+                    default:
+                        TaskbarItemInfo.ProgressState = TaskbarItemProgressState.None;
+                        break;
+                }
+            });
         }
 
         private void VM_InstallationComplete(object sender, EventArgs e)

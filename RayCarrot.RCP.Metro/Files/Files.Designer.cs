@@ -63,23 +63,23 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to Known issues:
         ///- Rayman 2 button button mapping text box does not allow modifier keys (Ctrl, Shift, Win or Alt)
-        ///
-        ///Finished features:
-        ///
-        ///- License dialog
-        ///- Automatic game finder
-        ///- Games list in the Games page
-        ///- Locating DosBox, Steam or Desktop games
-        ///- Launching game, game config and Steam links
-        ///- Removing game from options dialog
-        ///- Rayman 2 configuration dialog
-        ///- DosBox configuration dialog
+        ///- The installer window is laggy
         ///
         ///Unfinished features:
         ///
-        ///- Allow user to create game shortcuts
         ///- Add control tool tips
-        ///- Locate Windows St [rest of string was truncated]&quot;;.
+        ///- About page
+        ///
+        ///- Configuration dialogs for:
+        ///-- Rayman M/Arena
+        ///-- Rayman 3
+        ///-- Rayman Raving Rabbids
+        ///-- Rayman Origins
+        ///-- Rayman Legends
+        ///
+        ///- Port utilities:
+        ///-- R1 PlayStation soundtrack (checkbox in config to launch in this mode)
+        ///-- Replace Rayman Forever incomplete soundtrack (checkbox in config, disabled  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string About {
             get {
@@ -108,20 +108,27 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] dinput8_controller {
+            get {
+                object obj = ResourceManager.GetObject("dinput8_controller", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to -----   Version 4.0.0 - March ? 2019   -----
         ///
+        ///• Windows Vista or higher is required to run the application
         ///• Updated the program to use WPF instead of WinForms
         ///• Changed the theme to Metro theme with dark/light modes
         ///• Simplified game selection and utilities
-        ///• 
+        ///• Common DosBox commands can now be set using the new DosBox configuration dialog
         ///
         ///Other changes:
-        ///• Rayman M/Arena are not treated as separate games
-        ///• Common DosBox commands can now be set using the new DosBox configuration dialog
-        ///• Rayman 2 utilities have been integrated into its configuration dialog. It now also shows the currently selected button mapping.
-        ///• 
-        ///
-        ///Removed feature [rest of string was truncated]&quot;;.
+        ///• Rayman M/Arena are now treated as separate games
+        ///• Rayman 2 utilities have been integrated into its configuration dialog. It now also shows the [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

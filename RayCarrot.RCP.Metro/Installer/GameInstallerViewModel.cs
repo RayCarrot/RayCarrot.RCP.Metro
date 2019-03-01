@@ -249,7 +249,7 @@ namespace RayCarrot.RCP.Metro
                 installer.StatusUpdated += Installer_StatusUpdated;
 
                 // Run the installer
-                var result = await installer.InstallAsync();
+                var result = await Task.Run(async () => await installer.InstallAsync());
 
                 RCF.Logger.LogInformationSource($"The installation finished with the result of {result}");
 

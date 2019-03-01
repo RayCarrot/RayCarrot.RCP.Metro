@@ -217,9 +217,25 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         private static async Task SetupFrameworkAsync(string[] args)
         {
+            LogLevel logLevel = LogLevel.Information;
+
+            // Get the log level from launch arguments
+            if (args.Contains("-loglevel"))
+            {
+                try
+                {
+                    string ll = args[args.FindItemIndex(x => x == "-loglevel") + 1];
+                    logLevel = Enum.Parse(typeof(LogLevel), ll, true).CastTo<LogLevel>();
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Setting user level from args");
+                }
+            }
+
             new FrameworkConstruction().
                 // Add console, debug, session and file loggers
-                AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, LogLevel.Trace, builder => builder.AddProvider(new BaseLogProvider<FileLogger>())).
+                AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, logLevel, builder => builder.AddProvider(new BaseLogProvider<FileLogger>())).
                 // Add a serializer
                 AddSerializer(DefaultSerializers.Json).
                 // Add exception handler
@@ -250,6 +266,8 @@ namespace RayCarrot.RCP.Metro
                 AddTransient<BackupManager>().
                 // Build the framework
                 Build();
+
+            RCF.Logger.LogInformationSource($"The log level has been set to {logLevel}");
 
             // Retrieve arguments
             RCF.Data.Arguments = args;

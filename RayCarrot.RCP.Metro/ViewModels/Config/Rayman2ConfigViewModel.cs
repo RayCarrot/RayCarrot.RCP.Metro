@@ -400,7 +400,7 @@ namespace RayCarrot.RCP.Metro
 
                     RCF.Logger.LogInformationSource($"The dinput type has been retrieved as {dt}");
 
-                    if (WidescreenSupport)
+                    if (ControllerSupport)
                     {
                         if (dt != R2Dinput.Controller)
                         {
