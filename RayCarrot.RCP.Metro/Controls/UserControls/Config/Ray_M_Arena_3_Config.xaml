@@ -59,6 +59,18 @@
                 <CheckBox Content="Transform and Lightning"
                           IsChecked="{Binding Path=TnL}" />
 
+                <Grid rwpf:UserLevelTag.MinUserLevel="Advanced">
+                    <CheckBox Content="Dynamic Shadows"
+                              IsChecked="{Binding Path=DynamicShadows}"
+                              Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"/>
+                </Grid>
+
+                <Grid rwpf:UserLevelTag.MinUserLevel="Advanced">
+                    <CheckBox Content="Static Shadows"
+                              IsChecked="{Binding Path=StaticShadows}" 
+                              Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"/>
+                </Grid>
+
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
                            Text="Textures" />
 
@@ -122,6 +134,30 @@
                 <CheckBox Content="Enable native controller support"
                           IsChecked="{Binding Path=ControllerSupport}"
                           IsEnabled="{Binding Path=AllowDinputHack}"/>
+
+                <TextBlock Text="Vertical Axis" 
+                           Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"/>
+
+                <Slider Minimum="2"
+                        Maximum="7"
+                        Value="{Binding Path=VerticalAxis}"
+                        TickPlacement="BottomRight"
+                        IsSnapToTickEnabled="True"
+                        Width="200"
+                        HorizontalAlignment="Left"
+                        Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"/>
+
+                <TextBlock Text="Horizontal Axis"
+                           Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}" />
+
+                <Slider Minimum="2"
+                        Maximum="7"
+                        Value="{Binding Path=HorizontalAxis}"
+                        TickPlacement="BottomRight"
+                        IsSnapToTickEnabled="True"
+                        Width="200"
+                        HorizontalAlignment="Left"
+                        Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"/>
 
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
                            Text="Network"

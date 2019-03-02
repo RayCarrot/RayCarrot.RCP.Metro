@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace RayCarrot.RCP.Metro
@@ -22,8 +23,15 @@ namespace RayCarrot.RCP.Metro
 
             if (game == Games.RaymanM)
                 DataContext = new RaymanMConfigViewModel();
+
             else if (game == Games.RaymanArena)
                 DataContext = new RaymanArenaConfigViewModel();
+
+            else if (game == Games.Rayman3)
+                DataContext = new Rayman3ConfigViewModel();
+
+            else
+                throw new ArgumentOutOfRangeException(nameof(game), game, $"{nameof(Ray_M_Arena_3_Config)} only supports Rayman M, Arena and 3");
         }
 
         #endregion

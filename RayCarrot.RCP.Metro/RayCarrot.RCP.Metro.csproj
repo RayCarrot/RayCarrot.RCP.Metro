@@ -333,6 +333,7 @@
     <Compile Include="Controls\UserControls\Config\Ray_M_Arena_3_Config.xaml.cs">
       <DependentUpon>Ray_M_Arena_3_Config.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Config\Rayman3ConfigViewModel.cs" />
     <Compile Include="ViewModels\Config\RaymanArenaConfigViewModel.cs" />
     <Compile Include="ViewModels\Config\RaymanMConfigViewModel.cs" />
     <Compile Include="Controls\UserControls\Pages\HelpPage.xaml.cs">
