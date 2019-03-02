@@ -7,7 +7,6 @@ Unfinished features:
 - About page
 
 - Configuration dialogs for:
--- Rayman Arena
 -- Rayman 3
 -- Rayman Raving Rabbids
 -- Rayman Origins
@@ -19,7 +18,6 @@ Unfinished features:
 -- Replace RayKit files (button in config)
 -- Create missing RayKit config (automatically upon saving RayKit config changes)
 -- R2 translation (button with "Unofficial translations" next to language combo box)
--- Rayman M/Arena/3 controller patch (checkbox in config to enable native controller support)
 -- RO 60fps videos
 -- RO updater
 -- RO debug commands

@@ -258,7 +258,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Config\RaymanMConfig.xaml">
+    <Page Include="Controls\UserControls\Config\Ray_M_Arena_3_Config.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -326,18 +326,22 @@
     <Compile Include="Controls\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Config\Base\BaseUbiIniGameConfigViewModel.cs" />
     <Compile Include="Controls\UserControls\Config\DosBoxConfig.xaml.cs">
       <DependentUpon>DosBoxConfig.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserControls\Config\RaymanMConfig.xaml.cs">
-      <DependentUpon>RaymanMConfig.xaml</DependentUpon>
+    <Compile Include="Controls\UserControls\Config\Ray_M_Arena_3_Config.xaml.cs">
+      <DependentUpon>Ray_M_Arena_3_Config.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Config\RaymanArenaConfigViewModel.cs" />
+    <Compile Include="ViewModels\Config\RaymanMConfigViewModel.cs" />
     <Compile Include="Controls\UserControls\Pages\HelpPage.xaml.cs">
       <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\UserControls\Pages\BackupPage.xaml.cs">
       <DependentUpon>BackupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Config\Base\Ray_M_Arena_3_UbiIniBaseConfigViewModel.cs" />
     <Compile Include="ViewModels\Pages\HelpPageViewModel.cs" />
     <Compile Include="Design\DesignTimeVM.cs" />
     <Compile Include="DataModels\BackupDir.cs" />
@@ -447,7 +451,7 @@
     <Compile Include="Windows\Base\BaseWindow.cs" />
     <Compile Include="DataModels\GameInfo.cs" />
     <Compile Include="ViewModels\Game\GameDisplayViewModel.cs" />
-    <Compile Include="ViewModels\Game\GameConfigViewModel.cs" />
+    <Compile Include="ViewModels\Config\Base\GameConfigViewModel.cs" />
     <Compile Include="Windows\AppNewsDialog.xaml.cs">
       <DependentUpon>AppNewsDialog.xaml</DependentUpon>
     </Compile>

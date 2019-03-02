@@ -16,14 +16,14 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for the Rayman 2 configuration
     /// </summary>
-    public class Rayman2ConfigViewModel : GameConfigViewModel
+    public class Rayman2ConfigViewModel : BaseUbiIniGameConfigViewModel<R2UbiIniHandler>
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public Rayman2ConfigViewModel()
+        public Rayman2ConfigViewModel() : base(Games.Rayman2)
         {
             // Set default properties
             IsHorizontalWidescreen = true;
@@ -47,12 +47,6 @@ namespace RayCarrot.RCP.Metro
                 new R2KeyItemViewModel("Confirm", Key.Enter, this),
                 new R2KeyItemViewModel("Cancel", Key.Escape, this)
             };
-
-            // Create the async lock
-            AsyncLock = new AsyncLock();
-
-            // Create the commands
-            SaveCommand = new AsyncRelayCommand(SaveAsync);
         }
 
         #endregion
@@ -73,21 +67,7 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Private Properties
-
-        /// <summary>
-        /// The async lock to use for saving the configuration
-        /// </summary>
-        private AsyncLock AsyncLock { get; }
-
-        #endregion
-
         #region Public Properties
-
-        /// <summary>
-        /// The configuration data
-        /// </summary>
-        public R2UbiIniHandler ConfigData { get; set; }
 
         /// <summary>
         /// The ubi.ini config file path
@@ -200,75 +180,24 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Commands
-
-        public AsyncRelayCommand SaveCommand { get; }
-
-        #endregion
-
-        #region Public Methods
+        #region Protected Override Methods
 
         /// <summary>
-        /// Loads and sets up the current configuration properties
+        /// Loads the <see cref="BaseUbiIniGameConfigViewModel{Handler}.ConfigData"/>
+        /// </summary>
+        /// <returns>The config data</returns>
+        protected override Task<R2UbiIniHandler> LoadConfigAsync()
+        {
+            // Load the configuration data
+            return Task.FromResult(new R2UbiIniHandler(ConfigPath));
+        }
+
+        /// <summary>
+        /// Imports the <see cref="BaseUbiIniGameConfigViewModel{Handler}.ConfigData"/>
         /// </summary>
         /// <returns>The task</returns>
-        public override async Task SetupAsync()
+        protected override async Task ImportConfigAsync()
         {
-            RCF.Logger.LogInformationSource("Rayman 2 config is being set up");
-
-            // Get the config path
-            ConfigPath = GetUbiIniPath();
-
-            RCF.Logger.LogInformationSource($"The ubi.ini path has been retrieved as {ConfigPath}");
-
-            // Get the dinput type
-            var dt = GetCurrentDinput();
-
-            RCF.Logger.LogInformationSource($"The dinput type has been retrieved as {dt}");
-
-            ControllerSupport = dt == R2Dinput.Controller;
-            AllowDinputHack = dt != R2Dinput.Unknown;
-
-            // If the file does not exist, create a new one
-            if (!ConfigPath.FileExists)
-            {
-                // Check if the game is the GOG version,
-                // in which case the file is located in the install directory
-                bool isGOG = (Games.Rayman2.GetInfo().InstallDirectory + "goggame.sdb").FileExists;
-
-                // Get the new file path
-                var newFile = isGOG ? Games.Rayman2.GetInfo().InstallDirectory + "ubi.ini" : CommonPaths.UbiIniPath1;
-
-                try
-                {
-                    // Create the file
-                    RCFRCP.File.CreateFile(newFile);
-
-                    RCF.Logger.LogInformationSource($"A new ubi.ini file has been created under {newFile}");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Creating ubi.ini file");
-
-                    await RCF.MessageUI.DisplayMessageAsync($"No valid ubi.ini file was found and creating a new one failed. Try running the program as administrator " +
-                                                            $"or changing the folder permissions for the following path: {newFile.Parent}", "Error", MessageType.Error);
-
-                    throw;
-                }
-            }
-
-            // Load the configuration data
-            ConfigData = new R2UbiIniHandler(ConfigPath);
-
-            RCF.Logger.LogInformationSource($"The ubi.ini file has been loaded");
-
-            // Re-create the section if it doesn't exist
-            if (!ConfigData.Exists)
-            {
-                ConfigData.ReCreate();
-                RCF.Logger.LogInformationSource($"The ubi.ini section for Rayman 2 was recreated");
-            }
-
             var gliMode = ConfigData.FormattedGLI_Mode;
 
             if (gliMode != null)
@@ -321,11 +250,7 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Checking if R2 aspect ratio has been modified");
             }
 
-            UnsavedChanges = false;
-
-            RCF.Logger.LogInformationSource($"All section properties have been loaded");
-
-            if (dt == R2Dinput.Mapping)
+            if (GetCurrentDinput() == R2Dinput.Mapping)
             {
                 HashSet<KeyMappingItem> result;
 
@@ -363,113 +288,10 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Saves the changes
+        /// Updates the <see cref="BaseUbiIniGameConfigViewModel{Handler}.ConfigData"/>
         /// </summary>
         /// <returns>The task</returns>
-        public async Task SaveAsync()
-        {
-            using (await AsyncLock.LockAsync())
-            {
-                RCF.Logger.LogInformationSource($"Rayman 2 configuration is saving...");
-
-                try
-                {
-                    // Update the config data
-                    UpdateConfig();
-
-                    // Set the aspect ratio
-                    await SetAspectRatioAsync();
-
-                    // Save the config data
-                    ConfigData.Save();
-
-                    RCF.Logger.LogInformationSource($"Rayman 2 configuration has been saved");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Saving R2 ubi.ini data");
-                    await RCF.MessageUI.DisplayMessageAsync("An error occurred when saving your Rayman 2 configuration", "Error saving", MessageType.Error);
-                    return;
-                }
-
-                try
-                {
-                    // Get the current dinput type
-                    var dt = GetCurrentDinput();
-                    var path = GetDinputPath();
-
-                    RCF.Logger.LogInformationSource($"The dinput type has been retrieved as {dt}");
-
-                    if (ControllerSupport)
-                    {
-                        if (dt != R2Dinput.Controller)
-                        {
-                            if (dt != R2Dinput.None)
-                                // Attempt to delete existing dinput file
-                                File.Delete(path);
-
-                            // Write controller patch
-                            File.WriteAllBytes(path, Files.dinput_controller);
-                        }
-                    }
-                    else
-                    {
-                        var items = KeyItems.
-                            // Get only the ones that have changed
-                            Where(x => x.NewKey != x.OriginalKey).
-                            // Convert to a ket mapping item
-                            Select(x => new KeyMappingItem(R2ButtonMappingManager.GetKeyCode(x.OriginalKey), R2ButtonMappingManager.GetKeyCode(x.NewKey))).
-                            // Convert to a list
-                            ToList();
-
-                        if (items.Any())
-                        {
-                            if (dt != R2Dinput.Mapping)
-                            {
-                                if (dt != R2Dinput.None)
-                                    // Attempt to delete existing dinput file
-                                    File.Delete(path);
-
-                                // Write template file
-                                File.WriteAllBytes(path, Files.dinput_mapping);
-                            }
-
-                            // Apply the patch
-                            await R2ButtonMappingManager.ApplyMappingAsync(path, items);
-                        }
-                        else
-                        {
-                            if (dt != R2Dinput.Unknown && dt != R2Dinput.None)
-                            {
-                                // Attempt to delete existing dinput file
-                                File.Delete(path);
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Saving R2 dinput hack data");
-                    await RCF.MessageUI.DisplayMessageAsync("An error occurred when saving your Rayman 2 configuration. Some data may have been saved.", "Error saving", MessageType.Error);
-                    return;
-                }
-
-                UnsavedChanges = false;
-
-                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("Your changes have been saved");
-
-                OnSave();
-            }
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        /// <summary>
-        /// Updates the <see cref="ConfigData"/>
-        /// </summary>
-        private void UpdateConfig()
+        protected override Task UpdateConfigAsync()
         {
             ConfigData.GLI_Mode = new RayGLI_Mode()
             {
@@ -480,7 +302,132 @@ namespace RayCarrot.RCP.Metro
             }.ToString();
 
             ConfigData.Language = CurrentLanguage.ToString();
+
+            return Task.CompletedTask;
         }
+
+        /// <summary>
+        /// Setup
+        /// </summary>
+        /// <returns>The task</returns>
+        protected override async Task OnSetupAsync()
+        {
+            // Get the config path
+            ConfigPath = GetUbiIniPath();
+
+            RCF.Logger.LogInformationSource($"The ubi.ini path has been retrieved as {ConfigPath}");
+
+            // Get the dinput type
+            var dt = GetCurrentDinput();
+
+            RCF.Logger.LogInformationSource($"The dinput type has been retrieved as {dt}");
+
+            ControllerSupport = dt == R2Dinput.Controller;
+            AllowDinputHack = dt != R2Dinput.Unknown;
+
+            // If the file does not exist, create a new one
+            if (!ConfigPath.FileExists)
+            {
+                // Check if the game is the GOG version,
+                // in which case the file is located in the install directory
+                bool isGOG = (Games.Rayman2.GetInfo().InstallDirectory + "goggame.sdb").FileExists;
+
+                // Get the new file path
+                var newFile = isGOG ? Games.Rayman2.GetInfo().InstallDirectory + "ubi.ini" : CommonPaths.UbiIniPath1;
+
+                try
+                {
+                    // Create the file
+                    RCFRCP.File.CreateFile(newFile);
+
+                    RCF.Logger.LogInformationSource($"A new ubi.ini file has been created under {newFile}");
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Creating ubi.ini file");
+
+                    await RCF.MessageUI.DisplayMessageAsync($"No valid ubi.ini file was found and creating a new one failed. Try running the program as administrator " +
+                                                            $"or changing the folder permissions for the following path: {newFile.Parent}", "Error", MessageType.Error);
+
+                    throw;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Saving
+        /// </summary>
+        /// <returns>The task</returns>
+        protected override async Task OnSaveAsync()
+        {
+            // Set the aspect ratio
+            await SetAspectRatioAsync();
+
+            try
+            {
+                // Get the current dinput type
+                var dt = GetCurrentDinput();
+                var path = GetDinputPath();
+
+                RCF.Logger.LogInformationSource($"The dinput type has been retrieved as {dt}");
+
+                if (ControllerSupport)
+                {
+                    if (dt != R2Dinput.Controller)
+                    {
+                        if (dt != R2Dinput.None)
+                            // Attempt to delete existing dinput file
+                            File.Delete(path);
+
+                        // Write controller patch
+                        File.WriteAllBytes(path, Files.dinput_controller);
+                    }
+                }
+                else
+                {
+                    var items = KeyItems.
+                        // Get only the ones that have changed
+                        Where(x => x.NewKey != x.OriginalKey).
+                        // Convert to a ket mapping item
+                        Select(x => new KeyMappingItem(R2ButtonMappingManager.GetKeyCode(x.OriginalKey), R2ButtonMappingManager.GetKeyCode(x.NewKey))).
+                        // Convert to a list
+                        ToList();
+
+                    if (items.Any())
+                    {
+                        if (dt != R2Dinput.Mapping)
+                        {
+                            if (dt != R2Dinput.None)
+                                // Attempt to delete existing dinput file
+                                File.Delete(path);
+
+                            // Write template file
+                            File.WriteAllBytes(path, Files.dinput_mapping);
+                        }
+
+                        // Apply the patch
+                        await R2ButtonMappingManager.ApplyMappingAsync(path, items);
+                    }
+                    else
+                    {
+                        if (dt != R2Dinput.Unknown && dt != R2Dinput.None)
+                        {
+                            // Attempt to delete existing dinput file
+                            File.Delete(path);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Saving R2 dinput hack data");
+                throw;
+            }
+        }
+
+        #endregion
+
+        #region Private Methods
 
         /// <summary>
         /// Sets the aspect ratio for the Rayman 2 executable file

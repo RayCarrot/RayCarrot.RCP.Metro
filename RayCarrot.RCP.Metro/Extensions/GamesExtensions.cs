@@ -647,14 +647,8 @@ namespace RayCarrot.RCP.Metro
             switch (game)
             {
                 case Games.Rayman1:
-                    return new DosBoxConfig(parentDialogWindow, game);
-
                 case Games.RaymanDesigner:
-                    return new DosBoxConfig(parentDialogWindow, game);
-
                 case Games.RaymanByHisFans:
-                    return new DosBoxConfig(parentDialogWindow, game);
-
                 case Games.Rayman60Levels:
                     return new DosBoxConfig(parentDialogWindow, game);
 
@@ -662,13 +656,9 @@ namespace RayCarrot.RCP.Metro
                     return new Rayman2Config(parentDialogWindow);
 
                 case Games.RaymanM:
-                    return new RaymanMConfig(parentDialogWindow);
-
                 case Games.RaymanArena:
-                    return null;
-
                 case Games.Rayman3:
-                    return null;
+                    return new Ray_M_Arena_3_Config(parentDialogWindow, game);
 
                 case Games.RaymanRavingRabbids:
                     return null;
