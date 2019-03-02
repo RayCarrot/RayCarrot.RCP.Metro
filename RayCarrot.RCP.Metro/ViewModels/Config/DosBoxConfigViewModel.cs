@@ -387,6 +387,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override Task SetupAsync()
         {
+            RCF.Logger.LogInformationSource($"{Game.GetDisplayName()} config is being set up");
+
             // Get the current DosBox options for the specified game
             var options = Data.DosBoxGames[Game];
 

@@ -49,5 +49,16 @@ namespace RayCarrot.RCP.Metro
         /// The license accepted value name
         /// </summary>
         public static string RegistryLicenseValue => "LicenseAccepted";
+
+        /// <summary>
+        /// The Rayman Raving Rabbids registry key path
+        /// </summary>
+        public static string RavingRabbidsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman4\{05D2C1BC-A857-4493-9BDA-C7707CACB937}";
+
+            /*
+               RegistrynGlide = @"HKEY_CURRENT_USER\Software\Zeus Software\nGlide";
+               RegistryRO = @"HKEY_CURRENT_USER\Software\Ubisoft\RaymanOrigins";
+               RegistryRL = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman Legends";
+             */
     }
 }

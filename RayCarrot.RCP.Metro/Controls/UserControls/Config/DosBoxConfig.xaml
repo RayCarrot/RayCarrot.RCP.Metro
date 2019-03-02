@@ -147,7 +147,7 @@
 
                     <ComboBox Grid.Column="1"
                               Grid.Row="3"
-                              ItemsSource="{Binding Path=AvailableResolutionValues}"
+                              ItemsSource="{Binding Path=AvailableResolutionValues, Mode=OneTime}"
                               IsEditable="True"
                               IsTextSearchEnabled="False">
                         <ComboBox.Text>
@@ -165,7 +165,7 @@
 
                     <ComboBox Grid.Column="1"
                               Grid.Row="4"
-                              ItemsSource="{Binding Path=AvailableResolutionValues}"
+                              ItemsSource="{Binding Path=AvailableResolutionValues, Mode=OneTime}"
                               IsEditable="True"
                               IsTextSearchEnabled="False">
                         <ComboBox.Text>

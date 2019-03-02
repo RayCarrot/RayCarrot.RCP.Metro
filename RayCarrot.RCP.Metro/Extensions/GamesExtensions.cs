@@ -660,7 +660,7 @@ namespace RayCarrot.RCP.Metro
                     return new Ray_M_Arena_3_Config(parentDialogWindow, game);
 
                 case Games.RaymanRavingRabbids:
-                    return null;
+                    return new RaymanRavingRabbidsConfig(parentDialogWindow);
 
                 case Games.RaymanOrigins:
                     return null;

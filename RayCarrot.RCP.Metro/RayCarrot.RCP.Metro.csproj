@@ -258,6 +258,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\UserControls\Config\RaymanRavingRabbidsConfig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\UserControls\Config\Ray_M_Arena_3_Config.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -325,6 +329,9 @@
     </Compile>
     <Compile Include="Controls\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserControls\Config\RaymanRavingRabbidsConfig.xaml.cs">
+      <DependentUpon>RaymanRavingRabbidsConfig.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Config\Base\BaseUbiIniGameConfigViewModel.cs" />
     <Compile Include="Controls\UserControls\Config\DosBoxConfig.xaml.cs">

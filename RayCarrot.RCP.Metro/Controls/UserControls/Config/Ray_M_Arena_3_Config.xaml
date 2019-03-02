@@ -163,7 +163,7 @@
                            Text="Network"
                            Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanArena}"/>
 
-                <ComboBox ItemsSource="{Binding Path=ModemQualityOptions}"
+                <ComboBox ItemsSource="{Binding Path=ModemQualityOptions, Mode=OneTime}"
                           SelectedIndex="{Binding Path=ModemQualityIndex}"
                           HorizontalAlignment="Left"
                           Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanArena}" />

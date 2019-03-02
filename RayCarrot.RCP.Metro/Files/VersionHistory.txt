@@ -23,6 +23,7 @@ Removed features:
 • Shortcuts can no longer be created for the game configuration tools. This can still be done manually by right-clicking on the executable in Explorer and creating a new shortcut.
 • Backups can no longer be created for multiple games at once
 • Several Rayman 2 configuration options were removed, including the nGlide settings. These can still be accessed from the game's native configuration tools.
+• Several Rayman Raving Rabbids configuration options were removed. These can still be accessed from within the game.
 • The Rayman Fiesta Run version can no longer be chosen. If both are installed, the Windows 10 edition is prioritized.
 
 
