@@ -2,20 +2,15 @@
 - Rayman 2 button button mapping text box does not allow modifier keys (Ctrl, Shift, Win or Alt)
 
 Unfinished features:
-
 - Add control tool tips
 - About page
 
-- Configuration dialogs for:
--- Rayman Origins
--- Rayman Legends
-
 - Port utilities:
--- R1 PlayStation soundtrack (checkbox in config to launch in this mode)
--- Replace Rayman Forever incomplete soundtrack (checkbox in config, disabled if soundtrack not found)
--- Replace RayKit files (button in config)
--- Create missing RayKit config (automatically upon saving RayKit config changes)
--- R2 translation (button with "Unofficial translations" next to language combo box)
+-- R1 PlayStation soundtrack
+-- Replace Rayman Forever incomplete soundtrack
+-- Replace RayKit files
+-- Create missing RayKit config
+-- R2 translation
 -- RO 60fps videos
 -- RO updater
 -- RO debug commands

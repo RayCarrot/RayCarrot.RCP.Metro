@@ -663,14 +663,39 @@ namespace RayCarrot.RCP.Metro
                     return new RaymanRavingRabbidsConfig(parentDialogWindow);
 
                 case Games.RaymanOrigins:
-                    return null;
-
                 case Games.RaymanLegends:
-                    return null;
+                    return new Ray_Origins_Legends_Config(parentDialogWindow, game);
 
                 case Games.RaymanJungleRun:
+                case Games.RaymanFiestaRun:
                     return null;
 
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(game), game, null);
+            }
+        }
+
+        /// <summary>
+        /// Gets the utilities content for the specified game
+        /// </summary>
+        /// <param name="game">The game to get the utilities content for</param>
+        /// <returns>The utilities content</returns>
+        public static FrameworkElement GetUtilitiesContent(this Games game)
+        {
+            switch (game)
+            {
+                case Games.Rayman1:
+                case Games.RaymanDesigner:
+                case Games.RaymanByHisFans:
+                case Games.Rayman60Levels:
+                case Games.Rayman2:
+                case Games.RaymanM:
+                case Games.RaymanArena:
+                case Games.Rayman3:
+                case Games.RaymanRavingRabbids:
+                case Games.RaymanOrigins:
+                case Games.RaymanLegends:
+                case Games.RaymanJungleRun:
                 case Games.RaymanFiestaRun:
                     return null;
 

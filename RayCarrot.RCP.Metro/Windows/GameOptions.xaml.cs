@@ -22,9 +22,12 @@ namespace RayCarrot.RCP.Metro
             InitializeComponent();
             ViewModel = new GameOptionsViewModel(game);
             ConfigContentPresenter.Content = game.GetConfigContent(this);
+            UtilitiesContentPresenter.Content = game.GetUtilitiesContent();
 
             Height = ConfigContentPresenter.Content != null ? 700 : 300;
             Width = 600;
+
+            ChangePage(true);
         }
 
         #endregion
@@ -54,6 +57,22 @@ namespace RayCarrot.RCP.Metro
         /// The game config view model
         /// </summary>
         public GameConfigViewModel ConfigViewModel => (ConfigContentPresenter.Content as FrameworkElement)?.DataContext as GameConfigViewModel;
+
+        #endregion
+
+        #region Private Methods
+
+        /// <summary>
+        /// Change the current page
+        /// </summary>
+        /// <param name="config">True to change to config page, false to change to utilities</param>
+        private void ChangePage(bool config)
+        {
+            ConfigButton.Visibility = config ? Visibility.Collapsed : Visibility.Visible;
+            UtilitiesButton.Visibility = config && UtilitiesContentPresenter.Content != null ? Visibility.Visible : Visibility.Collapsed;
+
+            ContentTabControl.SelectedIndex = config ? 0 : 1;
+        }
 
         #endregion
 
@@ -101,11 +120,23 @@ namespace RayCarrot.RCP.Metro
 
             e.Cancel = true;
 
-            if (!await RCF.MessageUI.DisplayMessageAsync("Your changes have not been saved. Do you want to exit and discard them?", "Confirm exit", MessageType.Question, true))
+            ChangePage(true);
+
+            if (!await RCF.MessageUI.DisplayMessageAsync("Your configuration changes have not been saved. Do you want to exit and discard them?", "Confirm exit", MessageType.Question, true))
                 return;
 
             ForceClose = true;
             _ = Task.Run(() => Dispatcher.Invoke(Close));
+        }
+
+        private void UtilitiesButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            ChangePage(false);
+        }
+
+        private void ConfigButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            ChangePage(true);
         }
 
         #endregion

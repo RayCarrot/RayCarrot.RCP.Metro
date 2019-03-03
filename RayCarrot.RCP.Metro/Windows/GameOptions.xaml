@@ -7,6 +7,7 @@
                   xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                   xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                   xmlns:wpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                  xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                   Title="{Binding Path=DisplayName}"
                   Loaded="GameOptions_OnLoadedAsync"
                   Closing="GameOptions_OnClosingAsync"
@@ -54,6 +55,18 @@
                         Orientation="Horizontal"
                         HorizontalAlignment="Right">
 
+                <local:IconButton x:Name="UtilitiesButton"
+                                  Click="UtilitiesButton_OnClick"
+                                  IconKind="BriefcaseOutline"
+                                  ToolTip="Utilities" 
+                                  Margin="0 0 5 0" />
+
+                <local:IconButton x:Name="ConfigButton"
+                                  Click="ConfigButton_OnClick"
+                                  IconKind="SettingsOutline"
+                                  ToolTip="Configuration" 
+                                  Margin="0 0 5 0"/>
+
                 <local:IconButton IconKind="Link"
                                   Command="{Binding Path=ShortcutCommand}"
                                   ToolTip="Create shortcut" />
@@ -69,16 +82,30 @@
         <Separator Grid.Row="1" />
 
         <!-- Technical Information -->
+        <!-- TODO: Have option in settings to show/hide this -->
 
         <local:DuoGrid Grid.Row="2"
                        Items="{Binding Path=InfoItems}"/>
 
         <Separator Grid.Row="3" />
 
-        <!-- Options -->
+        <metro:MetroAnimatedTabControl x:Name="ContentTabControl"
+                                       Grid.Row="4"
+                                       Background="{StaticResource ControlBackgroundBrush}">
 
-        <ContentPresenter x:Name="ConfigContentPresenter"
-                          Grid.Row="4" />
+            <!-- Options -->
+
+            <TabItem Visibility="Collapsed">
+                <ContentPresenter x:Name="ConfigContentPresenter" />
+            </TabItem>
+
+            <!-- Utilities -->
+
+            <TabItem Visibility="Collapsed">
+                <ContentPresenter x:Name="UtilitiesContentPresenter" />
+            </TabItem>
+
+        </metro:MetroAnimatedTabControl>
 
     </Grid>
 </local:BaseWindow>

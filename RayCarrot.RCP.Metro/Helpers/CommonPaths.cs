@@ -53,12 +53,16 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The Rayman Raving Rabbids registry key path
         /// </summary>
-        public static string RavingRabbidsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman4\{05D2C1BC-A857-4493-9BDA-C7707CACB937}";
+        public static string RaymanRavingRabbidsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman4\{05D2C1BC-A857-4493-9BDA-C7707CACB937}";
 
-            /*
-               RegistrynGlide = @"HKEY_CURRENT_USER\Software\Zeus Software\nGlide";
-               RegistryRO = @"HKEY_CURRENT_USER\Software\Ubisoft\RaymanOrigins";
-               RegistryRL = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman Legends";
-             */
+        /// <summary>
+        /// The Rayman Origins registry key path
+        /// </summary>
+        public static string RaymanOriginsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\RaymanOrigins";
+
+        /// <summary>
+        /// The Rayman Legends registry key path
+        /// </summary>
+        public static string RaymanLegendsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman Legends";
     }
 }

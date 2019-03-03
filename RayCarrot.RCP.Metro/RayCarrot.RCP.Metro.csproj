@@ -258,6 +258,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\UserControls\Config\Ray_Origins_Legends_Config.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\UserControls\Config\RaymanRavingRabbidsConfig.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -281,6 +285,10 @@
     <Page Include="Controls\UserControls\Pages\BackupPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\UserControls\Drafts\PointerPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Installer\GameInstaller.xaml">
       <SubType>Designer</SubType>
@@ -330,8 +338,17 @@
     <Compile Include="Controls\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Config\Ray_Origins_Legends_ConfigViewModel.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="ViewModels\Config\RaymanRavingRabbidsConfigViewModel.cs" />
+    <Compile Include="Controls\UserControls\Config\Ray_Origins_Legends_Config.xaml.cs">
+      <DependentUpon>Ray_Origins_Legends_Config.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserControls\Config\RaymanRavingRabbidsConfig.xaml.cs">
       <DependentUpon>RaymanRavingRabbidsConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserControls\Drafts\PointerPopup.xaml.cs">
+      <DependentUpon>PointerPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Config\Base\BaseUbiIniGameConfigViewModel.cs" />
     <Compile Include="Controls\UserControls\Config\DosBoxConfig.xaml.cs">
