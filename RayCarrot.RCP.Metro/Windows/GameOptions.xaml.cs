@@ -17,7 +17,8 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         /// <param name="game">The game to show the options for</param>
-        public GameOptions(Games game)
+        /// <param name="config">True to start on the config page, false to start on the utilities page</param>
+        public GameOptions(Games game, bool config)
         {
             InitializeComponent();
             ViewModel = new GameOptionsViewModel(game);
@@ -27,7 +28,7 @@ namespace RayCarrot.RCP.Metro
             Height = ConfigContentPresenter.Content != null ? 700 : 300;
             Width = 600;
 
-            ChangePage(true);
+            ChangePage(config);
         }
 
         #endregion

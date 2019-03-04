@@ -257,11 +257,22 @@ namespace RayCarrot.RCP.Metro
                     actions.Add(new OverflowButtonItemViewModel());
                 }
 
+                // Check if the game has utilities
+                if (game.HasUtilities())
+                {
+                    // Add game utilities
+                    actions.Add(new OverflowButtonItemViewModel("Utilities", PackIconMaterialKind.BriefcaseOutline, new RelayCommand(() =>
+                    {
+                        RCF.Logger.LogTraceSource($"The game {game} utilities dialog is opening...");
+                        new GameOptions(game, false).ShowDialog();
+                    })));
+                }
+
                 // Add game options
                 actions.Add(new OverflowButtonItemViewModel("Options", PackIconMaterialKind.SettingsOutline, new RelayCommand(() =>
                 {
                     RCF.Logger.LogTraceSource($"The game {game} options dialog is opening...");
-                    new GameOptions(game).ShowDialog();
+                    new GameOptions(game, true).ShowDialog();
                 })));
 
                 return new GameDisplayViewModel(game.GetDisplayName(), game.GetIconSource(),
@@ -672,6 +683,35 @@ namespace RayCarrot.RCP.Metro
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating if the specified game has utilities
+        /// </summary>
+        /// <param name="game">The game to check</param>
+        /// <returns>True if the game has utilities, otherwise false</returns>
+        public static bool HasUtilities(this Games game)
+        {
+            switch (game)
+            {
+                case Games.Rayman1:
+                    return true;
+
+                case Games.RaymanDesigner:
+                case Games.RaymanByHisFans:
+                case Games.Rayman60Levels:
+                case Games.Rayman2:
+                case Games.RaymanM:
+                case Games.RaymanArena:
+                case Games.Rayman3:
+                case Games.RaymanRavingRabbids:
+                case Games.RaymanOrigins:
+                case Games.RaymanLegends:
+                case Games.RaymanJungleRun:
+                case Games.RaymanFiestaRun:
+                default:
+                    return false;
             }
         }
 

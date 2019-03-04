@@ -64,7 +64,7 @@
                 <local:IconButton x:Name="ConfigButton"
                                   Click="ConfigButton_OnClick"
                                   IconKind="SettingsOutline"
-                                  ToolTip="Configuration" 
+                                  ToolTip="Options" 
                                   Margin="0 0 5 0"/>
 
                 <local:IconButton IconKind="Link"

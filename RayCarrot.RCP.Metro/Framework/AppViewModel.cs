@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using ByteSizeLib;
 using IniParser;
 using IniParser.Model;
 using Microsoft.Win32;
@@ -728,6 +730,68 @@ namespace RayCarrot.RCP.Metro
                 {
                     ex.HandleCritical("Cleaning temp");
                 }
+            }
+        }
+
+        /// <summary>
+        /// Downloads the specified files to a specified output directory
+        /// </summary>
+        /// <param name="inputSources">The files to download</param>
+        /// <param name="isCompressed">True if the download is a compressed file, otherwise false</param>
+        /// <param name="outputDir">The output directory to download to</param>
+        /// <returns>True if the download succeeded, otherwise false</returns>
+        public async Task<bool> DownloadAsync(IList<Uri> inputSources, bool isCompressed, FileSystemPath outputDir)
+        {
+            try
+            {
+                // Make sure the directory exists
+                if (!outputDir.DirectoryExists)
+                    Directory.CreateDirectory(outputDir);
+
+                // Make sure there are input sources to download
+                if (!inputSources.Any())
+                {
+                    await RCF.MessageUI.DisplayMessageAsync("No files were found to download", "Error", MessageType.Error);
+                    return false;
+                }
+
+                // Allow user to confirm
+                try
+                {
+                    ByteSize size = new ByteSize(0);
+                    foreach (var item in inputSources)
+                    {
+                        var webRequest = WebRequest.Create(item);
+                        webRequest.Method = "HEAD";
+
+                        using (var webResponse = webRequest.GetResponse())
+                            size = size.Add(new ByteSize(Convert.ToDouble(webResponse.Headers.Get("Content-Length"))));
+                    }
+
+                    if (!await RCF.MessageUI.DisplayMessageAsync($"This patch requires its files to be downloaded. The total size of the download is {size}. Continue?", "Confirm download", MessageType.Question, true))
+                        return false;
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleUnexpected("Getting download size");
+                    if (!await RCF.MessageUI.DisplayMessageAsync("This patch requires its files to be downloaded. Continue?", "Confirm download", MessageType.Question, true))
+                        return false;
+                }
+
+                // Create the download dialog
+                var dialog = new Downloader(isCompressed ? new DownloaderViewModel(inputSources.First(), outputDir) : new DownloaderViewModel(inputSources, outputDir));
+
+                // Show the dialog
+                dialog.ShowDialog();
+
+                // Return the result
+                return dialog.ViewModel.DownloadState == DownloadState.Succeeded;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError($"Downloading files");
+                await RCF.MessageUI.DisplayMessageAsync("The files could not be downloaded.", "Error", MessageType.Error);
+                return false;
             }
         }
 

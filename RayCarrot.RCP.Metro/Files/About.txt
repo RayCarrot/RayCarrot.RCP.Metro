@@ -6,7 +6,6 @@ Unfinished features:
 - About page
 
 - Port utilities:
--- R1 PlayStation soundtrack
 -- Replace Rayman Forever incomplete soundtrack
 -- Replace RayKit files
 -- Create missing RayKit config
