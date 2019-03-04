@@ -27,7 +27,7 @@
                     <TextBlock Text="User Level"
                                Style="{StaticResource LargeHeaderTextBlock}" />
 
-                    <local:HelpIcon Text="The user level determines which options and information is available in the application. The higher the user level, the more advanced options and information will be shown." />
+                    <local:InfoIcon Text="The user level determines which options and information is available in the application. The higher the user level, the more advanced options and information will be shown." />
 
                 </StackPanel>
 
@@ -98,6 +98,9 @@
 
                     <CheckBox Content="Show not installed games"
                               IsChecked="{Binding Path=ShowNotInstalledGames}" />
+
+                    <CheckBox Content="Show detailed game information"
+                              IsChecked="{Binding Path=ShowDetailedGameInfo}" />
 
                 </StackPanel>
 

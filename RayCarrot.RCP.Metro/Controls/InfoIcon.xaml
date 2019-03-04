@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="RayCarrot.RCP.Metro.HelpIcon"
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.InfoIcon"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              Margin="10 0 0 0"
              VerticalAlignment="Center">
     <iconPacks:PackIconMaterial x:Name="HelpIconRoot"
-                                Kind="HelpCircleOutline"
+                                Kind="{Binding Path=IconKind}"
                                 VerticalAlignment="Center"
                                 Background="Transparent">
         <iconPacks:PackIconMaterial.ToolTip>

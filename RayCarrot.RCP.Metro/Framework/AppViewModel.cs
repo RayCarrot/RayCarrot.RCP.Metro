@@ -260,6 +260,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="game">The game to remove</param>
         public void RemoveGame(Games game)
         {
+            // TODO: Warn about utilities
+
             // Remove the game
             Data.Games.Remove(game);
 

@@ -127,7 +127,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="Controller" />
 
-                    <local:HelpIcon Text="If your controller is not recognized you can enable controller support here" />
+                    <local:InfoIcon Text="If your controller is not recognized you can enable controller support here" />
 
                 </StackPanel>
 

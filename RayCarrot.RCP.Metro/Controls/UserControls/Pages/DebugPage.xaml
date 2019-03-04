@@ -25,7 +25,7 @@
                     <TextBlock Text="Dialogs"
                                Style="{StaticResource LargeHeaderTextBlock}" />
 
-                    <local:HelpIcon Text="Below is a list of the available dialogs in this application. Each dialog returns a dialog result, which in this debug panel is ignored." />
+                    <local:InfoIcon Text="Below is a list of the available dialogs in this application. Each dialog returns a dialog result, which in this debug panel is ignored." />
 
                 </StackPanel>
 
@@ -56,7 +56,7 @@
                     <TextBlock Text="Debug Tools"
                                Style="{StaticResource LargeHeaderTextBlock}" />
 
-                    <local:HelpIcon Text="Below are some available debug tools for this application" />
+                    <local:InfoIcon Text="Below are some available debug tools for this application" />
 
                 </StackPanel>
 
@@ -87,7 +87,7 @@
                     <TextBlock Text="Experimental Features"
                                Style="{StaticResource LargeHeaderTextBlock}" />
 
-                    <local:HelpIcon Text="These features are experimental and have not been tested. Use on your own risk." />
+                    <local:InfoIcon Text="These features are experimental and have not been tested. Use on your own risk." />
 
                 </StackPanel>
 

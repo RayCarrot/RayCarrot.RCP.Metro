@@ -7,10 +7,13 @@
 • Common DosBox commands can now be set using the new DosBox configuration dialog
 
 Other changes:
-• Rayman M/Arena are now treated as separate games
+• Utilities will now show if they require addiitonal files to be downloaded
+• The Rayman 1 PlayStation soundtrack utility now works without launching it from the utilities page
 • Rayman 2 utilities have been integrated into its configuration dialog. It now also shows the currently selected button mapping.
+• Rayman M/Arena are now treated as separate games
 • Windows Store games are now be found and launched using the WinRT Api rather than Explorer
 • Improved the game installer
+• The logger now logs to a file
 • Minor bug fixes
 
 Removed features:
@@ -25,6 +28,7 @@ Removed features:
 • Several Rayman 2 configuration options were removed, including the nGlide settings. These can still be accessed from the game's native configuration tools.
 • Several Rayman Raving Rabbids configuration options were removed. These can still be accessed from within the game.
 • The Rayman Fiesta Run version can no longer be chosen. If both are installed, the Windows 10 edition is prioritized.
+• Exception messages no longer appear as message boxes. They can still be found in the log.
 
 
 -----   Version 3.2.2 - February 21, 2019   -----

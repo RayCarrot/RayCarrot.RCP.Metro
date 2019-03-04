@@ -124,6 +124,12 @@
     <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.3.3, Culture=neutral, PublicKeyToken=8985beaab7ea3f04, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft-WindowsAPICodePack-Shell.1.1.3.3\lib\net452\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio, Version=1.8.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NAudio.1.8.5\lib\net35\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.Vorbis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NAudio.Vorbis.1.0.0.0\lib\net35\NAudio.Vorbis.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -135,6 +141,9 @@
     </Reference>
     <Reference Include="Nito.AsyncEx.Enlightenment, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Nito.AsyncEx.4.0.1\lib\net45\Nito.AsyncEx.Enlightenment.dll</HintPath>
+    </Reference>
+    <Reference Include="NVorbis, Version=0.8.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NVorbis.0.8.6\lib\net35\NVorbis.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged, Version=2.6.0.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\PropertyChanged.Fody.2.6.0\lib\net452\PropertyChanged.dll</HintPath>
@@ -162,6 +171,8 @@
       <HintPath>..\..\..\packages\System.Diagnostics.EventLog.4.5.0\lib\net461\System.Diagnostics.EventLog.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\System.Memory.4.5.2\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
@@ -242,7 +253,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\HelpIcon.xaml">
+    <Page Include="Controls\InfoIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -290,6 +301,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\UserControls\Utilities\Rayman1Utilities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Installer\GameInstaller.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -301,6 +316,10 @@
     <Page Include="Windows\AppNewsDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\Downloader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\FirstLaunchInfoDialog.xaml">
       <SubType>Designer</SubType>
@@ -332,12 +351,36 @@
     <Compile Include="Controls\DuoGrid.xaml.cs">
       <DependentUpon>DuoGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\HelpIcon.xaml.cs">
-      <DependentUpon>HelpIcon.xaml</DependentUpon>
+    <Compile Include="Controls\InfoIcon.xaml.cs">
+      <DependentUpon>InfoIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UserControls\Utilities\Rayman1Utilities.xaml.cs">
+      <DependentUpon>Rayman1Utilities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserControls\Utilities\TPLS\Enums\TPLSDOSBoxVersion.cs" />
+    <Compile Include="Controls\UserControls\Utilities\TPLS\Enums\TPLSRaymanVersion.cs" />
+    <Compile Include="Controls\UserControls\Utilities\TPLS\Exceptions\SoundtrackUnplaybaleException.cs" />
+    <Compile Include="Controls\UserControls\Utilities\TPLS\FileResolver.cs" />
+    <Compile Include="Controls\UserControls\Utilities\TPLS\Music\FadeInOutProvider.cs" />
+    <Compile Include="Controls\UserControls\Utilities\TPLS\Music\LoopStream.cs" />
+    <Compile Include="Controls\UserControls\Utilities\TPLS\Music\VolumeMixer.cs" />
+    <Compile Include="Controls\UserControls\Utilities\TPLS\Player.cs" />
+    <Compile Include="Controls\UserControls\Utilities\TPLS\SoundtrackList.cs" />
+    <Compile Include="Controls\UserControls\Utilities\TPLS\SoundtrackPlayer\BGM.cs" />
+    <Compile Include="Controls\UserControls\Utilities\TPLS\SoundtrackPlayer\Midi.cs" />
+    <Compile Include="Controls\UserControls\Utilities\TPLS\SoundtrackPlayer\PositionedBGM.cs" />
+    <Compile Include="Controls\UserControls\Utilities\TPLS\SoundtrackPlayer\SoundtrackPlayer.cs" />
+    <Compile Include="Controls\UserControls\Utilities\TPLS\TPLS.cs" />
+    <Compile Include="DataModels\Enums\DownloadState.cs" />
+    <Compile Include="Extensions\TPLSRaymanVersionExtensions.cs" />
+    <Compile Include="Controls\UserControls\Utilities\TPLS\TPLSDataModel.cs" />
+    <Compile Include="Controls\UserControls\Utilities\TPLS\Watchdog.cs" />
+    <Compile Include="DataModels\ValueEventArgs.cs" />
+    <Compile Include="Legacy\Extensions\LegacyTPLSDOSBoxVersionExtensions.cs" />
+    <Compile Include="Legacy\Extensions\LegacyTPLSRaymanVersionExtensions.cs" />
     <Compile Include="ViewModels\Config\Ray_Origins_Legends_ConfigViewModel.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="ViewModels\Config\RaymanRavingRabbidsConfigViewModel.cs" />
@@ -480,6 +523,10 @@
     <Compile Include="Windows\AppNewsDialog.xaml.cs">
       <DependentUpon>AppNewsDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Downloader.xaml.cs">
+      <DependentUpon>Downloader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\DownloaderViewModel.cs" />
     <Compile Include="Windows\FirstLaunchInfoDialog.xaml.cs">
       <DependentUpon>FirstLaunchInfoDialog.xaml</DependentUpon>
     </Compile>

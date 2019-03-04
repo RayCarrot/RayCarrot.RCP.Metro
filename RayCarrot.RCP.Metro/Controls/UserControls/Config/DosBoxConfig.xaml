@@ -31,7 +31,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="Mount path" />
 
-                    <local:HelpIcon Text="The mount path can either be a file or a drive. If you're using the GOG version it'll be the 'game.inst' file. If you have a disc image it is usually the .cue file. Otherwise use the drive letter of the game disc." />
+                    <local:InfoIcon Text="The mount path can either be a file or a drive. If you're using the GOG version it'll be the 'game.inst' file. If you have a disc image it is usually the .cue file. Otherwise use the drive letter of the game disc." />
 
                 </StackPanel>
 
@@ -64,7 +64,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="DosBox Settings" />
                     
-                    <local:HelpIcon Text="Setting one of the below options to disabled or empty will use the default value specified in the DosBox configuration file" />
+                    <local:InfoIcon Text="Setting one of the below options to disabled or empty will use the default value specified in the DosBox configuration file" />
 
                 </StackPanel>
 

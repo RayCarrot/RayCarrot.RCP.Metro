@@ -1,0 +1,31 @@
+﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.Downloader"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                  mc:Ignorable="d"             
+                  Title="Download"
+                  ResizeMode="NoResize"
+                  SizeToContent="WidthAndHeight"
+                  MinWidth="300" MinHeight="150"
+                  Loaded="Downloader_OnLoadedAsync" Closing="Downloader_OnClosingAsync"
+                  d:DataContext="{d:DesignInstance local:DownloaderViewModel}">
+    <StackPanel Margin="10">
+
+        <TextBlock Text="Total Progress"
+                   HorizontalAlignment="Center"/>
+
+        <ProgressBar Value="{Binding Path=TotalCurrentProgress}"
+                     Maximum="{Binding Path=TotalMaxProgress}"
+                     Margin="0 8 0 16"/>
+
+        <TextBlock Text="Current File Progress"
+                   HorizontalAlignment="Center"/>
+
+        <ProgressBar Value="{Binding Path=ItemCurrentProgress}"
+                     Maximum="{Binding Path=ItemMaxProgress}"
+                     Margin="0 8"/>
+
+    </StackPanel>
+</local:BaseWindow>

@@ -29,7 +29,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="Resolution" />
 
-                    <local:HelpIcon Text="If the widescreen support is not enabled the game will stretch if set to an aspect ratio other than 4:3" />
+                    <local:InfoIcon Text="If the widescreen support is not enabled the game will stretch if set to an aspect ratio other than 4:3" />
 
                 </StackPanel>
 
@@ -80,7 +80,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="Language" />
 
-                    <local:HelpIcon Text="This sets the default language selected when launching the game. The language can still be changed from the game menu." />
+                    <local:InfoIcon Text="This sets the default language selected when launching the game. The language can still be changed from the game menu." />
 
                 </StackPanel>
 
@@ -92,7 +92,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="Controller" />
 
-                    <local:HelpIcon Text="If your controller is not recognized you can enable controller support here. This will remove any custom button mapping." />
+                    <local:InfoIcon Text="If your controller is not recognized you can enable controller support here. This will remove any custom button mapping." />
 
                 </StackPanel>
 
@@ -104,7 +104,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="Button mapping" />
 
-                    <local:HelpIcon Text="As the game doesn't allow native button remapping you change it here. This will not work for controllers." />
+                    <local:InfoIcon Text="As the game doesn't allow native button remapping you change it here. This will not work for controllers." />
 
                 </StackPanel>
 

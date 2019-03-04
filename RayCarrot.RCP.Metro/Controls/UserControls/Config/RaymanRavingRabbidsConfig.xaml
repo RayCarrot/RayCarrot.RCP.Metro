@@ -29,7 +29,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="Resolution" />
 
-                    <local:HelpIcon Text="Setting the resolution to an aspect ratio other than 4:3 will stretch the game, even with the internal widescreen option turned on" />
+                    <local:InfoIcon Text="Setting the resolution to an aspect ratio other than 4:3 will stretch the game, even with the internal widescreen option turned on" />
 
                 </StackPanel>
 
@@ -45,7 +45,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="Screen Mode" />
 
-                    <local:HelpIcon Text="The below screen mode options will behave differently depending on the selected resolution. Usually keeping the 4:3 mode enabled will allow the game not to be stretched on different aspect ratios." />
+                    <local:InfoIcon Text="The below screen mode options will behave differently depending on the selected resolution. Usually keeping the 4:3 mode enabled will allow the game not to be stretched on different aspect ratios." />
 
                 </StackPanel>
 

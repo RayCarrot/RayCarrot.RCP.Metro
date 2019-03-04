@@ -178,8 +178,8 @@ namespace RayCarrot.RCP.Metro
                     return;
                 }
 
-                // Make sure the mount path exists
-                if (!RCFRCP.Data.DosBoxGames[game].MountPath.Exists)
+                // Make sure the mount path exists, unless the game is Rayman 1 and TPLS is enabled
+                if (!RCFRCP.Data.DosBoxGames[game].MountPath.Exists && !(game == Games.Rayman1 && RCFRCP.Data.TPLSData?.IsEnabled == true))
                 {
                     await RCF.MessageUI.DisplayMessageAsync("The mount path could not be found. Specify a valid path under the game options to run this game.", MessageType.Error);
                     return;
@@ -187,17 +187,42 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Get the launch info
-            var launchInfo = game.GetLaunchInfo();
+            GameLaunchInfo launchInfo;
+
+            // Handle Rayman 1 differently if TPLS is enabled
+            if (game == Games.Rayman1 && RCFRCP.Data.TPLSData?.IsEnabled == true)
+            {
+                DosBoxOptions dosBoxConfig = RCFRCP.Data.DosBoxGames[game];
+                launchInfo = new GameLaunchInfo(RCFRCP.Data.DosBoxPath,
+                    DosBoxHelpers.GetDosBoxArgument(RCFRCP.Data.DosBoxConfig, Games.Rayman1.GetInfo().InstallDirectory,
+                        RCFRCP.Data.TPLSData.InstallDir + "RayCD.cue", dosBoxConfig.GetCommands(), game.GetLaunchName()));
+            }
+            else
+            {
+                launchInfo = game.GetLaunchInfo();
+            }
 
             RCF.Logger.LogTraceSource($"The game {game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
 
             // Launch the game
-            await RCFRCP.File.LaunchFileAsync(launchInfo.Path, false, launchInfo.Args);
+            var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, false, launchInfo.Args);
 
             RCF.Logger.LogInformationSource($"The game {game} has been launched");
 
-            if (RCFRCP.Data.CloseAppOnGameLaunch)
-                Application.Current.Shutdown();
+            // Check if TPLS should run
+            if (game == Games.Rayman1 && RCFRCP.Data.TPLSData?.IsEnabled == true)
+            {
+                // Start TPLS
+                new TPLS().Start(process);
+            }
+            else
+            {
+                process?.Dispose();
+
+                // Check if the application should close
+                if (RCFRCP.Data.CloseAppOnGameLaunch)
+                    Application.Current.Shutdown();
+            }
         }
     }
 }

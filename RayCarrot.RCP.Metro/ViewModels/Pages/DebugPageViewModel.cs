@@ -162,7 +162,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task OpenPrimaryUbiIniAsync()
         {
-            await RCFRCP.File.LaunchFileAsync(CommonPaths.UbiIniPath1);
+            (await RCFRCP.File.LaunchFileAsync(CommonPaths.UbiIniPath1))?.Dispose();
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task OpenSecondaryUbiIniAsync()
         {
-            await RCFRCP.File.LaunchFileAsync(CommonPaths.UbiIniPath2);
+            (await RCFRCP.File.LaunchFileAsync(CommonPaths.UbiIniPath2))?.Dispose();
         }
 
         #endregion

@@ -21,7 +21,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="asAdmin">True if it should be run as admin, otherwise false</param>
         /// <param name="arguments">The launch arguments</param>
         /// <param name="wd">The working directory, or null if the parent directory</param>
-        public async Task LaunchFileAsync(FileSystemPath file, bool asAdmin = false, string arguments = null, string wd = null)
+        public async Task<Process> LaunchFileAsync(FileSystemPath file, bool asAdmin = false, string arguments = null, string wd = null)
         {
             try
             {
@@ -37,9 +37,11 @@ namespace RayCarrot.RCP.Metro
                 if (asAdmin)
                     info.AsAdmin();
 
-                Process.Start(info);
+                var p = Process.Start(info);
 
                 RCF.Logger.LogDebugSource($"The file {file} launched");
+
+                return p;
             }
             catch (FileNotFoundException ex)
             {
@@ -51,6 +53,8 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleUnexpected("Launching file", file);
                 await RCF.MessageUI.DisplayMessageAsync($"An error occurred when attempting to run {file}", "Error", MessageType.Error);
             }
+
+            return null;
         }
 
         /// <summary>

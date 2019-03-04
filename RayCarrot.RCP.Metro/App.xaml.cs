@@ -479,11 +479,14 @@ namespace RayCarrot.RCP.Metro
                 if (gameData.DosBoxExe.FileExists)
                     data.DosBoxPath = gameData.DosBoxExe;
 
-                // TODO: Import yet to be created properties
-                //gameData.TPLSDOSBoxVersion;
-                //gameData.TPLSDir;
-                //gameData.TPLSIsInstalled;
-                //gameData.TPLSRaymanVersion;
+                var TPLSDir = gameData.TPLSDir + "TPLS";
+
+                if (gameData.TPLSIsInstalled && TPLSDir.DirectoryExists)
+                    data.TPLSData = new TPLSData(TPLSDir)
+                    {
+                        RaymanVersion = gameData.TPLSRaymanVersion.GetCurrent() ?? TPLSRaymanVersion.Auto,
+                        DosBoxVersion = gameData.TPLSDOSBoxVersion.GetCurrent() ?? TPLSDOSBoxVersion.DOSBox_0_74
+                    };
                 
                 // Import games
                 foreach (LegacyRaymanGame game in gameData.RayGames)

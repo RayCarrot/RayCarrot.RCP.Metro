@@ -6,7 +6,7 @@
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                   xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-                  xmlns:wpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                  xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                   xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                   Title="{Binding Path=DisplayName}"
                   Loaded="GameOptions_OnLoadedAsync"
@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
         <i:Interaction.Behaviors>
-            <wpf:UnifiedMarginBehavior Margin="0 5" />
+            <rwpf:UnifiedMarginBehavior Margin="0 5" />
         </i:Interaction.Behaviors>
 
         <!-- Header -->
@@ -82,12 +82,13 @@
         <Separator Grid.Row="1" />
 
         <!-- Technical Information -->
-        <!-- TODO: Have option in settings to show/hide this -->
 
         <local:DuoGrid Grid.Row="2"
-                       Items="{Binding Path=InfoItems}"/>
+                       Items="{Binding Path=InfoItems}"
+                       Visibility="{Binding Path=Data.ShowDetailedGameInfo, Converter={rwpf:BooleanToVisibilityConverter}}"/>
 
-        <Separator Grid.Row="3" />
+        <Separator Grid.Row="3" 
+                   Visibility="{Binding Path=Data.ShowDetailedGameInfo, Converter={rwpf:BooleanToVisibilityConverter}}"/>
 
         <metro:MetroAnimatedTabControl x:Name="ContentTabControl"
                                        Grid.Row="4"

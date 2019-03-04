@@ -49,6 +49,8 @@ namespace RayCarrot.RCP.Metro
             ShowProgressOnTaskBar = true;
             DisplayExceptionLevel = ExceptionLevel.Critical;
             RRRIsSaveDataInInstallDir = true;
+            ShowDetailedGameInfo = false;
+            TPLSData = null;
         }
 
         #endregion
@@ -183,6 +185,59 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the Rayman Raving Rabbids save data is in the install directory
         /// </summary>
         public bool RRRIsSaveDataInInstallDir { get; set; }
+
+        /// <summary>
+        /// Indicates if detailed game information should be shown in the game options
+        /// </summary>
+        public bool ShowDetailedGameInfo { get; set; }
+
+        /// <summary>
+        /// The current TPLS data if installed, otherwise null
+        /// </summary>
+        public TPLSData TPLSData { get; set; }
+
+        #endregion
+    }
+
+    /// <summary>
+    /// TPLS data for the Rayman 1 utility
+    /// </summary>
+    public class TPLSData : BaseViewModel
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="installDir">The directory it is installed under</param>
+        public TPLSData(FileSystemPath installDir)
+        {
+            InstallDir = installDir;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// The directory it is installed under
+        /// </summary>
+        public FileSystemPath InstallDir { get; }
+
+        /// <summary>
+        /// The selected Rayman version to search for
+        /// </summary>
+        public TPLSRaymanVersion RaymanVersion { get; set; }
+
+        /// <summary>
+        /// The selected DosBox version to search for
+        /// </summary>
+        public TPLSDOSBoxVersion DosBoxVersion { get; set; }
+
+        /// <summary>
+        /// Indicates if the utility is enabled
+        /// </summary>
+        public bool IsEnabled { get; set; }
 
         #endregion
     }

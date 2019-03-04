@@ -209,7 +209,7 @@ namespace RayCarrot.RCP.Metro
                             string path = x.Path;
 
                             // Create the command
-                            var command = new AsyncRelayCommand(async () => await RCFRCP.File.LaunchFileAsync(path));
+                            var command = new AsyncRelayCommand(async () => (await RCFRCP.File.LaunchFileAsync(path))?.Dispose());
 
                             if (x.Icon != PackIconMaterialKind.None)
                                 return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
@@ -284,7 +284,7 @@ namespace RayCarrot.RCP.Metro
                             string path = x.Path;
 
                             // Create the command
-                            var command = new AsyncRelayCommand(async () => await RCFRCP.File.LaunchFileAsync(path));
+                            var command = new AsyncRelayCommand(async () => (await RCFRCP.File.LaunchFileAsync(path))?.Dispose());
 
                             // Return the item
                             return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
@@ -685,6 +685,8 @@ namespace RayCarrot.RCP.Metro
             switch (game)
             {
                 case Games.Rayman1:
+                    return new Rayman1Utilities();
+
                 case Games.RaymanDesigner:
                 case Games.RaymanByHisFans:
                 case Games.Rayman60Levels:

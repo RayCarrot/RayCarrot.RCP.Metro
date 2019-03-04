@@ -16,6 +16,11 @@ namespace RayCarrot.RCP.Metro
         public static FileSystemPath UserDataBaseDir => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Rayman Control Panel", "RCP_Metro");
 
         /// <summary>
+        /// The TPLS directory
+        /// </summary>
+        public static FileSystemPath TPLSDir => UserDataBaseDir + "Utilities" + "TPLS";
+
+        /// <summary>
         /// The <see cref="AppUserData"/> file path
         /// </summary>
         public static FileSystemPath AppUserDataPath => UserDataBaseDir + "appuserdata.json";
@@ -64,5 +69,21 @@ namespace RayCarrot.RCP.Metro
         /// The Rayman Legends registry key path
         /// </summary>
         public static string RaymanLegendsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman Legends";
+    }
+
+    /// <summary>
+    /// Commons URLs used in the Rayman Control Panel
+    /// </summary>
+    public static class CommonUrls
+    {
+        /// <summary>
+        /// The base URL for downloading utilities
+        /// </summary>
+        public const string UtilityBaseUrl = "http://raycarrot.ylemnova.com/RCP/Resources/2.5.0/";
+
+        /// <summary>
+        /// The Rayman 1 TPLS utility URL
+        /// </summary>
+        public const string R1_TPLS_Url = UtilityBaseUrl + "R1/RayPlus/Music.zip";
     }
 }
