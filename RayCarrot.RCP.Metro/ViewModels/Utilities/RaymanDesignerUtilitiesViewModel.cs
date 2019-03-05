@@ -164,7 +164,7 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Private Enums
+        #region Public Enums
 
         /// <summary>
         /// The available Rayman Designer Mapper languages

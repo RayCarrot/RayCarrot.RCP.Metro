@@ -8,7 +8,6 @@ using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {
-    // TODO: Make universal interface in framework
     /// <summary>
     /// The file manager for the Rayman Control Panel
     /// </summary>

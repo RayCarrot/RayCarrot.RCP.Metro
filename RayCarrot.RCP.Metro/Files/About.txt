@@ -5,19 +5,19 @@
 Unfinished features:
 - Add control tool tips
 - About page
+- More logging (utilities etc.)
 
 - Port utilities:
--- R2 translation
 -- RO 60fps videos
 -- RO updater
 -- RO debug commands
 -- RL UbiRay
 -- RL debug commands
 
-- Upcoming features
-- Education games support
-- Tonic Trouble support
-- Beyond Good & Evil support
-- Rayman Raving Rabbids 2 support
-- Rabbids Go Home support
-- Rayman 3 Print Studio support
+Upcoming features:
+-- Education games support
+-- Tonic Trouble support
+-- Beyond Good & Evil support
+-- Rayman Raving Rabbids 2 support
+-- Rabbids Go Home support
+-- Rayman 3 Print Studio support

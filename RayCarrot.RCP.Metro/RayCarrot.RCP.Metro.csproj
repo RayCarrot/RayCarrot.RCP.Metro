@@ -301,6 +301,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\UserControls\Utilities\Rayman2Utilities.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\UserControls\Utilities\RaymanDesignerUtilities.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -361,6 +365,10 @@
     <Compile Include="Controls\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UserControls\Utilities\Rayman2Utilities.xaml.cs">
+      <DependentUpon>Rayman2Utilities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Utilities\Rayman2UtilitiesViewModel.cs" />
     <Compile Include="Controls\UserControls\Utilities\RaymanDesignerUtilities.xaml.cs">
       <DependentUpon>RaymanDesignerUtilities.xaml</DependentUpon>
     </Compile>

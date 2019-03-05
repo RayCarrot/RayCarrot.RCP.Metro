@@ -30,14 +30,38 @@ namespace RayCarrot.RCP.Metro
                             HelpText = "The program will by default check for updates on launch, unless the option has been disabled. This is done in the background and might take a few seconds. " +
                                        "Updates can manually be checked for in the settings page." +
                                        Environment.NewLine +
-                                       "If an error occurs with the update service it can manually be downloaded from: http://raycarrot.ylemnova.com/"
+                                       Environment.NewLine +
+                                       "If an error occurs with the update service it can manually be downloaded from:" +
+                                       Environment.NewLine +
+                                       "http://raycarrot.ylemnova.com/"
                         },
 
                         // Compatibility
                         new HelpItemViewModel()
                         {
                             DisplayHeader = "Compatibility",
-                            HelpText = "The minimum required version to run the program in Windows Vita, with Windows 7 being recommended."
+                            HelpText = "The minimum required version to run the program is Windows Vista, with Windows 7 or above being recommended."
+                        },
+
+                        // Game Installer
+                        new HelpItemViewModel()
+                        {
+                            DisplayHeader = "Game Installer",
+                            HelpText = "For games which support to be installed from a disc you can do so from the drop down menu of the game. Currently " +
+                                       "Rayman 2, Rayman M and Rayman Arena are the only supported games." +
+                                       Environment.NewLine +
+                                       Environment.NewLine +
+                                       "During the installation you will have to specify a directory to install to. The game will install in a sub-directory in " +
+                                       "the specified directory. For example, you choose to install Rayman 2 under C:\\Ubisoft it will get installed under " +
+                                       "C:\\Ubisoft\\Rayman 2" +
+                                       Environment.NewLine +
+                                       Environment.NewLine +
+                                       "For Rayman 2 the installer will replace the executable file with the one from the GOG version to allow the game to run without " +
+                                       "inserting the disc. This is done to avoid a common disc error which usually occurs during the later half of the game." +
+                                       Environment.NewLine +
+                                       Environment.NewLine +
+                                       "To uninstall one of the games installed using the game installer you simply have to delete the directory and its files. The game " +
+                                       "will not show up under installed programs due to not having an uninstaller."
                         },
 
                         // Backup Games
@@ -46,6 +70,7 @@ namespace RayCarrot.RCP.Metro
                             DisplayHeader = "Backup/Restore",
                             HelpText = "The program has a backup and restore feature for all supported games. The backups are by default stored in the " +
                                        "documents folder, but the location can be changed in the settings." +
+                                       Environment.NewLine +
                                        Environment.NewLine +
                                        "The backups themselves are always stored in the " +
                                        $"'{AppViewModel.BackupFamily}' sub-directory. It is not recommended to manually modify these files."

@@ -56,5 +56,50 @@
         /// The Rayman Designer German MAPPER.EXE replacement URL
         /// </summary>
         public const string RD_ALMapperExe_URL = UtilityBaseUrl + "R1/RayKit/AL/MAPPER.EXE";
+
+        /// <summary>
+        /// The Rayman 2 original fix.sna URL
+        /// </summary>
+        public const string R2_OriginalFixSna_URL = UtilityBaseUrl + "R2/Translation_Original/Fix.sna";
+
+        /// <summary>
+        /// The Rayman 2 original textures.cnt URL
+        /// </summary>
+        public const string R2_OriginalTexturesCnt_URL = UtilityBaseUrl + "R2/Translation_Original/Textures.cnt";
+
+        /// <summary>
+        /// The Rayman 2 Irish fix.sna URL
+        /// </summary>
+        public const string R2_IrishFixSna_URL = UtilityBaseUrl + "R2/Translation_Irish/Fix.sna";
+
+        /// <summary>
+        /// The Rayman 2 Swedish fix.sna URL
+        /// </summary>
+        public const string R2_SwedishFixSna_URL = UtilityBaseUrl + "R2/Translation_Swedish/Fix.sna";
+
+        /// <summary>
+        /// The Rayman 2 Swedish textures.cnt URL
+        /// </summary>
+        public const string R2_SwedishTexturesCnt_URL = UtilityBaseUrl + "R2/Translation_Swedish/Textures.cnt";
+
+        /// <summary>
+        /// The Rayman 2 Portuguese fix.sna URL
+        /// </summary>
+        public const string R2_PortugueseFixSna_URL = UtilityBaseUrl + "R2/Translation_Portuguese/Fix.sna";
+
+        /// <summary>
+        /// The Rayman 2 Portuguese textures.cnt URL
+        /// </summary>
+        public const string R2_PortugueseTexturesCnt_URL = UtilityBaseUrl + "R2/Translation_Portuguese/Textures.cnt";
+
+        /// <summary>
+        /// The Rayman 2 Slovak fix.sna URL
+        /// </summary>
+        public const string R2_SlovakFixSna_URL = UtilityBaseUrl + "R2/Translation_Slovak/Fix.sna";
+
+        /// <summary>
+        /// The Rayman 2 Slovak textures.cnt URL
+        /// </summary>
+        public const string R2_SlovakTexturesCnt_URL = UtilityBaseUrl + "R2/Translation_Slovak/Textures.cnt";
     }
 }

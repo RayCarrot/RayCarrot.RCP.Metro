@@ -709,11 +709,11 @@ namespace RayCarrot.RCP.Metro
             {
                 case Games.Rayman1:
                 case Games.RaymanDesigner:
+                case Games.Rayman2:
                     return true;
 
                 case Games.RaymanByHisFans:
                 case Games.Rayman60Levels:
-                case Games.Rayman2:
                 case Games.RaymanM:
                 case Games.RaymanArena:
                 case Games.Rayman3:
@@ -742,9 +742,11 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanDesigner:
                     return new RaymanDesignerUtilities();
 
+                case Games.Rayman2:
+                    return new Rayman2Utilities();
+
                 case Games.RaymanByHisFans:
                 case Games.Rayman60Levels:
-                case Games.Rayman2:
                 case Games.RaymanM:
                 case Games.RaymanArena:
                 case Games.Rayman3:

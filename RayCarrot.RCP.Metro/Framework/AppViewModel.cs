@@ -237,9 +237,9 @@ namespace RayCarrot.RCP.Metro
                 RCF.Logger.LogInformationSource($"The game {game} install directory was retrieved as {installDirectory}");
             }
 
-            // TODO: Set default save data location based on version (Steam/Win32) and allow to be modified from config
-            //if (game == Games.RaymanRavingRabbids)
-            //    Data.RRRIsSaveDataInInstallDir = 
+            // Default save data location based on version
+            if (game == Games.RaymanRavingRabbids)
+                Data.RRRIsSaveDataInInstallDir = type == GameType.Steam;
 
             // Add the game
             Data.Games.Add(game, new GameInfo(type, installDirectory ?? FileSystemPath.EmptyPath));
