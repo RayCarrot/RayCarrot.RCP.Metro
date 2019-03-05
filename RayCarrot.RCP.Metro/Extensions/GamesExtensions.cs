@@ -233,12 +233,12 @@ namespace RayCarrot.RCP.Metro
                     // Add Steam links
                     actions.Add(new OverflowButtonItemViewModel("Open store page", PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
                     {
-                        await RCFRCP.File.OpenExplorerLocationAsync($"https://store.steampowered.com/app/" + game.GetSteamID());
+                        await RCFRCP.File.LaunchFileAsync($"https://store.steampowered.com/app/" + game.GetSteamID());
                         RCF.Logger.LogTraceSource($"The game {game} Steam store page was opened");
                     })));
                     actions.Add(new OverflowButtonItemViewModel("Open community page", PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
                     {
-                        await RCFRCP.File.OpenExplorerLocationAsync($"https://steamcommunity.com/app/" + game.GetSteamID());
+                        await RCFRCP.File.LaunchFileAsync($"https://steamcommunity.com/app/" + game.GetSteamID());
                         RCF.Logger.LogTraceSource($"The game {game} Steam community page was opened");
                     })));
 
@@ -250,7 +250,19 @@ namespace RayCarrot.RCP.Metro
                     // Add open location
                     actions.Add(new OverflowButtonItemViewModel("Open Location", PackIconMaterialKind.FolderOutline, new AsyncRelayCommand(async () =>
                     {
-                        await RCFRCP.File.OpenExplorerLocationAsync(game.GetInfo().InstallDirectory);
+                        // Get the game info
+                        var gameInfo = game.GetInfo();
+
+                        // Get the install directory
+                        var instDir = gameInfo.InstallDirectory;
+
+                        // Select the file if not a Windows store game
+                        if (gameInfo.GameType != GameType.WinStore)
+                            instDir = instDir + game.GetLaunchName();
+
+                        // Open the location
+                        await RCFRCP.File.OpenExplorerLocationAsync(instDir);
+
                         RCF.Logger.LogTraceSource($"The game {game} install location was opened");
                     })));
 
@@ -696,9 +708,9 @@ namespace RayCarrot.RCP.Metro
             switch (game)
             {
                 case Games.Rayman1:
+                case Games.RaymanDesigner:
                     return true;
 
-                case Games.RaymanDesigner:
                 case Games.RaymanByHisFans:
                 case Games.Rayman60Levels:
                 case Games.Rayman2:
@@ -728,6 +740,8 @@ namespace RayCarrot.RCP.Metro
                     return new Rayman1Utilities();
 
                 case Games.RaymanDesigner:
+                    return new RaymanDesignerUtilities();
+
                 case Games.RaymanByHisFans:
                 case Games.Rayman60Levels:
                 case Games.Rayman2:

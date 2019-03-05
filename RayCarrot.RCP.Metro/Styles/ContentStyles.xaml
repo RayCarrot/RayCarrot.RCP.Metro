@@ -68,4 +68,11 @@
         <Setter Property="NumericInputMode" Value="Numbers" />
     </Style>
 
+    <!-- Utility Download Info Icon -->
+
+    <Style x:Key="AdditionalFilesRequired" TargetType="{x:Type local:InfoIcon}">
+        <Setter Property="IconKind" Value="CloudDownload" />
+        <Setter Property="Text" Value="This utility requires additonal files to be downloaded" />
+    </Style>
+
 </ResourceDictionary>

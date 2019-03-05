@@ -1,16 +1,23 @@
 ﻿Known issues:
 - Rayman 2 button button mapping text box does not allow modifier keys (Ctrl, Shift, Win or Alt)
+- Fix R2 installer to not use .dat files, but GOG exe
 
 Unfinished features:
 - Add control tool tips
 - About page
 
 - Port utilities:
--- Replace Rayman Forever incomplete soundtrack
--- Replace RayKit files
--- Create missing RayKit config
 -- R2 translation
 -- RO 60fps videos
 -- RO updater
 -- RO debug commands
 -- RL UbiRay
+-- RL debug commands
+
+- Upcoming features
+- Education games support
+- Tonic Trouble support
+- Beyond Good & Evil support
+- Rayman Raving Rabbids 2 support
+- Rabbids Go Home support
+- Rayman 3 Print Studio support

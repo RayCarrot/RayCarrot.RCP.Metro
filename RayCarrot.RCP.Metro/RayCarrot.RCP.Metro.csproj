@@ -301,6 +301,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\UserControls\Utilities\RaymanDesignerUtilities.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\UserControls\Utilities\Rayman1Utilities.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -357,9 +361,14 @@
     <Compile Include="Controls\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UserControls\Utilities\RaymanDesignerUtilities.xaml.cs">
+      <DependentUpon>RaymanDesignerUtilities.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserControls\Utilities\Rayman1Utilities.xaml.cs">
       <DependentUpon>Rayman1Utilities.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Utilities\RaymanDesignerUtilitiesViewModel.cs" />
+    <Compile Include="Helpers\CommonUrls.cs" />
     <Compile Include="ViewModels\Utilities\Rayman1UtilitiesViewModel.cs" />
     <Compile Include="TPLS\Enums\TPLSDOSBoxVersion.cs" />
     <Compile Include="TPLS\Enums\TPLSRaymanVersion.cs" />

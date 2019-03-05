@@ -70,20 +70,4 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public static string RaymanLegendsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman Legends";
     }
-
-    /// <summary>
-    /// Commons URLs used in the Rayman Control Panel
-    /// </summary>
-    public static class CommonUrls
-    {
-        /// <summary>
-        /// The base URL for downloading utilities
-        /// </summary>
-        public const string UtilityBaseUrl = "http://raycarrot.ylemnova.com/RCP/Resources/2.5.0/";
-
-        /// <summary>
-        /// The Rayman 1 TPLS utility URL
-        /// </summary>
-        public const string R1_TPLS_Url = UtilityBaseUrl + "R1/RayPlus/Music.zip";
-    }
 }

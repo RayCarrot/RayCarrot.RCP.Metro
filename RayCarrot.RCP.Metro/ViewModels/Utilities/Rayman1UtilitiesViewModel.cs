@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ByteSizeLib;
 using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro
@@ -18,6 +19,12 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public Rayman1UtilitiesViewModel()
         {
+            // Create the commands
+            InstallTPLSCommand = new AsyncRelayCommand(InstallTPLSAsync);
+            UninstallTPLSCommand = new AsyncRelayCommand(UninstallTPLSAsync);
+            ReplaceSoundtrackCommand = new AsyncRelayCommand(ReplaceSoundtrackAsync);
+
+            // Create the properties
             AvailableRaymanVersions = new string[]
             {
                 "Auto",
@@ -25,7 +32,6 @@ namespace RayCarrot.RCP.Metro
                 "1.20",
                 "1.21"
             };
-
             AvailableDosBoxVersions = new string[]
             {
                 "0.74",
@@ -43,8 +49,29 @@ namespace RayCarrot.RCP.Metro
                 Data.TPLSData = null;
             }
 
-            InstallCommand = new AsyncRelayCommand(InstallAsync);
-            UninstallCommand = new AsyncRelayCommand(UninstallAsync);
+            // Attempt to find the Rayman Forever music directory
+            var dir = Games.Rayman1.GetInfo().InstallDirectory.Parent + "Music";
+
+            // Set to music path if found
+            MusicDir = dir.DirectoryExists && (dir + "rayman02.ogg").FileExists ? dir : FileSystemPath.EmptyPath;
+
+            // Indicate if music can be replaces
+            CanMusicBeReplaced = MusicDir.DirectoryExists;
+
+            if (CanMusicBeReplaced)
+            {
+                try
+                {
+                    var size = (MusicDir + "rayman02.ogg").GetSize();
+
+                    IsOriginalMusic = size == new ByteSize(1805221);
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Getting R1 music size");
+                    CanMusicBeReplaced = false;
+                }
+            }
         }
 
         #endregion
@@ -61,13 +88,30 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string[] AvailableDosBoxVersions { get; }
 
+        /// <summary>
+        /// The Rayman Forever music directory
+        /// </summary>
+        public FileSystemPath MusicDir { get; }
+
+        /// <summary>
+        /// Indicates if the Rayman Forever music can be replaced
+        /// </summary>
+        public bool CanMusicBeReplaced { get; set; }
+
+        /// <summary>
+        /// Indicates if the current music files are the original ones
+        /// </summary>
+        public bool IsOriginalMusic { get; set; }
+
         #endregion
 
         #region Commands
 
-        public ICommand InstallCommand { get; }
+        public ICommand InstallTPLSCommand { get; }
 
-        public ICommand UninstallCommand { get; }
+        public ICommand UninstallTPLSCommand { get; }
+
+        public ICommand ReplaceSoundtrackCommand { get; }
 
         #endregion
 
@@ -76,7 +120,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Installs TPLS
         /// </summary>
-        public async Task InstallAsync()
+        public async Task InstallTPLSAsync()
         {
             // Verify the install directory
             if (!await VerifyInstallDirAsync(Games.Rayman1.GetInfo().InstallDirectory))
@@ -113,7 +157,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Uninstalls TPLS
         /// </summary>
-        public async Task UninstallAsync()
+        public async Task UninstallTPLSAsync()
         {
             // Have user confirm uninstall
             if (!await RCF.MessageUI.DisplayMessageAsync("Are you sure you want to uninstall the PlayStation Soundtrack utility?", "Confirm Uninstall", MessageType.Question, true))
@@ -133,16 +177,40 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// Replaces the current soundtrack
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task ReplaceSoundtrackAsync()
+        {
+            try
+            {
+                // Download the files
+                var succeeded = await App.DownloadAsync(new Uri[]
+                {
+                    new Uri(IsOriginalMusic ? CommonUrls.R1_CompleteOST_URL : CommonUrls.R1_IncompleteOST_URL) 
+                }, true, MusicDir);
+
+                if (succeeded)
+                    IsOriginalMusic ^= true;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Replacing R1 soundtrack");
+                await RCF.MessageUI.DisplayMessageAsync("Soundtrack replacement failed.", "Error", MessageType.Error);
+            }
+        }
+
         #endregion
 
-        #region Private Methods
+        #region Private Static Methods
 
         /// <summary>
         /// Verifies the specified install directory for a valid Rayman installation
         /// </summary>
         /// <param name="dir">The directory</param>
         /// <returns>True if it is valid, false if not</returns>
-        private async Task<bool> VerifyInstallDirAsync(FileSystemPath dir)
+        private static async Task<bool> VerifyInstallDirAsync(FileSystemPath dir)
         {
             var files = new FileSystemPath[]
             {

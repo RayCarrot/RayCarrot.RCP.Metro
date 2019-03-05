@@ -21,20 +21,19 @@
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
                            Text="PlayStation Soundtrack" />
 
-                <local:InfoIcon IconKind="CloudDownload"
-                                Text="This utility requires additonal files to be downloaded" />
+                <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}" />
 
                 <local:InfoIcon Text="By default the PC version of Rayman features fewer tracks than the PlayStation version and does not have specific tracks for each part of the levels. By enabling this utility the game will run with the PlayStation soundtrack added on top instead." />
 
             </StackPanel>
 
             <Button Content="Install"
-                    Command="{Binding Path=InstallCommand}"
+                    Command="{Binding Path=InstallTPLSCommand}"
                     HorizontalAlignment="Left"
                     Visibility="{Binding Path=Data.TPLSData, Converter={rwpf:ObjectNullToVisibilityConverter}}"/>
 
             <Button Content="Uninstall"
-                    Command="{Binding Path=UninstallCommand}"
+                    Command="{Binding Path=UninstallTPLSCommand}"
                     HorizontalAlignment="Left"
                     Visibility="{Binding Path=Data.TPLSData, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"/>
 
@@ -83,6 +82,30 @@
                           SelectedIndex="{Binding Path=Data.TPLSData.DosBoxVersion, Converter={rwpf:EnumToIntConverter}}" />
 
             </Grid>
+
+            <Separator />
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                           Text="Complete Soundtrack (Rayman Forever)" />
+
+                <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}" />
+
+                <local:InfoIcon Text="Rayman Forever, including the GOG version, does not come with the complete soundtrack due to disc space originally not being available. This utility can replace the existing incomplete soundtrack with the complete one, or alternatively revert it back." />
+
+            </StackPanel>
+
+            <Button Content="Replace with complete soundtrack"
+                    HorizontalAlignment="Left"
+                    Command="{Binding Path=ReplaceSoundtrackCommand}"
+                    IsEnabled="{Binding Path=CanMusicBeReplaced}"
+                    Visibility="{Binding Path=IsOriginalMusic, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+
+            <Button Content="Revert back to incomplete soundtrack" 
+                    HorizontalAlignment="Left"
+                    Command="{Binding Path=ReplaceSoundtrackCommand}"
+                    IsEnabled="{Binding Path=CanMusicBeReplaced}"
+                    Visibility="{Binding Path=IsOriginalMusic, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"/>
 
         </StackPanel>
     </ScrollViewer>

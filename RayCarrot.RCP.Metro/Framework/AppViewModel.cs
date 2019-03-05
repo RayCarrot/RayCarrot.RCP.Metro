@@ -17,8 +17,6 @@ using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {
-    // TODO: Add RL debug commands using Uplay exe and fix R2 installer to not use .dat files, but GOG exe
-
     /// <summary>
     /// Handles common actions and events for this application
     /// </summary>
