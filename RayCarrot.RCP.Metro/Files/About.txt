@@ -1,5 +1,4 @@
 ﻿Known issues:
-- Rayman 2 button button mapping text box does not allow modifier keys (Ctrl, Shift, Win or Alt)
 - Fix R2 installer to not use .dat files, but GOG exe
 
 Unfinished features:
@@ -8,8 +7,6 @@ Unfinished features:
 - More logging (utilities etc.)
 
 - Port utilities:
--- RO 60fps videos
--- RO updater
 -- RO debug commands
 -- RL UbiRay
 -- RL debug commands

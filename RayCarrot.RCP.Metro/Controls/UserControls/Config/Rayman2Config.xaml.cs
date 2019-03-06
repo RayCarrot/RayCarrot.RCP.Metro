@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using MahApps.Metro.Controls;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -42,6 +43,11 @@ namespace RayCarrot.RCP.Metro
         {
             // Temporary solution for scrolling over data grid
             scrollViewer.ScrollToVerticalOffset(scrollViewer.ContentVerticalOffset - (e.Delta / 2d));
+        }
+
+        private void UIElement_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            ((HotKeyBox)sender).HotKey = new HotKey(e.Key);
         }
 
         #endregion

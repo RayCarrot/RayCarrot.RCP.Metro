@@ -149,7 +149,7 @@
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
 
-                                            <mah:HotKeyBox Grid.Column="0">
+                                            <mah:HotKeyBox Grid.Column="0" KeyDown="UIElement_OnKeyDown">
                                                 <mah:HotKeyBox.HotKey>
                                                     <Binding Path="NewKey" Converter="{local:KeyToHotKeyConverter}"
                                                              UpdateSourceTrigger="PropertyChanged">

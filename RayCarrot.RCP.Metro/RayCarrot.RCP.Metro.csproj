@@ -301,6 +301,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\UserControls\Utilities\RaymanOriginsUtilities.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\UserControls\Utilities\Rayman2Utilities.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -364,6 +368,9 @@
     </Compile>
     <Compile Include="Controls\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserControls\Utilities\RaymanOriginsUtilities.xaml.cs">
+      <DependentUpon>RaymanOriginsUtilities.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\UserControls\Utilities\Rayman2Utilities.xaml.cs">
       <DependentUpon>Rayman2Utilities.xaml</DependentUpon>
@@ -678,6 +685,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Files\Rayman3\dinput8_controller.dll" />
+    <Resource Include="Files\RaymanLegends\RL_Levels.txt" />
+    <Resource Include="Files\RaymanOrigins\RO_Levels.txt" />
     <Resource Include="Img\GameLogos\RaymanArena_Logo.png" />
     <Resource Include="Img\GameLogos\RaymanM_Logo.png" />
     <Resource Include="Installer\InstallerGifs\ASTRO.gif" />

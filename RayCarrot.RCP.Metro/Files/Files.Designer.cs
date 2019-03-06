@@ -62,24 +62,25 @@ namespace RayCarrot.RCP.Metro {
         
         /// <summary>
         ///   Looks up a localized string similar to Known issues:
-        ///- Rayman 2 button button mapping text box does not allow modifier keys (Ctrl, Shift, Win or Alt)
-        ///- The installer window is laggy
+        ///- Fix R2 installer to not use .dat files, but GOG exe
         ///
         ///Unfinished features:
-        ///
         ///- Add control tool tips
         ///- About page
-        ///
-        ///- Configuration dialogs for:
-        ///-- Rayman M/Arena
-        ///-- Rayman 3
-        ///-- Rayman Raving Rabbids
-        ///-- Rayman Origins
-        ///-- Rayman Legends
+        ///- More logging (utilities etc.)
         ///
         ///- Port utilities:
-        ///-- R1 PlayStation soundtrack (checkbox in config to launch in this mode)
-        ///-- Replace Rayman Forever incomplete soundtrack (checkbox in config, disabled  [rest of string was truncated]&quot;;.
+        ///-- RO debug commands
+        ///-- RL UbiRay
+        ///-- RL debug commands
+        ///
+        ///Upcoming features:
+        ///-- Education games support
+        ///-- Tonic Trouble support
+        ///-- Beyond Good &amp; Evil support
+        ///-- Rayman Raving Rabbids 2 support
+        ///-- Rabbids Go Home support
+        ///-- Rayman 3 Print Studio support.
         /// </summary>
         public static string About {
             get {
@@ -118,6 +119,42 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to cinematic\darkt_bosses\darkt_boss_ending_moon_cine.isc
+        ///cinematic_retro\boss\foodworld\sampledemo_bossfo.isc
+        ///enginedata\defaultloadingscreen\defaultblackscreen.isc
+        ///enginedata\defaultloadingscreen\defaultloadingscreen.isc
+        ///enginedata\defaultloadingscreen\logo_rl_mainmenu.isc
+        ///enginedata\defaultloadingscreen\interactiveloadingscreen\babeltower_rl\loading_babeltower.isc
+        ///enginedata\defaultloadingscreen\interactiveloadingscreen\babeltower_rl\score_recap_babeltower.isc
+        ///enginedata\defaultloadingscreen\interact [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string RL_Levels {
+            get {
+                return ResourceManager.GetString("RL_Levels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cinematic\boss\foodworld\sampledemo_bossfo.isc
+        ///cinematic\faery\faeryfree\background.isc
+        ///cinematic\faery\faeryfree\fo_faeryfreescene.isc
+        ///cinematic\faery\faeryfree\ju_faeryfreescene.isc
+        ///cinematic\faery\faeryfree\mo_faeryfreescene.isc
+        ///cinematic\faery\faeryfree\mu_faeryfreescene.isc
+        ///cinematic\faery\faeryfree\oc_faeryfreescene.isc
+        ///cinematic\levelending\levelending.isc
+        ///cinematic\levelending\levelending_graph.isc
+        ///scene\menus\inputconfiguration\inputconfiguration.isc
+        ///scene\menus\mainmenu\menuback.isc
+        ///sce [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string RO_Levels {
+            get {
+                return ResourceManager.GetString("RO_Levels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to -----   Version 4.0.0 - March ? 2019   -----
         ///
         ///• Windows Vista or higher is required to run the application
@@ -125,10 +162,10 @@ namespace RayCarrot.RCP.Metro {
         ///• Changed the theme to Metro theme with dark/light modes
         ///• Simplified game selection and utilities
         ///• Common DosBox commands can now be set using the new DosBox configuration dialog
+        ///• Rayman Origins debug commands have been simplified and Rayman Legends is now supported as well
         ///
         ///Other changes:
-        ///• Rayman M/Arena are now treated as separate games
-        ///• Rayman 2 utilities have been integrated into its configuration dialog. It now also shows the [rest of string was truncated]&quot;;.
+        ///• Utilities will now show if they require addiit [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

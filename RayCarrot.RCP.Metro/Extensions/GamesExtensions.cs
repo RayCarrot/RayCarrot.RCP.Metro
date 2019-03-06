@@ -197,7 +197,7 @@ namespace RayCarrot.RCP.Metro
                 var info = game.GetInfo();
 
                 // Get the game links
-                var links = game.GetGameFileLinks()?.Where(x => x.Path.FileExists);
+                var links = game.GetGameFileLinks()?.Where(x => x.Path.FileExists).ToList();
 
                 // Add links if there are any
                 if (links?.Any() ?? false)
@@ -233,12 +233,12 @@ namespace RayCarrot.RCP.Metro
                     // Add Steam links
                     actions.Add(new OverflowButtonItemViewModel("Open store page", PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
                     {
-                        await RCFRCP.File.LaunchFileAsync($"https://store.steampowered.com/app/" + game.GetSteamID());
+                        (await RCFRCP.File.LaunchFileAsync($"https://store.steampowered.com/app/" + game.GetSteamID()))?.Dispose();
                         RCF.Logger.LogTraceSource($"The game {game} Steam store page was opened");
                     })));
                     actions.Add(new OverflowButtonItemViewModel("Open community page", PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
                     {
-                        await RCFRCP.File.LaunchFileAsync($"https://steamcommunity.com/app/" + game.GetSteamID());
+                        (await RCFRCP.File.LaunchFileAsync($"https://steamcommunity.com/app/" + game.GetSteamID()))?.Dispose();
                         RCF.Logger.LogTraceSource($"The game {game} Steam community page was opened");
                     })));
 
@@ -710,6 +710,7 @@ namespace RayCarrot.RCP.Metro
                 case Games.Rayman1:
                 case Games.RaymanDesigner:
                 case Games.Rayman2:
+                case Games.RaymanOrigins:
                     return true;
 
                 case Games.RaymanByHisFans:
@@ -718,7 +719,6 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanArena:
                 case Games.Rayman3:
                 case Games.RaymanRavingRabbids:
-                case Games.RaymanOrigins:
                 case Games.RaymanLegends:
                 case Games.RaymanJungleRun:
                 case Games.RaymanFiestaRun:
@@ -745,13 +745,15 @@ namespace RayCarrot.RCP.Metro
                 case Games.Rayman2:
                     return new Rayman2Utilities();
 
+                case Games.RaymanOrigins:
+                    return new RaymanOriginsUtilities();
+                    
                 case Games.RaymanByHisFans:
                 case Games.Rayman60Levels:
                 case Games.RaymanM:
                 case Games.RaymanArena:
                 case Games.Rayman3:
                 case Games.RaymanRavingRabbids:
-                case Games.RaymanOrigins:
                 case Games.RaymanLegends:
                 case Games.RaymanJungleRun:
                 case Games.RaymanFiestaRun:

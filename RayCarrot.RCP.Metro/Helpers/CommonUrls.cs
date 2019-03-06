@@ -1,7 +1,5 @@
 ﻿namespace RayCarrot.RCP.Metro
 {
-    // TODO: Update urls to version 4.0
-
     /// <summary>
     /// Commons URLs used in the Rayman Control Panel
     /// </summary>
@@ -10,22 +8,22 @@
         /// <summary>
         /// The base URL for downloading utilities
         /// </summary>
-        public const string UtilityBaseUrl = "http://raycarrot.ylemnova.com/RCP/Resources/2.5.0/";
+        public const string UtilityBaseUrl = "http://raycarrot.ylemnova.com/RCP/Resources/4.0.0/";
 
         /// <summary>
         /// The Rayman 1 TPLS utility URL
         /// </summary>
-        public const string R1_TPLS_Url = UtilityBaseUrl + "R1/RayPlus/Music.zip";
+        public const string R1_TPLS_Url = UtilityBaseUrl + "R1/TPLS.zip";
 
         /// <summary>
         /// The Rayman 1 complete soundtrack utility URL
         /// </summary>
-        public const string R1_CompleteOST_URL = UtilityBaseUrl + "R1/CompleteOst/OST.zip";
+        public const string R1_CompleteOST_URL = UtilityBaseUrl + "R1/CompleteOST.zip";
 
         /// <summary>
         /// The Rayman 1 incomplete soundtrack utility URL
         /// </summary>
-        public const string R1_IncompleteOST_URL = UtilityBaseUrl + "R1/IncompleteOst/OST.zip";
+        public const string R1_IncompleteOST_URL = UtilityBaseUrl + "R1/IncompleteOST.zip";
 
         /// <summary>
         /// The Rayman Designer CLIENT.EXE replacement URL
@@ -101,5 +99,20 @@
         /// The Rayman 2 Slovak textures.cnt URL
         /// </summary>
         public const string R2_SlovakTexturesCnt_URL = UtilityBaseUrl + "R2/Translation_Slovak/Textures.cnt";
+
+        /// <summary>
+        /// The Rayman Origins original videos URL
+        /// </summary>
+        public const string RO_OriginalVideos_URL = UtilityBaseUrl + "RO/OriginalVideos.zip";
+
+        /// <summary>
+        /// The Rayman Origins high quality videos URL
+        /// </summary>
+        public const string RO_HQVideos_URL = UtilityBaseUrl + "RO/HQVideos.zip";
+
+        /// <summary>
+        /// The Rayman Origins updater URL
+        /// </summary>
+        public const string RO_Updater_URL = UtilityBaseUrl + "RO/Updater.zip";
     }
 }
