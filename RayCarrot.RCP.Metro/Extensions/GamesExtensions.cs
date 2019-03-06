@@ -992,7 +992,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             DirPath = RCFRCP.Data.RRRIsSaveDataInInstallDir ? gameInfo.InstallDirectory : new FileSystemPath(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore\\Program Files(x86)\\Ubisoft\\Rayman Raving Rabbids")),
                             SearchOption = SearchOption.TopDirectoryOnly,
-                            ExtensionFilter = ".sav",
+                            ExtensionFilter = "*.sav",
                             ID = "0"
                         }
                     };

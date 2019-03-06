@@ -9,12 +9,13 @@
 Other changes:
 • Utilities will now show if they require addiitonal files to be downloaded
 • The Rayman 1 PlayStation soundtrack utility now works without launching it from the utilities page
-• Rayman 2 utilities have been integrated into its configuration dialog. It now also shows the currently selected button mapping.
+• Some Rayman 2 utilities have been integrated into its configuration dialog. It now also shows the currently selected button mapping.
+• The Rayman 2 translation utility will now automatically download the correct textures file along with the translation
 • Rayman M/Arena are now treated as separate games
 • Windows Store games are now be found and launched using the WinRT Api rather than Explorer
 • Improved the game installer
 • The logger now logs to a file
-• Minor bug fixes
+• Bug fixes
 
 Removed features:
 • The links page has been removed. Some links can still be found in the about page.

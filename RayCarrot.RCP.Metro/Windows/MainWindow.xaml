@@ -4,7 +4,7 @@
                   xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-                  Title="Rayman Control Panel (Metro Beta)"
+                  Title="Rayman Control Panel"
                   Height="600"
                   Width="800"
                   Loaded="MainWindow_OnLoadedAsync"

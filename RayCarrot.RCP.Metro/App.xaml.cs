@@ -171,9 +171,16 @@ namespace RayCarrot.RCP.Metro
             // Hard code the current directory
             Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? Directory.GetCurrentDirectory());
 
-            // Remove log file if over 2 mb
-            if (CommonPaths.LogFile.GetSize() > ByteSize.FromMegaBytes(2))
-                File.Delete(CommonPaths.LogFile);
+            // Attempt to remove log file if over 2 mb
+            try
+            {
+                if (CommonPaths.LogFile.FileExists && CommonPaths.LogFile.GetSize() > ByteSize.FromMegaBytes(2))
+                    File.Delete(CommonPaths.LogFile);
+            }
+            catch (Exception ex)
+            {
+                ex.HandleCritical("Removing log file due to size");
+            }
 
             // Set up the framework
             await SetupFrameworkAsync(args);
