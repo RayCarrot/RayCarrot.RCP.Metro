@@ -7,9 +7,7 @@ Unfinished features:
 - More logging (utilities etc.)
 
 - Port utilities:
--- RO debug commands
 -- RL UbiRay
--- RL debug commands
 
 Upcoming features:
 -- Education games support
@@ -18,3 +16,4 @@ Upcoming features:
 -- Rayman Raving Rabbids 2 support
 -- Rabbids Go Home support
 -- Rayman 3 Print Studio support
+-- RL debug commands

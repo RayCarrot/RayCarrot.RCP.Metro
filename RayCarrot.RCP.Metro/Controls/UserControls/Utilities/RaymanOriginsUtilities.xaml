@@ -7,6 +7,7 @@
                        xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                        xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                       xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                        mc:Ignorable="d" 
                        d:DesignHeight="450" d:DesignWidth="800"
                        d:DataContext="{d:DesignInstance local:RaymanOriginsUtilitiesViewModel}">
@@ -53,9 +54,76 @@
 
             </StackPanel>
 
-            <CheckBox Content="Enable debug mode" />
+            <CheckBox Content="Enable debug mode" 
+                      IsChecked="{Binding Path=IsDebugModeEnabled}"/>
 
-            <CheckBox Content="Invincibility" />
+            <CheckBox Content="Invincibility"
+                      IsChecked="{Binding Path=IsInvincibilityEnabled}"
+                      IsThreeState="True"
+                      Visibility="{Binding Path=IsDebugModeEnabled, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+
+            <CheckBox Content="Hide mouse pointer"
+                      IsChecked="{Binding Path=IsMouseHidden}"
+                      IsThreeState="True"
+                      Visibility="{Binding Path=IsDebugModeEnabled, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+
+            <CheckBox Content="Max camera zoom"
+                      IsChecked="{Binding Path=IsCameraMaxZoom}"
+                      IsThreeState="True"
+                      Visibility="{Binding Path=IsDebugModeEnabled, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+
+            <Grid Visibility="{Binding Path=IsDebugModeEnabled, Converter={rwpf:BooleanToVisibilityConverter}}">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" MinWidth="110" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.Resources>
+                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Padding" Value="0 0 10 0" />
+                    </Style>
+                </Grid.Resources>
+
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 8" />
+                </i:Interaction.Behaviors>
+
+                <TextBlock Grid.Column="0"
+                           Grid.Row="0"
+                           Text="Framerate"/>
+
+                <mah:NumericUpDown Grid.Column="1"
+                                   Grid.Row="0"
+                                   Value="{Binding Path=SelectedFramerate}" />
+
+                <TextBlock Grid.Column="0"
+                           Grid.Row="1"
+                           Text="Map"/>
+
+                <ComboBox Grid.Column="1"
+                          Grid.Row="1"
+                          ItemsSource="{Binding Path=AvailableMaps, Mode=OneTime}"
+                          IsEditable="True"
+                          Text="{Binding Path=MapPath}" />
+
+                <TextBlock Grid.Column="0"
+                           Grid.Row="2"
+                           Text="Language"/>
+
+                <ComboBox Grid.Column="1"
+                          Grid.Row="2"
+                          ItemsSource="{Binding Path=Language, Mode=OneTime, Converter={rwpf:EnumToListConverter}}"
+                          SelectedIndex="{Binding Path=Language, Converter={rwpf:EnumToIntConverter}}" />
+
+            </Grid>
 
             <Separator />
 
