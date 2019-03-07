@@ -31,9 +31,7 @@
         </TabItem>
 
         <TabItem Header="About">
-            <ScrollViewer>
-                <TextBlock Text="{Binding Source={x:Static local:Files.About}, Mode=OneTime}" />
-            </ScrollViewer>
+            <local:AboutPage />
         </TabItem>
 
         <TabItem Header="Debug"

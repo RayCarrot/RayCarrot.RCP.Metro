@@ -301,6 +301,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\UserControls\Pages\AboutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\UserControls\Utilities\RaymanLegendsUtilities.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -372,6 +376,9 @@
     </Compile>
     <Compile Include="Controls\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserControls\Pages\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\UserControls\Utilities\RaymanLegendsUtilities.xaml.cs">
       <DependentUpon>RaymanLegendsUtilities.xaml</DependentUpon>
@@ -712,7 +719,6 @@
     <Resource Include="Installer\Games\Rayman2.txt" />
     <Resource Include="Installer\Games\RaymanArena.txt" />
     <Resource Include="Installer\Games\RaymanM.txt" />
-    <Resource Include="Files\About.txt" />
     <Content Include="Files\Rayman2\dinput_controller.dll" />
     <Content Include="Files\Rayman2\dinput_mapping.dll" />
     <Resource Include="Files\VersionHistory.txt" />

@@ -61,30 +61,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Known issues:
-        ///- Fix R2 installer to use GOG exe and create empty ubi.ini file
-        ///
-        ///Unfinished features:
-        ///- Add control tool tips
-        ///- About page
-        ///- More logging (utilities etc.)
-        ///
-        ///Upcoming features:
-        ///-- Education games support
-        ///-- Tonic Trouble support
-        ///-- Beyond Good &amp; Evil support
-        ///-- Rayman Raving Rabbids 2 support
-        ///-- Rabbids Go Home support
-        ///-- Rayman 3 Print Studio support
-        ///-- RL debug commands.
-        /// </summary>
-        public static string About {
-            get {
-                return ResourceManager.GetString("About", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         public static byte[] dinput_controller {

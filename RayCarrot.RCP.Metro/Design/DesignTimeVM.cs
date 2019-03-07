@@ -22,5 +22,7 @@ namespace RayCarrot.RCP.Metro
             new GameBackupItemViewModel(Games.RaymanOrigins),
             new GameBackupItemViewModel(Games.RaymanFiestaRun),
         };
+
+        public static AboutPageViewModel AboutPageViewModel => new AboutPageViewModel();
     }
 }

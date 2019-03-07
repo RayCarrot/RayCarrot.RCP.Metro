@@ -1,0 +1,97 @@
+﻿<local:BaseUserControl x:Class="RayCarrot.RCP.Metro.AboutPage"
+                       x:TypeArguments="local:AboutPageViewModel"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                       xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                       xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                       xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                       xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                       mc:Ignorable="d"
+                       d:DesignWidth="800" MaxWidth="800"
+                       d:DataContext="{x:Static local:DesignTimeVM.AboutPageViewModel}">
+    <ScrollViewer Padding="5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0">
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 15" />
+                </i:Interaction.Behaviors>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                           FontSize="14"
+                           Text="{Binding Path=MainAboutText, Mode=OneTime}" 
+                           TextWrapping="WrapWithOverflow" />
+
+                    <Image Grid.Column="1"
+                       Margin="10"
+                       Source="../../../Img/Rayman Control Panel Icon.ico"
+                       Height="128" Width="128"/>
+
+                </Grid>
+
+                <TextBlock Text="Credits"
+                       Style="{StaticResource LargeHeaderTextBlock}"
+                       HorizontalAlignment="Center"/>
+
+                <local:DuoGrid HorizontalAlignment="Center"
+                           Items="{Binding Path=Credits, Mode=OneTime}" />
+
+                <TextBlock Text="{Binding Path=SpecialThanks, Mode=OneTime}" 
+                       HorizontalAlignment="Center"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        Margin="10"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Bottom">
+
+                <local:IconButton IconKind="TooltipText"
+                                  ToolTip="Update history"/>
+
+                <local:IconButton IconKind="Update"
+                                  ToolTip="Check for new updates"/>
+
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                        Margin="10"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom">
+                
+                <local:IconButton IconKind="GithubCircle"
+                                  ToolTip="GitHub"/>
+
+                <local:IconButton IconKind="Youtube"
+                                  ToolTip="YouTube"
+                                  Foreground="Red"/>
+                
+                <local:IconButton IconKind="Twitter"
+                                  ToolTip="Twitter"
+                                  Foreground="#38A1F3"/>
+                
+                <local:IconButton IconKind="EmailOutline"
+                                  ToolTip="Email"
+                                  Foreground="Purple"/>
+
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
+</local:BaseUserControl>
