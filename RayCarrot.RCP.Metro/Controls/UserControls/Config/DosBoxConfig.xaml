@@ -51,9 +51,11 @@
 
                 <WrapPanel>
                     <RadioButton Content="File"
+                                 ToolTip="Indicate that the mount path is a file"
                                  Margin="0 0 8 0"
                                  IsChecked="True" />
                     <RadioButton x:Name="DriveBrowseToggle"
+                                 ToolTip="Indicate that the mount path is a drive or disc"
                                  Content="Drive" />
                 </WrapPanel>
 
@@ -74,6 +76,7 @@
                     </i:Interaction.Behaviors>
 
                     <CheckBox Content="Fullscreen"
+                              ToolTip="Start dosbox directly in fullscreen"
                               IsChecked="{Binding Path=FullscreenEnabled}"
                               IsThreeState="True" />
 
@@ -83,6 +86,7 @@
                               IsThreeState="True" />
 
                     <CheckBox Content="Aspect ratio correction"
+                              ToolTip="Do aspect correction, if your output method doesn't support scaling this can slow things down!"
                               IsChecked="{Binding Path=AspectCorrectionEnabled}"
                               IsThreeState="True" />
 
@@ -121,6 +125,7 @@
                                Text="Memory Size"/>
 
                     <mah:NumericUpDown Grid.Column="1"
+                                       ToolTip="Amount of memory DOSBox has in megabytes"
                                        Grid.Row="0"
                                        Value="{Binding Path=MemorySize}" />
 
@@ -130,6 +135,7 @@
 
                     <mah:NumericUpDown Grid.Column="1"
                                        Grid.Row="1"
+                                       ToolTip="How many frames DOSBox skips before drawing one"
                                        Value="{Binding Path=Frameskip}" />
 
                     <TextBlock Grid.Column="0"
@@ -138,6 +144,7 @@
 
                     <ComboBox Grid.Column="1"
                               Grid.Row="2"
+                              ToolTip="What to use for output"
                               ItemsSource="{Binding Path=AvailableDosBoxOutputs, Mode=OneTime}"
                               SelectedItem="{Binding Path=SelectedOutput}" />
 
@@ -147,6 +154,7 @@
 
                     <ComboBox Grid.Column="1"
                               Grid.Row="3"
+                              ToolTip="What resolution to use for fullscreen: original or fixed size (e.g. 1024x768)"
                               ItemsSource="{Binding Path=AvailableResolutionValues, Mode=OneTime}"
                               IsEditable="True"
                               IsTextSearchEnabled="False">
@@ -165,6 +173,7 @@
 
                     <ComboBox Grid.Column="1"
                               Grid.Row="4"
+                              ToolTip="Scale the window to this size IF the output device supports hardware scaling"
                               ItemsSource="{Binding Path=AvailableResolutionValues, Mode=OneTime}"
                               IsEditable="True"
                               IsTextSearchEnabled="False">
@@ -183,15 +192,17 @@
 
                     <ComboBox Grid.Column="1"
                               Grid.Row="5"
+                              ToolTip="Scaler used to enlarge/enhance low resolution modes"
                               ItemsSource="{Binding Path=AvailableDosBoxScalers, Mode=OneTime}"
                               SelectedItem="{Binding Path=SelectedScaler}" />
 
                     <TextBlock Grid.Column="0"
                                Grid.Row="6"
-                               Text="Scaler"/>
+                               Text="Core"/>
 
                     <ComboBox Grid.Column="1"
                               Grid.Row="6"
+                              ToolTip="CPU Core used in emulation. Auto switches from normal to dynamic if appropriate."
                               ItemsSource="{Binding Path=AvailableDosBoxCoreModes, Mode=OneTime}"
                               SelectedItem="{Binding Path=SelectedCoreMode}" />
 
@@ -201,6 +212,7 @@
 
                     <ComboBox Grid.Column="1"
                               Grid.Row="7"
+                              ToolTip="Amount of instructions DOSBox tries to emulate each millisecond. Setting this value too high results in sound dropouts and lags. You can also let DOSBox guess the correct value by setting it to max. The default setting (auto) switches to max if appropriate."
                               ItemsSource="{Binding Path=AvailableDosBoxCycleModes}"
                               IsEditable="True"
                               IsTextSearchEnabled="False">

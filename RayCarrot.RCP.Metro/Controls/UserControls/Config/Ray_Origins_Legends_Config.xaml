@@ -29,6 +29,7 @@
 
                 <StackPanel Orientation="Horizontal">
                     <mah:NumericUpDown Value="{Binding Path=ScreenWidth}"
+                                       ToolTip="The horizontal screen resolution"
                                        Minimum="1"
                                        Maximum="99999"
                                        IsEnabled="{Binding Path=LockToScreenRes, Converter={rwpf:InvertedBooleanConverter}}" />
@@ -38,6 +39,7 @@
                                FontSize="14" />
 
                     <mah:NumericUpDown Value="{Binding Path=ScreenHeight}"
+                                       ToolTip="The vertical screen resolution"
                                        Minimum="1"
                                        Maximum="99999"
                                        IsEnabled="{Binding Path=LockToScreenRes, Converter={rwpf:InvertedBooleanConverter}}" />
@@ -45,9 +47,11 @@
                 </StackPanel>
 
                 <CheckBox Content="Lock to screen resolution"
+                          ToolTip="Check to lock the horizontal and vertical values to the ones of the current screen resolution"
                           IsChecked="{Binding Path=LockToScreenRes}" />
 
                 <CheckBox Content="Fullscreen"
+                          ToolTip="Check to run the game in fullscreen, otherwise it'll run in windowed mode"
                           IsChecked="{Binding Path=FullscreenMode}" />
 
             </StackPanel>

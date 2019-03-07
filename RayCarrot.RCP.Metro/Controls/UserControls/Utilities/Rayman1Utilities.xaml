@@ -38,6 +38,7 @@
                     Visibility="{Binding Path=Data.TPLSData, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"/>
 
             <CheckBox Content="Enabled"
+                      ToolTip="Check to run the game using this utility"
                       IsChecked="{Binding Path=Data.TPLSData.IsEnabled}"
                       Visibility="{Binding Path=Data.TPLSData, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"/>
 

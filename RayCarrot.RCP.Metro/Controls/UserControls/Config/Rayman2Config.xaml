@@ -35,6 +35,7 @@
 
                 <StackPanel Orientation="Horizontal">
                     <mah:NumericUpDown Value="{Binding Path=ResX}"
+                                       ToolTip="The horizontal screen resolution"
                                        Minimum="1"
                                        Maximum="99999"
                                        IsEnabled="{Binding Path=LockToScreenRes, Converter={rwpf:InvertedBooleanConverter}}" />
@@ -44,6 +45,7 @@
                                FontSize="14" />
 
                     <mah:NumericUpDown Value="{Binding Path=ResY}"
+                                       ToolTip="The vertical screen resolution"
                                        Minimum="1"
                                        Maximum="99999"
                                        IsEnabled="{Binding Path=LockToScreenRes, Converter={rwpf:InvertedBooleanConverter}}" />
@@ -56,9 +58,11 @@
                     </i:Interaction.Behaviors>
 
                     <CheckBox Content="Lock to screen resolution"
+                              ToolTip="Check to lock the horizontal and vertical values to the ones of the current screen resolution"
                               IsChecked="{Binding Path=LockToScreenRes}" />
 
                     <CheckBox Content="Enable widescreen support"
+                              ToolTip="Check to enable widescreen support, thus not stretching the game on an aspect ratio other than 4:3"
                               IsChecked="{Binding Path=WidescreenSupport}" />
 
                 </WrapPanel>
@@ -69,9 +73,11 @@
                     </i:Interaction.Behaviors>
 
                     <RadioButton Content="Horizontal widescreen"
+                                 ToolTip="Make the widescreen expand horizontally"
                                  IsChecked="{Binding Path=IsHorizontalWidescreen}" />
 
                     <RadioButton Content="Vertical widescreen"
+                                 ToolTip="Make the widescreen shrink vertically"
                                  IsChecked="{Binding Path=IsHorizontalWidescreen, Converter={rwpf:InvertedBooleanConverter}}" />
 
                 </WrapPanel>

@@ -253,6 +253,24 @@ namespace RayCarrot.RCP.Metro
 
                 RCF.Logger.LogInformationSource($"The installation finished with the result of {result}");
 
+                // Check if the game is Rayman 2
+                if (result == RayGameInstallerResult.Successful && Game == Games.Rayman2)
+                {
+                    try
+                    {
+                        // Write the GOG exe file
+                        File.WriteAllBytes(output + "Rayman2.exe", Files.Rayman2_GOG);
+
+                        // Create ubi.ini file
+                        File.Create(output + "ubi.ini");
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleError("Applying R2 installer extras");
+                        result = RayGameInstallerResult.Failed;
+                    }
+                }
+
                 // Make sure the result was successful
                 if (result == RayGameInstallerResult.Successful)
                 {

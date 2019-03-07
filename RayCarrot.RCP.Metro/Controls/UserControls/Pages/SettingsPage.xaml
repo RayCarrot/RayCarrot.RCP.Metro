@@ -10,7 +10,7 @@
                        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                        mc:Ignorable="d"
-                       d:DesignHeight="450" d:DesignWidth="800"
+                       d:DesignWidth="800"
                        d:DataContext="{d:DesignInstance local:SettingsPageViewModel}">
     <ScrollViewer Padding="5">
         <StackPanel>
@@ -94,13 +94,21 @@
                                         OffLabel="Light" />
 
                     <CheckBox Content="Show success messages"
+                              ToolTip="Show a message when an operation has succeeded"
                               IsChecked="{Binding Path=ShowActionComplete}" />
 
                     <CheckBox Content="Show not installed games"
+                              ToolTip="Check if games which are not installed should be shown in the games page"
                               IsChecked="{Binding Path=ShowNotInstalledGames}" />
 
                     <CheckBox Content="Show detailed game information"
+                              ToolTip="Check to show detailed game information in the game options dialog"
                               IsChecked="{Binding Path=ShowDetailedGameInfo}" />
+
+                    <CheckBox Content="Show progress on task bar icon"
+                              ToolTip="Check to show download progress on the taskbar icon"
+                              IsChecked="{Binding Path=ShowProgressOnTaskBar}"
+                              DataContext="{Binding Path=Data}" />
 
                 </StackPanel>
 
@@ -126,6 +134,7 @@
 
                         <rwpf:BrowseBox FileFilter="Exe Files (.exe)|*.exe|All Files (*.*)|*.*"
                                         FilePath="{Binding Path=DosBoxPath}"
+                                        ToolTip="The DosBox file path"
                                         BrowseType="File"
                                         PathValidation="FileExists" />
 
@@ -139,6 +148,7 @@
 
                         <rwpf:BrowseBox FileFilter="Exe Files (.exe)|*.exe|All Files (*.*)|*.*"
                                         FilePath="{Binding Path=DosBoxConfig}"
+                                        ToolTip="The DosBox configuration file path"
                                         BrowseType="File"
                                         PathValidation="FileExists" />
 
@@ -171,7 +181,8 @@
                                    Margin="0 0 0 8" />
 
                         <ComboBox ItemsSource="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToListConverter}, Mode=OneTime}"
-                                  SelectedIndex="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToIntConverter}}" />
+                                  SelectedIndex="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToIntConverter}}"
+                                  ToolTip="The exception level for displaying debug and trace information"/>
 
                     </StackPanel>
 
@@ -192,23 +203,23 @@
                     </i:Interaction.Behaviors>
 
                     <CheckBox Content="Automatically locate installed games"
+                              ToolTip="Check to automatically locate installed game on launch"
                               IsChecked="{Binding Path=AutoLocateGames}"
                               DataContext="{Binding Path=Data}" />
 
                     <CheckBox Content="Automatically check for program updates"
+                              ToolTip="Check to automatically check for new updates on launch"
                               IsChecked="{Binding Path=AutoUpdate}"
                               DataContext="{Binding Path=Data}" />
 
                     <CheckBox Content="Close application when launching a game"
+                              ToolTip="Check to automatically close the Rayman Control Panel when launching a game from it"
                               IsChecked="{Binding Path=CloseAppOnGameLaunch}"
                               DataContext="{Binding Path=Data}" />
 
                     <CheckBox Content="Close configuration dialog when saving"
+                              ToolTip="Check to automatically close the options dialog when saving"
                               IsChecked="{Binding Path=CloseConfigOnSave}"
-                              DataContext="{Binding Path=Data}" />
-
-                    <CheckBox Content="Show progress on task bar icon"
-                              IsChecked="{Binding Path=ShowProgressOnTaskBar}"
                               DataContext="{Binding Path=Data}" />
 
                     <StackPanel>
@@ -219,14 +230,11 @@
 
                         <rwpf:BrowseBox FilePath="{Binding Path=BackupLocation, UpdateSourceTrigger=LostFocus}"
                                         BrowseType="Directory"
+                                        ToolTip="The backup directory"
                                         PathValidation="DirectoryExistsAndNotEmpty"
                                         DataContext="{Binding Path=Data}"/>
 
                     </StackPanel>
-
-                    <Button Content="Reset"
-                            Command="{Binding Path=ResetCommand}"
-                            HorizontalAlignment="Left"/>
 
                 </StackPanel>
 

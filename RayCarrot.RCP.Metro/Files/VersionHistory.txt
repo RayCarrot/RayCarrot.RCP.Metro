@@ -13,6 +13,7 @@ Other changes:
 • Some Rayman 2 utilities have been integrated into its configuration dialog. It now also shows the currently selected button mapping.
 • The Rayman 2 translation utility will now automatically download the correct textures file along with the translation
 • The option to revert back to the originl Rayman Origins videos has been added
+• When selecting a map to load in Rayman Origins there will now be a list of all available options
 • Rayman M/Arena are now treated as separate games
 • Windows Store games are now be found and launched using the WinRT Api rather than Explorer
 • Improved the game installer
@@ -31,7 +32,7 @@ Removed features:
 • Several Rayman 2 configuration options were removed, including the nGlide settings. These can still be accessed from the game's native configuration tools.
 • Several Rayman Raving Rabbids configuration options were removed. These can still be accessed from within the game.
 • The Rayman Fiesta Run version can no longer be chosen. If both are installed, the Windows 10 edition is prioritized.
-• Digital versions of Rayman Origins can no longer be updated. This is due to the GOG version recently recieving the 1.02 update it was previously missing.
+• Digital versions of Rayman Origins can no longer be updated through the utilities. This is due to the GOG version recently recieving the 1.02 update it was previously missing.
 
 
 -----   Version 3.2.2 - February 21, 2019   -----

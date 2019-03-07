@@ -62,17 +62,12 @@ namespace RayCarrot.RCP.Metro {
         
         /// <summary>
         ///   Looks up a localized string similar to Known issues:
-        ///- Fix R2 installer to not use .dat files, but GOG exe
+        ///- Fix R2 installer to use GOG exe and create empty ubi.ini file
         ///
         ///Unfinished features:
         ///- Add control tool tips
         ///- About page
         ///- More logging (utilities etc.)
-        ///
-        ///- Port utilities:
-        ///-- RO debug commands
-        ///-- RL UbiRay
-        ///-- RL debug commands
         ///
         ///Upcoming features:
         ///-- Education games support
@@ -80,7 +75,8 @@ namespace RayCarrot.RCP.Metro {
         ///-- Beyond Good &amp; Evil support
         ///-- Rayman Raving Rabbids 2 support
         ///-- Rabbids Go Home support
-        ///-- Rayman 3 Print Studio support.
+        ///-- Rayman 3 Print Studio support
+        ///-- RL debug commands.
         /// </summary>
         public static string About {
             get {
@@ -119,18 +115,12 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to cinematic\darkt_bosses\darkt_boss_ending_moon_cine.isc
-        ///cinematic_retro\boss\foodworld\sampledemo_bossfo.isc
-        ///enginedata\defaultloadingscreen\defaultblackscreen.isc
-        ///enginedata\defaultloadingscreen\defaultloadingscreen.isc
-        ///enginedata\defaultloadingscreen\logo_rl_mainmenu.isc
-        ///enginedata\defaultloadingscreen\interactiveloadingscreen\babeltower_rl\loading_babeltower.isc
-        ///enginedata\defaultloadingscreen\interactiveloadingscreen\babeltower_rl\score_recap_babeltower.isc
-        ///enginedata\defaultloadingscreen\interact [rest of string was truncated]&quot;;.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        public static string RL_Levels {
+        public static byte[] Rayman2_GOG {
             get {
-                return ResourceManager.GetString("RL_Levels", resourceCulture);
+                object obj = ResourceManager.GetObject("Rayman2_GOG", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

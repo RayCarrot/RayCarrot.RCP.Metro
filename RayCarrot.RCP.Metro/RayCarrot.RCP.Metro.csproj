@@ -301,6 +301,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\UserControls\Utilities\RaymanLegendsUtilities.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\UserControls\Utilities\RaymanOriginsUtilities.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -369,12 +373,17 @@
     <Compile Include="Controls\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UserControls\Utilities\RaymanLegendsUtilities.xaml.cs">
+      <DependentUpon>RaymanLegendsUtilities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Utilities\RaymanLegendsUtilitiesViewModel.cs" />
     <Compile Include="Controls\UserControls\Utilities\RaymanOriginsUtilities.xaml.cs">
       <DependentUpon>RaymanOriginsUtilities.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\UserControls\Utilities\Rayman2Utilities.xaml.cs">
       <DependentUpon>Rayman2Utilities.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Utilities\RaymanOriginsUtilitiesViewModel.cs" />
     <Compile Include="ViewModels\Utilities\Rayman2UtilitiesViewModel.cs" />
     <Compile Include="Controls\UserControls\Utilities\RaymanDesignerUtilities.xaml.cs">
       <DependentUpon>RaymanDesignerUtilities.xaml</DependentUpon>
@@ -684,8 +693,8 @@
     <Resource Include="Img\MessageIcons\Question.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Files\Rayman2\Rayman2_GOG.exe" />
     <Content Include="Files\Rayman3\dinput8_controller.dll" />
-    <Resource Include="Files\RaymanLegends\RL_Levels.txt" />
     <Resource Include="Files\RaymanOrigins\RO_Levels.txt" />
     <Resource Include="Img\GameLogos\RaymanArena_Logo.png" />
     <Resource Include="Img\GameLogos\RaymanM_Logo.png" />
@@ -708,7 +717,9 @@
     <Content Include="Files\Rayman2\dinput_mapping.dll" />
     <Resource Include="Files\VersionHistory.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Files\RaymanLegends\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

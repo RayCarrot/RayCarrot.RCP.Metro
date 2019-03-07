@@ -300,19 +300,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Resets all user data for the application
-        /// </summary>
-        /// <returns></returns>
-        public void ResetData()
-        {
-            RCFData.UserDataCollection.ForEach(x => x.Reset());
-
-            RCF.Logger.LogInformationSource($"The application user data was reset");
-
-            OnRefreshRequired();
-        }
-
-        /// <summary>
         /// Enables write access to the primary ubi.ini file
         /// </summary>
         /// <returns>The task</returns>

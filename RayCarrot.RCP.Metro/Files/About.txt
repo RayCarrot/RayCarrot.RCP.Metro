@@ -1,13 +1,7 @@
-﻿Known issues:
-- Fix R2 installer to not use .dat files, but GOG exe
-
-Unfinished features:
-- Add control tool tips
+﻿Unfinished features:
 - About page
 - More logging (utilities etc.)
-
-- Port utilities:
--- RL UbiRay
+- Updater (check button in about page)
 
 Upcoming features:
 -- Education games support
