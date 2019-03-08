@@ -1,9 +1,5 @@
 ﻿using RayCarrot.CarrotFramework;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using System;
-using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro.Legacy
 {

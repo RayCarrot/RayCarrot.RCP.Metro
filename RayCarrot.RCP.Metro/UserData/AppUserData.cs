@@ -38,7 +38,6 @@ namespace RayCarrot.RCP.Metro
             ShowActionComplete = true;
             DosBoxPath = FileSystemPath.EmptyPath;
             DosBoxConfig = FileSystemPath.EmptyPath;
-            DialogAsWindow = true;
             AutoLocateGames = true;
             AutoUpdate = true;
             IsFiestaRunWin10Edition = true;
@@ -128,13 +127,6 @@ namespace RayCarrot.RCP.Metro
         /// Optional path for the DosBox config file
         /// </summary>
         public string DosBoxConfig { get; set; }
-
-        /// <summary>
-        /// True if all dialogs should be shown as windows
-        /// or false if the primary dialogs should be shown
-        /// as metro dialogs
-        /// </summary>
-        public bool DialogAsWindow { get; set; }
 
         /// <summary>
         /// Indicates if games should be automatically located on startup

@@ -267,9 +267,13 @@ namespace RayCarrot.RCP.Metro
         /// Removes the specified game
         /// </summary>
         /// <param name="game">The game to remove</param>
-        public void RemoveGame(Games game)
+        /// <param name="forceRemove">Indicates if the game should be force removed</param>
+        /// <returns>The task</returns>
+        public async Task RemoveGameAsync(Games game, bool forceRemove)
         {
-            // TODO: Warn about utilities
+            // Warn about utilities
+            if (game.HasUtilities() && !forceRemove && !await RCF.MessageUI.DisplayMessageAsync("Removing this game will not disable any applied utilities. Continue?", "Utility warning", MessageType.Warning, true))
+                return;
 
             // Remove the game
             Data.Games.Remove(game);
@@ -738,6 +742,8 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
+                RCF.Logger.LogInformationSource($"A download is starting...");
+
                 // Make sure the directory exists
                 if (!outputDir.DirectoryExists)
                     Directory.CreateDirectory(outputDir);
@@ -745,6 +751,8 @@ namespace RayCarrot.RCP.Metro
                 // Make sure there are input sources to download
                 if (!inputSources.Any())
                 {
+                    RCF.Logger.LogInformationSource($"Download failed due to there not being any input sources");
+
                     await RCF.MessageUI.DisplayMessageAsync("No files were found to download", "Error", MessageType.Error);
                     return false;
                 }
@@ -762,6 +770,8 @@ namespace RayCarrot.RCP.Metro
                             size = size.Add(new ByteSize(Convert.ToDouble(webResponse.Headers.Get("Content-Length"))));
                     }
 
+                    RCF.Logger.LogDebugSource($"The size of the download has been retrieved as {size}");
+
                     if (!await RCF.MessageUI.DisplayMessageAsync($"This patch requires its files to be downloaded. The total size of the download is {size}. Continue?", "Confirm download", MessageType.Question, true))
                         return false;
                 }
@@ -777,6 +787,8 @@ namespace RayCarrot.RCP.Metro
 
                 // Show the dialog
                 dialog.ShowDialog();
+
+                RCF.Logger.LogInformationSource($"The download finished with the result of {dialog.ViewModel.DownloadState}");
 
                 // Return the result
                 return dialog.ViewModel.DownloadState == DownloadState.Succeeded;

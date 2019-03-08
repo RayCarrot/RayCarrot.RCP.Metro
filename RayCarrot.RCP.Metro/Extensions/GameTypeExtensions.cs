@@ -1,16 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO.Packaging;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using Windows.Management.Deployment;
-using MahApps.Metro.IconPacks;
-using Microsoft.Win32;
-using RayCarrot.CarrotFramework;
-using RayCarrot.Windows.Registry;
-using RayCarrot.Windows.Shell;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

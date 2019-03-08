@@ -186,8 +186,8 @@ namespace RayCarrot.RCP.Metro
             /// Default constructor
             /// </summary>
             /// <param name="path">The path of the ubi.ini file</param>
-            /// <param name="sectionName">The name of the section to retrieve, usually the name of the game</param>
-            public DuplicateSectionUbiIniHandler(FileSystemPath path, string sectionName) : base(path, sectionName)
+            /// <param name="sectionKey">The name of the section to retrieve, usually the name of the game</param>
+            public DuplicateSectionUbiIniHandler(FileSystemPath path, string sectionKey) : base(path, sectionKey)
             {
 
             }

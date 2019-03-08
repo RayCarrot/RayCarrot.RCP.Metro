@@ -128,6 +128,8 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
+                RCF.Logger.LogInformationSource($"The TPLS utility is downloading...");
+
                 // Check if the directory exists
                 if (CommonPaths.TPLSDir.DirectoryExists)
                     // Delete the directory
@@ -146,6 +148,8 @@ namespace RayCarrot.RCP.Metro
 
                 // Save
                 RCFRCP.Data.TPLSData = new TPLSData(CommonPaths.TPLSDir);
+
+                RCF.Logger.LogInformationSource($"The TPLS utility has been downloaded");
             }
             catch (Exception ex)
             {
@@ -169,6 +173,8 @@ namespace RayCarrot.RCP.Metro
                 await RCF.MessageUI.DisplayMessageAsync("Utility was successfully uninstalled", "Uninstall Complete", MessageType.Success);
 
                 RCFRCP.Data.TPLSData = null;
+
+                RCF.Logger.LogInformationSource($"The TPLS utility has been uninstalled");
             }
             catch (Exception ex)
             {
@@ -185,6 +191,8 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
+                RCF.Logger.LogInformationSource($"The Rayman 1 soundtrack is being replaced with the {(IsOriginalMusic ? "complete version" : "original version")}");
+
                 // Download the files
                 var succeeded = await App.DownloadAsync(new Uri[]
                 {

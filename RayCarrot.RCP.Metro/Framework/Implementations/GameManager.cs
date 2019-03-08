@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using Windows.Devices.SmartCards;
 using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro
@@ -145,6 +144,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task LaunchGameAsync(Games game)
         {
+            RCF.Logger.LogTraceSource($"The game {game} is being launched...");
+
             var type = game.GetInfo().GameType;
 
             // If it's a Windows Store app, launch the first package app entry instead

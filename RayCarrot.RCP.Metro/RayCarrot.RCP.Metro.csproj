@@ -297,10 +297,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Drafts\PointerPopup.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\UserControls\Pages\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -439,9 +435,6 @@
     </Compile>
     <Compile Include="Controls\UserControls\Config\RaymanRavingRabbidsConfig.xaml.cs">
       <DependentUpon>RaymanRavingRabbidsConfig.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UserControls\Drafts\PointerPopup.xaml.cs">
-      <DependentUpon>PointerPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Config\Base\BaseUbiIniGameConfigViewModel.cs" />
     <Compile Include="Controls\UserControls\Config\DosBoxConfig.xaml.cs">

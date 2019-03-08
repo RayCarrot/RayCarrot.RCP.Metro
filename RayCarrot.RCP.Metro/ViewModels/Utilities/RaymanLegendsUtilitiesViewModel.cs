@@ -66,8 +66,12 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
+                RCF.Logger.LogInformationSource($"The Rayman Legends UbiRay utility is being applied...");
+
                 if (!SelectedPath.DirectoryExists)
                 {
+                    RCF.Logger.LogInformationSource($"The Rayman Legends UbiRay utility could not be applied due to the selected directory not existing");
+
                     await RCF.MessageUI.DisplayMessageAsync("Please select a valid save directory", "Error", MessageType.Error);
                     return;
                 }
@@ -94,6 +98,8 @@ namespace RayCarrot.RCP.Metro
 
                 if (usernameLocation == 0)
                 {
+                    RCF.Logger.LogInformationSource($"The Rayman Legends UbiRay utility could not be applied due to the username location not being found");
+
                     await RCF.MessageUI.DisplayMessageAsync("Could not read save file", "Error", MessageType.Error);
                     return;
                 }
@@ -107,6 +113,8 @@ namespace RayCarrot.RCP.Metro
 
                 if (locations.Count < 2)
                 {
+                    RCF.Logger.LogInformationSource($"The Rayman Legends UbiRay utility could not be applied due to the costume location not being found");
+
                     await RCF.MessageUI.DisplayMessageAsync("Make sure the normal Rayman skin is selected and try again", "Error", MessageType.Error);
                     return;
                 }
@@ -135,6 +143,8 @@ namespace RayCarrot.RCP.Metro
                     stream.Position = locations.Last();
                     stream.Write(input, 0, input.Length);
                 }
+
+                RCF.Logger.LogInformationSource($"The Rayman Legends UbiRay utility has been applied");
 
                 await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("Your save file was successfully edited with Ubi-Ray.", "Action complete");
             }

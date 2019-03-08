@@ -123,12 +123,11 @@ namespace RayCarrot.RCP.Metro
         {
             // Ask the user
             if (!await RCF.MessageUI.DisplayMessageAsync($"Are you sure you want to remove {DisplayName} from the Rayman Control Panel? This will not remove the game from " +
-                                                         $"your computer or any of its files, including the backups created using this program. Changes made using the utilities " +
-                                                         $"may also remain.", "Confirm remove", MessageType.Question, true))
+                                                         $"your computer or any of its files, including the backups created using this program.", "Confirm remove", MessageType.Question, true))
                 return;
 
             // Remove the game
-            RCFRCP.App.RemoveGame(Game);
+            await RCFRCP.App.RemoveGameAsync(Game, false);
         }
 
         /// <summary>

@@ -55,6 +55,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ReplaceRayKitAsync()
         {
+            RCF.Logger.LogInformationSource($"The Rayman Designer replacement patch is downloading...");
+
             // Find the files to be replaced
             var files = new Tuple<string, Uri>[]
             {
@@ -97,7 +99,9 @@ namespace RayCarrot.RCP.Metro
                 }
             }
 
-            await RCF.MessageUI.DisplayMessageAsync($"{foundFiles.Count}/{files.Count()} files were found to replace. This might require several downloads depending on their locations.", "Information", MessageType.Information);
+            RCF.Logger.LogInformationSource($"The following Rayman Designer files were found to replace: {foundFiles.Select(x => x.Item1.Name).JoinItems(", ")}");
+
+            await RCF.MessageUI.DisplayMessageAsync($"{foundFiles.Count}/{files.Length} files were found to replace. This might require several downloads depending on their locations.", "Information", MessageType.Information);
 
             try
             {
@@ -108,6 +112,8 @@ namespace RayCarrot.RCP.Metro
                 foreach (var group in groups)
                     // Download the files
                     await App.DownloadAsync(group.Select(x => x.Item2).ToList(), false, group.Key);
+
+                RCF.Logger.LogInformationSource($"The Rayman Designer files have been replaced");
 
                 await RCF.MessageUI.DisplayMessageAsync("Replacement complete", "Operation complete", MessageType.Information);
             }
@@ -152,6 +158,8 @@ namespace RayCarrot.RCP.Metro
                     "SrcDataPath =\\",
                     "Directory =.\\"
                 });
+
+                RCF.Logger.LogInformationSource($"The Rayman Designer config file has been recreated");
 
                 await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("The file was successfully created.", "Action complete");
             }

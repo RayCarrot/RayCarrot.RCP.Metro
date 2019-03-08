@@ -313,7 +313,7 @@ namespace RayCarrot.RCP.Metro
                     var sectionData = ConfigData.GetSectionData();
 
                     // Load the file data
-                    var secondaryDataHandler = new DuplicateSectionUbiIniHandler(CommonPaths.UbiIniPath2, ConfigData.SectionName);
+                    var secondaryDataHandler = new DuplicateSectionUbiIniHandler(CommonPaths.UbiIniPath2, ConfigData.SectionKey);
 
                     // Duplicate the data
                     secondaryDataHandler.Duplicate(sectionData);

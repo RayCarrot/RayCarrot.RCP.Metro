@@ -406,7 +406,7 @@ namespace RayCarrot.RCP.Metro
         private static async Task PostUpdateAsync()
         {
             RCF.Logger.LogInformationSource($"Current version is {RCFRCP.App.CurrentVersion}");
-            var l = RCFRCP.Data;
+
             // Make sure this is a new version
             if (!(RCFRCP.Data.LastVersion < RCFRCP.App.CurrentVersion))
             {

@@ -90,7 +90,7 @@ namespace RayCarrot.RCP.Metro
                         await RCF.MessageUI.DisplayMessageAsync($"The game {game.GetDisplayName()} was not found", "Unable to find game", MessageType.Error);
 
                         // Remove the game from app data
-                        RCFRCP.Data.Games.Remove(game);
+                        await RCFRCP.App.RemoveGameAsync(game, true);
 
                         Application.Current.Dispatcher.Invoke(() => NotInstalledGames.Add(game.GetDisplayViewModel()));
 

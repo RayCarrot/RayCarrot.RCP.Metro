@@ -276,7 +276,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     // Remove the game if it has been added
                     if (Game.IsAdded())
-                        App.RemoveGame(Game);
+                        await App.RemoveGameAsync(Game, true);
 
                     // Add the game
                     await App.AddNewGameAsync(Game, GameType.Win32, output);

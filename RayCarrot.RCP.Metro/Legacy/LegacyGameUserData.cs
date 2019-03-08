@@ -1,6 +1,4 @@
 ﻿using RayCarrot.CarrotFramework;
-using RayCarrot.UserData;
-using System.Linq;
 
 namespace RayCarrot.RCP.Metro.Legacy
 {

@@ -94,6 +94,8 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
+                RCF.Logger.LogInformationSource($"The Rayman 2 translation patch is downloading...");
+
                 // Get the game install directory
                 var instDir = Games.Rayman2.GetInfo().InstallDirectory;
 
@@ -104,6 +106,8 @@ namespace RayCarrot.RCP.Metro
                 // Verify the files
                 if (!fixSna.FileExists || !texturesCnt.FileExists)
                 {
+                    RCF.Logger.LogInformationSource($"The Rayman 2 translation patch could not be downloaded due to the required local files not being found");
+
                     await RCF.MessageUI.DisplayMessageAsync("The required files could not be found", "Missing files", MessageType.Error);
                     return;
                 }
@@ -117,8 +121,12 @@ namespace RayCarrot.RCP.Metro
                 if (!succeeded)
                     return;
 
+                RCF.Logger.LogInformationSource($"The Rayman 2 fix.sna file has been downloaded");
+
                 // Get the current textures file
                 var textures = GetTexturesVersion(texturesCnt);
+
+                RCF.Logger.LogInformationSource($"The Rayman 2 textures file has been retrieved as {textures}");
 
                 if (textures == SelectedTranslation || 
                     (textures == Rayman2Translation.Original && SelectedTranslation == Rayman2Translation.Irish) ||
@@ -134,6 +142,8 @@ namespace RayCarrot.RCP.Metro
                 if (!await RCF.MessageUI.DisplayMessageAsync(message, "Confirm textures replacement", MessageType.Question, true))
                     return;
 
+                RCF.Logger.LogInformationSource($"The Rayman 2 translation texture patch is downloading...");
+
                 // Replace the textures.cnt file
                 var succeeded2 = await App.DownloadAsync(new Uri[]
                 {
@@ -142,6 +152,8 @@ namespace RayCarrot.RCP.Metro
 
                 if (!succeeded2)
                     return;
+
+                RCF.Logger.LogInformationSource($"The Rayman 2 translation has been applied");
 
                 await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("All files have been successfully replaced");
             }

@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ByteSizeLib;
-using Nito.AsyncEx;
 using RayCarrot.CarrotFramework;
 using RayCarrot.Rayman;
 

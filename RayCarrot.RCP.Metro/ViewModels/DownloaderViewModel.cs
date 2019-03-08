@@ -323,6 +323,10 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// Start the download
+        /// </summary>
+        /// <returns>The task</returns>
         public async Task StartAsync()
         {
             if (OperationRunning)

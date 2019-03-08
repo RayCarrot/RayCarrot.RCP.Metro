@@ -10,12 +10,12 @@ namespace RayCarrot.RCP.Metro
     {
         public override void Write(string message)
         {
-            RCF.Logger.LogDebugSource(message);
+            RCF.Logger.LogInformationSource(message);
         }
 
         public override void WriteLine(string message)
         {
-            RCF.Logger.LogDebugSource(message);
+            RCF.Logger.LogInformationSource(message);
         }
     }
 }
