@@ -710,6 +710,7 @@ namespace RayCarrot.RCP.Metro
                 case Games.Rayman1:
                 case Games.RaymanDesigner:
                 case Games.Rayman2:
+                case Games.Rayman3:
                 case Games.RaymanOrigins:
                 case Games.RaymanLegends:
                     return true;
@@ -718,7 +719,6 @@ namespace RayCarrot.RCP.Metro
                 case Games.Rayman60Levels:
                 case Games.RaymanM:
                 case Games.RaymanArena:
-                case Games.Rayman3:
                 case Games.RaymanRavingRabbids:
                 case Games.RaymanJungleRun:
                 case Games.RaymanFiestaRun:
@@ -745,6 +745,9 @@ namespace RayCarrot.RCP.Metro
                 case Games.Rayman2:
                     return new Rayman2Utilities();
 
+                case Games.Rayman3:
+                    return new Rayman3Utilities();
+
                 case Games.RaymanOrigins:
                     return new RaymanOriginsUtilities();
 
@@ -755,7 +758,6 @@ namespace RayCarrot.RCP.Metro
                 case Games.Rayman60Levels:
                 case Games.RaymanM:
                 case Games.RaymanArena:
-                case Games.Rayman3:
                 case Games.RaymanRavingRabbids:
                 case Games.RaymanJungleRun:
                 case Games.RaymanFiestaRun:
