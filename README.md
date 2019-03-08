@@ -37,15 +37,15 @@ You can contact me on the following places:
 
 <div align="center">
 
-<img alt="Screenshot1" src="./Screenshot1.png">
+<img alt="Screenshot1" src="Screenshot1.png">
 
-<img alt="Screenshot2" src="./Screenshot2.png">
+<img alt="Screenshot2" src="Screenshot2.png">
 
-<img alt="Screenshot3" src="./Screenshot3.png">
+<img alt="Screenshot3" src="Screenshot3.png">
 
-<img alt="Screenshot4" src="./Screenshot4.png">
+<img alt="Screenshot4" src="Screenshot4.png">
 
-<img alt="Screenshot5" src="./Screenshot5.png">
+<img alt="Screenshot5" src="Screenshot5.png">
 
 </div>
 
