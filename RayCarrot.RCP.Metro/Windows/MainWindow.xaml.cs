@@ -29,6 +29,10 @@ namespace RayCarrot.RCP.Metro
             Left = RCFRCP.Data.WindowState.WindowLeft;
             Top = RCFRCP.Data.WindowState.WindowTop;
             WindowState = RCFRCP.Data.WindowState.WindowMaximized ? WindowState.Maximized : WindowState.Normal;
+
+            // Subscribe to events
+            Loaded += MainWindow_LoadedAsync;
+            Loaded += MainWindow_Loaded2Async;
         }
 
         #endregion
@@ -44,7 +48,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Event Handlers
 
-        private async void MainWindow_OnLoadedAsync(object sender, RoutedEventArgs e)
+        private async void MainWindow_LoadedAsync(object sender, RoutedEventArgs e)
         {
             await GamesPage.ViewModel.RefreshAsync();
 
@@ -54,8 +58,13 @@ namespace RayCarrot.RCP.Metro
             // Check for installed games
             if (RCFRCP.Data.AutoLocateGames)
                 await RCFRCP.App.RunGameFinderAsync();
+        }
 
-            // TODO: Check for updates
+        private async void MainWindow_Loaded2Async(object sender, RoutedEventArgs e)
+        {
+            // Check for updates
+            if (RCFRCP.Data.AutoUpdate)
+                await RCFRCP.App.CheckForUpdatesAsync(false);
         }
 
         private async void MainWindow_OnClosingAsync(object sender, CancelEventArgs e)

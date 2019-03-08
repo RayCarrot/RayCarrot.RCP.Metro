@@ -6,9 +6,19 @@
     public static class CommonUrls
     {
         /// <summary>
+        /// The base URL
+        /// </summary>
+        public const string BaseUrl = "http://raycarrot.ylemnova.com/RCP/";
+
+        /// <summary>
         /// The base URL for downloading utilities
         /// </summary>
-        public const string UtilityBaseUrl = "http://raycarrot.ylemnova.com/RCP/Resources/4.0.0/";
+        public const string UtilityBaseUrl = BaseUrl + "Resources/4.0.0/";
+
+        /// <summary>
+        /// The update manifest URL
+        /// </summary>
+        public const string UpdateManifestUrl = BaseUrl + "RCP_Metro_Manifest.json";
 
         /// <summary>
         /// The Rayman 1 TPLS utility URL
@@ -114,5 +124,25 @@
         /// The Rayman Origins updater URL
         /// </summary>
         public const string RO_Updater_URL = UtilityBaseUrl + "RO/Updater.zip";
+
+        /// <summary>
+        /// The GitHub project URL
+        /// </summary>
+        public const string GitHubUrl = "https://github.com/RayCarrot/Rayman-Control-Panel-Metro";
+
+        /// <summary>
+        /// The YouTube URL
+        /// </summary>
+        public const string YouTubeUrl = "https://www.youtube.com/c/RayCarrot";
+
+        /// <summary>
+        /// The Twitter URL
+        /// </summary>
+        public const string TwitterUrl = "https://twitter.com/RayCarrot";
+
+        /// <summary>
+        /// The email URL
+        /// </summary>
+        public const string EmailUrl = "mailto:RayCarrotMaster@gmail.com";
     }
 }

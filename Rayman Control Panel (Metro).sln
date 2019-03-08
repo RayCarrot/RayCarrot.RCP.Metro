@@ -11,12 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.WPF", "..\..\Carr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.Metro", "RayCarrot.RCP.Metro\RayCarrot.RCP.Metro.csproj", "{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.Rayman", "..\RCP 2.0.0\RayCarrot.Rayman\RayCarrot.Rayman.csproj", "{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TODO", "TODO", "{A4E18751-83F7-4896-84DE-2998C17BA5AF}"
 	ProjectSection(SolutionItems) = preProject
 		TODO.txt = TODO.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.Updater", "RayCarrot.RCP.Updater\RayCarrot.RCP.Updater.csproj", "{F5517D18-45BA-4C53-81BD-29C54CDAE71A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.Rayman", "..\RayCarrot.Rayman\RayCarrot.Rayman\RayCarrot.Rayman.csproj", "{E8A27323-72A7-4708-9624-EBFFB5019803}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,14 +52,22 @@ Global
 		{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}.Release|x86.ActiveCfg = Release|Any CPU
 		{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}.Release|x86.Build.0 = Release|Any CPU
-		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Debug|x86.Build.0 = Debug|Any CPU
-		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Release|x86.ActiveCfg = Release|Any CPU
-		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57}.Release|x86.Build.0 = Release|Any CPU
+		{F5517D18-45BA-4C53-81BD-29C54CDAE71A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5517D18-45BA-4C53-81BD-29C54CDAE71A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5517D18-45BA-4C53-81BD-29C54CDAE71A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F5517D18-45BA-4C53-81BD-29C54CDAE71A}.Debug|x86.Build.0 = Debug|Any CPU
+		{F5517D18-45BA-4C53-81BD-29C54CDAE71A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5517D18-45BA-4C53-81BD-29C54CDAE71A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5517D18-45BA-4C53-81BD-29C54CDAE71A}.Release|x86.ActiveCfg = Release|Any CPU
+		{F5517D18-45BA-4C53-81BD-29C54CDAE71A}.Release|x86.Build.0 = Release|Any CPU
+		{E8A27323-72A7-4708-9624-EBFFB5019803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8A27323-72A7-4708-9624-EBFFB5019803}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8A27323-72A7-4708-9624-EBFFB5019803}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E8A27323-72A7-4708-9624-EBFFB5019803}.Debug|x86.Build.0 = Debug|Any CPU
+		{E8A27323-72A7-4708-9624-EBFFB5019803}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8A27323-72A7-4708-9624-EBFFB5019803}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8A27323-72A7-4708-9624-EBFFB5019803}.Release|x86.ActiveCfg = Release|Any CPU
+		{E8A27323-72A7-4708-9624-EBFFB5019803}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,7 +75,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{55F49D1E-C9BD-4CC4-9FF0-D646D9F42A21} = {879B35F2-0456-4C5F-B4B8-F9088D687423}
 		{9B10DC81-CB32-45A1-B52B-FBB3E4D056A0} = {879B35F2-0456-4C5F-B4B8-F9088D687423}
-		{3199BFDB-03FB-4ADE-A42E-53E0E1C4AF57} = {879B35F2-0456-4C5F-B4B8-F9088D687423}
+		{E8A27323-72A7-4708-9624-EBFFB5019803} = {879B35F2-0456-4C5F-B4B8-F9088D687423}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}

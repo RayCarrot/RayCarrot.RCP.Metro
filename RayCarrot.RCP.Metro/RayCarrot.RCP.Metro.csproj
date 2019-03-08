@@ -148,8 +148,8 @@
     <Reference Include="PropertyChanged, Version=2.6.0.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\PropertyChanged.Fody.2.6.0\lib\net452\PropertyChanged.dll</HintPath>
     </Reference>
-    <Reference Include="RayCarrot.CarrotFramework, Version=2.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\RayCarrot.CarrotFramework.2.0.7\lib\netstandard2.0\RayCarrot.CarrotFramework.dll</HintPath>
+    <Reference Include="RayCarrot.CarrotFramework, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\RayCarrot.CarrotFramework.2.1.0\lib\netstandard2.0\RayCarrot.CarrotFramework.dll</HintPath>
     </Reference>
     <Reference Include="RayCarrot.UserData, Version=2.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\RayCarrot.UserData.2.0.2\lib\netstandard2.0\RayCarrot.UserData.dll</HintPath>
@@ -305,6 +305,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\UserControls\Utilities\Rayman3Utilities.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\UserControls\Utilities\RaymanLegendsUtilities.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -380,6 +384,10 @@
     <Compile Include="Controls\UserControls\Pages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UserControls\Utilities\Rayman3Utilities.xaml.cs">
+      <DependentUpon>Rayman3Utilities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Pages\AboutPageViewModel.cs" />
     <Compile Include="Controls\UserControls\Utilities\RaymanLegendsUtilities.xaml.cs">
       <DependentUpon>RaymanLegendsUtilities.xaml</DependentUpon>
     </Compile>
@@ -637,8 +645,8 @@
       <Project>{9b10dc81-cb32-45a1-b52b-fbb3e4d056a0}</Project>
       <Name>RayCarrot.WPF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\RCP 2.0.0\RayCarrot.Rayman\RayCarrot.Rayman.csproj">
-      <Project>{3199bfdb-03fb-4ade-a42e-53e0e1c4af57}</Project>
+    <ProjectReference Include="..\..\RayCarrot.Rayman\RayCarrot.Rayman\RayCarrot.Rayman.csproj">
+      <Project>{e8a27323-72a7-4708-9624-ebffb5019803}</Project>
       <Name>RayCarrot.Rayman</Name>
     </ProjectReference>
   </ItemGroup>
@@ -700,6 +708,7 @@
     <Resource Include="Img\MessageIcons\Question.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Files\Rayman Control Panel Updater.exe" />
     <Content Include="Files\Rayman2\Rayman2_GOG.exe" />
     <Content Include="Files\Rayman3\dinput8_controller.dll" />
     <Resource Include="Files\RaymanOrigins\RO_Levels.txt" />

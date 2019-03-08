@@ -7,7 +7,6 @@
                   Title="Rayman Control Panel"
                   Height="600"
                   Width="800"
-                  Loaded="MainWindow_OnLoadedAsync"
                   Closing="MainWindow_OnClosingAsync">
     <Window.Resources>
         <local:DebugPageViewModel x:Key="VM" />

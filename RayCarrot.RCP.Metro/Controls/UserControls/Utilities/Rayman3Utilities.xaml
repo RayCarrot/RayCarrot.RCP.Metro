@@ -1,0 +1,35 @@
+﻿<local:BaseUserControl x:Class="RayCarrot.RCP.Metro.Rayman3Utilities"
+                       x:TypeArguments="local:Rayman3UtilitiesViewModel"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                       xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                       xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                       xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                       mc:Ignorable="d" 
+                       d:DesignHeight="450" d:DesignWidth="800"
+                       d:DataContext="{d:DesignInstance local:Rayman3UtilitiesViewModel}">
+    <ScrollViewer x:Name="scrollViewer"
+                  Padding="5">
+        <StackPanel>
+            <i:Interaction.Behaviors>
+                <rwpf:UnifiedMarginBehavior Margin="0 8" />
+            </i:Interaction.Behaviors>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                           Text="UbiRay Character" />
+
+                <local:InfoIcon Text="UbiRay is a character not available in the game to play as, but still in the game files. This utility will modify your save file so that UbiRay is the selected character, thus allowing you to play as him." />
+
+            </StackPanel>
+
+            <Button Content="Apply"
+                    HorizontalAlignment="Left" 
+                    Command="{Binding Path=ApplyUbiRayCommand}"/>
+
+        </StackPanel>
+    </ScrollViewer>
+</local:BaseUserControl>

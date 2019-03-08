@@ -61,10 +61,12 @@
                         VerticalAlignment="Bottom">
 
                 <local:IconButton IconKind="TooltipText"
-                                  ToolTip="Update history"/>
+                                  ToolTip="Update history"
+                                  Command="{Binding Path=ShowVersionHistoryCommand}"/>
 
                 <local:IconButton IconKind="Update"
-                                  ToolTip="Check for new updates"/>
+                                  ToolTip="Check for new updates"
+                                  Command="{Binding Path=CheckForUpdatesCommand}"/>
 
 
             </StackPanel>
@@ -76,19 +78,27 @@
                         VerticalAlignment="Bottom">
                 
                 <local:IconButton IconKind="GithubCircle"
-                                  ToolTip="GitHub"/>
+                                  ToolTip="GitHub"
+                                  Command="{Binding Path=OpenUrlCommand}"
+                                  CommandParameter="{x:Static local:CommonUrls.GitHubUrl}"/>
 
                 <local:IconButton IconKind="Youtube"
                                   ToolTip="YouTube"
-                                  Foreground="Red"/>
+                                  Foreground="Red"
+                                  Command="{Binding Path=OpenUrlCommand}"
+                                  CommandParameter="{x:Static local:CommonUrls.YouTubeUrl}"/>
                 
                 <local:IconButton IconKind="Twitter"
                                   ToolTip="Twitter"
-                                  Foreground="#38A1F3"/>
+                                  Foreground="#38A1F3"
+                                  Command="{Binding Path=OpenUrlCommand}"
+                                  CommandParameter="{x:Static local:CommonUrls.TwitterUrl}"/>
                 
                 <local:IconButton IconKind="EmailOutline"
                                   ToolTip="Email"
-                                  Foreground="Purple"/>
+                                  Foreground="Purple"
+                                  Command="{Binding Path=OpenUrlCommand}"
+                                  CommandParameter="{x:Static local:CommonUrls.EmailUrl}"/>
 
             </StackPanel>
 

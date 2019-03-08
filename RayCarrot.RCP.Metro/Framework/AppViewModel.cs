@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Threading.Tasks;
+using System.Windows;
 using ByteSizeLib;
 using IniParser;
 using IniParser.Model;
 using Microsoft.Win32;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework;
 using RayCarrot.Rayman;
@@ -54,6 +58,11 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// A flag indicating if an update check is in progress
+        /// </summary>
+        public bool CheckingForUpdates { get; set; }
 
         /// <summary>
         /// An async lock for the <see cref="SaveUserDataAsync"/> method
@@ -777,6 +786,119 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError($"Downloading files");
                 await RCF.MessageUI.DisplayMessageAsync("The files could not be downloaded.", "Error", MessageType.Error);
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Checks for application updates
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task CheckForUpdatesAsync(bool showIfNoUpdates)
+        {
+            if (CheckingForUpdates)
+                return;
+
+            try
+            {
+                RCF.Logger.LogInformationSource($"Updates are being checked for");
+
+                CheckingForUpdates = true;
+                string errorMessage = "Unknown error";
+                JObject manifest = null;
+
+                try
+                {
+                    using (var wc = new WebClient())
+                    {
+                        var result = await wc.DownloadStringTaskAsync(CommonUrls.UpdateManifestUrl);
+                        manifest = JObject.Parse(result);
+                    }
+                }
+                catch (WebException ex)
+                {
+                    ex.HandleUnexpected("Getting server manifest");
+                    errorMessage = "A connection could not be established to the server";
+                }
+                catch (JsonReaderException ex)
+                {
+                    ex.HandleError("Parsing server manifest");
+                    errorMessage = "The information from the server was not valid";
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Getting server manifest");
+                    errorMessage = "An unknown error occurred while connecting to the server";
+                }
+
+                // Show error if manifest was not retrieved
+                if (manifest == null)
+                {
+                    await RCF.MessageUI.DisplayMessageAsync(errorMessage, "Update Check Failed", MessageType.Error);
+                    return;
+                }
+
+                RCF.Logger.LogInformationSource($"The update manifest was retrieved");
+
+                try
+                {
+                    // Get the server version
+                    var av = manifest["LatestAssemblyVersion"];
+                    var serverVersion = new Version(av["Major"].Value<int>(), av["Minor"].Value<int>(), av["Build"].Value<int>(), av["Revision"].Value<int>());
+
+                    // Compare version
+                    if (RCFRCP.App.CurrentVersion >= serverVersion)
+                    {
+                        if (showIfNoUpdates)
+                            await RCF.MessageUI.DisplayMessageAsync("The latest version (" + serverVersion + ") is already installed.", "No new versions found", MessageType.Information);
+
+                        RCF.Logger.LogInformationSource($"The latest version is installed");
+
+                        return;
+                    }
+
+                    RCF.Logger.LogInformationSource($"A new version ({serverVersion}) is available");
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Getting assembly version from server manifest", manifest);
+                    await RCF.MessageUI.DisplayMessageAsync("The server manifest could not be read", "Update Check Failed", MessageType.Error);
+                    return;
+                }
+
+                string news = "Error getting news";
+                try
+                {
+                    // Get the update news
+                    news = manifest["DisplayNews"].Value<string>();
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Getting update news from server manifest", manifest);
+                }
+
+                if (await RCF.MessageUI.DisplayMessageAsync($"A new update is available to download. Download now?{Environment.NewLine}{Environment.NewLine}News: {Environment.NewLine}{news}", "New version found", MessageType.Question, true))
+                {
+                    string path = Path.Combine(Path.GetTempPath(), "RCP_Updater.exe");
+
+                    try
+                    {
+                        File.WriteAllBytes(path, Files.Rayman_Control_Panel_Updater);
+                        RCF.Logger.LogInformationSource($"The updater was created");
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleError("Writing updater to temp path", path);
+                        await RCF.MessageUI.DisplayMessageAsync("The updater could not be created. To manually download the new version, go to raycarrot.ylemnova.com and download the latest version from there.", "Error creating updater", MessageType.Error);
+                        return;
+                    }
+
+                    await RCFRCP.File.LaunchFileAsync(path, false, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.UserLevel} True");
+                    Application.Current.Shutdown();
+                }
+            }
+            finally
+            {
+                CheckingForUpdates = false;
             }
         }
 

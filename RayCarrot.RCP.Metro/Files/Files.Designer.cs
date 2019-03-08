@@ -93,6 +93,16 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] Rayman_Control_Panel_Updater {
+            get {
+                object obj = ResourceManager.GetObject("Rayman_Control_Panel_Updater", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] Rayman2_GOG {
             get {
                 object obj = ResourceManager.GetObject("Rayman2_GOG", resourceCulture);
