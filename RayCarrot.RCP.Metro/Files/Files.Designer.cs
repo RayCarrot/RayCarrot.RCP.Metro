@@ -93,6 +93,16 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] GXSetup_GOG {
+            get {
+                object obj = ResourceManager.GetObject("GXSetup_GOG", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] Rayman_Control_Panel_Updater {
             get {
                 object obj = ResourceManager.GetObject("Rayman_Control_Panel_Updater", resourceCulture);
@@ -131,9 +141,25 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [Rayman2]
+        ///GLI_Mode = 1 - 640 x 480 x 16
+        ///Language =English
+        ///GLI_DllFile = GliDX6
+        ///GLI_Dll = DirectX6
+        ///GLI_Driver = display
+        ///GLI_Device = Direct3D HAL
+        ///ParticuleRate = High.
+        /// </summary>
+        public static string ubi {
+            get {
+                return ResourceManager.GetString("ubi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to -----   Version 4.0.0 - March ? 2019   -----
         ///
-        ///• Windows Vista or higher is required to run the application
+        ///• Windows Vista or higher is now required to run the application
         ///• Updated the program to use WPF instead of WinForms
         ///• Changed the theme to Metro theme with dark/light modes
         ///• Simplified game selection and utilities
@@ -141,7 +167,7 @@ namespace RayCarrot.RCP.Metro {
         ///• Rayman Origins debug commands have been simplified and Rayman Legends is now supported as well
         ///
         ///Other changes:
-        ///• Utilities will now show if they require addiit [rest of string was truncated]&quot;;.
+        ///• Utilities will now show if they require ad [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

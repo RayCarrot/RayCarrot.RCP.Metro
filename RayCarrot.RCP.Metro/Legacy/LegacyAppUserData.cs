@@ -9,25 +9,25 @@ namespace RayCarrot.RCP.Metro.Legacy
     {
         #region Public Properties
 
-        public FileSystemPath BackupLocation { get; set; }
+        public FileSystemPath? BackupLocation { get; set; }
 
-        public UserLevel UserLevel { get; set; }
+        public UserLevel? UserLevel { get; set; }
 
-        public ExceptionLevel DisplayExceptionLevel { get; set; }
+        public ExceptionLevel? DisplayExceptionLevel { get; set; }
 
-        public bool AutoClose { get; set; }
+        public bool? AutoClose { get; set; }
 
-        public bool AutoGameCheck { get; set; }
+        public bool? AutoGameCheck { get; set; }
 
-        public bool AutoCloseConfig { get; set; }
+        public bool? AutoCloseConfig { get; set; }
 
-        public bool ShowActionComplete { get; set; }
+        public bool? ShowActionComplete { get; set; }
 
-        public bool AutoUpdateCheck { get; set; }
+        public bool? AutoUpdateCheck { get; set; }
 
-        public bool ShowTaskBarProgress { get; set; }
+        public bool? ShowTaskBarProgress { get; set; }
 
-        public int LastVersion { get; set; }
+        public int? LastVersion { get; set; }
 
         #endregion
     }

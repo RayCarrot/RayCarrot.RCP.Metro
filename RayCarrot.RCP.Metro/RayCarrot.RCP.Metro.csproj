@@ -621,6 +621,7 @@
       <LastGenOutput>InstallerGames.Designer.cs</LastGenOutput>
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
     </EmbeddedResource>
+    <None Include="Files\Rayman2\ubi.ini" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -702,6 +703,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Files\Rayman Control Panel Updater.exe" />
+    <Content Include="Files\Rayman2\GXSetup_GOG.exe" />
     <Content Include="Files\Rayman2\Rayman2_GOG.exe" />
     <Content Include="Files\Rayman3\dinput8_controller.dll" />
     <Resource Include="Files\RaymanOrigins\RO_Levels.txt" />

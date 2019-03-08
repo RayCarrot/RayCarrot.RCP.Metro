@@ -40,20 +40,27 @@
                     <rwpf:UnifiedMarginBehavior Margin="0 5" />
                 </i:Interaction.Behaviors>
 
-                <TextBlock Text="Installed"
-                           Padding="10 0 0 0"
-                           Style="{StaticResource LargeHeaderTextBlock}"
-                           Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                <Grid Visibility="{Binding ElementName=InstalledGameItems, Path=Items, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
+                    <TextBlock Text="Installed"
+                               Padding="10 0 0 0"
+                               Style="{StaticResource LargeHeaderTextBlock}"
+                               Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                </Grid>
 
-                <ItemsControl Style="{StaticResource GamesDisplay}"
+                <ItemsControl x:Name="InstalledGameItems" 
+                              Style="{StaticResource GamesDisplay}"
                               ItemsSource="{Binding Path=InstalledGames}" />
 
-                <TextBlock Text="Not Installed"
-                           Padding="10 0 0 0"
-                           Style="{StaticResource LargeHeaderTextBlock}"
-                           Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                <Grid Visibility="{Binding ElementName=NotInstalledGameItems, Path=Items, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
+                    <TextBlock Text="Not Installed"
+                               Padding="10 0 0 0"
+                               Style="{StaticResource LargeHeaderTextBlock}"
+                               Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                </Grid>
 
-                <ItemsControl Style="{StaticResource GamesDisplay}"
+
+                <ItemsControl x:Name="NotInstalledGameItems"
+                              Style="{StaticResource GamesDisplay}"
                               ItemsSource="{Binding Path=NotInstalledGames}"
                               Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
             </StackPanel>

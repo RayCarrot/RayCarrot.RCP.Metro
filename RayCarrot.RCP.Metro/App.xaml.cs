@@ -468,58 +468,61 @@ namespace RayCarrot.RCP.Metro
                 var data = RCFRCP.Data;
 
                 // Import app data properties
-                data.AutoLocateGames = appData.AutoGameCheck;
-                data.AutoUpdate = appData.AutoUpdateCheck;  
-                data.CloseAppOnGameLaunch = appData.AutoClose;
-                data.CloseConfigOnSave = appData.AutoCloseConfig;
-                data.ShowActionComplete = appData.ShowActionComplete;
-                data.ShowProgressOnTaskBar = appData.ShowTaskBarProgress;
-                data.UserLevel = appData.UserLevel;
-                data.DisplayExceptionLevel = appData.DisplayExceptionLevel;
+                data.AutoLocateGames = appData.AutoGameCheck ?? true;
+                data.AutoUpdate = appData.AutoUpdateCheck ?? true;
+                data.CloseAppOnGameLaunch = appData.AutoClose ?? false;
+                data.CloseConfigOnSave = appData.AutoCloseConfig ?? false;
+                data.ShowActionComplete = appData.ShowActionComplete ?? true;
+                data.ShowProgressOnTaskBar = appData.ShowTaskBarProgress ?? true;
+                data.UserLevel = appData.UserLevel ?? UserLevel.Normal;
+                data.DisplayExceptionLevel = appData.DisplayExceptionLevel ?? ExceptionLevel.Critical;
 
-                if (appData.BackupLocation.DirectoryExists)
-                    data.BackupLocation = appData.BackupLocation;
+                if (appData.BackupLocation?.DirectoryExists == true)
+                    data.BackupLocation = appData.BackupLocation.Value;
 
                 // Import game data properties
-                if (gameData.DosBoxConfig.FileExists)
-                    data.DosBoxConfig = gameData.DosBoxConfig;
-                if (gameData.DosBoxExe.FileExists)
-                    data.DosBoxPath = gameData.DosBoxExe;
+                if (gameData.DosBoxConfig?.FileExists == true)
+                    data.DosBoxConfig = gameData.DosBoxConfig.Value;
+                if (gameData.DosBoxExe?.FileExists == true)
+                    data.DosBoxPath = gameData.DosBoxExe.Value;
 
-                var TPLSDir = gameData.TPLSDir + "TPLS";
+                var TPLSDir = gameData.TPLSDir != null ? gameData.TPLSDir.Value + "TPLS" : FileSystemPath.EmptyPath;
 
-                if (gameData.TPLSIsInstalled && TPLSDir.DirectoryExists)
+                if (gameData.TPLSIsInstalled == true && TPLSDir.DirectoryExists)
                     data.TPLSData = new TPLSData(TPLSDir)
                     {
-                        RaymanVersion = gameData.TPLSRaymanVersion.GetCurrent() ?? TPLSRaymanVersion.Auto,
-                        DosBoxVersion = gameData.TPLSDOSBoxVersion.GetCurrent() ?? TPLSDOSBoxVersion.DOSBox_0_74
+                        RaymanVersion = gameData.TPLSRaymanVersion?.GetCurrent() ?? TPLSRaymanVersion.Auto,
+                        DosBoxVersion = gameData.TPLSDOSBoxVersion?.GetCurrent() ?? TPLSDOSBoxVersion.DOSBox_0_74
                     };
                 
-                // Import games
-                foreach (LegacyRaymanGame game in gameData.RayGames)
+                if (gameData.RayGames != null)
                 {
-                    // Convert legacy values
-                    var currentGame = game.Game.GetCurrent();
-                    var currentType = game.Type.GetCurrent();
+                    // Import games
+                    foreach (LegacyRaymanGame game in gameData.RayGames)
+                    {
+                        // Convert legacy values
+                        var currentGame = game.Game?.GetCurrent();
+                        var currentType = game.Type?.GetCurrent();
 
-                    // Make sure we got current valid values
-                    if (currentGame == null || currentType == null)
-                        continue;
+                        // Make sure we got current valid values
+                        if (currentGame == null || currentType == null)
+                            continue;
 
-                    // Ignore Windows store games
-                    if (currentType == GameType.WinStore)
-                        continue;
+                        // Ignore Windows store games
+                        if (currentType == GameType.WinStore)
+                            continue;
 
-                    // Make sure the game is valid
-                    if (!currentGame.Value.IsValid(currentType.Value, game.Dir))
-                        continue;
+                        // Make sure the game is valid
+                        if (!currentGame.Value.IsValid(currentType.Value, game.Dir ?? FileSystemPath.EmptyPath))
+                            continue;
 
-                    // Add the game
-                    await RCFRCP.App.AddNewGameAsync(currentGame.Value, currentType.Value, game.Dir.DirectoryExists ? game.Dir : null);
+                        // Add the game
+                        await RCFRCP.App.AddNewGameAsync(currentGame.Value, currentType.Value, game.Dir?.DirectoryExists == true ? game.Dir : null);
 
-                    // Add mount directory if DosBox game
-                    if (currentType == GameType.DosBox)
-                        RCFRCP.Data.DosBoxGames[currentGame.Value].MountPath = game.MountDir;
+                        // Add mount directory if DosBox game
+                        if (currentType == GameType.DosBox && game.MountDir != null)
+                            RCFRCP.Data.DosBoxGames[currentGame.Value].MountPath = game.MountDir.Value;
+                    }
                 }
 
                 // Remove old data

@@ -1,13 +1,10 @@
 Data
 Dll
-GXSetup.exe
  Leeme.txt
  Leggimi.txt
  Liesmich.txt
  Lisezmoi.txt
  Manual
-RAYMAN2.ICD
-Rayman2.exe
 Rayman2.ico
  Readme.txt
 Data\Game.dsb

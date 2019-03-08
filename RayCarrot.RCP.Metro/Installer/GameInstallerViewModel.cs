@@ -261,8 +261,11 @@ namespace RayCarrot.RCP.Metro
                         // Write the GOG exe file
                         File.WriteAllBytes(output + "Rayman2.exe", Files.Rayman2_GOG);
 
-                        // Create ubi.ini file
-                        File.Create(output + "ubi.ini");
+                        // Write the GOG config file
+                        File.WriteAllBytes(output + "GXSetup.exe", Files.GXSetup_GOG);
+
+                        // Write default ubi.ini file
+                        File.WriteAllText(output + "ubi.ini", Files.ubi);
                     }
                     catch (Exception ex)
                     {

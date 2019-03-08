@@ -32,6 +32,7 @@ namespace RayCarrot.RCP.Metro
             // Subscribe to events
             Loaded += MainWindow_LoadedAsync;
             Loaded += MainWindow_Loaded2Async;
+            RCFRCP.App.RefreshRequired += App_RefreshRequired;
         }
 
         #endregion
@@ -46,6 +47,11 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Event Handlers
+
+        private void App_RefreshRequired(object sender, EventArgs e)
+        {
+            BackupPage.IsEnabled = RCFRCP.Data.Games.Any(); 
+        }
 
         private async void MainWindow_LoadedAsync(object sender, RoutedEventArgs e)
         {

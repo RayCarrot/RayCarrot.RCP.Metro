@@ -18,7 +18,7 @@
         </TabItem>
 
         <TabItem Header="Backup/Restore">
-            <local:BackupPage />
+            <local:BackupPage x:Name="BackupPage" />
         </TabItem>
 
         <TabItem Header="Settings">

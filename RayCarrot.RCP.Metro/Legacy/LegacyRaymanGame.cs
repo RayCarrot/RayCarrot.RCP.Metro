@@ -16,7 +16,7 @@ namespace RayCarrot.RCP.Metro.Legacy
         /// <param name="game">The game</param>
         /// <param name="type">The type of the game</param>
         [JsonConstructor]
-        public LegacyRaymanGame(LegacyGames game, LegacyGameType type)
+        public LegacyRaymanGame(LegacyGames? game, LegacyGameType? type)
         {
             Game = game;
             Type = type;
@@ -30,25 +30,25 @@ namespace RayCarrot.RCP.Metro.Legacy
         /// The game
         /// </summary>
         [JsonProperty]
-        public LegacyGames Game { get; }
+        public LegacyGames? Game { get; }
 
         /// <summary>
         /// The type of game
         /// </summary>
         [JsonProperty]
-        public LegacyGameType Type { get; set; }
+        public LegacyGameType? Type { get; set; }
 
         /// <summary>
         /// The game directory
         /// </summary>
         [JsonProperty]
-        public FileSystemPath Dir { get; set; }
+        public FileSystemPath? Dir { get; set; }
 
         /// <summary>
         /// The mount directory
         /// </summary>
         [JsonProperty]
-        public FileSystemPath MountDir { get; set; }
+        public FileSystemPath? MountDir { get; set; }
 
         /// <summary>
         /// The DosBox configuration

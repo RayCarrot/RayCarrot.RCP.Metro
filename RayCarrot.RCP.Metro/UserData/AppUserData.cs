@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using Newtonsoft.Json;
 using RayCarrot.CarrotFramework;
 using RayCarrot.UserData;
 
@@ -16,11 +17,13 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The path of the saved <see cref="AppUserData"/> file
         /// </summary>
+        [JsonIgnore]
         public FileSystemPath FilePath => CommonPaths.AppUserDataPath;
 
         /// <summary>
         /// The name of the <see cref="IUserData"/>
         /// </summary>
+        [JsonIgnore]
         public string Name => nameof(AppUserData);
 
         /// <summary>
