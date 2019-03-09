@@ -40,18 +40,17 @@
                     <rwpf:UnifiedMarginBehavior Margin="0 5" />
                 </i:Interaction.Behaviors>
 
-                <Grid Visibility="{Binding ElementName=InstalledGameItems, Path=Items, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
+                <Grid Visibility="{Binding Path=InstalledGames, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
                     <TextBlock Text="Installed"
                                Padding="10 0 0 0"
                                Style="{StaticResource LargeHeaderTextBlock}"
                                Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
                 </Grid>
 
-                <ItemsControl x:Name="InstalledGameItems" 
-                              Style="{StaticResource GamesDisplay}"
+                <ItemsControl Style="{StaticResource GamesDisplay}"
                               ItemsSource="{Binding Path=InstalledGames}" />
 
-                <Grid Visibility="{Binding ElementName=NotInstalledGameItems, Path=Items, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
+                <Grid Visibility="{Binding Path=NotInstalledGames, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
                     <TextBlock Text="Not Installed"
                                Padding="10 0 0 0"
                                Style="{StaticResource LargeHeaderTextBlock}"
@@ -59,8 +58,7 @@
                 </Grid>
 
 
-                <ItemsControl x:Name="NotInstalledGameItems"
-                              Style="{StaticResource GamesDisplay}"
+                <ItemsControl Style="{StaticResource GamesDisplay}"
                               ItemsSource="{Binding Path=NotInstalledGames}"
                               Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
             </StackPanel>

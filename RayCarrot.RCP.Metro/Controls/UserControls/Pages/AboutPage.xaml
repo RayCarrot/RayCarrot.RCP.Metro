@@ -69,6 +69,11 @@
 
             </StackPanel>
 
+            <TextBlock Grid.Row="1"
+                       Text="{Binding Path=App.CurrentVersion, Mode=OneTime}" 
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"/>
+
             <StackPanel Grid.Row="1"
                         Margin="10"
                         Orientation="Horizontal"

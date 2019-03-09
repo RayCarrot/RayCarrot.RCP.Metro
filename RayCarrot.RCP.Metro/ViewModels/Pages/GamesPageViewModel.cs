@@ -102,6 +102,10 @@ namespace RayCarrot.RCP.Metro
                     // Add the game to the collection
                     Application.Current.Dispatcher.Invoke(() => InstalledGames.Add(game.GetDisplayViewModel()));
                 }
+
+                // Notify the UI
+                OnPropertyChanged(nameof(InstalledGames));
+                OnPropertyChanged(nameof(NotInstalledGames));
             }
 
             RCF.Logger.LogInformationSource($"The displayed games have been refreshed");

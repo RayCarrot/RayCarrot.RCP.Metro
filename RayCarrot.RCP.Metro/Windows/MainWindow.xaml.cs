@@ -19,6 +19,11 @@ namespace RayCarrot.RCP.Metro
         {
             InitializeComponent();
 
+            // Subscribe to events
+            Loaded += MainWindow_LoadedAsync;
+            Loaded += MainWindow_Loaded2Async;
+            RCFRCP.App.RefreshRequired += App_RefreshRequired;
+
             if (RCFRCP.Data.WindowState == null)
                 return;
 
@@ -28,11 +33,6 @@ namespace RayCarrot.RCP.Metro
             Left = RCFRCP.Data.WindowState.WindowLeft;
             Top = RCFRCP.Data.WindowState.WindowTop;
             WindowState = RCFRCP.Data.WindowState.WindowMaximized ? WindowState.Maximized : WindowState.Normal;
-
-            // Subscribe to events
-            Loaded += MainWindow_LoadedAsync;
-            Loaded += MainWindow_Loaded2Async;
-            RCFRCP.App.RefreshRequired += App_RefreshRequired;
         }
 
         #endregion
@@ -50,7 +50,7 @@ namespace RayCarrot.RCP.Metro
 
         private void App_RefreshRequired(object sender, EventArgs e)
         {
-            BackupPage.IsEnabled = RCFRCP.Data.Games.Any(); 
+            Dispatcher.Invoke(() => BackupPage.IsEnabled = RCFRCP.Data.Games.Any());
         }
 
         private async void MainWindow_LoadedAsync(object sender, RoutedEventArgs e)

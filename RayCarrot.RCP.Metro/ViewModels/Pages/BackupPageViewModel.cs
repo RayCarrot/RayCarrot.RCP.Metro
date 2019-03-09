@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
@@ -72,7 +73,7 @@ namespace RayCarrot.RCP.Metro
                     GameBackupItems.Clear();
 
                     // Enumerate the saved games
-                    foreach (Games game in Data.Games.Keys)
+                    foreach (Games game in App.GetGames.Where(x => x.IsAdded()))
                     {
                         // Create the backup item
                         var backupItem = new GameBackupItemViewModel(game);
