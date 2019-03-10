@@ -72,7 +72,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(4, 0, 0, 2);
+        public Version CurrentVersion => new Version(4, 0, 0, 3);
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -253,6 +253,11 @@ namespace RayCarrot.RCP.Metro
             // Add the game
             Data.Games.Add(game, new GameInfo(type, installDirectory ?? FileSystemPath.EmptyPath));
 
+            // If it's a DosBox game, create the auto config file
+            if (type == GameType.DosBox)
+                // Create config file
+                new DosBoxAutoConfigManager(game.GetDosBoxConfigFile()).Create();
+
             // If it's a DosBox game, add the DosBox options
             if (type == GameType.DosBox && !Data.DosBoxGames.ContainsKey(game))
                 Data.DosBoxGames.Add(game, new DosBoxOptions());
@@ -280,7 +285,19 @@ namespace RayCarrot.RCP.Metro
 
             // If there is DosBox options saved, remove those as well
             if (Data.DosBoxGames.ContainsKey(game))
+            {
                 Data.DosBoxGames.Remove(game);
+
+                try
+                {
+                    // Remove the config file
+                    RCFRCP.File.DeleteFile(game.GetDosBoxConfigFile());
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Removing DosBox auto config file");
+                }
+            }
 
             // Refresh the games
             OnRefreshRequired();

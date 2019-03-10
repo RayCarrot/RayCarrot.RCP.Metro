@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using IniParser.Model;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework;
 
@@ -394,6 +396,15 @@ namespace RayCarrot.RCP.Metro
 
             MountPath = options.MountPath;
 
+            // Get the config manager
+            var configManager = new DosBoxAutoConfigManager(Game.GetDosBoxConfigFile());
+
+            // Create the file
+            configManager.Create();
+
+            // Read the content
+            var configData = configManager.ReadFile();
+
             FullscreenEnabled = GetBool(FullScreenKey);
             FullDoubleEnabled = GetBool(FullDoubleKey);
             AspectCorrectionEnabled = GetBool(AspectCorrectionKey);
@@ -406,7 +417,7 @@ namespace RayCarrot.RCP.Metro
             SelectedCoreMode = GetString(CoreKey, "default");
             SelectedCycles = GetString(CyclesKey, "default");
 
-            CustomCommands = options.Commands.JoinItems(Environment.NewLine);
+            CustomCommands = configData.CustomLines.JoinItems(Environment.NewLine);
 
             UnsavedChanges = false;
 
@@ -415,9 +426,9 @@ namespace RayCarrot.RCP.Metro
             return Task.CompletedTask;
 
             // Helper methods for getting properties
-            bool? GetBool(string propName) => Boolean.TryParse(options.ConfigCommands.TryGetValue(propName), out bool output) ? (bool?)output : null;
-            string GetString(string propName, string defaultValue = null) => options.ConfigCommands.TryGetValue(propName) ?? defaultValue;
-            double? GetDouble(string propName) => Double.TryParse(options.ConfigCommands.TryGetValue(propName), out double output) ? (double?)output : null;
+            bool? GetBool(string propName) => Boolean.TryParse(configData.Commands.TryGetValue(propName), out bool output) ? (bool?)output : null;
+            string GetString(string propName, string defaultValue = null) => configData.Commands.TryGetValue(propName) ?? defaultValue;
+            double? GetDouble(string propName) => Double.TryParse(configData.Commands.TryGetValue(propName), out double output) ? (double?)output : null;
         }
 
         /// <summary>
@@ -436,8 +447,17 @@ namespace RayCarrot.RCP.Metro
                     var options = Data.DosBoxGames[Game];
 
                     options.MountPath = MountPath;
-                    options.Commands = CustomCommands.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
+                    // Get the config manager
+                    var configManager = new DosBoxAutoConfigManager(Game.GetDosBoxConfigFile());
+
+                    // Create config data
+                    var configData = new DosBoxAutoConfigData();
+
+                    // Add custom commands
+                    configData.CustomLines.AddRange(CustomCommands.Split(new[] { Environment.NewLine }, StringSplitOptions.None));
+
+                    // Add commands
                     SetProp(FullScreenKey, FullscreenEnabled);
                     SetProp(FullDoubleKey, FullDoubleEnabled);
                     SetProp(AspectCorrectionKey, AspectCorrectionEnabled);
@@ -450,15 +470,18 @@ namespace RayCarrot.RCP.Metro
                     SetProp(CoreKey, SelectedCoreMode, true);
                     SetProp(CyclesKey, SelectedCycles, true);
 
+                    // Write to the config file
+                    configManager.WriteFile(configData);
+
                     RCF.Logger.LogInformationSource($"DosBox configuration for {Game} has been saved");
 
                     // Helper methods for setting properties
                     void SetProp(string propName, object value, bool ignoreDefault = false)
                     {
-                        if ((value == null || (ignoreDefault && value.ToString().Equals("default", StringComparison.CurrentCultureIgnoreCase))) && options.ConfigCommands.ContainsKey(propName))
-                            options.ConfigCommands.Remove(propName);
-                        else if (value != null)
-                            options.ConfigCommands[propName] = value.ToString();
+                        if ((value != null && (!ignoreDefault || !value.ToString().Equals("default", StringComparison.CurrentCultureIgnoreCase))))
+                            configData.Commands[propName] = value.ToString();
+                        else if (configData.Commands.ContainsKey(propName))
+                            configData.Commands.Remove(propName);
                     }
                 }
                 catch (Exception ex)

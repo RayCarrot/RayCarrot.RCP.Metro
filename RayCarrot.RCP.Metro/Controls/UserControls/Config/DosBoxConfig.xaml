@@ -66,7 +66,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="DosBox Settings" />
                     
-                    <local:InfoIcon Text="Setting one of the below options to disabled or empty will use the default value specified in the DosBox configuration file" />
+                    <local:InfoIcon Text="Setting one of the below options to disabled or empty will use the default value specified in the DosBox configuration file. If a specific configuration file has been specified in the settings it may overwrite some of the settings below." />
 
                 </StackPanel>
 

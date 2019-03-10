@@ -383,6 +383,8 @@
     <Compile Include="Controls\UserControls\Utilities\Rayman3Utilities.xaml.cs">
       <DependentUpon>Rayman3Utilities.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataModels\DosBoxAutoConfigData.cs" />
+    <Compile Include="Helpers\DosBoxAutoConfigManager.cs" />
     <Compile Include="ViewModels\Pages\AboutPageViewModel.cs" />
     <Compile Include="Controls\UserControls\Utilities\RaymanLegendsUtilities.xaml.cs">
       <DependentUpon>RaymanLegendsUtilities.xaml</DependentUpon>
@@ -534,7 +536,6 @@
     <Compile Include="Framework\RCFRCP.cs" />
     <Compile Include="Framework\Implementations\RCPFileManager.cs" />
     <Compile Include="Helpers\CommonPaths.cs" />
-    <Compile Include="Helpers\DosBoxHelpers.cs" />
     <Compile Include="Helpers\RCPTraceListener.cs" />
     <Compile Include="Img\Images.Designer.cs">
       <AutoGen>True</AutoGen>

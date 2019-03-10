@@ -46,7 +46,7 @@ namespace RayCarrot.RCP.Metro
             IsFiestaRunWin10Edition = true;
             ShowNotInstalledGames = true;
             CloseAppOnGameLaunch = false;
-            CloseConfigOnSave = false;
+            CloseConfigOnSave = true;
             BackupLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             ShowProgressOnTaskBar = true;
             DisplayExceptionLevel = ExceptionLevel.Critical;

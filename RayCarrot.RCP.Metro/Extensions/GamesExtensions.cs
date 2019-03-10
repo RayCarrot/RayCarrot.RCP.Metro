@@ -538,8 +538,8 @@ namespace RayCarrot.RCP.Metro
                     return new GameLaunchInfo("shell:appsFolder\\" + $"{game.GetLaunchName()}!App", null);
 
                 case GameType.DosBox:
-                    var dosBoxConfig = RCFRCP.Data.DosBoxGames[game];
-                    return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, DosBoxHelpers.GetDosBoxArgument(RCFRCP.Data.DosBoxConfig, info.InstallDirectory, dosBoxConfig.MountPath, dosBoxConfig.GetCommands(), game.GetLaunchName()));
+                    var options = RCFRCP.Data.DosBoxGames[game];
+                    return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, game.GetDosBoxArguments(info.InstallDirectory, options.MountPath, game.GetLaunchName()));
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(info.GameType));
@@ -1122,6 +1122,37 @@ namespace RayCarrot.RCP.Metro
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Gets the DosBox configuration file path for the auto config for the specific game
+        /// </summary>
+        /// <param name="game">The game to get the file path for</param>
+        /// <returns>The file path</returns>
+        public static FileSystemPath GetDosBoxConfigFile(this Games game)
+        {
+            return CommonPaths.UserDataBaseDir + "DosBox" + (game + ".ini"); 
+        }
+
+        /// <summary>
+        /// Gets the DosBox launch arguments for the specific game
+        /// </summary>
+        /// <param name="game">The game to get the arguments for</param>
+        /// <param name="installPath">Game install path</param>
+        /// <param name="mountPath">The disc/file to mount</param>
+        /// <param name="exe">The game executable file to launch</param>
+        /// <returns>The launch arguments</returns>
+        public static string GetDosBoxArguments(this Games game, FileSystemPath installPath, FileSystemPath mountPath, string exe)
+        {
+            return $"{(File.Exists(RCFRCP.Data.DosBoxConfig) ? $"-conf \"{RCFRCP.Data.DosBoxConfig} \"" : String.Empty)} " +
+                   $"-conf \"{game.GetDosBoxConfigFile()}\" " +
+                   // The mounting differs if it's a physical disc vs. a disc image
+                   $"{(mountPath.IsDirectoryRoot() ? "-c \"mount d " + mountPath.FullPath + " -t cdrom\"" : "-c \"imgmount d '" + mountPath.FullPath + "' -t iso -fs iso\"")} " +
+                   $"-c \"MOUNT C '{installPath.FullPath}'\" " +
+                   $"-c C: " +
+                   $"-c \"{exe}\" " +
+                   $"-noconsole " +
+                   $"-c exit";
         }
     }
 }

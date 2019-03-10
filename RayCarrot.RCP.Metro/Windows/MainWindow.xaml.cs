@@ -20,9 +20,9 @@ namespace RayCarrot.RCP.Metro
             InitializeComponent();
 
             // Subscribe to events
+            RCFRCP.App.RefreshRequired += App_RefreshRequired;
             Loaded += MainWindow_LoadedAsync;
             Loaded += MainWindow_Loaded2Async;
-            RCFRCP.App.RefreshRequired += App_RefreshRequired;
 
             if (RCFRCP.Data.WindowState == null)
                 return;
@@ -50,12 +50,14 @@ namespace RayCarrot.RCP.Metro
 
         private void App_RefreshRequired(object sender, EventArgs e)
         {
-            Dispatcher.Invoke(() => BackupPage.IsEnabled = RCFRCP.Data.Games.Any());
+            // Disable the backup page tab when there are no games
+            Dispatcher.Invoke(() => BackupPageTab.IsEnabled = RCFRCP.Data.Games.Any());
         }
 
         private async void MainWindow_LoadedAsync(object sender, RoutedEventArgs e)
         {
             await GamesPage.ViewModel.RefreshAsync();
+            App_RefreshRequired(null, null);
 
             // Save settings
             await RCFRCP.App.SaveUserDataAsync();

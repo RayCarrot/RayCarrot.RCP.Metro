@@ -471,7 +471,7 @@ namespace RayCarrot.RCP.Metro
                 data.AutoLocateGames = appData.AutoGameCheck ?? true;
                 data.AutoUpdate = appData.AutoUpdateCheck ?? true;
                 data.CloseAppOnGameLaunch = appData.AutoClose ?? false;
-                data.CloseConfigOnSave = appData.AutoCloseConfig ?? false;
+                data.CloseConfigOnSave = appData.AutoCloseConfig ?? true;
                 data.ShowActionComplete = appData.ShowActionComplete ?? true;
                 data.ShowProgressOnTaskBar = appData.ShowTaskBarProgress ?? true;
                 data.UserLevel = appData.UserLevel ?? UserLevel.Normal;

@@ -192,16 +192,9 @@ namespace RayCarrot.RCP.Metro
 
             // Handle Rayman 1 differently if TPLS is enabled
             if (game == Games.Rayman1 && RCFRCP.Data.TPLSData?.IsEnabled == true)
-            {
-                DosBoxOptions dosBoxConfig = RCFRCP.Data.DosBoxGames[game];
-                launchInfo = new GameLaunchInfo(RCFRCP.Data.DosBoxPath,
-                    DosBoxHelpers.GetDosBoxArgument(RCFRCP.Data.DosBoxConfig, Games.Rayman1.GetInfo().InstallDirectory,
-                        RCFRCP.Data.TPLSData.InstallDir + "RayCD.cue", dosBoxConfig.GetCommands(), game.GetLaunchName()));
-            }
+                launchInfo = new GameLaunchInfo(RCFRCP.Data.DosBoxPath, Games.Rayman1.GetDosBoxArguments(Games.Rayman1.GetInfo().InstallDirectory, RCFRCP.Data.TPLSData.InstallDir + "RayCD.cue", game.GetLaunchName()));
             else
-            {
                 launchInfo = game.GetLaunchInfo();
-            }
 
             RCF.Logger.LogTraceSource($"The game {game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
 

@@ -17,8 +17,9 @@
             <local:GamesPage x:Name="GamesPage" />
         </TabItem>
 
-        <TabItem Header="Backup/Restore">
-            <local:BackupPage x:Name="BackupPage" />
+        <TabItem x:Name="BackupPageTab"
+                 Header="Backup/Restore">
+            <local:BackupPage />
         </TabItem>
 
         <TabItem Header="Settings">

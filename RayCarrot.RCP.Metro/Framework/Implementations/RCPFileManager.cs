@@ -38,7 +38,7 @@ namespace RayCarrot.RCP.Metro
 
                 var p = Process.Start(info);
 
-                RCF.Logger.LogDebugSource($"The file {file} launched");
+                RCF.Logger.LogInformationSource($"The file {file} launched with the arguments: {arguments}");
 
                 return p;
             }
