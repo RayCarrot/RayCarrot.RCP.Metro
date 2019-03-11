@@ -1,5 +1,6 @@
 ﻿using RayCarrot.CarrotFramework;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -30,7 +31,7 @@ namespace RayCarrot.RCP.Metro
         [DllImport("kernel32.dll")]
         private static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
-        [DllImport("kernel32.dll")]
+        [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool ReadProcessMemory(int hProcess,
           int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
 
@@ -129,8 +130,8 @@ namespace RayCarrot.RCP.Metro
             // Loop to find the DOSBox process with Rayman, running for 10 seconds
             while (eAX == 0)
             {
-                // Stop searching after 10 seconds
-                if (sw.Elapsed.Seconds > 10)
+                // Stop searching after 20 seconds
+                if (sw.Elapsed.Seconds > 20)
                 {
                     RCF.Logger.LogInformationSource("TPLS: Search has timed out");
                     return;
@@ -145,10 +146,12 @@ namespace RayCarrot.RCP.Metro
                     ProcessHandle = OpenProcess(PROCESS_WM_READ, false, Process.Id);
 
                     // Read memory to verify it is DOSBox
-                    ReadProcessMemory((int)ProcessHandle, 
+                    if (!ReadProcessMemory((int)ProcessHandle, 
                         DOSBoxVersion == TPLSDOSBoxVersion.DOSBox_0_74 ? 0x74B6B0 :
                         DOSBoxVersion == TPLSDOSBoxVersion.DOSBox_SVN_Daum ? 0x8B5B84 : throw new IndexOutOfRangeException()
-                        , baseBuffer, 4, ref bytesRead);
+                        , baseBuffer, 4, ref bytesRead))
+                        throw new Win32Exception();
+
                     eAX = BitConverter.ToInt32(baseBuffer, 0);
 
                     // Verify memory
@@ -158,7 +161,9 @@ namespace RayCarrot.RCP.Metro
                         continue;
                     }
 
-                    ReadProcessMemory((int)ProcessHandle, eAX, baseBuffer, 4, ref bytesRead);
+                    if (!ReadProcessMemory((int)ProcessHandle, eAX, baseBuffer, 4, ref bytesRead))
+                        throw new Win32Exception();
+
                     if (baseBuffer[0] != 0x60 && baseBuffer[1] != 0x10 && baseBuffer[2] != 0x00 && baseBuffer[3] != 0xF0)
                         eAX = 0;
 
@@ -188,8 +193,11 @@ namespace RayCarrot.RCP.Metro
                 {
                     ex.HandleUnexpected("Finding DOSBox process and Rayman game");
 
-                    // Wait 50 milliseconds before trying again
-                    await Task.Delay(50);
+                    // Reset
+                    eAX = 0;
+
+                    // Wait 200 milliseconds before trying again
+                    await Task.Delay(200);
                 }
             }
 

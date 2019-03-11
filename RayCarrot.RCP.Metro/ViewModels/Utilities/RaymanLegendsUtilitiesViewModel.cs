@@ -127,7 +127,7 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
-                    File.Copy(saveFilePath, saveFilePath + ".backup");
+                    File.Copy(saveFilePath, saveFilePath.FullPath + ".backup");
                 }
                 catch (Exception ex)
                 {

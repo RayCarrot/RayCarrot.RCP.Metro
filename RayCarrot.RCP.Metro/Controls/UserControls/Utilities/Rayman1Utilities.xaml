@@ -25,6 +25,9 @@
 
                 <local:InfoIcon Text="By default the PC version of Rayman features fewer tracks than the PlayStation version and does not have specific tracks for each part of the levels. By enabling this utility the game will run with the PlayStation soundtrack added on top instead." />
 
+                <local:InfoIcon IconKind="InformationOutline"
+                                Text="NOTE: This utility may not work on DosBox versions 0.74-2 or higher. Version 0.74 should still work.." />
+
             </StackPanel>
 
             <Button Content="Install"
