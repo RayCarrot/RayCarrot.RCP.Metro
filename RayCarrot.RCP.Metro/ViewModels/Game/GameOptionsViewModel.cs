@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.ApplicationModel;
@@ -36,14 +37,7 @@ namespace RayCarrot.RCP.Metro
 
             if (gameType == GameType.WinStore)
             {
-                Package package = game.GetGamePackage();
-
-                AddDuoGridItem(UserLevel.Debug, "Dependencies", package.Dependencies.Select(x => x.Id.Name).JoinItems(", "));
-                AddDuoGridItem(UserLevel.Debug, "Full name", package.Id.FullName);
-                AddDuoGridItem(UserLevel.Technical, "Architecture", package.Id.Architecture.ToString());
-                AddDuoGridItem(UserLevel.Advanced, "Version", $"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}");
-                AddDuoGridItem(UserLevel.Normal, "Installed", package.InstalledDate.DateTime.ToLongDateString());
-                AddDuoGridItem(UserLevel.Normal, "Install location", info.InstallDirectory);
+                AddPackageInfo();
             }
             else
             {
@@ -60,16 +54,6 @@ namespace RayCarrot.RCP.Metro
                 }
                 AddDuoGridItem(UserLevel.Advanced, "Game type", gameType.GetDisplayName());
                 AddDuoGridItem(UserLevel.Normal, "Install location", info.InstallDirectory);
-            }
-
-            void AddDuoGridItem(UserLevel minUserLevel, string header, string text)
-            {
-                if (RCFRCP.Data.UserLevel >= minUserLevel)
-                    InfoItems.Add(new DuoGridItemViewModel()
-                    {
-                        Header = header + ":  ",
-                        Text = text
-                    });
             }
         }
 
@@ -110,6 +94,43 @@ namespace RayCarrot.RCP.Metro
         /// The command for creating a shortcut to launch the game
         /// </summary>
         public ICommand ShortcutCommand { get; }
+
+        #endregion
+
+        #region Private Methods
+
+        /// <summary>
+        /// Adds a duo grid info item
+        /// </summary>
+        /// <param name="minUserLevel">The minimum required user level</param>
+        /// <param name="header">The header</param>
+        /// <param name="text">The text to display</param>
+        private void AddDuoGridItem(UserLevel minUserLevel, string header, string text)
+        {
+            if (RCFRCP.Data.UserLevel >= minUserLevel)
+                InfoItems.Add(new DuoGridItemViewModel()
+                {
+                    Header = header + ":  ",
+                    Text = text
+                });
+        }
+
+        /// <summary>
+        /// Adds Windows store package information
+        /// </summary>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        private void AddPackageInfo()
+        {
+            var info = Game.GetInfo();
+            Package package = Game.GetGamePackage().CastTo<Package>();
+
+            AddDuoGridItem(UserLevel.Debug, "Dependencies", package.Dependencies.Select(x => x.Id.Name).JoinItems(", "));
+            AddDuoGridItem(UserLevel.Debug, "Full name", package.Id.FullName);
+            AddDuoGridItem(UserLevel.Technical, "Architecture", package.Id.Architecture.ToString());
+            AddDuoGridItem(UserLevel.Advanced, "Version", $"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}");
+            AddDuoGridItem(UserLevel.Normal, "Installed", package.InstalledDate.DateTime.ToLongDateString());
+            AddDuoGridItem(UserLevel.Normal, "Install location", info.InstallDirectory);
+        }
 
         #endregion
 

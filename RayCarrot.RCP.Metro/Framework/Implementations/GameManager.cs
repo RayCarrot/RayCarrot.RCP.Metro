@@ -154,7 +154,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Launch the first app entry for the package
-                    await (await game.GetGamePackage().GetAppListEntriesAsync()).First().LaunchAsync();
+                    await game.LaunchFirstPackageEntryAsync();
 
                     RCF.Logger.LogInformationSource($"The game {game} has been launched");
 

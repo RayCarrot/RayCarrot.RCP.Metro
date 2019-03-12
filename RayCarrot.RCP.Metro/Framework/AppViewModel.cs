@@ -72,7 +72,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(4, 0, 0, 4);
+        public Version CurrentVersion => new Version(4, 0, 0, 5);
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -226,11 +226,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     try
                     {
-                        // Get the package
-                        var package = game.GetGamePackage();
-
-                        if (package != null)
-                            installDirectory = package.InstalledLocation.Path;
+                        installDirectory = game.GetPackageInstallDirectory();
                     }
                     catch (Exception ex)
                     {

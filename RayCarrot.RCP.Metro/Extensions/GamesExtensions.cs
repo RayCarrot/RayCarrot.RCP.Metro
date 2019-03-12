@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using Windows.Management.Deployment;
@@ -153,6 +154,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="type">The game type</param>
         /// <param name="installDir">The game install directory, if any</param>
         /// <returns>True if the game is valid, otherwise false</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public static bool IsValid(this Games game, GameType type, FileSystemPath installDir)
         {
             switch (type)
@@ -165,6 +167,10 @@ namespace RayCarrot.RCP.Metro
                     return RCFWinReg.RegistryManager.KeyExists(RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {game.GetSteamID()}"), RegistryView.Registry64);
 
                 case GameType.WinStore:
+                    // Make sure version is at least Windows 8
+                    if (Environment.OSVersion.Version < new Version(6, 2, 0, 0))
+                        return false;
+
                     return game.GetGamePackage() != null;
 
                 default:
@@ -773,12 +779,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="game">The game to get the package for</param>
         /// <returns>The package or null if not found</returns>
-        public static Package GetGamePackage(this Games game)
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static object GetGamePackage(this Games game)
         {
-            // Make sure version is at least Windows 8
-            if (Environment.OSVersion.Version < new Version(6, 2, 0, 0))
-                return null;
-
             switch (game)
             {
                 case Games.RaymanJungleRun:
@@ -788,6 +791,28 @@ namespace RayCarrot.RCP.Metro
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, "A game package can only be retrieved for Rayman Jungle Run or Rayman Fiesta Run");
             }
+        }
+
+        /// <summary>
+        /// Gets the game package install directory for a Windows Store game
+        /// </summary>
+        /// <param name="game">The game to get the package install directory for</param>
+        /// <returns>The package install directory</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static FileSystemPath GetPackageInstallDirectory(this Games game)
+        {
+            return (game.GetGamePackage() as Package)?.InstalledLocation.Path ?? FileSystemPath.EmptyPath;
+        }
+
+        /// <summary>
+        /// Launches the first package entry for a game
+        /// </summary>
+        /// <param name="game">The game to launch</param>
+        /// <returns>The task</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static async Task LaunchFirstPackageEntryAsync(this Games game)
+        {
+            await (await game.GetGamePackage().CastTo<Package>().GetAppListEntriesAsync()).First().LaunchAsync();
         }
 
         /// <summary>
