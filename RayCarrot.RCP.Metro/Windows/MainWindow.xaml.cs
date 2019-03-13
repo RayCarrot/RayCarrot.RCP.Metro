@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows;
+using MahApps.Metro.Controls;
 using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro

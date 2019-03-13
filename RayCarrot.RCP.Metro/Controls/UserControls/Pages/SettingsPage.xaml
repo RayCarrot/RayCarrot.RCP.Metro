@@ -92,6 +92,10 @@
                                         OnLabel="Dark"
                                         OffLabel="Light" />
 
+                    <CheckBox Content="Enable animations"
+                              ToolTip="Uncheck this to disable all animations"
+                              IsChecked="{Binding Path=EnableAnimations}" />
+
                     <CheckBox Content="Show success messages"
                               ToolTip="Show a message when an operation has succeeded"
                               IsChecked="{Binding Path=ShowActionComplete}" />

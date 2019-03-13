@@ -63,6 +63,10 @@
     <Reference Include="MahApps.Metro.IconPacks.Material, Version=2.3.0.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\MahApps.Metro.IconPacks.Material.2.3.0\lib\net46\MahApps.Metro.IconPacks.Material.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Expression\Blend\.NETFramework\v4.5\Libraries\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Configuration, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Extensions.Configuration.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
     </Reference>
@@ -342,6 +346,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\FeedbackPrompt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\FirstLaunchInfoDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -384,6 +392,8 @@
     <Compile Include="Controls\UserControls\Utilities\Rayman3Utilities.xaml.cs">
       <DependentUpon>Rayman3Utilities.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BooleanToTransitionTypeConverter.cs" />
+    <Compile Include="Converters\BooleanToFluidMoveDuration.cs" />
     <Compile Include="DataModels\DosBoxAutoConfigData.cs" />
     <Compile Include="Helpers\DosBoxAutoConfigManager.cs" />
     <Compile Include="ViewModels\Pages\AboutPageViewModel.cs" />
@@ -572,6 +582,9 @@
       <DependentUpon>Downloader.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\DownloaderViewModel.cs" />
+    <Compile Include="Windows\FeedbackPrompt.xaml.cs">
+      <DependentUpon>FeedbackPrompt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\FirstLaunchInfoDialog.xaml.cs">
       <DependentUpon>FirstLaunchInfoDialog.xaml</DependentUpon>
     </Compile>

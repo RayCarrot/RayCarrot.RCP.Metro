@@ -6,6 +6,7 @@
                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                        xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                       xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
                        xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                        mc:Ignorable="d"
@@ -29,7 +30,11 @@
                         <Setter Property="ItemsPanel">
                             <Setter.Value>
                                 <ItemsPanelTemplate>
-                                    <WrapPanel />
+                                    <WrapPanel>
+                                        <i:Interaction.Behaviors>
+                                            <ei:FluidMoveBehavior Duration="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToFluidMoveDuration}}" AppliesTo="Children" />
+                                        </i:Interaction.Behaviors>
+                                    </WrapPanel>
                                 </ItemsPanelTemplate>
                             </Setter.Value>
                         </Setter>

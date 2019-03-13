@@ -398,6 +398,38 @@ namespace RayCarrot.RCP.Metro
             }
 
             await RCFRCP.App.EnableUbiIniWriteAccessAsync();
+
+            if (RCFRCP.Data.FeedbackPromptState >= 0)
+            {
+                RCFRCP.Data.FeedbackPromptState++;
+
+                if (RCFRCP.Data.FeedbackPromptState % 3 == 0)
+                {
+                    var dialog = new FeedbackPrompt();
+
+                    dialog.ShowDialog();
+
+                    if (dialog.SurveyResult == PopupPromptResult.DoNotShowAgain)
+                    {
+                        RCFRCP.Data.FeedbackPromptState = -1;
+                    }
+                    else if (dialog.SurveyResult == PopupPromptResult.Accept)
+                    {
+                        RCFRCP.Data.FeedbackPromptState = -1;
+
+                        const string url = "https://goo.gl/forms/l9J37XzcOgOPU4u02";
+
+                        try
+                        {
+                            Process.Start(url)?.Dispose();
+                        }
+                        catch (Exception ex)
+                        {
+                            ex.HandleError($"Opening url {url}");
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -420,6 +452,12 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 return;
+            }
+
+            if (RCFRCP.Data.LastVersion < new Version(4, 0, 0, 6))
+            {
+                RCFRCP.Data.FeedbackPromptState = 0;
+                RCFRCP.Data.EnableAnimations = true;
             }
 
             // Show app news

@@ -64,16 +64,20 @@
                           ToolTip="Uncheck this if there are graphical glitches in the game"
                           IsChecked="{Binding Path=TnL}" />
 
-                <Grid rwpf:UserLevelTag.MinUserLevel="Advanced">
+                <Grid rwpf:UserLevelTag.MinUserLevel="Advanced"
+                      rwpf:UnifiedMargin.Ignored="True">
                     <CheckBox Content="Dynamic Shadows"
                               IsChecked="{Binding Path=DynamicShadows}"
-                              Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"/>
+                              Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"
+                              Margin="0 8"/>
                 </Grid>
 
-                <Grid rwpf:UserLevelTag.MinUserLevel="Advanced">
+                <Grid rwpf:UserLevelTag.MinUserLevel="Advanced"
+                      rwpf:UnifiedMargin.Ignored="True">
                     <CheckBox Content="Static Shadows"
                               IsChecked="{Binding Path=StaticShadows}" 
-                              Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"/>
+                              Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"
+                              Margin="0 8"/>
                 </Grid>
 
                 <TextBlock Style="{StaticResource HeaderTextBlock}"

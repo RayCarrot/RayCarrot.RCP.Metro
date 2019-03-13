@@ -5,34 +5,34 @@
 • Changed the theme to Metro theme with dark/light modes
 • Simplified game selection and utilities
 • Common DosBox commands can now be set using the new DosBox configuration dialog
-• Rayman Origins debug commands have been simplified and Rayman Legends is now supported as well
 
 Other changes:
 • Utilities will now show if they require addiitonal files to be downloaded
+• Rayman M/Arena are now treated as separate games
+• Windows Store games are now be found and launched using the WinRT API rather than Explorer
 • The Rayman 1 PlayStation soundtrack utility now works without launching it from the utilities page
 • Some Rayman 2 utilities have been integrated into its configuration dialog. It now also shows the currently selected button mapping.
 • The Rayman 2 translation utility will now automatically download the correct textures file along with the translation
 • The option to revert back to the originl Rayman Origins videos has been added
-• When selecting a map to load in Rayman Origins there will now be a list of all available options
-• Rayman M/Arena are now treated as separate games
-• Windows Store games are now be found and launched using the WinRT Api rather than Explorer
+• When selecting a map to load in Rayman Origins there is now a list of all available options
 • Improved the game installer
 • The logger now logs to a file
 • Bug fixes
 
 Removed features:
 • The links page has been removed
-• The game file names can no longer be changed
+• Game file names can no longer be changed
+• The option to reset the application data has been removed
 • Games can no longer be run as administrator. To solve this, force the game executable to run as administrator manually by going to its properties window in Explorer.
 • Configuration paths can no longer be set up manually
 • The game finder can not be run manually from the settings
 • The WinForms folder dialog can no longer be used
-• Shortcuts can no longer be created for the game configuration tools. This can still be done manually by right-clicking on the executable in Explorer and creating a new shortcut.
+• Shortcuts can no longer be created for the native game configuration prorgrams. This can still be done manually by right-clicking on the executable in Explorer and creating a new shortcut.
+• Shortcuts can no longer be created for the game configuration tools.
 • Backups can no longer be created for multiple games at once
 • Several Rayman 2 configuration options were removed, including the nGlide settings. These can still be accessed from the game's native configuration tools.
 • Several Rayman Raving Rabbids configuration options were removed. These can still be accessed from within the game.
 • The Rayman Fiesta Run version can no longer be chosen. If both are installed, the Windows 10 edition is prioritized.
-• The option to reset the application data has been removed.
 • Digital versions of Rayman Origins can no longer be updated through the utilities. This is due to the GOG version recently recieving the 1.02 update it was previously missing.
 
 
@@ -73,7 +73,7 @@ Removed features:
 • Added a new page for managing backups
 • Added a new Rayman themed message box (on by default)
 • Updated settings page descriptions, detailing minimum Windows version required for certain options
-• Added a debug options to change the FlatStyle property of supported controls (only works in the main form)
+• Added a debug options to change the FlatStyle property of supported controls (only works in the main window)
 • Added more logging
 • Removed old version numbering
 • Added a message test to the debug page
@@ -199,7 +199,7 @@ Other changes:
 • Using the new cross platform, open source Carrot Framework (by RayCarrot)
 • Disabled Jungle/Fiesta Run page when running Windows 7 or lower
 • Support for nGlide 2.0
-• Some forms are now resizable
+• Some windows are now resizable
 • Option to use the Windows 7 Api Code pack folder browser instead of default one
 • The backup manager, game checker and exception handling have been reworked
 • Removed ability to navigate between pages using the arrow keys
@@ -239,7 +239,7 @@ Other changes:
 
 -----   Version 1.2.0 - November 28, 2017   -----
 
-• Added ToolTip to most controls
+• Added ToolTips to most controls
 • Added the Feedback/Contribute page
 • Minor changes to the links, about and help pages
 • Created survey for users to easily leave feedback
@@ -255,7 +255,7 @@ Other changes:
 -----   Version 1.1.0 - November 25, 2017   -----
 
 • Added source code link to the About page
-• Added an App News form to appear after an update
+• Added an App News windows to appear after an update
 • Minor improvements
 
 

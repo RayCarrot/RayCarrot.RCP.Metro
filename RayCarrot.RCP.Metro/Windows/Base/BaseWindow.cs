@@ -35,7 +35,12 @@ namespace RayCarrot.RCP.Metro
             WindowStartupLocation = Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
 
             if (RCF.IsBuilt)
+            {
+                // Set transition
+                WindowTransitionsEnabled = RCFRCP.Data.EnableAnimations;
+
                 RCF.Logger.LogInformationSource($"The window {this} has been created");
+            }
         }
     }
 }

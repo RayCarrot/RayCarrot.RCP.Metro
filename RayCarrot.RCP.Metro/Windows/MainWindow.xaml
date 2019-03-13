@@ -8,10 +8,8 @@
                   Height="600"
                   Width="800"
                   Closing="MainWindow_OnClosingAsync">
-    <Window.Resources>
-        <local:DebugPageViewModel x:Key="VM" />
-    </Window.Resources>
-    <metro:MetroAnimatedTabControl Padding="5" DataContext="{Binding Source={StaticResource VM}}">
+    <metro:MetroAnimatedTabControl Padding="5"
+                                   metro:TabControlHelper.Transition="{Binding Source={x:Static local:RCFRCP.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}">
 
         <TabItem Header="Games">
             <local:GamesPage x:Name="GamesPage" />

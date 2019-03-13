@@ -53,6 +53,8 @@ namespace RayCarrot.RCP.Metro
             RRRIsSaveDataInInstallDir = true;
             ShowDetailedGameInfo = false;
             TPLSData = null;
+            FeedbackPromptState = 0;
+            EnableAnimations = true;
         }
 
         #endregion
@@ -190,6 +192,18 @@ namespace RayCarrot.RCP.Metro
         /// The current TPLS data if installed, otherwise null
         /// </summary>
         public TPLSData TPLSData { get; set; }
+
+        /// <summary>
+        /// The state of the feedback prompt.
+        /// -1 = Do not show again.
+        /// 0 and above = the number of times it has been shown.
+        /// </summary>
+        public int FeedbackPromptState { get; set; }
+
+        /// <summary>
+        /// Indicates if animations are enabled
+        /// </summary>
+        public bool EnableAnimations { get; set; }
 
         #endregion
     }
