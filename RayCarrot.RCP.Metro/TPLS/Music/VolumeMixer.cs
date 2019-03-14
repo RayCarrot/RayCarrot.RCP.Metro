@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+// ReSharper disable UnusedMember.Local
+// ReSharper disable SuspiciousTypeConversion.Global
 
 namespace RayCarrot.RCP.Metro
 {

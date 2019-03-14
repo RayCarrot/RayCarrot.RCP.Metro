@@ -1,4 +1,4 @@
-﻿-----   Version 4.0.0 - March ? 2019   -----
+﻿-----   Version 4.0.0 - March 14, 2019   -----
 
 • Windows Vista or higher is now required to run the application
 • Updated the program to use WPF instead of WinForms

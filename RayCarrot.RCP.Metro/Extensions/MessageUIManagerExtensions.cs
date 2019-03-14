@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro
@@ -14,7 +15,10 @@ namespace RayCarrot.RCP.Metro
         /// <param name="messageUIManager">The UI manager</param>
         /// <param name="message">The message</param>
         /// <param name="header">The message header</param>
-        public static async Task DisplaySuccessfulActionMessageAsync(this IMessageUIManager messageUIManager, string message, string header = "Action succeeded", string origin = "", string filePath = "", int lineNumber = 0)
+        /// <param name="origin">The caller member name (leave at default for compiler-time value)</param>
+        /// <param name="filePath">The caller file path (leave at default for compiler-time value)</param>
+        /// <param name="lineNumber">The caller line number (leave at default for compiler-time value)</param>
+        public static async Task DisplaySuccessfulActionMessageAsync(this IMessageUIManager messageUIManager, string message, string header = "Action succeeded", [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
             // Make sure the setting to show success messages is on
             if (!RCFRCP.Data.ShowActionComplete)

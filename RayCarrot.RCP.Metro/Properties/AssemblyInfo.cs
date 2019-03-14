@@ -6,11 +6,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Rayman Control Panel")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Open source, unofficial Rayman management program with configuration tools and utilities")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RayCarrot")]
 [assembly: AssemblyProduct("Rayman Control Panel")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -49,7 +49,7 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("4.0.0.6")]
-[assembly: AssemblyFileVersion("4.0.0.6")]
+[assembly: AssemblyVersion("4.0.0.7")]
+[assembly: AssemblyFileVersion("4.0.0.7")]
 [assembly: Guid("b2de6d50-e70b-47c4-bef0-471de28816d0")]
 

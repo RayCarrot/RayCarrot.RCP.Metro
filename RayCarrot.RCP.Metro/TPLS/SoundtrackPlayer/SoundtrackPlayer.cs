@@ -51,6 +51,7 @@ namespace RayCarrot.RCP.Metro
         public async Task OnOptionsOffChangeAsync()
         {
             if (Data.OptionsOff && !Data.Music)
+                // ReSharper disable once RedundantJumpStatement
                 return;
             else if (Data.OptionsOff && Player.PlaybackState == PlaybackState.Paused)
                 Player.Resume();

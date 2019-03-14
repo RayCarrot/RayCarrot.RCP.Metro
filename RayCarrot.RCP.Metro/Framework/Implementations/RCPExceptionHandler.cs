@@ -16,6 +16,9 @@ namespace RayCarrot.RCP.Metro
         /// <param name="debugMessage">An optional debug message</param>
         /// <param name="exceptionLevel">The level of the exception</param>
         /// <param name="debugObject">An optional debug object</param>
+        /// <param name="origin">The caller member name (leave at default for compiler-time value)</param>
+        /// <param name="filePath">The caller file path (leave at default for compiler-time value)</param>
+        /// <param name="lineNumber">The caller line number (leave at default for compiler-time value)</param>
         public override void HandleException(Exception exception, string debugMessage, ExceptionLevel exceptionLevel, object debugObject = null, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
             // Call base implementation
@@ -26,7 +29,9 @@ namespace RayCarrot.RCP.Metro
                 if (RCFRCP.Data?.DisplayExceptionLevel <= exceptionLevel)
                     _ = RCF.MessageUI.DisplayMessageAsync(GetMessage(), "Exception", MessageType.Error);
             }
+#pragma warning disable 168
             catch (Exception ex)
+#pragma warning restore 168
             {
                 Debugger.Break();
             }

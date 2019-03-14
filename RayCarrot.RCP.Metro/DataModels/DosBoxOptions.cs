@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using RayCarrot.CarrotFramework;
+﻿using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro
 {

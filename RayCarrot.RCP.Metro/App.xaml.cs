@@ -412,6 +412,7 @@ namespace RayCarrot.RCP.Metro
                     if (dialog.SurveyResult == PopupPromptResult.DoNotShowAgain)
                     {
                         RCFRCP.Data.FeedbackPromptState = -1;
+                        RCF.Logger.LogInformationSource("The survey prompt is set to not show again");
                     }
                     else if (dialog.SurveyResult == PopupPromptResult.Accept)
                     {
@@ -422,11 +423,16 @@ namespace RayCarrot.RCP.Metro
                         try
                         {
                             Process.Start(url)?.Dispose();
+                            RCF.Logger.LogInformationSource("The survey URL was opened");
                         }
                         catch (Exception ex)
                         {
                             ex.HandleError($"Opening url {url}");
                         }
+                    }
+                    else
+                    {
+                        RCF.Logger.LogInformationSource("The survey prompt has been postponed");
                     }
                 }
             }
