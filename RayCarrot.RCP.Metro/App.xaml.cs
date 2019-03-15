@@ -13,6 +13,7 @@ using ByteSizeLib;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Microsoft.WindowsAPICodePack.Taskbar;
 using Newtonsoft.Json;
 using RayCarrot.CarrotFramework;
 using RayCarrot.Rayman;
@@ -20,6 +21,7 @@ using RayCarrot.RCP.Metro.Legacy;
 using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
 using RayCarrot.WPF;
+using JumpList = System.Windows.Shell.JumpList;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -139,7 +141,6 @@ namespace RayCarrot.RCP.Metro
                                 Description = $"Launch {x.GetDisplayName()}",
                                 ApplicationPath = launchInfo.Path,
                                 Arguments = launchInfo.Args,
-                                CustomCategory = "Game Shortcuts",
                                 IconResourcePath = info.GameType == GameType.DosBox || info.GameType == GameType.Steam ? info.InstallDirectory + x.GetLaunchName() : launchInfo.Path
                             };
                         }), false, false).

@@ -1,4 +1,12 @@
-﻿-----   Version 4.0.0 - March 14, 2019   -----
+﻿-----   Version 4.0.1 - March 15, 2019   -----
+
+• Updated the about page
+• Updated the help page
+• Changed the jumplist category to the default one to avoid pinning and removing jumplist shortcuts
+• Fixed a bug where the ubi.ini handler would throw an exception when a duplicate key was parsed
+
+
+-----   Version 4.0.0 - March 14, 2019   -----
 
 • Windows Vista or higher is now required to run the application
 • Updated the program to use WPF instead of WinForms

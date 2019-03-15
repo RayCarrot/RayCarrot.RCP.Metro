@@ -61,7 +61,7 @@ namespace RayCarrot.RCP.Metro
                 },
             };
 
-            SpecialThanks = "Special thanks to AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!";
+            SpecialThanks = "Special thanks to 432 Hz, AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!";
 
             // Create commands
             OpenUrlCommand = new RelayCommand(x => OpenUrl(x?.ToString()));

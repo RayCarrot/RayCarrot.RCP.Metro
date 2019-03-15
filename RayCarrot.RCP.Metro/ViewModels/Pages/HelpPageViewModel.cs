@@ -84,13 +84,13 @@ namespace RayCarrot.RCP.Metro
                                        "of the locations where data is stored." +
                                        Environment.NewLine +
                                        Environment.NewLine +
-                                       $"- Main application data - {CommonPaths.UserDataBaseDir}" +
+                                       $"• Main application data - {CommonPaths.UserDataBaseDir}" +
                                        Environment.NewLine +
-                                       $"- Registry Settings - {CommonPaths.RegistryBaseKey}" +
+                                       $"• Registry Settings - {CommonPaths.RegistryBaseKey}" +
                                        Environment.NewLine +
-                                       $"- Framework Registry Settings - {RCFRegistryPaths.RCFBasePath}" +
+                                       $"• Framework Registry Settings - {RCFRegistryPaths.RCFBasePath}" +
                                        Environment.NewLine +
-                                       $"- Temporary data - {CommonPaths.TempPath}",
+                                       $"• Temporary data - {CommonPaths.TempPath}",
                             RequiredUserLevel = UserLevel.Advanced
                         },
 
@@ -274,117 +274,117 @@ namespace RayCarrot.RCP.Metro
                         new HelpItemViewModel()
                         {
                             DisplayHeader = "Rayman 1",
-                            HelpText = "*99 lives  -  type trj8p or raylives or [TAB]bertrand during gameplay" +
+                            HelpText = "• 99 lives  -  type trj8p or raylives or [TAB]bertrand during gameplay" +
                                        Environment.NewLine +
-                                       "*All fist power-ups  -  type 2x2rmfmf or goldfist or [TAB]antoine during gameplay" +
+                                       "• All fist power-ups  -  type 2x2rmfmf or goldfist or [TAB]antoine during gameplay" +
                                        Environment.NewLine +
-                                       "*All normal powers  -  type en5gol2g or power or [TAB]benoit during gameplay" +
+                                       "• All normal powers  -  type en5gol2g or power or [TAB]benoit during gameplay" +
                                        Environment.NewLine +
-                                       "*Full health  -  type kom0ogdk or raypoint or [TAB]christ during gameplay" +
+                                       "• Full health  -  type kom0ogdk or raypoint or [TAB]christ during gameplay" +
                                        Environment.NewLine +
-                                       "*10 added Tings  -  type 86e40g91 or raywiz or [TAB]jojo during gameplay" +
+                                       "• 10 added Tings  -  type 86e40g91 or raywiz or [TAB]jojo during gameplay" +
                                        Environment.NewLine +
-                                       "*Skip current level section  -  type o8feh or winmap or [TAB]cyril during gameplay" +
+                                       "• Skip current level section  -  type o8feh or winmap or [TAB]cyril during gameplay" +
                                        Environment.NewLine +
-                                       "*Display hidden message  -  type [TAB]program during gameplay" +
+                                       "• Display hidden message  -  type [TAB]program during gameplay" +
                                        Environment.NewLine +
-                                       "*Free movement  -  type [TAB];overay[BACKSPACE] during gameplay" +
+                                       "• Free movement  -  type [TAB];overay[BACKSPACE] during gameplay" +
                                        Environment.NewLine +
-                                       "*100MHz Refresh rate  -  type freq10 on the map" +
+                                       "• 100MHz Refresh rate  -  type freq10 on the map" +
                                        Environment.NewLine +
-                                       "*80MHz Refresh rate  -  type freq80 on the map" +
+                                       "• 80MHz Refresh rate  -  type freq80 on the map" +
                                        Environment.NewLine +
-                                       "*All normal powers  -  type power or [TAB]benoit on the map" +
+                                       "• All normal powers  -  type power or [TAB]benoit on the map" +
                                        Environment.NewLine +
-                                       "*Lens effect  -  type lens on the map" +
+                                       "• Lens effect  -  type lens on the map" +
                                        Environment.NewLine +
-                                       "*Unlock all levels  -  type 4ctrepfj or alworld or [TAB]francois on the map" +
+                                       "• Unlock all levels  -  type 4ctrepfj or alworld or [TAB]francois on the map" +
                                        Environment.NewLine +
-                                       "*Enter Breakout minigame  -  type b76b7081 or cbray or [TAB]olivier on the map once Mr Dark's Dare has been completed" +
+                                       "• Enter Breakout minigame  -  type b76b7081 or cbray or [TAB]olivier on the map once Mr Dark's Dare has been completed" +
                                        Environment.NewLine +
-                                       "*Enter random stage from Breakout minigame  -  type [TAB]cbrayal[BACKSPACE] on the map" +
+                                       "• Enter random stage from Breakout minigame  -  type [TAB]cbrayal[BACKSPACE] on the map" +
                                        Environment.NewLine +
-                                       "*Stage selection  -  type [TAB]alevel[BACKSPACE] on the map"
+                                       "• Stage selection  -  type [TAB]alevel[BACKSPACE] on the map"
                         },
                         new HelpItemViewModel()
                         {
                             DisplayHeader = "Rayman Designer + Spin-Offs",
-                            HelpText = "*5 lives  -  type [TAB]lives05[BACKSPACE] during gameplay" +
+                            HelpText = "• 5 lives  -  type [TAB]lives05[BACKSPACE] during gameplay" +
                                        Environment.NewLine +
-                                       "*20 lives  -  type [TAB]lives20[BACKSPACE] during gameplay" +
+                                       "• 20 lives  -  type [TAB]lives20[BACKSPACE] during gameplay" +
                                        Environment.NewLine +
-                                       "*50 lives  -  type [TAB]lives50[BACKSPACE] during gameplay" +
+                                       "• 50 lives  -  type [TAB]lives50[BACKSPACE] during gameplay" +
                                        Environment.NewLine +
                                        "*All fist power-ups  -  type [TAB]goldens during gameplay" +
                                        Environment.NewLine +
-                                       "*Finish level  -  type [TAB]finishing during gameplay" +
+                                       "• Finish level  -  type [TAB]finishing during gameplay" +
                                        Environment.NewLine +
-                                       "*Full health  -  type [TAB]points during gameplay" +
+                                       "• Full health  -  type [TAB]points during gameplay" +
                                        Environment.NewLine +
-                                       "*Map number display  -  type [TAB]map[BACKSPACE] during gameplay" +
+                                       "• Map number display  -  type [TAB]map[BACKSPACE] during gameplay" +
                                        Environment.NewLine +
-                                       "*Free movement  -  type [TAB]moveray[BACKSPACE] during gameplay" +
+                                       "• Free movement  -  type [TAB]moveray[BACKSPACE] during gameplay" +
                                        Environment.NewLine +
-                                       "*Unlock all levels  -  type [TAB]openall[BACKSPACE] on the map"
+                                       "• Unlock all levels  -  type [TAB]openall[BACKSPACE] on the map"
                         },
                         new HelpItemViewModel()
                         {
                             DisplayHeader = "Rayman 2",
-                            HelpText = "*Upgrade magic fist  -  type glowfist on the pause screen" +
+                            HelpText = "• Upgrade magic fist  -  type glowfist on the pause screen" +
                                        Environment.NewLine +
-                                       "*Restore health  -  type gimmelife on the pause screen" +
+                                       "• Restore health  -  type gimmelife on the pause screen" +
                                        Environment.NewLine +
-                                       "*Gain 5 Yellow Lums  -  type gimmelumz on the pause screen" +
+                                       "• Gain 5 Yellow Lums  -  type gimmelumz on the pause screen" +
                                        Environment.NewLine +
-                                       "*Go to any level  -  type gothere on the pause screen, select a level with the arrow keys and press enter" +
+                                       "• Go to any level  -  type gothere on the pause screen, select a level with the arrow keys and press enter" +
                                        Environment.NewLine +
-                                       "*Unlock grappling power  -  type hangon on the pause screen" +
+                                       "• Unlock grappling power  -  type hangon on the pause screen" +
                                        Environment.NewLine +
-                                       "*Gain maximum health  -  press and release the J key to the rhythm of the Rayman 2 theme" +
+                                       "• Gain maximum health  -  press and release the J key to the rhythm of the Rayman 2 theme" +
                                        Environment.NewLine +
-                                       "*Enter bonus level without all Lums and Cages  -   press the A, Numpad 0, Q, W, Q, W in order followed by enter on the Access Denied screen" +
+                                       "• Enter bonus level without all Lums and Cages  -   press the A, Numpad 0, Q, W, Q, W in order followed by enter on the Access Denied screen" +
                                        Environment.NewLine +
                                        "*Skip cutscenes  -  type NOMOVIES on the pause screen" +
                                        Environment.NewLine +
-                                       "*New loading screens  -  type ALLVIGN on the pause screen" +
+                                       "• New loading screens  -  type ALLVIGN on the pause screen" +
                                        Environment.NewLine +
-                                       "*Disable Murfy  -  type NOMOREMURFY on the pause screen" +
+                                       "• Disable Murfy  -  type NOMOREMURFY on the pause screen" +
                                        Environment.NewLine +
-                                       "*Access hidden area in Tomb of the Ancients  -  In the final part of the Tomb of the Ancients, " +
+                                       "• Access hidden area in Tomb of the Ancients  -  In the final part of the Tomb of the Ancients, " +
                                        "stand on the third panel away from the entrance to the Technical Check-up where Rayman fights Clark. " +
                                        "Type PLAYJEFF and jump on the crate to the hole in the wall." +
                                        Environment.NewLine +
-                                       "*Access Menezis  -  type SHOOTEMUP during the credits" +
+                                       "• Access Menezis  -  type SHOOTEMUP during the credits" +
                                        Environment.NewLine +
-                                       "*Unknown  -  type GETELIX on the pause screen"
+                                       "• Unknown  -  type GETELIX on the pause screen"
                         },
                         new HelpItemViewModel()
                         {
                             DisplayHeader = "Rayman M/Arena",
-                            HelpText = "*Skip cutscenes  -  type esc during the cutscene" +
+                            HelpText = "• Skip cutscenes  -  type esc during the cutscene" +
                                        Environment.NewLine +
-                                       "*Unlock all battle levels  -  enter ALLFISH as a profile name and press Shift + Ctrl + Alt" +
+                                       "• Unlock all battle levels  -  enter ALLFISH as a profile name and press Shift + Ctrl + Alt" +
                                        Environment.NewLine +
-                                       "*Unlock all race levels  -  enter ALLTRIBES as a profile name and press Shift + Ctrl + Alt" +
+                                       "• Unlock all race levels  -  enter ALLTRIBES as a profile name and press Shift + Ctrl + Alt" +
                                        Environment.NewLine +
-                                       "*Unlock all levels  -  enter ALLRAYMANM as a profile name and press Shift + Ctrl + Alt" +
+                                       "• Unlock all levels  -  enter ALLRAYMANM as a profile name and press Shift + Ctrl + Alt" +
                                        Environment.NewLine +
-                                       "*Unlock all characters  -  enter PUPPETS as a profile name and press Shift + Ctrl + Alt" +
+                                       "• Unlock all characters  -  enter PUPPETS as a profile name and press Shift + Ctrl + Alt" +
                                        Environment.NewLine +
-                                       "*Unlock all skins  -  enter CARNIVAL as a profile name and press Shift + Ctrl + Alt" +
+                                       "• Unlock all skins  -  enter CARNIVAL as a profile name and press Shift + Ctrl + Alt" +
                                        Environment.NewLine +
-                                       "*Unlock all battle levels in mode 1  -  enter ARENAS as a profile name and press Shift + Ctrl + Alt" +
+                                       "• Unlock all battle levels in mode 1  -  enter ARENAS as a profile name and press Shift + Ctrl + Alt" +
                                        Environment.NewLine +
-                                       "*Unlock all race levels in mode 1  -  enter TRACKS as a profile name and press Shift + Ctrl + Alt" +
+                                       "• Unlock all race levels in mode 1  -  enter TRACKS as a profile name and press Shift + Ctrl + Alt" +
                                        Environment.NewLine +
-                                       "*Unlock all levels in mode 1  -  enter FIELDS as a profile name and press Shift + Ctrl + Alt" +
+                                       "• Unlock all levels in mode 1  -  enter FIELDS as a profile name and press Shift + Ctrl + Alt" +
                                        Environment.NewLine +
-                                       "*Ragtime music in races  -  enter OLDTV as a profile name and press Shift + Ctrl + Alt" +
+                                       "• Ragtime music in races  -  enter OLDTV as a profile name and press Shift + Ctrl + Alt" +
                                        Environment.NewLine +
-                                       "*Reverse map  -  type reverse on the keyboard during gameplay" +
+                                       "• Reverse map  -  type reverse on the keyboard during gameplay" +
                                        Environment.NewLine +
                                        Environment.NewLine +
-                                       "*Music team:" +
+                                       "• Music team:" +
                                        Environment.NewLine +
                                        "To activate it, enter race mode and pause the game. On the pause screen, " +
                                        "hold L1 + R1 (or equivalent on the currently used controller), then press the optimize button. " +
@@ -399,9 +399,9 @@ namespace RayCarrot.RCP.Metro
                         new HelpItemViewModel()
                         {
                             DisplayHeader = "Rayman 3",
-                            HelpText = "*Skip cutscenes  -  type esc during the cutscene" +
+                            HelpText = "• Skip cutscenes  -  type esc during the cutscene" +
                                        Environment.NewLine +
-                                       "*Reverse map  -  type reverse on the keyboard during gameplay"
+                                       "• Reverse map  -  type reverse on the keyboard during gameplay"
                         },
                     }
                 }
