@@ -13,6 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.Metro", "RayC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TODO", "TODO", "{A4E18751-83F7-4896-84DE-2998C17BA5AF}"
 	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
 		TODO.txt = TODO.txt
 	EndProjectSection
 EndProject

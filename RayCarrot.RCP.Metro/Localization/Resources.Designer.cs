@@ -61,11 +61,65 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string AboutPageHeader {
+            get {
+                return ResourceManager.GetString("AboutPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman Control Panel.
         /// </summary>
         public static string AppName {
             get {
                 return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup/Restore.
+        /// </summary>
+        public static string BackupPageHeader {
+            get {
+                return ResourceManager.GetString("BackupPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug.
+        /// </summary>
+        public static string DebugPageHeader {
+            get {
+                return ResourceManager.GetString("DebugPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Games.
+        /// </summary>
+        public static string GamesPageHeader {
+            get {
+                return ResourceManager.GetString("GamesPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string HelpPageHeader {
+            get {
+                return ResourceManager.GetString("HelpPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string SettingsPageHeader {
+            get {
+                return ResourceManager.GetString("SettingsPageHeader", resourceCulture);
             }
         }
     }

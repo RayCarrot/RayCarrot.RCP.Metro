@@ -12,28 +12,28 @@
     <metro:MetroAnimatedTabControl Padding="5"
                                    metro:TabControlHelper.Transition="{Binding Source={x:Static local:RCFRCP.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}">
 
-        <TabItem Header="Games">
+        <TabItem Header="{Resx GamesPageHeader}">
             <local:GamesPage x:Name="GamesPage" />
         </TabItem>
 
         <TabItem x:Name="BackupPageTab"
-                 Header="Backup/Restore">
+                 Header="{Resx BackupPageHeader}">
             <local:BackupPage />
         </TabItem>
 
-        <TabItem Header="Settings">
+        <TabItem Header="{Resx SettingsPageHeader}">
             <local:SettingsPage />
         </TabItem>
 
-        <TabItem Header="Help">
+        <TabItem Header="{Resx HelpPageHeader}">
             <local:HelpPage />
         </TabItem>
 
-        <TabItem Header="About">
+        <TabItem Header="{Resx AboutPageHeader}">
             <local:AboutPage />
         </TabItem>
 
-        <TabItem Header="Debug"
+        <TabItem Header="{Resx DebugPageHeader}"
                  rwpf:UserLevelTag.MinUserLevel="Debug">
             <local:DebugPage />
         </TabItem>

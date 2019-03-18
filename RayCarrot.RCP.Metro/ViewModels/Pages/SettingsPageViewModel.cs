@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework;
 
@@ -24,12 +25,12 @@ namespace RayCarrot.RCP.Metro
         #region Public Properties
 
         /// <summary>
-        /// The index of the current language
+        /// The current language value pair
         /// </summary>
-        public int CurrentLanguage
+        public KeyValuePair<string, string> CurrentLanguage
         {
-            get => AppLanguages.AvailableLanguages.FindIndex(x => x.LanguageTag == AppLanguages.CurrentLanguage.LanguageTag);
-            set => AppLanguages.CurrentLanguage = AppLanguages.AvailableLanguages[value];
+            get => AppLanguages.Languages.FindItem(x => x.Key == RCFRCP.Data.CurrentCulture);
+            set => RCFRCP.Data.CurrentCulture = value.Key;
         }
 
         #endregion
@@ -44,7 +45,7 @@ namespace RayCarrot.RCP.Metro
 
         public async Task ContributeLocalizationAsync()
         {
-
+            // TODO: Implement
         }
 
         #endregion

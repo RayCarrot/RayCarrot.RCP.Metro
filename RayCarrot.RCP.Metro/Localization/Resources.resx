@@ -100,4 +100,22 @@
   <data name="AppName" xml:space="preserve">
     <value>Rayman Control Panel</value>
   </data>
+  <data name="GamesPageHeader" xml:space="preserve">
+    <value>Games</value>
+  </data>
+  <data name="AboutPageHeader" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="BackupPageHeader" xml:space="preserve">
+    <value>Backup/Restore</value>
+  </data>
+  <data name="DebugPageHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="HelpPageHeader" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="SettingsPageHeader" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>

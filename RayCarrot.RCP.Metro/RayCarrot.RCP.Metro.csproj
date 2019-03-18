@@ -409,6 +409,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.sv-SE.resx</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AppLanguages.cs" />
     <Compile Include="ViewModels\Pages\AboutPageViewModel.cs" />
     <Compile Include="Controls\UserControls\Utilities\RaymanLegendsUtilities.xaml.cs">
       <DependentUpon>RaymanLegendsUtilities.xaml</DependentUpon>

@@ -58,7 +58,7 @@ namespace RayCarrot.RCP.Metro
             TPLSData = null;
             FeedbackPromptState = 0;
             EnableAnimations = true;
-            CurrentCulture = AppLanguages.EnglishUS.LanguageTag;
+            CurrentCulture = "en-US";
         }
 
         #endregion
@@ -231,73 +231,6 @@ namespace RayCarrot.RCP.Metro
                 RCF.Logger.LogInformationSource($"The current culture was set to {culture.EnglishName}");
             }
         }
-
-        #endregion
-    }
-
-    public static class AppLanguages
-    {
-        public static List<AppLanguageModel> AvailableLanguages => new List<AppLanguageModel>()
-        {
-            EnglishUS,
-            SwedishSV
-        };
-
-        public static AppLanguageModel EnglishUS =>
-            new AppLanguageModel()
-            {
-                DisplayName = "English (US)",
-                LanguageTag = "en-US"
-            };
-
-        public static AppLanguageModel SwedishSV =>
-            new AppLanguageModel()
-            {
-                DisplayName = "Swedish (SV)",
-                LanguageTag = "sv-SE"
-            };
-
-        public static AppLanguageModel GetLanguageModel(string tag)
-        {
-            try
-            {
-                return AvailableLanguages.Find(x => x.LanguageTag == tag);
-            }
-            catch (ArgumentNullException)
-            {
-                return EnglishUS;
-            }
-        }
-
-        public static AppLanguageModel CurrentLanguage
-        {
-            get => AvailableLanguages.Find(x => x.LanguageTag == (RCFRCP.Data?.CurrentCulture ?? EnglishUS.LanguageTag));
-            set
-            {
-                if (String.IsNullOrEmpty(value.LanguageTag))
-                    value.LanguageTag = EnglishUS.LanguageTag;
-
-                RCFRCP.Data.CurrentCulture = value.LanguageTag;
-            }
-        }
-
-        #region Shortcuts
-
-        /// <summary>
-        /// The path to the resource file
-        /// </summary>
-        public static string ResourcePath => "RayCarrot.RCP.Metro.Localization.Resources";
-
-        #endregion
-    }
-
-    public class AppLanguageModel : BaseViewModel
-    {
-        #region Properties
-
-        public string DisplayName { get; set; }
-
-        public string LanguageTag { get; set; }
 
         #endregion
     }

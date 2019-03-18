@@ -87,11 +87,11 @@
                         <rwpf:UnifiedMarginBehavior Margin="2 8" />
                     </i:Interaction.Behaviors>
 
-                    <ComboBox SelectedIndex="{Binding Path=CurrentLanguage}"
-                              ItemsSource="{Binding Source={x:Static local:AppLanguages.AvailableLanguages}, Mode=OneTime}">
+                    <ComboBox SelectedItem="{Binding Path=CurrentLanguage}"
+                              ItemsSource="{Binding Source={x:Static local:AppLanguages.Languages}, Mode=OneTime}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Path=DisplayName}"/>
+                                <TextBlock Text="{Binding Path=Value}"/>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
