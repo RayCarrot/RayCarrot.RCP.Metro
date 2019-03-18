@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -30,99 +31,18 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : BaseRCFApp
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public App()
-        {
-            // Use mutex to only allow one instance of the application at a time
-            Mutex = new Mutex(false, "Global\\" + ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), false).GetValue(0)).Value);
-        }
-
-        #endregion
-
-        #region Private Properties
-
-        /// <summary>
-        /// The mutex
-        /// </summary>
-        private Mutex Mutex { get; }
+        public App() : base(true) { }
 
         #endregion
 
         #region Event Handlers
-
-        private void Application_Startup(object sender, StartupEventArgs e)
-        {
-            try
-            {
-                if (!Mutex.WaitOne(0, false))
-                {
-                    MessageBox.Show("An instance of the Rayman Control Panel is already running", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
-                    Shutdown();
-                    return;
-                }
-            }
-            catch (AbandonedMutexException)
-            {
-                // Break if debugging
-                Debugger.Break();
-            }
-
-            // Make sure we are on Windows Vista or higher for the Windows API Code Pack
-            if (!CommonFileDialog.IsPlatformSupported)
-            {
-                MessageBox.Show("Windows Vista or higher is required to run this application", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            AppStartupAsync(e.Args);
-        }
-
-        private void Application_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
-        {
-            try
-            {
-                if (RCF.IsBuilt)
-                {
-                    // Handle the exception
-                    e.Exception.HandleCritical("Unhandled exception");
-
-                    RCF.Logger.LogCriticalSource("An unhandled exception has occurred");
-                }
-
-                // Get the path to log to
-                FileSystemPath logPath = Path.Combine(Directory.GetCurrentDirectory(), "crashlog.txt");
-
-                // Write log
-                File.WriteAllLines(logPath, SessionLogger.Logs?.Select(x => $"[{x.LogLevel}] {x.Message}") ?? new string[] { "Service not available" });
-
-                // Notify user
-                MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e.Exception.Message}{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}" +
-                                $"A crash log has been created under {logPath}.", "Critical error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (Exception)
-            {
-                // Notify user
-                MessageBox.Show($"The application crashed with the following exception message:{Environment.NewLine}{e.Exception.Message}{Environment.NewLine}{Environment.NewLine}{Environment.NewLine}" +
-                                $"The log can be found under {CommonPaths.LogFile}.", "Critical error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            finally
-            {
-                // Dispose mutex
-                Mutex?.Dispose();
-            }
-        }
-
-        private void Application_Exit(object sender, ExitEventArgs e)
-        {
-            // Dispose mutex
-            Mutex?.Dispose();
-        }
 
         private void App_RefreshRequired(object sender, EventArgs e)
         {
@@ -153,97 +73,32 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Private Methods
+        #region Protected Overrides
 
         /// <summary>
-        /// Handles the application startup
+        /// Gets the main <see cref="Window"/> to show
         /// </summary>
-        /// <param name="args">The launch arguments</param>
-        private async void AppStartupAsync(string[] args)
+        /// <returns>The Window instance</returns>
+        protected override Window GetMainWindow()
         {
-            // Set the shutdown mode to avoid the license window to close the application
-            ShutdownMode = ShutdownMode.OnExplicitShutdown;
+            // Create the window
+            var window = new MainWindow();
 
-            // Make sure the license is accepted
-            if (!ShowLicense())
-            {
-                Shutdown();
-                return;
-            }
+            // Load previous state
+            if (RCFRCP.Data.WindowState != null)
+                RCFRCP.Data.WindowState.ApplyToWindow(window);
 
-            // Hard code the current directory
-            Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? Directory.GetCurrentDirectory());
-
-            // Attempt to remove log file if over 2 mb
-            try
-            {
-                if (CommonPaths.LogFile.FileExists && CommonPaths.LogFile.GetSize() > ByteSize.FromMegaBytes(2))
-                    File.Delete(CommonPaths.LogFile);
-            }
-            catch (Exception ex)
-            {
-                ex.HandleCritical("Removing log file due to size");
-            }
-
-            // Set up the framework
-            await SetupFrameworkAsync(args);
-
-            // Subscribe to when games need to be refreshed
-            RCFRCP.App.RefreshRequired += App_RefreshRequired;
-
-            // Log the current environment
-            LogEnvironment();
-
-            // Log some debug information
-            RCF.Logger.LogDebugSource($"Executing assembly path: {Assembly.GetExecutingAssembly().Location}");
-
-            // Listen to data binding logs
-            WPFTraceListener.Setup(LogLevel.Warning);
-
-            // Run basic startup
-            await BasicStartupAsync();
-
-            // Run post-update code
-            await PostUpdateAsync();
-
-            // Clean temp folder
-            RCFRCP.File.DeleteDirectory(CommonPaths.TempPath);
-
-            // Create the temp folder
-            Directory.CreateDirectory(CommonPaths.TempPath);
-
-            RCF.Logger.LogInformationSource($"The temp directory has been created");
-
-            // Set the startup URI
-            MainWindow = new MainWindow();
-            MainWindow.Show();
-
-            // Set the shutdown mode
-            ShutdownMode = ShutdownMode.OnExplicitShutdown;
+            return window;
         }
 
         /// <summary>
-        /// Sets up the framework
+        /// Sets up the framework with loggers and other services
         /// </summary>
-        private static async Task SetupFrameworkAsync(string[] args)
+        /// <param name="construction">The construction</param>
+        /// <param name="logLevel">The level to log</param>
+        protected override void SetupFramework(FrameworkConstruction construction, LogLevel logLevel)
         {
-            LogLevel logLevel = LogLevel.Information;
-
-            // Get the log level from launch arguments
-            if (args.Contains("-loglevel"))
-            {
-                try
-                {
-                    string ll = args[args.FindItemIndex(x => x == "-loglevel") + 1];
-                    logLevel = Enum.Parse(typeof(LogLevel), ll, true).CastTo<LogLevel>();
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Setting user level from args");
-                }
-            }
-
-            new FrameworkConstruction().
+            construction.
                 // Add console, debug, session and file loggers
                 AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, logLevel, builder => builder.AddProvider(new BaseLogProvider<FileLogger>())).
                 // Add a serializer
@@ -273,15 +128,16 @@ namespace RayCarrot.RCP.Metro
                 // Add App UI manager
                 AddTransient<AppUIManager>().
                 // Add backup manager
-                AddTransient<BackupManager>().
-                // Build the framework
-                Build();
+                AddTransient<BackupManager>();
+        }
 
-            RCF.Logger.LogInformationSource($"The log level has been set to {logLevel}");
-
-            // Retrieve arguments
-            RCF.Data.Arguments = args;
-
+        /// <summary>
+        /// An optional custom setup to override
+        /// </summary>
+        /// <param name="args">The launch arguments</param>
+        /// <returns>The task</returns>
+        protected override async Task OnSetupAsync(string[] args)
+        {
             // Load the user data
             try
             {
@@ -296,25 +152,98 @@ namespace RayCarrot.RCP.Metro
                 RCFRCP.Data.Reset();
             }
 
+            // Attempt to import legacy data on first launch
             if (RCFRCP.Data.IsFirstLaunch)
                 await ImportLegacyDataAsync();
+
+            // Subscribe to when games need to be refreshed
+            RCFRCP.App.RefreshRequired += App_RefreshRequired;
+
+            // Listen to data binding logs
+            WPFTraceListener.Setup(LogLevel.Warning);
+
+            // Run basic startup
+            await BasicStartupAsync();
+
+            // Run post-update code
+            await PostUpdateAsync();
+
+            // Clean temp folder
+            RCFRCP.File.DeleteDirectory(CommonPaths.TempPath);
+
+            // Create the temp folder
+            Directory.CreateDirectory(CommonPaths.TempPath);
+
+            RCF.Logger.LogInformationSource($"The temp directory has been created");
         }
 
         /// <summary>
-        /// Logs information about the current environment
+        /// An optional method to override which runs when closing
         /// </summary>
-        private static void LogEnvironment()
+        /// <param name="mainWindow">The main Window of the application</param>
+        /// <returns>The task</returns>
+        protected override async Task OnCloseAsync(Window mainWindow)
         {
+            // Save state
+            RCFRCP.Data.WindowState = WindowSessionState.GetWindowState(mainWindow);
+
+            RCF.Logger.LogInformationSource($"The application is exiting...");
+
+            // Clean the temp
+            RCFRCP.App.CleanTemp();
+
+            // Save all user data
+            await RCFRCP.App.SaveUserDataAsync();
+        }
+
+        /// <summary>
+        /// Override to run when another instance of the program is found running
+        /// </summary>
+        /// <param name="args">The launch arguments</param>
+        protected override void OnOtherInstanceFound(string[] args)
+        {
+            MessageBox.Show("An instance of the Rayman Control Panel is already running", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        /// <summary>
+        /// Optional initial setup to run. Can be used to check if the environment is valid
+        /// for the application to run or for the user to accept the license.
+        /// </summary>
+        /// <param name="args">The launch arguments</param>
+        /// <returns>True if the setup finished successfully or false if the application has to shut down</returns>
+        protected override Task<bool> InitialSetupAsync(string[] args)
+        {
+            // Make sure we are on Windows Vista or higher for the Windows API Code Pack
+            if (!CommonFileDialog.IsPlatformSupported)
+            {
+                MessageBox.Show("Windows Vista or higher is required to run this application", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
+                return Task.FromResult(false);
+            }
+
+            // Make sure the license has been accepted
+            if (!ShowLicense())
+                return Task.FromResult(false);
+
+            // Hard code the current directory
+            Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? Directory.GetCurrentDirectory());
+
+            // Attempt to remove log file if over 2 mb
             try
             {
-                RCF.Logger.LogTraceSource($"Current Platform: {Environment.OSVersion.VersionString}");
-
+                if (CommonPaths.LogFile.FileExists && CommonPaths.LogFile.GetSize() > ByteSize.FromMegaBytes(2))
+                    File.Delete(CommonPaths.LogFile);
             }
             catch (Exception ex)
             {
-                ex.HandleError("Logging environment details");
+                ex.HandleCritical("Removing log file due to size");
             }
+
+            return Task.FromResult(true);
         }
+
+        #endregion
+
+        #region Private Methods
 
         /// <summary>
         /// Shows the application license message and returns a value indicating if it was accepted

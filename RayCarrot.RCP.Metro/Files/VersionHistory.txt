@@ -1,4 +1,10 @@
-﻿-----   Version 4.0.1 - March 15, 2019   -----
+﻿-----   Version 4.0.2 - March ?, 2019   -----
+
+• Prepared the program for localization
+• Updates to the Carrot Framework and WPF implementation
+
+
+-----   Version 4.0.1 - March 15, 2019   -----
 
 • Updated the about page
 • Updated the help page

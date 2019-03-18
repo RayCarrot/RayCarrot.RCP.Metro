@@ -1,4 +1,4 @@
-﻿<local:BaseUserControl x:Class="RayCarrot.RCP.Metro.RaymanOriginsUtilities"
+﻿<rwpf:VMUserControl x:Class="RayCarrot.RCP.Metro.RaymanOriginsUtilities"
                        x:TypeArguments="local:RaymanOriginsUtilitiesViewModel"
                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -149,4 +149,4 @@
                     Command="{Binding Path=UpdateDiscVersionCommand}"/>
         </StackPanel>
     </ScrollViewer>
-</local:BaseUserControl>
+</rwpf:VMUserControl>

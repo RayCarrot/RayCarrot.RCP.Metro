@@ -4,10 +4,11 @@
                   xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-                  Title="Rayman Control Panel"
+                  ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+                  Language="{UICulture}"
+                  Title="{Resx AppName}"
                   Height="600"
-                  Width="800"
-                  Closing="MainWindow_OnClosingAsync">
+                  Width="800">
     <metro:MetroAnimatedTabControl Padding="5"
                                    metro:TabControlHelper.Transition="{Binding Source={x:Static local:RCFRCP.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}">
 

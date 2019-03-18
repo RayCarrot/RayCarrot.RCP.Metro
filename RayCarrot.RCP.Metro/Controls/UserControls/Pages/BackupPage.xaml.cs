@@ -1,11 +1,12 @@
-﻿using System.Windows;
+﻿using RayCarrot.WPF;
+using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Interaction logic for BackupPage.xaml
     /// </summary>
-    public partial class BackupPage : BaseUserControl<BackupPageViewModel>
+    public partial class BackupPage : VMUserControl<BackupPageViewModel>
     {
         #region Constructor
 

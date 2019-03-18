@@ -54,6 +54,9 @@
     <Reference Include="Costura, Version=3.3.2.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Costura.Fody.3.3.2\lib\net40\Costura.dll</HintPath>
     </Reference>
+    <Reference Include="Infralution.Localization.Wpf">
+      <HintPath>..\..\..\Files\Infralution.Localization.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="INIFileParser, Version=2.5.2.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\ini-parser.2.5.2\lib\net20\INIFileParser.dll</HintPath>
     </Reference>
@@ -396,6 +399,16 @@
     <Compile Include="Converters\BooleanToFluidMoveDuration.cs" />
     <Compile Include="DataModels\DosBoxAutoConfigData.cs" />
     <Compile Include="Helpers\DosBoxAutoConfigManager.cs" />
+    <Compile Include="Localization\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Localization\Resources.sv-SE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.sv-SE.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Pages\AboutPageViewModel.cs" />
     <Compile Include="Controls\UserControls\Utilities\RaymanLegendsUtilities.xaml.cs">
       <DependentUpon>RaymanLegendsUtilities.xaml</DependentUpon>
@@ -537,7 +550,6 @@
     <Compile Include="DataModels\Enums\GameType.cs" />
     <Compile Include="DataModels\GameLaunchInfo.cs" />
     <Compile Include="DataModels\GamePurchaseLink.cs" />
-    <Compile Include="DataModels\WindowSessionState.cs" />
     <Compile Include="DataModels\GameFileLink.cs" />
     <Compile Include="Extensions\GamesExtensions.cs" />
     <Compile Include="Extensions\MessageUIManagerExtensions.cs" />
@@ -552,7 +564,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Images.resx</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserControls\Base\BaseUserControl.cs" />
     <Compile Include="Controls\UserControls\Pages\GamesPage.xaml.cs">
       <DependentUpon>GamesPage.xaml</DependentUpon>
     </Compile>
@@ -634,6 +645,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>InstallerGames.Designer.cs</LastGenOutput>
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Resources.sv-SE.resx">
+      <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.sv-SE.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Files\Rayman2\ubi.ini" />
     <None Include="packages.config" />
@@ -753,6 +775,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\..\packages\Costura.Fody.3.3.2\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Costura.Fody.3.3.2\build\Costura.Fody.props'))" />
     <Error Condition="!Exists('..\..\..\packages\Fody.4.0.2\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Fody.4.0.2\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\..\..\packages\Resource.Embedder.1.2.8\build\Resource.Embedder.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Resource.Embedder.1.2.8\build\Resource.Embedder.targets'))" />
   </Target>
   <Import Project="..\..\..\packages\Fody.4.0.2\build\Fody.targets" Condition="Exists('..\..\..\packages\Fody.4.0.2\build\Fody.targets')" />
+  <Import Project="..\..\..\packages\Resource.Embedder.1.2.8\build\Resource.Embedder.targets" Condition="Exists('..\..\..\packages\Resource.Embedder.1.2.8\build\Resource.Embedder.targets')" />
 </Project>

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows;
+using Infralution.Localization.Wpf;
 using Newtonsoft.Json;
 using RayCarrot.CarrotFramework;
 using RayCarrot.UserData;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -55,6 +58,7 @@ namespace RayCarrot.RCP.Metro
             TPLSData = null;
             FeedbackPromptState = 0;
             EnableAnimations = true;
+            CurrentCulture = AppLanguages.EnglishUS.LanguageTag;
         }
 
         #endregion
@@ -204,6 +208,96 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if animations are enabled
         /// </summary>
         public bool EnableAnimations { get; set; }
+
+        /// <summary>
+        /// The current culture in the application
+        /// </summary>
+        public string CurrentCulture
+        {
+            get => RCF.Data.CurrentCulture?.Name;
+            set
+            {
+                RCF.Data.CurrentCulture = CultureInfo.GetCultureInfo(value);
+                CultureManager.UICulture = CultureInfo.GetCultureInfo(CurrentCulture);
+
+                var culture = CultureInfo.GetCultureInfo(CurrentCulture);
+
+                // Update the current thread cultures
+                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture = culture;
+
+                // Set the resource culture
+                Resources.Culture = culture;
+
+                RCF.Logger.LogInformationSource($"The current culture was set to {culture.EnglishName}");
+            }
+        }
+
+        #endregion
+    }
+
+    public static class AppLanguages
+    {
+        public static List<AppLanguageModel> AvailableLanguages => new List<AppLanguageModel>()
+        {
+            EnglishUS,
+            SwedishSV
+        };
+
+        public static AppLanguageModel EnglishUS =>
+            new AppLanguageModel()
+            {
+                DisplayName = "English (US)",
+                LanguageTag = "en-US"
+            };
+
+        public static AppLanguageModel SwedishSV =>
+            new AppLanguageModel()
+            {
+                DisplayName = "Swedish (SV)",
+                LanguageTag = "sv-SE"
+            };
+
+        public static AppLanguageModel GetLanguageModel(string tag)
+        {
+            try
+            {
+                return AvailableLanguages.Find(x => x.LanguageTag == tag);
+            }
+            catch (ArgumentNullException)
+            {
+                return EnglishUS;
+            }
+        }
+
+        public static AppLanguageModel CurrentLanguage
+        {
+            get => AvailableLanguages.Find(x => x.LanguageTag == (RCFRCP.Data?.CurrentCulture ?? EnglishUS.LanguageTag));
+            set
+            {
+                if (String.IsNullOrEmpty(value.LanguageTag))
+                    value.LanguageTag = EnglishUS.LanguageTag;
+
+                RCFRCP.Data.CurrentCulture = value.LanguageTag;
+            }
+        }
+
+        #region Shortcuts
+
+        /// <summary>
+        /// The path to the resource file
+        /// </summary>
+        public static string ResourcePath => "RayCarrot.RCP.Metro.Localization.Resources";
+
+        #endregion
+    }
+
+    public class AppLanguageModel : BaseViewModel
+    {
+        #region Properties
+
+        public string DisplayName { get; set; }
+
+        public string LanguageTag { get; set; }
 
         #endregion
     }

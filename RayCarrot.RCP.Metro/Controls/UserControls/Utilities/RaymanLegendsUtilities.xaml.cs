@@ -1,9 +1,11 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿using RayCarrot.WPF;
+
+namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Interaction logic for RaymanLegendsUtilities.xaml
     /// </summary>
-    public partial class RaymanLegendsUtilities : BaseUserControl<RaymanLegendsUtilitiesViewModel>
+    public partial class RaymanLegendsUtilities : VMUserControl<RaymanLegendsUtilitiesViewModel>
     {
         public RaymanLegendsUtilities()
         {

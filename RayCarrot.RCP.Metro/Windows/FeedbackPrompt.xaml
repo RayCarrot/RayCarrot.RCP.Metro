@@ -5,7 +5,7 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   mc:Ignorable="d"
-                  Title="Feedback"
+                  Title="Feedback - Version 4.0.0"
                   Height="350" Width="600"
                   Closing="FeedbackPrompt_OnClosing"
                   ResizeMode="NoResize">

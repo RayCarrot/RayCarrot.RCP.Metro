@@ -1,11 +1,12 @@
-﻿using System.Windows;
+﻿using RayCarrot.WPF;
+using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Interaction logic for RaymanRavingRabbidsConfig.xaml
     /// </summary>
-    public partial class RaymanRavingRabbidsConfig : BaseUserControl<RaymanRavingRabbidsConfigViewModel>
+    public partial class RaymanRavingRabbidsConfig : VMUserControl<RaymanRavingRabbidsConfigViewModel>
     {
         #region Constructor
 
