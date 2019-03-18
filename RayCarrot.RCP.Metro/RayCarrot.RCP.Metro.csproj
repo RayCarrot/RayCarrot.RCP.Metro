@@ -547,7 +547,6 @@
     <Compile Include="Framework\RCFRCP.cs" />
     <Compile Include="Framework\Implementations\RCPFileManager.cs" />
     <Compile Include="Helpers\CommonPaths.cs" />
-    <Compile Include="Helpers\RCPTraceListener.cs" />
     <Compile Include="Img\Images.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

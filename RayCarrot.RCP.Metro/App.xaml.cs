@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -196,7 +198,7 @@ namespace RayCarrot.RCP.Metro
             RCF.Logger.LogDebugSource($"Executing assembly path: {Assembly.GetExecutingAssembly().Location}");
 
             // Listen to data binding logs
-            PresentationTraceSources.DataBindingSource.Listeners.Add(new RCPTraceListener());
+            WPFTraceListener.Setup(LogLevel.Warning);
 
             // Run basic startup
             await BasicStartupAsync();
@@ -258,7 +260,7 @@ namespace RayCarrot.RCP.Metro
                 AddRegistryManager<DefaultRegistryManager>().
                 // Add registry browse UI manager
                 AddRegistryBrowseUIManager<DefaultWPFRegistryBrowseUIManager>().
-                // Add app handler
+                // Add the app view model
                 AddSingleton(new AppViewModel()).
                 // Add a file manager
                 AddTransient<RCPFileManager>().

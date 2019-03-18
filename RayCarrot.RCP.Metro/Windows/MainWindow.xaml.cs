@@ -44,6 +44,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         private bool IsClosing { get; set; }
 
+        /// <summary>
+        /// Indicates if the window is done closing and can be closed
+        /// </summary>
+        private bool DoneClosing { get; set; }
+
         #endregion
 
         #region Event Handlers
@@ -76,6 +81,11 @@ namespace RayCarrot.RCP.Metro
 
         private async void MainWindow_OnClosingAsync(object sender, CancelEventArgs e)
         {
+            if (DoneClosing)
+                return;
+
+            e.Cancel = true;
+
             if (IsClosing)
                 return;
 
@@ -103,6 +113,8 @@ namespace RayCarrot.RCP.Metro
                 // Save all user data
                 await RCFRCP.App.SaveUserDataAsync();
 
+                DoneClosing = true;
+
                 // Close application
                 Application.Current.Shutdown();
             }
@@ -113,6 +125,8 @@ namespace RayCarrot.RCP.Metro
 
                 // Notify the user of the error
                 MessageBox.Show($"An error occured when shutting down the application. Error message: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                DoneClosing = true;
 
                 // Close application
                 Application.Current.Shutdown();
