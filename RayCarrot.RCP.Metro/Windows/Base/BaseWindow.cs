@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Infralution.Localization.Wpf;
 using MahApps.Metro.Controls;
 using RayCarrot.CarrotFramework;
 
@@ -33,6 +34,9 @@ namespace RayCarrot.RCP.Metro
 
             // Set startup location
             WindowStartupLocation = Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
+
+            // Set localization source
+            ResxExtension.SetDefaultResxName(this, AppLanguages.ResourcePath);
 
             if (RCF.IsBuilt)
             {

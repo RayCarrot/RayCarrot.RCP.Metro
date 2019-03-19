@@ -21,11 +21,11 @@
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
                            Text="UbiRay Character" />
 
+                <local:InfoIcon Text="UbiRay is a character not available in the game to play as, but still in the game files. This utility will modify your save file so that UbiRay is the selected character, thus allowing you to play as him." />
+
                 <local:InfoIcon IconKind="InformationOutline"
                                 Foreground="Red"
                                 Text="WARNING: This utility is experimental and might corrupt your save file. Always make a backup before using it." />
-
-                <local:InfoIcon Text="UbiRay is a character not available in the game to play as, but still in the game files. This utility will modify your save file so that UbiRay is the selected character, thus allowing you to play as him." />
 
             </StackPanel>
 

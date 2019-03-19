@@ -1,7 +1,8 @@
-﻿-----   Version 4.0.2 - March ?, 2019   -----
+﻿-----   Version 4.1.0 - March ?, 2019   -----
 
-• Prepared the program for localization
+• The program has been translated to Swedish, thus now allowing the language to be selected in the settings
 • Updates to the Carrot Framework and WPF implementation
+• Minor bug fixes
 
 
 -----   Version 4.0.1 - March 15, 2019   -----

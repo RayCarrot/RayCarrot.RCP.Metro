@@ -118,4 +118,139 @@
   <data name="SettingsPageHeader" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="GameType_Desktop" xml:space="preserve">
+    <value>Desktop Application</value>
+  </data>
+  <data name="GameType_DosBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="GameType_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="GameType_WinStore" xml:space="preserve">
+    <value>Microsoft Store</value>
+  </data>
+  <data name="MountPathHeader" xml:space="preserve">
+    <value>Mount Path</value>
+  </data>
+  <data name="MountPathInfo" xml:space="preserve">
+    <value>The mount path can either be a file or a drive. If you're using the GOG version it'll be the 'game.inst' file. If you have a disc image it is usually the .cue file. Otherwise use the drive letter of the game disc.</value>
+  </data>
+  <data name="MountOption_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="MountOption_Drive" xml:space="preserve">
+    <value>Drive</value>
+  </data>
+  <data name="MountOption_FileInfo" xml:space="preserve">
+    <value>Indicate that the mount path is a file</value>
+  </data>
+  <data name="MountOption_DriveInfo" xml:space="preserve">
+    <value>Indicate that the mount path is a drive or disc</value>
+  </data>
+  <data name="DosBoxSettingsHeader" xml:space="preserve">
+    <value>DOSBox Settings</value>
+  </data>
+  <data name="DosBoxSettingsInfo" xml:space="preserve">
+    <value>Setting one of the below options to disabled or empty will use the default value specified in the DosBox configuration file. If a specific configuration file has been specified in the settings it may overwrite some of the settings below.</value>
+  </data>
+  <data name="DosBoxOptions_Fullscreeen" xml:space="preserve">
+    <value>Fullscreen</value>
+  </data>
+  <data name="DosBoxOptions_FullscreeenInfo" xml:space="preserve">
+    <value>Start DOSBox directly in fullscreen</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBuffering" xml:space="preserve">
+    <value>Fullscreen double buffering</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBufferingInfo" xml:space="preserve">
+    <value>Use double buffering in fullscreen</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
+    <value>Aspect ratio correction</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrectionInfo" xml:space="preserve">
+    <value>Do aspect correction, if your output method doesn't support scaling this can slow things down!</value>
+  </data>
+  <data name="DosBoxOptions_MemorySize" xml:space="preserve">
+    <value>Memory Size</value>
+  </data>
+  <data name="DosBoxOptions_MemorySizeInfo" xml:space="preserve">
+    <value>Amount of memory DOSBox has in megabytes</value>
+  </data>
+  <data name="DosBoxOptions_Frameskip" xml:space="preserve">
+    <value>Frameskip</value>
+  </data>
+  <data name="DosBoxOptions_FrameskipInfo" xml:space="preserve">
+    <value>How many frames DOSBox skips before drawing one</value>
+  </data>
+  <data name="DosBoxOptions_Output" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="DosBoxOptions_OutputInfo" xml:space="preserve">
+    <value>What to use for output</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
+    <value>Fullscreen resolution</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
+    <value>What resolution to use for fullscreen: original or fixed size (e.g. 1024x768)</value>
+  </data>
+  <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
+    <value>Windowed resolution</value>
+  </data>
+  <data name="DosBoxOptions_WindowedResInfo" xml:space="preserve">
+    <value>Scale the window to this size IF the output device supports hardware scaling</value>
+  </data>
+  <data name="DosBoxOptions_Scaler" xml:space="preserve">
+    <value>Scaler</value>
+  </data>
+  <data name="DosBoxOptions_ScalerInfo" xml:space="preserve">
+    <value>Scaler used to enlarge/enhance low resolution modes</value>
+  </data>
+  <data name="DosBoxOptions_Core" xml:space="preserve">
+    <value>Core</value>
+  </data>
+  <data name="DosBoxOptions_CoreInfo" xml:space="preserve">
+    <value>CPU Core used in emulation. Auto switches from normal to dynamic if appropriate.</value>
+  </data>
+  <data name="DosBoxOptions_Cycles" xml:space="preserve">
+    <value>Cycles</value>
+  </data>
+  <data name="DosBoxOptions_CyclesInfo" xml:space="preserve">
+    <value>Amount of instructions DOSBox tries to emulate each millisecond. Setting this value too high results in sound dropouts and lags. You can also let DOSBox guess the correct value by setting it to max. The default setting (auto) switches to max if appropriate.</value>
+  </data>
+  <data name="DosBoxOptions_Commands" xml:space="preserve">
+    <value>DOSBox commands</value>
+  </data>
+  <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
+    <value>(Optional)</value>
+  </data>
+  <data name="DosBoxOptions_Recommended" xml:space="preserve">
+    <value>Use recommended settings</value>
+  </data>
+  <data name="Config_Resolution" xml:space="preserve">
+    <value>Resolution</value>
+  </data>
+  <data name="Config_ResolutionHorizontalInfo" xml:space="preserve">
+    <value>The horizontal screen resolution</value>
+  </data>
+  <data name="Config_ResolutionVerticalInfo" xml:space="preserve">
+    <value>The vertical screen resolution</value>
+  </data>
+  <data name="Config_LockRes" xml:space="preserve">
+    <value>Lock to screen resolution</value>
+  </data>
+  <data name="Config_LockResInfo" xml:space="preserve">
+    <value>Locks the horizontal and vertical values to the ones of the current screen resolution</value>
+  </data>
 </root>

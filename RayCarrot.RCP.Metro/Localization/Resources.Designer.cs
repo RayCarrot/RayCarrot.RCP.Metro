@@ -70,6 +70,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accept.
+        /// </summary>
+        public static string Accept {
+            get {
+                return ResourceManager.GetString("Accept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman Control Panel.
         /// </summary>
         public static string AppName {
@@ -88,11 +97,308 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lock to screen resolution.
+        /// </summary>
+        public static string Config_LockRes {
+            get {
+                return ResourceManager.GetString("Config_LockRes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locks the horizontal and vertical values to the ones of the current screen resolution.
+        /// </summary>
+        public static string Config_LockResInfo {
+            get {
+                return ResourceManager.GetString("Config_LockResInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resolution.
+        /// </summary>
+        public static string Config_Resolution {
+            get {
+                return ResourceManager.GetString("Config_Resolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The horizontal screen resolution.
+        /// </summary>
+        public static string Config_ResolutionHorizontalInfo {
+            get {
+                return ResourceManager.GetString("Config_ResolutionHorizontalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The vertical screen resolution.
+        /// </summary>
+        public static string Config_ResolutionVerticalInfo {
+            get {
+                return ResourceManager.GetString("Config_ResolutionVerticalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Debug.
         /// </summary>
         public static string DebugPageHeader {
             get {
                 return ResourceManager.GetString("DebugPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aspect ratio correction.
+        /// </summary>
+        public static string DosBoxOptions_AspectCorrection {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_AspectCorrection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do aspect correction, if your output method doesn&apos;t support scaling this can slow things down!.
+        /// </summary>
+        public static string DosBoxOptions_AspectCorrectionInfo {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_AspectCorrectionInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DOSBox commands.
+        /// </summary>
+        public static string DosBoxOptions_Commands {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_Commands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Optional).
+        /// </summary>
+        public static string DosBoxOptions_CommandsOptional {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_CommandsOptional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Core.
+        /// </summary>
+        public static string DosBoxOptions_Core {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_Core", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CPU Core used in emulation. Auto switches from normal to dynamic if appropriate..
+        /// </summary>
+        public static string DosBoxOptions_CoreInfo {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_CoreInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cycles.
+        /// </summary>
+        public static string DosBoxOptions_Cycles {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_Cycles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount of instructions DOSBox tries to emulate each millisecond. Setting this value too high results in sound dropouts and lags. You can also let DOSBox guess the correct value by setting it to max. The default setting (auto) switches to max if appropriate..
+        /// </summary>
+        public static string DosBoxOptions_CyclesInfo {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_CyclesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Frameskip.
+        /// </summary>
+        public static string DosBoxOptions_Frameskip {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_Frameskip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How many frames DOSBox skips before drawing one.
+        /// </summary>
+        public static string DosBoxOptions_FrameskipInfo {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_FrameskipInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fullscreen.
+        /// </summary>
+        public static string DosBoxOptions_Fullscreeen {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_Fullscreeen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start DOSBox directly in fullscreen.
+        /// </summary>
+        public static string DosBoxOptions_FullscreeenInfo {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_FullscreeenInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fullscreen double buffering.
+        /// </summary>
+        public static string DosBoxOptions_FullscreenDubbleBuffering {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_FullscreenDubbleBuffering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use double buffering in fullscreen.
+        /// </summary>
+        public static string DosBoxOptions_FullscreenDubbleBufferingInfo {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_FullscreenDubbleBufferingInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fullscreen resolution.
+        /// </summary>
+        public static string DosBoxOptions_FullscreenRes {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_FullscreenRes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What resolution to use for fullscreen: original or fixed size (e.g. 1024x768).
+        /// </summary>
+        public static string DosBoxOptions_FullscreenResInfo {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_FullscreenResInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Memory Size.
+        /// </summary>
+        public static string DosBoxOptions_MemorySize {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_MemorySize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount of memory DOSBox has in megabytes.
+        /// </summary>
+        public static string DosBoxOptions_MemorySizeInfo {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_MemorySizeInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output.
+        /// </summary>
+        public static string DosBoxOptions_Output {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_Output", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What to use for output.
+        /// </summary>
+        public static string DosBoxOptions_OutputInfo {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_OutputInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use recommended settings.
+        /// </summary>
+        public static string DosBoxOptions_Recommended {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_Recommended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scaler.
+        /// </summary>
+        public static string DosBoxOptions_Scaler {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_Scaler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scaler used to enlarge/enhance low resolution modes.
+        /// </summary>
+        public static string DosBoxOptions_ScalerInfo {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_ScalerInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windowed resolution.
+        /// </summary>
+        public static string DosBoxOptions_WindowedRes {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_WindowedRes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scale the window to this size IF the output device supports hardware scaling.
+        /// </summary>
+        public static string DosBoxOptions_WindowedResInfo {
+            get {
+                return ResourceManager.GetString("DosBoxOptions_WindowedResInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DOSBox Settings.
+        /// </summary>
+        public static string DosBoxSettingsHeader {
+            get {
+                return ResourceManager.GetString("DosBoxSettingsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setting one of the below options to disabled or empty will use the default value specified in the DosBox configuration file. If a specific configuration file has been specified in the settings it may overwrite some of the settings below..
+        /// </summary>
+        public static string DosBoxSettingsInfo {
+            get {
+                return ResourceManager.GetString("DosBoxSettingsInfo", resourceCulture);
             }
         }
         
@@ -106,11 +412,110 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Desktop Application.
+        /// </summary>
+        public static string GameType_Desktop {
+            get {
+                return ResourceManager.GetString("GameType_Desktop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DOSBox.
+        /// </summary>
+        public static string GameType_DosBox {
+            get {
+                return ResourceManager.GetString("GameType_DosBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steam.
+        /// </summary>
+        public static string GameType_Steam {
+            get {
+                return ResourceManager.GetString("GameType_Steam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Microsoft Store.
+        /// </summary>
+        public static string GameType_WinStore {
+            get {
+                return ResourceManager.GetString("GameType_WinStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string HelpPageHeader {
             get {
                 return ResourceManager.GetString("HelpPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drive.
+        /// </summary>
+        public static string MountOption_Drive {
+            get {
+                return ResourceManager.GetString("MountOption_Drive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicate that the mount path is a drive or disc.
+        /// </summary>
+        public static string MountOption_DriveInfo {
+            get {
+                return ResourceManager.GetString("MountOption_DriveInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string MountOption_File {
+            get {
+                return ResourceManager.GetString("MountOption_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicate that the mount path is a file.
+        /// </summary>
+        public static string MountOption_FileInfo {
+            get {
+                return ResourceManager.GetString("MountOption_FileInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mount Path.
+        /// </summary>
+        public static string MountPathHeader {
+            get {
+                return ResourceManager.GetString("MountPathHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The mount path can either be a file or a drive. If you&apos;re using the GOG version it&apos;ll be the &apos;game.inst&apos; file. If you have a disc image it is usually the .cue file. Otherwise use the drive letter of the game disc..
+        /// </summary>
+        public static string MountPathInfo {
+            get {
+                return ResourceManager.GetString("MountPathInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         

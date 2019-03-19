@@ -6,6 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:GameTypeSelectionViewModel}">
     <Grid Margin="10">
@@ -23,25 +24,25 @@
 
             <!-- Win32 -->
 
-            <rwpf:RadioButtonExtended Content="Desktop Application"
+            <rwpf:RadioButtonExtended Content="{Resx GameType_Desktop}"
                                       IsChecked="{Binding Path=SelectedType, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Win32}"
                                       Visibility="{Binding Path=AllowWin32, Converter={rwpf:BooleanToVisibilityConverter}}"/>
 
             <!-- Steam -->
 
-            <rwpf:RadioButtonExtended Content="Steam"
+            <rwpf:RadioButtonExtended Content="{Resx GameType_Steam}"
                                       IsChecked="{Binding Path=SelectedType, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Steam}"
                                       Visibility="{Binding Path=AllowSteam, Converter={rwpf:BooleanToVisibilityConverter}}" />
             
             <!-- WinStore -->
 
-            <rwpf:RadioButtonExtended Content="Windows Store"
+            <rwpf:RadioButtonExtended Content="{Resx GameType_WinStore}"
                                       IsChecked="{Binding Path=SelectedType, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=WinStore}"
                                       Visibility="{Binding Path=AllowWinStore, Converter={rwpf:BooleanToVisibilityConverter}}" />
             
             <!-- DosBox -->
 
-            <rwpf:RadioButtonExtended Content="DosBox"
+            <rwpf:RadioButtonExtended Content="{Resx GameType_DosBox}"
                                       IsChecked="{Binding Path=SelectedType, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=DosBox}"
                                       Visibility="{Binding Path=AllowDosBox, Converter={rwpf:BooleanToVisibilityConverter}}" />
 
@@ -50,13 +51,16 @@
         <StackPanel Grid.Row="1" 
                     Orientation="Horizontal" 
                     HorizontalAlignment="Right">
-            <Button Content="Cancel"
+
+            <Button Content="{Resx Cancel}"
                     IsCancel="True"
                     Click="CancelButton_Click"/>
-            <Button Content="Continue"
+
+            <Button Content="{Resx Accept}"
                     Margin="10 0 0 0"
                     IsDefault="True"
                     Click="OKButton_Click"/>
+
         </StackPanel>
 
     </Grid>

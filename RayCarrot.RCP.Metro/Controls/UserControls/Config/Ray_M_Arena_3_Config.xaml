@@ -7,6 +7,7 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance local:RaymanMConfigViewModel}">
@@ -24,12 +25,11 @@
                 </i:Interaction.Behaviors>
 
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Resolution" />
-
+                           Text="{Resx Config_Resolution}" />
 
                 <StackPanel Orientation="Horizontal">
                     <mah:NumericUpDown Value="{Binding Path=ResX}"
-                                       ToolTip="The horizontal screen resolution"
+                                       ToolTip="{Resx Config_ResolutionHorizontalInfo}"
                                        Minimum="1"
                                        Maximum="99999"
                                        IsEnabled="{Binding Path=LockToScreenRes, Converter={rwpf:InvertedBooleanConverter}}" />
@@ -39,15 +39,15 @@
                                FontSize="14" />
 
                     <mah:NumericUpDown Value="{Binding Path=ResY}"
-                                       ToolTip="The vertical screen resolution"
+                                       ToolTip="{Resx Config_ResolutionVerticalInfo}"
                                        Minimum="1"
                                        Maximum="99999"
                                        IsEnabled="{Binding Path=LockToScreenRes, Converter={rwpf:InvertedBooleanConverter}}" />
 
                 </StackPanel>
 
-                <CheckBox Content="Lock to screen resolution"
-                          ToolTip="Check to lock the horizontal and vertical values to the ones of the current screen resolution"
+                <CheckBox Content="{Resx Config_LockRes}"
+                          ToolTip="{Resx Config_LockResInfo}"
                           IsChecked="{Binding Path=LockToScreenRes}" />
 
                 <CheckBox Content="Fullscreen"

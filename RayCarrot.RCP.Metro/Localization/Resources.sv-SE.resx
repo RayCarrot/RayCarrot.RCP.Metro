@@ -118,4 +118,139 @@
   <data name="SettingsPageHeader" xml:space="preserve">
     <value>Inställningar</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Bekräfta</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Spara</value>
+  </data>
+  <data name="GameType_Desktop" xml:space="preserve">
+    <value>Skrivbordsapp</value>
+  </data>
+  <data name="GameType_DosBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="GameType_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="GameType_WinStore" xml:space="preserve">
+    <value>Microsoft Store</value>
+  </data>
+  <data name="MountPathHeader" xml:space="preserve">
+    <value>Monterings-sökväg</value>
+  </data>
+  <data name="MountPathInfo" xml:space="preserve">
+    <value>Monterings-sökvägen kan antingen vara en fil eller enhet. Om du använder GOG-versionen är det 'game.inst' filen. Använder du en skivbild är det oftast .cue files. Annars använd enhets-bokstaven för spelskivan.</value>
+  </data>
+  <data name="MountOption_File" xml:space="preserve">
+    <value>Fil</value>
+  </data>
+  <data name="MountOption_Drive" xml:space="preserve">
+    <value>Enhet</value>
+  </data>
+  <data name="MountOption_FileInfo" xml:space="preserve">
+    <value>Ange att monterings-sökvägen är en fil</value>
+  </data>
+  <data name="MountOption_DriveInfo" xml:space="preserve">
+    <value>Ange att monterings-sökvägen är en enhet eller skiva</value>
+  </data>
+  <data name="DosBoxSettingsHeader" xml:space="preserve">
+    <value>DOSBox inställningar</value>
+  </data>
+  <data name="DosBoxSettingsInfo" xml:space="preserve">
+    <value>Om ett av de nedanstående alternativen inaktiveras eller lämnas tomt så kommer inställningen i DOSBox konfigurationsfilen att användas istället. Om en konfigurationsfil har angivits under inställningar så kan inställningarna angivna där att användas istället för de nedanför.</value>
+  </data>
+  <data name="DosBoxOptions_Fullscreeen" xml:space="preserve">
+    <value>Fullskärm</value>
+  </data>
+  <data name="DosBoxOptions_FullscreeenInfo" xml:space="preserve">
+    <value>Starta DOSBox i fullskärm</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBuffering" xml:space="preserve">
+    <value>Fullskärm dubble buffering</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBufferingInfo" xml:space="preserve">
+    <value>Använd dubble buffering i fullskärm</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
+    <value>Aspect ratio correction</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrectionInfo" xml:space="preserve">
+    <value>Använd aspect ratio correction. Om utmatningens-metoden inte stöder bildskalning så kan det få spelet att köras långsammare.</value>
+  </data>
+  <data name="DosBoxOptions_MemorySize" xml:space="preserve">
+    <value>Minnesstorlek</value>
+  </data>
+  <data name="DosBoxOptions_MemorySizeInfo" xml:space="preserve">
+    <value>Mängden minne DOSBox har i megabyte</value>
+  </data>
+  <data name="DosBoxOptions_Frameskip" xml:space="preserve">
+    <value>Frameskip</value>
+  </data>
+  <data name="DosBoxOptions_FrameskipInfo" xml:space="preserve">
+    <value>Antalet frames som DOSBox hoppar över innan en ny ritas</value>
+  </data>
+  <data name="DosBoxOptions_Output" xml:space="preserve">
+    <value>Utmatningsmetod</value>
+  </data>
+  <data name="DosBoxOptions_OutputInfo" xml:space="preserve">
+    <value>Utmatningsmetoden att använda</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
+    <value>Fullskärmsupplösning</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
+    <value>Upplösningen att använda i fullskärmsläge: original eller specifik storlek (t.ex. 1024x768)</value>
+  </data>
+  <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
+    <value>Fönsterupplösning</value>
+  </data>
+  <data name="DosBoxOptions_WindowedResInfo" xml:space="preserve">
+    <value>Skala fönstret till den här storleken om utmatnings-metoden stöder hårdvaruskalning</value>
+  </data>
+  <data name="DosBoxOptions_Scaler" xml:space="preserve">
+    <value>Bildskalning</value>
+  </data>
+  <data name="DosBoxOptions_ScalerInfo" xml:space="preserve">
+    <value>Bildskalningen att använda för att förstora/förbättra låga upplösningar</value>
+  </data>
+  <data name="DosBoxOptions_Core" xml:space="preserve">
+    <value>Processorkärna</value>
+  </data>
+  <data name="DosBoxOptions_CoreInfo" xml:space="preserve">
+    <value>Processorkärnan som används under emulering. Auto byter från normal till dynamic om lämpligt.</value>
+  </data>
+  <data name="DosBoxOptions_Cycles" xml:space="preserve">
+    <value>Cycles</value>
+  </data>
+  <data name="DosBoxOptions_CyclesInfo" xml:space="preserve">
+    <value>Antalet instruktioner som DOSBox försöker att emulera varje millisekund. Om det här värdet är för högt resulterar i ljudavbrott och lagg. Du kan låta DOSBox gissa det rätta värdet genom att sätta det till max. Standardvärdet (auto) byter från max om lämpligt.</value>
+  </data>
+  <data name="DosBoxOptions_Commands" xml:space="preserve">
+    <value>DOSBox-kommandon</value>
+  </data>
+  <data name="DosBoxOptions_Recommended" xml:space="preserve">
+    <value>Använd rekommenderade inställningar</value>
+  </data>
+  <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
+    <value>(Valfritt)</value>
+  </data>
+  <data name="Config_Resolution" xml:space="preserve">
+    <value>Upplösning</value>
+  </data>
+  <data name="Config_ResolutionHorizontalInfo" xml:space="preserve">
+    <value>Den horisontella skärmupplösningen</value>
+  </data>
+  <data name="Config_ResolutionVerticalInfo" xml:space="preserve">
+    <value>Den vertikala skärmupplösningen</value>
+  </data>
+  <data name="Config_LockRes" xml:space="preserve">
+    <value>Lås till skärmupplösningen</value>
+  </data>
+  <data name="Config_LockResInfo" xml:space="preserve">
+    <value>Låser den horisontella och vertikala upplösningen till de på den nuvarande skärmen</value>
+  </data>
 </root>
