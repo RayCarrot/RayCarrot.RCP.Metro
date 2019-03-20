@@ -253,4 +253,145 @@
   <data name="Config_LockResInfo" xml:space="preserve">
     <value>Låser den horisontella och vertikala upplösningen till de på den nuvarande skärmen</value>
   </data>
+  <data name="Config_Fullscreen" xml:space="preserve">
+    <value>Fullskärm</value>
+  </data>
+  <data name="Config_FullscreenInfo" xml:space="preserve">
+    <value>Gör att spelet körs i fullskärmsläge. Annars visas det i ett fönster.</value>
+  </data>
+  <data name="Config_Graphics" xml:space="preserve">
+    <value>Grafik</value>
+  </data>
+  <data name="Config_TriLinear" xml:space="preserve">
+    <value>TriLinear</value>
+  </data>
+  <data name="Config_TnL" xml:space="preserve">
+    <value>Transform och lightning</value>
+  </data>
+  <data name="Config_TnLInfo" xml:space="preserve">
+    <value>Kryssa inte i om det är grafikproblem i spelet</value>
+  </data>
+  <data name="Config_DynamicShadows" xml:space="preserve">
+    <value>Dynamic shadows</value>
+  </data>
+  <data name="Config_StaticShadows" xml:space="preserve">
+    <value>Static shadows</value>
+  </data>
+  <data name="Config_Textures" xml:space="preserve">
+    <value>Textures</value>
+  </data>
+  <data name="Config_Textures16" xml:space="preserve">
+    <value>16 bitar</value>
+  </data>
+  <data name="Config_Textures32" xml:space="preserve">
+    <value>32 bitar</value>
+  </data>
+  <data name="Config_Compressed" xml:space="preserve">
+    <value>Komprimerad</value>
+  </data>
+  <data name="Config_Video" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="Config_VideoGood" xml:space="preserve">
+    <value>Bra kvalitet</value>
+  </data>
+  <data name="Config_VideoBad" xml:space="preserve">
+    <value>Dålig kvalitet</value>
+  </data>
+  <data name="Config_VideoAuto" xml:space="preserve">
+    <value>Justera automatiskt kvaliteten</value>
+  </data>
+  <data name="Config_Video16Bpp" xml:space="preserve">
+    <value>16 bitar per pixel</value>
+  </data>
+  <data name="Config_Video32Bpp" xml:space="preserve">
+    <value>32 bitar per pixel</value>
+  </data>
+  <data name="Config_Language" xml:space="preserve">
+    <value>Språk</value>
+  </data>
+  <data name="Config_Controller" xml:space="preserve">
+    <value>Handkontroller</value>
+  </data>
+  <data name="Config_ControllerInfo" xml:space="preserve">
+    <value>Om handkontrollen inte känns av i spelet kan du aktivera stöd för det här</value>
+  </data>
+  <data name="Config_EnableNativeController" xml:space="preserve">
+    <value>Aktivera stöd för handkontroller</value>
+  </data>
+  <data name="Config_ControllerVertical" xml:space="preserve">
+    <value>Vertikala axeln</value>
+  </data>
+  <data name="Config_ControllerHorizontal" xml:space="preserve">
+    <value>Horisontella axeln</value>
+  </data>
+  <data name="Config_Network" xml:space="preserve">
+    <value>Nätverk</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>Om bredbild-stöd inte är aktiverad så kommer spelet att sträckas ut om upplösningen inte har bildförhållandet 4:3</value>
+  </data>
+  <data name="Config_WidescreenSupport" xml:space="preserve">
+    <value>Bredbild-stöd</value>
+  </data>
+  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
+    <value>Bredbild-stöd ser till att spelet inte sträcks ut om det körs med ett bildförhållande annat än 4:3</value>
+  </data>
+  <data name="Config_WidescreenHorizontal" xml:space="preserve">
+    <value>Horisontell bredbild</value>
+  </data>
+  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
+    <value>Få bilden at utökas horisontellt</value>
+  </data>
+  <data name="Config_VerticalHorizontal" xml:space="preserve">
+    <value>Vertikal bredbild</value>
+  </data>
+  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
+    <value>Få bilden att minskas vertikalt</value>
+  </data>
+  <data name="Config_LanguageR2Info" xml:space="preserve">
+    <value>Det här sätter språket som kommer att vara vald när spelet startar. Språket kan fortfarande ändras från spelmenyn.</value>
+  </data>
+  <data name="Config_ControllerR2Info" xml:space="preserve">
+    <value>Om handkontrollen inte känns av i spelet kan du aktivera stöd för det här. Det här kommer att ta bort valda kontroller-konfigurationer för tangentbordet.</value>
+  </data>
+  <data name="Config_ButtonMapping" xml:space="preserve">
+    <value>Kontroller-konfiguration (tangentbord)</value>
+  </data>
+  <data name="Config_ButtonMappingInfo" xml:space="preserve">
+    <value>Då spelet inte har stöd att ändra kontroller-konfigurationen kan du göra det här. Det här fungerar inte för en handkontroller.</value>
+  </data>
+  <data name="Config_ButtonMappingActionHeader" xml:space="preserve">
+    <value>Funktion</value>
+  </data>
+  <data name="Config_ButtonMappingKeyHeader" xml:space="preserve">
+    <value>Tangent</value>
+  </data>
+  <data name="Config_ButtonMappingReset" xml:space="preserve">
+    <value>Återställ</value>
+  </data>
+  <data name="Config_ResolutionRRRInfo" xml:space="preserve">
+    <value>Om den valda upplösningen har ett bildförhållande annat än 4:3 kommer bilden att sträckas ut, även om bredbild är på i spelets inställningar</value>
+  </data>
+  <data name="Config_RRRScreenMode" xml:space="preserve">
+    <value>Skärmläge</value>
+  </data>
+  <data name="Config_RRRScreenModeInfo" xml:space="preserve">
+    <value>Skärmlägena fungerar olika beroende på den valda upplösningen. Oftast får 4:3 läget spelet att inte sträcka ut bilden på olika bildförhållanden.</value>
+  </data>
+  <data name="Config_UseController" xml:space="preserve">
+    <value>Använd ansluten handkontroller</value>
+  </data>
+  <data name="Config_SaveDataLocation" xml:space="preserve">
+    <value>Speldata</value>
+  </data>
+  <data name="Config_SaveDataLocationInfo" xml:space="preserve">
+    <value>Det här kommer inte att ändra var spelet sparar speldatan. Det här är till för att visa var speldatan ska säkerhetskopieras från.</value>
+  </data>
+  <data name="Config_SaveDataLocationInstDir" xml:space="preserve">
+    <value>Spelmappen</value>
+  </data>
+  <data name="Config_SaveDataLocationAppData" xml:space="preserve">
+    <value>App data</value>
+  </data>
 </root>

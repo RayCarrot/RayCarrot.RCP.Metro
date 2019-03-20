@@ -2,6 +2,7 @@
 
 • The program has been translated to Swedish, thus now allowing the language to be selected in the settings
 • Updates to the Carrot Framework and WPF implementation
+• Increased ToolTip timeout on InfoIcons
 • Minor bug fixes
 
 

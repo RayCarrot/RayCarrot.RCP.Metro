@@ -106,6 +106,168 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Button Mapping (keyboard).
+        /// </summary>
+        public static string Config_ButtonMapping {
+            get {
+                return ResourceManager.GetString("Config_ButtonMapping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Action.
+        /// </summary>
+        public static string Config_ButtonMappingActionHeader {
+            get {
+                return ResourceManager.GetString("Config_ButtonMappingActionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As the game doesn&apos;t allow native button remapping you change it here. This will not work for controllers..
+        /// </summary>
+        public static string Config_ButtonMappingInfo {
+            get {
+                return ResourceManager.GetString("Config_ButtonMappingInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key.
+        /// </summary>
+        public static string Config_ButtonMappingKeyHeader {
+            get {
+                return ResourceManager.GetString("Config_ButtonMappingKeyHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        public static string Config_ButtonMappingReset {
+            get {
+                return ResourceManager.GetString("Config_ButtonMappingReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compressed.
+        /// </summary>
+        public static string Config_Compressed {
+            get {
+                return ResourceManager.GetString("Config_Compressed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Controller.
+        /// </summary>
+        public static string Config_Controller {
+            get {
+                return ResourceManager.GetString("Config_Controller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horizontal Axis.
+        /// </summary>
+        public static string Config_ControllerHorizontal {
+            get {
+                return ResourceManager.GetString("Config_ControllerHorizontal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If your controller is not recognized you can enable controller support here.
+        /// </summary>
+        public static string Config_ControllerInfo {
+            get {
+                return ResourceManager.GetString("Config_ControllerInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If your controller is not recognized you can enable controller support here. This will remove any custom button mapping..
+        /// </summary>
+        public static string Config_ControllerR2Info {
+            get {
+                return ResourceManager.GetString("Config_ControllerR2Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertical Axis.
+        /// </summary>
+        public static string Config_ControllerVertical {
+            get {
+                return ResourceManager.GetString("Config_ControllerVertical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dynamic Shadows.
+        /// </summary>
+        public static string Config_DynamicShadows {
+            get {
+                return ResourceManager.GetString("Config_DynamicShadows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable native controller support.
+        /// </summary>
+        public static string Config_EnableNativeController {
+            get {
+                return ResourceManager.GetString("Config_EnableNativeController", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fullscreen.
+        /// </summary>
+        public static string Config_Fullscreen {
+            get {
+                return ResourceManager.GetString("Config_Fullscreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Makes the game run in fullscreen, otherwise it&apos;ll run in windowed mode.
+        /// </summary>
+        public static string Config_FullscreenInfo {
+            get {
+                return ResourceManager.GetString("Config_FullscreenInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Graphics.
+        /// </summary>
+        public static string Config_Graphics {
+            get {
+                return ResourceManager.GetString("Config_Graphics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string Config_Language {
+            get {
+                return ResourceManager.GetString("Config_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This sets the default language selected when launching the game. The language can still be changed from the game menu..
+        /// </summary>
+        public static string Config_LanguageR2Info {
+            get {
+                return ResourceManager.GetString("Config_LanguageR2Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lock to screen resolution.
         /// </summary>
         public static string Config_LockRes {
@@ -120,6 +282,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_LockResInfo {
             get {
                 return ResourceManager.GetString("Config_LockResInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Network.
+        /// </summary>
+        public static string Config_Network {
+            get {
+                return ResourceManager.GetString("Config_Network", resourceCulture);
             }
         }
         
@@ -142,11 +313,263 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If the widescreen support is not enabled the game will stretch if set to an aspect ratio other than 4:3.
+        /// </summary>
+        public static string Config_ResolutionR2Info {
+            get {
+                return ResourceManager.GetString("Config_ResolutionR2Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setting the resolution to an aspect ratio other than 4:3 will stretch the game, even with the internal widescreen option turned on.
+        /// </summary>
+        public static string Config_ResolutionRRRInfo {
+            get {
+                return ResourceManager.GetString("Config_ResolutionRRRInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The vertical screen resolution.
         /// </summary>
         public static string Config_ResolutionVerticalInfo {
             get {
                 return ResourceManager.GetString("Config_ResolutionVerticalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Screen Mode.
+        /// </summary>
+        public static string Config_RRRScreenMode {
+            get {
+                return ResourceManager.GetString("Config_RRRScreenMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The screen mode options will behave differently depending on the selected resolution. Usually keeping the 4:3 mode enabled will allow the game not to be stretched on different aspect ratios..
+        /// </summary>
+        public static string Config_RRRScreenModeInfo {
+            get {
+                return ResourceManager.GetString("Config_RRRScreenModeInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Data Location.
+        /// </summary>
+        public static string Config_SaveDataLocation {
+            get {
+                return ResourceManager.GetString("Config_SaveDataLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to App data.
+        /// </summary>
+        public static string Config_SaveDataLocationAppData {
+            get {
+                return ResourceManager.GetString("Config_SaveDataLocationAppData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will not change where the game saves it data. Use this only to specify the data location for the backup tool..
+        /// </summary>
+        public static string Config_SaveDataLocationInfo {
+            get {
+                return ResourceManager.GetString("Config_SaveDataLocationInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install directory.
+        /// </summary>
+        public static string Config_SaveDataLocationInstDir {
+            get {
+                return ResourceManager.GetString("Config_SaveDataLocationInstDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Static Shadows.
+        /// </summary>
+        public static string Config_StaticShadows {
+            get {
+                return ResourceManager.GetString("Config_StaticShadows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Textures.
+        /// </summary>
+        public static string Config_Textures {
+            get {
+                return ResourceManager.GetString("Config_Textures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 16 bit.
+        /// </summary>
+        public static string Config_Textures16 {
+            get {
+                return ResourceManager.GetString("Config_Textures16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 32 bit.
+        /// </summary>
+        public static string Config_Textures32 {
+            get {
+                return ResourceManager.GetString("Config_Textures32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transform and Lightning.
+        /// </summary>
+        public static string Config_TnL {
+            get {
+                return ResourceManager.GetString("Config_TnL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uncheck this if there are graphical glitches in the game.
+        /// </summary>
+        public static string Config_TnLInfo {
+            get {
+                return ResourceManager.GetString("Config_TnLInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TriLinear.
+        /// </summary>
+        public static string Config_TriLinear {
+            get {
+                return ResourceManager.GetString("Config_TriLinear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use connected controller.
+        /// </summary>
+        public static string Config_UseController {
+            get {
+                return ResourceManager.GetString("Config_UseController", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertical widescreen.
+        /// </summary>
+        public static string Config_VerticalHorizontal {
+            get {
+                return ResourceManager.GetString("Config_VerticalHorizontal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Video.
+        /// </summary>
+        public static string Config_Video {
+            get {
+                return ResourceManager.GetString("Config_Video", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 16 bits per pixel.
+        /// </summary>
+        public static string Config_Video16Bpp {
+            get {
+                return ResourceManager.GetString("Config_Video16Bpp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 32 bits per pixel.
+        /// </summary>
+        public static string Config_Video32Bpp {
+            get {
+                return ResourceManager.GetString("Config_Video32Bpp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto adjust quality.
+        /// </summary>
+        public static string Config_VideoAuto {
+            get {
+                return ResourceManager.GetString("Config_VideoAuto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bad quality.
+        /// </summary>
+        public static string Config_VideoBad {
+            get {
+                return ResourceManager.GetString("Config_VideoBad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Good quality.
+        /// </summary>
+        public static string Config_VideoGood {
+            get {
+                return ResourceManager.GetString("Config_VideoGood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horizontal widescreen.
+        /// </summary>
+        public static string Config_WidescreenHorizontal {
+            get {
+                return ResourceManager.GetString("Config_WidescreenHorizontal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make the widescreen expand horizontally.
+        /// </summary>
+        public static string Config_WidescreenHorizontalInfo {
+            get {
+                return ResourceManager.GetString("Config_WidescreenHorizontalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Widescreen support.
+        /// </summary>
+        public static string Config_WidescreenSupport {
+            get {
+                return ResourceManager.GetString("Config_WidescreenSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Widescreen support ensures that the game is not stretched when running in an aspect ratio other than 4:3.
+        /// </summary>
+        public static string Config_WidescreenSupportInfo {
+            get {
+                return ResourceManager.GetString("Config_WidescreenSupportInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make the widescreen shrink vertically.
+        /// </summary>
+        public static string Config_WidescreenVerticalInfo {
+            get {
+                return ResourceManager.GetString("Config_WidescreenVerticalInfo", resourceCulture);
             }
         }
         

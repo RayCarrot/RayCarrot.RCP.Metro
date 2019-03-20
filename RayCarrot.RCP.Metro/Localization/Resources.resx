@@ -253,4 +253,145 @@
   <data name="Config_LockResInfo" xml:space="preserve">
     <value>Locks the horizontal and vertical values to the ones of the current screen resolution</value>
   </data>
+  <data name="Config_Fullscreen" xml:space="preserve">
+    <value>Fullscreen</value>
+  </data>
+  <data name="Config_FullscreenInfo" xml:space="preserve">
+    <value>Makes the game run in fullscreen, otherwise it'll run in windowed mode</value>
+  </data>
+  <data name="Config_Graphics" xml:space="preserve">
+    <value>Graphics</value>
+  </data>
+  <data name="Config_TriLinear" xml:space="preserve">
+    <value>TriLinear</value>
+  </data>
+  <data name="Config_TnL" xml:space="preserve">
+    <value>Transform and Lightning</value>
+  </data>
+  <data name="Config_TnLInfo" xml:space="preserve">
+    <value>Uncheck this if there are graphical glitches in the game</value>
+  </data>
+  <data name="Config_DynamicShadows" xml:space="preserve">
+    <value>Dynamic Shadows</value>
+  </data>
+  <data name="Config_StaticShadows" xml:space="preserve">
+    <value>Static Shadows</value>
+  </data>
+  <data name="Config_Textures" xml:space="preserve">
+    <value>Textures</value>
+  </data>
+  <data name="Config_Textures16" xml:space="preserve">
+    <value>16 bit</value>
+  </data>
+  <data name="Config_Textures32" xml:space="preserve">
+    <value>32 bit</value>
+  </data>
+  <data name="Config_Compressed" xml:space="preserve">
+    <value>Compressed</value>
+  </data>
+  <data name="Config_Video" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="Config_VideoGood" xml:space="preserve">
+    <value>Good quality</value>
+  </data>
+  <data name="Config_VideoBad" xml:space="preserve">
+    <value>Bad quality</value>
+  </data>
+  <data name="Config_VideoAuto" xml:space="preserve">
+    <value>Auto adjust quality</value>
+  </data>
+  <data name="Config_Video16Bpp" xml:space="preserve">
+    <value>16 bits per pixel</value>
+  </data>
+  <data name="Config_Video32Bpp" xml:space="preserve">
+    <value>32 bits per pixel</value>
+  </data>
+  <data name="Config_Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Config_Controller" xml:space="preserve">
+    <value>Controller</value>
+  </data>
+  <data name="Config_UseController" xml:space="preserve">
+    <value>Use connected controller</value>
+  </data>
+  <data name="Config_ControllerInfo" xml:space="preserve">
+    <value>If your controller is not recognized you can enable controller support here</value>
+  </data>
+  <data name="Config_EnableNativeController" xml:space="preserve">
+    <value>Enable native controller support</value>
+  </data>
+  <data name="Config_ControllerVertical" xml:space="preserve">
+    <value>Vertical Axis</value>
+  </data>
+  <data name="Config_ControllerHorizontal" xml:space="preserve">
+    <value>Horizontal Axis</value>
+  </data>
+  <data name="Config_Network" xml:space="preserve">
+    <value>Network</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>If the widescreen support is not enabled the game will stretch if set to an aspect ratio other than 4:3</value>
+  </data>
+  <data name="Config_WidescreenSupport" xml:space="preserve">
+    <value>Widescreen support</value>
+  </data>
+  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
+    <value>Widescreen support ensures that the game is not stretched when running in an aspect ratio other than 4:3</value>
+  </data>
+  <data name="Config_WidescreenHorizontal" xml:space="preserve">
+    <value>Horizontal widescreen</value>
+  </data>
+  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
+    <value>Make the widescreen expand horizontally</value>
+  </data>
+  <data name="Config_VerticalHorizontal" xml:space="preserve">
+    <value>Vertical widescreen</value>
+  </data>
+  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
+    <value>Make the widescreen shrink vertically</value>
+  </data>
+  <data name="Config_LanguageR2Info" xml:space="preserve">
+    <value>This sets the default language selected when launching the game. The language can still be changed from the game menu.</value>
+  </data>
+  <data name="Config_ControllerR2Info" xml:space="preserve">
+    <value>If your controller is not recognized you can enable controller support here. This will remove any custom button mapping.</value>
+  </data>
+  <data name="Config_ButtonMapping" xml:space="preserve">
+    <value>Button Mapping (keyboard)</value>
+  </data>
+  <data name="Config_ButtonMappingInfo" xml:space="preserve">
+    <value>As the game doesn't allow native button remapping you change it here. This will not work for controllers.</value>
+  </data>
+  <data name="Config_ButtonMappingActionHeader" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Config_ButtonMappingKeyHeader" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="Config_ButtonMappingReset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Config_ResolutionRRRInfo" xml:space="preserve">
+    <value>Setting the resolution to an aspect ratio other than 4:3 will stretch the game, even with the internal widescreen option turned on</value>
+  </data>
+  <data name="Config_RRRScreenMode" xml:space="preserve">
+    <value>Screen Mode</value>
+  </data>
+  <data name="Config_RRRScreenModeInfo" xml:space="preserve">
+    <value>The screen mode options will behave differently depending on the selected resolution. Usually keeping the 4:3 mode enabled will allow the game not to be stretched on different aspect ratios.</value>
+  </data>
+  <data name="Config_SaveDataLocation" xml:space="preserve">
+    <value>Save Data Location</value>
+  </data>
+  <data name="Config_SaveDataLocationInfo" xml:space="preserve">
+    <value>This will not change where the game saves it data. Use this only to specify the data location for the backup tool.</value>
+  </data>
+  <data name="Config_SaveDataLocationInstDir" xml:space="preserve">
+    <value>Install directory</value>
+  </data>
+  <data name="Config_SaveDataLocationAppData" xml:space="preserve">
+    <value>App data</value>
+  </data>
 </root>

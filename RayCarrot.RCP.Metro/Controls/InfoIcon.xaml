@@ -2,12 +2,19 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:metro="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d"
              Margin="10 0 0 0"
              VerticalAlignment="Center">
     <iconPacks:PackIconMaterial x:Name="HelpIconRoot"
+                                d:DataContext="{d:DesignInstance metro:InfoIcon}"
                                 Kind="{Binding Path=IconKind}"
                                 VerticalAlignment="Center"
-                                Background="Transparent">
+                                Background="Transparent" 
+                                ToolTipService.ShowDuration="{x:Static Member=System:Int32.MaxValue}">
         <iconPacks:PackIconMaterial.ToolTip>
             <TextBlock Text="{Binding Path=Text}" MaxWidth="400" TextWrapping="WrapWithOverflow" />
         </iconPacks:PackIconMaterial.ToolTip>

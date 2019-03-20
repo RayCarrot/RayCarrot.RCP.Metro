@@ -9,7 +9,7 @@
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignWidth="800"
              d:DataContext="{d:DesignInstance local:RaymanMConfigViewModel}">
     <Grid>
         <Grid.RowDefinitions>
@@ -50,23 +50,23 @@
                           ToolTip="{Resx Config_LockResInfo}"
                           IsChecked="{Binding Path=LockToScreenRes}" />
 
-                <CheckBox Content="Fullscreen"
-                          ToolTip="Check to run the game in fullscreen, otherwise it'll run in windowed mode"
+                <CheckBox Content="{Resx Config_Fullscreen}"
+                          ToolTip="{Resx Config_FullscreenInfo}"
                           IsChecked="{Binding Path=FullscreenMode}" />
 
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Graphics" />
+                           Text="{Resx Config_Graphics}" />
 
-                <CheckBox Content="TriLinear"
+                <CheckBox Content="{Resx Config_TriLinear}"
                           IsChecked="{Binding Path=TriLinear}" />
 
-                <CheckBox Content="Transform and Lightning"
-                          ToolTip="Uncheck this if there are graphical glitches in the game"
+                <CheckBox Content="{Resx Config_TnL}"
+                          ToolTip="{Resx Config_TnLInfo}"
                           IsChecked="{Binding Path=TnL}" />
 
                 <Grid rwpf:UserLevelTag.MinUserLevel="Advanced"
                       rwpf:UnifiedMargin.Ignored="True">
-                    <CheckBox Content="Dynamic Shadows"
+                    <CheckBox Content="{Resx Config_DynamicShadows}"
                               IsChecked="{Binding Path=DynamicShadows}"
                               Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"
                               Margin="0 8"/>
@@ -74,28 +74,28 @@
 
                 <Grid rwpf:UserLevelTag.MinUserLevel="Advanced"
                       rwpf:UnifiedMargin.Ignored="True">
-                    <CheckBox Content="Static Shadows"
+                    <CheckBox Content="{Resx Config_StaticShadows}"
                               IsChecked="{Binding Path=StaticShadows}" 
                               Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"
                               Margin="0 8"/>
                 </Grid>
 
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Textures" />
+                           Text="{Resx Config_Textures}" />
 
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton Content="16 bit"
+                    <RadioButton Content="{Resx Config_Textures16}"
                                  Margin="0 0 10 0"
                                  IsChecked="{Binding Path=IsTextures32Bit, Converter={rwpf:InvertedBooleanConverter}}"/>
-                    <RadioButton Content="32 bit"
+                    <RadioButton Content="{Resx Config_Textures32}"
                                  IsChecked="{Binding Path=IsTextures32Bit}"/>
                 </StackPanel>
 
-                <CheckBox Content="Compressed"
+                <CheckBox Content="{Resx Config_Compressed}"
                           IsChecked="{Binding Path=CompressedTextures}" />
 
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Video" />
+                           Text="{Resx Config_Video}" />
 
                 <StackPanel>
 
@@ -107,44 +107,60 @@
                             HorizontalAlignment="Left"/>
 
                     <Grid Width="200" HorizontalAlignment="Left">
-                        <TextBlock Text="Good quality" />
-                        <TextBlock Text="Bad quality"
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="{Resx Config_VideoGood}"
+                                   TextWrapping="WrapWithOverflow"/>
+
+                        <TextBlock Grid.Column="1"
+                                   Text="{Resx Config_VideoBad}"
+                                   TextWrapping="WrapWithOverflow"
                                    HorizontalAlignment="Right"/>
+
                     </Grid>
 
                 </StackPanel>
 
-                <CheckBox Content="Auto adjust quality"
+                <CheckBox Content="{Resx Config_VideoAuto}"
                           IsChecked="{Binding Path=AutoVideoQuality}" />
 
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton Content="16 bits per pixel"
+
+                    <RadioButton Content="{Resx Config_Video16Bpp}"
                                  Margin="0 0 10 0"
                                  IsChecked="{Binding Path=IsVideo32Bpp, Converter={rwpf:InvertedBooleanConverter}}"/>
-                    <RadioButton Content="32 bits per pixel"
+
+                    <RadioButton Content="{Resx Config_Video32Bpp}"
                                  IsChecked="{Binding Path=IsVideo32Bpp}"/>
+
                 </StackPanel>
 
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Language" />
+                           Text="{Resx Config_Language}" />
 
                 <ComboBox ItemsSource="{Binding Path=CurrentLanguage, Converter={rwpf:EnumToListConverter}}"
                           SelectedIndex="{Binding Path=CurrentLanguage, Converter={rwpf:EnumToIntConverter}}"
                           HorizontalAlignment="Left" />
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource HeaderTextBlock}"
-                               Text="Controller" />
 
-                    <local:InfoIcon Text="If your controller is not recognized you can enable controller support here" />
+                    <TextBlock Style="{StaticResource HeaderTextBlock}"
+                               Text="{Resx Config_Controller}" />
+
+                    <local:InfoIcon Text="{Resx Config_ControllerInfo}" />
 
                 </StackPanel>
 
-                <CheckBox Content="Enable native controller support"
+                <CheckBox Content="{Resx Config_EnableNativeController}"
                           IsChecked="{Binding Path=ControllerSupport}"
                           IsEnabled="{Binding Path=AllowDinputHack}"/>
 
-                <TextBlock Text="Vertical Axis" 
+                <TextBlock Text="{Resx Config_ControllerVertical}" 
                            Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"/>
 
                 <Slider Minimum="2"
@@ -156,7 +172,7 @@
                         HorizontalAlignment="Left"
                         Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"/>
 
-                <TextBlock Text="Horizontal Axis"
+                <TextBlock Text="{Resx Config_ControllerHorizontal}"
                            Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}" />
 
                 <Slider Minimum="2"
@@ -169,7 +185,7 @@
                         Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"/>
 
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Network"
+                           Text="{Resx Config_Network}"
                            Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanArena}"/>
 
                 <ComboBox ItemsSource="{Binding Path=ModemQualityOptions, Mode=OneTime}"
@@ -184,12 +200,12 @@
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
 
-            <Button Content="Cancel"
+            <Button Content="{Resx Cancel}"
                     Margin="0 0 10 0"
                     IsCancel="True"
                     Click="ButtonBase_OnClick" />
 
-            <Button Content="Save"
+            <Button Content="{Resx Save}"
                     IsEnabled="{Binding Path=UnsavedChanges}"
                     Command="{Binding Path=SaveCommand}" />
 
