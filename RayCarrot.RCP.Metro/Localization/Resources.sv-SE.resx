@@ -394,4 +394,110 @@
   <data name="Config_SaveDataLocationAppData" xml:space="preserve">
     <value>App data</value>
   </data>
+  <data name="About_ProgramInfo" xml:space="preserve">
+    <value>Rayman Kontrollpanelen är ett open source projekt skapat av RayCarrot. Det här programmet är en enda fri att använda körbar fil med avsikt att enkelt komma åt inställningar och korrigeringar för de olika Rayman-spelen som släppts för Windows.
+Det här är ett växande projekt med fler funktioner planerade att läggas till med framtida uppdateringar. Verktygen och olika konfigurationsverktyg har skapats med hjälp av olika medlemmar av Rayman-gemenskapen, alla krediteras nedan.</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>Lista över medverkande</value>
+  </data>
+  <data name="About_UpdateHistory" xml:space="preserve">
+    <value>Uppdateringshistorik</value>
+  </data>
+  <data name="About_UpdateCheck" xml:space="preserve">
+    <value>Sök efter nya uppdateringar</value>
+  </data>
+  <data name="About_GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="About_Twitter" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="About_YouTube" xml:space="preserve">
+    <value>YouTube</value>
+  </data>
+  <data name="About_Email" xml:space="preserve">
+    <value>E-post</value>
+  </data>
+  <data name="Backup_LastBackupDate" xml:space="preserve">
+    <value>Senaste säkerhetskopian</value>
+  </data>
+  <data name="Backup_LastBackupSize" xml:space="preserve">
+    <value>Storlek</value>
+  </data>
+  <data name="Backup_Backup" xml:space="preserve">
+    <value>Säkerhetskopiera</value>
+  </data>
+  <data name="Backup_Restore" xml:space="preserve">
+    <value>Återställ</value>
+  </data>
+  <data name="Games_Installed" xml:space="preserve">
+    <value>Installerade</value>
+  </data>
+  <data name="Games_NotInstalled" xml:space="preserve">
+    <value>Inte installerade</value>
+  </data>
+  <data name="Help_CategoryHelp" xml:space="preserve">
+    <value>Välj en hjälpsida från de tillgängliga kategorierna till vänster</value>
+  </data>
+  <data name="Settings_UserLevel" xml:space="preserve">
+    <value>Användarnivå</value>
+  </data>
+  <data name="Settings_UserLevelInfo" xml:space="preserve">
+    <value>Användarnivån avgör vilka alternativ och vilken information som finns tillgänglig. Mer alternativ och information visas om användarnivån är högre.</value>
+  </data>
+  <data name="Settings_UserLevelNormal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="Settings_UserLevelNormalInfo" xml:space="preserve">
+    <value>Normal användarnivå - för användare som vill ha alla standardalternativ och funktioner utan de mer avancerade alternativen och teknisk information</value>
+  </data>
+  <data name="Settings_UserLevelAdvanced" xml:space="preserve">
+    <value>Avancerad</value>
+  </data>
+  <data name="Settings_UserLevelAdvancedInfo" xml:space="preserve">
+    <value>Avancerad användarnivå - för användare som vill ha fler avancerade funktioner, men utan den tekniska informationen</value>
+  </data>
+  <data name="Settings_UserLevelTechnical" xml:space="preserve">
+    <value>Teknisk</value>
+  </data>
+  <data name="Settings_UserLevelTechnicalInfo" xml:space="preserve">
+    <value>Teknisk användarnivå - för användare som vill ha fler avancerade funktioner och den tekniska informationen</value>
+  </data>
+  <data name="Settings_UserLevelDebug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_UserLevelDebugInfo" xml:space="preserve">
+    <value>Debug användarnivå - för app-utvecklare och testare som vill ha mer advancerade debug funktioner och information</value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Språk</value>
+  </data>
+  <data name="Settings_LanguageContribute" xml:space="preserve">
+    <value>Bidra med översättningar</value>
+  </data>
+  <data name="Settings_DesignHeader" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="Settings_DesignLight" xml:space="preserve">
+    <value>Ljust</value>
+  </data>
+  <data name="Settings_DesignDark" xml:space="preserve">
+    <value>Mörkt</value>
+  </data>
+  <data name="Settings_DesignAnimations" xml:space="preserve">
+    <value>Aktivera animeringar</value>
+  </data>
+  <data name="Settings_DesignSuccessMessages" xml:space="preserve">
+    <value>Visa succémeddelanden</value>
+  </data>
+  <data name="Settings_DesignSuccessMessagesInfo" xml:space="preserve">
+    <value>Visa ett meddelande när en operation har lyckats</value>
+  </data>
+  <data name="Settings_DesignShowAllGames" xml:space="preserve">
+    <value>Visa spel som inte är installerade</value>
+  </data>
+  <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
+    <value>Visa alla spel på spel-sidan, även om de inte är installerade</value>
+  </data>
 </root>

@@ -18,10 +18,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public AboutPageViewModel()
         {
-            MainAboutText = "Rayman Control Panel is an open source community project created by RayCarrot. This software is a single free to use executable file with the intent to easily access settings and fixes for the various Rayman titles released for Windows." +
-                            Environment.NewLine +
-                            "This is a growing project with more features planned on being added with future updates. The utilities and various configuration tools have been created with help from various members of the Rayman community, all credited below.";
-
+            // NOTE: This is currently not localized
             Credits = new ObservableCollection<DuoGridItemViewModel>()
             {
                 new DuoGridItemViewModel()
@@ -61,6 +58,7 @@ namespace RayCarrot.RCP.Metro
                 },
             };
 
+            // NOTE: This is currently not localized
             SpecialThanks = "Special thanks to 432 Hz, AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!";
 
             // Create commands
@@ -72,11 +70,6 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Properties
-
-        /// <summary>
-        /// The main about text
-        /// </summary>
-        public string MainAboutText { get; }
 
         /// <summary>
         /// The credits info items

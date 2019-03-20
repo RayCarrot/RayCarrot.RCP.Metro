@@ -7,6 +7,7 @@
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     mc:Ignorable="d"
                     d:DesignWidth="800" MaxWidth="800"
                     d:DataContext="{x:Static local:DesignTimeVM.AboutPageViewModel}">
@@ -29,26 +30,26 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0"
-                           FontSize="14"
-                           Text="{Binding Path=MainAboutText, Mode=OneTime}" 
-                           TextWrapping="WrapWithOverflow" />
+                               FontSize="14"
+                               Text="{Resx About_ProgramInfo}" 
+                               TextWrapping="WrapWithOverflow" />
 
                     <Image Grid.Column="1"
-                       Margin="10"
-                       Source="../../../Img/Rayman Control Panel Icon.ico"
-                       Height="128" Width="128"/>
+                           Margin="10"
+                           Source="../../../Img/Rayman Control Panel Icon.ico"
+                           Height="128" Width="128"/>
 
                 </Grid>
 
-                <TextBlock Text="Credits"
-                       Style="{StaticResource LargeHeaderTextBlock}"
-                       HorizontalAlignment="Center"/>
+                <TextBlock Text="{Resx About_Credits}"
+                           Style="{StaticResource LargeHeaderTextBlock}"
+                           HorizontalAlignment="Center"/>
 
                 <local:DuoGrid HorizontalAlignment="Center"
-                           Items="{Binding Path=Credits, Mode=OneTime}" />
+                               Items="{Binding Path=Credits, Mode=OneTime}" />
 
                 <TextBlock Text="{Binding Path=SpecialThanks, Mode=OneTime}" 
-                       HorizontalAlignment="Center"/>
+                           HorizontalAlignment="Center"/>
 
             </StackPanel>
 
@@ -59,13 +60,12 @@
                         VerticalAlignment="Bottom">
 
                 <local:IconButton IconKind="TooltipText"
-                                  ToolTip="Update history"
+                                  ToolTip="{Resx About_UpdateHistory}"
                                   Command="{Binding Path=ShowVersionHistoryCommand}"/>
 
                 <local:IconButton IconKind="Update"
-                                  ToolTip="Check for new updates"
+                                  ToolTip="{Resx About_UpdateCheck}"
                                   Command="{Binding Path=CheckForUpdatesCommand}"/>
-
 
             </StackPanel>
 
@@ -81,24 +81,24 @@
                         VerticalAlignment="Bottom">
                 
                 <local:IconButton IconKind="GithubCircle"
-                                  ToolTip="GitHub"
+                                  ToolTip="{Resx About_GitHub}"
                                   Command="{Binding Path=OpenUrlCommand}"
                                   CommandParameter="{x:Static local:CommonUrls.GitHubUrl}"/>
 
                 <local:IconButton IconKind="Youtube"
-                                  ToolTip="YouTube"
+                                  ToolTip="{Resx About_YouTube}"
                                   Foreground="Red"
                                   Command="{Binding Path=OpenUrlCommand}"
                                   CommandParameter="{x:Static local:CommonUrls.YouTubeUrl}"/>
                 
                 <local:IconButton IconKind="Twitter"
-                                  ToolTip="Twitter"
+                                  ToolTip="{Resx About_Twitter}"
                                   Foreground="#38A1F3"
                                   Command="{Binding Path=OpenUrlCommand}"
                                   CommandParameter="{x:Static local:CommonUrls.TwitterUrl}"/>
                 
                 <local:IconButton IconKind="EmailOutline"
-                                  ToolTip="Email"
+                                  ToolTip="{Resx About_Email}"
                                   Foreground="Purple"
                                   Command="{Binding Path=OpenUrlCommand}"
                                   CommandParameter="{x:Static local:CommonUrls.EmailUrl}"/>

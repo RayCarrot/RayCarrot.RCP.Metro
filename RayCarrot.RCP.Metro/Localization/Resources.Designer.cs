@@ -61,6 +61,79 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Credits.
+        /// </summary>
+        public static string About_Credits {
+            get {
+                return ResourceManager.GetString("About_Credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string About_Email {
+            get {
+                return ResourceManager.GetString("About_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GitHub.
+        /// </summary>
+        public static string About_GitHub {
+            get {
+                return ResourceManager.GetString("About_GitHub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Control Panel is an open source community project created by RayCarrot. This software is a single free to use executable file with the intent to easily access settings and fixes for the various Rayman titles released for Windows.
+        ///This is a growing project with more features planned on being added with future updates. The utilities and various configuration tools have been created with help from various members of the Rayman community, all credited below..
+        /// </summary>
+        public static string About_ProgramInfo {
+            get {
+                return ResourceManager.GetString("About_ProgramInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Twitter.
+        /// </summary>
+        public static string About_Twitter {
+            get {
+                return ResourceManager.GetString("About_Twitter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for new updates.
+        /// </summary>
+        public static string About_UpdateCheck {
+            get {
+                return ResourceManager.GetString("About_UpdateCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update history.
+        /// </summary>
+        public static string About_UpdateHistory {
+            get {
+                return ResourceManager.GetString("About_UpdateHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to YouTube.
+        /// </summary>
+        public static string About_YouTube {
+            get {
+                return ResourceManager.GetString("About_YouTube", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string AboutPageHeader {
@@ -84,6 +157,42 @@ namespace RayCarrot.RCP.Metro {
         public static string AppName {
             get {
                 return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup.
+        /// </summary>
+        public static string Backup_Backup {
+            get {
+                return ResourceManager.GetString("Backup_Backup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Backup.
+        /// </summary>
+        public static string Backup_LastBackupDate {
+            get {
+                return ResourceManager.GetString("Backup_LastBackupDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup Size.
+        /// </summary>
+        public static string Backup_LastBackupSize {
+            get {
+                return ResourceManager.GetString("Backup_LastBackupSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore.
+        /// </summary>
+        public static string Backup_Restore {
+            get {
+                return ResourceManager.GetString("Backup_Restore", resourceCulture);
             }
         }
         
@@ -826,6 +935,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Installed.
+        /// </summary>
+        public static string Games_Installed {
+            get {
+                return ResourceManager.GetString("Games_Installed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Installed.
+        /// </summary>
+        public static string Games_NotInstalled {
+            get {
+                return ResourceManager.GetString("Games_NotInstalled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Games.
         /// </summary>
         public static string GamesPageHeader {
@@ -867,6 +994,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameType_WinStore {
             get {
                 return ResourceManager.GetString("GameType_WinStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a help page from the available categories to the left.
+        /// </summary>
+        public static string Help_CategoryHelp {
+            get {
+                return ResourceManager.GetString("Help_CategoryHelp", resourceCulture);
             }
         }
         
@@ -939,6 +1075,186 @@ namespace RayCarrot.RCP.Metro {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable animations.
+        /// </summary>
+        public static string Settings_DesignAnimations {
+            get {
+                return ResourceManager.GetString("Settings_DesignAnimations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        public static string Settings_DesignDark {
+            get {
+                return ResourceManager.GetString("Settings_DesignDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Design.
+        /// </summary>
+        public static string Settings_DesignHeader {
+            get {
+                return ResourceManager.GetString("Settings_DesignHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        public static string Settings_DesignLight {
+            get {
+                return ResourceManager.GetString("Settings_DesignLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show games which are not installed.
+        /// </summary>
+        public static string Settings_DesignShowAllGames {
+            get {
+                return ResourceManager.GetString("Settings_DesignShowAllGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show all games on the games page, even if they are not installed.
+        /// </summary>
+        public static string Settings_DesignShowAllGamesInfo {
+            get {
+                return ResourceManager.GetString("Settings_DesignShowAllGamesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show success messages.
+        /// </summary>
+        public static string Settings_DesignSuccessMessages {
+            get {
+                return ResourceManager.GetString("Settings_DesignSuccessMessages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show a message when an operation has succeeded.
+        /// </summary>
+        public static string Settings_DesignSuccessMessagesInfo {
+            get {
+                return ResourceManager.GetString("Settings_DesignSuccessMessagesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string Settings_Language {
+            get {
+                return ResourceManager.GetString("Settings_Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contribute with translations.
+        /// </summary>
+        public static string Settings_LanguageContribute {
+            get {
+                return ResourceManager.GetString("Settings_LanguageContribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Level.
+        /// </summary>
+        public static string Settings_UserLevel {
+            get {
+                return ResourceManager.GetString("Settings_UserLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced.
+        /// </summary>
+        public static string Settings_UserLevelAdvanced {
+            get {
+                return ResourceManager.GetString("Settings_UserLevelAdvanced", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced user level - for users who want more advanced features above the default ones, but without the technical details.
+        /// </summary>
+        public static string Settings_UserLevelAdvancedInfo {
+            get {
+                return ResourceManager.GetString("Settings_UserLevelAdvancedInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug.
+        /// </summary>
+        public static string Settings_UserLevelDebug {
+            get {
+                return ResourceManager.GetString("Settings_UserLevelDebug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug user level - for app developers and testers who want advanced debug options and information.
+        /// </summary>
+        public static string Settings_UserLevelDebugInfo {
+            get {
+                return ResourceManager.GetString("Settings_UserLevelDebugInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user level determines which options and information is available in the application. The higher the user level, the more advanced options and information will be shown..
+        /// </summary>
+        public static string Settings_UserLevelInfo {
+            get {
+                return ResourceManager.GetString("Settings_UserLevelInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal.
+        /// </summary>
+        public static string Settings_UserLevelNormal {
+            get {
+                return ResourceManager.GetString("Settings_UserLevelNormal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal user level - for users who want all the default features without any of the more advanced options or technical details.
+        /// </summary>
+        public static string Settings_UserLevelNormalInfo {
+            get {
+                return ResourceManager.GetString("Settings_UserLevelNormalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technical.
+        /// </summary>
+        public static string Settings_UserLevelTechnical {
+            get {
+                return ResourceManager.GetString("Settings_UserLevelTechnical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technical user level - for users who want more advanced features above the default ones as well as the technical details.
+        /// </summary>
+        public static string Settings_UserLevelTechnicalInfo {
+            get {
+                return ResourceManager.GetString("Settings_UserLevelTechnicalInfo", resourceCulture);
             }
         }
         
