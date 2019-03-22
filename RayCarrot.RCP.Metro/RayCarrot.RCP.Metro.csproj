@@ -395,6 +395,7 @@
     <Compile Include="Controls\UserControls\Utilities\Rayman3Utilities.xaml.cs">
       <DependentUpon>Rayman3Utilities.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Utilities\Rayman3UtilitiesViewModel.cs" />
     <Compile Include="Converters\BooleanToTransitionTypeConverter.cs" />
     <Compile Include="Converters\BooleanToFluidMoveDuration.cs" />
     <Compile Include="DataModels\DosBoxAutoConfigData.cs" />

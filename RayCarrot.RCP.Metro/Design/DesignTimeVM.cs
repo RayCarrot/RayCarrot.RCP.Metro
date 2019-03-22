@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using ByteSizeLib;
+using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -24,5 +25,7 @@ namespace RayCarrot.RCP.Metro
         };
 
         public static AboutPageViewModel AboutPageViewModel => new AboutPageViewModel();
+
+        public static GameDisplayViewModel GameDisplayViewModel => new GameDisplayViewModel("Rayman 2", Games.Rayman2.GetIconSource(), new ActionItemViewModel("Launch", PackIconMaterialKind.Play, null), new OverflowButtonItemViewModel[]{});
     }
 }

@@ -168,7 +168,7 @@ namespace RayCarrot.RCP.Metro
 
                 case GameType.WinStore:
                     // Make sure version is at least Windows 8
-                    if (Environment.OSVersion.Version < new Version(6, 2, 0, 0))
+                    if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
                         return false;
 
                     return game.GetGamePackage() != null;
@@ -711,12 +711,14 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game has utilities, otherwise false</returns>
         public static bool HasUtilities(this Games game)
         {
+            if (game == Games.Rayman3)
+                return AppViewModel.WindowsVersion >= WindowsVersion.Win8;
+
             switch (game)
             {
                 case Games.Rayman1:
                 case Games.RaymanDesigner:
                 case Games.Rayman2:
-                case Games.Rayman3:
                 case Games.RaymanOrigins:
                 case Games.RaymanLegends:
                     return true;
@@ -752,7 +754,7 @@ namespace RayCarrot.RCP.Metro
                     return new Rayman2Utilities();
 
                 case Games.Rayman3:
-                    return new Rayman3Utilities();
+                    return AppViewModel.WindowsVersion < WindowsVersion.Win8 ? null : new Rayman3Utilities();
 
                 case Games.RaymanOrigins:
                     return new RaymanOriginsUtilities();

@@ -26,7 +26,12 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class AppViewModel : BaseRCPViewModel
     {
-        #region Constructor
+        #region Constructors
+
+        static AppViewModel()
+        {
+            WindowsVersion = WindowsHelpers.GetCurrentWindowsVersion();
+        }
 
         /// <summary>
         /// Default constructor
@@ -55,6 +60,15 @@ namespace RayCarrot.RCP.Metro
         /// The name of the backup directory for this application
         /// </summary>
         public const string BackupFamily = "Rayman Game Backups";
+
+        #endregion
+
+        #region Public Static Properties
+
+        /// <summary>
+        /// The Windows version the program is running on
+        /// </summary>
+        public static WindowsVersion WindowsVersion { get; }
 
         #endregion
 

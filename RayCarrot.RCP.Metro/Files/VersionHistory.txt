@@ -5,6 +5,7 @@
 • Reorganized the settings page
 • Updates to the Carrot Framework and WPF implementation
 • Increased ToolTip timeout on InfoIcons
+• The Rayman 3 DirectPlay utility is now only available on Windows 8 and above
 • Temporarily have to downgrade Fody to version 3.3.5 due to a bug with duplicate type names
 • Minor bug fixes
 

@@ -212,7 +212,7 @@
                     <rwpf:UnifiedMarginBehavior Margin="0 2" />
                 </i:Interaction.Behaviors>
 
-                <TextBlock Text="Backup"
+                <TextBlock Text="{Resx Settings_BackupHeader}"
                            Style="{StaticResource LargeHeaderTextBlock}" />
 
                 <StackPanel>
@@ -223,13 +223,12 @@
                     <StackPanel>
 
                         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="Backup location"
+                                   Text="{Resx Settings_BackupLocation}"
                                    Margin="0 0 0 8" />
 
                         <rwpf:BrowseBox FilePath="{Binding Path=BackupLocation, UpdateSourceTrigger=LostFocus}"
                                         UseCurrentPathAsDefaultDirectoryIfValid="True"
                                         BrowseType="Directory"
-                                        ToolTip="The backup directory"
                                         PathValidation="DirectoryExistsAndNotEmpty"/>
 
                     </StackPanel>
@@ -245,7 +244,7 @@
                     <rwpf:UnifiedMarginBehavior Margin="0 2" />
                 </i:Interaction.Behaviors>
 
-                <TextBlock Text="Startup"
+                <TextBlock Text="{Resx Settings_StartupHeader}"
                            Style="{StaticResource LargeHeaderTextBlock}" />
 
                 <StackPanel>
@@ -253,12 +252,10 @@
                         <rwpf:UnifiedMarginBehavior Margin="2 8" />
                     </i:Interaction.Behaviors>
 
-                    <CheckBox Content="Automatically locate installed games"
-                              ToolTip="Check to automatically locate installed game on launch"
+                    <CheckBox Content="{Resx Settings_StartupGameFinder}"
                               IsChecked="{Binding Path=AutoLocateGames}" />
 
-                    <CheckBox Content="Automatically check for program updates"
-                              ToolTip="Check to automatically check for new updates on launch"
+                    <CheckBox Content="{Resx Settings_StartupUpdateCheck}"
                               IsChecked="{Binding Path=AutoUpdate}" />
 
                 </StackPanel>
@@ -272,7 +269,7 @@
                     <rwpf:UnifiedMarginBehavior Margin="0 2" />
                 </i:Interaction.Behaviors>
 
-                <TextBlock Text="Behavior"
+                <TextBlock Text="{Resx Settings_GeneralHeader}"
                            Style="{StaticResource LargeHeaderTextBlock}" />
 
                 <StackPanel>
@@ -280,12 +277,10 @@
                         <rwpf:UnifiedMarginBehavior Margin="2 8" />
                     </i:Interaction.Behaviors>
 
-                    <CheckBox Content="Close application when launching a game"
-                              ToolTip="Check to automatically close the Rayman Control Panel when launching a game from it"
+                    <CheckBox Content="{Resx Settings_GeneralCloseOnLaunch}"
                               IsChecked="{Binding Path=CloseAppOnGameLaunch}"/>
 
-                    <CheckBox Content="Close configuration dialog when saving"
-                              ToolTip="Check to automatically close the options dialog when saving"
+                    <CheckBox Content="{Resx Settings_GeneralCloseOnSave}"
                               IsChecked="{Binding Path=CloseConfigOnSave}" />
 
                 </StackPanel>

@@ -1070,6 +1070,87 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disabled.
+        /// </summary>
+        public static string R1U_TPLSDisabled {
+            get {
+                return ResourceManager.GetString("R1U_TPLSDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DOSBox version.
+        /// </summary>
+        public static string R1U_TPLSDosBoxVersion {
+            get {
+                return ResourceManager.GetString("R1U_TPLSDosBoxVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        public static string R1U_TPLSEnabled {
+            get {
+                return ResourceManager.GetString("R1U_TPLSEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PlayStation Soundtrack.
+        /// </summary>
+        public static string R1U_TPLSHeader {
+            get {
+                return ResourceManager.GetString("R1U_TPLSHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By default the PC version of Rayman features fewer tracks than the PlayStation version and does not have specific tracks for each part of the levels. By enabling this utility the game will run with the PlayStation soundtrack added on top instead..
+        /// </summary>
+        public static string R1U_TPLSInfo {
+            get {
+                return ResourceManager.GetString("R1U_TPLSInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NOTE: This utility may not work on DOSBox versions 0.74-2 or higher. Version 0.74 will still work..
+        /// </summary>
+        public static string R1U_TPLSInfo2 {
+            get {
+                return ResourceManager.GetString("R1U_TPLSInfo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install.
+        /// </summary>
+        public static string R1U_TPLSInstall {
+            get {
+                return ResourceManager.GetString("R1U_TPLSInstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman version.
+        /// </summary>
+        public static string R1U_TPLSRaymanVersion {
+            get {
+                return ResourceManager.GetString("R1U_TPLSRaymanVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstall.
+        /// </summary>
+        public static string R1U_TPLSUninstall {
+            get {
+                return ResourceManager.GetString("R1U_TPLSUninstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {
@@ -1084,6 +1165,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_BackupHeader {
             get {
                 return ResourceManager.GetString("Settings_BackupHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup location.
+        /// </summary>
+        public static string Settings_BackupLocation {
+            get {
+                return ResourceManager.GetString("Settings_BackupLocation", resourceCulture);
             }
         }
         
@@ -1250,6 +1340,33 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close application when launching a game.
+        /// </summary>
+        public static string Settings_GeneralCloseOnLaunch {
+            get {
+                return ResourceManager.GetString("Settings_GeneralCloseOnLaunch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close configuration dialog when saving.
+        /// </summary>
+        public static string Settings_GeneralCloseOnSave {
+            get {
+                return ResourceManager.GetString("Settings_GeneralCloseOnSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        public static string Settings_GeneralHeader {
+            get {
+                return ResourceManager.GetString("Settings_GeneralHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Settings_Language {
@@ -1282,6 +1399,33 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_OptionalDosBoxConfigPathInfo {
             get {
                 return ResourceManager.GetString("Settings_OptionalDosBoxConfigPathInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search for installed games.
+        /// </summary>
+        public static string Settings_StartupGameFinder {
+            get {
+                return ResourceManager.GetString("Settings_StartupGameFinder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Startup.
+        /// </summary>
+        public static string Settings_StartupHeader {
+            get {
+                return ResourceManager.GetString("Settings_StartupHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for program updates.
+        /// </summary>
+        public static string Settings_StartupUpdateCheck {
+            get {
+                return ResourceManager.GetString("Settings_StartupUpdateCheck", resourceCulture);
             }
         }
         

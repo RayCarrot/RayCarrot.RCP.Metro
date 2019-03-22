@@ -23,6 +23,7 @@ using RayCarrot.Rayman;
 using RayCarrot.RCP.Metro.Legacy;
 using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
+using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
 using JumpList = System.Windows.Shell.JumpList;
 
@@ -214,7 +215,7 @@ namespace RayCarrot.RCP.Metro
         protected override Task<bool> InitialSetupAsync(string[] args)
         {
             // Make sure we are on Windows Vista or higher for the Windows API Code Pack
-            if (!CommonFileDialog.IsPlatformSupported)
+            if (AppViewModel.WindowsVersion < WindowsVersion.WinVista)
             {
                 MessageBox.Show("Windows Vista or higher is required to run this application", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
                 return Task.FromResult(false);

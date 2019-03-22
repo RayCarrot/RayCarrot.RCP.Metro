@@ -559,4 +559,52 @@ This is a growing project with more features planned on being added with future 
   <data name="Settings_BackupHeader" xml:space="preserve">
     <value>Backups</value>
   </data>
+  <data name="Settings_BackupLocation" xml:space="preserve">
+    <value>Backup location</value>
+  </data>
+  <data name="Settings_StartupHeader" xml:space="preserve">
+    <value>Startup</value>
+  </data>
+  <data name="Settings_StartupGameFinder" xml:space="preserve">
+    <value>Search for installed games</value>
+  </data>
+  <data name="Settings_StartupUpdateCheck" xml:space="preserve">
+    <value>Check for program updates</value>
+  </data>
+  <data name="Settings_GeneralHeader" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
+    <value>Close application when launching a game</value>
+  </data>
+  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
+    <value>Close configuration dialog when saving</value>
+  </data>
+  <data name="R1U_TPLSHeader" xml:space="preserve">
+    <value>PlayStation Soundtrack</value>
+  </data>
+  <data name="R1U_TPLSInfo" xml:space="preserve">
+    <value>By default the PC version of Rayman features fewer tracks than the PlayStation version and does not have specific tracks for each part of the levels. By enabling this utility the game will run with the PlayStation soundtrack added on top instead.</value>
+  </data>
+  <data name="R1U_TPLSInfo2" xml:space="preserve">
+    <value>NOTE: This utility may not work on DOSBox versions 0.74-2 or higher. Version 0.74 will still work.</value>
+  </data>
+  <data name="R1U_TPLSInstall" xml:space="preserve">
+    <value>Install</value>
+  </data>
+  <data name="R1U_TPLSUninstall" xml:space="preserve">
+    <value>Uninstall</value>
+  </data>
+  <data name="R1U_TPLSEnabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="R1U_TPLSDisabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
+    <value>Rayman version</value>
+  </data>
+  <data name="R1U_TPLSDosBoxVersion" xml:space="preserve">
+    <value>DOSBox version</value>
+  </data>
 </root>
