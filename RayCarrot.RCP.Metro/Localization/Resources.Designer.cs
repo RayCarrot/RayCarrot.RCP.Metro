@@ -1079,6 +1079,42 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backups.
+        /// </summary>
+        public static string Settings_BackupHeader {
+            get {
+                return ResourceManager.GetString("Settings_BackupHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display exception level.
+        /// </summary>
+        public static string Settings_DebugExceptionLevel {
+            get {
+                return ResourceManager.GetString("Settings_DebugExceptionLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The exception level for displaying debug and trace information.
+        /// </summary>
+        public static string Settings_DebugExceptionLevelInfo {
+            get {
+                return ResourceManager.GetString("Settings_DebugExceptionLevelInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug.
+        /// </summary>
+        public static string Settings_DebugHeader {
+            get {
+                return ResourceManager.GetString("Settings_DebugHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable animations.
         /// </summary>
         public static string Settings_DesignAnimations {
@@ -1133,6 +1169,42 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show detailed game information.
+        /// </summary>
+        public static string Settings_DesignShowGameDetails {
+            get {
+                return ResourceManager.GetString("Settings_DesignShowGameDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show detailed game information in the game options dialog.
+        /// </summary>
+        public static string Settings_DesignShowGameDetailsInfo {
+            get {
+                return ResourceManager.GetString("Settings_DesignShowGameDetailsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show progress on task bar icon.
+        /// </summary>
+        public static string Settings_DesignShowTaskBarProgress {
+            get {
+                return ResourceManager.GetString("Settings_DesignShowTaskBarProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show download progress on the taskbar icon.
+        /// </summary>
+        public static string Settings_DesignShowTaskBarProgressInfo {
+            get {
+                return ResourceManager.GetString("Settings_DesignShowTaskBarProgressInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show success messages.
         /// </summary>
         public static string Settings_DesignSuccessMessages {
@@ -1151,6 +1223,33 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DOSBox.
+        /// </summary>
+        public static string Settings_DosBoxHeader {
+            get {
+                return ResourceManager.GetString("Settings_DosBoxHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DOSBox file path.
+        /// </summary>
+        public static string Settings_DosBoxPath {
+            get {
+                return ResourceManager.GetString("Settings_DosBoxPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The DOSBox executable file path.
+        /// </summary>
+        public static string Settings_DosBoxPathInfo {
+            get {
+                return ResourceManager.GetString("Settings_DosBoxPathInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Settings_Language {
@@ -1165,6 +1264,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_LanguageContribute {
             get {
                 return ResourceManager.GetString("Settings_LanguageContribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DOSBox configuration file path (optional).
+        /// </summary>
+        public static string Settings_OptionalDosBoxConfigPath {
+            get {
+                return ResourceManager.GetString("Settings_OptionalDosBoxConfigPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The DOSBox configuration file path.
+        /// </summary>
+        public static string Settings_OptionalDosBoxConfigPathInfo {
+            get {
+                return ResourceManager.GetString("Settings_OptionalDosBoxConfigPathInfo", resourceCulture);
             }
         }
         

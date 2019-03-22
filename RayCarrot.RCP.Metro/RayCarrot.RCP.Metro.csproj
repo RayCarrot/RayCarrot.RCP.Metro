@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\..\packages\Costura.Fody.3.3.3\build\Costura.Fody.props" Condition="Exists('..\..\..\packages\Costura.Fody.3.3.3\build\Costura.Fody.props')" />
+  <Import Project="..\..\..\packages\Costura.Fody.3.3.2\build\Costura.Fody.props" Condition="Exists('..\..\..\packages\Costura.Fody.3.3.2\build\Costura.Fody.props')" />
   <Import Project="..\..\..\packages\PropertyChanged.Fody.2.6.0\build\PropertyChanged.Fody.props" Condition="Exists('..\..\..\packages\PropertyChanged.Fody.2.6.0\build\PropertyChanged.Fody.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -51,8 +51,8 @@
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
     </Reference>
-    <Reference Include="Costura, Version=3.3.3.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Costura.Fody.3.3.3\lib\net40\Costura.dll</HintPath>
+    <Reference Include="Costura, Version=3.3.2.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Costura.Fody.3.3.2\lib\net40\Costura.dll</HintPath>
     </Reference>
     <Reference Include="Infralution.Localization.Wpf">
       <HintPath>..\..\..\Files\Infralution.Localization.Wpf.dll</HintPath>
@@ -399,17 +399,17 @@
     <Compile Include="Converters\BooleanToFluidMoveDuration.cs" />
     <Compile Include="DataModels\DosBoxAutoConfigData.cs" />
     <Compile Include="Helpers\DosBoxAutoConfigManager.cs" />
+    <Compile Include="Helpers\AppLanguages.cs" />
     <Compile Include="Localization\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Localization\Resources.sv-SE.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Resources.sv-SE.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Helpers\AppLanguages.cs" />
     <Compile Include="ViewModels\Pages\AboutPageViewModel.cs" />
     <Compile Include="Controls\UserControls\Utilities\RaymanLegendsUtilities.xaml.cs">
       <DependentUpon>RaymanLegendsUtilities.xaml</DependentUpon>
@@ -648,15 +648,15 @@
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\Resources.resx">
+      <SubType>Designer</SubType>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\Resources.sv-SE.resx">
-      <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.sv-SE.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
     </EmbeddedResource>
     <None Include="Files\Rayman2\ubi.ini" />
     <None Include="packages.config" />
@@ -770,6 +770,15 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Import Project="..\..\..\packages\Fody.4.0.2\build\Fody.targets" Condition="Exists('..\..\..\packages\Fody.4.0.2\build\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\packages\PropertyChanged.Fody.2.6.0\build\PropertyChanged.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\PropertyChanged.Fody.2.6.0\build\PropertyChanged.Fody.props'))" />
+    <Error Condition="!Exists('..\..\..\packages\Fody.3.3.5\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Fody.3.3.5\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\..\..\packages\Costura.Fody.3.3.2\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Costura.Fody.3.3.2\build\Costura.Fody.props'))" />
+    <Error Condition="!Exists('..\..\..\packages\Resource.Embedder.1.2.8\build\Resource.Embedder.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Resource.Embedder.1.2.8\build\Resource.Embedder.targets'))" />
+  </Target>
+  <Import Project="..\..\..\packages\Fody.3.3.5\build\Fody.targets" Condition="Exists('..\..\..\packages\Fody.3.3.5\build\Fody.targets')" />
   <Import Project="..\..\..\packages\Resource.Embedder.1.2.8\build\Resource.Embedder.targets" Condition="Exists('..\..\..\packages\Resource.Embedder.1.2.8\build\Resource.Embedder.targets')" />
 </Project>

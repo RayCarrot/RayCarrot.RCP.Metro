@@ -34,6 +34,7 @@ namespace RayCarrot.RCP.Metro
         public AppViewModel()
         {
             SaveUserDataAsyncLock = new AsyncLock();
+            MoveBackupsAsyncLock = new AsyncLock();
         }
 
         #endregion
@@ -68,6 +69,11 @@ namespace RayCarrot.RCP.Metro
         /// An async lock for the <see cref="SaveUserDataAsync"/> method
         /// </summary>
         private AsyncLock SaveUserDataAsyncLock { get; }
+
+        /// <summary>
+        /// An async lock for the <see cref="MoveBackupsAsync"/> method
+        /// </summary>
+        private AsyncLock MoveBackupsAsyncLock { get; }
 
         /// <summary>
         /// The current app version
@@ -924,6 +930,57 @@ namespace RayCarrot.RCP.Metro
             finally
             {
                 CheckingForUpdates = false;
+            }
+        }
+
+        /// <summary>
+        /// Attempts to move the backups from the old path to the new one
+        /// </summary>
+        /// <param name="oldPath">The old backup location</param>
+        /// <param name="newPath">The new backup location</param>
+        /// <returns>The task</returns>
+        public async Task MoveBackupsAsync(FileSystemPath oldPath, FileSystemPath newPath)
+        {
+            using (await MoveBackupsAsyncLock.LockAsync())
+            {
+                if (!await RCF.MessageUI.DisplayMessageAsync("Do you want to move existing backups to the new location?", "Move old backups", MessageType.Question, true))
+                {
+                    RCF.Logger.LogInformationSource("Moving old backups has been canceled by the user");
+                    return;
+                }
+
+                try
+                {
+                    var oldLocation = oldPath + BackupFamily;
+                    var newLocation = newPath + BackupFamily;
+
+                    if (!oldLocation.DirectoryExists || !Directory.GetFileSystemEntries(oldLocation).Any())
+                    {
+                        RCF.Logger.LogInformationSource("Old backups could not be moved due to not being found");
+
+                        await RCF.MessageUI.DisplayMessageAsync("No backups found in " + oldLocation.FullPath, "Moving backups failed", MessageType.Error);
+                        return;
+                    }
+
+                    if (newLocation.DirectoryExists)
+                    {
+                        RCF.Logger.LogInformationSource("Old backups could not be moved due to the new location already existing");
+
+                        await RCF.MessageUI.DisplayMessageAsync("Backups were not moved. A backup already exists in " + newLocation.FullPath, "Moving backups failed", MessageType.Error);
+                        return;
+                    }
+
+                    RCFRCP.File.MoveDirectory(oldLocation, newLocation, false);
+
+                    RCF.Logger.LogInformationSource("Old backups have been moved");
+
+                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("The backups have been moved successfully");
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Moving backups");
+                    await RCF.MessageUI.DisplayMessageAsync("Error moving backup", "Moving backups failed", MessageType.Error);
+                }
             }
         }
 

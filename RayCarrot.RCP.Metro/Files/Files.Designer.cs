@@ -157,17 +157,21 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 4.0.0 - March ? 2019   -----
+        ///   Looks up a localized string similar to -----   Version 4.1.0 - March ?, 2019   -----
         ///
-        ///• Windows Vista or higher is now required to run the application
-        ///• Updated the program to use WPF instead of WinForms
-        ///• Changed the theme to Metro theme with dark/light modes
-        ///• Simplified game selection and utilities
-        ///• Common DosBox commands can now be set using the new DosBox configuration dialog
-        ///• Rayman Origins debug commands have been simplified and Rayman Legends is now supported as well
+        ///• The program has been translated to Swedish, thus now allowing the language to be selected in the settings
+        ///• The option to move existing backups has been readded when changing the backup location
+        ///• Reorganized the settings page
+        ///• Updates to the Carrot Framework and WPF implementation
+        ///• Increased ToolTip timeout on InfoIcons
+        ///• Minor bug fixes
         ///
-        ///Other changes:
-        ///• Utilities will now show if they require ad [rest of string was truncated]&quot;;.
+        ///
+        ///-----   Version 4.0.1 - March 15, 2019   -----
+        ///
+        ///• Updated the about page
+        ///• Updated the help page
+        ///• Chang [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

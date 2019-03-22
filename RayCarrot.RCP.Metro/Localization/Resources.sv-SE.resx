@@ -500,4 +500,43 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
     <value>Visa alla spel på spel-sidan, även om de inte är installerade</value>
   </data>
+  <data name="Settings_DesignShowGameDetails" xml:space="preserve">
+    <value>Visa detaljerad spel-information</value>
+  </data>
+  <data name="Settings_DesignShowGameDetailsInfo" xml:space="preserve">
+    <value>Visa detaljerad spel-information i spel-alternativ dialogrutan</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
+    <value>Visa framsteg på ikonen i aktivitetsfältet</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgressInfo" xml:space="preserve">
+    <value>Visa nedladdnings-framsteg på ikonen i aktivitetsfältet</value>
+  </data>
+  <data name="Settings_DosBoxHeader" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="Settings_DosBoxPath" xml:space="preserve">
+    <value>DOSBox filsökväg</value>
+  </data>
+  <data name="Settings_DosBoxPathInfo" xml:space="preserve">
+    <value>DOSBox filens sökväg</value>
+  </data>
+  <data name="Settings_OptionalDosBoxConfigPath" xml:space="preserve">
+    <value>DOSBox konfigurationsfil sökväg (valfri)</value>
+  </data>
+  <data name="Settings_OptionalDosBoxConfigPathInfo" xml:space="preserve">
+    <value>DOSBox konfigurationsfil sökväg</value>
+  </data>
+  <data name="Settings_DebugHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_DebugExceptionLevel" xml:space="preserve">
+    <value>Exception-nivån att visa</value>
+  </data>
+  <data name="Settings_DebugExceptionLevelInfo" xml:space="preserve">
+    <value>Exception-nivån för att visa debug information</value>
+  </data>
+  <data name="Settings_BackupHeader" xml:space="preserve">
+    <value>Säkerhetskopior</value>
+  </data>
 </root>

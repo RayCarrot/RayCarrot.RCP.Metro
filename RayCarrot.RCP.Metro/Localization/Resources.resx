@@ -520,4 +520,43 @@ This is a growing project with more features planned on being added with future 
   <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
     <value>Show all games on the games page, even if they are not installed</value>
   </data>
+  <data name="Settings_DesignShowGameDetails" xml:space="preserve">
+    <value>Show detailed game information</value>
+  </data>
+  <data name="Settings_DesignShowGameDetailsInfo" xml:space="preserve">
+    <value>Show detailed game information in the game options dialog</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
+    <value>Show progress on task bar icon</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgressInfo" xml:space="preserve">
+    <value>Show download progress on the taskbar icon</value>
+  </data>
+  <data name="Settings_DosBoxHeader" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="Settings_DosBoxPath" xml:space="preserve">
+    <value>DOSBox file path</value>
+  </data>
+  <data name="Settings_DosBoxPathInfo" xml:space="preserve">
+    <value>The DOSBox executable file path</value>
+  </data>
+  <data name="Settings_OptionalDosBoxConfigPath" xml:space="preserve">
+    <value>DOSBox configuration file path (optional)</value>
+  </data>
+  <data name="Settings_OptionalDosBoxConfigPathInfo" xml:space="preserve">
+    <value>The DOSBox configuration file path</value>
+  </data>
+  <data name="Settings_DebugHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_DebugExceptionLevel" xml:space="preserve">
+    <value>Display exception level</value>
+  </data>
+  <data name="Settings_DebugExceptionLevelInfo" xml:space="preserve">
+    <value>The exception level for displaying debug and trace information</value>
+  </data>
+  <data name="Settings_BackupHeader" xml:space="preserve">
+    <value>Backups</value>
+  </data>
 </root>

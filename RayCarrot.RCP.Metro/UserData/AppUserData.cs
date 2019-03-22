@@ -67,6 +67,8 @@ namespace RayCarrot.RCP.Metro
 
         private bool _darkMode;
 
+        private FileSystemPath _backupLocation;
+
         #endregion
 
         #region Public Properties
@@ -170,7 +172,29 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The backup directory path
         /// </summary>
-        public FileSystemPath BackupLocation { get; set; }
+        public FileSystemPath BackupLocation
+        {
+            get => _backupLocation;
+            set
+            {
+                if (value == _backupLocation)
+                    return;
+
+                var oldValue = _backupLocation;
+
+                _backupLocation = value;
+
+                if (!oldValue.DirectoryExists)
+                {
+                    RCF.Logger.LogInformationSource("The backup location has been changed, but the previous directory does not exist");
+                    return;
+                }
+
+                RCF.Logger.LogInformationSource("The backup location has been changed and old backups are being moved...");
+
+                _ = RCFRCP.App.MoveBackupsAsync(oldValue, value);
+            }
+        }
 
         /// <summary>
         /// Indicates if progress should be shown on the task bar

@@ -9,7 +9,7 @@
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
-                    mc:Ignorable="d"
+                    mc:Ignorable="d"    
                     d:DesignWidth="800"
                     d:DataContext="{d:DesignInstance local:SettingsPageViewModel}">
     <ScrollViewer Padding="5">
@@ -17,6 +17,8 @@
             <i:Interaction.Behaviors>
                 <rwpf:UnifiedMarginBehavior Margin="2 5" />
             </i:Interaction.Behaviors>
+
+            <!-- User Level -->
 
             <StackPanel DataContext="{Binding Path=Data}">
                 <i:Interaction.Behaviors>
@@ -75,6 +77,8 @@
 
             </StackPanel>
 
+            <!-- Language -->
+
             <StackPanel>
                 <i:Interaction.Behaviors>
                     <rwpf:UnifiedMarginBehavior Margin="0 2" />
@@ -107,6 +111,8 @@
 
             </StackPanel>
 
+            <!-- Design -->
+
             <StackPanel DataContext="{Binding Path=Data}">
                 <i:Interaction.Behaviors>
                     <rwpf:UnifiedMarginBehavior Margin="0 2" />
@@ -136,23 +142,26 @@
                               ToolTip="{Resx Settings_DesignShowAllGamesInfo}"
                               IsChecked="{Binding Path=ShowNotInstalledGames}" />
 
-                    <CheckBox Content="Show detailed game information"
-                              ToolTip="Check to show detailed game information in the game options dialog"
+                    <CheckBox Content="{Resx Settings_DesignShowGameDetails}"
+                              ToolTip="{Resx Settings_DesignShowGameDetailsInfo}"
                               IsChecked="{Binding Path=ShowDetailedGameInfo}" />
 
-                    <CheckBox Content="Show progress on task bar icon"
-                              ToolTip="Check to show download progress on the taskbar icon"
+                    <CheckBox Content="{Resx Settings_DesignShowTaskBarProgress}"
+                              ToolTip="{Resx Settings_DesignShowTaskBarProgressInfo}"
                               IsChecked="{Binding Path=ShowProgressOnTaskBar}" />
 
                 </StackPanel>
 
             </StackPanel>
 
+            <!-- DosBox -->
+
             <StackPanel DataContext="{Binding Path=Data}">
                 <i:Interaction.Behaviors>
                     <rwpf:UnifiedMarginBehavior Margin="0 2" />
                 </i:Interaction.Behaviors>
-                <TextBlock Text="DosBox"
+
+                <TextBlock Text="{Resx Settings_DosBoxHeader}"
                            Style="{StaticResource LargeHeaderTextBlock}" />
 
                 <StackPanel>
@@ -163,12 +172,14 @@
                     <StackPanel>
 
                         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="DosBox path"
+                                   Text="{Resx Settings_DosBoxPath}"
                                    Margin="0 0 0 8" />
+
+                        <!-- NOTE: Not localized -->
 
                         <rwpf:BrowseBox FileFilter="Exe Files (.exe)|*.exe|All Files (*.*)|*.*"
                                         FilePath="{Binding Path=DosBoxPath}"
-                                        ToolTip="The DosBox file path"
+                                        ToolTip="{Resx Settings_DosBoxPathInfo}"
                                         BrowseType="File"
                                         PathValidation="FileExists" />
 
@@ -177,12 +188,14 @@
                     <StackPanel rwpf:UserLevelTag.MinUserLevel="Advanced">
 
                         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="DosBox configuration path (optional)"
+                                   Text="{Resx Settings_OptionalDosBoxConfigPath}"
                                    Margin="0 0 0 8" />
+
+                        <!-- NOTE: Not localized -->
 
                         <rwpf:BrowseBox FileFilter="Exe Files (.exe)|*.exe|All Files (*.*)|*.*"
                                         FilePath="{Binding Path=DosBoxConfig}"
-                                        ToolTip="The DosBox configuration file path"
+                                        ToolTip="{Resx Settings_OptionalDosBoxConfigPathInfo}"
                                         BrowseType="File"
                                         PathValidation="FileExists" />
 
@@ -192,13 +205,14 @@
 
             </StackPanel>
 
-            <StackPanel rwpf:UserLevelTag.MinUserLevel="Debug"
-                        DataContext="{Binding Path=Data}">
+            <!-- Backup -->
+
+            <StackPanel DataContext="{Binding Path=Data}">
                 <i:Interaction.Behaviors>
                     <rwpf:UnifiedMarginBehavior Margin="0 2" />
                 </i:Interaction.Behaviors>
 
-                <TextBlock Text="Debug"
+                <TextBlock Text="Backup"
                            Style="{StaticResource LargeHeaderTextBlock}" />
 
                 <StackPanel>
@@ -209,12 +223,14 @@
                     <StackPanel>
 
                         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="Display exception level"
+                                   Text="Backup location"
                                    Margin="0 0 0 8" />
 
-                        <ComboBox ItemsSource="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToListConverter}, Mode=OneTime}"
-                                  SelectedIndex="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToIntConverter}}"
-                                  ToolTip="The exception level for displaying debug and trace information"/>
+                        <rwpf:BrowseBox FilePath="{Binding Path=BackupLocation, UpdateSourceTrigger=LostFocus}"
+                                        UseCurrentPathAsDefaultDirectoryIfValid="True"
+                                        BrowseType="Directory"
+                                        ToolTip="The backup directory"
+                                        PathValidation="DirectoryExistsAndNotEmpty"/>
 
                     </StackPanel>
 
@@ -222,11 +238,14 @@
 
             </StackPanel>
 
+            <!-- Startup -->
+
             <StackPanel DataContext="{Binding Path=Data}">
                 <i:Interaction.Behaviors>
                     <rwpf:UnifiedMarginBehavior Margin="0 2" />
                 </i:Interaction.Behaviors>
-                <TextBlock Text="Other"
+
+                <TextBlock Text="Startup"
                            Style="{StaticResource LargeHeaderTextBlock}" />
 
                 <StackPanel>
@@ -242,6 +261,25 @@
                               ToolTip="Check to automatically check for new updates on launch"
                               IsChecked="{Binding Path=AutoUpdate}" />
 
+                </StackPanel>
+
+            </StackPanel>
+
+            <!-- Behavior -->
+
+            <StackPanel DataContext="{Binding Path=Data}">
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                </i:Interaction.Behaviors>
+
+                <TextBlock Text="Behavior"
+                           Style="{StaticResource LargeHeaderTextBlock}" />
+
+                <StackPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                    </i:Interaction.Behaviors>
+
                     <CheckBox Content="Close application when launching a game"
                               ToolTip="Check to automatically close the Rayman Control Panel when launching a game from it"
                               IsChecked="{Binding Path=CloseAppOnGameLaunch}"/>
@@ -250,16 +288,35 @@
                               ToolTip="Check to automatically close the options dialog when saving"
                               IsChecked="{Binding Path=CloseConfigOnSave}" />
 
+                </StackPanel>
+
+            </StackPanel>
+
+            <!-- Debug -->
+
+            <StackPanel rwpf:UserLevelTag.MinUserLevel="Debug"
+                        DataContext="{Binding Path=Data}">
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                </i:Interaction.Behaviors>
+
+                <TextBlock Text="{Resx Settings_DebugHeader}"
+                           Style="{StaticResource LargeHeaderTextBlock}" />
+
+                <StackPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                    </i:Interaction.Behaviors>
+
                     <StackPanel>
 
                         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="Backup location"
+                                   Text="{Resx Settings_DebugExceptionLevel}"
                                    Margin="0 0 0 8" />
 
-                        <rwpf:BrowseBox FilePath="{Binding Path=BackupLocation, UpdateSourceTrigger=LostFocus}"
-                                        BrowseType="Directory"
-                                        ToolTip="The backup directory"
-                                        PathValidation="DirectoryExistsAndNotEmpty"/>
+                        <ComboBox ItemsSource="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToListConverter}, Mode=OneTime}"
+                                  SelectedIndex="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToIntConverter}}"
+                                  ToolTip="{Resx Settings_DebugExceptionLevelInfo}"/>
 
                     </StackPanel>
 

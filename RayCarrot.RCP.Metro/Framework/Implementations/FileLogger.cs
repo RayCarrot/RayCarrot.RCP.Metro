@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Windows;
 using Microsoft.Extensions.Logging;
@@ -36,7 +37,8 @@ namespace RayCarrot.RCP.Metro
                     if (!CommonPaths.LogFile.Parent.DirectoryExists)
                         Directory.CreateDirectory(CommonPaths.LogFile.Parent);
 
-                    File.AppendAllText(CommonPaths.LogFile, $"{DateTime.Now} [{logLevel}] {message}" + Environment.NewLine);
+                    // Append the log to the log file, forcing the culture info to follow the Swedish standard
+                    File.AppendAllText(CommonPaths.LogFile, $"{DateTime.Now.ToString(new CultureInfo("sv-SE"))} [{logLevel}] {message}" + Environment.NewLine);
                 }
                 catch (Exception ex)
                 {

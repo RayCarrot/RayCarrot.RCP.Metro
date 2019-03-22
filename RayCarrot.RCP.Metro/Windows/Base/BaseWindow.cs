@@ -41,7 +41,7 @@ namespace RayCarrot.RCP.Metro
             if (RCF.IsBuilt)
             {
                 // Set transition
-                WindowTransitionsEnabled = RCFRCP.Data.EnableAnimations;
+                WindowTransitionsEnabled = RCFRCP.Data?.EnableAnimations ?? true;
 
                 RCF.Logger.LogInformationSource($"The window {this} has been created");
             }

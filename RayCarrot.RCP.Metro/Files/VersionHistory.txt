@@ -1,8 +1,11 @@
 ﻿-----   Version 4.1.0 - March ?, 2019   -----
 
 • The program has been translated to Swedish, thus now allowing the language to be selected in the settings
+• The option to move existing backups has been readded when changing the backup location
+• Reorganized the settings page
 • Updates to the Carrot Framework and WPF implementation
 • Increased ToolTip timeout on InfoIcons
+• Temporarily have to downgrade Fody to version 3.3.5 due to a bug with duplicate type names
 • Minor bug fixes
 
 
