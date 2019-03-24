@@ -1070,6 +1070,42 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complete Soundtrack.
+        /// </summary>
+        public static string R1U_CompleteOSTHeader {
+            get {
+                return ResourceManager.GetString("R1U_CompleteOSTHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Forever, including the GOG version, does not come with the complete soundtrack due to disc space originally not being available. This utility can replace the existing incomplete soundtrack with the complete one, or alternatively revert it back..
+        /// </summary>
+        public static string R1U_CompleteOSTInfo {
+            get {
+                return ResourceManager.GetString("R1U_CompleteOSTInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace with complete soundtrack.
+        /// </summary>
+        public static string R1U_CompleteOSTReplace {
+            get {
+                return ResourceManager.GetString("R1U_CompleteOSTReplace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revert back to incomplete soundtrack.
+        /// </summary>
+        public static string R1U_CompleteOSTRevert {
+            get {
+                return ResourceManager.GetString("R1U_CompleteOSTRevert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disabled.
         /// </summary>
         public static string R1U_TPLSDisabled {
@@ -1147,6 +1183,177 @@ namespace RayCarrot.RCP.Metro {
         public static string R1U_TPLSUninstall {
             get {
                 return ResourceManager.GetString("R1U_TPLSUninstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        public static string R2U_Apply {
+            get {
+                return ResourceManager.GetString("R2U_Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unofficial Translations.
+        /// </summary>
+        public static string R2U_TranslationsHeader {
+            get {
+                return ResourceManager.GetString("R2U_TranslationsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applying an unofficial translation will replace one of the in-game languages with the selected one. In most cases this will be the English one. The changes can at any time be reverted by applying the original version..
+        /// </summary>
+        public static string R2U_TranslationsInfo {
+            get {
+                return ResourceManager.GetString("R2U_TranslationsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disabled.
+        /// </summary>
+        public static string R3U_DirectPlayDisabled {
+            get {
+                return ResourceManager.GetString("R3U_DirectPlayDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        public static string R3U_DirectPlayEnabled {
+            get {
+                return ResourceManager.GetString("R3U_DirectPlayEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run the program as administrator in order to set the DirectPlay status.
+        /// </summary>
+        public static string R3U_DirectPlayErrorInfo {
+            get {
+                return ResourceManager.GetString("R3U_DirectPlayErrorInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DirectPlay.
+        /// </summary>
+        public static string R3U_DirectPlayHeader {
+            get {
+                return ResourceManager.GetString("R3U_DirectPlayHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DirectPlay needs to be enabled in order to run Rayman 3. By default it is usually disabled on Windows 10..
+        /// </summary>
+        public static string R3U_DirectPlayInfo {
+            get {
+                return ResourceManager.GetString("R3U_DirectPlayInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string RDU_CreateConfigCreate {
+            get {
+                return ResourceManager.GetString("RDU_CreateConfigCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Missing Configuration File.
+        /// </summary>
+        public static string RDU_CreateConfigHeader {
+            get {
+                return ResourceManager.GetString("RDU_CreateConfigHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During some Rayman Designer installations the configuration file won&apos;t be created, causing the Mapper to give an error when launching. This utility will fix that issue by creating the configuration file if not present..
+        /// </summary>
+        public static string RDU_CreateConfigInfo {
+            get {
+                return ResourceManager.GetString("RDU_CreateConfigInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace Infected Files.
+        /// </summary>
+        public static string RDU_ReplaceFilesHeader {
+            get {
+                return ResourceManager.GetString("RDU_ReplaceFilesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some versions of Rayman Designer, including Rayman Forever, have some of the RayKit files infected with a malware. Although it does not appear to be harmful, or even active, and GOG has confirmed there is no danger, you can still safely replace the files with their non-infected versions using this utility..
+        /// </summary>
+        public static string RDU_ReplaceFilesInfo {
+            get {
+                return ResourceManager.GetString("RDU_ReplaceFilesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string RDU_ReplaceFilesLanguage {
+            get {
+                return ResourceManager.GetString("RDU_ReplaceFilesLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace.
+        /// </summary>
+        public static string RDU_ReplaceFilesReplace {
+            get {
+                return ResourceManager.GetString("RDU_ReplaceFilesReplace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        public static string RLU_Apply {
+            get {
+                return ResourceManager.GetString("RLU_Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UbiRay Character.
+        /// </summary>
+        public static string RLU_UbiRayHeader {
+            get {
+                return ResourceManager.GetString("RLU_UbiRayHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UbiRay is a character not available in the game to play as, but still in the game files. This utility will modify your save file so that UbiRay is the selected character, thus allowing you to play as him..
+        /// </summary>
+        public static string RLU_UbiRayInfo {
+            get {
+                return ResourceManager.GetString("RLU_UbiRayInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WARNING: This utility is experimental and might corrupt your save file. Always make a backup before using it..
+        /// </summary>
+        public static string RLU_UbiRayWarning {
+            get {
+                return ResourceManager.GetString("RLU_UbiRayWarning", resourceCulture);
             }
         }
         

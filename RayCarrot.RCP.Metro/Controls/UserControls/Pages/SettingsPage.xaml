@@ -92,11 +92,17 @@
                         <rwpf:UnifiedMarginBehavior Margin="2 8" />
                     </i:Interaction.Behaviors>
 
-                    <ComboBox SelectedItem="{Binding Path=CurrentLanguage}"
+                    <ComboBox DataContext="{Binding Path=Data}"
+                              SelectedItem="{Binding Path=CurrentCultureInfo}"
                               ItemsSource="{Binding Source={x:Static local:AppLanguages.Languages}, Mode=OneTime}">
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                                <Setter Property="ToolTip" Value="{Binding Path=NativeName}" />
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Path=Value, Mode=OneTime}"/>
+                                <TextBlock Text="{Binding Path=EnglishName, Mode=OneTime}"/>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>

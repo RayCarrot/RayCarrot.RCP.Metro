@@ -3,10 +3,12 @@
 • The program has been translated to Swedish, thus now allowing the language to be selected in the settings
 • The option to move existing backups has been readded when changing the backup location
 • Reorganized the settings page
-• Updates to the Carrot Framework and WPF implementation
-• Increased ToolTip timeout on InfoIcons
+• Increased tool tip timeout on info icons
+• The Rayman 1 complete soundtrack utility is now only available when Rayman Forever is found
 • The Rayman 3 DirectPlay utility is now only available on Windows 8 and above
-• Temporarily have to downgrade Fody to version 3.3.5 due to a bug with duplicate type names
+• The Rayman 3 DirectPlay utliity has been reworked
+• Updates to the Carrot Framework and WPF implementation
+• Temporarily downgraded Fody to version 3.3.5 due to a bug with duplicate type names
 • Minor bug fixes
 
 

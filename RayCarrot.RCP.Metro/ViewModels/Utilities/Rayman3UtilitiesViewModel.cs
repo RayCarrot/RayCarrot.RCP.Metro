@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Management.Automation;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework;
@@ -18,58 +20,107 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public Rayman3UtilitiesViewModel()
         {
-            // Create the commands
-            EnableDirectPlayCommand = new AsyncRelayCommand(EnableDirectPlayAsync);
-            DisableDirectPlayCommand = new AsyncRelayCommand(DisableDirectPlayAsync);
+            IsLoadingDirectPlay = true;
+
+            Task.Run(RefreshDirectPlay);
         }
 
         #endregion
 
-        #region Commands
+        #region Private Fields
 
-        public ICommand EnableDirectPlayCommand { get; }
+        private bool _isDirectPlayEnabled;
 
-        public ICommand DisableDirectPlayCommand { get; }
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Indicates if DirectPlay is enabled
+        /// </summary>
+        public bool IsDirectPlayEnabled
+        {
+            get => _isDirectPlayEnabled;
+            set
+            {
+                if (IsLoadingDirectPlay)
+                    return;
+
+                IsLoadingDirectPlay = true;
+
+                Task.Run(() => SetDirectPlayState(value));
+            }
+        }
+
+        /// <summary>
+        /// Indicates if the DirectPlay state can be modified
+        /// </summary>
+        public bool CanModifyDirectPlay { get; set; }
+
+        /// <summary>
+        /// Indicates if the DirectPlay status is loading
+        /// </summary>
+        public bool IsLoadingDirectPlay { get; set; }
 
         #endregion
 
         #region Public Methods
 
         /// <summary>
-        /// Enables DirectPlay
+        /// Sets the state of DirectPlay
         /// </summary>
-        /// <returns>The task</returns>
-        public async Task EnableDirectPlayAsync()
+        /// <param name="enabled">Indicates if DirectPlay should be enabled</param>
+        public void SetDirectPlayState(bool enabled)
         {
             try
             {
-                WindowsHelpers.RunCommandPromptScript("dism /online /enable-feature:DirectPlay", true);
+                PowerShell.Create().RunAndDispose(x =>
+                    x.AddCommand(enabled ? "Enable-WindowsOptionalFeature" : "Disable-WindowsOptionalFeature").
+                        AddParameter("-Online").
+                        AddParameter("-FeatureName", "DirectPlay").
+                        Invoke());
 
-                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("DirectPlay has been enabled.", "Action complete");
+                RefreshDirectPlay();
             }
             catch (Exception ex)
             {
-                ex.HandleError("Applying R3 DirectPlay enable patch");
-                await RCF.MessageUI.DisplayMessageAsync("DirectPlay could not be enabled.", "Error", MessageType.Error);
+                ex.HandleError("Setting DirectPlay state");
+                IsLoadingDirectPlay = false;
             }
         }
 
         /// <summary>
-        /// Disables DirectPlay
+        /// Refreshes the DirectPlay state
         /// </summary>
-        /// <returns>The task</returns>
-        public async Task DisableDirectPlayAsync()
+        public void RefreshDirectPlay()
         {
+            if (!WindowsHelpers.RunningAsAdmin)
+            {
+                CanModifyDirectPlay = false;
+                IsLoadingDirectPlay = false;
+                return;
+            }
+
             try
             {
-                WindowsHelpers.RunCommandPromptScript("dism /online /disable-feature:DirectPlay", true);
+                var result = PowerShell.Create().RunAndDispose(x =>
+                    x.AddCommand("Get-WindowsOptionalFeature").
+                        AddParameter("-Online").
+                        AddParameter("-FeatureName", "DirectPlay").
+                        Invoke());
 
-                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("DirectPlay has been disabled.", "Action complete");
+                // The state is of type Microsoft.Dism.Commands.FeatureState
+                _isDirectPlayEnabled = result.First().Members["State"].Value?.ToString() == "Enabled";
+                OnPropertyChanged(nameof(IsDirectPlayEnabled));
+
+                CanModifyDirectPlay = true;
+                IsLoadingDirectPlay = false;
             }
             catch (Exception ex)
             {
-                ex.HandleError("Applying R3 DirectPlay disable patch");
-                await RCF.MessageUI.DisplayMessageAsync("DirectPlay could not be disabled.", "Error", MessageType.Error);
+                ex.HandleError("Getting DirectPlay info");
+                CanModifyDirectPlay = false;
+                IsLoadingDirectPlay = false;
             }
         }
 

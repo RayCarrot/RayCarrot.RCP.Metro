@@ -92,31 +92,33 @@
 
             </Grid>
 
-            <Separator />
+            <Separator Visibility="{Binding Path=CanMusicBeReplaced, Converter={rwpf:BooleanToVisibilityConverter}}" />
 
             <!-- Complete Soundtrack (Rayman Forever) -->
 
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal"
+                        Visibility="{Binding Path=CanMusicBeReplaced, Converter={rwpf:BooleanToVisibilityConverter}}">
+
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Complete Soundtrack (Rayman Forever)" />
+                           Text="{Resx R1U_CompleteOSTHeader}" />
 
                 <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}" />
 
-                <local:InfoIcon Text="Rayman Forever, including the GOG version, does not come with the complete soundtrack due to disc space originally not being available. This utility can replace the existing incomplete soundtrack with the complete one, or alternatively revert it back." />
+                <local:InfoIcon Text="{Resx R1U_CompleteOSTInfo}" />
 
             </StackPanel>
 
-            <Button Content="Replace with complete soundtrack"
-                    HorizontalAlignment="Left"
-                    Command="{Binding Path=ReplaceSoundtrackCommand}"
-                    IsEnabled="{Binding Path=CanMusicBeReplaced}"
-                    Visibility="{Binding Path=IsOriginalMusic, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+            <Grid Visibility="{Binding Path=CanMusicBeReplaced, Converter={rwpf:BooleanToVisibilityConverter}}">
+                <Button Content="{Resx R1U_CompleteOSTReplace}"
+                        HorizontalAlignment="Left"
+                        Command="{Binding Path=ReplaceSoundtrackCommand}"
+                        Visibility="{Binding Path=IsOriginalMusic, Converter={rwpf:BooleanToVisibilityConverter}}"/>
 
-            <Button Content="Revert back to incomplete soundtrack" 
-                    HorizontalAlignment="Left"
-                    Command="{Binding Path=ReplaceSoundtrackCommand}"
-                    IsEnabled="{Binding Path=CanMusicBeReplaced}"
-                    Visibility="{Binding Path=IsOriginalMusic, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"/>
+                <Button Content="{Resx R1U_CompleteOSTRevert}"
+                        HorizontalAlignment="Left"
+                        Command="{Binding Path=ReplaceSoundtrackCommand}"
+                        Visibility="{Binding Path=IsOriginalMusic, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"/>
+            </Grid>
 
         </StackPanel>
     </ScrollViewer>

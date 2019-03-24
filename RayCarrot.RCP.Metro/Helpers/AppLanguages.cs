@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Globalization;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -11,16 +11,10 @@ namespace RayCarrot.RCP.Metro
 
         static AppLanguages()
         {
-            Languages = new Dictionary<string, string>()
+            Languages = new CultureInfo[]
             {
-                {
-                    "en-US",
-                    "English (US)"
-                },
-                {
-                    "sv-SE",
-                    "Swedish (SV)"
-                }
+                new CultureInfo("en-US"), 
+                new CultureInfo("sv-SE"), 
             };
         }
 
@@ -31,7 +25,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The available languages
         /// </summary>
-        public static Dictionary<string, string> Languages { get; }
+        public static CultureInfo[] Languages { get; }
 
         /// <summary>
         /// The path to the resource file

@@ -607,4 +607,73 @@ This is a growing project with more features planned on being added with future 
   <data name="R1U_TPLSDosBoxVersion" xml:space="preserve">
     <value>DOSBox version</value>
   </data>
+  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
+    <value>Complete Soundtrack</value>
+  </data>
+  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
+    <value>Rayman Forever, including the GOG version, does not come with the complete soundtrack due to disc space originally not being available. This utility can replace the existing incomplete soundtrack with the complete one, or alternatively revert it back.</value>
+  </data>
+  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
+    <value>Replace with complete soundtrack</value>
+  </data>
+  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
+    <value>Revert back to incomplete soundtrack</value>
+  </data>
+  <data name="R2U_TranslationsHeader" xml:space="preserve">
+    <value>Unofficial Translations</value>
+  </data>
+  <data name="R2U_TranslationsInfo" xml:space="preserve">
+    <value>Applying an unofficial translation will replace one of the in-game languages with the selected one. In most cases this will be the English one. The changes can at any time be reverted by applying the original version.</value>
+  </data>
+  <data name="R2U_Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="R3U_DirectPlayHeader" xml:space="preserve">
+    <value>DirectPlay</value>
+  </data>
+  <data name="R3U_DirectPlayInfo" xml:space="preserve">
+    <value>DirectPlay needs to be enabled in order to run Rayman 3. By default it is usually disabled on Windows 10.</value>
+  </data>
+  <data name="R3U_DirectPlayEnabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="R3U_DirectPlayDisabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="R3U_DirectPlayErrorInfo" xml:space="preserve">
+    <value>Run the program as administrator in order to set the DirectPlay status</value>
+  </data>
+  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
+    <value>Replace Infected Files</value>
+  </data>
+  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
+    <value>Some versions of Rayman Designer, including Rayman Forever, have some of the RayKit files infected with a malware. Although it does not appear to be harmful, or even active, and GOG has confirmed there is no danger, you can still safely replace the files with their non-infected versions using this utility.</value>
+  </data>
+  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
+    <value>Replace</value>
+  </data>
+  <data name="RDU_CreateConfigHeader" xml:space="preserve">
+    <value>Create Missing Configuration File</value>
+  </data>
+  <data name="RDU_CreateConfigInfo" xml:space="preserve">
+    <value>During some Rayman Designer installations the configuration file won't be created, causing the Mapper to give an error when launching. This utility will fix that issue by creating the configuration file if not present.</value>
+  </data>
+  <data name="RDU_CreateConfigCreate" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="RLU_UbiRayHeader" xml:space="preserve">
+    <value>UbiRay Character</value>
+  </data>
+  <data name="RLU_UbiRayInfo" xml:space="preserve">
+    <value>UbiRay is a character not available in the game to play as, but still in the game files. This utility will modify your save file so that UbiRay is the selected character, thus allowing you to play as him.</value>
+  </data>
+  <data name="RLU_UbiRayWarning" xml:space="preserve">
+    <value>WARNING: This utility is experimental and might corrupt your save file. Always make a backup before using it.</value>
+  </data>
+  <data name="RLU_Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
 </root>

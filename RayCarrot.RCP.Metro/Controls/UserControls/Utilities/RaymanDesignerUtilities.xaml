@@ -19,12 +19,13 @@
             </i:Interaction.Behaviors>
 
             <StackPanel Orientation="Horizontal">
+
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Replace Infected Files" />
+                           Text="{Resx RDU_ReplaceFilesHeader}" />
 
                 <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}" />
 
-                <local:InfoIcon Text="Some versions of Rayman Designer, including Rayman Forever, have some of the RayKit files infected with a malware. Although it does not appear to be harmful, or even active, and GOG has confirmed there is no danger, you can still safely replace the files with their non-infected versions using this utility." />
+                <local:InfoIcon Text="{Resx RDU_ReplaceFilesInfo}" />
 
             </StackPanel>
 
@@ -46,7 +47,7 @@
                 </i:Interaction.Behaviors>
 
                 <TextBlock Grid.Column="0"
-                           Text="Language"/>
+                           Text="{Resx RDU_ReplaceFilesLanguage}"/>
 
                 <ComboBox Grid.Column="1"
                           ItemsSource="{Binding Path=MapperLanguage, Mode=OneTime, Converter={rwpf:EnumToListConverter}}"
@@ -54,7 +55,7 @@
 
             </Grid>
 
-            <Button Content="Replace"
+            <Button Content="{Resx RDU_ReplaceFilesReplace}"
                     Command="{Binding Path=ReplaceRayKitCommand}"
                     HorizontalAlignment="Left"/>
 
@@ -62,13 +63,13 @@
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Create Missing Configuration File" />
+                           Text="{Resx RDU_CreateConfigHeader}" />
 
-                <local:InfoIcon Text="During some Rayman Designer installations the configuration file won't be created, causing the Mapper to give an error when launching. This utility will fix that issue by creating the configuration file if not present." />
+                <local:InfoIcon Text="{Resx RDU_CreateConfigInfo}" />
 
             </StackPanel>
 
-            <Button Content="Create"
+            <Button Content="{Resx RDU_CreateConfigCreate}"
                     Command="{Binding Path=CreateConfigCommand}"
                     HorizontalAlignment="Left"/>
 

@@ -234,6 +234,16 @@ namespace RayCarrot.RCP.Metro
         public bool EnableAnimations { get; set; }
 
         /// <summary>
+        /// The current culture info
+        /// </summary>
+        [JsonIgnore]
+        public CultureInfo CurrentCultureInfo
+        {
+            get => new CultureInfo(CurrentCulture);
+            set => CurrentCulture = value.Name;
+        }
+
+        /// <summary>
         /// The current culture in the application
         /// </summary>
         public string CurrentCulture
@@ -241,7 +251,10 @@ namespace RayCarrot.RCP.Metro
             get => RCF.Data.CurrentCulture?.Name;
             set
             {
+                // Set the framework culture
                 RCF.Data.CurrentCulture = CultureInfo.GetCultureInfo(value);
+
+                // Set the UI culture
                 CultureManager.UICulture = CultureInfo.GetCultureInfo(CurrentCulture);
 
                 var culture = CultureInfo.GetCultureInfo(CurrentCulture);

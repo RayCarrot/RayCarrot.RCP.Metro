@@ -587,4 +587,73 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="R1U_TPLSDosBoxVersion" xml:space="preserve">
     <value>DOSBox versionen</value>
   </data>
+  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
+    <value>Komplett musik</value>
+  </data>
+  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
+    <value>Rayman Forever, inklusive GOG-versionen, kommer inte med den kompletta musiken på grund av skivutrymmet som ursprungligen inte var tillgängligt. Det här verktyget kan ersätta den befintliga ofullständiga musiken med den kompletta eller alternativt återställa den.</value>
+  </data>
+  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
+    <value>Ersätt med den kompletta musiken</value>
+  </data>
+  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
+    <value>Återställ den ursprungliga musiken</value>
+  </data>
+  <data name="R2U_TranslationsHeader" xml:space="preserve">
+    <value>Inofficiella översättningar</value>
+  </data>
+  <data name="R2U_TranslationsInfo" xml:space="preserve">
+    <value>När en inofficiell översättning tillämpas kommer det att ersätta ett av språken i spelet med det valda språket. I de flesta fall kommer det att vara engelska som ersätts. Ändringarna kan när som helst återställas genom att tillämpa originalversionen.</value>
+  </data>
+  <data name="R2U_Apply" xml:space="preserve">
+    <value>Tillämpa</value>
+  </data>
+  <data name="R3U_DirectPlayHeader" xml:space="preserve">
+    <value>DirectPlay</value>
+  </data>
+  <data name="R3U_DirectPlayInfo" xml:space="preserve">
+    <value>DirectPlay måste aktiveras för att kunna köra Rayman 3. Som standard är det vanligtvis inaktiverat i Windows 10.</value>
+  </data>
+  <data name="R3U_DirectPlayDisabled" xml:space="preserve">
+    <value>Inaktiverad</value>
+  </data>
+  <data name="R3U_DirectPlayEnabled" xml:space="preserve">
+    <value>Aktiverad</value>
+  </data>
+  <data name="R3U_DirectPlayErrorInfo" xml:space="preserve">
+    <value>Kör programmet som administratör för att kunna göra ändringar gällande DirectPlay</value>
+  </data>
+  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
+    <value>Ersätt infekterade filer</value>
+  </data>
+  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
+    <value>Vissa versioner av Rayman Designer, inklusive Rayman Forever, har några av RayKit-filer infekterade med en skadlig kod. Även om det inte verkar vara aktivt, och GOG har bekräftat att det inte finns någon fara, kan du ändå ersätta filerna med deras icke-infekterade versioner med hjälp av det här verktyget för säkerhetsskull.</value>
+  </data>
+  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
+    <value>Språk</value>
+  </data>
+  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
+    <value>Ersätt filerna</value>
+  </data>
+  <data name="RDU_CreateConfigHeader" xml:space="preserve">
+    <value>Skapa konfigurationsfil</value>
+  </data>
+  <data name="RDU_CreateConfigInfo" xml:space="preserve">
+    <value>Under vissa Rayman Designer installationer skapas inte konfigurationsfilen vilket gör att Mapper-programmet inte går att starta. Det här verktyget fixar problemet genom att skapa konfigurationsfilen om den inte finns.</value>
+  </data>
+  <data name="RDU_CreateConfigCreate" xml:space="preserve">
+    <value>Skapa</value>
+  </data>
+  <data name="RLU_UbiRayHeader" xml:space="preserve">
+    <value>UbiRay-karaktären</value>
+  </data>
+  <data name="RLU_UbiRayInfo" xml:space="preserve">
+    <value>UbiRay är en karaktär som inte är tillgängligt i spelet att spela som, men fortfarande finns i spelfilerna. Det här verktyget ändrar din spelfil så att UbiRay är den valda karaktären så att du kan spela som honom.</value>
+  </data>
+  <data name="RLU_UbiRayWarning" xml:space="preserve">
+    <value>VARNING: Det här verktyget är experimentellt och kan korrumpera din spelfil. Gör alltid en säkerhetskopia innan du använder verktyget.</value>
+  </data>
+  <data name="RLU_Apply" xml:space="preserve">
+    <value>Tillämpa</value>
+  </data>
 </root>

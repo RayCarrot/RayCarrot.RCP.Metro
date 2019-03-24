@@ -22,19 +22,6 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Properties
-
-        /// <summary>
-        /// The current language value pair
-        /// </summary>
-        public KeyValuePair<string, string> CurrentLanguage
-        {
-            get => AppLanguages.Languages.FindItem(x => x.Key == RCFRCP.Data.CurrentCulture);
-            set => RCFRCP.Data.CurrentCulture = value.Key;
-        }
-
-        #endregion
-
         #region Commands
 
         public ICommand ContributeLocalizationCommand { get; }
@@ -45,7 +32,7 @@ namespace RayCarrot.RCP.Metro
 
         public async Task ContributeLocalizationAsync()
         {
-            // TODO: Implement
+            // TODO: Open Steam discussion page?
         }
 
         #endregion

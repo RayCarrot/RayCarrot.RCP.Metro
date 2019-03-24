@@ -7,6 +7,8 @@
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     mc:Ignorable="d" 
                     d:DesignHeight="450" d:DesignWidth="800"
@@ -19,20 +21,37 @@
             </i:Interaction.Behaviors>
 
             <StackPanel Orientation="Horizontal">
-                <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="DirectPlay" />
 
-                <local:InfoIcon Text="DirectPlay needs to be enabled in order to run Rayman 3. By default it will usually be disabled on Windows 10." />
+                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                           Text="{Resx R3U_DirectPlayHeader}" />
+
+                <local:InfoIcon Text="{Resx R3U_DirectPlayInfo}" />
 
             </StackPanel>
 
-            <Button Content="Enable DirectPlay"
-                    HorizontalAlignment="Left" 
-                    Command="{Binding Path=EnableDirectPlayCommand}"/>
+            <Grid>
 
-            <Button Content="Disable DirectPlay"
-                    HorizontalAlignment="Left" 
-                    Command="{Binding Path=DisableDirectPlayCommand}"/>
+                <metro:ProgressRing Visibility="{Binding Path=IsLoadingDirectPlay, Converter={rwpf:BooleanToVisibilityConverter}}" />
+
+                <metro:ToggleSwitch IsChecked="{Binding Path=IsDirectPlayEnabled}"
+                                    IsEnabled="{Binding Path=IsLoadingDirectPlay, Converter={rwpf:InvertedBooleanConverter}}"
+                                    Visibility="{Binding Path=CanModifyDirectPlay, Converter={rwpf:BooleanToVisibilityConverter}}"
+                                    HorizontalAlignment="Left"
+                                    OnLabel="{Resx R3U_DirectPlayEnabled}"
+                                    OffLabel="{Resx R3U_DirectPlayDisabled}" />
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+
+                    <iconPacks:PackIconMaterial Kind="Security"
+                                                Margin="0 0 10 0"/>
+
+                    <TextBlock Foreground="Red"
+                               Text="{Resx R3U_DirectPlayErrorInfo}" />
+
+                </StackPanel>
+
+            </Grid>
 
         </StackPanel>
     </ScrollViewer>

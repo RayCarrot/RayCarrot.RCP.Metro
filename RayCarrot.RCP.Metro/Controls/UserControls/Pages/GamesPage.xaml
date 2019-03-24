@@ -71,7 +71,6 @@
             </StackPanel>
         </ScrollViewer>
 
-        <mah:ProgressRing
-            Visibility="{Binding Path=App.IsGameFinderRunning, Converter={rwpf:BooleanToVisibilityConverter}}" />
+        <mah:ProgressRing Visibility="{Binding Path=App.IsGameFinderRunning, Converter={rwpf:BooleanToVisibilityConverter}}" />
     </Grid>
 </rwpf:VMUserControl>

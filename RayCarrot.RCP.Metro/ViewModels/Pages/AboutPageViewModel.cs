@@ -24,7 +24,7 @@ namespace RayCarrot.RCP.Metro
                 new DuoGridItemViewModel()
                 {
                     Header = "RayCarrot  ",
-                    Text = "User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations"
+                    Text = "User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations, Swedish program translation"
                 },
                 new DuoGridItemViewModel()
                 {

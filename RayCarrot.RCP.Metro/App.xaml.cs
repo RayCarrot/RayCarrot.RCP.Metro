@@ -214,7 +214,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the setup finished successfully or false if the application has to shut down</returns>
         protected override Task<bool> InitialSetupAsync(string[] args)
         {
-            // Make sure we are on Windows Vista or higher for the Windows API Code Pack
+            // Make sure we are on Windows Vista or higher for the Windows API Code Pack and Deployment Image Servicing and Management
             if (AppViewModel.WindowsVersion < WindowsVersion.WinVista)
             {
                 MessageBox.Show("Windows Vista or higher is required to run this application", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);

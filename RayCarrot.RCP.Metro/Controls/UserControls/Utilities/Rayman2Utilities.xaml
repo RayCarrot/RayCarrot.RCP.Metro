@@ -20,11 +20,11 @@
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Unofficial Translations" />
+                           Text="{Resx R2U_TranslationsHeader}" />
 
                 <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}" />
 
-                <local:InfoIcon Text="Below is a list of available unofficial fan translations which can be applied to the game. Applying one of these will replace one of the in-game languages with the selected one. In most cases this will be the English one. The changes can at any time be reverted by selecting 'Original' below and applying." />
+                <local:InfoIcon Text="{Resx R2U_TranslationsInfo}" />
 
             </StackPanel>
 
@@ -36,7 +36,7 @@
             <TextBlock Text="{Binding Path=DetailedTranslationInfo}"
                        TextWrapping="WrapWithOverflow" />
 
-            <Button Content="Apply"
+            <Button Content="{Resx R2U_Apply}"
                     HorizontalAlignment="Left"
                     Command="{Binding Path=ApplyTranslationCommand}"/>
 
