@@ -92,7 +92,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(4, 0, 2, 0);
+        public Version CurrentVersion => new Version(4, 1, 0, 0);
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -188,20 +188,16 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Protected Methods
+        #region Public Methods
 
         /// <summary>
         /// Fires the <see cref="RefreshRequired"/> event
         /// </summary>
         /// <param name="e">The event arguments, or null to use the default ones</param>
-        protected void OnRefreshRequired(EventArgs e = null)
+        public void OnRefreshRequired(EventArgs e = null)
         {
             RefreshRequired?.Invoke(this, e ?? EventArgs.Empty);
         }
-
-        #endregion
-
-        #region Public Methods
 
         /// <summary>
         /// Adds a new game to the app data

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -26,12 +25,5 @@ namespace RayCarrot.RCP.Metro
         }
 
         public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register(nameof(Items), typeof(IEnumerable<DuoGridItemViewModel>), typeof(DuoGrid));
-    }
-
-    public class DuoGridItemViewModel : BaseViewModel
-    {
-        public string Header { get; set; }
-
-        public string Text { get; set; }
     }
 }

@@ -34,27 +34,27 @@ namespace RayCarrot.RCP.Metro
                 {
                     default:
                     case MessageType.Generic:
-                        headerMessage = "Generic Message";
+                        headerMessage = Resources.MessageHeader_Generic;
                         break;
 
                     case MessageType.Information:
-                        headerMessage = "Information Message";
+                        headerMessage = Resources.MessageHeader_Information;
                         break;
 
                     case MessageType.Error:
-                        headerMessage = "Error Message";
+                        headerMessage = Resources.MessageHeader_Error;
                         break;
 
                     case MessageType.Warning:
-                        headerMessage = "Warning Message";
+                        headerMessage = Resources.MessageHeader_Warning;
                         break;
 
                     case MessageType.Success:
-                        headerMessage = "Success Message";
+                        headerMessage = Resources.MessageHeader_Success;
                         break;
 
                     case MessageType.Question:
-                        headerMessage = "Question Message";
+                        headerMessage = Resources.MessageHeader_Question;
                         break;
                 }
             }
@@ -89,15 +89,15 @@ namespace RayCarrot.RCP.Metro
             if (allowCancel)
                 actions.Add(new DialogMessageActionViewModel()
                 {
-                    DisplayText = "CANCEL",
-                    DisplayDescription = "Cancel",
+                    DisplayText = Resources.Cancel,
+                    DisplayDescription = Resources.Cancel,
                     IsCancel = true,
                     ActionResult = false
                 });
             actions.Add(new DialogMessageActionViewModel()
             {
-                DisplayText = "OK",
-                DisplayDescription = "Ok",
+                DisplayText = Resources.Ok,
+                DisplayDescription = Resources.Ok,
                 IsDefault = true,
                 ActionResult = true
             });

@@ -656,4 +656,127 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="RLU_Apply" xml:space="preserve">
     <value>Tillämpa</value>
   </data>
+  <data name="ROU_HQVideosHeader" xml:space="preserve">
+    <value>Högre kvalitet videor</value>
+  </data>
+  <data name="ROU_HQVideosInfo" xml:space="preserve">
+    <value>Videorna i PC-versionen är i lägre kvalitet än i konsolversionerna. Det här verktyget ersätter de videoklippen med de som har högre kvalitet från konsolversionerna.</value>
+  </data>
+  <data name="ROU_HQVideosReplace" xml:space="preserve">
+    <value>Ersätt med videorna med högre kvalitet</value>
+  </data>
+  <data name="ROU_HQVideosRevert" xml:space="preserve">
+    <value>Återställ de ursprungliga videorna</value>
+  </data>
+  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
+    <value>Debugkommandon</value>
+  </data>
+  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
+    <value>Genom att använda något av följande debugkommandon kan spelet köras i ett debugläge, med kommandon som ändrar hur spelet körs.</value>
+  </data>
+  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
+    <value>VARNING: Användning av dessa kommandon kan korrumpera din spelfil. Gör alltid en säkerhetskopia innan du använder dem.</value>
+  </data>
+  <data name="ROU_DebugCommandsEnabled" xml:space="preserve">
+    <value>Aktiverad</value>
+  </data>
+  <data name="ROU_DebugCommandsDisabled" xml:space="preserve">
+    <value>Inaktiverad</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
+    <value>Osårbar</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
+    <value>Detta gör att spelaren inte tar skada i spelet</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
+    <value>Dölj muspekaren</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
+    <value>Max kamera zoom</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
+    <value>Detta gömmer muspekaren i spelmenyerna</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
+    <value>Detta kommer att maximera kamerans zoom</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
+    <value>Bildhastighet</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
+    <value>Detta kommer att ställa in bildhastigheten för att köra spelet i</value>
+  </data>
+  <data name="ROU_DebugCommandsMap" xml:space="preserve">
+    <value>Nivå</value>
+  </data>
+  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
+    <value>Detta gör att en specifik nivå laddas istället för huvudmenyn när spelet startas</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
+    <value>Språk</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
+    <value>Detta kommer att ändra språket spelet körs i</value>
+  </data>
+  <data name="ROU_UpdateUpdate" xml:space="preserve">
+    <value>Uppdatera</value>
+  </data>
+  <data name="ROU_UpdateHeader" xml:space="preserve">
+    <value>Uppdatera till 1.02 (Skivversionen)</value>
+  </data>
+  <data name="ROU_UpdateInfo" xml:space="preserve">
+    <value>Om Rayman Origins inte har uppdaterats automatiskt till den senaste version, 1.02, kan det här verktyget uppdatera det.</value>
+  </data>
+  <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
+    <value>Öppna butikssidan</value>
+  </data>
+  <data name="GameDisplay_OpenSteamCommunity" xml:space="preserve">
+    <value>Öppna gemenskaps-sidan</value>
+  </data>
+  <data name="GameDisplay_OpenLocation" xml:space="preserve">
+    <value>Öppna spelmappen</value>
+  </data>
+  <data name="GameDisplay_Utilities" xml:space="preserve">
+    <value>Verktyg</value>
+  </data>
+  <data name="GameDisplay_Options" xml:space="preserve">
+    <value>Alternativ</value>
+  </data>
+  <data name="GameDisplay_Launch" xml:space="preserve">
+    <value>Starta</value>
+  </data>
+  <data name="GameDisplay_DiscInstall" xml:space="preserve">
+    <value>Installera från skiva</value>
+  </data>
+  <data name="GameDisplay_Locate" xml:space="preserve">
+    <value>Hitta installation</value>
+  </data>
+  <data name="GameDisplay_PurchaseGOG" xml:space="preserve">
+    <value>Köp från GOG</value>
+  </data>
+  <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
+    <value>Köp från Uplay</value>
+  </data>
+  <data name="GameDisplay_Steam" xml:space="preserve">
+    <value>Köp från Steam</value>
+  </data>
+  <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
+    <value>Köp från Windows Store</value>
+  </data>
+  <data name="GameLink_RDMapper" xml:space="preserve">
+    <value>Mapper</value>
+  </data>
+  <data name="GameLink_R2nGlide" xml:space="preserve">
+    <value>nGlide konfiguration</value>
+  </data>
+  <data name="GameLink_Setup" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Åtgärden lyckades</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
 </root>

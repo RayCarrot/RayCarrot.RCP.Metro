@@ -152,6 +152,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action succeeded.
+        /// </summary>
+        public static string ActionSucceeded {
+            get {
+                return ResourceManager.GetString("ActionSucceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman Control Panel.
         /// </summary>
         public static string AppName {
@@ -935,6 +944,141 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Install from disc.
+        /// </summary>
+        public static string GameDisplay_DiscInstall {
+            get {
+                return ResourceManager.GetString("GameDisplay_DiscInstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch.
+        /// </summary>
+        public static string GameDisplay_Launch {
+            get {
+                return ResourceManager.GetString("GameDisplay_Launch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locate.
+        /// </summary>
+        public static string GameDisplay_Locate {
+            get {
+                return ResourceManager.GetString("GameDisplay_Locate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open location.
+        /// </summary>
+        public static string GameDisplay_OpenLocation {
+            get {
+                return ResourceManager.GetString("GameDisplay_OpenLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open community page.
+        /// </summary>
+        public static string GameDisplay_OpenSteamCommunity {
+            get {
+                return ResourceManager.GetString("GameDisplay_OpenSteamCommunity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open store page.
+        /// </summary>
+        public static string GameDisplay_OpenSteamStore {
+            get {
+                return ResourceManager.GetString("GameDisplay_OpenSteamStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string GameDisplay_Options {
+            get {
+                return ResourceManager.GetString("GameDisplay_Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase from GOG.
+        /// </summary>
+        public static string GameDisplay_PurchaseGOG {
+            get {
+                return ResourceManager.GetString("GameDisplay_PurchaseGOG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase from Uplay.
+        /// </summary>
+        public static string GameDisplay_PurchaseUplay {
+            get {
+                return ResourceManager.GetString("GameDisplay_PurchaseUplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase from Windows Store.
+        /// </summary>
+        public static string GameDisplay_PurchaseWinStore {
+            get {
+                return ResourceManager.GetString("GameDisplay_PurchaseWinStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase from Steam.
+        /// </summary>
+        public static string GameDisplay_Steam {
+            get {
+                return ResourceManager.GetString("GameDisplay_Steam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utilities.
+        /// </summary>
+        public static string GameDisplay_Utilities {
+            get {
+                return ResourceManager.GetString("GameDisplay_Utilities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nGlide config.
+        /// </summary>
+        public static string GameLink_R2nGlide {
+            get {
+                return ResourceManager.GetString("GameLink_R2nGlide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mapper.
+        /// </summary>
+        public static string GameLink_RDMapper {
+            get {
+                return ResourceManager.GetString("GameLink_RDMapper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup.
+        /// </summary>
+        public static string GameLink_Setup {
+            get {
+                return ResourceManager.GetString("GameLink_Setup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Installed.
         /// </summary>
         public static string Games_Installed {
@@ -1016,6 +1160,60 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error Message.
+        /// </summary>
+        public static string MessageHeader_Error {
+            get {
+                return ResourceManager.GetString("MessageHeader_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generic Message.
+        /// </summary>
+        public static string MessageHeader_Generic {
+            get {
+                return ResourceManager.GetString("MessageHeader_Generic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information Message.
+        /// </summary>
+        public static string MessageHeader_Information {
+            get {
+                return ResourceManager.GetString("MessageHeader_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Question Message.
+        /// </summary>
+        public static string MessageHeader_Question {
+            get {
+                return ResourceManager.GetString("MessageHeader_Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success Message.
+        /// </summary>
+        public static string MessageHeader_Success {
+            get {
+                return ResourceManager.GetString("MessageHeader_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning Message.
+        /// </summary>
+        public static string MessageHeader_Warning {
+            get {
+                return ResourceManager.GetString("MessageHeader_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drive.
         /// </summary>
         public static string MountOption_Drive {
@@ -1066,6 +1264,15 @@ namespace RayCarrot.RCP.Metro {
         public static string MountPathInfo {
             get {
                 return ResourceManager.GetString("MountPathInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
             }
         }
         
@@ -1354,6 +1561,222 @@ namespace RayCarrot.RCP.Metro {
         public static string RLU_UbiRayWarning {
             get {
                 return ResourceManager.GetString("RLU_UbiRayWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disabled.
+        /// </summary>
+        public static string ROU_DebugCommandsDisabled {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        public static string ROU_DebugCommandsEnabled {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Framerate.
+        /// </summary>
+        public static string ROU_DebugCommandsFramerate {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsFramerate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will set the framerate to run the game in.
+        /// </summary>
+        public static string ROU_DebugCommandsFramerateInfo {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsFramerateInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug Commands.
+        /// </summary>
+        public static string ROU_DebugCommandsHeader {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide mouse pointer.
+        /// </summary>
+        public static string ROU_DebugCommandsHideMouse {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsHideMouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will hide the mouse pointer in the game menus.
+        /// </summary>
+        public static string ROU_DebugCommandsHideMouseInfo {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsHideMouseInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Using any of the below debug commands allows the game to be launched in a debug environment, with the commands changing how the game runs..
+        /// </summary>
+        public static string ROU_DebugCommandsInfo {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invincibility.
+        /// </summary>
+        public static string ROU_DebugCommandsInvincibility {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsInvincibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This allows the player to not die when taking damage.
+        /// </summary>
+        public static string ROU_DebugCommandsInvincibilityInfo {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsInvincibilityInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string ROU_DebugCommandsLanguage {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will change the language the game runs in.
+        /// </summary>
+        public static string ROU_DebugCommandsLanguageInfo {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsLanguageInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map.
+        /// </summary>
+        public static string ROU_DebugCommandsMap {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will allow a specific map to be loaded instead of the main menu upon starting the game.
+        /// </summary>
+        public static string ROU_DebugCommandsMapInfo {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsMapInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max camera zoom.
+        /// </summary>
+        public static string ROU_DebugCommandsMaxZoom {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsMaxZoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will max out the camera zoom.
+        /// </summary>
+        public static string ROU_DebugCommandsMaxZoomInfo {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsMaxZoomInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WARNING: Using these debug commands may corrupt your save file. Always make a backup before using them..
+        /// </summary>
+        public static string ROU_DebugCommandsWarning {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Higher Quality Videos.
+        /// </summary>
+        public static string ROU_HQVideosHeader {
+            get {
+                return ResourceManager.GetString("ROU_HQVideosHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The video cutscenes in the PC version are compressed and in lower quality than in the console versions. This utility replaces those videos with the higher quality ones from the console versions..
+        /// </summary>
+        public static string ROU_HQVideosInfo {
+            get {
+                return ResourceManager.GetString("ROU_HQVideosInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace with the high quality videos.
+        /// </summary>
+        public static string ROU_HQVideosReplace {
+            get {
+                return ResourceManager.GetString("ROU_HQVideosReplace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revert back to the original videos.
+        /// </summary>
+        public static string ROU_HQVideosRevert {
+            get {
+                return ResourceManager.GetString("ROU_HQVideosRevert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update to 1.02 (Disc version).
+        /// </summary>
+        public static string ROU_UpdateHeader {
+            get {
+                return ResourceManager.GetString("ROU_UpdateHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In case Rayman Origins has not been automatically updated to its latest version, 1.02, this utility can update it..
+        /// </summary>
+        public static string ROU_UpdateInfo {
+            get {
+                return ResourceManager.GetString("ROU_UpdateInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string ROU_UpdateUpdate {
+            get {
+                return ResourceManager.GetString("ROU_UpdateUpdate", resourceCulture);
             }
         }
         

@@ -9,6 +9,7 @@
              mc:Ignorable="d"
              Margin="10 0 0 0"
              VerticalAlignment="Center">
+
     <iconPacks:PackIconMaterial x:Name="HelpIconRoot"
                                 d:DataContext="{d:DesignInstance metro:InfoIcon}"
                                 Kind="{Binding Path=IconKind}"
@@ -19,4 +20,5 @@
             <TextBlock Text="{Binding Path=Text}" MaxWidth="400" TextWrapping="WrapWithOverflow" />
         </iconPacks:PackIconMaterial.ToolTip>
     </iconPacks:PackIconMaterial>
+
 </UserControl>

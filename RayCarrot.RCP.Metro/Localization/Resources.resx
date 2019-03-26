@@ -141,6 +141,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
   <data name="Accept" xml:space="preserve">
     <value>Accept</value>
   </data>
@@ -675,5 +678,143 @@ This is a growing project with more features planned on being added with future 
   </data>
   <data name="RLU_Apply" xml:space="preserve">
     <value>Apply</value>
+  </data>
+  <data name="ROU_HQVideosHeader" xml:space="preserve">
+    <value>Higher Quality Videos</value>
+  </data>
+  <data name="ROU_HQVideosInfo" xml:space="preserve">
+    <value>The video cutscenes in the PC version are compressed and in lower quality than in the console versions. This utility replaces those videos with the higher quality ones from the console versions.</value>
+  </data>
+  <data name="ROU_HQVideosReplace" xml:space="preserve">
+    <value>Replace with the high quality videos</value>
+  </data>
+  <data name="ROU_HQVideosRevert" xml:space="preserve">
+    <value>Revert back to the original videos</value>
+  </data>
+  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
+    <value>Debug Commands</value>
+  </data>
+  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
+    <value>Using any of the below debug commands allows the game to be launched in a debug environment, with the commands changing how the game runs.</value>
+  </data>
+  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
+    <value>WARNING: Using these debug commands may corrupt your save file. Always make a backup before using them.</value>
+  </data>
+  <data name="ROU_DebugCommandsEnabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="ROU_DebugCommandsDisabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
+    <value>Invincibility</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
+    <value>This allows the player to not die when taking damage</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
+    <value>Hide mouse pointer</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
+    <value>This will hide the mouse pointer in the game menus</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
+    <value>Max camera zoom</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
+    <value>This will max out the camera zoom</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
+    <value>Framerate</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
+    <value>This will set the framerate to run the game in</value>
+  </data>
+  <data name="ROU_DebugCommandsMap" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
+    <value>This will allow a specific map to be loaded instead of the main menu upon starting the game</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
+    <value>This will change the language the game runs in</value>
+  </data>
+  <data name="ROU_UpdateHeader" xml:space="preserve">
+    <value>Update to 1.02 (Disc version)</value>
+  </data>
+  <data name="ROU_UpdateInfo" xml:space="preserve">
+    <value>In case Rayman Origins has not been automatically updated to its latest version, 1.02, this utility can update it.</value>
+  </data>
+  <data name="ROU_UpdateUpdate" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
+    <value>Open store page</value>
+  </data>
+  <data name="GameDisplay_OpenSteamCommunity" xml:space="preserve">
+    <value>Open community page</value>
+  </data>
+  <data name="GameDisplay_OpenLocation" xml:space="preserve">
+    <value>Open location</value>
+  </data>
+  <data name="GameDisplay_Utilities" xml:space="preserve">
+    <value>Utilities</value>
+  </data>
+  <data name="GameDisplay_Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="GameDisplay_Launch" xml:space="preserve">
+    <value>Launch</value>
+  </data>
+  <data name="GameDisplay_DiscInstall" xml:space="preserve">
+    <value>Install from disc</value>
+  </data>
+  <data name="GameDisplay_Locate" xml:space="preserve">
+    <value>Locate</value>
+  </data>
+  <data name="GameDisplay_PurchaseGOG" xml:space="preserve">
+    <value>Purchase from GOG</value>
+  </data>
+  <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
+    <value>Purchase from Uplay</value>
+  </data>
+  <data name="GameDisplay_Steam" xml:space="preserve">
+    <value>Purchase from Steam</value>
+  </data>
+  <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
+    <value>Purchase from Windows Store</value>
+  </data>
+  <data name="GameLink_RDMapper" xml:space="preserve">
+    <value>Mapper</value>
+  </data>
+  <data name="GameLink_Setup" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="GameLink_R2nGlide" xml:space="preserve">
+    <value>nGlide config</value>
+  </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Action succeeded</value>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Generic Message</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Information Message</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Error Message</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Warning Message</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Success Message</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Question Message</value>
   </data>
 </root>

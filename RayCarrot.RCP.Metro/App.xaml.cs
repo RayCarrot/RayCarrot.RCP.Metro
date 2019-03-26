@@ -43,37 +43,6 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Event Handlers
-
-        private void App_RefreshRequired(object sender, EventArgs e)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                // Create a jump list
-                new JumpList(RCFRCP.App.GetGames.
-                        // Add only games which have been added
-                        Where(x => x.IsAdded()).
-                        // Create a jump task item for each game
-                        Select(x =>
-                        {
-                            var launchInfo = x.GetLaunchInfo();
-                            var info = x.GetInfo();
-                            return new JumpTask()
-                            {
-                                Title = x.GetDisplayName(),
-                                Description = $"Launch {x.GetDisplayName()}",
-                                ApplicationPath = launchInfo.Path,
-                                Arguments = launchInfo.Args,
-                                IconResourcePath = info.GameType == GameType.DosBox || info.GameType == GameType.Steam ? info.InstallDirectory + x.GetLaunchName() : launchInfo.Path
-                            };
-                        }), false, false).
-                    // Apply the new jump list
-                    Apply();
-            });
-        }
-
-        #endregion
-
         #region Protected Overrides
 
         /// <summary>
@@ -158,7 +127,7 @@ namespace RayCarrot.RCP.Metro
                 await ImportLegacyDataAsync();
 
             // Subscribe to when games need to be refreshed
-            RCFRCP.App.RefreshRequired += App_RefreshRequired;
+            RCFRCP.App.RefreshRequired += (s, e) => RefreshJumpList();
 
             // Listen to data binding logs
             WPFTraceListener.Setup(LogLevel.Warning);
@@ -374,7 +343,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Runs the post-update code
         /// </summary>
-        private static async Task PostUpdateAsync()
+        private async Task PostUpdateAsync()
         {
             RCF.Logger.LogInformationSource($"Current version is {RCFRCP.App.CurrentVersion}");
 
@@ -398,6 +367,9 @@ namespace RayCarrot.RCP.Metro
                 RCFRCP.Data.FeedbackPromptState = 0;
                 RCFRCP.Data.EnableAnimations = true;
             }
+
+            // Refresh the jump list
+            RefreshJumpList();
 
             // Show app news
             new AppNewsDialog().ShowDialog();
@@ -511,6 +483,43 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Import legacy data");
                 await RCF.MessageUI.DisplayMessageAsync("An error occurred when importing legacy data", MessageType.Error);
             }
+        }
+
+        /// <summary>
+        /// Refreshes the application jump list
+        /// </summary>
+        private void RefreshJumpList()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                try
+                {
+                    // Create a jump list
+                    new JumpList(RCFRCP.App.GetGames.
+                            // Add only games which have been added
+                            Where(x => x.IsAdded()).
+                            // Create a jump task item for each game
+                            Select(x =>
+                            {
+                                var launchInfo = x.GetLaunchInfo();
+                                var info = x.GetInfo();
+                                return new JumpTask()
+                                {
+                                    Title = x.GetDisplayName(),
+                                    Description = $"Launch {x.GetDisplayName()}",
+                                    ApplicationPath = launchInfo.Path,
+                                    Arguments = launchInfo.Args,
+                                    IconResourcePath = info.GameType == GameType.DosBox || info.GameType == GameType.Steam ? info.InstallDirectory + x.GetLaunchName() : launchInfo.Path
+                                };
+                            }), false, false).
+                        // Apply the new jump list
+                        Apply();
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Creating jump list");
+                }
+            });
         }
 
         #endregion

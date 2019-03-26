@@ -17,16 +17,16 @@ namespace RayCarrot.RCP.Metro
             switch (gameType)
             {
                 case GameType.Win32:
-                    return "Desktop";
+                    return Resources.GameType_Desktop;
 
                 case GameType.Steam:
-                    return "Steam";
+                    return Resources.GameType_Steam;
 
                 case GameType.WinStore:
-                    return "Windows Store";
+                    return Resources.GameType_WinStore;
 
                 case GameType.DosBox:
-                    return "DosBox";
+                    return Resources.GameType_DosBox;
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(gameType), gameType, null);

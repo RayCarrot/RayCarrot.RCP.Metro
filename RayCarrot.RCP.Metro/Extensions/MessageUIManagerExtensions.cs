@@ -18,7 +18,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="origin">The caller member name (leave at default for compiler-time value)</param>
         /// <param name="filePath">The caller file path (leave at default for compiler-time value)</param>
         /// <param name="lineNumber">The caller line number (leave at default for compiler-time value)</param>
-        public static async Task DisplaySuccessfulActionMessageAsync(this IMessageUIManager messageUIManager, string message, string header = "Action succeeded", [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        public static async Task DisplaySuccessfulActionMessageAsync(this IMessageUIManager messageUIManager, string message, string header = null, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
             // Make sure the setting to show success messages is on
             if (!RCFRCP.Data.ShowActionComplete)
@@ -28,7 +28,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Show the message
-            await messageUIManager.DisplayMessageAsync(message, header, MessageType.Success, origin, filePath, lineNumber);
+            await messageUIManager.DisplayMessageAsync(message, header ?? Resources.ActionSucceeded, MessageType.Success, origin, filePath, lineNumber);
         }
     }
 }

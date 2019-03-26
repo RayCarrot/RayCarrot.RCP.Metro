@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using Infralution.Localization.Wpf;
 using Newtonsoft.Json;
@@ -248,24 +249,43 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string CurrentCulture
         {
-            get => RCF.Data.CurrentCulture?.Name;
+            get => RCF.Data.CurrentCulture?.Name ?? AppLanguages.Languages.First().Name;
             set
             {
-                // Set the framework culture
-                RCF.Data.CurrentCulture = CultureInfo.GetCultureInfo(value);
+                // Lock the culture changing code
+                lock (this)
+                {
+                    // Store the culture info
+                    CultureInfo ci;
 
-                // Set the UI culture
-                CultureManager.UICulture = CultureInfo.GetCultureInfo(CurrentCulture);
+                    try
+                    {
+                        // Attempt to get the culture info
+                        ci = CultureInfo.GetCultureInfo(value);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleUnexpected("Getting culture info from setter string value");
+                        ci = AppLanguages.Languages.First();
+                    }
 
-                var culture = CultureInfo.GetCultureInfo(CurrentCulture);
+                    // Set the framework culture
+                    RCF.Data.CurrentCulture = ci;
 
-                // Update the current thread cultures
-                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture = culture;
+                    // Set the UI culture
+                    CultureManager.UICulture = ci;
 
-                // Set the resource culture
-                Resources.Culture = culture;
+                    // Update the current thread cultures
+                    CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture = ci;
 
-                RCF.Logger.LogInformationSource($"The current culture was set to {culture.EnglishName}");
+                    // Set the resource culture
+                    Resources.Culture = ci;
+
+                    // Refresh the games
+                    RCFRCP.App.OnRefreshRequired();
+
+                    RCF.Logger.LogInformationSource($"The current culture was set to {ci.EnglishName}");
+                }
             }
         }
 

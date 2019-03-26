@@ -252,6 +252,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataModels\Enums\PopupPromptResult.cs" />
     <Page Include="Controls\Dialogs\GameTypeSelectionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -386,6 +387,7 @@
     <Compile Include="Controls\DuoGrid.xaml.cs">
       <DependentUpon>DuoGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Controls\DuoGridItemViewModel.cs" />
     <Compile Include="Controls\InfoIcon.xaml.cs">
       <DependentUpon>InfoIcon.xaml</DependentUpon>
     </Compile>
@@ -440,7 +442,7 @@
     <Compile Include="TPLS\Enums\TPLSRaymanVersion.cs" />
     <Compile Include="TPLS\Exceptions\SoundtrackUnplaybaleException.cs" />
     <Compile Include="TPLS\FileResolver.cs" />
-    <Compile Include="TPLS\Music\FadeInOutProvider.cs" />
+    <Compile Include="TPLS\Music\DelayFadeOutSampleProvider.cs" />
     <Compile Include="TPLS\Music\LoopStream.cs" />
     <Compile Include="TPLS\Music\VolumeMixer.cs" />
     <Compile Include="TPLS\Player.cs" />
@@ -585,7 +587,7 @@
     <Compile Include="ViewModels\Pages\DebugPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\Pages\GamesPageViewModel.cs" />
-    <Compile Include="ViewModels\OverflowButtonItemViewModel.cs" />
+    <Compile Include="ViewModels\Controls\OverflowButtonItemViewModel.cs" />
     <Compile Include="Windows\Base\BaseWindow.cs" />
     <Compile Include="DataModels\GameInfo.cs" />
     <Compile Include="ViewModels\Game\GameDisplayViewModel.cs" />
@@ -661,6 +663,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.sv-SE.Designer.cs</LastGenOutput>
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Files\Rayman2\ubi.ini" />
     <None Include="packages.config" />

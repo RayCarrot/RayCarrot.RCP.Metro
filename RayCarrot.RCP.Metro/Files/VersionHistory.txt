@@ -1,4 +1,4 @@
-﻿-----   Version 4.1.0 - March ?, 2019   -----
+﻿-----   Version 4.1.0 - April ?, 2019   -----
 
 • The program has been translated to Swedish, thus now allowing the language to be selected in the settings
 • The option to move existing backups has been readded when changing the backup location

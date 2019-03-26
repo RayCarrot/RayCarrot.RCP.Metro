@@ -7,7 +7,7 @@
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-                    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     mc:Ignorable="d" 
                     d:DesignHeight="450" d:DesignWidth="800"
@@ -20,22 +20,23 @@
             </i:Interaction.Behaviors>
 
             <StackPanel Orientation="Horizontal">
+
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Higher Quality Videos" />
+                           Text="{Resx ROU_HQVideosHeader}" />
 
                 <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}" />
 
-                <local:InfoIcon Text="The video cutscenes in the PC version run in 30fps instead of 60fps like the console versions. This utility replaces those videos with the hgiher quality ones from the console versions." />
+                <local:InfoIcon Text="{Resx ROU_HQVideosInfo}" />
 
             </StackPanel>
 
-            <Button Content="Replace with 60fps videos"
+            <Button Content="{Resx ROU_HQVideosReplace}"
                     HorizontalAlignment="Left"
                     Command="{Binding Path=ReplaceVideosCommand}"
                     IsEnabled="{Binding Path=CanVideosBeReplaced}"
                     Visibility="{Binding Path=IsOriginalVideos, Converter={rwpf:BooleanToVisibilityConverter}}"/>
 
-            <Button Content="Revert back to 30fps videos" 
+            <Button Content="{Resx ROU_HQVideosRevert}" 
                     HorizontalAlignment="Left"
                     Command="{Binding Path=ReplaceVideosCommand}"
                     IsEnabled="{Binding Path=CanVideosBeReplaced}"
@@ -44,35 +45,37 @@
             <Separator />
 
             <StackPanel Orientation="Horizontal">
-                <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Debug Commands" />
 
-                <local:InfoIcon Text="Using any of the below debug commands allows the game to be launched in a debug environment, with the commands changing how the game runs." />
+                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                           Text="{Resx ROU_DebugCommandsHeader}" />
+
+                <local:InfoIcon Text="{Resx ROU_DebugCommandsInfo}" />
 
                 <local:InfoIcon IconKind="InformationOutline"
                                 Foreground="Red"
-                                Text="WARNING: Using these debug commands may corrupt your save file. Always make a backup before using them." />
+                                Text="{Resx ROU_DebugCommandsWarning}" />
 
             </StackPanel>
 
-            <CheckBox Content="Enable debug mode" 
-                      ToolTip="Check to enable the debug modes or uncheck to disable it and thus discarding all below commands"
-                      IsChecked="{Binding Path=IsDebugModeEnabled}"/>
+            <metro:ToggleSwitch IsChecked="{Binding Path=IsDebugModeEnabled}"
+                                HorizontalAlignment="Left"
+                                OnLabel="{Resx ROU_DebugCommandsEnabled}"
+                                OffLabel="{Resx ROU_DebugCommandsDisabled}" />
 
-            <CheckBox Content="Invincibility"
-                      ToolTip="This allows the player to not die when taking damage"
+            <CheckBox Content="{Resx ROU_DebugCommandsInvincibility}"
+                      ToolTip="{Resx ROU_DebugCommandsInvincibility}"
                       IsChecked="{Binding Path=IsInvincibilityEnabled}"
                       IsThreeState="True"
                       Visibility="{Binding Path=IsDebugModeEnabled, Converter={rwpf:BooleanToVisibilityConverter}}"/>
 
-            <CheckBox Content="Hide mouse pointer"
-                      ToolTip="This will hide the mouse pointer in the game menus"
+            <CheckBox Content="{Resx ROU_DebugCommandsHideMouse}"
+                      ToolTip="{Resx ROU_DebugCommandsHideMouseInfo}"
                       IsChecked="{Binding Path=IsMouseHidden}"
                       IsThreeState="True"
                       Visibility="{Binding Path=IsDebugModeEnabled, Converter={rwpf:BooleanToVisibilityConverter}}"/>
 
-            <CheckBox Content="Max camera zoom"
-                      ToolTip="This will max out the camera zoom"
+            <CheckBox Content="{Resx ROU_DebugCommandsMaxZoom}"
+                      ToolTip="{Resx ROU_DebugCommandsMaxZoomInfo}"
                       IsChecked="{Binding Path=IsCameraMaxZoom}"
                       IsThreeState="True"
                       Visibility="{Binding Path=IsDebugModeEnabled, Converter={rwpf:BooleanToVisibilityConverter}}"/>
@@ -103,31 +106,31 @@
 
                 <TextBlock Grid.Column="0"
                            Grid.Row="0"
-                           Text="Framerate"/>
+                           Text="{Resx ROU_DebugCommandsFramerate}"/>
 
-                <mah:NumericUpDown Grid.Column="1"
+                <metro:NumericUpDown Grid.Column="1"
                                    Grid.Row="0"
-                                   ToolTip="This will set the framerate to run the game in"
+                                   ToolTip="{Resx ROU_DebugCommandsFramerateInfo}"
                                    Value="{Binding Path=SelectedFramerate}" />
 
                 <TextBlock Grid.Column="0"
                            Grid.Row="1"
-                           Text="Map"/>
+                           Text="{Resx ROU_DebugCommandsMap}"/>
 
                 <ComboBox Grid.Column="1"
                           Grid.Row="1"
-                          ToolTip="This will allow a specific map to be loaded instead of the main menu"
+                          ToolTip="{Resx ROU_DebugCommandsMapInfo}"
                           ItemsSource="{Binding Path=AvailableMaps, Mode=OneTime}"
                           IsEditable="True"
                           Text="{Binding Path=MapPath}" />
 
                 <TextBlock Grid.Column="0"
                            Grid.Row="2"
-                           Text="Language"/>
+                           Text="{Resx ROU_DebugCommandsLanguage}"/>
 
                 <ComboBox Grid.Column="1"
                           Grid.Row="2"
-                          ToolTip="This will change the language the game runs in"
+                          ToolTip="{Resx ROU_DebugCommandsLanguageInfo}"
                           ItemsSource="{Binding Path=Language, Mode=OneTime, Converter={rwpf:EnumToListConverter}}"
                           SelectedIndex="{Binding Path=Language, Converter={rwpf:EnumToIntConverter}}" />
 
@@ -137,17 +140,19 @@
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Update to 1.02 (Disc version)" />
+                           Text="{Resx ROU_UpdateHeader}" />
 
                 <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}" />
 
-                <local:InfoIcon Text="In case Rayman Origins has not been automatically updated to its latest version, 1.02, this utility can update it." />
+                <local:InfoIcon Text="{Resx ROU_UpdateInfo}" />
 
             </StackPanel>
 
-            <Button Content="Update"
+            <Button Content="{Resx ROU_UpdateUpdate}"
                     HorizontalAlignment="Left"
                     Command="{Binding Path=UpdateDiscVersionCommand}"/>
+
         </StackPanel>
+
     </ScrollViewer>
 </rwpf:VMUserControl>

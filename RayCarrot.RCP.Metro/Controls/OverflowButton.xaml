@@ -7,7 +7,10 @@
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-             mc:Ignorable="d" d:DesignWidth="100" d:DataContext="{d:DesignInstance local:OverflowButton}">
+             ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+             mc:Ignorable="d"
+             d:DesignWidth="100" 
+             d:DataContext="{d:DesignInstance local:OverflowButton}">
 
     <Grid UseLayoutRounding="True" x:Name="ContainerGrid">
         <Border x:Name="MainBorder"

@@ -12,6 +12,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using Windows.Management.Deployment;
+using Infralution.Localization.Wpf;
 using Package = Windows.ApplicationModel.Package;
 
 namespace RayCarrot.RCP.Metro
@@ -38,6 +39,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The display name</returns>
         public static string GetDisplayName(this Games game)
         {
+            // NOTE: Not localized
+
             switch (game)
             {
                 case Games.Rayman1:
@@ -91,6 +94,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The backup name</returns>
         public static string GetBackupName(this Games game)
         {
+            // NOTE: These string can not be localized due to legacy support
+
             switch (game)
             {
                 case Games.Rayman1:
@@ -233,16 +238,16 @@ namespace RayCarrot.RCP.Metro
 
                     actions.Add(new OverflowButtonItemViewModel());
                 }
-
+                
                 if (info.GameType == GameType.Steam)
                 {
                     // Add Steam links
-                    actions.Add(new OverflowButtonItemViewModel("Open store page", PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamStore, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
                     {
                         (await RCFRCP.File.LaunchFileAsync($"https://store.steampowered.com/app/" + game.GetSteamID()))?.Dispose();
                         RCF.Logger.LogTraceSource($"The game {game} Steam store page was opened");
                     })));
-                    actions.Add(new OverflowButtonItemViewModel("Open community page", PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamCommunity, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
                     {
                         (await RCFRCP.File.LaunchFileAsync($"https://steamcommunity.com/app/" + game.GetSteamID()))?.Dispose();
                         RCF.Logger.LogTraceSource($"The game {game} Steam community page was opened");
@@ -254,7 +259,7 @@ namespace RayCarrot.RCP.Metro
                 if (RCFRCP.Data.UserLevel >= UserLevel.Advanced)
                 {
                     // Add open location
-                    actions.Add(new OverflowButtonItemViewModel("Open Location", PackIconMaterialKind.FolderOutline, new AsyncRelayCommand(async () =>
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_OpenLocation, PackIconMaterialKind.FolderOutline, new AsyncRelayCommand(async () =>
                     {
                         // Get the game info
                         var gameInfo = game.GetInfo();
@@ -279,7 +284,7 @@ namespace RayCarrot.RCP.Metro
                 if (game.HasUtilities())
                 {
                     // Add game utilities
-                    actions.Add(new OverflowButtonItemViewModel("Utilities", PackIconMaterialKind.BriefcaseOutline, new RelayCommand(() =>
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Utilities, PackIconMaterialKind.BriefcaseOutline, new RelayCommand(() =>
                     {
                         RCF.Logger.LogTraceSource($"The game {game} utilities dialog is opening...");
                         new GameOptions(game, false).ShowDialog();
@@ -287,14 +292,14 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Add game options
-                actions.Add(new OverflowButtonItemViewModel("Options", PackIconMaterialKind.SettingsOutline, new RelayCommand(() =>
+                actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.SettingsOutline, new RelayCommand(() =>
                 {
                     RCF.Logger.LogTraceSource($"The game {game} options dialog is opening...");
                     new GameOptions(game, true).ShowDialog();
                 })));
 
                 return new GameDisplayViewModel(game.GetDisplayName(), game.GetIconSource(),
-                    new ActionItemViewModel("Launch", PackIconMaterialKind.Play, new AsyncRelayCommand(async () => await RCFRCP.Game.LaunchGameAsync(game))), actions);
+                    new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.Play, new AsyncRelayCommand(async () => await RCFRCP.Game.LaunchGameAsync(game))), actions);
             }
             else
             {
@@ -328,7 +333,7 @@ namespace RayCarrot.RCP.Metro
                         actions.Add(new OverflowButtonItemViewModel());
 
                     // Add disc installer action
-                    actions.Add(new OverflowButtonItemViewModel("Install from disc", PackIconMaterialKind.Disk, new RelayCommand(() => new GameInstaller(game).ShowDialog())));
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, PackIconMaterialKind.Disk, new RelayCommand(() => new GameInstaller(game).ShowDialog())));
                 }
 
                 // Create the command
@@ -336,7 +341,7 @@ namespace RayCarrot.RCP.Metro
 
                 // Return the view model
                 return new GameDisplayViewModel(game.GetDisplayName(), game.GetIconSource(),
-                    new ActionItemViewModel("Locate", PackIconMaterialKind.FolderOutline, locateCommand), actions);
+                    new ActionItemViewModel(Resources.GameDisplay_Locate, PackIconMaterialKind.FolderOutline, locateCommand), actions);
             }
         }
 
@@ -378,22 +383,22 @@ namespace RayCarrot.RCP.Metro
                 case Games.Rayman1:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink("Get from GOG", "https://www.gog.com/game/rayman_forever"),
-                        new GamePurchaseLink("Get from Uplay", "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_forever"),
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
                     };
 
                 case Games.RaymanDesigner:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink("Get from GOG", "https://www.gog.com/game/rayman_forever"),
-                        new GamePurchaseLink("Get from Uplay", "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_forever"),
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
                     };
 
                 case Games.RaymanByHisFans:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink("Get from GOG", "https://www.gog.com/game/rayman_forever"),
-                        new GamePurchaseLink("Get from Uplay", "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_forever"),
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
                     };
 
                 case Games.Rayman60Levels:
@@ -402,8 +407,8 @@ namespace RayCarrot.RCP.Metro
                 case Games.Rayman2:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink("Get from GOG", "https://www.gog.com/game/rayman_2_the_great_escape"),
-                        new GamePurchaseLink("Get from Uplay", "https://store.ubi.com/eu/rayman-2--the-great-escape/56c4947e88a7e300458b465c.html")
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_2_the_great_escape"),
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-2--the-great-escape/56c4947e88a7e300458b465c.html")
                     };
 
                 case Games.RaymanM:
@@ -415,43 +420,43 @@ namespace RayCarrot.RCP.Metro
                 case Games.Rayman3:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink("Get from GOG", "https://www.gog.com/game/rayman_3_hoodlum_havoc"),
-                        new GamePurchaseLink("Get from Uplay", "https://store.ubi.com/eu/rayman--3--hoodlum-havoc/5800b15eef3aa5ab3e8b4567.html")
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_3_hoodlum_havoc"),
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--3--hoodlum-havoc/5800b15eef3aa5ab3e8b4567.html")
                     };
 
                 case Games.RaymanRavingRabbids:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink("Get from Steam", AppViewModel.SteamStoreBaseUrl + game.GetSteamID()),
-                        new GamePurchaseLink("Get from GOG", "https://www.gog.com/game/rayman_raving_rabbids"),
-                        new GamePurchaseLink("Get from Uplay", "https://store.ubi.com/eu/rayman-raving-rabbids/56c4948888a7e300458b47de.html")
+                        new GamePurchaseLink(Resources.GameDisplay_Steam, AppViewModel.SteamStoreBaseUrl + game.GetSteamID()),
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_raving_rabbids"),
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-raving-rabbids/56c4948888a7e300458b47de.html")
                     };
 
                 case Games.RaymanOrigins:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink("Get from Steam", AppViewModel.SteamStoreBaseUrl + game.GetSteamID()),
-                        new GamePurchaseLink("Get from GOG", "https://www.gog.com/game/rayman_origins"),
-                        new GamePurchaseLink("Get from Uplay", "https://store.ubi.com/eu/rayman-origins/56c4948888a7e300458b47dc.html")
+                        new GamePurchaseLink(Resources.GameDisplay_Steam, AppViewModel.SteamStoreBaseUrl + game.GetSteamID()),
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_origins"),
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-origins/56c4948888a7e300458b47dc.html")
                     };
 
                 case Games.RaymanLegends:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink("Get from Steam", AppViewModel.SteamStoreBaseUrl + game.GetSteamID()),
-                        new GamePurchaseLink("Get from Uplay", "https://store.ubi.com/eu/rayman--legends/56c4948888a7e300458b47da.html")
+                        new GamePurchaseLink(Resources.GameDisplay_Steam, AppViewModel.SteamStoreBaseUrl + game.GetSteamID()),
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--legends/56c4948888a7e300458b47da.html")
                     };
 
                 case Games.RaymanJungleRun:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink("Get from Windows Store", "https://www.microsoft.com/store/productId/9WZDNCRFJ13P")
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, "https://www.microsoft.com/store/productId/9WZDNCRFJ13P")
                     };
 
                 case Games.RaymanFiestaRun:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink("Get from Windows Store", "https://www.microsoft.com/store/productId/9NBLGGH59M6B")
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, "https://www.microsoft.com/store/productId/9NBLGGH59M6B")
                     };
 
                 default:
@@ -473,38 +478,38 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanDesigner:
                     return new List<GameFileLink>()
                     {
-                        new GameFileLink("Mapper", info.InstallDirectory + "MAPPER.EXE")
+                        new GameFileLink(Resources.GameLink_RDMapper, info.InstallDirectory + "MAPPER.EXE")
                     };
 
                 case Games.Rayman2:
                     return new List<GameFileLink>()
                     {
-                        new GameFileLink("Setup", info.InstallDirectory + "GXSetup.exe"),
-                        new GameFileLink("nGlide config", info.InstallDirectory + "nglide_config.exe")
+                        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "GXSetup.exe"),
+                        new GameFileLink(Resources.GameLink_R2nGlide, info.InstallDirectory + "nglide_config.exe")
                     };
 
                 case Games.RaymanM:
                     return new List<GameFileLink>()
                     {
-                        new GameFileLink("Setup", info.InstallDirectory + "RM_Setup_DX8.exe")
+                        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "RM_Setup_DX8.exe")
                     };
 
                 case Games.RaymanArena:
                     return new List<GameFileLink>()
                     {
-                        new GameFileLink("Setup", info.InstallDirectory + "RM_Setup_DX8.exe")
+                        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "RM_Setup_DX8.exe")
                     };
 
                 case Games.Rayman3:
                     return new List<GameFileLink>()
                     {
-                        new GameFileLink("Setup", info.InstallDirectory + "R3_Setup_DX8.exe")
+                        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "R3_Setup_DX8.exe")
                     };
 
                 case Games.RaymanRavingRabbids:
                     return new List<GameFileLink>()
                     {
-                        new GameFileLink("Setup", info.InstallDirectory + "SettingsApplication.exe")
+                        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "SettingsApplication.exe")
                     };
 
                 case Games.Rayman1:
