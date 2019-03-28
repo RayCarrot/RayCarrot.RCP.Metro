@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -116,7 +117,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void ShowVersionHistory()
         {
-            new AppNewsDialog().ShowDialog();
+            WindowHelpers.ShowWindow<AppNewsDialog>();
         }
 
         #endregion

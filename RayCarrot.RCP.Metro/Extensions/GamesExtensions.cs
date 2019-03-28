@@ -12,7 +12,6 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using Windows.Management.Deployment;
-using Infralution.Localization.Wpf;
 using Package = Windows.ApplicationModel.Package;
 
 namespace RayCarrot.RCP.Metro
@@ -287,7 +286,7 @@ namespace RayCarrot.RCP.Metro
                     actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Utilities, PackIconMaterialKind.BriefcaseOutline, new RelayCommand(() =>
                     {
                         RCF.Logger.LogTraceSource($"The game {game} utilities dialog is opening...");
-                        new GameOptions(game, false).ShowDialog();
+                        GameOptions.Show(game, false);
                     })));
                 }
 
@@ -295,7 +294,7 @@ namespace RayCarrot.RCP.Metro
                 actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.SettingsOutline, new RelayCommand(() =>
                 {
                     RCF.Logger.LogTraceSource($"The game {game} options dialog is opening...");
-                    new GameOptions(game, true).ShowDialog();
+                    GameOptions.Show(game, true);
                 })));
 
                 return new GameDisplayViewModel(game.GetDisplayName(), game.GetIconSource(),
@@ -333,7 +332,9 @@ namespace RayCarrot.RCP.Metro
                         actions.Add(new OverflowButtonItemViewModel());
 
                     // Add disc installer action
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, PackIconMaterialKind.Disk, new RelayCommand(() => new GameInstaller(game).ShowDialog())));
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, PackIconMaterialKind.Disk, new RelayCommand(() => 
+                        // NOTE: This is a blocking dialog
+                        new GameInstaller(game).ShowDialog())));
                 }
 
                 // Create the command

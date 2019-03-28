@@ -817,4 +817,79 @@ This is a growing project with more features planned on being added with future 
   <data name="MessageHeader_Question" xml:space="preserve">
     <value>Question Message</value>
   </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Exception</value>
+  </data>
+  <data name="ExceptionMessageInfo" xml:space="preserve">
+    <value>An exception has occurred in the application. Below is the available debug information for the current user level in the Carrot Framework.</value>
+  </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>The specified file could not be found: {0}</value>
+    <comment>Arguments:
+filePath</comment>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>File not found</value>
+  </data>
+  <data name="File_ErrorLaunchingFile" xml:space="preserve">
+    <value>An error occurred when attempting to run {0}</value>
+    <comment>Arguments:
+filePath</comment>
+  </data>
+  <data name="File_ShortcutCreated" xml:space="preserve">
+    <value>Shortcut created successfully</value>
+  </data>
+  <data name="File_CreatingShortcutError" xml:space="preserve">
+    <value>An error occurred creating the shortcut</value>
+  </data>
+  <data name="File_CreatingShortcutErrorHeader" xml:space="preserve">
+    <value>Error creating shortcut</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>Location not found</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>Directory error</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>The directory could not be opened</value>
+  </data>
+  <data name="LocateGame_BrowserHeader" xml:space="preserve">
+    <value>Select Install Directory</value>
+  </data>
+  <data name="LocateGame_InvalidLocation" xml:space="preserve">
+    <value>The selected directory is not valid for this game</value>
+  </data>
+  <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
+    <value>Invalid Location</value>
+  </data>
+  <data name="LocateGame_InvalidSteamGame" xml:space="preserve">
+    <value>The game could not be found. Try choosing desktop app as the type instead.</value>
+  </data>
+  <data name="LocateGame_InvalidSteamGameHeader" xml:space="preserve">
+    <value>Game not found</value>
+  </data>
+  <data name="LocateGame_InvalidWinStoreGame" xml:space="preserve">
+    <value>The game could not be found under installed Windows Store apps</value>
+  </data>
+  <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
+    <value>Game not found</value>
+  </data>
+  <data name="LocateGame_Error" xml:space="preserve">
+    <value>An error occurred when locating the game</value>
+  </data>
+  <data name="LocateGame_ErrorHeader" xml:space="preserve">
+    <value>Error locating game</value>
+  </data>
+  <data name="LaunchGame_WinStoreError" xml:space="preserve">
+    <value>An error occurred when attempting to run {0}</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="LaunchGame_DosBoxNotFound" xml:space="preserve">
+    <value>DosBox could not be found. Specify a valid path under settings to run this game.</value>
+  </data>
+  <data name="LaunchGame_MountPathNotFound" xml:space="preserve">
+    <value>The mount path could not be found. Specify a valid path under the game options to run this game.</value>
+  </data>
 </root>

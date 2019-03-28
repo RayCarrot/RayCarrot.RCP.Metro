@@ -38,19 +38,19 @@ namespace RayCarrot.RCP.Metro
 
                 var p = Process.Start(info);
 
-                RCF.Logger.LogInformationSource($"The file {file} launched with the arguments: {arguments}");
+                RCF.Logger.LogInformationSource($"The file {file.FullPath} launched with the arguments: {arguments}");
 
                 return p;
             }
             catch (FileNotFoundException ex)
             {
                 ex.HandleExpected("Launching file", file);
-                await RCF.MessageUI.DisplayMessageAsync(file + " could not be found. Please check the specified path.", "The file could not be found in specified path", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.File_FileNotFound, file.FullPath), Resources.File_FileNotFoundHeader, MessageType.Error);
             }
             catch (Exception ex)
             {
                 ex.HandleUnexpected("Launching file", file);
-                await RCF.MessageUI.DisplayMessageAsync($"An error occurred when attempting to run {file}", "Error", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.File_ErrorLaunchingFile, file.FullPath), MessageType.Error);
             }
 
             return null;
@@ -67,18 +67,13 @@ namespace RayCarrot.RCP.Metro
                 ShortcutName = ShortcutName.ChangeFileExtension(".lnk");
                 WindowsHelpers.CreateFileShortcut(ShortcutName, DestinationDirectory, TargetFile, arguments);
 
-                if ((DestinationDirectory + ShortcutName).FileExists)
-                {
-                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("Shortcut created successfully");
-                    RCF.Logger.LogInformationSource($"The shortcut {ShortcutName} was created");
-                }
-                else
-                    await RCF.MessageUI.DisplayMessageAsync("An error occurred creating the shortcut", "Error creating shortcut", MessageType.Error);
+                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.File_ShortcutCreated);
+                RCF.Logger.LogInformationSource($"The shortcut {ShortcutName} was created");
             }
             catch (Exception ex)
             {
                 ex.HandleUnexpected("Creating shortcut", DestinationDirectory);
-                await RCF.MessageUI.DisplayMessageAsync("An error occurred creating the shortcut", "Error creating shortcut", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.File_CreatingShortcutError, Resources.File_CreatingShortcutErrorHeader, MessageType.Error);
             }
         }
 
@@ -88,24 +83,21 @@ namespace RayCarrot.RCP.Metro
         /// <param name="location">The path</param>
         public async Task OpenExplorerLocationAsync(FileSystemPath location)
         {
-            if (location.Exists)
+            if (!location.Exists)
             {
-                try
-                {
-                    WindowsHelpers.OpenExplorerPath(location);
-                    RCF.Logger.LogDebugSource($"The explorer location {location} was opened");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Opening explorer location", location);
-                    await RCF.MessageUI.DisplayMessageAsync("The directory could not be opened", "Directory error",
-                        MessageType.Error);
-                }
+                await RCF.MessageUI.DisplayMessageAsync(Resources.File_LocationNotFound, Resources.File_OpenLocationErrorHeader, MessageType.Error);
+                return;
             }
-            else
+
+            try
             {
-                await RCF.MessageUI.DisplayMessageAsync("Location not found", "Directory error",
-                    MessageType.Error);
+                WindowsHelpers.OpenExplorerPath(location);
+                RCF.Logger.LogDebugSource($"The explorer location {location} was opened");
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Opening explorer location", location);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.File_OpenLocationError, Resources.File_OpenLocationErrorHeader, MessageType.Error);
             }
         }
 
@@ -116,13 +108,13 @@ namespace RayCarrot.RCP.Metro
         public void DeleteDirectory(FileSystemPath dirPath)
         {
             // Check if the directory exists
-            if (dirPath.DirectoryExists)
-            {
-                // Delete the directory
-                Directory.Delete(dirPath, true);
+            if (!dirPath.DirectoryExists)
+                return;
 
-                RCF.Logger.LogDebugSource($"The directory {dirPath} was deleted");
-            }
+            // Delete the directory
+            Directory.Delete(dirPath, true);
+
+            RCF.Logger.LogDebugSource($"The directory {dirPath} was deleted");
         }
 
         /// <summary>
@@ -152,13 +144,13 @@ namespace RayCarrot.RCP.Metro
         public void DeleteFile(FileSystemPath filePath)
         {
             // Check if the file exists
-            if (filePath.FileExists)
-            {
-                // Delete the file
-                File.Delete(filePath);
+            if (!filePath.FileExists)
+                return;
 
-                RCF.Logger.LogDebugSource($"The file {filePath} was deleted");
-            }
+            // Delete the file
+            File.Delete(filePath);
+
+            RCF.Logger.LogDebugSource($"The file {filePath} was deleted");
         }
 
         /// <summary>
@@ -235,6 +227,7 @@ namespace RayCarrot.RCP.Metro
         {
             if (!path.FileExists)
                 return false;
+
             try
             {
                 using (File.Open(path, FileMode.Open, FileAccess.ReadWrite))

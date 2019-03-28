@@ -27,7 +27,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 if (RCFRCP.Data?.DisplayExceptionLevel <= exceptionLevel)
-                    _ = RCF.MessageUI.DisplayMessageAsync(GetMessage(), "Exception", MessageType.Error);
+                    _ = RCF.MessageUI.DisplayMessageAsync(GetMessage(), Resources.ExceptionMessageHeader, MessageType.Error);
             }
 #pragma warning disable 168
             catch (Exception ex)
@@ -39,7 +39,7 @@ namespace RayCarrot.RCP.Metro
             string GetMessage()
             {
                 var sb = new StringBuilder();
-                sb.AppendLine("An exception has occurred in the application. Below is the available debug information for the current user level in the Carrot Framework.");
+                sb.AppendLine(Resources.ExceptionMessageInfo);
                 sb.AppendLine();
                 if (RCF.Data.CurrentUserLevel >= UserLevel.Debug)
                 {

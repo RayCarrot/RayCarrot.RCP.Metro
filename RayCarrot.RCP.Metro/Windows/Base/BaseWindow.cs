@@ -29,12 +29,6 @@ namespace RayCarrot.RCP.Metro
             Icon = new ImageSourceConverter().ConvertFromString(AppViewModel.ApplicationBasePath + "/Img/Rayman Control Panel Icon.ico") as ImageSource;
             IconBitmapScalingMode = BitmapScalingMode.NearestNeighbor;
 
-            // Set owner window
-            Owner = Application.Current?.Windows.Cast<Window>().FindItem(x => x.IsActive);
-
-            // Set startup location
-            WindowStartupLocation = Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
-
             // Set localization source
             ResxExtension.SetDefaultResxName(this, AppLanguages.ResourcePath);
 
@@ -45,6 +39,21 @@ namespace RayCarrot.RCP.Metro
 
                 RCF.Logger.LogInformationSource($"The window {this} has been created");
             }
+        }
+
+        /// <summary>
+        /// Shows the <see cref="Window"/> as a dialog
+        /// </summary>
+        public new void ShowDialog()
+        {
+            // Set owner window
+            Owner = Application.Current?.Windows.Cast<Window>().FindItem(x => x.IsActive);
+
+            // Set startup location
+            WindowStartupLocation = Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
+
+            // Show the window as a dialog
+            base.ShowDialog();
         }
     }
 }

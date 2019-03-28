@@ -779,4 +779,82 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Allmänt meddelande</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Informationsmeddelande</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Felmeddelande</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Varningsmeddelande</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Succesmeddelande</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Fråge-meddelande</value>
+  </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Fel</value>
+  </data>
+  <data name="ExceptionMessageInfo" xml:space="preserve">
+    <value>Ett fel har inträffat i programmet. Nedan finns den tillgängliga felsökningsinformationen för den aktuella användarnivån i Carrot Framework.</value>
+  </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>Den angivna filen kunde inte hittas: {0}</value>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>Filen hittades inte</value>
+  </data>
+  <data name="File_ErrorLaunchingFile" xml:space="preserve">
+    <value>Ett fel uppstod vid försök att köra {0}</value>
+  </data>
+  <data name="File_ShortcutCreated" xml:space="preserve">
+    <value>Genväg har skapats</value>
+  </data>
+  <data name="File_CreatingShortcutError" xml:space="preserve">
+    <value>Ett fel inträffade när genvägen skulle skapas</value>
+  </data>
+  <data name="File_CreatingShortcutErrorHeader" xml:space="preserve">
+    <value>Det gick inte att skapa genvägen</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>Mappen kunde inte hittas</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>Sökväg-fel</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>Mappen kunde inte öppnas</value>
+  </data>
+  <data name="LocateGame_BrowserHeader" xml:space="preserve">
+    <value>Välj spelinstallationen</value>
+  </data>
+  <data name="LocateGame_InvalidLocation" xml:space="preserve">
+    <value>Den valda mappen är inte giltig för det valda spelet</value>
+  </data>
+  <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
+    <value>Ogiltig mapp</value>
+  </data>
+  <data name="LocateGame_InvalidSteamGame" xml:space="preserve">
+    <value>Spelet kunde inte hittas. Försök att välja skrivbordsapp som typen istället.</value>
+  </data>
+  <data name="LocateGame_InvalidSteamGameHeader" xml:space="preserve">
+    <value>Spelet kunde inte hittas</value>
+  </data>
+  <data name="LocateGame_InvalidWinStoreGame" xml:space="preserve">
+    <value>Spelet kunde inte hittas under installerade Windows Store appar</value>
+  </data>
+  <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
+    <value>Spelet kunde inte hittas</value>
+  </data>
+  <data name="LocateGame_Error" xml:space="preserve">
+    <value>Ett fel inträffade när spelet skulle hittas</value>
+  </data>
+  <data name="LocateGame_ErrorHeader" xml:space="preserve">
+    <value>Fel vid att hitta spel</value>
+  </data>
 </root>

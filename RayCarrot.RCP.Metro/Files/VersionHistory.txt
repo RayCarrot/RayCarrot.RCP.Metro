@@ -1,6 +1,7 @@
 ﻿-----   Version 4.1.0 - April ?, 2019   -----
 
 • The program has been translated to Swedish, thus now allowing the language to be selected in the settings
+• Windows no longer show as blocking dialogs, thus allowing several windows to be open at once
 • The option to move existing backups has been readded when changing the backup location
 • Reorganized the settings page
 • Increased tool tip timeout on info icons

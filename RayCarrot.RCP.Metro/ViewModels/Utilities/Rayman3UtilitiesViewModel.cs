@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Management.Automation;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using RayCarrot.CarrotFramework;
 using RayCarrot.Windows.Shell;
 

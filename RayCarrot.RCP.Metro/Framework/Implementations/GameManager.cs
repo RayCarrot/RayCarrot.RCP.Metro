@@ -35,7 +35,7 @@ namespace RayCarrot.RCP.Metro
                     case GameType.DosBox:
                         var result = await RCF.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                         {
-                            Title = "Select Install Directory",
+                            Title = Resources.LocateGame_BrowserHeader,
                             DefaultDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
                             MultiSelection = false
                         });
@@ -51,7 +51,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             RCF.Logger.LogInformationSource($"The selected install directory for {game} is not valid");
 
-                            await RCF.MessageUI.DisplayMessageAsync("The selected directory is not valid for this game", "Invalid Location", MessageType.Error);
+                            await RCF.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
                             return;
                         }
 
@@ -69,7 +69,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             RCF.Logger.LogInformationSource($"The {game} was not found under Steam Apps");
 
-                            await RCF.MessageUI.DisplayMessageAsync("The game could not be found. Try choosing desktop app as the type instead.", "Game not found", MessageType.Error);
+                            await RCF.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGame, MessageType.Error);
                             return;
                         }
 
@@ -120,7 +120,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             RCF.Logger.LogInformationSource($"The {game} was not found under Windows Store packages");
 
-                            await RCF.MessageUI.DisplayMessageAsync("The game could not be found.", "Game not found", MessageType.Error);
+                            await RCF.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
                         }
 
                         break;
@@ -132,7 +132,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Locating game");
-                await RCF.MessageUI.DisplayMessageAsync("An error occurred when locating the game", "Error locating game", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.LocateGame_Error, Resources.LocateGame_ErrorHeader, MessageType.Error);
             }
         }
 
@@ -163,7 +163,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Launching Windows Store application");
-                    await RCF.MessageUI.DisplayMessageAsync($"An error occurred when attempting to run {game.GetDisplayName()}", "Error", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.LaunchGame_WinStoreError, game.GetDisplayName()), MessageType.Error);
                 }
                 return;
             }
@@ -174,14 +174,14 @@ namespace RayCarrot.RCP.Metro
                 // Make sure the DosBox executable exists
                 if (!File.Exists(RCFRCP.Data.DosBoxPath))
                 {
-                    await RCF.MessageUI.DisplayMessageAsync("DosBox could not be found. Specify a valid path under settings to run this game.", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.LaunchGame_DosBoxNotFound, MessageType.Error);
                     return;
                 }
 
                 // Make sure the mount path exists, unless the game is Rayman 1 and TPLS is enabled
                 if (!RCFRCP.Data.DosBoxGames[game].MountPath.Exists && !(game == Games.Rayman1 && RCFRCP.Data.TPLSData?.IsEnabled == true))
                 {
-                    await RCF.MessageUI.DisplayMessageAsync("The mount path could not be found. Specify a valid path under the game options to run this game.", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.LaunchGame_MountPathNotFound, MessageType.Error);
                     return;
                 }
             }
@@ -200,6 +200,9 @@ namespace RayCarrot.RCP.Metro
             // Launch the game
             var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, false, launchInfo.Args);
 
+            if (process == null)
+                return;
+
             RCF.Logger.LogInformationSource($"The game {game} has been launched");
 
             // Check if TPLS should run
@@ -210,7 +213,7 @@ namespace RayCarrot.RCP.Metro
             }
             else
             {
-                process?.Dispose();
+                process.Dispose();
 
                 // Check if the application should close
                 if (RCFRCP.Data.CloseAppOnGameLaunch)

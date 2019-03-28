@@ -944,6 +944,105 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exception.
+        /// </summary>
+        public static string ExceptionMessageHeader {
+            get {
+                return ResourceManager.GetString("ExceptionMessageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An exception has occurred in the application. Below is the available debug information for the current user level in the Carrot Framework..
+        /// </summary>
+        public static string ExceptionMessageInfo {
+            get {
+                return ResourceManager.GetString("ExceptionMessageInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred creating the shortcut.
+        /// </summary>
+        public static string File_CreatingShortcutError {
+            get {
+                return ResourceManager.GetString("File_CreatingShortcutError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error creating shortcut.
+        /// </summary>
+        public static string File_CreatingShortcutErrorHeader {
+            get {
+                return ResourceManager.GetString("File_CreatingShortcutErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when attempting to run {0}.
+        /// </summary>
+        public static string File_ErrorLaunchingFile {
+            get {
+                return ResourceManager.GetString("File_ErrorLaunchingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified file could not be found: {0}.
+        /// </summary>
+        public static string File_FileNotFound {
+            get {
+                return ResourceManager.GetString("File_FileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File not found.
+        /// </summary>
+        public static string File_FileNotFoundHeader {
+            get {
+                return ResourceManager.GetString("File_FileNotFoundHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location not found.
+        /// </summary>
+        public static string File_LocationNotFound {
+            get {
+                return ResourceManager.GetString("File_LocationNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The directory could not be opened.
+        /// </summary>
+        public static string File_OpenLocationError {
+            get {
+                return ResourceManager.GetString("File_OpenLocationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directory error.
+        /// </summary>
+        public static string File_OpenLocationErrorHeader {
+            get {
+                return ResourceManager.GetString("File_OpenLocationErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shortcut created successfully.
+        /// </summary>
+        public static string File_ShortcutCreated {
+            get {
+                return ResourceManager.GetString("File_ShortcutCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Install from disc.
         /// </summary>
         public static string GameDisplay_DiscInstall {
@@ -1156,6 +1255,114 @@ namespace RayCarrot.RCP.Metro {
         public static string HelpPageHeader {
             get {
                 return ResourceManager.GetString("HelpPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DosBox could not be found. Specify a valid path under settings to run this game..
+        /// </summary>
+        public static string LaunchGame_DosBoxNotFound {
+            get {
+                return ResourceManager.GetString("LaunchGame_DosBoxNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The mount path could not be found. Specify a valid path under the game options to run this game..
+        /// </summary>
+        public static string LaunchGame_MountPathNotFound {
+            get {
+                return ResourceManager.GetString("LaunchGame_MountPathNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when attempting to run {0}.
+        /// </summary>
+        public static string LaunchGame_WinStoreError {
+            get {
+                return ResourceManager.GetString("LaunchGame_WinStoreError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Install Directory.
+        /// </summary>
+        public static string LocateGame_BrowserHeader {
+            get {
+                return ResourceManager.GetString("LocateGame_BrowserHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when locating the game.
+        /// </summary>
+        public static string LocateGame_Error {
+            get {
+                return ResourceManager.GetString("LocateGame_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error locating game.
+        /// </summary>
+        public static string LocateGame_ErrorHeader {
+            get {
+                return ResourceManager.GetString("LocateGame_ErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The selected directory is not valid for this game.
+        /// </summary>
+        public static string LocateGame_InvalidLocation {
+            get {
+                return ResourceManager.GetString("LocateGame_InvalidLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Location.
+        /// </summary>
+        public static string LocateGame_InvalidLocationHeader {
+            get {
+                return ResourceManager.GetString("LocateGame_InvalidLocationHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game could not be found. Try choosing desktop app as the type instead..
+        /// </summary>
+        public static string LocateGame_InvalidSteamGame {
+            get {
+                return ResourceManager.GetString("LocateGame_InvalidSteamGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game not found.
+        /// </summary>
+        public static string LocateGame_InvalidSteamGameHeader {
+            get {
+                return ResourceManager.GetString("LocateGame_InvalidSteamGameHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game could not be found under installed Windows Store apps.
+        /// </summary>
+        public static string LocateGame_InvalidWinStoreGame {
+            get {
+                return ResourceManager.GetString("LocateGame_InvalidWinStoreGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game not found.
+        /// </summary>
+        public static string LocateGame_InvalidWinStoreGameHeader {
+            get {
+                return ResourceManager.GetString("LocateGame_InvalidWinStoreGameHeader", resourceCulture);
             }
         }
         

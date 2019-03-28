@@ -133,7 +133,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void ShowLog()
         {
-            new LogViewer().Show();
+            WindowHelpers.ShowWindow<LogViewer>();
         }
 
         /// <summary>
