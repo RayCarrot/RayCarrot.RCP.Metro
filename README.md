@@ -107,7 +107,7 @@ You can contact me on the following places:
 
 <img alt="Screenshot1" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot1.png">
 
-<img alt="Screenshot2" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot2.png>
+<img alt="Screenshot2" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot2.png">
 
 <img alt="Screenshot3" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot3.png">
 
