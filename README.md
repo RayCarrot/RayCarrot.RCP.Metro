@@ -105,15 +105,15 @@ You can contact me on the following places:
 
 <div align="center">
 
-<img alt="Screenshot1" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot1.png" width="200px">
+<img alt="Screenshot1" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot1.png">
 
-<img alt="Screenshot2" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot2.png" width="200px">
+<img alt="Screenshot2" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot2.png>
 
-<img alt="Screenshot3" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot3.png" width="200px">
+<img alt="Screenshot3" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot3.png">
 
-<img alt="Screenshot4" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot4.png" width="200px">
+<img alt="Screenshot4" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot4.png">
 
-<img alt="Screenshot5" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot5.png" width="200px">
+<img alt="Screenshot5" src="https://raw.githubusercontent.com/RayCarrot/Rayman-Control-Panel-Metro/master/Screenshots/Screenshot5.png">
 
 </div>
 
