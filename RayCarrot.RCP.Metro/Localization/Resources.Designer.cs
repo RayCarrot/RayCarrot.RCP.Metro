@@ -458,6 +458,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No valid ubi.ini file was found and creating a new one failed. Try running the program as administrator or changing the folder permissions for the following path: {0}.
+        /// </summary>
+        public static string Config_InvalidUbiIni {
+            get {
+                return ResourceManager.GetString("Config_InvalidUbiIni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Config_Language {
@@ -598,6 +607,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_SaveDataLocationInstDir {
             get {
                 return ResourceManager.GetString("Config_SaveDataLocationInstDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when saving your {0} configuration.
+        /// </summary>
+        public static string Config_SaveError {
+            get {
+                return ResourceManager.GetString("Config_SaveError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error saving.
+        /// </summary>
+        public static string Config_SaveErrorHeader {
+            get {
+                return ResourceManager.GetString("Config_SaveErrorHeader", resourceCulture);
             }
         }
         

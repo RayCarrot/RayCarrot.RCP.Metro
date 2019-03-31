@@ -274,8 +274,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     ex.HandleError("Creating ubi.ini file");
 
-                    await RCF.MessageUI.DisplayMessageAsync($"No valid ubi.ini file was found and creating a new one failed. Try running the program as administrator " +
-                                                            $"or changing the folder permissions for the following path: {CommonPaths.UbiIniPath1.Parent}", "Error", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Config_InvalidUbiIni, CommonPaths.UbiIniPath1.Parent), MessageType.Error);
 
                     throw;
                 }

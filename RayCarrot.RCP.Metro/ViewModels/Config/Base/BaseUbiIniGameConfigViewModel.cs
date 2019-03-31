@@ -119,7 +119,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Saving ubi.ini data");
-                    await RCF.MessageUI.DisplayMessageAsync($"An error occurred when saving your {Game.GetDisplayName()} configuration", "Error saving", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Config_SaveError, Game.GetDisplayName()), Resources.Config_SaveErrorHeader, MessageType.Error);
                     return;
                 }
 

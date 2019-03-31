@@ -1253,4 +1253,17 @@ invalidCharacter</comment>
   <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
     <value>A valid height must be specified</value>
   </data>
+  <data name="Config_InvalidUbiIni" xml:space="preserve">
+    <value>No valid ubi.ini file was found and creating a new one failed. Try running the program as administrator or changing the folder permissions for the following path: {0}</value>
+    <comment>Arguments:
+ubiIniFilePath</comment>
+  </data>
+  <data name="Config_SaveError" xml:space="preserve">
+    <value>An error occurred when saving your {0} configuration</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="Config_SaveErrorHeader" xml:space="preserve">
+    <value>Error saving</value>
+  </data>
 </root>
