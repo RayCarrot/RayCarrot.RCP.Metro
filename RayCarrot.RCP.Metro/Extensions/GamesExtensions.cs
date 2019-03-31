@@ -1187,5 +1187,54 @@ namespace RayCarrot.RCP.Metro
                    $"-noconsole " +
                    $"-c exit";
         }
+
+        /// <summary>
+        /// Gets the applied utilities for the specified game
+        /// </summary>
+        /// <param name="game">The game to get the applied utilities for</param>
+        /// <returns>The applied utilities</returns>
+        public static async Task<string[]> GetAppliedUtilitiesAsync(this Games game)
+        {
+            var output = new List<string>();
+
+            if (game == Games.Rayman1)
+            {
+                if (RCFRCP.Data.TPLSData != null)
+                    output.Add(Resources.R1U_TPLSHeader);
+
+                if (Rayman1UtilitiesViewModel.GetIsOriginalSoundtrack(Rayman1UtilitiesViewModel.GetMusicDirectory()) == false)
+                    output.Add(Resources.R1U_CompleteOSTHeader);
+            }
+            else if (game == Games.Rayman2)
+            {
+                if (await Rayman2ConfigViewModel.GetIsWidescreenHackAppliedAsync() == true)
+                    output.Add(Resources.Config_WidescreenSupport);
+
+                var dinput = Rayman2ConfigViewModel.GetCurrentDinput();
+
+                if (dinput == Rayman2ConfigViewModel.R2Dinput.Controller)
+                    output.Add(Resources.Config_UseController);
+
+                if (dinput == Rayman2ConfigViewModel.R2Dinput.Mapping)
+                    output.Add(Resources.Config_ButtonMapping);
+
+                var texturesVersion = Rayman2UtilitiesViewModel.GetTexturesVersion(Rayman2UtilitiesViewModel.GetTexturesCntFilePath(Games.Rayman2.GetInfo().InstallDirectory));
+
+                if (texturesVersion != Rayman2UtilitiesViewModel.Rayman2Translation.Original && texturesVersion == null)
+                    output.Add(Resources.R2U_TranslationsHeader);
+            }
+            else if (game == Games.RaymanOrigins)
+            {
+                var instDir = game.GetInfo().InstallDirectory;
+
+                if (RaymanOriginsUtilitiesViewModel.GetDebugCommandFilePath(instDir).FileExists)
+                    output.Add(Resources.ROU_DebugCommandsHeader);
+
+                if (RaymanOriginsUtilitiesViewModel.GetIsOriginalVideos(RaymanOriginsUtilitiesViewModel.GetVideosDirectory(instDir)) == false)
+                    output.Add(Resources.ROU_HQVideosHeader);
+            }
+
+            return output.ToArray();
+        }
     }
 }

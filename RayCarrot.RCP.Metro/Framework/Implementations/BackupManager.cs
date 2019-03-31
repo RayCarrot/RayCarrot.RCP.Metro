@@ -12,20 +12,152 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class BackupManager
     {
+        #region Static Constructor
+
         static BackupManager()
         {
             AsyncLock = new AsyncLock();
         }
+
+        #endregion
+
+        #region Private Static Properties
 
         /// <summary>
         /// The async lock for backup and restore operations
         /// </summary>
         private static AsyncLock AsyncLock { get; }
 
+        #endregion
+
+        #region Public Methods
+
         /// <summary>
         /// Performs a backup on the game
         /// </summary>
         /// <param name="game">The game to perform the backup on</param>
+        public async Task BackupAsync(Games game)
+        {
+            using (await AsyncLock.LockAsync())
+            {
+                RCF.Logger.LogInformationSource($"A backup has been requested for {game}");
+
+                try
+                {
+                    // Get the destination directory
+                    FileSystemPath destinationDir = game.GetBackupDir();
+
+                    // Confirm backup if one already exists
+                    if (destinationDir.DirectoryExists && !await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, game.GetDisplayName()), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
+                    {
+                        RCF.Logger.LogInformationSource($"Backup canceled");
+
+                        return;
+                    }
+
+                    // Get the backup information
+                    var backupInfo = game.GetBackupInfo();
+
+                    // Check if the directories to back up exist
+                    if (!backupInfo.Select(x => x.DirPath).DirectoriesExist())
+                    {
+                        RCF.Logger.LogInformationSource($"Backup failed - the input directories could not be found");
+
+                        await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingDirectoriesError, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
+                        return;
+                    }
+
+                    // Get the temp path
+                    var tempPath = CommonPaths.TempPath + game.GetBackupName();
+
+                    // Delete temp backup
+                    RCFRCP.File.DeleteDirectory(tempPath);
+
+                    // Create temp path
+                    Directory.CreateDirectory(CommonPaths.TempPath);
+
+                    // Check if a backup already exists
+                    if (destinationDir.DirectoryExists)
+                        // Create a new temp backup
+                        Directory.Move(destinationDir, tempPath);
+
+                    try
+                    {
+                        // Enumerate the backup information
+                        foreach (var item in backupInfo)
+                        {
+                            // Check if the entire directory should be copied
+                            if (item.IsEntireDir())
+                            {
+                                // Copy the directory   
+                                RCFRCP.File.CopyDirectory(item.DirPath, destinationDir + item.ID, true, true);
+                            }
+                            else
+                            {
+                                // Get the files
+                                var files = Directory.GetFiles(item.DirPath, item.ExtensionFilter ?? "*", item.SearchOption);
+
+                                // Backup each file
+                                foreach (FileSystemPath file in files)
+                                {
+                                    // Get the destination file
+                                    var destFile = destinationDir + item.ID + file.GetRelativePath(item.DirPath);
+
+                                    // Check if the directory does not exist
+                                    if (!destFile.Parent.DirectoryExists)
+                                        // Create the directory
+                                        Directory.CreateDirectory(destFile.Parent);
+
+                                    // Copy the file
+                                    File.Copy(file, destFile);
+                                }
+                            }
+                        }
+
+                        // Check if any files were backed up
+                        if (!destinationDir.DirectoryExists)
+                        {
+                            await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
+
+                            // Check if a temp backup exists
+                            if (tempPath.DirectoryExists)
+                                // Restore temp backup
+                                RCFRCP.File.MoveDirectory(tempPath, destinationDir, true);
+
+                            return;
+                        }
+
+                        // Delete temp backup
+                        RCFRCP.File.DeleteDirectory(tempPath);
+
+                        RCF.Logger.LogInformationSource($"Backup complete");
+
+                        await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, game.GetDisplayName()), Resources.Backup_SuccessHeader);
+                    }
+                    catch
+                    {
+                        // Check if a temp backup exists
+                        if (tempPath.DirectoryExists)
+                            // Restore temp backup
+                            RCFRCP.File.MoveDirectory(tempPath, destinationDir, true);
+
+                        RCF.Logger.LogInformationSource($"Backup failed - clean up succeeded");
+
+                        throw;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleCritical("Backing up game", game);
+                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Failed, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Restores a backup on the game
+        /// </summary>
+        /// <param name="game">The game to restore the backup on</param>
         public async Task RestoreAsync(Games game)
         {
             using (await AsyncLock.LockAsync())
@@ -42,12 +174,12 @@ namespace RayCarrot.RCP.Metro
                     {
                         RCF.Logger.LogInformationSource($"Restore failed - the input directory could not be found");
 
-                        await RCF.MessageUI.DisplayMessageAsync($"There was no backup found for {game.GetDisplayName()}", "Restore failed", MessageType.Error);
+                        await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_MissingBackup, game.GetDisplayName()), Resources.Restore_FailedHeader, MessageType.Error);
                         return;
                     }
 
                     // Confirm restore
-                    if (!await RCF.MessageUI.DisplayMessageAsync($"This will replace current {game.GetDisplayName()} save files with backed up ones.", "Confirm restore", MessageType.Warning, true))
+                    if (!await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, game.GetDisplayName()), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
                     {
                         RCF.Logger.LogInformationSource($"Restore canceled");
                         return;
@@ -162,136 +294,16 @@ namespace RayCarrot.RCP.Metro
 
                     RCF.Logger.LogInformationSource($"Restore complete");
 
-                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync($"Your save files for {game.GetDisplayName()} were successfully restored", "Restore successful");
+                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, game.GetDisplayName()), Resources.Restore_SuccessHeader);
                 }
                 catch (Exception ex)
                 {
                     ex.HandleCritical("Restoring game", game);
-                    await RCF.MessageUI.DisplayMessageAsync($"Restore failed for {game.GetDisplayName()}", "Restore failed", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Failed, game.GetDisplayName()), Resources.Restore_FailedHeader, MessageType.Error);
                 }
             }
         }
 
-        /// <summary>
-        /// Restores a backup on the game
-        /// </summary>
-        /// <param name="game">The game to restore the backup on</param>
-        public async Task BackupAsync(Games game)
-        {
-            using (await AsyncLock.LockAsync())
-            {
-                RCF.Logger.LogInformationSource($"A backup has been requested for {game}");
-
-                try
-                {
-                    // Get the destination directory
-                    FileSystemPath destinationDir = game.GetBackupDir();
-
-                    // Confirm backup if one already exists
-                    if (destinationDir.DirectoryExists && !await RCF.MessageUI.DisplayMessageAsync($"This will replace any previous backups for {game.GetDisplayName()}.", "Confirm backup", MessageType.Warning, true))
-                    {
-                        RCF.Logger.LogInformationSource($"Backup canceled");
-
-                        return;
-                    }
-
-                    // Get the backup information
-                    var backupInfo = game.GetBackupInfo();
-
-                    // Check if the directories to back up exist
-                    if (!backupInfo.Select(x => x.DirPath).DirectoriesExist())
-                    {
-                        RCF.Logger.LogInformationSource($"Backup failed - the input directories could not be found");
-
-                        await RCF.MessageUI.DisplayMessageAsync($"Backup for {game.GetDisplayName()} could not finish due to not all specified directories being found", "Backup failed", MessageType.Error);
-                        return;
-                    }
-
-                    // Get the temp path
-                    var tempPath = CommonPaths.TempPath + game.GetBackupName();
-
-                    // Delete temp backup
-                    RCFRCP.File.DeleteDirectory(tempPath);
-
-                    // Create temp path
-                    Directory.CreateDirectory(CommonPaths.TempPath);
-
-                    // Check if a backup already exists
-                    if (destinationDir.DirectoryExists)
-                        // Create a new temp backup
-                        Directory.Move(destinationDir, tempPath);
-
-                    try
-                    {
-                        // Enumerate the backup information
-                        foreach (var item in backupInfo)
-                        {
-                            // Check if the entire directory should be copied
-                            if (item.IsEntireDir())
-                            {
-                                // Copy the directory   
-                                RCFRCP.File.CopyDirectory(item.DirPath, destinationDir + item.ID, true, true);
-                            }
-                            else
-                            {
-                                // Get the files
-                                var files = Directory.GetFiles(item.DirPath, item.ExtensionFilter ?? "*", item.SearchOption);
-
-                                // Backup each file
-                                foreach (FileSystemPath file in files)
-                                {
-                                    // Get the destination file
-                                    var destFile = destinationDir + item.ID + file.GetRelativePath(item.DirPath);
-
-                                    // Check if the directory does not exist
-                                    if (!destFile.Parent.DirectoryExists)
-                                        // Create the directory
-                                        Directory.CreateDirectory(destFile.Parent);
-
-                                    // Copy the file
-                                    File.Copy(file, destFile);
-                                }
-                            }
-                        }
-
-                        // Check if any files were backed up
-                        if (!destinationDir.DirectoryExists)
-                        {
-                            await RCF.MessageUI.DisplayMessageAsync($"No files were found to backup for {game.GetDisplayName()}", "Backup failed", MessageType.Error);
-
-                            // Check if a temp backup exists
-                            if (tempPath.DirectoryExists)
-                                // Restore temp backup
-                                RCFRCP.File.MoveDirectory(tempPath, destinationDir, true);
-
-                            return;
-                        }
-
-                        // Delete temp backup
-                        RCFRCP.File.DeleteDirectory(tempPath);
-
-                        RCF.Logger.LogInformationSource($"Backup complete");
-
-                        await RCF.MessageUI.DisplaySuccessfulActionMessageAsync($"Your save files for {game.GetDisplayName()} were successfully backed up", "Backup successful");
-                    }
-                    catch
-                    {
-                        // Check if a temp backup exists
-                        if (tempPath.DirectoryExists)
-                            // Restore temp backup
-                            RCFRCP.File.MoveDirectory(tempPath, destinationDir, true);
-
-                        RCF.Logger.LogInformationSource($"Backup failed - clean up succeeded");
-
-                        throw;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleCritical("Backing up game", game);
-                    await RCF.MessageUI.DisplayMessageAsync($"Backup failed for {game.GetDisplayName()}", "Backup failed", MessageType.Error);
-                }
-            }
-        }
+        #endregion
     }
 }

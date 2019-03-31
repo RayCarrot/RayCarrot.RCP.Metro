@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using RayCarrot.CarrotFramework;
 using RayCarrot.Windows.Registry;
+// ReSharper disable StringLiteralTypo
 
 namespace RayCarrot.RCP.Metro
 {
@@ -259,6 +260,18 @@ namespace RayCarrot.RCP.Metro
                                 {
                                     DisplayHeader = "jade_enr.exe Error",
                                     HelpText = "There is currently no fix for this error. This appears in all versions, including the GOG version, on certain computers."
+                                },
+                            }
+                        },
+                        new HelpItemViewModel()
+                        {
+                            DisplayHeader = "Rayman Legends",
+                            SubItems = new ObservableCollection<HelpItemViewModel>()
+                            {
+                                new HelpItemViewModel()
+                                {
+                                    DisplayHeader = "Error during load",
+                                    HelpText = "The error occurs mainly on Windows 10 devices due to the game not being able to read/write to the game save file and/or the game configuration settings. The most common fix involves adding Rayman Legends as an exception to the Controlled Folder Access section of the built-in Windows Security system."
                                 },
                             }
                         },

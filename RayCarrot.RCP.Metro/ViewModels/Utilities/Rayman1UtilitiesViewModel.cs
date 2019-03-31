@@ -50,7 +50,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Attempt to find the Rayman Forever music directory
-            var dir = Games.Rayman1.GetInfo().InstallDirectory.Parent + "Music";
+            var dir = GetMusicDirectory();
 
             // Set to music path if found
             MusicDir = dir.DirectoryExists && (dir + "rayman02.ogg").FileExists ? dir : FileSystemPath.EmptyPath;
@@ -59,19 +59,7 @@ namespace RayCarrot.RCP.Metro
             CanMusicBeReplaced = MusicDir.DirectoryExists;
 
             if (CanMusicBeReplaced)
-            {
-                try
-                {
-                    var size = (MusicDir + "rayman02.ogg").GetSize();
-
-                    IsOriginalMusic = size == new ByteSize(1805221);
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Getting R1 music size");
-                    CanMusicBeReplaced = false;
-                }
-            }
+                IsOriginalMusic = GetIsOriginalSoundtrack(MusicDir) ?? false;
         }
 
         #endregion
@@ -239,6 +227,39 @@ namespace RayCarrot.RCP.Metro
             }
 
             return true;
+        }
+
+        #endregion
+
+        #region Public Static Methods
+
+        /// <summary>
+        /// Gets a value indicating if the original soundtrack is available in the specified path
+        /// </summary>
+        /// <param name="path">The music directory</param>
+        /// <returns>True if the original soundtrack is available, false if not. Null if an error occurred while checking.</returns>
+        public static bool? GetIsOriginalSoundtrack(FileSystemPath path)
+        {
+            try
+            {
+                var size = (path + "rayman02.ogg").GetSize();
+
+                return size == new ByteSize(1805221);
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Getting R1 music size");
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets the game music directory
+        /// </summary>
+        /// <returns>The music director path</returns>
+        public static FileSystemPath GetMusicDirectory()
+        {
+            return Games.Rayman1.GetInfo().InstallDirectory.Parent + "Music";
         }
 
         #endregion

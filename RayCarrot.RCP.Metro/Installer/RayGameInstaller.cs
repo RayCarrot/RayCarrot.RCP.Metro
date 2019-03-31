@@ -150,7 +150,7 @@ namespace RayCarrot.RCP.Metro
                 // Get a drive from the user
                 var result = await RCF.BrowseUI.BrowseDriveAsync(new DriveBrowserViewModel()
                 {
-                    Title = "Select disc to install from",
+                    Title = Resources.Installer_BrowseDiscHeader,
                     MultiSelection = false,
                     AllowNonReadyDrives = false,
                     DefaultDirectory = @"D:\"
@@ -204,10 +204,10 @@ namespace RayCarrot.RCP.Metro
                     // Get the drive info
                     var driveInfo = new RayGameDriveInfo(drive, new DriveInfo(drive).VolumeLabel);
 
-                    //Make sure the label and drive path is not the same as an existing one
+                    // Make sure the label and drive path are not the same as an existing one
                     if (drives.Any(x => x.Root == driveInfo.Root && x.VolumeLabel == driveInfo.VolumeLabel))
                     {
-                        await RCF.MessageUI.DisplayMessageAsync("The selected drive has the same label and root path as a previously inserted one. Due to this the installer can not differentiate them. Please rename one of the drives and try again, or mount them as different root directories.", "Drive conflict", MessageType.Error);
+                        await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_DriveNameConflict, Resources.Installer_DriveNameConflictHeader, MessageType.Error);
                         return false;
                     }
 
@@ -229,7 +229,7 @@ namespace RayCarrot.RCP.Metro
                     // Update the status to paused
                     OnStatusUpdated(OperationState.Paused);
 
-                    await RCF.MessageUI.DisplayMessageAsync($"{missingItems} paths were not found on the specified drive. If the game requires more than one drive for installation, please insert the next one.", "Missing Paths", MessageType.Information);
+                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_MissingFiles, missingItems), Resources.Installer_MissingFilesHeader, MessageType.Information);
 
                     // Update the status to default
                     OnStatusUpdated();
@@ -262,7 +262,7 @@ namespace RayCarrot.RCP.Metro
                 // Update the status to paused
                 OnStatusUpdated(OperationState.Paused);
 
-                if (!await RCF.MessageUI.DisplayMessageAsync($"Please insert \"{drive.VolumeLabel}\" to port {drive.Root} and continue, or cancel to cancel the installation", "Insert Drive", MessageType.Information, true))
+                if (!await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_InsertDriveRequest, drive.VolumeLabel, drive.Root), Resources.Installer_InsertDriveRequestHeader, MessageType.Information, true))
                     return false;
 
                 // Update the status to default
@@ -349,10 +349,10 @@ namespace RayCarrot.RCP.Metro
                     if (ex is WebException we && we.Status == WebExceptionStatus.RequestCanceled)
                         throw;
 
-                    RCF.Logger.LogInformationSource($"Failed to copy file {source} during installation. Requesting retry.");
+                    RCF.Logger.LogInformationSource($"Failed to copy file {source.FullPath} during installation. Requesting retry.");
 
                     // Ask user to retry
-                    if (!await RCF.MessageUI.DisplayMessageAsync($"The file {source} failed to copy over with the error message: {ex.Message}{Environment.NewLine}{Environment.NewLine}Try again?", "Failed to copy item to destination", MessageType.Warning, true))
+                    if (!await RCF.MessageUI.DisplayMessageAsync(string.Format(Resources.Installer_FileCopyError, source.Name, ex.Message), Resources.Installer_FileCopyErrorHeader, MessageType.Warning, true))
                         throw;
 
                     RCF.Logger.LogInformationSource($"Attempting to retry to copy file");

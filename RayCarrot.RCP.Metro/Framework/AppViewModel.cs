@@ -26,12 +26,16 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class AppViewModel : BaseRCPViewModel
     {
-        #region Constructors
+        #region Static Constructor
 
         static AppViewModel()
         {
             WindowsVersion = WindowsHelpers.GetCurrentWindowsVersion();
         }
+
+        #endregion
+
+        #region Constructor
 
         /// <summary>
         /// Default constructor
@@ -215,7 +219,7 @@ namespace RayCarrot.RCP.Metro
             {
                 RCF.Logger.LogWarningSource($"The game {game} has already been added");
 
-                await RCF.MessageUI.DisplayMessageAsync($"The game {game} has already been added", "Error adding new game", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.AddGame_Duplicate, game), Resources.AddGame_DuplicateHeader, MessageType.Error);
 
                 return;
             }
@@ -288,9 +292,16 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RemoveGameAsync(Games game, bool forceRemove)
         {
-            // Warn about utilities
-            if (game.HasUtilities() && !forceRemove && !await RCF.MessageUI.DisplayMessageAsync("Removing this game will not disable any applied utilities. Continue?", "Utility warning", MessageType.Warning, true))
-                return;
+            if (!forceRemove)
+            {
+                // Get applied utilities
+                var utilities = await game.GetAppliedUtilitiesAsync();
+
+                // Warn about utilities
+                if (utilities.Any() && !await RCF.MessageUI.DisplayMessageAsync(
+                        $"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}{utilities.JoinItems(Environment.NewLine)}", Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
+                    return;
+            }
 
             // Remove the game
             Data.Games.Remove(game);
@@ -362,8 +373,7 @@ namespace RayCarrot.RCP.Metro
                     return;
                 }
 
-                await RCF.MessageUI.DisplayMessageAsync("To be able to configure the Rayman games without running this program as administrator you will " +
-                                                        "need to accept the following admin prompt");
+                await RCF.MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
 
                 // Attempt to change the permission through CMD to avoid having to run RCP as admin
                 // ReSharper disable once StringLiteralTypo
@@ -374,7 +384,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Changing ubi.ini file permissions");
-                await RCF.MessageUI.DisplayMessageAsync("An error occurred when attempting to enable write access for the Rayman configuration file", "Error", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_Error, MessageType.Error);
             }
         }
 
@@ -513,73 +523,73 @@ namespace RayCarrot.RCP.Metro
                     // Rayman 2
                     AddActions(Games.Rayman2, new Func<GameFinderActionResult>[]
                     {
-                    // Ubi.ini
-                    () => CheckUbiIni(R2UbiIniHandler.SectionName),
+                        // Ubi.ini
+                        () => CheckUbiIni(R2UbiIniHandler.SectionName),
 
-                    // Uninstall
-                    () => CheckUninstall("Rayman 2 - The Great Escape", "Rayman 2", "Rayman2", "GOG.com Rayman 2"),
+                        // Uninstall
+                        () => CheckUninstall("Rayman 2 - The Great Escape", "Rayman 2", "Rayman2", "GOG.com Rayman 2"),
 
-                    // Start menu
-                    () => CheckStartMenu("Rayman 2", Games.Rayman2.GetLaunchName()),
+                        // Start menu
+                        () => CheckStartMenu("Rayman 2", Games.Rayman2.GetLaunchName()),
                     });
 
                     // Rayman M
                     AddActions(Games.RaymanM, new Func<GameFinderActionResult>[]
                     {
-                    // Ubi.ini
-                    () => CheckUbiIni(RMUbiIniHandler.SectionName),
-                            
-                    // Uninstall
-                    () => CheckUninstall("Rayman M", "RaymanM"),
+                        // Ubi.ini
+                        () => CheckUbiIni(RMUbiIniHandler.SectionName),
+                                
+                        // Uninstall
+                        () => CheckUninstall("Rayman M", "RaymanM"),
 
-                    // Start menu
-                    () => CheckStartMenu("Rayman M", Games.RaymanM.GetLaunchName()),
+                        // Start menu
+                        () => CheckStartMenu("Rayman M", Games.RaymanM.GetLaunchName()),
                     });
 
                     // Rayman Arena
                     AddActions(Games.RaymanArena, new Func<GameFinderActionResult>[]
                     {
-                    // Ubi.ini
-                    () => CheckUbiIni(RAUbiIniHandler.SectionName),
-                        
-                    // Uninstall
-                    () => CheckUninstall("Rayman Arena", "RaymanArena"),
+                        // Ubi.ini
+                        () => CheckUbiIni(RAUbiIniHandler.SectionName),
+                            
+                        // Uninstall
+                        () => CheckUninstall("Rayman Arena", "RaymanArena"),
 
-                    // Start menu
-                    () => CheckStartMenu("Rayman Arena", Games.RaymanArena.GetLaunchName()),
+                        // Start menu
+                        () => CheckStartMenu("Rayman Arena", Games.RaymanArena.GetLaunchName()),
                     });
 
                     // Rayman 3
                     AddActions(Games.Rayman3, new Func<GameFinderActionResult>[]
                     {
-                    // Ubi.ini
-                    () => CheckUbiIni(R3UbiIniHandler.SectionName),
+                        // Ubi.ini
+                        () => CheckUbiIni(R3UbiIniHandler.SectionName),
 
-                    // Uninstall
-                    () => CheckUninstall("Rayman 3 - Hoodlum Havoc", "Rayman 3", "Rayman3"),
+                        // Uninstall
+                        () => CheckUninstall("Rayman 3 - Hoodlum Havoc", "Rayman 3", "Rayman3"),
 
-                    // Start menu
-                    () => CheckStartMenu("Rayman 3", Games.Rayman3.GetLaunchName()),
+                        // Start menu
+                        () => CheckStartMenu("Rayman 3", Games.Rayman3.GetLaunchName()),
                     });
 
                     // Rayman Raving Rabbids
                     AddActions(Games.RaymanRavingRabbids, new Func<GameFinderActionResult>[]
                     {
-                    // Uninstall
-                    () => CheckUninstall("Rayman: Raving Rabbids", "Rayman Raving Rabbids"),
+                        // Uninstall
+                        () => CheckUninstall("Rayman: Raving Rabbids", "Rayman Raving Rabbids"),
 
-                    // Start menu
-                    () => CheckStartMenu("Rayman Raving Rabbids", Games.RaymanRavingRabbids.GetLaunchName()),
+                        // Start menu
+                        () => CheckStartMenu("Rayman Raving Rabbids", Games.RaymanRavingRabbids.GetLaunchName()),
                     });
 
                     // Rayman Origins
                     AddActions(Games.RaymanOrigins, new Func<GameFinderActionResult>[]
                     {
-                    // Uninstall
-                    () => CheckUninstall("Rayman Origins", "RaymanOrigins"),
+                        // Uninstall
+                        () => CheckUninstall("Rayman Origins", "RaymanOrigins"),
 
-                    // Start menu
-                    () => CheckStartMenu("Rayman Origins", Games.RaymanOrigins.GetLaunchName()),
+                        // Start menu
+                        () => CheckStartMenu("Rayman Origins", Games.RaymanOrigins.GetLaunchName()),
                     });
 
                     // Rayman Legends
@@ -720,7 +730,8 @@ namespace RayCarrot.RCP.Metro
 
                     if (result.Count > 0)
                     {
-                        await RCF.MessageUI.DisplayMessageAsync($"The following new games were found:{Environment.NewLine}{Environment.NewLine}• {result.JoinItems(Environment.NewLine + "• ", x => x.GetDisplayName())}", "Installed games found", MessageType.Success);
+                        await RCF.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {result.JoinItems(Environment.NewLine + "• ", x => x.GetDisplayName())}",
+                            Resources.GameFinder_GamesFoundHeader, MessageType.Success);
                         RCF.Logger.LogInformationSource($"The game finder found the following games {result.JoinItems(", ")}");
                         return true;
                     }
@@ -728,7 +739,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Game finder");
-                    await RCF.MessageUI.DisplayMessageAsync("An error occurred during the game finder operation");
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.GameFinder_Error, MessageType.Error);
                 }
                 finally
                 {
@@ -782,7 +793,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     RCF.Logger.LogInformationSource($"Download failed due to there not being any input sources");
 
-                    await RCF.MessageUI.DisplayMessageAsync("No files were found to download", "Error", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.Download_NoFilesFound, MessageType.Error);
                     return false;
                 }
 
@@ -801,13 +812,13 @@ namespace RayCarrot.RCP.Metro
 
                     RCF.Logger.LogDebugSource($"The size of the download has been retrieved as {size}");
 
-                    if (!await RCF.MessageUI.DisplayMessageAsync($"This patch requires its files to be downloaded. The total size of the download is {size}. Continue?", "Confirm download", MessageType.Question, true))
+                    if (!await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Download_ConfirmSize, size), Resources.Download_ConfirmHeader, MessageType.Question, true))
                         return false;
                 }
                 catch (Exception ex)
                 {
                     ex.HandleUnexpected("Getting download size");
-                    if (!await RCF.MessageUI.DisplayMessageAsync("This patch requires its files to be downloaded. Continue?", "Confirm download", MessageType.Question, true))
+                    if (!await RCF.MessageUI.DisplayMessageAsync(Resources.Download_Confirm, Resources.Download_ConfirmHeader, MessageType.Question, true))
                         return false;
                 }
 
@@ -825,7 +836,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError($"Downloading files");
-                await RCF.MessageUI.DisplayMessageAsync("The files could not be downloaded.", "Error", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.Download_Error, MessageType.Error);
                 return false;
             }
         }
@@ -844,7 +855,7 @@ namespace RayCarrot.RCP.Metro
                 RCF.Logger.LogInformationSource($"Updates are being checked for");
 
                 CheckingForUpdates = true;
-                string errorMessage = "Unknown error";
+                string errorMessage = Resources.Update_UnknownError;
                 JObject manifest = null;
 
                 try
@@ -858,23 +869,23 @@ namespace RayCarrot.RCP.Metro
                 catch (WebException ex)
                 {
                     ex.HandleUnexpected("Getting server manifest");
-                    errorMessage = "A connection could not be established to the server";
+                    errorMessage = Resources.Update_WebError;
                 }
                 catch (JsonReaderException ex)
                 {
                     ex.HandleError("Parsing server manifest");
-                    errorMessage = "The information from the server was not valid";
+                    errorMessage = Resources.Update_FormatError;
                 }
                 catch (Exception ex)
                 {
                     ex.HandleError("Getting server manifest");
-                    errorMessage = "An unknown error occurred while connecting to the server";
+                    errorMessage = Resources.Update_GenericError;
                 }
 
                 // Show error if manifest was not retrieved
                 if (manifest == null)
                 {
-                    await RCF.MessageUI.DisplayMessageAsync(errorMessage, "Update Check Failed", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(errorMessage, Resources.Update_ErrorHeader, MessageType.Error);
                     return;
                 }
 
@@ -890,7 +901,7 @@ namespace RayCarrot.RCP.Metro
                     if (RCFRCP.App.CurrentVersion >= serverVersion)
                     {
                         if (showIfNoUpdates)
-                            await RCF.MessageUI.DisplayMessageAsync("The latest version (" + serverVersion + ") is already installed.", "No new versions found", MessageType.Information);
+                            await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, serverVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
 
                         RCF.Logger.LogInformationSource($"The latest version is installed");
 
@@ -902,11 +913,11 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Getting assembly version from server manifest", manifest);
-                    await RCF.MessageUI.DisplayMessageAsync("The server manifest could not be read", "Update Check Failed", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.Update_ManifestError, Resources.Update_ErrorHeader, MessageType.Error);
                     return;
                 }
 
-                string news = "Error getting news";
+                string news = Resources.Update_NewsError;
                 try
                 {
                     // Get the update news
@@ -917,7 +928,7 @@ namespace RayCarrot.RCP.Metro
                     ex.HandleError("Getting update news from server manifest", manifest);
                 }
 
-                if (await RCF.MessageUI.DisplayMessageAsync($"A new update is available to download. Download now?{Environment.NewLine}{Environment.NewLine}News: {Environment.NewLine}{news}", "New version found", MessageType.Question, true))
+                if (await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_UpdateAvailable, news), Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
                 {
                     string path = Path.Combine(Path.GetTempPath(), "RCP_Updater.exe");
 
@@ -929,7 +940,7 @@ namespace RayCarrot.RCP.Metro
                     catch (Exception ex)
                     {
                         ex.HandleError("Writing updater to temp path", path);
-                        await RCF.MessageUI.DisplayMessageAsync("The updater could not be created. To manually download the new version, go to raycarrot.ylemnova.com and download the latest version from there.", "Error creating updater", MessageType.Error);
+                        await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_UpdaterError, "raycarrot.ylemnova.com"), Resources.Update_UpdaterErrorHeader, MessageType.Error);
                         return;
                     }
 
@@ -953,7 +964,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await MoveBackupsAsyncLock.LockAsync())
             {
-                if (!await RCF.MessageUI.DisplayMessageAsync("Do you want to move existing backups to the new location?", "Move old backups", MessageType.Question, true))
+                if (!await RCF.MessageUI.DisplayMessageAsync(Resources.MoveBackups_Question, Resources.MoveBackups_QuestionHeader, MessageType.Question, true))
                 {
                     RCF.Logger.LogInformationSource("Moving old backups has been canceled by the user");
                     return;
@@ -968,7 +979,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         RCF.Logger.LogInformationSource("Old backups could not be moved due to not being found");
 
-                        await RCF.MessageUI.DisplayMessageAsync("No backups found in " + oldLocation.FullPath, "Moving backups failed", MessageType.Error);
+                        await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.MoveBackups_NoBackupsFound, oldLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
                         return;
                     }
 
@@ -976,7 +987,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         RCF.Logger.LogInformationSource("Old backups could not be moved due to the new location already existing");
 
-                        await RCF.MessageUI.DisplayMessageAsync("Backups were not moved. A backup already exists in " + newLocation.FullPath, "Moving backups failed", MessageType.Error);
+                        await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.MoveBackups_BackupAlreadyExists, newLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
                         return;
                     }
 
@@ -984,12 +995,12 @@ namespace RayCarrot.RCP.Metro
 
                     RCF.Logger.LogInformationSource("Old backups have been moved");
 
-                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("The backups have been moved successfully");
+                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.MoveBackups_Success);
                 }
                 catch (Exception ex)
                 {
                     ex.HandleError("Moving backups");
-                    await RCF.MessageUI.DisplayMessageAsync("Error moving backup", "Moving backups failed", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.MoveBackups_Error, Resources.MoveBackups_ErrorHeader, MessageType.Error);
                 }
             }
         }

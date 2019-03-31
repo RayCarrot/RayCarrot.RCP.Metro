@@ -61,6 +61,10 @@
 
                 </StackPanel>
 
+                <Button Content="Show Applied Utilities"
+                        Command="{Binding Path=ShowInstalledUtilitiesCommand}"
+                        HorizontalAlignment="Left"/>
+
                 <Button Content="Show Log"
                         Command="{Binding Path=ShowLogCommand}"
                         HorizontalAlignment="Left"/>

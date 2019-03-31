@@ -212,42 +212,8 @@ namespace RayCarrot.RCP.Metro
             CurrentLanguage = ConfigData.FormattedLanguage ?? R2Languages.English;
 
             // Check if the aspect ratio has been modified
-            try
-            {
-                // Get the file path
-                FileSystemPath path = Games.Rayman2.GetLaunchInfo().Path;
-
-                // Get the location
-                var location = GetAspectRatioLocation(path);
-
-                if (location != -1)
-                {
-                    // Open the file
-                    using (Stream stream = File.Open(path, FileMode.Open))
-                    {
-                        // Set the position
-                        stream.Position = location;
-
-                        // Create the buffer
-                        var buffer = new byte[4];
-
-                        // Read the bytes
-                        await stream.ReadAsync(buffer, 0, 4);
-
-                        // Check if the data has been modified
-                        if (CheckAspectRatio(buffer))
-                        {
-                            RCF.Logger.LogInformationSource($"The Rayman 2 aspect ratio has been detected as modified");
-
-                            WidescreenSupport = true;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Checking if R2 aspect ratio has been modified");
-            }
+            if (await GetIsWidescreenHackAppliedAsync() == true)
+                WidescreenSupport = true;
 
             if (GetCurrentDinput() == R2Dinput.Mapping)
             {
@@ -592,36 +558,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Gets the current dinput file used for Rayman 2
-        /// </summary>
-        /// <returns>The current dinput file used</returns>
-        private static R2Dinput GetCurrentDinput()
-        {
-            var path = GetDinputPath();
-
-            if (!path.FileExists)
-                return R2Dinput.None;
-
-            try
-            {
-                var size = path.GetSize();
-
-                if (size == new ByteSize(136704))
-                    return R2Dinput.Mapping;
-
-                if (size == new ByteSize(66560))
-                    return R2Dinput.Controller;
-
-                return R2Dinput.Unknown;
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Getting R2 dinput file size");
-                return R2Dinput.Unknown;
-            }
-        }
-
-        /// <summary>
         /// Gets the current dinput.dll path for Rayman 2
         /// </summary>
         /// <returns>The path</returns>
@@ -651,12 +587,95 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Private Enum
+        #region Public Static Methods
+
+        /// <summary>
+        /// Gets the current dinput file used for Rayman 2
+        /// </summary>
+        /// <returns>The current dinput file used</returns>
+        public static R2Dinput GetCurrentDinput()
+        {
+            var path = GetDinputPath();
+
+            if (!path.FileExists)
+                return R2Dinput.None;
+
+            try
+            {
+                var size = path.GetSize();
+
+                if (size == new ByteSize(136704))
+                    return R2Dinput.Mapping;
+
+                if (size == new ByteSize(66560))
+                    return R2Dinput.Controller;
+
+                return R2Dinput.Unknown;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Getting R2 dinput file size");
+                return R2Dinput.Unknown;
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating if a widescreen patch has been applied
+        /// </summary>
+        /// <returns>True if a widescreen patch has been applied, false if it has not. Null if an error occurred while checking.</returns>
+        public static async Task<bool?> GetIsWidescreenHackAppliedAsync()
+        {
+            try
+            {
+                // Get the file path
+                FileSystemPath path = Games.Rayman2.GetLaunchInfo().Path;
+
+                // Get the location
+                var location = GetAspectRatioLocation(path);
+
+                if (location == -1)
+                    return null;
+
+                // Open the file
+                using (Stream stream = File.Open(path, FileMode.Open))
+                {
+                    // Set the position
+                    stream.Position = location;
+
+                    // Create the buffer
+                    var buffer = new byte[4];
+
+                    // Read the bytes
+                    await stream.ReadAsync(buffer, 0, 4);
+
+                    // Check if the data has been modified
+                    if (CheckAspectRatio(buffer))
+                    {
+                        RCF.Logger.LogInformationSource($"The Rayman 2 aspect ratio has been detected as modified");
+
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Checking if R2 aspect ratio has been modified");
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region Public Enum
 
         /// <summary>
         /// The available types of Rayman 2 dinput.dll file
         /// </summary>
-        private enum R2Dinput
+        public enum R2Dinput
         {
             /// <summary>
             /// No file found

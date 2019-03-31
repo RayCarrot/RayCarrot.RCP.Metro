@@ -1,4 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework;
@@ -24,6 +27,7 @@ namespace RayCarrot.RCP.Metro
             OpenAppDataCommand = new AsyncRelayCommand(OpenAppDataAsync);
             OpenPrimaryUbiIniCommand = new AsyncRelayCommand(OpenPrimaryUbiIniAsync);
             OpenSecondaryUbiIniCommand = new AsyncRelayCommand(OpenSecondaryUbiIniAsync);
+            ShowInstalledUtilitiesCommand = new AsyncRelayCommand(ShowInstalledUtilitiesAsync);
 
             // Show log viewer if a debugger is attached
             if (!_firstConstruction || !Debugger.IsAttached)
@@ -163,6 +167,20 @@ namespace RayCarrot.RCP.Metro
             (await RCFRCP.File.LaunchFileAsync(CommonPaths.UbiIniPath2))?.Dispose();
         }
 
+        /// <summary>
+        /// Shows the installed utilities for each game to the user
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task ShowInstalledUtilitiesAsync()
+        {
+            var lines = new List<string>();
+
+            foreach (Games game in App.GetGames)
+                lines.AddRange(from utility in await game.GetAppliedUtilitiesAsync() select $"{utility} ({game.GetDisplayName()})");
+
+            await RCF.MessageUI.DisplayMessageAsync(lines.JoinItems(Environment.NewLine), MessageType.Information);
+        }
+
         #endregion
 
         #region Commands
@@ -176,6 +194,8 @@ namespace RayCarrot.RCP.Metro
         public ICommand OpenPrimaryUbiIniCommand { get; }
 
         public ICommand OpenSecondaryUbiIniCommand { get; }
+
+        public ICommand ShowInstalledUtilitiesCommand { get; }
 
         #endregion
     }

@@ -7,10 +7,12 @@
                   xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                   xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                   xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
-                  mc:Ignorable="d"
                   Closing="GameInstaller_OnClosingAsync"
                   SizeToContent="WidthAndHeight"
-                  ResizeMode="NoResize" d:DataContext="{d:DesignInstance local:GameInstallerViewModel}">
+                  ResizeMode="NoResize" 
+                  ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+                  mc:Ignorable="d"
+                  d:DataContext="{d:DesignInstance local:GameInstallerViewModel}">
     <StackPanel Margin="20">
         <i:Interaction.Behaviors>
             <rwpf:UnifiedMarginBehavior Margin="0 0 0 15" />
@@ -26,13 +28,13 @@
                 <rwpf:UnifiedMarginBehavior Margin="0 0 8 0" />
             </i:Interaction.Behaviors>
 
-            <CheckBox Content="Create desktop shortcut"
+            <CheckBox Content="{Resx Installer_CreateDesktopShortcut}"
                       IsChecked="{Binding Path=CreateDesktopShortcut}"/>
 
-            <CheckBox Content="Create start menu shortcut" 
+            <CheckBox Content="{Resx Installer_CreateStartMenuShortcut}" 
                       IsChecked="{Binding Path=CreateStartMenuShortcut}"/>
 
-            <CheckBox Content="Install for all users"
+            <CheckBox Content="{Resx Installer_InstallAllUsers}"
                       IsChecked="{Binding Path=CreateShortcutsForAllUsers}"/>
 
         </StackPanel>
@@ -57,7 +59,7 @@
         </Border>
 
         <StackPanel>
-            <TextBlock Text="Total Progress"
+            <TextBlock Text="{Resx Installer_TotalProgress}"
                        FontSize="14"
                        HorizontalAlignment="Center"
                        Margin="0 0 0 5"/>
@@ -66,7 +68,7 @@
         </StackPanel>
 
         <StackPanel>
-            <TextBlock Text="Current File Progress"
+            <TextBlock Text="{Resx Installer_CurrentProgress}"
                        FontSize="14"
                        HorizontalAlignment="Center"
                        Margin="0 0 0 5"/>
@@ -79,11 +81,11 @@
                    HorizontalAlignment="Center"
                    rwpf:UserLevelTag.MinUserLevel="Advanced"/>
 
-        <Button Content="Install"
+        <Button Content="{Resx Installer_Install}"
                 Command="{Binding Path=InstallCommand}"
                 IsEnabled="{Binding Path=InstallerRunning, Converter={rwpf:InvertedBooleanConverter}}"/>
 
-        <Button Content="Cancel"
+        <Button Content="{Resx Installer_Cancel}"
                 Command="{Binding Path=CancelCommand}"
                 IsEnabled="{Binding Path=InstallerRunning}" />
 

@@ -892,4 +892,244 @@ gameDisplayName</comment>
   <data name="LaunchGame_MountPathNotFound" xml:space="preserve">
     <value>The mount path could not be found. Specify a valid path under the game options to run this game.</value>
   </data>
+  <data name="Backup_Confirm" xml:space="preserve">
+    <value>This will replace any previous backups for {0}</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="Backup_ConfirmHeader" xml:space="preserve">
+    <value>Confirm backup</value>
+  </data>
+  <data name="Backup_FailedHeader" xml:space="preserve">
+    <value>Backup failed</value>
+  </data>
+  <data name="Backup_MissingDirectoriesError" xml:space="preserve">
+    <value>Backup for {0} could not finish due to not all specified directories being found</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="RemoveGame_UtilityWarningHeader" xml:space="preserve">
+    <value>Utility warning</value>
+  </data>
+  <data name="GameFinder_GamesFoundHeader" xml:space="preserve">
+    <value>Installed games found</value>
+  </data>
+  <data name="GameFinder_GamesFound" xml:space="preserve">
+    <value>The following new games were found:</value>
+  </data>
+  <data name="UbiIniWriteAccess_Error" xml:space="preserve">
+    <value>An error occurred when attempting to enable write access for the Rayman configuration file</value>
+  </data>
+  <data name="UbiIniWriteAccess_InfoMessage" xml:space="preserve">
+    <value>To be able to configure the Rayman games without running this program as administrator you will need to accept the following admin prompt</value>
+  </data>
+  <data name="RemoveGame_UtilityWarning" xml:space="preserve">
+    <value>The following utilities have been applied to this game and will not be removed when removing the game. To remove the utilities, go to the utilities dialog and disable/uninstall them or revert back to the original option if available.</value>
+  </data>
+  <data name="AddGame_DuplicateHeader" xml:space="preserve">
+    <value>Error adding new game</value>
+  </data>
+  <data name="AddGame_Duplicate" xml:space="preserve">
+    <value>The game {0} has already been added</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="Restore_Failed" xml:space="preserve">
+    <value>Restore failed for {0}</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="Restore_SuccessHeader" xml:space="preserve">
+    <value>Restore successful</value>
+  </data>
+  <data name="Restore_Success" xml:space="preserve">
+    <value>Your save files for {0} were successfully restored</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="Restore_ConfirmHeader" xml:space="preserve">
+    <value>Confirm restore</value>
+  </data>
+  <data name="Restore_Confirm" xml:space="preserve">
+    <value>This will replace current {0} save files with backed up ones.</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="Restore_FailedHeader" xml:space="preserve">
+    <value>Restore failed</value>
+  </data>
+  <data name="Restore_MissingBackup" xml:space="preserve">
+    <value>There was no backup found for {0}</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="Backup_Failed" xml:space="preserve">
+    <value>Backup failed for {0}</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="Backup_SuccessHeader" xml:space="preserve">
+    <value>Backup successful</value>
+  </data>
+  <data name="Backup_Success" xml:space="preserve">
+    <value>Your save files for {0} were successfully backed up</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="Backup_MissingFilesError" xml:space="preserve">
+    <value>No files were found to backup for {0}</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="GameFinder_Error" xml:space="preserve">
+    <value>An error occurred during the game finder operation</value>
+  </data>
+  <data name="Download_NoFilesFound" xml:space="preserve">
+    <value>No files were found to download</value>
+  </data>
+  <data name="Download_ConfirmSize" xml:space="preserve">
+    <value>This patch requires its files to be downloaded. The total size of the download is {0}. Continue?</value>
+    <comment>Arguments:
+downloadSize</comment>
+  </data>
+  <data name="Download_ConfirmHeader" xml:space="preserve">
+    <value>Confirm download</value>
+  </data>
+  <data name="Download_Confirm" xml:space="preserve">
+    <value>This patch requires its files to be downloaded. Continue?</value>
+  </data>
+  <data name="Download_Error" xml:space="preserve">
+    <value>The files could not be downloaded.</value>
+  </data>
+  <data name="Update_UnknownError" xml:space="preserve">
+    <value>Unknown error</value>
+  </data>
+  <data name="Update_WebError" xml:space="preserve">
+    <value>A connection could not be established to the server</value>
+  </data>
+  <data name="Update_FormatError" xml:space="preserve">
+    <value>The information from the server was not valid</value>
+  </data>
+  <data name="Update_GenericError" xml:space="preserve">
+    <value>An unknown error occurred while connecting to the server</value>
+  </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>Update Check Failed</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>The latest version ({0}) is already installed.</value>
+    <comment>Arguments:
+latestVersion</comment>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>No new versions found</value>
+  </data>
+  <data name="Update_ManifestError" xml:space="preserve">
+    <value>The server manifest could not be read</value>
+  </data>
+  <data name="Update_NewsError" xml:space="preserve">
+    <value>Error getting news</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>A new update is available to download. Download now?
+
+News: 
+{0}</value>
+    <comment>Arguments:
+versionNews</comment>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>New version found</value>
+  </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>The updater could not be created. To manually download the new version, go to {0} and download the latest version from there.</value>
+    <comment>Arguments:
+downloadURL</comment>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Error creating updater</value>
+  </data>
+  <data name="MoveBackups_Question" xml:space="preserve">
+    <value>Do you want to move existing backups to the new location?</value>
+  </data>
+  <data name="MoveBackups_QuestionHeader" xml:space="preserve">
+    <value>Move old backups</value>
+  </data>
+  <data name="MoveBackups_NoBackupsFound" xml:space="preserve">
+    <value>No backups found in {0}</value>
+    <comment>Arguments:
+oldBackupLocation</comment>
+  </data>
+  <data name="MoveBackups_ErrorHeader" xml:space="preserve">
+    <value>Moving backups failed</value>
+  </data>
+  <data name="MoveBackups_BackupAlreadyExists" xml:space="preserve">
+    <value>Backups were not moved. A backup already exists in {0}</value>
+    <comment>Arguments:
+newBackupLocation</comment>
+  </data>
+  <data name="MoveBackups_Success" xml:space="preserve">
+    <value>The backups have been moved successfully</value>
+  </data>
+  <data name="MoveBackups_Error" xml:space="preserve">
+    <value>Error moving backup</value>
+  </data>
+  <data name="Installer_CreateDesktopShortcut" xml:space="preserve">
+    <value>Create desktop shortcut</value>
+  </data>
+  <data name="Installer_CreateStartMenuShortcut" xml:space="preserve">
+    <value>Create start menu shortcut</value>
+  </data>
+  <data name="Installer_InstallAllUsers" xml:space="preserve">
+    <value>Install for all users</value>
+  </data>
+  <data name="Installer_TotalProgress" xml:space="preserve">
+    <value>Total Progress</value>
+  </data>
+  <data name="Installer_CurrentProgress" xml:space="preserve">
+    <value>Current File Progress</value>
+  </data>
+  <data name="Installer_Install" xml:space="preserve">
+    <value>Install</value>
+  </data>
+  <data name="Installer_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Installer_BrowseDiscHeader" xml:space="preserve">
+    <value>Select disc to install from</value>
+  </data>
+  <data name="Installer_DriveNameConflict" xml:space="preserve">
+    <value>The selected drive has the same label and root path as a previously inserted one. Due to this the installer can not differentiate them. Please rename one of the drives and try again, or mount them as different root directories.</value>
+  </data>
+  <data name="Installer_DriveNameConflictHeader" xml:space="preserve">
+    <value>Drive conflict</value>
+  </data>
+  <data name="Installer_MissingFiles" xml:space="preserve">
+    <value>{0} paths were not found on the specified drive. If the game requires more than one drive for installation, please insert the next one.</value>
+    <comment>Arguments:
+missingPaths</comment>
+  </data>
+  <data name="Installer_MissingFilesHeader" xml:space="preserve">
+    <value>Missing Paths</value>
+  </data>
+  <data name="Installer_InsertDriveRequest" xml:space="preserve">
+    <value>Please insert "{0}" to port {1} and continue, or cancel to cancel the installation</value>
+    <comment>Arguments:
+driveLabel
+driveRoot</comment>
+  </data>
+  <data name="Installer_InsertDriveRequestHeader" xml:space="preserve">
+    <value>Insert Drive</value>
+  </data>
+  <data name="Installer_FileCopyError" xml:space="preserve">
+    <value>The file {0} failed to copy over with the error message: {1}
+
+Try again?</value>
+    <comment>Arguments:
+fileName
+exceptionMessage</comment>
+  </data>
+  <data name="Installer_FileCopyErrorHeader" xml:space="preserve">
+    <value>Failed to copy item to destination</value>
+  </data>
 </root>

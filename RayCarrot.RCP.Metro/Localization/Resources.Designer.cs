@@ -161,6 +161,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The game {0} has already been added.
+        /// </summary>
+        public static string AddGame_Duplicate {
+            get {
+                return ResourceManager.GetString("AddGame_Duplicate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error adding new game.
+        /// </summary>
+        public static string AddGame_DuplicateHeader {
+            get {
+                return ResourceManager.GetString("AddGame_DuplicateHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman Control Panel.
         /// </summary>
         public static string AppName {
@@ -175,6 +193,42 @@ namespace RayCarrot.RCP.Metro {
         public static string Backup_Backup {
             get {
                 return ResourceManager.GetString("Backup_Backup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will replace any previous backups for {0}.
+        /// </summary>
+        public static string Backup_Confirm {
+            get {
+                return ResourceManager.GetString("Backup_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm backup.
+        /// </summary>
+        public static string Backup_ConfirmHeader {
+            get {
+                return ResourceManager.GetString("Backup_ConfirmHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup failed for {0}.
+        /// </summary>
+        public static string Backup_Failed {
+            get {
+                return ResourceManager.GetString("Backup_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup failed.
+        /// </summary>
+        public static string Backup_FailedHeader {
+            get {
+                return ResourceManager.GetString("Backup_FailedHeader", resourceCulture);
             }
         }
         
@@ -197,11 +251,47 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup for {0} could not finish due to not all specified directories being found.
+        /// </summary>
+        public static string Backup_MissingDirectoriesError {
+            get {
+                return ResourceManager.GetString("Backup_MissingDirectoriesError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No files were found to backup for {0}.
+        /// </summary>
+        public static string Backup_MissingFilesError {
+            get {
+                return ResourceManager.GetString("Backup_MissingFilesError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restore.
         /// </summary>
         public static string Backup_Restore {
             get {
                 return ResourceManager.GetString("Backup_Restore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your save files for {0} were successfully backed up.
+        /// </summary>
+        public static string Backup_Success {
+            get {
+                return ResourceManager.GetString("Backup_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup successful.
+        /// </summary>
+        public static string Backup_SuccessHeader {
+            get {
+                return ResourceManager.GetString("Backup_SuccessHeader", resourceCulture);
             }
         }
         
@@ -944,6 +1034,51 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This patch requires its files to be downloaded. Continue?.
+        /// </summary>
+        public static string Download_Confirm {
+            get {
+                return ResourceManager.GetString("Download_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm download.
+        /// </summary>
+        public static string Download_ConfirmHeader {
+            get {
+                return ResourceManager.GetString("Download_ConfirmHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This patch requires its files to be downloaded. The total size of the download is {0}. Continue?.
+        /// </summary>
+        public static string Download_ConfirmSize {
+            get {
+                return ResourceManager.GetString("Download_ConfirmSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The files could not be downloaded..
+        /// </summary>
+        public static string Download_Error {
+            get {
+                return ResourceManager.GetString("Download_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No files were found to download.
+        /// </summary>
+        public static string Download_NoFilesFound {
+            get {
+                return ResourceManager.GetString("Download_NoFilesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exception.
         /// </summary>
         public static string ExceptionMessageHeader {
@@ -1151,6 +1286,33 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred during the game finder operation.
+        /// </summary>
+        public static string GameFinder_Error {
+            get {
+                return ResourceManager.GetString("GameFinder_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following new games were found:.
+        /// </summary>
+        public static string GameFinder_GamesFound {
+            get {
+                return ResourceManager.GetString("GameFinder_GamesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installed games found.
+        /// </summary>
+        public static string GameFinder_GamesFoundHeader {
+            get {
+                return ResourceManager.GetString("GameFinder_GamesFoundHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to nGlide config.
         /// </summary>
         public static string GameLink_R2nGlide {
@@ -1255,6 +1417,152 @@ namespace RayCarrot.RCP.Metro {
         public static string HelpPageHeader {
             get {
                 return ResourceManager.GetString("HelpPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select disc to install from.
+        /// </summary>
+        public static string Installer_BrowseDiscHeader {
+            get {
+                return ResourceManager.GetString("Installer_BrowseDiscHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Installer_Cancel {
+            get {
+                return ResourceManager.GetString("Installer_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create desktop shortcut.
+        /// </summary>
+        public static string Installer_CreateDesktopShortcut {
+            get {
+                return ResourceManager.GetString("Installer_CreateDesktopShortcut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create start menu shortcut.
+        /// </summary>
+        public static string Installer_CreateStartMenuShortcut {
+            get {
+                return ResourceManager.GetString("Installer_CreateStartMenuShortcut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current File Progress.
+        /// </summary>
+        public static string Installer_CurrentProgress {
+            get {
+                return ResourceManager.GetString("Installer_CurrentProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The selected drive has the same label and root path as a previously inserted one. Due to this the installer can not differentiate them. Please rename one of the drives and try again, or mount them as different root directories..
+        /// </summary>
+        public static string Installer_DriveNameConflict {
+            get {
+                return ResourceManager.GetString("Installer_DriveNameConflict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drive conflict.
+        /// </summary>
+        public static string Installer_DriveNameConflictHeader {
+            get {
+                return ResourceManager.GetString("Installer_DriveNameConflictHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file {0} failed to copy over with the error message: {1}
+        ///
+        ///Try again?.
+        /// </summary>
+        public static string Installer_FileCopyError {
+            get {
+                return ResourceManager.GetString("Installer_FileCopyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to copy item to destination.
+        /// </summary>
+        public static string Installer_FileCopyErrorHeader {
+            get {
+                return ResourceManager.GetString("Installer_FileCopyErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please insert &quot;{0}&quot; to port {1} and continue, or cancel to cancel the installation.
+        /// </summary>
+        public static string Installer_InsertDriveRequest {
+            get {
+                return ResourceManager.GetString("Installer_InsertDriveRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert Drive.
+        /// </summary>
+        public static string Installer_InsertDriveRequestHeader {
+            get {
+                return ResourceManager.GetString("Installer_InsertDriveRequestHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install.
+        /// </summary>
+        public static string Installer_Install {
+            get {
+                return ResourceManager.GetString("Installer_Install", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Install for all users.
+        /// </summary>
+        public static string Installer_InstallAllUsers {
+            get {
+                return ResourceManager.GetString("Installer_InstallAllUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} paths were not found on the specified drive. If the game requires more than one drive for installation, please insert the next one..
+        /// </summary>
+        public static string Installer_MissingFiles {
+            get {
+                return ResourceManager.GetString("Installer_MissingFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing Paths.
+        /// </summary>
+        public static string Installer_MissingFilesHeader {
+            get {
+                return ResourceManager.GetString("Installer_MissingFilesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Progress.
+        /// </summary>
+        public static string Installer_TotalProgress {
+            get {
+                return ResourceManager.GetString("Installer_TotalProgress", resourceCulture);
             }
         }
         
@@ -1471,6 +1779,69 @@ namespace RayCarrot.RCP.Metro {
         public static string MountPathInfo {
             get {
                 return ResourceManager.GetString("MountPathInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backups were not moved. A backup already exists in {0}.
+        /// </summary>
+        public static string MoveBackups_BackupAlreadyExists {
+            get {
+                return ResourceManager.GetString("MoveBackups_BackupAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error moving backup.
+        /// </summary>
+        public static string MoveBackups_Error {
+            get {
+                return ResourceManager.GetString("MoveBackups_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moving backups failed.
+        /// </summary>
+        public static string MoveBackups_ErrorHeader {
+            get {
+                return ResourceManager.GetString("MoveBackups_ErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No backups found in {0}.
+        /// </summary>
+        public static string MoveBackups_NoBackupsFound {
+            get {
+                return ResourceManager.GetString("MoveBackups_NoBackupsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to move existing backups to the new location?.
+        /// </summary>
+        public static string MoveBackups_Question {
+            get {
+                return ResourceManager.GetString("MoveBackups_Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move old backups.
+        /// </summary>
+        public static string MoveBackups_QuestionHeader {
+            get {
+                return ResourceManager.GetString("MoveBackups_QuestionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The backups have been moved successfully.
+        /// </summary>
+        public static string MoveBackups_Success {
+            get {
+                return ResourceManager.GetString("MoveBackups_Success", resourceCulture);
             }
         }
         
@@ -1732,6 +2103,87 @@ namespace RayCarrot.RCP.Metro {
         public static string RDU_ReplaceFilesReplace {
             get {
                 return ResourceManager.GetString("RDU_ReplaceFilesReplace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following utilities have been applied to this game and will not be removed when removing the game. To remove the utilities, go to the utilities dialog and disable/uninstall them or revert back to the original option if available..
+        /// </summary>
+        public static string RemoveGame_UtilityWarning {
+            get {
+                return ResourceManager.GetString("RemoveGame_UtilityWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utility warning.
+        /// </summary>
+        public static string RemoveGame_UtilityWarningHeader {
+            get {
+                return ResourceManager.GetString("RemoveGame_UtilityWarningHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will replace current {0} save files with backed up ones..
+        /// </summary>
+        public static string Restore_Confirm {
+            get {
+                return ResourceManager.GetString("Restore_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm restore.
+        /// </summary>
+        public static string Restore_ConfirmHeader {
+            get {
+                return ResourceManager.GetString("Restore_ConfirmHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore failed for {0}.
+        /// </summary>
+        public static string Restore_Failed {
+            get {
+                return ResourceManager.GetString("Restore_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore failed.
+        /// </summary>
+        public static string Restore_FailedHeader {
+            get {
+                return ResourceManager.GetString("Restore_FailedHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was no backup found for {0}.
+        /// </summary>
+        public static string Restore_MissingBackup {
+            get {
+                return ResourceManager.GetString("Restore_MissingBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your save files for {0} were successfully restored.
+        /// </summary>
+        public static string Restore_Success {
+            get {
+                return ResourceManager.GetString("Restore_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore successful.
+        /// </summary>
+        public static string Restore_SuccessHeader {
+            get {
+                return ResourceManager.GetString("Restore_SuccessHeader", resourceCulture);
             }
         }
         
@@ -2362,6 +2814,144 @@ namespace RayCarrot.RCP.Metro {
         public static string SettingsPageHeader {
             get {
                 return ResourceManager.GetString("SettingsPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when attempting to enable write access for the Rayman configuration file.
+        /// </summary>
+        public static string UbiIniWriteAccess_Error {
+            get {
+                return ResourceManager.GetString("UbiIniWriteAccess_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To be able to configure the Rayman games without running this program as administrator you will need to accept the following admin prompt.
+        /// </summary>
+        public static string UbiIniWriteAccess_InfoMessage {
+            get {
+                return ResourceManager.GetString("UbiIniWriteAccess_InfoMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Check Failed.
+        /// </summary>
+        public static string Update_ErrorHeader {
+            get {
+                return ResourceManager.GetString("Update_ErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The information from the server was not valid.
+        /// </summary>
+        public static string Update_FormatError {
+            get {
+                return ResourceManager.GetString("Update_FormatError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unknown error occurred while connecting to the server.
+        /// </summary>
+        public static string Update_GenericError {
+            get {
+                return ResourceManager.GetString("Update_GenericError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The latest version ({0}) is already installed..
+        /// </summary>
+        public static string Update_LatestInstalled {
+            get {
+                return ResourceManager.GetString("Update_LatestInstalled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No new versions found.
+        /// </summary>
+        public static string Update_LatestInstalledHeader {
+            get {
+                return ResourceManager.GetString("Update_LatestInstalledHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The server manifest could not be read.
+        /// </summary>
+        public static string Update_ManifestError {
+            get {
+                return ResourceManager.GetString("Update_ManifestError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error getting news.
+        /// </summary>
+        public static string Update_NewsError {
+            get {
+                return ResourceManager.GetString("Update_NewsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown error.
+        /// </summary>
+        public static string Update_UnknownError {
+            get {
+                return ResourceManager.GetString("Update_UnknownError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new update is available to download. Download now?
+        ///
+        ///News: 
+        ///{0}.
+        /// </summary>
+        public static string Update_UpdateAvailable {
+            get {
+                return ResourceManager.GetString("Update_UpdateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New version found.
+        /// </summary>
+        public static string Update_UpdateAvailableHeader {
+            get {
+                return ResourceManager.GetString("Update_UpdateAvailableHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The updater could not be created. To manually download the new version, go to {0} and download the latest version from there..
+        /// </summary>
+        public static string Update_UpdaterError {
+            get {
+                return ResourceManager.GetString("Update_UpdaterError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error creating updater.
+        /// </summary>
+        public static string Update_UpdaterErrorHeader {
+            get {
+                return ResourceManager.GetString("Update_UpdaterErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A connection could not be established to the server.
+        /// </summary>
+        public static string Update_WebError {
+            get {
+                return ResourceManager.GetString("Update_WebError", resourceCulture);
             }
         }
     }

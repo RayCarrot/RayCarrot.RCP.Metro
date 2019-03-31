@@ -37,7 +37,7 @@ namespace RayCarrot.RCP.Metro
             var instDir = Games.RaymanOrigins.GetInfo().InstallDirectory;
 
             // Attempt to find the Rayman Origins video directory
-            var dir = instDir + "GameData";
+            var dir = GetVideosDirectory(instDir);
 
             // Set to music path if found
             VideoDir = dir.DirectoryExists && (dir + "intro.bik").FileExists ? dir : FileSystemPath.EmptyPath;
@@ -47,20 +47,15 @@ namespace RayCarrot.RCP.Metro
 
             if (CanVideosBeReplaced)
             {
-                try
-                {
-                    var size = (dir + "intro.bik").GetSize();
+                var result = GetIsOriginalVideos(VideoDir);
 
-                    IsOriginalVideos = size == new ByteSize(59748732);
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Getting RO video size");
+                if (result == null)
                     CanVideosBeReplaced = false;
-                }
+                else
+                    IsOriginalVideos = result.Value;
             }
 
-            DebugCommandFilePath = instDir + "cmdline.txt";
+            DebugCommandFilePath = GetDebugCommandFilePath(instDir);
 
             if (!DebugCommandFilePath.FileExists)
             {
@@ -384,7 +379,11 @@ namespace RayCarrot.RCP.Metro
                     RCFRCP.File.DeleteFile(DebugCommandFilePath);
 
                     if (!IsDebugModeEnabled)
+                    {
+                        RCF.Logger.LogInformationSource($"The Rayman Origins debug commands have been disabled");
+
                         return;
+                    }
 
                     File.WriteAllLines(DebugCommandFilePath, DebugCommands.Select(x => $"{x.Key}={x.Value}"));
 
@@ -396,6 +395,50 @@ namespace RayCarrot.RCP.Metro
                     await RCF.MessageUI.DisplayMessageAsync("An error occured when applying the debug commands", "Error", MessageType.Error);
                 }
             }
+        }
+
+        #endregion
+
+        #region Public Static Methods
+
+        /// <summary>
+        /// Gets the videos directory
+        /// </summary>
+        /// <param name="installDir">The game install directory</param>
+        /// <returns>The directory path</returns>
+        public static FileSystemPath GetVideosDirectory(FileSystemPath installDir)
+        {
+            return installDir + "GameData";
+        }
+
+        /// <summary>
+        /// Gets a value indicating if the original videos are available in the specified path
+        /// </summary>
+        /// <param name="path">The video directory</param>
+        /// <returns>True if the original videos are available, false if not. Null if an error occurred while checking.</returns>
+        public static bool? GetIsOriginalVideos(FileSystemPath path)
+        {
+            try
+            {
+                var size = (path + "intro.bik").GetSize();
+
+                return size == new ByteSize(59748732);
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Getting RO video size");
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets the debug command file path
+        /// </summary>
+        /// <param name="installDir">The game install directory</param>
+        /// <returns>The file path</returns>
+        public static FileSystemPath GetDebugCommandFilePath(FileSystemPath installDir)
+        {
+            return installDir + "cmdline.txt";
         }
 
         #endregion

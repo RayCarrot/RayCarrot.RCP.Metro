@@ -16,7 +16,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public SettingsPageViewModel()
         {
-            ContributeLocalizationCommand = new AsyncRelayCommand(ContributeLocalizationAsync);
+            ContributeLocalizationCommand = new RelayCommand(ContributeLocalization);
         }
 
         #endregion
@@ -29,7 +29,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Methods
 
-        public async Task ContributeLocalizationAsync()
+        public void ContributeLocalization()
         {
             // TODO: Open Steam discussion page?
         }

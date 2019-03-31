@@ -35,6 +35,13 @@ Starting with version 4.1.0 the Rayman Control Panel will support localization. 
 - English
 - Swedish
 
+As of now the following strings are NOT localizaed:
+- Version history
+- App news (from server manifest)
+- Exception messages (from Carrot Framework)
+- Certain dialogs (from Carrot Framework)
+- Game names
+
 ## Contact
 You can contact me on the following places:
 
