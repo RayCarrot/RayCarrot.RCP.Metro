@@ -791,6 +791,33 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The cycles can not be empty.
+        /// </summary>
+        public static string DosBoxCyclesValidation_InvalidFormat {
+            get {
+                return ResourceManager.GetString("DosBoxCyclesValidation_InvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only digits are allowed when using a specified value.
+        /// </summary>
+        public static string DosBoxCyclesValidation_NonDigit {
+            get {
+                return ResourceManager.GetString("DosBoxCyclesValidation_NonDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The cycles value can not be empty.
+        /// </summary>
+        public static string DosBoxCyclesValidation_NullOrEmpty {
+            get {
+                return ResourceManager.GetString("DosBoxCyclesValidation_NullOrEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aspect ratio correction.
         /// </summary>
         public static string DosBoxOptions_AspectCorrection {
@@ -1012,6 +1039,60 @@ namespace RayCarrot.RCP.Metro {
         public static string DosBoxOptions_WindowedResInfo {
             get {
                 return ResourceManager.GetString("DosBoxOptions_WindowedResInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The character &apos;{0}&apos; is not valid.
+        /// </summary>
+        public static string DosBoxResolutionValidation_InvalidCharacter {
+            get {
+                return ResourceManager.GetString("DosBoxResolutionValidation_InvalidCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid format.
+        /// </summary>
+        public static string DosBoxResolutionValidation_InvalidFormat {
+            get {
+                return ResourceManager.GetString("DosBoxResolutionValidation_InvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A valid height must be specified.
+        /// </summary>
+        public static string DosBoxResolutionValidation_InvalidHeight {
+            get {
+                return ResourceManager.GetString("DosBoxResolutionValidation_InvalidHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The resolution separator &apos;x&apos; must be used.
+        /// </summary>
+        public static string DosBoxResolutionValidation_MissingSeparator {
+            get {
+                return ResourceManager.GetString("DosBoxResolutionValidation_MissingSeparator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The resolution separator &apos;x&apos; can only be used once.
+        /// </summary>
+        public static string DosBoxResolutionValidation_MultipleSeparators {
+            get {
+                return ResourceManager.GetString("DosBoxResolutionValidation_MultipleSeparators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The resolution value can not be empty.
+        /// </summary>
+        public static string DosBoxResolutionValidation_NullOrEmpty {
+            get {
+                return ResourceManager.GetString("DosBoxResolutionValidation_NullOrEmpty", resourceCulture);
             }
         }
         
@@ -1439,6 +1520,60 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The operation is currently canceling.
+        /// </summary>
+        public static string Installer_CancelAlreadyRequested {
+            get {
+                return ResourceManager.GetString("Installer_CancelAlreadyRequested", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel request already received.
+        /// </summary>
+        public static string Installer_CancelAlreadyRequestedHeader {
+            get {
+                return ResourceManager.GetString("Installer_CancelAlreadyRequestedHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installation canceled.
+        /// </summary>
+        public static string Installer_Canceled {
+            get {
+                return ResourceManager.GetString("Installer_Canceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you wish to cancel the installation?.
+        /// </summary>
+        public static string Installer_CancelQuestion {
+            get {
+                return ResourceManager.GetString("Installer_CancelQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel ongoing installation.
+        /// </summary>
+        public static string Installer_CancelQuestionHeader {
+            get {
+                return ResourceManager.GetString("Installer_CancelQuestionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Part of the installation could not be cleaned up under {0}.
+        /// </summary>
+        public static string Installer_CleanupError {
+            get {
+                return ResourceManager.GetString("Installer_CleanupError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create desktop shortcut.
         /// </summary>
         public static string Installer_CreateDesktopShortcut {
@@ -1480,6 +1615,42 @@ namespace RayCarrot.RCP.Metro {
         public static string Installer_DriveNameConflictHeader {
             get {
                 return ResourceManager.GetString("Installer_DriveNameConflictHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installation failed.
+        /// </summary>
+        public static string Installer_Failed {
+            get {
+                return ResourceManager.GetString("Installer_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Action failed.
+        /// </summary>
+        public static string Installer_FailedHeader {
+            get {
+                return ResourceManager.GetString("Installer_FailedHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There were {0} file conflicts with the selected directory. Do you wish to overwrite these files?.
+        /// </summary>
+        public static string Installer_FileConflicts {
+            get {
+                return ResourceManager.GetString("Installer_FileConflicts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Conflicts.
+        /// </summary>
+        public static string Installer_FileConflictsHeader {
+            get {
+                return ResourceManager.GetString("Installer_FileConflictsHeader", resourceCulture);
             }
         }
         
@@ -1540,6 +1711,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The specified directory does not exist.
+        /// </summary>
+        public static string Installer_InvalidDirectory {
+            get {
+                return ResourceManager.GetString("Installer_InvalidDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directory not found.
+        /// </summary>
+        public static string Installer_InvalidDirectoryHeader {
+            get {
+                return ResourceManager.GetString("Installer_InvalidDirectoryHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} paths were not found on the specified drive. If the game requires more than one drive for installation, please insert the next one..
         /// </summary>
         public static string Installer_MissingFiles {
@@ -1558,11 +1747,56 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Launch {0}.
+        /// </summary>
+        public static string Installer_ShortcutName {
+            get {
+                return ResourceManager.GetString("Installer_ShortcutName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installation complete. Run configuration tool for {0} to set up the game..
+        /// </summary>
+        public static string Installer_Success {
+            get {
+                return ResourceManager.GetString("Installer_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installation Complete.
+        /// </summary>
+        public static string Installer_SuccessHeader {
+            get {
+                return ResourceManager.GetString("Installer_SuccessHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Progress.
         /// </summary>
         public static string Installer_TotalProgress {
             get {
                 return ResourceManager.GetString("Installer_TotalProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some items were not handled during the installation. Do you wish to retry handling those items?.
+        /// </summary>
+        public static string Installer_UnhandledItems {
+            get {
+                return ResourceManager.GetString("Installer_UnhandledItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unhandled Items.
+        /// </summary>
+        public static string Installer_UnhandledItemsHeader {
+            get {
+                return ResourceManager.GetString("Installer_UnhandledItemsHeader", resourceCulture);
             }
         }
         
@@ -1968,6 +2202,33 @@ namespace RayCarrot.RCP.Metro {
         public static string R1U_TPLSUninstall {
             get {
                 return ResourceManager.GetString("R1U_TPLSUninstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid format.
+        /// </summary>
+        public static string R2HotKeyValidation_InvalidFormat {
+            get {
+                return ResourceManager.GetString("R2HotKeyValidation_InvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key is not valid.
+        /// </summary>
+        public static string R2HotKeyValidation_InvalidKey {
+            get {
+                return ResourceManager.GetString("R2HotKeyValidation_InvalidKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single key must be used.
+        /// </summary>
+        public static string R2HotKeyValidation_ModifierKeysUsed {
+            get {
+                return ResourceManager.GetString("R2HotKeyValidation_ModifierKeysUsed", resourceCulture);
             }
         }
         
@@ -2818,6 +3079,61 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The PlayStation soundtrack utility crashed with the error message of: {0}
+        ///Restart?.
+        /// </summary>
+        public static string TPLS_Error {
+            get {
+                return ResourceManager.GetString("TPLS_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TPLS Error.
+        /// </summary>
+        public static string TPLS_ErrorHeader {
+            get {
+                return ResourceManager.GetString("TPLS_ErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred playing the soundtrack.
+        /// </summary>
+        public static string TPLS_PlaybackError {
+            get {
+                return ResourceManager.GetString("TPLS_PlaybackError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The soundtrack file is missing.
+        /// </summary>
+        public static string TPLS_PlaybackError_FileNotFound {
+            get {
+                return ResourceManager.GetString("TPLS_PlaybackError_FileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The soundtrack file is in an incorrect format.
+        /// </summary>
+        public static string TPLS_PlaybackError_InvalidData {
+            get {
+                return ResourceManager.GetString("TPLS_PlaybackError_InvalidData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Playback Error.
+        /// </summary>
+        public static string TPLS_PlaybackErrorHeader {
+            get {
+                return ResourceManager.GetString("TPLS_PlaybackErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred when attempting to enable write access for the Rayman configuration file.
         /// </summary>
         public static string UbiIniWriteAccess_Error {
@@ -2952,6 +3268,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Update_WebError {
             get {
                 return ResourceManager.GetString("Update_WebError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This utility requires additonal files to be downloaded.
+        /// </summary>
+        public static string Utility_AdditionalFilesRequired {
+            get {
+                return ResourceManager.GetString("Utility_AdditionalFilesRequired", resourceCulture);
             }
         }
     }

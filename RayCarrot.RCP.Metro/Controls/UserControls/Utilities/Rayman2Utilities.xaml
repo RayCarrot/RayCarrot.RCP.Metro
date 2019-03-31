@@ -22,7 +22,8 @@
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
                            Text="{Resx R2U_TranslationsHeader}" />
 
-                <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}" />
+                <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}"
+                                Text="{Resx Utility_AdditionalFilesRequired}" />
 
                 <local:InfoIcon Text="{Resx R2U_TranslationsInfo}" />
 

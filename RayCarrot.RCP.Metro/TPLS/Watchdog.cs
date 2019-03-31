@@ -339,7 +339,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("TPLS");
 
-                if (!await RCF.MessageUI.DisplayMessageAsync($"The PlayStation soundtrack utility crashed with the error message of: {ex.Message}{Environment.NewLine}Restart?", "TPLS Error", MessageType.Error, true))
+                if (!await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.TPLS_Error, ex.Message), Resources.TPLS_ErrorHeader, MessageType.Error, true))
                     return;
 
                 await StartWatchingRaymanAsync();

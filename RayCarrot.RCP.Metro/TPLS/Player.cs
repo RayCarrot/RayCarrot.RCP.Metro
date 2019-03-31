@@ -32,36 +32,36 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("TPLS: Playing music");
 
-                await RCF.MessageUI.DisplayMessageAsync("The soundtrack file is missing", "Playback Error", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.TPLS_PlaybackError_FileNotFound, Resources.TPLS_PlaybackErrorHeader, MessageType.Error);
             }
             catch (InvalidDataException ex)
             {
                 ex.HandleError("TPLS: Playing music");
 
-                await RCF.MessageUI.DisplayMessageAsync("The soundtrack file is in an incorrect format", "Playback Error", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.TPLS_PlaybackError_InvalidData, Resources.TPLS_PlaybackErrorHeader, MessageType.Error);
             }
             catch (Exception ex)
             {
                 ex.HandleError("TPLS: Playing music");
 
-                await RCF.MessageUI.DisplayMessageAsync("An error occurred playing the soundtrack", "Playback Error", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.TPLS_PlaybackError, Resources.TPLS_PlaybackErrorHeader, MessageType.Error);
             }
         }
 
         public void Fade(double delay, double duration)
         {
-            if (fader != null && !Fading)
+            if (fader == null || Fading)
+                return;
+
+            Fading = true;
+            fader.BeginFadeOut(delay, duration);
+            Thread FadeWaitOut = new Thread(() =>
             {
-                Fading = true;
-                fader.BeginFadeOut(delay, duration);
-                Thread FadeWaitOut = new Thread(() =>
-                {
-                    Thread.Sleep((int)(delay + duration));
-                    Fading = false;
-                    Stop();
-                });
-                FadeWaitOut.Start();
-            }
+                Thread.Sleep((int)(delay + duration));
+                Fading = false;
+                Stop();
+            });
+            FadeWaitOut.Start();
         }
 
         public void Pause()

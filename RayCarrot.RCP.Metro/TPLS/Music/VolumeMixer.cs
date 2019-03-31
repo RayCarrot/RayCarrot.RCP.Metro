@@ -215,6 +215,5 @@ namespace RayCarrot.RCP.Metro
             [PreserveSig]
             int SetDuckingPreference(bool optOut);
         }
-
     }
 }

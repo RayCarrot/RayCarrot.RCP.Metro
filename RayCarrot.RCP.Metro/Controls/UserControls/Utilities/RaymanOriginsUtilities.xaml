@@ -24,7 +24,8 @@
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
                            Text="{Resx ROU_HQVideosHeader}" />
 
-                <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}" />
+                <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}"
+                                Text="{Resx Utility_AdditionalFilesRequired}" />
 
                 <local:InfoIcon Text="{Resx ROU_HQVideosInfo}" />
 
@@ -142,7 +143,8 @@
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
                            Text="{Resx ROU_UpdateHeader}" />
 
-                <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}" />
+                <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}"
+                                Text="{Resx Utility_AdditionalFilesRequired}" />
 
                 <local:InfoIcon Text="{Resx ROU_UpdateInfo}" />
 

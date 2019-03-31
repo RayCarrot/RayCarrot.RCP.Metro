@@ -174,11 +174,11 @@ namespace RayCarrot.RCP.Metro
         {
             if (CancellationTokenSource.IsCancellationRequested)
             {
-                await RCF.MessageUI.DisplayMessageAsync("The operation is currently canceling", "Cancel request already received", MessageType.Information);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_CancelAlreadyRequested, Resources.Installer_CancelAlreadyRequestedHeader, MessageType.Information);
                 return;
             }
 
-            if (await RCF.MessageUI.DisplayMessageAsync("Do you wish to cancel the installation?", "Cancel ongoing installation", MessageType.Question, true))
+            if (await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_CancelQuestion, Resources.Installer_CancelQuestionHeader, MessageType.Question, true))
             {
                 RCF.Logger.LogInformationSource($"The installation has been requested to cancel");
                 CancellationTokenSource.Cancel();
@@ -227,7 +227,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure the selected directory exists
             if (!InstallDir.DirectoryExists)
             {
-                await RCF.MessageUI.DisplayMessageAsync("The specified directory does not exist", "Directory not found", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_InvalidDirectory, Resources.Installer_InvalidDirectoryHeader, MessageType.Error);
                 return;
             }
 
@@ -312,39 +312,31 @@ namespace RayCarrot.RCP.Metro
                     // Get the launch info
                     var launchInfo = Game.GetLaunchInfo();
 
-                    // Make sure the file exists
-                    if (launchInfo.Path.FileExists)
-                    {
-                        // Get the shortcut name
-                        var shortcutName = $"Launch {Game.GetDisplayName()}";
+                    // Get the shortcut name
+                    var shortcutName = String.Format(Resources.Installer_ShortcutName, Game.GetDisplayName());
 
-                        if (CreateDesktopShortcut)
-                            await AddShortcutAsync(Environment.GetFolderPath(CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop));
+                    if (CreateDesktopShortcut)
+                        await AddShortcutAsync(Environment.GetFolderPath(CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop));
 
-                        if (CreateStartMenuShortcut)
-                            await AddShortcutAsync(Path.Combine(Environment.GetFolderPath(CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonStartMenu : Environment.SpecialFolder.StartMenu), "Programs"));
+                    if (CreateStartMenuShortcut)
+                        await AddShortcutAsync(Path.Combine(Environment.GetFolderPath(CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonStartMenu : Environment.SpecialFolder.StartMenu), "Programs"));
 
-                        async Task AddShortcutAsync(FileSystemPath dir) => await RCFRCP.File.CreateFileShortcutAsync(shortcutName, dir, launchInfo.Path, launchInfo.Args);
-                    }
-                    else
-                    {
-                        await RCF.MessageUI.DisplayMessageAsync("The game executable could not be found", "Shortcut creation failed", MessageType.Error);
-                    }
+                    async Task AddShortcutAsync(FileSystemPath dir) => await RCFRCP.File.CreateFileShortcutAsync(shortcutName, dir, launchInfo.Path, launchInfo.Args);
                 }
 
                 switch (result)
                 {
                     case RayGameInstallerResult.Successful:
-                        await RCF.MessageUI.DisplayMessageAsync($"Installation complete. Run configuration tool for {Game.GetDisplayName()} to set up the game.", "Action complete", MessageType.Success);
+                        await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_Success, Game.GetDisplayName()), Resources.Installer_SuccessHeader, MessageType.Success);
                         break;
 
                     default:
                     case RayGameInstallerResult.Failed:
-                        await RCF.MessageUI.DisplayMessageAsync("Installation failed", "Action failed", MessageType.Error);
+                        await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_Failed, Resources.Installer_FailedHeader, MessageType.Error);
                         break;
 
                     case RayGameInstallerResult.Canceled:
-                        await RCF.MessageUI.DisplayMessageAsync("Installation canceled", "Action failed", MessageType.Information);
+                        await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_Canceled, Resources.Installer_FailedHeader, MessageType.Information);
                         break;
                 }
             }

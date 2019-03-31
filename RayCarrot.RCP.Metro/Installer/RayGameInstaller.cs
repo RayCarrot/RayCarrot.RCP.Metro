@@ -430,7 +430,7 @@ namespace RayCarrot.RCP.Metro
                         // Flag that we have file conflicts
                         fileConflicts = true;
 
-                        if (!(await RCF.MessageUI.DisplayMessageAsync($"There were {existingPaths.Count} file conflicts with the selected directory. Do you wish to overwrite these files?", "File Conflict", MessageType.Question, true)))
+                        if (!(await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_FileConflicts, existingPaths.Count), Resources.Installer_FileConflictsHeader, MessageType.Question, true)))
                             return RayGameInstallerResult.Canceled;
 
                         // Update the status to default
@@ -471,7 +471,7 @@ namespace RayCarrot.RCP.Metro
                     // Update the status to paused
                     OnStatusUpdated(OperationState.Paused);
 
-                    if (!(await RCF.MessageUI.DisplayMessageAsync("Some items were not handled during the installation. Do you wish to retry handling those items?", "Unhandled items", MessageType.Warning, true)))
+                    if (!(await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_UnhandledItems, Resources.Installer_UnhandledItemsHeader, MessageType.Warning, true)))
                         return RayGameInstallerResult.Canceled;
 
                     // Update the status to default
@@ -481,7 +481,7 @@ namespace RayCarrot.RCP.Metro
                     foreach (RayGameDriveInfo drive in Drives)
                     {
                         // Get the item for this drive
-                        var items = InstallData.RelativeInputs.Where(x => x.ProcessStage != RayGameInstallItemStage.Complete && x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == new FileSystemPath(drive.Root));
+                        var items = InstallData.RelativeInputs.Where(x => x.ProcessStage != RayGameInstallItemStage.Complete && x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == new FileSystemPath(drive.Root)).ToList();
 
                         // Skip if there are no items
                         if (!items.Any())
@@ -539,7 +539,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     if (error && RCF.Data.CurrentUserLevel >= UserLevel.Advanced)
-                        await RCF.MessageUI.DisplayMessageAsync($"Part of the installation could not be cleaned up under {InstallData.OutputDir}", "Error", MessageType.Error);
+                        await RCF.MessageUI.DisplayMessageAsync(string.Format(Resources.Installer_CleanupError, InstallData.OutputDir), MessageType.Error);
 
                     try
                     {

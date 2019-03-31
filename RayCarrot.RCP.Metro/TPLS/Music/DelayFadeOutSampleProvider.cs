@@ -176,6 +176,5 @@ namespace RayCarrot.RCP.Metro
             FullVolume,
             FadingOut,
         }
-
     }
 }

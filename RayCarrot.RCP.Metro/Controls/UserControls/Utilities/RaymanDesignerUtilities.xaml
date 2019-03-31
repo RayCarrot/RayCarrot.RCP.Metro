@@ -23,7 +23,8 @@
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
                            Text="{Resx RDU_ReplaceFilesHeader}" />
 
-                <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}" />
+                <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}"
+                                Text="{Resx Utility_AdditionalFilesRequired}" />
 
                 <local:InfoIcon Text="{Resx RDU_ReplaceFilesInfo}" />
 

@@ -1132,4 +1132,125 @@ exceptionMessage</comment>
   <data name="Installer_FileCopyErrorHeader" xml:space="preserve">
     <value>Failed to copy item to destination</value>
   </data>
+  <data name="Installer_FileConflicts" xml:space="preserve">
+    <value>There were {0} file conflicts with the selected directory. Do you wish to overwrite these files?</value>
+    <comment>Arguments:
+fileConflictCount</comment>
+  </data>
+  <data name="Installer_FileConflictsHeader" xml:space="preserve">
+    <value>File Conflicts</value>
+  </data>
+  <data name="Installer_UnhandledItems" xml:space="preserve">
+    <value>Some items were not handled during the installation. Do you wish to retry handling those items?</value>
+  </data>
+  <data name="Installer_UnhandledItemsHeader" xml:space="preserve">
+    <value>Unhandled Items</value>
+  </data>
+  <data name="Installer_CleanupError" xml:space="preserve">
+    <value>Part of the installation could not be cleaned up under {0}</value>
+    <comment>Arguments:
+outputDirectory</comment>
+  </data>
+  <data name="Installer_CancelAlreadyRequested" xml:space="preserve">
+    <value>The operation is currently canceling</value>
+  </data>
+  <data name="Installer_CancelAlreadyRequestedHeader" xml:space="preserve">
+    <value>Cancel request already received</value>
+  </data>
+  <data name="Installer_CancelQuestion" xml:space="preserve">
+    <value>Do you wish to cancel the installation?</value>
+  </data>
+  <data name="Installer_CancelQuestionHeader" xml:space="preserve">
+    <value>Cancel ongoing installation</value>
+  </data>
+  <data name="Installer_InvalidDirectory" xml:space="preserve">
+    <value>The specified directory does not exist</value>
+  </data>
+  <data name="Installer_InvalidDirectoryHeader" xml:space="preserve">
+    <value>Directory not found</value>
+  </data>
+  <data name="Installer_ShortcutName" xml:space="preserve">
+    <value>Launch {0}</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="Installer_Success" xml:space="preserve">
+    <value>Installation complete. Run configuration tool for {0} to set up the game.</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="Installer_SuccessHeader" xml:space="preserve">
+    <value>Installation Complete</value>
+  </data>
+  <data name="Installer_FailedHeader" xml:space="preserve">
+    <value>Action failed</value>
+  </data>
+  <data name="Installer_Failed" xml:space="preserve">
+    <value>Installation failed</value>
+  </data>
+  <data name="Installer_Canceled" xml:space="preserve">
+    <value>Installation canceled</value>
+  </data>
+  <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
+    <value>This utility requires additonal files to be downloaded</value>
+  </data>
+  <data name="TPLS_Error" xml:space="preserve">
+    <value>The PlayStation soundtrack utility crashed with the error message of: {0}
+Restart?</value>
+    <comment>Arguments:
+exceptionMessage</comment>
+  </data>
+  <data name="TPLS_ErrorHeader" xml:space="preserve">
+    <value>TPLS Error</value>
+  </data>
+  <data name="TPLS_PlaybackError_FileNotFound" xml:space="preserve">
+    <value>The soundtrack file is missing</value>
+  </data>
+  <data name="TPLS_PlaybackErrorHeader" xml:space="preserve">
+    <value>Playback Error</value>
+  </data>
+  <data name="TPLS_PlaybackError_InvalidData" xml:space="preserve">
+    <value>The soundtrack file is in an incorrect format</value>
+  </data>
+  <data name="TPLS_PlaybackError" xml:space="preserve">
+    <value>An error occurred playing the soundtrack</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
+    <value>Invalid format</value>
+  </data>
+  <data name="R2HotKeyValidation_ModifierKeysUsed" xml:space="preserve">
+    <value>Single key must be used</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidKey" xml:space="preserve">
+    <value>Key is not valid</value>
+  </data>
+  <data name="DosBoxCyclesValidation_InvalidFormat" xml:space="preserve">
+    <value>The cycles can not be empty</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NullOrEmpty" xml:space="preserve">
+    <value>The cycles value can not be empty</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NonDigit" xml:space="preserve">
+    <value>Only digits are allowed when using a specified value</value>
+  </data>
+  <data name="DosBoxResolutionValidation_NullOrEmpty" xml:space="preserve">
+    <value>The resolution value can not be empty</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidFormat" xml:space="preserve">
+    <value>Invalid format</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidCharacter" xml:space="preserve">
+    <value>The character '{0}' is not valid</value>
+    <comment>Arguments:
+invalidCharacter</comment>
+  </data>
+  <data name="DosBoxResolutionValidation_MultipleSeparators" xml:space="preserve">
+    <value>The resolution separator 'x' can only be used once</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MissingSeparator" xml:space="preserve">
+    <value>The resolution separator 'x' must be used</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
+    <value>A valid height must be specified</value>
+  </data>
 </root>

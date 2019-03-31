@@ -10,13 +10,13 @@ namespace RayCarrot.RCP.Metro
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             if (!(value is HotKey key))
-                return new ValidationResult(false, "Invalid format");
+                return new ValidationResult(false, Resources.R2HotKeyValidation_InvalidFormat);
 
             if (key.ModifierKeys != ModifierKeys.None)
-                return new ValidationResult(false, "Single key must be used");
+                return new ValidationResult(false, Resources.R2HotKeyValidation_ModifierKeysUsed);
 
             if (R2ButtonMappingManager.GetKeyCode(key.Key) == 0)
-                return new ValidationResult(false, "Key is not valid");
+                return new ValidationResult(false, Resources.R2HotKeyValidation_InvalidKey);
 
             return ValidationResult.ValidResult;
         }
