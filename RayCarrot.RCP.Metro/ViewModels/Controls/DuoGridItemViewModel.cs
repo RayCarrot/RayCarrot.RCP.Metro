@@ -16,5 +16,10 @@ namespace RayCarrot.RCP.Metro
         /// The text to display
         /// </summary>
         public string Text { get; set; }
+
+        /// <summary>
+        /// The minimum user level for this item
+        /// </summary>
+        public UserLevel MinUserLevel { get; set; }
     }
 }

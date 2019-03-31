@@ -485,13 +485,13 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Saving DosBox configuration data");
-                    await RCF.MessageUI.DisplayMessageAsync("An error occurred when saving your DosBox configuration", "Error saving", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.Config_DosBoxSaveError, Resources.Config_SaveErrorHeader, MessageType.Error);
                     return;
                 }
 
                 UnsavedChanges = false;
 
-                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("Your changes have been saved");
+                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
 
                 OnSave();
             }

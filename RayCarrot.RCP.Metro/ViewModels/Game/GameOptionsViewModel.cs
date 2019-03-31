@@ -107,12 +107,12 @@ namespace RayCarrot.RCP.Metro
         /// <param name="text">The text to display</param>
         private void AddDuoGridItem(UserLevel minUserLevel, string header, string text)
         {
-            if (RCFRCP.Data.UserLevel >= minUserLevel)
-                InfoItems.Add(new DuoGridItemViewModel()
-                {
-                    Header = header + ":  ",
-                    Text = text
-                });
+            InfoItems.Add(new DuoGridItemViewModel()
+            {
+                Header = header + ":  ",
+                Text = text,
+                MinUserLevel = minUserLevel
+            });
         }
 
         /// <summary>

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using Infralution.Localization.Wpf;
+using MahApps.Metro;
 using Newtonsoft.Json;
 using RayCarrot.CarrotFramework;
 using RayCarrot.UserData;
@@ -121,7 +122,7 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 _darkMode = value;
-                MahApps.Metro.ThemeManager.ChangeAppTheme(Application.Current, $"Base{(DarkMode ? "Dark" : "Light")}");
+                ThemeManager.ChangeAppTheme(Application.Current, $"Base{(DarkMode ? "Dark" : "Light")}");
             }
         }
 
@@ -269,20 +270,17 @@ namespace RayCarrot.RCP.Metro
                         ci = AppLanguages.Languages.First();
                     }
 
-                    // Set the framework culture
-                    RCF.Data.CurrentCulture = ci;
-
                     // Set the UI culture
                     CultureManager.UICulture = ci;
-
-                    // Update the current thread cultures
-                    CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture = ci;
 
                     // Set the resource culture
                     Resources.Culture = ci;
 
-                    // Refresh the games
-                    RCFRCP.App.OnRefreshRequired();
+                    // Update the current thread cultures
+                    CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture = ci;
+
+                    // Set the framework culture
+                    RCF.Data.CurrentCulture = ci;
 
                     RCF.Logger.LogInformationSource($"The current culture was set to {ci.EnglishName}");
                 }

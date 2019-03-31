@@ -12,6 +12,7 @@
 • Added debug option to show applied utilities
 • Updates to the Carrot Framework and WPF implementation
 • Temporarily downgraded Fody to version 3.3.5 due to a bug with duplicate type names
+• The games are no longer refreshed when changing the user level
 • Minor bug fixes
 
 

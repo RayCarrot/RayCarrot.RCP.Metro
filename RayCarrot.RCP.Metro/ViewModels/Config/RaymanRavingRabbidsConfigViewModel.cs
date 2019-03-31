@@ -45,6 +45,8 @@ namespace RayCarrot.RCP.Metro
                 "1680 x 1050", // 16/10
                 "1920 x 1080" // 16/9
             };
+
+            // NOTE: Not localized
             AvailableScreenModeValues = new string[]
             {
                 "4:3",
@@ -218,13 +220,13 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Saving Rayman Raving Rabbids registry data");
-                    await RCF.MessageUI.DisplayMessageAsync($"An error occurred when saving your Rayman Raving Rabbids configuration", "Error saving", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.Config_SaveRRRError, Resources.Config_SaveErrorHeader, MessageType.Error);
                     return;
                 }
 
                 UnsavedChanges = false;
 
-                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("Your changes have been saved");
+                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
 
                 OnSave();
             }

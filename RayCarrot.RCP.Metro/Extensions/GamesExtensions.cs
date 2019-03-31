@@ -255,29 +255,26 @@ namespace RayCarrot.RCP.Metro
                     actions.Add(new OverflowButtonItemViewModel());
                 }
 
-                if (RCFRCP.Data.UserLevel >= UserLevel.Advanced)
+                // Add open location
+                actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_OpenLocation, PackIconMaterialKind.FolderOutline, new AsyncRelayCommand(async () =>
                 {
-                    // Add open location
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_OpenLocation, PackIconMaterialKind.FolderOutline, new AsyncRelayCommand(async () =>
-                    {
-                        // Get the game info
-                        var gameInfo = game.GetInfo();
+                    // Get the game info
+                    var gameInfo = game.GetInfo();
 
-                        // Get the install directory
-                        var instDir = gameInfo.InstallDirectory;
+                    // Get the install directory
+                    var instDir = gameInfo.InstallDirectory;
 
-                        // Select the file if not a Windows store game
-                        if (gameInfo.GameType != GameType.WinStore)
-                            instDir = instDir + game.GetLaunchName();
+                    // Select the file if not a Windows store game
+                    if (gameInfo.GameType != GameType.WinStore)
+                        instDir = instDir + game.GetLaunchName();
 
-                        // Open the location
-                        await RCFRCP.File.OpenExplorerLocationAsync(instDir);
+                    // Open the location
+                    await RCFRCP.File.OpenExplorerLocationAsync(instDir);
 
-                        RCF.Logger.LogTraceSource($"The game {game} install location was opened");
-                    })));
+                    RCF.Logger.LogTraceSource($"The game {game} install location was opened");
+                }), UserLevel.Advanced));
 
-                    actions.Add(new OverflowButtonItemViewModel());
-                }
+                actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
 
                 // Check if the game has utilities
                 if (game.HasUtilities())

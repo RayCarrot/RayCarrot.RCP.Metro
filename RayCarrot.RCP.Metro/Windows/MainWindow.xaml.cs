@@ -36,6 +36,9 @@ namespace RayCarrot.RCP.Metro
 
         private async void MainWindow_LoadedAsync(object sender, RoutedEventArgs e)
         {
+            // Set up the secret code manager
+            SecretCodeManager.Setup();
+
             await GamesPage.ViewModel.RefreshAsync();
             App_RefreshRequired(null, null);
 

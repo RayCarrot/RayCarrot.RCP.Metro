@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
 using System.Windows.Media;
 using MahApps.Metro.IconPacks;
+using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -17,11 +18,13 @@ namespace RayCarrot.RCP.Metro
         /// <param name="header">The item header</param>
         /// <param name="iconKind">The item icon kind</param>
         /// <param name="command">The item command</param>
-        public ActionItemViewModel(string header, PackIconMaterialKind iconKind, ICommand command)
+        /// <param name="minUserLevel">The minimum user level for the action</param>
+        public ActionItemViewModel(string header, PackIconMaterialKind iconKind, ICommand command, UserLevel minUserLevel = UserLevel.Normal)
         {
             Header = header;
             IconKind = iconKind;
             Command = command;
+            MinUserLevel = minUserLevel;
         }
 
         /// <summary>
@@ -30,11 +33,13 @@ namespace RayCarrot.RCP.Metro
         /// <param name="header">The item header</param>
         /// <param name="iconSource">The icon source</param>
         /// <param name="command">The item command</param>
-        public ActionItemViewModel(string header, ImageSource iconSource, ICommand command)
+        /// <param name="minUserLevel">The minimum user level for the action</param>
+        public ActionItemViewModel(string header, ImageSource iconSource, ICommand command, UserLevel minUserLevel = UserLevel.Normal)
         {
             Header = header;
             IconSource = iconSource;
             Command = command;
+            MinUserLevel = minUserLevel;
         }
 
         #endregion
@@ -60,6 +65,11 @@ namespace RayCarrot.RCP.Metro
         /// The item command
         /// </summary>
         public ICommand Command { get; }
+
+        /// <summary>
+        /// The minimum user level for the action
+        /// </summary>
+        public UserLevel MinUserLevel { get; }
 
         #endregion
     }

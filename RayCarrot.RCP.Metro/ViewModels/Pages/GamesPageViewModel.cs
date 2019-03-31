@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -26,8 +27,7 @@ namespace RayCarrot.RCP.Metro
             BindingOperations.EnableCollectionSynchronization(InstalledGames, Application.Current);
             BindingOperations.EnableCollectionSynchronization(NotInstalledGames, Application.Current);
 
-            RCFRCP.App.RefreshRequired += async (s, e) => await RefreshAsync();
-            RCF.Data.UserLevelChanged += async (s, e) => await RefreshAsync();
+            RCF.Data.CultureChanged += async (s, e) => await RefreshAsync();
         }
 
         #endregion

@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
 using System.Windows.Media;
 using MahApps.Metro.IconPacks;
+using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -14,7 +15,8 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Constructor for a separator
         /// </summary>
-        public OverflowButtonItemViewModel() : base(null, null, null)
+        /// <param name="minUserLevel">The minimum user level for the action</param>
+        public OverflowButtonItemViewModel(UserLevel minUserLevel = UserLevel.Normal) : base(null, null, null, minUserLevel)
         {
             IsSeparator = true;
         }
@@ -25,7 +27,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="header">The item header</param>
         /// <param name="iconKind">The item icon kind</param>
         /// <param name="command">The item command</param>
-        public OverflowButtonItemViewModel(string header, PackIconMaterialKind iconKind, ICommand command) : base(header, iconKind, command)
+        /// <param name="minUserLevel">The minimum user level for the action</param>
+        public OverflowButtonItemViewModel(string header, PackIconMaterialKind iconKind, ICommand command, UserLevel minUserLevel = UserLevel.Normal) : base(header, iconKind, command, minUserLevel)
         {
         }
 
@@ -35,7 +38,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="header">The item header</param>
         /// <param name="iconSource">The icon source</param>
         /// <param name="command">The item command</param>
-        public OverflowButtonItemViewModel(string header, ImageSource iconSource, ICommand command) : base(header, iconSource, command)
+        /// <param name="minUserLevel">The minimum user level for the action</param>
+        public OverflowButtonItemViewModel(string header, ImageSource iconSource, ICommand command, UserLevel minUserLevel = UserLevel.Normal) : base(header, iconSource, command, minUserLevel)
         {
         }
 

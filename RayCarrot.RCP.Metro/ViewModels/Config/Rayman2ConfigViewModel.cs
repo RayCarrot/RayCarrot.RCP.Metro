@@ -26,6 +26,8 @@ namespace RayCarrot.RCP.Metro
         {
             // Set default properties
             IsHorizontalWidescreen = true;
+
+            // NOTE: Not localized
             KeyItems = new ObservableCollection<R2KeyItemViewModel>()
             {
                 new R2KeyItemViewModel("Up", Key.Up, this),
@@ -305,14 +307,13 @@ namespace RayCarrot.RCP.Metro
                     // Create the file
                     RCFRCP.File.CreateFile(newFile);
 
-                    RCF.Logger.LogInformationSource($"A new ubi.ini file has been created under {newFile}");
+                    RCF.Logger.LogInformationSource($"A new ubi.ini file has been created under {newFile.FullPath}");
                 }
                 catch (Exception ex)
                 {
                     ex.HandleError("Creating ubi.ini file");
 
-                    await RCF.MessageUI.DisplayMessageAsync($"No valid ubi.ini file was found and creating a new one failed. Try running the program as administrator " +
-                                                            $"or changing the folder permissions for the following path: {newFile.Parent}", "Error", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Config_InvalidR2UbiIniFile, newFile.Parent.FullPath), MessageType.Error);
 
                     throw;
                 }
@@ -413,7 +414,7 @@ namespace RayCarrot.RCP.Metro
                     RCF.Logger.LogWarningSource("The Rayman 2 executable could not be found");
 
                     if (WidescreenSupport)
-                        await RCF.MessageUI.DisplayMessageAsync("The aspect ratio could not be set due to the game executable not being found.", "Error", MessageType.Error);
+                        await RCF.MessageUI.DisplayMessageAsync(Resources.R2Widescreen_ExeNotFound, MessageType.Error);
 
                     return;
                 }
@@ -429,7 +430,7 @@ namespace RayCarrot.RCP.Metro
                     RCF.Logger.LogInformationSource($"The Rayman 2 executable file size does not match any supported version");
 
                     if (WidescreenSupport)
-                        await RCF.MessageUI.DisplayMessageAsync("The aspect ratio could not be set due to the game executable not being valid.", "Error", MessageType.Error);
+                        await RCF.MessageUI.DisplayMessageAsync(Resources.R2Widescreen_ExeNotValid, MessageType.Error);
 
                     return;
                 }
@@ -507,7 +508,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Setting R2 aspect ratio");
 
-                await RCF.MessageUI.DisplayMessageAsync("An error occurred when setting the Rayman 2 aspect ratio", "Error", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.R2Widescreen_Error, MessageType.Error);
 
                 if (WidescreenSupport)
                     throw;

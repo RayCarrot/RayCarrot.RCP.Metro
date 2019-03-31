@@ -413,6 +413,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when saving your DosBox configuration.
+        /// </summary>
+        public static string Config_DosBoxSaveError {
+            get {
+                return ResourceManager.GetString("Config_DosBoxSaveError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dynamic Shadows.
         /// </summary>
         public static string Config_DynamicShadows {
@@ -454,6 +463,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_Graphics {
             get {
                 return ResourceManager.GetString("Config_Graphics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No valid ubi.ini file was found and creating a new one failed. Try running the program as administrator or changing the folder permissions for the following path: {0}.
+        /// </summary>
+        public static string Config_InvalidR2UbiIniFile {
+            get {
+                return ResourceManager.GetString("Config_InvalidR2UbiIniFile", resourceCulture);
             }
         }
         
@@ -625,6 +643,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_SaveErrorHeader {
             get {
                 return ResourceManager.GetString("Config_SaveErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when saving your Rayman Raving Rabbids configuration.
+        /// </summary>
+        public static string Config_SaveRRRError {
+            get {
+                return ResourceManager.GetString("Config_SaveRRRError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your changes have been saved.
+        /// </summary>
+        public static string Config_SaveSuccess {
+            get {
+                return ResourceManager.GetString("Config_SaveSuccess", resourceCulture);
             }
         }
         
@@ -2287,6 +2323,33 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when setting the Rayman 2 aspect ratio.
+        /// </summary>
+        public static string R2Widescreen_Error {
+            get {
+                return ResourceManager.GetString("R2Widescreen_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The aspect ratio could not be set due to the game executable not being found..
+        /// </summary>
+        public static string R2Widescreen_ExeNotFound {
+            get {
+                return ResourceManager.GetString("R2Widescreen_ExeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The aspect ratio could not be set due to the game executable not being valid..
+        /// </summary>
+        public static string R2Widescreen_ExeNotValid {
+            get {
+                return ResourceManager.GetString("R2Widescreen_ExeNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disabled.
         /// </summary>
         public static string R3U_DirectPlayDisabled {
@@ -2733,6 +2796,78 @@ namespace RayCarrot.RCP.Metro {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You just entered the Konami code! Enjoy this dark, gloomy new theme..
+        /// </summary>
+        public static string SecretCodes_Konami {
+            get {
+                return ResourceManager.GetString("SecretCodes_Konami", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Konami Code.
+        /// </summary>
+        public static string SecretCodes_KonamiHeader {
+            get {
+                return ResourceManager.GetString("SecretCodes_KonamiHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You just entered the lime code! Enjoy this lime theme..
+        /// </summary>
+        public static string SecretCodes_Lime {
+            get {
+                return ResourceManager.GetString("SecretCodes_Lime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lime Code.
+        /// </summary>
+        public static string SecretCodes_LimeHeader {
+            get {
+                return ResourceManager.GetString("SecretCodes_LimeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You just entered the RayCarrot code! Enjoy this orange, carrot theme..
+        /// </summary>
+        public static string SecretCodes_RayCarrot {
+            get {
+                return ResourceManager.GetString("SecretCodes_RayCarrot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RayCarrot Code.
+        /// </summary>
+        public static string SecretCodes_RayCarrotHeader {
+            get {
+                return ResourceManager.GetString("SecretCodes_RayCarrotHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You just entered the secret code! Sadly enough it doesn&apos;t do anything..
+        /// </summary>
+        public static string SecretCodes_Secret {
+            get {
+                return ResourceManager.GetString("SecretCodes_Secret", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secret Code.
+        /// </summary>
+        public static string SecretCodes_SecretHeader {
+            get {
+                return ResourceManager.GetString("SecretCodes_SecretHeader", resourceCulture);
             }
         }
         

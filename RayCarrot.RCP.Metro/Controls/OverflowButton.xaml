@@ -92,7 +92,8 @@
                           SnapsToDevicePixels="True">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="local:OverflowButtonItemViewModel">
-                        <Grid Background="{StaticResource ControlBackgroundBrush}">
+                        <Grid Background="{StaticResource ControlBackgroundBrush}"
+                              rwpf:UserLevelTag.MinUserLevel="{Binding Path=MinUserLevel}">
                             <MenuItem Header="{Binding Path=Header}"
                                       Command="{Binding Path=Command}"
                                       Visibility="{Binding Path=IsSeparator, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"

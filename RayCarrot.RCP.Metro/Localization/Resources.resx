@@ -1266,4 +1266,51 @@ gameDisplayName</comment>
   <data name="Config_SaveErrorHeader" xml:space="preserve">
     <value>Error saving</value>
   </data>
+  <data name="Config_DosBoxSaveError" xml:space="preserve">
+    <value>An error occurred when saving your DosBox configuration</value>
+  </data>
+  <data name="Config_SaveSuccess" xml:space="preserve">
+    <value>Your changes have been saved</value>
+  </data>
+  <data name="Config_InvalidR2UbiIniFile" xml:space="preserve">
+    <value>No valid ubi.ini file was found and creating a new one failed. Try running the program as administrator or changing the folder permissions for the following path: {0}</value>
+    <comment>Arguments:
+ubiIniFilePath</comment>
+  </data>
+  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
+    <value>The aspect ratio could not be set due to the game executable not being found.</value>
+  </data>
+  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
+    <value>The aspect ratio could not be set due to the game executable not being valid.</value>
+  </data>
+  <data name="R2Widescreen_Error" xml:space="preserve">
+    <value>An error occurred when setting the Rayman 2 aspect ratio</value>
+  </data>
+  <data name="Config_SaveRRRError" xml:space="preserve">
+    <value>An error occurred when saving your Rayman Raving Rabbids configuration</value>
+  </data>
+  <data name="SecretCodes_Konami" xml:space="preserve">
+    <value>You just entered the Konami code! Enjoy this dark, gloomy new theme.</value>
+  </data>
+  <data name="SecretCodes_KonamiHeader" xml:space="preserve">
+    <value>Konami Code</value>
+  </data>
+  <data name="SecretCodes_RayCarrot" xml:space="preserve">
+    <value>You just entered the RayCarrot code! Enjoy this orange, carrot theme.</value>
+  </data>
+  <data name="SecretCodes_RayCarrotHeader" xml:space="preserve">
+    <value>RayCarrot Code</value>
+  </data>
+  <data name="SecretCodes_Lime" xml:space="preserve">
+    <value>You just entered the lime code! Enjoy this lime theme.</value>
+  </data>
+  <data name="SecretCodes_LimeHeader" xml:space="preserve">
+    <value>Lime Code</value>
+  </data>
+  <data name="SecretCodes_Secret" xml:space="preserve">
+    <value>You just entered the secret code! Sadly enough it doesn't do anything.</value>
+  </data>
+  <data name="SecretCodes_SecretHeader" xml:space="preserve">
+    <value>Secret Code</value>
+  </data>
 </root>

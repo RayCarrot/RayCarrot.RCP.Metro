@@ -19,7 +19,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public AboutPageViewModel()
         {
-            // NOTE: This is currently not localized
+            // NOTE: Not localized
             Credits = new ObservableCollection<DuoGridItemViewModel>()
             {
                 new DuoGridItemViewModel()
@@ -59,7 +59,7 @@ namespace RayCarrot.RCP.Metro
                 },
             };
 
-            // NOTE: This is currently not localized
+            // NOTE: Not localized
             SpecialThanks = "Special thanks to 432 Hz, AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!";
 
             // Create commands
