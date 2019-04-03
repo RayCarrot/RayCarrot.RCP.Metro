@@ -1313,4 +1313,245 @@ ubiIniFilePath</comment>
   <data name="SecretCodes_SecretHeader" xml:space="preserve">
     <value>Secret Code</value>
   </data>
+  <data name="GameInfo_LaunchPath" xml:space="preserve">
+    <value>Launch path:</value>
+  </data>
+  <data name="GameInfo_LaunchArgs" xml:space="preserve">
+    <value>Launch arguments:</value>
+  </data>
+  <data name="GameInfo_SteamID" xml:space="preserve">
+    <value>Steam ID:</value>
+  </data>
+  <data name="GameInfo_GameType" xml:space="preserve">
+    <value>Game type:</value>
+  </data>
+  <data name="GameInfo_InstallDir" xml:space="preserve">
+    <value>Install location:</value>
+  </data>
+  <data name="GameInfo_WinStoreDependencies" xml:space="preserve">
+    <value>Dependencies</value>
+  </data>
+  <data name="GameInfo_WinStoreFullName" xml:space="preserve">
+    <value>Full name</value>
+  </data>
+  <data name="GameInfo_WinStoreArchitecture" xml:space="preserve">
+    <value>Architecture</value>
+  </data>
+  <data name="GameInfo_WinStoreVersion" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="GameInfo_WinStoreInstallDate" xml:space="preserve">
+    <value>Installed</value>
+  </data>
+  <data name="RemoveGameQuestion" xml:space="preserve">
+    <value>Are you sure you want to remove {0} from the Rayman Control Panel? This will not remove the game from your computer or any of its files, including the backups created using this program.</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="RemoveGameQuestionHeader" xml:space="preserve">
+    <value>Confirm remove</value>
+  </data>
+  <data name="GameShortcut_BrowseHeader" xml:space="preserve">
+    <value>Select shortcut destination</value>
+  </data>
+  <data name="GameShortcut_ShortcutName" xml:space="preserve">
+    <value>Launch {0}</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="GameShortcut_Success" xml:space="preserve">
+    <value>Shortcut created successfully</value>
+  </data>
+  <data name="GameShortcut_Error" xml:space="preserve">
+    <value>The shortcut could not be created</value>
+  </data>
+  <data name="GameShortcut_ErrorHeader" xml:space="preserve">
+    <value>Shortcut creation failed</value>
+  </data>
+  <data name="GameNotFound" xml:space="preserve">
+    <value>The game {0} was not found</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="GameNotFoundHeader" xml:space="preserve">
+    <value>Unable to find game</value>
+  </data>
+  <data name="About_SpecialThanks" xml:space="preserve">
+    <value>Special thanks to 432 Hz, AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!</value>
+  </data>
+  <data name="About_Credits_RayCarrot" xml:space="preserve">
+    <value>User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations, Swedish program translation</value>
+  </data>
+  <data name="About_Credits_Noserdog" xml:space="preserve">
+    <value>Controller patches</value>
+  </data>
+  <data name="About_Credits_Janmv94" xml:space="preserve">
+    <value>Rayman 2 button remapping</value>
+  </data>
+  <data name="About_Credits_RibShark" xml:space="preserve">
+    <value>Cheat code list, general help with the utilities</value>
+  </data>
+  <data name="About_Credits_PluMGMK" xml:space="preserve">
+    <value>Rayman 2 translations</value>
+  </data>
+  <data name="About_Credits_HarukaTavares" xml:space="preserve">
+    <value>Rayman 2 translations</value>
+  </data>
+  <data name="About_Credits_EvelynChickentalk" xml:space="preserve">
+    <value>File structure for the education Rayman games</value>
+  </data>
+  <data name="ROU_HQVideosFailed" xml:space="preserve">
+    <value>Video replacement failed</value>
+  </data>
+  <data name="ROU_UpdateFailed" xml:space="preserve">
+    <value>Downloading the Rayman Origins updater failed</value>
+  </data>
+  <data name="ROU_DebugCommandsInstallationNotFound" xml:space="preserve">
+    <value>The Rayman Origins installation could not be found</value>
+  </data>
+  <data name="ROU_DebugCommandsError" xml:space="preserve">
+    <value>An error occured when applying the debug commands</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
+    <value>1.12</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
+    <value>1.20</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
+    <value>1.21</value>
+  </data>
+  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
+    <value>0.74</value>
+  </data>
+  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
+    <value>SVN Daum</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
+    <value>Installation failed.</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
+    <value>Installation Failed</value>
+  </data>
+  <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
+    <value>Are you sure you want to uninstall the PlayStation Soundtrack utility?</value>
+  </data>
+  <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
+    <value>Confirm Uninstall</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
+    <value>Utility was successfully uninstalled</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
+    <value>Uninstall Complete</value>
+  </data>
+  <data name="R1U_TPLSUninstallError" xml:space="preserve">
+    <value>An error occurred uninstalling. Error message: {0}</value>
+    <comment>Arguments:
+exceptionMessage</comment>
+  </data>
+  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
+    <value>Uninstallation Failed</value>
+  </data>
+  <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
+    <value>Soundtrack replacement failed.</value>
+  </data>
+  <data name="R1U_TPLSInvalidDirectory" xml:space="preserve">
+    <value>The game install directory does not contain a valid installation</value>
+  </data>
+  <data name="R1U_TPLSInvalidDirectoryHeader" xml:space="preserve">
+    <value>Invalid Directory</value>
+  </data>
+  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
+    <value>{0}/{1} files were found to replace. This might require several downloads depending on their locations.</value>
+    <comment>Arguments:
+filesFount
+totalFiles</comment>
+  </data>
+  <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
+    <value>Replacement complete</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
+    <value>Soundtrack replacement failed.</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
+    <value>The configuration file already exists. You can still recreate it if it is corrupt. Continue?</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
+    <value>Replace File</value>
+  </data>
+  <data name="RDU_CreateConfig_Success" xml:space="preserve">
+    <value>The file was successfully created.</value>
+  </data>
+  <data name="RDU_CreateConfig_Error" xml:space="preserve">
+    <value>File file could not be created</value>
+  </data>
+  <data name="R2U_Translations_IrishInfo" xml:space="preserve">
+    <value>Irish (Gaeilge) - by PluMGMK</value>
+  </data>
+  <data name="R2U_Translations_SwedishInfo" xml:space="preserve">
+    <value>Swedish (Svenska) - by RayCarrot</value>
+  </data>
+  <data name="R2U_Translations_PortugueseInfo" xml:space="preserve">
+    <value>Portuguese (Português) - by Haruka Tavares</value>
+  </data>
+  <data name="R2U_Translations_SlovakInfo" xml:space="preserve">
+    <value>Slovak (Slovenský) - by MixerX</value>
+  </data>
+  <data name="R2U_Translations_Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="R2U_Translations_Irish" xml:space="preserve">
+    <value>Irish</value>
+  </data>
+  <data name="R2U_Translations_Swedish" xml:space="preserve">
+    <value>Swedish</value>
+  </data>
+  <data name="R2U_Translations_Portuguese" xml:space="preserve">
+    <value>Portuguese</value>
+  </data>
+  <data name="R2U_Translations_Slovak" xml:space="preserve">
+    <value>Slovak</value>
+  </data>
+  <data name="R2U_Translations_FilesNotFound" xml:space="preserve">
+    <value>The required files could not be found</value>
+  </data>
+  <data name="R2U_Translations_RevertTextures" xml:space="preserve">
+    <value>Due to the textures file having been modified by the previous translation it is recommended to replace it with the original version.</value>
+  </data>
+  <data name="R2U_Translations_ReplaceTextures" xml:space="preserve">
+    <value>It is additionally recommended to also replace the game's textures file with a modified version to get the full font and characters required by this translation.</value>
+  </data>
+  <data name="R2U_Translations_ReplaceTexturesHeader" xml:space="preserve">
+    <value>Confirm textures replacement</value>
+  </data>
+  <data name="R2U_Translations_Success" xml:space="preserve">
+    <value>All files have been successfully replaced</value>
+  </data>
+  <data name="R2U_Translations_Error" xml:space="preserve">
+    <value>An error occured when applying the Rayman 2 translation utility</value>
+  </data>
+  <data name="RLU_UbiRay_InvalidSaveDir" xml:space="preserve">
+    <value>Please select a valid save directory</value>
+  </data>
+  <data name="RLU_UbiRay_Warning" xml:space="preserve">
+    <value>IMPORTANT: For this utility to work you need to have the default Rayman costume selected as the current costume. Only continue if you are sure you have it selected.</value>
+  </data>
+  <data name="RLU_UbiRay_CouldNotReadFile" xml:space="preserve">
+    <value>Could not read save file</value>
+  </data>
+  <data name="RLU_UbiRay_RaymanSkinNotFound" xml:space="preserve">
+    <value>Make sure the normal Rayman skin is selected and try again</value>
+  </data>
+  <data name="RLU_UbiRay_Success" xml:space="preserve">
+    <value>Your save file was successfully edited with Ubi-Ray</value>
+  </data>
+  <data name="ReadingBackupError" xml:space="preserve">
+    <value>An error occurred reading the backup for {0}</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
 </root>

@@ -1,10 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -87,7 +87,7 @@ namespace RayCarrot.RCP.Metro
                     if (!game.IsValid(info.GameType, info.InstallDirectory))
                     {
                         // Show message
-                        await RCF.MessageUI.DisplayMessageAsync($"The game {game.GetDisplayName()} was not found", "Unable to find game", MessageType.Error);
+                        await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.GetDisplayName()), Resources.GameNotFoundHeader, MessageType.Error);
 
                         // Remove the game from app data
                         await RCFRCP.App.RemoveGameAsync(game, true);

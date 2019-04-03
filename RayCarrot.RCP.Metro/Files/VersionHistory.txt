@@ -1,18 +1,15 @@
 ﻿-----   Version 4.1.0 - April ?, 2019   -----
 
-• The program has been translated to Swedish, thus now allowing the language to be selected in the settings
-• Windows no longer show as blocking dialogs, thus allowing several windows to be open at once
-• The option to move existing backups has been readded when changing the backup location
+• The program is now available Swedish
+• Dialog windows no longer show as blocking dialogs, thus allowing several windows to be open at once
 • Added Rayman Legends setion to the help page
-• Reorganized the settings page
+• The option to move existing backups has been readded when changing the backup location
 • Increased tool tip timeout on info icons
-• The Rayman 1 complete soundtrack utility is now only available when Rayman Forever is found
-• The Rayman 3 DirectPlay utility is now only available on Windows 8 and above
-• The Rayman 3 DirectPlay utliity has been reworked
+• Utilities are now only shown when available
+• The Rayman 3 DirectPlay utliity has been reworked and now shows the current state of DirectPlay
 • Added debug option to show applied utilities
 • Updates to the Carrot Framework and WPF implementation
 • Temporarily downgraded Fody to version 3.3.5 due to a bug with duplicate type names
-• The games are no longer refreshed when changing the user level
 • Minor bug fixes
 
 

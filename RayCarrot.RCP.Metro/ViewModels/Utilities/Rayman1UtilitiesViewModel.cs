@@ -24,20 +24,6 @@ namespace RayCarrot.RCP.Metro
             UninstallTPLSCommand = new AsyncRelayCommand(UninstallTPLSAsync);
             ReplaceSoundtrackCommand = new AsyncRelayCommand(ReplaceSoundtrackAsync);
 
-            // Create the properties
-            AvailableRaymanVersions = new string[]
-            {
-                "Auto",
-                "1.12",
-                "1.20",
-                "1.21"
-            };
-            AvailableDosBoxVersions = new string[]
-            {
-                "0.74",
-                "SVN Daum"
-            };
-
             // Check if TPLS is installed under the default location
             if (CommonPaths.TPLSDir.DirectoryExists)
             {
@@ -65,16 +51,6 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Properties
-
-        /// <summary>
-        /// The available Rayman versions to select
-        /// </summary>
-        public string[] AvailableRaymanVersions { get; }
-
-        /// <summary>
-        /// The available DosBox versions to select
-        /// </summary>
-        public string[] AvailableDosBoxVersions { get; }
 
         /// <summary>
         /// The Rayman Forever music directory
@@ -142,7 +118,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Installing TPLS");
-                await RCF.MessageUI.DisplayMessageAsync("Installation failed.", "Installation Failed", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSInstallationFailed, Resources.R1U_TPLSInstallationFailedHeader, MessageType.Error);
             }
         }
 
@@ -152,13 +128,13 @@ namespace RayCarrot.RCP.Metro
         public async Task UninstallTPLSAsync()
         {
             // Have user confirm uninstall
-            if (!await RCF.MessageUI.DisplayMessageAsync("Are you sure you want to uninstall the PlayStation Soundtrack utility?", "Confirm Uninstall", MessageType.Question, true))
+            if (!await RCF.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSConfirmUninstall, Resources.R1U_TPLSConfirmUninstallHeader, MessageType.Question, true))
                 return;
 
             try
             {
                 RCFRCP.File.DeleteDirectory(RCFRCP.Data.TPLSData.InstallDir);
-                await RCF.MessageUI.DisplayMessageAsync("Utility was successfully uninstalled", "Uninstall Complete", MessageType.Success);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSUninstallSuccess, Resources.R1U_TPLSUninstallSuccessHeader, MessageType.Success);
 
                 RCFRCP.Data.TPLSData = null;
 
@@ -167,7 +143,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Uninstalling TPLS");
-                await RCF.MessageUI.DisplayMessageAsync($"An error occurred uninstalling. Error message: {ex.Message}", "Uninstallation Failed", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.R1U_TPLSUninstallError, ex.Message), Resources.R1U_TPLSUninstallErrorHeader, MessageType.Error);
             }
         }
 
@@ -193,7 +169,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Replacing R1 soundtrack");
-                await RCF.MessageUI.DisplayMessageAsync("Soundtrack replacement failed.", "Error", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.R1U_CompleteOSTReplaceError, MessageType.Error);
             }
         }
 
@@ -214,15 +190,9 @@ namespace RayCarrot.RCP.Metro
                 dir + "VIGNET.DAT",
             };
 
-            if (!files.FilesExist())
+            if (!files.FilesExist() || !Directory.Exists(dir + "PCMAP"))
             {
-                await RCF.MessageUI.DisplayMessageAsync("The selected directory does not contain a valid installation", "Missing Files", MessageType.Error);
-                return false;
-            }
-
-            if (!Directory.Exists(dir + "PCMAP"))
-            {
-                await RCF.MessageUI.DisplayMessageAsync("The selected directory does not contain a valid installation", "Missing Directory", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSInvalidDirectory, Resources.R1U_TPLSInvalidDirectoryHeader, MessageType.Error);
                 return false;
             }
 

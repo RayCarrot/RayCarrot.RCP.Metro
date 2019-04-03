@@ -72,11 +72,11 @@ namespace RayCarrot.RCP.Metro
                 {
                     RCF.Logger.LogInformationSource($"The Rayman Legends UbiRay utility could not be applied due to the selected directory not existing");
 
-                    await RCF.MessageUI.DisplayMessageAsync("Please select a valid save directory", "Error", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.RLU_UbiRay_InvalidSaveDir, MessageType.Error);
                     return;
                 }
 
-                if (!await RCF.MessageUI.DisplayMessageAsync("IMPORTANT: For this utility to work you need to have the default Rayman costume selected as the current costume. Only continue if you are sure you have it selected.", "Important Information", MessageType.Warning, true))
+                if (!await RCF.MessageUI.DisplayMessageAsync(Resources.RLU_UbiRay_Warning, "Important Information", MessageType.Warning, true))
                     return;
 
                 FileSystemPath saveFilePath = SelectedPath + "RaymanSave_0";
@@ -100,7 +100,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     RCF.Logger.LogInformationSource($"The Rayman Legends UbiRay utility could not be applied due to the username location not being found");
 
-                    await RCF.MessageUI.DisplayMessageAsync("Could not read save file", "Error", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.RLU_UbiRay_CouldNotReadFile, MessageType.Error);
                     return;
                 }
 
@@ -115,7 +115,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     RCF.Logger.LogInformationSource($"The Rayman Legends UbiRay utility could not be applied due to the costume location not being found");
 
-                    await RCF.MessageUI.DisplayMessageAsync("Make sure the normal Rayman skin is selected and try again", "Error", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.RLU_UbiRay_RaymanSkinNotFound, "Error", MessageType.Error);
                     return;
                 }
 
@@ -146,12 +146,12 @@ namespace RayCarrot.RCP.Metro
 
                 RCF.Logger.LogInformationSource($"The Rayman Legends UbiRay utility has been applied");
 
-                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("Your save file was successfully edited with Ubi-Ray.", "Action complete");
+                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RLU_UbiRay_Success);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Applying RL UbiRay patch");
-                await RCF.MessageUI.DisplayMessageAsync(ex.Message, "Error", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(ex.Message, MessageType.Error);
             }
         }
 

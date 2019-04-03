@@ -74,4 +74,31 @@
         <Setter Property="IconKind" Value="CloudDownload" />
     </Style>
 
+    <!-- Default duo grid item -->
+
+    <Style TargetType="{x:Type local:DuoGridItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DuoGridItem}">
+                    <Grid rwpf:UserLevelTag.MinUserLevel="{TemplateBinding Property=MinUserLevel}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"
+                                              SharedSizeGroup="A" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="{TemplateBinding Property=Header, Converter={local:AppendSpacesToStringConverter}}"
+                                   FontWeight="Bold" />
+
+                        <TextBlock Grid.Column="1"
+                                   Text="{TemplateBinding Property=Text}"
+                                   TextWrapping="Wrap" />
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

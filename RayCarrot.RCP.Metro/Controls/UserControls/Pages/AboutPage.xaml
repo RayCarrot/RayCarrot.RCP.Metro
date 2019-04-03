@@ -45,10 +45,31 @@
                            Style="{StaticResource LargeHeaderTextBlock}"
                            HorizontalAlignment="Center"/>
 
-                <local:DuoGrid HorizontalAlignment="Center"
-                               Items="{Binding Path=Credits, Mode=OneTime}" />
+                <ItemsControl HorizontalAlignment="Center"
+                              Grid.IsSharedSizeScope="True">
+                    <local:DuoGridItem Header="RayCarrot"
+                                       Text="{Resx About_Credits_RayCarrot}" />
 
-                <TextBlock Text="{Binding Path=SpecialThanks, Mode=OneTime}" 
+                    <local:DuoGridItem Header="Noserdog"
+                                       Text="{Resx About_Credits_Noserdog}" />
+
+                    <local:DuoGridItem Header="Juanmv94"
+                                       Text="{Resx About_Credits_Janmv94}"/>
+
+                    <local:DuoGridItem Header="RibShark"
+                                       Text="{Resx About_Credits_RibShark}" />
+
+                    <local:DuoGridItem Header="PluMGMK"
+                                       Text="{Resx About_Credits_PluMGMK}" />
+
+                    <local:DuoGridItem Header="Haruka Tavares"
+                                       Text="{Resx About_Credits_HarukaTavares}" />
+
+                    <local:DuoGridItem Header="Evelyn Chickentalk"
+                                       Text="{Resx About_Credits_EvelynChickentalk}" />
+                </ItemsControl>
+
+                <TextBlock Text="{Resx About_SpecialThanks}" 
                            HorizontalAlignment="Center"/>
 
             </StackPanel>

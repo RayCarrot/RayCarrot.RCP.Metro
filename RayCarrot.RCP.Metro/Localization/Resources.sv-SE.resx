@@ -857,4 +857,16 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="LocateGame_ErrorHeader" xml:space="preserve">
     <value>Fel vid att hitta spel</value>
   </data>
+  <data name="LaunchGame_WinStoreError" xml:space="preserve">
+    <value>Ett fel inträffade när {0} skulle starta</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
+    <value>1.21</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
+    <value>1.20</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
+    <value>1.12</value>
+  </data>
 </root>

@@ -23,14 +23,7 @@ namespace RayCarrot.RCP.Metro
 
             // Default properties
             SelectedTranslation = Rayman2Translation.Original;
-            DetailedTranslationInfo = "Original";
         }
-
-        #endregion
-
-        #region Private Fields
-
-        private Rayman2Translation _selectedTranslation;
 
         #endregion
 
@@ -39,42 +32,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The selected translation
         /// </summary>
-        public Rayman2Translation SelectedTranslation
-        {
-            get => _selectedTranslation;
-            set
-            {
-                _selectedTranslation = value;
-
-                switch (value)
-                {
-                    case Rayman2Translation.Original:
-                        DetailedTranslationInfo = "Original";
-                        break;
-
-                    case Rayman2Translation.Irish:
-                        DetailedTranslationInfo = "Irish (Gaeilge) - by PluMGMK";
-                        break;
-
-                    case Rayman2Translation.Swedish:
-                        DetailedTranslationInfo = "Swedish (Svenska) - by RayCarrot";
-                        break;
-
-                    case Rayman2Translation.Portuguese:
-                        DetailedTranslationInfo = "Portuguese (Português) - by Haruka Tavares";
-                        break;
-
-                    case Rayman2Translation.Slovak:
-                        DetailedTranslationInfo = "Slovak (Slovenský) - by MixerX";
-                        break;
-                }
-            }
-        }
-
-        /// <summary>
-        /// The detailed information for the selected translation
-        /// </summary>
-        public string DetailedTranslationInfo { get; set; }
+        public Rayman2Translation SelectedTranslation { get; set; }
 
         #endregion
 
@@ -108,7 +66,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     RCF.Logger.LogInformationSource($"The Rayman 2 translation patch could not be downloaded due to the required local files not being found");
 
-                    await RCF.MessageUI.DisplayMessageAsync("The required files could not be found", "Missing files", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.R2U_Translations_FilesNotFound, MessageType.Error);
                     return;
                 }
 
@@ -134,33 +92,31 @@ namespace RayCarrot.RCP.Metro
                     return;
 
                 var message = SelectedTranslation == Rayman2Translation.Original
-                    ? "Due to the textures file having been modified by the previous translation it is recommended to replace it with the " +
-                      "original version."
-                    : "It is additionally recommended to also replace the game's textures file with a modified version to get the full font " +
-                      "and characters required by this translation.";
+                    ? Resources.R2U_Translations_RevertTextures
+                    : Resources.R2U_Translations_ReplaceTextures;
 
-                if (!await RCF.MessageUI.DisplayMessageAsync(message, "Confirm textures replacement", MessageType.Question, true))
-                    return;
-
-                RCF.Logger.LogInformationSource($"The Rayman 2 translation texture patch is downloading...");
-
-                // Replace the textures.cnt file
-                var succeeded2 = await App.DownloadAsync(new Uri[]
+                if (await RCF.MessageUI.DisplayMessageAsync(message, Resources.R2U_Translations_ReplaceTexturesHeader, MessageType.Question, true))
                 {
-                    new Uri(GetTexturesCntUrl(SelectedTranslation))
-                }, false, texturesCnt.Parent);
+                    RCF.Logger.LogInformationSource($"The Rayman 2 translation texture patch is downloading...");
 
-                if (!succeeded2)
-                    return;
+                    // Replace the textures.cnt file
+                    var succeeded2 = await App.DownloadAsync(new Uri[]
+                    {
+                        new Uri(GetTexturesCntUrl(SelectedTranslation))
+                    }, false, texturesCnt.Parent);
+
+                    if (!succeeded2)
+                        return;
+                }
 
                 RCF.Logger.LogInformationSource($"The Rayman 2 translation has been applied");
 
-                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("All files have been successfully replaced");
+                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_Translations_Success);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Applying R2 translation patch");
-                await RCF.MessageUI.DisplayMessageAsync("An error occured when applying the Rayman 2 translation utility", "Error", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.R2U_Translations_Error, MessageType.Error);
             }
         }
 

@@ -19,68 +19,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public AboutPageViewModel()
         {
-            // NOTE: Not localized
-            Credits = new ObservableCollection<DuoGridItemViewModel>()
-            {
-                new DuoGridItemViewModel()
-                {
-                    Header = "RayCarrot  ",
-                    Text = "User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations, Swedish program translation"
-                },
-                new DuoGridItemViewModel()
-                {
-                    Header = "Noserdog  ",
-                    Text = "Controller patches"
-                },
-                new DuoGridItemViewModel()
-                {
-                    Header = "Juanmv94  ",
-                    Text = "Rayman 2 button remapping"
-                },
-                new DuoGridItemViewModel()
-                {
-                    Header = "RibShark  ",
-                    Text = "Cheat code list, general help with the utilities"
-                },
-                new DuoGridItemViewModel()
-                {
-                    Header = "PluMGMK  ",
-                    Text = "Rayman 2 translations"
-                },
-                new DuoGridItemViewModel()
-                {
-                    Header = "Haruka Tavares  ",
-                    Text = "Rayman 2 translations"
-                },
-                new DuoGridItemViewModel()
-                {
-                    Header = "Evelyn Chickentalk  ",
-                    Text = "File structure for the education Rayman games"
-                },
-            };
-
-            // NOTE: Not localized
-            SpecialThanks = "Special thanks to 432 Hz, AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!";
-
             // Create commands
             OpenUrlCommand = new RelayCommand(x => OpenUrl(x?.ToString()));
             ShowVersionHistoryCommand = new RelayCommand(ShowVersionHistory);
             CheckForUpdatesCommand = new AsyncRelayCommand(async () => await App.CheckForUpdatesAsync(true));
         }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// The credits info items
-        /// </summary>
-        public ObservableCollection<DuoGridItemViewModel> Credits { get; }
-
-        /// <summary>
-        /// The special thanks text
-        /// </summary>
-        public string SpecialThanks { get; }
 
         #endregion
 

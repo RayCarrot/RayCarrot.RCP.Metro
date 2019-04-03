@@ -110,7 +110,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Getting backup info", Game);
-                await RCF.MessageUI.DisplayMessageAsync($"An error occurred reading the backup for {Game.GetDisplayName()}", "Error", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.ReadingBackupError, Game.GetDisplayName()), MessageType.Error);
             }
         }
 

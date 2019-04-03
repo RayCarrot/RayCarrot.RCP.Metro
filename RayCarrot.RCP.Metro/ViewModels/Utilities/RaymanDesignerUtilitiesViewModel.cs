@@ -101,7 +101,7 @@ namespace RayCarrot.RCP.Metro
 
             RCF.Logger.LogInformationSource($"The following Rayman Designer files were found to replace: {foundFiles.Select(x => x.Item1.Name).JoinItems(", ")}");
 
-            await RCF.MessageUI.DisplayMessageAsync($"{foundFiles.Count}/{files.Length} files were found to replace. This might require several downloads depending on their locations.", "Information", MessageType.Information);
+            await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.RDU_ReplaceFiles_InfoMessage, foundFiles.Count, files.Length), MessageType.Information);
 
             try
             {
@@ -115,12 +115,12 @@ namespace RayCarrot.RCP.Metro
 
                 RCF.Logger.LogInformationSource($"The Rayman Designer files have been replaced");
 
-                await RCF.MessageUI.DisplayMessageAsync("Replacement complete", "Operation complete", MessageType.Information);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.RDU_ReplaceFiles_Complete, MessageType.Information);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Replacing R1 soundtrack");
-                await RCF.MessageUI.DisplayMessageAsync("Soundtrack replacement failed.", "Error", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.RDU_ReplaceFiles_Error, MessageType.Error);
             }
         }
 
@@ -136,7 +136,7 @@ namespace RayCarrot.RCP.Metro
             // Check if the file exists
             if (path.FileExists)
             {
-                if (!await RCF.MessageUI.DisplayMessageAsync("The configuration file already exists. You can still recreate it if it is corrupt. Continue?", "Replace File", MessageType.Question, true))
+                if (!await RCF.MessageUI.DisplayMessageAsync(Resources.RDU_CreateConfig_ReplaceQuestion, Resources.RDU_CreateConfig_ReplaceQuestionHeader, MessageType.Question, true))
                     return;
             }
 
@@ -161,12 +161,12 @@ namespace RayCarrot.RCP.Metro
 
                 RCF.Logger.LogInformationSource($"The Rayman Designer config file has been recreated");
 
-                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("The file was successfully created.", "Action complete");
+                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RDU_CreateConfig_Success);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Applying RD config patch");
-                await RCF.MessageUI.DisplayMessageAsync("The patch could not be applied.", "Error", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.RDU_CreateConfig_Error, MessageType.Error);
             }
         }
 

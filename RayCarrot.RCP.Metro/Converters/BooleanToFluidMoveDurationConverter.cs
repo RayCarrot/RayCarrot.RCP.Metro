@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Converts a <see cref="Boolean"/> to a <see cref="Duration"/> to be used in a FluidMoveBehavior
     /// </summary>
-    public class BooleanToFluidMoveDuration : BaseValueConverter<BooleanToFluidMoveDuration, bool, Duration>
+    public class BooleanToFluidMoveDurationConverter : BaseValueConverter<BooleanToFluidMoveDurationConverter, bool, Duration>
     {
         public override Duration ConvertValue(bool value, Type targetType, object parameter, CultureInfo culture)
         {

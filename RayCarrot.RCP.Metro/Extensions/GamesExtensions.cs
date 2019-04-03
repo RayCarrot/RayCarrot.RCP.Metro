@@ -543,7 +543,6 @@ namespace RayCarrot.RCP.Metro
                     return new GameLaunchInfo(@"steam://rungameid/" + game.GetSteamID(), null);
 
                 case GameType.WinStore:
-                    // throw new ArgumentOutOfRangeException(nameof(info.GameType), info.GameType, "Launch info can not be obtained for a Windows Store application");
                     return new GameLaunchInfo("shell:appsFolder\\" + $"{game.GetLaunchName()}!App", null);
 
                 case GameType.DosBox:

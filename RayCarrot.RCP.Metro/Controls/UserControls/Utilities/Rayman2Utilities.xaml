@@ -29,12 +29,30 @@
 
             </StackPanel>
 
-            <ComboBox ItemsSource="{Binding Path=SelectedTranslation, Mode=OneTime, Converter={rwpf:EnumToListConverter}}"
-                      SelectedIndex="{Binding Path=SelectedTranslation, Converter={rwpf:EnumToIntConverter}}"
+            <ComboBox SelectedIndex="{Binding Path=SelectedTranslation, Converter={rwpf:EnumToIntConverter}}"
                       HorizontalAlignment="Left"
-                      MinWidth="110"/>
+                      MinWidth="110">
+                <TextBlock Text="{Resx R2U_Translations_Original}" />
+                <TextBlock Text="{Resx R2U_Translations_Irish}" />
+                <TextBlock Text="{Resx R2U_Translations_Swedish}" />
+                <TextBlock Text="{Resx R2U_Translations_Portuguese}" />
+                <TextBlock Text="{Resx R2U_Translations_Slovak}" />
+            </ComboBox>
 
-            <TextBlock Text="{Binding Path=DetailedTranslationInfo}"
+            <TextBlock Text="{Resx R2U_Translations_IrishInfo}"
+                       Visibility="{Binding Path=SelectedTranslation, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Irish}"
+                       TextWrapping="WrapWithOverflow" />
+
+            <TextBlock Text="{Resx R2U_Translations_SwedishInfo}"
+                       Visibility="{Binding Path=SelectedTranslation, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Swedish}"
+                       TextWrapping="WrapWithOverflow" />
+
+            <TextBlock Text="{Resx R2U_Translations_PortugueseInfo}"
+                       Visibility="{Binding Path=SelectedTranslation, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Portuguese}"
+                       TextWrapping="WrapWithOverflow" />
+
+            <TextBlock Text="{Resx R2U_Translations_SlovakInfo}"
+                       Visibility="{Binding Path=SelectedTranslation, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Slovak}"
                        TextWrapping="WrapWithOverflow" />
 
             <Button Content="{Resx R2U_Apply}"

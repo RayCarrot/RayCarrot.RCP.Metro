@@ -34,7 +34,7 @@
                                 <ItemsPanelTemplate>
                                     <WrapPanel> 
                                         <i:Interaction.Behaviors>
-                                            <ei:FluidMoveBehavior Duration="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToFluidMoveDuration}}"       AppliesTo="Children" />
+                                            <ei:FluidMoveBehavior Duration="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToFluidMoveDurationConverter}}"       AppliesTo="Children" />
                                         </i:Interaction.Behaviors>
                                     </WrapPanel>
                                 </ItemsPanelTemplate>

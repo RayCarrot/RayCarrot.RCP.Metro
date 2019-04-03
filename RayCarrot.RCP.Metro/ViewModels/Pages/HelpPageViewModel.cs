@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows.Data;
 using RayCarrot.CarrotFramework;
 using RayCarrot.Windows.Registry;
 // ReSharper disable StringLiteralTypo
@@ -16,6 +17,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public HelpPageViewModel()
         {
+            // TODO: Move out of view model?
+
             HelpItems = new ObservableCollection<HelpItemViewModel>()
             {
                 // Rayman Control Panel
@@ -30,10 +33,10 @@ namespace RayCarrot.RCP.Metro
                             DisplayHeader = "Updates",
                             HelpText = "The program will by default check for updates on launch, unless the option has been disabled. This is done in the background and might take a few seconds. " +
                                        "Updates can manually be checked for in the settings page." +
-                                       Environment.NewLine +
-                                       Environment.NewLine +
+                                       "\n" +
+                                       "\n" +
                                        "If an error occurs with the update service it can manually be downloaded from:" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "http://raycarrot.ylemnova.com/"
                         },
 
@@ -50,17 +53,17 @@ namespace RayCarrot.RCP.Metro
                             DisplayHeader = "Game Installer",
                             HelpText = "For games which support to be installed from a disc you can do so from the drop down menu of the game. Currently " +
                                        "Rayman 2, Rayman M and Rayman Arena are the only supported games." +
-                                       Environment.NewLine +
-                                       Environment.NewLine +
+                                       "\n" +
+                                       "\n" +
                                        "During the installation you will have to specify a directory to install to. The game will install in a sub-directory in " +
                                        "the specified directory. For example, you choose to install Rayman 2 under C:\\Ubisoft it will get installed under " +
                                        "C:\\Ubisoft\\Rayman 2" +
-                                       Environment.NewLine +
-                                       Environment.NewLine +
+                                       "\n" +
+                                       "\n" +
                                        "For Rayman 2 the installer will replace the executable file with the one from the GOG version to allow the game to run without " +
                                        "inserting the disc. This is done to avoid a common disc error which usually occurs during the later half of the game." +
-                                       Environment.NewLine +
-                                       Environment.NewLine +
+                                       "\n" +
+                                       "\n" +
                                        "To uninstall one of the games installed using the game installer you simply have to delete the directory and its files. The game " +
                                        "will not show up under installed programs due to not having an uninstaller."
                         },
@@ -71,8 +74,8 @@ namespace RayCarrot.RCP.Metro
                             DisplayHeader = "Backup/Restore",
                             HelpText = "The program has a backup and restore feature for all supported games. The backups are by default stored in the " +
                                        "documents folder, but the location can be changed in the settings." +
-                                       Environment.NewLine +
-                                       Environment.NewLine +
+                                       "\n" +
+                                       "\n" +
                                        "The backups themselves are always stored in the " +
                                        $"'{AppViewModel.BackupFamily}' sub-directory. It is not recommended to manually modify these files."
                         },
@@ -83,14 +86,14 @@ namespace RayCarrot.RCP.Metro
                             DisplayHeader = "App Data Location",
                             HelpText = "The program saves its app data mainly in the current user's local app data, with some settings stored in the Registry. Below is a complete list" +
                                        "of the locations where data is stored." +
-                                       Environment.NewLine +
-                                       Environment.NewLine +
+                                       "\n" +
+                                       "\n" +
                                        $"• Main application data - {CommonPaths.UserDataBaseDir}" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        $"• Registry Settings - {CommonPaths.RegistryBaseKey}" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        $"• Framework Registry Settings - {RCFRegistryPaths.RCFBasePath}" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        $"• Temporary data - {CommonPaths.TempPath}",
                             RequiredUserLevel = UserLevel.Advanced
                         },
@@ -102,14 +105,14 @@ namespace RayCarrot.RCP.Metro
                             HelpText = "The Rayman Control Panel supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the available" +
                                        "launch arguments. The '-' character should always be included. The '{}' characters show that a custom variable can be used, in which case the '{}'" +
                                        "should not be included." +
-                                       Environment.NewLine +
-                                       Environment.NewLine +
+                                       "\n" +
+                                       "\n" +
                                        "-reset (Resets all app data before launch)" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "-install {filePath} (Removes the installer from the specified path)" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "-ul {userLevel} (sets the user level once the framework is built)" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "-loglevel {logLevel} (sets the log level to log, default is Information)",
                             RequiredUserLevel = UserLevel.Technical
                         },
@@ -121,7 +124,7 @@ namespace RayCarrot.RCP.Metro
                             HelpText = "If a debugger is attached to the program the log viewer will automatically open. This can manually be opened from the debug " +
                                        "page even without a debugger being attached. If the debug user level is not enabled, the log can still be viewed from the file " +
                                        "it writes to under the following path:" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        CommonPaths.LogFile,
                             RequiredUserLevel = UserLevel.Debug
                         },
@@ -145,15 +148,15 @@ namespace RayCarrot.RCP.Metro
                                 {
                                     DisplayHeader = "Game not Launching",
                                     HelpText = "Here are the two most common things to try out if a game won't launch:" +
-                                               Environment.NewLine +
-                                               Environment.NewLine +
+                                               "\n" +
+                                               "\n" +
                                                "*Run the game as administrator:" +
-                                               Environment.NewLine +
+                                               "\n" +
                                                "The option to run a program as administrator can be found in the context menu by right-clicking the program." +
-                                               Environment.NewLine +
-                                               Environment.NewLine +
+                                               "\n" +
+                                               "\n" +
                                                "*Run the game under compatibility mode:" +
-                                               Environment.NewLine +
+                                               "\n" +
                                                "Running an application under compatibility mode is done by selecting the option under the compatibility options " +
                                                "in the file properties. For many older games it is recommended to select Windows XP Service Pack 2 or 3."
                                 },
@@ -288,117 +291,117 @@ namespace RayCarrot.RCP.Metro
                         {
                             DisplayHeader = "Rayman 1",
                             HelpText = "• 99 lives  -  type trj8p or raylives or [TAB]bertrand during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• All fist power-ups  -  type 2x2rmfmf or goldfist or [TAB]antoine during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• All normal powers  -  type en5gol2g or power or [TAB]benoit during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Full health  -  type kom0ogdk or raypoint or [TAB]christ during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• 10 added Tings  -  type 86e40g91 or raywiz or [TAB]jojo during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Skip current level section  -  type o8feh or winmap or [TAB]cyril during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Display hidden message  -  type [TAB]program during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Free movement  -  type [TAB];overay[BACKSPACE] during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• 100MHz Refresh rate  -  type freq10 on the map" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• 80MHz Refresh rate  -  type freq80 on the map" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• All normal powers  -  type power or [TAB]benoit on the map" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Lens effect  -  type lens on the map" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Unlock all levels  -  type 4ctrepfj or alworld or [TAB]francois on the map" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Enter Breakout minigame  -  type b76b7081 or cbray or [TAB]olivier on the map once Mr Dark's Dare has been completed" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Enter random stage from Breakout minigame  -  type [TAB]cbrayal[BACKSPACE] on the map" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Stage selection  -  type [TAB]alevel[BACKSPACE] on the map"
                         },
                         new HelpItemViewModel()
                         {
                             DisplayHeader = "Rayman Designer + Spin-Offs",
                             HelpText = "• 5 lives  -  type [TAB]lives05[BACKSPACE] during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• 20 lives  -  type [TAB]lives20[BACKSPACE] during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• 50 lives  -  type [TAB]lives50[BACKSPACE] during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "*All fist power-ups  -  type [TAB]goldens during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Finish level  -  type [TAB]finishing during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Full health  -  type [TAB]points during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Map number display  -  type [TAB]map[BACKSPACE] during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Free movement  -  type [TAB]moveray[BACKSPACE] during gameplay" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Unlock all levels  -  type [TAB]openall[BACKSPACE] on the map"
                         },
                         new HelpItemViewModel()
                         {
                             DisplayHeader = "Rayman 2",
                             HelpText = "• Upgrade magic fist  -  type glowfist on the pause screen" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Restore health  -  type gimmelife on the pause screen" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Gain 5 Yellow Lums  -  type gimmelumz on the pause screen" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Go to any level  -  type gothere on the pause screen, select a level with the arrow keys and press enter" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Unlock grappling power  -  type hangon on the pause screen" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Gain maximum health  -  press and release the J key to the rhythm of the Rayman 2 theme" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Enter bonus level without all Lums and Cages  -   press the A, Numpad 0, Q, W, Q, W in order followed by enter on the Access Denied screen" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "*Skip cutscenes  -  type NOMOVIES on the pause screen" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• New loading screens  -  type ALLVIGN on the pause screen" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Disable Murfy  -  type NOMOREMURFY on the pause screen" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Access hidden area in Tomb of the Ancients  -  In the final part of the Tomb of the Ancients, " +
                                        "stand on the third panel away from the entrance to the Technical Check-up where Rayman fights Clark. " +
                                        "Type PLAYJEFF and jump on the crate to the hole in the wall." +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Access Menezis  -  type SHOOTEMUP during the credits" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Unknown  -  type GETELIX on the pause screen"
                         },
                         new HelpItemViewModel()
                         {
                             DisplayHeader = "Rayman M/Arena",
                             HelpText = "• Skip cutscenes  -  type esc during the cutscene" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Unlock all battle levels  -  enter ALLFISH as a profile name and press Shift + Ctrl + Alt" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Unlock all race levels  -  enter ALLTRIBES as a profile name and press Shift + Ctrl + Alt" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Unlock all levels  -  enter ALLRAYMANM as a profile name and press Shift + Ctrl + Alt" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Unlock all characters  -  enter PUPPETS as a profile name and press Shift + Ctrl + Alt" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Unlock all skins  -  enter CARNIVAL as a profile name and press Shift + Ctrl + Alt" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Unlock all battle levels in mode 1  -  enter ARENAS as a profile name and press Shift + Ctrl + Alt" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Unlock all race levels in mode 1  -  enter TRACKS as a profile name and press Shift + Ctrl + Alt" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Unlock all levels in mode 1  -  enter FIELDS as a profile name and press Shift + Ctrl + Alt" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Ragtime music in races  -  enter OLDTV as a profile name and press Shift + Ctrl + Alt" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Reverse map  -  type reverse on the keyboard during gameplay" +
-                                       Environment.NewLine +
-                                       Environment.NewLine +
+                                       "\n" +
+                                       "\n" +
                                        "• Music team:" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "To activate it, enter race mode and pause the game. On the pause screen, " +
                                        "hold L1 + R1 (or equivalent on the currently used controller), then press the optimize button. " +
                                        "Five blue balls will appear at the bottom of the screen. Release everything and press Jump. " +
@@ -413,7 +416,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             DisplayHeader = "Rayman 3",
                             HelpText = "• Skip cutscenes  -  type esc during the cutscene" +
-                                       Environment.NewLine +
+                                       "\n" +
                                        "• Reverse map  -  type reverse on the keyboard during gameplay"
                         },
                     }

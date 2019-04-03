@@ -321,7 +321,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Replacing RO videos");
-                await RCF.MessageUI.DisplayMessageAsync("Video replacement failed.", "Error", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.ROU_HQVideosFailed, MessageType.Error);
             }
         }
 
@@ -347,7 +347,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Downloading RO updater");
-                await RCF.MessageUI.DisplayMessageAsync("Downloading the Rayman Origins updater failed.", "Error", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.ROU_UpdateFailed, MessageType.Error);
             }
 
 
@@ -370,7 +370,7 @@ namespace RayCarrot.RCP.Metro
 
                     RCF.Logger.LogWarningSource($"The Rayman Origins debug commands could not be updated due to the install directory not being found");
 
-                    await RCF.MessageUI.DisplayMessageAsync("The Rayman Origins installation could not be found", "Error", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.ROU_DebugCommandsInstallationNotFound, MessageType.Error);
                     return;
                 }
 
@@ -392,7 +392,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Applying RO debug commands");
-                    await RCF.MessageUI.DisplayMessageAsync("An error occured when applying the debug commands", "Error", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.ROU_DebugCommandsError, MessageType.Error);
                 }
             }
         }

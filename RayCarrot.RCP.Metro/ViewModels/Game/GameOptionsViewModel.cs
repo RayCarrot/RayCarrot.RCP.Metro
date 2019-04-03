@@ -29,32 +29,12 @@ namespace RayCarrot.RCP.Metro
             Game = game;
             DisplayName = game.GetDisplayName();
             IconSource = game.GetIconSource();
+            GameInfo = game.GetInfo();
+            LaunchInfo = GameInfo.GameType == GameType.Win32 || GameInfo.GameType == GameType.DosBox ? game.GetLaunchInfo() : null;
+            InstallDir = GameInfo.InstallDirectory;
 
-            InfoItems = new ObservableCollection<DuoGridItemViewModel>();
-
-            var info = game.GetInfo();
-            var gameType = info.GameType;
-
-            if (gameType == GameType.WinStore)
-            {
+            if (GameInfo.GameType == GameType.WinStore)
                 AddPackageInfo();
-            }
-            else
-            {
-                var launchInfo = game.GetLaunchInfo();
-
-                if (gameType != GameType.Steam)
-                {
-                    AddDuoGridItem(UserLevel.Technical, "Launch path", launchInfo.Path);
-                    AddDuoGridItem(UserLevel.Technical, "Launch arguments", launchInfo.Args);
-                }
-                else
-                {
-                    AddDuoGridItem(UserLevel.Advanced, "Steam ID", game.GetSteamID());
-                }
-                AddDuoGridItem(UserLevel.Advanced, "Game type", gameType.GetDisplayName());
-                AddDuoGridItem(UserLevel.Normal, "Install location", info.InstallDirectory);
-            }
         }
 
         #endregion
@@ -67,6 +47,11 @@ namespace RayCarrot.RCP.Metro
         public Games Game { get; }
 
         /// <summary>
+        /// The game info
+        /// </summary>
+        public GameInfo GameInfo { get; }
+
+        /// <summary>
         /// The display name
         /// </summary>
         public string DisplayName { get; }
@@ -77,9 +62,44 @@ namespace RayCarrot.RCP.Metro
         public string IconSource { get; }
 
         /// <summary>
-        /// The info items to show
+        /// The game launch info, if available
         /// </summary>
-        public ObservableCollection<DuoGridItemViewModel> InfoItems { get; }
+        public GameLaunchInfo LaunchInfo { get; }
+
+        /// <summary>
+        /// The game's Steam ID
+        /// </summary>
+        public string SteamID => GameInfo.GameType == GameType.Steam ? Game.GetSteamID() : null;
+
+        /// <summary>
+        /// The game install directory
+        /// </summary>
+        public string InstallDir { get; set; }
+
+        /// <summary>
+        /// The Windows Store app dependencies
+        /// </summary>
+        public string WinStoreDependencies { get; set; }
+
+        /// <summary>
+        /// The Windows Store app full name
+        /// </summary>
+        public string WinStoreFullName { get; set; }
+
+        /// <summary>
+        /// The Windows Store app architecture
+        /// </summary>
+        public string WinStoreArchitecture { get; set; }
+
+        /// <summary>
+        /// The Windows Store app version
+        /// </summary>
+        public string WinStoreVersion { get; set; }
+
+        /// <summary>
+        /// The Windows Store app install date
+        /// </summary>
+        public DateTime WinStoreInstallDate { get; set; }
 
         #endregion
 
@@ -100,36 +120,22 @@ namespace RayCarrot.RCP.Metro
         #region Private Methods
 
         /// <summary>
-        /// Adds a duo grid info item
-        /// </summary>
-        /// <param name="minUserLevel">The minimum required user level</param>
-        /// <param name="header">The header</param>
-        /// <param name="text">The text to display</param>
-        private void AddDuoGridItem(UserLevel minUserLevel, string header, string text)
-        {
-            InfoItems.Add(new DuoGridItemViewModel()
-            {
-                Header = header + ":  ",
-                Text = text,
-                MinUserLevel = minUserLevel
-            });
-        }
-
-        /// <summary>
         /// Adds Windows store package information
         /// </summary>
         [MethodImpl(MethodImplOptions.NoInlining)]
         private void AddPackageInfo()
         {
-            var info = Game.GetInfo();
-            Package package = Game.GetGamePackage().CastTo<Package>();
+            if (!(Game.GetGamePackage() is Package package))
+            {
+                RCF.Logger.LogErrorSource("Game options WinStore package is null");
+                return;
+            }
 
-            AddDuoGridItem(UserLevel.Debug, "Dependencies", package.Dependencies.Select(x => x.Id.Name).JoinItems(", "));
-            AddDuoGridItem(UserLevel.Debug, "Full name", package.Id.FullName);
-            AddDuoGridItem(UserLevel.Technical, "Architecture", package.Id.Architecture.ToString());
-            AddDuoGridItem(UserLevel.Advanced, "Version", $"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}");
-            AddDuoGridItem(UserLevel.Normal, "Installed", package.InstalledDate.DateTime.ToLongDateString());
-            AddDuoGridItem(UserLevel.Normal, "Install location", info.InstallDirectory);
+            WinStoreDependencies = package.Dependencies.Select(x => x.Id.Name).JoinItems(", ");
+            WinStoreFullName = package.Id.FullName;
+            WinStoreArchitecture = package.Id.Architecture.ToString();
+            WinStoreVersion = $"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}";
+            WinStoreInstallDate = package.InstalledDate.DateTime;
         }
 
         #endregion
@@ -143,8 +149,7 @@ namespace RayCarrot.RCP.Metro
         public async Task RemoveAsync()
         {
             // Ask the user
-            if (!await RCF.MessageUI.DisplayMessageAsync($"Are you sure you want to remove {DisplayName} from the Rayman Control Panel? This will not remove the game from " +
-                                                         $"your computer or any of its files, including the backups created using this program.", "Confirm remove", MessageType.Question, true))
+            if (!await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGameQuestion, DisplayName), Resources.RemoveGameQuestionHeader,  MessageType.Question, true))
                 return;
 
             // Remove the game
@@ -162,14 +167,14 @@ namespace RayCarrot.RCP.Metro
                 var result = await RCF.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                 {
                     DefaultDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-                    Title = "Select shortcut destination"
+                    Title = Resources.GameShortcut_BrowseHeader
                 });
 
                 if (result.CanceledByUser)
                     return;
 
                 var gameInfo = Game.GetInfo();
-                var shortcutName = $"Launch {Game.GetDisplayName()}";
+                var shortcutName = String.Format(Resources.GameShortcut_ShortcutName, Game.GetDisplayName());
 
                 if (gameInfo.GameType == GameType.Steam)
                 {
@@ -177,7 +182,7 @@ namespace RayCarrot.RCP.Metro
 
                     RCF.Logger.LogTraceSource($"A shortcut was created for {Game} under {result.SelectedDirectory}");
 
-                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync("Shortcut created successfully");
+                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.GameShortcut_Success);
                 }
                 else
                 {
@@ -188,8 +193,8 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Creating desktop shortcut", Game);
-                await RCF.MessageUI.DisplayMessageAsync("The shortcut could not be created", "Shortcut creation failed", MessageType.Error);
+                ex.HandleError("Creating game shortcut", Game);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader, MessageType.Error);
             }
         }
 

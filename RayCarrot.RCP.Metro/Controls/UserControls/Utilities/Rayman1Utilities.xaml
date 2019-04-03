@@ -8,6 +8,7 @@
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                    ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     mc:Ignorable="d" 
                     d:DesignHeight="450" d:DesignWidth="800"
                     d:DataContext="{d:DesignInstance local:Rayman1UtilitiesViewModel}">
@@ -78,8 +79,12 @@
 
                 <ComboBox Grid.Column="1"
                           Grid.Row="0"
-                          ItemsSource="{Binding Path=AvailableRaymanVersions, Mode=OneTime}"
-                          SelectedIndex="{Binding Path=Data.TPLSData.RaymanVersion, Converter={rwpf:EnumToIntConverter}}" />
+                          SelectedIndex="{Binding Path=Data.TPLSData.RaymanVersion, Converter={rwpf:EnumToIntConverter}}">
+                    <TextBlock Text="{Resx R1U_TPLS_RayVersions_Auto}" />
+                    <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_12}" />
+                    <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_20}" />
+                    <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_21}" />
+                </ComboBox>
 
                 <TextBlock Grid.Column="0"
                            Grid.Row="1"
@@ -87,8 +92,10 @@
 
                 <ComboBox Grid.Column="1"
                           Grid.Row="1"
-                          ItemsSource="{Binding Path=AvailableDosBoxVersions, Mode=OneTime}"
-                          SelectedIndex="{Binding Path=Data.TPLSData.DosBoxVersion, Converter={rwpf:EnumToIntConverter}}" />
+                          SelectedIndex="{Binding Path=Data.TPLSData.DosBoxVersion, Converter={rwpf:EnumToIntConverter}}">
+                    <TextBlock Text="{Resx R1U_TPLS_DosBoxVersions_0_74}" />
+                    <TextBlock Text="{Resx R1U_TPLS_DosBoxVersions_SVN_Daum}" />
+                </ComboBox>
 
             </Grid>
 
