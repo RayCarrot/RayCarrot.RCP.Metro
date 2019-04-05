@@ -260,6 +260,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Version History.
+        /// </summary>
+        public static string AppNews_Header {
+            get {
+                return ResourceManager.GetString("AppNews_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to App News.
+        /// </summary>
+        public static string AppNews_Title {
+            get {
+                return ResourceManager.GetString("AppNews_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup.
         /// </summary>
         public static string Backup_Backup {
@@ -656,6 +674,33 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 16:9.
+        /// </summary>
+        public static string Config_RRRScreenMode_16_9 {
+            get {
+                return ResourceManager.GetString("Config_RRRScreenMode_16_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4:3.
+        /// </summary>
+        public static string Config_RRRScreenMode_4_3 {
+            get {
+                return ResourceManager.GetString("Config_RRRScreenMode_4_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4:3 borders.
+        /// </summary>
+        public static string Config_RRRScreenMode_4_3Borders {
+            get {
+                return ResourceManager.GetString("Config_RRRScreenMode_4_3Borders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The screen mode options will behave differently depending on the selected resolution. Usually keeping the 4:3 mode enabled will allow the game not to be stretched on different aspect ratios..
         /// </summary>
         public static string Config_RRRScreenModeInfo {
@@ -913,6 +958,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_WidescreenVerticalInfo {
             get {
                 return ResourceManager.GetString("Config_WidescreenVerticalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue.
+        /// </summary>
+        public static string Continue {
+            get {
+                return ResourceManager.GetString("Continue", resourceCulture);
             }
         }
         
@@ -1250,6 +1304,60 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are using an older version of the program {0} compared to the version of the current app data {1}. This is not recommended and may cause compatibility issues. These may be fixed by resetting the app data for this program..
+        /// </summary>
+        public static string DowngradeWarning {
+            get {
+                return ResourceManager.GetString("DowngradeWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downgrade detected.
+        /// </summary>
+        public static string DowngradeWarningHeader {
+            get {
+                return ResourceManager.GetString("DowngradeWarningHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you wish to cancel the download?.
+        /// </summary>
+        public static string Download_Cancel {
+            get {
+                return ResourceManager.GetString("Download_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The download operation was canceled.
+        /// </summary>
+        public static string Download_Canceled {
+            get {
+                return ResourceManager.GetString("Download_Canceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation canceled.
+        /// </summary>
+        public static string Download_CanceledHeader {
+            get {
+                return ResourceManager.GetString("Download_CanceledHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel ongoing download.
+        /// </summary>
+        public static string Download_CancelHeader {
+            get {
+                return ResourceManager.GetString("Download_CancelHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This patch requires its files to be downloaded. Continue?.
         /// </summary>
         public static string Download_Confirm {
@@ -1277,6 +1385,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current File Progress.
+        /// </summary>
+        public static string Download_CurrentFileProgress {
+            get {
+                return ResourceManager.GetString("Download_CurrentFileProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The files could not be downloaded..
         /// </summary>
         public static string Download_Error {
@@ -1286,11 +1403,92 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The download operation failed.
+        /// </summary>
+        public static string Download_Failed {
+            get {
+                return ResourceManager.GetString("Download_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation failed.
+        /// </summary>
+        public static string Download_FailedHeader {
+            get {
+                return ResourceManager.GetString("Download_FailedHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No files were found to download.
         /// </summary>
         public static string Download_NoFilesFound {
             get {
                 return ResourceManager.GetString("Download_NoFilesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The operation is currently canceling.
+        /// </summary>
+        public static string Download_OperationCanceling {
+            get {
+                return ResourceManager.GetString("Download_OperationCanceling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel request already received.
+        /// </summary>
+        public static string Download_OperationCancelingHeader {
+            get {
+                return ResourceManager.GetString("Download_OperationCancelingHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some files could not be restored. Check {0} &amp; {1} to recover lost files..
+        /// </summary>
+        public static string Download_RestoreStoppedDownloadError {
+            get {
+                return ResourceManager.GetString("Download_RestoreStoppedDownloadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The files were downloaded successfully.
+        /// </summary>
+        public static string Download_Success {
+            get {
+                return ResourceManager.GetString("Download_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download operation complete.
+        /// </summary>
+        public static string Download_SuccessHeader {
+            get {
+                return ResourceManager.GetString("Download_SuccessHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        public static string Download_Title {
+            get {
+                return ResourceManager.GetString("Download_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Progress.
+        /// </summary>
+        public static string Download_TotalProgress {
+            get {
+                return ResourceManager.GetString("Download_TotalProgress", resourceCulture);
             }
         }
         
@@ -1309,6 +1507,52 @@ namespace RayCarrot.RCP.Metro {
         public static string ExceptionMessageInfo {
             get {
                 return ResourceManager.GetString("ExceptionMessageInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t show again.
+        /// </summary>
+        public static string Feedback_DoNotShowAgain {
+            get {
+                return ResourceManager.GetString("Feedback_DoNotShowAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Give Feedback.
+        /// </summary>
+        public static string Feedback_GiveFeedback {
+            get {
+                return ResourceManager.GetString("Feedback_GiveFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignore.
+        /// </summary>
+        public static string Feedback_Ignore {
+            get {
+                return ResourceManager.GetString("Feedback_Ignore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Listening to the users feedback is very important for me as a developer. Therefor I would greatly appreciate if you could take a minute to answer some quick questions regarding the program. This will allow you to let me know if there are any features you are missing or don&apos;t like.
+        ///Thanks!.
+        /// </summary>
+        public static string Feedback_Text {
+            get {
+                return ResourceManager.GetString("Feedback_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feedback - Version 4.0.0.
+        /// </summary>
+        public static string Feedback_Title {
+            get {
+                return ResourceManager.GetString("Feedback_Title", resourceCulture);
             }
         }
         
@@ -1390,6 +1634,35 @@ namespace RayCarrot.RCP.Metro {
         public static string File_ShortcutCreated {
             get {
                 return ResourceManager.GetString("File_ShortcutCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to the Rayman Control Panel.
+        /// </summary>
+        public static string FirstLaunchInfo_Header {
+            get {
+                return ResourceManager.GetString("FirstLaunchInfo_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This program allows quick and easy access to all your installed Rayman games on your computer. From here you&apos;ll be able to launch them and their configuration programs, configure them directly from this program with added options (such as button mapping, widescreen support and more) and backup/restore each game&apos;s save files.
+        ///Missing any Rayman games on your computer? You can easily access the available digital shops to purchase them or use the disc installer to install from any disc.
+        ///To get started, check [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string FirstLaunchInfo_Text {
+            get {
+                return ResourceManager.GetString("FirstLaunchInfo_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to the Rayman Control Panel.
+        /// </summary>
+        public static string FirstLaunchInfo_Title {
+            get {
+                return ResourceManager.GetString("FirstLaunchInfo_Title", resourceCulture);
             }
         }
         
@@ -1664,6 +1937,60 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create shortcut.
+        /// </summary>
+        public static string GameOptions_CreateShortcut {
+            get {
+                return ResourceManager.GetString("GameOptions_CreateShortcut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string GameOptions_Options {
+            get {
+                return ResourceManager.GetString("GameOptions_Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove from program.
+        /// </summary>
+        public static string GameOptions_Remove {
+            get {
+                return ResourceManager.GetString("GameOptions_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your configuration changes have not been saved. Do you want to exit and discard them?.
+        /// </summary>
+        public static string GameOptions_UnsavedChanges {
+            get {
+                return ResourceManager.GetString("GameOptions_UnsavedChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm exit.
+        /// </summary>
+        public static string GameOptions_UnsavedChangesHeader {
+            get {
+                return ResourceManager.GetString("GameOptions_UnsavedChangesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utilities.
+        /// </summary>
+        public static string GameOptions_Utilities {
+            get {
+                return ResourceManager.GetString("GameOptions_Utilities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Installed.
         /// </summary>
         public static string Games_Installed {
@@ -1777,6 +2104,563 @@ namespace RayCarrot.RCP.Metro {
         public static string Help_CategoryHelp {
             get {
                 return ResourceManager.GetString("Help_CategoryHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cheat Codes.
+        /// </summary>
+        public static string Help_Cheats {
+            get {
+                return ResourceManager.GetString("Help_Cheats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to • 99 lives  -  type trj8p or raylives or [TAB]bertrand during gameplay
+        ///• All fist power-ups  -  type 2x2rmfmf or goldfist or [TAB]antoine during gameplay
+        ///• All normal powers  -  type en5gol2g or power or [TAB]benoit during gameplay
+        ///• Full health  -  type kom0ogdk or raypoint or [TAB]christ during gameplay
+        ///• 10 added Tings  -  type 86e40g91 or raywiz or [TAB]jojo during gameplay
+        ///• Skip current level section  -  type o8feh or winmap or [TAB]cyril during gameplay
+        ///• Display hidden message  -  type [TAB]pr [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Help_Cheats_R1 {
+            get {
+                return ResourceManager.GetString("Help_Cheats_R1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 1.
+        /// </summary>
+        public static string Help_Cheats_R1Header {
+            get {
+                return ResourceManager.GetString("Help_Cheats_R1Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to • Upgrade magic fist  -  type glowfist on the pause screen
+        ///• Restore health  -  type gimmelife on the pause screen
+        ///• Gain 5 Yellow Lums  -  type gimmelumz on the pause screen
+        ///• Go to any level  -  type gothere on the pause screen, select a level with the arrow keys and press enter
+        ///• Unlock grappling power  -  type hangon on the pause screen
+        ///• Gain maximum health  -  press and release the J key to the rhythm of the Rayman 2 theme
+        ///• Enter bonus level without all Lums and Cages  -   press the A, Numpad 0 [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Help_Cheats_R2 {
+            get {
+                return ResourceManager.GetString("Help_Cheats_R2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2.
+        /// </summary>
+        public static string Help_Cheats_R2Header {
+            get {
+                return ResourceManager.GetString("Help_Cheats_R2Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to • Skip cutscenes  -  type esc during the cutscene
+        ///• Reverse map  -  type reverse on the keyboard during gameplay.
+        /// </summary>
+        public static string Help_Cheats_R3 {
+            get {
+                return ResourceManager.GetString("Help_Cheats_R3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3.
+        /// </summary>
+        public static string Help_Cheats_R3Header {
+            get {
+                return ResourceManager.GetString("Help_Cheats_R3Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to • 5 lives  -  type [TAB]lives05[BACKSPACE] during gameplay
+        ///• 20 lives  -  type [TAB]lives20[BACKSPACE] during gameplay
+        ///• 50 lives  -  type [TAB]lives50[BACKSPACE] during gameplay
+        ///*All fist power-ups  -  type [TAB]goldens during gameplay
+        ///• Finish level  -  type [TAB]finishing during gameplay
+        ///• Full health  -  type [TAB]points during gameplay
+        ///• Map number display  -  type [TAB]map[BACKSPACE] during gameplay
+        ///• Free movement  -  type [TAB]moveray[BACKSPACE] during gameplay
+        ///• Unlock all levels  -  type [ [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Help_Cheats_RD {
+            get {
+                return ResourceManager.GetString("Help_Cheats_RD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Designer + Spin-Offs.
+        /// </summary>
+        public static string Help_Cheats_RDHeader {
+            get {
+                return ResourceManager.GetString("Help_Cheats_RDHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to • Skip cutscenes  -  type esc during the cutscene
+        ///• Unlock all battle levels  -  enter ALLFISH as a profile name and press Shift + Ctrl + Alt
+        ///• Unlock all race levels  -  enter ALLTRIBES as a profile name and press Shift + Ctrl + Alt
+        ///• Unlock all levels  -  enter ALLRAYMANM as a profile name and press Shift + Ctrl + Alt
+        ///• Unlock all characters  -  enter PUPPETS as a profile name and press Shift + Ctrl + Alt
+        ///• Unlock all skins  -  enter CARNIVAL as a profile name and press Shift + Ctrl + Alt
+        ///• Unlock a [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Help_Cheats_RMA {
+            get {
+                return ResourceManager.GetString("Help_Cheats_RMA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman M/Arena.
+        /// </summary>
+        public static string Help_Cheats_RMAHeader {
+            get {
+                return ResourceManager.GetString("Help_Cheats_RMAHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Games.
+        /// </summary>
+        public static string Help_Games {
+            get {
+                return ResourceManager.GetString("Help_Games", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        public static string Help_Games_General {
+            get {
+                return ResourceManager.GetString("Help_Games_General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here are the two most common things to try out if a game won&apos;t launch:
+        ///
+        ///*Run the game as administrator:
+        ///The option to run a program as administrator can be found in the context menu by right-clicking the program.
+        ///
+        ///*Run the game under compatibility mode:
+        ///Running an application under compatibility mode is done by selecting the option under the compatibility options in the file properties. For many older games it is recommended to select Windows XP Service Pack 2 or 3..
+        /// </summary>
+        public static string Help_Games_General_GameNotLaunching {
+            get {
+                return ResourceManager.GetString("Help_Games_General_GameNotLaunching", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game not Launching.
+        /// </summary>
+        public static string Help_Games_General_GameNotLaunchingHeader {
+            get {
+                return ResourceManager.GetString("Help_Games_General_GameNotLaunchingHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 1.
+        /// </summary>
+        public static string Help_Games_R1 {
+            get {
+                return ResourceManager.GetString("Help_Games_R1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 1, and most of its PC spin-offs (including Rayman Designer, Rayman by his Fans and Rayman 60 Levels) are MS-DOS programs and are not compatible with modern versions of Windows. Running them requires a DOS emulator, such as DosBox. Currently DosBox is the only supported emulator by the Rayman Control Panel..
+        /// </summary>
+        public static string Help_Games_R1_Emulator {
+            get {
+                return ResourceManager.GetString("Help_Games_R1_Emulator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MS-Dos Emulator.
+        /// </summary>
+        public static string Help_Games_R1_EmulatorHeader {
+            get {
+                return ResourceManager.GetString("Help_Games_R1_EmulatorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importing maps is done in the Mapper program. If an error occurs when doing so you can try moving the map file to the RayKit directory and importing it from there..
+        /// </summary>
+        public static string Help_Games_R1_ImportMaps {
+            get {
+                return ResourceManager.GetString("Help_Games_R1_ImportMaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importing Maps.
+        /// </summary>
+        public static string Help_Games_R1_ImportMapsHeader {
+            get {
+                return ResourceManager.GetString("Help_Games_R1_ImportMapsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If one of the Rayman 1 based installers fail when it has finished installing it will delete the installed game if you cancel in the installer. To prevent this, force close the installer using task manager. The game will most likely still be installed. If any files are missing, copy them over from the disc manually..
+        /// </summary>
+        public static string Help_Games_R1_InstallationFailed {
+            get {
+                return ResourceManager.GetString("Help_Games_R1_InstallationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installation Failed.
+        /// </summary>
+        public static string Help_Games_R1_InstallationFailedHeader {
+            get {
+                return ResourceManager.GetString("Help_Games_R1_InstallationFailedHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Designer, also known as Rayman Gold or Rayman&apos;s World, is the Rayman game which includes the Mapper program which is used to create your own levels. The Mapper is a normal Windows executable file and will run without the need of an emulator. All of the static parts of the level is created in the Mapper program, while all of the so-called &apos;events&apos; are placed in the event editor (found within the game itself)..
+        /// </summary>
+        public static string Help_Games_R1_Mapper {
+            get {
+                return ResourceManager.GetString("Help_Games_R1_Mapper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Designer Editor.
+        /// </summary>
+        public static string Help_Games_R1_MapperHeader {
+            get {
+                return ResourceManager.GetString("Help_Games_R1_MapperHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2.
+        /// </summary>
+        public static string Help_Games_R2 {
+            get {
+                return ResourceManager.GetString("Help_Games_R2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some parts of the game may not work if the game is running in 60fps. The most notable issue is during the bonus games..
+        /// </summary>
+        public static string Help_Games_R2_Fps {
+            get {
+                return ResourceManager.GetString("Help_Games_R2_Fps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 60 vs 30 fps.
+        /// </summary>
+        public static string Help_Games_R2_FpsHeader {
+            get {
+                return ResourceManager.GetString("Help_Games_R2_FpsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If Rayman 2 is running too fast while using nGlide, change the refresh rate to 120hz. This should be done even on monitors which do not support 120hz..
+        /// </summary>
+        public static string Help_Games_R2_GameSpeed {
+            get {
+                return ResourceManager.GetString("Help_Games_R2_GameSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Running too Fast.
+        /// </summary>
+        public static string Help_Games_R2_GameSpeedHeader {
+            get {
+                return ResourceManager.GetString("Help_Games_R2_GameSpeedHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On disc versions of the game there is a known issue where the game will display a CD error during gameplay. There is currently no solution to this issue other than using a digital version, such as the GOG version, instead..
+        /// </summary>
+        public static string Help_Games_R2_NoDisc {
+            get {
+                return ResourceManager.GetString("Help_Games_R2_NoDisc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Disc Error.
+        /// </summary>
+        public static string Help_Games_R2_NoDiscHeader {
+            get {
+                return ResourceManager.GetString("Help_Games_R2_NoDiscHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3.
+        /// </summary>
+        public static string Help_Games_R3 {
+            get {
+                return ResourceManager.GetString("Help_Games_R3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Legends.
+        /// </summary>
+        public static string Help_Games_RL {
+            get {
+                return ResourceManager.GetString("Help_Games_RL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The error occurs mainly on Windows 10 devices due to the game not being able to read/write to the game save file and/or the game configuration settings. The most common fix involves adding Rayman Legends as an exception to the Controlled Folder Access section of the built-in Windows Security system..
+        /// </summary>
+        public static string Help_Games_RL_LoadError {
+            get {
+                return ResourceManager.GetString("Help_Games_RL_LoadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error during load.
+        /// </summary>
+        public static string Help_Games_RL_LoadErrorHeader {
+            get {
+                return ResourceManager.GetString("Help_Games_RL_LoadErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman M/Arena.
+        /// </summary>
+        public static string Help_Games_RMA {
+            get {
+                return ResourceManager.GetString("Help_Games_RMA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If textures are missing in the game while using an Intel graphics card, try turning off Transform and Lightning..
+        /// </summary>
+        public static string Help_Games_RMA_MissingTextures {
+            get {
+                return ResourceManager.GetString("Help_Games_RMA_MissingTextures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing Textures.
+        /// </summary>
+        public static string Help_Games_RMA_MissingTexturesHeader {
+            get {
+                return ResourceManager.GetString("Help_Games_RMA_MissingTexturesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids.
+        /// </summary>
+        public static string Help_Games_RRR {
+            get {
+                return ResourceManager.GetString("Help_Games_RRR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is currently no fix for this error. This appears in all versions, including the GOG version, on certain computers..
+        /// </summary>
+        public static string Help_Games_RRR_EngineError {
+            get {
+                return ResourceManager.GetString("Help_Games_RRR_EngineError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to jade_enr.exe Error.
+        /// </summary>
+        public static string Help_Games_RRR_EngineErrorHeader {
+            get {
+                return ResourceManager.GetString("Help_Games_RRR_EngineErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Control Panel.
+        /// </summary>
+        public static string Help_RCP {
+            get {
+                return ResourceManager.GetString("Help_RCP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The program saves its app data mainly in the current user&apos;s local app data, with some settings stored in the Registry. Below is a complete list of the locations where data is stored.
+        ///
+        ///• Main application data - {0}
+        ///• Registry Settings - {1}
+        ///• Framework Registry Settings - {2}
+        ///• Temporary data - {3}.
+        /// </summary>
+        public static string Help_RCP_AppData {
+            get {
+                return ResourceManager.GetString("Help_RCP_AppData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to App Data Location.
+        /// </summary>
+        public static string Help_RCP_AppDataHeader {
+            get {
+                return ResourceManager.GetString("Help_RCP_AppDataHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The program has a backup and restore feature for all supported games. The backups are by default stored in the documents folder, but the location can be changed in the settings.
+        ///
+        ///The backups themselves are always stored in the &apos;{0}&apos; sub-directory. It is not recommended to manually modify these files..
+        /// </summary>
+        public static string Help_RCP_BackupRestore {
+            get {
+                return ResourceManager.GetString("Help_RCP_BackupRestore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup/Restore.
+        /// </summary>
+        public static string Help_RCP_BackupRestoreHeader {
+            get {
+                return ResourceManager.GetString("Help_RCP_BackupRestoreHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The minimum required version to run the program is Windows Vista, with Windows 7 or above being recommended..
+        /// </summary>
+        public static string Help_RCP_Compatibility {
+            get {
+                return ResourceManager.GetString("Help_RCP_Compatibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compatibility.
+        /// </summary>
+        public static string Help_RCP_CompatibilityHeader {
+            get {
+                return ResourceManager.GetString("Help_RCP_CompatibilityHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If a debugger is attached to the program the log viewer will automatically open. This can manually be opened from the debug page even without a debugger being attached. If the debug user level is not enabled, the log can still be viewed from the file it writes to under the following path:
+        ///{0}.
+        /// </summary>
+        public static string Help_RCP_Debug {
+            get {
+                return ResourceManager.GetString("Help_RCP_Debug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debugging.
+        /// </summary>
+        public static string Help_RCP_DebugHeader {
+            get {
+                return ResourceManager.GetString("Help_RCP_DebugHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For games which support to be installed from a disc you can do so from the drop down menu of the game. Currently Rayman 2, Rayman M and Rayman Arena are the only supported games.
+        ///
+        ///During the installation you will have to specify a directory to install to. The game will install in a sub-directory in the specified directory. For example, you choose to install Rayman 2 under C:\Ubisoft it will get installed under C:\Ubisoft\Rayman 2
+        ///
+        ///For Rayman 2 the installer will replace the executable file with the one  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Help_RCP_GameInstaller {
+            get {
+                return ResourceManager.GetString("Help_RCP_GameInstaller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Installer.
+        /// </summary>
+        public static string Help_RCP_GameInstallerHeader {
+            get {
+                return ResourceManager.GetString("Help_RCP_GameInstallerHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Rayman Control Panel supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the availablelaunch arguments. The &apos;-&apos; character should always be included. The &apos;{}&apos; characters show that a custom variable can be used, in which case the &apos;{}&apos;should not be included.
+        ///
+        ///-reset (Resets all app data before launch)
+        ///-install {filePath} (Removes the installer from the specified path)
+        ///-ul {userLevel} (sets the user level once the framework is built)
+        ///-loglevel {log [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Help_RCP_LaunchArgs {
+            get {
+                return ResourceManager.GetString("Help_RCP_LaunchArgs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch Arguments.
+        /// </summary>
+        public static string Help_RCP_LaunchArgsHeader {
+            get {
+                return ResourceManager.GetString("Help_RCP_LaunchArgsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The program will by default check for updates on launch, unless the option has been disabled. This is done in the background and might take a few seconds. Updates can manually be checked for in the settings page.
+        ///
+        ///If an error occurs with the update service it can manually be downloaded from:
+        ///{0}.
+        /// </summary>
+        public static string Help_RCP_Updates {
+            get {
+                return ResourceManager.GetString("Help_RCP_Updates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updates.
+        /// </summary>
+        public static string Help_RCP_UpdatesHeader {
+            get {
+                return ResourceManager.GetString("Help_RCP_UpdatesHeader", resourceCulture);
             }
         }
         
@@ -2085,6 +2969,96 @@ namespace RayCarrot.RCP.Metro {
         public static string Installer_UnhandledItemsHeader {
             get {
                 return ResourceManager.GetString("Installer_UnhandledItemsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch {0}.
+        /// </summary>
+        public static string JumpListItemDescription {
+            get {
+                return ResourceManager.GetString("JumpListItemDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Danish.
+        /// </summary>
+        public static string Lang_Danish {
+            get {
+                return ResourceManager.GetString("Lang_Danish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string Lang_English {
+            get {
+                return ResourceManager.GetString("Lang_English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finnish.
+        /// </summary>
+        public static string Lang_Finnish {
+            get {
+                return ResourceManager.GetString("Lang_Finnish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to French.
+        /// </summary>
+        public static string Lang_French {
+            get {
+                return ResourceManager.GetString("Lang_French", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to German.
+        /// </summary>
+        public static string Lang_German {
+            get {
+                return ResourceManager.GetString("Lang_German", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Italian.
+        /// </summary>
+        public static string Lang_Italian {
+            get {
+                return ResourceManager.GetString("Lang_Italian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Norwegian.
+        /// </summary>
+        public static string Lang_Norwegian {
+            get {
+                return ResourceManager.GetString("Lang_Norwegian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spanish.
+        /// </summary>
+        public static string Lang_Spanish {
+            get {
+                return ResourceManager.GetString("Lang_Spanish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swedish.
+        /// </summary>
+        public static string Lang_Swedish {
+            get {
+                return ResourceManager.GetString("Lang_Swedish", resourceCulture);
             }
         }
         

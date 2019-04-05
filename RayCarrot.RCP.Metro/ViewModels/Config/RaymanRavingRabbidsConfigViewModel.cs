@@ -45,14 +45,6 @@ namespace RayCarrot.RCP.Metro
                 "1680 x 1050", // 16/10
                 "1920 x 1080" // 16/9
             };
-
-            // NOTE: Not localized
-            AvailableScreenModeValues = new string[]
-            {
-                "4:3",
-                "4:3 borders",
-                "16:9"
-            };
         }
 
         #endregion
@@ -136,11 +128,6 @@ namespace RayCarrot.RCP.Metro
                 UnsavedChanges = true;
             }
         }
-
-        /// <summary>
-        /// The available screen mode values
-        /// </summary>
-        public string[] AvailableScreenModeValues { get; }
 
         /// <summary>
         /// The selected screen mode index

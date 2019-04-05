@@ -428,11 +428,6 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Localization\Resources.sv-SE.Designer.cs">
-      <DependentUpon>Resources.sv-SE.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Include="ViewModels\Pages\AboutPageViewModel.cs" />
     <Compile Include="Controls\UserControls\Utilities\RaymanLegendsUtilities.xaml.cs">
       <DependentUpon>RaymanLegendsUtilities.xaml</DependentUpon>
@@ -670,6 +665,9 @@
       <LastGenOutput>InstallerGames.Designer.cs</LastGenOutput>
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Resources.de-DE.resx" />
+    <EmbeddedResource Include="Localization\Resources.pl-PL.resx" />
+    <EmbeddedResource Include="Localization\Resources.pt-PT.resx" />
     <EmbeddedResource Include="Localization\Resources.resx">
       <SubType>Designer</SubType>
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -677,8 +675,6 @@
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\Resources.sv-SE.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.sv-SE.Designer.cs</LastGenOutput>
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>

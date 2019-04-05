@@ -91,9 +91,14 @@
 
                 </StackPanel>
 
-                <ComboBox ItemsSource="{Binding Path=CurrentLanguage, Converter={rwpf:EnumToListConverter}}"
-                          SelectedIndex="{Binding Path=CurrentLanguage, Converter={rwpf:EnumToIntConverter}}"
-                          HorizontalAlignment="Left" />
+                <ComboBox SelectedIndex="{Binding Path=CurrentLanguage, Converter={rwpf:EnumToIntConverter}}"
+                          HorizontalAlignment="Left">
+                    <TextBlock Text="{Resx Lang_English}" />
+                    <TextBlock Text="{Resx Lang_French}" />
+                    <TextBlock Text="{Resx Lang_Spanish}" />
+                    <TextBlock Text="{Resx Lang_Italian}" />
+                    <TextBlock Text="{Resx Lang_German}" />
+                </ComboBox>
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource HeaderTextBlock}"

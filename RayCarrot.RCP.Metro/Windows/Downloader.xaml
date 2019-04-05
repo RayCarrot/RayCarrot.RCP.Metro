@@ -5,22 +5,23 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   mc:Ignorable="d"             
-                  Title="Download"
+                  Title="{Resx Download_Title}"
                   ResizeMode="NoResize"
                   SizeToContent="WidthAndHeight"
                   MinWidth="300" MinHeight="150"
-                  Loaded="Downloader_OnLoadedAsync" Closing="Downloader_OnClosingAsync"
+                  Loaded="Downloader_OnLoadedAsync"
+                  Closing="Downloader_OnClosingAsync"
                   d:DataContext="{d:DesignInstance local:DownloaderViewModel}">
     <StackPanel Margin="10">
 
-        <TextBlock Text="Total Progress"
+        <TextBlock Text="{Resx Download_TotalProgress}"
                    HorizontalAlignment="Center"/>
 
         <ProgressBar Value="{Binding Path=TotalCurrentProgress}"
                      Maximum="{Binding Path=TotalMaxProgress}"
                      Margin="0 8 0 16"/>
 
-        <TextBlock Text="Current File Progress"
+        <TextBlock Text="{Resx Download_CurrentFileProgress}"
                    HorizontalAlignment="Center"/>
 
         <ProgressBar Value="{Binding Path=ItemCurrentProgress}"

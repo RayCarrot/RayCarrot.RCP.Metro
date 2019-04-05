@@ -5,7 +5,7 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   mc:Ignorable="d"
-                  Title="Welcome to the Rayman Control Panel" 
+                  Title="{Resx FirstLaunchInfo_Title}"
                   Height="450" Width="800">
     <Grid Margin="5">
         <Grid.ColumnDefinitions>
@@ -33,31 +33,22 @@
                     <StackPanel>
                         <TextBlock HorizontalAlignment="Center"
                                    Style="{StaticResource LargeHeaderTextBlock}"
-                                   TextWrapping="Wrap">
-                            Welcome to the Rayman Control Panel
-                        </TextBlock>
+                                   TextWrapping="Wrap"
+                                   Text="{Resx FirstLaunchInfo_Header}" />
+
                         <TextBlock TextWrapping="Wrap"
                                    FontSize="14"
-                                   Margin="0 10 0 0">
-                            This program allows quick and easy access to all your installed Rayman games on your computer. From here you'll be able
-                            to launch them and their configuration programs, configure them directly from this program with added options (such as button
-                            mapping, widescreen support and more) and backup/restore each game's save files.
-                            <LineBreak />
-                            Missing any Rayman games on your computer? You can easily access the available digital shops to purchase them or use the
-                            disc installer to install from any disc.
-                            <LineBreak />
-                            <LineBreak />
-                            To get started, check the boxes you want below and press 'Continue' to get to the game selection menu.
-                        </TextBlock>
+                                   Margin="0 10 0 0"
+                                   Text="{Resx FirstLaunchInfo_Text}" />
                     </StackPanel>
                 </ScrollViewer>
 
                 <WrapPanel Grid.Row="1"
                            DataContext="{Binding Source={x:Static local:RCFRCP.Data}}">
-                    <CheckBox Content="Automatically locate installed games" 
+                    <CheckBox Content="{Resx Search for installed games}" 
                               Margin="10"
                               IsChecked="{Binding Path=AutoLocateGames}"/>
-                    <CheckBox Content="Automatically check for program updates"
+                    <CheckBox Content="{Resx Settings_StartupUpdateCheck}"
                               Margin="10"
                               IsChecked="{Binding Path=AutoUpdate}"/>
                 </WrapPanel>
@@ -75,7 +66,7 @@
         <Button Grid.Row="1"
                 Grid.Column="1"
                 HorizontalAlignment="Right"
-                Content="Continue"
+                Content="{Resx Continue}"
                 IsDefault="True"
                 IsCancel="True"
                 Click="ButtonBase_OnClick"/>

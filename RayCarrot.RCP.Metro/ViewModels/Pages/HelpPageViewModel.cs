@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Windows.Data;
 using RayCarrot.CarrotFramework;
 using RayCarrot.Windows.Registry;
 // ReSharper disable StringLiteralTypo
@@ -17,115 +16,75 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public HelpPageViewModel()
         {
-            // TODO: Move out of view model?
+            Refresh();
 
+            RCF.Data.CultureChanged += (s, e) => Refresh();
+        }
+
+        #region Public Methods
+
+        /// <summary>
+        /// Refreshes the help items
+        /// </summary>
+        public void Refresh()
+        {
             HelpItems = new ObservableCollection<HelpItemViewModel>()
             {
                 // Rayman Control Panel
                 new HelpItemViewModel()
                 {
-                    DisplayHeader = "Rayman Control Panel",
+                    DisplayHeader = Resources.Help_RCP,
                     SubItems = new ObservableCollection<HelpItemViewModel>()
                     {
                         // Updates
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Updates",
-                            HelpText = "The program will by default check for updates on launch, unless the option has been disabled. This is done in the background and might take a few seconds. " +
-                                       "Updates can manually be checked for in the settings page." +
-                                       "\n" +
-                                       "\n" +
-                                       "If an error occurs with the update service it can manually be downloaded from:" +
-                                       "\n" +
-                                       "http://raycarrot.ylemnova.com/"
+                            DisplayHeader = Resources.Help_RCP_UpdatesHeader,
+                            HelpText = String.Format(Resources.Help_RCP_Updates, "http://raycarrot.ylemnova.com/")
                         },
 
                         // Compatibility
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Compatibility",
-                            HelpText = "The minimum required version to run the program is Windows Vista, with Windows 7 or above being recommended."
+                            DisplayHeader = Resources.Help_RCP_CompatibilityHeader,
+                            HelpText = Resources.Help_RCP_Compatibility
                         },
 
                         // Game Installer
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Game Installer",
-                            HelpText = "For games which support to be installed from a disc you can do so from the drop down menu of the game. Currently " +
-                                       "Rayman 2, Rayman M and Rayman Arena are the only supported games." +
-                                       "\n" +
-                                       "\n" +
-                                       "During the installation you will have to specify a directory to install to. The game will install in a sub-directory in " +
-                                       "the specified directory. For example, you choose to install Rayman 2 under C:\\Ubisoft it will get installed under " +
-                                       "C:\\Ubisoft\\Rayman 2" +
-                                       "\n" +
-                                       "\n" +
-                                       "For Rayman 2 the installer will replace the executable file with the one from the GOG version to allow the game to run without " +
-                                       "inserting the disc. This is done to avoid a common disc error which usually occurs during the later half of the game." +
-                                       "\n" +
-                                       "\n" +
-                                       "To uninstall one of the games installed using the game installer you simply have to delete the directory and its files. The game " +
-                                       "will not show up under installed programs due to not having an uninstaller."
+                            DisplayHeader = Resources.Help_RCP_GameInstallerHeader,
+                            HelpText = Resources.Help_RCP_GameInstaller
                         },
 
                         // Backup Games
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Backup/Restore",
-                            HelpText = "The program has a backup and restore feature for all supported games. The backups are by default stored in the " +
-                                       "documents folder, but the location can be changed in the settings." +
-                                       "\n" +
-                                       "\n" +
-                                       "The backups themselves are always stored in the " +
-                                       $"'{AppViewModel.BackupFamily}' sub-directory. It is not recommended to manually modify these files."
+                            DisplayHeader = Resources.Help_RCP_BackupRestoreHeader,
+                            HelpText = String.Format(Resources.Help_RCP_BackupRestore, AppViewModel.BackupFamily)
                         },
 
                         // App Data Location
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "App Data Location",
-                            HelpText = "The program saves its app data mainly in the current user's local app data, with some settings stored in the Registry. Below is a complete list" +
-                                       "of the locations where data is stored." +
-                                       "\n" +
-                                       "\n" +
-                                       $"• Main application data - {CommonPaths.UserDataBaseDir}" +
-                                       "\n" +
-                                       $"• Registry Settings - {CommonPaths.RegistryBaseKey}" +
-                                       "\n" +
-                                       $"• Framework Registry Settings - {RCFRegistryPaths.RCFBasePath}" +
-                                       "\n" +
-                                       $"• Temporary data - {CommonPaths.TempPath}",
+                            DisplayHeader = Resources.Help_RCP_AppDataHeader,
+                            HelpText = String.Format(Resources.Help_RCP_AppData, CommonPaths.UserDataBaseDir, CommonPaths.RegistryBaseKey, RCFRegistryPaths.RCFBasePath, CommonPaths.TempPath),
                             RequiredUserLevel = UserLevel.Advanced
                         },
 
                         // Launch arguments
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Launch Arguments",
-                            HelpText = "The Rayman Control Panel supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the available" +
-                                       "launch arguments. The '-' character should always be included. The '{}' characters show that a custom variable can be used, in which case the '{}'" +
-                                       "should not be included." +
-                                       "\n" +
-                                       "\n" +
-                                       "-reset (Resets all app data before launch)" +
-                                       "\n" +
-                                       "-install {filePath} (Removes the installer from the specified path)" +
-                                       "\n" +
-                                       "-ul {userLevel} (sets the user level once the framework is built)" +
-                                       "\n" +
-                                       "-loglevel {logLevel} (sets the log level to log, default is Information)",
+                            DisplayHeader = Resources.Help_RCP_LaunchArgsHeader,
+                            HelpText = Resources.Help_RCP_LaunchArgs,
                             RequiredUserLevel = UserLevel.Technical
                         },
 
                         // Launch arguments
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Debugging",
-                            HelpText = "If a debugger is attached to the program the log viewer will automatically open. This can manually be opened from the debug " +
-                                       "page even without a debugger being attached. If the debug user level is not enabled, the log can still be viewed from the file " +
-                                       "it writes to under the following path:" +
-                                       "\n" +
-                                       CommonPaths.LogFile,
+                            DisplayHeader = Resources.Help_RCP_DebugHeader,
+                            HelpText = string.Format(Resources.Help_RCP_Debug, CommonPaths.LogFile),
                             RequiredUserLevel = UserLevel.Debug
                         },
                     }
@@ -134,31 +93,20 @@ namespace RayCarrot.RCP.Metro
                 // Games
                 new HelpItemViewModel()
                 {
-                    DisplayHeader = "Games",
+                    DisplayHeader = Resources.Help_Games,
                     SubItems = new ObservableCollection<HelpItemViewModel>()
                     {
                         // General
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "General",
+                            DisplayHeader = Resources.Help_Games_General,
                             SubItems = new ObservableCollection<HelpItemViewModel>()
                             {
                                 // Game not Launching
                                 new HelpItemViewModel()
                                 {
-                                    DisplayHeader = "Game not Launching",
-                                    HelpText = "Here are the two most common things to try out if a game won't launch:" +
-                                               "\n" +
-                                               "\n" +
-                                               "*Run the game as administrator:" +
-                                               "\n" +
-                                               "The option to run a program as administrator can be found in the context menu by right-clicking the program." +
-                                               "\n" +
-                                               "\n" +
-                                               "*Run the game under compatibility mode:" +
-                                               "\n" +
-                                               "Running an application under compatibility mode is done by selecting the option under the compatibility options " +
-                                               "in the file properties. For many older games it is recommended to select Windows XP Service Pack 2 or 3."
+                                    DisplayHeader = Resources.Help_Games_General_GameNotLaunchingHeader,
+                                    HelpText = Resources.Help_Games_General_GameNotLaunching
                                 },
                             }
                         },
@@ -166,115 +114,115 @@ namespace RayCarrot.RCP.Metro
                         // Rayman 1
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Rayman 1",
+                            DisplayHeader = Resources.Help_Games_R1,
                             SubItems = new ObservableCollection<HelpItemViewModel>()
                             {
                                 // Dos Emulator
                                 new HelpItemViewModel()
                                 {
-                                    DisplayHeader = "MS-Dos Emulator",
-                                    HelpText = "Rayman 1, and most of its PC spin-offs (including Rayman Designer, Rayman by his Fans and Rayman 60 Levels) " +
-                                               "are MS-DOS programs and are not compatible with modern versions of Windows. Running them requires a DOS emulator, such as " +
-                                               "DosBox. Currently DosBox is the only supported emulator by the Rayman Control Panel."
+                                    DisplayHeader = Resources.Help_Games_R1_EmulatorHeader,
+                                    HelpText = Resources.Help_Games_R1_Emulator
                                 },
 
                                 // Installation failed
                                 new HelpItemViewModel()
                                 {
-                                    DisplayHeader = "Installation Failed",
-                                    HelpText = "If one of the Rayman 1 based installers fail when it has finished installing it will delete the installed game if you " +
-                                               "cancel in the installer. To prevent this, force close the installer using task manager. The game will most likely still be installed. " +
-                                               "If any files are missing, copy them over from the disc manually."
+                                    DisplayHeader = Resources.Help_Games_R1_InstallationFailedHeader,
+                                    HelpText = Resources.Help_Games_R1_InstallationFailed
                                 },
 
                                 // Rayman Designer Editor
                                 new HelpItemViewModel()
                                 {
-                                    DisplayHeader = "Rayman Designer Editor",
-                                    HelpText = "Rayman Designer, also known as Rayman Gold or Rayman's World, is the Rayman game which includes the Mapper program which is " +
-                                               "used to create your own levels. The Mapper is a normal Windows executable file and will run without the need of an emulator. All of the static " +
-                                               "parts of the level is created in the Mapper program, while all of the so-called 'events' are placed in the event editor (found within " +
-                                               "the game itself)."
+                                    DisplayHeader = Resources.Help_Games_R1_MapperHeader,
+                                    HelpText = Resources.Help_Games_R1_Mapper
                                 },
 
                                 // Importing Maps
                                 new HelpItemViewModel()
                                 {
-                                    DisplayHeader = "Importing Maps",
-                                    HelpText = "Importing maps is done in the Mapper program. If an error occurs when doing so you can try moving the map file to the " +
-                                               "RayKit directory and importing it from there."
+                                    DisplayHeader = Resources.Help_Games_R1_ImportMapsHeader,
+                                    HelpText = Resources.Help_Games_R1_ImportMaps
                                 },
                             }
                         },
+
+                        // Rayman 2
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Rayman 2",
+                            DisplayHeader = Resources.Help_Games_R2,
                             SubItems = new ObservableCollection<HelpItemViewModel>()
                             {
                                 new HelpItemViewModel()
                                 {
-                                    DisplayHeader = "Game Running too Fast",
-                                    HelpText = "If Rayman 2 is running too fast while using nGlide, change the refresh rate to 120hz. This should be done even on monitors " +
-                                               "which do not support 120hz."
+                                    DisplayHeader = Resources.Help_Games_R2_GameSpeedHeader,
+                                    HelpText = Resources.Help_Games_R2_GameSpeed
                                 },
                                 new HelpItemViewModel()
                                 {
-                                    DisplayHeader = "60 vs 30 fps",
-                                    HelpText = "Some parts of the game may not work if the game is running in 60fps. The most notable issue is during the bonus games."
+                                    DisplayHeader = Resources.Help_Games_R2_FpsHeader,
+                                    HelpText = Resources.Help_Games_R2_Fps
                                 },
                                 new HelpItemViewModel()
                                 {
-                                    DisplayHeader = "No Disc Error",
-                                    HelpText = "On disc versions of the game there is a known issue where the game will display a CD error during gameplay. " +
-                                               "There is currently no solution to this issue other than using a digital version, such as the GOG version, instead."
+                                    DisplayHeader = Resources.Help_Games_R2_NoDiscHeader,
+                                    HelpText = Resources.Help_Games_R2_NoDisc
                                 },
                             }
                         },
+
+                        // Rayman M/Arena
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Rayman M/Arena",
+                            DisplayHeader = Resources.Help_Games_RMA,
                             SubItems = new ObservableCollection<HelpItemViewModel>()
                             {
                                 new HelpItemViewModel()
                                 {
-                                    DisplayHeader = "Missing Textures",
-                                    HelpText = "If textures are missing in the game while using an Intel graphics card, try turning off Transform and Lightning."
+                                    DisplayHeader = Resources.Help_Games_RMA_MissingTexturesHeader,
+                                    HelpText = Resources.Help_Games_RMA_MissingTextures
                                 },
                             }
                         },
+
+                        // Rayman 3
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Rayman 3",
+                            DisplayHeader = Resources.Help_Games_R3,
                             SubItems = new ObservableCollection<HelpItemViewModel>()
                             {
                                 new HelpItemViewModel()
                                 {
-                                    DisplayHeader = "Missing Textures",
-                                    HelpText = "If textures are missing in the game while using an Intel graphics card, try turning off Transform and Lightning."
+                                    DisplayHeader = Resources.Help_Games_RMA_MissingTexturesHeader,
+                                    HelpText = Resources.Help_Games_RMA_MissingTextures
                                 },
                             }
                         },
+
+                        // Rayman Raving Rabbids
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Rayman Raving Rabbids",
+                            DisplayHeader = Resources.Help_Games_RRR,
                             SubItems = new ObservableCollection<HelpItemViewModel>()
                             {
                                 new HelpItemViewModel()
                                 {
-                                    DisplayHeader = "jade_enr.exe Error",
-                                    HelpText = "There is currently no fix for this error. This appears in all versions, including the GOG version, on certain computers."
+                                    DisplayHeader = Resources.Help_Games_RRR_EngineErrorHeader,
+                                    HelpText = Resources.Help_Games_RRR_EngineError
                                 },
                             }
                         },
+
+                        // Rayman Legends
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Rayman Legends",
+                            DisplayHeader = Resources.Help_Games_RL,
                             SubItems = new ObservableCollection<HelpItemViewModel>()
                             {
                                 new HelpItemViewModel()
                                 {
-                                    DisplayHeader = "Error during load",
-                                    HelpText = "The error occurs mainly on Windows 10 devices due to the game not being able to read/write to the game save file and/or the game configuration settings. The most common fix involves adding Rayman Legends as an exception to the Controlled Folder Access section of the built-in Windows Security system."
+                                    DisplayHeader = Resources.Help_Games_RL_LoadErrorHeader,
+                                    HelpText = Resources.Help_Games_RL_LoadError
                                 },
                             }
                         },
@@ -284,154 +232,53 @@ namespace RayCarrot.RCP.Metro
                 // Cheat Codes
                 new HelpItemViewModel()
                 {
-                    DisplayHeader = "Cheat Codes",
+                    DisplayHeader = Resources.Help_Cheats,
                     SubItems = new ObservableCollection<HelpItemViewModel>()
                     {
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Rayman 1",
-                            HelpText = "• 99 lives  -  type trj8p or raylives or [TAB]bertrand during gameplay" +
-                                       "\n" +
-                                       "• All fist power-ups  -  type 2x2rmfmf or goldfist or [TAB]antoine during gameplay" +
-                                       "\n" +
-                                       "• All normal powers  -  type en5gol2g or power or [TAB]benoit during gameplay" +
-                                       "\n" +
-                                       "• Full health  -  type kom0ogdk or raypoint or [TAB]christ during gameplay" +
-                                       "\n" +
-                                       "• 10 added Tings  -  type 86e40g91 or raywiz or [TAB]jojo during gameplay" +
-                                       "\n" +
-                                       "• Skip current level section  -  type o8feh or winmap or [TAB]cyril during gameplay" +
-                                       "\n" +
-                                       "• Display hidden message  -  type [TAB]program during gameplay" +
-                                       "\n" +
-                                       "• Free movement  -  type [TAB];overay[BACKSPACE] during gameplay" +
-                                       "\n" +
-                                       "• 100MHz Refresh rate  -  type freq10 on the map" +
-                                       "\n" +
-                                       "• 80MHz Refresh rate  -  type freq80 on the map" +
-                                       "\n" +
-                                       "• All normal powers  -  type power or [TAB]benoit on the map" +
-                                       "\n" +
-                                       "• Lens effect  -  type lens on the map" +
-                                       "\n" +
-                                       "• Unlock all levels  -  type 4ctrepfj or alworld or [TAB]francois on the map" +
-                                       "\n" +
-                                       "• Enter Breakout minigame  -  type b76b7081 or cbray or [TAB]olivier on the map once Mr Dark's Dare has been completed" +
-                                       "\n" +
-                                       "• Enter random stage from Breakout minigame  -  type [TAB]cbrayal[BACKSPACE] on the map" +
-                                       "\n" +
-                                       "• Stage selection  -  type [TAB]alevel[BACKSPACE] on the map"
+                            DisplayHeader = Resources.Help_Cheats_R1Header,
+                            HelpText = Resources.Help_Cheats_R1
                         },
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Rayman Designer + Spin-Offs",
-                            HelpText = "• 5 lives  -  type [TAB]lives05[BACKSPACE] during gameplay" +
-                                       "\n" +
-                                       "• 20 lives  -  type [TAB]lives20[BACKSPACE] during gameplay" +
-                                       "\n" +
-                                       "• 50 lives  -  type [TAB]lives50[BACKSPACE] during gameplay" +
-                                       "\n" +
-                                       "*All fist power-ups  -  type [TAB]goldens during gameplay" +
-                                       "\n" +
-                                       "• Finish level  -  type [TAB]finishing during gameplay" +
-                                       "\n" +
-                                       "• Full health  -  type [TAB]points during gameplay" +
-                                       "\n" +
-                                       "• Map number display  -  type [TAB]map[BACKSPACE] during gameplay" +
-                                       "\n" +
-                                       "• Free movement  -  type [TAB]moveray[BACKSPACE] during gameplay" +
-                                       "\n" +
-                                       "• Unlock all levels  -  type [TAB]openall[BACKSPACE] on the map"
+                            DisplayHeader = Resources.Help_Cheats_RDHeader,
+                            HelpText = Resources.Help_Cheats_RD
                         },
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Rayman 2",
-                            HelpText = "• Upgrade magic fist  -  type glowfist on the pause screen" +
-                                       "\n" +
-                                       "• Restore health  -  type gimmelife on the pause screen" +
-                                       "\n" +
-                                       "• Gain 5 Yellow Lums  -  type gimmelumz on the pause screen" +
-                                       "\n" +
-                                       "• Go to any level  -  type gothere on the pause screen, select a level with the arrow keys and press enter" +
-                                       "\n" +
-                                       "• Unlock grappling power  -  type hangon on the pause screen" +
-                                       "\n" +
-                                       "• Gain maximum health  -  press and release the J key to the rhythm of the Rayman 2 theme" +
-                                       "\n" +
-                                       "• Enter bonus level without all Lums and Cages  -   press the A, Numpad 0, Q, W, Q, W in order followed by enter on the Access Denied screen" +
-                                       "\n" +
-                                       "*Skip cutscenes  -  type NOMOVIES on the pause screen" +
-                                       "\n" +
-                                       "• New loading screens  -  type ALLVIGN on the pause screen" +
-                                       "\n" +
-                                       "• Disable Murfy  -  type NOMOREMURFY on the pause screen" +
-                                       "\n" +
-                                       "• Access hidden area in Tomb of the Ancients  -  In the final part of the Tomb of the Ancients, " +
-                                       "stand on the third panel away from the entrance to the Technical Check-up where Rayman fights Clark. " +
-                                       "Type PLAYJEFF and jump on the crate to the hole in the wall." +
-                                       "\n" +
-                                       "• Access Menezis  -  type SHOOTEMUP during the credits" +
-                                       "\n" +
-                                       "• Unknown  -  type GETELIX on the pause screen"
+                            DisplayHeader = Resources.Help_Cheats_R2Header,
+                            HelpText = Resources.Help_Cheats_R2
                         },
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Rayman M/Arena",
-                            HelpText = "• Skip cutscenes  -  type esc during the cutscene" +
-                                       "\n" +
-                                       "• Unlock all battle levels  -  enter ALLFISH as a profile name and press Shift + Ctrl + Alt" +
-                                       "\n" +
-                                       "• Unlock all race levels  -  enter ALLTRIBES as a profile name and press Shift + Ctrl + Alt" +
-                                       "\n" +
-                                       "• Unlock all levels  -  enter ALLRAYMANM as a profile name and press Shift + Ctrl + Alt" +
-                                       "\n" +
-                                       "• Unlock all characters  -  enter PUPPETS as a profile name and press Shift + Ctrl + Alt" +
-                                       "\n" +
-                                       "• Unlock all skins  -  enter CARNIVAL as a profile name and press Shift + Ctrl + Alt" +
-                                       "\n" +
-                                       "• Unlock all battle levels in mode 1  -  enter ARENAS as a profile name and press Shift + Ctrl + Alt" +
-                                       "\n" +
-                                       "• Unlock all race levels in mode 1  -  enter TRACKS as a profile name and press Shift + Ctrl + Alt" +
-                                       "\n" +
-                                       "• Unlock all levels in mode 1  -  enter FIELDS as a profile name and press Shift + Ctrl + Alt" +
-                                       "\n" +
-                                       "• Ragtime music in races  -  enter OLDTV as a profile name and press Shift + Ctrl + Alt" +
-                                       "\n" +
-                                       "• Reverse map  -  type reverse on the keyboard during gameplay" +
-                                       "\n" +
-                                       "\n" +
-                                       "• Music team:" +
-                                       "\n" +
-                                       "To activate it, enter race mode and pause the game. On the pause screen, " +
-                                       "hold L1 + R1 (or equivalent on the currently used controller), then press the optimize button. " +
-                                       "Five blue balls will appear at the bottom of the screen. Release everything and press Jump. " +
-                                       "The player should hear a high pitched \"Ding\" sound, and after 0.5 seconds, the first ball " +
-                                       "should turn yellow. As soon as the ball turns yellow, hold Jump. The second ball should then turn yellow. " +
-                                       "As soon as the second ball turns yellow, release Jump. The third ball should then turn yellow. " +
-                                       "As soon as the third ball turns yellow, hold Jump again. The fourth ball should then turn yellow. " +
-                                       "As soon as the fourth ball turns yellow, release Jump. The player should be taken to the \"Music Mode\" " +
-                                       "screen where the player will be able to choose \"Music Team\"."
-                        },             
+                            DisplayHeader = Resources.Help_Cheats_RMAHeader,
+                            HelpText = Resources.Help_Cheats_RMA
+                        },
                         new HelpItemViewModel()
                         {
-                            DisplayHeader = "Rayman 3",
-                            HelpText = "• Skip cutscenes  -  type esc during the cutscene" +
-                                       "\n" +
-                                       "• Reverse map  -  type reverse on the keyboard during gameplay"
+                            DisplayHeader = Resources.Help_Cheats_R3Header,
+                            HelpText = Resources.Help_Cheats_R3
                         },
                     }
                 }
             };
         }
 
+        #endregion
+
+        #region Public Properties
+
         /// <summary>
         /// The help items
         /// </summary>
-        public ObservableCollection<HelpItemViewModel> HelpItems { get; }
+        public ObservableCollection<HelpItemViewModel> HelpItems { get; set; }
 
         /// <summary>
         /// The current help item
         /// </summary>
         public HelpItemViewModel CurrentHelpItem { get; set; }
+
+        #endregion
     }
 }

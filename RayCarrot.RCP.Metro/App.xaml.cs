@@ -118,8 +118,9 @@ namespace RayCarrot.RCP.Metro
             if (RCFRCP.Data.IsFirstLaunch)
                 await ImportLegacyDataAsync();
 
-            // Subscribe to when games need to be refreshed
+            // Subscribe to when to refresh the jump list
             RCFRCP.App.RefreshRequired += (s, e) => RefreshJumpList();
+            RCF.Data.CultureChanged += (s, e) => RefreshJumpList();
 
             // Listen to data binding logs
             WPFTraceListener.Setup(LogLevel.Warning);
@@ -347,8 +348,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     RCF.Logger.LogWarningSource($"A newer version $({RCFRCP.Data.LastVersion}) has been recorded in the application data");
 
-                    await RCF.MessageUI.DisplayMessageAsync($"You are using an older version of the program {RCFRCP.App.CurrentVersion} compared to the version of the current app data {RCFRCP.Data.LastVersion}. " +
-                                                            $"This is not recommended and may cause compatibility issues. These may be fixed by resetting the app data for this program.", "Downgrade detected", MessageType.Warning);
+                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, RCFRCP.App.CurrentVersion, RCFRCP.Data.LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
                 }
 
                 return;
@@ -498,7 +498,7 @@ namespace RayCarrot.RCP.Metro
                                 return new JumpTask()
                                 {
                                     Title = x.GetDisplayName(),
-                                    Description = $"Launch {x.GetDisplayName()}",
+                                    Description = String.Format(Metro.Resources.JumpListItemDescription, x.GetDisplayName()),
                                     ApplicationPath = launchInfo.Path,
                                     Arguments = launchInfo.Args,
                                     IconResourcePath = info.GameType == GameType.DosBox || info.GameType == GameType.Steam ? info.InstallDirectory + x.GetLaunchName() : launchInfo.Path

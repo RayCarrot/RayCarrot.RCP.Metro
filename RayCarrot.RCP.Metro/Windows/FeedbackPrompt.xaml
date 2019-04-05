@@ -5,7 +5,7 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   mc:Ignorable="d"
-                  Title="Feedback - Version 4.0.0"
+                  Title="{Resx Feedback_Title}"
                   Height="350" Width="600"
                   Closing="FeedbackPrompt_OnClosing"
                   ResizeMode="NoResize">
@@ -24,12 +24,9 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0"
+                       Text="{Resx Feedback_Text}"
                        TextWrapping="WrapWithOverflow"
-                       FontSize="18">
-                Listening to the users feedback is very important for me as a developer. Therefor I would greatly appreciate if you could take a minute to answer some quick questions regarding the program. This will allow you to let me know if there are any features you are missing or don't like.
-                <LineBreak/>
-                Thanks!
-            </TextBlock>
+                       FontSize="18" />
 
             <Image Grid.Column="1"
                    Margin="10 0 0 0"
@@ -43,7 +40,7 @@
                     HorizontalAlignment="Center">
 
             <CheckBox x:Name="DoNotShowAgain" 
-                      Content="Don't show again"
+                      Content="{Resx Feedback_DoNotShowAgain}"
                       Margin="5"
                       HorizontalAlignment="Center"/>
 
@@ -51,12 +48,12 @@
                         HorizontalAlignment="Center"
                         Margin="5">
 
-                <Button Content="Ignore"
+                <Button Content="{Resx Feedback_Ignore}"
                         MinWidth="100"
                         Margin="5" 
                         Click="ButtonIgnore_Click"/>
                 
-                <Button Content="Give Feedback" 
+                <Button Content="{Resx Feedback_GiveFeedback}" 
                         MinWidth="100"
                         Margin="5"
                         Click="ButtonSurvey_Click"/>

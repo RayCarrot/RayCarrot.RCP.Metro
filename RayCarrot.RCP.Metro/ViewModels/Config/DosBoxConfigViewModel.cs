@@ -47,6 +47,8 @@ namespace RayCarrot.RCP.Metro
             for (int height = minHeight; height <= maxHeight; height = height + minHeight)
                 AvailableResolutionValues.Add($"{height * ratio}x{height}");
 
+            // NOTE: Below options are not localized
+
             // Set available DosBox outputs
             AvailableDosBoxOutputs = new string[]
             {

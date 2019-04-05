@@ -97,9 +97,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppName" xml:space="preserve">
-    <value>Rayman Kontrollpanelen</value>
-  </data>
   <data name="GamesPageHeader" xml:space="preserve">
     <value>Spel</value>
   </data>
@@ -868,5 +865,47 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   </data>
   <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
     <value>1.12</value>
+  </data>
+  <data name="Feedback_Ignore" xml:space="preserve">
+    <value>Ignorera</value>
+  </data>
+  <data name="Feedback_DoNotShowAgain" xml:space="preserve">
+    <value>Visa inte igen</value>
+  </data>
+  <data name="Download_Title" xml:space="preserve">
+    <value>Ladda ner</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Fortsätt</value>
+  </data>
+  <data name="Lang_English" xml:space="preserve">
+    <value>Engelska</value>
+  </data>
+  <data name="Lang_German" xml:space="preserve">
+    <value>Tyska</value>
+  </data>
+  <data name="Lang_French" xml:space="preserve">
+    <value>Franska</value>
+  </data>
+  <data name="Lang_Spanish" xml:space="preserve">
+    <value>Spanska</value>
+  </data>
+  <data name="Lang_Danish" xml:space="preserve">
+    <value>Danska</value>
+  </data>
+  <data name="Lang_Italian" xml:space="preserve">
+    <value>Italienska</value>
+  </data>
+  <data name="Lang_Finnish" xml:space="preserve">
+    <value>Finska</value>
+  </data>
+  <data name="Lang_Norwegian" xml:space="preserve">
+    <value>Norska</value>
+  </data>
+  <data name="Lang_Swedish" xml:space="preserve">
+    <value>Svenska</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Rayman Kontrollpanelen</value>
   </data>
 </root>

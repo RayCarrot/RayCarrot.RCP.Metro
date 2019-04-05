@@ -96,6 +96,7 @@ As of now the following strings are not localizaed:
 - Certain combo box items
 - Game names
 - Debug page
+- License dialog
 
 ## Contact
 You can contact me on the following places:

@@ -5,7 +5,7 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   mc:Ignorable="d"
-                  Title="Welcome to the Rayman Control Panel" 
+                  Title="{Resx AppNews_Title}" 
                   Height="450" Width="800">
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
-                   Text="Version History"
+                   Text="{Resx AppNews_Header}"
                    Style="{StaticResource HeaderTextBlock}"
                    HorizontalAlignment="Center"/>
 
@@ -26,7 +26,7 @@
                  Margin="0 10"/>
 
         <Button Grid.Row="2"
-                Content="Continue"
+                Content="{Resx Continue}"
                 Click="ButtonBase_OnClick"
                 IsDefault="True"
                 IsCancel="True"/>

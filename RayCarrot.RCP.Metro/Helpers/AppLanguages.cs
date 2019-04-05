@@ -13,8 +13,20 @@ namespace RayCarrot.RCP.Metro
         {
             Languages = new CultureInfo[]
             {
-                new CultureInfo("en-US"), 
-                new CultureInfo("sv-SE"), 
+                // English
+                new CultureInfo("en-US"),
+
+                // Swedish
+                new CultureInfo("sv-SE"),
+
+                // German
+                new CultureInfo("de-DE"),
+
+                // Polish
+                new CultureInfo("pl-PL"),
+
+                // Portuguese
+                new CultureInfo("pt-PT"), 
             };
         }
 

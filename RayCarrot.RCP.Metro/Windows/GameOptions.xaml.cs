@@ -147,7 +147,7 @@ namespace RayCarrot.RCP.Metro
 
             ChangePage(true);
 
-            if (!await RCF.MessageUI.DisplayMessageAsync("Your configuration changes have not been saved. Do you want to exit and discard them?", "Confirm exit", MessageType.Question, true))
+            if (!await RCF.MessageUI.DisplayMessageAsync(Metro.Resources.GameOptions_UnsavedChanges, Metro.Resources.GameOptions_UnsavedChangesHeader, MessageType.Question, true))
                 return;
 
             ForceClose = true;

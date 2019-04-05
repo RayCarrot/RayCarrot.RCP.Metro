@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppName" xml:space="preserve">
-    <value>Rayman Control Panel</value>
-  </data>
   <data name="GamesPageHeader" xml:space="preserve">
     <value>Games</value>
   </data>
@@ -1553,5 +1550,413 @@ totalFiles</comment>
     <value>An error occurred reading the backup for {0}</value>
     <comment>Arguments:
 gameDisplayName</comment>
+  </data>
+  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
+    <value>Some files could not be restored. Check {0} &amp; {1} to recover lost files.</value>
+    <comment>Arguments:
+tempDir1
+tempDir2</comment>
+  </data>
+  <data name="Download_OperationCanceling" xml:space="preserve">
+    <value>The operation is currently canceling</value>
+  </data>
+  <data name="Download_OperationCancelingHeader" xml:space="preserve">
+    <value>Cancel request already received</value>
+  </data>
+  <data name="Download_Cancel" xml:space="preserve">
+    <value>Do you wish to cancel the download?</value>
+  </data>
+  <data name="Download_CancelHeader" xml:space="preserve">
+    <value>Cancel ongoing download</value>
+  </data>
+  <data name="Download_Canceled" xml:space="preserve">
+    <value>The download operation was canceled</value>
+  </data>
+  <data name="Download_CanceledHeader" xml:space="preserve">
+    <value>Operation canceled</value>
+  </data>
+  <data name="Download_Failed" xml:space="preserve">
+    <value>The download operation failed</value>
+  </data>
+  <data name="Download_FailedHeader" xml:space="preserve">
+    <value>Operation failed</value>
+  </data>
+  <data name="Download_Success" xml:space="preserve">
+    <value>The files were downloaded successfully</value>
+  </data>
+  <data name="Download_SuccessHeader" xml:space="preserve">
+    <value>Download operation complete</value>
+  </data>
+  <data name="AppNews_Title" xml:space="preserve">
+    <value>App News</value>
+  </data>
+  <data name="AppNews_Header" xml:space="preserve">
+    <value>Version History</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="Download_Title" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="Download_TotalProgress" xml:space="preserve">
+    <value>Total Progress</value>
+  </data>
+  <data name="Download_CurrentFileProgress" xml:space="preserve">
+    <value>Current File Progress</value>
+  </data>
+  <data name="Feedback_Title" xml:space="preserve">
+    <value>Feedback - Version 4.0.0</value>
+  </data>
+  <data name="Feedback_Text" xml:space="preserve">
+    <value>Listening to the users feedback is very important for me as a developer. Therefor I would greatly appreciate if you could take a minute to answer some quick questions regarding the program. This will allow you to let me know if there are any features you are missing or don't like.
+Thanks!</value>
+  </data>
+  <data name="Feedback_DoNotShowAgain" xml:space="preserve">
+    <value>Don't show again</value>
+  </data>
+  <data name="Feedback_Ignore" xml:space="preserve">
+    <value>Ignore</value>
+  </data>
+  <data name="Feedback_GiveFeedback" xml:space="preserve">
+    <value>Give Feedback</value>
+  </data>
+  <data name="FirstLaunchInfo_Title" xml:space="preserve">
+    <value>Welcome to the Rayman Control Panel</value>
+  </data>
+  <data name="FirstLaunchInfo_Header" xml:space="preserve">
+    <value>Welcome to the Rayman Control Panel</value>
+  </data>
+  <data name="FirstLaunchInfo_Text" xml:space="preserve">
+    <value>This program allows quick and easy access to all your installed Rayman games on your computer. From here you'll be able to launch them and their configuration programs, configure them directly from this program with added options (such as button mapping, widescreen support and more) and backup/restore each game's save files.
+Missing any Rayman games on your computer? You can easily access the available digital shops to purchase them or use the disc installer to install from any disc.
+To get started, check the boxes you want below and press 'Continue' to get to the game selection menu.</value>
+  </data>
+  <data name="GameOptions_UnsavedChanges" xml:space="preserve">
+    <value>Your configuration changes have not been saved. Do you want to exit and discard them?</value>
+  </data>
+  <data name="GameOptions_UnsavedChangesHeader" xml:space="preserve">
+    <value>Confirm exit</value>
+  </data>
+  <data name="GameOptions_Utilities" xml:space="preserve">
+    <value>Utilities</value>
+  </data>
+  <data name="GameOptions_Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="GameOptions_CreateShortcut" xml:space="preserve">
+    <value>Create shortcut</value>
+  </data>
+  <data name="GameOptions_Remove" xml:space="preserve">
+    <value>Remove from program</value>
+  </data>
+  <data name="DowngradeWarning" xml:space="preserve">
+    <value>You are using an older version of the program {0} compared to the version of the current app data {1}. This is not recommended and may cause compatibility issues. These may be fixed by resetting the app data for this program.</value>
+    <comment>Arguments:
+currentVersion
+lastVersion</comment>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Downgrade detected</value>
+  </data>
+  <data name="JumpListItemDescription" xml:space="preserve">
+    <value>Launch {0}</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="Help_RCP" xml:space="preserve">
+    <value>Rayman Control Panel</value>
+  </data>
+  <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="Help_RCP_Updates" xml:space="preserve">
+    <value>The program will by default check for updates on launch, unless the option has been disabled. This is done in the background and might take a few seconds. Updates can manually be checked for in the settings page.
+
+If an error occurs with the update service it can manually be downloaded from:
+{0}</value>
+    <comment>Arguments:
+updateURL</comment>
+  </data>
+  <data name="Help_RCP_CompatibilityHeader" xml:space="preserve">
+    <value>Compatibility</value>
+  </data>
+  <data name="Help_RCP_Compatibility" xml:space="preserve">
+    <value>The minimum required version to run the program is Windows Vista, with Windows 7 or above being recommended.</value>
+  </data>
+  <data name="Help_RCP_GameInstallerHeader" xml:space="preserve">
+    <value>Game Installer</value>
+  </data>
+  <data name="Help_RCP_GameInstaller" xml:space="preserve">
+    <value>For games which support to be installed from a disc you can do so from the drop down menu of the game. Currently Rayman 2, Rayman M and Rayman Arena are the only supported games.
+
+During the installation you will have to specify a directory to install to. The game will install in a sub-directory in the specified directory. For example, you choose to install Rayman 2 under C:\Ubisoft it will get installed under C:\Ubisoft\Rayman 2
+
+For Rayman 2 the installer will replace the executable file with the one from the GOG version to allow the game to run without inserting the disc. This is done to avoid a common disc error which usually occurs during the later half of the game.
+
+To uninstall one of the games installed using the game installer you simply have to delete the directory and its files. The game will not show up under installed programs due to not having an uninstaller.</value>
+  </data>
+  <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
+    <value>Backup/Restore</value>
+  </data>
+  <data name="Help_RCP_BackupRestore" xml:space="preserve">
+    <value>The program has a backup and restore feature for all supported games. The backups are by default stored in the documents folder, but the location can be changed in the settings.
+
+The backups themselves are always stored in the '{0}' sub-directory. It is not recommended to manually modify these files.</value>
+    <comment>Arguments:
+backupFamilyName</comment>
+  </data>
+  <data name="Help_RCP_AppDataHeader" xml:space="preserve">
+    <value>App Data Location</value>
+  </data>
+  <data name="Help_RCP_AppData" xml:space="preserve">
+    <value>The program saves its app data mainly in the current user's local app data, with some settings stored in the Registry. Below is a complete list of the locations where data is stored.
+
+• Main application data - {0}
+• Registry Settings - {1}
+• Framework Registry Settings - {2}
+• Temporary data - {3}</value>
+    <comment>Arguments:
+userDataBaseDir
+registryBaseKeyPath
+RCFRegistryBaseKeyPath
+tempPath</comment>
+  </data>
+  <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
+    <value>Launch Arguments</value>
+  </data>
+  <data name="Help_RCP_LaunchArgs" xml:space="preserve">
+    <value>The Rayman Control Panel supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the availablelaunch arguments. The '-' character should always be included. The '{}' characters show that a custom variable can be used, in which case the '{}'should not be included.
+
+-reset (Resets all app data before launch)
+-install {filePath} (Removes the installer from the specified path)
+-ul {userLevel} (sets the user level once the framework is built)
+-loglevel {logLevel} (sets the log level to log, default is Information)</value>
+  </data>
+  <data name="Help_RCP_DebugHeader" xml:space="preserve">
+    <value>Debugging</value>
+  </data>
+  <data name="Help_RCP_Debug" xml:space="preserve">
+    <value>If a debugger is attached to the program the log viewer will automatically open. This can manually be opened from the debug page even without a debugger being attached. If the debug user level is not enabled, the log can still be viewed from the file it writes to under the following path:
+{0}</value>
+    <comment>Arguments:
+logFilePath</comment>
+  </data>
+  <data name="Help_Games" xml:space="preserve">
+    <value>Games</value>
+  </data>
+  <data name="Help_Games_General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Help_Games_General_GameNotLaunchingHeader" xml:space="preserve">
+    <value>Game not Launching</value>
+  </data>
+  <data name="Help_Games_General_GameNotLaunching" xml:space="preserve">
+    <value>Here are the two most common things to try out if a game won't launch:
+
+*Run the game as administrator:
+The option to run a program as administrator can be found in the context menu by right-clicking the program.
+
+*Run the game under compatibility mode:
+Running an application under compatibility mode is done by selecting the option under the compatibility options in the file properties. For many older games it is recommended to select Windows XP Service Pack 2 or 3.</value>
+  </data>
+  <data name="Help_Games_R1" xml:space="preserve">
+    <value>Rayman 1</value>
+  </data>
+  <data name="Help_Games_R1_EmulatorHeader" xml:space="preserve">
+    <value>MS-Dos Emulator</value>
+  </data>
+  <data name="Help_Games_R1_Emulator" xml:space="preserve">
+    <value>Rayman 1, and most of its PC spin-offs (including Rayman Designer, Rayman by his Fans and Rayman 60 Levels) are MS-DOS programs and are not compatible with modern versions of Windows. Running them requires a DOS emulator, such as DosBox. Currently DosBox is the only supported emulator by the Rayman Control Panel.</value>
+  </data>
+  <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
+    <value>Installation Failed</value>
+  </data>
+  <data name="Help_Games_R1_InstallationFailed" xml:space="preserve">
+    <value>If one of the Rayman 1 based installers fail when it has finished installing it will delete the installed game if you cancel in the installer. To prevent this, force close the installer using task manager. The game will most likely still be installed. If any files are missing, copy them over from the disc manually.</value>
+  </data>
+  <data name="Help_Games_R1_MapperHeader" xml:space="preserve">
+    <value>Rayman Designer Editor</value>
+  </data>
+  <data name="Help_Games_R1_Mapper" xml:space="preserve">
+    <value>Rayman Designer, also known as Rayman Gold or Rayman's World, is the Rayman game which includes the Mapper program which is used to create your own levels. The Mapper is a normal Windows executable file and will run without the need of an emulator. All of the static parts of the level is created in the Mapper program, while all of the so-called 'events' are placed in the event editor (found within the game itself).</value>
+  </data>
+  <data name="Help_Games_R1_ImportMapsHeader" xml:space="preserve">
+    <value>Importing Maps</value>
+  </data>
+  <data name="Help_Games_R1_ImportMaps" xml:space="preserve">
+    <value>Importing maps is done in the Mapper program. If an error occurs when doing so you can try moving the map file to the RayKit directory and importing it from there.</value>
+  </data>
+  <data name="Help_Games_R2" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="Help_Games_R2_GameSpeedHeader" xml:space="preserve">
+    <value>Game Running too Fast</value>
+  </data>
+  <data name="Help_Games_R2_GameSpeed" xml:space="preserve">
+    <value>If Rayman 2 is running too fast while using nGlide, change the refresh rate to 120hz. This should be done even on monitors which do not support 120hz.</value>
+  </data>
+  <data name="Help_Games_R2_FpsHeader" xml:space="preserve">
+    <value>60 vs 30 fps</value>
+  </data>
+  <data name="Help_Games_R2_Fps" xml:space="preserve">
+    <value>Some parts of the game may not work if the game is running in 60fps. The most notable issue is during the bonus games.</value>
+  </data>
+  <data name="Help_Games_R2_NoDiscHeader" xml:space="preserve">
+    <value>No Disc Error</value>
+  </data>
+  <data name="Help_Games_R2_NoDisc" xml:space="preserve">
+    <value>On disc versions of the game there is a known issue where the game will display a CD error during gameplay. There is currently no solution to this issue other than using a digital version, such as the GOG version, instead.</value>
+  </data>
+  <data name="Help_Games_RMA" xml:space="preserve">
+    <value>Rayman M/Arena</value>
+  </data>
+  <data name="Help_Games_RMA_MissingTexturesHeader" xml:space="preserve">
+    <value>Missing Textures</value>
+  </data>
+  <data name="Help_Games_RMA_MissingTextures" xml:space="preserve">
+    <value>If textures are missing in the game while using an Intel graphics card, try turning off Transform and Lightning.</value>
+  </data>
+  <data name="Help_Games_R3" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="Help_Games_RRR" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="Help_Games_RRR_EngineErrorHeader" xml:space="preserve">
+    <value>jade_enr.exe Error</value>
+  </data>
+  <data name="Help_Games_RRR_EngineError" xml:space="preserve">
+    <value>There is currently no fix for this error. This appears in all versions, including the GOG version, on certain computers.</value>
+  </data>
+  <data name="Help_Games_RL" xml:space="preserve">
+    <value>Rayman Legends</value>
+  </data>
+  <data name="Help_Games_RL_LoadErrorHeader" xml:space="preserve">
+    <value>Error during load</value>
+  </data>
+  <data name="Help_Games_RL_LoadError" xml:space="preserve">
+    <value>The error occurs mainly on Windows 10 devices due to the game not being able to read/write to the game save file and/or the game configuration settings. The most common fix involves adding Rayman Legends as an exception to the Controlled Folder Access section of the built-in Windows Security system.</value>
+  </data>
+  <data name="Help_Cheats" xml:space="preserve">
+    <value>Cheat Codes</value>
+  </data>
+  <data name="Help_Cheats_R1Header" xml:space="preserve">
+    <value>Rayman 1</value>
+  </data>
+  <data name="Help_Cheats_R1" xml:space="preserve">
+    <value>• 99 lives  -  type trj8p or raylives or [TAB]bertrand during gameplay
+• All fist power-ups  -  type 2x2rmfmf or goldfist or [TAB]antoine during gameplay
+• All normal powers  -  type en5gol2g or power or [TAB]benoit during gameplay
+• Full health  -  type kom0ogdk or raypoint or [TAB]christ during gameplay
+• 10 added Tings  -  type 86e40g91 or raywiz or [TAB]jojo during gameplay
+• Skip current level section  -  type o8feh or winmap or [TAB]cyril during gameplay
+• Display hidden message  -  type [TAB]program during gameplay
+• Free movement  -  type [TAB];overay[BACKSPACE] during gameplay
+• 100MHz Refresh rate  -  type freq10 on the map
+• 80MHz Refresh rate  -  type freq80 on the map
+• All normal powers  -  type power or [TAB]benoit on the map
+• Lens effect  -  type lens on the map
+• Unlock all levels  -  type 4ctrepfj or alworld or [TAB]francois on the map
+• Enter Breakout minigame  -  type b76b7081 or cbray or [TAB]olivier on the map once Mr Dark's Dare has been completed
+• Enter random stage from Breakout minigame  -  type [TAB]cbrayal[BACKSPACE] on the map
+• Stage selection  -  type [TAB]alevel[BACKSPACE] on the map</value>
+  </data>
+  <data name="Help_Cheats_RDHeader" xml:space="preserve">
+    <value>Rayman Designer + Spin-Offs</value>
+  </data>
+  <data name="Help_Cheats_RD" xml:space="preserve">
+    <value>• 5 lives  -  type [TAB]lives05[BACKSPACE] during gameplay
+• 20 lives  -  type [TAB]lives20[BACKSPACE] during gameplay
+• 50 lives  -  type [TAB]lives50[BACKSPACE] during gameplay
+*All fist power-ups  -  type [TAB]goldens during gameplay
+• Finish level  -  type [TAB]finishing during gameplay
+• Full health  -  type [TAB]points during gameplay
+• Map number display  -  type [TAB]map[BACKSPACE] during gameplay
+• Free movement  -  type [TAB]moveray[BACKSPACE] during gameplay
+• Unlock all levels  -  type [TAB]openall[BACKSPACE] on the map</value>
+  </data>
+  <data name="Help_Cheats_R2Header" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="Help_Cheats_R2" xml:space="preserve">
+    <value>• Upgrade magic fist  -  type glowfist on the pause screen
+• Restore health  -  type gimmelife on the pause screen
+• Gain 5 Yellow Lums  -  type gimmelumz on the pause screen
+• Go to any level  -  type gothere on the pause screen, select a level with the arrow keys and press enter
+• Unlock grappling power  -  type hangon on the pause screen
+• Gain maximum health  -  press and release the J key to the rhythm of the Rayman 2 theme
+• Enter bonus level without all Lums and Cages  -   press the A, Numpad 0, Q, W, Q, W in order followed by enter on the Access Denied screen
+*Skip cutscenes  -  type NOMOVIES on the pause screen
+• New loading screens  -  type ALLVIGN on the pause screen
+• Disable Murfy  -  type NOMOREMURFY on the pause screen
+• Access hidden area in Tomb of the Ancients  -  In the final part of the Tomb of the Ancients, stand on the third panel away from the entrance to the Technical Check-up where Rayman fights Clark. Type PLAYJEFF and jump on the crate to the hole in the wall.
+• Access Menezis  -  type SHOOTEMUP during the credits
+• Unknown  -  type GETELIX on the pause screen</value>
+  </data>
+  <data name="Help_Cheats_RMAHeader" xml:space="preserve">
+    <value>Rayman M/Arena</value>
+  </data>
+  <data name="Help_Cheats_RMA" xml:space="preserve">
+    <value>• Skip cutscenes  -  type esc during the cutscene
+• Unlock all battle levels  -  enter ALLFISH as a profile name and press Shift + Ctrl + Alt
+• Unlock all race levels  -  enter ALLTRIBES as a profile name and press Shift + Ctrl + Alt
+• Unlock all levels  -  enter ALLRAYMANM as a profile name and press Shift + Ctrl + Alt
+• Unlock all characters  -  enter PUPPETS as a profile name and press Shift + Ctrl + Alt
+• Unlock all skins  -  enter CARNIVAL as a profile name and press Shift + Ctrl + Alt
+• Unlock all battle levels in mode 1  -  enter ARENAS as a profile name and press Shift + Ctrl + Alt
+• Unlock all race levels in mode 1  -  enter TRACKS as a profile name and press Shift + Ctrl + Alt
+• Unlock all levels in mode 1  -  enter FIELDS as a profile name and press Shift + Ctrl + Alt
+• Ragtime music in races  -  enter OLDTV as a profile name and press Shift + Ctrl + Alt
+• Reverse map  -  type reverse on the keyboard during gameplay
+
+• Music team:
+To activate it, enter race mode and pause the game. On the pause screen, hold L1 + R1 (or equivalent on the currently used controller), then press the optimize button. Five blue balls will appear at the bottom of the screen. Release everything and press Jump. The player should hear a high pitched "Ding" sound, and after 0.5 seconds, the first ball should turn yellow. As soon as the ball turns yellow, hold Jump. The second ball should then turn yellow. As soon as the second ball turns yellow, release Jump. The third ball should then turn yellow. As soon as the third ball turns yellow, hold Jump again. The fourth ball should then turn yellow. As soon as the fourth ball turns yellow, release Jump. The player should be taken to the "Music Mode" screen where the player will be able to choose "Music Team".</value>
+  </data>
+  <data name="Help_Cheats_R3Header" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="Help_Cheats_R3" xml:space="preserve">
+    <value>• Skip cutscenes  -  type esc during the cutscene
+• Reverse map  -  type reverse on the keyboard during gameplay</value>
+  </data>
+  <data name="Lang_English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Lang_German" xml:space="preserve">
+    <value>German</value>
+  </data>
+  <data name="Lang_French" xml:space="preserve">
+    <value>French</value>
+  </data>
+  <data name="Lang_Spanish" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
+  <data name="Lang_Italian" xml:space="preserve">
+    <value>Italian</value>
+  </data>
+  <data name="Lang_Danish" xml:space="preserve">
+    <value>Danish</value>
+  </data>
+  <data name="Lang_Finnish" xml:space="preserve">
+    <value>Finnish</value>
+  </data>
+  <data name="Lang_Norwegian" xml:space="preserve">
+    <value>Norwegian</value>
+  </data>
+  <data name="Lang_Swedish" xml:space="preserve">
+    <value>Swedish</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3Borders" xml:space="preserve">
+    <value>4:3 borders</value>
+  </data>
+  <data name="Config_RRRScreenMode_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Rayman Control Panel</value>
   </data>
 </root>

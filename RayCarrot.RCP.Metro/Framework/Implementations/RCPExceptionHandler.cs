@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -27,7 +28,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 if (RCFRCP.Data?.DisplayExceptionLevel <= exceptionLevel)
-                    _ = RCF.MessageUI.DisplayMessageAsync(GetMessage(), Resources.ExceptionMessageHeader, MessageType.Error);
+                    MessageBox.Show(GetMessage(), Resources.ExceptionMessageHeader, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 #pragma warning disable 168
             catch (Exception ex)

@@ -57,22 +57,22 @@
                 <local:IconButton x:Name="UtilitiesButton"
                                   Click="UtilitiesButton_OnClick"
                                   IconKind="BriefcaseOutline"
-                                  ToolTip="Utilities" 
+                                  ToolTip="{Resx GameOptions_Utilities}" 
                                   Margin="0 0 5 0" />
 
                 <local:IconButton x:Name="ConfigButton"
                                   Click="ConfigButton_OnClick"
                                   IconKind="SettingsOutline"
-                                  ToolTip="Options" 
+                                  ToolTip="{Resx GameOptions_Options}" 
                                   Margin="0 0 5 0"/>
 
                 <local:IconButton IconKind="Link"
                                   Command="{Binding Path=ShortcutCommand}"
-                                  ToolTip="Create shortcut" />
+                                  ToolTip="{Resx GameOptions_CreateShortcut}" />
 
                 <local:IconButton IconKind="Delete"
                                   Command="{Binding Path=RemoveCommand}"
-                                  ToolTip="Remove from program" />
+                                  ToolTip="{Resx GameOptions_Remove}" />
 
             </StackPanel>
 

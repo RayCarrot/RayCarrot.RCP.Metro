@@ -51,8 +51,11 @@
                            Text="{Resx RDU_ReplaceFilesLanguage}"/>
 
                 <ComboBox Grid.Column="1"
-                          ItemsSource="{Binding Path=MapperLanguage, Mode=OneTime, Converter={rwpf:EnumToListConverter}}"
-                          SelectedIndex="{Binding Path=MapperLanguage, Converter={rwpf:EnumToIntConverter}}" />
+                          SelectedIndex="{Binding Path=MapperLanguage, Converter={rwpf:EnumToIntConverter}}">
+                    <TextBlock Text="{Resx Lang_English}" />
+                    <TextBlock Text="{Resx Lang_German}" />
+                    <TextBlock Text="{Resx Lang_French}" />
+                </ComboBox>
 
             </Grid>
 
