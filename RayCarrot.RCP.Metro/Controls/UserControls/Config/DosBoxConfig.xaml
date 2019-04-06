@@ -36,10 +36,10 @@
 
                 </StackPanel>
 
-                <rwpf:BrowseBox FilePath="{Binding Path=MountPath, Converter={rwpf:FileSystemPathToStringConverter}, UpdateSourceTrigger=LostFocus}"
+                <rwpf:BrowseBox SelectedPath="{Binding Path=MountPath, Converter={rwpf:FileSystemPathToStringConverter}, UpdateSourceTrigger=LostFocus}"
                                 BrowseType="File">
                     <rwpf:BrowseBox.Style>
-                        <Style TargetType="{x:Type rwpf:BrowseBox}">
+                        <Style TargetType="{x:Type rwpf:BrowseBox}" BasedOn="{StaticResource {x:Type rwpf:BrowseBox}}">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Path=IsChecked, ElementName=DriveBrowseToggle}"
                                              Value="True">

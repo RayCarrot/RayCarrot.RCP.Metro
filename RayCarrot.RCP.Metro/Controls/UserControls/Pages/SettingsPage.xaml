@@ -184,7 +184,7 @@
                         <!-- NOTE: Not localized -->
 
                         <rwpf:BrowseBox FileFilter="Exe Files (.exe)|*.exe|All Files (*.*)|*.*"
-                                        FilePath="{Binding Path=DosBoxPath}"
+                                        SelectedPath="{Binding Path=DosBoxPath}"
                                         ToolTip="{Resx Settings_DosBoxPathInfo}"
                                         BrowseType="File"
                                         PathValidation="FileExists" />
@@ -200,7 +200,7 @@
                         <!-- NOTE: Not localized -->
 
                         <rwpf:BrowseBox FileFilter="Exe Files (.exe)|*.exe|All Files (*.*)|*.*"
-                                        FilePath="{Binding Path=DosBoxConfig}"
+                                        SelectedPath="{Binding Path=DosBoxConfig}"
                                         ToolTip="{Resx Settings_OptionalDosBoxConfigPathInfo}"
                                         BrowseType="File"
                                         PathValidation="FileExists" />
@@ -232,8 +232,8 @@
                                    Text="{Resx Settings_BackupLocation}"
                                    Margin="0 0 0 8" />
 
-                        <rwpf:BrowseBox FilePath="{Binding Path=BackupLocation, UpdateSourceTrigger=LostFocus}"
-                                        UseCurrentPathAsDefaultDirectoryIfValid="True"
+                        <rwpf:BrowseBox SelectedPath="{Binding Path=BackupLocation, UpdateSourceTrigger=LostFocus}"
+                                        UseCurrentPathAsDefaultLocationIfValid="True"
                                         BrowseType="Directory"
                                         PathValidation="DirectoryExistsAndNotEmpty"/>
 

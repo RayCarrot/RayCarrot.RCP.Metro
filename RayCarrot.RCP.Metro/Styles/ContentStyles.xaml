@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-                    xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF">
+                    xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
     <!-- Tab item with a margin -->
 
@@ -96,6 +97,110 @@
                                    TextWrapping="Wrap" />
 
                     </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Default Browse Box -->
+
+    <Style TargetType="{x:Type rwpf:BrowseBox}" BasedOn="{StaticResource {x:Type rwpf:BrowseBox}}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type rwpf:BrowseBox}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Text Box -->
+
+                            <TextBox TextWrapping="Wrap" AcceptsReturn="False"
+                                     MinWidth="100"
+                                     HorizontalAlignment="Stretch"
+                                     mah:TextBoxHelper.Watermark="{TemplateBinding mah:TextBoxHelper.Watermark}">
+
+                                <TextBox.Resources>
+                                    <rwpf:BindingProxy x:Key="proxy" Data="{Binding RelativeSource={RelativeSource TemplatedParent}}"/>
+                                </TextBox.Resources>
+
+                                <TextBox.Text>
+                                    <Binding Path="SelectedPath" RelativeSource="{RelativeSource TemplatedParent}" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                        <Binding.ValidationRules>
+                                            <rwpf:BrowseBoxValidationRule ValidatesOnTargetUpdated="True">
+                                                <rwpf:BrowseBoxValidationRule.ValidationData>
+                                                    <rwpf:BrowseValidationRuleData ValidationRule="{Binding Path=Data.PathValidation, Source={StaticResource proxy}}" />
+                                                </rwpf:BrowseBoxValidationRule.ValidationData>
+                                            </rwpf:BrowseBoxValidationRule>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+
+                                <!-- Context Menu -->
+
+                                <TextBox.ContextMenu>
+                                    <ContextMenu Padding="5">
+                                        <MenuItem Header="_Cut" Command="Cut" >
+                                            <MenuItem.Icon>
+                                                <iconPacks:PackIconMaterial Kind="ContentCut" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem Header="_Copy" Command="Copy" >
+                                            <MenuItem.Icon>
+                                                <iconPacks:PackIconMaterial Kind="ContentCopy" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem Header="_Paste" Command="Paste" >
+                                            <MenuItem.Icon>
+                                                <iconPacks:PackIconMaterial Kind="ContentPaste" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <Separator />
+                                        <MenuItem Header="_Undo" Command="Undo" >
+                                            <MenuItem.Icon>
+                                                <iconPacks:PackIconMaterial Kind="Undo" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <Separator />
+                                        <MenuItem x:Name="PART_OpenLocationMenuItem"
+                                                  Header="Open Location"
+                                                  IsEnabled="{TemplateBinding IsSelectedPathValid}">
+                                            <MenuItem.Icon>
+                                                <iconPacks:PackIconMaterial Kind="FolderOutline" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </TextBox.ContextMenu>
+
+                            </TextBox>
+
+                            <!-- Browse Button -->
+
+                            <Button Grid.Column="1"
+                                    x:Name="PART_BrowseButton"
+                                    IsEnabled="{TemplateBinding CanBrowse}"
+                                    Margin="10 0 0 0"
+                                    Padding="5"
+                                    AllowDrop="True">
+                                <StackPanel Orientation="Horizontal">
+                                    <iconPacks:PackIconMaterial Kind="Folder"
+                                                                VerticalAlignment="Center"/>
+
+                                    <!-- TODO: Localize -->
+
+                                    <TextBlock Margin="10 0" 
+                                               Text="Browse" 
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+
+                        </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

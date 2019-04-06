@@ -807,7 +807,7 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
     <value>Filen hittades inte</value>
   </data>
   <data name="File_ErrorLaunchingFile" xml:space="preserve">
-    <value>Ett fel uppstod vid försök att köra {0}</value>
+    <value>Ett fel uppstod vid försök att starta {0}</value>
   </data>
   <data name="File_ShortcutCreated" xml:space="preserve">
     <value>Genväg har skapats</value>
@@ -907,5 +907,98 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Rayman Kontrollpanelen</value>
+  </data>
+  <data name="Backup_Success" xml:space="preserve">
+    <value>Dina spelfiler för {0} har säkerhetskopierats</value>
+  </data>
+  <data name="Installer_FileConflictsHeader" xml:space="preserve">
+    <value>Filkonflikt</value>
+  </data>
+  <data name="Feedback_Title" xml:space="preserve">
+    <value>Feedback - Version 4.0.0</value>
+  </data>
+  <data name="Download_SuccessHeader" xml:space="preserve">
+    <value>Nedladdning har slutförts</value>
+  </data>
+  <data name="Config_RRRScreenMode_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3Borders" xml:space="preserve">
+    <value>4:3 ram</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="AppNews_Title" xml:space="preserve">
+    <value>App nyheter</value>
+  </data>
+  <data name="LaunchGame_DosBoxNotFound" xml:space="preserve">
+    <value>DosBox kunde inte hittas. Ange en giltig sökväg under inställningarna för att starta spelet.</value>
+  </data>
+  <data name="LaunchGame_MountPathNotFound" xml:space="preserve">
+    <value>Monterings-sökvägen kunde inte hittas. Specificera en giltig sökväg under spel-alternativen.</value>
+  </data>
+  <data name="Backup_Confirm" xml:space="preserve">
+    <value>Det här kommer att ersätta tidigare säkerhetskopior för {0}</value>
+  </data>
+  <data name="Backup_ConfirmHeader" xml:space="preserve">
+    <value>Bekräfta säkerhetskopiering</value>
+  </data>
+  <data name="Backup_FailedHeader" xml:space="preserve">
+    <value>Säkerhetskopiering misslyckades</value>
+  </data>
+  <data name="Backup_MissingDirectoriesError" xml:space="preserve">
+    <value>Säkerhetskopiering för {0} kunde inte slutföras på grund av att inte alla angivna mappar hittades</value>
+  </data>
+  <data name="RemoveGame_UtilityWarningHeader" xml:space="preserve">
+    <value>Verktygs-varning</value>
+  </data>
+  <data name="GameFinder_GamesFoundHeader" xml:space="preserve">
+    <value>Installerade spel hittades</value>
+  </data>
+  <data name="GameFinder_GamesFound" xml:space="preserve">
+    <value>Följande spel hittades:</value>
+  </data>
+  <data name="UbiIniWriteAccess_Error" xml:space="preserve">
+    <value>Ett fel inträffade när Rayman konfigurationsfilen skulle få skriv-tillstånd för användaren</value>
+  </data>
+  <data name="UbiIniWriteAccess_InfoMessage" xml:space="preserve">
+    <value>För att ändra inställningar för många av Rayman spelen utan att behöva köra det här programmet som administratör måste du acceptera den följande admin prompten</value>
+  </data>
+  <data name="RemoveGame_UtilityWarning" xml:space="preserve">
+    <value>Följande verktyg har lagts till för det här spelet och kommer inte att tas bort när du tar bort spelet. För att ta bort verktygen, gå till verktyg-dialogen och avaktivera/avinstallera dem eller återgå till originalalternativet om tillgängligt.</value>
+  </data>
+  <data name="AddGame_DuplicateHeader" xml:space="preserve">
+    <value>Det gick inte att lägga till spelet</value>
+  </data>
+  <data name="AddGame_Duplicate" xml:space="preserve">
+    <value>Spelet {0} har redan lagts till</value>
+  </data>
+  <data name="Restore_Failed" xml:space="preserve">
+    <value>Återställningen misslyckades för {0}</value>
+  </data>
+  <data name="Restore_SuccessHeader" xml:space="preserve">
+    <value>Återställningen lyckades</value>
+  </data>
+  <data name="Restore_Success" xml:space="preserve">
+    <value>Dina spelfiler för {0} har återställts</value>
+  </data>
+  <data name="Restore_ConfirmHeader" xml:space="preserve">
+    <value>Bekräfta återställning</value>
+  </data>
+  <data name="Restore_Confirm" xml:space="preserve">
+    <value>Det här kommer att ersätta de nuvarande spelfilerna för {0} med de från säkerhetskopian</value>
+  </data>
+  <data name="Restore_FailedHeader" xml:space="preserve">
+    <value>Återställningen misslyckades</value>
+  </data>
+  <data name="Restore_MissingBackup" xml:space="preserve">
+    <value>Det gick inte att hitta någon säkerhetskopia för {0}</value>
+  </data>
+  <data name="Backup_Failed" xml:space="preserve">
+    <value>Säkerhetskopiering misslyckades för {0}</value>
+  </data>
+  <data name="Backup_SuccessHeader" xml:space="preserve">
+    <value>Säkerhetskopiering lyckades</value>
   </data>
 </root>

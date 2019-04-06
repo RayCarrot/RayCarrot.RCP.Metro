@@ -20,7 +20,7 @@
 
         <rwpf:BrowseBox BrowseType="Directory"
                         PathValidation="DirectoryExistsAndNotEmpty" 
-                        FilePath="{Binding Path=InstallDir, Converter={rwpf:FileSystemPathToStringConverter}, UpdateSourceTrigger=LostFocus}"
+                        SelectedPath="{Binding Path=InstallDir, Converter={rwpf:FileSystemPathToStringConverter}, UpdateSourceTrigger=LostFocus}"
                         IsEnabled="{Binding Path=InstallerRunning, Converter={rwpf:InvertedBooleanConverter}}"/>
 
         <StackPanel Orientation="Horizontal">
