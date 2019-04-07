@@ -666,6 +666,7 @@
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\Resources.de-DE.resx" />
+    <EmbeddedResource Include="Localization\Resources.nl-NL.resx" />
     <EmbeddedResource Include="Localization\Resources.pl-PL.resx" />
     <EmbeddedResource Include="Localization\Resources.pt-PT.resx" />
     <EmbeddedResource Include="Localization\Resources.resx">
@@ -674,6 +675,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Resources.sr-Cyrl.resx" />
     <EmbeddedResource Include="Localization\Resources.sv-SE.resx">
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
       <SubType>Designer</SubType>

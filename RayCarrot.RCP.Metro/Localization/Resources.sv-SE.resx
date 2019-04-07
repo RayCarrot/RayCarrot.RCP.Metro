@@ -1001,4 +1001,13 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="Backup_SuccessHeader" xml:space="preserve">
     <value>Säkerhetskopiering lyckades</value>
   </data>
+  <data name="Backup_MissingFilesError" xml:space="preserve">
+    <value>Inga filer hittades att säkerhetskopiera för {0}</value>
+  </data>
+  <data name="GameFinder_Error" xml:space="preserve">
+    <value>Ett fel inträffade när installerade spel skulle hittas</value>
+  </data>
+  <data name="Download_NoFilesFound" xml:space="preserve">
+    <value>Inga filer hittades att ladda ner</value>
+  </data>
 </root>
