@@ -1,4 +1,6 @@
-﻿using RayCarrot.CarrotFramework;
+﻿using System;
+using System.Diagnostics;
+using RayCarrot.CarrotFramework;
 using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
@@ -28,9 +30,19 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Methods
 
+        /// <summary>
+        /// Opens the URL for contributing to localizing the program
+        /// </summary>
         public void ContributeLocalization()
         {
-            // TODO: Open Steam discussion page?
+            try
+            {
+                Process.Start("https://steamcommunity.com/groups/RaymanControlPanel/discussions/0/1812044473314212117/")?.Dispose();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError($"Opening localization contribute url");
+            }
         }
 
         #endregion

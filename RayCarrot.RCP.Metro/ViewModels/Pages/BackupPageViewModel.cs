@@ -28,7 +28,6 @@ namespace RayCarrot.RCP.Metro
 
             BindingOperations.EnableCollectionSynchronization(GameBackupItems, Application.Current);
 
-            // TODO: Culture specific date string not refreshing correctly on launch
             App.RefreshRequired += async (s, e) => await RefreshAsync();
         }
 

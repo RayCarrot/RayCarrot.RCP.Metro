@@ -930,7 +930,7 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
     <value>4:3</value>
   </data>
   <data name="AppNews_Title" xml:space="preserve">
-    <value>App nyheter</value>
+    <value>Appnyheter</value>
   </data>
   <data name="LaunchGame_DosBoxNotFound" xml:space="preserve">
     <value>DosBox kunde inte hittas. Ange en giltig sökväg under inställningarna för att starta spelet.</value>
@@ -1009,5 +1009,74 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   </data>
   <data name="Download_NoFilesFound" xml:space="preserve">
     <value>Inga filer hittades att ladda ner</value>
+  </data>
+  <data name="Download_ConfirmSize" xml:space="preserve">
+    <value>För att använda det här verktyget behöver filer laddas ner. Storleken för filerna är {0}. Fortsätt?</value>
+  </data>
+  <data name="Download_Confirm" xml:space="preserve">
+    <value>För att använda det här verktyget behöver filer laddas ner. Fortsätt?</value>
+  </data>
+  <data name="Download_ConfirmHeader" xml:space="preserve">
+    <value>Bekräfta nedladdning</value>
+  </data>
+  <data name="Download_Error" xml:space="preserve">
+    <value>Filerna kunde inte laddas ner</value>
+  </data>
+  <data name="Update_UnknownError" xml:space="preserve">
+    <value>Okänt fel</value>
+  </data>
+  <data name="Update_WebError" xml:space="preserve">
+    <value>En anslutning kan inte upprättas till servern</value>
+  </data>
+  <data name="Update_FormatError" xml:space="preserve">
+    <value>Informationen från servern var inte giltig</value>
+  </data>
+  <data name="Update_GenericError" xml:space="preserve">
+    <value>Ett okänt fel uppstod vid anslutning till servern</value>
+  </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>Fel vid sökande efter nya uppdateringar</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>Den senaste versionen ({0}) är redan installerad</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Ingen ny version hittades</value>
+  </data>
+  <data name="Update_ManifestError" xml:space="preserve">
+    <value>Serverns manifest kunde inte läsas</value>
+  </data>
+  <data name="Update_NewsError" xml:space="preserve">
+    <value>Server fel</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>En ny uppdatering finns tillgänglig att ladda ner. Ladda ner nu?
+
+Nyheter:
+{0}</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Ny version hittades</value>
+  </data>
+  <data name="MoveBackups_QuestionHeader" xml:space="preserve">
+    <value>Flytta tidigare säkerhetskopior</value>
+  </data>
+  <data name="Installer_Install" xml:space="preserve">
+    <value>Installera</value>
+  </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>Uppdateraren kunde inte skapas. För att hämta den nya versionen manuellt, gå till {0} och ladda ner den senaste versionen därifrån.</value>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Det gick inte att skapa uppdateraren</value>
+  </data>
+  <data name="MoveBackups_Question" xml:space="preserve">
+    <value>Vill du flytta tidigare säkerhetskopior till den nya mappen?</value>
+  </data>
+  <data name="MoveBackups_NoBackupsFound" xml:space="preserve">
+    <value>Inga säkerhetskopior hittades under {0}</value>
+  </data>
+  <data name="MoveBackups_ErrorHeader" xml:space="preserve">
+    <value>Flytta säkerhetskopior misslyckades</value>
   </data>
 </root>

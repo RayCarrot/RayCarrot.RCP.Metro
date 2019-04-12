@@ -72,21 +72,18 @@ The Rayman Control Panel uses these main dependencies:
 - [RayCarrot.Windows.Shell](https://github.com/RayCarrot/Carrot-Framework-Extensions/tree/master/RayCarrot.Windows.Shell)
 - [ByteSize](https://github.com/omar/ByteSize)
 - [Costura.Fody](https://github.com/Fody/Costura)
+- [PropertyChanged.Fody](https://github.com/Fody/PropertyChanged)
 - [ini-parser](https://github.com/rickyah/ini-parser)
 - [MahApps.Metro](https://github.com/MahApps/MahApps.Metro)
 - [NAudio.Vorbis](https://github.com/NAudio/Vorbis/)
 - [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
 - [Nito.AsyncEx](https://github.com/StephenCleary/AsyncEx)
-- [PropertyChanged.Fody](https://github.com/Fody/PropertyChanged)
 - [XamlAnimatedGif](https://github.com/XamlAnimatedGif/XamlAnimatedGif)
 - [Infralution.Localization.Wpf](https://www.codeproject.com/Articles/35159/WPF-Localization-Using-RESX-Files)
 - [Resource.Embedder](https://github.com/MarcStan/Resource.Embedder)
 
 ## Localization
-Starting with version 4.1.0 the Rayman Control Panel will support localization. These are the currently supported languages:
-
-- English
-- Swedish
+Starting with version 4.1.0 the Rayman Control Panel will support localization.
 
 As of now the following strings are not localizaed:
 - Version history
@@ -97,6 +94,9 @@ As of now the following strings are not localizaed:
 - Game names
 - Debug page
 - License dialog
+
+For more information and information on how to contribute, check out the Steam discussion page here:
+[Rayman Control Panel - Localization](https://steamcommunity.com/groups/RaymanControlPanel/discussions/0/1812044473314212117/)
 
 ## Contact
 You can contact me on the following places:

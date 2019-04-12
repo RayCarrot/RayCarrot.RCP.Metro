@@ -20,13 +20,19 @@ namespace RayCarrot.RCP.Metro
                 new CultureInfo("sv-SE"),
 
                 // German
-                new CultureInfo("de-DE"),
+                //new CultureInfo("de-DE"),
 
                 // Polish
-                new CultureInfo("pl-PL"),
+                //new CultureInfo("pl-PL"),
 
                 // Portuguese
-                new CultureInfo("pt-PT"), 
+                //new CultureInfo("pt-PT"), 
+
+                // Serbian
+                //new CultureInfo("sr-Cyrl"), 
+
+                // Dutch
+                //new CultureInfo("nl-NL"), 
             };
         }
 

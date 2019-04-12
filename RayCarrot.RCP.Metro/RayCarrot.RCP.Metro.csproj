@@ -666,6 +666,7 @@
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\Resources.de-DE.resx" />
+    <EmbeddedResource Include="Localization\Resources.es-PR.resx" />
     <EmbeddedResource Include="Localization\Resources.nl-NL.resx" />
     <EmbeddedResource Include="Localization\Resources.pl-PL.resx" />
     <EmbeddedResource Include="Localization\Resources.pt-PT.resx" />
@@ -765,7 +766,6 @@
     <Content Include="Files\Rayman2\GXSetup_GOG.exe" />
     <Content Include="Files\Rayman2\Rayman2_GOG.exe" />
     <Content Include="Files\Rayman3\dinput8_controller.dll" />
-    <Resource Include="Img\GameIcons\TonicTrouble.png" />
     <Resource Include="Files\RaymanOrigins\RO_Levels.txt" />
     <Resource Include="Img\GameLogos\RaymanArena_Logo.png" />
     <Resource Include="Img\GameLogos\RaymanM_Logo.png" />

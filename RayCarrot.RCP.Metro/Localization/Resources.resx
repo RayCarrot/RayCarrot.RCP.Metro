@@ -996,7 +996,7 @@ downloadSize</comment>
     <value>This patch requires its files to be downloaded. Continue?</value>
   </data>
   <data name="Download_Error" xml:space="preserve">
-    <value>The files could not be downloaded.</value>
+    <value>The files could not be downloaded</value>
   </data>
   <data name="Update_UnknownError" xml:space="preserve">
     <value>Unknown error</value>
@@ -1014,7 +1014,7 @@ downloadSize</comment>
     <value>Update Check Failed</value>
   </data>
   <data name="Update_LatestInstalled" xml:space="preserve">
-    <value>The latest version ({0}) is already installed.</value>
+    <value>The latest version ({0}) is already installed</value>
     <comment>Arguments:
 latestVersion</comment>
   </data>

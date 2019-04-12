@@ -1394,7 +1394,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The files could not be downloaded..
+        ///   Looks up a localized string similar to The files could not be downloaded.
         /// </summary>
         public static string Download_Error {
             get {
@@ -4999,7 +4999,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The latest version ({0}) is already installed..
+        ///   Looks up a localized string similar to The latest version ({0}) is already installed.
         /// </summary>
         public static string Update_LatestInstalled {
             get {
