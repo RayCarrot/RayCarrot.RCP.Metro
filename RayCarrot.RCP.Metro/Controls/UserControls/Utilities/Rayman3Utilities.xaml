@@ -41,7 +41,8 @@
                                     OffLabel="{Resx R3U_DirectPlayDisabled}" />
 
                 <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Center">
+                            HorizontalAlignment="Center"
+                            Visibility="{Binding Path=CanModifyDirectPlay, Converter={rwpf:InvertedBooleanToVisibilityConverter}}">
 
                     <iconPacks:PackIconMaterial Kind="Security"
                                                 Margin="0 0 10 0"/>

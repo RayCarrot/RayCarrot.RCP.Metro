@@ -8,7 +8,7 @@
 • Utilities are now only shown when available
 • The Rayman 3 DirectPlay utility has been reworked and now shows the current state of DirectPlay
 • Added debug option to show applied utilities
-• Updates the Carrot Framework and WPF implementation
+• Updates to the Carrot Framework and WPF implementation
 • Temporarily downgraded Fody to version 3.3.5 due to a bug with duplicate type names
 • Minor bug fixes
 

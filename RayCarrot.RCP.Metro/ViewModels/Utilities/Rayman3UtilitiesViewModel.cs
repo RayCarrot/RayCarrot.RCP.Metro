@@ -102,6 +102,8 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
+                CanModifyDirectPlay = true;
+
                 var result = PowerShell.Create().RunAndDispose(x =>
                     x.AddCommand("Get-WindowsOptionalFeature").
                         AddParameter("-Online").
@@ -112,7 +114,6 @@ namespace RayCarrot.RCP.Metro
                 _isDirectPlayEnabled = result.First().Members["State"].Value?.ToString() == "Enabled";
                 OnPropertyChanged(nameof(IsDirectPlayEnabled));
 
-                CanModifyDirectPlay = true;
                 IsLoadingDirectPlay = false;
             }
             catch (Exception ex)

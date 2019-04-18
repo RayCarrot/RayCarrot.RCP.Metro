@@ -66,6 +66,13 @@ namespace RayCarrot.RCP.Metro
                         if (!result.Path.DirectoryExists)
                             continue;
 
+                        // Check if the directory is valid
+                        if (!game.Key.IsValid(result.Type, result.Path))
+                        {
+                            RCF.Logger.LogInformationSource($"The install directory for {game} is not valid");
+                            continue;
+                        }
+
                         RCF.Logger.LogTraceSource($"The game {game.Key} was found from the game checker with the source {result.Source}");
 
                         // Add the game
