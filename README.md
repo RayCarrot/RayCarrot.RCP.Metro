@@ -12,7 +12,7 @@ Rayman Control Panel (Metro) is the WPF redesign of the Rayman Control Panel. Fo
 Configuration tools are available for all games except the Windows Store ones (Rayman Jungle Run and Rayman Fiesta Run). These allow you to change settings indicating how the game runs.
 
 #### DosBox
-For the DosBox games configuraiton a .ini file is created in the application's AppData directory where the chosen configuration values are saved. This file is then loaded into DosBox upon launching the game, along with the optional selected cofniguration file from the application settings and the mount path. The reason why all configuration commands are not passed in as parameters us due to DosBox having a parameter limit.
+For the DosBox games configuration a .ini file is created in the application's AppData directory where the chosen configuration values are saved. This file is then loaded into DosBox upon launching the game, along with the optional selected configuration file from the application settings and the mount path. The reason why all configuration commands are not passed in as parameters us due to DosBox having a parameter limit.
 
 #### Rayman 2
 The Rayman 2 configuration edits the ubi.ini file in the install directory if the GOG version is used, or else the ubi.ini file in the Windows directory. This configuration tool also has several utilities integrated into it.
@@ -85,7 +85,7 @@ The Rayman Control Panel uses these main dependencies:
 ## Localization
 Starting with version 4.1.0 the Rayman Control Panel will support localization.
 
-As of now the following strings are not localizaed:
+As of now the following strings are not localized:
 - Version history
 - App news (from server manifest)
 - Exception messages (from Carrot Framework)

@@ -1,4 +1,8 @@
-﻿-----   Version 4.1.0 - April 18, 2019   -----
+﻿-----   Version 4.2.0 - May ?, 2019   -----
+• 
+
+
+-----   Version 4.1.0 - April 18, 2019   -----
 
 • The program now supports multiple languages
 • Dialog windows no longer show as blocking dialogs, thus allowing several windows to be open at once
