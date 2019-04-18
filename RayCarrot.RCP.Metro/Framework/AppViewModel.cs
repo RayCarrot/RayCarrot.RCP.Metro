@@ -96,7 +96,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(4, 1, 0, 0);
+        public Version CurrentVersion => new Version(4, 1, 0, 2);
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -730,8 +730,7 @@ namespace RayCarrot.RCP.Metro
 
                     if (result.Count > 0)
                     {
-                        await RCF.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {result.JoinItems(Environment.NewLine + "• ", x => x.GetDisplayName())}",
-                            Resources.GameFinder_GamesFoundHeader, MessageType.Success);
+                        await RCF.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {result.JoinItems(Environment.NewLine + "• ", x => x.GetDisplayName())}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
                         RCF.Logger.LogInformationSource($"The game finder found the following games {result.JoinItems(", ")}");
                         return true;
                     }
