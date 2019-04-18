@@ -1,14 +1,14 @@
 ﻿-----   Version 4.1.0 - April ?, 2019   -----
 
-• The program is now available Swedish
+• The program now supports multiple languages
 • Dialog windows no longer show as blocking dialogs, thus allowing several windows to be open at once
-• Added Rayman Legends setion to the help page
-• The option to move existing backups has been readded when changing the backup location
+• Added Rayman Legends section to the help page
+• The option to move existing backups has been re-added when changing the backup location
 • Increased tool tip timeout on info icons
 • Utilities are now only shown when available
-• The Rayman 3 DirectPlay utliity has been reworked and now shows the current state of DirectPlay
+• The Rayman 3 DirectPlay utility has been reworked and now shows the current state of DirectPlay
 • Added debug option to show applied utilities
-• Updates to the Carrot Framework and WPF implementation
+• Updates the Carrot Framework and WPF implementation
 • Temporarily downgraded Fody to version 3.3.5 due to a bug with duplicate type names
 • Minor bug fixes
 
@@ -17,7 +17,7 @@
 
 • Updated the about page
 • Updated the help page
-• Changed the jumplist category to the default one to avoid pinning and removing jumplist shortcuts
+• Changed the jump list category to the default one to avoid pinning and removing jump list shortcuts
 • Fixed a bug where the ubi.ini handler would throw an exception when a duplicate key was parsed
 
 
@@ -30,13 +30,13 @@
 • Common DosBox commands can now be set using the new DosBox configuration dialog
 
 Other changes:
-• Utilities will now show if they require addiitonal files to be downloaded
+• Utilities will now show if they require additional files to be downloaded
 • Rayman M/Arena are now treated as separate games
 • Windows Store games are now be found and launched using the WinRT API rather than Explorer
 • The Rayman 1 PlayStation soundtrack utility now works without launching it from the utilities page
 • Some Rayman 2 utilities have been integrated into its configuration dialog. It now also shows the currently selected button mapping.
 • The Rayman 2 translation utility will now automatically download the correct textures file along with the translation
-• The option to revert back to the originl Rayman Origins videos has been added
+• The option to revert back to the original Rayman Origins videos has been added
 • When selecting a map to load in Rayman Origins there is now a list of all available options
 • Improved the game installer
 • The logger now logs to a file
@@ -50,13 +50,13 @@ Removed features:
 • Configuration paths can no longer be set up manually
 • The game finder can not be run manually from the settings
 • The WinForms folder dialog can no longer be used
-• Shortcuts can no longer be created for the native game configuration prorgrams. This can still be done manually by right-clicking on the executable in Explorer and creating a new shortcut.
+• Shortcuts can no longer be created for the native game configuration programs. This can still be done manually by right-clicking on the executable in Explorer and creating a new shortcut.
 • Shortcuts can no longer be created for the game configuration tools.
 • Backups can no longer be created for multiple games at once
 • Several Rayman 2 configuration options were removed, including the nGlide settings. These can still be accessed from the game's native configuration tools.
 • Several Rayman Raving Rabbids configuration options were removed. These can still be accessed from within the game.
 • The Rayman Fiesta Run version can no longer be chosen. If both are installed, the Windows 10 edition is prioritized.
-• Digital versions of Rayman Origins can no longer be updated through the utilities. This is due to the GOG version recently recieving the 1.02 update it was previously missing.
+• Digital versions of Rayman Origins can no longer be updated through the utilities. This is due to the GOG version recently receiving the 1.02 update it was previously missing.
 
 
 -----   Version 3.2.2 - February 21, 2019   -----
@@ -159,7 +159,7 @@ Installer improvements:
 -----   Version 2.3.0 - September 21, 2018   -----
 
 • Added a Registry browser dialog for browsing for Registry key paths
-• Added a debug option for chosing which exception to show trace information for
+• Added a debug option for choosing which exception to show trace information for
 
 
 -----   Version 2.2.1 - September 19, 2018   -----
@@ -242,7 +242,7 @@ Other changes:
 
 -----   Version 1.3.2 - January 10, 2018   -----
 
-• Fixed an issue which caused DosBox games not to mount if the disc was a cdrom
+• Fixed an issue which caused DosBox games not to mount if the disc was a CD-Rom
 • Removed unavailable options
 
 

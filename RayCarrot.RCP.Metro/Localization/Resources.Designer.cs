@@ -70,6 +70,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dutch program translation.
+        /// </summary>
+        public static string About_Credits_432Hz {
+            get {
+                return ResourceManager.GetString("About_Credits_432Hz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File structure for the education Rayman games.
         /// </summary>
         public static string About_Credits_EvelynChickentalk {
@@ -79,11 +88,20 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman 2 translations.
+        ///   Looks up a localized string similar to Rayman 2 translations, Portuguese program translation.
         /// </summary>
         public static string About_Credits_HarukaTavares {
             get {
                 return ResourceManager.GetString("About_Credits_HarukaTavares", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spanish program translation.
+        /// </summary>
+        public static string About_Credits_ICUP321 {
+            get {
+                return ResourceManager.GetString("About_Credits_ICUP321", resourceCulture);
             }
         }
         
@@ -102,6 +120,33 @@ namespace RayCarrot.RCP.Metro {
         public static string About_Credits_Noserdog {
             get {
                 return ResourceManager.GetString("About_Credits_Noserdog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serbian program translation.
+        /// </summary>
+        public static string About_Credits_OldClassicGamer {
+            get {
+                return ResourceManager.GetString("About_Credits_OldClassicGamer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to German program translation.
+        /// </summary>
+        public static string About_Credits_PhilippJeindl {
+            get {
+                return ResourceManager.GetString("About_Credits_PhilippJeindl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polish program translation.
+        /// </summary>
+        public static string About_Credits_Pixelise {
+            get {
+                return ResourceManager.GetString("About_Credits_Pixelise", resourceCulture);
             }
         }
         
@@ -129,6 +174,15 @@ namespace RayCarrot.RCP.Metro {
         public static string About_Credits_RibShark {
             get {
                 return ResourceManager.GetString("About_Credits_RibShark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman PlayStation Soundtrack utility.
+        /// </summary>
+        public static string About_Credits_Snagglebee {
+            get {
+                return ResourceManager.GetString("About_Credits_Snagglebee", resourceCulture);
             }
         }
         
@@ -391,6 +445,15 @@ namespace RayCarrot.RCP.Metro {
         public static string BackupPageHeader {
             get {
                 return ResourceManager.GetString("BackupPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse.
+        /// </summary>
+        public static string BrowseBox_Browse {
+            get {
+                return ResourceManager.GetString("BrowseBox_Browse", resourceCulture);
             }
         }
         

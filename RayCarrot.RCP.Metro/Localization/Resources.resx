@@ -1392,7 +1392,7 @@ gameDisplayName</comment>
     <value>Rayman 2 translations</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>Rayman 2 translations</value>
+    <value>Rayman 2 translations, Portuguese program translation</value>
   </data>
   <data name="About_Credits_EvelynChickentalk" xml:space="preserve">
     <value>File structure for the education Rayman games</value>
@@ -1958,5 +1958,26 @@ To activate it, enter race mode and pause the game. On the pause screen, hold L1
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Rayman Control Panel</value>
+  </data>
+  <data name="About_Credits_Snagglebee" xml:space="preserve">
+    <value>Rayman PlayStation Soundtrack utility</value>
+  </data>
+  <data name="About_Credits_ICUP321" xml:space="preserve">
+    <value>Spanish program translation</value>
+  </data>
+  <data name="About_Credits_OldClassicGamer" xml:space="preserve">
+    <value>Serbian program translation</value>
+  </data>
+  <data name="About_Credits_Pixelise" xml:space="preserve">
+    <value>Polish program translation</value>
+  </data>
+  <data name="About_Credits_PhilippJeindl" xml:space="preserve">
+    <value>German program translation</value>
+  </data>
+  <data name="About_Credits_432Hz" xml:space="preserve">
+    <value>Dutch program translation</value>
+  </data>
+  <data name="BrowseBox_Browse" xml:space="preserve">
+    <value>Browse</value>
   </data>
 </root>

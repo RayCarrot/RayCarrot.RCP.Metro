@@ -601,7 +601,6 @@ namespace RayCarrot.RCP.Metro
 
                 case Games.RaymanFiestaRun:
                     return RCFRCP.Data.IsFiestaRunWin10Edition ? "Ubisoft.RaymanFiestaRunWindows10Edition_ngz4m417e0mpw" : "Ubisoft.RaymanFiestaRun_ngz4m417e0mpw";
-                    // throw new ArgumentOutOfRangeException(nameof(game), game, "A launch name can not be obtained from a Windows Store application");
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);

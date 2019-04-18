@@ -1079,4 +1079,34 @@ Nyheter:
   <data name="MoveBackups_ErrorHeader" xml:space="preserve">
     <value>Flytta säkerhetskopior misslyckades</value>
   </data>
+  <data name="MoveBackups_BackupAlreadyExists" xml:space="preserve">
+    <value>Säkerhetskopiorna kunde inte flyttas då det redan finns säkerhetskopior under {0}</value>
+  </data>
+  <data name="MoveBackups_Success" xml:space="preserve">
+    <value>Säkerhetskopiorna har flyttats framgångsrikt</value>
+  </data>
+  <data name="MoveBackups_Error" xml:space="preserve">
+    <value>Fel vid flyttning av säkerhetskopian</value>
+  </data>
+  <data name="Installer_CreateDesktopShortcut" xml:space="preserve">
+    <value>Skapa genväg på skrivbordet</value>
+  </data>
+  <data name="Installer_CreateStartMenuShortcut" xml:space="preserve">
+    <value>Skapa genväg på start menyn</value>
+  </data>
+  <data name="Installer_InstallAllUsers" xml:space="preserve">
+    <value>Installera för alla användare</value>
+  </data>
+  <data name="Installer_Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="Installer_BrowseDiscHeader" xml:space="preserve">
+    <value>Välj skiva att installera från</value>
+  </data>
+  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
+    <value>0.74</value>
+  </data>
+  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
+    <value>SVN Daum</value>
+  </data>
 </root>

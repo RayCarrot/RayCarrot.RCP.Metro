@@ -110,7 +110,8 @@
                 <ControlTemplate TargetType="{x:Type rwpf:BrowseBox}">
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
 
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -191,11 +192,10 @@
                                     <iconPacks:PackIconMaterial Kind="Folder"
                                                                 VerticalAlignment="Center"/>
 
-                                    <!-- TODO: Localize -->
-
                                     <TextBlock Margin="10 0" 
-                                               Text="Browse" 
+                                               Text="{Resx BrowseBox_Browse}" 
                                                VerticalAlignment="Center"/>
+
                                 </StackPanel>
                             </Button>
 

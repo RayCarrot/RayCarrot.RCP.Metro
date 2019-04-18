@@ -17,7 +17,7 @@ namespace RayCarrot.RCP.Metro
                 new CultureInfo("en-US"),
 
                 // Swedish
-                new CultureInfo("sv-SE"),
+                //new CultureInfo("sv-SE"),
 
                 // German
                 //new CultureInfo("de-DE"),
@@ -32,7 +32,10 @@ namespace RayCarrot.RCP.Metro
                 //new CultureInfo("sr-Cyrl"), 
 
                 // Dutch
-                //new CultureInfo("nl-NL"), 
+                //new CultureInfo("nl-NL"),
+
+                // Spanish
+                //new CultureInfo("es-PR"), 
             };
         }
 
