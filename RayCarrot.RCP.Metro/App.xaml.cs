@@ -293,44 +293,6 @@ namespace RayCarrot.RCP.Metro
             }
 
             await RCFRCP.App.EnableUbiIniWriteAccessAsync();
-
-            if (RCFRCP.Data.FeedbackPromptState >= 0)
-            {
-                RCFRCP.Data.FeedbackPromptState++;
-
-                if (RCFRCP.Data.FeedbackPromptState % 3 == 0)
-                {
-                    var dialog = new FeedbackPrompt();
-
-                    dialog.ShowDialog();
-
-                    if (dialog.SurveyResult == PopupPromptResult.DoNotShowAgain)
-                    {
-                        RCFRCP.Data.FeedbackPromptState = -1;
-                        RCF.Logger.LogInformationSource("The survey prompt is set to not show again");
-                    }
-                    else if (dialog.SurveyResult == PopupPromptResult.Accept)
-                    {
-                        RCFRCP.Data.FeedbackPromptState = -1;
-
-                        const string url = "https://goo.gl/forms/l9J37XzcOgOPU4u02";
-
-                        try
-                        {
-                            Process.Start(url)?.Dispose();
-                            RCF.Logger.LogInformationSource("The survey URL was opened");
-                        }
-                        catch (Exception ex)
-                        {
-                            ex.HandleError($"Opening url {url}");
-                        }
-                    }
-                    else
-                    {
-                        RCF.Logger.LogInformationSource("The survey prompt has been postponed");
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -355,10 +317,10 @@ namespace RayCarrot.RCP.Metro
             }
 
             if (RCFRCP.Data.LastVersion < new Version(4, 0, 0, 6))
-            {
-                RCFRCP.Data.FeedbackPromptState = 0;
                 RCFRCP.Data.EnableAnimations = true;
-            }
+
+            if (RCFRCP.Data.LastVersion < new Version(4, 1, 1, 0))
+                RCFRCP.Data.ShowIncompleteTranslations = false;
 
             // Refresh the jump list
             RefreshJumpList();
@@ -495,6 +457,7 @@ namespace RayCarrot.RCP.Metro
                             {
                                 var launchInfo = x.GetLaunchInfo();
                                 var info = x.GetInfo();
+
                                 return new JumpTask()
                                 {
                                     Title = x.GetDisplayName(),

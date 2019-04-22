@@ -160,7 +160,7 @@
     <value>Microsoft Store</value>
   </data>
   <data name="ROU_DebugCommandsWarning" xml:space="preserve">
-    <value>ADVERTENCIA: el uso de estos comandos de depuración puede dañar el archivo guardado. Siempre haga una copia de seguridad antes de usarlos.</value>
+    <value>ADVERTENCIA: El uso de estos comandos de depuración puede dañar el archivo guardado. Siempre haga una copia de seguridad antes de usarlos.</value>
   </data>
   <data name="ROU_DebugCommandsEnabled" xml:space="preserve">
     <value>Habilitado</value>
@@ -185,5 +185,11 @@
   </data>
   <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
     <value>SVN Daum</value>
+  </data>
+  <data name="MountOption_File" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="MountOption_Drive" xml:space="preserve">
+    <value>Controlador</value>
   </data>
 </root>

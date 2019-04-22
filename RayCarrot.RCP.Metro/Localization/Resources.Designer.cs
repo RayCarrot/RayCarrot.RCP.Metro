@@ -187,6 +187,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discord.
+        /// </summary>
+        public static string About_Discord {
+            get {
+                return ResourceManager.GetString("About_Discord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string About_Email {
@@ -2158,6 +2167,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameType_WinStore {
             get {
                 return ResourceManager.GetString("GameType_WinStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For additional help, check the Discord server (link in About page).
+        /// </summary>
+        public static string Help_AdditionalHelp {
+            get {
+                return ResourceManager.GetString("Help_AdditionalHelp", resourceCulture);
             }
         }
         
@@ -4521,7 +4539,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You just entered the Konami code! Enjoy this dark, gloomy new theme..
+        ///   Looks up a localized string similar to You just entered the Konami code! Enjoy this dark new theme..
         /// </summary>
         public static string SecretCodes_Konami {
             get {
@@ -4796,6 +4814,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_GeneralHeader {
             get {
                 return ResourceManager.GetString("Settings_GeneralHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show languages with incomplete translations.
+        /// </summary>
+        public static string Settings_IncompleteTranslations {
+            get {
+                return ResourceManager.GetString("Settings_IncompleteTranslations", resourceCulture);
             }
         }
         

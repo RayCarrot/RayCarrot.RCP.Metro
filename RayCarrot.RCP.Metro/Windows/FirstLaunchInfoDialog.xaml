@@ -45,7 +45,7 @@
 
                 <WrapPanel Grid.Row="1"
                            DataContext="{Binding Source={x:Static local:RCFRCP.Data}}">
-                    <CheckBox Content="{Resx Search for installed games}" 
+                    <CheckBox Content="{Resx Settings_StartupGameFinder}" 
                               Margin="10"
                               IsChecked="{Binding Path=AutoLocateGames}"/>
                     <CheckBox Content="{Resx Settings_StartupUpdateCheck}"

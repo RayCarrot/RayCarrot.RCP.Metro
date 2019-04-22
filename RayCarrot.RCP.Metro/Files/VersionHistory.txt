@@ -1,5 +1,8 @@
-﻿-----   Version 4.2.0 - May ?, 2019   -----
-• 
+﻿-----   Version 4.1.1 - April 22, 2019   -----
+• Added a link to the Discord server in the about page
+• Removed feedback prompt
+• Added debug option to show languages with incomplete translations
+• Minor bug fixes
 
 
 -----   Version 4.1.0 - April 18, 2019   -----

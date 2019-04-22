@@ -186,7 +186,6 @@
                                     x:Name="PART_BrowseButton"
                                     IsEnabled="{TemplateBinding CanBrowse}"
                                     Margin="10 0 0 0"
-                                    Padding="5"
                                     AllowDrop="True">
                                 <StackPanel Orientation="Horizontal">
                                     <iconPacks:PackIconMaterial Kind="Folder"

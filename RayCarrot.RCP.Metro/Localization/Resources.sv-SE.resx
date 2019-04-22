@@ -1109,4 +1109,102 @@ Nyheter:
   <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
     <value>SVN Daum</value>
   </data>
+  <data name="Installer_DriveNameConflict" xml:space="preserve">
+    <value>Den valda skivan har samma namn och bokstav som en tidigare skiva. På grund av det här kan inte installeraren skilja på skivorna. Byt antingen namn på en av skivorna och försök igen eller montera skivorna med olika bokstäver.</value>
+  </data>
+  <data name="Installer_DriveNameConflictHeader" xml:space="preserve">
+    <value>Skivkonflikt</value>
+  </data>
+  <data name="Installer_MissingFiles" xml:space="preserve">
+    <value>{0} filer hittades inte på den valda skivan. Byt till nästa skiva nu om spelet har flera installationsskivor.</value>
+  </data>
+  <data name="Installer_MissingFilesHeader" xml:space="preserve">
+    <value>Filer saknas</value>
+  </data>
+  <data name="Installer_InsertDriveRequest" xml:space="preserve">
+    <value>Sätt in skivan "{0}" i "{1}" och fortsätt, eller avbryt för att avbryta installationen</value>
+  </data>
+  <data name="Installer_InsertDriveRequestHeader" xml:space="preserve">
+    <value>Sätt i skiva</value>
+  </data>
+  <data name="Installer_FileCopyError" xml:space="preserve">
+    <value>Filen {0} kunde inte kopieras. Felmeddelande: {1}
+
+Försök igen?"</value>
+  </data>
+  <data name="Installer_FileCopyErrorHeader" xml:space="preserve">
+    <value>Misslyckades med att kopiera filen</value>
+  </data>
+  <data name="Installer_FileConflicts" xml:space="preserve">
+    <value>Det finns {0} filkonflikter. Vill du skriva över dessa filer?</value>
+  </data>
+  <data name="Installer_UnhandledItems" xml:space="preserve">
+    <value>Vissa filer hanterades inte under installationen. Vill du försöka hantera dessa filer igen?</value>
+  </data>
+  <data name="Installer_UnhandledItemsHeader" xml:space="preserve">
+    <value>Ohanterade filer</value>
+  </data>
+  <data name="Installer_CleanupError" xml:space="preserve">
+    <value>Delar av installationen kunde inte tas bort och kvarstår under {0}</value>
+  </data>
+  <data name="Installer_CancelAlreadyRequested" xml:space="preserve">
+    <value>Operationen håller redan på att avbrytas</value>
+  </data>
+  <data name="Installer_CancelAlreadyRequestedHeader" xml:space="preserve">
+    <value>Operationen avbryts</value>
+  </data>
+  <data name="Installer_CancelQuestion" xml:space="preserve">
+    <value>Vill du avbryta installationen?</value>
+  </data>
+  <data name="Installer_CancelQuestionHeader" xml:space="preserve">
+    <value>Avbryt installationen</value>
+  </data>
+  <data name="Installer_InvalidDirectory" xml:space="preserve">
+    <value>Den valda mappen finns inte</value>
+  </data>
+  <data name="Installer_InvalidDirectoryHeader" xml:space="preserve">
+    <value>Mappen kunde inte hittas</value>
+  </data>
+  <data name="Installer_ShortcutName" xml:space="preserve">
+    <value>Starta {0}</value>
+  </data>
+  <data name="Installer_Success" xml:space="preserve">
+    <value>Installationen är klar. Kör konfigurationsprogrammet för {0} för att ställa in spelet.</value>
+  </data>
+  <data name="Installer_SuccessHeader" xml:space="preserve">
+    <value>Installationen är klar</value>
+  </data>
+  <data name="Installer_FailedHeader" xml:space="preserve">
+    <value>Installationen misslyckades</value>
+  </data>
+  <data name="Installer_Failed" xml:space="preserve">
+    <value>Installationen misslyckades</value>
+  </data>
+  <data name="Installer_Canceled" xml:space="preserve">
+    <value>Installationen avbröts</value>
+  </data>
+  <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
+    <value>Det här verktyget kräver att ytterligare filer laddas ner</value>
+  </data>
+  <data name="SecretCodes_SecretHeader" xml:space="preserve">
+    <value>Hemlig kod</value>
+  </data>
+  <data name="GameInfo_SteamID" xml:space="preserve">
+    <value>Steam ID:</value>
+  </data>
+  <data name="GameShortcut_ShortcutName" xml:space="preserve">
+    <value>Starta {0}</value>
+  </data>
+  <data name="AppNews_Header" xml:space="preserve">
+    <value>Versionshistorik</value>
+  </data>
+  <data name="BrowseBox_Browse" xml:space="preserve">
+    <value>Bläddra</value>
+  </data>
+  <data name="About_Discord" xml:space="preserve">
+    <value>Discord</value>
+  </data>
+  <data name="Settings_IncompleteTranslations" xml:space="preserve">
+    <value>Visa språk med ofullständiga översättningar</value>
+  </data>
 </root>

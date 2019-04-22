@@ -94,7 +94,7 @@
 
                     <ComboBox DataContext="{Binding Path=Data}"
                               SelectedItem="{Binding Path=CurrentCultureInfo}"
-                              ItemsSource="{Binding Source={x:Static local:AppLanguages.Languages}, Mode=OneTime}">
+                              ItemsSource="{Binding Source={x:Static local:AppLanguages.Languages}}">
                         <ComboBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
                                 <Setter Property="ToolTip" Value="{Binding Path=NativeName}" />
@@ -112,6 +112,10 @@
                             <TextBlock Text="{Resx Settings_LanguageContribute}" />
                         </Hyperlink>
                     </TextBlock>
+
+                    <CheckBox rwpf:UserLevelTag.MinUserLevel="Debug"
+                              Content="{Resx Settings_IncompleteTranslations}"
+                              IsChecked="{Binding Path=Data.ShowIncompleteTranslations}" />
 
                 </StackPanel>
 

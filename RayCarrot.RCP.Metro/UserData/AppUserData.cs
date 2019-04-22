@@ -58,9 +58,9 @@ namespace RayCarrot.RCP.Metro
             RRRIsSaveDataInInstallDir = true;
             ShowDetailedGameInfo = false;
             TPLSData = null;
-            FeedbackPromptState = 0;
             EnableAnimations = true;
-            CurrentCulture = "en-US";
+            CurrentCulture = AppLanguages.DefaultCulture.Name;
+            ShowIncompleteTranslations = false;
         }
 
         #endregion
@@ -70,6 +70,8 @@ namespace RayCarrot.RCP.Metro
         private bool _darkMode;
 
         private FileSystemPath _backupLocation;
+
+        private bool _showIncompleteTranslations;
 
         #endregion
 
@@ -224,13 +226,6 @@ namespace RayCarrot.RCP.Metro
         public TPLSData TPLSData { get; set; }
 
         /// <summary>
-        /// The state of the feedback prompt.
-        /// -1 = Do not show again.
-        /// 0 and above = the number of times it has been shown.
-        /// </summary>
-        public int FeedbackPromptState { get; set; }
-
-        /// <summary>
         /// Indicates if animations are enabled
         /// </summary>
         public bool EnableAnimations { get; set; }
@@ -242,7 +237,7 @@ namespace RayCarrot.RCP.Metro
         public CultureInfo CurrentCultureInfo
         {
             get => new CultureInfo(CurrentCulture);
-            set => CurrentCulture = value.Name;
+            set => CurrentCulture = value?.Name ?? AppLanguages.DefaultCulture.Name;
         }
 
         /// <summary>
@@ -250,7 +245,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string CurrentCulture
         {
-            get => RCF.Data.CurrentCulture?.Name ?? AppLanguages.Languages.First().Name;
+            get => RCF.Data.CurrentCulture?.Name ?? AppLanguages.DefaultCulture.Name;
             set
             {
                 // Lock the culture changing code
@@ -267,7 +262,7 @@ namespace RayCarrot.RCP.Metro
                     catch (Exception ex)
                     {
                         ex.HandleUnexpected("Getting culture info from setter string value");
-                        ci = AppLanguages.Languages.First();
+                        ci = AppLanguages.DefaultCulture;
                     }
 
                     // Set the UI culture
@@ -284,6 +279,19 @@ namespace RayCarrot.RCP.Metro
 
                     RCF.Logger.LogInformationSource($"The current culture was set to {ci.EnglishName}");
                 }
+            }
+        }
+
+        /// <summary>
+        /// Indicates if languages with incomplete translations should be shown
+        /// </summary>
+        public bool ShowIncompleteTranslations
+        {
+            get => _showIncompleteTranslations;
+            set
+            {
+                _showIncompleteTranslations = value;
+                AppLanguages.RefreshLanguages(value);
             }
         }
 

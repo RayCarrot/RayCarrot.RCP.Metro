@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System.Collections.ObjectModel;
+using System.Globalization;
+using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -11,32 +13,56 @@ namespace RayCarrot.RCP.Metro
 
         static AppLanguages()
         {
-            Languages = new CultureInfo[]
+            Languages = new ObservableCollection<CultureInfo>();
+
+            DefaultCulture = new CultureInfo("en-US");
+
+            RefreshLanguages(false);
+        }
+
+        #endregion
+
+        #region Public Static Methods
+
+        /// <summary>
+        /// Refreshes the list of available languages
+        /// </summary>
+        /// <param name="includeIncomplete">Indicates if languages with incomplete translations should be included</param>
+        public static void RefreshLanguages(bool includeIncomplete)
+        {
+            Languages.Clear();
+
+            Languages.AddRange(new CultureInfo[]
             {
-                // English
-                new CultureInfo("en-US"),
+                DefaultCulture
+            });
 
-                // Swedish
-                //new CultureInfo("sv-SE"),
+            if (includeIncomplete)
+            {
+                Languages.AddRange(new CultureInfo[]
+                {
+                    // Swedish
+                    new CultureInfo("sv-SE"),
 
-                // German
-                //new CultureInfo("de-DE"),
+                    // German
+                    new CultureInfo("de-DE"),
 
-                // Polish
-                //new CultureInfo("pl-PL"),
+                    // Polish
+                    new CultureInfo("pl-PL"),
 
-                // Portuguese
-                //new CultureInfo("pt-PT"), 
+                    // Portuguese
+                    new CultureInfo("pt-PT"), 
 
-                // Serbian
-                //new CultureInfo("sr-Cyrl"), 
+                    // Serbian
+                    new CultureInfo("sr-Cyrl"), 
 
-                // Dutch
-                //new CultureInfo("nl-NL"),
+                    // Dutch
+                    new CultureInfo("nl-NL"),
 
-                // Spanish
-                //new CultureInfo("es-PR"), 
-            };
+                    // Spanish
+                    new CultureInfo("es-PR"), 
+                });
+            }
         }
 
         #endregion
@@ -44,9 +70,14 @@ namespace RayCarrot.RCP.Metro
         #region Public Static Properties
 
         /// <summary>
+        /// The default culture
+        /// </summary>
+        public static CultureInfo DefaultCulture { get; }
+
+        /// <summary>
         /// The available languages
         /// </summary>
-        public static CultureInfo[] Languages { get; }
+        public static ObservableCollection<CultureInfo> Languages { get; }
 
         /// <summary>
         /// The path to the resource file

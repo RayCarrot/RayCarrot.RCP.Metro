@@ -44,13 +44,20 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
                 <TextBlock x:Name="HelpItemText"
                            Grid.Column="0"
+                           Grid.Row="0"
                            FontSize="16"
                            Text="{Binding ElementName=HelpItemsTreeView, Path=SelectedItem.HelpText}"
                            TextWrapping="Wrap"/>
 
                 <TextBlock Grid.Column="0"
+                           Grid.Row="0"
                            Visibility="{Binding ElementName=HelpItemText, Path=Text, Converter={rwpf:InvertedStringEmptyToVisibilityConverter}}"
                            FontSize="20"
                            Text="{Resx Help_CategoryHelp}"
@@ -58,10 +65,16 @@
                            HorizontalAlignment="Center" />
 
                 <Image Grid.Column="1"
+                       Grid.Row="0"
                        VerticalAlignment="Top"
                        Source="../../../Img/MessageIcons/Info.png"
                        Height="128"
                        Width="128"/>
+
+                <TextBlock Grid.Column="0"
+                           Grid.Row="1"
+                           Text="{Resx Help_AdditionalHelp}"
+                           TextWrapping="Wrap"/>
 
             </Grid>
         </ScrollViewer>

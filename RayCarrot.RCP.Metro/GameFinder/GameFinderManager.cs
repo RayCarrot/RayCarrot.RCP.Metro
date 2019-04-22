@@ -79,7 +79,7 @@ namespace RayCarrot.RCP.Metro
                         await RCFRCP.App.AddNewGameAsync(game.Key, result.Type, result.Path);
                         foundGames.Add(game.Key);
 
-                        RCF.Logger.LogInformationSource($"The game {game} has been added from the game finder");
+                        RCF.Logger.LogInformationSource($"The game {game.Key} has been added from the game finder");
 
                         break;
                     }

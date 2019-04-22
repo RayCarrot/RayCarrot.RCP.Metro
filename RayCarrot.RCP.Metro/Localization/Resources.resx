@@ -1287,7 +1287,7 @@ ubiIniFilePath</comment>
     <value>An error occurred when saving your Rayman Raving Rabbids configuration</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
-    <value>You just entered the Konami code! Enjoy this dark, gloomy new theme.</value>
+    <value>You just entered the Konami code! Enjoy this dark new theme.</value>
   </data>
   <data name="SecretCodes_KonamiHeader" xml:space="preserve">
     <value>Konami Code</value>
@@ -1979,5 +1979,14 @@ To activate it, enter race mode and pause the game. On the pause screen, hold L1
   </data>
   <data name="BrowseBox_Browse" xml:space="preserve">
     <value>Browse</value>
+  </data>
+  <data name="About_Discord" xml:space="preserve">
+    <value>Discord</value>
+  </data>
+  <data name="Help_AdditionalHelp" xml:space="preserve">
+    <value>For additional help, check the Discord server (link in About page)</value>
+  </data>
+  <data name="Settings_IncompleteTranslations" xml:space="preserve">
+    <value>Show languages with incomplete translations</value>
   </data>
 </root>

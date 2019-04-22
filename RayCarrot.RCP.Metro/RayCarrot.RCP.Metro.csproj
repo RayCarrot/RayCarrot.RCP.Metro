@@ -371,10 +371,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\FeedbackPrompt.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Windows\FirstLaunchInfoDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -611,9 +607,6 @@
       <DependentUpon>Downloader.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\DownloaderViewModel.cs" />
-    <Compile Include="Windows\FeedbackPrompt.xaml.cs">
-      <DependentUpon>FeedbackPrompt.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\FirstLaunchInfoDialog.xaml.cs">
       <DependentUpon>FirstLaunchInfoDialog.xaml</DependentUpon>
     </Compile>

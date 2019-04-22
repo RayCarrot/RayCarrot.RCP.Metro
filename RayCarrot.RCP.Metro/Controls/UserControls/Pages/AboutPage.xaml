@@ -120,6 +120,12 @@
                                   Command="{Binding Path=OpenUrlCommand}"
                                   CommandParameter="{x:Static local:CommonUrls.GitHubUrl}"/>
 
+                <local:IconButton IconKind="Discord"
+                                  ToolTip="{Resx About_Discord}"
+                                  Foreground="#7289DA"
+                                  Command="{Binding Path=OpenUrlCommand}"
+                                  CommandParameter="{x:Static local:CommonUrls.DiscordUrl}"/>
+
                 <local:IconButton IconKind="Youtube"
                                   ToolTip="{Resx About_YouTube}"
                                   Foreground="Red"
