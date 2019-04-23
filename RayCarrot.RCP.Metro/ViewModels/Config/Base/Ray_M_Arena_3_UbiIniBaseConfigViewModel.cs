@@ -343,7 +343,7 @@ namespace RayCarrot.RCP.Metro
                             File.Delete(path);
 
                         // Write controller patch
-                        File.WriteAllBytes(path, Files.dinput_controller);
+                        File.WriteAllBytes(path, Files.dinput8_controller);
                     }
                 }
                 else if (dt == DinputType.Controller)
@@ -383,6 +383,14 @@ namespace RayCarrot.RCP.Metro
 
                 if (size == new ByteSize(118272))
                     return DinputType.Controller;
+
+                // If the size equals that of the Rayman 2 dinput file, delete it
+                // as the Rayman 2 dinput file was accidentally used prior to version 4.1.2
+                if (size == new ByteSize(66560))
+                {
+                    File.Delete(path);
+                    return DinputType.None;
+                }
 
                 return DinputType.Unknown;
             }
