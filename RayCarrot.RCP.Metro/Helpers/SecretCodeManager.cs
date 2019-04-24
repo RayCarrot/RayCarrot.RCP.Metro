@@ -126,7 +126,7 @@ namespace RayCarrot.RCP.Metro
             using (await AsyncLock.LockAsync())
             {
                 // Check if it's the following key in any of the available codes
-                if (Codes.All(x => x.Key[CurrentInput.Count] != key))
+                if (Codes.All(x => x.Key.Length <= CurrentInput.Count || x.Key[CurrentInput.Count] != key))
                 {
                     CurrentInput.Clear();
                     RCF.Logger.LogDebugSource("The secret code inputs were reset due to an invalid key being pressed");

@@ -68,6 +68,11 @@
         /// <summary>
         /// Rayman Fiesta Run
         /// </summary>
-        RaymanFiestaRun
+        RaymanFiestaRun,
+
+        /// <summary>
+        /// Educational Rayman games
+        /// </summary>
+        // Educational
     }
 }
