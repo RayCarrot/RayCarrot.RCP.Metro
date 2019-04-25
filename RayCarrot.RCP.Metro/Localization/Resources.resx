@@ -406,7 +406,7 @@
     <value>Save Data Location</value>
   </data>
   <data name="Config_SaveDataLocationInfo" xml:space="preserve">
-    <value>This will not change where the game saves it data. Use this only to specify the data location for the backup tool.</value>
+    <value>This will not change where the game saves its data. Use this only to specify the data location for the backup tool.</value>
   </data>
   <data name="Config_SaveDataLocationInstDir" xml:space="preserve">
     <value>Install directory</value>
@@ -1287,7 +1287,7 @@ ubiIniFilePath</comment>
     <value>An error occurred when saving your Rayman Raving Rabbids configuration</value>
   </data>
   <data name="SecretCodes_Konami" xml:space="preserve">
-    <value>You just entered the Konami code! Enjoy this dark new theme.</value>
+    <value>You just entered the Konami code! Enjoy this red new theme.</value>
   </data>
   <data name="SecretCodes_KonamiHeader" xml:space="preserve">
     <value>Konami Code</value>

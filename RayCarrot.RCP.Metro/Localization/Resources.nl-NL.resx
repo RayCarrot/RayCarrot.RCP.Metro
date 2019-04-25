@@ -279,4 +279,154 @@
   <data name="Config_ResolutionHorizontalInfo" xml:space="preserve">
     <value>De horizontale schermresolutie</value>
   </data>
+  <data name="Config_ResolutionVerticalInfo" xml:space="preserve">
+    <value>De verticale schermresolutie</value>
+  </data>
+  <data name="Config_LockRes" xml:space="preserve">
+    <value>Vergrendel naar de schermresolutie</value>
+  </data>
+  <data name="Config_LockResInfo" xml:space="preserve">
+    <value>Vergrendelt de horizontale en verticale waardes naar de waardes van de huidige schermresolutie</value>
+  </data>
+  <data name="Config_Fullscreen" xml:space="preserve">
+    <value>Volledig scherm</value>
+  </data>
+  <data name="Config_FullscreenInfo" xml:space="preserve">
+    <value>Deze optie laat het spel in volledige schermmodus starten, zonder zal het in venstermodus starten</value>
+  </data>
+  <data name="Config_Graphics" xml:space="preserve">
+    <value>Graphics</value>
+  </data>
+  <data name="Config_TriLinear" xml:space="preserve">
+    <value>TriLinear</value>
+  </data>
+  <data name="Config_TnL" xml:space="preserve">
+    <value>Transform &amp; Lightning</value>
+  </data>
+  <data name="Config_TnLInfo" xml:space="preserve">
+    <value>Deselecteer deze optie als er sprake is van grafische glitches in de game</value>
+  </data>
+  <data name="Config_DynamicShadows" xml:space="preserve">
+    <value>Dynamic Shadows</value>
+  </data>
+  <data name="Config_StaticShadows" xml:space="preserve">
+    <value>Static Shadows</value>
+  </data>
+  <data name="Config_Textures" xml:space="preserve">
+    <value>Textures</value>
+  </data>
+  <data name="Config_Textures16" xml:space="preserve">
+    <value>16-bit</value>
+  </data>
+  <data name="Config_Textures32" xml:space="preserve">
+    <value>32-bit</value>
+  </data>
+  <data name="Config_Compressed" xml:space="preserve">
+    <value>Gecomprimeerd</value>
+  </data>
+  <data name="Config_Video" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="Config_VideoGood" xml:space="preserve">
+    <value>Goede Kwaliteit</value>
+  </data>
+  <data name="Config_VideoBad" xml:space="preserve">
+    <value>Slechte Kwaliteit</value>
+  </data>
+  <data name="Config_VideoAuto" xml:space="preserve">
+    <value>Kwaliteit automatisch aanpassen</value>
+  </data>
+  <data name="Config_Video16Bpp" xml:space="preserve">
+    <value>16 bits per pixel</value>
+  </data>
+  <data name="Config_Video32Bpp" xml:space="preserve">
+    <value>32 bits per pixel</value>
+  </data>
+  <data name="Config_Language" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="Config_Controller" xml:space="preserve">
+    <value>Controller</value>
+  </data>
+  <data name="Config_UseController" xml:space="preserve">
+    <value>Gebruik verbonden controller</value>
+  </data>
+  <data name="Config_ControllerInfo" xml:space="preserve">
+    <value>Als jouw controller niet herkend wordt, kun je hier controller-ondersteuning inschakelen</value>
+  </data>
+  <data name="Config_EnableNativeController" xml:space="preserve">
+    <value>Schakel native controller-ondersteuning in</value>
+  </data>
+  <data name="Config_ControllerVertical" xml:space="preserve">
+    <value>Verticale As</value>
+  </data>
+  <data name="Config_ControllerHorizontal" xml:space="preserve">
+    <value>Horizontale As</value>
+  </data>
+  <data name="Config_Network" xml:space="preserve">
+    <value>Netwerk</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>Als breedbeeldondersteuning niet ingeschakeld is, zal het beeld opgerekt worden als de aspect ratio anders is dan 4:3</value>
+  </data>
+  <data name="Config_WidescreenSupport" xml:space="preserve">
+    <value>Breedbeeldondersteuning</value>
+  </data>
+  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
+    <value>Breedbeeldondersteuning zorgt ervoor dat het beeld niet opgerekt wordt als de aspect ratio anders is dan 4:3</value>
+  </data>
+  <data name="Config_WidescreenHorizontal" xml:space="preserve">
+    <value>Horizontaal breedbeeld</value>
+  </data>
+  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
+    <value>Rek het breedbeeld horizontaal</value>
+  </data>
+  <data name="Config_VerticalHorizontal" xml:space="preserve">
+    <value>Verticaal breedbeeld</value>
+  </data>
+  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
+    <value>Verkort het breedbeeld verticaal</value>
+  </data>
+  <data name="Config_LanguageR2Info" xml:space="preserve">
+    <value>Deze optie zorgt ervoor dat de standaardtaal ingesteld wordt bij opstart. De taal kan nog steeds veranderd worden via het spelmenu.</value>
+  </data>
+  <data name="Config_ControllerR2Info" xml:space="preserve">
+    <value>Als jouw controller niet herkend wordt, kun je hier controller-ondersteuning inschakelen. Hierdoor wordt elke aangepaste knopinstelling ongedaan gemaakt.</value>
+  </data>
+  <data name="Config_ButtonMapping" xml:space="preserve">
+    <value>Toewijzen Knoppen (toetsenbord)</value>
+  </data>
+  <data name="Config_ButtonMappingInfo" xml:space="preserve">
+    <value>Omdat het spel geen native button remapping toestaat, wijs je de knoppen hier opnieuw toe.</value>
+  </data>
+  <data name="Config_ButtonMappingActionHeader" xml:space="preserve">
+    <value>Actie</value>
+  </data>
+  <data name="Config_ButtonMappingKeyHeader" xml:space="preserve">
+    <value>Toets</value>
+  </data>
+  <data name="Config_ButtonMappingReset" xml:space="preserve">
+    <value>Beginwaarden</value>
+  </data>
+  <data name="Config_ResolutionRRRInfo" xml:space="preserve">
+    <value>Het kiezen van een resolutie met een aspect ratio anders dan 4:3, zal resulteren in een opgerekt beeld, zelfs wanneer de interne breedbeeldoptie ingeschakeld is</value>
+  </data>
+  <data name="Config_RRRScreenMode" xml:space="preserve">
+    <value>Schermmodus</value>
+  </data>
+  <data name="Config_RRRScreenModeInfo" xml:space="preserve">
+    <value>De schermmodus-opties zullen, afhankelijk van de geselecteerde resolutie, een bepaald effect hebben. Normaal gesproken zal het beeld in geval van een andere resolutie/aspect ratio niet opgerekt worden als de 4:3 modus ingeschakeld is.</value>
+  </data>
+  <data name="Config_SaveDataLocation" xml:space="preserve">
+    <value>Locatie Spelgegevens</value>
+  </data>
+  <data name="Config_SaveDataLocationInfo" xml:space="preserve">
+    <value>Dit zal er níét voor zorgen dat het spel zijn data ergens anders opslaat. Gebruik deze optie alleen om de datalocatie voor de back-up tool aan te geven.</value>
+  </data>
+  <data name="Config_SaveDataLocationInstDir" xml:space="preserve">
+    <value>Installatielocatie</value>
+  </data>
+  <data name="Config_SaveDataLocationAppData" xml:space="preserve">
+    <value>App data</value>
+  </data>
 </root>

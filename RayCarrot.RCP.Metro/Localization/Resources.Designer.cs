@@ -800,7 +800,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This will not change where the game saves it data. Use this only to specify the data location for the backup tool..
+        ///   Looks up a localized string similar to This will not change where the game saves its data. Use this only to specify the data location for the backup tool..
         /// </summary>
         public static string Config_SaveDataLocationInfo {
             get {
@@ -4539,7 +4539,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You just entered the Konami code! Enjoy this dark new theme..
+        ///   Looks up a localized string similar to You just entered the Konami code! Enjoy this red new theme..
         /// </summary>
         public static string SecretCodes_Konami {
             get {
