@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +23,7 @@ namespace RayCarrot.RCP.Metro
         public BackupPageViewModel()
         {
             RefresCommand = new AsyncRelayCommand(RefreshAsync);
+            BackupAllCommand = new AsyncRelayCommand(BackupAllAsync);
 
             AsyncLock = new AsyncLock();
             GameBackupItems = new ObservableCollection<GameBackupItemViewModel>();
@@ -55,6 +57,8 @@ namespace RayCarrot.RCP.Metro
 
         public ICommand RefresCommand { get; }
 
+        public ICommand BackupAllCommand { get; }
+
         #endregion
 
         #region Public Methods
@@ -85,6 +89,62 @@ namespace RayCarrot.RCP.Metro
                         await backupItem.RefreshAsync();
                     }
                 });
+            }
+        }
+
+        /// <summary>
+        /// Performs a backup on all games
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task BackupAllAsync()
+        {
+            // Make sure no backups are running
+            if (GameBackupItems.Any(x => x.PerformingBackupRestore))
+                return;
+
+            try
+            {
+                GameBackupItems.ForEach(x => x.PerformingBackupRestore = true);
+
+                // Confirm backup
+                if (!await RCF.MessageUI.DisplayMessageAsync(Resources.Backup_ConfirmBackupAll, Resources.Backup_ConfirmBackupAllHeader, MessageType.Warning, true))
+                {
+                    RCF.Logger.LogInformationSource($"Backup canceled");
+
+                    return;
+                }
+
+                int completed = 0;
+
+                // Perform the backups
+                await Task.Run(async () =>
+                {
+                    foreach (GameBackupItemViewModel game in GameBackupItems)
+                    {
+                        game.ShowBackupRestoreIndicator = true;
+
+                        if (await RCFRCP.Backup.BackupAsync(game.Game))
+                            completed++;
+
+                        game.ShowBackupRestoreIndicator = false;
+                    }
+                });
+
+                if (completed == GameBackupItems.Count)
+                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Backup_BackupAllSuccess);
+                else
+                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, GameBackupItems.Count), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
+
+                // Refresh the item
+                await RefreshAsync();
+            }
+            finally
+            {
+                foreach (var x in GameBackupItems)
+                {
+                    x.PerformingBackupRestore = false;
+                    x.ShowBackupRestoreIndicator= false;
+                }
             }
         }
 

@@ -206,6 +206,14 @@ namespace RayCarrot.RCP.Metro
                 // Get the game info
                 var info = game.GetInfo();
 
+                // Add launch options if set to do so
+                if (info.LaunchMode == GameLaunchMode.AsAdminOption)
+                {
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, PackIconMaterialKind.Security, new AsyncRelayCommand(async () => await RCFRCP.Game.LaunchGameAsync(game, true))));
+
+                    actions.Add(new OverflowButtonItemViewModel());
+                }
+
                 // Get the game links
                 var links = game.GetGameFileLinks()?.Where(x => x.Path.FileExists).ToList();
 
@@ -295,7 +303,7 @@ namespace RayCarrot.RCP.Metro
                 })));
 
                 return new GameDisplayViewModel(game.GetDisplayName(), game.GetIconSource(),
-                    new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.Play, new AsyncRelayCommand(async () => await RCFRCP.Game.LaunchGameAsync(game))), actions);
+                    new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.Play, new AsyncRelayCommand(async () => await RCFRCP.Game.LaunchGameAsync(game, false))), actions);
             }
             else
             {

@@ -1989,4 +1989,43 @@ To activate it, enter race mode and pause the game. On the pause screen, hold L1
   <data name="Settings_IncompleteTranslations" xml:space="preserve">
     <value>Show languages with incomplete translations</value>
   </data>
+  <data name="Backup_BackupAll" xml:space="preserve">
+    <value>Backup All</value>
+  </data>
+  <data name="GameDisplay_RunAsAdmin" xml:space="preserve">
+    <value>Run as Admin</value>
+  </data>
+  <data name="Backup_ConfirmBackupAll" xml:space="preserve">
+    <value>Do you want to back up all games? This will replace any previous backups. Continue?</value>
+  </data>
+  <data name="Backup_ConfirmBackupAllHeader" xml:space="preserve">
+    <value>Confirm Backups</value>
+  </data>
+  <data name="Backup_BackupAllSuccess" xml:space="preserve">
+    <value>All games were successfully backed up</value>
+  </data>
+  <data name="Backup_BackupAllFailed" xml:space="preserve">
+    <value>{0}/{1} games were backed up</value>
+    <comment>Arguments:
+gamesBackedUp
+totalGames</comment>
+  </data>
+  <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
+    <value>Some games were not backed up</value>
+  </data>
+  <data name="GameOptions_LaunchMode" xml:space="preserve">
+    <value>Launch Mode</value>
+  </data>
+  <data name="GameOptions_LaunchModeInfo" xml:space="preserve">
+    <value>This determines how the game will be launched. If the game is running inside of an emulator, such as DOSBox, then the launch mode will apply to the emulator.</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsInvoker" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdminOption" xml:space="preserve">
+    <value>As administrator (optional)</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdmin" xml:space="preserve">
+    <value>As administrator</value>
+  </data>
 </root>

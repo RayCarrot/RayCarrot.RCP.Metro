@@ -73,6 +73,10 @@
                         Command="{Binding Path=OpenAppDataCommand}"
                         HorizontalAlignment="Left"/>
 
+                <Button Content="Refresh Jump List"
+                        Command="{Binding Path=RefreshJumpListCommand}"
+                        HorizontalAlignment="Left"/>
+
                 <Button Content="Open primary ubi.ini"
                         Command="{Binding Path=OpenPrimaryUbiIniCommand}"
                         HorizontalAlignment="Left"/>

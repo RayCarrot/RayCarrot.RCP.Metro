@@ -140,12 +140,15 @@ namespace RayCarrot.RCP.Metro
         /// Launches the specified game
         /// </summary>
         /// <param name="game">The game to launch</param>
+        /// <param name="forceRunAsAdmin">Indicated if the game should be forced to run as admin</param>
         /// <returns>The task</returns>
-        public async Task LaunchGameAsync(Games game)
+        public async Task LaunchGameAsync(Games game, bool forceRunAsAdmin)
         {
             RCF.Logger.LogTraceSource($"The game {game} is being launched...");
 
-            var type = game.GetInfo().GameType;
+            var info = game.GetInfo();
+
+            var type = info.GameType;
 
             // If it's a Windows Store app, launch the first package app entry instead
             if (type == GameType.WinStore)
@@ -198,7 +201,7 @@ namespace RayCarrot.RCP.Metro
             RCF.Logger.LogTraceSource($"The game {game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
 
             // Launch the game
-            var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, false, launchInfo.Args);
+            var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, forceRunAsAdmin || info.LaunchMode == GameLaunchMode.AsAdmin, launchInfo.Args);
 
             if (process == null)
                 return;

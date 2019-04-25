@@ -350,11 +350,65 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup All.
+        /// </summary>
+        public static string Backup_BackupAll {
+            get {
+                return ResourceManager.GetString("Backup_BackupAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}/{1} games were backed up.
+        /// </summary>
+        public static string Backup_BackupAllFailed {
+            get {
+                return ResourceManager.GetString("Backup_BackupAllFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some games were not backed up.
+        /// </summary>
+        public static string Backup_BackupAllFailedHeader {
+            get {
+                return ResourceManager.GetString("Backup_BackupAllFailedHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All games were successfully backed up.
+        /// </summary>
+        public static string Backup_BackupAllSuccess {
+            get {
+                return ResourceManager.GetString("Backup_BackupAllSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This will replace any previous backups for {0}.
         /// </summary>
         public static string Backup_Confirm {
             get {
                 return ResourceManager.GetString("Backup_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to back up all games? This will replace any previous backups. Continue?.
+        /// </summary>
+        public static string Backup_ConfirmBackupAll {
+            get {
+                return ResourceManager.GetString("Backup_ConfirmBackupAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Backups.
+        /// </summary>
+        public static string Backup_ConfirmBackupAllHeader {
+            get {
+                return ResourceManager.GetString("Backup_ConfirmBackupAllHeader", resourceCulture);
             }
         }
         
@@ -1829,6 +1883,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Run as Admin.
+        /// </summary>
+        public static string GameDisplay_RunAsAdmin {
+            get {
+                return ResourceManager.GetString("GameDisplay_RunAsAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Purchase from Steam.
         /// </summary>
         public static string GameDisplay_Steam {
@@ -2014,6 +2077,51 @@ namespace RayCarrot.RCP.Metro {
         public static string GameOptions_CreateShortcut {
             get {
                 return ResourceManager.GetString("GameOptions_CreateShortcut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch Mode.
+        /// </summary>
+        public static string GameOptions_LaunchMode {
+            get {
+                return ResourceManager.GetString("GameOptions_LaunchMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As administrator.
+        /// </summary>
+        public static string GameOptions_LaunchMode_AsAdmin {
+            get {
+                return ResourceManager.GetString("GameOptions_LaunchMode_AsAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As administrator (optional).
+        /// </summary>
+        public static string GameOptions_LaunchMode_AsAdminOption {
+            get {
+                return ResourceManager.GetString("GameOptions_LaunchMode_AsAdminOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string GameOptions_LaunchMode_AsInvoker {
+            get {
+                return ResourceManager.GetString("GameOptions_LaunchMode_AsInvoker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This determines how the game will be launched. If the game is running inside of an emulator, such as DOSBox, then the launch mode will apply to the emulator..
+        /// </summary>
+        public static string GameOptions_LaunchModeInfo {
+            get {
+                return ResourceManager.GetString("GameOptions_LaunchModeInfo", resourceCulture);
             }
         }
         

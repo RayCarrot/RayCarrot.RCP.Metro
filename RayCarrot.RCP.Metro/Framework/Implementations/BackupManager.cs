@@ -36,7 +36,8 @@ namespace RayCarrot.RCP.Metro
         /// Performs a backup on the game
         /// </summary>
         /// <param name="game">The game to perform the backup on</param>
-        public async Task BackupAsync(Games game)
+        /// <returns>True if the backup was successful</returns>
+        public async Task<bool> BackupAsync(Games game)
         {
             using (await AsyncLock.LockAsync())
             {
@@ -47,14 +48,6 @@ namespace RayCarrot.RCP.Metro
                     // Get the destination directory
                     FileSystemPath destinationDir = game.GetBackupDir();
 
-                    // Confirm backup if one already exists
-                    if (destinationDir.DirectoryExists && !await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, game.GetDisplayName()), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
-                    {
-                        RCF.Logger.LogInformationSource($"Backup canceled");
-
-                        return;
-                    }
-
                     // Get the backup information
                     var backupInfo = game.GetBackupInfo();
 
@@ -64,7 +57,7 @@ namespace RayCarrot.RCP.Metro
                         RCF.Logger.LogInformationSource($"Backup failed - the input directories could not be found");
 
                         await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingDirectoriesError, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
-                        return;
+                        return false;
                     }
 
                     // Get the temp path
@@ -124,7 +117,7 @@ namespace RayCarrot.RCP.Metro
                                 // Restore temp backup
                                 RCFRCP.File.MoveDirectory(tempPath, destinationDir, true);
 
-                            return;
+                            return false;
                         }
 
                         // Delete temp backup
@@ -132,7 +125,7 @@ namespace RayCarrot.RCP.Metro
 
                         RCF.Logger.LogInformationSource($"Backup complete");
 
-                        await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, game.GetDisplayName()), Resources.Backup_SuccessHeader);
+                        return true;
                     }
                     catch
                     {
@@ -150,6 +143,8 @@ namespace RayCarrot.RCP.Metro
                 {
                     ex.HandleCritical("Backing up game", game);
                     await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Failed, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
+
+                    return false;
                 }
             }
         }
@@ -158,7 +153,8 @@ namespace RayCarrot.RCP.Metro
         /// Restores a backup on the game
         /// </summary>
         /// <param name="game">The game to restore the backup on</param>
-        public async Task RestoreAsync(Games game)
+        /// <returns>True if the backup was successful</returns>
+        public async Task<bool> RestoreAsync(Games game)
         {
             using (await AsyncLock.LockAsync())
             {
@@ -175,14 +171,7 @@ namespace RayCarrot.RCP.Metro
                         RCF.Logger.LogInformationSource($"Restore failed - the input directory could not be found");
 
                         await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_MissingBackup, game.GetDisplayName()), Resources.Restore_FailedHeader, MessageType.Error);
-                        return;
-                    }
-
-                    // Confirm restore
-                    if (!await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, game.GetDisplayName()), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
-                    {
-                        RCF.Logger.LogInformationSource($"Restore canceled");
-                        return;
+                        return false;
                     }
 
                     // Get the backup information
@@ -294,12 +283,14 @@ namespace RayCarrot.RCP.Metro
 
                     RCF.Logger.LogInformationSource($"Restore complete");
 
-                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, game.GetDisplayName()), Resources.Restore_SuccessHeader);
+                    return true;
                 }
                 catch (Exception ex)
                 {
                     ex.HandleCritical("Restoring game", game);
                     await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Failed, game.GetDisplayName()), Resources.Restore_FailedHeader, MessageType.Error);
+
+                    return false;
                 }
             }
         }

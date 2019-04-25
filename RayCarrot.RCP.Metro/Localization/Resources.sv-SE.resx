@@ -1207,4 +1207,10 @@ Försök igen?"</value>
   <data name="Settings_IncompleteTranslations" xml:space="preserve">
     <value>Visa språk med ofullständiga översättningar</value>
   </data>
+  <data name="Backup_BackupAll" xml:space="preserve">
+    <value>Säkerhetskopiera alla</value>
+  </data>
+  <data name="GameDisplay_RunAsAdmin" xml:space="preserve">
+    <value>Kör som admin</value>
+  </data>
 </root>

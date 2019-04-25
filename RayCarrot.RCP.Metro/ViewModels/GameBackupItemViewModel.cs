@@ -73,6 +73,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool PerformingBackupRestore { get; set; }
 
+        /// <summary>
+        /// Indicates if the indicator for a running backup or restore operation should show
+        /// </summary>
+        public bool ShowBackupRestoreIndicator { get; set; }
+
         #endregion
 
         #region Commands
@@ -128,12 +133,28 @@ namespace RayCarrot.RCP.Metro
             {
                 PerformingBackupRestore = true;
 
+                // Confirm restore
+                if (!await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, Game.GetDisplayName()), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
+                {
+                    RCF.Logger.LogInformationSource($"Restore canceled");
+
+                    return;
+                }
+
+                ShowBackupRestoreIndicator = true;
+
                 // Perform the restore
-                await Task.Run(async () => await RCFRCP.Backup.RestoreAsync(Game));
+                if (await Task.Run(async () => await RCFRCP.Backup.RestoreAsync(Game)))
+                {
+                    ShowBackupRestoreIndicator = false;
+
+                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, Game.GetDisplayName()), Resources.Restore_SuccessHeader);
+                }
             }
             finally
             {
                 PerformingBackupRestore = false;
+                ShowBackupRestoreIndicator = false;
             }
         }
 
@@ -150,8 +171,23 @@ namespace RayCarrot.RCP.Metro
             {
                 PerformingBackupRestore = true;
 
+                // Confirm backup if one already exists
+                if (Game.GetBackupDir().DirectoryExists && !await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, Game.GetDisplayName()), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
+                {
+                    RCF.Logger.LogInformationSource($"Backup canceled");
+
+                    return;
+                }
+
+                ShowBackupRestoreIndicator = true;
+
                 // Perform the backup
-                await Task.Run(async () => await RCFRCP.Backup.BackupAsync(Game));
+                if (await Task.Run(async () => await RCFRCP.Backup.BackupAsync(Game)))
+                {
+                    ShowBackupRestoreIndicator = false;
+
+                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, Game.GetDisplayName()), Resources.Backup_SuccessHeader);
+                }
 
                 // Refresh the item
                 await RefreshAsync();
@@ -159,6 +195,7 @@ namespace RayCarrot.RCP.Metro
             finally
             {
                 PerformingBackupRestore = false;
+                ShowBackupRestoreIndicator = false;
             }
         }
 

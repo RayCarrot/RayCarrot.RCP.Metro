@@ -439,10 +439,14 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        #endregion
+
+        #region Public Methods
+
         /// <summary>
         /// Refreshes the application jump list
         /// </summary>
-        private void RefreshJumpList()
+        public void RefreshJumpList()
         {
             Dispatcher.Invoke(() =>
             {
@@ -476,6 +480,15 @@ namespace RayCarrot.RCP.Metro
                 }
             });
         }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// The current application
+        /// </summary>
+        public new static App Current => Application.Current as App;
 
         #endregion
     }

@@ -126,9 +126,13 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        private void App_RefreshRequired(object sender, EventArgs e)
+        private void App_RefreshRequired(object sender, ValueEventArgs<bool> e)
         {
-            Close();
+            if (e.Value)
+            {
+                ForceClose = true;
+                Close();
+            }
         }
 
         private async void GameOptions_OnClosingAsync(object sender, CancelEventArgs e)

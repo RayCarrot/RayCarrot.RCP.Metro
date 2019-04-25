@@ -136,7 +136,8 @@
                               PreviewMouseWheel="UIElement_OnPreviewMouseWheel">
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="{Resx Config_ButtonMappingActionHeader}"
+                            <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+                                                Header="{Resx Config_ButtonMappingActionHeader}"
                                                 Width="*"
                                                 IsReadOnly="True"
                                                 CanUserReorder="False"
@@ -144,7 +145,8 @@
                                                 CanUserSort="False"
                                                 Binding="{Binding Path=ActionName, Mode=OneTime}" />
 
-                            <DataGridTemplateColumn Header="{Resx Config_ButtonMappingKeyHeader}"
+                            <DataGridTemplateColumn ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+                                                    Header="{Resx Config_ButtonMappingKeyHeader}"
                                                     Width="*"
                                                     CanUserReorder="False"
                                                     CanUserResize="False"

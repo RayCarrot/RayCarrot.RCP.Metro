@@ -28,6 +28,7 @@ namespace RayCarrot.RCP.Metro
             OpenPrimaryUbiIniCommand = new AsyncRelayCommand(OpenPrimaryUbiIniAsync);
             OpenSecondaryUbiIniCommand = new AsyncRelayCommand(OpenSecondaryUbiIniAsync);
             ShowInstalledUtilitiesCommand = new AsyncRelayCommand(ShowInstalledUtilitiesAsync);
+            RefreshJumpListCommand = new RelayCommand(Metro.App.Current.RefreshJumpList);
 
             // Show log viewer if a debugger is attached
             if (!_firstConstruction || !Debugger.IsAttached)
@@ -196,6 +197,8 @@ namespace RayCarrot.RCP.Metro
         public ICommand OpenSecondaryUbiIniCommand { get; }
 
         public ICommand ShowInstalledUtilitiesCommand { get; }
+
+        public ICommand RefreshJumpListCommand { get; }
 
         #endregion
     }

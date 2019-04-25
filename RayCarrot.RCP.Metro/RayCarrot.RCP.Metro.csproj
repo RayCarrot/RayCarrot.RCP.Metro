@@ -398,6 +398,7 @@
     <Compile Include="Controls\Dialogs\GameTypeSelectionDialog.xaml.cs">
       <DependentUpon>GameTypeSelectionDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataModels\Enums\GameLaunchMode.cs" />
     <Compile Include="Helpers\SecretCodeManager.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Controls\DuoGridItem.cs" />

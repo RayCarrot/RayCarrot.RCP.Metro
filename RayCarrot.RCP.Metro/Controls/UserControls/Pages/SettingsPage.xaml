@@ -215,38 +215,6 @@
 
             </StackPanel>
 
-            <!-- Backup -->
-
-            <StackPanel DataContext="{Binding Path=Data}">
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
-                </i:Interaction.Behaviors>
-
-                <TextBlock Text="{Resx Settings_BackupHeader}"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
-
-                <StackPanel>
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="2 8" />
-                    </i:Interaction.Behaviors>
-
-                    <StackPanel>
-
-                        <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="{Resx Settings_BackupLocation}"
-                                   Margin="0 0 0 8" />
-
-                        <rwpf:BrowseBox SelectedPath="{Binding Path=BackupLocation, UpdateSourceTrigger=LostFocus}"
-                                        UseCurrentPathAsDefaultLocationIfValid="True"
-                                        BrowseType="Directory"
-                                        PathValidation="DirectoryExistsAndNotEmpty"/>
-
-                    </StackPanel>
-
-                </StackPanel>
-
-            </StackPanel>
-
             <!-- Startup -->
 
             <StackPanel DataContext="{Binding Path=Data}">

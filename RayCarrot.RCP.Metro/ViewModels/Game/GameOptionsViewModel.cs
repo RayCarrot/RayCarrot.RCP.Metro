@@ -34,6 +34,8 @@ namespace RayCarrot.RCP.Metro
 
             if (GameInfo.GameType == GameType.WinStore)
                 AddPackageInfo();
+
+            CanChangeLaunchMode = GameInfo.GameType == GameType.Win32 || GameInfo.GameType == GameType.DosBox;
         }
 
         #endregion
@@ -99,6 +101,24 @@ namespace RayCarrot.RCP.Metro
         /// The Windows Store app install date
         /// </summary>
         public DateTime WinStoreInstallDate { get; set; }
+
+        /// <summary>
+        /// Indicates if the launch mode can be changed
+        /// </summary>
+        public bool CanChangeLaunchMode { get; }
+
+        /// <summary>
+        /// The game's launch mode
+        /// </summary>
+        public GameLaunchMode LaunchMode
+        {
+            get => GameInfo.LaunchMode;
+            set
+            {
+                GameInfo.LaunchMode = value;
+                App.OnRefreshRequired(false);
+            }
+        }
 
         #endregion
 

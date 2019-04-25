@@ -18,9 +18,25 @@
                   HorizontalScrollBarVisibility="Auto">
         <StackPanel>
 
+            <TextBlock Style="{StaticResource HeaderTextBlock}"
+                       Text="{Resx Settings_BackupLocation}" />
+
+            <rwpf:BrowseBox SelectedPath="{Binding Path=Data.BackupLocation, UpdateSourceTrigger=LostFocus}"
+                            UseCurrentPathAsDefaultLocationIfValid="True"
+                            BrowseType="Directory"
+                            PathValidation="DirectoryExistsAndNotEmpty"
+                            Margin="0 8"/>
+
+            <Button Content="{Resx Backup_BackupAll}"
+                    Command="{Binding Path=BackupAllCommand}" 
+                    HorizontalAlignment="Left"
+                    Margin="0 8"/>
+
+            <Separator Margin="0 5" />
+
             <!-- Header -->
 
-            <Grid Margin="0 0 0 15">
+            <Grid Margin="0 15">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" SharedSizeGroup="GameImage" />
                     <ColumnDefinition Width="*" MaxWidth="340" />
@@ -143,7 +159,7 @@
                                                   ToolTip="{Resx Backup_Restore}"
                                                   IsEnabled="{Binding Path=CanRestore}"/>
 
-                                <mah:ProgressRing Visibility="{Binding Path=PerformingBackupRestore, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                                <mah:ProgressRing Visibility="{Binding Path=ShowBackupRestoreIndicator, Converter={rwpf:BooleanToVisibilityConverter}}" />
 
                             </StackPanel>
 
@@ -151,6 +167,7 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+
         </StackPanel>
     </ScrollViewer>
 </rwpf:VMUserControl>

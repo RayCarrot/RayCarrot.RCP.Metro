@@ -96,7 +96,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(4, 1, 4, 0);
+        public Version CurrentVersion => new Version(4, 2, 0, 0);
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -197,10 +197,10 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Fires the <see cref="RefreshRequired"/> event
         /// </summary>
-        /// <param name="e">The event arguments, or null to use the default ones</param>
-        public void OnRefreshRequired(EventArgs e = null)
+        /// <param name="major">Indicates if a major change has occurred, such as a game having been removed or added</param>
+        public void OnRefreshRequired(bool major)
         {
-            RefreshRequired?.Invoke(this, e ?? EventArgs.Empty);
+            RefreshRequired?.Invoke(this, new ValueEventArgs<bool>(major));
         }
 
         /// <summary>
@@ -281,7 +281,7 @@ namespace RayCarrot.RCP.Metro
             RCF.Logger.LogInformationSource($"The game {game} has been added");
 
             // Refresh
-            OnRefreshRequired();
+            OnRefreshRequired(true);
         }
 
         /// <summary>
@@ -323,7 +323,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Refresh the games
-            OnRefreshRequired();
+            OnRefreshRequired(true);
         }
 
         /// <summary>
@@ -1051,7 +1051,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Occurs when a refresh is required for the games
         /// </summary>
-        public event EventHandler RefreshRequired;
+        public event EventHandler<ValueEventArgs<bool>> RefreshRequired;
 
         #endregion
     }

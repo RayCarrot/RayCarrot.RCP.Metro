@@ -16,6 +16,7 @@ namespace RayCarrot.RCP.Metro
         {
             GameType = gameType;
             InstallDirectory = installDirectory;
+            LaunchMode = GameLaunchMode.AsInvoker;
         }
 
         /// <summary>
@@ -27,5 +28,10 @@ namespace RayCarrot.RCP.Metro
         /// The install directory
         /// </summary>
         public FileSystemPath InstallDirectory { get; }
+
+        /// <summary>
+        /// The game launch mode
+        /// </summary>
+        public GameLaunchMode LaunchMode { get; set; }
     }
 }
