@@ -1,4 +1,8 @@
-﻿-----   Version 4.2.0 - April 25, 2019   -----
+﻿-----   Version 4.2.1 - April 26, 2019   -----
+• Launch options can now be modified in the game options
+
+
+-----   Version 4.2.0 - April 25, 2019   -----
 • Launch options have been added to games, allowing them to be run as administrator
 • The option to perform a backup on all games has been added
 • A debug option to refresh the jump list has been added

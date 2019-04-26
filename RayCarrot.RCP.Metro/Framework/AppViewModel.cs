@@ -96,7 +96,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(4, 2, 0, 0);
+        public Version CurrentVersion => new Version(4, 2, 1, 0);
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>

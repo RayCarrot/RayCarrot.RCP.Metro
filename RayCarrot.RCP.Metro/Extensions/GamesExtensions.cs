@@ -545,6 +545,7 @@ namespace RayCarrot.RCP.Metro
             switch (info.GameType)
             {
                 case GameType.Win32:
+                    // RRR2 Orange launch args: /orange /B Rrr2.bf
                     return new GameLaunchInfo(info.InstallDirectory + game.GetLaunchName(), null);
 
                 case GameType.Steam:
@@ -609,6 +610,9 @@ namespace RayCarrot.RCP.Metro
 
                 case Games.RaymanFiestaRun:
                     return RCFRCP.Data.IsFiestaRunWin10Edition ? "Ubisoft.RaymanFiestaRunWindows10Edition_ngz4m417e0mpw" : "Ubisoft.RaymanFiestaRun_ngz4m417e0mpw";
+
+                //case Games.RaymanRavingRabbids2Orange:
+                //    return "Jade.exe";
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);

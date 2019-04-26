@@ -18,6 +18,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -180,8 +183,40 @@
         <Separator Grid.Row="3" 
                    Visibility="{Binding Path=Data.ShowDetailedGameInfo, Converter={rwpf:BooleanToVisibilityConverter}}"/>
 
+        <StackPanel Grid.Row="4" 
+                    Orientation="Horizontal"
+                    Visibility="{Binding Path=CanChangeLaunchMode, Converter={rwpf:BooleanToVisibilityConverter}}">
+
+            <TextBlock Style="{StaticResource HeaderTextBlock}"
+                       Text="{Resx GameOptions_LaunchMode}"/>
+
+            <local:InfoIcon Text="{Resx GameOptions_LaunchModeInfo}" />
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" 
+                    Orientation="Horizontal" 
+                    Visibility="{Binding Path=CanChangeLaunchMode, Converter={rwpf:BooleanToVisibilityConverter}}">
+
+            <rwpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsInvoker}"
+                                      IsChecked="{Binding Path=LaunchMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AsInvoker}"
+                                      Margin="0 0 8 0"/>
+
+            <rwpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdminOption}"
+                                      IsChecked="{Binding Path=LaunchMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AsAdminOption}"
+                                      Margin="0 0 8 0"/>
+
+            <rwpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdmin}"
+                                      IsChecked="{Binding Path=LaunchMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AsAdmin}"
+                                      Margin="0 0 8 0"/>
+
+        </StackPanel>
+
+        <Separator Grid.Row="6" 
+                   Visibility="{Binding Path=CanChangeLaunchMode, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+
         <metro:MetroAnimatedTabControl x:Name="ContentTabControl"
-                                       Grid.Row="4"
+                                       Grid.Row="7"
                                        Background="{StaticResource ControlBackgroundBrush}">
 
             <!-- Options -->
