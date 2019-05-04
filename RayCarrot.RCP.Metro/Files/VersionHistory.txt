@@ -1,4 +1,10 @@
-﻿-----   Version 4.2.1 - April 26, 2019   -----
+﻿-----   Version 4.2.2 - May 4, 2019   -----
+• Corrected the order of the Rayman Raving Rabbids aspect ratio options
+• Minor fixes to the PlayStation soundtrack utility (more versions will be added soon)
+• The backups correctly refresh when the backup location changes
+
+
+-----   Version 4.2.1 - April 26, 2019   -----
 • Launch options can now be modified in the game options
 
 

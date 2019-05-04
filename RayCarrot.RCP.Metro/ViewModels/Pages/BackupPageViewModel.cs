@@ -31,6 +31,11 @@ namespace RayCarrot.RCP.Metro
             BindingOperations.EnableCollectionSynchronization(GameBackupItems, Application.Current);
 
             App.RefreshRequired += async (s, e) => await RefreshAsync();
+            Data.PropertyChanged += async (s, e) =>
+            {
+                if (e.PropertyName == nameof(AppUserData.BackupLocation))
+                    await RefreshAsync();
+            };
         }
 
         #endregion

@@ -15,6 +15,7 @@
                                 Width="20"
                                 Height="20"
                                 VerticalAlignment="Center"
-                                HorizontalAlignment="Center" d:DataContext="{d:DesignInstance metro:IconButton}" />
+                                HorizontalAlignment="Center"
+                                d:DataContext="{d:DesignInstance metro:IconButton}"/>
 
 </Button>

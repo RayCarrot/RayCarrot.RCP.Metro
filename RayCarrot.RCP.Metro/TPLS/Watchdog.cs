@@ -161,6 +161,7 @@ namespace RayCarrot.RCP.Metro
                         continue;
                     }
 
+                    // If the operation fails, throw the last Win32 exception
                     if (!ReadProcessMemory((int)ProcessHandle, eAX, baseBuffer, 4, ref bytesRead))
                         throw new Win32Exception();
 
@@ -204,9 +205,10 @@ namespace RayCarrot.RCP.Metro
             // Stop the stop watch
             sw.Stop();
 
-            RCF.Logger.LogInformationSource($"TPLS: Rayman version {RaymanVersion} detected at {eAX.ToString("X")} using DOSBox version {DOSBoxVersion}");
+            RCF.Logger.LogInformationSource($"TPLS: Rayman version {RaymanVersion} detected at {eAX:X} using DOSBox version {DOSBoxVersion}");
 
             // Begin refreshing for the game
+            // We add the world base offset as it is always loaded in first
             await RefreshAsync(eAX + RaymanVersion.GetWorldBase());
         }
 
@@ -217,36 +219,42 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Refreshes Rayman values until the game closes
         /// </summary>
-        /// <param name="RealAddress">The address</param>
-        private async Task RefreshAsync(int RealAddress)
+        /// <param name="realAddress">The address</param>
+        private async Task RefreshAsync(int realAddress)
         {
             try
             {
+                // Create the buffer to read the memory into
+                byte[] buffer = new byte[RaymanVersion.GetBufferSize()];
+
                 // Update values until DOSBox closes
                 while (!Process.HasExited)
                 {
-                    byte[] buffer = new byte[0x17526];
-                    int bytesRead = 0;
+                    bytesRead = 0;
 
                     // Read the memory
-                    ReadProcessMemory((int)ProcessHandle, RealAddress, buffer, buffer.Length, ref bytesRead);
+                    ReadProcessMemory((int)ProcessHandle, realAddress, buffer, buffer.Length, ref bytesRead);
 
                     // Get the values
                     string world = Encoding.ASCII.GetString(buffer, 0x00000, 8).Split('.')[0];
                     string level = Encoding.ASCII.GetString(buffer, RaymanVersion.GetLevel(), 8).Split('.')[0];
 
                     byte raymanInLevel = buffer[RaymanVersion.GetInLevel()];
-
                     byte musicOnOff = buffer[RaymanVersion.GetMusicOnOff()];
-
                     byte optionsOn = buffer[RaymanVersion.GetOptionsOn()];
-
                     byte optionsOff = buffer[RaymanVersion.GetOptionsOff()];
-
                     byte bossEvent = buffer[RaymanVersion.GetBossEvent()];
 
-                    byte[] xAxisByte = { buffer[RaymanVersion.GetXAxis()], buffer[RaymanVersion.GetXAxis() + 1] };
-                    byte[] yAxisByte = { buffer[RaymanVersion.GetYAxis()], buffer[RaymanVersion.GetYAxis() + 1] };
+                    byte[] xAxisByte =
+                    {
+                        buffer[RaymanVersion.GetXAxis()],
+                        buffer[RaymanVersion.GetXAxis() + 1]
+                    };
+                    byte[] yAxisByte =
+                    {
+                        buffer[RaymanVersion.GetYAxis()],
+                        buffer[RaymanVersion.GetYAxis() + 1]
+                    };
 
                     short xAxis = BitConverter.ToInt16(xAxisByte, 0);
                     short yAxis = BitConverter.ToInt16(yAxisByte, 0);

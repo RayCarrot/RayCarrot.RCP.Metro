@@ -53,8 +53,8 @@
                 <ComboBox SelectedIndex="{Binding Path=ScreenModeIndex}"
                           HorizontalAlignment="Left"
                           rwpf:UserLevelTag.MinUserLevel="Advanced">
-                    <TextBlock Text="{Resx Config_RRRScreenMode_4_3}" />
                     <TextBlock Text="{Resx Config_RRRScreenMode_4_3Borders}" />
+                    <TextBlock Text="{Resx Config_RRRScreenMode_4_3}" />
                     <TextBlock Text="{Resx Config_RRRScreenMode_16_9}" />
                 </ComboBox>
 
