@@ -2029,7 +2029,7 @@ totalGames</comment>
     <value>Configuration</value>
   </data>
   <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
-    <value>Animations include page transitiions and resizing animations for the Games page</value>
+    <value>Animations include page transitions and resizing animations for the Games page</value>
   </data>
   <data name="GameOptions_LaunchMode_AsInvokerInfo" xml:space="preserve">
     <value>Always runs the game with the same permissions as the Rayman Control Panel was launched with</value>
@@ -2039,5 +2039,8 @@ totalGames</comment>
   </data>
   <data name="GameOptions_LaunchMode_AsAdminInfo" xml:space="preserve">
     <value>Always attempts to run the game as administrator</value>
+  </data>
+  <data name="About_Steam" xml:space="preserve">
+    <value>Steam group</value>
   </data>
 </root>

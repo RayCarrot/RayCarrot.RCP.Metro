@@ -149,5 +149,10 @@
         /// The Discord URL
         /// </summary>
         public const string DiscordUrl = "https://discord.gg/Cuq6wpX";
+
+        /// <summary>
+        /// The Steam group URL
+        /// </summary>
+        public const string SteamUrl = "https://steamcommunity.com/groups/RaymanControlPanel";
     }
 }

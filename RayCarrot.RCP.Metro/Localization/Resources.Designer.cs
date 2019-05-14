@@ -233,6 +233,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Steam group.
+        /// </summary>
+        public static string About_Steam {
+            get {
+                return ResourceManager.GetString("About_Steam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Twitter.
         /// </summary>
         public static string About_Twitter {
@@ -4800,7 +4809,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Animations include page transitiions and resizing animations for the Games page.
+        ///   Looks up a localized string similar to Animations include page transitions and resizing animations for the Games page.
         /// </summary>
         public static string Settings_DesignAnimationsInfo {
             get {

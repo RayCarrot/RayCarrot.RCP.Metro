@@ -127,6 +127,11 @@
                                   Command="{Binding Path=OpenUrlCommand}"
                                   CommandParameter="{x:Static local:CommonUrls.DiscordUrl}"/>
 
+                <local:IconButton IconKind="Steam"
+                                  ToolTip="{Resx About_Steam}"
+                                  Command="{Binding Path=OpenUrlCommand}"
+                                  CommandParameter="{x:Static local:CommonUrls.SteamUrl}"/>
+
                 <local:IconButton IconKind="Youtube"
                                   ToolTip="{Resx About_YouTube}"
                                   Foreground="Red"

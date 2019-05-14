@@ -1,5 +1,6 @@
 ﻿-----   Version 4.3.0 - May 14, 2019   -----
 • Redesigned the game options dialog
+• Added Steam group link in the about page
 • The game installer now defaults the install directory to the user's Program Files directory
 • Added more tool tips
 • Fixed the Discord link in the about page
