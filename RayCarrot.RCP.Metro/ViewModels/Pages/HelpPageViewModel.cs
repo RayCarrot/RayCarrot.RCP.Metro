@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Windows.Input;
 using RayCarrot.CarrotFramework;
 using RayCarrot.Windows.Registry;
 // ReSharper disable StringLiteralTypo
@@ -11,6 +13,8 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class HelpPageViewModel : BaseRCPViewModel
     {
+        #region Constructor
+
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -19,7 +23,16 @@ namespace RayCarrot.RCP.Metro
             Refresh();
 
             RCF.Data.CultureChanged += (s, e) => Refresh();
+            RCF.Data.UserLevelChanged += (s, e) =>
+            {
+                if (CurrentHelpItem?.RequiredUserLevel > Data.UserLevel)
+                    CurrentHelpItem = null;
+            };
+            
+            OpenDiscordCommand = new RelayCommand(OpenDiscord);
         }
+
+        #endregion
 
         #region Public Methods
 
@@ -265,6 +278,21 @@ namespace RayCarrot.RCP.Metro
             };
         }
 
+        /// <summary>
+        /// Opens the Discord URL
+        /// </summary>
+        public void OpenDiscord()
+        {
+            try
+            {
+                Process.Start(CommonUrls.DiscordUrl)?.Dispose();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError($"Opening Discord URL");
+            }
+        }
+
         #endregion
 
         #region Public Properties
@@ -278,6 +306,12 @@ namespace RayCarrot.RCP.Metro
         /// The current help item
         /// </summary>
         public HelpItemViewModel CurrentHelpItem { get; set; }
+
+        #endregion
+
+        #region Commands
+
+        public ICommand OpenDiscordCommand { get; }
 
         #endregion
     }

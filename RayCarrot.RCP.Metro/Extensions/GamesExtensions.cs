@@ -284,22 +284,11 @@ namespace RayCarrot.RCP.Metro
 
                 actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
 
-                // Check if the game has utilities
-                if (game.HasUtilities())
-                {
-                    // Add game utilities
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Utilities, PackIconMaterialKind.BriefcaseOutline, new RelayCommand(() =>
-                    {
-                        RCF.Logger.LogTraceSource($"The game {game} utilities dialog is opening...");
-                        GameOptions.Show(game, false);
-                    })));
-                }
-
                 // Add game options
                 actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.SettingsOutline, new RelayCommand(() =>
                 {
                     RCF.Logger.LogTraceSource($"The game {game} options dialog is opening...");
-                    GameOptions.Show(game, true);
+                    GameOptions.Show(game, GameOptionsPage.Options);
                 })));
 
                 return new GameDisplayViewModel(game.GetDisplayName(), game.GetIconSource(),
@@ -681,9 +670,8 @@ namespace RayCarrot.RCP.Metro
         /// Gets the config content for the specified game
         /// </summary>
         /// <param name="game">The game to get the config content for</param>
-        /// <param name="parentDialogWindow">The parent dialog window</param>
         /// <returns>The config content</returns>
-        public static FrameworkElement GetConfigContent(this Games game, Window parentDialogWindow)
+        public static FrameworkElement GetConfigContent(this Games game)
         {
             switch (game)
             {
@@ -691,22 +679,22 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanDesigner:
                 case Games.RaymanByHisFans:
                 case Games.Rayman60Levels:
-                    return new DosBoxConfig(parentDialogWindow, game);
+                    return new DosBoxConfig(game);
 
                 case Games.Rayman2:
-                    return new Rayman2Config(parentDialogWindow);
+                    return new Rayman2Config();
 
                 case Games.RaymanM:
                 case Games.RaymanArena:
                 case Games.Rayman3:
-                    return new Ray_M_Arena_3_Config(parentDialogWindow, game);
+                    return new Ray_M_Arena_3_Config(game);
 
                 case Games.RaymanRavingRabbids:
-                    return new RaymanRavingRabbidsConfig(parentDialogWindow);
+                    return new RaymanRavingRabbidsConfig();
 
                 case Games.RaymanOrigins:
                 case Games.RaymanLegends:
-                    return new Ray_Origins_Legends_Config(parentDialogWindow, game);
+                    return new Ray_Origins_Legends_Config(game);
 
                 case Games.RaymanJungleRun:
                 case Games.RaymanFiestaRun:

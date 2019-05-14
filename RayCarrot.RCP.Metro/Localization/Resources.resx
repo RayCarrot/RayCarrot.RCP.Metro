@@ -757,9 +757,6 @@ This is a growing project with more features planned on being added with future 
   <data name="GameDisplay_OpenLocation" xml:space="preserve">
     <value>Open location</value>
   </data>
-  <data name="GameDisplay_Utilities" xml:space="preserve">
-    <value>Utilities</value>
-  </data>
   <data name="GameDisplay_Options" xml:space="preserve">
     <value>Options</value>
   </data>
@@ -1700,7 +1697,7 @@ To uninstall one of the games installed using the game installer you simply have
     <value>Backup/Restore</value>
   </data>
   <data name="Help_RCP_BackupRestore" xml:space="preserve">
-    <value>The program has a backup and restore feature for all supported games. The backups are by default stored in the documents folder, but the location can be changed in the settings.
+    <value>The program has a backup and restore feature for all supported games. The backups are stored in the documents folder by default, but the location can be changed in the settings.
 
 The backups themselves are always stored in the '{0}' sub-directory. It is not recommended to manually modify these files.</value>
     <comment>Arguments:
@@ -1726,7 +1723,7 @@ tempPath</comment>
     <value>Launch Arguments</value>
   </data>
   <data name="Help_RCP_LaunchArgs" xml:space="preserve">
-    <value>The Rayman Control Panel supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the availablelaunch arguments. The '-' character should always be included. The '{}' characters show that a custom variable can be used, in which case the '{}'should not be included.
+    <value>The Rayman Control Panel supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the available launch arguments. The '-' character should always be included. The '{}' characters show that a custom variable can be used, in which case the '{}'should not be included.
 
 -reset (Resets all app data before launch)
 -install {filePath} (Removes the installer from the specified path)
@@ -1757,8 +1754,8 @@ logFilePath</comment>
 *Run the game as administrator:
 The option to run a program as administrator can be found in the context menu by right-clicking the program.
 
-*Run the game under compatibility mode:
-Running an application under compatibility mode is done by selecting the option under the compatibility options in the file properties. For many older games it is recommended to select Windows XP Service Pack 2 or 3.</value>
+*Run the game in compatibility mode:
+Running an application in compatibility mode is done by selecting the option under the compatibility options in the file properties. For many older games it is recommended to select Windows XP Service Pack 2 or 3.</value>
   </data>
   <data name="Help_Games_R1" xml:space="preserve">
     <value>Rayman 1</value>
@@ -1779,7 +1776,7 @@ Running an application under compatibility mode is done by selecting the option 
     <value>Rayman Designer Editor</value>
   </data>
   <data name="Help_Games_R1_Mapper" xml:space="preserve">
-    <value>Rayman Designer, also known as Rayman Gold or Rayman's World, is the Rayman game which includes the Mapper program which is used to create your own levels. The Mapper is a normal Windows executable file and will run without the need of an emulator. All of the static parts of the level is created in the Mapper program, while all of the so-called 'events' are placed in the event editor (found within the game itself).</value>
+    <value>Rayman Designer, also known as Rayman Gold or Rayman's World, is the Rayman game which includes the Mapper program which is used to create your own levels. The Mapper is a normal Windows executable file and will run without the need of an emulator. All of the static parts of the level are created in the Mapper program, while all of the so-called 'events' are placed in the event editor (found within the game itself).</value>
   </data>
   <data name="Help_Games_R1_ImportMapsHeader" xml:space="preserve">
     <value>Importing Maps</value>
@@ -1800,13 +1797,13 @@ Running an application under compatibility mode is done by selecting the option 
     <value>60 vs 30 fps</value>
   </data>
   <data name="Help_Games_R2_Fps" xml:space="preserve">
-    <value>Some parts of the game may not work if the game is running in 60fps. The most notable issue is during the bonus games.</value>
+    <value>Some parts of the game may not work if the game is running in 60fps. The most notable issue is during the bonus games where the timing difference will make it nearly impossible to win. Another side effect may be not being able to jump off of Umber's head in the Sanctuary of Stone and Fire.</value>
   </data>
   <data name="Help_Games_R2_NoDiscHeader" xml:space="preserve">
     <value>No Disc Error</value>
   </data>
   <data name="Help_Games_R2_NoDisc" xml:space="preserve">
-    <value>On disc versions of the game there is a known issue where the game will display a CD error during gameplay. There is currently no solution to this issue other than using a digital version, such as the GOG version, instead.</value>
+    <value>On disc versions of the game there is a known issue where the game will display a CD error during gameplay. This issue is not present in the GOG version. If the game is installed using the Rayman Control Panel installer the game will be patched to avoid the disc check like the GOG version, avoiding this issue entirely.</value>
   </data>
   <data name="Help_Games_RMA" xml:space="preserve">
     <value>Rayman M/Arena</value>
@@ -1984,7 +1981,7 @@ To activate it, enter race mode and pause the game. On the pause screen, hold L1
     <value>Discord</value>
   </data>
   <data name="Help_AdditionalHelp" xml:space="preserve">
-    <value>For additional help, check the Discord server (link in About page)</value>
+    <value>For additional help, check the Discord server</value>
   </data>
   <data name="Settings_IncompleteTranslations" xml:space="preserve">
     <value>Show languages with incomplete translations</value>
@@ -2027,5 +2024,20 @@ totalGames</comment>
   </data>
   <data name="GameOptions_LaunchMode_AsAdmin" xml:space="preserve">
     <value>As administrator</value>
+  </data>
+  <data name="GameOptions_Config" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
+    <value>Animations include page transitiions and resizing animations for the Games page</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsInvokerInfo" xml:space="preserve">
+    <value>Always runs the game with the same permissions as the Rayman Control Panel was launched with</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdminOptionInfo" xml:space="preserve">
+    <value>Same as Default, but with the option to run the game as administrator</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdminInfo" xml:space="preserve">
+    <value>Always attempts to run the game as administrator</value>
   </data>
 </root>

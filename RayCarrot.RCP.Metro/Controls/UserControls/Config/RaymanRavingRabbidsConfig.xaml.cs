@@ -13,21 +13,10 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="window">The parent window</param>
-        public RaymanRavingRabbidsConfig(Window window)
+        public RaymanRavingRabbidsConfig()
         {
             InitializeComponent();
-            ParentWindow = window;
         }
-
-        #endregion
-
-        #region Private Properties
-
-        /// <summary>
-        /// The parent window
-        /// </summary>
-        private Window ParentWindow { get; }
 
         #endregion
 
@@ -35,7 +24,7 @@ namespace RayCarrot.RCP.Metro
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            ParentWindow.Close();
+            App.Current.CurrentActiveWindow.Close();
         }
 
         #endregion

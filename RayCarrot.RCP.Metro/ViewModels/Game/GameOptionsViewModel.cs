@@ -36,6 +36,9 @@ namespace RayCarrot.RCP.Metro
                 AddPackageInfo();
 
             CanChangeLaunchMode = GameInfo.GameType == GameType.Win32 || GameInfo.GameType == GameType.DosBox;
+
+            UtilitiesContent = game.GetUtilitiesContent();
+            ConfigContent = game.GetConfigContent();
         }
 
         #endregion
@@ -112,6 +115,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public GameLaunchMode LaunchMode
         {
+
             get => GameInfo.LaunchMode;
             set
             {
@@ -119,6 +123,26 @@ namespace RayCarrot.RCP.Metro
                 App.OnRefreshRequired(false);
             }
         }
+
+        /// <summary>
+        /// The utilities content for the game
+        /// </summary>
+        public object UtilitiesContent { get; }
+
+        /// <summary>
+        /// Indicates if the game has utilities content
+        /// </summary>
+        public bool HasUtilities => UtilitiesContent != null;
+
+        /// <summary>
+        /// The config content for the game
+        /// </summary>
+        public object ConfigContent { get; set; }
+
+        /// <summary>
+        /// Indicates if the game has config content
+        /// </summary>
+        public bool HasConfigContent => ConfigContent != null;
 
         #endregion
 

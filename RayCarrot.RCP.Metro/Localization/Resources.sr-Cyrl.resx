@@ -192,4 +192,49 @@
   <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
     <value>SVN Daum</value>
   </data>
+  <data name="DosBoxSettingsHeader" xml:space="preserve">
+    <value>ДОСБокс подешавања</value>
+  </data>
+  <data name="DosBoxSettingsInfo" xml:space="preserve">
+    <value>Постављањем једне од доле наведених опција на онемогућено или празно ће користити подразумевану вредност наведену у конфигурацијској датотеци ДОСБокса. Уколико је специфична конфигурацијска датотека одређена у подешавањима може пребрисати нека од доле наведених подешавања. </value>
+  </data>
+  <data name="DosBoxOptions_Fullscreeen" xml:space="preserve">
+    <value>Цео екран</value>
+  </data>
+  <data name="DosBoxOptions_FullscreeenInfo" xml:space="preserve">
+    <value>Покрени ДОСБокс право у режим целог екрана</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBuffering" xml:space="preserve">
+    <value>Дупло баферовање у режиму целог екрана</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBufferingInfo" xml:space="preserve">
+    <value>Користити дупло баферовање у режиму целог екрана</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
+    <value>Корекција формата екрана</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrectionInfo" xml:space="preserve">
+    <value>Исправи формат екрана, уколико твоја излазна метода не подржава скалирање ово може успорити ствари!</value>
+  </data>
+  <data name="DosBoxOptions_MemorySize" xml:space="preserve">
+    <value>Величина меморије</value>
+  </data>
+  <data name="DosBoxOptions_MemorySizeInfo" xml:space="preserve">
+    <value>Количина меморије коју ДОСБокс има у мегабајтима</value>
+  </data>
+  <data name="DosBoxOptions_Frameskip" xml:space="preserve">
+    <value>Прескакање фрејмова</value>
+  </data>
+  <data name="DosBoxOptions_FrameskipInfo" xml:space="preserve">
+    <value>Колико фрејмова ДОСБокс прескочи пре него што прикаже нови</value>
+  </data>
+  <data name="DosBoxOptions_Output" xml:space="preserve">
+    <value>Излаз</value>
+  </data>
+  <data name="DosBoxOptions_OutputInfo" xml:space="preserve">
+    <value>Шта користити уа излаз</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
+    <value>Резолуција целог екрана</value>
+  </data>
 </root>

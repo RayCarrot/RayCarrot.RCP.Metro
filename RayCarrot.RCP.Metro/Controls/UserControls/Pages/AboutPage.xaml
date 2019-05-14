@@ -84,6 +84,7 @@
                 </ItemsControl>
 
                 <TextBlock Text="{Resx About_SpecialThanks}" 
+                           TextWrapping="Wrap"
                            HorizontalAlignment="Center"/>
 
             </StackPanel>

@@ -36,6 +36,9 @@ namespace RayCarrot.RCP.Metro
             // Get images
             GameLogoSource = $"{AppViewModel.ApplicationBasePath}Img/GameLogos/{game}_Logo.png";
             Gifs = game.GetInstallerGifs();
+
+            // Default the install directory
+            InstallDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
         }
 
         #endregion

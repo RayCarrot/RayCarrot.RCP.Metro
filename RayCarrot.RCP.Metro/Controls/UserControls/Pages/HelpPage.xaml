@@ -6,6 +6,7 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     mc:Ignorable="d"
                     d:DesignHeight="450" d:DesignWidth="800"
@@ -18,21 +19,24 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer Grid.Column="0">
-            <TreeView x:Name="HelpItemsTreeView" ItemsSource="{Binding Path=HelpItems}">
-                <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding Path=SubItems}">
-                        <TextBlock Text="{Binding Path=DisplayHeader}"
-                                   Padding="10 0"/>
-                    </HierarchicalDataTemplate>
-                </TreeView.ItemTemplate>
-                <TreeView.ItemContainerStyle>
-                    <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
-                        <Setter Property="rwpf:UserLevelTag.MinUserLevel" Value="{Binding Path=RequiredUserLevel}" />
-                    </Style>
-                </TreeView.ItemContainerStyle>
-            </TreeView>
-        </ScrollViewer>
+        <TreeView Grid.Column="0"
+                  ItemsSource="{Binding Path=HelpItems}">
+            <i:Interaction.Behaviors>
+                <rwpf:BindableTreeViewSelectedItemBehavior SelectedItem="{Binding Path=CurrentHelpItem}"/>
+            </i:Interaction.Behaviors>
+
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Path=SubItems}">
+                    <TextBlock Text="{Binding Path=DisplayHeader}"
+                               Padding="10 0"/>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                    <Setter Property="rwpf:UserLevelTag.MinUserLevel" Value="{Binding Path=RequiredUserLevel}" />
+                </Style>
+            </TreeView.ItemContainerStyle>
+        </TreeView>
 
         <Separator Grid.Column="1"
                    Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
@@ -53,7 +57,7 @@
                            Grid.Column="0"
                            Grid.Row="0"
                            FontSize="16"
-                           Text="{Binding ElementName=HelpItemsTreeView, Path=SelectedItem.HelpText}"
+                           Text="{Binding Path=CurrentHelpItem.HelpText}"
                            TextWrapping="Wrap"/>
 
                 <TextBlock Grid.Column="0"
@@ -73,9 +77,12 @@
 
                 <TextBlock Grid.Column="0"
                            Grid.Row="1"
-                           Margin="0 20 0 0"
-                           Text="{Resx Help_AdditionalHelp}"
-                           TextWrapping="Wrap"/>
+                           Margin="0 20 0 0">
+                    <Hyperlink Command="{Binding Path=OpenDiscordCommand}">
+                        <TextBlock Text="{Resx Help_AdditionalHelp}"
+                                   TextWrapping="Wrap"/>
+                    </Hyperlink>
+                </TextBlock>
 
             </Grid>
         </ScrollViewer>

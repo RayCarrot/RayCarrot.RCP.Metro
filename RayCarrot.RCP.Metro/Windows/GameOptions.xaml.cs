@@ -19,18 +19,13 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         /// <param name="game">The game to show the options for</param>
-        /// <param name="config">True to start on the config page, false to start on the utilities page</param>
-        public GameOptions(Games game, bool config)
+        /// <param name="page">The page to show</param>
+        public GameOptions(Games game, GameOptionsPage page)
         {
             InitializeComponent();
             ViewModel = new GameOptionsViewModel(game);
-            ConfigContentPresenter.Content = game.GetConfigContent(this);
-            UtilitiesContentPresenter.Content = game.GetUtilitiesContent();
 
-            Height = ConfigContentPresenter.Content != null ? 700 : 300;
-            Width = 600;
-
-            ChangePage(config);
+            ChangePage(page);
         }
 
         #endregion
@@ -59,7 +54,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game config view model
         /// </summary>
-        public GameConfigViewModel ConfigViewModel => (ConfigContentPresenter.Content as FrameworkElement)?.DataContext as GameConfigViewModel;
+        public GameConfigViewModel ConfigViewModel => (ViewModel.ConfigContent as FrameworkElement)?.DataContext as GameConfigViewModel;
 
         #endregion
 
@@ -68,13 +63,10 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Change the current page
         /// </summary>
-        /// <param name="config">True to change to config page, false to change to utilities</param>
-        private void ChangePage(bool config)
+        /// <param name="page">The page to change to</param>
+        private void ChangePage(GameOptionsPage page)
         {
-            ConfigButton.Visibility = config ? Visibility.Collapsed : Visibility.Visible;
-            UtilitiesButton.Visibility = config && UtilitiesContentPresenter.Content != null ? Visibility.Visible : Visibility.Collapsed;
-
-            ContentTabControl.SelectedIndex = config ? 0 : 1;
+            ContentTabControl.SelectedIndex = (int)page;
         }
 
         #endregion
@@ -85,8 +77,8 @@ namespace RayCarrot.RCP.Metro
         /// Shows a new instance of this <see cref="Window"/>
         /// </summary>
         /// <param name="game">The game to show the options for</param>
-        /// <param name="config">True to start on the config page, false to start on the utilities page</param>
-        public static void Show(Games game, bool config)
+        /// <param name="page">The page to show</param>
+        public static void Show(Games game, GameOptionsPage page)
         {
             var groupNames = new List<string>(2);
 
@@ -96,7 +88,7 @@ namespace RayCarrot.RCP.Metro
 
             groupNames.Add(game.ToString());
 
-            WindowHelpers.ShowWindow(() => new GameOptions(game, config), WindowHelpers.ShowWindowFlags.DuplicatesAllowed, groupNames.ToArray());
+            WindowHelpers.ShowWindow(() => new GameOptions(game, page), WindowHelpers.ShowWindowFlags.DuplicatesAllowed, groupNames.ToArray());
         }
 
         #endregion
@@ -122,7 +114,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Set up game config view model");
-                ConfigContentPresenter.Content = RCF.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
+                ViewModel.ConfigContent = RCF.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
             }
         }
 
@@ -149,23 +141,13 @@ namespace RayCarrot.RCP.Metro
 
             e.Cancel = true;
 
-            ChangePage(true);
+            ChangePage(GameOptionsPage.Config);
 
             if (!await RCF.MessageUI.DisplayMessageAsync(Metro.Resources.GameOptions_UnsavedChanges, Metro.Resources.GameOptions_UnsavedChangesHeader, MessageType.Question, true))
                 return;
 
             ForceClose = true;
             _ = Task.Run(() => Dispatcher.Invoke(Close));
-        }
-
-        private void UtilitiesButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            ChangePage(false);
-        }
-
-        private void ConfigButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            ChangePage(true);
         }
 
         #endregion

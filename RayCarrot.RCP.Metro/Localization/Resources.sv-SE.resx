@@ -734,9 +734,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="GameDisplay_OpenLocation" xml:space="preserve">
     <value>Öppna spelmappen</value>
   </data>
-  <data name="GameDisplay_Utilities" xml:space="preserve">
-    <value>Verktyg</value>
-  </data>
   <data name="GameDisplay_Options" xml:space="preserve">
     <value>Alternativ</value>
   </data>
@@ -1212,5 +1209,14 @@ Försök igen?"</value>
   </data>
   <data name="GameDisplay_RunAsAdmin" xml:space="preserve">
     <value>Kör som admin</value>
+  </data>
+  <data name="GameNotFound" xml:space="preserve">
+    <value>Spelet {0} kunde inte hittas</value>
+  </data>
+  <data name="GameNotFoundHeader" xml:space="preserve">
+    <value>Kunde inte hitta spel</value>
+  </data>
+  <data name="GameOptions_Config" xml:space="preserve">
+    <value>Konfiguration</value>
   </data>
 </root>

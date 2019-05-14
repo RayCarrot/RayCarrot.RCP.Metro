@@ -7,18 +7,15 @@
                   xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                   xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                   xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                   Title="{Binding Path=DisplayName}"
                   Loaded="GameOptions_OnLoadedAsync"
                   Closing="GameOptions_OnClosingAsync"
+                  Height="700" Width="600"
                   mc:Ignorable="d"
                   d:DataContext="{d:DesignInstance local:GameOptionsViewModel}">
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -34,7 +31,6 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <!-- Image -->
@@ -51,187 +47,265 @@
                        VerticalAlignment="Center"
                        Margin="20 0 0 0" />
 
-            <!-- Actions -->
-
-            <StackPanel Grid.Column="2" 
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Right">
-
-                <local:IconButton x:Name="UtilitiesButton"
-                                  Click="UtilitiesButton_OnClick"
-                                  IconKind="BriefcaseOutline"
-                                  ToolTip="{Resx GameOptions_Utilities}" 
-                                  Margin="0 0 5 0" />
-
-                <local:IconButton x:Name="ConfigButton"
-                                  Click="ConfigButton_OnClick"
-                                  IconKind="SettingsOutline"
-                                  ToolTip="{Resx GameOptions_Options}" 
-                                  Margin="0 0 5 0"/>
-
-                <local:IconButton IconKind="Link"
-                                  Command="{Binding Path=ShortcutCommand}"
-                                  ToolTip="{Resx GameOptions_CreateShortcut}" />
-
-                <local:IconButton IconKind="Delete"
-                                  Command="{Binding Path=RemoveCommand}"
-                                  ToolTip="{Resx GameOptions_Remove}" />
-
-            </StackPanel>
-
         </Grid>
 
         <Separator Grid.Row="1" />
 
-        <!-- Technical Information -->
-
-        <ItemsControl Grid.Row="2"
-                      Visibility="{Binding Path=Data.ShowDetailedGameInfo, Converter={rwpf:BooleanToVisibilityConverter}}"
-                      Grid.IsSharedSizeScope="True">
-
-            <!-- GameType Desktop -->
-
-            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Win32}"
-                               Header="{Resx GameInfo_GameType}"
-                               Text="{Resx GameType_Desktop}"
-                               MinUserLevel="Advanced" />
-
-            <!-- GameType Steam -->
-
-            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Steam}"
-                               Header="{Resx GameInfo_GameType}"
-                               Text="{Resx GameType_Steam}"
-                               MinUserLevel="Advanced" />
-
-            <!-- GameType WinStore -->
-
-            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
-                               Header="{Resx GameInfo_GameType}"
-                               Text="{Resx GameType_WinStore}"
-                               MinUserLevel="Advanced" />
-
-            <!-- GameType DosBox -->
-
-            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=DosBox}"
-                               Header="{Resx GameInfo_GameType}"
-                               Text="{Resx GameType_DosBox}"
-                               MinUserLevel="Advanced" />
-
-            <!-- Steam ID -->
-
-            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Steam}"
-                               Header="{Resx GameInfo_SteamID}"
-                               Text="{Binding Path=SteamID, Mode=OneTime}"
-                               MinUserLevel="Advanced" />
-
-            <!-- Launch Path -->
-
-            <local:DuoGridItem Visibility="{Binding Path=LaunchInfo, Mode=OneTime, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
-                               Header="{Resx GameInfo_LaunchPath}"
-                               Text="{Binding Path=LaunchInfo.Path, Mode=OneTime}"
-                               MinUserLevel="Technical" />
-
-            <!-- Launch Path -->
-
-            <local:DuoGridItem Visibility="{Binding Path=LaunchInfo, Mode=OneTime, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
-                               Header="{Resx GameInfo_LaunchArgs}"
-                               Text="{Binding Path=LaunchInfo.Args, Mode=OneTime}"
-                               MinUserLevel="Technical" />
-
-            <!-- Install Directory -->
-
-            <local:DuoGridItem Header="{Resx GameInfo_InstallDir}"
-                               Text="{Binding Path=InstallDir, Mode=OneTime}" />
-
-            <!-- WinStore Dependencies -->
-
-            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
-                               Header="{Resx GameInfo_WinStoreDependencies}"
-                               Text="{Binding Path=WinStoreDependencies, Mode=OneTime}"
-                               MinUserLevel="Technical" />
-
-            <!-- WinStore Full Name -->
-
-            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
-                               Header="{Resx GameInfo_WinStoreFullName}"
-                               Text="{Binding Path=WinStoreFullName, Mode=OneTime}"
-                               MinUserLevel="Technical" />
-
-            <!-- WinStore Architecture -->
-
-            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
-                               Header="{Resx GameInfo_WinStoreArchitecture}"
-                               Text="{Binding Path=WinStoreArchitecture, Mode=OneTime}"
-                               MinUserLevel="Technical" />
-
-            <!-- WinStore Version -->
-
-            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
-                               Header="{Resx GameInfo_WinStoreVersion}"
-                               Text="{Binding Path=WinStoreVersion, Mode=OneTime}"
-                               MinUserLevel="Technical" />
-
-            <!-- WinStore Install Date -->
-
-            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
-                               Header="{Resx GameInfo_WinStoreInstallDate}"
-                               Text="{Binding Path=WinStoreInstallDate, Mode=OneTime}"
-                               MinUserLevel="Technical" />
-
-        </ItemsControl>
-
-        <Separator Grid.Row="3" 
-                   Visibility="{Binding Path=Data.ShowDetailedGameInfo, Converter={rwpf:BooleanToVisibilityConverter}}"/>
-
-        <StackPanel Grid.Row="4" 
-                    Orientation="Horizontal"
-                    Visibility="{Binding Path=CanChangeLaunchMode, Converter={rwpf:BooleanToVisibilityConverter}}">
-
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
-                       Text="{Resx GameOptions_LaunchMode}"/>
-
-            <local:InfoIcon Text="{Resx GameOptions_LaunchModeInfo}" />
-
-        </StackPanel>
-
-        <StackPanel Grid.Row="5" 
-                    Orientation="Horizontal" 
-                    Visibility="{Binding Path=CanChangeLaunchMode, Converter={rwpf:BooleanToVisibilityConverter}}">
-
-            <rwpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsInvoker}"
-                                      IsChecked="{Binding Path=LaunchMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AsInvoker}"
-                                      Margin="0 0 8 0"/>
-
-            <rwpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdminOption}"
-                                      IsChecked="{Binding Path=LaunchMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AsAdminOption}"
-                                      Margin="0 0 8 0"/>
-
-            <rwpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdmin}"
-                                      IsChecked="{Binding Path=LaunchMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AsAdmin}"
-                                      Margin="0 0 8 0"/>
-
-        </StackPanel>
-
-        <Separator Grid.Row="6" 
-                   Visibility="{Binding Path=CanChangeLaunchMode, Converter={rwpf:BooleanToVisibilityConverter}}"/>
-
         <metro:MetroAnimatedTabControl x:Name="ContentTabControl"
-                                       Grid.Row="7"
-                                       Background="{StaticResource ControlBackgroundBrush}">
+                                       Grid.Row="2"
+                                       metro:TabControlHelper.Transition="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}">
+
+            <metro:MetroAnimatedTabControl.Resources>
+                <Style TargetType="{x:Type TabPanel}">
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="Margin" Value="0 5 0 10" />
+                </Style>
+            </metro:MetroAnimatedTabControl.Resources>
 
             <!-- Options -->
 
-            <TabItem Visibility="Collapsed">
-                <ContentPresenter x:Name="ConfigContentPresenter" />
+            <TabItem metro:ControlsHelper.HeaderFontSize="16">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="SettingsOutline"
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 10 0" />
+                            <TextBlock Text="{Resx GameOptions_Options}"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+
+                <ScrollViewer Padding="5">
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="0 5" />
+                        </i:Interaction.Behaviors>
+
+                        <!-- Technical Information -->
+
+                        <ItemsControl
+                            Visibility="{Binding Path=Data.ShowDetailedGameInfo, Converter={rwpf:BooleanToVisibilityConverter}}"
+                            Grid.IsSharedSizeScope="True">
+
+                            <!-- GameType Desktop -->
+
+                            <local:DuoGridItem
+                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Win32}"
+                                Header="{Resx GameInfo_GameType}"
+                                Text="{Resx GameType_Desktop}"
+                                MinUserLevel="Advanced" />
+
+                            <!-- GameType Steam -->
+
+                            <local:DuoGridItem
+                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Steam}"
+                                Header="{Resx GameInfo_GameType}"
+                                Text="{Resx GameType_Steam}"
+                                MinUserLevel="Advanced" />
+
+                            <!-- GameType WinStore -->
+
+                            <local:DuoGridItem
+                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
+                                Header="{Resx GameInfo_GameType}"
+                                Text="{Resx GameType_WinStore}"
+                                MinUserLevel="Advanced" />
+
+                            <!-- GameType DosBox -->
+
+                            <local:DuoGridItem
+                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=DosBox}"
+                                Header="{Resx GameInfo_GameType}"
+                                Text="{Resx GameType_DosBox}"
+                                MinUserLevel="Advanced" />
+
+                            <!-- Steam ID -->
+
+                            <local:DuoGridItem
+                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Steam}"
+                                Header="{Resx GameInfo_SteamID}"
+                                Text="{Binding Path=SteamID, Mode=OneTime}"
+                                MinUserLevel="Advanced" />
+
+                            <!-- Launch Path -->
+
+                            <local:DuoGridItem
+                                Visibility="{Binding Path=LaunchInfo, Mode=OneTime, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
+                                Header="{Resx GameInfo_LaunchPath}"
+                                Text="{Binding Path=LaunchInfo.Path, Mode=OneTime}"
+                                MinUserLevel="Technical" />
+
+                            <!-- Launch Path -->
+
+                            <local:DuoGridItem
+                                Visibility="{Binding Path=LaunchInfo, Mode=OneTime, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
+                                Header="{Resx GameInfo_LaunchArgs}"
+                                Text="{Binding Path=LaunchInfo.Args, Mode=OneTime}"
+                                MinUserLevel="Technical" />
+
+                            <!-- Install Directory -->
+
+                            <local:DuoGridItem Header="{Resx GameInfo_InstallDir}"
+                                               Text="{Binding Path=InstallDir, Mode=OneTime}" />
+
+                            <!-- WinStore Dependencies -->
+
+                            <local:DuoGridItem
+                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
+                                Header="{Resx GameInfo_WinStoreDependencies}"
+                                Text="{Binding Path=WinStoreDependencies, Mode=OneTime}"
+                                MinUserLevel="Technical" />
+
+                            <!-- WinStore Full Name -->
+
+                            <local:DuoGridItem
+                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
+                                Header="{Resx GameInfo_WinStoreFullName}"
+                                Text="{Binding Path=WinStoreFullName, Mode=OneTime}"
+                                MinUserLevel="Technical" />
+
+                            <!-- WinStore Architecture -->
+
+                            <local:DuoGridItem
+                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
+                                Header="{Resx GameInfo_WinStoreArchitecture}"
+                                Text="{Binding Path=WinStoreArchitecture, Mode=OneTime}"
+                                MinUserLevel="Technical" />
+
+                            <!-- WinStore Version -->
+
+                            <local:DuoGridItem
+                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
+                                Header="{Resx GameInfo_WinStoreVersion}"
+                                Text="{Binding Path=WinStoreVersion, Mode=OneTime}"
+                                MinUserLevel="Technical" />
+
+                            <!-- WinStore Install Date -->
+
+                            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
+                                               Header="{Resx GameInfo_WinStoreInstallDate}"
+                                               Text="{Binding Path=WinStoreInstallDate, Mode=OneTime}"
+                                               MinUserLevel="Technical" />
+
+                        </ItemsControl>
+
+                        <Separator Visibility="{Binding Path=Data.ShowDetailedGameInfo, Converter={rwpf:BooleanToVisibilityConverter}}" />
+
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding Path=CanChangeLaunchMode, Converter={rwpf:BooleanToVisibilityConverter}}">
+
+                            <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                       Text="{Resx GameOptions_LaunchMode}" />
+
+                            <local:InfoIcon Text="{Resx GameOptions_LaunchModeInfo}" />
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding Path=CanChangeLaunchMode, Converter={rwpf:BooleanToVisibilityConverter}}">
+
+                            <rwpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsInvoker}"
+                                                      IsChecked="{Binding Path=LaunchMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AsInvoker}"
+                                                      ToolTip="{Resx GameOptions_LaunchMode_AsInvokerInfo}"
+                                                      Margin="0 0 8 0" />
+
+                            <rwpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdminOption}"
+                                                      IsChecked="{Binding Path=LaunchMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AsAdminOption}"
+                                                      ToolTip="{Resx GameOptions_LaunchMode_AsAdminOptionInfo}"
+                                                      Margin="0 0 8 0" />
+
+                            <rwpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdmin}"
+                                                      IsChecked="{Binding Path=LaunchMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AsAdmin}"
+                                                      ToolTip="{Resx GameOptions_LaunchMode_AsAdminInfo}"
+                                                      Margin="0 0 8 0" />
+
+                        </StackPanel>
+
+                        <Separator
+                            Visibility="{Binding Path=CanChangeLaunchMode, Converter={rwpf:BooleanToVisibilityConverter}}" />
+
+                        <WrapPanel Orientation="Horizontal">
+
+                            <Button Command="{Binding Path=ShortcutCommand}"
+                                    Content="{Resx GameOptions_CreateShortcut}"
+                                    Margin="0 0 10 0" />
+
+                            <Button Command="{Binding Path=RemoveCommand}"
+                                    Content="{Resx GameOptions_Remove}" />
+
+                        </WrapPanel>
+
+                        <Separator
+                            Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanRavingRabbids}" />
+
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanRavingRabbids}">
+
+                            <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                       Text="{Resx Config_SaveDataLocation}" />
+
+                            <local:InfoIcon Text="{Resx Config_SaveDataLocationInfo}" />
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanRavingRabbids}">
+
+                            <RadioButton Content="{Resx Config_SaveDataLocationInstDir}"
+                                         IsChecked="{Binding Path=Data.RRRIsSaveDataInInstallDir}"
+                                         Margin="0 0 8 0" />
+
+                            <RadioButton Content="{Resx Config_SaveDataLocationAppData}"
+                                         IsChecked="{Binding Path=Data.RRRIsSaveDataInInstallDir, Converter={rwpf:InvertedBooleanConverter}}" />
+
+                        </StackPanel>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Config -->
+
+            <TabItem metro:ControlsHelper.HeaderFontSize="16"
+                     Visibility="{Binding Path=HasConfigContent, Converter={rwpf:BooleanToVisibilityConverter}}">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="Wrench"
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 10 0" />
+                            <TextBlock Text="{Resx GameOptions_Config}"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+
+                <ContentPresenter Content="{Binding Path=ConfigContent}" />
             </TabItem>
 
             <!-- Utilities -->
 
-            <TabItem Visibility="Collapsed">
-                <ContentPresenter x:Name="UtilitiesContentPresenter" />
+            <TabItem metro:ControlsHelper.HeaderFontSize="16"
+                     Visibility="{Binding Path=HasUtilities, Converter={rwpf:BooleanToVisibilityConverter}}">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="BriefcaseOutline"
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 10 0" />
+                            <TextBlock Text="{Resx GameOptions_Utilities}"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+
+                <ContentPresenter Content="{Binding Path=UtilitiesContent}" />
             </TabItem>
 
         </metro:MetroAnimatedTabControl>
+
 
     </Grid>
 </local:BaseWindow>

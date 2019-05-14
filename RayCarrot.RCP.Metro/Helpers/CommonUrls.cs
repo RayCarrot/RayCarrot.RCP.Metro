@@ -148,6 +148,6 @@
         /// <summary>
         /// The Discord URL
         /// </summary>
-        public const string DiscordUrl = "https://discord.gg/XQxnDfJ";
+        public const string DiscordUrl = "https://discord.gg/Cuq6wpX";
     }
 }

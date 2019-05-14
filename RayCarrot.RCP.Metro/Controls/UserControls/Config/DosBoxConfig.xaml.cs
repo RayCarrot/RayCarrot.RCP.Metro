@@ -13,22 +13,11 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="window">The parent window</param>
         /// <param name="game">The DosBox game</param>
-        public DosBoxConfig(Window window, Games game) : base(new DosBoxConfigViewModel(game))
+        public DosBoxConfig(Games game) : base(new DosBoxConfigViewModel(game))
         {
             InitializeComponent();
-            ParentWindow = window;
         }
-
-        #endregion
-
-        #region Private Properties
-
-        /// <summary>
-        /// The parent window
-        /// </summary>
-        private Window ParentWindow { get; }
 
         #endregion
 
@@ -36,7 +25,7 @@ namespace RayCarrot.RCP.Metro
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            ParentWindow.Close();
+            App.Current.CurrentActiveWindow.Close();
         }
 
         #endregion

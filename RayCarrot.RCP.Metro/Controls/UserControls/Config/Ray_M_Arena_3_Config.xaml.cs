@@ -14,12 +14,10 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="window">The parent window</param>
         /// <param name="game">The game</param>
-        public Ray_M_Arena_3_Config(Window window, Games game)
+        public Ray_M_Arena_3_Config(Games game)
         {
             InitializeComponent();
-            ParentWindow = window;
 
             if (game == Games.RaymanM)
                 DataContext = new RaymanMConfigViewModel();
@@ -36,20 +34,11 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Private Properties
-
-        /// <summary>
-        /// The parent window
-        /// </summary>
-        private Window ParentWindow { get; }
-
-        #endregion
-
         #region Event Handlers
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            ParentWindow.Close();
+            App.Current.CurrentActiveWindow.Close();
         }
 
         #endregion

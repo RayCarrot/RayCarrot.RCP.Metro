@@ -64,29 +64,6 @@
                 <CheckBox Content="{Resx Config_UseController}"
                           IsChecked="{Binding Path=UseController}" />
 
-                <Separator rwpf:UserLevelTag.MinUserLevel="Advanced" />
-
-                <StackPanel Orientation="Horizontal"
-                            rwpf:UserLevelTag.MinUserLevel="Advanced">
-
-                    <TextBlock Style="{StaticResource HeaderTextBlock}"
-                               Text="{Resx Config_SaveDataLocation}"/>
-
-                    <local:InfoIcon Text="{Resx Config_SaveDataLocationInfo}" />
-
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" rwpf:UserLevelTag.MinUserLevel="Advanced">
-
-                    <RadioButton Content="{Resx Config_SaveDataLocationInstDir}"
-                                 IsChecked="{Binding Path=Data.RRRIsSaveDataInInstallDir}"
-                                 Margin="0 0 8 0"/>
-
-                    <RadioButton Content="{Resx Config_SaveDataLocationAppData}"
-                                 IsChecked="{Binding Path=Data.RRRIsSaveDataInInstallDir, Converter={rwpf:InvertedBooleanConverter}}"/>
-
-                </StackPanel>
-
             </StackPanel>
         </ScrollViewer>
 

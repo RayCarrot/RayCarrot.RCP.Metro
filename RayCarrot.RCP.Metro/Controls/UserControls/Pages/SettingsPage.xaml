@@ -142,6 +142,7 @@
                                         OffLabel="{Resx Settings_DesignLight}" />
 
                     <CheckBox Content="{Resx Settings_DesignAnimations}"
+                              ToolTip="{Resx Settings_DesignAnimationsInfo}"
                               IsChecked="{Binding Path=EnableAnimations}" />
 
                     <CheckBox Content="{Resx Settings_DesignSuccessMessages}"

@@ -177,7 +177,10 @@ namespace RayCarrot.RCP.Metro
             var lines = new List<string>();
 
             foreach (Games game in App.GetGames)
-                lines.AddRange(from utility in await game.GetAppliedUtilitiesAsync() select $"{utility} ({game.GetDisplayName()})");
+            {
+                if (game.IsAdded())
+                    lines.AddRange(from utility in await game.GetAppliedUtilitiesAsync() select $"{utility} ({game.GetDisplayName()})");
+            }
 
             await RCF.MessageUI.DisplayMessageAsync(lines.JoinItems(Environment.NewLine), MessageType.Information);
         }

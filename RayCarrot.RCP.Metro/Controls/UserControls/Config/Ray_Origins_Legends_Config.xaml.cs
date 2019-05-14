@@ -13,24 +13,13 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="window">The parent window</param>
         /// <param name="game">The game</param>
-        public Ray_Origins_Legends_Config(Window window, Games game)
+        public Ray_Origins_Legends_Config(Games game)
         {
             InitializeComponent();
-            ParentWindow = window;
 
             DataContext = new Ray_Origins_Legends_ConfigViewModel(game);
         }
-
-        #endregion
-
-        #region Private Properties
-
-        /// <summary>
-        /// The parent window
-        /// </summary>
-        private Window ParentWindow { get; }
 
         #endregion
 
@@ -38,7 +27,7 @@ namespace RayCarrot.RCP.Metro
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            ParentWindow.Close();
+            App.Current.CurrentActiveWindow.Close();
         }
 
         #endregion

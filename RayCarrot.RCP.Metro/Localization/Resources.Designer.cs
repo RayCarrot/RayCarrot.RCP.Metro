@@ -1901,15 +1901,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Utilities.
-        /// </summary>
-        public static string GameDisplay_Utilities {
-            get {
-                return ResourceManager.GetString("GameDisplay_Utilities", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An error occurred during the game finder operation.
         /// </summary>
         public static string GameFinder_Error {
@@ -2072,6 +2063,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Configuration.
+        /// </summary>
+        public static string GameOptions_Config {
+            get {
+                return ResourceManager.GetString("GameOptions_Config", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create shortcut.
         /// </summary>
         public static string GameOptions_CreateShortcut {
@@ -2099,6 +2099,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Always attempts to run the game as administrator.
+        /// </summary>
+        public static string GameOptions_LaunchMode_AsAdminInfo {
+            get {
+                return ResourceManager.GetString("GameOptions_LaunchMode_AsAdminInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to As administrator (optional).
         /// </summary>
         public static string GameOptions_LaunchMode_AsAdminOption {
@@ -2108,11 +2117,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Same as Default, but with the option to run the game as administrator.
+        /// </summary>
+        public static string GameOptions_LaunchMode_AsAdminOptionInfo {
+            get {
+                return ResourceManager.GetString("GameOptions_LaunchMode_AsAdminOptionInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default.
         /// </summary>
         public static string GameOptions_LaunchMode_AsInvoker {
             get {
                 return ResourceManager.GetString("GameOptions_LaunchMode_AsInvoker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Always runs the game with the same permissions as the Rayman Control Panel was launched with.
+        /// </summary>
+        public static string GameOptions_LaunchMode_AsInvokerInfo {
+            get {
+                return ResourceManager.GetString("GameOptions_LaunchMode_AsInvokerInfo", resourceCulture);
             }
         }
         
@@ -2279,7 +2306,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For additional help, check the Discord server (link in About page).
+        ///   Looks up a localized string similar to For additional help, check the Discord server.
         /// </summary>
         public static string Help_AdditionalHelp {
             get {
@@ -2446,8 +2473,8 @@ namespace RayCarrot.RCP.Metro {
         ///*Run the game as administrator:
         ///The option to run a program as administrator can be found in the context menu by right-clicking the program.
         ///
-        ///*Run the game under compatibility mode:
-        ///Running an application under compatibility mode is done by selecting the option under the compatibility options in the file properties. For many older games it is recommended to select Windows XP Service Pack 2 or 3..
+        ///*Run the game in compatibility mode:
+        ///Running an application in compatibility mode is done by selecting the option under the compatibility options in the file properties. For many older games it is recommended to select Windows XP Service Pack 2 or 3..
         /// </summary>
         public static string Help_Games_General_GameNotLaunching {
             get {
@@ -2528,7 +2555,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Designer, also known as Rayman Gold or Rayman&apos;s World, is the Rayman game which includes the Mapper program which is used to create your own levels. The Mapper is a normal Windows executable file and will run without the need of an emulator. All of the static parts of the level is created in the Mapper program, while all of the so-called &apos;events&apos; are placed in the event editor (found within the game itself)..
+        ///   Looks up a localized string similar to Rayman Designer, also known as Rayman Gold or Rayman&apos;s World, is the Rayman game which includes the Mapper program which is used to create your own levels. The Mapper is a normal Windows executable file and will run without the need of an emulator. All of the static parts of the level are created in the Mapper program, while all of the so-called &apos;events&apos; are placed in the event editor (found within the game itself)..
         /// </summary>
         public static string Help_Games_R1_Mapper {
             get {
@@ -2555,7 +2582,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Some parts of the game may not work if the game is running in 60fps. The most notable issue is during the bonus games..
+        ///   Looks up a localized string similar to Some parts of the game may not work if the game is running in 60fps. The most notable issue is during the bonus games where the timing difference will make it nearly impossible to win. Another side effect may be not being able to jump off of Umber&apos;s head in the Sanctuary of Stone and Fire..
         /// </summary>
         public static string Help_Games_R2_Fps {
             get {
@@ -2591,7 +2618,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to On disc versions of the game there is a known issue where the game will display a CD error during gameplay. There is currently no solution to this issue other than using a digital version, such as the GOG version, instead..
+        ///   Looks up a localized string similar to On disc versions of the game there is a known issue where the game will display a CD error during gameplay. This issue is not present in the GOG version. If the game is installed using the Rayman Control Panel installer the game will be patched to avoid the disc check like the GOG version, avoiding this issue entirely..
         /// </summary>
         public static string Help_Games_R2_NoDisc {
             get {
@@ -2731,7 +2758,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The program has a backup and restore feature for all supported games. The backups are by default stored in the documents folder, but the location can be changed in the settings.
+        ///   Looks up a localized string similar to The program has a backup and restore feature for all supported games. The backups are stored in the documents folder by default, but the location can be changed in the settings.
         ///
         ///The backups themselves are always stored in the &apos;{0}&apos; sub-directory. It is not recommended to manually modify these files..
         /// </summary>
@@ -2810,12 +2837,12 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Rayman Control Panel supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the availablelaunch arguments. The &apos;-&apos; character should always be included. The &apos;{}&apos; characters show that a custom variable can be used, in which case the &apos;{}&apos;should not be included.
+        ///   Looks up a localized string similar to The Rayman Control Panel supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the available launch arguments. The &apos;-&apos; character should always be included. The &apos;{}&apos; characters show that a custom variable can be used, in which case the &apos;{}&apos;should not be included.
         ///
         ///-reset (Resets all app data before launch)
         ///-install {filePath} (Removes the installer from the specified path)
         ///-ul {userLevel} (sets the user level once the framework is built)
-        ///-loglevel {log [rest of string was truncated]&quot;;.
+        ///-loglevel {lo [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Help_RCP_LaunchArgs {
             get {
@@ -4769,6 +4796,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_DesignAnimations {
             get {
                 return ResourceManager.GetString("Settings_DesignAnimations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Animations include page transitiions and resizing animations for the Games page.
+        /// </summary>
+        public static string Settings_DesignAnimationsInfo {
+            get {
+                return ResourceManager.GetString("Settings_DesignAnimationsInfo", resourceCulture);
             }
         }
         
