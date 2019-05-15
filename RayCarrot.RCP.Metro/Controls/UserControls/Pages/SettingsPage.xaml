@@ -13,6 +13,10 @@
                     d:DesignWidth="800"
                     d:DataContext="{d:DesignInstance local:SettingsPageViewModel}">
     <ScrollViewer Padding="5">
+        <i:Interaction.Behaviors>
+            <rwpf:FocusScrollViewerOnLoad />
+        </i:Interaction.Behaviors>
+
         <StackPanel>
             <i:Interaction.Behaviors>
                 <rwpf:UnifiedMarginBehavior Margin="2 5" />

@@ -212,7 +212,12 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                var size = (path + "rayman02.ogg").GetSize();
+                var file = path + "rayman02.ogg";
+
+                if (!file.FileExists)
+                    return null;
+
+                var size = file.GetSize();
 
                 return size == new ByteSize(1805221);
             }

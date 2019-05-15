@@ -81,6 +81,7 @@
                     <StackPanel>
                         <i:Interaction.Behaviors>
                             <rwpf:UnifiedMarginBehavior Margin="0 5" />
+                            <rwpf:FocusScrollViewerOnLoad />
                         </i:Interaction.Behaviors>
 
                         <!-- Technical Information -->

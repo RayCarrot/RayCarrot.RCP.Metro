@@ -7,6 +7,7 @@
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     mc:Ignorable="d"
                     d:DesignWidth="800"
@@ -16,6 +17,10 @@
                   Padding="20" 
                   Grid.IsSharedSizeScope="True"
                   HorizontalScrollBarVisibility="Auto">
+        <i:Interaction.Behaviors>
+            <rwpf:FocusScrollViewerOnLoad />
+        </i:Interaction.Behaviors>
+
         <StackPanel>
 
             <TextBlock Style="{StaticResource HeaderTextBlock}"

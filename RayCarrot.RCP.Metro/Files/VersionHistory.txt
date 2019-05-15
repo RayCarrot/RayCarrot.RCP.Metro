@@ -1,4 +1,9 @@
-﻿-----   Version 4.3.0 - May 14, 2019   -----
+﻿-----   Version 4.3.1 - May 15, 2019   -----
+• Improved auto focusing on controls when switching pages
+• Fixed a bug where the some utilities would show as applied when they were not
+
+
+-----   Version 4.3.0 - May 14, 2019   -----
 • Redesigned the game options dialog
 • Added Steam group link in the about page
 • The game installer now defaults the install directory to the user's Program Files directory

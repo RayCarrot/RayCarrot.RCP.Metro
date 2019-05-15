@@ -274,6 +274,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\UserControls\Rayman1CheatCodeTable.xaml.cs">
+      <DependentUpon>Rayman1CheatCodeTable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\AppendSpacesToStringConverter.cs" />
     <Compile Include="DataModels\Enums\PopupPromptResult.cs" />
     <Page Include="Controls\Dialogs\GameTypeSelectionDialog.xaml">
@@ -331,6 +334,10 @@
     <Page Include="Controls\UserControls\Pages\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\UserControls\Rayman1CheatCodeTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\UserControls\Utilities\Rayman3Utilities.xaml">
       <Generator>MSBuild:Compile</Generator>

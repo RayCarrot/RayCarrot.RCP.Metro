@@ -420,7 +420,12 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                var size = (path + "intro.bik").GetSize();
+                var file = path + "intro.bik";
+
+                if (!path.FileExists)
+                    return null;
+
+                var size = file.GetSize();
 
                 return size == new ByteSize(59748732);
             }
