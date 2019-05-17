@@ -2043,4 +2043,7 @@ totalGames</comment>
   <data name="About_Steam" xml:space="preserve">
     <value>Steam group</value>
   </data>
+  <data name="Config_SaveWarning" xml:space="preserve">
+    <value>An error occurred when saving. Not all changes have been saved.</value>
+  </data>
 </root>

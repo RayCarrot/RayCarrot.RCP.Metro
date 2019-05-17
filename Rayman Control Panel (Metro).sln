@@ -11,10 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.WPF", "..\..\Carr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.Metro", "RayCarrot.RCP.Metro\RayCarrot.RCP.Metro.csproj", "{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TODO", "TODO", "{A4E18751-83F7-4896-84DE-2998C17BA5AF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{A4E18751-83F7-4896-84DE-2998C17BA5AF}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
-		TODO.txt = TODO.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.Updater", "RayCarrot.RCP.Updater\RayCarrot.RCP.Updater.csproj", "{F5517D18-45BA-4C53-81BD-29C54CDAE71A}"

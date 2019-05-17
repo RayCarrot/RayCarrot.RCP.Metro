@@ -19,12 +19,9 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <TreeView Grid.Column="0"
+        <TreeView x:Name="HelpTreeView"
+                  Grid.Column="0"
                   ItemsSource="{Binding Path=HelpItems}">
-            <i:Interaction.Behaviors>
-                <rwpf:BindableTreeViewSelectedItemBehavior SelectedItem="{Binding Path=CurrentHelpItem}"/>
-            </i:Interaction.Behaviors>
-
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Path=SubItems}">
                     <TextBlock Text="{Binding Path=DisplayHeader}"
@@ -40,6 +37,23 @@
 
         <Separator Grid.Column="1"
                    Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+
+        <!--<FlowDocumentScrollViewer Grid.Column="2">
+            <FlowDocument>
+                <Paragraph>
+                    <Floater HorizontalAlignment="Right" Width="128" Margin="0" Padding="0">
+                        <BlockUIContainer Padding="0" Margin="0"> 
+                            <Image VerticalAlignment="Top"
+                                   Source="../../../Img/MessageIcons/Info.png"
+                                   Height="128"
+                                   Width="128" />
+                        </BlockUIContainer>
+                    </Floater>
+                    <Run Text="{Binding ElementName=HelpTreeView, Path=SelectedItem.HelpText}"
+                         FontSize="16" IsEnabled="False" />
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>-->
 
         <ScrollViewer Grid.Column="2">
             <Grid Margin="10">
@@ -57,7 +71,7 @@
                            Grid.Column="0"
                            Grid.Row="0"
                            FontSize="16"
-                           Text="{Binding Path=CurrentHelpItem.HelpText}"
+                           Text="{Binding ElementName=HelpTreeView, Path=SelectedItem.HelpText}"
                            TextWrapping="Wrap"/>
 
                 <TextBlock Grid.Column="0"

@@ -352,7 +352,7 @@ namespace RayCarrot.RCP.Metro
                     RCF.Logger.LogInformationSource($"Failed to copy file {source.FullPath} during installation. Requesting retry.");
 
                     // Ask user to retry
-                    if (!await RCF.MessageUI.DisplayMessageAsync(string.Format(Resources.Installer_FileCopyError, source.Name, ex.Message), Resources.Installer_FileCopyErrorHeader, MessageType.Warning, true))
+                    if (!await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_FileCopyError, source.Name, ex.Message), Resources.Installer_FileCopyErrorHeader, MessageType.Warning, true))
                         throw;
 
                     RCF.Logger.LogInformationSource($"Attempting to retry to copy file");

@@ -123,8 +123,18 @@ namespace RayCarrot.RCP.Metro
                     return;
                 }
 
-                // Run save code
-                await OnSaveAsync();
+                try
+                {
+                    // Run save code
+                    await OnSaveAsync();
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("On save config");
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.Config_SaveWarning, Resources.Config_SaveErrorHeader, MessageType.Warning);
+
+                    return;
+                }
 
                 UnsavedChanges = false;
 

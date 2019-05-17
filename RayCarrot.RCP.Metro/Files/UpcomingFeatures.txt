@@ -1,0 +1,23 @@
+﻿Upcoming features:
+
+- Rayman Legends debug commands (Uplay version only)
+
+- Add support for educational games. Treat as a single game, with games in drop-down added by user.
+
+- Add TPLS support for version 1.00 and possibly other editions of currently available versions
+
+- Add links page with links to community mods, projects, forums etc.
+
+- Auto save user data
+
+- Auto create .bat files for DOSBox games + allow language switching based on editing the .bat file's launch argument
+
+- Move Rayman 1 (and possibly other) cheat codes into table for readability
+
+- Rework the updater in WPF with the Metro theme - transfer dark/light mode setting
+
+Bugs:
+
+- Rework ubi.ini permission system to avoid relying on CMD commands due to not being able to verify if the command succeeded
+
+- Rayman 2 installer stops at very end with unhandled files error

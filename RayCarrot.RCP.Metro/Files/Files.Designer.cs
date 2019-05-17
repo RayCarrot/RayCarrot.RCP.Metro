@@ -157,21 +157,46 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 4.1.0 - March ?, 2019   -----
+        ///   Looks up a localized string similar to Upcoming features:
         ///
-        ///• The program has been translated to Swedish, thus now allowing the language to be selected in the settings
-        ///• The option to move existing backups has been readded when changing the backup location
-        ///• Reorganized the settings page
-        ///• Updates to the Carrot Framework and WPF implementation
-        ///• Increased ToolTip timeout on InfoIcons
-        ///• Minor bug fixes
+        ///- RL debug commands
+        ///
+        ///- Add support for educational games. Treat as a single game, with games in drop-down added by user.
+        ///
+        ///- Add TPLS support for remaining versions RibShark sent - use cheat engine to find addresses https://www.youtube.com/watch?v=fgdHC-3Hef0
+        ///
+        ///- Add links page
+        ///
+        ///- Auto save user data
+        ///
+        ///- Auto create .bat files
+        ///
+        ///- R1 cheat codes in table?
+        ///
+        ///- Rework ubi.ini permission system
+        ///
+        ///- New WPF updater
+        ///
+        ///- Install Rayman 2 - unhandled files?
+        ///
+        ///- https://cdn.discord [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string UpcomingFeatures {
+            get {
+                return ResourceManager.GetString("UpcomingFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -----   Version 4.3.2 - May ??, 2019   -----
+        ///• Added list of upcoming features to the debug page
+        ///• Fixed a bug where selecting a help item would collapse above nodes
+        ///• Fixed a bug where the jump list shortcuts for desktop and DOSBox games would not launch in the correct directory
+        ///• Fixed a bug where if an error occurred during applying additional game configuration settings, such as the Rayman 2 widescreen patch, the application would crash
+        ///• Bug fixes
         ///
         ///
-        ///-----   Version 4.0.1 - March 15, 2019   -----
-        ///
-        ///• Updated the about page
-        ///• Updated the help page
-        ///• Chang [rest of string was truncated]&quot;;.
+        ///-----   Version 4.3.1 - May 15, 2019   -----        /// [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

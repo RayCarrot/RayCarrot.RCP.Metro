@@ -87,6 +87,21 @@
 
             </StackPanel>
 
+            <StackPanel>
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                </i:Interaction.Behaviors>
+
+                <TextBlock Text="Upcoming features"
+                           Style="{StaticResource LargeHeaderTextBlock}" />
+
+                <TextBox IsReadOnly="True"
+                         Text="{Binding Source={x:Static local:Files.UpcomingFeatures}, Mode=OneTime}"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"/>
+
+            </StackPanel>
+
         </StackPanel>
     </ScrollViewer>
 </rwpf:VMUserControl>

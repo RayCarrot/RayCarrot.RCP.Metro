@@ -22,6 +22,7 @@
         <TextBox Grid.Row="1"
                  IsReadOnly="True"
                  Text="{Binding Source={x:Static local:Files.VersionHistory}, Mode=OneTime}"
+                 TextWrapping="Wrap"
                  VerticalScrollBarVisibility="Auto"
                  Margin="0 10"/>
 

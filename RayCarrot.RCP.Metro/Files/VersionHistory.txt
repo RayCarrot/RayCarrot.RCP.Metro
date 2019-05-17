@@ -1,4 +1,12 @@
-﻿-----   Version 4.3.1 - May 15, 2019   -----
+﻿-----   Version 4.3.2 - May 17, 2019   -----
+• Added list of upcoming features to the debug page
+• Fixed a bug where selecting a help item would collapse above nodes
+• Fixed a bug where the jump list shortcuts for desktop and DOSBox games would not launch in the correct directory
+• Fixed a bug where if an error occurred during applying additional game configuration settings, such as the Rayman 2 widescreen patch, the application would crash
+• Bug fixes
+
+
+-----   Version 4.3.1 - May 15, 2019   -----
 • Improved auto focusing on controls when switching pages
 • Fixed a bug where the some utilities would show as applied when they were not
 

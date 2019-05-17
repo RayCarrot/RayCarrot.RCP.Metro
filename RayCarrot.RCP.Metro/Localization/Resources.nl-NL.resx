@@ -429,4 +429,214 @@
   <data name="Config_SaveDataLocationAppData" xml:space="preserve">
     <value>App data</value>
   </data>
+  <data name="About_ProgramInfo" xml:space="preserve">
+    <value>Rayman Control Panel is een Open Source community project, geïnitieerd door RayCarrot. De software is gratis te gebruiken en heeft als doel, gemakkelijk instellingen en fixes te benaderen voor de verschillende Rayman games, uitgebracht voor Windows. Het project kent vooruitgang en zal meer features bieden in de toekomst. De hulpprogramma's en verscheidene configuratietools zijn ontwikkeld met hulp van diverse leden van de Rayman community; credits hieronder.</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="About_UpdateHistory" xml:space="preserve">
+    <value>Updategeschiedenis</value>
+  </data>
+  <data name="About_UpdateCheck" xml:space="preserve">
+    <value>Controleer op nieuwe updates</value>
+  </data>
+  <data name="About_GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="About_Twitter" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="About_YouTube" xml:space="preserve">
+    <value>YouTube</value>
+  </data>
+  <data name="About_Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Backup_LastBackupDate" xml:space="preserve">
+    <value>Laatste back-up</value>
+  </data>
+  <data name="Backup_LastBackupSize" xml:space="preserve">
+    <value>Back-up grootte</value>
+  </data>
+  <data name="Backup_Backup" xml:space="preserve">
+    <value>Back-up</value>
+  </data>
+  <data name="Backup_Restore" xml:space="preserve">
+    <value>Herstel</value>
+  </data>
+  <data name="Games_Installed" xml:space="preserve">
+    <value>Geïnstalleerd</value>
+  </data>
+  <data name="Games_NotInstalled" xml:space="preserve">
+    <value>Niet geïnstalleerd</value>
+  </data>
+  <data name="Help_CategoryHelp" xml:space="preserve">
+    <value>Selecteer een hulppagina uit de beschikbare categorieën links</value>
+  </data>
+  <data name="Settings_UserLevel" xml:space="preserve">
+    <value>Gebruikersniveau</value>
+  </data>
+  <data name="Settings_UserLevelInfo" xml:space="preserve">
+    <value>Het gebruikersniveau bepaalt welke opties en informatie beschikbaar is in de applicatie; hoe hoger het gebruikersniveau, hoe meer geavanceerde opties en informatie zichtbaar zal zijn.</value>
+  </data>
+  <data name="Settings_UserLevelNormal" xml:space="preserve">
+    <value>Normaal</value>
+  </data>
+  <data name="Settings_UserLevelNormalInfo" xml:space="preserve">
+    <value>Normaal gebruikersniveau - voor gebruikers die alle standaard features willen zonder verdere, geavanceerde opties en/of technische details.</value>
+  </data>
+  <data name="Settings_UserLevelAdvanced" xml:space="preserve">
+    <value>Geavanceerd</value>
+  </data>
+  <data name="Settings_UserLevelAdvancedInfo" xml:space="preserve">
+    <value>Geavanceerd gebruikersniveau - voor gebruikers die meer geavanceerde features willen naast de standaard features, maar zonder technische details.</value>
+  </data>
+  <data name="Settings_UserLevelTechnical" xml:space="preserve">
+    <value>Technisch</value>
+  </data>
+  <data name="Settings_UserLevelTechnicalInfo" xml:space="preserve">
+    <value>Technisch gebruikersniveau - voor gebruikers die meer geavanceerde features willen naast de standaard features, alsook de technische details.</value>
+  </data>
+  <data name="Settings_UserLevelDebug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_UserLevelDebugInfo" xml:space="preserve">
+    <value>Debug gebruikersniveau - voor softwareontwikkelaars en -testers die geavanceerde debug opties en informatie willen.</value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="Settings_LanguageContribute" xml:space="preserve">
+    <value>Lever een bijdrage door te vertalen</value>
+  </data>
+  <data name="Settings_DesignHeader" xml:space="preserve">
+    <value>Ontwerp</value>
+  </data>
+  <data name="Settings_DesignLight" xml:space="preserve">
+    <value>Licht</value>
+  </data>
+  <data name="Settings_DesignDark" xml:space="preserve">
+    <value>Donker</value>
+  </data>
+  <data name="Settings_DesignAnimations" xml:space="preserve">
+    <value>Schakel animaties in</value>
+  </data>
+  <data name="Settings_DesignSuccessMessages" xml:space="preserve">
+    <value>Laat succesberichten zien</value>
+  </data>
+  <data name="Settings_DesignSuccessMessagesInfo" xml:space="preserve">
+    <value>Laat een bericht zien wanneer een bewerking geslaagd is</value>
+  </data>
+  <data name="Settings_DesignShowAllGames" xml:space="preserve">
+    <value>Laat spellen zien die niet geïnstalleerd zijn</value>
+  </data>
+  <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
+    <value>Laat alle spellen op de Games pagina zien, zelfs als deze niet geïnstalleerd zijn</value>
+  </data>
+  <data name="Settings_DesignShowGameDetails" xml:space="preserve">
+    <value>Laat gedetailleerde spelinformatie zien</value>
+  </data>
+  <data name="Settings_DesignShowGameDetailsInfo" xml:space="preserve">
+    <value>Laat gedetailleerde spelinformatie zien in het dialoogvenster van de spelopties</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
+    <value>Laat de voortgang zien via het taakbalkpictogram</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgressInfo" xml:space="preserve">
+    <value>Laat de downloadvoortgang zien via het taakbalkpictogram</value>
+  </data>
+  <data name="Settings_DosBoxHeader" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="Settings_DosBoxPath" xml:space="preserve">
+    <value>DOSBox bestandspad</value>
+  </data>
+  <data name="Settings_DosBoxPathInfo" xml:space="preserve">
+    <value>Bestandspad DOSBox executable</value>
+  </data>
+  <data name="Settings_OptionalDosBoxConfigPath" xml:space="preserve">
+    <value>Bestandspad configuratie DOSBox (optioneel)</value>
+  </data>
+  <data name="Settings_OptionalDosBoxConfigPathInfo" xml:space="preserve">
+    <value>Bestandspad configuratie DOSBox</value>
+  </data>
+  <data name="Settings_DebugHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_DebugExceptionLevel" xml:space="preserve">
+    <value>Toon exception level</value>
+  </data>
+  <data name="Settings_DebugExceptionLevelInfo" xml:space="preserve">
+    <value>Het exception level voor het weergeven van debug- en traceerinformatie</value>
+  </data>
+  <data name="Settings_BackupLocation" xml:space="preserve">
+    <value>Back-up locatie</value>
+  </data>
+  <data name="Settings_StartupHeader" xml:space="preserve">
+    <value>Opstart</value>
+  </data>
+  <data name="Settings_StartupGameFinder" xml:space="preserve">
+    <value>Zoek naar geïnstalleerde spellen</value>
+  </data>
+  <data name="Settings_StartupUpdateCheck" xml:space="preserve">
+    <value>Controleer op software-updates</value>
+  </data>
+  <data name="Settings_GeneralHeader" xml:space="preserve">
+    <value>Algemeen</value>
+  </data>
+  <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
+    <value>Sluit het programma wanneer een spel gestart wordt</value>
+  </data>
+  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
+    <value>Sluit het dialoogvenster voor configuratie tijdens het opslaan</value>
+  </data>
+  <data name="R1U_TPLSHeader" xml:space="preserve">
+    <value>PlaySation Soundtrack</value>
+  </data>
+  <data name="R1U_TPLSInfo" xml:space="preserve">
+    <value>Standaard biedt de PC-versie van Rayman minder tracks dan de PlaySation versie en biedt eerstgenoemde geen specifieke songs voor elk gedeelte van een level. Door dit hulpprogramma te gebruiken, zal het spel gestart worden mét de PlayStation soundtrack, als toevoeging op de standaard.</value>
+  </data>
+  <data name="R1U_TPLSInfo2" xml:space="preserve">
+    <value>NB Dit hulpprogramma werkt wellicht niet in versie 0.74-2 (of hoger) van DOSBox. In versie 0.74 zal het wel gewoon werken.</value>
+  </data>
+  <data name="R1U_TPLSInstall" xml:space="preserve">
+    <value>Installeren</value>
+  </data>
+  <data name="R1U_TPLSUninstall" xml:space="preserve">
+    <value>Deïnstalleren</value>
+  </data>
+  <data name="R1U_TPLSEnabled" xml:space="preserve">
+    <value>Ingeschakeld</value>
+  </data>
+  <data name="R1U_TPLSDisabled" xml:space="preserve">
+    <value>Uitgeschakeld</value>
+  </data>
+  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
+    <value>Rayman versie</value>
+  </data>
+  <data name="R1U_TPLSDosBoxVersion" xml:space="preserve">
+    <value>DOSBox versie</value>
+  </data>
+  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
+    <value>Volledige Soundtrack</value>
+  </data>
+  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
+    <value>Rayman Forever - inclusief de GOG versie - biedt níét de volledige soundtrack vanwege een, van oorsprong, gebrek aan schijfruimte. Dit hulpprogramma zorgt ervoor dat de bestaande, incomplete soundtrack wordt vervangen door de complete, of het maakt het vervangen ongedaan.</value>
+  </data>
+  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
+    <value>Vervang de onvolledige met de volledige soundtrack</value>
+  </data>
+  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
+    <value>Keer terug naar de onvolledige soundtrack</value>
+  </data>
+  <data name="R2U_TranslationsHeader" xml:space="preserve">
+    <value>Niet-officiële Vertalingen</value>
+  </data>
+  <data name="R2U_TranslationsInfo" xml:space="preserve">
+    <value>Het toepassen van niet-officiële vertalingen zorgt ervoor dat één van de in-game vertalingen vervangen wordt door de geselecteerde; in de meeste gevallen Engels. De wijzigingen kunnen op elk gewenst moment ongedaan worden gemaakt door de originele versie toe te passen.</value>
+  </data>
+  <data name="R2U_Apply" xml:space="preserve">
+    <value>Toepassen</value>
+  </data>
 </root>

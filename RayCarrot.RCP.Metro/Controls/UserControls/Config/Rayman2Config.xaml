@@ -78,7 +78,7 @@
                                  IsChecked="{Binding Path=IsHorizontalWidescreen}" />
 
                     <RadioButton Content="{Resx Config_VerticalHorizontal}"
-                                 ToolTip="{Resx Config_VerticalHorizontalInfo}"
+                                 ToolTip="{Resx Config_WidescreenVerticalInfo}"
                                  IsChecked="{Binding Path=IsHorizontalWidescreen, Converter={rwpf:InvertedBooleanConverter}}" />
 
                 </WrapPanel>

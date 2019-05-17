@@ -23,11 +23,6 @@ namespace RayCarrot.RCP.Metro
             Refresh();
 
             RCF.Data.CultureChanged += (s, e) => Refresh();
-            RCF.Data.UserLevelChanged += (s, e) =>
-            {
-                if (CurrentHelpItem?.RequiredUserLevel > Data.UserLevel)
-                    CurrentHelpItem = null;
-            };
             
             OpenDiscordCommand = new RelayCommand(OpenDiscord);
         }
@@ -301,11 +296,6 @@ namespace RayCarrot.RCP.Metro
         /// The help items
         /// </summary>
         public ObservableCollection<HelpItemViewModel> HelpItems { get; set; }
-
-        /// <summary>
-        /// The current help item
-        /// </summary>
-        public HelpItemViewModel CurrentHelpItem { get; set; }
 
         #endregion
 

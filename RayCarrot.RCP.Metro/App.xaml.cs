@@ -467,8 +467,9 @@ namespace RayCarrot.RCP.Metro
                                     Title = x.GetDisplayName(),
                                     Description = String.Format(Metro.Resources.JumpListItemDescription, x.GetDisplayName()),
                                     ApplicationPath = launchInfo.Path,
+                                    WorkingDirectory = info.GameType == GameType.Win32 || info.GameType == GameType.DosBox ? launchInfo.Path.Parent : FileSystemPath.EmptyPath,
                                     Arguments = launchInfo.Args,
-                                    IconResourcePath = info.GameType == GameType.DosBox || info.GameType == GameType.Steam ? info.InstallDirectory + x.GetLaunchName() : launchInfo.Path
+                                    IconResourcePath = info.GameType == GameType.DosBox || info.GameType == GameType.Steam ? info.InstallDirectory + x.GetLaunchName() : launchInfo.Path,
                                 };
                             }), false, false).
                         // Apply the new jump list

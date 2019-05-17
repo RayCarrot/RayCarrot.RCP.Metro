@@ -917,6 +917,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when saving. Not all changes have been saved..
+        /// </summary>
+        public static string Config_SaveWarning {
+            get {
+                return ResourceManager.GetString("Config_SaveWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Static Shadows.
         /// </summary>
         public static string Config_StaticShadows {

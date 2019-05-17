@@ -769,6 +769,7 @@
     <Content Include="Files\Rayman2\GXSetup_GOG.exe" />
     <Content Include="Files\Rayman2\Rayman2_GOG.exe" />
     <Content Include="Files\Rayman3\dinput8_controller.dll" />
+    <Resource Include="Files\UpcomingFeatures.txt" />
     <Resource Include="Files\RaymanOrigins\RO_Levels.txt" />
     <Resource Include="Img\GameLogos\RaymanArena_Logo.png" />
     <Resource Include="Img\GameLogos\RaymanM_Logo.png" />
