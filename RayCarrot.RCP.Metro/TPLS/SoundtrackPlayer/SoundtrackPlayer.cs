@@ -10,7 +10,7 @@ namespace RayCarrot.RCP.Metro
     {
         #region Constructor
 
-        protected SoundtrackPlayer(TPLSDataModel data)
+        protected SoundtrackPlayer(TPLSDataViewModel data)
         {
             Data = data;
             Player = new Player();
@@ -26,7 +26,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Protected Properties
 
-        protected TPLSDataModel Data { get; }
+        protected TPLSDataViewModel Data { get; }
 
         #endregion
 

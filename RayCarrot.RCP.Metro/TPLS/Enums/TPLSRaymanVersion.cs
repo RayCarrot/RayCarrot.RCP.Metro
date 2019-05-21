@@ -23,6 +23,11 @@
         /// <summary>
         /// Version 1.21
         /// </summary>
-        Ray_1_21
+        Ray_1_21,
+
+        /// <summary>
+        /// Version 1.00
+        /// </summary>
+        Ray_1_00
     }
 }

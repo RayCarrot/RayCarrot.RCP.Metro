@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro
 {
     public class PositionedBGM : SoundtrackPlayer
     {
-        public PositionedBGM(TPLSDataModel data) : base(data)
+        public PositionedBGM(TPLSDataViewModel data) : base(data)
         {
         }
 

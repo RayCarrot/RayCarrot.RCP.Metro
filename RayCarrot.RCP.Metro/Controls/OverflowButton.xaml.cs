@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using MahApps.Metro.IconPacks;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -23,7 +25,15 @@ namespace RayCarrot.RCP.Metro
 
             // Add a preview mouse down outside captured element handler
             Mouse.AddPreviewMouseDownOutsideCapturedElementHandler(this, OutsideCapturedElementHandler);
+
+            Loaded += (s, e) => ParentScrollViewer = this.FindParent<ScrollViewer>();
         }
+
+        #endregion
+
+        #region Private Properties
+
+        private ScrollViewer ParentScrollViewer { get; set; }
 
         #endregion
 
@@ -82,6 +92,14 @@ namespace RayCarrot.RCP.Metro
             Mouse.AddLostMouseCaptureHandler(PopupControl, LostMouseCaptureHandler);
 
             Application.Current.MainWindow.Deactivated += MainWindow_Deactivated;
+
+            if (ParentScrollViewer != null)
+                ParentScrollViewer.ScrollChanged += Sv_ScrollChanged;
+        }
+
+        private void Sv_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            PopupControl.IsOpen = false;
         }
 
         private void MainWindow_Deactivated(object sender, EventArgs e)
@@ -98,6 +116,9 @@ namespace RayCarrot.RCP.Metro
                 PopupControl.Focus();
 
             Application.Current.MainWindow.Deactivated -= MainWindow_Deactivated;
+
+            if (ParentScrollViewer != null)
+                ParentScrollViewer.ScrollChanged -= Sv_ScrollChanged;
         }
 
         private void LostMouseCaptureHandler(object sender, MouseEventArgs e)

@@ -192,4 +192,7 @@
   <data name="MountOption_Drive" xml:space="preserve">
     <value>Controlador</value>
   </data>
+  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
+    <value>1.00</value>
+  </data>
 </root>

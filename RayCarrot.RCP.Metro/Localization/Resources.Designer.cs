@@ -2036,6 +2036,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to dgVoodoo.
+        /// </summary>
+        public static string GameLink_R2dgVoodoo {
+            get {
+                return ResourceManager.GetString("GameLink_R2dgVoodoo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to nGlide config.
         /// </summary>
         public static string GameLink_R2nGlide {
@@ -3644,6 +3653,15 @@ namespace RayCarrot.RCP.Metro {
         public static string R1U_TPLS_DosBoxVersions_SVN_Daum {
             get {
                 return ResourceManager.GetString("R1U_TPLS_DosBoxVersions_SVN_Daum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.00.
+        /// </summary>
+        public static string R1U_TPLS_RayVersions_1_00 {
+            get {
+                return ResourceManager.GetString("R1U_TPLS_RayVersions_1_00", resourceCulture);
             }
         }
         

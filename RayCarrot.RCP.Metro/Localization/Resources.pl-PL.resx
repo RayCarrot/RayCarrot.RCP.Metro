@@ -132,4 +132,7 @@
   <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
     <value>SVN Daum</value>
   </data>
+  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
+    <value>1.00</value>
+  </data>
 </root>

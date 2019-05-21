@@ -480,7 +480,8 @@ namespace RayCarrot.RCP.Metro
                     return new List<GameFileLink>()
                     {
                         new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "GXSetup.exe"),
-                        new GameFileLink(Resources.GameLink_R2nGlide, info.InstallDirectory + "nglide_config.exe")
+                        new GameFileLink(Resources.GameLink_R2nGlide, info.InstallDirectory + "nglide_config.exe"),
+                        new GameFileLink(Resources.GameLink_R2dgVoodoo, info.InstallDirectory + "dgVoodooCpl.exe")
                     };
 
                 case Games.RaymanM:

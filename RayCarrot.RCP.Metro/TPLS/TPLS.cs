@@ -1,6 +1,7 @@
 ﻿using RayCarrot.CarrotFramework;
 using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
@@ -9,11 +10,15 @@ namespace RayCarrot.RCP.Metro
     {
         #region Constructor
 
+        static TPLS()
+        {
+            Data = new TPLSDataViewModel();
+        }
+
         public TPLS()
         {
             RCF.Logger.LogInformationSource("A new instance of TPLS has been started");
 
-            Data = new TPLSDataModel();
             Watchdog = new Watchdog(RCFRCP.Data.TPLSData.RaymanVersion, RCFRCP.Data.TPLSData.DosBoxVersion);
             BGM = new BGM(Data);
             MidiPlayer = new Midi(Data);
@@ -22,15 +27,7 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Private Static Properties
-
-        private static bool IsRunning { get; set; }
-
-        #endregion
-
         #region Private Properties
-
-        private TPLSDataModel Data { get; }
 
         private Watchdog Watchdog { get; }
 
@@ -42,6 +39,18 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Public Static Properties
+
+        public static TPLSDataViewModel Data { get; }
+
+        #endregion
+
+        #region Private Static Properties
+
+        private static CancellationTokenSource CancellationTokenSource { get; set; }
+
+        #endregion
+
         #region Public Methods
 
         /// <summary>
@@ -49,20 +58,22 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void Start(Process dosBoxProcess)
         {
-            if (IsRunning)
+            if (Data.IsRunning)
             {
                 RCF.Logger.LogInformationSource("TPLS: Is already running");
                 return;
             }
 
-            IsRunning = true;
+            Data.IsRunning = true;
+
+            CancellationTokenSource = new CancellationTokenSource();
 
             // Create a new thread
             Task task = new Task(async () =>
             {
                 try
                 {
-                    await Watchdog.StartWatchingRaymanAsync(dosBoxProcess);
+                    await Watchdog.StartWatchingRaymanAsync(dosBoxProcess, CancellationTokenSource.Token);
                 }
                 catch (Exception ex)
                 {
@@ -71,7 +82,7 @@ namespace RayCarrot.RCP.Metro
                 finally
                 {
                     Watchdog?.Dispose();
-                    IsRunning = false;
+                    Data.IsRunning = false;
                 }
             });
 
@@ -80,7 +91,7 @@ namespace RayCarrot.RCP.Metro
             Watchdog.YAxisChanged += YAxisChangedAsync;
             Watchdog.WorldChanged += WorldChanged;
             Watchdog.LevelChanged += LevelChanged;
-            Watchdog.BossEventChanged += BossEvenChanged;
+            Watchdog.BossEventChanged += BossEventChanged;
             Watchdog.MusicOnOffChanged += MusicOnOffChangedAsync;
             Watchdog.OptionsOffChanged += OptionsOffChangedAsync;
             Watchdog.OptionsOnChanged += OptionsOnChanged;
@@ -89,6 +100,18 @@ namespace RayCarrot.RCP.Metro
 
             // Start the thread
             task.Start();
+        }
+
+        #endregion
+
+        #region Public Static Methods
+
+        /// <summary>
+        /// Stops a currently running TPLS service
+        /// </summary>
+        public static void StopCurrent()
+        {
+            CancellationTokenSource?.Cancel();
         }
 
         #endregion
@@ -117,7 +140,7 @@ namespace RayCarrot.RCP.Metro
             Data.Level = e.Value;
         }
 
-        private void BossEvenChanged(object sender, ValueEventArgs<bool> e)
+        private void BossEventChanged(object sender, ValueEventArgs<bool> e)
         {
             Data.BossEvent = e.Value;
             BGM.BossEventChanged();

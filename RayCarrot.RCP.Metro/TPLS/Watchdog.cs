@@ -2,8 +2,10 @@
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
@@ -117,7 +119,8 @@ namespace RayCarrot.RCP.Metro
         /// Starts watching for Rayman and runs TPLS until it closes
         /// </summary>
         /// <param name="dosBoxProcess">The DOSBox process, or null to auto detect</param>
-        public async Task StartWatchingRaymanAsync(Process dosBoxProcess = null)
+        /// <param name="token">The cancellation token</param>
+        public async Task StartWatchingRaymanAsync(Process dosBoxProcess, CancellationToken token)
         {
             RCF.Logger.LogInformationSource("TPLS: TPLS has started searching for Rayman");
 
@@ -139,8 +142,24 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
+                    token.ThrowIfCancellationRequested();
+
                     // Get the process
-                    Process = dosBoxProcess ?? Process.GetProcessesByName("DOSBox")[0];
+                    Process = dosBoxProcess;
+
+                    if (Process == null)
+                    {
+                        var p = Process.GetProcessesByName("DOSBox");
+
+                        if (p.Any())
+                            Process = p.First();
+                    }
+
+                    if (Process == null)
+                    {
+                        await Task.Delay(100);
+                        continue;
+                    }
 
                     // Get the handle using P/Invoke
                     ProcessHandle = OpenProcess(PROCESS_WM_READ, false, Process.Id);
@@ -171,6 +190,8 @@ namespace RayCarrot.RCP.Metro
                     // Attempt to detect Rayman version
                     if (RaymanVersion == TPLSRaymanVersion.Auto)
                     {
+                        // TODO: Look for version 1.00
+
                         ReadProcessMemory((int)ProcessHandle, eAX + 0x16D7BC, baseBuffer, 4, ref bytesRead);
                         if (BitConverter.ToInt32(baseBuffer, 0) == 320)
                             RaymanVersion = TPLSRaymanVersion.Ray_1_12;
@@ -189,6 +210,15 @@ namespace RayCarrot.RCP.Metro
                             }
                         }
                     }
+                }
+                catch(OperationCanceledException ex)
+                {
+                    ex.HandleExpected("Finding DOSBox process and Rayman game");
+
+                    // Stop the stop watch
+                    sw.Stop();
+
+                    return;
                 }
                 catch (Exception ex)
                 {
@@ -209,7 +239,7 @@ namespace RayCarrot.RCP.Metro
 
             // Begin refreshing for the game
             // We add the world base offset as it is always loaded in first
-            await RefreshAsync(eAX + RaymanVersion.GetWorldBase());
+            await RefreshAsync(eAX + RaymanVersion.GetWorldBase(), token);
         }
 
         #endregion
@@ -220,7 +250,8 @@ namespace RayCarrot.RCP.Metro
         /// Refreshes Rayman values until the game closes
         /// </summary>
         /// <param name="realAddress">The address</param>
-        private async Task RefreshAsync(int realAddress)
+        /// <param name="token">The cancellation token</param>
+        private async Task RefreshAsync(int realAddress, CancellationToken token)
         {
             try
             {
@@ -230,10 +261,13 @@ namespace RayCarrot.RCP.Metro
                 // Update values until DOSBox closes
                 while (!Process.HasExited)
                 {
+                    token.ThrowIfCancellationRequested();
+
                     bytesRead = 0;
 
                     // Read the memory
-                    ReadProcessMemory((int)ProcessHandle, realAddress, buffer, buffer.Length, ref bytesRead);
+                    if (!ReadProcessMemory((int)ProcessHandle, realAddress, buffer, buffer.Length, ref bytesRead))
+                        throw new Win32Exception();
 
                     // Get the values
                     string world = Encoding.ASCII.GetString(buffer, 0x00000, 8).Split('.')[0];
@@ -299,8 +333,7 @@ namespace RayCarrot.RCP.Metro
                     if (OptionsOff != optionsOff)
                     {
                         OptionsOff = optionsOff;
-                        OptionsOffChanged?.Invoke(this,
-                            OptionsOff == 1 ? new ValueEventArgs<bool>(true) : new ValueEventArgs<bool>(false));
+                        OptionsOffChanged?.Invoke(this, new ValueEventArgs<bool>(OptionsOff == 1));
 
                         RCF.Logger.LogInformationSource($"TPLS: OptionsOff has changed to {OptionsOff}");
                     }
@@ -317,8 +350,7 @@ namespace RayCarrot.RCP.Metro
                     if (RaymanInLevel != raymanInLevel)
                     {
                         RaymanInLevel = raymanInLevel;
-                        RaymanInLevelChanged?.Invoke(this,
-                            RaymanInLevel == 1 ? new ValueEventArgs<bool>(true) : new ValueEventArgs<bool>(false));
+                        RaymanInLevelChanged?.Invoke(this, new ValueEventArgs<bool>(RaymanInLevel == 1));
 
                         RCF.Logger.LogInformationSource($"TPLS: RaymanInLevel has changed to {RaymanInLevel}");
                     }
@@ -326,8 +358,7 @@ namespace RayCarrot.RCP.Metro
                     if (BossEvent != bossEvent)
                     {
                         BossEvent = bossEvent;
-                        BossEventChanged?.Invoke(this,
-                            BossEvent == 1 ? new ValueEventArgs<bool>(true) : new ValueEventArgs<bool>(false));
+                        BossEventChanged?.Invoke(this, new ValueEventArgs<bool>(BossEvent == 1));
 
                         RCF.Logger.LogInformationSource($"TPLS: BossEvent has changed to {BossEvent}");
                     }
@@ -343,6 +374,10 @@ namespace RayCarrot.RCP.Metro
 
                 RCF.Logger.LogInformationSource("TPLS: TPLS has stopped due to the DOSBox process having exited");
             }
+            catch (OperationCanceledException ex)
+            {
+                ex.HandleExpected("TPLS");
+            }
             catch (Exception ex)
             {
                 ex.HandleError("TPLS");
@@ -350,7 +385,7 @@ namespace RayCarrot.RCP.Metro
                 if (!await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.TPLS_Error, ex.Message), Resources.TPLS_ErrorHeader, MessageType.Error, true))
                     return;
 
-                await StartWatchingRaymanAsync();
+                await StartWatchingRaymanAsync(Process, token);
             }
         }
 

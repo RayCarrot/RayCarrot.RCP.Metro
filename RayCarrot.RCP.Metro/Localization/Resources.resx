@@ -2046,4 +2046,10 @@ totalGames</comment>
   <data name="Config_SaveWarning" xml:space="preserve">
     <value>An error occurred when saving. Not all changes have been saved.</value>
   </data>
+  <data name="GameLink_R2dgVoodoo" xml:space="preserve">
+    <value>dgVoodoo</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
+    <value>1.00</value>
+  </data>
 </root>

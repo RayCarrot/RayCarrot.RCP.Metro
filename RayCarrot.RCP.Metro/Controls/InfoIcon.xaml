@@ -11,14 +11,11 @@
              VerticalAlignment="Center">
 
     <iconPacks:PackIconMaterial x:Name="HelpIconRoot"
+                                ToolTip="{Binding Path=Text}"
                                 d:DataContext="{d:DesignInstance metro:InfoIcon}"
                                 Kind="{Binding Path=IconKind}"
                                 VerticalAlignment="Center"
                                 Background="Transparent" 
-                                ToolTipService.ShowDuration="{x:Static Member=System:Int32.MaxValue}">
-        <iconPacks:PackIconMaterial.ToolTip>
-            <TextBlock Text="{Binding Path=Text}" MaxWidth="400" TextWrapping="WrapWithOverflow" />
-        </iconPacks:PackIconMaterial.ToolTip>
-    </iconPacks:PackIconMaterial>
+                                ToolTipService.ShowDuration="{x:Static Member=System:Int32.MaxValue}" />
 
 </UserControl>

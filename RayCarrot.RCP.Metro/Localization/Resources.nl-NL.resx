@@ -639,4 +639,97 @@
   <data name="R2U_Apply" xml:space="preserve">
     <value>Toepassen</value>
   </data>
+  <data name="R3U_DirectPlayHeader" xml:space="preserve">
+    <value>DirectPlay</value>
+  </data>
+  <data name="R3U_DirectPlayInfo" xml:space="preserve">
+    <value>DirectPlay moet ingeschakeld zijn om Rayman 3 te kunnen spelen. DirectPlay is in Windows 10 in de meeste gevallen standaard uitgeschakeld.</value>
+  </data>
+  <data name="R3U_DirectPlayEnabled" xml:space="preserve">
+    <value>Ingeschakeld</value>
+  </data>
+  <data name="R3U_DirectPlayDisabled" xml:space="preserve">
+    <value>Uitgeschakeld</value>
+  </data>
+  <data name="R3U_DirectPlayErrorInfo" xml:space="preserve">
+    <value>Start het programma als administrator om de DirectPlay status in te kunnen stellen</value>
+  </data>
+  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
+    <value>Vervang Geïnfecteerde Bestanden</value>
+  </data>
+  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
+    <value>Sommige versies van Rayman Designer, inclusief Rayman Forever, hebben RayKit bestanden die geïnfecteerd zijn met malware. Ook al lijkt de malware onschuldig, laat staan actief - en GOG heeft bevestigd dat de malware geen gevaar oplevert - je kunt nog steeds zonder risico de geïnfecteerde bestanden vervangen door de 'schone', via dit hulpprogramma.</value>
+  </data>
+  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
+    <value>Vervangen</value>
+  </data>
+  <data name="RDU_CreateConfigHeader" xml:space="preserve">
+    <value>Aanmaken Missend Configuratiebestand</value>
+  </data>
+  <data name="RDU_CreateConfigInfo" xml:space="preserve">
+    <value>Tijdens sommmige installaties van Rayman Designer wordt het configuratiebestand niet aangemaakt, waardoor de Mapper een foutmelding vertoont tijdens het opstarten. Dit hulpprogramma lost dit issue op door alsnog het configuratiebestand aan te maken.</value>
+  </data>
+  <data name="RDU_CreateConfigCreate" xml:space="preserve">
+    <value>Aanmaken</value>
+  </data>
+  <data name="RLU_UbiRayHeader" xml:space="preserve">
+    <value>UbiRay Karakter</value>
+  </data>
+  <data name="RLU_UbiRayInfo" xml:space="preserve">
+    <value>UbiRay is een karakter dat niet in-game gekozen kan worden, maar wel via de gamebestanden. Dit hulpprogramma zal je save file wijzigen, zodat UbiRay het geselecteerde karakter wordt, waarna je via een omweg dus wel als hem kunt spelen.</value>
+  </data>
+  <data name="RLU_UbiRayWarning" xml:space="preserve">
+    <value>WAARSCHUWING: dit hulpprogramma is experimenteel en zou je save file corrupt kunnen maken. Maak daarom altijd eerst een back-up alvorens hier gebruik van te maken!</value>
+  </data>
+  <data name="RLU_Apply" xml:space="preserve">
+    <value>Toepassen</value>
+  </data>
+  <data name="ROU_HQVideosHeader" xml:space="preserve">
+    <value>Hogere Kwaliteit Video's</value>
+  </data>
+  <data name="ROU_HQVideosInfo" xml:space="preserve">
+    <value>The cutscenes in de PC versie zijn gecomprimeerd en in lagere kwaliteit beschikbaar dan in de console versies. Dit hulpprogramma vervangt die video's door de video's van de console versies.</value>
+  </data>
+  <data name="ROU_HQVideosReplace" xml:space="preserve">
+    <value>Vervang door de HQ video's</value>
+  </data>
+  <data name="ROU_HQVideosRevert" xml:space="preserve">
+    <value>Keer terug naar de originele video's</value>
+  </data>
+  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
+    <value>Debug Commando's</value>
+  </data>
+  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
+    <value>Door gebruik te maken van één van onderstaande debug commando's, zal de game starten in de debug omgeving, waarbij de commando's bepalen hoe het spel gestart wordt.</value>
+  </data>
+  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
+    <value>WAARSCHUWING: door gebruik te maken van deze debug commando's, kan de save file corrupt raken. Maak daarom altijd eerst een back-up alvorens ze te gebruiken!</value>
+  </data>
+  <data name="ROU_DebugCommandsEnabled" xml:space="preserve">
+    <value>Ingeschakeld</value>
+  </data>
+  <data name="ROU_DebugCommandsDisabled" xml:space="preserve">
+    <value>Uitgeschakeld</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
+    <value>Onoverwinnelijkheid</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
+    <value>Dit zorgt ervoor dat de speler onsterfelijk wordt</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
+    <value>Verberg cursor</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
+    <value>Dit zorgt ervoor dat de cursos onzichtbaar wordt in de spelmenu's</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
+    <value>Max. zoombereik</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
+    <value>1.00</value>
+  </data>
 </root>

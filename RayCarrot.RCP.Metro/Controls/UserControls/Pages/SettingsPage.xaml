@@ -9,6 +9,7 @@
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+                    IsTabStop="False"
                     mc:Ignorable="d"    
                     d:DesignWidth="800"
                     d:DataContext="{d:DesignInstance local:SettingsPageViewModel}">

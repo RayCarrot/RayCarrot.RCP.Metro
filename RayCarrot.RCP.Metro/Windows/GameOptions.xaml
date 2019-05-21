@@ -86,25 +86,22 @@
 
                         <!-- Technical Information -->
 
-                        <ItemsControl
-                            Visibility="{Binding Path=Data.ShowDetailedGameInfo, Converter={rwpf:BooleanToVisibilityConverter}}"
-                            Grid.IsSharedSizeScope="True">
+                        <ItemsControl Visibility="{Binding Path=Data.ShowDetailedGameInfo, Converter={rwpf:BooleanToVisibilityConverter}}"
+                                      Grid.IsSharedSizeScope="True">
 
                             <!-- GameType Desktop -->
 
-                            <local:DuoGridItem
-                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Win32}"
-                                Header="{Resx GameInfo_GameType}"
-                                Text="{Resx GameType_Desktop}"
-                                MinUserLevel="Advanced" />
+                            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Win32}"
+                                               Header="{Resx GameInfo_GameType}"
+                                               Text="{Resx GameType_Desktop}"
+                                               MinUserLevel="Advanced" />
 
                             <!-- GameType Steam -->
 
-                            <local:DuoGridItem
-                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Steam}"
-                                Header="{Resx GameInfo_GameType}"
-                                Text="{Resx GameType_Steam}"
-                                MinUserLevel="Advanced" />
+                            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Steam}"
+                                               Header="{Resx GameInfo_GameType}"
+                                               Text="{Resx GameType_Steam}"
+                                               MinUserLevel="Advanced" />
 
                             <!-- GameType WinStore -->
 

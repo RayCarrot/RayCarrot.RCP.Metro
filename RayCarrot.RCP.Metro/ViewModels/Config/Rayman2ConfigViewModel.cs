@@ -581,7 +581,7 @@ namespace RayCarrot.RCP.Metro
             var path2 = CommonPaths.UbiIniPath1;
 
             if (path2.FileExists)
-                return path1;
+                return path2;
 
             return FileSystemPath.EmptyPath;
         }

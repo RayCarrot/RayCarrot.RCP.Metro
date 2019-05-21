@@ -471,7 +471,7 @@
     <Compile Include="TPLS\TPLS.cs" />
     <Compile Include="DataModels\Enums\DownloadState.cs" />
     <Compile Include="Extensions\TPLSRaymanVersionExtensions.cs" />
-    <Compile Include="DataModels\TPLSDataModel.cs" />
+    <Compile Include="DataModels\TPLSDataViewModel.cs" />
     <Compile Include="TPLS\Watchdog.cs" />
     <Compile Include="DataModels\ValueEventArgs.cs" />
     <Compile Include="Legacy\Extensions\LegacyTPLSDOSBoxVersionExtensions.cs" />

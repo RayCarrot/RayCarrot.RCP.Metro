@@ -237,4 +237,7 @@
   <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
     <value>Резолуција целог екрана</value>
   </data>
+  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
+    <value>1.00</value>
+  </data>
 </root>

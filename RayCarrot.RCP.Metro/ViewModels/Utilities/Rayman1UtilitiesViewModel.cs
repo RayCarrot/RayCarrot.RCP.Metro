@@ -21,6 +21,8 @@ namespace RayCarrot.RCP.Metro
         {
             // Create the commands
             InstallTPLSCommand = new AsyncRelayCommand(InstallTPLSAsync);
+            StartTPLSCommand = new RelayCommand(StartTPLS);
+            StopTPLSCommand = new RelayCommand(StopTPLS);
             UninstallTPLSCommand = new AsyncRelayCommand(UninstallTPLSAsync);
             ReplaceSoundtrackCommand = new AsyncRelayCommand(ReplaceSoundtrackAsync);
 
@@ -73,6 +75,10 @@ namespace RayCarrot.RCP.Metro
 
         public ICommand InstallTPLSCommand { get; }
 
+        public ICommand StartTPLSCommand { get; }
+
+        public ICommand StopTPLSCommand { get; }
+
         public ICommand UninstallTPLSCommand { get; }
 
         public ICommand ReplaceSoundtrackCommand { get; }
@@ -120,6 +126,22 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Installing TPLS");
                 await RCF.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSInstallationFailed, Resources.R1U_TPLSInstallationFailedHeader, MessageType.Error);
             }
+        }
+
+        /// <summary>
+        /// Starts the TPLS service
+        /// </summary>
+        public void StartTPLS()
+        {
+            new TPLS().Start(null);
+        }
+
+        /// <summary>
+        /// Stops a running TPLS service
+        /// </summary>
+        public void StopTPLS()
+        {
+            TPLS.StopCurrent();
         }
 
         /// <summary>

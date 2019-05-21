@@ -16,8 +16,4 @@
 
 - Rework the updater in WPF with the Metro theme - transfer dark/light mode setting
 
-Bugs:
-
 - Rework ubi.ini permission system to avoid relying on CMD commands due to not being able to verify if the command succeeded
-
-- Rayman 2 installer stops at very end with unhandled files error

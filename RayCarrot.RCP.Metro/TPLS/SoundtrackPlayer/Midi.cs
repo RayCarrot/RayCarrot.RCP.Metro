@@ -4,7 +4,7 @@ namespace RayCarrot.RCP.Metro
 {
     public class Midi : SoundtrackPlayer
     {
-        public Midi(TPLSDataModel data) : base(data)
+        public Midi(TPLSDataViewModel data) : base(data)
         {
         }
 

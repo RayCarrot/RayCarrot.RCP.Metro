@@ -1,4 +1,18 @@
-﻿-----   Version 4.3.2 - May 17, 2019   -----
+﻿-----   Version 4.4.0 - May ??, 2019   -----
+• Added support for version 1.00 in the PlayStation soundtrack utility for Rayman 1
+• Added a shortcut to the dgVoodoo control panel file for Rayman 2 if the unofficial patch is used
+
+• Added real time data viewing for the PlayStation soundtrack Utility for Rayman 1 when the user level is set to debug
+• Added the debug option to start the PlayStation soundtrack utility for Rayman 1 independently of a game
+• Set a max width for the tool tips
+• Improved tab navigation through custom controls
+• Fixed an issue where the game drop down list would stay in the same position after scrolling
+• Fixed a bug where the Rayman 2 configuration would fail to find the ubi.ini file if located in the Windows directory
+• Fixed a bug where browsing for a drive to mount would not work in the DOSBox configuration
+• Bug fixes
+
+
+-----   Version 4.3.2 - May 17, 2019   -----
 • Added list of upcoming features to the debug page
 • Fixed a bug where selecting a help item would collapse above nodes
 • Fixed a bug where the jump list shortcuts for desktop and DOSBox games would not launch in the correct directory

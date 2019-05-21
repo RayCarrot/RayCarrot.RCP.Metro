@@ -9,6 +9,7 @@
                     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+                    IsTabStop="False"
                     mc:Ignorable="d"
                     d:DesignWidth="800"
                     d:DataContext="{d:DesignInstance local:BackupPageViewModel}"
