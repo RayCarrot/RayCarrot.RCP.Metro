@@ -19,11 +19,13 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="raymanVersion">The Rayman version to watch for</param>
         /// <param name="dosBoxVersion">The DOSBox version to watch for</param>
-        public Watchdog(TPLSRaymanVersion raymanVersion, TPLSDOSBoxVersion dosBoxVersion)
+        /// <param name="players">The players</param>
+        public Watchdog(TPLSRaymanVersion raymanVersion, TPLSDOSBoxVersion dosBoxVersion, params SoundtrackPlayer[] players)
         {
             // Set properties
             RaymanVersion = raymanVersion;
             DOSBoxVersion = dosBoxVersion;
+            Players = players;
         }
 
         #endregion
@@ -34,8 +36,7 @@ namespace RayCarrot.RCP.Metro
         private static extern IntPtr OpenProcess(int dwDesiredAccess, bool bInheritHandle, int dwProcessId);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        private static extern bool ReadProcessMemory(int hProcess,
-          int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
+        private static extern bool ReadProcessMemory(int hProcess, int lpBaseAddress, byte[] lpBuffer, int dwSize, ref int lpNumberOfBytesRead);
 
         #endregion
 
@@ -61,6 +62,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         private IntPtr ProcessHandle { get; set; }
 
+        /// <summary>
+        /// The players
+        /// </summary>
+        private SoundtrackPlayer[] Players { get; }
+
         #endregion
 
         #region Private Fields
@@ -76,7 +82,6 @@ namespace RayCarrot.RCP.Metro
         private short XAxis;
         private short YAxis;
         private float Volume = 100;
-
         private int bytesRead;
 
         #endregion
@@ -113,6 +118,7 @@ namespace RayCarrot.RCP.Metro
         public void Dispose()
         {
             Process?.Dispose();
+            Players.ForEach(x => x.Stop());
         }
 
         /// <summary>
@@ -142,45 +148,49 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
+                    // Check if the service has been canceled
                     token.ThrowIfCancellationRequested();
 
                     // Get the process
                     Process = dosBoxProcess;
 
+                    // If the process if null, attempt to get it by name
                     if (Process == null)
                     {
                         var p = Process.GetProcessesByName("DOSBox");
 
+                        // If any processes were found, save the first one
                         if (p.Any())
                             Process = p.First();
                     }
 
+                    // If the process is still null, check again after a delay
                     if (Process == null)
                     {
-                        await Task.Delay(100);
+                        await Task.Delay(50, token);
                         continue;
                     }
 
-                    // Get the handle using P/Invoke
+                    // Get the process handle using P/Invoke
                     ProcessHandle = OpenProcess(PROCESS_WM_READ, false, Process.Id);
 
-                    // Read memory to verify it is DOSBox
+                    // TODO: Allow DOSBox ECE
                     if (!ReadProcessMemory((int)ProcessHandle, 
                         DOSBoxVersion == TPLSDOSBoxVersion.DOSBox_0_74 ? 0x74B6B0 :
                         DOSBoxVersion == TPLSDOSBoxVersion.DOSBox_SVN_Daum ? 0x8B5B84 : throw new IndexOutOfRangeException()
                         , baseBuffer, 4, ref bytesRead))
                         throw new Win32Exception();
 
+                    // Convert the buffer to an integer
                     eAX = BitConverter.ToInt32(baseBuffer, 0);
 
                     // Verify memory
                     if (eAX == 0)
                     {
-                        await Task.Delay(50);
+                        await Task.Delay(50, token);
                         continue;
                     }
 
-                    // If the operation fails, throw the last Win32 exception
                     if (!ReadProcessMemory((int)ProcessHandle, eAX, baseBuffer, 4, ref bytesRead))
                         throw new Win32Exception();
 
@@ -192,17 +202,23 @@ namespace RayCarrot.RCP.Metro
                     {
                         // TODO: Look for version 1.00
 
-                        ReadProcessMemory((int)ProcessHandle, eAX + 0x16D7BC, baseBuffer, 4, ref bytesRead);
+                        if (!ReadProcessMemory((int)ProcessHandle, eAX + 0x16D7BC, baseBuffer, 4, ref bytesRead))
+                            throw new Win32Exception();
+
                         if (BitConverter.ToInt32(baseBuffer, 0) == 320)
-                            RaymanVersion = TPLSRaymanVersion.Ray_1_12;
+                            RaymanVersion = TPLSRaymanVersion.Ray_1_12_0;
                         else
                         {
-                            ReadProcessMemory((int)ProcessHandle, eAX + 0x16E87C, baseBuffer, 4, ref bytesRead);
+                            if (!ReadProcessMemory((int)ProcessHandle, eAX + 0x16E87C, baseBuffer, 4, ref bytesRead))
+                                throw new Win32Exception();
+
                             if (BitConverter.ToInt32(baseBuffer, 0) == 320)
                                 RaymanVersion = TPLSRaymanVersion.Ray_1_20;
                             else
                             {
-                                ReadProcessMemory((int)ProcessHandle, eAX + 0x16E7EC, baseBuffer, 4, ref bytesRead);
+                                if (!ReadProcessMemory((int)ProcessHandle, eAX + 0x16E7EC, baseBuffer, 4, ref bytesRead))
+                                    throw new Win32Exception();
+
                                 if (BitConverter.ToInt32(baseBuffer, 0) == 320)
                                     RaymanVersion = TPLSRaymanVersion.Ray_1_21;
                                 else
@@ -228,7 +244,7 @@ namespace RayCarrot.RCP.Metro
                     eAX = 0;
 
                     // Wait 200 milliseconds before trying again
-                    await Task.Delay(200);
+                    await Task.Delay(200, token);
                 }
             }
 
@@ -238,7 +254,7 @@ namespace RayCarrot.RCP.Metro
             RCF.Logger.LogInformationSource($"TPLS: Rayman version {RaymanVersion} detected at {eAX:X} using DOSBox version {DOSBoxVersion}");
 
             // Begin refreshing for the game
-            // We add the world base offset as it is always loaded in first
+            // Add the world base offset as it is always loaded in first
             await RefreshAsync(eAX + RaymanVersion.GetWorldBase(), token);
         }
 
@@ -266,12 +282,11 @@ namespace RayCarrot.RCP.Metro
                     bytesRead = 0;
 
                     // Read the memory
-                    if (!ReadProcessMemory((int)ProcessHandle, realAddress, buffer, buffer.Length, ref bytesRead))
-                        throw new Win32Exception();
+                    ReadProcessMemory((int)ProcessHandle, realAddress, buffer, buffer.Length, ref bytesRead);
 
                     // Get the values
-                    string world = Encoding.ASCII.GetString(buffer, 0x00000, 8).Split('.')[0];
-                    string level = Encoding.ASCII.GetString(buffer, RaymanVersion.GetLevel(), 8).Split('.')[0];
+                    string world = Encoding.ASCII.GetString(buffer, 0, 8).Split('.').First();
+                    string level = Encoding.ASCII.GetString(buffer, RaymanVersion.GetLevel(), 8).Split('.').First();
 
                     byte raymanInLevel = buffer[RaymanVersion.GetInLevel()];
                     byte musicOnOff = buffer[RaymanVersion.GetMusicOnOff()];
@@ -341,8 +356,7 @@ namespace RayCarrot.RCP.Metro
                     if (MusicOnOff != musicOnOff)
                     {
                         MusicOnOff = musicOnOff;
-                        MusicOnOffChanged?.Invoke(this,
-                            MusicOnOff == 0 ? new ValueEventArgs<bool>(false) : new ValueEventArgs<bool>(true));
+                        MusicOnOffChanged?.Invoke(this, MusicOnOff == 0 ? new ValueEventArgs<bool>(false) : new ValueEventArgs<bool>(true));
 
                         RCF.Logger.LogInformationSource($"TPLS: MusicOnOff has changed to {MusicOnOff}");
                     }
@@ -369,7 +383,7 @@ namespace RayCarrot.RCP.Metro
                         VolumeChanged?.Invoke(this, new ValueEventArgs<float>(Volume / 100f));
                     }
 
-                    await Task.Delay(10);
+                    await Task.Delay(10, token);
                 }
 
                 RCF.Logger.LogInformationSource("TPLS: TPLS has stopped due to the DOSBox process having exited");
@@ -382,7 +396,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("TPLS");
 
-                if (!await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.TPLS_Error, ex.Message), Resources.TPLS_ErrorHeader, MessageType.Error, true))
+                if (Process.HasExited || !await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.TPLS_Error, ex.Message), Resources.TPLS_ErrorHeader, MessageType.Error, true))
                     return;
 
                 await StartWatchingRaymanAsync(Process, token);

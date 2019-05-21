@@ -79,7 +79,7 @@ namespace RayCarrot.RCP.Metro
                 Fade(1, 1000);
         }
 
-        private void Stop()
+        public void Stop()
         {
             if (Player.PlaybackState == PlaybackState.Playing || Player.PlaybackState == PlaybackState.Paused)
                 Player.Stop();

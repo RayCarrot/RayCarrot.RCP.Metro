@@ -18,7 +18,7 @@
                     return TPLSRaymanVersion.Auto;
 
                 case LegacyTPLSRaymanVersion.Ray_1_12:
-                    return TPLSRaymanVersion.Ray_1_12;
+                    return TPLSRaymanVersion.Ray_1_12_0;
 
                 case LegacyTPLSRaymanVersion.Ray_1_20:
                     return TPLSRaymanVersion.Ray_1_20;

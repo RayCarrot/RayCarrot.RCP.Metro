@@ -461,7 +461,7 @@ namespace RayCarrot.RCP.Metro
                         return RayGameInstallerResult.Canceled;
 
                     // Copy each file and directory from the current drive
-                    foreach (var item in InstallData.RelativeInputs.Where(x => x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == new FileSystemPath(drive.Root)))
+                    foreach (var item in InstallData.RelativeInputs.Where(x => x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == drive.Root))
                         await HandleItemAsync(wc, item);
                 }
 
@@ -481,7 +481,7 @@ namespace RayCarrot.RCP.Metro
                     foreach (RayGameDriveInfo drive in Drives)
                     {
                         // Get the item for this drive
-                        var items = InstallData.RelativeInputs.Where(x => x.ProcessStage != RayGameInstallItemStage.Complete && x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == new FileSystemPath(drive.Root)).ToList();
+                        var items = InstallData.RelativeInputs.Where(x => x.ProcessStage != RayGameInstallItemStage.Complete && x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == drive.Root).ToList();
 
                         // Skip if there are no items
                         if (!items.Any())
@@ -539,7 +539,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     if (error && RCF.Data.CurrentUserLevel >= UserLevel.Advanced)
-                        await RCF.MessageUI.DisplayMessageAsync(string.Format(Resources.Installer_CleanupError, InstallData.OutputDir), MessageType.Error);
+                        await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_CleanupError, InstallData.OutputDir), MessageType.Error);
 
                     try
                     {

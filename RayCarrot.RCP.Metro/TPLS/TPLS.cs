@@ -19,10 +19,10 @@ namespace RayCarrot.RCP.Metro
         {
             RCF.Logger.LogInformationSource("A new instance of TPLS has been started");
 
-            Watchdog = new Watchdog(RCFRCP.Data.TPLSData.RaymanVersion, RCFRCP.Data.TPLSData.DosBoxVersion);
             BGM = new BGM(Data);
             MidiPlayer = new Midi(Data);
             PosBGM = new PositionedBGM(Data);
+            Watchdog = new Watchdog(RCFRCP.Data.TPLSData.RaymanVersion, RCFRCP.Data.TPLSData.DosBoxVersion, BGM, MidiPlayer, PosBGM);
         }
 
         #endregion

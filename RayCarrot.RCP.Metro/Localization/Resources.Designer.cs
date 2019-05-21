@@ -3666,11 +3666,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1.12.
+        ///   Looks up a localized string similar to 1.12 (Edition 1).
         /// </summary>
         public static string R1U_TPLS_RayVersions_1_12 {
             get {
                 return ResourceManager.GetString("R1U_TPLS_RayVersions_1_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.12 (Edition 2).
+        /// </summary>
+        public static string R1U_TPLS_RayVersions_1_12_1 {
+            get {
+                return ResourceManager.GetString("R1U_TPLS_RayVersions_1_12_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.12 (Edition 3).
+        /// </summary>
+        public static string R1U_TPLS_RayVersions_1_12_2 {
+            get {
+                return ResourceManager.GetString("R1U_TPLS_RayVersions_1_12_2", resourceCulture);
             }
         }
         

@@ -1410,7 +1410,7 @@ gameDisplayName</comment>
     <value>Auto</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
-    <value>1.12</value>
+    <value>1.12 (Edition 1)</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
     <value>1.20</value>
@@ -2051,5 +2051,11 @@ totalGames</comment>
   </data>
   <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
     <value>1.00</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
+    <value>1.12 (Edition 2)</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
+    <value>1.12 (Edition 3)</value>
   </data>
 </root>

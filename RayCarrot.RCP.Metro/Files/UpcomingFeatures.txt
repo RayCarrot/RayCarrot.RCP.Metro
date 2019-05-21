@@ -4,8 +4,6 @@
 
 - Add support for educational games. Treat as a single game, with games in drop-down added by user.
 
-- Add TPLS support for version 1.00 and possibly other editions of currently available versions
-
 - Add links page with links to community mods, projects, forums etc.
 
 - Auto save user data

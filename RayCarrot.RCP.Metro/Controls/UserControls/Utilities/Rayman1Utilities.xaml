@@ -80,12 +80,15 @@
 
                 <ComboBox Grid.Column="1"
                           Grid.Row="0"
-                          SelectedIndex="{Binding Path=Data.TPLSData.RaymanVersion, Converter={rwpf:EnumToIntConverter}}">
+                          SelectedIndex="{Binding Path=Data.TPLSData.RaymanVersion, Converter={local:TPLSRaymanVersionEnumToComboBoxIndexConverter}}">
+
                     <TextBlock Text="{Resx R1U_TPLS_RayVersions_Auto}" />
+                    <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_00}" />
                     <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_12}" />
+                    <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_12_1}" />
+                    <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_12_2}" />
                     <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_20}" />
                     <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_21}" />
-                    <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_00}" />
                 </ComboBox>
 
                 <TextBlock Grid.Column="0"

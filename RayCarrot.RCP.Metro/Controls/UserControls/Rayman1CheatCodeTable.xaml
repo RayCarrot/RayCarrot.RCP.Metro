@@ -7,7 +7,5 @@
              IsTabStop="False"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        
-    </Grid>
+        <!-- TODO: R1 [tab] and unusual cheat codes are from version 1.12 (different editions) -->
 </UserControl>

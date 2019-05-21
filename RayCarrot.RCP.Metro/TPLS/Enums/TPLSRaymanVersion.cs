@@ -11,9 +11,9 @@
         Auto,
 
         /// <summary>
-        /// Version 1.12
+        /// Version 1.12 - 0
         /// </summary>
-        Ray_1_12,
+        Ray_1_12_0,
 
         /// <summary>
         /// Version 1.20
@@ -28,6 +28,16 @@
         /// <summary>
         /// Version 1.00
         /// </summary>
-        Ray_1_00
+        Ray_1_00,
+
+        /// <summary>
+        /// Version 1.12 - 1
+        /// </summary>
+        Ray_1_12_1,
+
+        /// <summary>
+        /// Version 1.12 - 2
+        /// </summary>
+        Ray_1_12_2
     }
 }

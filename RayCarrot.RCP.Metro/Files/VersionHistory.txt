@@ -1,9 +1,7 @@
-﻿-----   Version 4.4.0 - May ??, 2019   -----
-• Added support for version 1.00 in the PlayStation soundtrack utility for Rayman 1
+﻿-----   Version 4.4.0 - May 21, 2019   -----
+• Added support for version 1.00 and two other version of version 1.12 in the PlayStation soundtrack utility for Rayman 1
 • Added a shortcut to the dgVoodoo control panel file for Rayman 2 if the unofficial patch is used
-
-• Added real time data viewing for the PlayStation soundtrack Utility for Rayman 1 when the user level is set to debug
-• Added the debug option to start the PlayStation soundtrack utility for Rayman 1 independently of a game
+• Added real time data viewing and options for the PlayStation soundtrack Utility for Rayman 1 when the user level is set to debug
 • Set a max width for the tool tips
 • Improved tab navigation through custom controls
 • Fixed an issue where the game drop down list would stay in the same position after scrolling

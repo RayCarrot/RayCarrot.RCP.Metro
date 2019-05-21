@@ -277,6 +277,7 @@
     <Compile Include="Controls\UserControls\Rayman1CheatCodeTable.xaml.cs">
       <DependentUpon>Rayman1CheatCodeTable.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\TPLSRaymanVersionEnumToComboBoxIndexConverter.cs" />
     <Compile Include="Converters\AppendSpacesToStringConverter.cs" />
     <Compile Include="DataModels\Enums\PopupPromptResult.cs" />
     <Page Include="Controls\Dialogs\GameTypeSelectionDialog.xaml">
