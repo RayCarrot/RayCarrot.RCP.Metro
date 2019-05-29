@@ -4,38 +4,170 @@
                   xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                  xmlns:tb="http://www.hardcodet.net/taskbar"
                   Language="{UICulture}"
+                  ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                   Title="{Resx AppName}"
-                  Height="600"
-                  Width="800">
-    <metro:MetroAnimatedTabControl Padding="5"
+                  Height="750"
+                  Width="950">
+    <metro:MetroWindow.RightWindowCommands>
+        <metro:WindowCommands>
+            <!-- TODO: Localize -->
+            <Button Click="MinimizeToTrayButton_OnClick"
+                    ToolTip="Minimize to tray">
+                <iconPacks:PackIconMaterial Kind="ArrowDownBoldBoxOutline" />
+            </Button>
+        </metro:WindowCommands>
+    </metro:MetroWindow.RightWindowCommands>
+    <Grid>
+        <tb:TaskbarIcon x:Name="TaskbarIcon"
+                        IconSource="../Img/Rayman Control Panel Icon.ico"
+                        ToolTipText="hello world"
+                        TrayMouseDoubleClick="TaskbarIcon_Show_OnClick"
+                        Visibility="Collapsed">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu Padding="5">
+                    <MenuItem Header="Open"
+                              Click="TaskbarIcon_Show_OnClick">
+                        <MenuItem.Icon>
+                            <iconPacks:PackIconMaterial Kind="OpenInApp" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Close"
+                              Click="TaskbarIcon_Close_OnClick">
+                        <MenuItem.Icon>
+                            <iconPacks:PackIconMaterial Kind="CloseOutline" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+
+        <metro:MetroAnimatedTabControl Padding="5"
                                    metro:TabControlHelper.Transition="{Binding Source={x:Static local:RCFRCP.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}">
 
-        <TabItem Header="{Resx GamesPageHeader}">
-            <local:GamesPage x:Name="GamesPage" />
-        </TabItem>
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="ViewGrid"
+                                                    Margin="10 0"
+                                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="{Resx GamesPageHeader}"
+                                   FontSize="24"
+                                   VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+                <local:GamesPage x:Name="GamesPage" />
+            </TabItem>
 
-        <TabItem x:Name="BackupPageTab"
-                 Header="{Resx BackupPageHeader}">
-            <local:BackupPage />
-        </TabItem>
+            <TabItem x:Name="BackupPageTab">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="BackupRestore"
+                                                    Margin="10 0"
+                                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="{Resx BackupPageHeader}"
+                                   FontSize="24"
+                                   VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
 
-        <TabItem Header="{Resx SettingsPageHeader}">
-            <local:SettingsPage />
-        </TabItem>
+                <local:BackupPage />
+            </TabItem>
 
-        <TabItem Header="{Resx HelpPageHeader}">
-            <local:HelpPage />
-        </TabItem>
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- TODO: Localize -->
+                            <iconPacks:PackIconMaterial Kind="Link"
+                                                    Margin="10 0"
+                                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="Links"
+                                   FontSize="24"
+                                   VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
 
-        <TabItem Header="{Resx AboutPageHeader}">
-            <local:AboutPage />
-        </TabItem>
+                <local:LinksPage />
+            </TabItem>
 
-        <TabItem Header="{Resx DebugPageHeader}"
-                 rwpf:UserLevelTag.MinUserLevel="Debug">
-            <local:DebugPage />
-        </TabItem>
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="SettingsOutline"
+                                                    Margin="10 0"
+                                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="{Resx SettingsPageHeader}"
+                                   FontSize="24"
+                                   VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
 
-    </metro:MetroAnimatedTabControl>
+                <local:SettingsPage />
+            </TabItem>
+
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="HelpCircleOutline"
+                                                    Margin="10 0"
+                                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="{Resx HelpPageHeader}"
+                                   FontSize="24"
+                                   VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+
+                <local:HelpPage />
+
+            </TabItem>
+
+            <TabItem>
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="InformationOutline"
+                                                    Margin="10 0"
+                                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="{Resx AboutPageHeader}"
+                                   FontSize="24"
+                                   VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+
+                <local:AboutPage />
+            </TabItem>
+
+            <TabItem rwpf:UserLevelTag.MinUserLevel="Debug">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="CodeBraces"
+                                                    Margin="10 0"
+                                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="{Resx DebugPageHeader}"
+                                   FontSize="24"
+                                   VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+
+                <local:DebugPage />
+            </TabItem>
+
+        </metro:MetroAnimatedTabControl>
+
+    </Grid>
 </local:BaseWindow>

@@ -57,7 +57,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public DateTime LastBackup { get; set; }
 
-        // NOTE: Culture specific date string not refreshing correctly on launch
         /// <summary>
         /// The last backup display date
         /// </summary>

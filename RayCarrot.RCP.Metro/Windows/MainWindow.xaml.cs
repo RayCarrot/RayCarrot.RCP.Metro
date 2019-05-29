@@ -57,6 +57,27 @@ namespace RayCarrot.RCP.Metro
                 await RCFRCP.App.CheckForUpdatesAsync(false);
         }
 
+        private void MinimizeToTrayButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            foreach (Window window in App.Current.Windows)
+                window.Hide();
+
+            TaskbarIcon.Visibility = Visibility.Visible;
+        }
+
+        private void TaskbarIcon_Show_OnClick(object sender, RoutedEventArgs e)
+        {
+            foreach (Window window in App.Current.Windows)
+                window.Show();
+
+            TaskbarIcon.Visibility = Visibility.Collapsed;
+        }
+
+        private void TaskbarIcon_Close_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
         #endregion
     }
 }

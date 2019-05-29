@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -1001,6 +1002,22 @@ namespace RayCarrot.RCP.Metro
                     ex.HandleError("Moving backups");
                     await RCF.MessageUI.DisplayMessageAsync(Resources.MoveBackups_Error, Resources.MoveBackups_ErrorHeader, MessageType.Error);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Opens the specified url
+        /// </summary>
+        /// <param name="url">The url to open</param>
+        public void OpenUrl(string url)
+        {
+            try
+            {
+                Process.Start(url)?.Dispose();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError($"Opening url {url}");
             }
         }
 

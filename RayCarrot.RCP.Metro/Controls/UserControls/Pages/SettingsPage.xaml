@@ -13,7 +13,7 @@
                     mc:Ignorable="d"    
                     d:DesignWidth="800"
                     d:DataContext="{d:DesignInstance local:SettingsPageViewModel}">
-    <ScrollViewer Padding="5">
+    <ScrollViewer Padding="15">
         <i:Interaction.Behaviors>
             <rwpf:FocusScrollViewerOnLoad />
         </i:Interaction.Behaviors>

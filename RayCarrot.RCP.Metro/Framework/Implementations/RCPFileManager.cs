@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
@@ -98,6 +99,35 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Opening explorer location", location);
                 await RCF.MessageUI.DisplayMessageAsync(Resources.File_OpenLocationError, Resources.File_OpenLocationErrorHeader, MessageType.Error);
+            }
+        }
+
+        /// <summary>
+        /// Opens the specified registry key path in RegEdit
+        /// </summary>
+        /// <param name="registryKeyPath">The key path to open</param>
+        /// <returns>The task</returns>
+        public async Task OpenRegistryKeyAsync(string registryKeyPath)
+        {
+            if (!RCFWinReg.RegistryManager.KeyExists(registryKeyPath))
+            {
+                // TODO: Localize
+                await RCF.MessageUI.DisplayMessageAsync("", "", MessageType.Error);
+
+                return;
+            }
+
+            try
+            {
+                WindowsHelpers.OpenRegistryPath(registryKeyPath);
+                RCF.Logger.LogDebugSource($"The Registry key path {registryKeyPath} was opened");
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Opening Registry key path", registryKeyPath);
+
+                // TODO: Localize
+                await RCF.MessageUI.DisplayMessageAsync("", "", MessageType.Error);
             }
         }
 

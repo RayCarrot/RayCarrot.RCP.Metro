@@ -113,6 +113,10 @@ namespace RayCarrot.RCP.Metro
                 RCFRCP.Data.Reset();
             }
 
+            // Apply the current culture if defaulted
+            if (RCFRCP.Data.CurrentCulture == AppLanguages.DefaultCulture.Name)
+                RCFRCP.Data.RefreshCulture(AppLanguages.DefaultCulture.Name);
+
             // Attempt to import legacy data on first launch
             if (RCFRCP.Data.IsFirstLaunch)
                 await ImportLegacyDataAsync();
@@ -320,6 +324,9 @@ namespace RayCarrot.RCP.Metro
 
             if (RCFRCP.Data.LastVersion < new Version(4, 1, 1, 0))
                 RCFRCP.Data.ShowIncompleteTranslations = false;
+
+            if (RCFRCP.Data.LastVersion < new Version(4, 5, 0, 0))
+                RCFRCP.Data.LinkItemStyle = LinkItemStyles.List;
 
             // Refresh the jump list
             RefreshJumpList();

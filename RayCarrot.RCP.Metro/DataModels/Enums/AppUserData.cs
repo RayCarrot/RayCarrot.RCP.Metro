@@ -60,6 +60,7 @@ namespace RayCarrot.RCP.Metro
             EnableAnimations = true;
             CurrentCulture = AppLanguages.DefaultCulture.Name;
             ShowIncompleteTranslations = false;
+            LinkItemStyle = LinkItemStyles.List;
         }
 
         #endregion
@@ -71,6 +72,8 @@ namespace RayCarrot.RCP.Metro
         private FileSystemPath _backupLocation;
 
         private bool _showIncompleteTranslations;
+
+        private LinkItemStyles _linkItemStyle;
 
         #endregion
 
@@ -245,40 +248,7 @@ namespace RayCarrot.RCP.Metro
         public string CurrentCulture
         {
             get => RCF.Data.CurrentCulture?.Name ?? AppLanguages.DefaultCulture.Name;
-            set
-            {
-                // Lock the culture changing code
-                lock (this)
-                {
-                    // Store the culture info
-                    CultureInfo ci;
-
-                    try
-                    {
-                        // Attempt to get the culture info
-                        ci = CultureInfo.GetCultureInfo(value);
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.HandleUnexpected("Getting culture info from setter string value");
-                        ci = AppLanguages.DefaultCulture;
-                    }
-
-                    // Set the UI culture
-                    CultureManager.UICulture = ci;
-
-                    // Set the resource culture
-                    Resources.Culture = ci;
-
-                    // Update the current thread cultures
-                    CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture = ci;
-
-                    // Set the framework culture
-                    RCF.Data.CurrentCulture = ci;
-
-                    RCF.Logger.LogInformationSource($"The current culture was set to {ci.EnglishName}");
-                }
-            }
+            set => RefreshCulture(value);
         }
 
         /// <summary>
@@ -292,6 +262,93 @@ namespace RayCarrot.RCP.Metro
                 _showIncompleteTranslations = value;
                 AppLanguages.RefreshLanguages(value);
             }
+        }
+
+        /// <summary>
+        /// The current link item style
+        /// </summary>
+        public LinkItemStyles LinkItemStyle
+        {
+            get => _linkItemStyle;
+            set
+            {
+                // Get previous source
+                var oldSource = GetStyleSource(LinkItemStyle);
+
+                _linkItemStyle = value;
+
+                // Remove old source
+                foreach (ResourceDictionary resourceDictionary in Application.Current.Resources.MergedDictionaries)
+                {
+                    if (!String.Equals(resourceDictionary.Source?.ToString(), oldSource, StringComparison.OrdinalIgnoreCase))
+                        continue;
+
+                    Application.Current.Resources.MergedDictionaries.Remove(resourceDictionary);
+                    break;
+                }
+
+                // Add new source
+                Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary
+                {
+                    Source = new Uri(GetStyleSource(LinkItemStyle))
+                });
+            }
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Refreshes the current culture
+        /// </summary>
+        /// <param name="cultureInfo">The culture info to set to</param>
+        public void RefreshCulture(string cultureInfo)
+        {
+            lock (this)
+            {
+                // Store the culture info
+                CultureInfo ci;
+
+                try
+                {
+                    // Attempt to get the culture info
+                    ci = CultureInfo.GetCultureInfo(cultureInfo);
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleUnexpected("Getting culture info from setter string value");
+                    ci = AppLanguages.DefaultCulture;
+                }
+
+                // Set the UI culture
+                CultureManager.UICulture = ci;
+
+                // Set the resource culture
+                Resources.Culture = ci;
+
+                // Update the current thread cultures
+                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture = ci;
+
+                // Set the framework culture
+                RCF.Data.CurrentCulture = ci;
+
+                RCF.Logger.LogInformationSource($"The current culture was set to {ci.EnglishName}");
+            }
+        }
+
+        #endregion
+
+        #region Private Static Methods
+
+        /// <summary>
+        /// Gets the style source name for a link item style
+        /// </summary>
+        /// <param name="linkItemStye">The style to get the source for</param>
+        /// <returns>The source</returns>
+        private static string GetStyleSource(LinkItemStyles linkItemStye)
+        {
+            return $"pack://application:,,,/RayCarrot.RCP.Metro;component/Styles/LinkItemStyles - {linkItemStye}.xaml";
         }
 
         #endregion

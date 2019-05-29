@@ -1,5 +1,16 @@
-﻿-----   Version 4.4.0 - May 21, 2019   -----
-• Added support for version 1.00 and two other version of version 1.12 in the PlayStation soundtrack utility for Rayman 1
+﻿-----   Version 4.5.0 - June ??, 2019   -----
+• Added the links page
+• Added icons to page tabs
+• Added the option to minimize the application to the tray area
+• Updated the updater to version 3.0.0 with the new Metro redesign
+• Increased default window size
+• Fixed a bug where the language would not set correctly if set to the default language
+• Removed the links from the debug page due to them now being available in the links page
+• Bug fixes
+
+
+-----   Version 4.4.0 - May 21, 2019   -----
+• Added support for version 1.00 and two other versions of version 1.12 in the PlayStation soundtrack utility for Rayman 1
 • Added a shortcut to the dgVoodoo control panel file for Rayman 2 if the unofficial patch is used
 • Added real time data viewing and options for the PlayStation soundtrack Utility for Rayman 1 when the user level is set to debug
 • Set a max width for the tool tips

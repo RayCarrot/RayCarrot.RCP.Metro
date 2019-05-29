@@ -1,8 +1,6 @@
-﻿using System;
-using System.Diagnostics;
-using System.Windows.Input;
-using RayCarrot.CarrotFramework;
+﻿using RayCarrot.CarrotFramework;
 using RayCarrot.WPF;
+using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -19,7 +17,7 @@ namespace RayCarrot.RCP.Metro
         public AboutPageViewModel()
         {
             // Create commands
-            OpenUrlCommand = new RelayCommand(x => OpenUrl(x?.ToString()));
+            OpenUrlCommand = new RelayCommand(x => App.OpenUrl(x?.ToString()));
             ShowVersionHistoryCommand = new RelayCommand(ShowVersionHistory);
             CheckForUpdatesCommand = new AsyncRelayCommand(async () => await App.CheckForUpdatesAsync(true));
         }
@@ -37,22 +35,6 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Methods
-
-        /// <summary>
-        /// Opens the specified url
-        /// </summary>
-        /// <param name="url">The url to open</param>
-        public void OpenUrl(string url)
-        {
-            try
-            {
-                Process.Start(url)?.Dispose();
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError($"Opening url {url}");
-            }
-        }
 
         /// <summary>
         /// Shows the application version history

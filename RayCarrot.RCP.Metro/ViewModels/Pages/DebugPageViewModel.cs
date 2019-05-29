@@ -24,9 +24,6 @@ namespace RayCarrot.RCP.Metro
         {
             ShowDialogCommand = new AsyncRelayCommand(ShowDialogAsync);
             ShowLogCommand = new RelayCommand(ShowLog);
-            OpenAppDataCommand = new AsyncRelayCommand(OpenAppDataAsync);
-            OpenPrimaryUbiIniCommand = new AsyncRelayCommand(OpenPrimaryUbiIniAsync);
-            OpenSecondaryUbiIniCommand = new AsyncRelayCommand(OpenSecondaryUbiIniAsync);
             ShowInstalledUtilitiesCommand = new AsyncRelayCommand(ShowInstalledUtilitiesAsync);
             RefreshJumpListCommand = new RelayCommand(Metro.App.Current.RefreshJumpList);
 
@@ -142,33 +139,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Opens the app data directory
-        /// </summary>
-        /// <returns>The task</returns>
-        public async Task OpenAppDataAsync()
-        {
-            await RCFRCP.File.OpenExplorerLocationAsync(CommonPaths.UserDataBaseDir);
-        }
-
-        /// <summary>
-        /// Opens the primary ubi.ini file
-        /// </summary>
-        /// <returns>The task</returns>
-        public async Task OpenPrimaryUbiIniAsync()
-        {
-            (await RCFRCP.File.LaunchFileAsync(CommonPaths.UbiIniPath1))?.Dispose();
-        }
-
-        /// <summary>
-        /// Opens the secondary ubi.ini file
-        /// </summary>
-        /// <returns>The task</returns>
-        public async Task OpenSecondaryUbiIniAsync()
-        {
-            (await RCFRCP.File.LaunchFileAsync(CommonPaths.UbiIniPath2))?.Dispose();
-        }
-
-        /// <summary>
         /// Shows the installed utilities for each game to the user
         /// </summary>
         /// <returns>The task</returns>
@@ -192,12 +162,6 @@ namespace RayCarrot.RCP.Metro
         public ICommand ShowDialogCommand { get; }
 
         public ICommand ShowLogCommand { get; }
-
-        public ICommand OpenAppDataCommand { get; }
-
-        public ICommand OpenPrimaryUbiIniCommand { get; }
-
-        public ICommand OpenSecondaryUbiIniCommand { get; }
 
         public ICommand ShowInstalledUtilitiesCommand { get; }
 

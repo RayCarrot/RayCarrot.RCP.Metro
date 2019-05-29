@@ -55,6 +55,9 @@
     <Reference Include="Costura, Version=3.3.2.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Costura.Fody.3.3.2\lib\net40\Costura.dll</HintPath>
     </Reference>
+    <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
+    </Reference>
     <Reference Include="Infralution.Localization.Wpf">
       <HintPath>..\..\..\Files\Infralution.Localization.Wpf.dll</HintPath>
     </Reference>
@@ -274,6 +277,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\UserControls\Pages\LinksPage.xaml.cs">
+      <DependentUpon>LinksPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserControls\Rayman1CheatCodeTable.xaml.cs">
       <DependentUpon>Rayman1CheatCodeTable.xaml</DependentUpon>
     </Compile>
@@ -336,6 +342,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\UserControls\Pages\LinksPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\UserControls\Rayman1CheatCodeTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -365,6 +375,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Installer\GameInstaller.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\LinkItemStyles - Group.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\LinkItemStyles - List.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -423,6 +441,8 @@
     <Compile Include="Controls\UserControls\Utilities\Rayman3Utilities.xaml.cs">
       <DependentUpon>Rayman3Utilities.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserData\LinkItemStyles.cs" />
+    <Compile Include="ViewModels\Pages\LinksPageViewModel.cs" />
     <Compile Include="ViewModels\Utilities\Rayman3UtilitiesViewModel.cs" />
     <Compile Include="Converters\BooleanToTransitionTypeConverter.cs" />
     <Compile Include="Converters\BooleanToFluidMoveDurationConverter.cs" />
@@ -598,7 +618,7 @@
     <Compile Include="Controls\UserControls\Pages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserData\AppUserData.cs" />
+    <Compile Include="DataModels\Enums\AppUserData.cs" />
     <Compile Include="ViewModels\ActionItemViewModel.cs" />
     <Compile Include="Framework\AppViewModel.cs" />
     <Compile Include="DataModels\Enums\DebugDialogTypes.cs" />

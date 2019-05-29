@@ -15,7 +15,8 @@
                     d:DesignHeight="450" d:DesignWidth="800"
                     d:DataContext="{d:DesignInstance local:GamesPageViewModel}">
     <Grid>
-        <ScrollViewer Visibility="{Binding Path=App.IsGameFinderRunning, Converter={rwpf:InvertedBooleanToVisibilityConverter}}">
+        <ScrollViewer Visibility="{Binding Path=App.IsGameFinderRunning, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
+                      Padding="5">
             <StackPanel>
                 <StackPanel.Resources>
                     <Style x:Key="GamesDisplay"
@@ -35,7 +36,8 @@
                                 <ItemsPanelTemplate>
                                     <WrapPanel> 
                                         <i:Interaction.Behaviors>
-                                            <ei:FluidMoveBehavior Duration="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToFluidMoveDurationConverter}}"       AppliesTo="Children" />
+                                            <ei:FluidMoveBehavior Duration="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToFluidMoveDurationConverter}}"
+                                                                  AppliesTo="Children" />
                                         </i:Interaction.Behaviors>
                                     </WrapPanel>
                                 </ItemsPanelTemplate>

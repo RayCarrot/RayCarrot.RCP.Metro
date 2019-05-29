@@ -4,14 +4,47 @@
 
 - Add support for educational games. Treat as a single game, with games in drop-down added by user.
 
-- Add links page with links to community mods, projects, forums etc.
-
 - Auto save user data
 
 - Auto create .bat files for DOSBox games + allow language switching based on editing the .bat file's launch argument
 
 - Move Rayman 1 (and possibly other) cheat codes into table for readability
 
-- Rework the updater in WPF with the Metro theme - transfer dark/light mode setting
-
 - Rework ubi.ini permission system to avoid relying on CMD commands due to not being able to verify if the command succeeded
+
+- Disable Rayman Forever game backups if GOG cloud is used (check if cloud_saves directory contains files)
+
+- Add support for more utilities (R2 texture extract, sna import/export etc.)
+
+- Add an option to uninstall the program - have this appear in the control panel under installed programs
+
+
+
+
+
+Links page:
+
+Community:
+
+RayTunes
+RaySaves
+
+KMG Associates
+Rayman Fanpage
+
+raym.app
+Raymap
+
+GOG forums
+Steam forums (each game)
+Ubisoft forums
+
+Mods/Tools:
+
+Extended Rayman Designer editor
+Better Rayman 3
+RayTwol
+Rayman Plus
+Rayman 2 Tools
+
+GitHub stuff
