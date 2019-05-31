@@ -8,7 +8,7 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Rayman Control Panel - Updater")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Updater for the Rayman Control Panel version 4.5.0 and above")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RayCarrot")]
 [assembly: AssemblyProduct("Rayman Control Panel - Updater")]
@@ -53,3 +53,5 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("3.0.0.0")]
 [assembly: AssemblyFileVersion("3.0.0.0")]
+[assembly: Guid("9d0e9b60-26ca-4aba-9bd0-a981399b35a7")]
+

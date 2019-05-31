@@ -5,6 +5,7 @@
 • Updated the updater to version 3.0.0 with the new Metro redesign
 • Increased default window size
 • Fixed a bug where the language would not set correctly if set to the default language
+• Fixed the scroll bar position on the about page
 • Removed the links from the debug page due to them now being available in the links page
 • Bug fixes
 

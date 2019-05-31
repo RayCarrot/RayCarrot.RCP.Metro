@@ -288,6 +288,11 @@ namespace RayCarrot.RCP.Metro
                 }
             }
 
+            // Update the application path
+            var appPath = Assembly.GetExecutingAssembly().Location;
+            if (new FileSystemPath(appPath) != RCFRCP.Data.ApplicationPath)
+                RCFRCP.Data.ApplicationPath = appPath;
+
             // Show first launch info
             if (RCFRCP.Data.IsFirstLaunch)
             {
@@ -326,7 +331,10 @@ namespace RayCarrot.RCP.Metro
                 RCFRCP.Data.ShowIncompleteTranslations = false;
 
             if (RCFRCP.Data.LastVersion < new Version(4, 5, 0, 0))
+            {
                 RCFRCP.Data.LinkItemStyle = LinkItemStyles.List;
+                RCFRCP.Data.ApplicationPath = Assembly.GetExecutingAssembly().Location;
+            }
 
             // Refresh the jump list
             RefreshJumpList();

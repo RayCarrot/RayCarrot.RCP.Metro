@@ -1,0 +1,32 @@
+﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.Updater.MainWindow"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro.Updater"
+                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                  mc:Ignorable="d"
+                  MinWidth="400"
+                  MinHeight="300"
+                  ShowCloseButton="False"
+                  ShowMinButton="False"
+                  Title="Rayman Control Panel - Updater" 
+                  Height="450" Width="800"
+                  ContentRendered="MainWindow_OnContentRenderedAsync"
+                  Closing="MainWindow_OnClosing"
+                  d:DataContext="{d:DesignInstance local:UpdaterViewModel}">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBox Text="{Binding Path=Log}" 
+                 TextWrapping="Wrap"/>
+
+        <ProgressBar Grid.Row="1"
+                     Margin="0 10 0 0"
+                     Maximum="{Binding Path=TotalBytes}"
+                     Value="{Binding Path=ReceivedBytes}" />
+    </Grid>
+</local:BaseWindow>

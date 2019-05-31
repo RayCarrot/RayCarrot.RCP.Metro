@@ -1,17 +1,18 @@
-﻿using RayCarrot.CarrotFramework;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using MahApps.Metro.IconPacks;
+﻿using MahApps.Metro.IconPacks;
 using Microsoft.Win32;
+using RayCarrot.CarrotFramework;
 using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
+using System;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Threading.Tasks;
+using System.Windows.Data;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Nito.AsyncEx;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -28,9 +29,16 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public LinksPageViewModel()
         {
+            LocalLinkItems = new ObservableCollection<LinkItemViewModel[]>();
+            CommunityLinkItems = new ObservableCollection<LinkItemViewModel[]>();
+            ForumLinkItems = new ObservableCollection<LinkItemViewModel[]>();
+            ToolsLinkItems = new ObservableCollection<LinkItemViewModel[]>();
+
             Refresh();
 
             RCF.Data.CultureChanged += (s, e) => Refresh();
+
+            RefreshCommand = new RelayCommand(Refresh);
         }
 
         #endregion
@@ -40,12 +48,22 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The local link items
         /// </summary>
-        public List<LinkItemViewModel[]> LocalLinkItems { get; set; }
+        public ObservableCollection<LinkItemViewModel[]> LocalLinkItems { get; }
 
         /// <summary>
         /// The community link items
         /// </summary>
-        public LinkItemViewModel[][] CommunityLinkItems { get; set; }
+        public ObservableCollection<LinkItemViewModel[]> CommunityLinkItems { get; }
+
+        /// <summary>
+        /// The forum link items
+        /// </summary>
+        public ObservableCollection<LinkItemViewModel[]> ForumLinkItems { get; }
+
+        /// <summary>
+        /// The tools link items
+        /// </summary>
+        public ObservableCollection<LinkItemViewModel[]> ToolsLinkItems { get; }
 
         #endregion
 
@@ -56,44 +74,47 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void Refresh()
         {
-            LocalLinkItems = new List<LinkItemViewModel[]>();
+            LocalLinkItems.Clear();
 
             // ubi.ini files
             LocalLinkItems.Add(new LinkItemViewModel[]
             {
                 new LinkItemViewModel(CommonPaths.UbiIniPath1, "Primary ubi.ini file"),
                 new LinkItemViewModel(CommonPaths.UbiIniPath2, "Secondary ubi.ini file", UserLevel.Advanced),
-                new LinkItemViewModel(Games.Rayman2.IsAdded() ? Games.Rayman2.GetInfo().InstallDirectory + "ubi.ini" : FileSystemPath.EmptyPath, "Rayman 2 ubi.ini file", UserLevel.Advanced),
+                new LinkItemViewModel(
+                    Games.Rayman2.IsAdded()
+                        ? Games.Rayman2.GetInfo().InstallDirectory + "ubi.ini"
+                        : FileSystemPath.EmptyPath, "Rayman 2 ubi.ini file", UserLevel.Advanced)
             });
 
             // DOSBox files
             if (File.Exists(Data.DosBoxPath))
-            {
                 LocalLinkItems.Add(new LinkItemViewModel[]
                 {
                     new LinkItemViewModel(new FileSystemPath(Data.DosBoxPath), "DOSBox"),
-                    new LinkItemViewModel(new FileSystemPath(Data.DosBoxConfig), "DOSBox configuration file", UserLevel.Technical),
+                    new LinkItemViewModel(new FileSystemPath(Data.DosBoxConfig), "DOSBox configuration file",
+                        UserLevel.Technical)
                 });
-            }
 
             // Steam paths
             try
             {
-                using (var key = RCFWinReg.RegistryManager.GetKeyFromFullPath(@"HKEY_CURRENT_USER\Software\Valve\Steam", RegistryView.Default))
+                using (RegistryKey key =
+                    RCFWinReg.RegistryManager.GetKeyFromFullPath(@"HKEY_CURRENT_USER\Software\Valve\Steam",
+                        RegistryView.Default))
                 {
                     if (key != null)
                     {
                         FileSystemPath steamDir = key.GetValue("SteamPath", null)?.ToString();
-                        string steamExe = key.GetValue("SteamExe", null)?.ToString();
+                        var steamExe = key.GetValue("SteamExe", null)?.ToString();
 
                         if (steamDir.DirectoryExists)
-                        {
                             LocalLinkItems.Add(new LinkItemViewModel[]
                             {
                                 new LinkItemViewModel(steamDir + steamExe, "Steam"),
-                                new LinkItemViewModel(steamDir + @"steamapps\common", "Steam games", UserLevel.Advanced),
+                                new LinkItemViewModel(steamDir + @"steamapps\common", "Steam games",
+                                    UserLevel.Advanced)
                             });
-                        }
                     }
                 }
             }
@@ -105,20 +126,20 @@ namespace RayCarrot.RCP.Metro
             // GOG paths
             try
             {
-                using (var key = RCFWinReg.RegistryManager.GetKeyFromFullPath(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\GalaxyClient\paths", RegistryView.Default))
+                using (RegistryKey key = RCFWinReg.RegistryManager.GetKeyFromFullPath(
+                    @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\GalaxyClient\paths",
+                    RegistryView.Default))
                 {
                     if (key != null)
                     {
                         FileSystemPath gogDir = key.GetValue("client", null)?.ToString();
 
                         if (gogDir.DirectoryExists)
-                        {
                             LocalLinkItems.Add(new LinkItemViewModel[]
                             {
                                 new LinkItemViewModel(gogDir + "GalaxyClient.exe", "GOG Galaxy"),
-                                new LinkItemViewModel(gogDir + @"Games", "GOG Galaxy games", UserLevel.Advanced),
+                                new LinkItemViewModel(gogDir + @"Games", "GOG Galaxy games", UserLevel.Advanced)
                             });
-                        }
                     }
                 }
             }
@@ -130,11 +151,18 @@ namespace RayCarrot.RCP.Metro
             // Registry paths
             LocalLinkItems.Add(new LinkItemViewModel[]
             {
-                new LinkItemViewModel(CommonPaths.RaymanRavingRabbidsRegistryKey, "Rayman Raving Rabbids settings", UserLevel.Technical), 
-                new LinkItemViewModel(CommonPaths.RaymanOriginsRegistryKey, "Rayman Origins settings", UserLevel.Technical),
-                new LinkItemViewModel(CommonPaths.RaymanLegendsRegistryKey, "Rayman Legends settings", UserLevel.Technical),
-                new LinkItemViewModel(@"HKEY_CURRENT_USER\Software\Zeus Software\nGlide", "nGlide settings", UserLevel.Technical),
-                new LinkItemViewModel(@"HKEY_CURRENT_USER\Software\Zeus Software\nGlide2", "nGlide 2.0 settings", UserLevel.Technical),
+                new LinkItemViewModel(CommonPaths.RaymanRavingRabbidsRegistryKey,
+                    "Rayman Raving Rabbids settings",
+                    UserLevel.Technical),
+                new LinkItemViewModel(CommonPaths.RaymanOriginsRegistryKey, "Rayman Origins settings",
+                    UserLevel.Technical),
+                new LinkItemViewModel(CommonPaths.RaymanLegendsRegistryKey, "Rayman Legends settings",
+                    UserLevel.Technical),
+                new LinkItemViewModel(@"HKEY_CURRENT_USER\Software\Zeus Software\nGlide", "nGlide settings",
+                    UserLevel.Technical),
+                new LinkItemViewModel(@"HKEY_CURRENT_USER\Software\Zeus Software\nGlide2",
+                    "nGlide 2.0 settings",
+                    UserLevel.Technical)
             });
 
             // Debug paths
@@ -144,31 +172,92 @@ namespace RayCarrot.RCP.Metro
                 new LinkItemViewModel(CommonPaths.TempPath, "App temp directory", UserLevel.Debug),
                 new LinkItemViewModel(CommonPaths.LogFile, "Log file", UserLevel.Debug),
                 new LinkItemViewModel(CommonPaths.TPLSDir, "TPLS directory", UserLevel.Debug),
-                new LinkItemViewModel(CommonPaths.RegistryBaseKey, "Registry app data", UserLevel.Technical),
+                new LinkItemViewModel(CommonPaths.RegistryBaseKey, "Registry app data", UserLevel.Technical)
             });
 
             // Community links
-            CommunityLinkItems = new LinkItemViewModel[][]
+            CommunityLinkItems.Clear();
+
+            CommunityLinkItems.AddRange(new LinkItemViewModel[][]
             {
                 new LinkItemViewModel[]
                 {
                     new LinkItemViewModel(new Uri("https://raymanpc.com/"), "Rayman Pirate-Community"),
                     new LinkItemViewModel(new Uri("https://raymanpc.com/wiki/en/Main_Page"), "RayWiki"),
                     new LinkItemViewModel(new Uri("https://raytunes.raymanpc.com/"), "RayTunes"),
-                    new LinkItemViewModel(new Uri("https://raysaves.raymanpc.com/"), "RaySaves"),
-                }, 
+                    new LinkItemViewModel(new Uri("https://raysaves.raymanpc.com/"), "RaySaves")
+                },
                 new LinkItemViewModel[]
                 {
-                    new LinkItemViewModel(new Uri("http://www.kmgassociates.com/rayman/index.html"), "KMG Associates - Rayman"),
-                    new LinkItemViewModel(new Uri("http://www.rayman-fanpage.de/"), "Rayman Fanpage"),
-                }, 
+                    new LinkItemViewModel(new Uri("https://twitter.com/RaymanCentral"), "Rayman Central"),
+                    new LinkItemViewModel(new Uri("https://twitter.com/RaymanTogether"), "Rayman Together"),
+                },
                 new LinkItemViewModel[]
                 {
                     new LinkItemViewModel(new Uri("https://raym.app/"), "raym.app"),
                     new LinkItemViewModel(new Uri("https://raym.app/maps/"), "Raymap"),
+                    new LinkItemViewModel(new Uri("https://raym.app/menezis/"), "Menezis (browser version)"),
+                },
+                new LinkItemViewModel[]
+                {
+                    new LinkItemViewModel(new Uri("http://www.kmgassociates.com/rayman/index.html"), "KMG Associates - Rayman"),
+                    new LinkItemViewModel(new Uri("http://www.rayman-fanpage.de/"), "Rayman Fanpage")
+                },
+            });
+
+            // Forum links
+            ForumLinkItems.Clear();
+
+            ForumLinkItems.AddRange(new LinkItemViewModel[][]
+            {
+                new LinkItemViewModel[]
+                {
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/index.php"), "Pirate-Community"), 
                 }, 
-            };
+                new LinkItemViewModel[]
+                {
+                    new LinkItemViewModel(new Uri("https://forums.ubi.com/forumdisplay.php/47-Rayman"), "Ubisoft"), 
+                    new LinkItemViewModel(new Uri("https://www.gog.com/forum/rayman_series"), "GOG"), 
+                }, 
+                new LinkItemViewModel[]
+                {
+                    new LinkItemViewModel(new Uri("https://steamcommunity.com/app/15060/discussions/"), "Steam - Rayman 2"), 
+                    new LinkItemViewModel(new Uri("https://steamcommunity.com/app/15080/discussions/"), "Steam - Rayman Raving Rabbids"), 
+                    new LinkItemViewModel(new Uri("https://steamcommunity.com/app/207490/discussions/"), "Steam - Rayman Origins"), 
+                    new LinkItemViewModel(new Uri("https://steamcommunity.com/app/242550/discussions/"), "Steam - Rayman Legends"), 
+                }, 
+            });
+
+            // Tools links
+            ToolsLinkItems.Clear();
+
+            ToolsLinkItems.AddRange(new LinkItemViewModel[][]
+            {
+                new LinkItemViewModel[]
+                {
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=5755"), "Extended Rayman Designer editor"), 
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=25867"), "Rayman Plus"), 
+                },
+                new LinkItemViewModel[]
+                {
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=25013"), "RayTwol"), 
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=23423"), "Rayman 2 Tools"), 
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=23420"), "Rayman 2 GOG Moonjump"), 
+                    new LinkItemViewModel(new Uri("https://github.com/rtsonneveld/Rayman2FunBox/releases"), "Rayman 2 Fun Box"), 
+                }, 
+                new LinkItemViewModel[]
+                {
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=12854"), "Better Rayman 3"), 
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=25053"), "Rayman 3 (Dolphin Emulator) HD Texture Pack"), 
+                  }, 
+            });
         }
+
+        #endregion
+
+        #region Commands
+
+        public ICommand RefreshCommand { get; }
 
         #endregion
     }

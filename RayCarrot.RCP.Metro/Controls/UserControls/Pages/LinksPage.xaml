@@ -16,21 +16,40 @@
 
     <!-- TODO: Localize -->
 
-    <StackPanel Margin="15">
-        <TextBlock Style="{StaticResource HeaderTextBlock}"
-                   Text="Link style" />
-
-        <rwpf:RadioButtonExtended IsChecked="{Binding Path=Data.LinkItemStyle, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=List}" 
-                                  Content="List"
-                                  Margin="0 8 0 2"/>
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         
-        <rwpf:RadioButtonExtended IsChecked="{Binding Path=Data.LinkItemStyle, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Group}"
-                                  Content="Group"
-                                  Margin="0 2 0 8"/>
-        
-        <Separator Margin="0 5" />
+        <Grid Grid.Row="0">
+            <StackPanel>
+                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                           Text="Link style" />
 
-        <mah:MetroAnimatedTabControl mah:TabControlHelper.Transition="{Binding Path=Data.EnableAnimations, Converter={metro:BooleanToTransitionTypeConverter}}"
+                <rwpf:RadioButtonExtended IsChecked="{Binding Path=Data.LinkItemStyle, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=List}" 
+                                          Content="List"
+                                          Margin="0 8 0 2"/>
+
+                <rwpf:RadioButtonExtended IsChecked="{Binding Path=Data.LinkItemStyle, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Group}"
+                                          Content="Group"
+                                          Margin="0 2 0 8"/>
+            </StackPanel>
+
+            <Button Content="Refresh"
+                    HorizontalAlignment="Right" 
+                    VerticalAlignment="Top"
+                    Command="{Binding Path=RefreshCommand}"
+                    rwpf:UserLevelTag.MinUserLevel="Advanced"/>
+
+        </Grid>
+
+        <Separator Grid.Row="1"
+                   Margin="0 5" />
+
+        <mah:MetroAnimatedTabControl Grid.Row="2"
+                                     mah:TabControlHelper.Transition="{Binding Path=Data.EnableAnimations, Converter={metro:BooleanToTransitionTypeConverter}}"
                                      Margin="0 15 0 0">
 
             <mah:MetroAnimatedTabControl.Resources>
@@ -47,8 +66,8 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <iconPacks:PackIconMaterial Kind="AccountMultipleOutline"
-                                                    VerticalAlignment="Center"
-                                                    Margin="0 0 10 0" />
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 10 0" />
                             <TextBlock Text="Community"
                                        VerticalAlignment="Center" />
                         </StackPanel>
@@ -63,7 +82,36 @@
                         </i:Interaction.Behaviors>
 
                         <ItemsControl Style="{DynamicResource LinkItemsDisplay}"
-                                      ItemsSource="{Binding Path=CommunityLinkItems}" />
+                                      ItemsSource="{Binding Path=CommunityLinkItems, Mode=OneTime}" />
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Forums -->
+
+            <TabItem mah:ControlsHelper.HeaderFontSize="16">
+                <TabItem.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="Forum"
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 10 0" />
+                            <TextBlock Text="Forums"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </TabItem.HeaderTemplate>
+
+                <ScrollViewer Padding="5">
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="0 5" />
+                            <rwpf:FocusScrollViewerOnLoad />
+                        </i:Interaction.Behaviors>
+
+                        <ItemsControl Style="{DynamicResource LinkItemsDisplay}"
+                                      ItemsSource="{Binding Path=ForumLinkItems, Mode=OneTime}" />
 
                     </StackPanel>
                 </ScrollViewer>
@@ -76,10 +124,10 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <iconPacks:PackIconMaterial Kind="BriefcaseOutline"
-                                                    VerticalAlignment="Center"
-                                                    Margin="0 0 10 0" />
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 10 0" />
                             <TextBlock Text="Modifications/Tools"
-                                   VerticalAlignment="Center" />
+                                       VerticalAlignment="Center" />
                         </StackPanel>
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
@@ -91,8 +139,8 @@
                             <rwpf:FocusScrollViewerOnLoad />
                         </i:Interaction.Behaviors>
 
-
-
+                        <ItemsControl Style="{DynamicResource LinkItemsDisplay}"
+                                      ItemsSource="{Binding Path=ToolsLinkItems, Mode=OneTime}" />
 
                     </StackPanel>
                 </ScrollViewer>
@@ -105,10 +153,10 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <iconPacks:PackIconMaterial Kind="FolderMultipleOutline"
-                                                    VerticalAlignment="Center"
-                                                    Margin="0 0 10 0" />
+                                                        VerticalAlignment="Center"
+                                                        Margin="0 0 10 0" />
                             <TextBlock Text="Local"
-                                   VerticalAlignment="Center" />
+                                       VerticalAlignment="Center" />
                         </StackPanel>
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
@@ -119,11 +167,11 @@
                     </i:Interaction.Behaviors>
 
                     <ItemsControl Style="{DynamicResource LinkItemsDisplay}"
-                              ItemsSource="{Binding Path=LocalLinkItems}" />
+                                  ItemsSource="{Binding Path=LocalLinkItems, Mode=OneTime}" />
 
                 </ScrollViewer>
             </TabItem>
 
         </mah:MetroAnimatedTabControl>
-    </StackPanel>
+    </Grid>
 </rwpf:VMUserControl>

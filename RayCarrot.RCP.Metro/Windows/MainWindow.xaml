@@ -45,15 +45,15 @@
         </tb:TaskbarIcon>
 
         <metro:MetroAnimatedTabControl Padding="5"
-                                   metro:TabControlHelper.Transition="{Binding Source={x:Static local:RCFRCP.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}">
+                                       metro:TabControlHelper.Transition="{Binding Source={x:Static local:RCFRCP.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}">
 
             <TabItem>
                 <TabItem.HeaderTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <iconPacks:PackIconMaterial Kind="ViewGrid"
-                                                    Margin="10 0"
-                                                    VerticalAlignment="Center"/>
+                                                        Margin="10 0"
+                                                        VerticalAlignment="Center"/>
                             <TextBlock Text="{Resx GamesPageHeader}"
                                    FontSize="24"
                                    VerticalAlignment="Center"/>

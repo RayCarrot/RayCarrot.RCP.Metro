@@ -1,50 +1,28 @@
-﻿Upcoming features:
-
+﻿--- Utilities ---
 - Rayman Legends debug commands (Uplay version only)
 
+- Add support for more utilities (R2 texture extract, .sna import/export etc.) - since these require additional executable due to a lack of public source code they will be downloaded to the Utilities folder from the server (similarly to TPLS)
+
+
+--- Games ---
 - Add support for educational games. Treat as a single game, with games in drop-down added by user.
 
-- Auto save user data
 
+--- Game Finder ---
 - Auto create .bat files for DOSBox games + allow language switching based on editing the .bat file's launch argument
 
+
+--- User Interface ---
 - Move Rayman 1 (and possibly other) cheat codes into table for readability
 
+- Localize the updater
+
+- Localize RayCarrot.WPF controls
+
+
+--- Other ---
 - Rework ubi.ini permission system to avoid relying on CMD commands due to not being able to verify if the command succeeded
 
-- Disable Rayman Forever game backups if GOG cloud is used (check if cloud_saves directory contains files)
-
-- Add support for more utilities (R2 texture extract, sna import/export etc.)
+- Disable Rayman Forever game backups if GOG cloud is used (check if cloud_saves directory contains files) due to them being redirected by the GOG client
 
 - Add an option to uninstall the program - have this appear in the control panel under installed programs
-
-
-
-
-
-Links page:
-
-Community:
-
-RayTunes
-RaySaves
-
-KMG Associates
-Rayman Fanpage
-
-raym.app
-Raymap
-
-GOG forums
-Steam forums (each game)
-Ubisoft forums
-
-Mods/Tools:
-
-Extended Rayman Designer editor
-Better Rayman 3
-RayTwol
-Rayman Plus
-Rayman 2 Tools
-
-GitHub stuff

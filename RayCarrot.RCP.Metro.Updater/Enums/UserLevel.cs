@@ -1,4 +1,4 @@
-﻿namespace RayCarrot.RCP.Updater
+﻿namespace RayCarrot.RCP.Metro.Updater
 {
     public enum UserLevel
     {

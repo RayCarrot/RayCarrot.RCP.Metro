@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection;
 using System.Windows;
 using Infralution.Localization.Wpf;
 using MahApps.Metro;
@@ -61,6 +62,7 @@ namespace RayCarrot.RCP.Metro
             CurrentCulture = AppLanguages.DefaultCulture.Name;
             ShowIncompleteTranslations = false;
             LinkItemStyle = LinkItemStyles.List;
+            ApplicationPath = Assembly.GetExecutingAssembly().Location;
         }
 
         #endregion
@@ -295,6 +297,18 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// The last recorded path of the application
+        /// </summary>
+        public FileSystemPath ApplicationPath { get; set; }
+
+        // TODO: Show under installed programs + uninstall button which restarts app with args, when args detected ignore mutex
+        //       This startup of the program uninstalls it by creating an uninstaller in temp which is flagged to remove after reboot
+        /// <summary>
+        /// Indicates if the program should display under installed programs
+        /// </summary>
+        //public bool ShowUnderInstalledPrograms { get; set; }
+
         #endregion
 
         #region Public Methods
@@ -348,7 +362,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The source</returns>
         private static string GetStyleSource(LinkItemStyles linkItemStye)
         {
-            return $"pack://application:,,,/RayCarrot.RCP.Metro;component/Styles/LinkItemStyles - {linkItemStye}.xaml";
+            return $"{AppViewModel.ApplicationBasePath}/Styles/LinkItemStyles - {linkItemStye}.xaml";
         }
 
         #endregion

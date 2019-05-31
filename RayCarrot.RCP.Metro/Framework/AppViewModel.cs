@@ -944,6 +944,7 @@ namespace RayCarrot.RCP.Metro
                         return;
                     }
 
+                    // TODO: Pass in new args and mark file for deletion on reboot
                     await RCFRCP.File.LaunchFileAsync(path, false, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.UserLevel} True");
                     Application.Current.Shutdown();
                 }
