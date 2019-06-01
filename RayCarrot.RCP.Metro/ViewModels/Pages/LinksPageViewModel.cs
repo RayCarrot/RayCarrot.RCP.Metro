@@ -262,6 +262,7 @@ namespace RayCarrot.RCP.Metro
         #endregion
     }
 
+    // TODO: Localize + move to separate file
     /// <summary>
     /// View model for a link item
     /// </summary>

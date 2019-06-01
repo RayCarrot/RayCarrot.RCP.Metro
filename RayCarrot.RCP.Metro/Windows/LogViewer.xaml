@@ -14,7 +14,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <!-- Top Row -->
@@ -78,11 +77,6 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-
-        <!-- Text Box -->
-
-        <TextBox Grid.Row="2"
-                 KeyDown="UIElement_OnKeyDown"/>
 
     </Grid>
 </local:BaseWindow>

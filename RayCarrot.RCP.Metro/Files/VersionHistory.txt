@@ -6,7 +6,9 @@
 • Increased default window size
 • Fixed a bug where the language would not set correctly if set to the default language
 • Fixed the scroll bar position on the about page
+• Added debug data output
 • Removed the links from the debug page due to them now being available in the links page
+• Removed the log viewer commands
 • Bug fixes
 
 

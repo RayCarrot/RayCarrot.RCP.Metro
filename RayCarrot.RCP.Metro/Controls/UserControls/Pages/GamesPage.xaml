@@ -17,6 +17,7 @@
     <Grid>
         <ScrollViewer Visibility="{Binding Path=App.IsGameFinderRunning, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
                       Padding="5">
+
             <StackPanel>
                 <StackPanel.Resources>
                     <Style x:Key="GamesDisplay"

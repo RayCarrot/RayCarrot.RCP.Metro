@@ -63,6 +63,7 @@ namespace RayCarrot.RCP.Metro
             ShowIncompleteTranslations = false;
             LinkItemStyle = LinkItemStyles.List;
             ApplicationPath = Assembly.GetExecutingAssembly().Location;
+            ForceUpdate = false;
         }
 
         #endregion
@@ -301,6 +302,11 @@ namespace RayCarrot.RCP.Metro
         /// The last recorded path of the application
         /// </summary>
         public FileSystemPath ApplicationPath { get; set; }
+
+        /// <summary>
+        /// Indicates if a manual update should be forced even if the installed version is the latest one
+        /// </summary>
+        public bool ForceUpdate { get; set; }
 
         // TODO: Show under installed programs + uninstall button which restarts app with args, when args detected ignore mutex
         //       This startup of the program uninstalls it by creating an uninstaller in temp which is flagged to remove after reboot

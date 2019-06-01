@@ -97,7 +97,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(4, 4, 0, 0);
+        public Version CurrentVersion => new Version(4, 5, 0, 0);
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -891,30 +891,33 @@ namespace RayCarrot.RCP.Metro
 
                 RCF.Logger.LogInformationSource($"The update manifest was retrieved");
 
-                try
+                if (!RCFRCP.Data.ForceUpdate || !showIfNoUpdates)
                 {
-                    // Get the server version
-                    var av = manifest["LatestAssemblyVersion"];
-                    var serverVersion = new Version(av["Major"].Value<int>(), av["Minor"].Value<int>(), av["Build"].Value<int>(), av["Revision"].Value<int>());
-
-                    // Compare version
-                    if (RCFRCP.App.CurrentVersion >= serverVersion)
+                    try
                     {
-                        if (showIfNoUpdates)
-                            await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, serverVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
+                        // Get the server version
+                        var av = manifest["LatestAssemblyVersion"];
+                        var serverVersion = new Version(av["Major"].Value<int>(), av["Minor"].Value<int>(), av["Build"].Value<int>(), av["Revision"].Value<int>());
 
-                        RCF.Logger.LogInformationSource($"The latest version is installed");
+                        // Compare version
+                        if (RCFRCP.App.CurrentVersion >= serverVersion)
+                        {
+                            if (showIfNoUpdates)
+                                await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, serverVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
 
+                            RCF.Logger.LogInformationSource($"The latest version is installed");
+
+                            return;
+                        }
+
+                        RCF.Logger.LogInformationSource($"A new version ({serverVersion}) is available");
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleError("Getting assembly version from server manifest", manifest);
+                        await RCF.MessageUI.DisplayMessageAsync(Resources.Update_ManifestError, Resources.Update_ErrorHeader, MessageType.Error);
                         return;
                     }
-
-                    RCF.Logger.LogInformationSource($"A new version ({serverVersion}) is available");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Getting assembly version from server manifest", manifest);
-                    await RCF.MessageUI.DisplayMessageAsync(Resources.Update_ManifestError, Resources.Update_ErrorHeader, MessageType.Error);
-                    return;
                 }
 
                 string news = Resources.Update_NewsError;
@@ -944,8 +947,8 @@ namespace RayCarrot.RCP.Metro
                         return;
                     }
 
-                    // TODO: Pass in new args and mark file for deletion on reboot
-                    await RCFRCP.File.LaunchFileAsync(path, false, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.UserLevel} True");
+                    // TODO: Mark file for deletion on reboot
+                    await RCFRCP.File.LaunchFileAsync(path, false, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.DarkMode} {RCFRCP.Data.UserLevel}");
                     Application.Current.Shutdown();
                 }
             }

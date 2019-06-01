@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework;
 using RayCarrot.Windows.Registry;
@@ -26,6 +28,7 @@ namespace RayCarrot.RCP.Metro
             ShowLogCommand = new RelayCommand(ShowLog);
             ShowInstalledUtilitiesCommand = new AsyncRelayCommand(ShowInstalledUtilitiesAsync);
             RefreshJumpListCommand = new RelayCommand(Metro.App.Current.RefreshJumpList);
+            RefreshDataOutputCommand = new RelayCommand(RefreshDataOutput);
 
             // Show log viewer if a debugger is attached
             if (!_firstConstruction || !Debugger.IsAttached)
@@ -52,6 +55,16 @@ namespace RayCarrot.RCP.Metro
         /// The selected dialog type
         /// </summary>
         public DebugDialogTypes SelectedDialog { get; set; }
+
+        /// <summary>
+        /// The selected data output type
+        /// </summary>
+        public DebugDataOutputTypes SelectedDataOutputType { get; set; }
+
+        /// <summary>
+        /// The current data output
+        /// </summary>
+        public string DataOutput { get; set; }
 
         #endregion
 
@@ -155,6 +168,54 @@ namespace RayCarrot.RCP.Metro
             await RCF.MessageUI.DisplayMessageAsync(lines.JoinItems(Environment.NewLine), MessageType.Information);
         }
 
+        /// <summary>
+        /// Refreshes the data output
+        /// </summary>
+        public void RefreshDataOutput()
+        {
+            // Clear current data
+            DataOutput = String.Empty;
+
+            switch (SelectedDataOutputType)
+            {
+                case DebugDataOutputTypes.ReferencedAssemblies:
+                    foreach (AssemblyName assemblyName in Assembly.GetExecutingAssembly().GetReferencedAssemblies())
+                    {
+                        Assembly assembly = null;
+
+                        try
+                        {
+                            // Load the assembly
+                            assembly = Assembly.Load(assemblyName);
+                        }
+                        catch (Exception ex)
+                        {
+                            ex.HandleUnexpected("Loading referenced assembly");
+                        }
+
+                        DataOutput += $"Name: {assemblyName.Name}{Environment.NewLine}";
+                        DataOutput += $"FullName: {assemblyName.FullName}{Environment.NewLine}";
+                        DataOutput += $"Version: {assemblyName.Version}{Environment.NewLine}";
+
+                        if (assembly != null)
+                        {
+                            // Get the PEKind for the assembly
+                            assembly.GetModules()[0].GetPEKind(out PortableExecutableKinds peKinds, out ImageFileMachine _);
+                            PortableExecutableKinds referenceKind = peKinds;
+
+                            DataOutput += $"Location: {assembly.Location}{Environment.NewLine}";
+                            DataOutput += $"ProcessorArchitecture: {((referenceKind & PortableExecutableKinds.Required32Bit) > 0 ? "x86" : (referenceKind & PortableExecutableKinds.PE32Plus) > 0 ? "x64" : "Any CPU")}{Environment.NewLine}";
+                        }
+
+                        DataOutput += Environment.NewLine;
+                    }
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -167,6 +228,19 @@ namespace RayCarrot.RCP.Metro
 
         public ICommand RefreshJumpListCommand { get; }
 
+        public ICommand RefreshDataOutputCommand { get; }
+
         #endregion
+    }
+
+    /// <summary>
+    /// The available debug data output types
+    /// </summary>
+    public enum DebugDataOutputTypes
+    {
+        /// <summary>
+        /// Displays a list of the referenced assemblies
+        /// </summary>
+        ReferencedAssemblies
     }
 }

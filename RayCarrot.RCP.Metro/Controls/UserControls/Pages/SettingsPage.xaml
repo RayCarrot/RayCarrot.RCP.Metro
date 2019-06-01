@@ -299,6 +299,10 @@
 
                     </StackPanel>
 
+                    <!-- TODO: Localize -->
+                    <CheckBox Content="Force Manual Updates"
+                              IsChecked="{Binding Path=ForceUpdate}" />
+
                 </StackPanel>
 
             </StackPanel>

@@ -81,6 +81,7 @@ The Rayman Control Panel uses these main dependencies:
 - [XamlAnimatedGif](https://github.com/XamlAnimatedGif/XamlAnimatedGif)
 - [Infralution.Localization.Wpf](https://www.codeproject.com/Articles/35159/WPF-Localization-Using-RESX-Files)
 - [Resource.Embedder](https://github.com/MarcStan/Resource.Embedder)
+- [Hardcodet.NotifyIcon.Wpf](http://www.hardcodet.net/wpf-notifyicon)
 
 ## Localization
 Starting with version 4.1.0 the Rayman Control Panel will support localization.

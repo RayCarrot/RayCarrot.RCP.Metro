@@ -334,6 +334,7 @@ namespace RayCarrot.RCP.Metro
             {
                 RCFRCP.Data.LinkItemStyle = LinkItemStyles.List;
                 RCFRCP.Data.ApplicationPath = Assembly.GetExecutingAssembly().Location;
+                RCFRCP.Data.ForceUpdate = false;
             }
 
             // Refresh the jump list
