@@ -556,9 +556,6 @@ This is a growing project with more features planned on being added with future 
   <data name="Settings_DebugExceptionLevelInfo" xml:space="preserve">
     <value>The exception level for displaying debug and trace information</value>
   </data>
-  <data name="Settings_BackupHeader" xml:space="preserve">
-    <value>Backups</value>
-  </data>
   <data name="Settings_BackupLocation" xml:space="preserve">
     <value>Backup location</value>
   </data>
@@ -1425,7 +1422,7 @@ gameDisplayName</comment>
     <value>SVN Daum</value>
   </data>
   <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
-    <value>Installation failed.</value>
+    <value>Installation failed</value>
   </data>
   <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
     <value>Installation Failed</value>
@@ -1601,22 +1598,6 @@ tempDir2</comment>
   </data>
   <data name="Download_CurrentFileProgress" xml:space="preserve">
     <value>Current File Progress</value>
-  </data>
-  <data name="Feedback_Title" xml:space="preserve">
-    <value>Feedback - Version 4.0.0</value>
-  </data>
-  <data name="Feedback_Text" xml:space="preserve">
-    <value>Listening to the users feedback is very important for me as a developer. Therefor I would greatly appreciate if you could take a minute to answer some quick questions regarding the program. This will allow you to let me know if there are any features you are missing or don't like.
-Thanks!</value>
-  </data>
-  <data name="Feedback_DoNotShowAgain" xml:space="preserve">
-    <value>Don't show again</value>
-  </data>
-  <data name="Feedback_Ignore" xml:space="preserve">
-    <value>Ignore</value>
-  </data>
-  <data name="Feedback_GiveFeedback" xml:space="preserve">
-    <value>Give Feedback</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
     <value>Welcome to the Rayman Control Panel</value>

@@ -948,6 +948,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // TODO: Mark file for deletion on reboot
+                    // TODO: Run as admin if set to show under installed programs
                     await RCFRCP.File.LaunchFileAsync(path, false, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.DarkMode} {RCFRCP.Data.UserLevel}");
                     Application.Current.Shutdown();
                 }

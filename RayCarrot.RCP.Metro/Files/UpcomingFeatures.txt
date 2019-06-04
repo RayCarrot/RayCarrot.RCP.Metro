@@ -7,6 +7,8 @@
 --- Games ---
 - Add support for educational games. Treat as a single game, with games in drop-down added by user.
 
+- Add support for first mounting a specific disc image before launching a Win32 or DOSBox game
+
 
 --- Game Finder ---
 - Auto create .bat files for DOSBox games + allow language switching based on editing the .bat file's launch argument
@@ -24,3 +26,11 @@
 - Rework ubi.ini permission system to avoid relying on CMD commands due to not being able to verify if the command succeeded
 
 - Disable Rayman Forever game backups if GOG cloud is used (check if cloud_saves directory contains files) due to them being redirected by the GOG client
+
+
+--- Bugs ---
+- WinStore app backup/restore fails when no save files are present / save directory does not exist
+
+
+--- Updater ---
+- Localize updater and pass in culture info

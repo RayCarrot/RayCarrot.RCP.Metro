@@ -1655,52 +1655,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Don&apos;t show again.
-        /// </summary>
-        public static string Feedback_DoNotShowAgain {
-            get {
-                return ResourceManager.GetString("Feedback_DoNotShowAgain", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Give Feedback.
-        /// </summary>
-        public static string Feedback_GiveFeedback {
-            get {
-                return ResourceManager.GetString("Feedback_GiveFeedback", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ignore.
-        /// </summary>
-        public static string Feedback_Ignore {
-            get {
-                return ResourceManager.GetString("Feedback_Ignore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Listening to the users feedback is very important for me as a developer. Therefor I would greatly appreciate if you could take a minute to answer some quick questions regarding the program. This will allow you to let me know if there are any features you are missing or don&apos;t like.
-        ///Thanks!.
-        /// </summary>
-        public static string Feedback_Text {
-            get {
-                return ResourceManager.GetString("Feedback_Text", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Feedback - Version 4.0.0.
-        /// </summary>
-        public static string Feedback_Title {
-            get {
-                return ResourceManager.GetString("Feedback_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An error occurred creating the shortcut.
         /// </summary>
         public static string File_CreatingShortcutError {
@@ -3801,7 +3755,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Installation failed..
+        ///   Looks up a localized string similar to Installation failed.
         /// </summary>
         public static string R1U_TPLSInstallationFailed {
             get {
@@ -4796,15 +4750,6 @@ namespace RayCarrot.RCP.Metro {
         public static string SecretCodes_SecretHeader {
             get {
                 return ResourceManager.GetString("SecretCodes_SecretHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Backups.
-        /// </summary>
-        public static string Settings_BackupHeader {
-            get {
-                return ResourceManager.GetString("Settings_BackupHeader", resourceCulture);
             }
         }
         

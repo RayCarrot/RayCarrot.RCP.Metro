@@ -177,21 +177,6 @@
   <data name="MountOption_DriveInfo" xml:space="preserve">
     <value>Назначи да је путања монтирања диск или дискета</value>
   </data>
-  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
-    <value>1.12</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
-    <value>1.20</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
-    <value>1.21</value>
-  </data>
-  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
-    <value>0.74</value>
-  </data>
-  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
-    <value>SVN Daum</value>
-  </data>
   <data name="DosBoxSettingsHeader" xml:space="preserve">
     <value>ДОСБокс подешавања</value>
   </data>
@@ -236,6 +221,18 @@
   </data>
   <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
     <value>Резолуција целог екрана</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
+    <value>1.20</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
+    <value>1.21</value>
+  </data>
+  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
+    <value>0.74</value>
+  </data>
+  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
+    <value>SVN Daum</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
     <value>1.00</value>

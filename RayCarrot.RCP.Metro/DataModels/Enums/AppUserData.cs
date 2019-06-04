@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using Infralution.Localization.Wpf;
 using MahApps.Metro;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using RayCarrot.CarrotFramework;
 using RayCarrot.UserData;
+using RayCarrot.Windows.Registry;
 using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
@@ -64,6 +68,8 @@ namespace RayCarrot.RCP.Metro
             LinkItemStyle = LinkItemStyles.List;
             ApplicationPath = Assembly.GetExecutingAssembly().Location;
             ForceUpdate = false;
+            ShowUnderInstalledPrograms = false;
+            PendingRegUninstallKeyRefresh = false;
         }
 
         #endregion
@@ -77,6 +83,8 @@ namespace RayCarrot.RCP.Metro
         private bool _showIncompleteTranslations;
 
         private LinkItemStyles _linkItemStyle;
+
+        private bool _showUnderInstalledPrograms;
 
         #endregion
 
@@ -310,10 +318,38 @@ namespace RayCarrot.RCP.Metro
 
         // TODO: Show under installed programs + uninstall button which restarts app with args, when args detected ignore mutex
         //       This startup of the program uninstalls it by creating an uninstaller in temp which is flagged to remove after reboot
+        //       https://www.google.com/search?q=C%23+delete+file+on+reboot&oq=C%23+delete+file+on+reboot
+        //       Arguments: -uninstall
+        //       Create uninstaller program to handle uninstallation - this runs as administrator - this program waits for RCP to exit before running - deploy it to RCP temp folder
         /// <summary>
         /// Indicates if the program should display under installed programs
         /// </summary>
-        //public bool ShowUnderInstalledPrograms { get; set; }
+        public bool ShowUnderInstalledPrograms
+        {
+            get => _showUnderInstalledPrograms;
+            set
+            {
+                if (_showUnderInstalledPrograms == value)
+                    return;
+
+                RefreshShowUnderInstalledProgramsAsync(value, false).ContinueWith(x =>
+                {
+                    if (!x.Result)
+                    {
+                        // Revert the property change
+                        _showUnderInstalledPrograms = !value;
+
+                        // Notify UI
+                        OnPropertyChanged(nameof(ShowUnderInstalledPrograms));
+                    }
+                });
+            }
+        }
+
+        /// <summary>
+        /// Indicates if a refresh of the Registry uninstall key is pending
+        /// </summary>
+        public bool PendingRegUninstallKeyRefresh { get; set; }
 
         #endregion
 
@@ -354,6 +390,89 @@ namespace RayCarrot.RCP.Metro
                 RCF.Data.CurrentCulture = ci;
 
                 RCF.Logger.LogInformationSource($"The current culture was set to {ci.EnglishName}");
+            }
+        }
+
+        /// <summary>
+        /// Refreshes the <see cref="ShowUnderInstalledPrograms"/> property
+        /// </summary>
+        /// <param name="showUnderInstalledPrograms">Indicates if the program should display under installed programs</param>
+        /// <param name="forceRefresh">Indicates if the Registry key should be force refreshed</param>
+        /// <returns>True if the operation succeeded, otherwise false</returns>
+        public async Task<bool> RefreshShowUnderInstalledProgramsAsync(bool showUnderInstalledPrograms, bool forceRefresh)
+        {
+            // TODO: Lock this
+            // TODO: Log
+
+            _showUnderInstalledPrograms = showUnderInstalledPrograms;
+
+            var keyExists = RCFWinReg.RegistryManager.KeyExists(RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, CommonPaths.RegistryUninstallKeyName));
+
+            if (showUnderInstalledPrograms && keyExists)
+                return true;
+
+            if (!showUnderInstalledPrograms && !keyExists)
+                return true;
+
+            try
+            {
+                using (var parentKey = RCFWinReg.RegistryManager.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms, RegistryView.Default, true))
+                {
+                    if (showUnderInstalledPrograms)
+                    {
+                        using (var subKey = parentKey.CreateSubKey(CommonPaths.RegistryUninstallKeyName))
+                        {
+                            if (subKey == null)
+                                throw new Exception("The created Registry uninstall key for RCP was null");
+
+                            subKey.SetValue("DisplayName", "Rayman Control Panel", RegistryValueKind.String);
+                            subKey.SetValue("DisplayVersion", RCFRCP.App.CurrentVersion.ToString(), RegistryValueKind.String);
+                            subKey.SetValue("Publisher", "RayCarrot", RegistryValueKind.String);
+                            subKey.SetValue("HelpLink", CommonUrls.DiscordUrl, RegistryValueKind.String);
+                            subKey.SetValue("DisplayIcon", ApplicationPath, RegistryValueKind.String);
+                            subKey.SetValue("InstallLocation", ApplicationPath.Parent, RegistryValueKind.String);
+                            subKey.SetValue("UninstallString", $"\"{ApplicationPath}\" -uninstall", RegistryValueKind.String);
+                            subKey.SetValue("VersionMajor", RCFRCP.App.CurrentVersion.Major, RegistryValueKind.DWord);
+                            subKey.SetValue("VersionMinor", RCFRCP.App.CurrentVersion.Minor, RegistryValueKind.DWord);
+
+                            // Attempt to get application size
+                            try
+                            {
+                                subKey.SetValue("EstimatedSize", ApplicationPath.GetSize().KiloBytes, RegistryValueKind.DWord);
+                            }
+                            catch (Exception ex)
+                            {
+                                ex.HandleUnexpected("Getting app size");
+                            }
+
+                            // Attempt to get install date
+                            try
+                            {
+                                DateTime creationDate = File.GetCreationTime(ApplicationPath);
+                                subKey.SetValue("InstallDate", creationDate.ToString("yyyyMMdd"), RegistryValueKind.String);
+                            }
+                            catch (Exception ex)
+                            {
+                                ex.HandleUnexpected("Getting app creation time");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        parentKey.DeleteSubKey(CommonPaths.RegistryUninstallKeyName);
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Updating program in Registry uninstall key");
+
+                // TODO: Localize
+                await RCF.MessageUI.DisplayMessageAsync("Updating the program information under installed programs failed. Try restarting as administrator to try again.", MessageType.Error);
+
+                return false;
             }
         }
 

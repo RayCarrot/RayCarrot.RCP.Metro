@@ -41,6 +41,8 @@ namespace RayCarrot.RCP.Metro.Updater
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
+            // TODO: Allow operation to be canceled + add cancel button
+
             // Cancel closing
             e.Cancel = true;
         }

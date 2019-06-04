@@ -117,21 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
-    <value>1.12</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
-    <value>1.20</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
-    <value>1.21</value>
-  </data>
-  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
-    <value>0.74</value>
-  </data>
-  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
-    <value>SVN Daum</value>
-  </data>
   <data name="GamesPageHeader" xml:space="preserve">
     <value>Spellen</value>
   </data>
@@ -728,6 +713,318 @@
   </data>
   <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
     <value>Max. zoombereik</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
+    <value>Door deze optie wordt er maximaal gezoomd</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
+    <value>Framerate</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
+    <value>Deze optie bepaalt de framerate waarop het spel zal lopen</value>
+  </data>
+  <data name="ROU_DebugCommandsMap" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
+    <value>Dit zal ervoor zorgen dat een specifieke map geladen wordt in plaats van het hoofdmenu, bij opstart van het spel</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
+    <value>Dit zal de taal van het spel veranderen</value>
+  </data>
+  <data name="ROU_UpdateHeader" xml:space="preserve">
+    <value>Update naar 1.02 (Disc-versie)</value>
+  </data>
+  <data name="ROU_UpdateInfo" xml:space="preserve">
+    <value>Ingeval Rayman Origins niet automatisch geüpdatet is naar de laatste versie, 1.02, kan dat via dit hulpprogramma alsnog.</value>
+  </data>
+  <data name="ROU_UpdateUpdate" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
+    <value>Open winkelpagina</value>
+  </data>
+  <data name="GameDisplay_OpenSteamCommunity" xml:space="preserve">
+    <value>Open Community pagina</value>
+  </data>
+  <data name="GameDisplay_OpenLocation" xml:space="preserve">
+    <value>Open locatie</value>
+  </data>
+  <data name="GameDisplay_Options" xml:space="preserve">
+    <value>Opties</value>
+  </data>
+  <data name="GameDisplay_Launch" xml:space="preserve">
+    <value>Starten</value>
+  </data>
+  <data name="GameDisplay_DiscInstall" xml:space="preserve">
+    <value>Installeren vanaf de schijf</value>
+  </data>
+  <data name="GameDisplay_Locate" xml:space="preserve">
+    <value>Lokaliseren</value>
+  </data>
+  <data name="GameDisplay_PurchaseGOG" xml:space="preserve">
+    <value>Kopen via GG</value>
+  </data>
+  <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
+    <value>Kopen via Uplay</value>
+  </data>
+  <data name="GameDisplay_Steam" xml:space="preserve">
+    <value>Kopen via Steam</value>
+  </data>
+  <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
+    <value>Kopen via de Windows Store</value>
+  </data>
+  <data name="GameLink_RDMapper" xml:space="preserve">
+    <value>Mapper</value>
+  </data>
+  <data name="GameLink_Setup" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="GameLink_R2nGlide" xml:space="preserve">
+    <value>nGlide configuratie</value>
+  </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Actie voltooid</value>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Algemeen Bericht</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Informatiebericht</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Foutbericht</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Waarschuwingsbericht</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Succesbericht</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Vraag</value>
+  </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Exception</value>
+  </data>
+  <data name="ExceptionMessageInfo" xml:space="preserve">
+    <value>Een exceptie heeft zich voorgedaan in de applicatie. Hieronder de beschikbare debug informatie, op basis van het huidige gebruikersniveau in het Carrot Framework.</value>
+  </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>Het gespecificeerde bestand kon niet gevonden worden: {0}</value>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>Bestand niet gevonden</value>
+  </data>
+  <data name="File_ErrorLaunchingFile" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens een startpoging {0}</value>
+  </data>
+  <data name="File_ShortcutCreated" xml:space="preserve">
+    <value>Snelkoppeling succesvol aangemaakt</value>
+  </data>
+  <data name="File_CreatingShortcutError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het aanmaken van een snelkoppeling</value>
+  </data>
+  <data name="File_CreatingShortcutErrorHeader" xml:space="preserve">
+    <value>Fout bij aanmaken snelkoppeling</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>Locatie niet gevonden</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>Directory fout</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>De map kon niet geopend worden</value>
+  </data>
+  <data name="LocateGame_BrowserHeader" xml:space="preserve">
+    <value>Selecteer Installatiemap</value>
+  </data>
+  <data name="LocateGame_InvalidLocation" xml:space="preserve">
+    <value>De geselecteerde map is niet geldig voor dit spel</value>
+  </data>
+  <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
+    <value>Ongeldige Locatie</value>
+  </data>
+  <data name="LocateGame_InvalidSteamGame" xml:space="preserve">
+    <value>Het spel kon niet gevonden worden. Probeer 'Desktop App' als het type te kiezen.</value>
+  </data>
+  <data name="LocateGame_InvalidSteamGameHeader" xml:space="preserve">
+    <value>Spel niet gevonden</value>
+  </data>
+  <data name="LocateGame_InvalidWinStoreGame" xml:space="preserve">
+    <value>Het spel kon niet gevonden worden onder de geïnstalleerde Windows Store apps.</value>
+  </data>
+  <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
+    <value>Spel niet gevonden</value>
+  </data>
+  <data name="LocateGame_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het lokaliseren van het spel</value>
+  </data>
+  <data name="LocateGame_ErrorHeader" xml:space="preserve">
+    <value>Fout tijdens het lokaliseren van het spel</value>
+  </data>
+  <data name="LaunchGame_WinStoreError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens een startpoging {0}</value>
+  </data>
+  <data name="LaunchGame_DosBoxNotFound" xml:space="preserve">
+    <value>DosBox kon niet worden gevonden. Specificeer een geldig pad onder Instellingen om het spel te kunnen starten.</value>
+  </data>
+  <data name="LaunchGame_MountPathNotFound" xml:space="preserve">
+    <value>De 'mount path' kon niet gevonden worden. Specificeer een geldig pad via de spelinstellingen om het spel te kunnen starten.</value>
+  </data>
+  <data name="Backup_Confirm" xml:space="preserve">
+    <value>Dit zal elke, eerder gemaakte back-up vervangen voor {0}</value>
+  </data>
+  <data name="Backup_ConfirmHeader" xml:space="preserve">
+    <value>Bevestig back-up</value>
+  </data>
+  <data name="Backup_FailedHeader" xml:space="preserve">
+    <value>Back-up aanmaken mislukt</value>
+  </data>
+  <data name="Backup_MissingDirectoriesError" xml:space="preserve">
+    <value>Back-up voor {0} kon niet worden voltooid, omdat niet alle gespecificeerde mappen konden worden gevonden.</value>
+  </data>
+  <data name="RemoveGame_UtilityWarningHeader" xml:space="preserve">
+    <value>Hulpprogramma waarschuwing</value>
+  </data>
+  <data name="GameFinder_GamesFoundHeader" xml:space="preserve">
+    <value>Geïnstalleerde spellen gevonden</value>
+  </data>
+  <data name="GameFinder_GamesFound" xml:space="preserve">
+    <value>De volgende, nieuwe games zijn gevonden:</value>
+  </data>
+  <data name="UbiIniWriteAccess_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens de poging, schrijftoegang in te schakelen voor het Rayman configuratiebestand.</value>
+  </data>
+  <data name="UbiIniWriteAccess_InfoMessage" xml:space="preserve">
+    <value>Om de Rayman games te kunnen configureren, zonder dit hulpprogramma met administrator rechten te gebruiken, dien je de volgende administrator prompt te accepteren</value>
+  </data>
+  <data name="RemoveGame_UtilityWarning" xml:space="preserve">
+    <value>De volgende hulpprogramma's zijn toegepast op dit spel en zullen niet worden verwijderd indien het spel wordt gedeïnstalleerd. Om de hulpprogramma's te kunnen verwijderen, ga je naar het venster voor hulpprogramma's en schakel je ze daar uit/in of keer je terug naar de originele optie/staat, indien mogelijk.</value>
+  </data>
+  <data name="AddGame_DuplicateHeader" xml:space="preserve">
+    <value>Fout tijdens het toevoegen van een nieuw spel</value>
+  </data>
+  <data name="AddGame_Duplicate" xml:space="preserve">
+    <value>Het spel {0} is al toegevoegd</value>
+  </data>
+  <data name="Restore_Failed" xml:space="preserve">
+    <value>Herstel mislukt voor {0}</value>
+  </data>
+  <data name="Restore_SuccessHeader" xml:space="preserve">
+    <value>Herstel succesvol</value>
+  </data>
+  <data name="Restore_Success" xml:space="preserve">
+    <value>Je spelbestanden voor {0} zijn succesvol hersteld</value>
+  </data>
+  <data name="Restore_ConfirmHeader" xml:space="preserve">
+    <value>Bevestig herstel</value>
+  </data>
+  <data name="Restore_Confirm" xml:space="preserve">
+    <value>Dit zal de huidige spelbestanden van {0} vervangen met de back-up bestanden.</value>
+  </data>
+  <data name="Restore_FailedHeader" xml:space="preserve">
+    <value>Herstel mislukt</value>
+  </data>
+  <data name="Restore_MissingBackup" xml:space="preserve">
+    <value>Er is geen back-up gevonden voor {0}</value>
+  </data>
+  <data name="Backup_Failed" xml:space="preserve">
+    <value>Back-up mislukt voor {0}</value>
+  </data>
+  <data name="Backup_SuccessHeader" xml:space="preserve">
+    <value>Back-up succesvol</value>
+  </data>
+  <data name="Backup_Success" xml:space="preserve">
+    <value>Je spelbestanden voor {0} zijn succesvol geback-upt</value>
+  </data>
+  <data name="Backup_MissingFilesError" xml:space="preserve">
+    <value>Geen spelbestanden van {0} gevonden om te back-uppen</value>
+  </data>
+  <data name="GameFinder_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens een uitvoering van de Game Finder</value>
+  </data>
+  <data name="Download_NoFilesFound" xml:space="preserve">
+    <value>Geen bestanden gevonden om te downloaden</value>
+  </data>
+  <data name="Download_ConfirmSize" xml:space="preserve">
+    <value>Deze patch vereist dat de toebehorende bestanden worden gedownload. De totale grootte van de download is {0}. Doorgaan?</value>
+  </data>
+  <data name="Download_ConfirmHeader" xml:space="preserve">
+    <value>Bevestig download</value>
+  </data>
+  <data name="Download_Confirm" xml:space="preserve">
+    <value>Deze patch vereist dat de toebehorende bestanden worden gedownload. Doorgaan?</value>
+  </data>
+  <data name="Download_Error" xml:space="preserve">
+    <value>De bestanden konden niet worden gedownload</value>
+  </data>
+  <data name="Update_UnknownError" xml:space="preserve">
+    <value>Onbekende fout</value>
+  </data>
+  <data name="Update_WebError" xml:space="preserve">
+    <value>Een verbinding met de server kon niet tot stand worden gebracht</value>
+  </data>
+  <data name="Update_FormatError" xml:space="preserve">
+    <value>De informatie van de server was niet geldig</value>
+  </data>
+  <data name="Update_GenericError" xml:space="preserve">
+    <value>Een onbekende fout heeft plaatsgevonden tijdens het verbinden met de server</value>
+  </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>Updatecontrole Mislukt</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>De laatste versie ({0}) is reeds geïnstalleerd</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Geen nieuwe versie gevonden</value>
+  </data>
+  <data name="Update_ManifestError" xml:space="preserve">
+    <value>Het server manifest kon niet gelezen worden</value>
+  </data>
+  <data name="Update_NewsError" xml:space="preserve">
+    <value>Fout bij het verkrijgen van nieuws</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>Een nieuwe update is beschikbaar om te downloaden. Nu downloaden?</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Nieuwe versie gevonden</value>
+  </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>De updater kon niet gestart worden. Voor het handmatig downloaden van de nieuwste versie, ga je naar {0}.</value>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Fout tijdens het starten van de updater</value>
+  </data>
+  <data name="MoveBackups_Question" xml:space="preserve">
+    <value>Wil je bestaande back-ups verplaatsen naar de nieuwe locatie?</value>
+  </data>
+  <data name="MoveBackups_QuestionHeader" xml:space="preserve">
+    <value>Verplaats oude back-ups</value>
+  </data>
+  <data name="MoveBackups_NoBackupsFound" xml:space="preserve">
+    <value>Geen back-ups gevonden in {0}</value>
+  </data>
+  <data name="MoveBackups_ErrorHeader" xml:space="preserve">
+    <value>Verplaatsen van back-ups mislukt</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
+    <value>1.20</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
+    <value>1.21</value>
+  </data>
+  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
+    <value>0.74</value>
+  </data>
+  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
+    <value>SVN Daum</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
     <value>1.00</value>

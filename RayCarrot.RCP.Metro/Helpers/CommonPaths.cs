@@ -1,7 +1,7 @@
-﻿using System;
-using System.IO;
-using RayCarrot.CarrotFramework;
+﻿using RayCarrot.CarrotFramework;
 using RayCarrot.Windows.Registry;
+using System;
+using System.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -30,6 +30,12 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public static FileSystemPath LogFile => UserDataBaseDir + "Temp\\Log.txt";
 
+        // TODO: Deploy updater + uninstaller here - reset this folder on launch
+        /// <summary>
+        /// The installation temp directory
+        /// </summary>
+        public static FileSystemPath InstallTempPath => UserDataBaseDir + "Temp\\Installation";
+
         /// <summary>
         /// The path for temporary files in this application
         /// </summary>
@@ -54,6 +60,11 @@ namespace RayCarrot.RCP.Metro
         /// The license accepted value name
         /// </summary>
         public static string RegistryLicenseValue => "LicenseAccepted";
+
+        /// <summary>
+        /// The Registry uninstall key name
+        /// </summary>
+        public static string RegistryUninstallKeyName => "RCP_Metro";
 
         /// <summary>
         /// The Rayman Raving Rabbids registry key path

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro
@@ -60,6 +59,8 @@ namespace RayCarrot.RCP.Metro
 
         private void MinimizeToTrayButton_OnClick(object sender, RoutedEventArgs e)
         {
+            // TODO: Log
+
             foreach (Window window in App.Current.Windows)
                 window.Hide();
 
@@ -68,6 +69,8 @@ namespace RayCarrot.RCP.Metro
 
         private void TaskbarIcon_Show_OnClick(object sender, RoutedEventArgs e)
         {
+            // TODO: Log
+
             foreach (Window window in App.Current.Windows)
                 window.Show();
 
@@ -76,6 +79,8 @@ namespace RayCarrot.RCP.Metro
 
         private void TaskbarIcon_Close_OnClick(object sender, RoutedEventArgs e)
         {
+            // TODO: Log
+
             Close();
         }
 

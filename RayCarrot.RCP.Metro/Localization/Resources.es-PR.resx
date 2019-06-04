@@ -159,6 +159,12 @@
   <data name="GameType_WinStore" xml:space="preserve">
     <value>Microsoft Store</value>
   </data>
+  <data name="MountOption_File" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="MountOption_Drive" xml:space="preserve">
+    <value>Controlador</value>
+  </data>
   <data name="ROU_DebugCommandsWarning" xml:space="preserve">
     <value>ADVERTENCIA: El uso de estos comandos de depuración puede dañar el archivo guardado. Siempre haga una copia de seguridad antes de usarlos.</value>
   </data>
@@ -171,9 +177,6 @@
   <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
     <value>Invencibilidad</value>
   </data>
-  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
-    <value>1.12</value>
-  </data>
   <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
     <value>1.20</value>
   </data>
@@ -185,12 +188,6 @@
   </data>
   <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
     <value>SVN Daum</value>
-  </data>
-  <data name="MountOption_File" xml:space="preserve">
-    <value>Archivo</value>
-  </data>
-  <data name="MountOption_Drive" xml:space="preserve">
-    <value>Controlador</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
     <value>1.00</value>

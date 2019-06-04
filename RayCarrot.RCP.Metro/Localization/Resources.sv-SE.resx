@@ -1,76 +1,96 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
-		Microsoft ResX Schema
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
 
-		Version 1.3
-
-		The primary goals of this format is to allow a simple XML format 
-		that is mostly human readable. The generation and parsing of the 
-		various data types are done through the TypeConverter classes 
-		associated with the data types.
-
-		Example:
-
-		... ado.net/XML headers & schema ...
-		<resheader name="resmimetype">text/microsoft-resx</resheader>
-		<resheader name="version">1.3</resheader>
-		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-		<data name="Name1">this is my long string</data>
-		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-			[base64 mime encoded serialized .NET Framework object]
-		</data>
-		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-			[base64 mime encoded string representing a byte array form of the .NET Framework object]
-		</data>
-
-		There are any number of "resheader" rows that contain simple 
-		name/value pairs.
-
-		Each data row contains a name, and value. The row also contains a 
-		type or mimetype. Type corresponds to a .NET class that support 
-		text/value conversion through the TypeConverter architecture. 
-		Classes that don't support this are serialized and stored with the 
-		mimetype set.
-
-		The mimetype is used for serialized objects, and tells the 
-		ResXResourceReader how to depersist the object. This is currently not 
-		extensible. For a given mimetype the value must be set accordingly:
-
-		Note - application/x-microsoft.net.object.binary.base64 is the format 
-		that the ResXResourceWriter will generate, however the reader can 
-		read any of the formats listed below.
-
-		mimetype: application/x-microsoft.net.object.binary.base64
-		value   : The object must be serialized with 
-			: System.Serialization.Formatters.Binary.BinaryFormatter
-			: and then encoded with base64 encoding.
-
-		mimetype: application/x-microsoft.net.object.soap.base64
-		value   : The object must be serialized with 
-			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-			: and then encoded with base64 encoding.
-
-		mimetype: application/x-microsoft.net.object.bytearray.base64
-		value   : The object must be serialized into a byte array 
-			: using a System.ComponentModel.TypeConverter
-			: and then encoded with base64 encoding.
-	-->
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -89,13 +109,13 @@
     <value>text/microsoft-resx</value>
   </resheader>
   <resheader name="version">
-    <value>1.3</value>
+    <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="GamesPageHeader" xml:space="preserve">
     <value>Spel</value>
@@ -117,6 +137,9 @@
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Avbryt</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
   </data>
   <data name="Accept" xml:space="preserve">
     <value>Bekräfta</value>
@@ -229,11 +252,11 @@
   <data name="DosBoxOptions_Commands" xml:space="preserve">
     <value>DOSBox-kommandon</value>
   </data>
-  <data name="DosBoxOptions_Recommended" xml:space="preserve">
-    <value>Använd rekommenderade inställningar</value>
-  </data>
   <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
     <value>(Valfritt)</value>
+  </data>
+  <data name="DosBoxOptions_Recommended" xml:space="preserve">
+    <value>Använd rekommenderade inställningar</value>
   </data>
   <data name="Config_Resolution" xml:space="preserve">
     <value>Upplösning</value>
@@ -310,6 +333,9 @@
   <data name="Config_Controller" xml:space="preserve">
     <value>Handkontroller</value>
   </data>
+  <data name="Config_UseController" xml:space="preserve">
+    <value>Använd ansluten handkontroller</value>
+  </data>
   <data name="Config_ControllerInfo" xml:space="preserve">
     <value>Om handkontrollen inte känns av i spelet kan du aktivera stöd för det här</value>
   </data>
@@ -375,9 +401,6 @@
   </data>
   <data name="Config_RRRScreenModeInfo" xml:space="preserve">
     <value>Skärmlägena fungerar olika beroende på den valda upplösningen. Oftast får 4:3 läget spelet att inte sträcka ut bilden på olika bildförhållanden.</value>
-  </data>
-  <data name="Config_UseController" xml:space="preserve">
-    <value>Använd ansluten handkontroller</value>
   </data>
   <data name="Config_SaveDataLocation" xml:space="preserve">
     <value>Speldata</value>
@@ -533,9 +556,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="Settings_DebugExceptionLevelInfo" xml:space="preserve">
     <value>Exception-nivån för att visa debug information</value>
   </data>
-  <data name="Settings_BackupHeader" xml:space="preserve">
-    <value>Säkerhetskopior</value>
-  </data>
   <data name="Settings_BackupLocation" xml:space="preserve">
     <value>Säkerhetskopierings-sökvägen</value>
   </data>
@@ -611,11 +631,11 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="R3U_DirectPlayInfo" xml:space="preserve">
     <value>DirectPlay måste aktiveras för att kunna köra Rayman 3. Som standard är det vanligtvis inaktiverat i Windows 10.</value>
   </data>
-  <data name="R3U_DirectPlayDisabled" xml:space="preserve">
-    <value>Inaktiverad</value>
-  </data>
   <data name="R3U_DirectPlayEnabled" xml:space="preserve">
     <value>Aktiverad</value>
+  </data>
+  <data name="R3U_DirectPlayDisabled" xml:space="preserve">
+    <value>Inaktiverad</value>
   </data>
   <data name="R3U_DirectPlayErrorInfo" xml:space="preserve">
     <value>Kör programmet som administratör för att kunna göra ändringar gällande DirectPlay</value>
@@ -689,11 +709,11 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
     <value>Dölj muspekaren</value>
   </data>
-  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
-    <value>Max kamera zoom</value>
-  </data>
   <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
     <value>Detta gömmer muspekaren i spelmenyerna</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
+    <value>Max kamera zoom</value>
   </data>
   <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
     <value>Detta kommer att maximera kamerans zoom</value>
@@ -716,14 +736,14 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
     <value>Detta kommer att ändra språket spelet körs i</value>
   </data>
-  <data name="ROU_UpdateUpdate" xml:space="preserve">
-    <value>Uppdatera</value>
-  </data>
   <data name="ROU_UpdateHeader" xml:space="preserve">
     <value>Uppdatera till 1.02 (Skivversionen)</value>
   </data>
   <data name="ROU_UpdateInfo" xml:space="preserve">
     <value>Om Rayman Origins inte har uppdaterats automatiskt till den senaste version, 1.02, kan det här verktyget uppdatera det.</value>
+  </data>
+  <data name="ROU_UpdateUpdate" xml:space="preserve">
+    <value>Uppdatera</value>
   </data>
   <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
     <value>Öppna butikssidan</value>
@@ -761,17 +781,14 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="GameLink_RDMapper" xml:space="preserve">
     <value>Mapper</value>
   </data>
-  <data name="GameLink_R2nGlide" xml:space="preserve">
-    <value>nGlide konfiguration</value>
-  </data>
   <data name="GameLink_Setup" xml:space="preserve">
     <value>Setup</value>
   </data>
+  <data name="GameLink_R2nGlide" xml:space="preserve">
+    <value>nGlide konfiguration</value>
+  </data>
   <data name="ActionSucceeded" xml:space="preserve">
     <value>Åtgärden lyckades</value>
-  </data>
-  <data name="Ok" xml:space="preserve">
-    <value>Ok</value>
   </data>
   <data name="MessageHeader_Generic" xml:space="preserve">
     <value>Allmänt meddelande</value>
@@ -854,81 +871,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="LaunchGame_WinStoreError" xml:space="preserve">
     <value>Ett fel inträffade när {0} skulle starta</value>
   </data>
-  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
-    <value>1.21</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
-    <value>1.20</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
-    <value>1.12</value>
-  </data>
-  <data name="Feedback_Ignore" xml:space="preserve">
-    <value>Ignorera</value>
-  </data>
-  <data name="Feedback_DoNotShowAgain" xml:space="preserve">
-    <value>Visa inte igen</value>
-  </data>
-  <data name="Download_Title" xml:space="preserve">
-    <value>Ladda ner</value>
-  </data>
-  <data name="Continue" xml:space="preserve">
-    <value>Fortsätt</value>
-  </data>
-  <data name="Lang_English" xml:space="preserve">
-    <value>Engelska</value>
-  </data>
-  <data name="Lang_German" xml:space="preserve">
-    <value>Tyska</value>
-  </data>
-  <data name="Lang_French" xml:space="preserve">
-    <value>Franska</value>
-  </data>
-  <data name="Lang_Spanish" xml:space="preserve">
-    <value>Spanska</value>
-  </data>
-  <data name="Lang_Danish" xml:space="preserve">
-    <value>Danska</value>
-  </data>
-  <data name="Lang_Italian" xml:space="preserve">
-    <value>Italienska</value>
-  </data>
-  <data name="Lang_Finnish" xml:space="preserve">
-    <value>Finska</value>
-  </data>
-  <data name="Lang_Norwegian" xml:space="preserve">
-    <value>Norska</value>
-  </data>
-  <data name="Lang_Swedish" xml:space="preserve">
-    <value>Svenska</value>
-  </data>
-  <data name="AppName" xml:space="preserve">
-    <value>Rayman Kontrollpanelen</value>
-  </data>
-  <data name="Backup_Success" xml:space="preserve">
-    <value>Dina spelfiler för {0} har säkerhetskopierats</value>
-  </data>
-  <data name="Installer_FileConflictsHeader" xml:space="preserve">
-    <value>Filkonflikt</value>
-  </data>
-  <data name="Feedback_Title" xml:space="preserve">
-    <value>Feedback - Version 4.0.0</value>
-  </data>
-  <data name="Download_SuccessHeader" xml:space="preserve">
-    <value>Nedladdning har slutförts</value>
-  </data>
-  <data name="Config_RRRScreenMode_16_9" xml:space="preserve">
-    <value>16:9</value>
-  </data>
-  <data name="Config_RRRScreenMode_4_3Borders" xml:space="preserve">
-    <value>4:3 ram</value>
-  </data>
-  <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
-    <value>4:3</value>
-  </data>
-  <data name="AppNews_Title" xml:space="preserve">
-    <value>Appnyheter</value>
-  </data>
   <data name="LaunchGame_DosBoxNotFound" xml:space="preserve">
     <value>DosBox kunde inte hittas. Ange en giltig sökväg under inställningarna för att starta spelet.</value>
   </data>
@@ -998,6 +940,9 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="Backup_SuccessHeader" xml:space="preserve">
     <value>Säkerhetskopiering lyckades</value>
   </data>
+  <data name="Backup_Success" xml:space="preserve">
+    <value>Dina spelfiler för {0} har säkerhetskopierats</value>
+  </data>
   <data name="Backup_MissingFilesError" xml:space="preserve">
     <value>Inga filer hittades att säkerhetskopiera för {0}</value>
   </data>
@@ -1010,11 +955,11 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="Download_ConfirmSize" xml:space="preserve">
     <value>För att använda det här verktyget behöver filer laddas ner. Storleken för filerna är {0}. Fortsätt?</value>
   </data>
-  <data name="Download_Confirm" xml:space="preserve">
-    <value>För att använda det här verktyget behöver filer laddas ner. Fortsätt?</value>
-  </data>
   <data name="Download_ConfirmHeader" xml:space="preserve">
     <value>Bekräfta nedladdning</value>
+  </data>
+  <data name="Download_Confirm" xml:space="preserve">
+    <value>För att använda det här verktyget behöver filer laddas ner. Fortsätt?</value>
   </data>
   <data name="Download_Error" xml:space="preserve">
     <value>Filerna kunde inte laddas ner</value>
@@ -1055,12 +1000,6 @@ Nyheter:
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Ny version hittades</value>
   </data>
-  <data name="MoveBackups_QuestionHeader" xml:space="preserve">
-    <value>Flytta tidigare säkerhetskopior</value>
-  </data>
-  <data name="Installer_Install" xml:space="preserve">
-    <value>Installera</value>
-  </data>
   <data name="Update_UpdaterError" xml:space="preserve">
     <value>Uppdateraren kunde inte skapas. För att hämta den nya versionen manuellt, gå till {0} och ladda ner den senaste versionen därifrån.</value>
   </data>
@@ -1069,6 +1008,9 @@ Nyheter:
   </data>
   <data name="MoveBackups_Question" xml:space="preserve">
     <value>Vill du flytta tidigare säkerhetskopior till den nya mappen?</value>
+  </data>
+  <data name="MoveBackups_QuestionHeader" xml:space="preserve">
+    <value>Flytta tidigare säkerhetskopior</value>
   </data>
   <data name="MoveBackups_NoBackupsFound" xml:space="preserve">
     <value>Inga säkerhetskopior hittades under {0}</value>
@@ -1094,17 +1036,14 @@ Nyheter:
   <data name="Installer_InstallAllUsers" xml:space="preserve">
     <value>Installera för alla användare</value>
   </data>
+  <data name="Installer_Install" xml:space="preserve">
+    <value>Installera</value>
+  </data>
   <data name="Installer_Cancel" xml:space="preserve">
     <value>Avbryt</value>
   </data>
   <data name="Installer_BrowseDiscHeader" xml:space="preserve">
     <value>Välj skiva att installera från</value>
-  </data>
-  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
-    <value>0.74</value>
-  </data>
-  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
-    <value>SVN Daum</value>
   </data>
   <data name="Installer_DriveNameConflict" xml:space="preserve">
     <value>Den valda skivan har samma namn och bokstav som en tidigare skiva. På grund av det här kan inte installeraren skilja på skivorna. Byt antingen namn på en av skivorna och försök igen eller montera skivorna med olika bokstäver.</value>
@@ -1134,6 +1073,9 @@ Försök igen?"</value>
   </data>
   <data name="Installer_FileConflicts" xml:space="preserve">
     <value>Det finns {0} filkonflikter. Vill du skriva över dessa filer?</value>
+  </data>
+  <data name="Installer_FileConflictsHeader" xml:space="preserve">
+    <value>Filkonflikt</value>
   </data>
   <data name="Installer_UnhandledItems" xml:space="preserve">
     <value>Vissa filer hanterades inte under installationen. Vill du försöka hantera dessa filer igen?</value>
@@ -1192,8 +1134,80 @@ Försök igen?"</value>
   <data name="GameShortcut_ShortcutName" xml:space="preserve">
     <value>Starta {0}</value>
   </data>
+  <data name="GameNotFound" xml:space="preserve">
+    <value>Spelet {0} kunde inte hittas</value>
+  </data>
+  <data name="GameNotFoundHeader" xml:space="preserve">
+    <value>Kunde inte hitta spel</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
+    <value>1.12 (Upplaga 1)</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
+    <value>1.20</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
+    <value>1.21</value>
+  </data>
+  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
+    <value>0.74</value>
+  </data>
+  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
+    <value>SVN Daum</value>
+  </data>
+  <data name="Download_SuccessHeader" xml:space="preserve">
+    <value>Nedladdning har slutförts</value>
+  </data>
+  <data name="AppNews_Title" xml:space="preserve">
+    <value>Appnyheter</value>
+  </data>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Versionshistorik</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Fortsätt</value>
+  </data>
+  <data name="Download_Title" xml:space="preserve">
+    <value>Ladda ner</value>
+  </data>
+  <data name="Lang_English" xml:space="preserve">
+    <value>Engelska</value>
+  </data>
+  <data name="Lang_German" xml:space="preserve">
+    <value>Tyska</value>
+  </data>
+  <data name="Lang_French" xml:space="preserve">
+    <value>Franska</value>
+  </data>
+  <data name="Lang_Spanish" xml:space="preserve">
+    <value>Spanska</value>
+  </data>
+  <data name="Lang_Italian" xml:space="preserve">
+    <value>Italienska</value>
+  </data>
+  <data name="Lang_Danish" xml:space="preserve">
+    <value>Danska</value>
+  </data>
+  <data name="Lang_Finnish" xml:space="preserve">
+    <value>Finska</value>
+  </data>
+  <data name="Lang_Norwegian" xml:space="preserve">
+    <value>Norska</value>
+  </data>
+  <data name="Lang_Swedish" xml:space="preserve">
+    <value>Svenska</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3Borders" xml:space="preserve">
+    <value>4:3 ram</value>
+  </data>
+  <data name="Config_RRRScreenMode_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Rayman Kontrollpanelen</value>
   </data>
   <data name="BrowseBox_Browse" xml:space="preserve">
     <value>Bläddra</value>
@@ -1210,19 +1224,22 @@ Försök igen?"</value>
   <data name="GameDisplay_RunAsAdmin" xml:space="preserve">
     <value>Kör som admin</value>
   </data>
-  <data name="GameNotFound" xml:space="preserve">
-    <value>Spelet {0} kunde inte hittas</value>
-  </data>
-  <data name="GameNotFoundHeader" xml:space="preserve">
-    <value>Kunde inte hitta spel</value>
-  </data>
   <data name="GameOptions_Config" xml:space="preserve">
     <value>Konfiguration</value>
+  </data>
+  <data name="About_Steam" xml:space="preserve">
+    <value>Steam-grupp</value>
   </data>
   <data name="GameLink_R2dgVoodoo" xml:space="preserve">
     <value>dgVoodoo</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
     <value>1.00</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
+    <value>1.12 (Upplaga 2)</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
+    <value>1.12 (Upplaga 3)</value>
   </data>
 </root>

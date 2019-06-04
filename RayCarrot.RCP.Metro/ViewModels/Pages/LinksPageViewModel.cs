@@ -8,11 +8,9 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Nito.AsyncEx;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -279,10 +277,13 @@ namespace RayCarrot.RCP.Metro
         public LinkItemViewModel(FileSystemPath localLinkPath, string displayText, UserLevel minUserLevel = UserLevel.Normal)
         {
             MinUserLevel = minUserLevel;
-            LocalLinkPath = localLinkPath.CorrectPathCasing();
+            LocalLinkPath = localLinkPath.Exists ? localLinkPath.CorrectPathCasing() : localLinkPath;
             IsLocal = true;
             DisplayText = displayText;
             IconKind = localLinkPath.FileExists ? PackIconMaterialKind.FileOutline : PackIconMaterialKind.FolderOutline;
+
+            if (!IsValid)
+                return;
 
             try
             {

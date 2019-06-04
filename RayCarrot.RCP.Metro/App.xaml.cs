@@ -63,7 +63,10 @@ namespace RayCarrot.RCP.Metro
                 // Add console, debug, session and file loggers
                 AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, logLevel, builder => builder.AddProvider(new BaseLogProvider<FileLogger>())).
                 // Add a serializer
-                AddSerializer(DefaultSerializers.Json).
+                AddTransient<IBaseSerializer, JsonBaseSerializer>(x => new JsonBaseSerializer()
+                {
+                    Formatting = Formatting.Indented
+                }).
                 // Add exception handler
                 AddExceptionHandler<RCPExceptionHandler>().
                 // Add user data manager
@@ -116,6 +119,21 @@ namespace RayCarrot.RCP.Metro
             // Apply the current culture if defaulted
             if (RCFRCP.Data.CurrentCulture == AppLanguages.DefaultCulture.Name)
                 RCFRCP.Data.RefreshCulture(AppLanguages.DefaultCulture.Name);
+
+            // Check if a refresh is pending for the Registry uninstall key
+            if (RCFRCP.Data.PendingRegUninstallKeyRefresh && WindowsHelpers.RunningAsAdmin)
+            {
+                // If succeeded, remove the pending indicator
+                if (await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(RCFRCP.Data.ShowUnderInstalledPrograms, false))
+                    RCFRCP.Data.PendingRegUninstallKeyRefresh = false;
+            }
+
+            // Check if the program is shown under installed programs if the value is defaulted
+            if (RCFRCP.Data.ShowUnderInstalledPrograms == false)
+            {
+                if (!await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(RCFRCP.Data.ShowUnderInstalledPrograms, false))
+                    RCFRCP.Data.PendingRegUninstallKeyRefresh = true;
+            }
 
             // Attempt to import legacy data on first launch
             if (RCFRCP.Data.IsFirstLaunch)
@@ -291,7 +309,13 @@ namespace RayCarrot.RCP.Metro
             // Update the application path
             var appPath = Assembly.GetExecutingAssembly().Location;
             if (new FileSystemPath(appPath) != RCFRCP.Data.ApplicationPath)
+            {
                 RCFRCP.Data.ApplicationPath = appPath;
+
+                // Refresh Registry value to reflect new application path
+                if (!await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(RCFRCP.Data.ShowUnderInstalledPrograms, true))
+                    RCFRCP.Data.PendingRegUninstallKeyRefresh = true;
+            }
 
             // Show first launch info
             if (RCFRCP.Data.IsFirstLaunch)
@@ -335,7 +359,12 @@ namespace RayCarrot.RCP.Metro
                 RCFRCP.Data.LinkItemStyle = LinkItemStyles.List;
                 RCFRCP.Data.ApplicationPath = Assembly.GetExecutingAssembly().Location;
                 RCFRCP.Data.ForceUpdate = false;
+                RCFRCP.Data.ShowUnderInstalledPrograms = false;
             }
+
+            // Force refresh the Registry value to reflect the new update
+            if (!await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(RCFRCP.Data.ShowUnderInstalledPrograms, true))
+                RCFRCP.Data.PendingRegUninstallKeyRefresh = true;
 
             // Refresh the jump list
             RefreshJumpList();

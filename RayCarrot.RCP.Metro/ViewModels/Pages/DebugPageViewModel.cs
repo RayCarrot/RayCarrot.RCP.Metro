@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework;
 using RayCarrot.Windows.Registry;
@@ -28,7 +29,7 @@ namespace RayCarrot.RCP.Metro
             ShowLogCommand = new RelayCommand(ShowLog);
             ShowInstalledUtilitiesCommand = new AsyncRelayCommand(ShowInstalledUtilitiesAsync);
             RefreshJumpListCommand = new RelayCommand(Metro.App.Current.RefreshJumpList);
-            RefreshDataOutputCommand = new RelayCommand(RefreshDataOutput);
+            RefreshDataOutputCommand = new AsyncRelayCommand(RefreshDataOutputAsync);
 
             // Show log viewer if a debugger is attached
             if (!_firstConstruction || !Debugger.IsAttached)
@@ -171,48 +172,73 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Refreshes the data output
         /// </summary>
-        public void RefreshDataOutput()
+        /// <returns>The task</returns>
+        public async Task RefreshDataOutputAsync()
         {
-            // Clear current data
-            DataOutput = String.Empty;
-
-            switch (SelectedDataOutputType)
+            try
             {
-                case DebugDataOutputTypes.ReferencedAssemblies:
-                    foreach (AssemblyName assemblyName in Assembly.GetExecutingAssembly().GetReferencedAssemblies())
-                    {
-                        Assembly assembly = null;
+                // Clear current data
+                DataOutput = String.Empty;
 
-                        try
+                switch (SelectedDataOutputType)
+                {
+                    case DebugDataOutputTypes.ReferencedAssemblies:
+                        foreach (AssemblyName assemblyName in Assembly.GetExecutingAssembly().GetReferencedAssemblies())
                         {
-                            // Load the assembly
-                            assembly = Assembly.Load(assemblyName);
+                            Assembly assembly = null;
+
+                            try
+                            {
+                                // Load the assembly
+                                assembly = Assembly.Load(assemblyName);
+                            }
+                            catch (Exception ex)
+                            {
+                                ex.HandleUnexpected("Loading referenced assembly");
+                            }
+
+                            DataOutput += $"Name: {assemblyName.Name}{Environment.NewLine}";
+                            DataOutput += $"FullName: {assemblyName.FullName}{Environment.NewLine}";
+                            DataOutput += $"Version: {assemblyName.Version}{Environment.NewLine}";
+
+                            if (assembly != null)
+                            {
+                                // Get the PEKind for the assembly
+                                assembly.GetModules()[0].GetPEKind(out PortableExecutableKinds peKinds, out ImageFileMachine _);
+                                PortableExecutableKinds referenceKind = peKinds;
+
+                                DataOutput += $"Location: {assembly.Location}{Environment.NewLine}";
+                                DataOutput += $"ProcessorArchitecture: {((referenceKind & PortableExecutableKinds.Required32Bit) > 0 ? "x86" : (referenceKind & PortableExecutableKinds.PE32Plus) > 0 ? "x64" : "Any CPU")}{Environment.NewLine}";
+                            }
+
+                            DataOutput += Environment.NewLine;
                         }
-                        catch (Exception ex)
-                        {
-                            ex.HandleUnexpected("Loading referenced assembly");
-                        }
+                        break;
 
-                        DataOutput += $"Name: {assemblyName.Name}{Environment.NewLine}";
-                        DataOutput += $"FullName: {assemblyName.FullName}{Environment.NewLine}";
-                        DataOutput += $"Version: {assemblyName.Version}{Environment.NewLine}";
+                    case DebugDataOutputTypes.AppUserData:
+                        // Save app user data to update the file
+                        await App.SaveUserDataAsync();
 
-                        if (assembly != null)
-                        {
-                            // Get the PEKind for the assembly
-                            assembly.GetModules()[0].GetPEKind(out PortableExecutableKinds peKinds, out ImageFileMachine _);
-                            PortableExecutableKinds referenceKind = peKinds;
+                        // Display the file contents
+                        DataOutput = File.ReadAllText(CommonPaths.AppUserDataPath);
 
-                            DataOutput += $"Location: {assembly.Location}{Environment.NewLine}";
-                            DataOutput += $"ProcessorArchitecture: {((referenceKind & PortableExecutableKinds.Required32Bit) > 0 ? "x86" : (referenceKind & PortableExecutableKinds.PE32Plus) > 0 ? "x64" : "Any CPU")}{Environment.NewLine}";
-                        }
+                        break;
 
-                        DataOutput += Environment.NewLine;
-                    }
-                    break;
+                    case DebugDataOutputTypes.UpdateManifest:
 
-                default:
-                    throw new ArgumentOutOfRangeException();
+                        // Download the manifest as a string and display it
+                        using (WebClient wc = new WebClient())
+                            DataOutput = await wc.DownloadStringTaskAsync(CommonUrls.UpdateManifestUrl);
+
+                        break;
+
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Updating debug data output");
             }
         }
 
@@ -241,6 +267,16 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Displays a list of the referenced assemblies
         /// </summary>
-        ReferencedAssemblies
+        ReferencedAssemblies,
+
+        /// <summary>
+        /// Displays the app user data file contents
+        /// </summary>
+        AppUserData,
+
+        /// <summary>
+        /// Displays the update manifest from the server
+        /// </summary>
+        UpdateManifest
     }
 }

@@ -1,6 +1,7 @@
-﻿using System;
+﻿using RayCarrot.CarrotFramework;
+using RayCarrot.Windows.Shell;
+using System;
 using System.Diagnostics;
-using RayCarrot.CarrotFramework;
 using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
@@ -18,6 +19,8 @@ namespace RayCarrot.RCP.Metro
         public SettingsPageViewModel()
         {
             ContributeLocalizationCommand = new RelayCommand(ContributeLocalization);
+
+            CanEditShowUnderInstalledPrograms = WindowsHelpers.RunningAsAdmin;
         }
 
         #endregion
@@ -25,6 +28,15 @@ namespace RayCarrot.RCP.Metro
         #region Commands
 
         public ICommand ContributeLocalizationCommand { get; }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Indicates if the property <see cref="AppUserData.ShowUnderInstalledPrograms"/> can be edited
+        /// </summary>
+        public bool CanEditShowUnderInstalledPrograms { get; }
 
         #endregion
 
