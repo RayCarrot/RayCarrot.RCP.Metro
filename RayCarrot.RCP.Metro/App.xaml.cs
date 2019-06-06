@@ -144,15 +144,18 @@ namespace RayCarrot.RCP.Metro
             await PostUpdateAsync();
 
             // Check if a refresh is pending for the Registry uninstall key
-            if (Data.PendingRegUninstallKeyRefresh && WindowsHelpers.RunningAsAdmin)
+            if (Data.PendingRegUninstallKeyRefresh)
             {
-                // If succeeded, remove the pending indicator
-                if (await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(Data.ShowUnderInstalledPrograms, false))
-                    Data.PendingRegUninstallKeyRefresh = false;
+                if (!WindowsHelpers.RunningAsAdmin)
+                    await RCF.MessageUI.DisplayMessageAsync(Metro.Resources.UninstallRegKeyRequiresRefresh, MessageType.Warning);
+                else
+                    // If succeeded, remove the pending indicator
+                    if (await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(Data.ShowUnderInstalledPrograms, false))
+                        Data.PendingRegUninstallKeyRefresh = false;
             }
 
-            // Clean the install temp folder
-            RCFRCP.File.DeleteDirectory(CommonPaths.InstallTempPath);
+            // Remove the updater
+            RCFRCP.File.DeleteFile(CommonPaths.UpdaterFilePath);
 
             // Clean temp folder
             RCFRCP.File.DeleteDirectory(CommonPaths.TempPath);
@@ -321,6 +324,13 @@ namespace RayCarrot.RCP.Metro
                 Data.PendingRegUninstallKeyRefresh = true;
             }
 
+            // Deploy the updater if it doesn't exist
+            if (!CommonPaths.UninstallFilePath.FileExists)
+            {
+                Directory.CreateDirectory(CommonPaths.UninstallFilePath.Parent);
+                File.WriteAllBytes(CommonPaths.UninstallFilePath, Files.Uninstaller);
+            }
+
             // Show first launch info
             if (Data.IsFirstLaunch)
             {
@@ -366,6 +376,11 @@ namespace RayCarrot.RCP.Metro
                 Data.ShowUnderInstalledPrograms = false;
                 Data.GetBetaUpdates = false;
             }
+
+            // Re-deploy the uninstaller
+            Directory.CreateDirectory(CommonPaths.UninstallFilePath.Parent);
+            RCFRCP.File.DeleteFile(CommonPaths.UninstallFilePath);
+            File.WriteAllBytes(CommonPaths.UninstallFilePath, Files.Uninstaller);
 
             // Force refresh the Registry value to reflect the new update
             Data.PendingRegUninstallKeyRefresh = true;

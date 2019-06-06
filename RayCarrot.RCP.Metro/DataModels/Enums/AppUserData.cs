@@ -340,10 +340,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool ForceUpdate { get; set; }
 
-        // TODO: Have uninstall button which restarts app with args, when args detected ignore mutex
-        //       This startup of the program uninstalls it by creating an uninstaller in temp which is flagged to remove after reboot
-        //       Arguments: -uninstall
-        //       Create uninstaller program to handle uninstallation - this runs as administrator - this program waits for RCP to exit before running - deploy it to RCP temp folder
         /// <summary>
         /// Indicates if the program should display under installed programs
         /// </summary>
@@ -470,7 +466,7 @@ namespace RayCarrot.RCP.Metro
                                 subKey.SetValue("HelpLink", CommonUrls.DiscordUrl, RegistryValueKind.String);
                                 subKey.SetValue("DisplayIcon", ApplicationPath, RegistryValueKind.String);
                                 subKey.SetValue("InstallLocation", ApplicationPath.Parent, RegistryValueKind.String);
-                                subKey.SetValue("UninstallString", $"\"{ApplicationPath}\" -uninstall", RegistryValueKind.String);
+                                subKey.SetValue("UninstallString", $"\"{CommonPaths.UninstallFilePath}\" \"{ApplicationPath}\"", RegistryValueKind.String);
                                 subKey.SetValue("VersionMajor", RCFRCP.App.CurrentVersion.Major, RegistryValueKind.DWord);
                                 subKey.SetValue("VersionMinor", RCFRCP.App.CurrentVersion.Minor, RegistryValueKind.DWord);
 

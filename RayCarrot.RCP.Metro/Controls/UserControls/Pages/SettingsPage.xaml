@@ -317,8 +317,7 @@
 
                     </StackPanel>
 
-                    <!-- TODO: Localize -->
-                    <CheckBox Content="Get beta updates"
+                    <CheckBox Content="{Resx Settings_GetBetaUpdates}"
                               IsChecked="{Binding Path=GetBetaUpdates}" />
 
                     <CheckBox Content="{Resx Settings_ForceUpdates}"

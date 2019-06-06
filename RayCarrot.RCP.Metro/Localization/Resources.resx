@@ -1707,7 +1707,7 @@ tempPath</comment>
     <value>The Rayman Control Panel supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the available launch arguments. The '-' character should always be included. The '{}' characters show that a custom variable can be used, in which case the '{}'should not be included.
 
 -reset (Resets all app data before launch)
--install {filePath} (Removes the installer from the specified path)
+-install {filePath} (Removes the installer from the specified path - no longer used as of version 4.5.0)
 -ul {userLevel} (sets the user level once the framework is built)
 -loglevel {logLevel} (sets the log level to log, default is Information)</value>
   </data>
@@ -2250,5 +2250,30 @@ downloadURL</comment>
   </data>
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Links</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>A new beta update is available to download. Download now?</value>
+  </data>
+  <data name="About_Uninstall" xml:space="preserve">
+    <value>Uninstall</value>
+  </data>
+  <data name="About_ConfirmUninstall" xml:space="preserve">
+    <value>Are you sure you want to uninstall the Rayman Control Panel? This will remove the executable file and all of the program's app data. This will NOT remove any installed games, save files or backups. Some applied utilities may still be available.</value>
+  </data>
+  <data name="About_ConfirmUninstallHeader" xml:space="preserve">
+    <value>Confirm uninstall</value>
+  </data>
+  <data name="About_UninstallFailed" xml:space="preserve">
+    <value>An error occurred when running the uninstaller. You can manually remove the app data which is located in the following locations:
+
+{0}</value>
+    <comment>Arguments:
+appDataLocations</comment>
+  </data>
+  <data name="Settings_GetBetaUpdates" xml:space="preserve">
+    <value>Get beta updates</value>
+  </data>
+  <data name="UninstallRegKeyRequiresRefresh" xml:space="preserve">
+    <value>Due to the state of the program being changed it needs to update the information stored under installed programs. This requires the program to run as administrator. Until then the information shown under installed programs might not be accurate.</value>
   </data>
 </root>

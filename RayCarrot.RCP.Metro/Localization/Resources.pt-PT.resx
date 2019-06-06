@@ -1947,4 +1947,154 @@
   <data name="Links_Tools_RayTwol" xml:space="preserve">
     <value>RayTwol</value>
   </data>
+  <data name="LinksPage_LinkStyleHeader" xml:space="preserve">
+    <value>Hiperligação de estilo de cabeçalho</value>
+  </data>
+  <data name="LinksPage_LinkStyle_List" xml:space="preserve">
+    <value>Hiperligação de estilo de lista</value>
+  </data>
+  <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
+    <value>Hiperligação de estilo de grupo</value>
+  </data>
+  <data name="LinksPage_Refresh" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="LinksPage_CommunityHeader" xml:space="preserve">
+    <value>Cabeçalho da comunidade</value>
+  </data>
+  <data name="LinksPage_ForumsHeader" xml:space="preserve">
+    <value>Cabeçalho dos Fóruns</value>
+  </data>
+  <data name="LinksPage_ToolsHeader" xml:space="preserve">
+    <value>Cabeçalho das ferramentas</value>
+  </data>
+  <data name="LinksPage_LocalHeader" xml:space="preserve">
+    <value>Cabeçalho local</value>
+  </data>
+  <data name="Settings_AdminInfo" xml:space="preserve">
+    <value>Informação de administrador</value>
+  </data>
+  <data name="Settings_ShowUnderInstalledPrograms" xml:space="preserve">
+    <value>Mostrar por baixo programas instalados</value>
+  </data>
+  <data name="Settings_ShowUnderInstalledProgramsInfo" xml:space="preserve">
+    <value>Mostrar por baixo informações de programas instalados</value>
+  </data>
+  <data name="Settings_ForceUpdates" xml:space="preserve">
+    <value>Forçar actualizações</value>
+  </data>
+  <data name="Settings_ShowUnderInstalledPrograms_UpdateError" xml:space="preserve">
+    <value>Error de actualização</value>
+  </data>
+  <data name="Update_RunningUpdaterError" xml:space="preserve">
+    <value>Erro de execução do actualizador</value>
+  </data>
+  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
+    <value>Cabeçalho de erro de execução do actualizador</value>
+  </data>
+  <data name="File_RegKeyNotFound" xml:space="preserve">
+    <value>Chave de registo não encontrada</value>
+  </data>
+  <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
+    <value>Cabeçalho de chave de registo não encontrada</value>
+  </data>
+  <data name="File_OpenRegKeyError" xml:space="preserve">
+    <value>Erro de abertura de chave de registo</value>
+  </data>
+  <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
+    <value>Cabeçalho de erro de abertura de chave do registo</value>
+  </data>
+  <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
+    <value>UbiIni Primário</value>
+  </data>
+  <data name="Links_Local_SecondaryUbiIni" xml:space="preserve">
+    <value>UbiIni Secundário</value>
+  </data>
+  <data name="Links_Local_R2UbiIni" xml:space="preserve">
+    <value>UbiIni do Rayman 2</value>
+  </data>
+  <data name="Links_Local_DOSBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="Links_Local_DOSBoxConfig" xml:space="preserve">
+    <value>Configuração DOSBox</value>
+  </data>
+  <data name="Links_Local_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="Links_Local_SteamGames" xml:space="preserve">
+    <value>Jogos do Steam</value>
+  </data>
+  <data name="Links_Local_GOGClient" xml:space="preserve">
+    <value>Cliente GOG</value>
+  </data>
+  <data name="Links_Local_GOGGames" xml:space="preserve">
+    <value>Jogos do GOG</value>
+  </data>
+  <data name="Links_Local_RRRRegSettings" xml:space="preserve">
+    <value>Definições do registo Rayman Raving Rabbids</value>
+  </data>
+  <data name="Links_Local_RORegSettings" xml:space="preserve">
+    <value>Definições do registo Rayman Origins</value>
+  </data>
+  <data name="Links_Local_RLRegSettings" xml:space="preserve">
+    <value>Definições do registo Rayman Legends</value>
+  </data>
+  <data name="Links_Local_nGlideRegSettings" xml:space="preserve">
+    <value>Definições do registo nGlide</value>
+  </data>
+  <data name="Links_Local_nGlide2RegSettings" xml:space="preserve">
+    <value>Definições do registo nGlide2</value>
+  </data>
+  <data name="Links_Local_AppData" xml:space="preserve">
+    <value>Dados da aplicação</value>
+  </data>
+  <data name="Links_Local_TempDir" xml:space="preserve">
+    <value>Directório temporário</value>
+  </data>
+  <data name="Links_Local_LogFile" xml:space="preserve">
+    <value>Ficheiro de diário</value>
+  </data>
+  <data name="Links_Local_Utilities" xml:space="preserve">
+    <value>Utilitários</value>
+  </data>
+  <data name="Links_Local_RegAppData" xml:space="preserve">
+    <value>Dados de registo da aplicação</value>
+  </data>
+  <data name="Links_Tools_R2Tools" xml:space="preserve">
+    <value>Ferramentas do Rayman 2</value>
+  </data>
+  <data name="Links_Tools_R2Moonjump" xml:space="preserve">
+    <value>Salto lunar do Rayman 2</value>
+  </data>
+  <data name="Links_Tools_R2FunBox" xml:space="preserve">
+    <value>Caixa divertida do Rayman 2</value>
+  </data>
+  <data name="Links_Tools_BetterR3" xml:space="preserve">
+    <value>Melhor Rayman 3</value>
+  </data>
+  <data name="Links_Tools_R3GCTexturePack" xml:space="preserve">
+    <value>Pack de Texturas R3GC</value>
+  </data>
+  <data name="Links_OpenErrorNotFound" xml:space="preserve">
+    <value>Erro de abertura não encontrado</value>
+  </data>
+  <data name="Links_OpenErrorNotFoundHeader" xml:space="preserve">
+    <value>Erro de abertura de cabeçalho não encontrado</value>
+  </data>
+  <data name="Window_MinimizeToTray" xml:space="preserve">
+    <value>Minimizar para a barra de tarefas</value>
+  </data>
+  <data name="TaskBarIcon_Open" xml:space="preserve">
+    <value>Abrir</value>
+  </data>
+  <data name="TaskBarIcon_Close" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="LinksPageHeader" xml:space="preserve">
+    <value>Hiperligação de cabeçalho de página</value>
+  </data>
+  <data name="UninstallRegKeyRequiresRefresh" xml:space="preserve">
+    <value>Devido ao estado do programa ter sido alterado necessita de actualizar a informação armazenada nos programas instalados. Isto requer que o programa execute como administrador. Até lá a informação exibida dos programas instalados poderá não ser precisa.</value>
+  </data>
 </root>

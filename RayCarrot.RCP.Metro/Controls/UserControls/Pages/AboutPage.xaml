@@ -104,6 +104,10 @@
                                   ToolTip="{Resx About_UpdateCheck}"
                                   Command="{Binding Path=CheckForUpdatesCommand}"/>
 
+                <local:IconButton IconKind="DeleteForever"
+                                  ToolTip="{Resx About_Uninstall}"
+                                  Command="{Binding Path=UninstallCommand}"/>
+
             </StackPanel>
 
             <TextBlock Grid.Row="1"

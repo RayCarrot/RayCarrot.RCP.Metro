@@ -10,6 +10,10 @@
 - Add support for first mounting a specific disc image before launching a Win32 or DOSBox game
 
 
+--- Configuration ---
+- Add the remaining fields to the Rayman 2 configuration and have pre-sets for DirectX/nGlide based on the GOG setup
+
+
 --- Game Finder ---
 - Auto create .bat files for DOSBox games + allow language switching based on editing the .bat file's launch argument
 
@@ -22,10 +26,6 @@
 - Localize RayCarrot.WPF controls
 
 - Have toast notifications shown on the bottom of the app for actions such as refreshing etc.
-
-
---- Bugs ---
-- WinStore app backup/restore fails when no save files are present / save directory does not exist
 
 
 --- Other ---

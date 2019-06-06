@@ -4,6 +4,7 @@
 • Added icons to page tabs
 • Added the option to minimize the application to the tray area
 • Added the option to show the program under installed programs
+• Added the option to uninstall the program
 • Updated the updater to version 3.0.0 with the new Metro redesign
 • Added the option to get beta releases through the updater
 

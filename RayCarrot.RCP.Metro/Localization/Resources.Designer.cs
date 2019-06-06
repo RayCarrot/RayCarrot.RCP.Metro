@@ -61,6 +61,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to uninstall the Rayman Control Panel? This will remove the executable file and all of the program&apos;s app data. This will NOT remove any installed games, save files or backups. Some applied utilities may still be available..
+        /// </summary>
+        public static string About_ConfirmUninstall {
+            get {
+                return ResourceManager.GetString("About_ConfirmUninstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm uninstall.
+        /// </summary>
+        public static string About_ConfirmUninstallHeader {
+            get {
+                return ResourceManager.GetString("About_ConfirmUninstallHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Credits.
         /// </summary>
         public static string About_Credits {
@@ -247,6 +265,26 @@ namespace RayCarrot.RCP.Metro {
         public static string About_Twitter {
             get {
                 return ResourceManager.GetString("About_Twitter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstall.
+        /// </summary>
+        public static string About_Uninstall {
+            get {
+                return ResourceManager.GetString("About_Uninstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when running the uninstaller. You can manually remove the app data which is located in the following locations:
+        ///
+        ///{0}.
+        /// </summary>
+        public static string About_UninstallFailed {
+            get {
+                return ResourceManager.GetString("About_UninstallFailed", resourceCulture);
             }
         }
         
@@ -2857,9 +2895,8 @@ namespace RayCarrot.RCP.Metro {
         ///   Looks up a localized string similar to The Rayman Control Panel supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the available launch arguments. The &apos;-&apos; character should always be included. The &apos;{}&apos; characters show that a custom variable can be used, in which case the &apos;{}&apos;should not be included.
         ///
         ///-reset (Resets all app data before launch)
-        ///-install {filePath} (Removes the installer from the specified path)
-        ///-ul {userLevel} (sets the user level once the framework is built)
-        ///-loglevel {lo [rest of string was truncated]&quot;;.
+        ///-install {filePath} (Removes the installer from the specified path - no longer used as of version 4.5.0)
+        ///-ul {userLevel} (sets the user level once t [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Help_RCP_LaunchArgs {
             get {
@@ -5519,6 +5556,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Get beta updates.
+        /// </summary>
+        public static string Settings_GetBetaUpdates {
+            get {
+                return ResourceManager.GetString("Settings_GetBetaUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show languages with incomplete translations.
         /// </summary>
         public static string Settings_IncompleteTranslations {
@@ -5804,6 +5850,24 @@ namespace RayCarrot.RCP.Metro {
         public static string UbiIniWriteAccess_InfoMessage {
             get {
                 return ResourceManager.GetString("UbiIniWriteAccess_InfoMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Due to the state of the program being changed it needs to update the information stored under installed programs. This requires the program to run as administrator. Until then the information shown under installed programs might not be accurate..
+        /// </summary>
+        public static string UninstallRegKeyRequiresRefresh {
+            get {
+                return ResourceManager.GetString("UninstallRegKeyRequiresRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new beta update is available to download. Download now?.
+        /// </summary>
+        public static string Update_BetaUpdateAvailable {
+            get {
+                return ResourceManager.GetString("Update_BetaUpdateAvailable", resourceCulture);
             }
         }
         

@@ -41,6 +41,16 @@ namespace RayCarrot.RCP.Metro
         public static FileSystemPath InstallTempPath => UserDataBaseDir + "Temp\\Installation";
 
         /// <summary>
+        /// The updater file path
+        /// </summary>
+        public static FileSystemPath UpdaterFilePath => InstallTempPath + "Updater.exe";
+
+        /// <summary>
+        /// The uninstaller file path
+        /// </summary>
+        public static FileSystemPath UninstallFilePath => InstallTempPath + "Uninstaller.exe";
+
+        /// <summary>
         /// The path for temporary files in this application
         /// </summary>
         public static FileSystemPath TempPath => Path.Combine(Path.GetTempPath(), "RCP_Metro");
