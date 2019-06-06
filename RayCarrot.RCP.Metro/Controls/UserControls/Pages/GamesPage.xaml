@@ -23,7 +23,6 @@
                     <Style x:Key="GamesDisplay"
                            TargetType="{x:Type ItemsControl}"
                            BasedOn="{StaticResource {x:Type ItemsControl}}">
-                        <Setter Property="IsTabStop" Value="False" />
                         <Setter Property="ItemTemplate">
                             <Setter.Value>
                                 <DataTemplate>

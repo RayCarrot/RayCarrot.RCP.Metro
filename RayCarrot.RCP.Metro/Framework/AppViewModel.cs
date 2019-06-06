@@ -892,7 +892,7 @@ namespace RayCarrot.RCP.Metro
                 // Flag indicating if the current update is a beta update
                 bool isBetaUpdate = false;
 
-                bool forceUpdates = RCFRCP.Data.ForceUpdate && !showIfNoUpdates;
+                bool forceUpdates = RCFRCP.Data.ForceUpdate && showIfNoUpdates;
 
                 RCF.Logger.LogInformationSource($"The update manifest was retrieved");
 

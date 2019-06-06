@@ -13,6 +13,7 @@ using Nito.AsyncEx;
 using RayCarrot.CarrotFramework;
 using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
+using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
@@ -433,7 +434,7 @@ namespace RayCarrot.RCP.Metro
 
                 var keyExists = RCFWinReg.RegistryManager.KeyExists(RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, CommonPaths.RegistryUninstallKeyName));
 
-                if (showUnderInstalledPrograms && keyExists)
+                if (!forceRefresh && showUnderInstalledPrograms && keyExists)
                 {
                     RCF.Logger.LogDebugSource("The program Registry key does not need to be modified due to already existing");
 
@@ -449,6 +450,12 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
+                    if (!WindowsHelpers.RunningAsAdmin)
+                    {
+                        await RCF.MessageUI.DisplayMessageAsync(Resources.UninstallRegKeyRequiresRefresh, MessageType.Warning);
+                        return false;
+                    }
+
                     RCF.Logger.LogInformationSource("The program Registry key is being modified...");
 
                     using (var parentKey = RCFWinReg.RegistryManager.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms, RegistryView.Default, true))

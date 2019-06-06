@@ -2892,11 +2892,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Rayman Control Panel supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the available launch arguments. The &apos;-&apos; character should always be included. The &apos;{}&apos; characters show that a custom variable can be used, in which case the &apos;{}&apos;should not be included.
+        ///   Looks up a localized string similar to The Rayman Control Panel supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the available launch arguments. The &apos;-&apos; character should always be included. The &apos;{}&apos; characters show that a custom variable can be used, in which case the &apos;{}&apos; should not be included.
         ///
         ///-reset (Resets all app data before launch)
         ///-install {filePath} (Removes the installer from the specified path - no longer used as of version 4.5.0)
-        ///-ul {userLevel} (sets the user level once t [rest of string was truncated]&quot;;.
+        ///-ul {userLevel} (sets the user level once  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Help_RCP_LaunchArgs {
             get {
@@ -5628,7 +5628,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If this is enabled the program will be shown under the list of installed programs on this computer, most commonly found under Add/Remove Program in the Control Panel. If this is enabled the program may require administration privileges during an update in order to update the program information..
+        ///   Looks up a localized string similar to If this is enabled the program will be shown under the list of installed programs on this computer, most commonly found under Uninstall Program in the Windows Control Panel. If this is enabled the program may require administration privileges during an update in order to update the program information..
         /// </summary>
         public static string Settings_ShowUnderInstalledProgramsInfo {
             get {

@@ -1704,7 +1704,7 @@ tempPath</comment>
     <value>Launch Arguments</value>
   </data>
   <data name="Help_RCP_LaunchArgs" xml:space="preserve">
-    <value>The Rayman Control Panel supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the available launch arguments. The '-' character should always be included. The '{}' characters show that a custom variable can be used, in which case the '{}'should not be included.
+    <value>The Rayman Control Panel supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the available launch arguments. The '-' character should always be included. The '{}' characters show that a custom variable can be used, in which case the '{}' should not be included.
 
 -reset (Resets all app data before launch)
 -install {filePath} (Removes the installer from the specified path - no longer used as of version 4.5.0)
@@ -2070,7 +2070,7 @@ totalGames</comment>
     <value>Show under installed programs</value>
   </data>
   <data name="Settings_ShowUnderInstalledProgramsInfo" xml:space="preserve">
-    <value>If this is enabled the program will be shown under the list of installed programs on this computer, most commonly found under Add/Remove Program in the Control Panel. If this is enabled the program may require administration privileges during an update in order to update the program information.</value>
+    <value>If this is enabled the program will be shown under the list of installed programs on this computer, most commonly found under Uninstall Program in the Windows Control Panel. If this is enabled the program may require administration privileges during an update in order to update the program information.</value>
   </data>
   <data name="Settings_ForceUpdates" xml:space="preserve">
     <value>Force manual updates</value>

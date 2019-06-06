@@ -14,6 +14,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{A4E18751-83F7-4896-84DE-2998C17BA5AF}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		TODO.txt = TODO.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.Rayman", "..\RayCarrot.Rayman\RayCarrot.Rayman\RayCarrot.Rayman.csproj", "{E8A27323-72A7-4708-9624-EBFFB5019803}"

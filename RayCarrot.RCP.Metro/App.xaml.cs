@@ -145,14 +145,9 @@ namespace RayCarrot.RCP.Metro
 
             // Check if a refresh is pending for the Registry uninstall key
             if (Data.PendingRegUninstallKeyRefresh)
-            {
-                if (!WindowsHelpers.RunningAsAdmin)
-                    await RCF.MessageUI.DisplayMessageAsync(Metro.Resources.UninstallRegKeyRequiresRefresh, MessageType.Warning);
-                else
-                    // If succeeded, remove the pending indicator
-                    if (await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(Data.ShowUnderInstalledPrograms, false))
-                        Data.PendingRegUninstallKeyRefresh = false;
-            }
+                // If succeeded, remove the pending indicator
+                if (await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(Data.ShowUnderInstalledPrograms, true))
+                    Data.PendingRegUninstallKeyRefresh = false;
 
             // Remove the updater
             RCFRCP.File.DeleteFile(CommonPaths.UpdaterFilePath);
@@ -519,6 +514,8 @@ namespace RayCarrot.RCP.Metro
                     new JumpList(RCFRCP.App.GetGames.
                             // Add only games which have been added
                             Where(x => x.IsAdded()).
+                            // Add only games where the launch info returns a valid path
+                            Where(x => x.GetLaunchInfo().Path.FileExists).
                             // Create a jump task item for each game
                             Select(x =>
                             {

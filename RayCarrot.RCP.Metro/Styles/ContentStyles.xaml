@@ -38,6 +38,12 @@
         <Setter Property="mah:TabControlHelper.Underlined" Value="TabPanel" />
     </Style>
 
+    <!-- Tab control with underline -->
+
+    <Style TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}">
+        <Setter Property="IsTabStop" Value="False" />
+    </Style>
+
     <!-- Expander without background and larger font -->
 
     <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource {x:Type Expander}}">
@@ -60,6 +66,7 @@
 
     <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource {x:Type ScrollViewer}}">
         <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
     </Style>
 
     <!-- Default toggle switch -->
