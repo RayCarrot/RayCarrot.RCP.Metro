@@ -889,6 +889,9 @@ namespace RayCarrot.RCP.Metro
                     return;
                 }
 
+                // Flag indicating if the current update is a beta update
+                bool isBetaUpdate = false;
+
                 RCF.Logger.LogInformationSource($"The update manifest was retrieved");
 
                 if (!RCFRCP.Data.ForceUpdate || !showIfNoUpdates)
@@ -902,12 +905,33 @@ namespace RayCarrot.RCP.Metro
                         // Compare version
                         if (RCFRCP.App.CurrentVersion >= serverVersion)
                         {
-                            if (showIfNoUpdates)
-                                await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, serverVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
+                            // Flag indicating if no new update is available
+                            bool noUpdateAvailable = true;
 
-                            RCF.Logger.LogInformationSource($"The latest version is installed");
+                            // Get the beta version if checking for beta updates
+                            if (Data.GetBetaUpdates)
+                            {
+                                // Get the beta version
+                                var bv = manifest["LatestBetaVersion"];
+                                var betaVersion = new Version(bv["Major"].Value<int>(), bv["Minor"].Value<int>(), bv["Build"].Value<int>(), bv["Revision"].Value<int>());
 
-                            return;
+                                // Compare version
+                                if (RCFRCP.App.CurrentVersion < betaVersion)
+                                {
+                                    isBetaUpdate = true;
+                                    noUpdateAvailable = false;
+                                }
+                            }
+
+                            if (noUpdateAvailable)
+                            {
+                                if (showIfNoUpdates)
+                                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, serverVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
+
+                                RCF.Logger.LogInformationSource($"The latest version is installed");
+
+                                return;
+                            }
                         }
 
                         RCF.Logger.LogInformationSource($"A new version ({serverVersion}) is available");
@@ -921,22 +945,28 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 string news = Resources.Update_NewsError;
-                try
+
+                if (!isBetaUpdate)
                 {
-                    // Get the update news
-                    news = manifest["DisplayNews"].Value<string>();
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Getting update news from server manifest", manifest);
+                    try
+                    {
+                        // Get the update news
+                        news = manifest["DisplayNews"].Value<string>();
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleError("Getting update news from server manifest", manifest);
+                    }
                 }
 
-                if (await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_UpdateAvailable, news), Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
+                // TODO: Localize
+                if (await RCF.MessageUI.DisplayMessageAsync(!isBetaUpdate ? String.Format(Resources.Update_UpdateAvailable, news) : "A new beta update is available to download. Download now?", Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
                 {
-                    string path = Path.Combine(Path.GetTempPath(), "RCP_Updater.exe");
+                    var path = CommonPaths.InstallTempPath + "RCP_Updater.exe";
 
                     try
                     {
+                        Directory.CreateDirectory(path.Parent);
                         File.WriteAllBytes(path, Files.Rayman_Control_Panel_Updater);
                         RCF.Logger.LogInformationSource($"The updater was created");
                     }
@@ -947,9 +977,15 @@ namespace RayCarrot.RCP.Metro
                         return;
                     }
 
-                    // TODO: Mark file for deletion on reboot
-                    // TODO: Run as admin if set to show under installed programs
-                    await RCFRCP.File.LaunchFileAsync(path, false, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.DarkMode} {RCFRCP.Data.UserLevel}");
+                    // Launch the updater and run as admin is set to show under installed programs in under to update the Registry key
+                    if (await RCFRCP.File.LaunchFileAsync(path, Data.ShowUnderInstalledPrograms, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.DarkMode} {RCFRCP.Data.UserLevel} {Data.GetBetaUpdates} \"{Data.CurrentCulture}\"") == null)
+                    {
+                        await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, "raycarrot.ylemnova.com"), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
+
+                        return;
+                    }
+
+                    // Shut down the app
                     Application.Current.Shutdown();
                 }
             }

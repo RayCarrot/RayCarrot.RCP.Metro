@@ -16,9 +16,14 @@ namespace RayCarrot.RCP.Metro
         public static FileSystemPath UserDataBaseDir => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Rayman Control Panel", "RCP_Metro");
 
         /// <summary>
+        /// The base utilities directory
+        /// </summary>
+        public static FileSystemPath UtilitiesBaseDir => UserDataBaseDir + "Utilities";
+
+        /// <summary>
         /// The TPLS directory
         /// </summary>
-        public static FileSystemPath TPLSDir => UserDataBaseDir + "Utilities" + "TPLS";
+        public static FileSystemPath TPLSDir => UtilitiesBaseDir + "TPLS";
 
         /// <summary>
         /// The <see cref="AppUserData"/> file path
@@ -30,7 +35,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public static FileSystemPath LogFile => UserDataBaseDir + "Temp\\Log.txt";
 
-        // TODO: Deploy updater + uninstaller here - reset this folder on launch
         /// <summary>
         /// The installation temp directory
         /// </summary>

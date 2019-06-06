@@ -14,8 +14,6 @@
                     d:DesignHeight="450" d:DesignWidth="800"
                     d:DataContext="{d:DesignInstance local:LinksPageViewModel}">
 
-    <!-- TODO: Localize -->
-
     <Grid Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -26,18 +24,18 @@
         <Grid Grid.Row="0">
             <StackPanel>
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Link style" />
+                           Text="{Resx LinksPage_LinkStyleHeader}" />
 
                 <rwpf:RadioButtonExtended IsChecked="{Binding Path=Data.LinkItemStyle, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=List}" 
-                                          Content="List"
+                                          Content="{Resx LinksPage_LinkStyle_List}"
                                           Margin="0 8 0 2"/>
 
                 <rwpf:RadioButtonExtended IsChecked="{Binding Path=Data.LinkItemStyle, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Group}"
-                                          Content="Group"
+                                          Content="{Resx LinksPage_LinkStyle_Group}"
                                           Margin="0 2 0 8"/>
             </StackPanel>
 
-            <Button Content="Refresh"
+            <Button Content="{Resx LinksPage_Refresh}"
                     HorizontalAlignment="Right" 
                     VerticalAlignment="Top"
                     Command="{Binding Path=RefreshCommand}"
@@ -68,7 +66,7 @@
                             <iconPacks:PackIconMaterial Kind="AccountMultipleOutline"
                                                         VerticalAlignment="Center"
                                                         Margin="0 0 10 0" />
-                            <TextBlock Text="Community"
+                            <TextBlock Text="{Resx LinksPage_CommunityHeader}"
                                        VerticalAlignment="Center" />
                         </StackPanel>
                     </DataTemplate>
@@ -97,7 +95,7 @@
                             <iconPacks:PackIconMaterial Kind="Forum"
                                                         VerticalAlignment="Center"
                                                         Margin="0 0 10 0" />
-                            <TextBlock Text="Forums"
+                            <TextBlock Text="{Resx LinksPage_ForumsHeader}"
                                        VerticalAlignment="Center" />
                         </StackPanel>
                     </DataTemplate>
@@ -126,7 +124,7 @@
                             <iconPacks:PackIconMaterial Kind="BriefcaseOutline"
                                                         VerticalAlignment="Center"
                                                         Margin="0 0 10 0" />
-                            <TextBlock Text="Modifications/Tools"
+                            <TextBlock Text="{Resx LinksPage_ToolsHeader}"
                                        VerticalAlignment="Center" />
                         </StackPanel>
                     </DataTemplate>
@@ -155,7 +153,7 @@
                             <iconPacks:PackIconMaterial Kind="FolderMultipleOutline"
                                                         VerticalAlignment="Center"
                                                         Margin="0 0 10 0" />
-                            <TextBlock Text="Local"
+                            <TextBlock Text="{Resx LinksPage_LocalHeader}"
                                        VerticalAlignment="Center" />
                         </StackPanel>
                     </DataTemplate>

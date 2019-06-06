@@ -111,8 +111,7 @@ namespace RayCarrot.RCP.Metro
         {
             if (!RCFWinReg.RegistryManager.KeyExists(registryKeyPath))
             {
-                // TODO: Localize
-                await RCF.MessageUI.DisplayMessageAsync("", "", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.File_RegKeyNotFound, Resources.File_RegKeyNotFoundHeader, MessageType.Error);
 
                 return;
             }
@@ -126,8 +125,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Opening Registry key path", registryKeyPath);
 
-                // TODO: Localize
-                await RCF.MessageUI.DisplayMessageAsync("", "", MessageType.Error);
+                await RCF.MessageUI.DisplayMessageAsync(Resources.File_OpenRegKeyError, Resources.File_OpenRegKeyErrorHeader, MessageType.Error);
             }
         }
 

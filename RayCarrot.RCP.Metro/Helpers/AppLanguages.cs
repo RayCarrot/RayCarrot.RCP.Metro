@@ -34,7 +34,10 @@ namespace RayCarrot.RCP.Metro
 
             Languages.AddRange(new CultureInfo[]
             {
-                DefaultCulture
+                DefaultCulture,
+
+                // Portuguese
+                new CultureInfo("pt-PT"),
             });
 
             if (includeIncomplete)
@@ -49,9 +52,6 @@ namespace RayCarrot.RCP.Metro
 
                     // Polish
                     new CultureInfo("pl-PL"),
-
-                    // Portuguese
-                    new CultureInfo("pt-PT"), 
 
                     // Serbian
                     new CultureInfo("sr-Cyrl"), 

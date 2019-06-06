@@ -157,29 +157,26 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Upcoming features:
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] Uninstaller {
+            get {
+                object obj = ResourceManager.GetObject("Uninstaller", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to --- Utilities ---
+        ///- Rayman Legends debug commands (Uplay version only)
         ///
-        ///- RL debug commands
+        ///- Add support for more utilities (R2 texture extract, .sna import/export etc.) - since these require additional executable due to a lack of public source code they will be downloaded to the Utilities folder from the server (similarly to TPLS)
         ///
+        ///
+        ///--- Games ---
         ///- Add support for educational games. Treat as a single game, with games in drop-down added by user.
         ///
-        ///- Add TPLS support for remaining versions RibShark sent - use cheat engine to find addresses https://www.youtube.com/watch?v=fgdHC-3Hef0
-        ///
-        ///- Add links page
-        ///
-        ///- Auto save user data
-        ///
-        ///- Auto create .bat files
-        ///
-        ///- R1 cheat codes in table?
-        ///
-        ///- Rework ubi.ini permission system
-        ///
-        ///- New WPF updater
-        ///
-        ///- Install Rayman 2 - unhandled files?
-        ///
-        ///- https://cdn.discord [rest of string was truncated]&quot;;.
+        ///- Add support for first mounting a specific disc image before launching [rest of string was truncated]&quot;;.
         /// </summary>
         public static string UpcomingFeatures {
             get {
@@ -188,15 +185,18 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 4.3.2 - May ??, 2019   -----
-        ///• Added list of upcoming features to the debug page
-        ///• Fixed a bug where selecting a help item would collapse above nodes
-        ///• Fixed a bug where the jump list shortcuts for desktop and DOSBox games would not launch in the correct directory
-        ///• Fixed a bug where if an error occurred during applying additional game configuration settings, such as the Rayman 2 widescreen patch, the application would crash
-        ///• Bug fixes
+        ///   Looks up a localized string similar to -----   Version 4.5.0 - June ??, 2019   -----
+        ///• The program has now been translated to Portuguese (thanks Haruka Tavares!)
+        ///• Added the links page
+        ///• Added icons to page tabs
+        ///• Added the option to minimize the application to the tray area
+        ///• Added the option to show the program under installed programs
+        ///• Updated the updater to version 3.0.0 with the new Metro redesign
+        ///• Added the option to get beta releases through the updater
         ///
-        ///
-        ///-----   Version 4.3.1 - May 15, 2019   -----        /// [rest of string was truncated]&quot;;.
+        ///Other changes:
+        ///• Increased default window size
+        ///• The application data is [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

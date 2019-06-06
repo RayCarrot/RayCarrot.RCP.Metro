@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
-using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -24,6 +24,10 @@ namespace RayCarrot.RCP.Metro.Updater
         {
             // Set total bytes to 1 so the progress bar is not maxed out
             TotalBytes = 1;
+
+            CanCancel = false;
+
+            CancellationTokenSource = new CancellationTokenSource();
         }
 
         #endregion
@@ -33,12 +37,15 @@ namespace RayCarrot.RCP.Metro.Updater
         /// <summary>
         /// Performs the update
         /// </summary>
+        /// <param name="cancellationToken">The cancellation token</param>
         /// <returns>The task</returns>
-        public async Task UpdateAsync()
+        public async Task UpdateAsync(CancellationToken cancellationToken)
         {
             // Make sure the update hasn't started
             if (App.Stage > UpdateStage.None)
                 return;
+
+            CanCancel = true;
 
             App.Stage = UpdateStage.Initial;
 
@@ -85,10 +92,16 @@ namespace RayCarrot.RCP.Metro.Updater
 
             AddLog("Manifest loaded");
 
+            if (cancellationToken.IsCancellationRequested)
+            {
+                App.ShutdownApplication("Canceled", manifestException);
+                return;
+            }
+
             try
             {
                 // Get the file URL
-                ServerFileURL = manifest["URL"].Value<string>();
+                ServerFileURL = manifest[App.IsBetaUpdate ? "BetaURL" : "URL"].Value<string>();
                 AddLog($"Server file URL detected as {ServerFileURL}", UserLevel.Debug);
             }
             catch (Exception ex)
@@ -108,6 +121,8 @@ namespace RayCarrot.RCP.Metro.Updater
                 ReceivedBytes = e.BytesReceived;
             };
 
+            cancellationToken.Register(App.WC.CancelAsync);
+
             try
             {
                 AddLog("Downloading...");
@@ -119,6 +134,12 @@ namespace RayCarrot.RCP.Metro.Updater
             }
             catch (Exception ex)
             {
+                if (ex is WebException we && we.Status == WebExceptionStatus.RequestCanceled)
+                {
+                    App.ShutdownApplication("Canceled", manifestException);
+                    return;
+                }
+
                 MessageBox.Show($"An error occurred while downloading the update", $"Download failed", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 App.ShutdownApplication("Downloading update", ex);
@@ -126,6 +147,15 @@ namespace RayCarrot.RCP.Metro.Updater
             }
 
             AddLog("Downloaded successfully");
+
+            if (cancellationToken.IsCancellationRequested)
+            {
+                App.ShutdownApplication("Canceled", manifestException);
+                return;
+            }
+
+            CanCancel = false;
+
             AddLog("Installing...");
 
             App.Stage = UpdateStage.Install;
@@ -186,10 +216,19 @@ namespace RayCarrot.RCP.Metro.Updater
             App.Stage = UpdateStage.Finished;
 
             // Start the updated program
-            Process.Start(App.RCPFilePath, $"-install \"{Assembly.GetExecutingAssembly().Location}\"")?.Dispose();
+            Process.Start(App.RCPFilePath)?.Dispose();
 
             // Close the program
             App.Shutdown();
+        }
+
+        /// <summary>
+        /// Cancels the ongoing update operation
+        /// </summary>
+        public void CancelUpdate()
+        {
+            if (CanCancel)
+                CancellationTokenSource.Cancel();
         }
 
         /// <summary>
@@ -226,6 +265,16 @@ namespace RayCarrot.RCP.Metro.Updater
         /// The amount of bytes received
         /// </summary>
         public long ReceivedBytes { get; set; }
+
+        /// <summary>
+        /// Indicates if the updating operation can be canceled in its current state
+        /// </summary>
+        public bool CanCancel { get; set; }
+
+        /// <summary>
+        /// The cancellation token source
+        /// </summary>
+        public CancellationTokenSource CancellationTokenSource { get; }
 
         #endregion
     }

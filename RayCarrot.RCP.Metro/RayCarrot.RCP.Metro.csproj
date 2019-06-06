@@ -41,6 +41,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>latest</LangVersion>
+    <AllowedReferenceRelatedFileExtensions>
+      <!-- Prevent default XML and PDB files copied to output in RELEASE. 
+           Only *.allowedextension files will be included, which doesn't exist in my case.
+       -->
+      .allowedextension
+    </AllowedReferenceRelatedFileExtensions>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Img\Rayman Control Panel Icon.ico</ApplicationIcon>
@@ -442,6 +448,7 @@
       <DependentUpon>Rayman3Utilities.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserData\LinkItemStyles.cs" />
+    <Compile Include="ViewModels\LinkItemViewModel.cs" />
     <Compile Include="ViewModels\Pages\LinksPageViewModel.cs" />
     <Compile Include="ViewModels\Utilities\Rayman3UtilitiesViewModel.cs" />
     <Compile Include="Converters\BooleanToTransitionTypeConverter.cs" />
@@ -787,6 +794,7 @@
     <Content Include="Files\Rayman2\GXSetup_GOG.exe" />
     <Content Include="Files\Rayman2\Rayman2_GOG.exe" />
     <Content Include="Files\Rayman3\dinput8_controller.dll" />
+    <Content Include="Files\Uninstaller.exe" />
     <Resource Include="Files\UpcomingFeatures.txt" />
     <Resource Include="Files\RaymanOrigins\RO_Levels.txt" />
     <Resource Include="Img\GameLogos\RaymanArena_Logo.png" />

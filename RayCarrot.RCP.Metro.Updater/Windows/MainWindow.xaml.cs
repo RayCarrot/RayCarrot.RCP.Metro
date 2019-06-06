@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows;
 
 namespace RayCarrot.RCP.Metro.Updater
 {
@@ -36,15 +37,20 @@ namespace RayCarrot.RCP.Metro.Updater
         private async void MainWindow_OnContentRenderedAsync(object sender, EventArgs e)
         {
             // Begin the update
-            await ViewModel.UpdateAsync();
+            await ViewModel.UpdateAsync(ViewModel.CancellationTokenSource.Token);
         }
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
-            // TODO: Allow operation to be canceled + add cancel button
-
             // Cancel closing
             e.Cancel = true;
+
+            ViewModel.CancelUpdate();
+        }
+
+        private void CancelButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            ViewModel.CancelUpdate();
         }
 
         #endregion

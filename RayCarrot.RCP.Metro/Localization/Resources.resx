@@ -2039,4 +2039,216 @@ totalGames</comment>
   <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
     <value>1.12 (Edition 3)</value>
   </data>
+  <data name="LinksPage_LinkStyleHeader" xml:space="preserve">
+    <value>Link style</value>
+  </data>
+  <data name="LinksPage_LinkStyle_List" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="LinksPage_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="LinksPage_CommunityHeader" xml:space="preserve">
+    <value>Community</value>
+  </data>
+  <data name="LinksPage_ForumsHeader" xml:space="preserve">
+    <value>Forums</value>
+  </data>
+  <data name="LinksPage_ToolsHeader" xml:space="preserve">
+    <value>Modifications/Tools</value>
+  </data>
+  <data name="LinksPage_LocalHeader" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="Settings_AdminInfo" xml:space="preserve">
+    <value>This feature requires the program to run as administrator</value>
+  </data>
+  <data name="Settings_ShowUnderInstalledPrograms" xml:space="preserve">
+    <value>Show under installed programs</value>
+  </data>
+  <data name="Settings_ShowUnderInstalledProgramsInfo" xml:space="preserve">
+    <value>If this is enabled the program will be shown under the list of installed programs on this computer, most commonly found under Add/Remove Program in the Control Panel. If this is enabled the program may require administration privileges during an update in order to update the program information.</value>
+  </data>
+  <data name="Settings_ForceUpdates" xml:space="preserve">
+    <value>Force manual updates</value>
+  </data>
+  <data name="Settings_ShowUnderInstalledPrograms_UpdateError" xml:space="preserve">
+    <value>Updating the program information under installed programs failed. Try restarting as administrator to try again.</value>
+  </data>
+  <data name="Update_RunningUpdaterError" xml:space="preserve">
+    <value>The updater could not be launched. To manually download the new version, go to {0} and download the latest version from there.</value>
+    <comment>Arguments:
+downloadURL</comment>
+  </data>
+  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
+    <value>Error running updater</value>
+  </data>
+  <data name="File_RegKeyNotFound" xml:space="preserve">
+    <value>The registry key was not found</value>
+  </data>
+  <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
+    <value>Registry key not found</value>
+  </data>
+  <data name="File_OpenRegKeyError" xml:space="preserve">
+    <value>The key could not be opened</value>
+  </data>
+  <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
+    <value>Error opening key</value>
+  </data>
+  <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
+    <value>Primary ubi.ini file</value>
+  </data>
+  <data name="Links_Local_SecondaryUbiIni" xml:space="preserve">
+    <value>Secondary ubi.ini file</value>
+  </data>
+  <data name="Links_Local_R2UbiIni" xml:space="preserve">
+    <value>Rayman 2 ubi.ini file</value>
+  </data>
+  <data name="Links_Local_DOSBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="Links_Local_DOSBoxConfig" xml:space="preserve">
+    <value>DOSBox configuration file</value>
+  </data>
+  <data name="Links_Local_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="Links_Local_SteamGames" xml:space="preserve">
+    <value>Steam games</value>
+  </data>
+  <data name="Links_Local_GOGClient" xml:space="preserve">
+    <value>GOG Galaxy</value>
+  </data>
+  <data name="Links_Local_GOGGames" xml:space="preserve">
+    <value>GOG Galaxy games</value>
+  </data>
+  <data name="Links_Local_RRRRegSettings" xml:space="preserve">
+    <value>Rayman Raving Rabbids settings</value>
+  </data>
+  <data name="Links_Local_RORegSettings" xml:space="preserve">
+    <value>Rayman Origins settings</value>
+  </data>
+  <data name="Links_Local_RLRegSettings" xml:space="preserve">
+    <value>Rayman Legends settings</value>
+  </data>
+  <data name="Links_Local_nGlideRegSettings" xml:space="preserve">
+    <value>nGlide settings</value>
+  </data>
+  <data name="Links_Local_nGlide2RegSettings" xml:space="preserve">
+    <value>nGlide 2.0 settings</value>
+  </data>
+  <data name="Links_Local_AppData" xml:space="preserve">
+    <value>App user data</value>
+  </data>
+  <data name="Links_Local_TempDir" xml:space="preserve">
+    <value>App temp directory</value>
+  </data>
+  <data name="Links_Local_LogFile" xml:space="preserve">
+    <value>Log file</value>
+  </data>
+  <data name="Links_Local_Utilities" xml:space="preserve">
+    <value>Utilities directory</value>
+  </data>
+  <data name="Links_Local_RegAppData" xml:space="preserve">
+    <value>Registry app data</value>
+  </data>
+  <data name="Links_Community_RPC" xml:space="preserve">
+    <value>Rayman Pirate-Community</value>
+  </data>
+  <data name="Links_Community_RayWiki" xml:space="preserve">
+    <value>RayWiki</value>
+  </data>
+  <data name="Links_Community_RayTunes" xml:space="preserve">
+    <value>RayTunes</value>
+  </data>
+  <data name="Links_Community_RaySaves" xml:space="preserve">
+    <value>RaySaves</value>
+  </data>
+  <data name="Links_Community_RaymanCentral" xml:space="preserve">
+    <value>Rayman Central</value>
+  </data>
+  <data name="Links_Community_RaymanTogether" xml:space="preserve">
+    <value>Rayman Together</value>
+  </data>
+  <data name="Links_Community_raym_app" xml:space="preserve">
+    <value>raym.app</value>
+  </data>
+  <data name="Links_Community_Raymap" xml:space="preserve">
+    <value>Raymap</value>
+  </data>
+  <data name="Links_Community_Menezis_Browser" xml:space="preserve">
+    <value>Menezis (browser version)</value>
+  </data>
+  <data name="Links_Community_KMG" xml:space="preserve">
+    <value>KMG Associates - Rayman</value>
+  </data>
+  <data name="Links_Community_Fanpage" xml:space="preserve">
+    <value>Rayman Fanpage</value>
+  </data>
+  <data name="Links_Forums_RPC" xml:space="preserve">
+    <value>Pirate-Community</value>
+  </data>
+  <data name="Links_Forums_Ubisoft" xml:space="preserve">
+    <value>Ubisoft</value>
+  </data>
+  <data name="Links_Forums_GOG" xml:space="preserve">
+    <value>GOG</value>
+  </data>
+  <data name="Links_Forums_Steam_R2" xml:space="preserve">
+    <value>Steam - Rayman 2</value>
+  </data>
+  <data name="Links_Forums_Steam_RRR" xml:space="preserve">
+    <value>Steam - Rayman Raving Rabbids</value>
+  </data>
+  <data name="Links_Forums_Steam_RO" xml:space="preserve">
+    <value>Steam - Rayman Origins</value>
+  </data>
+  <data name="Links_Forums_Steam_RL" xml:space="preserve">
+    <value>Steam - Rayman Legends</value>
+  </data>
+  <data name="Links_Tools_RDEditor" xml:space="preserve">
+    <value>Extended Rayman Designer editor</value>
+  </data>
+  <data name="Links_Tools_RayPlus" xml:space="preserve">
+    <value>Rayman Plus</value>
+  </data>
+  <data name="Links_Tools_RayTwol" xml:space="preserve">
+    <value>RayTwol</value>
+  </data>
+  <data name="Links_Tools_R2Tools" xml:space="preserve">
+    <value>Rayman 2 Tools</value>
+  </data>
+  <data name="Links_Tools_R2Moonjump" xml:space="preserve">
+    <value>Rayman 2 GOG Moonjump</value>
+  </data>
+  <data name="Links_Tools_R2FunBox" xml:space="preserve">
+    <value>Rayman 2 Fun Box</value>
+  </data>
+  <data name="Links_Tools_BetterR3" xml:space="preserve">
+    <value>Better Rayman 3</value>
+  </data>
+  <data name="Links_Tools_R3GCTexturePack" xml:space="preserve">
+    <value>Rayman 3 (Dolphin Emulator) HD Texture Pack</value>
+  </data>
+  <data name="Links_OpenErrorNotFound" xml:space="preserve">
+    <value>The link item could not be opened due to not being found</value>
+  </data>
+  <data name="Links_OpenErrorNotFoundHeader" xml:space="preserve">
+    <value>Invalid link address</value>
+  </data>
+  <data name="Window_MinimizeToTray" xml:space="preserve">
+    <value>Minimize to tray</value>
+  </data>
+  <data name="TaskBarIcon_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="TaskBarIcon_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="LinksPageHeader" xml:space="preserve">
+    <value>Links</value>
+  </data>
 </root>

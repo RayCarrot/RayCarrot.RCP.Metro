@@ -19,14 +19,20 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <TextBox Text="{Binding Path=Log}" 
                  TextWrapping="Wrap"/>
 
         <ProgressBar Grid.Row="1"
-                     Margin="0 10 0 0"
+                     Margin="0 10"
                      Maximum="{Binding Path=TotalBytes}"
                      Value="{Binding Path=ReceivedBytes}" />
+
+        <Button Grid.Row="2"
+                Content="Cancel"
+                IsEnabled="{Binding Path=CanCancel}"
+                Click="CancelButton_OnClick"/>
     </Grid>
 </local:BaseWindow>

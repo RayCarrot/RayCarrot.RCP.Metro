@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Windows;
@@ -31,18 +32,20 @@ namespace RayCarrot.RCP.Metro.Updater
         {
             //
             // Arguments:
-            //  - RCP filePath
-            //  - Dark mode
-            //  - User level
+            //  - RCP filePath (string)
+            //  - Dark mode (bool)
+            //  - User level (UserLevel)
+            //  - Is beta update (bool)
+            //  - Culture (string)
             //
 
             // Retrieve the arguments
             string[] args = e.Args;
 
-            // Make sure we have 3 arguments
-            if (args.Length != 3)
+            // Make sure we have 5 arguments
+            if (args.Length != 5)
             {
-                ShutdownApplication("The number of launch arguments need to be 3");
+                ShutdownApplication("The number of launch arguments need to be 5");
                 return;
             }
 
@@ -64,6 +67,23 @@ namespace RayCarrot.RCP.Metro.Updater
 
             // Get the user level
             CurrentUserLevel = Enum.TryParse(args[2], out UserLevel ule) ? ule : UserLevel.Normal;
+
+            // Get the beta update flag
+            IsBetaUpdate = !Boolean.TryParse(args[3], out bool gbu) || gbu;
+
+            try
+            {
+                // Get the culture info
+                var ci = new CultureInfo(args[4]);
+
+                // Update the current thread cultures
+                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture = ci;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error setting culture", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             // Create and show the main window
             new MainWindow().Show();
@@ -166,6 +186,11 @@ namespace RayCarrot.RCP.Metro.Updater
         /// The temporary path for the local program
         /// </summary>
         public string LocalTempPath { get; }
+
+        /// <summary>
+        /// Indicates if the update is a beta update
+        /// </summary>
+        public bool IsBetaUpdate { get; set; }
 
         /// <summary>
         /// The web client for downloading the update

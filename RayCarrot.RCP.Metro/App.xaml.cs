@@ -116,27 +116,18 @@ namespace RayCarrot.RCP.Metro
                 RCFRCP.Data.Reset();
             }
 
-            // Apply the current culture if defaulted
-            if (RCFRCP.Data.CurrentCulture == AppLanguages.DefaultCulture.Name)
-                RCFRCP.Data.RefreshCulture(AppLanguages.DefaultCulture.Name);
+            Data = RCFRCP.Data;
 
-            // Check if a refresh is pending for the Registry uninstall key
-            if (RCFRCP.Data.PendingRegUninstallKeyRefresh && WindowsHelpers.RunningAsAdmin)
-            {
-                // If succeeded, remove the pending indicator
-                if (await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(RCFRCP.Data.ShowUnderInstalledPrograms, false))
-                    RCFRCP.Data.PendingRegUninstallKeyRefresh = false;
-            }
+            // Apply the current culture if defaulted
+            if (Data.CurrentCulture == AppLanguages.DefaultCulture.Name)
+                Data.RefreshCulture(AppLanguages.DefaultCulture.Name);
 
             // Check if the program is shown under installed programs if the value is defaulted
-            if (RCFRCP.Data.ShowUnderInstalledPrograms == false)
-            {
-                if (!await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(RCFRCP.Data.ShowUnderInstalledPrograms, false))
-                    RCFRCP.Data.PendingRegUninstallKeyRefresh = true;
-            }
+            if (Data.ShowUnderInstalledPrograms == false)
+                Data.PendingRegUninstallKeyRefresh = true;
 
             // Attempt to import legacy data on first launch
-            if (RCFRCP.Data.IsFirstLaunch)
+            if (Data.IsFirstLaunch)
                 await ImportLegacyDataAsync();
 
             // Subscribe to when to refresh the jump list
@@ -151,6 +142,17 @@ namespace RayCarrot.RCP.Metro
 
             // Run post-update code
             await PostUpdateAsync();
+
+            // Check if a refresh is pending for the Registry uninstall key
+            if (Data.PendingRegUninstallKeyRefresh && WindowsHelpers.RunningAsAdmin)
+            {
+                // If succeeded, remove the pending indicator
+                if (await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(Data.ShowUnderInstalledPrograms, false))
+                    Data.PendingRegUninstallKeyRefresh = false;
+            }
+
+            // Clean the install temp folder
+            RCFRCP.File.DeleteDirectory(CommonPaths.InstallTempPath);
 
             // Clean temp folder
             RCFRCP.File.DeleteDirectory(CommonPaths.TempPath);
@@ -169,7 +171,7 @@ namespace RayCarrot.RCP.Metro
         protected override async Task OnCloseAsync(Window mainWindow)
         {
             // Save state
-            RCFRCP.Data.WindowState = WindowSessionState.GetWindowState(mainWindow);
+            Data.WindowState = WindowSessionState.GetWindowState(mainWindow);
 
             RCF.Logger.LogInformationSource($"The application is exiting...");
 
@@ -268,7 +270,7 @@ namespace RayCarrot.RCP.Metro
         /// Runs the basic startup
         /// </summary>
         /// <returns>The task</returns>
-        private static async Task BasicStartupAsync()
+        private async Task BasicStartupAsync()
         {
             // Check for reset argument
             if (RCF.Data.Arguments.Contains("-reset"))
@@ -280,7 +282,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     string ul = RCF.Data.Arguments[RCF.Data.Arguments.FindItemIndex(x => x == "-ul") + 1];
-                    RCFRCP.Data.UserLevel = Enum.Parse(typeof(UserLevel), ul, true).CastTo<UserLevel>();
+                    Data.UserLevel = Enum.Parse(typeof(UserLevel), ul, true).CastTo<UserLevel>();
                 }
                 catch (Exception ex)
                 {
@@ -288,6 +290,7 @@ namespace RayCarrot.RCP.Metro
                 }
             }
 
+            // NOTE: Starting with the updater 3.0.0 (available from 4.5.0) this is no longer used. It must however be maintained for legacy support (i.e. updating to version 4.5.0+ using an updater below 3.0.0)
             // Check for updater install argument
             if (RCF.Data.Arguments.Contains("-install"))
             {
@@ -308,20 +311,21 @@ namespace RayCarrot.RCP.Metro
 
             // Update the application path
             var appPath = Assembly.GetExecutingAssembly().Location;
-            if (new FileSystemPath(appPath) != RCFRCP.Data.ApplicationPath)
+            if (new FileSystemPath(appPath) != Data.ApplicationPath)
             {
-                RCFRCP.Data.ApplicationPath = appPath;
+                Data.ApplicationPath = appPath;
+
+                RCF.Logger.LogInformationSource("The application path has been updated");
 
                 // Refresh Registry value to reflect new application path
-                if (!await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(RCFRCP.Data.ShowUnderInstalledPrograms, true))
-                    RCFRCP.Data.PendingRegUninstallKeyRefresh = true;
+                Data.PendingRegUninstallKeyRefresh = true;
             }
 
             // Show first launch info
-            if (RCFRCP.Data.IsFirstLaunch)
+            if (Data.IsFirstLaunch)
             {
                 new FirstLaunchInfoDialog().ShowDialog();
-                RCFRCP.Data.IsFirstLaunch = false;
+                Data.IsFirstLaunch = false;
             }
 
             await RCFRCP.App.EnableUbiIniWriteAccessAsync();
@@ -335,36 +339,36 @@ namespace RayCarrot.RCP.Metro
             RCF.Logger.LogInformationSource($"Current version is {RCFRCP.App.CurrentVersion}");
 
             // Make sure this is a new version
-            if (!(RCFRCP.Data.LastVersion < RCFRCP.App.CurrentVersion))
+            if (!(Data.LastVersion < RCFRCP.App.CurrentVersion))
             {
                 // Check if it's a lower version than previously recorded
-                if (RCFRCP.Data.LastVersion > RCFRCP.App.CurrentVersion)
+                if (Data.LastVersion > RCFRCP.App.CurrentVersion)
                 {
-                    RCF.Logger.LogWarningSource($"A newer version $({RCFRCP.Data.LastVersion}) has been recorded in the application data");
+                    RCF.Logger.LogWarningSource($"A newer version $({Data.LastVersion}) has been recorded in the application data");
 
-                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, RCFRCP.App.CurrentVersion, RCFRCP.Data.LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
+                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, RCFRCP.App.CurrentVersion, Data.LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
                 }
 
                 return;
             }
 
-            if (RCFRCP.Data.LastVersion < new Version(4, 0, 0, 6))
-                RCFRCP.Data.EnableAnimations = true;
+            if (Data.LastVersion < new Version(4, 0, 0, 6))
+                Data.EnableAnimations = true;
 
-            if (RCFRCP.Data.LastVersion < new Version(4, 1, 1, 0))
-                RCFRCP.Data.ShowIncompleteTranslations = false;
+            if (Data.LastVersion < new Version(4, 1, 1, 0))
+                Data.ShowIncompleteTranslations = false;
 
             if (RCFRCP.Data.LastVersion < new Version(4, 5, 0, 0))
             {
-                RCFRCP.Data.LinkItemStyle = LinkItemStyles.List;
-                RCFRCP.Data.ApplicationPath = Assembly.GetExecutingAssembly().Location;
-                RCFRCP.Data.ForceUpdate = false;
-                RCFRCP.Data.ShowUnderInstalledPrograms = false;
+                Data.LinkItemStyle = LinkItemStyles.List;
+                Data.ApplicationPath = Assembly.GetExecutingAssembly().Location;
+                Data.ForceUpdate = false;
+                Data.ShowUnderInstalledPrograms = false;
+                Data.GetBetaUpdates = false;
             }
 
             // Force refresh the Registry value to reflect the new update
-            if (!await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(RCFRCP.Data.ShowUnderInstalledPrograms, true))
-                RCFRCP.Data.PendingRegUninstallKeyRefresh = true;
+            Data.PendingRegUninstallKeyRefresh = true;
 
             // Refresh the jump list
             RefreshJumpList();
@@ -373,7 +377,7 @@ namespace RayCarrot.RCP.Metro
             new AppNewsDialog().ShowDialog();
 
             // Update the last version
-            RCFRCP.Data.LastVersion = RCFRCP.App.CurrentVersion;
+            Data.LastVersion = RCFRCP.App.CurrentVersion;
         }
 
         /// <summary>
@@ -525,6 +529,15 @@ namespace RayCarrot.RCP.Metro
                 }
             });
         }
+
+        #endregion
+
+        #region Private Properties
+
+        /// <summary>
+        /// The app user data
+        /// </summary>
+        private AppUserData Data { get; set; }
 
         #endregion
 

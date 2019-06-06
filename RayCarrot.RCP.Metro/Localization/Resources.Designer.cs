@@ -1727,6 +1727,42 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The key could not be opened.
+        /// </summary>
+        public static string File_OpenRegKeyError {
+            get {
+                return ResourceManager.GetString("File_OpenRegKeyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error opening key.
+        /// </summary>
+        public static string File_OpenRegKeyErrorHeader {
+            get {
+                return ResourceManager.GetString("File_OpenRegKeyErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The registry key was not found.
+        /// </summary>
+        public static string File_RegKeyNotFound {
+            get {
+                return ResourceManager.GetString("File_RegKeyNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registry key not found.
+        /// </summary>
+        public static string File_RegKeyNotFoundHeader {
+            get {
+                return ResourceManager.GetString("File_RegKeyNotFoundHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shortcut created successfully.
         /// </summary>
         public static string File_ShortcutCreated {
@@ -3287,6 +3323,510 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman Fanpage.
+        /// </summary>
+        public static string Links_Community_Fanpage {
+            get {
+                return ResourceManager.GetString("Links_Community_Fanpage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KMG Associates - Rayman.
+        /// </summary>
+        public static string Links_Community_KMG {
+            get {
+                return ResourceManager.GetString("Links_Community_KMG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menezis (browser version).
+        /// </summary>
+        public static string Links_Community_Menezis_Browser {
+            get {
+                return ResourceManager.GetString("Links_Community_Menezis_Browser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to raym.app.
+        /// </summary>
+        public static string Links_Community_raym_app {
+            get {
+                return ResourceManager.GetString("Links_Community_raym_app", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Central.
+        /// </summary>
+        public static string Links_Community_RaymanCentral {
+            get {
+                return ResourceManager.GetString("Links_Community_RaymanCentral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Together.
+        /// </summary>
+        public static string Links_Community_RaymanTogether {
+            get {
+                return ResourceManager.GetString("Links_Community_RaymanTogether", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Raymap.
+        /// </summary>
+        public static string Links_Community_Raymap {
+            get {
+                return ResourceManager.GetString("Links_Community_Raymap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RaySaves.
+        /// </summary>
+        public static string Links_Community_RaySaves {
+            get {
+                return ResourceManager.GetString("Links_Community_RaySaves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RayTunes.
+        /// </summary>
+        public static string Links_Community_RayTunes {
+            get {
+                return ResourceManager.GetString("Links_Community_RayTunes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RayWiki.
+        /// </summary>
+        public static string Links_Community_RayWiki {
+            get {
+                return ResourceManager.GetString("Links_Community_RayWiki", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Pirate-Community.
+        /// </summary>
+        public static string Links_Community_RPC {
+            get {
+                return ResourceManager.GetString("Links_Community_RPC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GOG.
+        /// </summary>
+        public static string Links_Forums_GOG {
+            get {
+                return ResourceManager.GetString("Links_Forums_GOG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pirate-Community.
+        /// </summary>
+        public static string Links_Forums_RPC {
+            get {
+                return ResourceManager.GetString("Links_Forums_RPC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steam - Rayman 2.
+        /// </summary>
+        public static string Links_Forums_Steam_R2 {
+            get {
+                return ResourceManager.GetString("Links_Forums_Steam_R2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steam - Rayman Legends.
+        /// </summary>
+        public static string Links_Forums_Steam_RL {
+            get {
+                return ResourceManager.GetString("Links_Forums_Steam_RL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steam - Rayman Origins.
+        /// </summary>
+        public static string Links_Forums_Steam_RO {
+            get {
+                return ResourceManager.GetString("Links_Forums_Steam_RO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steam - Rayman Raving Rabbids.
+        /// </summary>
+        public static string Links_Forums_Steam_RRR {
+            get {
+                return ResourceManager.GetString("Links_Forums_Steam_RRR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ubisoft.
+        /// </summary>
+        public static string Links_Forums_Ubisoft {
+            get {
+                return ResourceManager.GetString("Links_Forums_Ubisoft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to App user data.
+        /// </summary>
+        public static string Links_Local_AppData {
+            get {
+                return ResourceManager.GetString("Links_Local_AppData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DOSBox.
+        /// </summary>
+        public static string Links_Local_DOSBox {
+            get {
+                return ResourceManager.GetString("Links_Local_DOSBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DOSBox configuration file.
+        /// </summary>
+        public static string Links_Local_DOSBoxConfig {
+            get {
+                return ResourceManager.GetString("Links_Local_DOSBoxConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GOG Galaxy.
+        /// </summary>
+        public static string Links_Local_GOGClient {
+            get {
+                return ResourceManager.GetString("Links_Local_GOGClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GOG Galaxy games.
+        /// </summary>
+        public static string Links_Local_GOGGames {
+            get {
+                return ResourceManager.GetString("Links_Local_GOGGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log file.
+        /// </summary>
+        public static string Links_Local_LogFile {
+            get {
+                return ResourceManager.GetString("Links_Local_LogFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nGlide 2.0 settings.
+        /// </summary>
+        public static string Links_Local_nGlide2RegSettings {
+            get {
+                return ResourceManager.GetString("Links_Local_nGlide2RegSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nGlide settings.
+        /// </summary>
+        public static string Links_Local_nGlideRegSettings {
+            get {
+                return ResourceManager.GetString("Links_Local_nGlideRegSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary ubi.ini file.
+        /// </summary>
+        public static string Links_Local_PrimaryUbiIni {
+            get {
+                return ResourceManager.GetString("Links_Local_PrimaryUbiIni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 ubi.ini file.
+        /// </summary>
+        public static string Links_Local_R2UbiIni {
+            get {
+                return ResourceManager.GetString("Links_Local_R2UbiIni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registry app data.
+        /// </summary>
+        public static string Links_Local_RegAppData {
+            get {
+                return ResourceManager.GetString("Links_Local_RegAppData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Legends settings.
+        /// </summary>
+        public static string Links_Local_RLRegSettings {
+            get {
+                return ResourceManager.GetString("Links_Local_RLRegSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Origins settings.
+        /// </summary>
+        public static string Links_Local_RORegSettings {
+            get {
+                return ResourceManager.GetString("Links_Local_RORegSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids settings.
+        /// </summary>
+        public static string Links_Local_RRRRegSettings {
+            get {
+                return ResourceManager.GetString("Links_Local_RRRRegSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secondary ubi.ini file.
+        /// </summary>
+        public static string Links_Local_SecondaryUbiIni {
+            get {
+                return ResourceManager.GetString("Links_Local_SecondaryUbiIni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steam.
+        /// </summary>
+        public static string Links_Local_Steam {
+            get {
+                return ResourceManager.GetString("Links_Local_Steam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steam games.
+        /// </summary>
+        public static string Links_Local_SteamGames {
+            get {
+                return ResourceManager.GetString("Links_Local_SteamGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to App temp directory.
+        /// </summary>
+        public static string Links_Local_TempDir {
+            get {
+                return ResourceManager.GetString("Links_Local_TempDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utilities directory.
+        /// </summary>
+        public static string Links_Local_Utilities {
+            get {
+                return ResourceManager.GetString("Links_Local_Utilities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The link item could not be opened due to not being found.
+        /// </summary>
+        public static string Links_OpenErrorNotFound {
+            get {
+                return ResourceManager.GetString("Links_OpenErrorNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid link address.
+        /// </summary>
+        public static string Links_OpenErrorNotFoundHeader {
+            get {
+                return ResourceManager.GetString("Links_OpenErrorNotFoundHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Better Rayman 3.
+        /// </summary>
+        public static string Links_Tools_BetterR3 {
+            get {
+                return ResourceManager.GetString("Links_Tools_BetterR3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 Fun Box.
+        /// </summary>
+        public static string Links_Tools_R2FunBox {
+            get {
+                return ResourceManager.GetString("Links_Tools_R2FunBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 GOG Moonjump.
+        /// </summary>
+        public static string Links_Tools_R2Moonjump {
+            get {
+                return ResourceManager.GetString("Links_Tools_R2Moonjump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 Tools.
+        /// </summary>
+        public static string Links_Tools_R2Tools {
+            get {
+                return ResourceManager.GetString("Links_Tools_R2Tools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 (Dolphin Emulator) HD Texture Pack.
+        /// </summary>
+        public static string Links_Tools_R3GCTexturePack {
+            get {
+                return ResourceManager.GetString("Links_Tools_R3GCTexturePack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Plus.
+        /// </summary>
+        public static string Links_Tools_RayPlus {
+            get {
+                return ResourceManager.GetString("Links_Tools_RayPlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RayTwol.
+        /// </summary>
+        public static string Links_Tools_RayTwol {
+            get {
+                return ResourceManager.GetString("Links_Tools_RayTwol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extended Rayman Designer editor.
+        /// </summary>
+        public static string Links_Tools_RDEditor {
+            get {
+                return ResourceManager.GetString("Links_Tools_RDEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Community.
+        /// </summary>
+        public static string LinksPage_CommunityHeader {
+            get {
+                return ResourceManager.GetString("LinksPage_CommunityHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forums.
+        /// </summary>
+        public static string LinksPage_ForumsHeader {
+            get {
+                return ResourceManager.GetString("LinksPage_ForumsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group.
+        /// </summary>
+        public static string LinksPage_LinkStyle_Group {
+            get {
+                return ResourceManager.GetString("LinksPage_LinkStyle_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List.
+        /// </summary>
+        public static string LinksPage_LinkStyle_List {
+            get {
+                return ResourceManager.GetString("LinksPage_LinkStyle_List", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Link style.
+        /// </summary>
+        public static string LinksPage_LinkStyleHeader {
+            get {
+                return ResourceManager.GetString("LinksPage_LinkStyleHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local.
+        /// </summary>
+        public static string LinksPage_LocalHeader {
+            get {
+                return ResourceManager.GetString("LinksPage_LocalHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string LinksPage_Refresh {
+            get {
+                return ResourceManager.GetString("LinksPage_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifications/Tools.
+        /// </summary>
+        public static string LinksPage_ToolsHeader {
+            get {
+                return ResourceManager.GetString("LinksPage_ToolsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Links.
+        /// </summary>
+        public static string LinksPageHeader {
+            get {
+                return ResourceManager.GetString("LinksPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Install Directory.
         /// </summary>
         public static string LocateGame_BrowserHeader {
@@ -4754,6 +5294,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This feature requires the program to run as administrator.
+        /// </summary>
+        public static string Settings_AdminInfo {
+            get {
+                return ResourceManager.GetString("Settings_AdminInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup location.
         /// </summary>
         public static string Settings_BackupLocation {
@@ -4934,6 +5483,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Force manual updates.
+        /// </summary>
+        public static string Settings_ForceUpdates {
+            get {
+                return ResourceManager.GetString("Settings_ForceUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close application when launching a game.
         /// </summary>
         public static string Settings_GeneralCloseOnLaunch {
@@ -5002,6 +5560,33 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_OptionalDosBoxConfigPathInfo {
             get {
                 return ResourceManager.GetString("Settings_OptionalDosBoxConfigPathInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show under installed programs.
+        /// </summary>
+        public static string Settings_ShowUnderInstalledPrograms {
+            get {
+                return ResourceManager.GetString("Settings_ShowUnderInstalledPrograms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating the program information under installed programs failed. Try restarting as administrator to try again..
+        /// </summary>
+        public static string Settings_ShowUnderInstalledPrograms_UpdateError {
+            get {
+                return ResourceManager.GetString("Settings_ShowUnderInstalledPrograms_UpdateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If this is enabled the program will be shown under the list of installed programs on this computer, most commonly found under Add/Remove Program in the Control Panel. If this is enabled the program may require administration privileges during an update in order to update the program information..
+        /// </summary>
+        public static string Settings_ShowUnderInstalledProgramsInfo {
+            get {
+                return ResourceManager.GetString("Settings_ShowUnderInstalledProgramsInfo", resourceCulture);
             }
         }
         
@@ -5128,6 +5713,24 @@ namespace RayCarrot.RCP.Metro {
         public static string SettingsPageHeader {
             get {
                 return ResourceManager.GetString("SettingsPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string TaskBarIcon_Close {
+            get {
+                return ResourceManager.GetString("TaskBarIcon_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string TaskBarIcon_Open {
+            get {
+                return ResourceManager.GetString("TaskBarIcon_Open", resourceCulture);
             }
         }
         
@@ -5268,6 +5871,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The updater could not be launched. To manually download the new version, go to {0} and download the latest version from there..
+        /// </summary>
+        public static string Update_RunningUpdaterError {
+            get {
+                return ResourceManager.GetString("Update_RunningUpdaterError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error running updater.
+        /// </summary>
+        public static string Update_RunningUpdaterErrorHeader {
+            get {
+                return ResourceManager.GetString("Update_RunningUpdaterErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown error.
         /// </summary>
         public static string Update_UnknownError {
@@ -5330,6 +5951,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utility_AdditionalFilesRequired {
             get {
                 return ResourceManager.GetString("Utility_AdditionalFilesRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimize to tray.
+        /// </summary>
+        public static string Window_MinimizeToTray {
+            get {
+                return ResourceManager.GetString("Window_MinimizeToTray", resourceCulture);
             }
         }
     }

@@ -1,20 +1,13 @@
-﻿using MahApps.Metro.IconPacks;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using RayCarrot.CarrotFramework;
 using RayCarrot.Windows.Registry;
-using RayCarrot.Windows.Shell;
-using RayCarrot.WPF;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace RayCarrot.RCP.Metro
 {
-    // TODO: Localize
     /// <summary>
     /// View model for the links page
     /// </summary>
@@ -77,29 +70,26 @@ namespace RayCarrot.RCP.Metro
             // ubi.ini files
             LocalLinkItems.Add(new LinkItemViewModel[]
             {
-                new LinkItemViewModel(CommonPaths.UbiIniPath1, "Primary ubi.ini file"),
-                new LinkItemViewModel(CommonPaths.UbiIniPath2, "Secondary ubi.ini file", UserLevel.Advanced),
-                new LinkItemViewModel(
-                    Games.Rayman2.IsAdded()
+                new LinkItemViewModel(CommonPaths.UbiIniPath1, Resources.Links_Local_PrimaryUbiIni),
+                new LinkItemViewModel(CommonPaths.UbiIniPath2, Resources.Links_Local_SecondaryUbiIni, UserLevel.Advanced),
+                new LinkItemViewModel(Games.Rayman2.IsAdded()
                         ? Games.Rayman2.GetInfo().InstallDirectory + "ubi.ini"
-                        : FileSystemPath.EmptyPath, "Rayman 2 ubi.ini file", UserLevel.Advanced)
+                        : FileSystemPath.EmptyPath, Resources.Links_Local_R2UbiIni, UserLevel.Advanced)
             });
 
             // DOSBox files
             if (File.Exists(Data.DosBoxPath))
                 LocalLinkItems.Add(new LinkItemViewModel[]
                 {
-                    new LinkItemViewModel(new FileSystemPath(Data.DosBoxPath), "DOSBox"),
-                    new LinkItemViewModel(new FileSystemPath(Data.DosBoxConfig), "DOSBox configuration file",
-                        UserLevel.Technical)
+                    new LinkItemViewModel(new FileSystemPath(Data.DosBoxPath), Resources.Links_Local_DOSBox),
+                    new LinkItemViewModel(new FileSystemPath(Data.DosBoxConfig), Resources.Links_Local_DOSBoxConfig, UserLevel.Technical)
                 });
 
             // Steam paths
             try
             {
                 using (RegistryKey key =
-                    RCFWinReg.RegistryManager.GetKeyFromFullPath(@"HKEY_CURRENT_USER\Software\Valve\Steam",
-                        RegistryView.Default))
+                    RCFWinReg.RegistryManager.GetKeyFromFullPath(@"HKEY_CURRENT_USER\Software\Valve\Steam", RegistryView.Default))
                 {
                     if (key != null)
                     {
@@ -109,9 +99,8 @@ namespace RayCarrot.RCP.Metro
                         if (steamDir.DirectoryExists)
                             LocalLinkItems.Add(new LinkItemViewModel[]
                             {
-                                new LinkItemViewModel(steamDir + steamExe, "Steam"),
-                                new LinkItemViewModel(steamDir + @"steamapps\common", "Steam games",
-                                    UserLevel.Advanced)
+                                new LinkItemViewModel(steamDir + steamExe, Resources.Links_Local_Steam),
+                                new LinkItemViewModel(steamDir + @"steamapps\common", Resources.Links_Local_SteamGames, UserLevel.Advanced)
                             });
                     }
                 }
@@ -124,9 +113,7 @@ namespace RayCarrot.RCP.Metro
             // GOG paths
             try
             {
-                using (RegistryKey key = RCFWinReg.RegistryManager.GetKeyFromFullPath(
-                    @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\GalaxyClient\paths",
-                    RegistryView.Default))
+                using (RegistryKey key = RCFWinReg.RegistryManager.GetKeyFromFullPath(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\GalaxyClient\paths", RegistryView.Default))
                 {
                     if (key != null)
                     {
@@ -135,8 +122,8 @@ namespace RayCarrot.RCP.Metro
                         if (gogDir.DirectoryExists)
                             LocalLinkItems.Add(new LinkItemViewModel[]
                             {
-                                new LinkItemViewModel(gogDir + "GalaxyClient.exe", "GOG Galaxy"),
-                                new LinkItemViewModel(gogDir + @"Games", "GOG Galaxy games", UserLevel.Advanced)
+                                new LinkItemViewModel(gogDir + "GalaxyClient.exe", Resources.Links_Local_GOGClient),
+                                new LinkItemViewModel(gogDir + @"Games", Resources.Links_Local_GOGGames, UserLevel.Advanced)
                             });
                     }
                 }
@@ -149,28 +136,21 @@ namespace RayCarrot.RCP.Metro
             // Registry paths
             LocalLinkItems.Add(new LinkItemViewModel[]
             {
-                new LinkItemViewModel(CommonPaths.RaymanRavingRabbidsRegistryKey,
-                    "Rayman Raving Rabbids settings",
-                    UserLevel.Technical),
-                new LinkItemViewModel(CommonPaths.RaymanOriginsRegistryKey, "Rayman Origins settings",
-                    UserLevel.Technical),
-                new LinkItemViewModel(CommonPaths.RaymanLegendsRegistryKey, "Rayman Legends settings",
-                    UserLevel.Technical),
-                new LinkItemViewModel(@"HKEY_CURRENT_USER\Software\Zeus Software\nGlide", "nGlide settings",
-                    UserLevel.Technical),
-                new LinkItemViewModel(@"HKEY_CURRENT_USER\Software\Zeus Software\nGlide2",
-                    "nGlide 2.0 settings",
-                    UserLevel.Technical)
+                new LinkItemViewModel(CommonPaths.RaymanRavingRabbidsRegistryKey, Resources.Links_Local_RRRRegSettings, UserLevel.Technical),
+                new LinkItemViewModel(CommonPaths.RaymanOriginsRegistryKey, Resources.Links_Local_RORegSettings, UserLevel.Technical),
+                new LinkItemViewModel(CommonPaths.RaymanLegendsRegistryKey, Resources.Links_Local_RLRegSettings, UserLevel.Technical),
+                new LinkItemViewModel(@"HKEY_CURRENT_USER\Software\Zeus Software\nGlide", Resources.Links_Local_nGlideRegSettings, UserLevel.Technical),
+                new LinkItemViewModel(@"HKEY_CURRENT_USER\Software\Zeus Software\nGlide2", Resources.Links_Local_nGlide2RegSettings, UserLevel.Technical)
             });
 
             // Debug paths
             LocalLinkItems.Add(new LinkItemViewModel[]
             {
-                new LinkItemViewModel(CommonPaths.UserDataBaseDir, "App user data", UserLevel.Technical),
-                new LinkItemViewModel(CommonPaths.TempPath, "App temp directory", UserLevel.Debug),
-                new LinkItemViewModel(CommonPaths.LogFile, "Log file", UserLevel.Debug),
-                new LinkItemViewModel(CommonPaths.TPLSDir, "TPLS directory", UserLevel.Debug),
-                new LinkItemViewModel(CommonPaths.RegistryBaseKey, "Registry app data", UserLevel.Technical)
+                new LinkItemViewModel(CommonPaths.UserDataBaseDir, Resources.Links_Local_AppData, UserLevel.Technical),
+                new LinkItemViewModel(CommonPaths.TempPath, Resources.Links_Local_TempDir, UserLevel.Debug),
+                new LinkItemViewModel(CommonPaths.LogFile, Resources.Links_Local_LogFile, UserLevel.Debug),
+                new LinkItemViewModel(CommonPaths.UtilitiesBaseDir, Resources.Links_Local_Utilities, UserLevel.Debug),
+                new LinkItemViewModel(CommonPaths.RegistryBaseKey, Resources.Links_Local_RegAppData, UserLevel.Technical)
             });
 
             // Community links
@@ -180,26 +160,26 @@ namespace RayCarrot.RCP.Metro
             {
                 new LinkItemViewModel[]
                 {
-                    new LinkItemViewModel(new Uri("https://raymanpc.com/"), "Rayman Pirate-Community"),
-                    new LinkItemViewModel(new Uri("https://raymanpc.com/wiki/en/Main_Page"), "RayWiki"),
-                    new LinkItemViewModel(new Uri("https://raytunes.raymanpc.com/"), "RayTunes"),
-                    new LinkItemViewModel(new Uri("https://raysaves.raymanpc.com/"), "RaySaves")
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/"), Resources.Links_Community_RPC),
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/wiki/en/Main_Page"), Resources.Links_Community_RayWiki),
+                    new LinkItemViewModel(new Uri("https://raytunes.raymanpc.com/"), Resources.Links_Community_RayTunes),
+                    new LinkItemViewModel(new Uri("https://raysaves.raymanpc.com/"), Resources.Links_Community_RaySaves)
                 },
                 new LinkItemViewModel[]
                 {
-                    new LinkItemViewModel(new Uri("https://twitter.com/RaymanCentral"), "Rayman Central"),
-                    new LinkItemViewModel(new Uri("https://twitter.com/RaymanTogether"), "Rayman Together"),
+                    new LinkItemViewModel(new Uri("https://twitter.com/RaymanCentral"), Resources.Links_Community_RaymanCentral),
+                    new LinkItemViewModel(new Uri("https://twitter.com/RaymanTogether"), Resources.Links_Community_RaymanTogether),
                 },
                 new LinkItemViewModel[]
                 {
-                    new LinkItemViewModel(new Uri("https://raym.app/"), "raym.app"),
-                    new LinkItemViewModel(new Uri("https://raym.app/maps/"), "Raymap"),
-                    new LinkItemViewModel(new Uri("https://raym.app/menezis/"), "Menezis (browser version)"),
+                    new LinkItemViewModel(new Uri("https://raym.app/"), Resources.Links_Community_raym_app),
+                    new LinkItemViewModel(new Uri("https://raym.app/maps/"), Resources.Links_Community_Raymap),
+                    new LinkItemViewModel(new Uri("https://raym.app/menezis/"), Resources.Links_Community_Menezis_Browser),
                 },
                 new LinkItemViewModel[]
                 {
-                    new LinkItemViewModel(new Uri("http://www.kmgassociates.com/rayman/index.html"), "KMG Associates - Rayman"),
-                    new LinkItemViewModel(new Uri("http://www.rayman-fanpage.de/"), "Rayman Fanpage")
+                    new LinkItemViewModel(new Uri("http://www.kmgassociates.com/rayman/index.html"), Resources.Links_Community_KMG),
+                    new LinkItemViewModel(new Uri("http://www.rayman-fanpage.de/"), Resources.Links_Community_Fanpage)
                 },
             });
 
@@ -210,19 +190,19 @@ namespace RayCarrot.RCP.Metro
             {
                 new LinkItemViewModel[]
                 {
-                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/index.php"), "Pirate-Community"), 
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/index.php"), Resources.Links_Forums_RPC), 
                 }, 
                 new LinkItemViewModel[]
                 {
-                    new LinkItemViewModel(new Uri("https://forums.ubi.com/forumdisplay.php/47-Rayman"), "Ubisoft"), 
-                    new LinkItemViewModel(new Uri("https://www.gog.com/forum/rayman_series"), "GOG"), 
+                    new LinkItemViewModel(new Uri("https://forums.ubi.com/forumdisplay.php/47-Rayman"), Resources.Links_Forums_Ubisoft), 
+                    new LinkItemViewModel(new Uri("https://www.gog.com/forum/rayman_series"), Resources.Links_Forums_GOG), 
                 }, 
                 new LinkItemViewModel[]
                 {
-                    new LinkItemViewModel(new Uri("https://steamcommunity.com/app/15060/discussions/"), "Steam - Rayman 2"), 
-                    new LinkItemViewModel(new Uri("https://steamcommunity.com/app/15080/discussions/"), "Steam - Rayman Raving Rabbids"), 
-                    new LinkItemViewModel(new Uri("https://steamcommunity.com/app/207490/discussions/"), "Steam - Rayman Origins"), 
-                    new LinkItemViewModel(new Uri("https://steamcommunity.com/app/242550/discussions/"), "Steam - Rayman Legends"), 
+                    new LinkItemViewModel(new Uri("https://steamcommunity.com/app/15060/discussions/"), Resources.Links_Forums_Steam_R2), 
+                    new LinkItemViewModel(new Uri("https://steamcommunity.com/app/15080/discussions/"), Resources.Links_Forums_Steam_RRR), 
+                    new LinkItemViewModel(new Uri("https://steamcommunity.com/app/207490/discussions/"), Resources.Links_Forums_Steam_RO), 
+                    new LinkItemViewModel(new Uri("https://steamcommunity.com/app/242550/discussions/"), Resources.Links_Forums_Steam_RL), 
                 }, 
             });
 
@@ -233,21 +213,21 @@ namespace RayCarrot.RCP.Metro
             {
                 new LinkItemViewModel[]
                 {
-                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=5755"), "Extended Rayman Designer editor"), 
-                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=25867"), "Rayman Plus"), 
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=5755"), Resources.Links_Tools_RDEditor), 
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=25867"), Resources.Links_Tools_RayPlus), 
                 },
                 new LinkItemViewModel[]
                 {
-                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=25013"), "RayTwol"), 
-                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=23423"), "Rayman 2 Tools"), 
-                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=23420"), "Rayman 2 GOG Moonjump"), 
-                    new LinkItemViewModel(new Uri("https://github.com/rtsonneveld/Rayman2FunBox/releases"), "Rayman 2 Fun Box"), 
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=25013"), Resources.Links_Tools_RayTwol), 
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=23423"), Resources.Links_Tools_R2Tools), 
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=23420"), Resources.Links_Tools_R2Moonjump), 
+                    new LinkItemViewModel(new Uri("https://github.com/rtsonneveld/Rayman2FunBox/releases"), Resources.Links_Tools_R2FunBox), 
                 }, 
                 new LinkItemViewModel[]
                 {
-                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=12854"), "Better Rayman 3"), 
-                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=25053"), "Rayman 3 (Dolphin Emulator) HD Texture Pack"), 
-                  }, 
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=12854"), Resources.Links_Tools_BetterR3), 
+                    new LinkItemViewModel(new Uri("https://raymanpc.com/forum/viewtopic.php?t=25053"), Resources.Links_Tools_R3GCTexturePack), 
+                }, 
             });
         }
 
@@ -256,197 +236,6 @@ namespace RayCarrot.RCP.Metro
         #region Commands
 
         public ICommand RefreshCommand { get; }
-
-        #endregion
-    }
-
-    // TODO: Localize + move to separate file
-    /// <summary>
-    /// View model for a link item
-    /// </summary>
-    public class LinkItemViewModel : BaseRCPViewModel
-    {
-        #region Constructors
-
-        /// <summary>
-        /// Creates a new link item for a local path
-        /// </summary>
-        /// <param name="localLinkPath">The local link path</param>
-        /// <param name="displayText">The text to display for the link</param>
-        /// <param name="minUserLevel">The minimum required user level for this link item</param>
-        public LinkItemViewModel(FileSystemPath localLinkPath, string displayText, UserLevel minUserLevel = UserLevel.Normal)
-        {
-            MinUserLevel = minUserLevel;
-            LocalLinkPath = localLinkPath.Exists ? localLinkPath.CorrectPathCasing() : localLinkPath;
-            IsLocal = true;
-            DisplayText = displayText;
-            IconKind = localLinkPath.FileExists ? PackIconMaterialKind.FileOutline : PackIconMaterialKind.FolderOutline;
-
-            if (!IsValid)
-                return;
-
-            try
-            {
-                IconSource = LocalLinkPath.GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource();
-            }
-            catch (Exception ex)
-            {
-                ex.HandleUnexpected("Getting link item thumbnail");
-            }
-
-            OpenLinkCommand = new AsyncRelayCommand(OpenLinkAsync);
-        }
-
-        /// <summary>
-        /// Creates a new link item for a Registry path
-        /// </summary>
-        /// <param name="registryLinkPath">The Registry link path</param>
-        /// <param name="displayText">The text to display for the link</param>
-        /// <param name="minUserLevel">The minimum required user level for this link item</param>
-        public LinkItemViewModel(string registryLinkPath, string displayText, UserLevel minUserLevel = UserLevel.Normal)
-        {
-            MinUserLevel = minUserLevel;
-            RegistryLinkPath = registryLinkPath;
-            IsLocal = true;
-            IsRegistryPath = true;
-            DisplayText = displayText;
-            IconKind = PackIconMaterialKind.FileOutline;
-
-            try
-            {
-                IconSource = new FileSystemPath(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "regedit.exe")).GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource();
-            }
-            catch (Exception ex)
-            {
-                ex.HandleUnexpected("Getting Registry link item thumbnail");
-            }
-
-            OpenLinkCommand = new AsyncRelayCommand(OpenLinkAsync);
-        }
-
-        /// <summary>
-        /// Creates a new link item for an external path
-        /// </summary>
-        /// <param name="externalLinkPath">The external link path</param>
-        /// <param name="displayText">The text to display for the link</param>
-        /// <param name="minUserLevel">The minimum required user level for this link item</param>
-        public LinkItemViewModel(Uri externalLinkPath, string displayText, UserLevel minUserLevel = UserLevel.Normal)
-        {
-            MinUserLevel = minUserLevel;
-            LocalLinkPath = FileSystemPath.EmptyPath;
-            ExternalLinkPath = externalLinkPath;
-            DisplayText = displayText;
-            IconKind = PackIconMaterialKind.AccessPointNetwork;
-
-            OpenLinkCommand = new AsyncRelayCommand(OpenLinkAsync);
-
-            try
-            {
-                var bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.UriSource = new Uri($"{"https://www.google.com/s2/favicons?domain="}{ExternalLinkPath}"); ;
-                bitmapImage.EndInit();
-                IconSource = bitmapImage;
-            }
-            catch (Exception ex)
-            {
-                ex.HandleUnexpected("Getting external link icon");
-            }
-        }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// The minimum required user level for this link item
-        /// </summary>
-        public UserLevel MinUserLevel { get; }
-
-        /// <summary>
-        /// The icon image source
-        /// </summary>
-        public ImageSource IconSource { get; }
-
-        /// <summary>
-        /// The local link path
-        /// </summary>
-        public FileSystemPath LocalLinkPath { get; }
-
-        /// <summary>
-        /// The external link path
-        /// </summary>
-        public Uri ExternalLinkPath { get; }
-
-        /// <summary>
-        /// Indicates if the path is local or external
-        /// </summary>
-        public bool IsLocal { get; }
-
-        /// <summary>
-        /// Indicates if the link is to a Registry path
-        /// </summary>
-        public bool IsRegistryPath { get; }
-
-        /// <summary>
-        /// The Registry link path
-        /// </summary>
-        public string RegistryLinkPath { get; }
-
-        /// <summary>
-        /// The text to display for the link
-        /// </summary>
-        public string DisplayText { get; }
-
-        /// <summary>
-        /// The icon for the link
-        /// </summary>
-        public PackIconMaterialKind IconKind { get; }
-
-        /// <summary>
-        /// The path to display
-        /// </summary>
-        public string DisplayPath => !IsLocal ? ExternalLinkPath?.ToString() : IsRegistryPath ? RegistryLinkPath : LocalLinkPath.FullPath;
-
-        /// <summary>
-        /// Indicates if the link is valid
-        /// </summary>
-        public bool IsValid => !IsLocal || (IsRegistryPath ? RCFWinReg.RegistryManager.KeyExists(RegistryLinkPath) : LocalLinkPath.Exists);
-
-        #endregion
-
-        #region Commands
-
-        public ICommand OpenLinkCommand { get; }
-
-        #endregion
-
-        #region Public Methods
-
-        /// <summary>
-        /// Opens the link
-        /// </summary>
-        public async Task OpenLinkAsync()
-        {
-            if (IsLocal)
-            {
-                if (IsRegistryPath)
-                    await RCFRCP.File.OpenRegistryKeyAsync(RegistryLinkPath);
-
-                else if (LocalLinkPath.FileExists)
-                    await RCFRCP.File.LaunchFileAsync(LocalLinkPath);
-
-                else if (LocalLinkPath.DirectoryExists)
-                    await RCFRCP.File.OpenExplorerLocationAsync(LocalLinkPath);
-
-                else
-                    await RCF.MessageUI.DisplayMessageAsync("The link item could not be opened due to not being found", "Invalid link address", MessageType.Error);
-            }
-            else
-            {
-                App.OpenUrl(ExternalLinkPath.ToString());
-            }
-        }
 
         #endregion
     }

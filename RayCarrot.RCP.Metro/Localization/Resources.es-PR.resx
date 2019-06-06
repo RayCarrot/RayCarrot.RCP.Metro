@@ -192,4 +192,67 @@
   <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
     <value>1.00</value>
   </data>
+  <data name="Links_Community_RPC" xml:space="preserve">
+    <value>Rayman Pirate-Community</value>
+  </data>
+  <data name="Links_Community_RayWiki" xml:space="preserve">
+    <value>RayWiki</value>
+  </data>
+  <data name="Links_Community_RayTunes" xml:space="preserve">
+    <value>RayTunes</value>
+  </data>
+  <data name="Links_Community_RaySaves" xml:space="preserve">
+    <value>RaySaves</value>
+  </data>
+  <data name="Links_Community_RaymanCentral" xml:space="preserve">
+    <value>Rayman Central</value>
+  </data>
+  <data name="Links_Community_RaymanTogether" xml:space="preserve">
+    <value>Rayman Together</value>
+  </data>
+  <data name="Links_Community_raym_app" xml:space="preserve">
+    <value>raym.app</value>
+  </data>
+  <data name="Links_Community_Raymap" xml:space="preserve">
+    <value>Raymap</value>
+  </data>
+  <data name="Links_Community_Menezis_Browser" xml:space="preserve">
+    <value>Menezis (browser version)</value>
+  </data>
+  <data name="Links_Community_KMG" xml:space="preserve">
+    <value>KMG Associates - Rayman</value>
+  </data>
+  <data name="Links_Community_Fanpage" xml:space="preserve">
+    <value>Rayman Fanpage</value>
+  </data>
+  <data name="Links_Forums_RPC" xml:space="preserve">
+    <value>Pirate-Community</value>
+  </data>
+  <data name="Links_Forums_Ubisoft" xml:space="preserve">
+    <value>Ubisoft</value>
+  </data>
+  <data name="Links_Forums_GOG" xml:space="preserve">
+    <value>GOG</value>
+  </data>
+  <data name="Links_Forums_Steam_R2" xml:space="preserve">
+    <value>Steam - Rayman 2</value>
+  </data>
+  <data name="Links_Forums_Steam_RRR" xml:space="preserve">
+    <value>Steam - Rayman Raving Rabbids</value>
+  </data>
+  <data name="Links_Forums_Steam_RO" xml:space="preserve">
+    <value>Steam - Rayman Origins</value>
+  </data>
+  <data name="Links_Forums_Steam_RL" xml:space="preserve">
+    <value>Steam - Rayman Legends</value>
+  </data>
+  <data name="Links_Tools_RDEditor" xml:space="preserve">
+    <value>Extended Rayman Designer editor</value>
+  </data>
+  <data name="Links_Tools_RayPlus" xml:space="preserve">
+    <value>Rayman Plus</value>
+  </data>
+  <data name="Links_Tools_RayTwol" xml:space="preserve">
+    <value>RayTwol</value>
+  </data>
 </root>

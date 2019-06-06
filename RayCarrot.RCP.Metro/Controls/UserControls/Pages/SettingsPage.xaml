@@ -249,7 +249,7 @@
 
             <!-- Behavior -->
 
-            <StackPanel DataContext="{Binding Path=Data}">
+            <StackPanel>
                 <i:Interaction.Behaviors>
                     <rwpf:UnifiedMarginBehavior Margin="0 2" />
                 </i:Interaction.Behaviors>
@@ -263,10 +263,27 @@
                     </i:Interaction.Behaviors>
 
                     <CheckBox Content="{Resx Settings_GeneralCloseOnLaunch}"
+                              DataContext="{Binding Path=Data}"
                               IsChecked="{Binding Path=CloseAppOnGameLaunch}"/>
 
                     <CheckBox Content="{Resx Settings_GeneralCloseOnSave}"
+                              DataContext="{Binding Path=Data}"
                               IsChecked="{Binding Path=CloseConfigOnSave}" />
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <local:InfoIcon IconKind="Security" 
+                                        Margin="0 0 5 0"
+                                        Text="{Resx Settings_AdminInfo}"
+                                        Visibility="{Binding Path=CanEditShowUnderInstalledPrograms, Converter={rwpf:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"/>
+
+                        <CheckBox Content="{Resx Settings_ShowUnderInstalledPrograms}"
+                                  IsChecked="{Binding Path=Data.ShowUnderInstalledPrograms}"
+                                  IsEnabled="{Binding Path=CanEditShowUnderInstalledPrograms, Mode=OneTime}" />
+
+                        <local:InfoIcon Text="{Resx Settings_ShowUnderInstalledProgramsInfo}" />
+
+                    </StackPanel>
 
                 </StackPanel>
 
@@ -274,7 +291,8 @@
 
             <!-- Debug -->
 
-            <StackPanel rwpf:UserLevelTag.MinUserLevel="Debug">
+            <StackPanel rwpf:UserLevelTag.MinUserLevel="Debug"
+                        DataContext="{Binding Path=Data}">
                 <i:Interaction.Behaviors>
                     <rwpf:UnifiedMarginBehavior Margin="0 2" />
                 </i:Interaction.Behaviors>
@@ -287,7 +305,7 @@
                         <rwpf:UnifiedMarginBehavior Margin="2 8" />
                     </i:Interaction.Behaviors>
 
-                    <StackPanel DataContext="{Binding Path=Data}">
+                    <StackPanel>
 
                         <TextBlock Style="{StaticResource HeaderTextBlock}"
                                    Text="{Resx Settings_DebugExceptionLevel}"
@@ -300,26 +318,11 @@
                     </StackPanel>
 
                     <!-- TODO: Localize -->
-                    <CheckBox Content="Force Manual Updates"
-                              DataContext="{Binding Path=Data}"
+                    <CheckBox Content="Get beta updates"
+                              IsChecked="{Binding Path=GetBetaUpdates}" />
+
+                    <CheckBox Content="{Resx Settings_ForceUpdates}"
                               IsChecked="{Binding Path=ForceUpdate}" />
-
-                    <StackPanel Orientation="Horizontal">
-
-                        <!-- TODO: Localize -->
-
-                        <local:InfoIcon IconKind="Security" 
-                                        Margin="0 0 5 0"
-                                        Text="This feature requires the program to run as administrator"
-                                        Visibility="{Binding Path=CanEditShowUnderInstalledPrograms, Converter={rwpf:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"/>
-
-                        <!-- TODO: Localize + add info icon -->
-                        <CheckBox Content="ShowUnderInstalledPrograms"
-                                  IsChecked="{Binding Path=Data.ShowUnderInstalledPrograms}"
-                                  IsEnabled="{Binding Path=CanEditShowUnderInstalledPrograms, Mode=OneTime}">
-                        </CheckBox>
-
-                    </StackPanel>
 
                 </StackPanel>
 
