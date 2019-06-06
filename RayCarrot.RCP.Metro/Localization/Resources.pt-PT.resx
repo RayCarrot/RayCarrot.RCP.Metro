@@ -550,10 +550,10 @@
     <value>Depuração</value>
   </data>
   <data name="Settings_DebugExceptionLevel" xml:space="preserve">
-    <value>Mostrar nível de excepção</value>
+    <value>Exibir nível de excepção</value>
   </data>
   <data name="Settings_DebugExceptionLevelInfo" xml:space="preserve">
-    <value>O nível de excepção para mostrar informações de depuração e traçamento</value>
+    <value>O nível de excepção para a exibição de informações de depuração e traçamento</value>
   </data>
   <data name="Settings_BackupLocation" xml:space="preserve">
     <value>Localização de Cópia de Segurança</value>
@@ -1342,7 +1342,7 @@
     <value>Não foi possível encontrar o jogo</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Agradecimentos especiais ao 432 Hz, AuToMaNiAk005, MixerX, ICUP321, PokGOT4N e todos os outros fãs de Rayman!</value>
+    <value>Agradecimentos especiais ao RayActivity, 432 Hz, AuToMaNiAk005, MixerX, ICUP321, PokGOT4N e todos os outros fãs de Rayman!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>Interface de utilizador, Carrot Framework, localizador de jogo, utilitários, traduções do Rayman 2, programa de tradução Sueca</value>
@@ -1613,29 +1613,29 @@
   </data>
   <data name="Help_RCP_AppData" xml:space="preserve">
     <value>O programa guarda principalmente os seus dados de aplicação nos dados de aplicação do utilizador actual, com algumas definições guardadas no Registo. Abaixo é a lista completa das localizações onde os dados são arquivados. 
- 
- • Dados da aplicação principal - {0}
- • Definições de registo - {1}
- • Definições de registo de Framework - {2}
- • Dados temporários - {3}</value>
+  
+  • Dados da aplicação principal - {0}
+  • Definições de registo - {1}
+  • Definições de registo de Framework - {2}
+  • Dados temporários - {3}</value>
   </data>
   <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
     <value>Argumentos de execução</value>
   </data>
   <data name="Help_RCP_LaunchArgs" xml:space="preserve">
     <value>O Painel de Controlo Rayman suporta vários argumentos de execução, principalmente direccionadas para a depuração da aplicação. Abaixo é a lista completa dos argumentos de execução disponíveis. O caracter '-' deverá ser sempre incluído. Os caracteres '{}' mostram que uma variável personalizada pode ser utilizada, no caso que o '{}' dnão deverá ser incluído.
- 
- -reset (Reinicia todos os dados de aplicação antes da execução)
- -install {EndereçoDeFicheiro} (Remove o instalador do endereço especificado)
- -ul {NívelDeUtilizador} (Define o nível de utilizador assim que o framework é construído)
- -loglevel {NívelDeDiário} (Define o nível de diário para diário, padrão é Informação)</value>
+  
+  -reset (Reinicia todos os dados de aplicação antes da execução)
+  -install {EndereçoDeFicheiro} (Remove o instalador do endereço especificado)
+  -ul {NívelDeUtilizador} (Define o nível de utilizador assim que o framework é construído)
+  -loglevel {NívelDeDiário} (Define o nível de diário para diário, padrão é Informação)</value>
   </data>
   <data name="Help_RCP_DebugHeader" xml:space="preserve">
     <value>Depuramento</value>
   </data>
   <data name="Help_RCP_Debug" xml:space="preserve">
     <value>Se um depurador está anexado ao programa o observador do diário irá abrir-se automáticamente. Isto pode ser aberto manualmente da página de depuração mesmo sem um depurador estar anexado. Se o nível de utilizador de depuração is not enabled o diário pode ainda ser visto pelo ficheiro que escreve sob o seguinte endereço:
- {0}</value>
+  {0}</value>
   </data>
   <data name="Help_Games" xml:space="preserve">
     <value>Jogos</value>
@@ -1648,12 +1648,12 @@
   </data>
   <data name="Help_Games_General_GameNotLaunching" xml:space="preserve">
     <value>Aqui estão as duas coisas mais comuns para se tentar se o jogo não arrancar:
- 
- *Executar o jogo como administrador:
- A opção para se executar um programa como administrador pode ser encontrado no menu de contexto ao clicar no programa com o botão direito do rato.
- 
- *Executar o jogo em modo de compactibilidade:
- Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a opção sob as opções de compactibilidade nas propriedades dos ficheiros. Para muitos jogos mais antigos é recomendado seleccionar o Windows XP Service Pack 2 ou 3.</value>
+  
+  *Executar o jogo como administrador:
+  A opção para se executar um programa como administrador pode ser encontrado no menu de contexto ao clicar no programa com o botão direito do rato.
+  
+  *Executar o jogo em modo de compactibilidade:
+  Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a opção sob as opções de compactibilidade nas propriedades dos ficheiros. Para muitos jogos mais antigos é recomendado seleccionar o Windows XP Service Pack 2 ou 3.</value>
   </data>
   <data name="Help_Games_R1" xml:space="preserve">
     <value>Rayman 1</value>
@@ -1740,13 +1740,13 @@
     <value>Rayman 1</value>
   </data>
   <data name="Help_Cheats_R1" xml:space="preserve">
-    <value>• 99 vidas - Digita trj8p ou raylives ou [TAB]bertrand durante a jogabilidade• Todos os poderes do punho - Digita 2x2rmfmf ou goldfist ou [TAB]antoine durante a jogabilidade• Todos os poderes normais - Digita en5gol2g ou power ou [TAB]benoit durante a jogabilidade• Saúde cheia - Digita kom0ogdk ou raypoint ou [TAB]christ durante a jogabilidade• 10 Tings adicionados - Digita 86e40g91 ou raywiz ou [TAB]jojo durante a jogabilidade• Saltar a secção de nível actual - Digita o8feh ou winamp ou [TAB]cyril durante a jogabilidade• Mostrar mensagem oculta - Digita [TAB]program durante a jogabilidade• Taxa de refrescamento 100MHz - Digita freq10 no mapa• Taxa de refrescamento 80MHz - Digita freq80 no mapa• Todos os poderes normais - Digita power ou [TAB]benoit no mapa• Efeito lentes - Digita lens no mapa• Desbloquear todos os níveis - Digita 4ctrepfj ou alworld ou [TAB]francois no mapa• Entrar no mini-jogo Breakout - Digita b76b7081 ou cbray ou [TAB]olivier no mapa assim que o Mr Dark's Dare estiver concluído• Entrar numa etapa aleatória do mini-jogo Breakout - Digita [TAB]cbrayal[RETROCEDER] no mapa• Selecção de etapa - Digita [TAB]alevel[RETROCEDER] no mapa</value>
+    <value>• 99 vidas - Digita trj8p ou raylives ou [TAB]bertrand durante a jogabilidade• Todos os poderes do punho - Digita 2x2rmfmf ou goldfist ou [TAB]antoine durante a jogabilidade• Todos os poderes normais - Digita en5gol2g ou power ou [TAB]benoit durante a jogabilidade• Saúde cheia - Digita kom0ogdk ou raypoint ou [TAB]christ durante a jogabilidade• 10 Tings adicionados - Digita 86e40g91 ou raywiz ou [TAB]jojo durante a jogabilidade• Saltar a secção de nível actual - Digita o8feh ou winamp ou [TAB]cyril durante a jogabilidade• Exibir mensagem oculta - Digita [TAB]program durante a jogabilidade• Taxa de refrescamento 100MHz - Digita freq10 no mapa• Taxa de refrescamento 80MHz - Digita freq80 no mapa• Todos os poderes normais - Digita power ou [TAB]benoit no mapa• Efeito lentes - Digita lens no mapa• Desbloquear todos os níveis - Digita 4ctrepfj ou alworld ou [TAB]francois no mapa• Entrar no mini-jogo Breakout - Digita b76b7081 ou cbray ou [TAB]olivier no mapa assim que o Mr Dark's Dare estiver concluído• Entrar numa etapa aleatória do mini-jogo Breakout - Digita [TAB]cbrayal[RETROCEDER] no mapa• Selecção de etapa - Digita [TAB]alevel[RETROCEDER] no mapa</value>
   </data>
   <data name="Help_Cheats_RDHeader" xml:space="preserve">
     <value>Rayman Designer + Spin-Offs</value>
   </data>
   <data name="Help_Cheats_RD" xml:space="preserve">
-    <value>• 5 vidas - Digita [TAB]lives05[RETROCEDER] durante a jogabilidade• 20 vidas - Digita [TAB]lives20[RETROCEDER] durante a jogabilidade• 50 vidas - Digita [TAB]lives50[RETROCEDER] durante a jogabilidade• Todos os poderes do punho - Digita [TAB]goldens durante a jogabilidade• Terminar nível - Digita [TAB]finishing durante a jogabilidade• Saúde cheia - Digita [TAB]points durante a jogabilidade• Mostrar número de mapa - Digita [TAB]map[RETROCEDER] durante a jogabilidade• Movimento livre - Digita [TAB]moveray[RETROCEDER] durante a jogabilidade• Desbloquear todos os níveis - Digita [TAB]openall[RETROCEDER] no mapa</value>
+    <value>• 5 vidas - Digita [TAB]lives05[RETROCEDER] durante a jogabilidade• 20 vidas - Digita [TAB]lives20[RETROCEDER] durante a jogabilidade• 50 vidas - Digita [TAB]lives50[RETROCEDER] durante a jogabilidade• Todos os poderes do punho - Digita [TAB]goldens durante a jogabilidade• Terminar nível - Digita [TAB]finishing durante a jogabilidade• Saúde cheia - Digita [TAB]points durante a jogabilidade• Exibição do número de mapa - Digita [TAB]map[RETROCEDER] durante a jogabilidade• Movimento livre - Digita [TAB]moveray[RETROCEDER] durante a jogabilidade• Desbloquear todos os níveis - Digita [TAB]openall[RETROCEDER] no mapa</value>
   </data>
   <data name="Help_Cheats_R2Header" xml:space="preserve">
     <value>Rayman 2</value>
@@ -1759,19 +1759,19 @@
   </data>
   <data name="Help_Cheats_RMA" xml:space="preserve">
     <value>• Saltar cinemáticos - Digita esc durante o cinemático
- • Desbloquer todos os níveis de batalha - Entra com o nome de perfil ALLFISH e pressiona Shift + Ctrl + Alt
- • Desbloquer todos os níveis de corrida - Entra com o nome de perfil ALLTRIBES e pressiona Shift + Ctrl + Alt
- • Desbloquear todos os níveis - Entra com o nome de perfil ALLRAYMANM e pressiona Shift + Ctrl + Alt
- • Desbloquear todas as personagens - Entra com o nome de perfil PUPPETS e pressiona Shift + Ctrl + Alt
- • Desbloquear todas as peles - Entra com o nome de perfil CARNIVAL e pressiona Shift + Ctrl + Alt
- • Desbloquear todos os níveis de batalha no modo 1 - Entra com o nome de perfil ARENAS e pressiona Shift + Ctrl + Alt
- • Desbloquear todos os níveis de corrida no modo 1 - Entra com o nome de perfil TRACKS e pressiona Shift + Ctrl + Alt
- • Desbloquear todos os níveis no modo 1 - Entra com o nome de perfil FIELDS e pressiona Shift + Ctrl + Alt
- • Música Ragtime nas corridas - Entra com o nome de perfil OLDTV e pressiona Shift + Ctrl + Alt
- • Mapa revertido - Digita reverse no teclado durante a jogabilidade
- 
- • Equipa de música:
- Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, deixa premido L1 + R1 (Ou o equivalente no comando a ser utilizado actualmente), e pressiona o botão de optimização. Cinco bolas azuis vão aparecer no fundo do ecrã. Liberta tudo e prime Saltar. O jogador deverá ouvir um som agudo "Ding", e depois de 0,5 segundos, a primeira bola deverá tornar-se amarela. Assim que a bola se torna amarela, pressiona Saltar. A segunda bola deverá tornar-se amarela. Assim que a segunda bola se torna amarela, liberta o Saltar. A terceira bola deverá tornar-se amarela. Assim que a terceira bola se torna amarela, pressiona Saltar novamente. A quarta bola deverá tornar-se amarela. Assim que a quarta bola se torna amarela, liberta o Saltar. O jogador deverá ser levado ao ecrã "Music Mode" onde o jogador poderá escolher o "Music Team".</value>
+  • Desbloquer todos os níveis de batalha - Entra com o nome de perfil ALLFISH e pressiona Shift + Ctrl + Alt
+  • Desbloquer todos os níveis de corrida - Entra com o nome de perfil ALLTRIBES e pressiona Shift + Ctrl + Alt
+  • Desbloquear todos os níveis - Entra com o nome de perfil ALLRAYMANM e pressiona Shift + Ctrl + Alt
+  • Desbloquear todas as personagens - Entra com o nome de perfil PUPPETS e pressiona Shift + Ctrl + Alt
+  • Desbloquear todas as peles - Entra com o nome de perfil CARNIVAL e pressiona Shift + Ctrl + Alt
+  • Desbloquear todos os níveis de batalha no modo 1 - Entra com o nome de perfil ARENAS e pressiona Shift + Ctrl + Alt
+  • Desbloquear todos os níveis de corrida no modo 1 - Entra com o nome de perfil TRACKS e pressiona Shift + Ctrl + Alt
+  • Desbloquear todos os níveis no modo 1 - Entra com o nome de perfil FIELDS e pressiona Shift + Ctrl + Alt
+  • Música Ragtime nas corridas - Entra com o nome de perfil OLDTV e pressiona Shift + Ctrl + Alt
+  • Mapa revertido - Digita reverse no teclado durante a jogabilidade
+  
+  • Equipa de música:
+  Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, deixa premido L1 + R1 (Ou o equivalente no comando a ser utilizado actualmente), e pressiona o botão de optimização. Cinco bolas azuis vão aparecer no fundo do ecrã. Liberta tudo e prime Saltar. O jogador deverá ouvir um som agudo "Ding", e depois de 0,5 segundos, a primeira bola deverá tornar-se amarela. Assim que a bola se torna amarela, pressiona Saltar. A segunda bola deverá tornar-se amarela. Assim que a segunda bola se torna amarela, liberta o Saltar. A terceira bola deverá tornar-se amarela. Assim que a terceira bola se torna amarela, pressiona Saltar novamente. A quarta bola deverá tornar-se amarela. Assim que a quarta bola se torna amarela, liberta o Saltar. O jogador deverá ser levado ao ecrã "Music Mode" onde o jogador poderá escolher o "Music Team".</value>
   </data>
   <data name="Help_Cheats_R3Header" xml:space="preserve">
     <value>Rayman 3</value>
@@ -1948,61 +1948,61 @@
     <value>RayTwol</value>
   </data>
   <data name="LinksPage_LinkStyleHeader" xml:space="preserve">
-    <value>Hiperligação de estilo de cabeçalho</value>
+    <value>Estilo de ligação</value>
   </data>
   <data name="LinksPage_LinkStyle_List" xml:space="preserve">
-    <value>Hiperligação de estilo de lista</value>
+    <value>Lista</value>
   </data>
   <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
-    <value>Hiperligação de estilo de grupo</value>
+    <value>Grupo</value>
   </data>
   <data name="LinksPage_Refresh" xml:space="preserve">
     <value>Actualizar</value>
   </data>
   <data name="LinksPage_CommunityHeader" xml:space="preserve">
-    <value>Cabeçalho da comunidade</value>
+    <value>Comunidade</value>
   </data>
   <data name="LinksPage_ForumsHeader" xml:space="preserve">
-    <value>Cabeçalho dos Fóruns</value>
+    <value>Fóruns</value>
   </data>
   <data name="LinksPage_ToolsHeader" xml:space="preserve">
-    <value>Cabeçalho das ferramentas</value>
+    <value>Modificações/Ferramentas</value>
   </data>
   <data name="LinksPage_LocalHeader" xml:space="preserve">
-    <value>Cabeçalho local</value>
+    <value>Local</value>
   </data>
   <data name="Settings_AdminInfo" xml:space="preserve">
-    <value>Informação de administrador</value>
+    <value>Esta característica requer que o programa execute como administrador</value>
   </data>
   <data name="Settings_ShowUnderInstalledPrograms" xml:space="preserve">
     <value>Mostrar por baixo programas instalados</value>
   </data>
   <data name="Settings_ShowUnderInstalledProgramsInfo" xml:space="preserve">
-    <value>Mostrar por baixo informações de programas instalados</value>
+    <value>Se isto estiver activo o programa irá mostrar sob a lista de programas instalados neste computador, normalmente encontrado sob o Desinstalar Programa no Painel de Controlo do Windows. Se isto estiver activo o programa poderá requerer privilégios de administrador durante uma actualização de forma a actualizar a informação do programa.</value>
   </data>
   <data name="Settings_ForceUpdates" xml:space="preserve">
-    <value>Forçar actualizações</value>
+    <value>Forçar actualizações manuais</value>
   </data>
   <data name="Settings_ShowUnderInstalledPrograms_UpdateError" xml:space="preserve">
-    <value>Error de actualização</value>
+    <value>Falhou a actualização das informações do programa sob programas instalados. Tenta reiniciar como administrador para tentar novamente.</value>
   </data>
   <data name="Update_RunningUpdaterError" xml:space="preserve">
-    <value>Erro de execução do actualizador</value>
+    <value>O actualizador não pode arrancar. Para descarregar a nova versão manualmente, vai a {0} e descarrega a versão mais recente por lá.</value>
   </data>
   <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
-    <value>Cabeçalho de erro de execução do actualizador</value>
+    <value>Erro ao executar o actualizador</value>
   </data>
   <data name="File_RegKeyNotFound" xml:space="preserve">
-    <value>Chave de registo não encontrada</value>
+    <value>A chave de registo não foi encontrada</value>
   </data>
   <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
-    <value>Cabeçalho de chave de registo não encontrada</value>
+    <value>Chave de registo não encontrada</value>
   </data>
   <data name="File_OpenRegKeyError" xml:space="preserve">
-    <value>Erro de abertura de chave de registo</value>
+    <value>A chave não pode ser aberta</value>
   </data>
   <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
-    <value>Cabeçalho de erro de abertura de chave do registo</value>
+    <value>Erro ao abrir chave</value>
   </data>
   <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
     <value>UbiIni Primário</value>
@@ -2026,37 +2026,37 @@
     <value>Jogos do Steam</value>
   </data>
   <data name="Links_Local_GOGClient" xml:space="preserve">
-    <value>Cliente GOG</value>
+    <value>GOG Galaxy</value>
   </data>
   <data name="Links_Local_GOGGames" xml:space="preserve">
-    <value>Jogos do GOG</value>
+    <value>Jogos do GOG Galaxy</value>
   </data>
   <data name="Links_Local_RRRRegSettings" xml:space="preserve">
-    <value>Definições do registo Rayman Raving Rabbids</value>
+    <value>Definições do Rayman Raving Rabbids</value>
   </data>
   <data name="Links_Local_RORegSettings" xml:space="preserve">
-    <value>Definições do registo Rayman Origins</value>
+    <value>Definições do Rayman Origins</value>
   </data>
   <data name="Links_Local_RLRegSettings" xml:space="preserve">
-    <value>Definições do registo Rayman Legends</value>
+    <value>Definições do Rayman Legends</value>
   </data>
   <data name="Links_Local_nGlideRegSettings" xml:space="preserve">
-    <value>Definições do registo nGlide</value>
+    <value>Definições do nGlide</value>
   </data>
   <data name="Links_Local_nGlide2RegSettings" xml:space="preserve">
-    <value>Definições do registo nGlide2</value>
+    <value>Definições do nGlide 2.0</value>
   </data>
   <data name="Links_Local_AppData" xml:space="preserve">
-    <value>Dados da aplicação</value>
+    <value>Dados da aplicação do utilizador</value>
   </data>
   <data name="Links_Local_TempDir" xml:space="preserve">
-    <value>Directório temporário</value>
+    <value>Directório temporário da aplicação</value>
   </data>
   <data name="Links_Local_LogFile" xml:space="preserve">
     <value>Ficheiro de diário</value>
   </data>
   <data name="Links_Local_Utilities" xml:space="preserve">
-    <value>Utilitários</value>
+    <value>Directório dos utilitários</value>
   </data>
   <data name="Links_Local_RegAppData" xml:space="preserve">
     <value>Dados de registo da aplicação</value>
@@ -2065,22 +2065,22 @@
     <value>Ferramentas do Rayman 2</value>
   </data>
   <data name="Links_Tools_R2Moonjump" xml:space="preserve">
-    <value>Salto lunar do Rayman 2</value>
+    <value>Salto lunar do Rayman 2 GOG</value>
   </data>
   <data name="Links_Tools_R2FunBox" xml:space="preserve">
-    <value>Caixa divertida do Rayman 2</value>
+    <value>Pacote Fun do Rayman 2</value>
   </data>
   <data name="Links_Tools_BetterR3" xml:space="preserve">
     <value>Melhor Rayman 3</value>
   </data>
   <data name="Links_Tools_R3GCTexturePack" xml:space="preserve">
-    <value>Pack de Texturas R3GC</value>
+    <value>Pack de texturas HD do Rayman 3 (Emulador Dolphin)</value>
   </data>
   <data name="Links_OpenErrorNotFound" xml:space="preserve">
-    <value>Erro de abertura não encontrado</value>
+    <value>O item de ligação não pode ser aberto devido a não ser encontrado</value>
   </data>
   <data name="Links_OpenErrorNotFoundHeader" xml:space="preserve">
-    <value>Erro de abertura de cabeçalho não encontrado</value>
+    <value>Endereço de ligação inválido</value>
   </data>
   <data name="Window_MinimizeToTray" xml:space="preserve">
     <value>Minimizar para a barra de tarefas</value>
@@ -2096,5 +2096,23 @@
   </data>
   <data name="UninstallRegKeyRequiresRefresh" xml:space="preserve">
     <value>Devido ao estado do programa ter sido alterado necessita de actualizar a informação armazenada nos programas instalados. Isto requer que o programa execute como administrador. Até lá a informação exibida dos programas instalados poderá não ser precisa.</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>Está disponível uma nova actualização beta para descarga. Descarregar agora?</value>
+  </data>
+  <data name="About_Uninstall" xml:space="preserve">
+    <value>Desinstalar</value>
+  </data>
+  <data name="About_ConfirmUninstall" xml:space="preserve">
+    <value>Tens a certeza que queres desinstalar o Painel de Controlo Rayman? Isto irá remover o ficheiro executável e todos os dados de aplicação do programa. Isto NÃO irá remover quaisquer jogos instalados, ficheiros de progresso ou cópias de segurança. Alguns utilitários aplicados poderão ainda estar disponíveis.</value>
+  </data>
+  <data name="About_ConfirmUninstallHeader" xml:space="preserve">
+    <value>Confirmar desinstalação</value>
+  </data>
+  <data name="About_UninstallFailed" xml:space="preserve">
+    <value>Ocorreu um erro quando se executava o deinstalador. Tu podes remover manualmente os dados da aplicação que está localizado nas seguintes localizações: {0}</value>
+  </data>
+  <data name="Settings_GetBetaUpdates" xml:space="preserve">
+    <value>Obter actualizações beta</value>
   </data>
 </root>
