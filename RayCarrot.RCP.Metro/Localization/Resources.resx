@@ -1090,13 +1090,13 @@ newBackupLocation</comment>
     <value>Select disc to install from</value>
   </data>
   <data name="Installer_DriveNameConflict" xml:space="preserve">
-    <value>The selected drive has the same label and root path as a previously inserted one. Due to this the installer can not differentiate them. Please rename one of the drives and try again, or mount them as different root directories.</value>
+    <value>The selected disc has the same label and root path as a previously inserted one. Due to this the installer can not differentiate them. Please rename one of the discs and try again, or mount them as different root directories.</value>
   </data>
   <data name="Installer_DriveNameConflictHeader" xml:space="preserve">
-    <value>Drive conflict</value>
+    <value>Disc conflict</value>
   </data>
   <data name="Installer_MissingFiles" xml:space="preserve">
-    <value>{0} paths were not found on the specified drive. If the game requires more than one drive for installation, please insert the next one.</value>
+    <value>{0} paths were not found on the specified disc. If the game requires more than one disc for installation, please insert the next one.</value>
     <comment>Arguments:
 missingPaths</comment>
   </data>
@@ -1110,7 +1110,7 @@ driveLabel
 driveRoot</comment>
   </data>
   <data name="Installer_InsertDriveRequestHeader" xml:space="preserve">
-    <value>Insert Drive</value>
+    <value>Insert Disc</value>
   </data>
   <data name="Installer_FileCopyError" xml:space="preserve">
     <value>The file {0} failed to copy over with the error message: {1}
@@ -1216,7 +1216,7 @@ exceptionMessage</comment>
     <value>Key is not valid</value>
   </data>
   <data name="DosBoxCyclesValidation_InvalidFormat" xml:space="preserve">
-    <value>The cycles can not be empty</value>
+    <value>The cycles value is not in a valid format</value>
   </data>
   <data name="DosBoxCyclesValidation_NullOrEmpty" xml:space="preserve">
     <value>The cycles value can not be empty</value>
@@ -1368,7 +1368,7 @@ gameDisplayName</comment>
     <value>Unable to find game</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Special thanks to RayActivity, 432 Hz, AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!</value>
+    <value>Special thanks to 432 Hz, AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations, Swedish program translation</value>
@@ -2275,5 +2275,8 @@ appDataLocations</comment>
   </data>
   <data name="UninstallRegKeyRequiresRefresh" xml:space="preserve">
     <value>Due to the state of the program being changed it needs to update the information stored under installed programs. This requires the program to run as administrator. Until then the information shown under installed programs might not be accurate.</value>
+  </data>
+  <data name="About_Credits_RayActivity" xml:space="preserve">
+    <value>Graphics, program testing</value>
   </data>
 </root>

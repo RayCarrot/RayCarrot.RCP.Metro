@@ -64,18 +64,9 @@
 
             <!-- Options -->
 
-            <TabItem metro:ControlsHelper.HeaderFontSize="16">
-                <TabItem.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconMaterial Kind="SettingsOutline"
-                                                        VerticalAlignment="Center"
-                                                        Margin="0 0 10 0" />
-                            <TextBlock Text="{Resx GameOptions_Options}"
-                                       VerticalAlignment="Center" />
-                        </StackPanel>
-                    </DataTemplate>
-                </TabItem.HeaderTemplate>
+            <local:RCPTabItem HeaderFontSize="16"
+                              IconKind="SettingsOutline"
+                              Header="{Resx GameOptions_Options}">
 
                 <ScrollViewer Padding="5">
                     <StackPanel>
@@ -262,48 +253,27 @@
 
                     </StackPanel>
                 </ScrollViewer>
-            </TabItem>
+            </local:RCPTabItem>
 
             <!-- Config -->
 
-            <TabItem metro:ControlsHelper.HeaderFontSize="16"
-                     Visibility="{Binding Path=HasConfigContent, Converter={rwpf:BooleanToVisibilityConverter}}">
-                <TabItem.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconMaterial Kind="Wrench"
-                                                        VerticalAlignment="Center"
-                                                        Margin="0 0 10 0" />
-                            <TextBlock Text="{Resx GameOptions_Config}"
-                                       VerticalAlignment="Center" />
-                        </StackPanel>
-                    </DataTemplate>
-                </TabItem.HeaderTemplate>
-
+            <local:RCPTabItem HeaderFontSize="16"
+                              IconKind="Wrench"
+                              Header="{Resx GameOptions_Config}"
+                              Visibility="{Binding Path=HasConfigContent, Converter={rwpf:BooleanToVisibilityConverter}}">
                 <ContentPresenter Content="{Binding Path=ConfigContent}" />
-            </TabItem>
+            </local:RCPTabItem>
 
             <!-- Utilities -->
 
-            <TabItem metro:ControlsHelper.HeaderFontSize="16"
-                     Visibility="{Binding Path=HasUtilities, Converter={rwpf:BooleanToVisibilityConverter}}">
-                <TabItem.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconMaterial Kind="BriefcaseOutline"
-                                                        VerticalAlignment="Center"
-                                                        Margin="0 0 10 0" />
-                            <TextBlock Text="{Resx GameOptions_Utilities}"
-                                       VerticalAlignment="Center" />
-                        </StackPanel>
-                    </DataTemplate>
-                </TabItem.HeaderTemplate>
-
+            <local:RCPTabItem HeaderFontSize="16"
+                              IconKind="BriefcaseOutline"
+                              Header="{Resx GameOptions_Utilities}"
+                              Visibility="{Binding Path=HasUtilities, Converter={rwpf:BooleanToVisibilityConverter}}">
                 <ContentPresenter Content="{Binding Path=UtilitiesContent}" />
-            </TabItem>
+            </local:RCPTabItem>
 
         </metro:MetroAnimatedTabControl>
-
 
     </Grid>
 </local:BaseWindow>

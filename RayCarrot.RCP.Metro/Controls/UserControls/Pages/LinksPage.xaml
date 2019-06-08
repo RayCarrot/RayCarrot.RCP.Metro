@@ -60,19 +60,9 @@
 
             <!-- Community -->
 
-            <TabItem mah:ControlsHelper.HeaderFontSize="16">
-                <TabItem.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconMaterial Kind="AccountMultipleOutline"
-                                                        VerticalAlignment="Center"
-                                                        Margin="0 0 10 0" />
-                            <TextBlock Text="{Resx LinksPage_CommunityHeader}"
-                                       VerticalAlignment="Center" />
-                        </StackPanel>
-                    </DataTemplate>
-                </TabItem.HeaderTemplate>
-
+            <local:RCPTabItem HeaderFontSize="16"
+                              IconKind="AccountMultipleOutline"
+                              Header="{Resx LinksPage_CommunityHeader}">
                 <ScrollViewer Padding="5">
                     <StackPanel>
                         <i:Interaction.Behaviors>
@@ -85,23 +75,13 @@
 
                     </StackPanel>
                 </ScrollViewer>
-            </TabItem>
+            </local:RCPTabItem>
 
             <!-- Forums -->
 
-            <TabItem mah:ControlsHelper.HeaderFontSize="16">
-                <TabItem.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconMaterial Kind="Forum"
-                                                        VerticalAlignment="Center"
-                                                        Margin="0 0 10 0" />
-                            <TextBlock Text="{Resx LinksPage_ForumsHeader}"
-                                       VerticalAlignment="Center" />
-                        </StackPanel>
-                    </DataTemplate>
-                </TabItem.HeaderTemplate>
-
+            <local:RCPTabItem HeaderFontSize="16"
+                              IconKind="Forum"
+                              Header="{Resx LinksPage_ForumsHeader}">
                 <ScrollViewer Padding="5">
                     <StackPanel>
                         <i:Interaction.Behaviors>
@@ -114,23 +94,13 @@
 
                     </StackPanel>
                 </ScrollViewer>
-            </TabItem>
+            </local:RCPTabItem>
 
             <!-- Modifications/Tools -->
 
-            <TabItem mah:ControlsHelper.HeaderFontSize="16">
-                <TabItem.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconMaterial Kind="BriefcaseOutline"
-                                                        VerticalAlignment="Center"
-                                                        Margin="0 0 10 0" />
-                            <TextBlock Text="{Resx LinksPage_ToolsHeader}"
-                                       VerticalAlignment="Center" />
-                        </StackPanel>
-                    </DataTemplate>
-                </TabItem.HeaderTemplate>
-
+            <local:RCPTabItem HeaderFontSize="16"
+                              IconKind="BriefcaseOutline"
+                              Header="{Resx LinksPage_ToolsHeader}">
                 <ScrollViewer Padding="5">
                     <StackPanel>
                         <i:Interaction.Behaviors>
@@ -143,23 +113,13 @@
 
                     </StackPanel>
                 </ScrollViewer>
-            </TabItem>
+            </local:RCPTabItem>
 
             <!-- Local -->
 
-            <TabItem mah:ControlsHelper.HeaderFontSize="16">
-                <TabItem.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconMaterial Kind="FolderMultipleOutline"
-                                                        VerticalAlignment="Center"
-                                                        Margin="0 0 10 0" />
-                            <TextBlock Text="{Resx LinksPage_LocalHeader}"
-                                       VerticalAlignment="Center" />
-                        </StackPanel>
-                    </DataTemplate>
-                </TabItem.HeaderTemplate>
-
+            <local:RCPTabItem HeaderFontSize="16"
+                              IconKind="FolderMultipleOutline"
+                              Header="{Resx LinksPage_LocalHeader}">
                 <ScrollViewer Padding="5">
                     <i:Interaction.Behaviors>
                         <rwpf:FocusScrollViewerOnLoad />
@@ -169,7 +129,7 @@
                                   ItemsSource="{Binding Path=LocalLinkItems, Mode=OneTime}" />
 
                 </ScrollViewer>
-            </TabItem>
+            </local:RCPTabItem>
 
         </mah:MetroAnimatedTabControl>
     </Grid>

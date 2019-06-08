@@ -76,6 +76,9 @@
                     <local:DuoGridItem Header="PluMGMK"
                                        Text="{Resx About_Credits_PluMGMK}" />
 
+                    <local:DuoGridItem Header="RayActivity"
+                                       Text="{Resx About_Credits_RayActivity}" />
+
                     <local:DuoGridItem Header="RayCarrot"
                                        Text="{Resx About_Credits_RayCarrot}" />
 

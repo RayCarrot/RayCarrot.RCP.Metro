@@ -178,6 +178,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Graphics, program testing.
+        /// </summary>
+        public static string About_Credits_RayActivity {
+            get {
+                return ResourceManager.GetString("About_Credits_RayActivity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations, Swedish program translation.
         /// </summary>
         public static string About_Credits_RayCarrot {
@@ -242,7 +251,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Special thanks to RayActivity, 432 Hz, AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!.
+        ///   Looks up a localized string similar to Special thanks to 432 Hz, AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!.
         /// </summary>
         public static string About_SpecialThanks {
             get {
@@ -1162,7 +1171,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The cycles can not be empty.
+        ///   Looks up a localized string similar to The cycles value is not in a valid format.
         /// </summary>
         public static string DosBoxCyclesValidation_InvalidFormat {
             get {
@@ -3043,7 +3052,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The selected drive has the same label and root path as a previously inserted one. Due to this the installer can not differentiate them. Please rename one of the drives and try again, or mount them as different root directories..
+        ///   Looks up a localized string similar to The selected disc has the same label and root path as a previously inserted one. Due to this the installer can not differentiate them. Please rename one of the discs and try again, or mount them as different root directories..
         /// </summary>
         public static string Installer_DriveNameConflict {
             get {
@@ -3052,7 +3061,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drive conflict.
+        ///   Looks up a localized string similar to Disc conflict.
         /// </summary>
         public static string Installer_DriveNameConflictHeader {
             get {
@@ -3126,7 +3135,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert Drive.
+        ///   Looks up a localized string similar to Insert Disc.
         /// </summary>
         public static string Installer_InsertDriveRequestHeader {
             get {
@@ -3171,7 +3180,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} paths were not found on the specified drive. If the game requires more than one drive for installation, please insert the next one..
+        ///   Looks up a localized string similar to {0} paths were not found on the specified disc. If the game requires more than one disc for installation, please insert the next one..
         /// </summary>
         public static string Installer_MissingFiles {
             get {

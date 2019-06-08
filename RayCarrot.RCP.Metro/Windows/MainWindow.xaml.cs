@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Input;
 using RayCarrot.CarrotFramework;
 
 namespace RayCarrot.RCP.Metro

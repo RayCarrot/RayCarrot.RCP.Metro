@@ -80,6 +80,11 @@ namespace RayCarrot.RCP.Metro
         #region Public Properties
 
         /// <summary>
+        /// The currently selected page
+        /// </summary>
+        public Pages SelectedPage { get; set; }
+
+        /// <summary>
         /// A flag indicating if an update check is in progress
         /// </summary>
         public bool CheckingForUpdates { get; set; }

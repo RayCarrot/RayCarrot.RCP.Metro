@@ -283,6 +283,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\OneWayToggleButton.cs" />
+    <Compile Include="Controls\RCPTabItem.cs" />
     <Compile Include="Controls\UserControls\Pages\LinksPage.xaml.cs">
       <DependentUpon>LinksPage.xaml</DependentUpon>
     </Compile>
@@ -292,6 +294,7 @@
     <Compile Include="Converters\TPLSRaymanVersionEnumToComboBoxIndexConverter.cs" />
     <Compile Include="Converters\AppendSpacesToStringConverter.cs" />
     <Compile Include="DataModels\Enums\PopupPromptResult.cs" />
+    <Compile Include="DataModels\Enums\Pages.cs" />
     <Page Include="Controls\Dialogs\GameTypeSelectionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -395,6 +398,10 @@
     <Page Include="Styles\TextStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\AppNewsDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -795,6 +802,13 @@
     <Content Include="Files\Rayman2\Rayman2_GOG.exe" />
     <Content Include="Files\Rayman3\dinput8_controller.dll" />
     <Content Include="Files\Uninstaller.exe" />
+    <Resource Include="Img\RayIcons\DarkNSNH.png" />
+    <Resource Include="Img\RayIcons\DarkLightSH.png" />
+    <Resource Include="Img\RayIcons\DarkNSH.png" />
+    <Resource Include="Img\RayIcons\DarkSNH.png" />
+    <Resource Include="Img\RayIcons\LightNSH.png" />
+    <Resource Include="Img\RayIcons\LightNSNH.png" />
+    <Resource Include="Img\RayIcons\LightSNH.png" />
     <Resource Include="Files\UpcomingFeatures.txt" />
     <Resource Include="Files\RaymanOrigins\RO_Levels.txt" />
     <Resource Include="Img\GameLogos\RaymanArena_Logo.png" />

@@ -6,11 +6,15 @@
                   xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                   xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                   xmlns:tb="http://www.hardcodet.net/taskbar"
+                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/shared"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
                   Language="{UICulture}"
                   ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                   Title="{Resx AppName}"
                   Height="750"
-                  Width="950">
+                  Width="950"
+                  DataContext="{x:Static local:RCFRCP.App}">
     <metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands>
             <Button Click="MinimizeToTrayButton_OnClick"
@@ -46,124 +50,286 @@
 
         <metro:MetroAnimatedTabControl Padding="5"
                                        metro:TabControlHelper.Transition="{Binding Source={x:Static local:RCFRCP.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}">
+            <metro:MetroAnimatedTabControl.Style>
+                <Style TargetType="{x:Type metro:MetroAnimatedTabControl}" BasedOn="{StaticResource {x:Type metro:MetroAnimatedTabControl}}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type metro:MetroAnimatedTabControl}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition x:Name="ColumnDefinition0" />
+                                        <ColumnDefinition x:Name="ColumnDefinition1" Width="0" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition x:Name="RowDefinition0" Height="Auto" />
+                                        <RowDefinition x:Name="RowDefinition1" Height="*" />
+                                    </Grid.RowDefinitions>
 
-            <TabItem>
+                                    <Grid x:Name="HeaderPanelGrid"
+                                          Grid.Row="0"
+                                          Grid.Column="0"
+                                          Margin="{TemplateBinding TabStripMargin}"
+                                          Panel.ZIndex="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <metro:Underline x:Name="Underline"
+                                                         Grid.Column="0"
+                                                         Background="Transparent"
+                                                         BorderBrush="{TemplateBinding metro:TabControlHelper.UnderlineBrush}"
+                                                         LineThickness="1"
+                                                         Placement="Bottom"
+                                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                         Visibility="Collapsed" />
+
+                                        <TabPanel x:Name="HeaderPanel"
+                                                  Grid.Column="0"
+                                                  IsItemsHost="true"
+                                                  KeyboardNavigation.TabIndex="1" />
+
+                                        <local:OneWayToggleButton Grid.Column="1"
+                                                                  VerticalAlignment="Center" 
+                                                                  Margin="10"
+                                                                  IsChecked="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Settings}">
+                                            <iconPacks:PackIconMaterial x:Name="SettingsIcon"
+                                                                        Background="Transparent"
+                                                                        Kind="SettingsOutline" 
+                                                                        Width="22"
+                                                                        Height="22"/>
+                                        </local:OneWayToggleButton>
+                                    </Grid>
+
+                                    <Border x:Name="ContentPanel"
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            ClipToBounds="{TemplateBinding ClipToBounds}"
+                                            KeyboardNavigation.DirectionalNavigation="Contained"
+                                            KeyboardNavigation.TabIndex="2"
+                                            KeyboardNavigation.TabNavigation="Local"
+                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                        <metro:TransitioningContentControl mah:ReloadBehavior.OnSelectedTabChanged="True"
+                                                                           RestartTransitionOnContentChange="True"
+                                                                           Transition="{TemplateBinding metro:TabControlHelper.Transition}"
+                                                                           UseLayoutRounding="True">
+                                            <ContentPresenter x:Name="PART_SelectedContentHost"
+                                                              Margin="{TemplateBinding Padding}"
+                                                              ContentSource="SelectedContent"
+                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                              UseLayoutRounding="False" />
+                                        </metro:TransitioningContentControl>
+                                    </Border>
+                                </Grid>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="metro:TabControlHelper.Underlined" Value="TabPanel">
+                                        <Setter TargetName="Underline" Property="Visibility" Value="Visible" />
+                                    </Trigger>
+                                    <Trigger Property="TabStripPlacement" Value="Bottom">
+                                        <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
+                                        <Setter TargetName="HeaderPanelGrid" Property="Grid.Row" Value="1" />
+                                        <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                                        <Setter TargetName="RowDefinition1" Property="Height" Value="Auto" />
+                                        <Setter TargetName="Underline" Property="Placement" Value="Top" />
+                                    </Trigger>
+                                    <Trigger Property="TabStripPlacement" Value="Left">
+                                        <Setter TargetName="ColumnDefinition0" Property="Width" Value="Auto" />
+                                        <Setter TargetName="ColumnDefinition1" Property="Width" Value="*" />
+                                        <Setter TargetName="ContentPanel" Property="Grid.Column" Value="1" />
+                                        <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
+                                        <Setter TargetName="HeaderPanelGrid" Property="Grid.Column" Value="0" />
+                                        <Setter TargetName="HeaderPanelGrid" Property="Grid.Row" Value="0" />
+                                        <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                                        <Setter TargetName="RowDefinition1" Property="Height" Value="0" />
+                                        <Setter TargetName="Underline" Property="Placement" Value="Right" />
+                                    </Trigger>
+                                    <Trigger Property="TabStripPlacement" Value="Right">
+                                        <Setter TargetName="ColumnDefinition0" Property="Width" Value="*" />
+                                        <Setter TargetName="ColumnDefinition1" Property="Width" Value="Auto" />
+                                        <Setter TargetName="ContentPanel" Property="Grid.Column" Value="0" />
+                                        <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
+                                        <Setter TargetName="HeaderPanelGrid" Property="Grid.Column" Value="1" />
+                                        <Setter TargetName="HeaderPanelGrid" Property="Grid.Row" Value="0" />
+                                        <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
+                                        <Setter TargetName="RowDefinition1" Property="Height" Value="0" />
+                                        <Setter TargetName="Underline" Property="Placement" Value="Left" />
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Foreground"
+                                                Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </metro:MetroAnimatedTabControl.Style>
+
+            <!-- Games -->
+
+            <TabItem IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Games}">
                 <TabItem.HeaderTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconMaterial Kind="ViewGrid"
-                                                        Margin="10 0"
-                                                        VerticalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal"
+                                    Background="Transparent">
+                            <Image Margin="10 2 10 0"
+                                   Width="16"
+                                   Height="20"
+                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                   VerticalAlignment="Center">
+                                <Image.Style>
+                                    <Style TargetType="{x:Type Image}">
+                                        <Style.Triggers>
+
+                                            <!-- Dark/Light - Selected - Mouse over -->
+
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="True"  />
+                                                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="True"  />
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Source" Value="../Img/RayIcons/DarkLightSH.png" />
+                                            </MultiDataTrigger>
+
+                                            <!-- Dark - Not selected - Mouse over -->
+
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="False"  />
+                                                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="True"  />
+                                                    <Condition Binding="{Binding Path=DataContext.Data.DarkMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="True" />
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Source" Value="../Img/RayIcons/DarkNSH.png" />
+                                            </MultiDataTrigger>
+
+                                            <!-- Dark - Not selected - No mouse over -->
+
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="False"  />
+                                                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="False"  />
+                                                    <Condition Binding="{Binding Path=DataContext.Data.DarkMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="True" />
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Source" Value="../Img/RayIcons/DarkNSNH.png" />
+                                            </MultiDataTrigger>
+
+                                            <!-- Dark - Selected - No mouse over -->
+
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="True"  />
+                                                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="False"  />
+                                                    <Condition Binding="{Binding Path=DataContext.Data.DarkMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="True" />
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Source" Value="../Img/RayIcons/DarkSNH.png" />
+                                            </MultiDataTrigger>
+
+                                            <!-- Light - Not selected - Mouse over -->
+
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="False"  />
+                                                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="True"  />
+                                                    <Condition Binding="{Binding Path=DataContext.Data.DarkMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="False" />
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Source" Value="../Img/RayIcons/LightNSH.png" />
+                                            </MultiDataTrigger>
+
+                                            <!-- Light - Not selected - No mouse over -->
+
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="False"  />
+                                                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="False"  />
+                                                    <Condition Binding="{Binding Path=DataContext.Data.DarkMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="False" />
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Source" Value="../Img/RayIcons/LightNSNH.png" />
+                                            </MultiDataTrigger>
+
+                                            <!-- Light - Selected - No mouse over -->
+
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="True"  />
+                                                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="False"  />
+                                                    <Condition Binding="{Binding Path=DataContext.Data.DarkMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="False" />
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Source" Value="../Img/RayIcons/LightSNH.png" />
+                                            </MultiDataTrigger>
+
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+
                             <TextBlock Text="{Resx GamesPageHeader}"
-                                   FontSize="24"
-                                   VerticalAlignment="Center"/>
+                                       FontSize="24"
+                                       VerticalAlignment="Center"/>
+
                         </StackPanel>
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
                 <local:GamesPage x:Name="GamesPage" />
             </TabItem>
 
-            <TabItem x:Name="BackupPageTab">
-                <TabItem.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconMaterial Kind="BackupRestore"
-                                                    Margin="10 0"
-                                                    VerticalAlignment="Center"/>
-                            <TextBlock Text="{Resx BackupPageHeader}"
-                                   FontSize="24"
-                                   VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </TabItem.HeaderTemplate>
+            <!-- Backup/Restore -->
 
+            <local:RCPTabItem x:Name="BackupPageTab"
+                              Header="{Resx BackupPageHeader}"
+                              HeaderFontSize="24"
+                              IconKind="BackupRestore"
+                              IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=BackupRestore}">
                 <local:BackupPage />
-            </TabItem>
+            </local:RCPTabItem>
 
-            <TabItem>
-                <TabItem.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconMaterial Kind="Link"
-                                                        Margin="10 0"
-                                                        VerticalAlignment="Center"/>
-                            <TextBlock Text="{Resx LinksPageHeader}"
-                                       FontSize="24"
-                                       VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </TabItem.HeaderTemplate>
+            <!-- Links -->
 
+            <local:RCPTabItem Header="{Resx LinksPageHeader}"
+                              HeaderFontSize="24"
+                              IconKind="Link"
+                              IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Links}">
                 <local:LinksPage />
-            </TabItem>
+            </local:RCPTabItem>
 
-            <TabItem>
-                <TabItem.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconMaterial Kind="SettingsOutline"
-                                                    Margin="10 0"
-                                                    VerticalAlignment="Center"/>
-                            <TextBlock Text="{Resx SettingsPageHeader}"
-                                   FontSize="24"
-                                   VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </TabItem.HeaderTemplate>
+            <!-- Help -->
 
-                <local:SettingsPage />
-            </TabItem>
-
-            <TabItem>
-                <TabItem.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconMaterial Kind="HelpCircleOutline"
-                                                    Margin="10 0"
-                                                    VerticalAlignment="Center"/>
-                            <TextBlock Text="{Resx HelpPageHeader}"
-                                   FontSize="24"
-                                   VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </TabItem.HeaderTemplate>
-
+            <local:RCPTabItem Header="{Resx HelpPageHeader}"
+                              HeaderFontSize="24"
+                              IconKind="HelpCircleOutline"
+                              IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Help}">
                 <local:HelpPage />
 
-            </TabItem>
+            </local:RCPTabItem>
 
-            <TabItem>
-                <TabItem.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconMaterial Kind="InformationOutline"
-                                                    Margin="10 0"
-                                                    VerticalAlignment="Center"/>
-                            <TextBlock Text="{Resx AboutPageHeader}"
-                                   FontSize="24"
-                                   VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </TabItem.HeaderTemplate>
+            <!-- About -->
 
+            <local:RCPTabItem Header="{Resx AboutPageHeader}"
+                              HeaderFontSize="24"
+                              IconKind="InformationOutline"
+                              IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=About}">
                 <local:AboutPage />
-            </TabItem>
+            </local:RCPTabItem>
 
-            <TabItem rwpf:UserLevelTag.MinUserLevel="Debug">
-                <TabItem.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <iconPacks:PackIconMaterial Kind="CodeBraces"
-                                                    Margin="10 0"
-                                                    VerticalAlignment="Center"/>
-                            <TextBlock Text="{Resx DebugPageHeader}"
-                                   FontSize="24"
-                                   VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </TabItem.HeaderTemplate>
+            <!-- Debug -->
 
+            <local:RCPTabItem Header="{Resx DebugPageHeader}"
+                              HeaderFontSize="24"
+                              IconKind="CodeBraces"
+                              IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Debug}"
+                              rwpf:UserLevelTag.MinUserLevel="Debug">
                 <local:DebugPage />
+            </local:RCPTabItem>
+
+            <!-- Settings -->
+
+            <TabItem IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Settings}"
+                     Visibility="Collapsed">
+                <local:SettingsPage />
             </TabItem>
 
         </metro:MetroAnimatedTabControl>

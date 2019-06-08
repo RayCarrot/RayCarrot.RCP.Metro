@@ -34,3 +34,5 @@
 - Disable Rayman Forever game backups if GOG cloud is used (check if cloud_saves directory contains files) due to them being redirected by the GOG client
 
 - Create two core .NET Standard projects. One which is the minimum core (common app paths, user data model etc.) which updater/uninstaller references. The other one holds all non-UI logic, such as view models.
+
+- Move program over from .NET Framework to .NET Core 3.0 when it releases

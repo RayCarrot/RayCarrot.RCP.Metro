@@ -2,6 +2,7 @@
 • The program has now been translated to Portuguese (thanks Haruka Tavares!)
 • Added the links page
 • Added icons to page tabs
+• The settings button has been moved to the side
 • Added the option to minimize the application to the tray area
 • Added the option to show the program under installed programs
 • Added the option to uninstall the program

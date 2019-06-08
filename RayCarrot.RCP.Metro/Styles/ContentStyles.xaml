@@ -19,14 +19,30 @@
         </Setter>
     </Style>
 
-    <!-- Tab item with a margin -->
+    <!-- Tab item with a margin and no padding -->
 
     <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <!-- Default RCP tab item -->
+
+    <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
         <Setter Property="HeaderTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <ContentPresenter Content="{Binding}"
-                                      Margin="5 2"/>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="5 2">
+
+                        <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:RCPTabItem}}}"
+                                                    Margin="10 0"
+                                                    VerticalAlignment="Center"/>
+
+                        <ContentControl ContentStringFormat="{Binding Path=HeaderStringFormat, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:RCPTabItem}}}" 
+                                        FontSize="{Binding Path=HeaderFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:RCPTabItem}}}"
+                                        Content="{Binding Header, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:RCPTabItem}}}"/>
+
+                    </StackPanel>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
