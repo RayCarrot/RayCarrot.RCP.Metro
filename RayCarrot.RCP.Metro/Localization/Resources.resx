@@ -1368,7 +1368,7 @@ gameDisplayName</comment>
     <value>Unable to find game</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Special thanks to 432 Hz, AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!</value>
+    <value>Special thanks to AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations, Swedish program translation</value>
@@ -1953,7 +1953,7 @@ To activate it, enter race mode and pause the game. On the pause screen, hold L1
     <value>German program translation</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
-    <value>Dutch program translation</value>
+    <value>Dutch program translation, program testing</value>
   </data>
   <data name="BrowseBox_Browse" xml:space="preserve">
     <value>Browse</value>

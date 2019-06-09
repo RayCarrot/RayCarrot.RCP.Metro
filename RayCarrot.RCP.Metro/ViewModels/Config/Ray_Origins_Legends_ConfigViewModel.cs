@@ -152,14 +152,16 @@ namespace RayCarrot.RCP.Metro
 
             using (var key = GetKey(false))
             {
-                RCF.Logger.LogInformationSource($"The key {key.Name} has been opened");
+                RCF.Logger.LogInformationSource(key != null
+                    ? $"The key {key.Name} has been opened"
+                    : $"The key for {Game.GetDisplayName()} does not exist. Default values will be used.");
 
                 ScreenHeight = GetInt(ScreenHeightKey, (int)SystemParameters.PrimaryScreenHeight);
                 ScreenWidth = GetInt(ScreenWidthKey, (int)SystemParameters.PrimaryScreenWidth);
                 FullscreenMode = GetInt(FullScreenKey, 1) == 1;
 
                 // Helper methods for getting values
-                int GetInt(string valueName, int defaultValue) => Int32.TryParse(key.GetValue(valueName, defaultValue).ToString().KeepFirstDigitsOnly(), out int result) ? result : defaultValue;
+                int GetInt(string valueName, int defaultValue) => Int32.TryParse(key?.GetValue(valueName, defaultValue).ToString().KeepFirstDigitsOnly(), out int result) ? result : defaultValue;
             }
 
             UnsavedChanges = false;
@@ -183,6 +185,9 @@ namespace RayCarrot.RCP.Metro
                 {
                     using (var key = GetKey(true))
                     {
+                        if (key == null)
+                            throw new Exception("The Registry key could not be created");
+
                         RCF.Logger.LogInformationSource($"The key {key.Name} has been opened");
 
                         key.SetValue(ScreenHeightKey, ScreenHeight.ToString());
@@ -218,7 +223,20 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The key</returns>
         private RegistryKey GetKey(bool writable)
         {
-            return RCFWinReg.RegistryManager.GetKeyFromFullPath(RCFWinReg.RegistryManager.CombinePaths(Game == Games.RaymanOrigins ? CommonPaths.RaymanOriginsRegistryKey : CommonPaths.RaymanLegendsRegistryKey, "Settings"), RegistryView.Default, writable);
+            // Get the key path
+            var keyPath = RCFWinReg.RegistryManager.CombinePaths(Game == Games.RaymanOrigins ? CommonPaths.RaymanOriginsRegistryKey : CommonPaths.RaymanLegendsRegistryKey, "Settings");
+
+            // Create the key if it doesn't exist and should be written to
+            if (!RCFWinReg.RegistryManager.KeyExists(keyPath) && writable)
+            {
+                var key = RCFWinReg.RegistryManager.CreateRegistryKey(keyPath, RegistryView.Default, true);
+
+                RCF.Logger.LogInformationSource($"The Registry key {key?.Name} has been created");
+
+                return key;
+            }
+
+            return RCFWinReg.RegistryManager.GetKeyFromFullPath(keyPath, RegistryView.Default, writable);
         }
 
         #endregion

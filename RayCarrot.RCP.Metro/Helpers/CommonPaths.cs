@@ -73,26 +73,26 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The license accepted value name
         /// </summary>
-        public static string RegistryLicenseValue => "LicenseAccepted";
+        public const string RegistryLicenseValue = "LicenseAccepted";
 
         /// <summary>
         /// The Registry uninstall key name
         /// </summary>
-        public static string RegistryUninstallKeyName => "RCP_Metro";
+        public const string RegistryUninstallKeyName = "RCP_Metro";
 
         /// <summary>
         /// The Rayman Raving Rabbids registry key path
         /// </summary>
-        public static string RaymanRavingRabbidsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman4\{05D2C1BC-A857-4493-9BDA-C7707CACB937}";
+        public const string RaymanRavingRabbidsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman4\{05D2C1BC-A857-4493-9BDA-C7707CACB937}";
 
         /// <summary>
         /// The Rayman Origins registry key path
         /// </summary>
-        public static string RaymanOriginsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\RaymanOrigins";
+        public const string RaymanOriginsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\RaymanOrigins";
 
         /// <summary>
         /// The Rayman Legends registry key path
         /// </summary>
-        public static string RaymanLegendsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman Legends";
+        public const string RaymanLegendsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman Legends";
     }
 }

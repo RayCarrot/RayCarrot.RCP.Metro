@@ -14,10 +14,13 @@ Other changes:
 • The application data is now indented for readability
 • Added debug data output
 • Added debug option to force manual updates
+• Minor changes to the credits in the about page
 • Removed the links from the debug page due to them now being available in the links page
 • Removed the log viewer commands
+• Fixed a bug where the jump list failed to create if a DOSBox game had been added without a DOSBox path being specified
 • Fixed a bug where the language would not set correctly if set to the default language
 • Fixed the scroll bar position on the about page
+• Fixed a bug where the configuration for Rayman Raving Rabbids, Rayman Origins and Rayman Legends could not be modified before running the games at least once
 • Bug fixes
 
 

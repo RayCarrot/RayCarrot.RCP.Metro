@@ -162,15 +162,17 @@ namespace RayCarrot.RCP.Metro
 
             using (var key = RCFWinReg.RegistryManager.GetKeyFromFullPath(RCFWinReg.RegistryManager.CombinePaths(CommonPaths.RaymanRavingRabbidsRegistryKey, "Basic video"), RegistryView.Default))
             {
-                RCF.Logger.LogInformationSource($"The key {key.Name} has been opened");
+                RCF.Logger.LogInformationSource(key != null
+                    ? $"The key {key.Name} has been opened"
+                    : $"The key for {Games.RaymanRavingRabbids.GetDisplayName()} does not exist. Default values will be used.");
 
                 ResolutionIndex = GetInt(ResolutionKey, 0);
                 FullscreenMode = GetInt(WindowedModeKey, 0) != 1;
                 UseController = GetInt(DefaultControllerKey, 0) == 1;
-                ScreenModeIndex = GetInt(ScreenModeKey, 0) - 1;
+                ScreenModeIndex = GetInt(ScreenModeKey, 1) - 1;
 
                 // Helper methods for getting values
-                int GetInt(string valueName, int defaultValue) => Int32.TryParse(key.GetValue(valueName, defaultValue).ToString(), out int result) ? result : defaultValue;
+                int GetInt(string valueName, int defaultValue) => Int32.TryParse(key?.GetValue(valueName, defaultValue).ToString(), out int result) ? result : defaultValue;
             }
 
             UnsavedChanges = false;
@@ -192,8 +194,28 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
-                    using (var key = RCFWinReg.RegistryManager.GetKeyFromFullPath(RCFWinReg.RegistryManager.CombinePaths(CommonPaths.RaymanRavingRabbidsRegistryKey, "Basic video"), RegistryView.Default, true))
+                    // Get the key path
+                    var keyPath = RCFWinReg.RegistryManager.CombinePaths(CommonPaths.RaymanRavingRabbidsRegistryKey, "Basic video");
+
+                    RegistryKey key;
+
+                    // Create the key if it doesn't exist
+                    if (!RCFWinReg.RegistryManager.KeyExists(keyPath))
                     {
+                        key = RCFWinReg.RegistryManager.CreateRegistryKey(keyPath, RegistryView.Default, true);
+
+                        RCF.Logger.LogInformationSource($"The Registry key {key?.Name} has been created");
+                    }
+                    else
+                    {
+                        key = RCFWinReg.RegistryManager.GetKeyFromFullPath(keyPath, RegistryView.Default, true);
+                    }
+
+                    using (key)
+                    {
+                        if (key == null)
+                            throw new Exception("The Registry key could not be created");
+
                         RCF.Logger.LogInformationSource($"The key {key.Name} has been opened");
 
                         key.SetValue(ResolutionKey, ResolutionIndex);

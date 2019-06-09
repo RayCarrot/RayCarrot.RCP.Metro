@@ -88,7 +88,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dutch program translation.
+        ///   Looks up a localized string similar to Dutch program translation, program testing.
         /// </summary>
         public static string About_Credits_432Hz {
             get {
@@ -251,7 +251,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Special thanks to 432 Hz, AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!.
+        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!.
         /// </summary>
         public static string About_SpecialThanks {
             get {
