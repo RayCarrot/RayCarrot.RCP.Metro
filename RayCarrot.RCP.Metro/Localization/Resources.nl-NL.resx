@@ -1095,4 +1095,157 @@ Nieuws:
   <data name="Links_Tools_RayTwol" xml:space="preserve">
     <value>RayTwol</value>
   </data>
+  <data name="MoveBackups_BackupAlreadyExists" xml:space="preserve">
+    <value>Back-ups zijn niet verplaatst. Er bestaat al een back-up in {0}</value>
+  </data>
+  <data name="MoveBackups_Success" xml:space="preserve">
+    <value>De back-ups zijn succesvol verplaatst</value>
+  </data>
+  <data name="MoveBackups_Error" xml:space="preserve">
+    <value>Fout bij het verplaatsen van de back-up</value>
+  </data>
+  <data name="Installer_CreateDesktopShortcut" xml:space="preserve">
+    <value>Bureaublad snelkoppeling maken</value>
+  </data>
+  <data name="Installer_CreateStartMenuShortcut" xml:space="preserve">
+    <value>Startmenu snelkoppeling maken</value>
+  </data>
+  <data name="Installer_InstallAllUsers" xml:space="preserve">
+    <value>Installeer voor alle gebruikers</value>
+  </data>
+  <data name="Installer_TotalProgress" xml:space="preserve">
+    <value>Totale Voortgang</value>
+  </data>
+  <data name="Installer_CurrentProgress" xml:space="preserve">
+    <value>Voortgang Huidig Bestand</value>
+  </data>
+  <data name="Installer_Install" xml:space="preserve">
+    <value>Installeren</value>
+  </data>
+  <data name="Installer_Cancel" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="Installer_BrowseDiscHeader" xml:space="preserve">
+    <value>Selecteer een schijfstation om vanaf te installeren</value>
+  </data>
+  <data name="Installer_DriveNameConflict" xml:space="preserve">
+    <value>De geselecteerde schijf heeft hetzelfde label en rootdirectory als de hiervoor gekozen schijf. Hierdoor kan de Installer ze niet onderscheiden. Hernoem één van de schijven en probeer het nog eens, of mount ze als verschillende root directories.</value>
+  </data>
+  <data name="Installer_DriveNameConflictHeader" xml:space="preserve">
+    <value>Schijfconflict</value>
+  </data>
+  <data name="Installer_MissingFiles" xml:space="preserve">
+    <value>{0} paden zijn niet gevonden op de specifieke schijf. Als het spel meer dan 1 schijf voor installatie nodig heeft, gebruik de volgende.</value>
+  </data>
+  <data name="Installer_MissingFilesHeader" xml:space="preserve">
+    <value>Ontbrekende Paden</value>
+  </data>
+  <data name="Installer_InsertDriveRequest" xml:space="preserve">
+    <value>Gelieve "0" in poort {1} te plaatsen, en verdergaan of de installatie afbreken</value>
+  </data>
+  <data name="Installer_InsertDriveRequestHeader" xml:space="preserve">
+    <value>Plaats Schijf</value>
+  </data>
+  <data name="Installer_FileCopyError" xml:space="preserve">
+    <value>Het bestand {0} kon niet gekopieerd worden; het volgende foutbericht werd verkregen: {1}
+ 
+ Opnieuw proberen?</value>
+  </data>
+  <data name="Installer_FileCopyErrorHeader" xml:space="preserve">
+    <value>Kopiëren van bestand naar bestemming mislukt</value>
+  </data>
+  <data name="Installer_FileConflicts" xml:space="preserve">
+    <value>Er waren {0} bestandsconflicten vanwege de geselecteerde map. Wil je deze bestanden overschrijven?</value>
+  </data>
+  <data name="Installer_FileConflictsHeader" xml:space="preserve">
+    <value>Bestandsconflicten</value>
+  </data>
+  <data name="Installer_UnhandledItems" xml:space="preserve">
+    <value>Sommige items zijn niet meegenomen tijdens de installatie. Wil je opnieuw proberen deze items af te handelen?</value>
+  </data>
+  <data name="Installer_UnhandledItemsHeader" xml:space="preserve">
+    <value>Onbehandelde Items</value>
+  </data>
+  <data name="Installer_CleanupError" xml:space="preserve">
+    <value>Een deel van de installatie kon niet opgeschoond worden in {0}</value>
+  </data>
+  <data name="Installer_CancelAlreadyRequested" xml:space="preserve">
+    <value>De bewerking wordt momenteel geannuleerd</value>
+  </data>
+  <data name="Installer_CancelAlreadyRequestedHeader" xml:space="preserve">
+    <value>Annuleerverzoek reeds ontvangen</value>
+  </data>
+  <data name="Installer_CancelQuestion" xml:space="preserve">
+    <value>Wil je de installatie afbreken?</value>
+  </data>
+  <data name="Installer_CancelQuestionHeader" xml:space="preserve">
+    <value>Beëindigen lopende installatie</value>
+  </data>
+  <data name="Installer_InvalidDirectory" xml:space="preserve">
+    <value>Het pad waarnaar verwezen wordt, bestaat niet</value>
+  </data>
+  <data name="Installer_InvalidDirectoryHeader" xml:space="preserve">
+    <value>Pad niet gevonden</value>
+  </data>
+  <data name="Installer_ShortcutName" xml:space="preserve">
+    <value>Start {0}</value>
+  </data>
+  <data name="Installer_Success" xml:space="preserve">
+    <value>Installatie voltooid. Start het hulpprogramma voor configuratie voor {0} om het spel te configureren.</value>
+  </data>
+  <data name="Installer_SuccessHeader" xml:space="preserve">
+    <value>Installatie Voltooid</value>
+  </data>
+  <data name="Installer_FailedHeader" xml:space="preserve">
+    <value>Actie mislukt</value>
+  </data>
+  <data name="Installer_Failed" xml:space="preserve">
+    <value>Installatie mislukt</value>
+  </data>
+  <data name="Installer_Canceled" xml:space="preserve">
+    <value>Installatie geannuleerd</value>
+  </data>
+  <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
+    <value>Dit hulpprogramma vereist dat er extra bestanden worden gedownload</value>
+  </data>
+  <data name="TPLS_Error" xml:space="preserve">
+    <value>Het hulpprogramma voor de PlayStation soundtrack is gecrasht; de volgende foutmelding werd verkregen: {0}
+ Herstarten?</value>
+  </data>
+  <data name="TPLS_ErrorHeader" xml:space="preserve">
+    <value>TPLS Fout</value>
+  </data>
+  <data name="TPLS_PlaybackError_FileNotFound" xml:space="preserve">
+    <value>De soundtrack ontbreekt</value>
+  </data>
+  <data name="TPLS_PlaybackErrorHeader" xml:space="preserve">
+    <value>Afspeelfout</value>
+  </data>
+  <data name="TPLS_PlaybackError_InvalidData" xml:space="preserve">
+    <value>Het soundtrack bestand heeft een verkeerde bestandsindeling</value>
+  </data>
+  <data name="TPLS_PlaybackError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het afspelen van de soundtrack</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
+    <value>Ongeldige bestandsindeling</value>
+  </data>
+  <data name="R2HotKeyValidation_ModifierKeysUsed" xml:space="preserve">
+    <value>Een enkele toets moet gebruikt worden</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidKey" xml:space="preserve">
+    <value>Toets is niet geldig</value>
+  </data>
+  <data name="DosBoxCyclesValidation_InvalidFormat" xml:space="preserve">
+    <value>De Cycli variabele moet een waarde hebben</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NullOrEmpty" xml:space="preserve">
+    <value>De Cycli waarde kan niet leeg zijn</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NonDigit" xml:space="preserve">
+    <value>Alleen getallen zijn toegestaan bij het gebruik van een specifieke waarde</value>
+  </data>
+  <data name="DosBoxResolutionValidation_NullOrEmpty" xml:space="preserve">
+    <value>De resolutie waarde kan niet leeg zijn</value>
+  </data>
 </root>

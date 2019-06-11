@@ -93,7 +93,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void RefreshDirectPlay()
         {
-            if (!WindowsHelpers.RunningAsAdmin)
+            if (!App.IsRunningAsAdmin)
             {
                 CanModifyDirectPlay = false;
                 IsLoadingDirectPlay = false;

@@ -109,7 +109,7 @@ namespace RayCarrot.RCP.Metro
             get => _createShortcutsForAllUsers;
             set
             {
-                if (!value || WindowsHelpers.RunningAsAdmin)
+                if (!value || App.IsRunningAsAdmin)
                 {
                     _createShortcutsForAllUsers = value;
                     return;

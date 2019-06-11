@@ -415,7 +415,7 @@
     <value>Dados de aplicação</value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>O Painel de Controlo Rayman é um projecto de comunidade open source criado por RayCarrot. Este software é um executável de utilização única livre com o intuito de aceder definições e correcções fácilmente para os vários títulos do Rayman lançados para o Windows.</value>
+    <value>O Painel de Controlo Rayman é um projecto de comunidade open source criado por RayCarrot. Este software é um executável de utilização única livre com o intuito de aceder definições e correcções fácilmente para os vários títulos do Rayman lançados para o Windows. Isto é um projecto crescente com mais características planeadas para actualizações futuras. Os utilitários e as várias ferramentas de configuração foram criados com a ajuda de vários membros da comunidade Rayman, todos creditados abaixo.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Créditos</value>
@@ -1042,7 +1042,10 @@
     <value>Erro ao obter notícias</value>
   </data>
   <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>Uma nova actualização está disponível para descarga. Descarregar agora? Notícias: {0}</value>
+    <value>Uma nova actualização está disponível para descarga. Descarregar agora?
+
+Notícias:
+{0}</value>
   </data>
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Nova versão encontrada</value>
@@ -1099,13 +1102,13 @@
     <value>Seleccionar disco para instalar através</value>
   </data>
   <data name="Installer_DriveNameConflict" xml:space="preserve">
-    <value>O leitor seleccionado tem a mesma etiqueta e endereço de raíz como um anteriormente inserido. Devido a isto o instalador não pode diferenciá-los. Por favor renomeia um dos leitors e tenta novamente, ou monta-os como diferentes directórios de raíz.</value>
+    <value>O disco seleccionado tem a mesma etiqueta e endereço de raíz como um anteriormente inserido. Devido a isto o instalador não pode diferenciá-los. Por favor renomeia um dos discos e tenta novamente, ou monta-os como diferentes directórios de raíz.</value>
   </data>
   <data name="Installer_DriveNameConflictHeader" xml:space="preserve">
-    <value>Conflito de leitor</value>
+    <value>Conflito de disco</value>
   </data>
   <data name="Installer_MissingFiles" xml:space="preserve">
-    <value>{0} endereços não foram encontrados no leitor especificado. Se o jogo requer mais do que um leitor para a instalação, por favor insere o seguinte.</value>
+    <value>{0} endereços não foram encontrados no disco especificado. Se o jogo requer mais do que um disco para a instalação, por favor insere o próximo.</value>
   </data>
   <data name="Installer_MissingFilesHeader" xml:space="preserve">
     <value>Endereços em falta</value>
@@ -1114,10 +1117,12 @@
     <value>Por favor insere o "{0}" para a porta {1} e continuar, ou cancela para cancelar a instalação</value>
   </data>
   <data name="Installer_InsertDriveRequestHeader" xml:space="preserve">
-    <value>Inserir leitor</value>
+    <value>Inserir disco</value>
   </data>
   <data name="Installer_FileCopyError" xml:space="preserve">
-    <value>O ficheiro {0} falhou a cópia através da seguinte mensagem de erro: {1} Tentar novamente?</value>
+    <value>O ficheiro {0} falhou a cópia através da seguinte mensagem de erro: {1}
+
+Tentar novamente?</value>
   </data>
   <data name="Installer_FileCopyErrorHeader" xml:space="preserve">
     <value>Falhou a cópia do item para o destino</value>
@@ -1204,10 +1209,10 @@
     <value>A chave não foi válida</value>
   </data>
   <data name="DosBoxCyclesValidation_InvalidFormat" xml:space="preserve">
-    <value>Os ciclos não podem estar vazios</value>
+    <value>O valor dos ciclos não está num formato válido.</value>
   </data>
   <data name="DosBoxCyclesValidation_NullOrEmpty" xml:space="preserve">
-    <value>O valor dos ciclos não podem estar vazios</value>
+    <value>O valor dos ciclos não pode estar vazio</value>
   </data>
   <data name="DosBoxCyclesValidation_NonDigit" xml:space="preserve">
     <value>Apenas são permitidos dígitos quando se usa um valor específico</value>
@@ -1552,7 +1557,9 @@
     <value>Bem-vindo(a) ao Painel de Controlo Rayman</value>
   </data>
   <data name="FirstLaunchInfo_Text" xml:space="preserve">
-    <value>Este programa permite um acesso rápido e fácil a todos os teus jogos do Rayman instalados no teu computador. A partir daqui poderás executá-los e os seus programas de configuração, configurá-los directamente a partir deste programa com opções adicionadas (tais como remapeamento de botões. suporte widescreen e mais) e fazer uma cópia de segurança/restaurar cada ficheiro de progressão dos jogos.</value>
+    <value>Este programa permite um acesso rápido e fácil a todos os teus jogos do Rayman instalados no teu computador. A partir daqui poderás executá-los e os seus programas de configuração, configurá-los directamente a partir deste programa com opções adicionadas (tais como remapeamento de botões. suporte widescreen e mais) e fazer uma cópia de segurança/restaurar cada ficheiro de progressão dos jogos. 
+Falta-te algum jogo do Rayman no teu computador? Podes aceder facilmente às lojas digitais disponíveis para comprá-los ou utilizar o instalador de disco para instalar a partir de qualquer disco.
+Para começar, marca abaixo as caixas que queres e pressiona 'Continuar' para ires para o menu de selecção de jogo.</value>
   </data>
   <data name="GameOptions_UnsavedChanges" xml:space="preserve">
     <value>As tuas alterações da configuração não foram salvas. Queres sair e descartá-las?</value>
@@ -1588,7 +1595,10 @@
     <value>Actualizações</value>
   </data>
   <data name="Help_RCP_Updates" xml:space="preserve">
-    <value>Este programa irá verificar por defeito por actualizações no arranque, a não ser que a opção tenha sido desactivada. Isto é feito no background e poderá levar alguns segundos. As actualizações poderão ser verificadas manualmente na página de definições. Se um erro ocorrer com o serviço de actualização pode ser descarregado manualmente através do: {0}</value>
+    <value>Este programa irá verificar por defeito por actualizações no arranque, a não ser que a opção tenha sido desactivada. Isto é feito no background e poderá levar alguns segundos. As actualizações poderão ser verificadas manualmente na página de definições. 
+
+Se um erro ocorrer com o serviço de actualização pode ser descarregado manualmente através do:
+{0}</value>
   </data>
   <data name="Help_RCP_CompatibilityHeader" xml:space="preserve">
     <value>Compatibilidade</value>
@@ -1600,13 +1610,21 @@
     <value>Instalador de jogo</value>
   </data>
   <data name="Help_RCP_GameInstaller" xml:space="preserve">
-    <value>Para jogos que suportem serem instalados por um disco tu podes fazê-lo através do menu drop-down do jogo. Actualmente o Rayman 2, Rayman M e Rayman Arena são os únicos jogos suportados. Durante a instalação deverás ter de especificar o directório para se instalar. O jogo irá instalar num sub-directório no directório especificado. Por exemplo, tu escolheste instalar o Rayman 2 sob C:\Ubisoft ; será instalado sob C:\Ubisoft\Rayman 2 . Para o Rayman 2 o instalador irá substituir o ficheiro executável pelo da versão GOG para permitir ao jogo executar sem se inserir o disco. Isto é feito para evitar um disco de erro comum que ocorre normalmente durante a segunda metade do jogo. Para desinstalar um dos jogos instalados utilizando o instalador de jogo deverás simplesmente ter de eliminar o directório e os seus ficheiros. O jogo não irá mostrar dentro dos programas instalados devido a não ter um desinstalador.</value>
+    <value>Para jogos que suportem serem instalados por um disco tu podes fazê-lo através do menu drop-down do jogo. Actualmente o Rayman 2, Rayman M e Rayman Arena são os únicos jogos suportados.
+
+Durante a instalação deverás ter de especificar o directório para se instalar. O jogo irá instalar num sub-directório no directório especificado. Por exemplo, tu escolheste instalar o Rayman 2 sob C:\Ubisoft ; será instalado sob C:\Ubisoft\Rayman 2. 
+
+Para o Rayman 2 o instalador irá substituir o ficheiro executável pelo da versão GOG para permitir ao jogo executar sem se inserir o disco. Isto é feito para evitar um disco de erro comum que ocorre normalmente durante a segunda metade do jogo.
+ 
+Para desinstalar um dos jogos instalados utilizando o instalador de jogo deverás simplesmente ter de eliminar o directório e os seus ficheiros. O jogo não irá mostrar dentro dos programas instalados devido a não ter um desinstalador.</value>
   </data>
   <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
     <value>Cópia de Segurança/Restauro</value>
   </data>
   <data name="Help_RCP_BackupRestore" xml:space="preserve">
-    <value>O programa tem uma característica de cópia de segurança e restauro para todos os jogos suportados. As cópias de segurança são guardadas na pasta de documentos por defeito, mas a localização pode ser alterada nas definições. As cópias de segurança em si são sempre arquivados no sub-directório '{0}'. Não é recomendado modificar manualmente estes ficheiros.</value>
+    <value>O programa tem uma característica de cópia de segurança e restauro para todos os jogos suportados. As cópias de segurança são guardadas na pasta de documentos por defeito, mas a localização pode ser alterada nas definições. 
+
+As cópias de segurança em si são sempre arquivados no sub-directório '{0}'. Não é recomendado modificar manualmente estes ficheiros.</value>
   </data>
   <data name="Help_RCP_AppDataHeader" xml:space="preserve">
     <value>Localização dos dados da aplicação</value>
@@ -1625,17 +1643,17 @@
   <data name="Help_RCP_LaunchArgs" xml:space="preserve">
     <value>O Painel de Controlo Rayman suporta vários argumentos de execução, principalmente direccionadas para a depuração da aplicação. Abaixo é a lista completa dos argumentos de execução disponíveis. O caracter '-' deverá ser sempre incluído. Os caracteres '{}' mostram que uma variável personalizada pode ser utilizada, no caso que o '{}' dnão deverá ser incluído.
   
-  -reset (Reinicia todos os dados de aplicação antes da execução)
-  -install {EndereçoDeFicheiro} (Remove o instalador do endereço especificado)
-  -ul {NívelDeUtilizador} (Define o nível de utilizador assim que o framework é construído)
-  -loglevel {NívelDeDiário} (Define o nível de diário para diário, padrão é Informação)</value>
+ -reset (Reinicia todos os dados de aplicação antes da execução)
+ -install {EndereçoDeFicheiro} (Remove o instalador do endereço especificado)
+ -ul {NívelDeUtilizador} (Define o nível de utilizador assim que o framework é construído)
+ -loglevel {NívelDeDiário} (Define o nível de diário para diário, padrão é Informação)</value>
   </data>
   <data name="Help_RCP_DebugHeader" xml:space="preserve">
     <value>Depuramento</value>
   </data>
   <data name="Help_RCP_Debug" xml:space="preserve">
     <value>Se um depurador está anexado ao programa o observador do diário irá abrir-se automáticamente. Isto pode ser aberto manualmente da página de depuração mesmo sem um depurador estar anexado. Se o nível de utilizador de depuração is not enabled o diário pode ainda ser visto pelo ficheiro que escreve sob o seguinte endereço:
-  {0}</value>
+{0}</value>
   </data>
   <data name="Help_Games" xml:space="preserve">
     <value>Jogos</value>
@@ -1649,11 +1667,11 @@
   <data name="Help_Games_General_GameNotLaunching" xml:space="preserve">
     <value>Aqui estão as duas coisas mais comuns para se tentar se o jogo não arrancar:
   
-  *Executar o jogo como administrador:
-  A opção para se executar um programa como administrador pode ser encontrado no menu de contexto ao clicar no programa com o botão direito do rato.
+*Executar o jogo como administrador:
+A opção para se executar um programa como administrador pode ser encontrado no menu de contexto ao clicar no programa com o botão direito do rato.
   
-  *Executar o jogo em modo de compactibilidade:
-  Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a opção sob as opções de compactibilidade nas propriedades dos ficheiros. Para muitos jogos mais antigos é recomendado seleccionar o Windows XP Service Pack 2 ou 3.</value>
+*Executar o jogo em modo de compactibilidade:
+Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a opção sob as opções de compactibilidade nas propriedades dos ficheiros. Para muitos jogos mais antigos é recomendado seleccionar o Windows XP Service Pack 2 ou 3.</value>
   </data>
   <data name="Help_Games_R1" xml:space="preserve">
     <value>Rayman 1</value>
@@ -1740,7 +1758,21 @@
     <value>Rayman 1</value>
   </data>
   <data name="Help_Cheats_R1" xml:space="preserve">
-    <value>• 99 vidas - Digita trj8p ou raylives ou [TAB]bertrand durante a jogabilidade• Todos os poderes do punho - Digita 2x2rmfmf ou goldfist ou [TAB]antoine durante a jogabilidade• Todos os poderes normais - Digita en5gol2g ou power ou [TAB]benoit durante a jogabilidade• Saúde cheia - Digita kom0ogdk ou raypoint ou [TAB]christ durante a jogabilidade• 10 Tings adicionados - Digita 86e40g91 ou raywiz ou [TAB]jojo durante a jogabilidade• Saltar a secção de nível actual - Digita o8feh ou winamp ou [TAB]cyril durante a jogabilidade• Exibir mensagem oculta - Digita [TAB]program durante a jogabilidade• Taxa de refrescamento 100MHz - Digita freq10 no mapa• Taxa de refrescamento 80MHz - Digita freq80 no mapa• Todos os poderes normais - Digita power ou [TAB]benoit no mapa• Efeito lentes - Digita lens no mapa• Desbloquear todos os níveis - Digita 4ctrepfj ou alworld ou [TAB]francois no mapa• Entrar no mini-jogo Breakout - Digita b76b7081 ou cbray ou [TAB]olivier no mapa assim que o Mr Dark's Dare estiver concluído• Entrar numa etapa aleatória do mini-jogo Breakout - Digita [TAB]cbrayal[RETROCEDER] no mapa• Selecção de etapa - Digita [TAB]alevel[RETROCEDER] no mapa</value>
+    <value>• 99 vidas - Digita trj8p ou raylives ou [TAB]bertrand durante a jogabilidade
+• Todos os poderes do punho - Digita 2x2rmfmf ou goldfist ou [TAB]antoine durante a jogabilidade
+• Todos os poderes normais - Digita en5gol2g ou power ou [TAB]benoit durante a jogabilidade
+• Saúde cheia - Digita kom0ogdk ou raypoint ou [TAB]christ durante a jogabilidade
+• 10 Tings adicionados - Digita 86e40g91 ou raywiz ou [TAB]jojo durante a jogabilidade
+• Saltar a secção de nível actual - Digita o8feh ou winamp ou [TAB]cyril durante a jogabilidade
+• Exibir mensagem oculta - Digita [TAB]program durante a jogabilidade
+• Taxa de refrescamento 100MHz - Digita freq10 no mapa
+• Taxa de refrescamento 80MHz - Digita freq80 no mapa
+• Todos os poderes normais - Digita power ou [TAB]benoit no mapa
+• Efeito lentes - Digita lens no mapa
+• Desbloquear todos os níveis - Digita 4ctrepfj ou alworld ou [TAB]francois no mapa
+• Entrar no mini-jogo Breakout - Digita b76b7081 ou cbray ou [TAB]olivier no mapa assim que o Mr Dark's Dare estiver concluído
+• Entrar numa etapa aleatória do mini-jogo Breakout - Digita [TAB]cbrayal[RETROCEDER] no mapa
+• Selecção de etapa - Digita [TAB]alevel[RETROCEDER] no mapa</value>
   </data>
   <data name="Help_Cheats_RDHeader" xml:space="preserve">
     <value>Rayman Designer + Spin-Offs</value>
@@ -1752,32 +1784,45 @@
     <value>Rayman 2</value>
   </data>
   <data name="Help_Cheats_R2" xml:space="preserve">
-    <value>• Melhorar o punho mágico - Digita glowfist no ecrã de pausa• Restaurar saúde - Digita gimmelife no ecrã de pausa• Adquire 5 Lums Amarelos - Digita gimmelumz no ecrã de pausa• Ir a qualquer nível - Digita gothere no ecrã de pausa, selecciona um nível com os botões de seta e pressiona enter• Desbloquear poder de abordagem - Digita hangon no ecrã de pausa• Adquire saúde máxima - Pressiona e solta o botão J ao ritmo do tema Rayman 2• Entrar num nível bonus sem todos os Lums ou Jaulas - Pressiona A, Numpad 0, Q, W, Q, W por ordem seguido de Enter no ecrã Access Denied• Saltar cinemáticos - Digita NOMOVIES no ecrã de pausa• Novos ecrãs de carregamento - Digita ALLVIGN no ecrã de pausa• Desactivar Murfy - Digitar NOMOREMURFY no ecrã de pausa• Aceder a área oculta no Túmulo dos Antigos - Na parte final do Túmulo dos Antigos, fica no terceiro painel fora da entrada do Check-up Técnico onde o Rayman combate o Clark. Digita PLAYJEFF e salta na caixa para o buraco na parede. • Aceder Menezis - Digita SHOOTEMUP durante os the créditos • Desconhecido - Digita GETELIX no ecrã de pausa</value>
+    <value>• Melhorar o punho mágico - Digita glowfist no ecrã de pausa
+• Restaurar saúde - Digita gimmelife no ecrã de pausa
+• Adquire 5 Lums Amarelos - Digita gimmelumz no ecrã de pausa
+• Ir a qualquer nível - Digita gothere no ecrã de pausa, selecciona um nível com os botões de seta e pressiona enter
+• Desbloquear poder de abordagem - Digita hangon no ecrã de pausa
+• Adquire saúde máxima - Pressiona e solta o botão J ao ritmo do tema Rayman 2
+• Entrar num nível bonus sem todos os Lums ou Jaulas - Pressiona A, Numpad 0, Q, W, Q, W por ordem seguido de Enter no ecrã Access Denied
+• Saltar cinemáticos - Digita NOMOVIES no ecrã de pausa
+• Novos ecrãs de carregamento - Digita ALLVIGN no ecrã de pausa
+• Desactivar Murfy - Digitar NOMOREMURFY no ecrã de pausa
+• Aceder a área oculta no Túmulo dos Antigos - Na parte final do Túmulo dos Antigos, fica no terceiro painel fora da entrada do Check-up Técnico onde o Rayman combate o Clark. Digita PLAYJEFF e salta na caixa para o buraco na parede. 
+• Aceder Menezis - Digita SHOOTEMUP durante os the créditos 
+• Desconhecido - Digita GETELIX no ecrã de pausa</value>
   </data>
   <data name="Help_Cheats_RMAHeader" xml:space="preserve">
     <value>Rayman M/Arena</value>
   </data>
   <data name="Help_Cheats_RMA" xml:space="preserve">
     <value>• Saltar cinemáticos - Digita esc durante o cinemático
-  • Desbloquer todos os níveis de batalha - Entra com o nome de perfil ALLFISH e pressiona Shift + Ctrl + Alt
-  • Desbloquer todos os níveis de corrida - Entra com o nome de perfil ALLTRIBES e pressiona Shift + Ctrl + Alt
-  • Desbloquear todos os níveis - Entra com o nome de perfil ALLRAYMANM e pressiona Shift + Ctrl + Alt
-  • Desbloquear todas as personagens - Entra com o nome de perfil PUPPETS e pressiona Shift + Ctrl + Alt
-  • Desbloquear todas as peles - Entra com o nome de perfil CARNIVAL e pressiona Shift + Ctrl + Alt
-  • Desbloquear todos os níveis de batalha no modo 1 - Entra com o nome de perfil ARENAS e pressiona Shift + Ctrl + Alt
-  • Desbloquear todos os níveis de corrida no modo 1 - Entra com o nome de perfil TRACKS e pressiona Shift + Ctrl + Alt
-  • Desbloquear todos os níveis no modo 1 - Entra com o nome de perfil FIELDS e pressiona Shift + Ctrl + Alt
-  • Música Ragtime nas corridas - Entra com o nome de perfil OLDTV e pressiona Shift + Ctrl + Alt
-  • Mapa revertido - Digita reverse no teclado durante a jogabilidade
+• Desbloquer todos os níveis de batalha - Entra com o nome de perfil ALLFISH e pressiona Shift + Ctrl + Alt
+• Desbloquer todos os níveis de corrida - Entra com o nome de perfil ALLTRIBES e pressiona Shift + Ctrl + Alt
+• Desbloquear todos os níveis - Entra com o nome de perfil ALLRAYMANM e pressiona Shift + Ctrl + Alt
+• Desbloquear todas as personagens - Entra com o nome de perfil PUPPETS e pressiona Shift + Ctrl + Alt
+• Desbloquear todas as peles - Entra com o nome de perfil CARNIVAL e pressiona Shift + Ctrl + Alt
+• Desbloquear todos os níveis de batalha no modo 1 - Entra com o nome de perfil ARENAS e pressiona Shift + Ctrl + Alt
+• Desbloquear todos os níveis de corrida no modo 1 - Entra com o nome de perfil TRACKS e pressiona Shift + Ctrl + Alt
+• Desbloquear todos os níveis no modo 1 - Entra com o nome de perfil FIELDS e pressiona Shift + Ctrl + Alt
+• Música Ragtime nas corridas - Entra com o nome de perfil OLDTV e pressiona Shift + Ctrl + Alt
+• Mapa revertido - Digita reverse no teclado durante a jogabilidade
   
-  • Equipa de música:
-  Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, deixa premido L1 + R1 (Ou o equivalente no comando a ser utilizado actualmente), e pressiona o botão de optimização. Cinco bolas azuis vão aparecer no fundo do ecrã. Liberta tudo e prime Saltar. O jogador deverá ouvir um som agudo "Ding", e depois de 0,5 segundos, a primeira bola deverá tornar-se amarela. Assim que a bola se torna amarela, pressiona Saltar. A segunda bola deverá tornar-se amarela. Assim que a segunda bola se torna amarela, liberta o Saltar. A terceira bola deverá tornar-se amarela. Assim que a terceira bola se torna amarela, pressiona Saltar novamente. A quarta bola deverá tornar-se amarela. Assim que a quarta bola se torna amarela, liberta o Saltar. O jogador deverá ser levado ao ecrã "Music Mode" onde o jogador poderá escolher o "Music Team".</value>
+• Equipa de música:
+Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, deixa premido L1 + R1 (Ou o equivalente no comando a ser utilizado actualmente), e pressiona o botão de optimização. Cinco bolas azuis vão aparecer no fundo do ecrã. Liberta tudo e prime Saltar. O jogador deverá ouvir um som agudo "Ding", e depois de 0,5 segundos, a primeira bola deverá tornar-se amarela. Assim que a bola se torna amarela, pressiona Saltar. A segunda bola deverá tornar-se amarela. Assim que a segunda bola se torna amarela, liberta o Saltar. A terceira bola deverá tornar-se amarela. Assim que a terceira bola se torna amarela, pressiona Saltar novamente. A quarta bola deverá tornar-se amarela. Assim que a quarta bola se torna amarela, liberta o Saltar. O jogador deverá ser levado ao ecrã "Music Mode" onde o jogador poderá escolher o "Music Team".</value>
   </data>
   <data name="Help_Cheats_R3Header" xml:space="preserve">
     <value>Rayman 3</value>
   </data>
   <data name="Help_Cheats_R3" xml:space="preserve">
-    <value>• Saltar cinemáticos - Pressiona Esc durante o cinemático• Mapa revertido - Digita reverse no teclado durante a jogabilidade</value>
+    <value>• Saltar cinemáticos - Pressiona Esc durante o cinemático
+• Mapa revertido - Digita reverse no teclado durante a jogabilidade</value>
   </data>
   <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
     <value>4:3</value>
@@ -1804,7 +1849,7 @@
     <value>Programa de tradução Alemã</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
-    <value>Programa de tradução Holandesa</value>
+    <value>Programa de tradução Holandesa, teste de programa</value>
   </data>
   <data name="BrowseBox_Browse" xml:space="preserve">
     <value>Navegar</value>
@@ -2114,5 +2159,8 @@
   </data>
   <data name="Settings_GetBetaUpdates" xml:space="preserve">
     <value>Obter actualizações beta</value>
+  </data>
+  <data name="About_Credits_RayActivity" xml:space="preserve">
+    <value>Gráficos, teste de programa</value>
   </data>
 </root>

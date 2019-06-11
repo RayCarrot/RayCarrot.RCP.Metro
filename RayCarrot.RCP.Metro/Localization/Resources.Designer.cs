@@ -61,6 +61,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (BETA).
+        /// </summary>
+        public static string About_BetaTag {
+            get {
+                return ResourceManager.GetString("About_BetaTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to uninstall the Rayman Control Panel? This will remove the executable file and all of the program&apos;s app data. This will NOT remove any installed games, save files or backups. Some applied utilities may still be available..
         /// </summary>
         public static string About_ConfirmUninstall {
@@ -379,6 +388,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman Control Panel (Administrator).
+        /// </summary>
+        public static string AppNameAdmin {
+            get {
+                return ResourceManager.GetString("AppNameAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version History.
         /// </summary>
         public static string AppNews_Header {
@@ -492,6 +510,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Backup_FailedHeader {
             get {
                 return ResourceManager.GetString("Backup_FailedHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This game might have its save files synced through GOG Galaxy. If so the backup/restore utility might not effect this game even though the operation succeeds..
+        /// </summary>
+        public static string Backup_GOGSyncWarning {
+            get {
+                return ResourceManager.GetString("Backup_GOGSyncWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup/Restore warning.
+        /// </summary>
+        public static string Backup_GOGSyncWarningHeader {
+            get {
+                return ResourceManager.GetString("Backup_GOGSyncWarningHeader", resourceCulture);
             }
         }
         

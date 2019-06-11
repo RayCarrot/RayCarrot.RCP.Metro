@@ -24,6 +24,25 @@ namespace RayCarrot.RCP.Metro
             IconSource = game.GetIconSource();
             DisplayName = game.GetDisplayName();
 
+            // If the type if DOSBox, check if GOG cloud sync is being used
+            if (Game.GetInfo().GameType == GameType.DosBox)
+            {
+                try
+                {
+                    var cloudSyncDir = Game.GetInfo().InstallDirectory.Parent + "cloud_saves";
+                    IsGOGCloudSyncUsed = cloudSyncDir.DirectoryExists && Directory.GetFileSystemEntries(cloudSyncDir).Any();
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Getting if DOSBox game is using GOG cloud sync");
+                    IsGOGCloudSyncUsed = false;
+                }
+            }
+            else
+            {
+                IsGOGCloudSyncUsed = false;
+            }
+
             RestoreCommand = new AsyncRelayCommand(RestoreAsync);
             BackupCommand = new AsyncRelayCommand(BackupAsync);
         }
@@ -77,6 +96,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool ShowBackupRestoreIndicator { get; set; }
 
+        /// <summary>
+        /// Indicates if GOG cloud sync is enabled
+        /// </summary>
+        public bool IsGOGCloudSyncUsed { get; }
+
         #endregion
 
         #region Commands
@@ -128,6 +152,10 @@ namespace RayCarrot.RCP.Metro
             if (PerformingBackupRestore)
                 return;
 
+            // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
+            if (IsGOGCloudSyncUsed)
+                await RCF.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
+
             try
             {
                 PerformingBackupRestore = true;
@@ -165,6 +193,10 @@ namespace RayCarrot.RCP.Metro
         {
             if (PerformingBackupRestore)
                 return;
+
+            // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
+            if (IsGOGCloudSyncUsed)
+                await RCF.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
 
             try
             {

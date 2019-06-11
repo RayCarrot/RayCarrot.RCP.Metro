@@ -2279,4 +2279,16 @@ appDataLocations</comment>
   <data name="About_Credits_RayActivity" xml:space="preserve">
     <value>Graphics, program testing</value>
   </data>
+  <data name="Backup_GOGSyncWarning" xml:space="preserve">
+    <value>This game might have its save files synced through GOG Galaxy. If so the backup/restore utility might not effect this game even though the operation succeeds.</value>
+  </data>
+  <data name="Backup_GOGSyncWarningHeader" xml:space="preserve">
+    <value>Backup/Restore warning</value>
+  </data>
+  <data name="About_BetaTag" xml:space="preserve">
+    <value>(BETA)</value>
+  </data>
+  <data name="AppNameAdmin" xml:space="preserve">
+    <value>Rayman Control Panel (Administrator)</value>
+  </data>
 </root>

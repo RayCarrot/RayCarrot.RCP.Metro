@@ -113,10 +113,17 @@
 
             </StackPanel>
 
-            <TextBlock Grid.Row="1"
-                       Text="{Binding Path=App.CurrentVersion, Mode=OneTime}" 
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Bottom"/>
+            <StackPanel Grid.Row="1"
+                        VerticalAlignment="Bottom">
+
+                <TextBlock Text="{Binding Path=App.CurrentVersion, Mode=OneTime, FallbackValue=UnknownVersion}"
+                           HorizontalAlignment="Center"/>
+
+                <TextBlock Text="{Resx About_BetaTag}"
+                           Visibility="{Binding Path=App.IsBeta, Converter={rwpf:BooleanToVisibilityConverter}}"
+                           HorizontalAlignment="Center"/>
+
+            </StackPanel>
 
             <StackPanel Grid.Row="1"
                         Margin="10"

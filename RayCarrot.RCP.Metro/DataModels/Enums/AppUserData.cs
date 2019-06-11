@@ -450,7 +450,7 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
-                    if (!WindowsHelpers.RunningAsAdmin)
+                    if (!RCFRCP.App.IsRunningAsAdmin)
                     {
                         await RCF.MessageUI.DisplayMessageAsync(Resources.UninstallRegKeyRequiresRefresh, MessageType.Warning);
                         return false;

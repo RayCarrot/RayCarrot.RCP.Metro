@@ -43,6 +43,16 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public AppViewModel()
         {
+            try
+            {
+                IsRunningAsAdmin = WindowsHelpers.RunningAsAdmin;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                IsRunningAsAdmin = false;
+            }
+
             SaveUserDataAsyncLock = new AsyncLock();
             MoveBackupsAsyncLock = new AsyncLock();
         }
@@ -102,7 +112,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(4, 5, 0, 2);
+        public Version CurrentVersion => new Version(4, 5, 0, 3);
+
+        /// <summary>
+        /// Indicates if the current version is a beta version
+        /// </summary>
+        public bool IsBeta => true;
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -113,6 +128,11 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the game finder is currently running
         /// </summary>
         public bool IsGameFinderRunning { get; set; }
+
+        /// <summary>
+        /// Indicates if the program is running as admin
+        /// </summary>
+        public bool IsRunningAsAdmin { get; }
 
         #endregion
 
@@ -691,16 +711,20 @@ namespace RayCarrot.RCP.Metro
 
                     // Check Rayman Forever
                     if (!Games.Rayman1.IsAdded() &&
-                        !Games.Rayman1.IsAdded() &&
                         !Games.RaymanDesigner.IsAdded() &&
                         !Games.RaymanByHisFans.IsAdded())
                     {
                         var dir = CheckUninstall("Rayman Forever").Path;
 
-                        FileSystemPath mountFileA = Path.Combine(dir, "game.inst");
-                        FileSystemPath mountFileB = Path.Combine(dir, "Music\\game.inst");
+                        FileSystemPath[] mountFiles = new FileSystemPath[]
+                        {
+                            dir + "game.inst",
+                            dir + "Music\\game.inst",
+                            dir + "game.ins",
+                            dir + "Music\\game.ins",
+                        };
 
-                        if ((mountFileA.FileExists || mountFileB.FileExists) &&
+                        if (mountFiles.Any(x => x.FileExists) &&
                             File.Exists(Path.Combine(dir, "Rayman\\RAYMAN.EXE")) &&
                             File.Exists(Path.Combine(dir, "RayKit\\RayKit.exe")) &&
                             File.Exists(Path.Combine(dir, "RayFan\\RayFan.exe")) &&
@@ -709,9 +733,9 @@ namespace RayCarrot.RCP.Metro
                         {
                             result.InsertRange(0, new Games[]
                             {
-                            Games.Rayman1,
-                            Games.RaymanDesigner,
-                            Games.RaymanByHisFans
+                                Games.Rayman1,
+                                Games.RaymanDesigner,
+                                Games.RaymanByHisFans
                             });
 
                             if (!File.Exists(Data.DosBoxPath))
@@ -726,7 +750,7 @@ namespace RayCarrot.RCP.Metro
 
                             RCF.Logger.LogInformationSource($"The games in Rayman Forever has been added from the game finder");
 
-                            var mountPath = mountFileA.FileExists ? mountFileA : mountFileB;
+                            var mountPath = mountFiles.FindItem(x => x.FileExists);
 
                             Data.DosBoxGames[Games.Rayman1].MountPath = mountPath;
                             Data.DosBoxGames[Games.RaymanDesigner].MountPath = mountPath;
@@ -849,8 +873,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Checks for application updates
         /// </summary>
+        /// <param name="isManualSearch">Indicates if this is a manual check, in which cause a message should be shown if no update is found</param>
         /// <returns>The task</returns>
-        public async Task CheckForUpdatesAsync(bool showIfNoUpdates)
+        public async Task CheckForUpdatesAsync(bool isManualSearch)
         {
             if (CheckingForUpdates)
                 return;
@@ -897,7 +922,7 @@ namespace RayCarrot.RCP.Metro
                 // Flag indicating if the current update is a beta update
                 bool isBetaUpdate = false;
 
-                bool forceUpdates = RCFRCP.Data.ForceUpdate && showIfNoUpdates;
+                bool forceUpdates = RCFRCP.Data.ForceUpdate && isManualSearch;
 
                 RCF.Logger.LogInformationSource($"The update manifest was retrieved");
 
@@ -912,7 +937,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         if (forceUpdates)
                         {
-                            if (Data.GetBetaUpdates)
+                            if (Data.GetBetaUpdates || IsBeta)
                                 isBetaUpdate = true;
                         }
                         else
@@ -921,7 +946,7 @@ namespace RayCarrot.RCP.Metro
                             bool noUpdateAvailable = true;
 
                             // Get the beta version if checking for beta updates
-                            if (Data.GetBetaUpdates)
+                            if (Data.GetBetaUpdates || IsBeta)
                             {
                                 // Get the beta version
                                 var bv = manifest["LatestBetaVersion"];
@@ -937,7 +962,7 @@ namespace RayCarrot.RCP.Metro
 
                             if (noUpdateAvailable)
                             {
-                                if (showIfNoUpdates)
+                                if (isManualSearch)
                                     await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, serverVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
 
                                 RCF.Logger.LogInformationSource($"The latest version is installed");
@@ -987,7 +1012,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Launch the updater and run as admin is set to show under installed programs in under to update the Registry key
-                    if (await RCFRCP.File.LaunchFileAsync(CommonPaths.UpdaterFilePath, Data.ShowUnderInstalledPrograms, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.DarkMode} {RCFRCP.Data.UserLevel} {Data.GetBetaUpdates} \"{Data.CurrentCulture}\"") == null)
+                    if (await RCFRCP.File.LaunchFileAsync(CommonPaths.UpdaterFilePath, Data.ShowUnderInstalledPrograms, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.DarkMode} {RCFRCP.Data.UserLevel} {isBetaUpdate} \"{Data.CurrentCulture}\"") == null)
                     {
                         await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, "raycarrot.ylemnova.com"), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
 

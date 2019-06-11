@@ -12,8 +12,11 @@
 Other changes:
 • Increased default window size
 • The application data is now indented for readability
+• The window title now indicates if the app is running as administrator
 • Added debug data output
 • Added debug option to force manual updates
+- Added a warning message to Rayman Forever backups if GOG Galaxy cloud sync is enabled
+- Updated the Rayman Forever game finder search to find the latest GOG version of the game
 • Minor changes to the credits in the about page
 • Removed the links from the debug page due to them now being available in the links page
 • Removed the log viewer commands

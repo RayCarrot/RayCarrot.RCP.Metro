@@ -20,7 +20,7 @@ namespace RayCarrot.RCP.Metro
         {
             ContributeLocalizationCommand = new RelayCommand(ContributeLocalization);
 
-            CanEditShowUnderInstalledPrograms = WindowsHelpers.RunningAsAdmin;
+            CanEditShowUnderInstalledPrograms = App.IsRunningAsAdmin;
         }
 
         #endregion

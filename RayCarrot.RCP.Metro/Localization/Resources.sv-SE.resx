@@ -1314,4 +1314,43 @@ Försök igen?"</value>
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Länkar</value>
   </data>
+  <data name="TPLS_ErrorHeader" xml:space="preserve">
+    <value>TPLS error</value>
+  </data>
+  <data name="GameInfo_WinStoreVersion" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="GameInfo_WinStoreInstallDate" xml:space="preserve">
+    <value>Installerad</value>
+  </data>
+  <data name="Links_Local_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="Links_Local_SteamGames" xml:space="preserve">
+    <value>Steam spel</value>
+  </data>
+  <data name="Links_Local_GOGClient" xml:space="preserve">
+    <value>GOG Galaxy</value>
+  </data>
+  <data name="Links_Local_GOGGames" xml:space="preserve">
+    <value> GOG Galaxy spel</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>En ny beta uppdatering finns tillgänglig att ladda ner. Ladda ner nu?</value>
+  </data>
+  <data name="About_Uninstall" xml:space="preserve">
+    <value>Avinstallera</value>
+  </data>
+  <data name="Settings_GetBetaUpdates" xml:space="preserve">
+    <value>Få beta uppdateringar</value>
+  </data>
+  <data name="Backup_GOGSyncWarning" xml:space="preserve">
+    <value>Det här spelet kan ha sina spelfiler synkroniserade via GOG Galaxy. Om så är fallet kommer säkerhetskopieringen/återställningen via det här verktyget eventuellt inte att påverka spelet trots att operationen lyckas.</value>
+  </data>
+  <data name="Backup_GOGSyncWarningHeader" xml:space="preserve">
+    <value>Säkerhetskopieringsvarning</value>
+  </data>
+  <data name="About_BetaTag" xml:space="preserve">
+    <value>(BETA)</value>
+  </data>
 </root>

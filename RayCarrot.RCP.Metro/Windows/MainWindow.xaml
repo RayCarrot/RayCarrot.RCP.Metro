@@ -11,10 +11,30 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
                   Language="{UICulture}"
                   ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
-                  Title="{Resx AppName}"
                   Height="750"
                   Width="950"
                   DataContext="{x:Static local:RCFRCP.App}">
+    <local:BaseWindow.TitleTemplate>
+        <DataTemplate>
+            <Grid DataContext="{x:Static local:RCFRCP.App}">
+                <Grid.Resources>
+                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                        <Setter Property="Margin" Value="8 -1 1 0" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="FontFamily" Value="{DynamicResource HeaderFontFamily}" />
+                        <Setter Property="FontSize" Value="{DynamicResource WindowTitleFontSize}" />
+                        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                    </Style>
+                </Grid.Resources>
+
+                <TextBlock Visibility="{Binding Path=IsRunningAsAdmin, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
+                           Text="{Resx AppName}" />
+
+                <TextBlock Visibility="{Binding Path=IsRunningAsAdmin, Converter={rwpf:BooleanToVisibilityConverter}}"
+                           Text="{Resx AppNameAdmin}" />
+            </Grid>
+        </DataTemplate>
+    </local:BaseWindow.TitleTemplate>
     <metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands>
             <Button Click="MinimizeToTrayButton_OnClick"
