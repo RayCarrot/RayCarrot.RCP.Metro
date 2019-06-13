@@ -149,10 +149,6 @@ namespace RayCarrot.RCP.Metro
                 if (await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(Data.ShowUnderInstalledPrograms, true))
                     Data.PendingRegUninstallKeyRefresh = false;
 
-            // TODO: This might fail if updater has not closed yet!
-            // Remove the updater
-            RCFRCP.File.DeleteFile(CommonPaths.UpdaterFilePath);
-
             // Clean temp folder
             RCFRCP.File.DeleteDirectory(CommonPaths.TempPath);
 
