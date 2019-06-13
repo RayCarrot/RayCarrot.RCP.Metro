@@ -117,7 +117,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
-        public bool IsBeta => true;
+        public bool IsBeta => false;
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
