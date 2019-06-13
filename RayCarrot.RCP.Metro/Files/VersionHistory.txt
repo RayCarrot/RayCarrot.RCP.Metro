@@ -1,4 +1,4 @@
-﻿-----   Version 4.5.0 - June ??, 2019   -----
+﻿-----   Version 4.5.0 - June 13, 2019   -----
 • The program has now been translated to Portuguese (thanks Haruka Tavares!)
 • Added the links page
 • Added icons to page tabs

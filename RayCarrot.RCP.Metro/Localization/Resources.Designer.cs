@@ -4503,7 +4503,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured when applying the Rayman 2 translation utility.
+        ///   Looks up a localized string similar to An error occurred when applying the Rayman 2 translation utility.
         /// </summary>
         public static string R2U_Translations_Error {
             get {
@@ -5061,7 +5061,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured when applying the debug commands.
+        ///   Looks up a localized string similar to An error occurred when applying the debug commands.
         /// </summary>
         public static string ROU_DebugCommandsError {
             get {

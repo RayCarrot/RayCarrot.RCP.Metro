@@ -1141,7 +1141,7 @@ Nieuws:
     <value>Ontbrekende Paden</value>
   </data>
   <data name="Installer_InsertDriveRequest" xml:space="preserve">
-    <value>Gelieve "0" in poort {1} te plaatsen, en verdergaan of de installatie afbreken</value>
+    <value>Gelieve "{0}" in poort {1} te plaatsen, en verdergaan of de installatie afbreken</value>
   </data>
   <data name="Installer_InsertDriveRequestHeader" xml:space="preserve">
     <value>Plaats Schijf</value>

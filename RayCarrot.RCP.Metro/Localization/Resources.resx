@@ -1401,7 +1401,7 @@ gameDisplayName</comment>
     <value>The Rayman Origins installation could not be found</value>
   </data>
   <data name="ROU_DebugCommandsError" xml:space="preserve">
-    <value>An error occured when applying the debug commands</value>
+    <value>An error occurred when applying the debug commands</value>
   </data>
   <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
     <value>Auto</value>
@@ -1523,7 +1523,7 @@ totalFiles</comment>
     <value>All files have been successfully replaced</value>
   </data>
   <data name="R2U_Translations_Error" xml:space="preserve">
-    <value>An error occured when applying the Rayman 2 translation utility</value>
+    <value>An error occurred when applying the Rayman 2 translation utility</value>
   </data>
   <data name="RLU_UbiRay_InvalidSaveDir" xml:space="preserve">
     <value>Please select a valid save directory</value>
