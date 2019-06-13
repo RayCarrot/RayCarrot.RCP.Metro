@@ -610,7 +610,7 @@ Notícias:
     <value>Rayman 2</value>
   </data>
   <data name="Help_Games_R2_FpsHeader" xml:space="preserve">
-    <value>60 VS FPS</value>
+    <value>60 VS 30 FPS</value>
   </data>
   <data name="Help_Games_RMA" xml:space="preserve">
     <value>Rayman M/Arena</value>
@@ -875,5 +875,362 @@ Notícias:
   </data>
   <data name="About_Credits_RayActivity" xml:space="preserve">
     <value>Gráficos, prueba de programa</value>
+  </data>
+  <data name="DosBoxSettingsHeader" xml:space="preserve">
+    <value>Ajustes de DOSBox</value>
+  </data>
+  <data name="DosBoxOptions_Commands" xml:space="preserve">
+    <value>Comandos de DOSBox</value>
+  </data>
+  <data name="DosBoxOptions_Recommended" xml:space="preserve">
+    <value>Usar las configuraciones recomendadas</value>
+  </data>
+  <data name="Config_Compressed" xml:space="preserve">
+    <value>Comprimidos</value>
+  </data>
+  <data name="Config_Video" xml:space="preserve">
+    <value>Vídeo</value>
+  </data>
+  <data name="Config_VideoGood" xml:space="preserve">
+    <value>Buena calidad</value>
+  </data>
+  <data name="Config_VideoBad" xml:space="preserve">
+    <value>Mala calidad</value>
+  </data>
+  <data name="Config_VideoAuto" xml:space="preserve">
+    <value>Ajuste automático de calidad</value>
+  </data>
+  <data name="Backup_LastBackupDate" xml:space="preserve">
+    <value>Última copia de seguridad</value>
+  </data>
+  <data name="Backup_LastBackupSize" xml:space="preserve">
+    <value>Tamaño de copia de seguridad</value>
+  </data>
+  <data name="Backup_Backup" xml:space="preserve">
+    <value>Copia de Seguridad</value>
+  </data>
+  <data name="Backup_Restore" xml:space="preserve">
+    <value>Restaurar</value>
+  </data>
+  <data name="Games_Installed" xml:space="preserve">
+    <value>Instalado</value>
+  </data>
+  <data name="Games_NotInstalled" xml:space="preserve">
+    <value>No instalado</value>
+  </data>
+  <data name="Settings_BackupLocation" xml:space="preserve">
+    <value>Localización de Copia de Seguridad</value>
+  </data>
+  <data name="R1U_TPLSHeader" xml:space="preserve">
+    <value>Banda sonora de PlayStation</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>La localización no se pudo abrir</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>Error de directório</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>El directorio no se pudo abrir</value>
+  </data>
+  <data name="LocateGame_BrowserHeader" xml:space="preserve">
+    <value>Seleccionar directorio de instalación</value>
+  </data>
+  <data name="LocateGame_InvalidLocation" xml:space="preserve">
+    <value>El directorio seleccionado no es valido para este juego</value>
+  </data>
+  <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
+    <value>Localización inválida</value>
+  </data>
+  <data name="LocateGame_InvalidSteamGame" xml:space="preserve">
+    <value>El juego no se pudo encontrar. Intenta elegir alternativamente la aplicación del escritorio como el tipo.</value>
+  </data>
+  <data name="LocateGame_InvalidSteamGameHeader" xml:space="preserve">
+    <value>Juego no encontrado</value>
+  </data>
+  <data name="Download_ConfirmHeader" xml:space="preserve">
+    <value>Confirmar descarga</value>
+  </data>
+  <data name="Installer_InstallAllUsers" xml:space="preserve">
+    <value>Instalar para todos los usuarios</value>
+  </data>
+  <data name="Installer_TotalProgress" xml:space="preserve">
+    <value>Progreso total</value>
+  </data>
+  <data name="Installer_CurrentProgress" xml:space="preserve">
+    <value>Progreso actual del archivo</value>
+  </data>
+  <data name="Installer_Install" xml:space="preserve">
+    <value>Instalar</value>
+  </data>
+  <data name="Installer_Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Installer_BrowseDiscHeader" xml:space="preserve">
+    <value>Seleccionar disco para instalar a través</value>
+  </data>
+  <data name="Installer_DriveNameConflictHeader" xml:space="preserve">
+    <value>Conflicto de disco</value>
+  </data>
+  <data name="Installer_FileConflictsHeader" xml:space="preserve">
+    <value>Conflictos de archivo</value>
+  </data>
+  <data name="Installer_InvalidDirectoryHeader" xml:space="preserve">
+    <value>Directorio no fue encontrado</value>
+  </data>
+  <data name="Installer_ShortcutName" xml:space="preserve">
+    <value>Arrancar {0}</value>
+  </data>
+  <data name="Installer_SuccessHeader" xml:space="preserve">
+    <value>Instalación completada</value>
+  </data>
+  <data name="Installer_FailedHeader" xml:space="preserve">
+    <value>La acción falló</value>
+  </data>
+  <data name="Installer_Failed" xml:space="preserve">
+    <value>La instalación falló</value>
+  </data>
+  <data name="Installer_Canceled" xml:space="preserve">
+    <value>Instalación cancelada</value>
+  </data>
+  <data name="TPLS_ErrorHeader" xml:space="preserve">
+    <value>Error TPLS</value>
+  </data>
+  <data name="TPLS_PlaybackErrorHeader" xml:space="preserve">
+    <value>Error de playback</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
+    <value>Formato es inválido</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidFormat" xml:space="preserve">
+    <value>Formato es inválido</value>
+  </data>
+  <data name="Config_SaveErrorHeader" xml:space="preserve">
+    <value>Error guardando</value>
+  </data>
+  <data name="SecretCodes_KonamiHeader" xml:space="preserve">
+    <value>Código Konami</value>
+  </data>
+  <data name="SecretCodes_RayCarrotHeader" xml:space="preserve">
+    <value>Código RayCarrot</value>
+  </data>
+  <data name="SecretCodes_LimeHeader" xml:space="preserve">
+    <value>Código Lima</value>
+  </data>
+  <data name="SecretCodes_SecretHeader" xml:space="preserve">
+    <value>Código Secreto</value>
+  </data>
+  <data name="GameInfo_SteamID" xml:space="preserve">
+    <value>ID de Steam:</value>
+  </data>
+  <data name="GameInfo_GameType" xml:space="preserve">
+    <value>Tipo de juego:</value>
+  </data>
+  <data name="GameInfo_InstallDir" xml:space="preserve">
+    <value>Localización de la instalación:</value>
+  </data>
+  <data name="GameInfo_WinStoreDependencies" xml:space="preserve">
+    <value>Dependencias</value>
+  </data>
+  <data name="GameInfo_WinStoreFullName" xml:space="preserve">
+    <value>Nombre completo</value>
+  </data>
+  <data name="GameInfo_WinStoreArchitecture" xml:space="preserve">
+    <value>Arquitectura</value>
+  </data>
+  <data name="GameInfo_WinStoreVersion" xml:space="preserve">
+    <value>Versión</value>
+  </data>
+  <data name="GameInfo_WinStoreInstallDate" xml:space="preserve">
+    <value>Instalado</value>
+  </data>
+  <data name="GameShortcut_ShortcutName" xml:space="preserve">
+    <value>Iniciar {0}</value>
+  </data>
+  <data name="AppNews_Title" xml:space="preserve">
+    <value>Noticias de aplicación</value>
+  </data>
+  <data name="AppNews_Header" xml:space="preserve">
+    <value>Historial de versiones</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continuar</value>
+  </data>
+  <data name="Download_Title" xml:space="preserve">
+    <value>Descargar</value>
+  </data>
+  <data name="Download_TotalProgress" xml:space="preserve">
+    <value>Progreso total</value>
+  </data>
+  <data name="Download_CurrentFileProgress" xml:space="preserve">
+    <value>Progreso del archivo actual</value>
+  </data>
+  <data name="FirstLaunchInfo_Title" xml:space="preserve">
+    <value>Bienvenido al Panel de Control de Rayman</value>
+  </data>
+  <data name="FirstLaunchInfo_Header" xml:space="preserve">
+    <value>Bienvenido al Panel de Control de Rayman</value>
+  </data>
+  <data name="GameOptions_UnsavedChangesHeader" xml:space="preserve">
+    <value>Confirmar salida</value>
+  </data>
+  <data name="GameOptions_Utilities" xml:space="preserve">
+    <value>Utilidades</value>
+  </data>
+  <data name="GameOptions_Options" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
+  <data name="GameOptions_CreateShortcut" xml:space="preserve">
+    <value>Crear acceso directo</value>
+  </data>
+  <data name="GameOptions_Remove" xml:space="preserve">
+    <value>Remover de programa</value>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Downgrade detectado</value>
+  </data>
+  <data name="JumpListItemDescription" xml:space="preserve">
+    <value>Iniciar {0}</value>
+  </data>
+  <data name="Help_RCP" xml:space="preserve">
+    <value>Panel de Control de Rayman</value>
+  </data>
+  <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
+    <value>Actualizaciones</value>
+  </data>
+  <data name="Help_RCP_CompatibilityHeader" xml:space="preserve">
+    <value>Compatibilidad</value>
+  </data>
+  <data name="Help_RCP_GameInstallerHeader" xml:space="preserve">
+    <value>Instalador de juego</value>
+  </data>
+  <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
+    <value>Copia de Seguridad/Restauración</value>
+  </data>
+  <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
+    <value>Argumentos de iniciación</value>
+  </data>
+  <data name="Help_RCP_DebugHeader" xml:space="preserve">
+    <value>Depuración</value>
+  </data>
+  <data name="Help_Games" xml:space="preserve">
+    <value>Juegos</value>
+  </data>
+  <data name="Help_Games_General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Help_Games_General_GameNotLaunchingHeader" xml:space="preserve">
+    <value>Juego no inicia</value>
+  </data>
+  <data name="Help_Games_R1" xml:space="preserve">
+    <value>Rayman 1</value>
+  </data>
+  <data name="Help_Games_R1_EmulatorHeader" xml:space="preserve">
+    <value>Emulador de MS-DOS</value>
+  </data>
+  <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
+    <value>Instalación fallado</value>
+  </data>
+  <data name="Help_Games_R1_MapperHeader" xml:space="preserve">
+    <value>Editor de Rayman Designer</value>
+  </data>
+  <data name="Help_Games_R2_GameSpeedHeader" xml:space="preserve">
+    <value>Juego corriendo muy rápido</value>
+  </data>
+  <data name="Help_Games_R2_NoDiscHeader" xml:space="preserve">
+    <value>No hay disco error</value>
+  </data>
+  <data name="Help_Games_RMA_MissingTexturesHeader" xml:space="preserve">
+    <value>Texturas que faltan</value>
+  </data>
+  <data name="Help_Games_RL" xml:space="preserve">
+    <value>Rayman Legends</value>
+  </data>
+  <data name="Help_Games_RL_LoadErrorHeader" xml:space="preserve">
+    <value>Error durante la carga</value>
+  </data>
+  <data name="Help_Cheats" xml:space="preserve">
+    <value>Códigos de trucos</value>
+  </data>
+  <data name="Help_Cheats_RDHeader" xml:space="preserve">
+    <value>Rayman Designer + Spin-Offs</value>
+  </data>
+  <data name="Help_Cheats_RMAHeader" xml:space="preserve">
+    <value>Rayman M/Arena</value>
+  </data>
+  <data name="Backup_BackupAllFailed" xml:space="preserve">
+    <value>Las copias de seguridad de los juegos {0}/{1} se realizaron con éxito</value>
+  </data>
+  <data name="GameOptions_LaunchModeInfo" xml:space="preserve">
+    <value>Esto determinara cómo el juego va a ser iniciado. Si el juego es ejecutado dentro de un emulador, como DOSBox, entonces el modo de ejecución se aplicará al emulador.</value>
+  </data>
+  <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
+    <value>Las animaciones incluyen transiciones de página y animaciones cambiadas de tamaño para la página de Juegos</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsInvokerInfo" xml:space="preserve">
+    <value>Ejecuta siempre el juego con las mismas permisiones que el Panel de control Rayman fue ejecutado</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdminOptionInfo" xml:space="preserve">
+    <value>Lo mismo que el defecto, pero con la opción de ejecutar el juego como administrador</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdminInfo" xml:space="preserve">
+    <value>Intenta siempre ejecutar el juego como administrador.</value>
+  </data>
+  <data name="Config_SaveWarning" xml:space="preserve">
+    <value>Ocurrió un error mientras se guardaba. No todos los cambios fueron guardados.</value>
+  </data>
+  <data name="LinksPage_LinkStyleHeader" xml:space="preserve">
+    <value>Estilo de vínculos</value>
+  </data>
+  <data name="LinksPage_LinkStyle_List" xml:space="preserve">
+    <value>Lista</value>
+  </data>
+  <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
+    <value>Grupo</value>
+  </data>
+  <data name="LinksPage_Refresh" xml:space="preserve">
+    <value>Refrescar</value>
+  </data>
+  <data name="LinksPage_CommunityHeader" xml:space="preserve">
+    <value>Comunidad</value>
+  </data>
+  <data name="LinksPage_ForumsHeader" xml:space="preserve">
+    <value>Foros</value>
+  </data>
+  <data name="LinksPage_ToolsHeader" xml:space="preserve">
+    <value>Modificaciones/Herramientas</value>
+  </data>
+  <data name="LinksPage_LocalHeader" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="Settings_AdminInfo" xml:space="preserve">
+    <value>Esta característica requiere que el programa sea ejecutado como administrador.</value>
+  </data>
+  <data name="Settings_ShowUnderInstalledPrograms" xml:space="preserve">
+    <value>Mostrar bajo los programas instalados</value>
+  </data>
+  <data name="Settings_ShowUnderInstalledProgramsInfo" xml:space="preserve">
+    <value>Si esto es activado, el programa se mostrará en la lista de programas instalados en esta computadora, comúnmente encontrado en Desinstalar programa en el Panel de control de Windows. Si está activado, el programa puede requerir privilegios de administración durante una actualización para actualizar la información del programa.</value>
+  </data>
+  <data name="About_ConfirmUninstall" xml:space="preserve">
+    <value>¿Está seguro de que desea desinstalar el Panel de control de Rayman? Esto eliminará el archivo ejecutable y todos los datos de aplicación del programa. Esto NO eliminará ningún juego instalado, archivos guardados o copias de seguridad. Algunas utilidades aplicadas todavía pueden estar disponibles.</value>
+  </data>
+  <data name="About_UninstallFailed" xml:space="preserve">
+    <value>Occurrió un error al ejecutar el desinstalador. Puede eliminar manualmente los datos de la aplicación que se encuentran en las siguientes localizaciones: {0}</value>
+  </data>
+  <data name="UninstallRegKeyRequiresRefresh" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="Backup_GOGSyncWarning" xml:space="preserve">
+    <value>Este juego podría tener sus archivos guardados sincronizados a través de GOG Galaxy. Si es así, la utilidad de copia de seguridad/restauración podría no afectar este juego a pesar de que la operación sea exitosa.</value>
+  </data>
+  <data name="Backup_GOGSyncWarningHeader" xml:space="preserve">
+    <value>Advertencia de Copia de Seguridad/Restauración</value>
+  </data>
+  <data name="About_BetaTag" xml:space="preserve">
+    <value>(BETA)</value>
+  </data>
+  <data name="AppNameAdmin" xml:space="preserve">
+    <value>Panel de control de Rayman (Administrador)</value>
   </data>
 </root>

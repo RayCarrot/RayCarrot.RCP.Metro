@@ -415,7 +415,7 @@
     <value>Dados de aplicação</value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>O Painel de Controlo Rayman é um projecto de comunidade open source criado por RayCarrot. Este software é um executável de utilização única livre com o intuito de aceder definições e correcções fácilmente para os vários títulos do Rayman lançados para o Windows. Isto é um projecto crescente com mais características planeadas para actualizações futuras. Os utilitários e as várias ferramentas de configuração foram criados com a ajuda de vários membros da comunidade Rayman, todos creditados abaixo.</value>
+    <value>O Painel de Controlo Rayman é um projecto de comunidade open source criado por RayCarrot. Este software é um executável de utilização única livre com o intuito de aceder fácilmente a definições e correcções para os vários títulos do Rayman lançados para o Windows. Isto é um projecto crescente com mais funcionalidades planeadas para actualizações futuras. Os utilitários e as várias ferramentas de configuração foram criados com a ajuda de vários membros da comunidade Rayman, todos creditados abaixo.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Créditos</value>
@@ -439,10 +439,10 @@
     <value>Correio electrónico</value>
   </data>
   <data name="Backup_LastBackupDate" xml:space="preserve">
-    <value>Última cópia de segurança</value>
+    <value>Última cópia de segurança /</value>
   </data>
   <data name="Backup_LastBackupSize" xml:space="preserve">
-    <value>Tamanho da cópia de segurança</value>
+    <value> Tamanho da cópia de segurança</value>
   </data>
   <data name="Backup_Backup" xml:space="preserve">
     <value>Cópia de Segurança</value>
@@ -469,25 +469,25 @@
     <value>Normal</value>
   </data>
   <data name="Settings_UserLevelNormalInfo" xml:space="preserve">
-    <value>Nível de utilizador normal - para utilizadores que queiram todas as características padrão sem quaisquer das opções mais avançadas ou detalhes técnicos</value>
+    <value>Nível de utilizador normal - Para utilizadores que queiram todas as funcionalidades padrão sem quaisquer das opções mais avançadas ou detalhes técnicos</value>
   </data>
   <data name="Settings_UserLevelAdvanced" xml:space="preserve">
     <value>Avançado</value>
   </data>
   <data name="Settings_UserLevelAdvancedInfo" xml:space="preserve">
-    <value>Nível de utilizador avançado - para utilizadores que queiram mais características avançadas acima dos de padrão, mas sem os detalhes técnicos</value>
+    <value>Nível de utilizador avançado - Para utilizadores que queiram mais funcionalidades avançadas acima dos de padrão, mas sem os detalhes técnicos</value>
   </data>
   <data name="Settings_UserLevelTechnical" xml:space="preserve">
     <value>Técnico</value>
   </data>
   <data name="Settings_UserLevelTechnicalInfo" xml:space="preserve">
-    <value>Nível de utilizador técnico - para utilizadores que queiram mais características avançadas acima dos de padrão assim como os detalhes técnicos</value>
+    <value>Nível de utilizador técnico - Para utilizadores que queiram mais funcionalidades avançadas acima dos de padrão assim como os detalhes técnicos</value>
   </data>
   <data name="Settings_UserLevelDebug" xml:space="preserve">
     <value>Depuração</value>
   </data>
   <data name="Settings_UserLevelDebugInfo" xml:space="preserve">
-    <value>Nível de utilizador de depuração - para desenvolvedores de aplicação e testadores que queiram opções avançadas e informações de depuração</value>
+    <value>Nível de utilizador de depuração - Para desenvolvedores de aplicação e testadores que queiram opções avançadas e informações de depuração</value>
   </data>
   <data name="Settings_Language" xml:space="preserve">
     <value>Língua</value>
@@ -499,7 +499,7 @@
     <value>Design</value>
   </data>
   <data name="Settings_DesignLight" xml:space="preserve">
-    <value>Luz</value>
+    <value>Claro</value>
   </data>
   <data name="Settings_DesignDark" xml:space="preserve">
     <value>Escuro</value>
@@ -556,7 +556,7 @@
     <value>O nível de excepção para a exibição de informações de depuração e traçamento</value>
   </data>
   <data name="Settings_BackupLocation" xml:space="preserve">
-    <value>Localização de Cópia de Segurança</value>
+    <value>Localização da Cópia de Segurança</value>
   </data>
   <data name="Settings_StartupHeader" xml:space="preserve">
     <value>Arranque</value>
@@ -571,7 +571,7 @@
     <value>Geral</value>
   </data>
   <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
-    <value>Fechar aplicação quando se arranca um jogo</value>
+    <value>Fechar aplicação quando se executa um jogo</value>
   </data>
   <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
     <value>Fechar diálogo de configuração ao guardar</value>
@@ -757,7 +757,7 @@
     <value>Opções</value>
   </data>
   <data name="GameDisplay_Launch" xml:space="preserve">
-    <value>Arranque</value>
+    <value>Executar</value>
   </data>
   <data name="GameDisplay_DiscInstall" xml:space="preserve">
     <value>Instalar pelo disco</value>
@@ -1347,10 +1347,10 @@ Tentar novamente?</value>
     <value>Não foi possível encontrar o jogo</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Agradecimentos especiais ao AuToMaNiAk005, MixerX, ICUP321, PokGOT4N e todos os outros fãs de Rayman!</value>
+    <value>Agradecimentos especiais ao AuToMaNiAk005, MixerX, ICUP321, PokGOT4N e a todos os outros fãs de Rayman!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Interface de utilizador, Carrot Framework, localizador de jogo, utilitários, traduções do Rayman 2, programa de tradução Sueca</value>
+    <value>Interface de utilizador, Carrot Framework, Localizador de jogo, Utilitários, Traduções do Rayman 2, Programa de tradução Sueca</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Patches de comandos</value>
@@ -1359,16 +1359,16 @@ Tentar novamente?</value>
     <value>Remapeamento dos botões do Rayman 2</value>
   </data>
   <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>Lista de códigos de batota, ajuda geral com os utilitários</value>
+    <value>Lista de códigos de batota, Ajuda geral com os utilitários</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
     <value>Traduções do Rayman 2</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>Traduções do Rayman 2, programa de tradução Portuguesa</value>
+    <value>Traduções do Rayman 2, Programa de tradução Portuguesa</value>
   </data>
   <data name="About_Credits_EvelynChickentalk" xml:space="preserve">
-    <value>Estrutura de ficheiros para os jogos educativos do rayman</value>
+    <value>Estrutura de ficheiros para os jogos educativos do Rayman</value>
   </data>
   <data name="ROU_HQVideosFailed" xml:space="preserve">
     <value>A substituição de vídeos falhou</value>
@@ -1610,19 +1610,19 @@ Se um erro ocorrer com o serviço de actualização pode ser descarregado manual
     <value>Instalador de jogo</value>
   </data>
   <data name="Help_RCP_GameInstaller" xml:space="preserve">
-    <value>Para jogos que suportem serem instalados por um disco tu podes fazê-lo através do menu drop-down do jogo. Actualmente o Rayman 2, Rayman M e Rayman Arena são os únicos jogos suportados.
+    <value>Para jogos que suportem serem instalados por um disco, podes fazê-lo através do menu drop-down do jogo. De momento, os únicos jogos suportados são o Rayman 2, Rayman M e Rayman Arena.
 
 Durante a instalação deverás ter de especificar o directório para se instalar. O jogo irá instalar num sub-directório no directório especificado. Por exemplo, tu escolheste instalar o Rayman 2 sob C:\Ubisoft ; será instalado sob C:\Ubisoft\Rayman 2. 
 
-Para o Rayman 2 o instalador irá substituir o ficheiro executável pelo da versão GOG para permitir ao jogo executar sem se inserir o disco. Isto é feito para evitar um disco de erro comum que ocorre normalmente durante a segunda metade do jogo.
+Para o Rayman 2, o instalador irá substituir o ficheiro executável pelo da versão GOG para permitir a execução do jogo sem se inserir o disco. Isto é feito para evitar um disco de erro comum que ocorre normalmente durante a segunda metade do jogo.
  
-Para desinstalar um dos jogos instalados utilizando o instalador de jogo deverás simplesmente ter de eliminar o directório e os seus ficheiros. O jogo não irá mostrar dentro dos programas instalados devido a não ter um desinstalador.</value>
+Para desinstalar um dos jogos instalados utilizando o instalador de jogo deverás ter de simplesmente eliminar o directório e os seus ficheiros. O jogo não irá mostrar-se dentro dos programas instalados por não ter um desinstalador.</value>
   </data>
   <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
     <value>Cópia de Segurança/Restauro</value>
   </data>
   <data name="Help_RCP_BackupRestore" xml:space="preserve">
-    <value>O programa tem uma característica de cópia de segurança e restauro para todos os jogos suportados. As cópias de segurança são guardadas na pasta de documentos por defeito, mas a localização pode ser alterada nas definições. 
+    <value>O programa tem uma funcionalidade de cópia de segurança e restauro para todos os jogos suportados. As cópias de segurança são guardadas na pasta de documentos por defeito, mas a localização pode ser alterada nas definições. 
 
 As cópias de segurança em si são sempre arquivados no sub-directório '{0}'. Não é recomendado modificar manualmente estes ficheiros.</value>
   </data>
@@ -1641,7 +1641,7 @@ As cópias de segurança em si são sempre arquivados no sub-directório '{0}'. 
     <value>Argumentos de execução</value>
   </data>
   <data name="Help_RCP_LaunchArgs" xml:space="preserve">
-    <value>O Painel de Controlo Rayman suporta vários argumentos de execução, principalmente direccionadas para a depuração da aplicação. Abaixo é a lista completa dos argumentos de execução disponíveis. O caracter '-' deverá ser sempre incluído. Os caracteres '{}' mostram que uma variável personalizada pode ser utilizada, no caso que o '{}' dnão deverá ser incluído.
+    <value>O Painel de Controlo Rayman suporta vários argumentos de execução, principalmente direccionados para a depuração da aplicação. Abaixo é a lista completa dos argumentos de execução disponíveis. O caracter '-' deverá ser sempre incluído. Os caracteres '{}' mostram que uma variável personalizada pode ser utilizada, no caso que o '{}' dnão deverá ser incluído.
   
  -reset (Reinicia todos os dados de aplicação antes da execução)
  -install {EndereçoDeFicheiro} (Remove o instalador do endereço especificado)
@@ -1662,10 +1662,10 @@ As cópias de segurança em si são sempre arquivados no sub-directório '{0}'. 
     <value>Geral</value>
   </data>
   <data name="Help_Games_General_GameNotLaunchingHeader" xml:space="preserve">
-    <value>Jogo não executa</value>
+    <value>O jogo não executa</value>
   </data>
   <data name="Help_Games_General_GameNotLaunching" xml:space="preserve">
-    <value>Aqui estão as duas coisas mais comuns para se tentar se o jogo não arrancar:
+    <value>Aqui estão as duas coisas mais comuns para se experimentar se o jogo não executar:
   
 *Executar o jogo como administrador:
 A opção para se executar um programa como administrador pode ser encontrado no menu de contexto ao clicar no programa com o botão direito do rato.
@@ -1686,7 +1686,7 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <value>A instalação falhou</value>
   </data>
   <data name="Help_Games_R1_InstallationFailed" xml:space="preserve">
-    <value>Se um dos instaladores de base do Rayman 1 falhar quando acabou de instalar irá eliminar o jogo instalado se cancelares o instalador. Para evitar isto, força o fecho do instalador utilizando o gestor de tarefas. O jogo irá provávelmente ser instalado ainda assim. Se quaisquer ficheiros estiverem em falta, copia-os manualmente do disco.</value>
+    <value>Se um dos instaladores de base do Rayman 1 falhar quando acabou de instalar, este irá eliminar o jogo instalado se cancelares o instalador. Para evitar isto, força o fecho do instalador utilizando o gestor de tarefas. O jogo irá provávelmente ser instalado na mesma. Se quaisquer ficheiros estiverem em falta, copia-os manualmente do disco.</value>
   </data>
   <data name="Help_Games_R1_MapperHeader" xml:space="preserve">
     <value>Editor Rayman Designer</value>
@@ -1778,7 +1778,15 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <value>Rayman Designer + Spin-Offs</value>
   </data>
   <data name="Help_Cheats_RD" xml:space="preserve">
-    <value>• 5 vidas - Digita [TAB]lives05[RETROCEDER] durante a jogabilidade• 20 vidas - Digita [TAB]lives20[RETROCEDER] durante a jogabilidade• 50 vidas - Digita [TAB]lives50[RETROCEDER] durante a jogabilidade• Todos os poderes do punho - Digita [TAB]goldens durante a jogabilidade• Terminar nível - Digita [TAB]finishing durante a jogabilidade• Saúde cheia - Digita [TAB]points durante a jogabilidade• Exibição do número de mapa - Digita [TAB]map[RETROCEDER] durante a jogabilidade• Movimento livre - Digita [TAB]moveray[RETROCEDER] durante a jogabilidade• Desbloquear todos os níveis - Digita [TAB]openall[RETROCEDER] no mapa</value>
+    <value>• 5 vidas - Digita [TAB]lives05[RETROCEDER] durante a jogabilidade
+• 20 vidas - Digita [TAB]lives20[RETROCEDER] durante a jogabilidade
+• 50 vidas - Digita [TAB]lives50[RETROCEDER] durante a jogabilidade
+• Todos os poderes do punho - Digita [TAB]goldens durante a jogabilidade
+• Terminar nível - Digita [TAB]finishing durante a jogabilidade
+• Saúde cheia - Digita [TAB]points durante a jogabilidade
+• Exibição do número de mapa - Digita [TAB]map[RETROCEDER] durante a jogabilidade
+• Movimento livre - Digita [TAB]moveray[RETROCEDER] durante a jogabilidade
+• Desbloquear todos os níveis - Digita [TAB]openall[RETROCEDER] no mapa</value>
   </data>
   <data name="Help_Cheats_R2Header" xml:space="preserve">
     <value>Rayman 2</value>
@@ -1849,7 +1857,7 @@ Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, dei
     <value>Programa de tradução Alemã</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
-    <value>Programa de tradução Holandesa, teste de programa</value>
+    <value>Programa de tradução Holandesa, Teste de programa</value>
   </data>
   <data name="BrowseBox_Browse" xml:space="preserve">
     <value>Navegar</value>
@@ -2017,10 +2025,10 @@ Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, dei
     <value>Local</value>
   </data>
   <data name="Settings_AdminInfo" xml:space="preserve">
-    <value>Esta característica requer que o programa execute como administrador</value>
+    <value>Esta funcionalidade requer que o programa execute como administrador</value>
   </data>
   <data name="Settings_ShowUnderInstalledPrograms" xml:space="preserve">
-    <value>Mostrar por baixo programas instalados</value>
+    <value>Mostrar os programas instalados por baixo</value>
   </data>
   <data name="Settings_ShowUnderInstalledProgramsInfo" xml:space="preserve">
     <value>Se isto estiver activo o programa irá mostrar sob a lista de programas instalados neste computador, normalmente encontrado sob o Desinstalar Programa no Painel de Controlo do Windows. Se isto estiver activo o programa poderá requerer privilégios de administrador durante uma actualização de forma a actualizar a informação do programa.</value>
@@ -2137,7 +2145,7 @@ Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, dei
     <value>Fechar</value>
   </data>
   <data name="LinksPageHeader" xml:space="preserve">
-    <value>Hiperligação de cabeçalho de página</value>
+    <value>Ligações</value>
   </data>
   <data name="UninstallRegKeyRequiresRefresh" xml:space="preserve">
     <value>Devido ao estado do programa ter sido alterado necessita de actualizar a informação armazenada nos programas instalados. Isto requer que o programa execute como administrador. Até lá a informação exibida dos programas instalados poderá não ser precisa.</value>
@@ -2161,6 +2169,18 @@ Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, dei
     <value>Obter actualizações beta</value>
   </data>
   <data name="About_Credits_RayActivity" xml:space="preserve">
-    <value>Gráficos, teste de programa</value>
+    <value>Gráficos, Teste de programa</value>
+  </data>
+  <data name="Backup_GOGSyncWarning" xml:space="preserve">
+    <value>Este jogo poderá ter os seus ficheiros de progressão sincronizados através do GOG Galaxy. Se for o caso, o utilitário de cópia de segurança e restauro poderá não afectar este jogo mesmo que a operação seja sucedida.</value>
+  </data>
+  <data name="Backup_GOGSyncWarningHeader" xml:space="preserve">
+    <value>Aviso de Cópia de Segurança/Restauro</value>
+  </data>
+  <data name="About_BetaTag" xml:space="preserve">
+    <value>(BETA)</value>
+  </data>
+  <data name="AppNameAdmin" xml:space="preserve">
+    <value>Painel de Controlo Rayman (Administrador)</value>
   </data>
 </root>

@@ -316,7 +316,7 @@ namespace RayCarrot.RCP.Metro
                 Data.PendingRegUninstallKeyRefresh = true;
             }
 
-            // Deploy the updater if it doesn't exist
+            // Deploy the uninstaller if it doesn't exist
             if (!CommonPaths.UninstallFilePath.FileExists)
             {
                 Directory.CreateDirectory(CommonPaths.UninstallFilePath.Parent);

@@ -4728,7 +4728,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File file could not be created.
+        ///   Looks up a localized string similar to File could not be created.
         /// </summary>
         public static string RDU_CreateConfig_Error {
             get {

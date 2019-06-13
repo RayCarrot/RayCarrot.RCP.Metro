@@ -1149,7 +1149,7 @@ Nieuws:
   <data name="Installer_FileCopyError" xml:space="preserve">
     <value>Het bestand {0} kon niet gekopieerd worden; het volgende foutbericht werd verkregen: {1}
  
- Opnieuw proberen?</value>
+Opnieuw proberen?</value>
   </data>
   <data name="Installer_FileCopyErrorHeader" xml:space="preserve">
     <value>Kopiëren van bestand naar bestemming mislukt</value>
@@ -1247,5 +1247,239 @@ Nieuws:
   </data>
   <data name="DosBoxResolutionValidation_NullOrEmpty" xml:space="preserve">
     <value>De resolutie waarde kan niet leeg zijn</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidFormat" xml:space="preserve">
+    <value>Ongeldige Gegevensindeling</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidCharacter" xml:space="preserve">
+    <value>Het teken '{0}' is niet geldig</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MultipleSeparators" xml:space="preserve">
+    <value>Het scheidingsteken 'x' voor de resolutie kan maar 1 keer gebruikt worden</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MissingSeparator" xml:space="preserve">
+    <value>Het scheidingsteken 'x' voor de resolutie moet gebruikt worden</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
+    <value>Een geldige hoogte moet worden gespecificeerd</value>
+  </data>
+  <data name="Config_InvalidUbiIni" xml:space="preserve">
+    <value>Geen geldig ubi.ini bestand gevonden, en het aanmaken van een nieuw bestand is mislukt. Probeer het programma als administrator te starten of wijzig de maprechten voor de volgende paden: {0}</value>
+  </data>
+  <data name="Config_SaveError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het opslaan van je {0} configuratie</value>
+  </data>
+  <data name="Config_SaveErrorHeader" xml:space="preserve">
+    <value>Fout bij het opslaan</value>
+  </data>
+  <data name="Config_DosBoxSaveError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het opslaan van je DosBox configuratie</value>
+  </data>
+  <data name="Config_SaveSuccess" xml:space="preserve">
+    <value>Je wijzigingen zijn opgeslagen</value>
+  </data>
+  <data name="Config_InvalidR2UbiIniFile" xml:space="preserve">
+    <value>Geen geldig ubi.ini bestand gevonden, en het aanmaken van een nieuw bestand is mislukt. Probeer het programma als administrator te starten of wijzig de maprechten voor de volgende paden: {0}</value>
+  </data>
+  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
+    <value>De aspectratio kon niet ingesteld worden vanwege het ontbreken van de executable van het spel.</value>
+  </data>
+  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
+    <value>De aspectratio kon niet ingesteld worden vanwege het ongeldig zijn van de executable van het spel.</value>
+  </data>
+  <data name="R2Widescreen_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het instellen van de aspectratio van Rayman 2</value>
+  </data>
+  <data name="Config_SaveRRRError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het opslaan van je Rayman Raving Rabbids configuratie</value>
+  </data>
+  <data name="SecretCodes_Konami" xml:space="preserve">
+    <value>Je hebt zojuist de Konami code ingevuld! Veel plezier met dit nieuwe, rode thema.</value>
+  </data>
+  <data name="SecretCodes_KonamiHeader" xml:space="preserve">
+    <value>Konami Code</value>
+  </data>
+  <data name="SecretCodes_RayCarrot" xml:space="preserve">
+    <value>Je hebt zojuist de RayCarrot code ingevuld! Veel plezier met dit oranje, wortel thema.</value>
+  </data>
+  <data name="SecretCodes_RayCarrotHeader" xml:space="preserve">
+    <value>RayCarrot Code</value>
+  </data>
+  <data name="SecretCodes_Lime" xml:space="preserve">
+    <value>Je hebt zojuist de Lime code ingevuld! Veel plezier met dit limoen thema.</value>
+  </data>
+  <data name="SecretCodes_LimeHeader" xml:space="preserve">
+    <value>Lime Code</value>
+  </data>
+  <data name="SecretCodes_Secret" xml:space="preserve">
+    <value>Je hebt net de geheime code ingevuld! Helaas heeft dit verder geen effect.</value>
+  </data>
+  <data name="SecretCodes_SecretHeader" xml:space="preserve">
+    <value>Geheime Code</value>
+  </data>
+  <data name="GameInfo_LaunchPath" xml:space="preserve">
+    <value>Startpad:</value>
+  </data>
+  <data name="GameInfo_LaunchArgs" xml:space="preserve">
+    <value>Startargumenten:</value>
+  </data>
+  <data name="GameInfo_SteamID" xml:space="preserve">
+    <value>Steam ID:</value>
+  </data>
+  <data name="GameInfo_GameType" xml:space="preserve">
+    <value>Game type:</value>
+  </data>
+  <data name="GameInfo_InstallDir" xml:space="preserve">
+    <value>Installatielocatie:</value>
+  </data>
+  <data name="GameInfo_WinStoreDependencies" xml:space="preserve">
+    <value>Afhankelijkheden</value>
+  </data>
+  <data name="GameInfo_WinStoreFullName" xml:space="preserve">
+    <value>Volledige naam</value>
+  </data>
+  <data name="GameInfo_WinStoreArchitecture" xml:space="preserve">
+    <value>Architectuur</value>
+  </data>
+  <data name="GameInfo_WinStoreVersion" xml:space="preserve">
+    <value>Versie</value>
+  </data>
+  <data name="GameInfo_WinStoreInstallDate" xml:space="preserve">
+    <value>Geïnstalleerd</value>
+  </data>
+  <data name="RemoveGameQuestion" xml:space="preserve">
+    <value>Weet je zeker dat je {0} wilt verwijderen uit Rayman Control Panel? Dit zal níét het spel van je computer verwijderen noch de back-ups die gemaakt zijn via dit programma.</value>
+  </data>
+  <data name="RemoveGameQuestionHeader" xml:space="preserve">
+    <value>Bevestig verwijdering</value>
+  </data>
+  <data name="GameShortcut_BrowseHeader" xml:space="preserve">
+    <value>Selecteer locatie snelkoppeling</value>
+  </data>
+  <data name="GameShortcut_ShortcutName" xml:space="preserve">
+    <value>Start {0}</value>
+  </data>
+  <data name="GameShortcut_Success" xml:space="preserve">
+    <value>Snelkoppeling succesvol aangemaakt</value>
+  </data>
+  <data name="GameShortcut_Error" xml:space="preserve">
+    <value>De snelkoppeling kon niet worden aangemaakt</value>
+  </data>
+  <data name="GameShortcut_ErrorHeader" xml:space="preserve">
+    <value>Aanmaken snelkoppeling mislukt</value>
+  </data>
+  <data name="GameNotFound" xml:space="preserve">
+    <value>Het spel {0} is niet gevonden</value>
+  </data>
+  <data name="GameNotFoundHeader" xml:space="preserve">
+    <value>Niet in staat het spel te vinden</value>
+  </data>
+  <data name="About_SpecialThanks" xml:space="preserve">
+    <value>In het bijzonder dank aan AuToMaNiAk005, MixerX, ICUP321, PokGOT4N en alle andere Rayman fans!</value>
+  </data>
+  <data name="About_Credits_RayCarrot" xml:space="preserve">
+    <value>User interface, Carrot Framework, Game Finder, Game Installer, hulpprogramma's, Rayman 2 vertalingen, Zweedse programmavertaling</value>
+  </data>
+  <data name="About_Credits_Noserdog" xml:space="preserve">
+    <value>Controller patches</value>
+  </data>
+  <data name="About_Credits_Janmv94" xml:space="preserve">
+    <value>Rayman 2 button remapping</value>
+  </data>
+  <data name="About_Credits_RibShark" xml:space="preserve">
+    <value>Lijst met cheat codes, algemene ondersteuning bij de hulpprogramma's</value>
+  </data>
+  <data name="About_Credits_PluMGMK" xml:space="preserve">
+    <value>Rayman 2 vertalingen</value>
+  </data>
+  <data name="About_Credits_HarukaTavares" xml:space="preserve">
+    <value>Rayman 2 vertalingen, Portugese programmavertaling</value>
+  </data>
+  <data name="About_Credits_EvelynChickentalk" xml:space="preserve">
+    <value>Bestandsstructuur voor de educatieve Rayman games</value>
+  </data>
+  <data name="ROU_HQVideosFailed" xml:space="preserve">
+    <value>Vervangen video's mislukt</value>
+  </data>
+  <data name="ROU_UpdateFailed" xml:space="preserve">
+    <value>Het downloaden van de Rayman Origins updater is mislukt</value>
+  </data>
+  <data name="ROU_DebugCommandsInstallationNotFound" xml:space="preserve">
+    <value>De Rayman Origins installatie kon niet gevonden worden</value>
+  </data>
+  <data name="ROU_DebugCommandsError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het toepassen van de debug commando's</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
+    <value>1.12 (Editie 1)</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
+    <value>Installatie mislukt.</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
+    <value>Installatie Mislukt</value>
+  </data>
+  <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
+    <value>Weet je zeker dat je het hulpprogramma voor de PlaySation Soundtrack wilt verwijderen?</value>
+  </data>
+  <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
+    <value>Bevestig Deïnstallatie</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
+    <value>Hulpprogramma is succesvol gedeïnstalleerd</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
+    <value>Deïnstallatie Voltooid</value>
+  </data>
+  <data name="R1U_TPLSUninstallError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het deïnstalleren. Foutmelding: {0}</value>
+  </data>
+  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
+    <value>Deïnstallatie Mislukt</value>
+  </data>
+  <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
+    <value>Vervangen soundtrack mislukt.</value>
+  </data>
+  <data name="R1U_TPLSInvalidDirectory" xml:space="preserve">
+    <value>De installatiemap van het spel bevat geen geldige installatie</value>
+  </data>
+  <data name="R1U_TPLSInvalidDirectoryHeader" xml:space="preserve">
+    <value>Ongeldige Map</value>
+  </data>
+  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
+    <value>{0}/{1} bestanden zijn gevonden voor vervanging. Dit kan verscheidene downloads vereisen, afhankelijk van de locaties.</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
+    <value>Vervanging voltooid</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
+    <value>Vervangen soundtrack mislukt.</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
+    <value>Het configuratiebestand bestaat al. Je kunt het nog steeds opnieuw aanmaken als het corrupt is. Doorgaan?</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
+    <value>Vervang bestand</value>
+  </data>
+  <data name="RDU_CreateConfig_Success" xml:space="preserve">
+    <value>Het bestand is met succes aangemaakt.</value>
+  </data>
+  <data name="RDU_CreateConfig_Error" xml:space="preserve">
+    <value>Bestand kon niet worden aangemaakt</value>
+  </data>
+  <data name="R2U_Translations_IrishInfo" xml:space="preserve">
+    <value>Irish (Iers) - door PluMGMK</value>
+  </data>
+  <data name="R2U_Translations_SwedishInfo" xml:space="preserve">
+    <value>Swedish (Zweeds) - door RayCarrot</value>
+  </data>
+  <data name="R2U_Translations_PortugueseInfo" xml:space="preserve">
+    <value>Portuguese (Portugees) - door Haruka Tavares</value>
+  </data>
+  <data name="R2U_Translations_SlovakInfo" xml:space="preserve">
+    <value>Slovak (Slowaaks) - door MixerX</value>
   </data>
 </root>

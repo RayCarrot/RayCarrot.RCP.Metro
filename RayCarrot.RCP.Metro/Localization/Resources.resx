@@ -1478,7 +1478,7 @@ totalFiles</comment>
     <value>The file was successfully created.</value>
   </data>
   <data name="RDU_CreateConfig_Error" xml:space="preserve">
-    <value>File file could not be created</value>
+    <value>File could not be created</value>
   </data>
   <data name="R2U_Translations_IrishInfo" xml:space="preserve">
     <value>Irish (Gaeilge) - by PluMGMK</value>

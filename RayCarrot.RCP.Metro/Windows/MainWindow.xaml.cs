@@ -81,11 +81,21 @@ namespace RayCarrot.RCP.Metro
                     else
                     {
                         RCF.Logger.LogCriticalSource($"The updater can not be removed due to not having write access");
+                        break;
                     }
                 }
 
-                // Remove the updater
-                RCFRCP.File.DeleteFile(CommonPaths.UpdaterFilePath);
+                try
+                {
+                    // Remove the updater
+                    RCFRCP.File.DeleteFile(CommonPaths.UpdaterFilePath);
+
+                    RCF.Logger.LogInformationSource($"The updater has been removed");
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleCritical("Removing updater");
+                }
             }
 
             // Check for updates
