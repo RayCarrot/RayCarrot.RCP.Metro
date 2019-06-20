@@ -85,6 +85,7 @@ namespace RayCarrot.RCP.Metro
             ShowUnderInstalledPrograms = false;
             PendingRegUninstallKeyRefresh = false;
             GetBetaUpdates = false;
+            LinkListHorizontalAlignment = HorizontalAlignment.Left;
         }
 
         #endregion
@@ -376,6 +377,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool GetBetaUpdates { get; set; }
 
+        /// <summary>
+        /// The horizontal alignment for link items in list view
+        /// </summary>
+        public HorizontalAlignment LinkListHorizontalAlignment { get; set; }
+
         #endregion
 
         #region Public Methods
@@ -490,8 +496,8 @@ namespace RayCarrot.RCP.Metro
                                 // Attempt to get install date
                                 try
                                 {
-                                    DateTime creationDate = File.GetCreationTime(ApplicationPath);
-                                    subKey.SetValue("InstallDate", creationDate.ToString("yyyyMMdd"), RegistryValueKind.String);
+                                    DateTime modifiedDate = File.GetLastWriteTime(ApplicationPath);
+                                    subKey.SetValue("InstallDate", modifiedDate.ToString("yyyyMMdd"), RegistryValueKind.String);
                                 }
                                 catch (Exception ex)
                                 {

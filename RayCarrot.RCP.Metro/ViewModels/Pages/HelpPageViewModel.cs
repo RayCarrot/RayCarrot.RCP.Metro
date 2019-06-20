@@ -246,27 +246,56 @@ namespace RayCarrot.RCP.Metro
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_Cheats_R1Header,
-                            HelpText = Resources.Help_Cheats_R1
+                            HelpText = String.Empty,
+
+                            // TODO: Localize
+                            CheatCodeItems = new Rayman1CheatCodeItemViewModel[]
+                            {
+                                new Rayman1CheatCodeItemViewModel("99 lives", "Level", "trj8p", "raylives", "[tab]bertrand"),
+                                new Rayman1CheatCodeItemViewModel("All fist power-ups", "Level", "2x2rmfmf", "goldfist", "[tab]antoine"),
+                                new Rayman1CheatCodeItemViewModel("All normal power-ups", "Level", "en5gol2g", "power", "[tab]benoit"),
+                                new Rayman1CheatCodeItemViewModel("Full health", "Level", "kom0ogdk", "raypoint", "[tab]christ"),
+                                new Rayman1CheatCodeItemViewModel("10 added Tings", "Level", "86e40g91", "raywiz", "[tab]jojo"),
+                                new Rayman1CheatCodeItemViewModel("Skip level section", "Level", "o8feh", "winmap", "[tab]cyril"),
+                                new Rayman1CheatCodeItemViewModel("Display hidden message", "Level", String.Empty, String.Empty, "[tab]program"),
+                                new Rayman1CheatCodeItemViewModel("Free movement", "Level", String.Empty, String.Empty, "[tab];overay[BACKSPACE]"),
+                                new Rayman1CheatCodeItemViewModel("100MHz Refresh rate", "Map", String.Empty, "freq10", String.Empty),
+                                new Rayman1CheatCodeItemViewModel("80MHz Refresh rate", "Map", String.Empty, "freq80", String.Empty),
+                                new Rayman1CheatCodeItemViewModel("All normal powers", "Map", String.Empty, "power", "[TAB]benoit"),
+                                new Rayman1CheatCodeItemViewModel("Lens effect", "Map", String.Empty, "lens", String.Empty),
+                                new Rayman1CheatCodeItemViewModel("Unlock all levels", "Map", "4ctrepfj", "alworld", "[TAB]francois"),
+                                new Rayman1CheatCodeItemViewModel("Enter Breakout minigame (requires Mr Dark's Dare to have been completed)", "Map", "b76b7081", "cbray", "[TAB]olivier"),
+                                new Rayman1CheatCodeItemViewModel("Enter random stage from Breakout minigame", "Map", String.Empty, String.Empty, "[TAB]cbrayal[BACKSPACE]"),
+                                new Rayman1CheatCodeItemViewModel("Stage selection", "Map", String.Empty, String.Empty, "[TAB]alevel[BACKSPACE]"),
+                            }
                         },
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_Cheats_RDHeader,
                             HelpText = Resources.Help_Cheats_RD
+
+                            // TODO: Add cheat code list
                         },
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_Cheats_R2Header,
                             HelpText = Resources.Help_Cheats_R2
+
+                            // TODO: Add cheat code list
                         },
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_Cheats_RMAHeader,
                             HelpText = Resources.Help_Cheats_RMA
+
+                            // TODO: Add cheat code list
                         },
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_Cheats_R3Header,
                             HelpText = Resources.Help_Cheats_R3
+
+                            // TODO: Add cheat code list
                         },
                     }
                 }

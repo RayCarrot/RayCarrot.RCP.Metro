@@ -1,4 +1,10 @@
-﻿-----   Version 4.5.0 - June 13, 2019   -----
+﻿-----   Version 4.6.0 - June ??, 2019   -----
+• Cheat codes are now displayed in grids for readability
+• The install date for the program will now show the last update time rather than first install
+• Updated references assemblies
+
+
+-----   Version 4.5.0 - June 13, 2019   -----
 • The program has now been translated to Portuguese (thanks Haruka Tavares!)
 • Added the links page
 • Added icons to page tabs
@@ -15,8 +21,8 @@ Other changes:
 • The window title now indicates if the app is running as administrator
 • Added debug data output
 • Added debug option to force manual updates
-- Added a warning message to Rayman Forever backups if GOG Galaxy cloud sync is enabled
-- Updated the Rayman Forever game finder search to find the latest GOG version of the game
+• Added a warning message to Rayman Forever backups if GOG Galaxy cloud sync is enabled
+• Updated the Rayman Forever game finder search to find the latest GOG version of the game
 • Minor changes to the credits in the about page
 • Removed the links from the debug page due to them now being available in the links page
 • Removed the log viewer commands

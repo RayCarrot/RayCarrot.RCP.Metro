@@ -34,6 +34,9 @@
                 <rwpf:RadioButtonExtended IsChecked="{Binding Path=Data.LinkItemStyle, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Group}"
                                           Content="{Resx LinksPage_LinkStyle_Group}"
                                           Margin="0 2 0 8"/>
+
+                <!-- TODO: Add setting for list horizontal alignment -->
+
             </StackPanel>
 
             <Button Content="{Resx LinksPage_Refresh}"

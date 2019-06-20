@@ -29,6 +29,8 @@
 
 - Localize RayCarrot.WPF controls
 
+- Allow the horizontal alignment to be changed for the links when in list view
+
 
 --- Other ---
 - Rework ubi.ini permission system to avoid relying on CMD commands due to not being able to verify if the command succeeded

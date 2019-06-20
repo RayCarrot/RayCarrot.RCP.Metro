@@ -1,5 +1,6 @@
 ﻿using RayCarrot.CarrotFramework;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -17,6 +18,30 @@ namespace RayCarrot.RCP.Metro
         /// The help text
         /// </summary>
         public string HelpText { get; set; }
+
+        /// <summary>
+        /// Cheat code items
+        /// </summary>
+        public BaseCheatCodeItemViewModel[] CheatCodeItems { get; set; }
+
+        /// <summary>
+        /// The cheat code item type
+        /// </summary>
+        public CheatCodeItemsType CheatCodeItemsType
+        {
+            get
+            {
+                if (CheatCodeItems?.Any() != true)
+                    return CheatCodeItemsType.None;
+
+                var item = CheatCodeItems.First();
+
+                if (item is Rayman1CheatCodeItemViewModel)
+                    return CheatCodeItemsType.Rayman1;
+
+                return CheatCodeItemsType.None;
+            }
+        }
 
         /// <summary>
         /// True if there are sub items, false if not

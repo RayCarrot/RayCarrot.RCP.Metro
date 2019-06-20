@@ -369,6 +369,9 @@ namespace RayCarrot.RCP.Metro
                 Data.GetBetaUpdates = false;
             }
 
+            if (Data.LastVersion < new Version(4, 5, 1, 0))
+                Data.LinkListHorizontalAlignment = HorizontalAlignment.Left;
+
             // Re-deploy the uninstaller
             Directory.CreateDirectory(CommonPaths.UninstallFilePath.Parent);
             RCFRCP.File.DeleteFile(CommonPaths.UninstallFilePath);

@@ -24,7 +24,7 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <Button Grid.Column="0"
-                                                        HorizontalAlignment="Left"
+                                                        HorizontalAlignment="{Binding Path=Data.LinkListHorizontalAlignment}"
                                                         Command="{Binding Path=OpenLinkCommand}">
                                                     <StackPanel Orientation="Horizontal">
                                                         <Image Source="{Binding Path=IconSource, Mode=OneTime}" />

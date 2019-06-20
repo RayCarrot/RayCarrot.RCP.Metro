@@ -39,23 +39,6 @@
         <Separator Grid.Column="1"
                    Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
 
-        <!--<FlowDocumentScrollViewer Grid.Column="2">
-            <FlowDocument>
-                <Paragraph>
-                    <Floater HorizontalAlignment="Right" Width="128" Margin="0" Padding="0">
-                        <BlockUIContainer Padding="0" Margin="0"> 
-                            <Image VerticalAlignment="Top"
-                                   Source="../../../Img/MessageIcons/Info.png"
-                                   Height="128"
-                                   Width="128" />
-                        </BlockUIContainer>
-                    </Floater>
-                    <Run Text="{Binding ElementName=HelpTreeView, Path=SelectedItem.HelpText}"
-                         FontSize="16" IsEnabled="False" />
-                </Paragraph>
-            </FlowDocument>
-        </FlowDocumentScrollViewer>-->
-
         <ScrollViewer Grid.Column="2">
             <Grid Margin="10">
                 <Grid.ColumnDefinitions>
@@ -68,16 +51,74 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock x:Name="HelpItemText"
-                           Grid.Column="0"
-                           Grid.Row="0"
-                           FontSize="16"
-                           Text="{Binding ElementName=HelpTreeView, Path=SelectedItem.HelpText}"
-                           TextWrapping="Wrap"/>
+                <StackPanel Grid.Column="0"
+                            Grid.Row="0">
+
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                            <Setter Property="IsHitTestVisible" Value="False" />
+                            <Setter Property="AutoGenerateColumns" Value="False" />
+                            <Setter Property="MaxColumnWidth" Value="200" />
+                            <Setter Property="CellStyle">
+                                <Setter.Value>
+                                    <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                                        <Setter Property="Margin" Value="10 7" />
+                                    </Style>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                        <DataGrid DataContext="{Binding ElementName=HelpTreeView, Path=SelectedItem}"
+                                  d:DataContext="{d:DesignInstance local:HelpItemViewModel}"
+                                  ItemsSource="{Binding Path=CheatCodeItems}"
+                                  Visibility="{Binding Path=CheatCodeItemsType, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed}"
+                                  Margin="0 0 0 10">
+
+                            <DataGrid.Columns>
+
+                                <DataGridTextColumn Header="Description"
+                                                    Binding="{Binding Path=CheatDescription}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style>
+                                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="Location" 
+                                                    Binding="{Binding Path=InputLocation}"/>
+
+                                <DataGridTextColumn Header="Cheats 1"
+                                                    Binding="{Binding Path=Input1}" />
+
+                                <DataGridTextColumn Header="Cheats 2"
+                                                    Binding="{Binding Path=Input2}"/>
+
+                                <DataGridTextColumn Header="Cheats 3"
+                                                    Binding="{Binding Path=Input3}"/>
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+                    </ScrollViewer>
+
+                    <TextBlock FontSize="16"
+                               DataContext="{Binding ElementName=HelpTreeView, Path=SelectedItem}"
+                               d:DataContext="{d:DesignInstance local:HelpItemViewModel}"
+                               Text="{Binding Path=HelpText}"
+                               TextWrapping="Wrap"/>
+
+                </StackPanel>
 
                 <TextBlock Grid.Column="0"
                            Grid.Row="0"
-                           Visibility="{Binding ElementName=HelpItemText, Path=Text, Converter={rwpf:InvertedStringEmptyToVisibilityConverter}}"
+                           DataContext="{Binding ElementName=HelpTreeView, Path=SelectedItem}"
+                           d:DataContext="{d:DesignInstance local:HelpItemViewModel}"
+                           Visibility="{Binding Path=HelpText, Converter={rwpf:ObjectNullToVisibilityConverter}}"
                            FontSize="20"
                            Text="{Resx Help_CategoryHelp}"
                            TextWrapping="Wrap"
