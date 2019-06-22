@@ -59,7 +59,7 @@
                 </Grid>
 
                 <ItemsControl Style="{StaticResource GamesDisplay}"
-                              ItemsSource="{Binding Path=InstalledGames}" />
+                              ItemsSource="{Binding Path=InstalledGames, Mode=OneWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" />
 
                 <Grid Visibility="{Binding Path=NotInstalledGames, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
                     <TextBlock Text="{Resx Games_NotInstalled}"
@@ -67,7 +67,6 @@
                                Style="{StaticResource LargeHeaderTextBlock}"
                                Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
                 </Grid>
-
 
                 <ItemsControl Style="{StaticResource GamesDisplay}"
                               ItemsSource="{Binding Path=NotInstalledGames}"

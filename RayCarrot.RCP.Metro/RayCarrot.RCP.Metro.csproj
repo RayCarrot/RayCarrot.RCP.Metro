@@ -451,6 +451,7 @@
     </Compile>
     <Compile Include="UserData\LinkItemStyles.cs" />
     <Compile Include="DataModels\Enums\CheatCodeItemsType.cs" />
+    <Compile Include="Utilities\IRCPUtility.cs" />
     <Compile Include="ViewModels\Cheats\Base\BaseCheatCodeItemViewModel.cs" />
     <Compile Include="ViewModels\LinkItemViewModel.cs" />
     <Compile Include="ViewModels\Pages\LinksPageViewModel.cs" />

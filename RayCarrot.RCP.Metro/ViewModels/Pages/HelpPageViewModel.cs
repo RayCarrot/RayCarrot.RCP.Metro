@@ -92,7 +92,7 @@ namespace RayCarrot.RCP.Metro
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_RCP_DebugHeader,
-                            HelpText = string.Format(Resources.Help_RCP_Debug, CommonPaths.LogFile),
+                            HelpText = String.Format(Resources.Help_RCP_Debug, CommonPaths.LogFile),
                             RequiredUserLevel = UserLevel.Debug
                         },
                     }

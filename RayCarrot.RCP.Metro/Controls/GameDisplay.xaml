@@ -15,7 +15,7 @@
 
         <!-- Title -->
 
-        <TextBlock Text="{Binding Path=DisplayName, Mode=OneTime}"
+        <TextBlock Text="{Binding Path=DisplayName}"
                    HorizontalAlignment="Center"
                    Margin="0 10"/>
 

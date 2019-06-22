@@ -7,9 +7,15 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class BaseRCPViewModel : BaseViewModel
     {
+        #region Private Fields
+
         private AppUserData _data;
 
         private AppViewModel _app;
+
+        #endregion
+
+        #region Public Properties
 
         /// <summary>
         /// The current app user data
@@ -20,5 +26,7 @@ namespace RayCarrot.RCP.Metro
         /// The app view model
         /// </summary>
         public AppViewModel App => _app ?? (_app = (this is AppViewModel appVM) ? appVM : RCFRCP.App);
+
+        #endregion
     }
 }
