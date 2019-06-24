@@ -39,7 +39,8 @@
         <Separator Grid.Column="1"
                    Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
 
-        <ScrollViewer Grid.Column="2">
+        <ScrollViewer x:Name="MainScrollViewer"
+                      Grid.Column="2">
             <Grid Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -71,35 +72,50 @@
                         </Style>
                     </StackPanel.Resources>
 
-                    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                  PreviewMouseWheel="UIElement_OnPreviewMouseWheel">
                         <DataGrid DataContext="{Binding ElementName=HelpTreeView, Path=SelectedItem}"
                                   d:DataContext="{d:DesignInstance local:HelpItemViewModel}"
                                   ItemsSource="{Binding Path=CheatCodeItems}"
-                                  Visibility="{Binding Path=CheatCodeItemsType, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed}"
-                                  Margin="0 0 0 10">
+                                  Visibility="{Binding Path=CheatCodeItems, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, FallbackValue=Collapsed}"
+                                  Margin="0 0 0 15">
+                            <DataGrid.Resources>
+                                <rwpf:BindingProxy x:Key="DataGridProxy" Data="{Binding}" />
+                                <Style x:Key="DataGridColumnElementStyle">
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGrid.Resources>
 
                             <DataGrid.Columns>
 
                                 <DataGridTextColumn Header="Description"
-                                                    Binding="{Binding Path=CheatDescription}">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style>
-                                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                                        </Style>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
+                                                    Binding="{Binding Path=CheatDescription}"
+                                                    ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
 
                                 <DataGridTextColumn Header="Location" 
-                                                    Binding="{Binding Path=InputLocation}"/>
+                                                    Binding="{Binding Path=InputLocation}"
+                                                    ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
+
+                                <DataGridTextColumn Header="Cheats"
+                                                    Visibility="{Binding Path=Data.CheatCodeItemsType, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Generic, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
+                                                    Binding="{Binding Path=Input}"
+                                                    ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
 
                                 <DataGridTextColumn Header="Cheats 1"
-                                                    Binding="{Binding Path=Input1}" />
+                                                    Visibility="{Binding Path=Data.CheatCodeItemsType, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
+                                                    Binding="{Binding Path=Input1}"
+                                                    ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
 
                                 <DataGridTextColumn Header="Cheats 2"
-                                                    Binding="{Binding Path=Input2}"/>
+                                                    Visibility="{Binding Path=Data.CheatCodeItemsType, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
+                                                    Binding="{Binding Path=Input2}"
+                                                    ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
 
                                 <DataGridTextColumn Header="Cheats 3"
-                                                    Binding="{Binding Path=Input3}"/>
+                                                    Visibility="{Binding Path=Data.CheatCodeItemsType, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
+                                                    Binding="{Binding Path=Input3}"
+                                                    ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
 
                             </DataGrid.Columns>
 
@@ -107,6 +123,7 @@
                     </ScrollViewer>
 
                     <TextBlock FontSize="16"
+                               Margin="5"
                                DataContext="{Binding ElementName=HelpTreeView, Path=SelectedItem}"
                                d:DataContext="{d:DesignInstance local:HelpItemViewModel}"
                                Text="{Binding Path=HelpText}"

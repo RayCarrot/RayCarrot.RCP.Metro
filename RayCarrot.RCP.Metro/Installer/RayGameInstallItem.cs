@@ -22,6 +22,7 @@ namespace RayCarrot.RCP.Metro
             RelativeSourcePath = relativeSourcePath;
             OutputPath = outputPath;
             Optional = optional;
+            BasePath = FileSystemPath.EmptyPath;
         }
 
         #endregion

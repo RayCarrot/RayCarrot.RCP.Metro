@@ -1,7 +1,7 @@
-﻿-----   Version 4.6.0 - June ??, 2019   -----
-• Cheat codes are now displayed in grids for readability
+﻿-----   Version 4.5.1 - June 24, 2019   -----
 • The install date for the program will now show the last update time rather than first install
-• Updated references assemblies
+• Updated referenced assemblies
+• Fixed an error causing the installer to not finish due to unhandled items
 
 
 -----   Version 4.5.0 - June 13, 2019   -----

@@ -14,5 +14,10 @@
         /// Rayman 1
         /// </summary>
         Rayman1,
+
+        /// <summary>
+        /// Generic item with single input
+        /// </summary>
+        Generic
     }
 }

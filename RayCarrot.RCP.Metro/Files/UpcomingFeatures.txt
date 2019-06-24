@@ -23,8 +23,6 @@
 
 
 --- User Interface ---
-- Move Rayman 1 (and possibly other) cheat codes into table for readability
-
 - Localize updater and pass in culture info
 
 - Localize RayCarrot.WPF controls

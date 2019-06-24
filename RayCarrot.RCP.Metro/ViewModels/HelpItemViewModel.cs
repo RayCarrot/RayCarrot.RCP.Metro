@@ -39,6 +39,9 @@ namespace RayCarrot.RCP.Metro
                 if (item is Rayman1CheatCodeItemViewModel)
                     return CheatCodeItemsType.Rayman1;
 
+                if (item is GenericCheatCodeItemViewModel)
+                    return CheatCodeItemsType.Generic;
+
                 return CheatCodeItemsType.None;
             }
         }

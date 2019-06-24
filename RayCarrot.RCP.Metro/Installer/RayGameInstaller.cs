@@ -167,7 +167,7 @@ namespace RayCarrot.RCP.Metro
                 FileSystemPath drive = result.SelectedDrive;
 
                 // Keep track if any new items are added
-                bool added = false;
+                bool anyAdded = false;
 
                 // Keep track of missing items
                 int missingItems = 0;
@@ -183,9 +183,9 @@ namespace RayCarrot.RCP.Metro
                         {
                             // Flag that the item has been verified
                             item.ProcessStage = RayGameInstallItemStage.Verified;
-                            added = true;
+                            anyAdded = true;
                         }
-                        else
+                        else if (!item.Optional)
                         {
                             // Add to list of missing items
                             missingItems++;
@@ -197,7 +197,7 @@ namespace RayCarrot.RCP.Metro
                 });
 
                 // Save drive information if new items were added
-                if (added)
+                if (anyAdded)
                 {
                     RCF.Logger.LogInformationSource($"The drive {drive} was added to the installation");
 
@@ -316,6 +316,10 @@ namespace RayCarrot.RCP.Metro
 
                 RCF.Logger.LogDebugSource($"The installation item {item.BasePath} has been handled as a file");
             }
+            else
+            {
+                RCF.Logger.LogWarningSource($"The installation item {item.BasePath} is not a valid file or directory");
+            }
 
             CurrentItem++;
 
@@ -407,6 +411,8 @@ namespace RayCarrot.RCP.Metro
                 if (!await VerifyInstallationAsync())
                     return RayGameInstallerResult.Canceled;
 
+                RCF.Logger.LogInformationSource($"The installation has been verified");
+
                 // Check if the output directory already exists
                 if (InstallData.OutputDir.DirectoryExists)
                 {
@@ -461,12 +467,12 @@ namespace RayCarrot.RCP.Metro
                         return RayGameInstallerResult.Canceled;
 
                     // Copy each file and directory from the current drive
-                    foreach (var item in InstallData.RelativeInputs.Where(x => x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == drive.Root))
+                    foreach (var item in InstallData.RelativeInputs.Where(x => x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == drive.Root && x.ProcessStage == RayGameInstallItemStage.Verified))
                         await HandleItemAsync(wc, item);
                 }
 
                 // Make sure no items were not handled
-                while (InstallData.RelativeInputs.Any(x => x.ProcessStage != RayGameInstallItemStage.Complete))
+                while (InstallData.RelativeInputs.Any(x => x.ProcessStage == RayGameInstallItemStage.Verified))
                 {
                     // Update the status to paused
                     OnStatusUpdated(OperationState.Paused);
@@ -481,7 +487,7 @@ namespace RayCarrot.RCP.Metro
                     foreach (RayGameDriveInfo drive in Drives)
                     {
                         // Get the item for this drive
-                        var items = InstallData.RelativeInputs.Where(x => x.ProcessStage != RayGameInstallItemStage.Complete && x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == drive.Root).ToList();
+                        var items = InstallData.RelativeInputs.Where(x => x.ProcessStage == RayGameInstallItemStage.Verified && x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == drive.Root).ToList();
 
                         // Skip if there are no items
                         if (!items.Any())

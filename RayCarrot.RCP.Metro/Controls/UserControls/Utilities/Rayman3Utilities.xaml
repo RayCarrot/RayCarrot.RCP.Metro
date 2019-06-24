@@ -49,7 +49,8 @@
                                                 Margin="0 0 10 0"/>
 
                     <TextBlock Foreground="Red"
-                               Text="{Resx R3U_DirectPlayErrorInfo}" />
+                               Text="{Resx R3U_DirectPlayErrorInfo}" 
+                               TextWrapping="Wrap"/>
 
                 </StackPanel>
 
