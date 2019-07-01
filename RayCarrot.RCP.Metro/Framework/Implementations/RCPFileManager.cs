@@ -267,5 +267,23 @@ namespace RayCarrot.RCP.Metro
                 return false;
             }
         }
+
+        /// <summary>
+        /// Checks if the specified directory has write access
+        /// </summary>
+        /// <param name="path">The directory to check</param>
+        /// <returns>True if the directory can be written to, otherwise false</returns>
+        public bool CheckDirectoryWriteAccess(FileSystemPath path)
+        {
+            try
+            {
+                using (FileStream fs = File.Create(path + Path.GetRandomFileName(), 1, FileOptions.DeleteOnClose))
+                    return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace RayCarrot.RCP.Metro {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Files {
@@ -57,6 +57,16 @@ namespace RayCarrot.RCP.Metro {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] AdminWorker {
+            get {
+                object obj = ResourceManager.GetObject("AdminWorker", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -168,15 +178,11 @@ namespace RayCarrot.RCP.Metro {
         
         /// <summary>
         ///   Looks up a localized string similar to --- Utilities ---
+        ///- Separate utilities in code so they do not share the same view models. Abstract it by having methods which return a collection of utilities, all defined by an interface. Allow utilities to be loaded as plugins could be done using this through .dll files. Security is an issue - have user manually load them?
+        ///
         ///- Rayman Legends debug commands (Uplay version only)
         ///
-        ///- Add support for more utilities (R2 texture extract, .sna import/export etc.) - since these require additional executable due to a lack of public source code they will be downloaded to the Utilities folder from the server (similarly to TPLS)
-        ///
-        ///
-        ///--- Games ---
-        ///- Add support for educational games. Treat as a single game, with games in drop-down added by user.
-        ///
-        ///- Add support for first mounting a specific disc image before launching [rest of string was truncated]&quot;;.
+        ///- Add support for more utilities (R2 texture extract, .sna import/export etc.) - since these require additional executable du [rest of string was truncated]&quot;;.
         /// </summary>
         public static string UpcomingFeatures {
             get {
@@ -185,18 +191,17 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 4.5.0 - June ??, 2019   -----
-        ///• The program has now been translated to Portuguese (thanks Haruka Tavares!)
-        ///• Added the links page
-        ///• Added icons to page tabs
-        ///• Added the option to minimize the application to the tray area
-        ///• Added the option to show the program under installed programs
-        ///• Updated the updater to version 3.0.0 with the new Metro redesign
-        ///• Added the option to get beta releases through the updater
+        ///   Looks up a localized string similar to -----   Version 4.6.0 - July ??, 2019   -----
+        ///• Added a splash screen
+        ///• Cheat codes are now displayed in grids for readability
+        ///• Added the option to change the link button alignment when in list view
+        ///• The installer will now warn if the selected install location is not valid due to missing write permission
         ///
-        ///Other changes:
-        ///• Increased default window size
-        ///• The application data is [rest of string was truncated]&quot;;.
+        ///
+        ///-----   Version 4.5.1 - June 24, 2019   -----
+        ///• The install date for the program will now show the last update time rather than first install
+        ///• Updated referenced assemblies
+        ///• Fixed an error c [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

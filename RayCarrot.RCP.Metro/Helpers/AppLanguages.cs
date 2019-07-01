@@ -38,6 +38,9 @@ namespace RayCarrot.RCP.Metro
 
                 // Portuguese
                 new CultureInfo("pt-PT"),
+
+                // Dutch
+                new CultureInfo("nl-NL"),
             });
 
             if (includeIncomplete)
@@ -55,9 +58,6 @@ namespace RayCarrot.RCP.Metro
 
                     // Serbian
                     new CultureInfo("sr-Cyrl"), 
-
-                    // Dutch
-                    new CultureInfo("nl-NL"),
 
                     // Spanish
                     new CultureInfo("es-PR"), 

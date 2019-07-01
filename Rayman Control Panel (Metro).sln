@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.Metro.Updater
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.Uninstaller", "RayCarrot.RCP.Uninstaller\RayCarrot.RCP.Uninstaller.csproj", "{870B044D-9987-425D-B489-312D28F2C601}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.AdminWorker", "RayCarrot.RCP.AdminWorker\RayCarrot.RCP.AdminWorker.csproj", "{C7596308-392F-43EA-9C89-C0CCCA1EC0EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,14 @@ Global
 		{870B044D-9987-425D-B489-312D28F2C601}.Release|Any CPU.Build.0 = Release|Any CPU
 		{870B044D-9987-425D-B489-312D28F2C601}.Release|x86.ActiveCfg = Release|Any CPU
 		{870B044D-9987-425D-B489-312D28F2C601}.Release|x86.Build.0 = Release|Any CPU
+		{C7596308-392F-43EA-9C89-C0CCCA1EC0EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7596308-392F-43EA-9C89-C0CCCA1EC0EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7596308-392F-43EA-9C89-C0CCCA1EC0EA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C7596308-392F-43EA-9C89-C0CCCA1EC0EA}.Debug|x86.Build.0 = Debug|Any CPU
+		{C7596308-392F-43EA-9C89-C0CCCA1EC0EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7596308-392F-43EA-9C89-C0CCCA1EC0EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7596308-392F-43EA-9C89-C0CCCA1EC0EA}.Release|x86.ActiveCfg = Release|Any CPU
+		{C7596308-392F-43EA-9C89-C0CCCA1EC0EA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

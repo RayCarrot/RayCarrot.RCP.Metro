@@ -34,317 +34,6 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Refreshes the help items
         /// </summary>
-        //public void Refresh()
-        //{
-        //    HelpItems = new ObservableCollection<HelpItemViewModel>()
-        //    {
-        //        // Rayman Control Panel
-        //        new HelpItemViewModel()
-        //        {
-        //            DisplayHeader = Resources.Help_RCP,
-        //            SubItems = new ObservableCollection<HelpItemViewModel>()
-        //            {
-        //                // Updates
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_RCP_UpdatesHeader,
-        //                    HelpText = String.Format(Resources.Help_RCP_Updates, "http://raycarrot.ylemnova.com/")
-        //                },
-
-        //                // Compatibility
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_RCP_CompatibilityHeader,
-        //                    HelpText = Resources.Help_RCP_Compatibility
-        //                },
-
-        //                // Game Installer
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_RCP_GameInstallerHeader,
-        //                    HelpText = Resources.Help_RCP_GameInstaller
-        //                },
-
-        //                // Backup Games
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_RCP_BackupRestoreHeader,
-        //                    HelpText = String.Format(Resources.Help_RCP_BackupRestore, AppViewModel.BackupFamily)
-        //                },
-
-        //                // App Data Location
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_RCP_AppDataHeader,
-        //                    HelpText = String.Format(Resources.Help_RCP_AppData, CommonPaths.UserDataBaseDir, CommonPaths.RegistryBaseKey, RCFRegistryPaths.RCFBasePath, CommonPaths.TempPath),
-        //                    RequiredUserLevel = UserLevel.Advanced
-        //                },
-
-        //                // Launch arguments
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_RCP_LaunchArgsHeader,
-        //                    HelpText = Resources.Help_RCP_LaunchArgs,
-        //                    RequiredUserLevel = UserLevel.Technical
-        //                },
-
-        //                // Launch arguments
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_RCP_DebugHeader,
-        //                    HelpText = String.Format(Resources.Help_RCP_Debug, CommonPaths.LogFile),
-        //                    RequiredUserLevel = UserLevel.Debug
-        //                },
-        //            }
-        //        },
-
-        //        // Games
-        //        new HelpItemViewModel()
-        //        {
-        //            DisplayHeader = Resources.Help_Games,
-        //            SubItems = new ObservableCollection<HelpItemViewModel>()
-        //            {
-        //                // General
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_Games_General,
-        //                    SubItems = new ObservableCollection<HelpItemViewModel>()
-        //                    {
-        //                        // Game not Launching
-        //                        new HelpItemViewModel()
-        //                        {
-        //                            DisplayHeader = Resources.Help_Games_General_GameNotLaunchingHeader,
-        //                            HelpText = Resources.Help_Games_General_GameNotLaunching
-        //                        },
-        //                    }
-        //                },
-
-        //                // Rayman 1
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_Games_R1,
-        //                    SubItems = new ObservableCollection<HelpItemViewModel>()
-        //                    {
-        //                        // Dos Emulator
-        //                        new HelpItemViewModel()
-        //                        {
-        //                            DisplayHeader = Resources.Help_Games_R1_EmulatorHeader,
-        //                            HelpText = Resources.Help_Games_R1_Emulator
-        //                        },
-
-        //                        // Installation failed
-        //                        new HelpItemViewModel()
-        //                        {
-        //                            DisplayHeader = Resources.Help_Games_R1_InstallationFailedHeader,
-        //                            HelpText = Resources.Help_Games_R1_InstallationFailed
-        //                        },
-
-        //                        // Rayman Designer Editor
-        //                        new HelpItemViewModel()
-        //                        {
-        //                            DisplayHeader = Resources.Help_Games_R1_MapperHeader,
-        //                            HelpText = Resources.Help_Games_R1_Mapper
-        //                        },
-
-        //                        // Importing Maps
-        //                        new HelpItemViewModel()
-        //                        {
-        //                            DisplayHeader = Resources.Help_Games_R1_ImportMapsHeader,
-        //                            HelpText = Resources.Help_Games_R1_ImportMaps
-        //                        },
-        //                    }
-        //                },
-
-        //                // Rayman 2
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_Games_R2,
-        //                    SubItems = new ObservableCollection<HelpItemViewModel>()
-        //                    {
-        //                        new HelpItemViewModel()
-        //                        {
-        //                            DisplayHeader = Resources.Help_Games_R2_GameSpeedHeader,
-        //                            HelpText = Resources.Help_Games_R2_GameSpeed
-        //                        },
-        //                        new HelpItemViewModel()
-        //                        {
-        //                            DisplayHeader = Resources.Help_Games_R2_FpsHeader,
-        //                            HelpText = Resources.Help_Games_R2_Fps
-        //                        },
-        //                        new HelpItemViewModel()
-        //                        {
-        //                            DisplayHeader = Resources.Help_Games_R2_NoDiscHeader,
-        //                            HelpText = Resources.Help_Games_R2_NoDisc
-        //                        },
-        //                    }
-        //                },
-
-        //                // Rayman M/Arena
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_Games_RMA,
-        //                    SubItems = new ObservableCollection<HelpItemViewModel>()
-        //                    {
-        //                        new HelpItemViewModel()
-        //                        {
-        //                            DisplayHeader = Resources.Help_Games_RMA_MissingTexturesHeader,
-        //                            HelpText = Resources.Help_Games_RMA_MissingTextures
-        //                        },
-        //                    }
-        //                },
-
-        //                // Rayman 3
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_Games_R3,
-        //                    SubItems = new ObservableCollection<HelpItemViewModel>()
-        //                    {
-        //                        new HelpItemViewModel()
-        //                        {
-        //                            DisplayHeader = Resources.Help_Games_RMA_MissingTexturesHeader,
-        //                            HelpText = Resources.Help_Games_RMA_MissingTextures
-        //                        },
-        //                    }
-        //                },
-
-        //                // Rayman Raving Rabbids
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_Games_RRR,
-        //                    SubItems = new ObservableCollection<HelpItemViewModel>()
-        //                    {
-        //                        new HelpItemViewModel()
-        //                        {
-        //                            DisplayHeader = Resources.Help_Games_RRR_EngineErrorHeader,
-        //                            HelpText = Resources.Help_Games_RRR_EngineError
-        //                        },
-        //                    }
-        //                },
-
-        //                // Rayman Legends
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_Games_RL,
-        //                    SubItems = new ObservableCollection<HelpItemViewModel>()
-        //                    {
-        //                        new HelpItemViewModel()
-        //                        {
-        //                            DisplayHeader = Resources.Help_Games_RL_LoadErrorHeader,
-        //                            HelpText = Resources.Help_Games_RL_LoadError
-        //                        },
-        //                    }
-        //                },
-        //            }
-        //        },
-
-        //        // Cheat Codes
-        //        new HelpItemViewModel()
-        //        {
-        //            DisplayHeader = Resources.Help_Cheats,
-        //            SubItems = new ObservableCollection<HelpItemViewModel>()
-        //            {
-        //                // TODO: Localize + add tooltip to column headers
-
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_Cheats_R1Header,
-        //                    HelpText = "Different cheat codes will work in different versions. Some versions support multiple cheat code types.",
-        //                    CheatCodeItems = new BaseCheatCodeItemViewModel[]
-        //                    {
-        //                        new Rayman1CheatCodeItemViewModel("99 lives", "Level", "trj8p", "raylives", "[TAB]bertrand"),
-        //                        new Rayman1CheatCodeItemViewModel("All fist power-ups", "Level", "2x2rmfmf", "goldfist", "[TAB]antoine"),
-        //                        new Rayman1CheatCodeItemViewModel("All normal power-ups", "Level", "en5gol2g", "power", "[TAB]benoit"),
-        //                        new Rayman1CheatCodeItemViewModel("Full health", "Level", "kom0ogdk", "raypoint", "[TAB]christ"),
-        //                        new Rayman1CheatCodeItemViewModel("10 added Tings", "Level", "86e40g91", "raywiz", "[TAB]jojo"),
-        //                        new Rayman1CheatCodeItemViewModel("Skip level section", "Level", "o8feh", "winmap", "[TAB]cyril"),
-        //                        new Rayman1CheatCodeItemViewModel("Display hidden message", "Level", String.Empty, String.Empty, "[TAB]program"),
-        //                        new Rayman1CheatCodeItemViewModel("Free movement", "Level", String.Empty, String.Empty, "[TAB];overay[BACKSPACE]"),
-        //                        new Rayman1CheatCodeItemViewModel("100MHz Refresh rate", "Map", String.Empty, "freq10", String.Empty),
-        //                        new Rayman1CheatCodeItemViewModel("80MHz Refresh rate", "Map", String.Empty, "freq80", String.Empty),
-        //                        new Rayman1CheatCodeItemViewModel("All normal powers", "Map", String.Empty, "power", "[TAB]benoit"),
-        //                        new Rayman1CheatCodeItemViewModel("Lens effect", "Map", String.Empty, "lens", String.Empty),
-        //                        new Rayman1CheatCodeItemViewModel("Unlock all levels", "Map", "4ctrepfj", "alworld", "[TAB]francois"),
-        //                        new Rayman1CheatCodeItemViewModel("Enter Breakout minigame (requires Mr Dark's Dare to have been completed)", "Map", "b76b7081", "cbray", "[TAB]olivier"),
-        //                        new Rayman1CheatCodeItemViewModel("Enter random stage from Breakout minigame", "Map", String.Empty, String.Empty, "[TAB]cbrayal[BACKSPACE]"),
-        //                        new Rayman1CheatCodeItemViewModel("Stage selection", "Map", String.Empty, String.Empty, "[TAB]alevel[BACKSPACE]"),
-        //                    }
-        //                },
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_Cheats_RDHeader,
-        //                    HelpText = String.Empty,
-        //                    CheatCodeItems = new BaseCheatCodeItemViewModel[]
-        //                    {
-        //                        new GenericCheatCodeItemViewModel("5 lives", "Level", "[TAB]lives05[BACKSPACE]"), 
-        //                        new GenericCheatCodeItemViewModel("20 lives", "Level", "[TAB]lives20[BACKSPACE]"), 
-        //                        new GenericCheatCodeItemViewModel("50 lives", "Level", "[TAB]lives50[BACKSPACE]"), 
-        //                        new GenericCheatCodeItemViewModel("All fist power-ups", "Level", "[TAB]goldens"), 
-        //                        new GenericCheatCodeItemViewModel("Finish level", "Level", "[TAB]finishing"), 
-        //                        new GenericCheatCodeItemViewModel("Full health", "Level", "[TAB]points"), 
-        //                        new GenericCheatCodeItemViewModel("Display map index", "Level", "[TAB]map[BACKSPACE]"), 
-        //                        new GenericCheatCodeItemViewModel("Free movement", "Level", "[TAB]moveray[BACKSPACE]"), 
-        //                        new GenericCheatCodeItemViewModel("Unlock all levels", "Map", "[TAB]openall[BACKSPACE]"), 
-        //                    }
-        //                },
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_Cheats_R2Header,
-        //                    HelpText = String.Empty,
-        //                    CheatCodeItems = new BaseCheatCodeItemViewModel[]
-        //                    {
-        //                        new GenericCheatCodeItemViewModel("Upgrade magic fist", "Pause screen", "glowfist"),
-        //                        new GenericCheatCodeItemViewModel("Restore health", "Pause screen", "gimmelife"),
-        //                        new GenericCheatCodeItemViewModel("Gain 5 Yellow Lums", "Pause screen", "gimmelumz"),
-        //                        new GenericCheatCodeItemViewModel("Go to any level", "Pause screen", "gothere"),
-        //                        new GenericCheatCodeItemViewModel("Unlock grappling power", "Pause screen", "hangon"),
-        //                        new GenericCheatCodeItemViewModel("Gain maximum health", "Pause screen", "press and release the J key to the rhythm of the Rayman 2 theme"),
-        //                        new GenericCheatCodeItemViewModel("Enter bonus level without all Lums and Cages", "Access Denied screen", "A[NUMPAD 0]QWQW[ENTER]"),
-        //                        new GenericCheatCodeItemViewModel("Skip cutscenes", "Pause screen", "NOMOVIES"),
-        //                        new GenericCheatCodeItemViewModel("New loading screens", "Pause screen", "ALLVIGN"),
-        //                        new GenericCheatCodeItemViewModel("Disable Murfy", "Pause screen", "NOMOREMURFY"),
-        //                        new GenericCheatCodeItemViewModel("Access hidden area in Tomb of the Ancients", "Tomb of the Ancients part 3, while standing on the third panel away from the entrance to the Technical Check-up where Rayman fights Clark", "PLAYJEFF"),
-        //                        new GenericCheatCodeItemViewModel("Access Menezis", "Credits", "SHOOTEMUP"),
-        //                        new GenericCheatCodeItemViewModel("Unknown", "Pause screen", "GETELIX"),
-        //                    }
-        //                },
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_Cheats_RMAHeader,
-        //                    HelpText = $"Music team:{Environment.NewLine}" +
-        //                               "To activate it, enter race mode and pause the game. On the pause screen, hold L1 + R1 (or equivalent on the currently used controller), then press the optimize button. Five blue balls will appear at the bottom of the screen. Release everything and press Jump. The player should hear a high pitched \"Ding\" sound, and after 0.5 seconds, the first ball should turn yellow. As soon as the ball turns yellow, hold Jump. The second ball should then turn yellow. As soon as the second ball turns yellow, release Jump. The third ball should then turn yellow. As soon as the third ball turns yellow, hold Jump again. The fourth ball should then turn yellow. As soon as the fourth ball turns yellow, release Jump. The player should be taken to the \"Music Mode\" screen where the player will be able to choose \"Music Team\".",
-        //                    CheatCodeItems = new BaseCheatCodeItemViewModel[]
-        //                    {
-        //                        new GenericCheatCodeItemViewModel("Skip cutscenes", "Cutscene", "esc"),
-        //                        new GenericCheatCodeItemViewModel("Unlock all battle levels", "Profile name", "Enter ALLFISH as a profile name and press Shift + Ctrl + Alt"),
-        //                        new GenericCheatCodeItemViewModel("Unlock all race levels", "Profile name", "Enter ALLTRIBES as a profile name and press Shift + Ctrl + Alt"),
-        //                        new GenericCheatCodeItemViewModel("Unlock all levels", "Profile name", "Enter ALLRAYMANM as a profile name and press Shift + Ctrl + Alt"),
-        //                        new GenericCheatCodeItemViewModel("Unlock all characters", "Profile name", "Enter PUPPETS as a profile name and press Shift + Ctrl + Alt"),
-        //                        new GenericCheatCodeItemViewModel("Unlock all skins", "Profile name", "Enter CARNIVAL as a profile name and press Shift + Ctrl + Alt"),
-        //                        new GenericCheatCodeItemViewModel("Unlock all battle levels in mode 1", "Profile name", "Enter ARENAS as a profile name and press Shift + Ctrl + Alt"),
-        //                        new GenericCheatCodeItemViewModel("Unlock all race levels in mode 1", "Profile name", "Enter TRACKS as a profile name and press Shift + Ctrl + Alt"),
-        //                        new GenericCheatCodeItemViewModel("Unlock all levels in mode 1", "Profile name", "Enter FIELDS as a profile name and press Shift + Ctrl + Alt"),
-        //                        new GenericCheatCodeItemViewModel("Ragtime music in races", "Profile name", "Enter OLDTV as a profile name and press Shift + Ctrl + Alt"),
-        //                        new GenericCheatCodeItemViewModel("Reverse map", "Level", "reverse"),
-        //                    }
-        //                },
-        //                new HelpItemViewModel()
-        //                {
-        //                    DisplayHeader = Resources.Help_Cheats_R3Header,
-        //                    HelpText = String.Empty,
-        //                    CheatCodeItems = new BaseCheatCodeItemViewModel[]
-        //                    {
-        //                        new GenericCheatCodeItemViewModel("Skip cutscenes", "Cutscene", "esc"),
-        //                        new GenericCheatCodeItemViewModel("Reverse map", "Level", "reverse"),
-        //                    }
-        //                },
-        //            }
-        //        }
-        //    };
-        //}
-
-        /// <summary>
-        /// Refreshes the help items
-        /// </summary>
         public void Refresh()
         {
             HelpItems = new ObservableCollection<HelpItemViewModel>()
@@ -403,7 +92,7 @@ namespace RayCarrot.RCP.Metro
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_RCP_DebugHeader,
-                            HelpText = string.Format(Resources.Help_RCP_Debug, CommonPaths.LogFile),
+                            HelpText = String.Format(Resources.Help_RCP_Debug, CommonPaths.LogFile),
                             RequiredUserLevel = UserLevel.Debug
                         },
                     }
@@ -557,32 +246,98 @@ namespace RayCarrot.RCP.Metro
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_Cheats_R1Header,
-                            HelpText = Resources.Help_Cheats_R1
+                            HelpText = Resources.Cheats_R1,
+                            CheatCodeItems = new BaseCheatCodeItemViewModel[]
+                            {
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_99LivesTitle, Resources.Cheats_Location_Level, Resources.Cheats_R1_99LivesInput1, Resources.Cheats_R1_99LivesInput2, Resources.Cheats_R1_99LivesInput3),
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_FistPowerTitle, Resources.Cheats_Location_Level, Resources.Cheats_R1_FistPowerInput1, Resources.Cheats_R1_FistPowerInput2, Resources.Cheats_R1_FistPowerInput3),
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_AllPowerUpsTitle, Resources.Cheats_Location_Level, Resources.Cheats_R1_AllPowerUpsInput1, Resources.Cheats_R1_AllPowerUpsInput2, Resources.Cheats_R1_AllPowerUpsInput3),
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_FullHealthTitle, Resources.Cheats_Location_Level, Resources.Cheats_R1_FullHealthInput1, Resources.Cheats_R1_FullHealthInput2, Resources.Cheats_R1_FullHealthInput3),
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_10TingsTitle, Resources.Cheats_Location_Level, Resources.Cheats_R1_10TingsInput1, Resources.Cheats_R1_10TingsInput2, Resources.Cheats_R1_10TingsInput3),
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_SkipLevelTitle, Resources.Cheats_Location_Level, Resources.Cheats_R1_SkipLevelInput1, Resources.Cheats_R1_SkipLevelInput2, Resources.Cheats_R1_SkipLevelInput3),
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_HiddenMessageTitle, Resources.Cheats_Location_Level, String.Empty, String.Empty, Resources.Cheats_R1_HiddenMessageInput3),
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_FreeMovementTitle, Resources.Cheats_Location_Level, String.Empty, String.Empty, Resources.Cheats_R1_FreeMovementInput3),
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_100RefreshRateTitle, Resources.Cheats_Location_Map, String.Empty, Resources.Cheats_R1_100RefreshRateInput2, String.Empty),
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_80RefreshRateTitle, Resources.Cheats_Location_Map, String.Empty, Resources.Cheats_R1_80RefreshRateInput2, String.Empty),
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_AllPowersTitle, Resources.Cheats_Location_Map, String.Empty, Resources.Cheats_R1_AllPowersInput2, Resources.Cheats_R1_AllPowersInput3),
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_LensEffectTitle, Resources.Cheats_Location_Map, String.Empty, Resources.Cheats_R1_LensEffectInput2, String.Empty),
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_AllLevelsTitle, Resources.Cheats_Location_Map, Resources.Cheats_R1_AllLevelsInput1, Resources.Cheats_R1_AllLevelsInput2, Resources.Cheats_R1_AllLevelsInput3),
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_BreakoutTitle, Resources.Cheats_Location_Map, Resources.Cheats_R1_BreakoutInput1, Resources.Cheats_R1_BreakoutInput2, Resources.Cheats_R1_BreakoutInput3),
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_BreakoutStageTitle, Resources.Cheats_Location_Map, String.Empty, String.Empty, Resources.Cheats_R1_BreakoutStageInput3),
+                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_SelectStageTitle, Resources.Cheats_Location_Map, String.Empty, String.Empty, Resources.Cheats_R1_SelectStageInput3),
+                            }
                         },
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_Cheats_RDHeader,
-                            HelpText = Resources.Help_Cheats_RD
+                            HelpText = String.Empty,
+                            CheatCodeItems = new BaseCheatCodeItemViewModel[]
+                            {
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RD_5LivesTitle, Resources.Cheats_Location_Level, Resources.Cheats_RD_5LivesInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RD_20LivesTitle, Resources.Cheats_Location_Level, Resources.Cheats_RD_20LivesInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RD_50LivesTitle, Resources.Cheats_Location_Level, Resources.Cheats_RD_50LivesInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RD_FistPowerTitle, Resources.Cheats_Location_Level, Resources.Cheats_RD_FistPowerInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RD_FinishLevelTitle, Resources.Cheats_Location_Level, Resources.Cheats_RD_FinishLevelInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RD_FullHealthTitle, Resources.Cheats_Location_Level, Resources.Cheats_RD_FullHealthInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RD_MapIndexTitle, Resources.Cheats_Location_Level, Resources.Cheats_RD_MapIndexInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RD_FreeMovementTitle, Resources.Cheats_Location_Level, Resources.Cheats_RD_FreeMovementInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RD_AllLevelsTitle, Resources.Cheats_Location_Map, Resources.Cheats_RD_AllLevelsInput),
+                            }
                         },
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_Cheats_R2Header,
-                            HelpText = Resources.Help_Cheats_R2
+                            HelpText = String.Empty,
+                            CheatCodeItems = new BaseCheatCodeItemViewModel[]
+                            {
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_R2_FistUpgradeTitle, Resources.Cheats_Location_Pause, Resources.Cheats_R2_FistUpgradeInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_R2_RestoreHealthTitle, Resources.Cheats_Location_Pause, Resources.Cheats_R2_RestoreHealthInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_R2_5LumsTitle, Resources.Cheats_Location_Pause, Resources.Cheats_R2_5LumsInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_R2_LevelSelectionTitle, Resources.Cheats_Location_Pause, Resources.Cheats_R2_LevelSelectionInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_R2_GrappleTitle, Resources.Cheats_Location_Pause, Resources.Cheats_R2_GrappleInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_R2_MaxHealthTitle, Resources.Cheats_Location_Pause, Resources.Cheats_R2_MaxHealthInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_R2_BonusLevelTitle, Resources.Cheats_Location_AccessDenied, Resources.Cheats_R2_BonusLevelInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_R2_SkipMoviesTitle, Resources.Cheats_Location_Pause, Resources.Cheats_R2_SkipMoviesInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_R2_LoadingScreensTitle, Resources.Cheats_Location_Pause, Resources.Cheats_R2_LoadingScreensInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_R2_NoMurfyTitle, Resources.Cheats_Location_Pause, Resources.Cheats_R2_NoMurfyInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_R2_TotASecretTitle, Resources.Cheats_Location_TotA3, Resources.Cheats_R2_TotASecretInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_R2_MenezisTitle, Resources.Cheats_Location_Credits, Resources.Cheats_R2_MenezisInput),
+                            }
                         },
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_Cheats_RMAHeader,
-                            HelpText = Resources.Help_Cheats_RMA
+                            HelpText = Resources.Cheats_RM,
+                            CheatCodeItems = new BaseCheatCodeItemViewModel[]
+                            {
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RM3_SkipMovieTitle, Resources.Cheats_Location_Cutscene, Resources.Cheats_RM3_SkipMovieInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RM3_ReverseMapTitle, Resources.Cheats_Location_Level, Resources.Cheats_RM3_ReverseMapInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RM_UnlockBattlesTitle, Resources.Cheats_Location_ProfileName, Resources.Cheats_RM_UnlockBattlesInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RM_UnlockRacesTitle, Resources.Cheats_Location_ProfileName, Resources.Cheats_RM_UnlockRacesInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RM_UnlockAllTitle, Resources.Cheats_Location_ProfileName, Resources.Cheats_RM_UnlockAllInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RM_AllCharactersTitle, Resources.Cheats_Location_ProfileName, Resources.Cheats_RM_AllCharactersInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RM_AllSkinsTitle, Resources.Cheats_Location_ProfileName, Resources.Cheats_RM_AllSkinsInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RM_Battle1Title, Resources.Cheats_Location_ProfileName, Resources.Cheats_RM_Battle1Input),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RM_Race1Title, Resources.Cheats_Location_ProfileName, Resources.Cheats_RM_Race1Input),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RM_Levels1Title, Resources.Cheats_Location_ProfileName, Resources.Cheats_RM_Levels1Input),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RM_RagtimeMusicTitle, Resources.Cheats_Location_ProfileName, Resources.Cheats_RM_RagtimeMusicInput),
+                            }
                         },
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_Cheats_R3Header,
-                            HelpText = Resources.Help_Cheats_R3
+                            HelpText = String.Empty,
+                            CheatCodeItems = new BaseCheatCodeItemViewModel[]
+                            {
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RM3_SkipMovieTitle, Resources.Cheats_Location_Cutscene, Resources.Cheats_RM3_SkipMovieInput),
+                                new GenericCheatCodeItemViewModel(Resources.Cheats_RM3_ReverseMapTitle, Resources.Cheats_Location_Level, Resources.Cheats_RM3_ReverseMapInput),
+                            }
                         },
                     }
                 }
             };
         }
+
         /// <summary>
         /// Opens the Discord URL
         /// </summary>

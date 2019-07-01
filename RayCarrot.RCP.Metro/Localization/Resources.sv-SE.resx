@@ -1125,11 +1125,20 @@ Försök igen?"</value>
   <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
     <value>Det här verktyget kräver att ytterligare filer laddas ner</value>
   </data>
+  <data name="TPLS_ErrorHeader" xml:space="preserve">
+    <value>TPLS error</value>
+  </data>
   <data name="SecretCodes_SecretHeader" xml:space="preserve">
     <value>Hemlig kod</value>
   </data>
   <data name="GameInfo_SteamID" xml:space="preserve">
     <value>Steam ID:</value>
+  </data>
+  <data name="GameInfo_WinStoreVersion" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="GameInfo_WinStoreInstallDate" xml:space="preserve">
+    <value>Installerad</value>
   </data>
   <data name="GameShortcut_ShortcutName" xml:space="preserve">
     <value>Starta {0}</value>
@@ -1242,6 +1251,18 @@ Försök igen?"</value>
   <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
     <value>1.12 (Upplaga 3)</value>
   </data>
+  <data name="Links_Local_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="Links_Local_SteamGames" xml:space="preserve">
+    <value>Steam spel</value>
+  </data>
+  <data name="Links_Local_GOGClient" xml:space="preserve">
+    <value>GOG Galaxy</value>
+  </data>
+  <data name="Links_Local_GOGGames" xml:space="preserve">
+    <value> GOG Galaxy spel</value>
+  </data>
   <data name="Links_Community_RPC" xml:space="preserve">
     <value>Rayman Pirate-Community</value>
   </data>
@@ -1314,27 +1335,6 @@ Försök igen?"</value>
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Länkar</value>
   </data>
-  <data name="TPLS_ErrorHeader" xml:space="preserve">
-    <value>TPLS error</value>
-  </data>
-  <data name="GameInfo_WinStoreVersion" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="GameInfo_WinStoreInstallDate" xml:space="preserve">
-    <value>Installerad</value>
-  </data>
-  <data name="Links_Local_Steam" xml:space="preserve">
-    <value>Steam</value>
-  </data>
-  <data name="Links_Local_SteamGames" xml:space="preserve">
-    <value>Steam spel</value>
-  </data>
-  <data name="Links_Local_GOGClient" xml:space="preserve">
-    <value>GOG Galaxy</value>
-  </data>
-  <data name="Links_Local_GOGGames" xml:space="preserve">
-    <value> GOG Galaxy spel</value>
-  </data>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
     <value>En ny beta uppdatering finns tillgänglig att ladda ner. Ladda ner nu?</value>
   </data>
@@ -1352,5 +1352,133 @@ Försök igen?"</value>
   </data>
   <data name="About_BetaTag" xml:space="preserve">
     <value>(BETA)</value>
+  </data>
+  <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
+    <value>trj8p</value>
+    <comment>trj8p</comment>
+  </data>
+  <data name="Cheats_R1_99LivesInput2" xml:space="preserve">
+    <value>raylives</value>
+    <comment>raylives</comment>
+  </data>
+  <data name="Cheats_R1_FistPowerInput1" xml:space="preserve">
+    <value>2x2rmfmf</value>
+    <comment>2x2rmfmf</comment>
+  </data>
+  <data name="Cheats_R1_FistPowerInput2" xml:space="preserve">
+    <value>goldfist</value>
+    <comment>goldfist</comment>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput1" xml:space="preserve">
+    <value>en5gol2g</value>
+    <comment>en5gol2g</comment>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput2" xml:space="preserve">
+    <value>power</value>
+    <comment>power</comment>
+  </data>
+  <data name="Cheats_R1_FullHealthInput1" xml:space="preserve">
+    <value>kom0ogdk</value>
+    <comment>kom0ogdk</comment>
+  </data>
+  <data name="Cheats_R1_FullHealthInput2" xml:space="preserve">
+    <value>raypoint</value>
+    <comment>raypoint</comment>
+  </data>
+  <data name="Cheats_R1_10TingsInput1" xml:space="preserve">
+    <value>86e40g91</value>
+    <comment>86e40g91</comment>
+  </data>
+  <data name="Cheats_R1_10TingsInput2" xml:space="preserve">
+    <value>raywiz</value>
+    <comment>raywiz</comment>
+  </data>
+  <data name="Cheats_R1_SkipLevelInput1" xml:space="preserve">
+    <value>o8feh</value>
+    <comment>o8feh</comment>
+  </data>
+  <data name="Cheats_R1_SkipLevelInput2" xml:space="preserve">
+    <value>winmap</value>
+    <comment>winmap</comment>
+  </data>
+  <data name="Cheats_R1_100RefreshRateInput2" xml:space="preserve">
+    <value>freq10</value>
+    <comment>freq10</comment>
+  </data>
+  <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
+    <value>freq80</value>
+    <comment>freq80</comment>
+  </data>
+  <data name="Cheats_R1_AllPowersInput2" xml:space="preserve">
+    <value>power</value>
+    <comment>power</comment>
+  </data>
+  <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
+    <value>lens</value>
+    <comment>lens</comment>
+  </data>
+  <data name="Cheats_R1_AllLevelsInput1" xml:space="preserve">
+    <value>4ctrepfj</value>
+    <comment>4ctrepfj</comment>
+  </data>
+  <data name="Cheats_R1_AllLevelsInput2" xml:space="preserve">
+    <value>alworld</value>
+    <comment>alworld</comment>
+  </data>
+  <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
+    <value>b76b7081</value>
+    <comment>b76b7081</comment>
+  </data>
+  <data name="Cheats_R1_BreakoutInput2" xml:space="preserve">
+    <value>cbray</value>
+    <comment>cbray</comment>
+  </data>
+  <data name="Cheats_R2_FistUpgradeInput" xml:space="preserve">
+    <value>glowfist</value>
+    <comment>glowfist</comment>
+  </data>
+  <data name="Cheats_R2_RestoreHealthInput" xml:space="preserve">
+    <value>gimmelife</value>
+    <comment>gimmelife</comment>
+  </data>
+  <data name="Cheats_R2_5LumsInput" xml:space="preserve">
+    <value>gimmelumz</value>
+    <comment>gimmelumz</comment>
+  </data>
+  <data name="Cheats_R2_LevelSelectionInput" xml:space="preserve">
+    <value>gothere</value>
+    <comment>gothere</comment>
+  </data>
+  <data name="Cheats_R2_GrappleInput" xml:space="preserve">
+    <value>hangon</value>
+    <comment>hangon</comment>
+  </data>
+  <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
+    <value>NOMOVIES</value>
+    <comment>NOMOVIES</comment>
+  </data>
+  <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
+    <value>allvign</value>
+    <comment>allvign</comment>
+  </data>
+  <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
+    <value>nomoremurfy</value>
+    <comment>nomoremurfy</comment>
+  </data>
+  <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
+    <value>playjeff</value>
+    <comment>playjeff</comment>
+  </data>
+  <data name="Cheats_R2_MenezisInput" xml:space="preserve">
+    <value>shootemup</value>
+    <comment>shootemup</comment>
+  </data>
+  <data name="Cheats_RM3_SkipMovieInput" xml:space="preserve">
+    <value>esc</value>
+    <comment>esc</comment>
+  </data>
+  <data name="Cheats_RM3_ReverseMapInput" xml:space="preserve">
+    <value>reverse</value>
+    <comment>reverse</comment>
   </data>
 </root>

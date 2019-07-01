@@ -55,6 +55,7 @@ namespace RayCarrot.RCP.Metro
 
             SaveUserDataAsyncLock = new AsyncLock();
             MoveBackupsAsyncLock = new AsyncLock();
+            AdminWorkerAsyncLock = new AsyncLock();
         }
 
         #endregion
@@ -110,14 +111,19 @@ namespace RayCarrot.RCP.Metro
         private AsyncLock MoveBackupsAsyncLock { get; }
 
         /// <summary>
+        /// An async lock for the <see cref="RunAdminWorkerAsync"/> method
+        /// </summary>
+        private AsyncLock AdminWorkerAsyncLock { get; }
+
+        /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(4, 5, 1, 0);
+        public Version CurrentVersion => new Version(4, 6, 0, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
-        public bool IsBeta => false;
+        public bool IsBeta => true;
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -401,9 +407,8 @@ namespace RayCarrot.RCP.Metro
 
                 await RCF.MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
 
-                // Attempt to change the permission through CMD to avoid having to run RCP as admin
-                // ReSharper disable once StringLiteralTypo
-                WindowsHelpers.RunCommandPromptScript($"icacls \"{CommonPaths.UbiIniPath1}\" /grant Users:W", true);
+                // Attempt to change the permission
+                await RunAdminWorkerAsync(AdminWorkerModes.GrantFullControl, CommonPaths.UbiIniPath1);
 
                 RCF.Logger.LogInformationSource($"The ubi.ini file permission was changed");
             }
@@ -1096,6 +1101,43 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// Runs the admin worker
+        /// </summary>
+        /// <param name="mode">The mode to run in</param>
+        /// <param name="args">The mode arguments</param>
+        /// <returns>The task</returns>
+        public async Task RunAdminWorkerAsync(AdminWorkerModes mode, params string[] args)
+        {
+            using (await AdminWorkerAsyncLock.LockAsync())
+            {
+                // Get the file path
+                var path = CommonPaths.TempPath + "Rayman Control Panel - Admin Worker.exe";
+
+                try
+                {
+                    if (!path.Parent.DirectoryExists)
+                        Directory.CreateDirectory(path.Parent);
+
+                    RCFRCP.File.DeleteFile(path);
+
+                    // Deploy the file
+                    File.WriteAllBytes(path, Files.AdminWorker);
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Deploying admin worker executable");
+
+                    // TODO: Localize
+                    await RCF.MessageUI.DisplayMessageAsync("An error occurred when attempting to run the admin worker", MessageType.Error);
+
+                    return;
+                }
+                
+                await RCFRCP.File.LaunchFileAsync(path, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
+            }
+        }
+
         #endregion
 
         #region Private Classes
@@ -1146,5 +1188,16 @@ namespace RayCarrot.RCP.Metro
         public event EventHandler<ValueEventArgs<bool>> RefreshRequired;
 
         #endregion
+    }
+
+    /// <summary>
+    /// The available modes for the admin worker
+    /// </summary>
+    public enum AdminWorkerModes
+    {
+        /// <summary>
+        /// Grants full control to the specified file
+        /// </summary>
+        GrantFullControl
     }
 }

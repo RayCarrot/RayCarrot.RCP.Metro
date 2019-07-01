@@ -8,7 +8,7 @@
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:metro="clr-namespace:RayCarrot.RCP.Metro"
-                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     mc:Ignorable="d" 
@@ -21,31 +21,50 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
-        <Grid Grid.Row="0">
-            <StackPanel>
-                <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="{Resx LinksPage_LinkStyleHeader}" />
 
-                <rwpf:RadioButtonExtended IsChecked="{Binding Path=Data.LinkItemStyle, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=List}" 
-                                          Content="{Resx LinksPage_LinkStyle_List}"
-                                          Margin="0 8 0 2"/>
+        <Expander Grid.Row="0"
+                  Header="{Resx LinksPage_Options}"
+                  Padding="10"
+                  IsExpanded="False">
+            <Grid>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource HeaderTextBlock}"
+                               Text="{Resx LinksPage_LinkStyleHeader}" />
 
-                <rwpf:RadioButtonExtended IsChecked="{Binding Path=Data.LinkItemStyle, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Group}"
-                                          Content="{Resx LinksPage_LinkStyle_Group}"
-                                          Margin="0 2 0 8"/>
+                    <rwpf:RadioButtonExtended IsChecked="{Binding Path=Data.LinkItemStyle, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=List}" 
+                                              Content="{Resx LinksPage_LinkStyle_List}"
+                                              Margin="0 8 0 2"/>
 
-                <!-- TODO: Add setting for list horizontal alignment -->
+                    <rwpf:RadioButtonExtended IsChecked="{Binding Path=Data.LinkItemStyle, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Group}"
+                                              Content="{Resx LinksPage_LinkStyle_Group}"
+                                              Margin="0 2 0 8"/>
 
-            </StackPanel>
+                    <StackPanel Visibility="{Binding Path=Data.LinkItemStyle, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=List}">
 
-            <Button Content="{Resx LinksPage_Refresh}"
-                    HorizontalAlignment="Right" 
-                    VerticalAlignment="Top"
-                    Command="{Binding Path=RefreshCommand}"
-                    rwpf:UserLevelTag.MinUserLevel="Advanced"/>
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                   Text="{Resx LinksPage_LinkAlignmentStyleHeader}" />
 
-        </Grid>
+                        <rwpf:RadioButtonExtended IsChecked="{Binding Path=Data.LinkListHorizontalAlignment, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Left}" 
+                                                  Content="{Resx LinksPage_LinkAlignmentStyle_Left}"
+                                                  Margin="0 8 0 2"/>
+
+                        <rwpf:RadioButtonExtended IsChecked="{Binding Path=Data.LinkListHorizontalAlignment, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Stretch}"
+                                                  Content="{Resx LinksPage_LinkAlignmentStyle_Stretch}"
+                                                  Margin="0 2 0 8"/>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+                <Button Content="{Resx LinksPage_Refresh}"
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Top"
+                        Command="{Binding Path=RefreshCommand}"
+                        rwpf:UserLevelTag.MinUserLevel="Advanced"/>
+
+            </Grid>
+
+        </Expander>
 
         <Separator Grid.Row="1"
                    Margin="0 5" />

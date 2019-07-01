@@ -5,10 +5,9 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-                    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:Interactions="http://schemas.microsoft.com/xaml/behaviors"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     IsTabStop="False"
                     mc:Ignorable="d"
@@ -35,11 +34,11 @@
                         <Setter Property="ItemsPanel">
                             <Setter.Value>
                                 <ItemsPanelTemplate>
-                                    <WrapPanel> 
-                                        <i:Interaction.Behaviors>
-                                            <ei:FluidMoveBehavior Duration="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToFluidMoveDurationConverter}}"
-                                                                  AppliesTo="Children" />
-                                        </i:Interaction.Behaviors>
+                                    <WrapPanel>
+                                        <Interactions:Interaction.Behaviors>
+                                            <Interactions:FluidMoveBehavior Duration="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToFluidMoveDurationConverter}}"
+                                                                            AppliesTo="Children" />
+                                        </Interactions:Interaction.Behaviors>
                                     </WrapPanel>
                                 </ItemsPanelTemplate>
                             </Setter.Value>
@@ -47,9 +46,9 @@
                     </Style>
                 </StackPanel.Resources>
 
-                <i:Interaction.Behaviors>
+                <Interactions:Interaction.Behaviors>
                     <rwpf:UnifiedMarginBehavior Margin="0 5" />
-                </i:Interaction.Behaviors>
+                </Interactions:Interaction.Behaviors>
 
                 <Grid Visibility="{Binding Path=InstalledGames, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
                     <TextBlock Text="{Resx Games_Installed}"

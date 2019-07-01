@@ -27,6 +27,10 @@
 
 - Localize RayCarrot.WPF controls
 
+- Localize the uninstaller
+
+- Localize the admin worker
+
 - Allow the horizontal alignment to be changed for the links when in list view
 
 

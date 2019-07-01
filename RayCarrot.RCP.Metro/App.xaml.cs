@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -102,6 +103,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task OnSetupAsync(string[] args)
         {
+            LogStartupTime("Setup is starting");
+
             // Load the user data
             try
             {
@@ -117,6 +120,8 @@ namespace RayCarrot.RCP.Metro
             }
 
             Data = RCFRCP.Data;
+
+            LogStartupTime("User data has been loaded");
 
             // Apply the current culture if defaulted
             if (Data.CurrentCulture == AppLanguages.DefaultCulture.Name)
@@ -137,18 +142,6 @@ namespace RayCarrot.RCP.Metro
             // Listen to data binding logs
             WPFTraceListener.Setup(LogLevel.Warning);
 
-            // Run basic startup
-            await BasicStartupAsync();
-
-            // Run post-update code
-            await PostUpdateAsync();
-
-            // Check if a refresh is pending for the Registry uninstall key
-            if (Data.PendingRegUninstallKeyRefresh)
-                // If succeeded, remove the pending indicator
-                if (await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(Data.ShowUnderInstalledPrograms, true))
-                    Data.PendingRegUninstallKeyRefresh = false;
-
             // Clean temp folder
             RCFRCP.File.DeleteDirectory(CommonPaths.TempPath);
 
@@ -156,6 +149,22 @@ namespace RayCarrot.RCP.Metro
             Directory.CreateDirectory(CommonPaths.TempPath);
 
             RCF.Logger.LogInformationSource($"The temp directory has been created");
+
+            // Run basic startup
+            await BasicStartupAsync();
+
+            LogStartupTime("Basic startup has run");
+
+            // Run post-update code
+            await PostUpdateAsync();
+
+            LogStartupTime("Post update has run");
+
+            // Check if a refresh is pending for the Registry uninstall key
+            if (Data.PendingRegUninstallKeyRefresh)
+                // If succeeded, remove the pending indicator
+                if (await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(Data.ShowUnderInstalledPrograms, true))
+                    Data.PendingRegUninstallKeyRefresh = false;
         }
 
         /// <summary>

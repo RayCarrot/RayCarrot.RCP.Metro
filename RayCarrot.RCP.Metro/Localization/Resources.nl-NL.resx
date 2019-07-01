@@ -1017,84 +1017,6 @@ Nieuws:
   <data name="MoveBackups_ErrorHeader" xml:space="preserve">
     <value>Verplaatsen van back-ups mislukt</value>
   </data>
-  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
-    <value>1.20</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
-    <value>1.21</value>
-  </data>
-  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
-    <value>0.74</value>
-  </data>
-  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
-    <value>SVN Daum</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
-    <value>1.00</value>
-  </data>
-  <data name="Links_Community_RPC" xml:space="preserve">
-    <value>Rayman Pirate-Community</value>
-  </data>
-  <data name="Links_Community_RayWiki" xml:space="preserve">
-    <value>RayWiki</value>
-  </data>
-  <data name="Links_Community_RayTunes" xml:space="preserve">
-    <value>RayTunes</value>
-  </data>
-  <data name="Links_Community_RaySaves" xml:space="preserve">
-    <value>RaySaves</value>
-  </data>
-  <data name="Links_Community_RaymanCentral" xml:space="preserve">
-    <value>Rayman Central</value>
-  </data>
-  <data name="Links_Community_RaymanTogether" xml:space="preserve">
-    <value>Rayman Together</value>
-  </data>
-  <data name="Links_Community_raym_app" xml:space="preserve">
-    <value>raym.app</value>
-  </data>
-  <data name="Links_Community_Raymap" xml:space="preserve">
-    <value>Raymap</value>
-  </data>
-  <data name="Links_Community_Menezis_Browser" xml:space="preserve">
-    <value>Menezis (browser version)</value>
-  </data>
-  <data name="Links_Community_KMG" xml:space="preserve">
-    <value>KMG Associates - Rayman</value>
-  </data>
-  <data name="Links_Community_Fanpage" xml:space="preserve">
-    <value>Rayman Fanpage</value>
-  </data>
-  <data name="Links_Forums_RPC" xml:space="preserve">
-    <value>Pirate-Community</value>
-  </data>
-  <data name="Links_Forums_Ubisoft" xml:space="preserve">
-    <value>Ubisoft</value>
-  </data>
-  <data name="Links_Forums_GOG" xml:space="preserve">
-    <value>GOG</value>
-  </data>
-  <data name="Links_Forums_Steam_R2" xml:space="preserve">
-    <value>Steam - Rayman 2</value>
-  </data>
-  <data name="Links_Forums_Steam_RRR" xml:space="preserve">
-    <value>Steam - Rayman Raving Rabbids</value>
-  </data>
-  <data name="Links_Forums_Steam_RO" xml:space="preserve">
-    <value>Steam - Rayman Origins</value>
-  </data>
-  <data name="Links_Forums_Steam_RL" xml:space="preserve">
-    <value>Steam - Rayman Legends</value>
-  </data>
-  <data name="Links_Tools_RDEditor" xml:space="preserve">
-    <value>Extended Rayman Designer editor</value>
-  </data>
-  <data name="Links_Tools_RayPlus" xml:space="preserve">
-    <value>Rayman Plus</value>
-  </data>
-  <data name="Links_Tools_RayTwol" xml:space="preserve">
-    <value>RayTwol</value>
-  </data>
   <data name="MoveBackups_BackupAlreadyExists" xml:space="preserve">
     <value>Back-ups zijn niet verplaatst. Er bestaat al een back-up in {0}</value>
   </data>
@@ -1416,6 +1338,18 @@ Opnieuw proberen?</value>
   <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
     <value>1.12 (Editie 1)</value>
   </data>
+  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
+    <value>1.20</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
+    <value>1.21</value>
+  </data>
+  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
+    <value>0.74</value>
+  </data>
+  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
+    <value>SVN Daum</value>
+  </data>
   <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
     <value>Installatie mislukt.</value>
   </data>
@@ -1481,5 +1415,838 @@ Opnieuw proberen?</value>
   </data>
   <data name="R2U_Translations_SlovakInfo" xml:space="preserve">
     <value>Slovak (Slowaaks) - door MixerX</value>
+  </data>
+  <data name="R2U_Translations_Original" xml:space="preserve">
+    <value>Origineel</value>
+  </data>
+  <data name="R2U_Translations_Irish" xml:space="preserve">
+    <value>Iers</value>
+  </data>
+  <data name="R2U_Translations_Swedish" xml:space="preserve">
+    <value>Zweeds</value>
+  </data>
+  <data name="R2U_Translations_Portuguese" xml:space="preserve">
+    <value>Portugees</value>
+  </data>
+  <data name="R2U_Translations_Slovak" xml:space="preserve">
+    <value>Slowaaks</value>
+  </data>
+  <data name="R2U_Translations_FilesNotFound" xml:space="preserve">
+    <value>De vereiste bestanden konden niet worden gevonden</value>
+  </data>
+  <data name="R2U_Translations_RevertTextures" xml:space="preserve">
+    <value>Vanwege aanpassingen in het bestand voor texturen door de vorige vertaling, is het aanbevolen het bestand te vervangen door de originele versie.</value>
+  </data>
+  <data name="R2U_Translations_ReplaceTextures" xml:space="preserve">
+    <value>Het is eventueel aanbevolen om ook het bestand voor texturen van het spel te vervangen door een aangepaste versie, opdat het volledige lettertype met alle tekens verkregen wordt voor deze vertaling.</value>
+  </data>
+  <data name="R2U_Translations_ReplaceTexturesHeader" xml:space="preserve">
+    <value>Bevestig vervanging texturen</value>
+  </data>
+  <data name="R2U_Translations_Success" xml:space="preserve">
+    <value>Alle bestanden zijn succesvol vervangen</value>
+  </data>
+  <data name="R2U_Translations_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het toepassen van het Rayman 2 hulpprogramma voor vertaling</value>
+  </data>
+  <data name="RLU_UbiRay_InvalidSaveDir" xml:space="preserve">
+    <value>Gelieve een geldige map voor opslaan selecteren</value>
+  </data>
+  <data name="RLU_UbiRay_Warning" xml:space="preserve">
+    <value>BELANGRIJK: Om dit hulpprogramma effectief te doorlopen, dien je het standaard Rayman kostuum geselecteerd te hebben als het huidige kostuum. Ga alleen verder als je zeker bent dat voorgaande geselecteerd is!</value>
+  </data>
+  <data name="RLU_UbiRay_CouldNotReadFile" xml:space="preserve">
+    <value>Kon save file niet lezen</value>
+  </data>
+  <data name="RLU_UbiRay_RaymanSkinNotFound" xml:space="preserve">
+    <value>Wees er zeker van dat het standaard Rayman kostuum is geselecteerd en probeer het nog eens!</value>
+  </data>
+  <data name="RLU_UbiRay_Success" xml:space="preserve">
+    <value>Je save file is succesvol gewijzigd door 'Ubi-Ray'</value>
+  </data>
+  <data name="ReadingBackupError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het lezen van de back-up voor {0}</value>
+  </data>
+  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
+    <value>Sommige bestanden konden niet hersteld worden. Controleer {0} &amp; {1} voor het herstellen van verloren bestanden.</value>
+  </data>
+  <data name="Download_OperationCanceling" xml:space="preserve">
+    <value>De bewerking wordt momenteel geannuleerd</value>
+  </data>
+  <data name="Download_OperationCancelingHeader" xml:space="preserve">
+    <value>Annuleerverzoek reeds ontvangen</value>
+  </data>
+  <data name="Download_Cancel" xml:space="preserve">
+    <value>Wil je het downloaden annuleren?</value>
+  </data>
+  <data name="Download_CancelHeader" xml:space="preserve">
+    <value>Beëindigen download</value>
+  </data>
+  <data name="Download_Canceled" xml:space="preserve">
+    <value>De downloadbewerking is geannuleerd</value>
+  </data>
+  <data name="Download_CanceledHeader" xml:space="preserve">
+    <value>Bewerking geannuleerd</value>
+  </data>
+  <data name="Download_Failed" xml:space="preserve">
+    <value>De downloadbewerking is mislukt</value>
+  </data>
+  <data name="Download_FailedHeader" xml:space="preserve">
+    <value>Bewerking mislukt</value>
+  </data>
+  <data name="Download_Success" xml:space="preserve">
+    <value>De bestanden zijn succesvol gedownload</value>
+  </data>
+  <data name="Download_SuccessHeader" xml:space="preserve">
+    <value>Downloaden voltooid</value>
+  </data>
+  <data name="AppNews_Title" xml:space="preserve">
+    <value>App Nieuws</value>
+  </data>
+  <data name="AppNews_Header" xml:space="preserve">
+    <value>Versiehistorie</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Doorgaan</value>
+  </data>
+  <data name="Download_Title" xml:space="preserve">
+    <value>Downloaden</value>
+  </data>
+  <data name="Download_TotalProgress" xml:space="preserve">
+    <value>Totale Voortgang</value>
+  </data>
+  <data name="Download_CurrentFileProgress" xml:space="preserve">
+    <value>Voortgang Huidig Bestand</value>
+  </data>
+  <data name="FirstLaunchInfo_Title" xml:space="preserve">
+    <value>Welkom bij het Rayman Control Panel</value>
+  </data>
+  <data name="FirstLaunchInfo_Header" xml:space="preserve">
+    <value>Welkom bij het Rayman Control Panel</value>
+  </data>
+  <data name="FirstLaunchInfo_Text" xml:space="preserve">
+    <value>Dit programma zorgt ervoor dat je op een snelle en gemakkelijke manier toegang krijgt tot alle geïnstalleerde Rayman games op je computer. Via hier kun je de games en hun configuratieprogramma's starten, de games direct configureren op basis van toegeovegde opties (zoals button mapping, breedbeeldondersteuning en meer) en kun je alle spelbestanden back-uppen en herstellen. Mis je een bepaalde Rayman game op je computer? Je kunt dan via de RCP gemakkelijk de beschikbare, digitale winkels benaderen om ze aan te schaffen, of gebruik de disk installer om een game vanaf een schijf te installeren. Om te beginnen, vink je de opties die je wilt hieronder aan en klik je op 'Doorgaan', voor het verkrijgen van het scherm met de spellen.</value>
+  </data>
+  <data name="GameOptions_UnsavedChanges" xml:space="preserve">
+    <value>De wijzigingen in je configuratie zijn niet opgeslagen. Wil je toch afsluiten en ze negeren?</value>
+  </data>
+  <data name="GameOptions_UnsavedChangesHeader" xml:space="preserve">
+    <value>Bevestig afsluiten</value>
+  </data>
+  <data name="GameOptions_Utilities" xml:space="preserve">
+    <value>Hulpprogramma's</value>
+  </data>
+  <data name="GameOptions_Options" xml:space="preserve">
+    <value>Opties</value>
+  </data>
+  <data name="GameOptions_CreateShortcut" xml:space="preserve">
+    <value>Snelkoppeling aanmaken</value>
+  </data>
+  <data name="GameOptions_Remove" xml:space="preserve">
+    <value>Verwijderen van programma</value>
+  </data>
+  <data name="DowngradeWarning" xml:space="preserve">
+    <value>Je gebruikt een oudere versie van het programma ({0}) in relatie tot de versie van de huidige app data ({1}). Dit is niet aanbevolen en kan compatibiliteitsproblemen veroorzaken. Deze kunnen verholpen worden door de app data van het programma te resetten.</value>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Downgrade gedetecteerd</value>
+  </data>
+  <data name="JumpListItemDescription" xml:space="preserve">
+    <value>Start {0}</value>
+  </data>
+  <data name="Help_RCP" xml:space="preserve">
+    <value>Rayman Control Panel</value>
+  </data>
+  <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
+    <value>Updates</value>
+  </data>
+  <data name="Help_RCP_Updates" xml:space="preserve">
+    <value>Dit programma controleert bij opstart standaard op updates, tenzij de optie uitgeschakeld is. Dit gebeurt op de achtergrond and kan een paar seconden in beslag nemen. Er kan ook handmatig op updates worden gecontroleerd via de Instellingen pagina.
+ 
+ Als er een fout plaatsvindt vanwege de update-service, kan de update handmatig worden gedownload via:
+ {0}</value>
+  </data>
+  <data name="Help_RCP_CompatibilityHeader" xml:space="preserve">
+    <value>Compatibiliteit</value>
+  </data>
+  <data name="Help_RCP_Compatibility" xml:space="preserve">
+    <value>De minimumvereiste versie van Windows is Vista, waarbij Windows 7 of hoger aanbevolen zijn voor het programma.</value>
+  </data>
+  <data name="Help_RCP_GameInstallerHeader" xml:space="preserve">
+    <value>Game Installer</value>
+  </data>
+  <data name="Help_RCP_GameInstaller" xml:space="preserve">
+    <value>Voor de spellen die geïnstalleerd kunnen worden vanaf een schijf, selecteer je de optie via het dropdown-menu van het spel. Rayman 2, Rayman M en Rayman Arena zijn momenteel de enige, ondersteunde games.
+ 
+ Tijdens de installatie dien je een map te kiezen voor de installatiebestanden. Het spel zal geïnstalleerd worden in een submap binnen de geselecteerde map. Kies je bijvoorbeeld om de game te installeren in C:\Ubisoft, dan zal het spel geïnstalleerd worden onder C:\Ubisoft\Rayman 2
+ 
+ In het geval van Rayman 2 zal de Installer het uitvoerbare bestand vervangen door het .exe-bestand van de GOG versie, om zo in staat te zijn het spel te starten zonder schijf. Dit wordt preventief gedaan tegen de veelvoorkomende schijffout, die normaal gesproken later tijdens het spel ontstaat.
+ 
+ Om één van de games te deïnstalleren via de Game Installer, dien je simpelweg de mappen en bestanden te verwijderen. Het spel zal niet meer zichtbaar zijn onder Geïnstalleerde Programma's, omdat er geen uninstaller aanwezig is.</value>
+  </data>
+  <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
+    <value>Back-up/Herstel</value>
+  </data>
+  <data name="Help_RCP_BackupRestore" xml:space="preserve">
+    <value>Het programma heeft een back-up en herstel feature voor alle ondersteunde spellen. De back-ups worden standaard in de map Documenten opgeslagen, maar de locatie kan aangepast worden via de instellingen.
+ 
+ De back-ups an sich worden altijd opgeslagen in de '{0}' submap. Het is niet aanbevolen deze bestanden handmatig te wijzigen.</value>
+  </data>
+  <data name="Help_RCP_AppDataHeader" xml:space="preserve">
+    <value>App Data locatie</value>
+  </data>
+  <data name="Help_RCP_AppData" xml:space="preserve">
+    <value>Het programma slaat zijn app data hoofdzakelijk op in de huidige gebruiker zijn lokale app data map, waarbij sommige instellingen opgeslagen worden in het register. Hieronder een lijst met alle locaties voor data-opslag:
+ 
+ • Belangrijkste applicatiedata - {0}
+ • Registerinstellingen - {1}
+ • Framework Registerinstellingen - {2}
+ • Tijdelijke bestanden - {3}</value>
+  </data>
+  <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
+    <value>Opstartargumenten</value>
+  </data>
+  <data name="Help_RCP_LaunchArgs" xml:space="preserve">
+    <value>"Het Rayman Control Panel ondersteunt verscheidene opstartargumenten, hoofdzakelijk bedoeld voor het debuggen van de applicatie. Onderstaand een complete lijst met beschikbare opstartargumenten. Het '-' teken dient altijd meegenomen te worden. De '{}' duiden erop dat een keuze variabele gebruikt kan worden, waardoor de '{}' niet meegenomen dienen te worden.
+ 
+ -reset (Reset alle app data voorafgaand aan het starten)
+ -install {filePath} (Verwijdert de Installer via het gespecificeerde pad - niet langer gebruikt vanaf versie 4.5.0)
+ -ul {userLevel} (stelt het gebruikersniveau in wanneer het raamwerk is gecreëerd)
+ -loglevel {loglevel} (stelt logniveau in; de standaardwaarde is 'Informatie')"</value>
+  </data>
+  <data name="Help_RCP_DebugHeader" xml:space="preserve">
+    <value>Debuggen</value>
+  </data>
+  <data name="Help_RCP_Debug" xml:space="preserve">
+    <value>Als een debugger gelinkt is aan het programma, dan zalde log viewer automatisch geopend worden. De log viewer kan tevens handmatig worden geopend via de Debug pagina zonder dat er een debugger gelinkt is. Als er geen debug gebruikersnivea is gekozen, kan het log nog steeds ingezien worden via het bestand waarnaar het schrijft; via het volgende pad:
+ {0}</value>
+  </data>
+  <data name="Help_Games" xml:space="preserve">
+    <value>Spellen</value>
+  </data>
+  <data name="Help_Games_General" xml:space="preserve">
+    <value>Algemeen</value>
+  </data>
+  <data name="Help_Games_General_GameNotLaunchingHeader" xml:space="preserve">
+    <value>Spel niet Gestart</value>
+  </data>
+  <data name="Help_Games_General_GameNotLaunching" xml:space="preserve">
+    <value>Hier de twee standaard stappen om te proberen als een spel niet wil starten:
+ 
+ *Start het spel als administrator:
+ De optie voor het starten van een programma als administrator kan gevonden worden in het contextmenu door rechts te klikken op het programma.
+ 
+ *Start het spel in compatibiliteitsmodus:
+ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigenschappen van het uitvoerbare bestand naar de compatibiliteitsopties. Voor veel ouderer spellen is het aanbevolen te kiezen voor Windows XP Service Pack 2 of 3.</value>
+  </data>
+  <data name="Help_Games_R1" xml:space="preserve">
+    <value>Rayman 1</value>
+  </data>
+  <data name="Help_Games_R1_EmulatorHeader" xml:space="preserve">
+    <value>MS-Dos Emulator</value>
+  </data>
+  <data name="Help_Games_R1_Emulator" xml:space="preserve">
+    <value>Rayman 1 en de meeste PC spin-offs (inclusief Rayman Designer, Rayman By His Fans en Rayman 60 Levels) zijn MS-DOS programma's en zijn daarom niet compatible met moderne versies van Windows. Als je ze wilt spelen, heb je een DOS-emulator nodig, zoals DosBox. Momenteel is DosBox de enige, ondersteunde emulator door het Rayman Control Panel.</value>
+  </data>
+  <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
+    <value>Installatie Mislukt</value>
+  </data>
+  <data name="Help_Games_R1_InstallationFailed" xml:space="preserve">
+    <value>Als een van de Rayman 1 gerelateerde installers een fout vertoont wanneer de installatie voltooid is, zal het de geïnstalleerde game verwijderen als je kiest voor Annuleren via de Installer. Om dit te voorkomen, forceer je het beëindigen van het installatieproces via Taakbeheer. Het spel zal dan hoogstwaarschijnlijk nog steeds geïnstalleerd zijn. Als er bepaalde bestanden missen, kopieer ze dan handmatig vanaf de schijf.</value>
+  </data>
+  <data name="Help_Games_R1_MapperHeader" xml:space="preserve">
+    <value>Rayman Designer Editor</value>
+  </data>
+  <data name="Help_Games_R1_Mapper" xml:space="preserve">
+    <value>Rayman Designer, ook bekend als Rayman Gold of Rayman's World, is de Rayman game die komt met de Mapper voor het ontwerpen van eigen levels. De Mapper is een normaal Windows .exe-bestand en kan gestart worden zonder emulator. Alle statische delen van een level worden ontworpen in het programma, terwijl alle zogenoemde 'events' aangemaakt worden via de Event Editor (gevonden in het spel zelf).</value>
+  </data>
+  <data name="Help_Games_R1_ImportMapsHeader" xml:space="preserve">
+    <value>Mappen Importeren</value>
+  </data>
+  <data name="Help_Games_R1_ImportMaps" xml:space="preserve">
+    <value>Het importeren van mappen wordt gedaan via de Mapper. Als er hierbij een fout plaatsvindt, kun je proberen het mapbestand te verplaatsen naar de RayKit maplocatie, om vervolgens het bestand vanaf hier te importeren.</value>
+  </data>
+  <data name="Help_Games_R2" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="Help_Games_R2_GameSpeedHeader" xml:space="preserve">
+    <value>Spel Wordt Te Snel Afgespeeld</value>
+  </data>
+  <data name="Help_Games_R2_GameSpeed" xml:space="preserve">
+    <value>Als Rayman 2 te snel wordt afgespeeld, gebruikmakende van nGlide, verander de verversingsfrequentie dan naar 120Hz. Dit dient zelfs gedaan te worden bij monitors die géén 120Hz ondersteunen.</value>
+  </data>
+  <data name="Help_Games_R2_FpsHeader" xml:space="preserve">
+    <value>60 vs. 30 fps</value>
+  </data>
+  <data name="Help_Games_R2_Fps" xml:space="preserve">
+    <value>Sommige delen van het spel werken wellicht niet als het spel op een snelheid van 60 fps wordt uitgevoerd. Belangrijkst te noemen issues zijn de bonus games, waar de tijdsverschillen het bijna onmogelijk maken te winnen, en het neveneffect dat ervoor kan zorgen dat je wellicht niet van Umber's hoofd kunt springen in the Sanctuary of Stone and Fire.</value>
+  </data>
+  <data name="Help_Games_R2_NoDiscHeader" xml:space="preserve">
+    <value>No Disc Fout</value>
+  </data>
+  <data name="Help_Games_R2_NoDisc" xml:space="preserve">
+    <value>Op fysieke kopieën van het spel bestaat er een issue, dat een CD-fout betreft, weergegeven tijdens het spel. Dit issue komt niet voor in de GOG-versie. Als het spel wordt geïnstalleerd via de Rayman Control Panel Installer, zal de game gepatcht worden, waardoor er geen schijfcheck meer plaats zal vinden en het issue niet meer voor komt.</value>
+  </data>
+  <data name="Help_Games_RMA" xml:space="preserve">
+    <value>Rayman M/Arena</value>
+  </data>
+  <data name="Help_Games_RMA_MissingTexturesHeader" xml:space="preserve">
+    <value>Ontbrekende Texturen</value>
+  </data>
+  <data name="Help_Games_RMA_MissingTextures" xml:space="preserve">
+    <value>Wordt er gebruikgemaakt van een Intel grafische kaart en ontbreken er texturen in het spel? Probeer dan 'Transform and Lightning' uit te schakelen.</value>
+  </data>
+  <data name="Help_Games_R3" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="Help_Games_RRR" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="Help_Games_RRR_EngineErrorHeader" xml:space="preserve">
+    <value>jade_enr.exe Fout</value>
+  </data>
+  <data name="Help_Games_RRR_EngineError" xml:space="preserve">
+    <value>Er is momenteel geen oplossing voor deze fout. Dit komt voor in alle versies - inclusief de GOG-versie - op sommige computers.</value>
+  </data>
+  <data name="Help_Games_RL" xml:space="preserve">
+    <value>Rayman Legends</value>
+  </data>
+  <data name="Help_Games_RL_LoadErrorHeader" xml:space="preserve">
+    <value>Fout tijdens het laden</value>
+  </data>
+  <data name="Help_Games_RL_LoadError" xml:space="preserve">
+    <value>Deze fout komt hoofdzakelijk voor op Windows 10 systemen, waarbij het spel niet in staat is een lees- of schrijfbewerking uit te voeren op de save file en/of het configuratiebestand van het spel. De belangrijkst te noemen oplossing voor dit probleem is, het toevoegen van Rayman Legends als een uitzondering via de Gecontroleerde Mappentoegang sectie van het ingebouwde Windows Beveiligingssysteem.</value>
+  </data>
+  <data name="Lang_English" xml:space="preserve">
+    <value>Engels</value>
+  </data>
+  <data name="Lang_German" xml:space="preserve">
+    <value>Duits</value>
+  </data>
+  <data name="Lang_French" xml:space="preserve">
+    <value>Frans</value>
+  </data>
+  <data name="Lang_Spanish" xml:space="preserve">
+    <value>Spaans</value>
+  </data>
+  <data name="Lang_Italian" xml:space="preserve">
+    <value>Italiaans</value>
+  </data>
+  <data name="Lang_Danish" xml:space="preserve">
+    <value>Deens</value>
+  </data>
+  <data name="Lang_Finnish" xml:space="preserve">
+    <value>Fins</value>
+  </data>
+  <data name="Lang_Norwegian" xml:space="preserve">
+    <value>Noors</value>
+  </data>
+  <data name="Lang_Swedish" xml:space="preserve">
+    <value>Zweeds</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3Borders" xml:space="preserve">
+    <value>4:3 randen</value>
+  </data>
+  <data name="Config_RRRScreenMode_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Rayman Control Panel</value>
+  </data>
+  <data name="About_Credits_Snagglebee" xml:space="preserve">
+    <value>Rayman PlayStation Soundtrack hulpprogramma</value>
+  </data>
+  <data name="About_Credits_ICUP321" xml:space="preserve">
+    <value>Spaanse programmavertaling</value>
+  </data>
+  <data name="About_Credits_OldClassicGamer" xml:space="preserve">
+    <value>Servische programmavertaling</value>
+  </data>
+  <data name="About_Credits_Pixelise" xml:space="preserve">
+    <value>Poolse programmavertaling</value>
+  </data>
+  <data name="About_Credits_PhilippJeindl" xml:space="preserve">
+    <value>Duitse programmavertaling</value>
+  </data>
+  <data name="About_Credits_432Hz" xml:space="preserve">
+    <value>Nederlandse programmavertaling, programmatests</value>
+  </data>
+  <data name="BrowseBox_Browse" xml:space="preserve">
+    <value>Browsen</value>
+  </data>
+  <data name="About_Discord" xml:space="preserve">
+    <value>Discord</value>
+  </data>
+  <data name="Help_AdditionalHelp" xml:space="preserve">
+    <value>Voor extra hulp, check de Discord server</value>
+  </data>
+  <data name="Settings_IncompleteTranslations" xml:space="preserve">
+    <value>Laat talen zien met incomplete vertalingen</value>
+  </data>
+  <data name="Backup_BackupAll" xml:space="preserve">
+    <value>Back-up Alles</value>
+  </data>
+  <data name="GameDisplay_RunAsAdmin" xml:space="preserve">
+    <value>Start als Admin</value>
+  </data>
+  <data name="Backup_ConfirmBackupAll" xml:space="preserve">
+    <value>Will je alle games back-uppen? Dit zal alle, eerder gemaakte back-ups vervangen. Doorgaan?</value>
+  </data>
+  <data name="Backup_ConfirmBackupAllHeader" xml:space="preserve">
+    <value>Bevestig Back-ups</value>
+  </data>
+  <data name="Backup_BackupAllSuccess" xml:space="preserve">
+    <value>Alle games zijn succesvol geback-upt</value>
+  </data>
+  <data name="Backup_BackupAllFailed" xml:space="preserve">
+    <value>{0}/{1} games zijn geback-upt</value>
+  </data>
+  <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
+    <value>Sommige games zijn niet geback-upt</value>
+  </data>
+  <data name="GameOptions_LaunchMode" xml:space="preserve">
+    <value>Opstartmodus</value>
+  </data>
+  <data name="GameOptions_LaunchModeInfo" xml:space="preserve">
+    <value>Dit bepaalt hoe de game gestart zal worden. Als de game binnen een emulator wordt uitgevoerd, zoals DOSBox, dan zal de opstartmodus worden toegepast op de emulator.</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsInvoker" xml:space="preserve">
+    <value>Standaard</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdminOption" xml:space="preserve">
+    <value>Als administrator (optioneel)</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdmin" xml:space="preserve">
+    <value>Als administrator</value>
+  </data>
+  <data name="GameOptions_Config" xml:space="preserve">
+    <value>Configuratie</value>
+  </data>
+  <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
+    <value>Animaties betreffen paginaovergangen en geresizede animaties voor de Games pagina</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsInvokerInfo" xml:space="preserve">
+    <value>Start de game altijd met dezelfde machtigingen als waarmee het Rayman Control Panel opgestart is</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdminOptionInfo" xml:space="preserve">
+    <value>Hetzelfde als Standaard, maar met de optie het spel als administrator te starten</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdminInfo" xml:space="preserve">
+    <value>Probeert het spel altijd als administrator te starten</value>
+  </data>
+  <data name="About_Steam" xml:space="preserve">
+    <value>Steam groep</value>
+  </data>
+  <data name="Config_SaveWarning" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijden het opslaan. Niet alle wijzigingen zijn opgeslagen.</value>
+  </data>
+  <data name="GameLink_R2dgVoodoo" xml:space="preserve">
+    <value>dgVoodoo</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
+    <value>1.00</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
+    <value>1.12 (Editie 2)</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
+    <value>1.12 (Editie 3)</value>
+  </data>
+  <data name="LinksPage_LinkStyleHeader" xml:space="preserve">
+    <value>Linkstijl</value>
+  </data>
+  <data name="LinksPage_LinkStyle_List" xml:space="preserve">
+    <value>Lijst</value>
+  </data>
+  <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
+    <value>Groep</value>
+  </data>
+  <data name="LinksPage_Refresh" xml:space="preserve">
+    <value>Verversen</value>
+  </data>
+  <data name="LinksPage_CommunityHeader" xml:space="preserve">
+    <value>Community</value>
+  </data>
+  <data name="LinksPage_ForumsHeader" xml:space="preserve">
+    <value>Forums</value>
+  </data>
+  <data name="LinksPage_ToolsHeader" xml:space="preserve">
+    <value>Mods/Tools</value>
+  </data>
+  <data name="LinksPage_LocalHeader" xml:space="preserve">
+    <value>Lokaal</value>
+  </data>
+  <data name="Settings_AdminInfo" xml:space="preserve">
+    <value>Deze feature vereist dat het programma als administrator wordt uitgevoerd</value>
+  </data>
+  <data name="Settings_ShowUnderInstalledPrograms" xml:space="preserve">
+    <value>Laat zien onder geïnstalleerde programma's</value>
+  </data>
+  <data name="Settings_ShowUnderInstalledProgramsInfo" xml:space="preserve">
+    <value>Als dit is ingeschakeld, zal het programma zichtbaar zijn onder de lijst met geïnstalleerde programma's op deze computer. Het is hierdoor mogelijk dat er administratorrechten vereist zijn tijdens een update, om zo de programma-informatie te kunnen updaten.</value>
+  </data>
+  <data name="Settings_ForceUpdates" xml:space="preserve">
+    <value>Forceer handmatige updates</value>
+  </data>
+  <data name="Settings_ShowUnderInstalledPrograms_UpdateError" xml:space="preserve">
+    <value>Het updaten van de programma-informatie onder Geïnstalleerde Programma's is mislukt. Probeer het opnieuw als administrator.</value>
+  </data>
+  <data name="Update_RunningUpdaterError" xml:space="preserve">
+    <value>De Updater kon niet gestart worden. Voor het handmatig downloaden van de laatste versie, ga je naar {0}.</value>
+  </data>
+  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
+    <value>Fout tijdens het uitvoeren van de Updater</value>
+  </data>
+  <data name="File_RegKeyNotFound" xml:space="preserve">
+    <value>De registersleutel kon niet gevonden worden</value>
+  </data>
+  <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
+    <value>Registersleutel niet gevonden</value>
+  </data>
+  <data name="File_OpenRegKeyError" xml:space="preserve">
+    <value>De sleutel kon niet benaderd worden</value>
+  </data>
+  <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
+    <value>Fout bij het benaderen van de sleutel</value>
+  </data>
+  <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
+    <value>Primair ubi.ini bestand</value>
+  </data>
+  <data name="Links_Local_SecondaryUbiIni" xml:space="preserve">
+    <value>Secundair ubi.ini bestand</value>
+  </data>
+  <data name="Links_Local_R2UbiIni" xml:space="preserve">
+    <value>Rayman 2 ubi.ini bestand</value>
+  </data>
+  <data name="Links_Local_DOSBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="Links_Local_DOSBoxConfig" xml:space="preserve">
+    <value>DOSBox configuratiebestand</value>
+  </data>
+  <data name="Links_Local_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="Links_Local_SteamGames" xml:space="preserve">
+    <value>Steam games</value>
+  </data>
+  <data name="Links_Local_GOGClient" xml:space="preserve">
+    <value>GOG Galaxy</value>
+  </data>
+  <data name="Links_Local_GOGGames" xml:space="preserve">
+    <value>GOG Galaxy games</value>
+  </data>
+  <data name="Links_Local_RRRRegSettings" xml:space="preserve">
+    <value>Rayman Raving Rabbids instellingen</value>
+  </data>
+  <data name="Links_Local_RORegSettings" xml:space="preserve">
+    <value>Rayman Origins instellingen</value>
+  </data>
+  <data name="Links_Local_RLRegSettings" xml:space="preserve">
+    <value>Rayman Legends instellingen</value>
+  </data>
+  <data name="Links_Local_nGlideRegSettings" xml:space="preserve">
+    <value>nGlide instellingen</value>
+  </data>
+  <data name="Links_Local_nGlide2RegSettings" xml:space="preserve">
+    <value>nGlide 2.0 instellingen</value>
+  </data>
+  <data name="Links_Local_AppData" xml:space="preserve">
+    <value>Gebruikersdata app</value>
+  </data>
+  <data name="Links_Local_TempDir" xml:space="preserve">
+    <value>Temp map app</value>
+  </data>
+  <data name="Links_Local_LogFile" xml:space="preserve">
+    <value>Logbestand</value>
+  </data>
+  <data name="Links_Local_Utilities" xml:space="preserve">
+    <value>Map hulpprogramma's</value>
+  </data>
+  <data name="Links_Local_RegAppData" xml:space="preserve">
+    <value>App data register</value>
+  </data>
+  <data name="Links_Community_RPC" xml:space="preserve">
+    <value>Rayman Pirate-Community</value>
+  </data>
+  <data name="Links_Community_RayWiki" xml:space="preserve">
+    <value>RayWiki</value>
+  </data>
+  <data name="Links_Community_RayTunes" xml:space="preserve">
+    <value>RayTunes</value>
+  </data>
+  <data name="Links_Community_RaySaves" xml:space="preserve">
+    <value>RaySaves</value>
+  </data>
+  <data name="Links_Community_RaymanCentral" xml:space="preserve">
+    <value>Rayman Central</value>
+  </data>
+  <data name="Links_Community_RaymanTogether" xml:space="preserve">
+    <value>Rayman Together</value>
+  </data>
+  <data name="Links_Community_raym_app" xml:space="preserve">
+    <value>raym.app</value>
+  </data>
+  <data name="Links_Community_Raymap" xml:space="preserve">
+    <value>Raymap</value>
+  </data>
+  <data name="Links_Community_Menezis_Browser" xml:space="preserve">
+    <value>Menezis (browser version)</value>
+  </data>
+  <data name="Links_Community_KMG" xml:space="preserve">
+    <value>KMG Associates - Rayman</value>
+  </data>
+  <data name="Links_Community_Fanpage" xml:space="preserve">
+    <value>Rayman Fanpage</value>
+  </data>
+  <data name="Links_Forums_RPC" xml:space="preserve">
+    <value>Pirate-Community</value>
+  </data>
+  <data name="Links_Forums_Ubisoft" xml:space="preserve">
+    <value>Ubisoft</value>
+  </data>
+  <data name="Links_Forums_GOG" xml:space="preserve">
+    <value>GOG</value>
+  </data>
+  <data name="Links_Forums_Steam_R2" xml:space="preserve">
+    <value>Steam - Rayman 2</value>
+  </data>
+  <data name="Links_Forums_Steam_RRR" xml:space="preserve">
+    <value>Steam - Rayman Raving Rabbids</value>
+  </data>
+  <data name="Links_Forums_Steam_RO" xml:space="preserve">
+    <value>Steam - Rayman Origins</value>
+  </data>
+  <data name="Links_Forums_Steam_RL" xml:space="preserve">
+    <value>Steam - Rayman Legends</value>
+  </data>
+  <data name="Links_Tools_RDEditor" xml:space="preserve">
+    <value>Extended Rayman Designer editor</value>
+  </data>
+  <data name="Links_Tools_RayPlus" xml:space="preserve">
+    <value>Rayman Plus</value>
+  </data>
+  <data name="Links_Tools_RayTwol" xml:space="preserve">
+    <value>RayTwol</value>
+  </data>
+  <data name="Links_Tools_R2Tools" xml:space="preserve">
+    <value>Rayman 2 Tools</value>
+  </data>
+  <data name="Links_Tools_R2Moonjump" xml:space="preserve">
+    <value>Rayman 2 GOG Moonjump</value>
+  </data>
+  <data name="Links_Tools_R2FunBox" xml:space="preserve">
+    <value>Rayman 2 Fun Box</value>
+  </data>
+  <data name="Links_Tools_BetterR3" xml:space="preserve">
+    <value>Better Rayman 3</value>
+  </data>
+  <data name="Links_Tools_R3GCTexturePack" xml:space="preserve">
+    <value>Rayman 3 (Dolphin Emulator) HD</value>
+  </data>
+  <data name="Links_OpenErrorNotFound" xml:space="preserve">
+    <value>Het link item kon niet geopend worden, omdat het niet gevonden werd</value>
+  </data>
+  <data name="Links_OpenErrorNotFoundHeader" xml:space="preserve">
+    <value>Ongeldig linkadres</value>
+  </data>
+  <data name="Window_MinimizeToTray" xml:space="preserve">
+    <value>Minimaliseer naar systeemvak</value>
+  </data>
+  <data name="TaskBarIcon_Open" xml:space="preserve">
+    <value>Openen</value>
+  </data>
+  <data name="TaskBarIcon_Close" xml:space="preserve">
+    <value>Sluiten</value>
+  </data>
+  <data name="LinksPageHeader" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>Een nieuwe bèta-update is beschikbaar om te downloaden. Nu downloaden?</value>
+  </data>
+  <data name="About_Uninstall" xml:space="preserve">
+    <value>Deïnstalleren</value>
+  </data>
+  <data name="About_ConfirmUninstall" xml:space="preserve">
+    <value>Weet je zeker dat je het Rayman Control Panel wilt deïnstalleren? Dit zal het .exe-bestand en alle app data van het programma verwijderen. Echter zal dit geen games deïnstalleren noch de back-ups en save files verwijderen. Sommige, toegepaste hulpprogramma's zouden nog beschikbaar kunnen zijn.</value>
+  </data>
+  <data name="About_ConfirmUninstallHeader" xml:space="preserve">
+    <value>Bevestig deïnstallatie</value>
+  </data>
+  <data name="About_UninstallFailed" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het uitvoeren van de Uninstaller. Je kunt de app data handmatig verwijderen, en deze kan gevonden worden via:
+ 
+{0}</value>
+  </data>
+  <data name="Settings_GetBetaUpdates" xml:space="preserve">
+    <value>Verkrijg bèta-updates</value>
+  </data>
+  <data name="UninstallRegKeyRequiresRefresh" xml:space="preserve">
+    <value>Vanwege het feit dat de staat van het programma wordt gewijzigd, moet het de programma-informatie updaten onder Geïnstalleerde Programma's. Dit vereist dat het programma wordt uitgevoerd als administrator. Wordt dit niet gedaan, dan zou de informatie onder Geïnstalleerde Programma's wel eens onnauwkeurig kunnen zijn.</value>
+  </data>
+  <data name="About_Credits_RayActivity" xml:space="preserve">
+    <value>Graphics, programmatests</value>
+  </data>
+  <data name="Backup_GOGSyncWarning" xml:space="preserve">
+    <value>Het is mogelijk dat het spel zijn save files gesynchroniseerd heeft via GOG Galaxy. Als dat het geval is, raakt het hulpprogramma voor back-ups en herstel de betreffende game niet, ook al lijkt dat zo, doordat de bewerking wel wordt voltooid.</value>
+  </data>
+  <data name="Backup_GOGSyncWarningHeader" xml:space="preserve">
+    <value>Back-up/Herstel waarschuwing</value>
+  </data>
+  <data name="About_BetaTag" xml:space="preserve">
+    <value>(BETA)</value>
+  </data>
+  <data name="AppNameAdmin" xml:space="preserve">
+    <value>Rayman Control Panel (Administrator)</value>
+  </data>
+  <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
+    <value>trj8p</value>
+    <comment>trj8p</comment>
+  </data>
+  <data name="Cheats_R1_99LivesInput2" xml:space="preserve">
+    <value>raylives</value>
+    <comment>raylives</comment>
+  </data>
+  <data name="Cheats_R1_FistPowerInput1" xml:space="preserve">
+    <value>2x2rmfmf</value>
+    <comment>2x2rmfmf</comment>
+  </data>
+  <data name="Cheats_R1_FistPowerInput2" xml:space="preserve">
+    <value>goldfist</value>
+    <comment>goldfist</comment>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput1" xml:space="preserve">
+    <value>en5gol2g</value>
+    <comment>en5gol2g</comment>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput2" xml:space="preserve">
+    <value>power</value>
+    <comment>power</comment>
+  </data>
+  <data name="Cheats_R1_FullHealthInput1" xml:space="preserve">
+    <value>kom0ogdk</value>
+    <comment>kom0ogdk</comment>
+  </data>
+  <data name="Cheats_R1_FullHealthInput2" xml:space="preserve">
+    <value>raypoint</value>
+    <comment>raypoint</comment>
+  </data>
+  <data name="Cheats_R1_10TingsInput1" xml:space="preserve">
+    <value>86e40g91</value>
+    <comment>86e40g91</comment>
+  </data>
+  <data name="Cheats_R1_10TingsInput2" xml:space="preserve">
+    <value>raywiz</value>
+    <comment>raywiz</comment>
+  </data>
+  <data name="Cheats_R1_SkipLevelInput1" xml:space="preserve">
+    <value>o8feh</value>
+    <comment>o8feh</comment>
+  </data>
+  <data name="Cheats_R1_SkipLevelInput2" xml:space="preserve">
+    <value>winmap</value>
+    <comment>winmap</comment>
+  </data>
+  <data name="Cheats_R1_100RefreshRateInput2" xml:space="preserve">
+    <value>freq10</value>
+    <comment>freq10</comment>
+  </data>
+  <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
+    <value>freq80</value>
+    <comment>freq80</comment>
+  </data>
+  <data name="Cheats_R1_AllPowersInput2" xml:space="preserve">
+    <value>power</value>
+    <comment>power</comment>
+  </data>
+  <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
+    <value>lens</value>
+    <comment>lens</comment>
+  </data>
+  <data name="Cheats_R1_AllLevelsInput1" xml:space="preserve">
+    <value>4ctrepfj</value>
+    <comment>4ctrepfj</comment>
+  </data>
+  <data name="Cheats_R1_AllLevelsInput2" xml:space="preserve">
+    <value>alworld</value>
+    <comment>alworld</comment>
+  </data>
+  <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
+    <value>b76b7081</value>
+    <comment>b76b7081</comment>
+  </data>
+  <data name="Cheats_R1_BreakoutInput2" xml:space="preserve">
+    <value>cbray</value>
+    <comment>cbray</comment>
+  </data>
+  <data name="Cheats_R2_FistUpgradeInput" xml:space="preserve">
+    <value>glowfist</value>
+    <comment>glowfist</comment>
+  </data>
+  <data name="Cheats_R2_RestoreHealthInput" xml:space="preserve">
+    <value>gimmelife</value>
+    <comment>gimmelife</comment>
+  </data>
+  <data name="Cheats_R2_5LumsInput" xml:space="preserve">
+    <value>gimmelumz</value>
+    <comment>gimmelumz</comment>
+  </data>
+  <data name="Cheats_R2_LevelSelectionInput" xml:space="preserve">
+    <value>gothere</value>
+    <comment>gothere</comment>
+  </data>
+  <data name="Cheats_R2_GrappleInput" xml:space="preserve">
+    <value>hangon</value>
+    <comment>hangon</comment>
+  </data>
+  <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
+    <value>NOMOVIES</value>
+    <comment>NOMOVIES</comment>
+  </data>
+  <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
+    <value>allvign</value>
+    <comment>allvign</comment>
+  </data>
+  <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
+    <value>nomoremurfy</value>
+    <comment>nomoremurfy</comment>
+  </data>
+  <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
+    <value>playjeff</value>
+    <comment>playjeff</comment>
+  </data>
+  <data name="Cheats_R2_MenezisInput" xml:space="preserve">
+    <value>shootemup</value>
+    <comment>shootemup</comment>
+  </data>
+  <data name="Cheats_RM3_SkipMovieInput" xml:space="preserve">
+    <value>esc</value>
+    <comment>esc</comment>
+  </data>
+  <data name="Cheats_RM3_ReverseMapInput" xml:space="preserve">
+    <value>reverse</value>
+    <comment>reverse</comment>
+  </data>
+  <data name="Help_Cheats" xml:space="preserve">
+    <value>Cheat Codes</value>
+  </data>
+  <data name="Help_Cheats_R1Header" xml:space="preserve">
+    <value>Rayman 1</value>
+  </data>
+  <data name="Help_Cheats_RDHeader" xml:space="preserve">
+    <value>Rayman Designer + Spin-Offs</value>
+  </data>
+  <data name="Help_Cheats_R2Header" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="Help_Cheats_RMAHeader" xml:space="preserve">
+    <value>Rayman M/Arena</value>
+  </data>
+  <data name="Help_Cheats_R3Header" xml:space="preserve">
+    <value>Rayman 3</value>
   </data>
 </root>

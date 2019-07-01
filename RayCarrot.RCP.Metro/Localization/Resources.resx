@@ -1629,7 +1629,7 @@ To get started, check the boxes you want below and press 'Continue' to get to th
     <value>Remove from program</value>
   </data>
   <data name="DowngradeWarning" xml:space="preserve">
-    <value>You are using an older version of the program {0} compared to the version of the current app data {1}. This is not recommended and may cause compatibility issues. These may be fixed by resetting the app data for this program.</value>
+    <value>You are using an older version of the program ({0}) compared to the version of the current app data ({1}). This is not recommended and may cause compatibility issues. These may be fixed by resetting the app data for this program.</value>
     <comment>Arguments:
 currentVersion
 lastVersion</comment>
@@ -1688,7 +1688,7 @@ backupFamilyName</comment>
     <value>App Data Location</value>
   </data>
   <data name="Help_RCP_AppData" xml:space="preserve">
-    <value>The program saves its app data mainly in the current user's local app data, with some settings stored in the Registry. Below is a complete list of the locations where data is stored.
+    <value>The program saves its app data mainly in the current user's local app data directory, with some settings stored in the Registry. Below is a complete list of the locations where data is stored.
 
 • Main application data - {0}
 • Registry Settings - {1}
@@ -1822,81 +1822,17 @@ Running an application in compatibility mode is done by selecting the option und
   <data name="Help_Cheats_R1Header" xml:space="preserve">
     <value>Rayman 1</value>
   </data>
-  <data name="Help_Cheats_R1" xml:space="preserve">
-    <value>• 99 lives  -  type trj8p or raylives or [TAB]bertrand during gameplay
-• All fist power-ups  -  type 2x2rmfmf or goldfist or [TAB]antoine during gameplay
-• All normal powers  -  type en5gol2g or power or [TAB]benoit during gameplay
-• Full health  -  type kom0ogdk or raypoint or [TAB]christ during gameplay
-• 10 added Tings  -  type 86e40g91 or raywiz or [TAB]jojo during gameplay
-• Skip current level section  -  type o8feh or winmap or [TAB]cyril during gameplay
-• Display hidden message  -  type [TAB]program during gameplay
-• Free movement  -  type [TAB];overay[BACKSPACE] during gameplay
-• 100MHz Refresh rate  -  type freq10 on the map
-• 80MHz Refresh rate  -  type freq80 on the map
-• All normal powers  -  type power or [TAB]benoit on the map
-• Lens effect  -  type lens on the map
-• Unlock all levels  -  type 4ctrepfj or alworld or [TAB]francois on the map
-• Enter Breakout minigame  -  type b76b7081 or cbray or [TAB]olivier on the map once Mr Dark's Dare has been completed
-• Enter random stage from Breakout minigame  -  type [TAB]cbrayal[BACKSPACE] on the map
-• Stage selection  -  type [TAB]alevel[BACKSPACE] on the map</value>
-  </data>
   <data name="Help_Cheats_RDHeader" xml:space="preserve">
     <value>Rayman Designer + Spin-Offs</value>
-  </data>
-  <data name="Help_Cheats_RD" xml:space="preserve">
-    <value>• 5 lives  -  type [TAB]lives05[BACKSPACE] during gameplay
-• 20 lives  -  type [TAB]lives20[BACKSPACE] during gameplay
-• 50 lives  -  type [TAB]lives50[BACKSPACE] during gameplay
-*All fist power-ups  -  type [TAB]goldens during gameplay
-• Finish level  -  type [TAB]finishing during gameplay
-• Full health  -  type [TAB]points during gameplay
-• Map number display  -  type [TAB]map[BACKSPACE] during gameplay
-• Free movement  -  type [TAB]moveray[BACKSPACE] during gameplay
-• Unlock all levels  -  type [TAB]openall[BACKSPACE] on the map</value>
   </data>
   <data name="Help_Cheats_R2Header" xml:space="preserve">
     <value>Rayman 2</value>
   </data>
-  <data name="Help_Cheats_R2" xml:space="preserve">
-    <value>• Upgrade magic fist  -  type glowfist on the pause screen
-• Restore health  -  type gimmelife on the pause screen
-• Gain 5 Yellow Lums  -  type gimmelumz on the pause screen
-• Go to any level  -  type gothere on the pause screen, select a level with the arrow keys and press enter
-• Unlock grappling power  -  type hangon on the pause screen
-• Gain maximum health  -  press and release the J key to the rhythm of the Rayman 2 theme
-• Enter bonus level without all Lums and Cages  -   press the A, Numpad 0, Q, W, Q, W in order followed by enter on the Access Denied screen
-*Skip cutscenes  -  type NOMOVIES on the pause screen
-• New loading screens  -  type ALLVIGN on the pause screen
-• Disable Murfy  -  type NOMOREMURFY on the pause screen
-• Access hidden area in Tomb of the Ancients  -  In the final part of the Tomb of the Ancients, stand on the third panel away from the entrance to the Technical Check-up where Rayman fights Clark. Type PLAYJEFF and jump on the crate to the hole in the wall.
-• Access Menezis  -  type SHOOTEMUP during the credits
-• Unknown  -  type GETELIX on the pause screen</value>
-  </data>
   <data name="Help_Cheats_RMAHeader" xml:space="preserve">
     <value>Rayman M/Arena</value>
   </data>
-  <data name="Help_Cheats_RMA" xml:space="preserve">
-    <value>• Skip cutscenes  -  type esc during the cutscene
-• Unlock all battle levels  -  enter ALLFISH as a profile name and press Shift + Ctrl + Alt
-• Unlock all race levels  -  enter ALLTRIBES as a profile name and press Shift + Ctrl + Alt
-• Unlock all levels  -  enter ALLRAYMANM as a profile name and press Shift + Ctrl + Alt
-• Unlock all characters  -  enter PUPPETS as a profile name and press Shift + Ctrl + Alt
-• Unlock all skins  -  enter CARNIVAL as a profile name and press Shift + Ctrl + Alt
-• Unlock all battle levels in mode 1  -  enter ARENAS as a profile name and press Shift + Ctrl + Alt
-• Unlock all race levels in mode 1  -  enter TRACKS as a profile name and press Shift + Ctrl + Alt
-• Unlock all levels in mode 1  -  enter FIELDS as a profile name and press Shift + Ctrl + Alt
-• Ragtime music in races  -  enter OLDTV as a profile name and press Shift + Ctrl + Alt
-• Reverse map  -  type reverse on the keyboard during gameplay
-
-• Music team:
-To activate it, enter race mode and pause the game. On the pause screen, hold L1 + R1 (or equivalent on the currently used controller), then press the optimize button. Five blue balls will appear at the bottom of the screen. Release everything and press Jump. The player should hear a high pitched "Ding" sound, and after 0.5 seconds, the first ball should turn yellow. As soon as the ball turns yellow, hold Jump. The second ball should then turn yellow. As soon as the second ball turns yellow, release Jump. The third ball should then turn yellow. As soon as the third ball turns yellow, hold Jump again. The fourth ball should then turn yellow. As soon as the fourth ball turns yellow, release Jump. The player should be taken to the "Music Mode" screen where the player will be able to choose "Music Team".</value>
-  </data>
   <data name="Help_Cheats_R3Header" xml:space="preserve">
     <value>Rayman 3</value>
-  </data>
-  <data name="Help_Cheats_R3" xml:space="preserve">
-    <value>• Skip cutscenes  -  type esc during the cutscene
-• Reverse map  -  type reverse on the keyboard during gameplay</value>
   </data>
   <data name="Lang_English" xml:space="preserve">
     <value>English</value>
@@ -2290,5 +2226,393 @@ appDataLocations</comment>
   </data>
   <data name="AppNameAdmin" xml:space="preserve">
     <value>Rayman Control Panel (Administrator)</value>
+  </data>
+  <data name="Cheats_Location_Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Cheats_Location_Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="Cheats_Location_Pause" xml:space="preserve">
+    <value>Pause screen</value>
+  </data>
+  <data name="Cheats_Location_AccessDenied" xml:space="preserve">
+    <value>Access Denied screen</value>
+  </data>
+  <data name="Cheats_Location_TotA3" xml:space="preserve">
+    <value>Tomb of the Ancients part 3, while standing on the third panel away from the entrance to the Technical Check-up where Rayman fights Clark</value>
+  </data>
+  <data name="Cheats_Location_Credits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="Cheats_Location_Cutscene" xml:space="preserve">
+    <value>Cutscene</value>
+  </data>
+  <data name="Cheats_R1" xml:space="preserve">
+    <value>Different cheat codes will work in different versions. Some versions support multiple cheat code types.</value>
+  </data>
+  <data name="Cheats_R1_99LivesTitle" xml:space="preserve">
+    <value>99 lives</value>
+  </data>
+  <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
+    <value>trj8p</value>
+  </data>
+  <data name="Cheats_R1_99LivesInput2" xml:space="preserve">
+    <value>raylives</value>
+  </data>
+  <data name="Cheats_R1_99LivesInput3" xml:space="preserve">
+    <value>[TAB]bertrand</value>
+  </data>
+  <data name="Cheats_R1_FistPowerTitle" xml:space="preserve">
+    <value>All fist power-ups</value>
+  </data>
+  <data name="Cheats_R1_FistPowerInput1" xml:space="preserve">
+    <value>2x2rmfmf</value>
+  </data>
+  <data name="Cheats_R1_FistPowerInput2" xml:space="preserve">
+    <value>goldfist</value>
+  </data>
+  <data name="Cheats_R1_FistPowerInput3" xml:space="preserve">
+    <value>[TAB]antoine</value>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsTitle" xml:space="preserve">
+    <value>All normal power-ups</value>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput1" xml:space="preserve">
+    <value>en5gol2g</value>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput2" xml:space="preserve">
+    <value>power</value>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput3" xml:space="preserve">
+    <value>[TAB]benoit</value>
+  </data>
+  <data name="Cheats_R1_FullHealthTitle" xml:space="preserve">
+    <value>Full health</value>
+  </data>
+  <data name="Cheats_R1_FullHealthInput1" xml:space="preserve">
+    <value>kom0ogdk</value>
+  </data>
+  <data name="Cheats_R1_FullHealthInput2" xml:space="preserve">
+    <value>raypoint</value>
+  </data>
+  <data name="Cheats_R1_FullHealthInput3" xml:space="preserve">
+    <value>[TAB]christ</value>
+  </data>
+  <data name="Cheats_R1_10TingsTitle" xml:space="preserve">
+    <value>10 added Tings</value>
+  </data>
+  <data name="Cheats_R1_10TingsInput1" xml:space="preserve">
+    <value>86e40g91</value>
+  </data>
+  <data name="Cheats_R1_10TingsInput2" xml:space="preserve">
+    <value>raywiz</value>
+  </data>
+  <data name="Cheats_R1_10TingsInput3" xml:space="preserve">
+    <value>[TAB]jojo</value>
+  </data>
+  <data name="Cheats_R1_SkipLevelTitle" xml:space="preserve">
+    <value>Skip level section</value>
+  </data>
+  <data name="Cheats_R1_SkipLevelInput1" xml:space="preserve">
+    <value>o8feh</value>
+  </data>
+  <data name="Cheats_R1_SkipLevelInput2" xml:space="preserve">
+    <value>winmap</value>
+  </data>
+  <data name="Cheats_R1_SkipLevelInput3" xml:space="preserve">
+    <value>[TAB]cyril</value>
+  </data>
+  <data name="Cheats_R1_HiddenMessageTitle" xml:space="preserve">
+    <value>Display hidden message</value>
+  </data>
+  <data name="Cheats_R1_HiddenMessageInput3" xml:space="preserve">
+    <value>[TAB]program</value>
+  </data>
+  <data name="Cheats_R1_FreeMovementTitle" xml:space="preserve">
+    <value>Free movement</value>
+  </data>
+  <data name="Cheats_R1_FreeMovementInput3" xml:space="preserve">
+    <value>[TAB];overay[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_R1_100RefreshRateTitle" xml:space="preserve">
+    <value>100MHz Refresh rate</value>
+  </data>
+  <data name="Cheats_R1_100RefreshRateInput2" xml:space="preserve">
+    <value>freq10</value>
+  </data>
+  <data name="Cheats_R1_80RefreshRateTitle" xml:space="preserve">
+    <value>80MHz Refresh rate</value>
+  </data>
+  <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
+    <value>freq80</value>
+  </data>
+  <data name="Cheats_R1_AllPowersTitle" xml:space="preserve">
+    <value>All normal powers</value>
+  </data>
+  <data name="Cheats_R1_AllPowersInput2" xml:space="preserve">
+    <value>power</value>
+  </data>
+  <data name="Cheats_R1_AllPowersInput3" xml:space="preserve">
+    <value>[TAB]benoit</value>
+  </data>
+  <data name="Cheats_R1_LensEffectTitle" xml:space="preserve">
+    <value>Lens effect</value>
+  </data>
+  <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
+    <value>lens</value>
+  </data>
+  <data name="Cheats_R1_AllLevelsTitle" xml:space="preserve">
+    <value>Unlock all levels</value>
+  </data>
+  <data name="Cheats_R1_AllLevelsInput1" xml:space="preserve">
+    <value>4ctrepfj</value>
+  </data>
+  <data name="Cheats_R1_AllLevelsInput2" xml:space="preserve">
+    <value>alworld</value>
+  </data>
+  <data name="Cheats_R1_AllLevelsInput3" xml:space="preserve">
+    <value>[TAB]francois</value>
+  </data>
+  <data name="Cheats_R1_BreakoutTitle" xml:space="preserve">
+    <value>Enter Breakout minigame (requires Mr Dark's Dare to have been completed)</value>
+  </data>
+  <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
+    <value>b76b7081</value>
+  </data>
+  <data name="Cheats_R1_BreakoutInput2" xml:space="preserve">
+    <value>cbray</value>
+  </data>
+  <data name="Cheats_R1_BreakoutInput3" xml:space="preserve">
+    <value>[TAB]olivier</value>
+  </data>
+  <data name="Cheats_R1_BreakoutStageTitle" xml:space="preserve">
+    <value>Enter random stage from Breakout minigame</value>
+  </data>
+  <data name="Cheats_R1_BreakoutStageInput3" xml:space="preserve">
+    <value>[TAB]cbrayal[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_R1_SelectStageTitle" xml:space="preserve">
+    <value>Stage selection</value>
+  </data>
+  <data name="Cheats_R1_SelectStageInput3" xml:space="preserve">
+    <value>[TAB]alevel[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_5LivesTitle" xml:space="preserve">
+    <value>5 lives</value>
+  </data>
+  <data name="Cheats_RD_5LivesInput" xml:space="preserve">
+    <value>[TAB]lives05[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_20LivesTitle" xml:space="preserve">
+    <value>20 lives</value>
+  </data>
+  <data name="Cheats_RD_20LivesInput" xml:space="preserve">
+    <value>[TAB]lives20[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_50LivesTitle" xml:space="preserve">
+    <value>50 lives</value>
+  </data>
+  <data name="Cheats_RD_50LivesInput" xml:space="preserve">
+    <value>[TAB]lives50[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_FistPowerTitle" xml:space="preserve">
+    <value>All fist power-ups</value>
+  </data>
+  <data name="Cheats_RD_FistPowerInput" xml:space="preserve">
+    <value>[TAB]goldens</value>
+  </data>
+  <data name="Cheats_RD_FinishLevelTitle" xml:space="preserve">
+    <value>Finish level</value>
+  </data>
+  <data name="Cheats_RD_FinishLevelInput" xml:space="preserve">
+    <value>[TAB]finishing</value>
+  </data>
+  <data name="Cheats_RD_FullHealthTitle" xml:space="preserve">
+    <value>Full health</value>
+  </data>
+  <data name="Cheats_RD_FullHealthInput" xml:space="preserve">
+    <value>[TAB]points</value>
+  </data>
+  <data name="Cheats_RD_MapIndexTitle" xml:space="preserve">
+    <value>Display map index</value>
+  </data>
+  <data name="Cheats_RD_MapIndexInput" xml:space="preserve">
+    <value>[TAB]map[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_FreeMovementTitle" xml:space="preserve">
+    <value>Free movement</value>
+  </data>
+  <data name="Cheats_RD_FreeMovementInput" xml:space="preserve">
+    <value>[TAB]moveray[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_AllLevelsTitle" xml:space="preserve">
+    <value>Unlock all levels</value>
+  </data>
+  <data name="Cheats_RD_AllLevelsInput" xml:space="preserve">
+    <value>[TAB]openall[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_R2_FistUpgradeTitle" xml:space="preserve">
+    <value>Upgrade magic fist</value>
+  </data>
+  <data name="Cheats_R2_FistUpgradeInput" xml:space="preserve">
+    <value>glowfist</value>
+  </data>
+  <data name="Cheats_R2_RestoreHealthTitle" xml:space="preserve">
+    <value>Restore health</value>
+  </data>
+  <data name="Cheats_R2_RestoreHealthInput" xml:space="preserve">
+    <value>gimmelife</value>
+  </data>
+  <data name="Cheats_R2_5LumsTitle" xml:space="preserve">
+    <value>Gain 5 Yellow Lums</value>
+  </data>
+  <data name="Cheats_R2_5LumsInput" xml:space="preserve">
+    <value>gimmelumz</value>
+  </data>
+  <data name="Cheats_R2_LevelSelectionTitle" xml:space="preserve">
+    <value>Go to any level</value>
+  </data>
+  <data name="Cheats_R2_LevelSelectionInput" xml:space="preserve">
+    <value>gothere</value>
+  </data>
+  <data name="Cheats_R2_GrappleTitle" xml:space="preserve">
+    <value>Unlock grappling power</value>
+  </data>
+  <data name="Cheats_R2_GrappleInput" xml:space="preserve">
+    <value>hangon</value>
+  </data>
+  <data name="Cheats_R2_MaxHealthTitle" xml:space="preserve">
+    <value>Gain maximum health</value>
+  </data>
+  <data name="Cheats_R2_MaxHealthInput" xml:space="preserve">
+    <value>press and release the J key to the rhythm of the Rayman 2 theme</value>
+  </data>
+  <data name="Cheats_R2_BonusLevelTitle" xml:space="preserve">
+    <value>Enter bonus level without all Lums and Cages</value>
+  </data>
+  <data name="Cheats_R2_BonusLevelInput" xml:space="preserve">
+    <value>A[NUMPAD 0]QWQW[ENTER]</value>
+  </data>
+  <data name="Cheats_R2_SkipMoviesTitle" xml:space="preserve">
+    <value>Skip cutscenes</value>
+  </data>
+  <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
+    <value>nomovies</value>
+  </data>
+  <data name="Cheats_R2_LoadingScreensTitle" xml:space="preserve">
+    <value>New loading screens</value>
+  </data>
+  <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
+    <value>allvign</value>
+  </data>
+  <data name="Cheats_R2_NoMurfyTitle" xml:space="preserve">
+    <value>Disable Murfy</value>
+  </data>
+  <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
+    <value>nomoremurfy</value>
+  </data>
+  <data name="Cheats_R2_TotASecretTitle" xml:space="preserve">
+    <value>Access hidden area in Tomb of the Ancients</value>
+  </data>
+  <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
+    <value>playjeff</value>
+  </data>
+  <data name="Cheats_R2_MenezisTitle" xml:space="preserve">
+    <value>Access Menezis</value>
+  </data>
+  <data name="Cheats_R2_MenezisInput" xml:space="preserve">
+    <value>shootemup</value>
+  </data>
+  <data name="Cheats_RM" xml:space="preserve">
+    <value>Music team:
+To activate it, enter race mode and pause the game. On the pause screen, hold L1 + R1 (or equivalent on the currently used controller), then press the optimize button. Five blue balls will appear at the bottom of the screen. Release alll buttons and press jump. The player should hear a high pitched "ding" sound, and after 0.5 seconds, the first ball should turn yellow. As soon as the ball turns yellow, hold jump. The second ball should then turn yellow. As soon as the second ball turns yellow, release jump. The third ball should then turn yellow. As soon as the third ball turns yellow, hold jump again. The fourth ball should then turn yellow. As soon as the fourth ball turns yellow, release jump. The player should be taken to the "Music Mode" screen where the player will be able to choose "Music Team".</value>
+  </data>
+  <data name="Cheats_RM3_SkipMovieTitle" xml:space="preserve">
+    <value>Skip cutscenes</value>
+  </data>
+  <data name="Cheats_RM3_SkipMovieInput" xml:space="preserve">
+    <value>esc</value>
+  </data>
+  <data name="Cheats_RM3_ReverseMapTitle" xml:space="preserve">
+    <value>Reverse map</value>
+  </data>
+  <data name="Cheats_RM3_ReverseMapInput" xml:space="preserve">
+    <value>reverse</value>
+  </data>
+  <data name="Cheats_RM_UnlockBattlesTitle" xml:space="preserve">
+    <value>Unlock all battle levels</value>
+  </data>
+  <data name="Cheats_RM_UnlockBattlesInput" xml:space="preserve">
+    <value>Enter ALLFISH as a profile name and press Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_UnlockRacesTitle" xml:space="preserve">
+    <value>Unlock all race levels</value>
+  </data>
+  <data name="Cheats_RM_UnlockRacesInput" xml:space="preserve">
+    <value>Enter ALLTRIBES as a profile name and press Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_UnlockAllTitle" xml:space="preserve">
+    <value>Unlock all levels</value>
+  </data>
+  <data name="Cheats_RM_UnlockAllInput" xml:space="preserve">
+    <value>Enter ALLRAYMANM as a profile name and press Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_AllCharactersTitle" xml:space="preserve">
+    <value>Unlock all characters</value>
+  </data>
+  <data name="Cheats_RM_AllCharactersInput" xml:space="preserve">
+    <value>Enter PUPPETS as a profile name and press Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_AllSkinsTitle" xml:space="preserve">
+    <value>Unlock all skins</value>
+  </data>
+  <data name="Cheats_RM_AllSkinsInput" xml:space="preserve">
+    <value>Enter CARNIVAL as a profile name and press Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_Battle1Title" xml:space="preserve">
+    <value>Unlock all battle levels in mode 1</value>
+  </data>
+  <data name="Cheats_RM_Battle1Input" xml:space="preserve">
+    <value>Enter ARENAS as a profile name and press Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_Race1Title" xml:space="preserve">
+    <value>Unlock all race levels in mode 1</value>
+  </data>
+  <data name="Cheats_RM_Race1Input" xml:space="preserve">
+    <value>Enter TRACKS as a profile name and press Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_Levels1Title" xml:space="preserve">
+    <value>Unlock all levels in mode 1</value>
+  </data>
+  <data name="Cheats_RM_Levels1Input" xml:space="preserve">
+    <value>Enter FIELDS as a profile name and press Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_RagtimeMusicTitle" xml:space="preserve">
+    <value>Ragtime music in races</value>
+  </data>
+  <data name="Cheats_RM_RagtimeMusicInput" xml:space="preserve">
+    <value>Enter OLDTV as a profile name and press Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_Location_ProfileName" xml:space="preserve">
+    <value>Profile name</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyleHeader" xml:space="preserve">
+    <value>Button alignment</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyle_Left" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyle_Stretch" xml:space="preserve">
+    <value>Stretch</value>
+  </data>
+  <data name="LinksPage_Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="Installer_DirMissingWritePermission" xml:space="preserve">
+    <value>Access was denied to the selected install location. Select another location or run the program as administrator.</value>
+  </data>
+  <data name="Installer_DirMissingWritePermissionHeader" xml:space="preserve">
+    <value>Access denied</value>
   </data>
 </root>

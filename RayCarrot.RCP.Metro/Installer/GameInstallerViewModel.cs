@@ -234,6 +234,13 @@ namespace RayCarrot.RCP.Metro
                 return;
             }
 
+            // Make sure write permission is granted to the selected directory
+            if (!RCFRCP.File.CheckDirectoryWriteAccess(InstallDir))
+            {
+                await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_DirMissingWritePermission, Resources.Installer_DirMissingWritePermissionHeader, MessageType.Error);
+                return;
+            }
+
             try
             {
                 // Flag that the installer is running

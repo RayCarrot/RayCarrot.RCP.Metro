@@ -19,7 +19,7 @@ namespace RayCarrot.RCP.Metro {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -618,6 +618,1114 @@ namespace RayCarrot.RCP.Metro {
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access Denied screen.
+        /// </summary>
+        public static string Cheats_Location_AccessDenied {
+            get {
+                return ResourceManager.GetString("Cheats_Location_AccessDenied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credits.
+        /// </summary>
+        public static string Cheats_Location_Credits {
+            get {
+                return ResourceManager.GetString("Cheats_Location_Credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cutscene.
+        /// </summary>
+        public static string Cheats_Location_Cutscene {
+            get {
+                return ResourceManager.GetString("Cheats_Location_Cutscene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level.
+        /// </summary>
+        public static string Cheats_Location_Level {
+            get {
+                return ResourceManager.GetString("Cheats_Location_Level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map.
+        /// </summary>
+        public static string Cheats_Location_Map {
+            get {
+                return ResourceManager.GetString("Cheats_Location_Map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pause screen.
+        /// </summary>
+        public static string Cheats_Location_Pause {
+            get {
+                return ResourceManager.GetString("Cheats_Location_Pause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile name.
+        /// </summary>
+        public static string Cheats_Location_ProfileName {
+            get {
+                return ResourceManager.GetString("Cheats_Location_ProfileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tomb of the Ancients part 3, while standing on the third panel away from the entrance to the Technical Check-up where Rayman fights Clark.
+        /// </summary>
+        public static string Cheats_Location_TotA3 {
+            get {
+                return ResourceManager.GetString("Cheats_Location_TotA3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Different cheat codes will work in different versions. Some versions support multiple cheat code types..
+        /// </summary>
+        public static string Cheats_R1 {
+            get {
+                return ResourceManager.GetString("Cheats_R1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to freq10.
+        /// </summary>
+        public static string Cheats_R1_100RefreshRateInput2 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_100RefreshRateInput2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 100MHz Refresh rate.
+        /// </summary>
+        public static string Cheats_R1_100RefreshRateTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_100RefreshRateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 86e40g91.
+        /// </summary>
+        public static string Cheats_R1_10TingsInput1 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_10TingsInput1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to raywiz.
+        /// </summary>
+        public static string Cheats_R1_10TingsInput2 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_10TingsInput2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]jojo.
+        /// </summary>
+        public static string Cheats_R1_10TingsInput3 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_10TingsInput3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10 added Tings.
+        /// </summary>
+        public static string Cheats_R1_10TingsTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_10TingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to freq80.
+        /// </summary>
+        public static string Cheats_R1_80RefreshRateInput2 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_80RefreshRateInput2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 80MHz Refresh rate.
+        /// </summary>
+        public static string Cheats_R1_80RefreshRateTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_80RefreshRateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to trj8p.
+        /// </summary>
+        public static string Cheats_R1_99LivesInput1 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_99LivesInput1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to raylives.
+        /// </summary>
+        public static string Cheats_R1_99LivesInput2 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_99LivesInput2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]bertrand.
+        /// </summary>
+        public static string Cheats_R1_99LivesInput3 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_99LivesInput3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 99 lives.
+        /// </summary>
+        public static string Cheats_R1_99LivesTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_99LivesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4ctrepfj.
+        /// </summary>
+        public static string Cheats_R1_AllLevelsInput1 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_AllLevelsInput1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to alworld.
+        /// </summary>
+        public static string Cheats_R1_AllLevelsInput2 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_AllLevelsInput2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]francois.
+        /// </summary>
+        public static string Cheats_R1_AllLevelsInput3 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_AllLevelsInput3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock all levels.
+        /// </summary>
+        public static string Cheats_R1_AllLevelsTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_AllLevelsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to power.
+        /// </summary>
+        public static string Cheats_R1_AllPowersInput2 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_AllPowersInput2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]benoit.
+        /// </summary>
+        public static string Cheats_R1_AllPowersInput3 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_AllPowersInput3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All normal powers.
+        /// </summary>
+        public static string Cheats_R1_AllPowersTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_AllPowersTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to en5gol2g.
+        /// </summary>
+        public static string Cheats_R1_AllPowerUpsInput1 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_AllPowerUpsInput1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to power.
+        /// </summary>
+        public static string Cheats_R1_AllPowerUpsInput2 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_AllPowerUpsInput2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]benoit.
+        /// </summary>
+        public static string Cheats_R1_AllPowerUpsInput3 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_AllPowerUpsInput3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All normal power-ups.
+        /// </summary>
+        public static string Cheats_R1_AllPowerUpsTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_AllPowerUpsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to b76b7081.
+        /// </summary>
+        public static string Cheats_R1_BreakoutInput1 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_BreakoutInput1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cbray.
+        /// </summary>
+        public static string Cheats_R1_BreakoutInput2 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_BreakoutInput2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]olivier.
+        /// </summary>
+        public static string Cheats_R1_BreakoutInput3 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_BreakoutInput3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]cbrayal[BACKSPACE].
+        /// </summary>
+        public static string Cheats_R1_BreakoutStageInput3 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_BreakoutStageInput3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter random stage from Breakout minigame.
+        /// </summary>
+        public static string Cheats_R1_BreakoutStageTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_BreakoutStageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Breakout minigame (requires Mr Dark&apos;s Dare to have been completed).
+        /// </summary>
+        public static string Cheats_R1_BreakoutTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_BreakoutTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2x2rmfmf.
+        /// </summary>
+        public static string Cheats_R1_FistPowerInput1 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_FistPowerInput1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to goldfist.
+        /// </summary>
+        public static string Cheats_R1_FistPowerInput2 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_FistPowerInput2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]antoine.
+        /// </summary>
+        public static string Cheats_R1_FistPowerInput3 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_FistPowerInput3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All fist power-ups.
+        /// </summary>
+        public static string Cheats_R1_FistPowerTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_FistPowerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB];overay[BACKSPACE].
+        /// </summary>
+        public static string Cheats_R1_FreeMovementInput3 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_FreeMovementInput3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Free movement.
+        /// </summary>
+        public static string Cheats_R1_FreeMovementTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_FreeMovementTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to kom0ogdk.
+        /// </summary>
+        public static string Cheats_R1_FullHealthInput1 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_FullHealthInput1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to raypoint.
+        /// </summary>
+        public static string Cheats_R1_FullHealthInput2 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_FullHealthInput2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]christ.
+        /// </summary>
+        public static string Cheats_R1_FullHealthInput3 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_FullHealthInput3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full health.
+        /// </summary>
+        public static string Cheats_R1_FullHealthTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_FullHealthTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]program.
+        /// </summary>
+        public static string Cheats_R1_HiddenMessageInput3 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_HiddenMessageInput3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display hidden message.
+        /// </summary>
+        public static string Cheats_R1_HiddenMessageTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_HiddenMessageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to lens.
+        /// </summary>
+        public static string Cheats_R1_LensEffectInput2 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_LensEffectInput2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lens effect.
+        /// </summary>
+        public static string Cheats_R1_LensEffectTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_LensEffectTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]alevel[BACKSPACE].
+        /// </summary>
+        public static string Cheats_R1_SelectStageInput3 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_SelectStageInput3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stage selection.
+        /// </summary>
+        public static string Cheats_R1_SelectStageTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_SelectStageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to o8feh.
+        /// </summary>
+        public static string Cheats_R1_SkipLevelInput1 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_SkipLevelInput1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to winmap.
+        /// </summary>
+        public static string Cheats_R1_SkipLevelInput2 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_SkipLevelInput2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]cyril.
+        /// </summary>
+        public static string Cheats_R1_SkipLevelInput3 {
+            get {
+                return ResourceManager.GetString("Cheats_R1_SkipLevelInput3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip level section.
+        /// </summary>
+        public static string Cheats_R1_SkipLevelTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R1_SkipLevelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gimmelumz.
+        /// </summary>
+        public static string Cheats_R2_5LumsInput {
+            get {
+                return ResourceManager.GetString("Cheats_R2_5LumsInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gain 5 Yellow Lums.
+        /// </summary>
+        public static string Cheats_R2_5LumsTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R2_5LumsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A[NUMPAD 0]QWQW[ENTER].
+        /// </summary>
+        public static string Cheats_R2_BonusLevelInput {
+            get {
+                return ResourceManager.GetString("Cheats_R2_BonusLevelInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter bonus level without all Lums and Cages.
+        /// </summary>
+        public static string Cheats_R2_BonusLevelTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R2_BonusLevelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to glowfist.
+        /// </summary>
+        public static string Cheats_R2_FistUpgradeInput {
+            get {
+                return ResourceManager.GetString("Cheats_R2_FistUpgradeInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgrade magic fist.
+        /// </summary>
+        public static string Cheats_R2_FistUpgradeTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R2_FistUpgradeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hangon.
+        /// </summary>
+        public static string Cheats_R2_GrappleInput {
+            get {
+                return ResourceManager.GetString("Cheats_R2_GrappleInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock grappling power.
+        /// </summary>
+        public static string Cheats_R2_GrappleTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R2_GrappleTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gothere.
+        /// </summary>
+        public static string Cheats_R2_LevelSelectionInput {
+            get {
+                return ResourceManager.GetString("Cheats_R2_LevelSelectionInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to any level.
+        /// </summary>
+        public static string Cheats_R2_LevelSelectionTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R2_LevelSelectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to allvign.
+        /// </summary>
+        public static string Cheats_R2_LoadingScreensInput {
+            get {
+                return ResourceManager.GetString("Cheats_R2_LoadingScreensInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New loading screens.
+        /// </summary>
+        public static string Cheats_R2_LoadingScreensTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R2_LoadingScreensTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to press and release the J key to the rhythm of the Rayman 2 theme.
+        /// </summary>
+        public static string Cheats_R2_MaxHealthInput {
+            get {
+                return ResourceManager.GetString("Cheats_R2_MaxHealthInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gain maximum health.
+        /// </summary>
+        public static string Cheats_R2_MaxHealthTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R2_MaxHealthTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to shootemup.
+        /// </summary>
+        public static string Cheats_R2_MenezisInput {
+            get {
+                return ResourceManager.GetString("Cheats_R2_MenezisInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access Menezis.
+        /// </summary>
+        public static string Cheats_R2_MenezisTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R2_MenezisTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nomoremurfy.
+        /// </summary>
+        public static string Cheats_R2_NoMurfyInput {
+            get {
+                return ResourceManager.GetString("Cheats_R2_NoMurfyInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable Murfy.
+        /// </summary>
+        public static string Cheats_R2_NoMurfyTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R2_NoMurfyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to gimmelife.
+        /// </summary>
+        public static string Cheats_R2_RestoreHealthInput {
+            get {
+                return ResourceManager.GetString("Cheats_R2_RestoreHealthInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore health.
+        /// </summary>
+        public static string Cheats_R2_RestoreHealthTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R2_RestoreHealthTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nomovies.
+        /// </summary>
+        public static string Cheats_R2_SkipMoviesInput {
+            get {
+                return ResourceManager.GetString("Cheats_R2_SkipMoviesInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip cutscenes.
+        /// </summary>
+        public static string Cheats_R2_SkipMoviesTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R2_SkipMoviesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to playjeff.
+        /// </summary>
+        public static string Cheats_R2_TotASecretInput {
+            get {
+                return ResourceManager.GetString("Cheats_R2_TotASecretInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access hidden area in Tomb of the Ancients.
+        /// </summary>
+        public static string Cheats_R2_TotASecretTitle {
+            get {
+                return ResourceManager.GetString("Cheats_R2_TotASecretTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]lives20[BACKSPACE].
+        /// </summary>
+        public static string Cheats_RD_20LivesInput {
+            get {
+                return ResourceManager.GetString("Cheats_RD_20LivesInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 20 lives.
+        /// </summary>
+        public static string Cheats_RD_20LivesTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RD_20LivesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]lives50[BACKSPACE].
+        /// </summary>
+        public static string Cheats_RD_50LivesInput {
+            get {
+                return ResourceManager.GetString("Cheats_RD_50LivesInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 50 lives.
+        /// </summary>
+        public static string Cheats_RD_50LivesTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RD_50LivesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]lives05[BACKSPACE].
+        /// </summary>
+        public static string Cheats_RD_5LivesInput {
+            get {
+                return ResourceManager.GetString("Cheats_RD_5LivesInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5 lives.
+        /// </summary>
+        public static string Cheats_RD_5LivesTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RD_5LivesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]openall[BACKSPACE].
+        /// </summary>
+        public static string Cheats_RD_AllLevelsInput {
+            get {
+                return ResourceManager.GetString("Cheats_RD_AllLevelsInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock all levels.
+        /// </summary>
+        public static string Cheats_RD_AllLevelsTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RD_AllLevelsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]finishing.
+        /// </summary>
+        public static string Cheats_RD_FinishLevelInput {
+            get {
+                return ResourceManager.GetString("Cheats_RD_FinishLevelInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finish level.
+        /// </summary>
+        public static string Cheats_RD_FinishLevelTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RD_FinishLevelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]goldens.
+        /// </summary>
+        public static string Cheats_RD_FistPowerInput {
+            get {
+                return ResourceManager.GetString("Cheats_RD_FistPowerInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All fist power-ups.
+        /// </summary>
+        public static string Cheats_RD_FistPowerTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RD_FistPowerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]moveray[BACKSPACE].
+        /// </summary>
+        public static string Cheats_RD_FreeMovementInput {
+            get {
+                return ResourceManager.GetString("Cheats_RD_FreeMovementInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Free movement.
+        /// </summary>
+        public static string Cheats_RD_FreeMovementTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RD_FreeMovementTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]points.
+        /// </summary>
+        public static string Cheats_RD_FullHealthInput {
+            get {
+                return ResourceManager.GetString("Cheats_RD_FullHealthInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full health.
+        /// </summary>
+        public static string Cheats_RD_FullHealthTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RD_FullHealthTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TAB]map[BACKSPACE].
+        /// </summary>
+        public static string Cheats_RD_MapIndexInput {
+            get {
+                return ResourceManager.GetString("Cheats_RD_MapIndexInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display map index.
+        /// </summary>
+        public static string Cheats_RD_MapIndexTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RD_MapIndexTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Music team:
+        ///To activate it, enter race mode and pause the game. On the pause screen, hold L1 + R1 (or equivalent on the currently used controller), then press the optimize button. Five blue balls will appear at the bottom of the screen. Release alll buttons and press jump. The player should hear a high pitched &quot;ding&quot; sound, and after 0.5 seconds, the first ball should turn yellow. As soon as the ball turns yellow, hold jump. The second ball should then turn yellow. As soon as the second ball turns yellow,  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Cheats_RM {
+            get {
+                return ResourceManager.GetString("Cheats_RM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter PUPPETS as a profile name and press Shift + Ctrl + Alt.
+        /// </summary>
+        public static string Cheats_RM_AllCharactersInput {
+            get {
+                return ResourceManager.GetString("Cheats_RM_AllCharactersInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock all characters.
+        /// </summary>
+        public static string Cheats_RM_AllCharactersTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RM_AllCharactersTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter CARNIVAL as a profile name and press Shift + Ctrl + Alt.
+        /// </summary>
+        public static string Cheats_RM_AllSkinsInput {
+            get {
+                return ResourceManager.GetString("Cheats_RM_AllSkinsInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock all skins.
+        /// </summary>
+        public static string Cheats_RM_AllSkinsTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RM_AllSkinsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter ARENAS as a profile name and press Shift + Ctrl + Alt.
+        /// </summary>
+        public static string Cheats_RM_Battle1Input {
+            get {
+                return ResourceManager.GetString("Cheats_RM_Battle1Input", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock all battle levels in mode 1.
+        /// </summary>
+        public static string Cheats_RM_Battle1Title {
+            get {
+                return ResourceManager.GetString("Cheats_RM_Battle1Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter FIELDS as a profile name and press Shift + Ctrl + Alt.
+        /// </summary>
+        public static string Cheats_RM_Levels1Input {
+            get {
+                return ResourceManager.GetString("Cheats_RM_Levels1Input", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock all levels in mode 1.
+        /// </summary>
+        public static string Cheats_RM_Levels1Title {
+            get {
+                return ResourceManager.GetString("Cheats_RM_Levels1Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter TRACKS as a profile name and press Shift + Ctrl + Alt.
+        /// </summary>
+        public static string Cheats_RM_Race1Input {
+            get {
+                return ResourceManager.GetString("Cheats_RM_Race1Input", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock all race levels in mode 1.
+        /// </summary>
+        public static string Cheats_RM_Race1Title {
+            get {
+                return ResourceManager.GetString("Cheats_RM_Race1Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter OLDTV as a profile name and press Shift + Ctrl + Alt.
+        /// </summary>
+        public static string Cheats_RM_RagtimeMusicInput {
+            get {
+                return ResourceManager.GetString("Cheats_RM_RagtimeMusicInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ragtime music in races.
+        /// </summary>
+        public static string Cheats_RM_RagtimeMusicTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RM_RagtimeMusicTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter ALLRAYMANM as a profile name and press Shift + Ctrl + Alt.
+        /// </summary>
+        public static string Cheats_RM_UnlockAllInput {
+            get {
+                return ResourceManager.GetString("Cheats_RM_UnlockAllInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock all levels.
+        /// </summary>
+        public static string Cheats_RM_UnlockAllTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RM_UnlockAllTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter ALLFISH as a profile name and press Shift + Ctrl + Alt.
+        /// </summary>
+        public static string Cheats_RM_UnlockBattlesInput {
+            get {
+                return ResourceManager.GetString("Cheats_RM_UnlockBattlesInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock all battle levels.
+        /// </summary>
+        public static string Cheats_RM_UnlockBattlesTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RM_UnlockBattlesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter ALLTRIBES as a profile name and press Shift + Ctrl + Alt.
+        /// </summary>
+        public static string Cheats_RM_UnlockRacesInput {
+            get {
+                return ResourceManager.GetString("Cheats_RM_UnlockRacesInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock all race levels.
+        /// </summary>
+        public static string Cheats_RM_UnlockRacesTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RM_UnlockRacesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to reverse.
+        /// </summary>
+        public static string Cheats_RM3_ReverseMapInput {
+            get {
+                return ResourceManager.GetString("Cheats_RM3_ReverseMapInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reverse map.
+        /// </summary>
+        public static string Cheats_RM3_ReverseMapTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RM3_ReverseMapTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to esc.
+        /// </summary>
+        public static string Cheats_RM3_SkipMovieInput {
+            get {
+                return ResourceManager.GetString("Cheats_RM3_SkipMovieInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip cutscenes.
+        /// </summary>
+        public static string Cheats_RM3_SkipMovieTitle {
+            get {
+                return ResourceManager.GetString("Cheats_RM3_SkipMovieTitle", resourceCulture);
             }
         }
         
@@ -1531,7 +2639,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are using an older version of the program {0} compared to the version of the current app data {1}. This is not recommended and may cause compatibility issues. These may be fixed by resetting the app data for this program..
+        ///   Looks up a localized string similar to You are using an older version of the program ({0}) compared to the version of the current app data ({1}). This is not recommended and may cause compatibility issues. These may be fixed by resetting the app data for this program..
         /// </summary>
         public static string DowngradeWarning {
             get {
@@ -2433,41 +3541,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to • 99 lives  -  type trj8p or raylives or [TAB]bertrand during gameplay
-        ///• All fist power-ups  -  type 2x2rmfmf or goldfist or [TAB]antoine during gameplay
-        ///• All normal powers  -  type en5gol2g or power or [TAB]benoit during gameplay
-        ///• Full health  -  type kom0ogdk or raypoint or [TAB]christ during gameplay
-        ///• 10 added Tings  -  type 86e40g91 or raywiz or [TAB]jojo during gameplay
-        ///• Skip current level section  -  type o8feh or winmap or [TAB]cyril during gameplay
-        ///• Display hidden message  -  type [TAB]pr [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string Help_Cheats_R1 {
-            get {
-                return ResourceManager.GetString("Help_Cheats_R1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Rayman 1.
         /// </summary>
         public static string Help_Cheats_R1Header {
             get {
                 return ResourceManager.GetString("Help_Cheats_R1Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to • Upgrade magic fist  -  type glowfist on the pause screen
-        ///• Restore health  -  type gimmelife on the pause screen
-        ///• Gain 5 Yellow Lums  -  type gimmelumz on the pause screen
-        ///• Go to any level  -  type gothere on the pause screen, select a level with the arrow keys and press enter
-        ///• Unlock grappling power  -  type hangon on the pause screen
-        ///• Gain maximum health  -  press and release the J key to the rhythm of the Rayman 2 theme
-        ///• Enter bonus level without all Lums and Cages  -   press the A, Numpad 0 [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string Help_Cheats_R2 {
-            get {
-                return ResourceManager.GetString("Help_Cheats_R2", resourceCulture);
             }
         }
         
@@ -2481,16 +3559,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to • Skip cutscenes  -  type esc during the cutscene
-        ///• Reverse map  -  type reverse on the keyboard during gameplay.
-        /// </summary>
-        public static string Help_Cheats_R3 {
-            get {
-                return ResourceManager.GetString("Help_Cheats_R3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Rayman 3.
         /// </summary>
         public static string Help_Cheats_R3Header {
@@ -2500,43 +3568,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to • 5 lives  -  type [TAB]lives05[BACKSPACE] during gameplay
-        ///• 20 lives  -  type [TAB]lives20[BACKSPACE] during gameplay
-        ///• 50 lives  -  type [TAB]lives50[BACKSPACE] during gameplay
-        ///*All fist power-ups  -  type [TAB]goldens during gameplay
-        ///• Finish level  -  type [TAB]finishing during gameplay
-        ///• Full health  -  type [TAB]points during gameplay
-        ///• Map number display  -  type [TAB]map[BACKSPACE] during gameplay
-        ///• Free movement  -  type [TAB]moveray[BACKSPACE] during gameplay
-        ///• Unlock all levels  -  type [ [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string Help_Cheats_RD {
-            get {
-                return ResourceManager.GetString("Help_Cheats_RD", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Rayman Designer + Spin-Offs.
         /// </summary>
         public static string Help_Cheats_RDHeader {
             get {
                 return ResourceManager.GetString("Help_Cheats_RDHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to • Skip cutscenes  -  type esc during the cutscene
-        ///• Unlock all battle levels  -  enter ALLFISH as a profile name and press Shift + Ctrl + Alt
-        ///• Unlock all race levels  -  enter ALLTRIBES as a profile name and press Shift + Ctrl + Alt
-        ///• Unlock all levels  -  enter ALLRAYMANM as a profile name and press Shift + Ctrl + Alt
-        ///• Unlock all characters  -  enter PUPPETS as a profile name and press Shift + Ctrl + Alt
-        ///• Unlock all skins  -  enter CARNIVAL as a profile name and press Shift + Ctrl + Alt
-        ///• Unlock a [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string Help_Cheats_RMA {
-            get {
-                return ResourceManager.GetString("Help_Cheats_RMA", resourceCulture);
             }
         }
         
@@ -2835,7 +3871,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The program saves its app data mainly in the current user&apos;s local app data, with some settings stored in the Registry. Below is a complete list of the locations where data is stored.
+        ///   Looks up a localized string similar to The program saves its app data mainly in the current user&apos;s local app data directory, with some settings stored in the Registry. Below is a complete list of the locations where data is stored.
         ///
         ///• Main application data - {0}
         ///• Registry Settings - {1}
@@ -3084,6 +4120,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Installer_CurrentProgress {
             get {
                 return ResourceManager.GetString("Installer_CurrentProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access was denied to the selected install location. Select another location or run the program as administrator..
+        /// </summary>
+        public static string Installer_DirMissingWritePermission {
+            get {
+                return ResourceManager.GetString("Installer_DirMissingWritePermission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access denied.
+        /// </summary>
+        public static string Installer_DirMissingWritePermissionHeader {
+            get {
+                return ResourceManager.GetString("Installer_DirMissingWritePermissionHeader", resourceCulture);
             }
         }
         
@@ -3846,6 +4900,33 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Left.
+        /// </summary>
+        public static string LinksPage_LinkAlignmentStyle_Left {
+            get {
+                return ResourceManager.GetString("LinksPage_LinkAlignmentStyle_Left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stretch.
+        /// </summary>
+        public static string LinksPage_LinkAlignmentStyle_Stretch {
+            get {
+                return ResourceManager.GetString("LinksPage_LinkAlignmentStyle_Stretch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Button alignment.
+        /// </summary>
+        public static string LinksPage_LinkAlignmentStyleHeader {
+            get {
+                return ResourceManager.GetString("LinksPage_LinkAlignmentStyleHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Group.
         /// </summary>
         public static string LinksPage_LinkStyle_Group {
@@ -3878,6 +4959,15 @@ namespace RayCarrot.RCP.Metro {
         public static string LinksPage_LocalHeader {
             get {
                 return ResourceManager.GetString("LinksPage_LocalHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string LinksPage_Options {
+            get {
+                return ResourceManager.GetString("LinksPage_Options", resourceCulture);
             }
         }
         

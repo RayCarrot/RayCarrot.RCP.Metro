@@ -1,4 +1,14 @@
-﻿-----   Version 4.5.1 - June 24, 2019   -----
+﻿-----   Version 4.6.0 - July ??, 2019   -----
+* The program has now been translated to Dutch (thanks 432 Hz!)
+• Added a splash screen
+• Cheat codes are now displayed in grids for readability
+• Added the option to change the link button alignment when in list view
+• The installer will now warn if the selected install location is not valid due to missing write permission
+• Operation requiring administration access are now run in a separate process
+• Fixed a bug where the initial ubi.ini permission change would fail and no error would be shown
+
+
+-----   Version 4.5.1 - June 24, 2019   -----
 • The install date for the program will now show the last update time rather than first install
 • Updated referenced assemblies
 • Fixed an error causing the installer to not finish due to unhandled items

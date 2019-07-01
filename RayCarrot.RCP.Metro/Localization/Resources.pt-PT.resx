@@ -870,57 +870,6 @@
   <data name="LaunchGame_WinStoreError" xml:space="preserve">
     <value>Ocorreu um erro quando se tentava executar o {0}</value>
   </data>
-  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
-    <value>1.2</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
-    <value>1.21</value>
-  </data>
-  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
-    <value>0.74</value>
-  </data>
-  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
-    <value>SVN Daum</value>
-  </data>
-  <data name="Continue" xml:space="preserve">
-    <value>Continuar</value>
-  </data>
-  <data name="Download_Title" xml:space="preserve">
-    <value>Descarregar</value>
-  </data>
-  <data name="Lang_English" xml:space="preserve">
-    <value>Inglês</value>
-  </data>
-  <data name="Lang_German" xml:space="preserve">
-    <value>Alemão</value>
-  </data>
-  <data name="Lang_French" xml:space="preserve">
-    <value>Francês</value>
-  </data>
-  <data name="Lang_Spanish" xml:space="preserve">
-    <value>Espanhol</value>
-  </data>
-  <data name="Lang_Italian" xml:space="preserve">
-    <value>Italiano</value>
-  </data>
-  <data name="Lang_Danish" xml:space="preserve">
-    <value>Dinamarquês</value>
-  </data>
-  <data name="Lang_Finnish" xml:space="preserve">
-    <value>Finlandês</value>
-  </data>
-  <data name="Lang_Norwegian" xml:space="preserve">
-    <value>Norueguês</value>
-  </data>
-  <data name="Lang_Swedish" xml:space="preserve">
-    <value>Sueco</value>
-  </data>
-  <data name="AppName" xml:space="preserve">
-    <value>Painel de Controlo Rayman</value>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
-    <value>1.00</value>
-  </data>
   <data name="LaunchGame_DosBoxNotFound" xml:space="preserve">
     <value>O DOSBox não pode ser encontrado. Especifica um endereço válido dentro das opções de jogo para executar este jogo.</value>
   </data>
@@ -1388,6 +1337,18 @@ Tentar novamente?</value>
   <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
     <value>1.12 (Edição 1)</value>
   </data>
+  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
+    <value>1.2</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
+    <value>1.21</value>
+  </data>
+  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
+    <value>0.74</value>
+  </data>
+  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
+    <value>SVN Daum</value>
+  </data>
   <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
     <value>A instalação falhou</value>
   </data>
@@ -1544,6 +1505,12 @@ Tentar novamente?</value>
   <data name="AppNews_Header" xml:space="preserve">
     <value>Histórico de versões</value>
   </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continuar</value>
+  </data>
+  <data name="Download_Title" xml:space="preserve">
+    <value>Descarregar</value>
+  </data>
   <data name="Download_TotalProgress" xml:space="preserve">
     <value>Progresso total</value>
   </data>
@@ -1580,7 +1547,7 @@ Para começar, marca abaixo as caixas que queres e pressiona 'Continuar' para ir
     <value>Remover de programa</value>
   </data>
   <data name="DowngradeWarning" xml:space="preserve">
-    <value>Estás a utilizar uma versão mais antiga do programa {0} comparado com a versão dos actuais dados da aplicação {1}. Isto não é recomendado e poderá causar problemas de compactibilidade. Estes poderão ser corrigidos ao reiniciar os dados de aplicação para este programa.</value>
+    <value>Estás a utilizar uma versão mais antiga do programa ({0}) comparado com a versão dos actuais dados da aplicação ({1}). Isto não é recomendado e poderá causar problemas de compactibilidade. Estes poderão ser corrigidos ao reiniciar os dados de aplicação para este programa.</value>
   </data>
   <data name="DowngradeWarningHeader" xml:space="preserve">
     <value>Downgrade detectado</value>
@@ -1757,80 +1724,44 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   <data name="Help_Cheats_R1Header" xml:space="preserve">
     <value>Rayman 1</value>
   </data>
-  <data name="Help_Cheats_R1" xml:space="preserve">
-    <value>• 99 vidas - Digita trj8p ou raylives ou [TAB]bertrand durante a jogabilidade
-• Todos os poderes do punho - Digita 2x2rmfmf ou goldfist ou [TAB]antoine durante a jogabilidade
-• Todos os poderes normais - Digita en5gol2g ou power ou [TAB]benoit durante a jogabilidade
-• Saúde cheia - Digita kom0ogdk ou raypoint ou [TAB]christ durante a jogabilidade
-• 10 Tings adicionados - Digita 86e40g91 ou raywiz ou [TAB]jojo durante a jogabilidade
-• Saltar a secção de nível actual - Digita o8feh ou winamp ou [TAB]cyril durante a jogabilidade
-• Exibir mensagem oculta - Digita [TAB]program durante a jogabilidade
-• Taxa de refrescamento 100MHz - Digita freq10 no mapa
-• Taxa de refrescamento 80MHz - Digita freq80 no mapa
-• Todos os poderes normais - Digita power ou [TAB]benoit no mapa
-• Efeito lentes - Digita lens no mapa
-• Desbloquear todos os níveis - Digita 4ctrepfj ou alworld ou [TAB]francois no mapa
-• Entrar no mini-jogo Breakout - Digita b76b7081 ou cbray ou [TAB]olivier no mapa assim que o Mr Dark's Dare estiver concluído
-• Entrar numa etapa aleatória do mini-jogo Breakout - Digita [TAB]cbrayal[RETROCEDER] no mapa
-• Selecção de etapa - Digita [TAB]alevel[RETROCEDER] no mapa</value>
-  </data>
   <data name="Help_Cheats_RDHeader" xml:space="preserve">
     <value>Rayman Designer + Spin-Offs</value>
-  </data>
-  <data name="Help_Cheats_RD" xml:space="preserve">
-    <value>• 5 vidas - Digita [TAB]lives05[RETROCEDER] durante a jogabilidade
-• 20 vidas - Digita [TAB]lives20[RETROCEDER] durante a jogabilidade
-• 50 vidas - Digita [TAB]lives50[RETROCEDER] durante a jogabilidade
-• Todos os poderes do punho - Digita [TAB]goldens durante a jogabilidade
-• Terminar nível - Digita [TAB]finishing durante a jogabilidade
-• Saúde cheia - Digita [TAB]points durante a jogabilidade
-• Exibição do número de mapa - Digita [TAB]map[RETROCEDER] durante a jogabilidade
-• Movimento livre - Digita [TAB]moveray[RETROCEDER] durante a jogabilidade
-• Desbloquear todos os níveis - Digita [TAB]openall[RETROCEDER] no mapa</value>
   </data>
   <data name="Help_Cheats_R2Header" xml:space="preserve">
     <value>Rayman 2</value>
   </data>
-  <data name="Help_Cheats_R2" xml:space="preserve">
-    <value>• Melhorar o punho mágico - Digita glowfist no ecrã de pausa
-• Restaurar saúde - Digita gimmelife no ecrã de pausa
-• Adquire 5 Lums Amarelos - Digita gimmelumz no ecrã de pausa
-• Ir a qualquer nível - Digita gothere no ecrã de pausa, selecciona um nível com os botões de seta e pressiona enter
-• Desbloquear poder de abordagem - Digita hangon no ecrã de pausa
-• Adquire saúde máxima - Pressiona e solta o botão J ao ritmo do tema Rayman 2
-• Entrar num nível bonus sem todos os Lums ou Jaulas - Pressiona A, Numpad 0, Q, W, Q, W por ordem seguido de Enter no ecrã Access Denied
-• Saltar cinemáticos - Digita NOMOVIES no ecrã de pausa
-• Novos ecrãs de carregamento - Digita ALLVIGN no ecrã de pausa
-• Desactivar Murfy - Digitar NOMOREMURFY no ecrã de pausa
-• Aceder a área oculta no Túmulo dos Antigos - Na parte final do Túmulo dos Antigos, fica no terceiro painel fora da entrada do Check-up Técnico onde o Rayman combate o Clark. Digita PLAYJEFF e salta na caixa para o buraco na parede. 
-• Aceder Menezis - Digita SHOOTEMUP durante os the créditos 
-• Desconhecido - Digita GETELIX no ecrã de pausa</value>
-  </data>
   <data name="Help_Cheats_RMAHeader" xml:space="preserve">
     <value>Rayman M/Arena</value>
-  </data>
-  <data name="Help_Cheats_RMA" xml:space="preserve">
-    <value>• Saltar cinemáticos - Digita esc durante o cinemático
-• Desbloquer todos os níveis de batalha - Entra com o nome de perfil ALLFISH e pressiona Shift + Ctrl + Alt
-• Desbloquer todos os níveis de corrida - Entra com o nome de perfil ALLTRIBES e pressiona Shift + Ctrl + Alt
-• Desbloquear todos os níveis - Entra com o nome de perfil ALLRAYMANM e pressiona Shift + Ctrl + Alt
-• Desbloquear todas as personagens - Entra com o nome de perfil PUPPETS e pressiona Shift + Ctrl + Alt
-• Desbloquear todas as peles - Entra com o nome de perfil CARNIVAL e pressiona Shift + Ctrl + Alt
-• Desbloquear todos os níveis de batalha no modo 1 - Entra com o nome de perfil ARENAS e pressiona Shift + Ctrl + Alt
-• Desbloquear todos os níveis de corrida no modo 1 - Entra com o nome de perfil TRACKS e pressiona Shift + Ctrl + Alt
-• Desbloquear todos os níveis no modo 1 - Entra com o nome de perfil FIELDS e pressiona Shift + Ctrl + Alt
-• Música Ragtime nas corridas - Entra com o nome de perfil OLDTV e pressiona Shift + Ctrl + Alt
-• Mapa revertido - Digita reverse no teclado durante a jogabilidade
-  
-• Equipa de música:
-Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, deixa premido L1 + R1 (Ou o equivalente no comando a ser utilizado actualmente), e pressiona o botão de optimização. Cinco bolas azuis vão aparecer no fundo do ecrã. Liberta tudo e prime Saltar. O jogador deverá ouvir um som agudo "Ding", e depois de 0,5 segundos, a primeira bola deverá tornar-se amarela. Assim que a bola se torna amarela, pressiona Saltar. A segunda bola deverá tornar-se amarela. Assim que a segunda bola se torna amarela, liberta o Saltar. A terceira bola deverá tornar-se amarela. Assim que a terceira bola se torna amarela, pressiona Saltar novamente. A quarta bola deverá tornar-se amarela. Assim que a quarta bola se torna amarela, liberta o Saltar. O jogador deverá ser levado ao ecrã "Music Mode" onde o jogador poderá escolher o "Music Team".</value>
   </data>
   <data name="Help_Cheats_R3Header" xml:space="preserve">
     <value>Rayman 3</value>
   </data>
-  <data name="Help_Cheats_R3" xml:space="preserve">
-    <value>• Saltar cinemáticos - Pressiona Esc durante o cinemático
-• Mapa revertido - Digita reverse no teclado durante a jogabilidade</value>
+  <data name="Lang_English" xml:space="preserve">
+    <value>Inglês</value>
+  </data>
+  <data name="Lang_German" xml:space="preserve">
+    <value>Alemão</value>
+  </data>
+  <data name="Lang_French" xml:space="preserve">
+    <value>Francês</value>
+  </data>
+  <data name="Lang_Spanish" xml:space="preserve">
+    <value>Espanhol</value>
+  </data>
+  <data name="Lang_Italian" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
+  <data name="Lang_Danish" xml:space="preserve">
+    <value>Dinamarquês</value>
+  </data>
+  <data name="Lang_Finnish" xml:space="preserve">
+    <value>Finlandês</value>
+  </data>
+  <data name="Lang_Norwegian" xml:space="preserve">
+    <value>Norueguês</value>
+  </data>
+  <data name="Lang_Swedish" xml:space="preserve">
+    <value>Sueco</value>
   </data>
   <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
     <value>4:3</value>
@@ -1840,6 +1771,9 @@ Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, dei
   </data>
   <data name="Config_RRRScreenMode_16_9" xml:space="preserve">
     <value>16:9</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Painel de Controlo Rayman</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Utilitário da banda sonora Rayman PlayStation</value>
@@ -1931,74 +1865,14 @@ Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, dei
   <data name="GameLink_R2dgVoodoo" xml:space="preserve">
     <value>dgVoodoo</value>
   </data>
+  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
+    <value>1.00</value>
+  </data>
   <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
     <value>1.12 (Edição 2)</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
     <value>1.12 (Edição 3)</value>
-  </data>
-  <data name="Links_Community_RPC" xml:space="preserve">
-    <value>Rayman Pirate-Community</value>
-  </data>
-  <data name="Links_Community_RayWiki" xml:space="preserve">
-    <value>RayWiki</value>
-  </data>
-  <data name="Links_Community_RayTunes" xml:space="preserve">
-    <value>RayTunes</value>
-  </data>
-  <data name="Links_Community_RaySaves" xml:space="preserve">
-    <value>RaySaves</value>
-  </data>
-  <data name="Links_Community_RaymanCentral" xml:space="preserve">
-    <value>Rayman Central</value>
-  </data>
-  <data name="Links_Community_RaymanTogether" xml:space="preserve">
-    <value>Rayman Together</value>
-  </data>
-  <data name="Links_Community_raym_app" xml:space="preserve">
-    <value>raym.app</value>
-  </data>
-  <data name="Links_Community_Raymap" xml:space="preserve">
-    <value>Raymap</value>
-  </data>
-  <data name="Links_Community_Menezis_Browser" xml:space="preserve">
-    <value>Menezis (browser version)</value>
-  </data>
-  <data name="Links_Community_KMG" xml:space="preserve">
-    <value>KMG Associates - Rayman</value>
-  </data>
-  <data name="Links_Community_Fanpage" xml:space="preserve">
-    <value>Rayman Fanpage</value>
-  </data>
-  <data name="Links_Forums_RPC" xml:space="preserve">
-    <value>Pirate-Community</value>
-  </data>
-  <data name="Links_Forums_Ubisoft" xml:space="preserve">
-    <value>Ubisoft</value>
-  </data>
-  <data name="Links_Forums_GOG" xml:space="preserve">
-    <value>GOG</value>
-  </data>
-  <data name="Links_Forums_Steam_R2" xml:space="preserve">
-    <value>Steam - Rayman 2</value>
-  </data>
-  <data name="Links_Forums_Steam_RRR" xml:space="preserve">
-    <value>Steam - Rayman Raving Rabbids</value>
-  </data>
-  <data name="Links_Forums_Steam_RO" xml:space="preserve">
-    <value>Steam - Rayman Origins</value>
-  </data>
-  <data name="Links_Forums_Steam_RL" xml:space="preserve">
-    <value>Steam - Rayman Legends</value>
-  </data>
-  <data name="Links_Tools_RDEditor" xml:space="preserve">
-    <value>Extended Rayman Designer editor</value>
-  </data>
-  <data name="Links_Tools_RayPlus" xml:space="preserve">
-    <value>Rayman Plus</value>
-  </data>
-  <data name="Links_Tools_RayTwol" xml:space="preserve">
-    <value>RayTwol</value>
   </data>
   <data name="LinksPage_LinkStyleHeader" xml:space="preserve">
     <value>Estilo de ligação</value>
@@ -2114,6 +1988,69 @@ Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, dei
   <data name="Links_Local_RegAppData" xml:space="preserve">
     <value>Dados de registo da aplicação</value>
   </data>
+  <data name="Links_Community_RPC" xml:space="preserve">
+    <value>Rayman Pirate-Community</value>
+  </data>
+  <data name="Links_Community_RayWiki" xml:space="preserve">
+    <value>RayWiki</value>
+  </data>
+  <data name="Links_Community_RayTunes" xml:space="preserve">
+    <value>RayTunes</value>
+  </data>
+  <data name="Links_Community_RaySaves" xml:space="preserve">
+    <value>RaySaves</value>
+  </data>
+  <data name="Links_Community_RaymanCentral" xml:space="preserve">
+    <value>Rayman Central</value>
+  </data>
+  <data name="Links_Community_RaymanTogether" xml:space="preserve">
+    <value>Rayman Together</value>
+  </data>
+  <data name="Links_Community_raym_app" xml:space="preserve">
+    <value>raym.app</value>
+  </data>
+  <data name="Links_Community_Raymap" xml:space="preserve">
+    <value>Raymap</value>
+  </data>
+  <data name="Links_Community_Menezis_Browser" xml:space="preserve">
+    <value>Menezis (browser version)</value>
+  </data>
+  <data name="Links_Community_KMG" xml:space="preserve">
+    <value>KMG Associates - Rayman</value>
+  </data>
+  <data name="Links_Community_Fanpage" xml:space="preserve">
+    <value>Rayman Fanpage</value>
+  </data>
+  <data name="Links_Forums_RPC" xml:space="preserve">
+    <value>Pirate-Community</value>
+  </data>
+  <data name="Links_Forums_Ubisoft" xml:space="preserve">
+    <value>Ubisoft</value>
+  </data>
+  <data name="Links_Forums_GOG" xml:space="preserve">
+    <value>GOG</value>
+  </data>
+  <data name="Links_Forums_Steam_R2" xml:space="preserve">
+    <value>Steam - Rayman 2</value>
+  </data>
+  <data name="Links_Forums_Steam_RRR" xml:space="preserve">
+    <value>Steam - Rayman Raving Rabbids</value>
+  </data>
+  <data name="Links_Forums_Steam_RO" xml:space="preserve">
+    <value>Steam - Rayman Origins</value>
+  </data>
+  <data name="Links_Forums_Steam_RL" xml:space="preserve">
+    <value>Steam - Rayman Legends</value>
+  </data>
+  <data name="Links_Tools_RDEditor" xml:space="preserve">
+    <value>Extended Rayman Designer editor</value>
+  </data>
+  <data name="Links_Tools_RayPlus" xml:space="preserve">
+    <value>Rayman Plus</value>
+  </data>
+  <data name="Links_Tools_RayTwol" xml:space="preserve">
+    <value>RayTwol</value>
+  </data>
   <data name="Links_Tools_R2Tools" xml:space="preserve">
     <value>Ferramentas do Rayman 2</value>
   </data>
@@ -2147,9 +2084,6 @@ Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, dei
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Ligações</value>
   </data>
-  <data name="UninstallRegKeyRequiresRefresh" xml:space="preserve">
-    <value>Devido ao estado do programa ter sido alterado necessita de actualizar a informação armazenada nos programas instalados. Isto requer que o programa execute como administrador. Até lá a informação exibida dos programas instalados poderá não ser precisa.</value>
-  </data>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
     <value>Está disponível uma nova actualização beta para descarga. Descarregar agora?</value>
   </data>
@@ -2168,6 +2102,9 @@ Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, dei
   <data name="Settings_GetBetaUpdates" xml:space="preserve">
     <value>Obter actualizações beta</value>
   </data>
+  <data name="UninstallRegKeyRequiresRefresh" xml:space="preserve">
+    <value>Devido ao estado do programa ter sido alterado necessita de actualizar a informação armazenada nos programas instalados. Isto requer que o programa execute como administrador. Até lá a informação exibida dos programas instalados poderá não ser precisa.</value>
+  </data>
   <data name="About_Credits_RayActivity" xml:space="preserve">
     <value>Gráficos, Teste de programa</value>
   </data>
@@ -2182,5 +2119,368 @@ Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, dei
   </data>
   <data name="AppNameAdmin" xml:space="preserve">
     <value>Painel de Controlo Rayman (Administrador)</value>
+  </data>
+  <data name="Cheats_R1_99LivesTitle" xml:space="preserve">
+    <value>99 vidas</value>
+  </data>
+  <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
+    <value>trj8p</value>
+    <comment>trj8p</comment>
+  </data>
+  <data name="Cheats_R1_99LivesInput2" xml:space="preserve">
+    <value>raylives</value>
+    <comment>raylives</comment>
+  </data>
+  <data name="Cheats_R1_99LivesInput3" xml:space="preserve">
+    <value>[TAB]bertrand</value>
+  </data>
+  <data name="Cheats_R1_FistPowerTitle" xml:space="preserve">
+    <value>Todos os poderes do punho</value>
+  </data>
+  <data name="Cheats_R1_FistPowerInput1" xml:space="preserve">
+    <value>2x2rmfmf</value>
+    <comment>2x2rmfmf</comment>
+  </data>
+  <data name="Cheats_R1_FistPowerInput2" xml:space="preserve">
+    <value>goldfist</value>
+    <comment>goldfist</comment>
+  </data>
+  <data name="Cheats_R1_FistPowerInput3" xml:space="preserve">
+    <value>[TAB]antoine</value>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsTitle" xml:space="preserve">
+    <value>Todos os poderes normais</value>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput1" xml:space="preserve">
+    <value>en5gol2g</value>
+    <comment>en5gol2g</comment>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput2" xml:space="preserve">
+    <value>power</value>
+    <comment>power</comment>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput3" xml:space="preserve">
+    <value>[TAB]benoit</value>
+  </data>
+  <data name="Cheats_R1_FullHealthTitle" xml:space="preserve">
+    <value>Saúde cheia</value>
+  </data>
+  <data name="Cheats_R1_FullHealthInput1" xml:space="preserve">
+    <value>kom0ogdk</value>
+    <comment>kom0ogdk</comment>
+  </data>
+  <data name="Cheats_R1_FullHealthInput2" xml:space="preserve">
+    <value>raypoint</value>
+    <comment>raypoint</comment>
+  </data>
+  <data name="Cheats_R1_FullHealthInput3" xml:space="preserve">
+    <value>[TAB]christ</value>
+  </data>
+  <data name="Cheats_R1_10TingsTitle" xml:space="preserve">
+    <value>10 Tings adicionados</value>
+  </data>
+  <data name="Cheats_R1_10TingsInput1" xml:space="preserve">
+    <value>86e40g91</value>
+    <comment>86e40g91</comment>
+  </data>
+  <data name="Cheats_R1_10TingsInput2" xml:space="preserve">
+    <value>raywiz</value>
+    <comment>raywiz</comment>
+  </data>
+  <data name="Cheats_R1_10TingsInput3" xml:space="preserve">
+    <value>[TAB]jojo</value>
+  </data>
+  <data name="Cheats_R1_SkipLevelTitle" xml:space="preserve">
+    <value>Saltar a secção de nível actual</value>
+  </data>
+  <data name="Cheats_R1_SkipLevelInput1" xml:space="preserve">
+    <value>o8feh</value>
+    <comment>o8feh</comment>
+  </data>
+  <data name="Cheats_R1_SkipLevelInput2" xml:space="preserve">
+    <value>winmap</value>
+    <comment>winmap</comment>
+  </data>
+  <data name="Cheats_R1_SkipLevelInput3" xml:space="preserve">
+    <value>[TAB]cyril</value>
+  </data>
+  <data name="Cheats_R1_HiddenMessageTitle" xml:space="preserve">
+    <value>Exibir mensagem oculta</value>
+  </data>
+  <data name="Cheats_R1_HiddenMessageInput3" xml:space="preserve">
+    <value>[TAB]program</value>
+  </data>
+  <data name="Cheats_R1_FreeMovementInput3" xml:space="preserve">
+    <value>[TAB];overay[RETROCEDER]</value>
+  </data>
+  <data name="Cheats_R1_100RefreshRateTitle" xml:space="preserve">
+    <value>Taxa de refrescamento 100MHz</value>
+  </data>
+  <data name="Cheats_R1_100RefreshRateInput2" xml:space="preserve">
+    <value>freq10</value>
+    <comment>freq10</comment>
+  </data>
+  <data name="Cheats_R1_80RefreshRateTitle" xml:space="preserve">
+    <value>Taxa de refrescamento 80MHz</value>
+  </data>
+  <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
+    <value>freq80</value>
+    <comment>freq80</comment>
+  </data>
+  <data name="Cheats_R1_AllPowersTitle" xml:space="preserve">
+    <value>Todos os poderes normais</value>
+  </data>
+  <data name="Cheats_R1_AllPowersInput2" xml:space="preserve">
+    <value>power</value>
+    <comment>power</comment>
+  </data>
+  <data name="Cheats_R1_AllPowersInput3" xml:space="preserve">
+    <value>[TAB]benoit</value>
+  </data>
+  <data name="Cheats_R1_LensEffectTitle" xml:space="preserve">
+    <value>Efeito lentes</value>
+  </data>
+  <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
+    <value>lens</value>
+    <comment>lens</comment>
+  </data>
+  <data name="Cheats_R1_AllLevelsTitle" xml:space="preserve">
+    <value>Desbloquear todos os níveis</value>
+  </data>
+  <data name="Cheats_R1_AllLevelsInput1" xml:space="preserve">
+    <value>4ctrepfj</value>
+    <comment>4ctrepfj</comment>
+  </data>
+  <data name="Cheats_R1_AllLevelsInput2" xml:space="preserve">
+    <value>alworld</value>
+    <comment>alworld</comment>
+  </data>
+  <data name="Cheats_R1_AllLevelsInput3" xml:space="preserve">
+    <value>[TAB]francois</value>
+  </data>
+  <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
+    <value>b76b7081</value>
+    <comment>b76b7081</comment>
+  </data>
+  <data name="Cheats_R1_BreakoutInput2" xml:space="preserve">
+    <value>cbray</value>
+    <comment>cbray</comment>
+  </data>
+  <data name="Cheats_R1_BreakoutInput3" xml:space="preserve">
+    <value>[TAB]olivier</value>
+  </data>
+  <data name="Cheats_R1_BreakoutStageTitle" xml:space="preserve">
+    <value>Entrar numa etapa aleatória do mini-jogo Breakout</value>
+  </data>
+  <data name="Cheats_R1_BreakoutStageInput3" xml:space="preserve">
+    <value>[TAB]cbrayal[RETROCEDER]</value>
+  </data>
+  <data name="Cheats_R1_SelectStageTitle" xml:space="preserve">
+    <value>Selecção de etapa</value>
+  </data>
+  <data name="Cheats_R1_SelectStageInput3" xml:space="preserve">
+    <value>[TAB]alevel[RETROCEDER]</value>
+  </data>
+  <data name="Cheats_RD_5LivesTitle" xml:space="preserve">
+    <value>5 vidas</value>
+  </data>
+  <data name="Cheats_RD_5LivesInput" xml:space="preserve">
+    <value>[TAB]lives05[RETROCEDER]</value>
+  </data>
+  <data name="Cheats_RD_20LivesTitle" xml:space="preserve">
+    <value>20 vidas</value>
+  </data>
+  <data name="Cheats_RD_20LivesInput" xml:space="preserve">
+    <value>[TAB]lives20[RETROCEDER]</value>
+  </data>
+  <data name="Cheats_RD_50LivesTitle" xml:space="preserve">
+    <value>50 vidas</value>
+  </data>
+  <data name="Cheats_RD_50LivesInput" xml:space="preserve">
+    <value>[TAB]lives50[RETROCEDER]</value>
+  </data>
+  <data name="Cheats_RD_FistPowerTitle" xml:space="preserve">
+    <value>Todos os poderes do punho</value>
+  </data>
+  <data name="Cheats_RD_FistPowerInput" xml:space="preserve">
+    <value>[TAB]goldens</value>
+  </data>
+  <data name="Cheats_RD_FinishLevelTitle" xml:space="preserve">
+    <value>Terminar nível</value>
+  </data>
+  <data name="Cheats_RD_FinishLevelInput" xml:space="preserve">
+    <value>[TAB]finishing</value>
+  </data>
+  <data name="Cheats_RD_FullHealthTitle" xml:space="preserve">
+    <value>Saúde cheia</value>
+  </data>
+  <data name="Cheats_RD_FullHealthInput" xml:space="preserve">
+    <value>[TAB]points</value>
+  </data>
+  <data name="Cheats_RD_MapIndexTitle" xml:space="preserve">
+    <value>Exibição do número de mapa</value>
+  </data>
+  <data name="Cheats_RD_MapIndexInput" xml:space="preserve">
+    <value>[TAB]map[RETROCEDER]</value>
+  </data>
+  <data name="Cheats_RD_FreeMovementTitle" xml:space="preserve">
+    <value>Movimento livre</value>
+  </data>
+  <data name="Cheats_RD_FreeMovementInput" xml:space="preserve">
+    <value>[TAB]moveray[RETROCEDER]</value>
+  </data>
+  <data name="Cheats_RD_AllLevelsTitle" xml:space="preserve">
+    <value>Desbloquear todos os níveis</value>
+  </data>
+  <data name="Cheats_RD_AllLevelsInput" xml:space="preserve">
+    <value>[TAB]openall[RETROCEDER]</value>
+  </data>
+  <data name="Cheats_R2_FistUpgradeTitle" xml:space="preserve">
+    <value>Melhorar o punho mágico</value>
+  </data>
+  <data name="Cheats_R2_FistUpgradeInput" xml:space="preserve">
+    <value>glowfist</value>
+    <comment>glowfist</comment>
+  </data>
+  <data name="Cheats_R2_RestoreHealthTitle" xml:space="preserve">
+    <value>Restaurar saúde</value>
+  </data>
+  <data name="Cheats_R2_RestoreHealthInput" xml:space="preserve">
+    <value>gimmelife</value>
+    <comment>gimmelife</comment>
+  </data>
+  <data name="Cheats_R2_5LumsTitle" xml:space="preserve">
+    <value>Adquire 5 Lums Amarelos</value>
+  </data>
+  <data name="Cheats_R2_5LumsInput" xml:space="preserve">
+    <value>gimmelumz</value>
+    <comment>gimmelumz</comment>
+  </data>
+  <data name="Cheats_R2_LevelSelectionTitle" xml:space="preserve">
+    <value>Ir a qualquer nível</value>
+  </data>
+  <data name="Cheats_R2_LevelSelectionInput" xml:space="preserve">
+    <value>gothere</value>
+    <comment>gothere</comment>
+  </data>
+  <data name="Cheats_R2_GrappleTitle" xml:space="preserve">
+    <value>Desbloquear poder de abordagem</value>
+  </data>
+  <data name="Cheats_R2_GrappleInput" xml:space="preserve">
+    <value>hangon</value>
+    <comment>hangon</comment>
+  </data>
+  <data name="Cheats_R2_MaxHealthTitle" xml:space="preserve">
+    <value>Adquire saúde máxima</value>
+  </data>
+  <data name="Cheats_R2_BonusLevelTitle" xml:space="preserve">
+    <value>Entrar num nível bonus sem todos os Lums ou Jaulas</value>
+  </data>
+  <data name="Cheats_R2_SkipMoviesTitle" xml:space="preserve">
+    <value>Saltar cinemáticos</value>
+  </data>
+  <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
+    <value>NOMOVIES</value>
+    <comment>NOMOVIES</comment>
+  </data>
+  <data name="Cheats_R2_LoadingScreensTitle" xml:space="preserve">
+    <value>Novos ecrãs de carregamento</value>
+  </data>
+  <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
+    <value>allvign</value>
+    <comment>allvign</comment>
+  </data>
+  <data name="Cheats_R2_NoMurfyTitle" xml:space="preserve">
+    <value>Desactivar Murfy</value>
+  </data>
+  <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
+    <value>nomoremurfy</value>
+    <comment>nomoremurfy</comment>
+  </data>
+  <data name="Cheats_R2_TotASecretTitle" xml:space="preserve">
+    <value>Aceder a área oculta no Túmulo dos Antigos</value>
+  </data>
+  <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
+    <value>playjeff</value>
+    <comment>playjeff</comment>
+  </data>
+  <data name="Cheats_R2_MenezisTitle" xml:space="preserve">
+    <value>Aceder Menezis</value>
+  </data>
+  <data name="Cheats_R2_MenezisInput" xml:space="preserve">
+    <value>shootemup</value>
+    <comment>shootemup</comment>
+  </data>
+  <data name="Cheats_RM" xml:space="preserve">
+    <value>Equipa de música:
+Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, deixa premido L1 + R1 (Ou o equivalente no comando a ser utilizado actualmente), e pressiona o botão de optimização. Cinco bolas azuis vão aparecer no fundo do ecrã. Liberta tudo e prime Saltar. O jogador deverá ouvir um som agudo "Ding", e depois de 0,5 segundos, a primeira bola deverá tornar-se amarela. Assim que a bola se torna amarela, pressiona Saltar. A segunda bola deverá tornar-se amarela. Assim que a segunda bola se torna amarela, liberta o Saltar. A terceira bola deverá tornar-se amarela. Assim que a terceira bola se torna amarela, pressiona Saltar novamente. A quarta bola deverá tornar-se amarela. Assim que a quarta bola se torna amarela, liberta o Saltar. O jogador deverá ser levado ao ecrã "Music Mode" onde o jogador poderá escolher o "Music Team".</value>
+  </data>
+  <data name="Cheats_RM3_SkipMovieTitle" xml:space="preserve">
+    <value>Saltar cinemáticos</value>
+  </data>
+  <data name="Cheats_RM3_SkipMovieInput" xml:space="preserve">
+    <value>esc</value>
+    <comment>esc</comment>
+  </data>
+  <data name="Cheats_RM3_ReverseMapTitle" xml:space="preserve">
+    <value>Mapa revertido</value>
+  </data>
+  <data name="Cheats_RM3_ReverseMapInput" xml:space="preserve">
+    <value>reverse</value>
+    <comment>reverse</comment>
+  </data>
+  <data name="Cheats_RM_UnlockBattlesTitle" xml:space="preserve">
+    <value>Desbloquer todos os níveis de batalha</value>
+  </data>
+  <data name="Cheats_RM_UnlockBattlesInput" xml:space="preserve">
+    <value>Entra com o nome de perfil ALLFISH e pressiona Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_UnlockRacesTitle" xml:space="preserve">
+    <value>Desbloquer todos os níveis de corrida</value>
+  </data>
+  <data name="Cheats_RM_UnlockRacesInput" xml:space="preserve">
+    <value>Entra com o nome de perfil ALLTRIBES e pressiona Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_UnlockAllTitle" xml:space="preserve">
+    <value>Desbloquear todos os níveis</value>
+  </data>
+  <data name="Cheats_RM_UnlockAllInput" xml:space="preserve">
+    <value>Entra com o nome de perfil ALLRAYMANM e pressiona Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_AllCharactersTitle" xml:space="preserve">
+    <value>Desbloquear todas as personagens</value>
+  </data>
+  <data name="Cheats_RM_AllCharactersInput" xml:space="preserve">
+    <value>Entra com o nome de perfil PUPPETS e pressiona Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_AllSkinsTitle" xml:space="preserve">
+    <value>Desbloquear todas as peles</value>
+  </data>
+  <data name="Cheats_RM_AllSkinsInput" xml:space="preserve">
+    <value>Entra com o nome de perfil CARNIVAL e pressiona Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_Battle1Title" xml:space="preserve">
+    <value>Desbloquear todos os níveis de batalha no modo 1</value>
+  </data>
+  <data name="Cheats_RM_Battle1Input" xml:space="preserve">
+    <value>Entra com o nome de perfil ARENAS e pressiona Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_Race1Title" xml:space="preserve">
+    <value>Desbloquear todos os níveis de corrida no modo 1</value>
+  </data>
+  <data name="Cheats_RM_Race1Input" xml:space="preserve">
+    <value>Entra com o nome de perfil TRACKS e pressiona Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_Levels1Title" xml:space="preserve">
+    <value>Desbloquear todos os níveis no modo 1</value>
+  </data>
+  <data name="Cheats_RM_Levels1Input" xml:space="preserve">
+    <value>Entra com o nome de perfil FIELDS e pressiona Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_RagtimeMusicTitle" xml:space="preserve">
+    <value>Música Ragtime nas corridas</value>
+  </data>
+  <data name="Cheats_RM_RagtimeMusicInput" xml:space="preserve">
+    <value>Entra com o nome de perfil OLDTV e pressiona Shift + Ctrl + Alt</value>
   </data>
 </root>
