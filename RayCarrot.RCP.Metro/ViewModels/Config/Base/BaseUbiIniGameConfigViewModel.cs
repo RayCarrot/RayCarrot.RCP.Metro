@@ -81,17 +81,22 @@ namespace RayCarrot.RCP.Metro
 
             RCF.Logger.LogInformationSource($"The ubi.ini file has been loaded");
 
+            // Keep track if the data had to be recreated
+            bool recreated = false;
+
             // Re-create the section if it doesn't exist
             if (!ConfigData.Exists)
             {
                 ConfigData.ReCreate();
+                recreated = true;
                 RCF.Logger.LogInformationSource($"The ubi.ini section for {Game.GetDisplayName()} was recreated");
             }
 
             // Import config data
             await ImportConfigAsync();
 
-            UnsavedChanges = false;
+            // If the data was recreated we mark that there are unsaved changes available
+            UnsavedChanges = recreated;
 
             RCF.Logger.LogInformationSource($"All section properties have been loaded");
         }

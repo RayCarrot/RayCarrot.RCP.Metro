@@ -2248,6 +2248,9 @@ appDataLocations</comment>
   <data name="Cheats_Location_Cutscene" xml:space="preserve">
     <value>Cutscene</value>
   </data>
+  <data name="Cheats_Location_ProfileName" xml:space="preserve">
+    <value>Profile name</value>
+  </data>
   <data name="Cheats_R1" xml:space="preserve">
     <value>Different cheat codes will work in different versions. Some versions support multiple cheat code types.</value>
   </data>
@@ -2276,7 +2279,7 @@ appDataLocations</comment>
     <value>[TAB]antoine</value>
   </data>
   <data name="Cheats_R1_AllPowerUpsTitle" xml:space="preserve">
-    <value>All normal power-ups</value>
+    <value>All normal powers</value>
   </data>
   <data name="Cheats_R1_AllPowerUpsInput1" xml:space="preserve">
     <value>en5gol2g</value>
@@ -2346,15 +2349,6 @@ appDataLocations</comment>
   </data>
   <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
     <value>freq80</value>
-  </data>
-  <data name="Cheats_R1_AllPowersTitle" xml:space="preserve">
-    <value>All normal powers</value>
-  </data>
-  <data name="Cheats_R1_AllPowersInput2" xml:space="preserve">
-    <value>power</value>
-  </data>
-  <data name="Cheats_R1_AllPowersInput3" xml:space="preserve">
-    <value>[TAB]benoit</value>
   </data>
   <data name="Cheats_R1_LensEffectTitle" xml:space="preserve">
     <value>Lens effect</value>
@@ -2594,9 +2588,6 @@ To activate it, enter race mode and pause the game. On the pause screen, hold L1
   <data name="Cheats_RM_RagtimeMusicInput" xml:space="preserve">
     <value>Enter OLDTV as a profile name and press Shift + Ctrl + Alt</value>
   </data>
-  <data name="Cheats_Location_ProfileName" xml:space="preserve">
-    <value>Profile name</value>
-  </data>
   <data name="LinksPage_LinkAlignmentStyleHeader" xml:space="preserve">
     <value>Button alignment</value>
   </data>
@@ -2614,5 +2605,9 @@ To activate it, enter race mode and pause the game. On the pause screen, hold L1
   </data>
   <data name="Installer_DirMissingWritePermissionHeader" xml:space="preserve">
     <value>Access denied</value>
+  </data>
+  <data name="AdminWorker_Error" xml:space="preserve">
+    <value>An error occurred when attempting to run the admin worker</value>
+    <comment>Leave the "admin worker" part in English due to that being the name of the program which is displayed to the user</comment>
   </data>
 </root>

@@ -4,7 +4,7 @@
 //namespace RayCarrot.RCP.Metro
 //{
 //    // TODO: Finish this
-//    // Below is my attempt to make the app more modular - WIP for version 4.6.0 or 4.7.0
+//    // Below is my attempt to make the app more modular - WIP for version 5.0.0
 
 //    /// <summary>
 //    /// Interface for a RCP utility

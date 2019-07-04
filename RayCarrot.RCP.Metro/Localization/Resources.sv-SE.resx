@@ -1036,6 +1036,12 @@ Nyheter:
   <data name="Installer_InstallAllUsers" xml:space="preserve">
     <value>Installera för alla användare</value>
   </data>
+  <data name="Installer_TotalProgress" xml:space="preserve">
+    <value>Totalt framsteg</value>
+  </data>
+  <data name="Installer_CurrentProgress" xml:space="preserve">
+    <value>Framsteg för nuvarande fil</value>
+  </data>
   <data name="Installer_Install" xml:space="preserve">
     <value>Installera</value>
   </data>
@@ -1125,8 +1131,33 @@ Försök igen?"</value>
   <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
     <value>Det här verktyget kräver att ytterligare filer laddas ner</value>
   </data>
+  <data name="TPLS_Error" xml:space="preserve">
+    <value>PlayStation-musik verktyget kraschade med följande meddelande: {0}
+Starta om?</value>
+  </data>
   <data name="TPLS_ErrorHeader" xml:space="preserve">
     <value>TPLS error</value>
+  </data>
+  <data name="TPLS_PlaybackError_FileNotFound" xml:space="preserve">
+    <value>Musikfilen saknas</value>
+  </data>
+  <data name="TPLS_PlaybackErrorHeader" xml:space="preserve">
+    <value>Uppspelningsfel</value>
+  </data>
+  <data name="TPLS_PlaybackError_InvalidData" xml:space="preserve">
+    <value>Musikfilen är i fel format</value>
+  </data>
+  <data name="TPLS_PlaybackError" xml:space="preserve">
+    <value>Ett fel inträffade när musiken skulle spelas</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
+    <value>Ogiltigt format</value>
+  </data>
+  <data name="R2HotKeyValidation_ModifierKeysUsed" xml:space="preserve">
+    <value>Endast en tangent kan användas</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidKey" xml:space="preserve">
+    <value>Tangenten är ogiltig</value>
   </data>
   <data name="SecretCodes_SecretHeader" xml:space="preserve">
     <value>Hemlig kod</value>
@@ -1148,6 +1179,9 @@ Försök igen?"</value>
   </data>
   <data name="GameNotFoundHeader" xml:space="preserve">
     <value>Kunde inte hitta spel</value>
+  </data>
+  <data name="About_Credits_PluMGMK" xml:space="preserve">
+    <value>Rayman 2 översättningar</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
     <value>1.12 (Upplaga 1)</value>
@@ -1251,6 +1285,12 @@ Försök igen?"</value>
   <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
     <value>1.12 (Upplaga 3)</value>
   </data>
+  <data name="LinksPage_LinkStyle_List" xml:space="preserve">
+    <value>Lista</value>
+  </data>
+  <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
+    <value>Grupp</value>
+  </data>
   <data name="Links_Local_Steam" xml:space="preserve">
     <value>Steam</value>
   </data>
@@ -1325,6 +1365,18 @@ Försök igen?"</value>
   </data>
   <data name="Links_Tools_RayTwol" xml:space="preserve">
     <value>RayTwol</value>
+  </data>
+  <data name="Links_Tools_R2Tools" xml:space="preserve">
+    <value>Rayman 2 verktyg</value>
+  </data>
+  <data name="Links_Tools_R2Moonjump" xml:space="preserve">
+    <value>Rayman 2 GOG Moonjump</value>
+  </data>
+  <data name="Links_Tools_R2FunBox" xml:space="preserve">
+    <value>Rayman 2 Fun Box</value>
+  </data>
+  <data name="Links_Tools_BetterR3" xml:space="preserve">
+    <value>Better Rayman 3</value>
   </data>
   <data name="TaskBarIcon_Open" xml:space="preserve">
     <value>Öppna</value>
@@ -1409,10 +1461,6 @@ Försök igen?"</value>
     <value>freq80</value>
     <comment>freq80</comment>
   </data>
-  <data name="Cheats_R1_AllPowersInput2" xml:space="preserve">
-    <value>power</value>
-    <comment>power</comment>
-  </data>
   <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
     <value>lens</value>
     <comment>lens</comment>
@@ -1480,5 +1528,14 @@ Försök igen?"</value>
   <data name="Cheats_RM3_ReverseMapInput" xml:space="preserve">
     <value>reverse</value>
     <comment>reverse</comment>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyle_Left" xml:space="preserve">
+    <value>Vänster</value>
+  </data>
+  <data name="LinksPage_Options" xml:space="preserve">
+    <value>Alternativ</value>
+  </data>
+  <data name="AdminWorker_Error" xml:space="preserve">
+    <value>Ett fel inträffade när admin worker programmet skulle köras</value>
   </data>
 </root>

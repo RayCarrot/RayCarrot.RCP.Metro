@@ -239,9 +239,6 @@
   <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
     <value>freq80</value>
   </data>
-  <data name="Cheats_R1_AllPowersInput2" xml:space="preserve">
-    <value>power</value>
-  </data>
   <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
     <value>lens</value>
   </data>

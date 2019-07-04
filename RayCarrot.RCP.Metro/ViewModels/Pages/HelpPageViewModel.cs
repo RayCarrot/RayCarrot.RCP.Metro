@@ -259,7 +259,6 @@ namespace RayCarrot.RCP.Metro
                                 new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_FreeMovementTitle, Resources.Cheats_Location_Level, String.Empty, String.Empty, Resources.Cheats_R1_FreeMovementInput3),
                                 new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_100RefreshRateTitle, Resources.Cheats_Location_Map, String.Empty, Resources.Cheats_R1_100RefreshRateInput2, String.Empty),
                                 new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_80RefreshRateTitle, Resources.Cheats_Location_Map, String.Empty, Resources.Cheats_R1_80RefreshRateInput2, String.Empty),
-                                new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_AllPowersTitle, Resources.Cheats_Location_Map, String.Empty, Resources.Cheats_R1_AllPowersInput2, Resources.Cheats_R1_AllPowersInput3),
                                 new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_LensEffectTitle, Resources.Cheats_Location_Map, String.Empty, Resources.Cheats_R1_LensEffectInput2, String.Empty),
                                 new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_AllLevelsTitle, Resources.Cheats_Location_Map, Resources.Cheats_R1_AllLevelsInput1, Resources.Cheats_R1_AllLevelsInput2, Resources.Cheats_R1_AllLevelsInput3),
                                 new Rayman1CheatCodeItemViewModel(Resources.Cheats_R1_BreakoutTitle, Resources.Cheats_Location_Map, Resources.Cheats_R1_BreakoutInput1, Resources.Cheats_R1_BreakoutInput2, Resources.Cheats_R1_BreakoutInput3),

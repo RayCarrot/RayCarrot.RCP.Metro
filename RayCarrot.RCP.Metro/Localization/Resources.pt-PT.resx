@@ -1131,7 +1131,8 @@ Tentar novamente?</value>
     <value>Este utilitário requer ficheiros adicionais a serem descarregados</value>
   </data>
   <data name="TPLS_Error" xml:space="preserve">
-    <value>O utilitário da banda sonora PlayStation crashou com a mensagem de erro de: {0} Reiniciar?</value>
+    <value>O utilitário da banda sonora PlayStation crashou com a mensagem de erro de: {0}
+Reiniciar?</value>
   </data>
   <data name="TPLS_ErrorHeader" xml:space="preserve">
     <value>Erro TPLS</value>
@@ -1599,10 +1600,10 @@ As cópias de segurança em si são sempre arquivados no sub-directório '{0}'. 
   <data name="Help_RCP_AppData" xml:space="preserve">
     <value>O programa guarda principalmente os seus dados de aplicação nos dados de aplicação do utilizador actual, com algumas definições guardadas no Registo. Abaixo é a lista completa das localizações onde os dados são arquivados. 
   
-  • Dados da aplicação principal - {0}
-  • Definições de registo - {1}
-  • Definições de registo de Framework - {2}
-  • Dados temporários - {3}</value>
+• Dados da aplicação principal - {0}
+• Definições de registo - {1}
+• Definições de registo de Framework - {2}
+• Dados temporários - {3}</value>
   </data>
   <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
     <value>Argumentos de execução</value>
@@ -1610,10 +1611,10 @@ As cópias de segurança em si são sempre arquivados no sub-directório '{0}'. 
   <data name="Help_RCP_LaunchArgs" xml:space="preserve">
     <value>O Painel de Controlo Rayman suporta vários argumentos de execução, principalmente direccionados para a depuração da aplicação. Abaixo é a lista completa dos argumentos de execução disponíveis. O caracter '-' deverá ser sempre incluído. Os caracteres '{}' mostram que uma variável personalizada pode ser utilizada, no caso que o '{}' dnão deverá ser incluído.
   
- -reset (Reinicia todos os dados de aplicação antes da execução)
- -install {EndereçoDeFicheiro} (Remove o instalador do endereço especificado)
- -ul {NívelDeUtilizador} (Define o nível de utilizador assim que o framework é construído)
- -loglevel {NívelDeDiário} (Define o nível de diário para diário, padrão é Informação)</value>
+-reset (Reinicia todos os dados de aplicação antes da execução)
+-install {EndereçoDeFicheiro} (Remove o instalador do endereço especificado)
+-ul {NívelDeUtilizador} (Define o nível de utilizador assim que o framework é construído)
+-loglevel {NívelDeDiário} (Define o nível de diário para diário, padrão é Informação)</value>
   </data>
   <data name="Help_RCP_DebugHeader" xml:space="preserve">
     <value>Depuramento</value>
@@ -2120,6 +2121,33 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   <data name="AppNameAdmin" xml:space="preserve">
     <value>Painel de Controlo Rayman (Administrador)</value>
   </data>
+  <data name="Cheats_Location_Level" xml:space="preserve">
+    <value>Nível</value>
+  </data>
+  <data name="Cheats_Location_Map" xml:space="preserve">
+    <value>Mapa</value>
+  </data>
+  <data name="Cheats_Location_Pause" xml:space="preserve">
+    <value>Ecrã de pausa</value>
+  </data>
+  <data name="Cheats_Location_AccessDenied" xml:space="preserve">
+    <value>Ecrã de Acesso Recusado</value>
+  </data>
+  <data name="Cheats_Location_TotA3" xml:space="preserve">
+    <value>Túmulo dos Antigos Parte 3. enquanto posicionado(a) no terceiro painel do lado da entrada do Check-up Técnico onde o Rayman luta contra o Clark</value>
+  </data>
+  <data name="Cheats_Location_Credits" xml:space="preserve">
+    <value>Créditos</value>
+  </data>
+  <data name="Cheats_Location_Cutscene" xml:space="preserve">
+    <value>Cinemático</value>
+  </data>
+  <data name="Cheats_Location_ProfileName" xml:space="preserve">
+    <value>Nome de perfil</value>
+  </data>
+  <data name="Cheats_R1" xml:space="preserve">
+    <value>Códigos de batota diferentes irão funcionar em versões diferentes. Algumas versões suportam múltiplos tipos de códigos de batota.</value>
+  </data>
   <data name="Cheats_R1_99LivesTitle" xml:space="preserve">
     <value>99 vidas</value>
   </data>
@@ -2210,6 +2238,9 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   <data name="Cheats_R1_HiddenMessageInput3" xml:space="preserve">
     <value>[TAB]program</value>
   </data>
+  <data name="Cheats_R1_FreeMovementTitle" xml:space="preserve">
+    <value>Movimento livre</value>
+  </data>
   <data name="Cheats_R1_FreeMovementInput3" xml:space="preserve">
     <value>[TAB];overay[RETROCEDER]</value>
   </data>
@@ -2226,16 +2257,6 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
     <value>freq80</value>
     <comment>freq80</comment>
-  </data>
-  <data name="Cheats_R1_AllPowersTitle" xml:space="preserve">
-    <value>Todos os poderes normais</value>
-  </data>
-  <data name="Cheats_R1_AllPowersInput2" xml:space="preserve">
-    <value>power</value>
-    <comment>power</comment>
-  </data>
-  <data name="Cheats_R1_AllPowersInput3" xml:space="preserve">
-    <value>[TAB]benoit</value>
   </data>
   <data name="Cheats_R1_LensEffectTitle" xml:space="preserve">
     <value>Efeito lentes</value>
@@ -2257,6 +2278,9 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   </data>
   <data name="Cheats_R1_AllLevelsInput3" xml:space="preserve">
     <value>[TAB]francois</value>
+  </data>
+  <data name="Cheats_R1_BreakoutTitle" xml:space="preserve">
+    <value>Entrar no minijogo Breakout (requer que tenha sido completado o Mr Dark's Dare)</value>
   </data>
   <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
     <value>b76b7081</value>
@@ -2373,8 +2397,14 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   <data name="Cheats_R2_MaxHealthTitle" xml:space="preserve">
     <value>Adquire saúde máxima</value>
   </data>
+  <data name="Cheats_R2_MaxHealthInput" xml:space="preserve">
+    <value>Pressiona e liberta a tecla J ao ritmo do tema do Rayman 2</value>
+  </data>
   <data name="Cheats_R2_BonusLevelTitle" xml:space="preserve">
     <value>Entrar num nível bonus sem todos os Lums ou Jaulas</value>
+  </data>
+  <data name="Cheats_R2_BonusLevelInput" xml:space="preserve">
+    <value>A[NUMPAD 0]QWQW[ENTER]</value>
   </data>
   <data name="Cheats_R2_SkipMoviesTitle" xml:space="preserve">
     <value>Saltar cinemáticos</value>
@@ -2482,5 +2512,26 @@ Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, dei
   </data>
   <data name="Cheats_RM_RagtimeMusicInput" xml:space="preserve">
     <value>Entra com o nome de perfil OLDTV e pressiona Shift + Ctrl + Alt</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyleHeader" xml:space="preserve">
+    <value>Alinhamento de botões</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyle_Left" xml:space="preserve">
+    <value>Esquerda</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyle_Stretch" xml:space="preserve">
+    <value>Esticar</value>
+  </data>
+  <data name="LinksPage_Options" xml:space="preserve">
+    <value>Opções</value>
+  </data>
+  <data name="Installer_DirMissingWritePermission" xml:space="preserve">
+    <value>O acesso à localização de instalação seleccionada foi recusada. Selecciona outra localização ou executa o programa como administrador.</value>
+  </data>
+  <data name="Installer_DirMissingWritePermissionHeader" xml:space="preserve">
+    <value>Acesso recusado</value>
+  </data>
+  <data name="AdminWorker_Error" xml:space="preserve">
+    <value>Ocorreu um erro quando se tentava executar o admin worker</value>
   </data>
 </root>

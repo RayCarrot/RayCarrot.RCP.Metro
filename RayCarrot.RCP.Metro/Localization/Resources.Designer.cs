@@ -379,6 +379,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when attempting to run the admin worker.
+        /// </summary>
+        public static string AdminWorker_Error {
+            get {
+                return ResourceManager.GetString("AdminWorker_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman Control Panel.
         /// </summary>
         public static string AppName {
@@ -847,33 +856,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to power.
-        /// </summary>
-        public static string Cheats_R1_AllPowersInput2 {
-            get {
-                return ResourceManager.GetString("Cheats_R1_AllPowersInput2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to [TAB]benoit.
-        /// </summary>
-        public static string Cheats_R1_AllPowersInput3 {
-            get {
-                return ResourceManager.GetString("Cheats_R1_AllPowersInput3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to All normal powers.
-        /// </summary>
-        public static string Cheats_R1_AllPowersTitle {
-            get {
-                return ResourceManager.GetString("Cheats_R1_AllPowersTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to en5gol2g.
         /// </summary>
         public static string Cheats_R1_AllPowerUpsInput1 {
@@ -901,7 +883,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All normal power-ups.
+        ///   Looks up a localized string similar to All normal powers.
         /// </summary>
         public static string Cheats_R1_AllPowerUpsTitle {
             get {

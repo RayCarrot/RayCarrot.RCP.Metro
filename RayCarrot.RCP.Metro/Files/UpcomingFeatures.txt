@@ -1,9 +1,9 @@
 ﻿--- Utilities ---
-- Separate utilities in code so they do not share the same view models. Abstract it by having methods which return a collection of utilities, all defined by an interface. Allow utilities to be loaded as plugins could be done using this through .dll files. Security is an issue - have user manually load them?
+- Separate utilities in code so they do not share the same view models. Abstract it by having methods which return a collection of utilities, all defined by an interface. Allow utilities to be loaded as plugins could be done using this through .dll files.
 
 - Rayman Legends debug commands (Uplay version only)
 
-- Add support for more utilities (R2 texture extract, .sna import/export etc.) - since these require additional executable due to a lack of public source code they will be downloaded to the Utilities folder from the server (similarly to TPLS)
+- Add support for more utilities (R2 texture extract, .sna import/export etc.) - since these require additional executable due to a lack of public source code they will be downloaded to the Utilities folder from the server (similarly to TPLS).
 
 
 --- Games ---
@@ -14,8 +14,6 @@
 
 --- Configuration ---
 - Add the remaining fields to the Rayman 2 configuration and have pre-sets for DirectX/nGlide based on the GOG setup
-
-- Do not disable the save button when all values have been defaulted due to the configuration not existing
 
 
 --- Game Finder ---
@@ -31,12 +29,8 @@
 
 - Localize the admin worker
 
-- Allow the horizontal alignment to be changed for the links when in list view
-
 
 --- Other ---
-- Rework ubi.ini permission system to avoid relying on CMD commands due to not being able to verify if the command succeeded
+- Create two core .NET Standard projects. One which is the minimum core (common app paths, user data model etc.) which updater/uninstaller references. The other one holds all non-UI logic, such as view models. NOTE: This will mess up the current localization system due to it all being in one file. Might need to be split up.
 
-- Create two core .NET Standard projects. One which is the minimum core (common app paths, user data model etc.) which updater/uninstaller references. The other one holds all non-UI logic, such as view models. NOTE: This will mess up the current localization system due to it all being in one file. Might need to be split up then.
-
-- Move program over from .NET Framework to .NET Core 3.0 when it releases
+- Move program over from .NET Framework to .NET Core 3.0 when it releases. Do the same for control libraries. There might still be .NET Framework dependencies from 3-party ones?

@@ -118,7 +118,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(4, 6, 0, 0);
+        public Version CurrentVersion => new Version(4, 6, 0, 1);
 
         /// <summary>
         /// Indicates if the current version is a beta version
@@ -1128,8 +1128,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     ex.HandleError("Deploying admin worker executable");
 
-                    // TODO: Localize
-                    await RCF.MessageUI.DisplayMessageAsync("An error occurred when attempting to run the admin worker", MessageType.Error);
+                    await RCF.MessageUI.DisplayMessageAsync(Resources.AdminWorker_Error, MessageType.Error);
 
                     return;
                 }

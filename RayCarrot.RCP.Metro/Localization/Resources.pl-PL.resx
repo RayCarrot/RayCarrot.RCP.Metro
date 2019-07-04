@@ -251,10 +251,6 @@
     <value>freq80</value>
     <comment>freq80</comment>
   </data>
-  <data name="Cheats_R1_AllPowersInput2" xml:space="preserve">
-    <value>power</value>
-    <comment>power</comment>
-  </data>
   <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
     <value>lens</value>
     <comment>lens</comment>

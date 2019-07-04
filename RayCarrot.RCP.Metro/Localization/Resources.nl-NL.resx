@@ -1132,7 +1132,7 @@ Opnieuw proberen?</value>
   </data>
   <data name="TPLS_Error" xml:space="preserve">
     <value>Het hulpprogramma voor de PlayStation soundtrack is gecrasht; de volgende foutmelding werd verkregen: {0}
- Herstarten?</value>
+Herstarten?</value>
   </data>
   <data name="TPLS_ErrorHeader" xml:space="preserve">
     <value>TPLS Fout</value>
@@ -1563,8 +1563,8 @@ Opnieuw proberen?</value>
   <data name="Help_RCP_Updates" xml:space="preserve">
     <value>Dit programma controleert bij opstart standaard op updates, tenzij de optie uitgeschakeld is. Dit gebeurt op de achtergrond and kan een paar seconden in beslag nemen. Er kan ook handmatig op updates worden gecontroleerd via de Instellingen pagina.
  
- Als er een fout plaatsvindt vanwege de update-service, kan de update handmatig worden gedownload via:
- {0}</value>
+Als er een fout plaatsvindt vanwege de update-service, kan de update handmatig worden gedownload via:
+{0}</value>
   </data>
   <data name="Help_RCP_CompatibilityHeader" xml:space="preserve">
     <value>Compatibiliteit</value>
@@ -1577,31 +1577,31 @@ Opnieuw proberen?</value>
   </data>
   <data name="Help_RCP_GameInstaller" xml:space="preserve">
     <value>Voor de spellen die geïnstalleerd kunnen worden vanaf een schijf, selecteer je de optie via het dropdown-menu van het spel. Rayman 2, Rayman M en Rayman Arena zijn momenteel de enige, ondersteunde games.
- 
- Tijdens de installatie dien je een map te kiezen voor de installatiebestanden. Het spel zal geïnstalleerd worden in een submap binnen de geselecteerde map. Kies je bijvoorbeeld om de game te installeren in C:\Ubisoft, dan zal het spel geïnstalleerd worden onder C:\Ubisoft\Rayman 2
- 
- In het geval van Rayman 2 zal de Installer het uitvoerbare bestand vervangen door het .exe-bestand van de GOG versie, om zo in staat te zijn het spel te starten zonder schijf. Dit wordt preventief gedaan tegen de veelvoorkomende schijffout, die normaal gesproken later tijdens het spel ontstaat.
- 
- Om één van de games te deïnstalleren via de Game Installer, dien je simpelweg de mappen en bestanden te verwijderen. Het spel zal niet meer zichtbaar zijn onder Geïnstalleerde Programma's, omdat er geen uninstaller aanwezig is.</value>
+
+Tijdens de installatie dien je een map te kiezen voor de installatiebestanden. Het spel zal geïnstalleerd worden in een submap binnen de geselecteerde map. Kies je bijvoorbeeld om de game te installeren in C:\Ubisoft, dan zal het spel geïnstalleerd worden onder C:\Ubisoft\Rayman 2
+
+In het geval van Rayman 2 zal de Installer het uitvoerbare bestand vervangen door het .exe-bestand van de GOG versie, om zo in staat te zijn het spel te starten zonder schijf. Dit wordt preventief gedaan tegen de veelvoorkomende schijffout, die normaal gesproken later tijdens het spel ontstaat.
+
+Om één van de games te deïnstalleren via de Game Installer, dien je simpelweg de mappen en bestanden te verwijderen. Het spel zal niet meer zichtbaar zijn onder Geïnstalleerde Programma's, omdat er geen uninstaller aanwezig is.</value>
   </data>
   <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
     <value>Back-up/Herstel</value>
   </data>
   <data name="Help_RCP_BackupRestore" xml:space="preserve">
     <value>Het programma heeft een back-up en herstel feature voor alle ondersteunde spellen. De back-ups worden standaard in de map Documenten opgeslagen, maar de locatie kan aangepast worden via de instellingen.
- 
- De back-ups an sich worden altijd opgeslagen in de '{0}' submap. Het is niet aanbevolen deze bestanden handmatig te wijzigen.</value>
+
+De back-ups an sich worden altijd opgeslagen in de '{0}' submap. Het is niet aanbevolen deze bestanden handmatig te wijzigen.</value>
   </data>
   <data name="Help_RCP_AppDataHeader" xml:space="preserve">
     <value>App Data locatie</value>
   </data>
   <data name="Help_RCP_AppData" xml:space="preserve">
     <value>Het programma slaat zijn app data hoofdzakelijk op in de huidige gebruiker zijn lokale app data map, waarbij sommige instellingen opgeslagen worden in het register. Hieronder een lijst met alle locaties voor data-opslag:
- 
- • Belangrijkste applicatiedata - {0}
- • Registerinstellingen - {1}
- • Framework Registerinstellingen - {2}
- • Tijdelijke bestanden - {3}</value>
+
+• Belangrijkste applicatiedata - {0}
+• Registerinstellingen - {1}
+• Framework Registerinstellingen - {2}
+• Tijdelijke bestanden - {3}</value>
   </data>
   <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
     <value>Opstartargumenten</value>
@@ -1609,17 +1609,17 @@ Opnieuw proberen?</value>
   <data name="Help_RCP_LaunchArgs" xml:space="preserve">
     <value>"Het Rayman Control Panel ondersteunt verscheidene opstartargumenten, hoofdzakelijk bedoeld voor het debuggen van de applicatie. Onderstaand een complete lijst met beschikbare opstartargumenten. Het '-' teken dient altijd meegenomen te worden. De '{}' duiden erop dat een keuze variabele gebruikt kan worden, waardoor de '{}' niet meegenomen dienen te worden.
  
- -reset (Reset alle app data voorafgaand aan het starten)
- -install {filePath} (Verwijdert de Installer via het gespecificeerde pad - niet langer gebruikt vanaf versie 4.5.0)
- -ul {userLevel} (stelt het gebruikersniveau in wanneer het raamwerk is gecreëerd)
- -loglevel {loglevel} (stelt logniveau in; de standaardwaarde is 'Informatie')"</value>
+-reset (Reset alle app data voorafgaand aan het starten)
+-install {filePath} (Verwijdert de Installer via het gespecificeerde pad - niet langer gebruikt vanaf versie 4.5.0)
+-ul {userLevel} (stelt het gebruikersniveau in wanneer het raamwerk is gecreëerd)
+-loglevel {loglevel} (stelt logniveau in; de standaardwaarde is 'Informatie')"</value>
   </data>
   <data name="Help_RCP_DebugHeader" xml:space="preserve">
     <value>Debuggen</value>
   </data>
   <data name="Help_RCP_Debug" xml:space="preserve">
     <value>Als een debugger gelinkt is aan het programma, dan zalde log viewer automatisch geopend worden. De log viewer kan tevens handmatig worden geopend via de Debug pagina zonder dat er een debugger gelinkt is. Als er geen debug gebruikersnivea is gekozen, kan het log nog steeds ingezien worden via het bestand waarnaar het schrijft; via het volgende pad:
- {0}</value>
+{0}</value>
   </data>
   <data name="Help_Games" xml:space="preserve">
     <value>Spellen</value>
@@ -1633,11 +1633,11 @@ Opnieuw proberen?</value>
   <data name="Help_Games_General_GameNotLaunching" xml:space="preserve">
     <value>Hier de twee standaard stappen om te proberen als een spel niet wil starten:
  
- *Start het spel als administrator:
- De optie voor het starten van een programma als administrator kan gevonden worden in het contextmenu door rechts te klikken op het programma.
+*Start het spel als administrator:
+De optie voor het starten van een programma als administrator kan gevonden worden in het contextmenu door rechts te klikken op het programma.
  
- *Start het spel in compatibiliteitsmodus:
- Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigenschappen van het uitvoerbare bestand naar de compatibiliteitsopties. Voor veel ouderer spellen is het aanbevolen te kiezen voor Windows XP Service Pack 2 of 3.</value>
+*Start het spel in compatibiliteitsmodus:
+Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigenschappen van het uitvoerbare bestand naar de compatibiliteitsopties. Voor veel ouderer spellen is het aanbevolen te kiezen voor Windows XP Service Pack 2 of 3.</value>
   </data>
   <data name="Help_Games_R1" xml:space="preserve">
     <value>Rayman 1</value>
@@ -1716,6 +1716,24 @@ Opnieuw proberen?</value>
   </data>
   <data name="Help_Games_RL_LoadError" xml:space="preserve">
     <value>Deze fout komt hoofdzakelijk voor op Windows 10 systemen, waarbij het spel niet in staat is een lees- of schrijfbewerking uit te voeren op de save file en/of het configuratiebestand van het spel. De belangrijkst te noemen oplossing voor dit probleem is, het toevoegen van Rayman Legends als een uitzondering via de Gecontroleerde Mappentoegang sectie van het ingebouwde Windows Beveiligingssysteem.</value>
+  </data>
+  <data name="Help_Cheats" xml:space="preserve">
+    <value>Cheat Codes</value>
+  </data>
+  <data name="Help_Cheats_R1Header" xml:space="preserve">
+    <value>Rayman 1</value>
+  </data>
+  <data name="Help_Cheats_RDHeader" xml:space="preserve">
+    <value>Rayman Designer + Spin-Offs</value>
+  </data>
+  <data name="Help_Cheats_R2Header" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="Help_Cheats_RMAHeader" xml:space="preserve">
+    <value>Rayman M/Arena</value>
+  </data>
+  <data name="Help_Cheats_R3Header" xml:space="preserve">
+    <value>Rayman 3</value>
   </data>
   <data name="Lang_English" xml:space="preserve">
     <value>Engels</value>
@@ -2045,7 +2063,7 @@ Opnieuw proberen?</value>
     <value>Better Rayman 3</value>
   </data>
   <data name="Links_Tools_R3GCTexturePack" xml:space="preserve">
-    <value>Rayman 3 (Dolphin Emulator) HD</value>
+    <value>Rayman 3 (Dolphin Emulator) HD Texture Pack</value>
   </data>
   <data name="Links_OpenErrorNotFound" xml:space="preserve">
     <value>Het link item kon niet geopend worden, omdat het niet gevonden werd</value>
@@ -2103,6 +2121,36 @@ Opnieuw proberen?</value>
   <data name="AppNameAdmin" xml:space="preserve">
     <value>Rayman Control Panel (Administrator)</value>
   </data>
+  <data name="Cheats_Location_Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Cheats_Location_Map" xml:space="preserve">
+    <value>Map hulpprogramma's</value>
+  </data>
+  <data name="Cheats_Location_Pause" xml:space="preserve">
+    <value>Pauzescherm</value>
+  </data>
+  <data name="Cheats_Location_AccessDenied" xml:space="preserve">
+    <value>Toegang Geweigerd scherm</value>
+  </data>
+  <data name="Cheats_Location_TotA3" xml:space="preserve">
+    <value>Tomb of the Ancient deel 3, terwijl je op het derde paneel staat vanaf de ingang van de controlekamer, waar Rayman het gevecht aangaat met Clark</value>
+  </data>
+  <data name="Cheats_Location_Credits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="Cheats_Location_Cutscene" xml:space="preserve">
+    <value>Cutscene</value>
+  </data>
+  <data name="Cheats_Location_ProfileName" xml:space="preserve">
+    <value>Profielnaam</value>
+  </data>
+  <data name="Cheats_R1" xml:space="preserve">
+    <value>Voor de verschillende Rayman versies zijn er verschillende cheat codes. Sommige versies ondersteunen meerdere typen cheat codes.</value>
+  </data>
+  <data name="Cheats_R1_99LivesTitle" xml:space="preserve">
+    <value>99 levens</value>
+  </data>
   <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
     <value>trj8p</value>
     <comment>trj8p</comment>
@@ -2110,6 +2158,12 @@ Opnieuw proberen?</value>
   <data name="Cheats_R1_99LivesInput2" xml:space="preserve">
     <value>raylives</value>
     <comment>raylives</comment>
+  </data>
+  <data name="Cheats_R1_99LivesInput3" xml:space="preserve">
+    <value>[TAB]bertrand</value>
+  </data>
+  <data name="Cheats_R1_FistPowerTitle" xml:space="preserve">
+    <value>Alle vuist power-ups</value>
   </data>
   <data name="Cheats_R1_FistPowerInput1" xml:space="preserve">
     <value>2x2rmfmf</value>
@@ -2119,6 +2173,12 @@ Opnieuw proberen?</value>
     <value>goldfist</value>
     <comment>goldfist</comment>
   </data>
+  <data name="Cheats_R1_FistPowerInput3" xml:space="preserve">
+    <value>[TAB]antoine</value>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsTitle" xml:space="preserve">
+    <value>Alle normale power-ups</value>
+  </data>
   <data name="Cheats_R1_AllPowerUpsInput1" xml:space="preserve">
     <value>en5gol2g</value>
     <comment>en5gol2g</comment>
@@ -2126,6 +2186,12 @@ Opnieuw proberen?</value>
   <data name="Cheats_R1_AllPowerUpsInput2" xml:space="preserve">
     <value>power</value>
     <comment>power</comment>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput3" xml:space="preserve">
+    <value>[TAB]benoit</value>
+  </data>
+  <data name="Cheats_R1_FullHealthTitle" xml:space="preserve">
+    <value>Volledig gezond</value>
   </data>
   <data name="Cheats_R1_FullHealthInput1" xml:space="preserve">
     <value>kom0ogdk</value>
@@ -2135,6 +2201,12 @@ Opnieuw proberen?</value>
     <value>raypoint</value>
     <comment>raypoint</comment>
   </data>
+  <data name="Cheats_R1_FullHealthInput3" xml:space="preserve">
+    <value>[TAB]christ</value>
+  </data>
+  <data name="Cheats_R1_10TingsTitle" xml:space="preserve">
+    <value>10 extra Tings</value>
+  </data>
   <data name="Cheats_R1_10TingsInput1" xml:space="preserve">
     <value>86e40g91</value>
     <comment>86e40g91</comment>
@@ -2142,6 +2214,12 @@ Opnieuw proberen?</value>
   <data name="Cheats_R1_10TingsInput2" xml:space="preserve">
     <value>raywiz</value>
     <comment>raywiz</comment>
+  </data>
+  <data name="Cheats_R1_10TingsInput3" xml:space="preserve">
+    <value>[TAB]jojo</value>
+  </data>
+  <data name="Cheats_R1_SkipLevelTitle" xml:space="preserve">
+    <value>Skip sectie van level</value>
   </data>
   <data name="Cheats_R1_SkipLevelInput1" xml:space="preserve">
     <value>o8feh</value>
@@ -2151,21 +2229,44 @@ Opnieuw proberen?</value>
     <value>winmap</value>
     <comment>winmap</comment>
   </data>
+  <data name="Cheats_R1_SkipLevelInput3" xml:space="preserve">
+    <value>[TAB]cyril</value>
+  </data>
+  <data name="Cheats_R1_HiddenMessageTitle" xml:space="preserve">
+    <value>Toon verborgen bericht</value>
+  </data>
+  <data name="Cheats_R1_HiddenMessageInput3" xml:space="preserve">
+    <value>[TAB]program</value>
+  </data>
+  <data name="Cheats_R1_FreeMovementTitle" xml:space="preserve">
+    <value>Vrij bewegen</value>
+  </data>
+  <data name="Cheats_R1_FreeMovementInput3" xml:space="preserve">
+    <value>[TAB];overay[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_R1_100RefreshRateTitle" xml:space="preserve">
+    <value>100MHz Refresh rate</value>
+  </data>
   <data name="Cheats_R1_100RefreshRateInput2" xml:space="preserve">
     <value>freq10</value>
     <comment>freq10</comment>
+  </data>
+  <data name="Cheats_R1_80RefreshRateTitle" xml:space="preserve">
+    <value>80MHz Refresh rate</value>
   </data>
   <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
     <value>freq80</value>
     <comment>freq80</comment>
   </data>
-  <data name="Cheats_R1_AllPowersInput2" xml:space="preserve">
-    <value>power</value>
-    <comment>power</comment>
+  <data name="Cheats_R1_LensEffectTitle" xml:space="preserve">
+    <value>Lenseffect</value>
   </data>
   <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
     <value>lens</value>
     <comment>lens</comment>
+  </data>
+  <data name="Cheats_R1_AllLevelsTitle" xml:space="preserve">
+    <value>Ontgrendel alle levels</value>
   </data>
   <data name="Cheats_R1_AllLevelsInput1" xml:space="preserve">
     <value>4ctrepfj</value>
@@ -2175,6 +2276,12 @@ Opnieuw proberen?</value>
     <value>alworld</value>
     <comment>alworld</comment>
   </data>
+  <data name="Cheats_R1_AllLevelsInput3" xml:space="preserve">
+    <value>[TAB]francois</value>
+  </data>
+  <data name="Cheats_R1_BreakoutTitle" xml:space="preserve">
+    <value>Start de Breakout mini-game (vereist dat Mr Dark's Dare voltooid is)</value>
+  </data>
   <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
     <value>b76b7081</value>
     <comment>b76b7081</comment>
@@ -2183,70 +2290,249 @@ Opnieuw proberen?</value>
     <value>cbray</value>
     <comment>cbray</comment>
   </data>
+  <data name="Cheats_R1_BreakoutInput3" xml:space="preserve">
+    <value>[TAB]olivier</value>
+  </data>
+  <data name="Cheats_R1_BreakoutStageTitle" xml:space="preserve">
+    <value>Start in een willekeurige fase van de Breakout mini-game</value>
+  </data>
+  <data name="Cheats_R1_BreakoutStageInput3" xml:space="preserve">
+    <value>[TAB]cbrayal[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_R1_SelectStageTitle" xml:space="preserve">
+    <value>Fase selectie</value>
+  </data>
+  <data name="Cheats_R1_SelectStageInput3" xml:space="preserve">
+    <value>[TAB]alevel[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_5LivesTitle" xml:space="preserve">
+    <value>5 levens</value>
+  </data>
+  <data name="Cheats_RD_5LivesInput" xml:space="preserve">
+    <value>[TAB]lives05[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_20LivesTitle" xml:space="preserve">
+    <value>20 levens</value>
+  </data>
+  <data name="Cheats_RD_20LivesInput" xml:space="preserve">
+    <value>[TAB]lives20[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_50LivesTitle" xml:space="preserve">
+    <value>50 levens</value>
+  </data>
+  <data name="Cheats_RD_50LivesInput" xml:space="preserve">
+    <value>[TAB]lives50[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_FistPowerTitle" xml:space="preserve">
+    <value>Alle vuist power-ups</value>
+  </data>
+  <data name="Cheats_RD_FistPowerInput" xml:space="preserve">
+    <value>[TAB]goldens</value>
+  </data>
+  <data name="Cheats_RD_FinishLevelTitle" xml:space="preserve">
+    <value>Finish level</value>
+  </data>
+  <data name="Cheats_RD_FinishLevelInput" xml:space="preserve">
+    <value>[TAB]finishing</value>
+  </data>
+  <data name="Cheats_RD_FullHealthTitle" xml:space="preserve">
+    <value>Volledig gezond</value>
+  </data>
+  <data name="Cheats_RD_FullHealthInput" xml:space="preserve">
+    <value>[TAB]points</value>
+  </data>
+  <data name="Cheats_RD_MapIndexTitle" xml:space="preserve">
+    <value>Toon mappenindex</value>
+  </data>
+  <data name="Cheats_RD_MapIndexInput" xml:space="preserve">
+    <value>[TAB]map[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_FreeMovementTitle" xml:space="preserve">
+    <value>Vrij bewegen</value>
+  </data>
+  <data name="Cheats_RD_FreeMovementInput" xml:space="preserve">
+    <value>[TAB]moveray[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_AllLevelsTitle" xml:space="preserve">
+    <value>Ontgrendel alle levels</value>
+  </data>
+  <data name="Cheats_RD_AllLevelsInput" xml:space="preserve">
+    <value>[TAB]openall[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_R2_FistUpgradeTitle" xml:space="preserve">
+    <value>Upgrade magische vuist</value>
+  </data>
   <data name="Cheats_R2_FistUpgradeInput" xml:space="preserve">
     <value>glowfist</value>
     <comment>glowfist</comment>
+  </data>
+  <data name="Cheats_R2_RestoreHealthTitle" xml:space="preserve">
+    <value>Herstel gezondheid</value>
   </data>
   <data name="Cheats_R2_RestoreHealthInput" xml:space="preserve">
     <value>gimmelife</value>
     <comment>gimmelife</comment>
   </data>
+  <data name="Cheats_R2_5LumsTitle" xml:space="preserve">
+    <value>Verkrijg 5 Gele Lums</value>
+  </data>
   <data name="Cheats_R2_5LumsInput" xml:space="preserve">
     <value>gimmelumz</value>
     <comment>gimmelumz</comment>
+  </data>
+  <data name="Cheats_R2_LevelSelectionTitle" xml:space="preserve">
+    <value>Ga naar een level naar keuze</value>
   </data>
   <data name="Cheats_R2_LevelSelectionInput" xml:space="preserve">
     <value>gothere</value>
     <comment>gothere</comment>
   </data>
+  <data name="Cheats_R2_GrappleTitle" xml:space="preserve">
+    <value>Ontgrendel grijpkracht</value>
+  </data>
   <data name="Cheats_R2_GrappleInput" xml:space="preserve">
     <value>hangon</value>
     <comment>hangon</comment>
+  </data>
+  <data name="Cheats_R2_MaxHealthTitle" xml:space="preserve">
+    <value>Verkrijg maximum gezondheid</value>
+  </data>
+  <data name="Cheats_R2_MaxHealthInput" xml:space="preserve">
+    <value>Houd de J-toets ingedrukt en laat deze weer los naargelang het ritme van het Rayman 2 thema</value>
+  </data>
+  <data name="Cheats_R2_BonusLevelTitle" xml:space="preserve">
+    <value>Verkrijg toegang tot het bonuslevel zonder alle Lums en opengebroken Kooien</value>
+  </data>
+  <data name="Cheats_R2_BonusLevelInput" xml:space="preserve">
+    <value>A[NUMPAD 0]QWQW[ENTER]</value>
+  </data>
+  <data name="Cheats_R2_SkipMoviesTitle" xml:space="preserve">
+    <value>Skip cutscenes</value>
   </data>
   <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
     <value>NOMOVIES</value>
     <comment>NOMOVIES</comment>
   </data>
+  <data name="Cheats_R2_LoadingScreensTitle" xml:space="preserve">
+    <value>Nieuwe laadschermen</value>
+  </data>
   <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
     <value>allvign</value>
     <comment>allvign</comment>
+  </data>
+  <data name="Cheats_R2_NoMurfyTitle" xml:space="preserve">
+    <value>Uitschakelen Murfy</value>
   </data>
   <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
     <value>nomoremurfy</value>
     <comment>nomoremurfy</comment>
   </data>
+  <data name="Cheats_R2_TotASecretTitle" xml:space="preserve">
+    <value>Verkrijg toegang tot de verborgen plek in Tomb of the Ancients</value>
+  </data>
   <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
     <value>playjeff</value>
     <comment>playjeff</comment>
+  </data>
+  <data name="Cheats_R2_MenezisTitle" xml:space="preserve">
+    <value>Verkrijg toegang tot Menezis</value>
   </data>
   <data name="Cheats_R2_MenezisInput" xml:space="preserve">
     <value>shootemup</value>
     <comment>shootemup</comment>
   </data>
+  <data name="Cheats_RM" xml:space="preserve">
+    <value>Music Team:
+Voor het activeren, ga je naar Race Mode en pauzeer je het spel. Op het pauzescherm houd je L1 + R1 ingedrukt (of soortgelijke knoppen op de gebruikte controller) en druk je op de Optimialiseer knop. 5 blauwe ballen zullen verschijnen onderaan het scherm. Laat alle knoppen los en spring. De speler zou een hoog "ding" geluid moeten horen, en na 0,5 seconde zou de eerste bal geel moeten kleuren. Wanneer de bal geel kleurt, houd de Spring knop ingedrukt. De tweede bal zou nu geel moeten kleuren. Wanneer de tweede bal geel kleurt, laat je de Spring knop weer los. De derde bal zou nu geel moeten kleuren. Wanneer dit gebeurt, houd je de Spring knop
+weer ingedrukt. De vierde bal zou nu geel moeten kleuren. Gebeurt dit, laat wederom de Spring knop los! De speler zou nu naar het "Music Mode" scherm gebracht moeten worden, waar de speler kan kiezen voor "Music Team".</value>
+  </data>
+  <data name="Cheats_RM3_SkipMovieTitle" xml:space="preserve">
+    <value>Skip cutscenes</value>
+  </data>
   <data name="Cheats_RM3_SkipMovieInput" xml:space="preserve">
     <value>esc</value>
     <comment>esc</comment>
+  </data>
+  <data name="Cheats_RM3_ReverseMapTitle" xml:space="preserve">
+    <value>Omgekeerde map</value>
   </data>
   <data name="Cheats_RM3_ReverseMapInput" xml:space="preserve">
     <value>reverse</value>
     <comment>reverse</comment>
   </data>
-  <data name="Help_Cheats" xml:space="preserve">
-    <value>Cheat Codes</value>
+  <data name="Cheats_RM_UnlockBattlesTitle" xml:space="preserve">
+    <value>Ontgrendel alle battle levels</value>
   </data>
-  <data name="Help_Cheats_R1Header" xml:space="preserve">
-    <value>Rayman 1</value>
+  <data name="Cheats_RM_UnlockBattlesInput" xml:space="preserve">
+    <value>Voer ALLFISH als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
   </data>
-  <data name="Help_Cheats_RDHeader" xml:space="preserve">
-    <value>Rayman Designer + Spin-Offs</value>
+  <data name="Cheats_RM_UnlockRacesTitle" xml:space="preserve">
+    <value>Ontgrendel alle race levels</value>
   </data>
-  <data name="Help_Cheats_R2Header" xml:space="preserve">
-    <value>Rayman 2</value>
+  <data name="Cheats_RM_UnlockRacesInput" xml:space="preserve">
+    <value>Voer ALLTRIBES als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
   </data>
-  <data name="Help_Cheats_RMAHeader" xml:space="preserve">
-    <value>Rayman M/Arena</value>
+  <data name="Cheats_RM_UnlockAllTitle" xml:space="preserve">
+    <value>Ontgrendel alle levels</value>
   </data>
-  <data name="Help_Cheats_R3Header" xml:space="preserve">
-    <value>Rayman 3</value>
+  <data name="Cheats_RM_UnlockAllInput" xml:space="preserve">
+    <value>Voer ALLRAYMANM als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
+  </data>
+  <data name="Cheats_RM_AllCharactersTitle" xml:space="preserve">
+    <value>Ontgrendel alle karakters</value>
+  </data>
+  <data name="Cheats_RM_AllCharactersInput" xml:space="preserve">
+    <value>Voer PUPPETS als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
+  </data>
+  <data name="Cheats_RM_AllSkinsTitle" xml:space="preserve">
+    <value>Ontgrendel alle tenues</value>
+  </data>
+  <data name="Cheats_RM_AllSkinsInput" xml:space="preserve">
+    <value>Voer CARNIVAL als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
+  </data>
+  <data name="Cheats_RM_Battle1Title" xml:space="preserve">
+    <value>Ontgrendel alle battle levels in modus 1</value>
+  </data>
+  <data name="Cheats_RM_Battle1Input" xml:space="preserve">
+    <value>Voer ARENAS als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
+  </data>
+  <data name="Cheats_RM_Race1Title" xml:space="preserve">
+    <value>Ontgrendel alle race levels in modus 1</value>
+  </data>
+  <data name="Cheats_RM_Race1Input" xml:space="preserve">
+    <value>Voer TRACKS als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
+  </data>
+  <data name="Cheats_RM_Levels1Title" xml:space="preserve">
+    <value>Ontgrendel alle levels in modus 1</value>
+  </data>
+  <data name="Cheats_RM_Levels1Input" xml:space="preserve">
+    <value>Voer FIELDS als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
+  </data>
+  <data name="Cheats_RM_RagtimeMusicTitle" xml:space="preserve">
+    <value>Ragtime muziek tijdens races</value>
+  </data>
+  <data name="Cheats_RM_RagtimeMusicInput" xml:space="preserve">
+    <value>Voer OLDTV als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyleHeader" xml:space="preserve">
+    <value>Knoppen uitlijning</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyle_Left" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyle_Stretch" xml:space="preserve">
+    <value>Uitrekken</value>
+  </data>
+  <data name="LinksPage_Options" xml:space="preserve">
+    <value>Opties</value>
+  </data>
+  <data name="Installer_DirMissingWritePermission" xml:space="preserve">
+    <value>Toegang is geweigerd naar de geselecteerde installatielocatie. Selecteer een andere locatie of start het programma als administrator.</value>
+  </data>
+  <data name="Installer_DirMissingWritePermissionHeader" xml:space="preserve">
+    <value>Toegang geweigerd</value>
+  </data>
+  <data name="AdminWorker_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens een poging de Admin Worker te starten</value>
   </data>
 </root>
