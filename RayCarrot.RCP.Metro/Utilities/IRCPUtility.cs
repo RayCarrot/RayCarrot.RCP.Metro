@@ -1,32 +1,62 @@
 ﻿//using RayCarrot.CarrotFramework;
 //using System.Threading.Tasks;
+//using System.Windows;
+//using System.Windows.Controls;
 
 //namespace RayCarrot.RCP.Metro
-//{
-//    // TODO: Finish this
-//    // Below is my attempt to make the app more modular - WIP for version 5.0.0
+//{ 
+//    //TODO: Finish this
+//    //Below is my attempt to make the app more modular - WIP for version 5.0.0
 
 //    /// <summary>
 //    /// Interface for a RCP utility
 //    /// </summary>
 //    public interface IRCPUtility
 //    {
+//        /// <summary>
+//        /// The header for the utility. This property is retrieved again when the current culture is changed.
+//        /// </summary>
 //        string DisplayHeader { get; }
 
+//        /// <summary>
+//        /// The utility information text (optional). This property is retrieved again when the current culture is changed.
+//        /// </summary>
 //        string InfoText { get; }
 
+//        /// <summary>
+//        /// The utility warning text (optional). This property is retrieved again when the current culture is changed.
+//        /// </summary>
 //        string WarningText { get; }
 
-//        object UIContent { get; }
+//        /// <summary>
+//        /// The utility UI content
+//        /// </summary>
+//        UIElement UIContent { get; }
 
+//        /// <summary>
+//        /// Indicates if the utility requires administration privileges
+//        /// </summary>
 //        bool RequiresAdmin { get; }
 
+//        /// <summary>
+//        /// Indicates if the utility is available to the user
+//        /// </summary>
 //        bool IsAvailable { get; }
 
+//        /// <summary>
+//        /// The developers of the utility
+//        /// </summary>
 //        string Developers { get; }
 
+//        /// <summary>
+//        /// The game which the utility was made for
+//        /// </summary>
 //        Games Game { get; }
 
+//        /// <summary>
+//        /// Retrieves a list of applied utilities from this utility
+//        /// </summary>
+//        /// <returns>The applied utilities</returns>
 //        string[] GetAppliedUtilities();
 //    }
 
@@ -90,10 +120,28 @@
 //        #endregion
 //    }
 
+//    /// <summary>
+//    /// Defines a type of game
+//    /// </summary>
 //    public abstract class RCPGameType
 //    {
 //        public abstract Task LaunchGame(Games game);
 
 //        public abstract Task CreateShortcut(Games game);
+
+//        public abstract bool IsValid(Games game, FileSystemPath installDir);
+//    }
+
+//    public class DOSBoxGame : RCPGameType
+//    {
+//        public override async Task LaunchGame(Games game)
+//        {
+
+//        }
+
+//        public override async Task CreateShortcut(Games game)
+//        {
+
+//        }
 //    }
 //}

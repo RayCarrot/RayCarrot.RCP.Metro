@@ -535,7 +535,6 @@ namespace RayCarrot.RCP.Metro
             switch (info.GameType)
             {
                 case GameType.Win32:
-                    // RRR2 Orange launch args: /orange /B Rrr2.bf
                     return new GameLaunchInfo(info.InstallDirectory + game.GetLaunchName(), null);
 
                 case GameType.Steam:
