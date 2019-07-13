@@ -22,6 +22,33 @@ namespace RayCarrot.RCP.Metro
     public static class GamesExtensions
     {
         /// <summary>
+        /// Gets the <see cref="BaseGameManager"/> for the added game
+        /// </summary>
+        /// <param name="game">The game to get the manager for</param>
+        /// <param name="gameType">The game type, or null to use the current one if the game has been added</param>
+        /// <returns>The game manager</returns>
+        public static BaseGameManager GetGameManager(this Games game, GameType? gameType = null)
+        {
+            switch (gameType ?? game.GetInfo().GameType)
+            {
+                case GameType.Win32:
+                    return new Win32GameManager(game);
+
+                case GameType.Steam:
+                    return new SteamGameManager(game);
+
+                case GameType.WinStore:
+                    return new WinStoreGameManager(game);
+
+                case GameType.DosBox:
+                    return new DOSBoxGameManager(game);
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        /// <summary>
         /// Gets the icon source for the specified game
         /// </summary>
         /// <param name="game">The game to get the icon source for</param>
@@ -161,6 +188,8 @@ namespace RayCarrot.RCP.Metro
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static bool IsValid(this Games game, GameType type, FileSystemPath installDir)
         {
+            // TODO: Move to game manager
+
             switch (type)
             {
                 case GameType.DosBox:
@@ -199,6 +228,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>A new display view model</returns>
         public static GameDisplayViewModel GetDisplayViewModel(this Games game)
         {
+            // TODO: Move parts of this to game manager
+
             if (game.IsAdded())
             {
                 var actions = new List<OverflowButtonItemViewModel>();
@@ -209,7 +240,7 @@ namespace RayCarrot.RCP.Metro
                 // Add launch options if set to do so
                 if (info.LaunchMode == GameLaunchMode.AsAdminOption)
                 {
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, PackIconMaterialKind.Security, new AsyncRelayCommand(async () => await RCFRCP.Game.LaunchGameAsync(game, true))));
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, PackIconMaterialKind.Security, new AsyncRelayCommand(async () => await game.GetGameManager().LaunchGameAsync(true))));
 
                     actions.Add(new OverflowButtonItemViewModel());
                 }
@@ -245,20 +276,14 @@ namespace RayCarrot.RCP.Metro
 
                     actions.Add(new OverflowButtonItemViewModel());
                 }
-                
-                if (info.GameType == GameType.Steam)
+
+                // Get additional items
+                var additionalItems = game.GetGameManager().GetAdditionalOverflowButtonItems();
+
+                // Add the items if there are any
+                if (additionalItems.Any())
                 {
-                    // Add Steam links
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamStore, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
-                    {
-                        (await RCFRCP.File.LaunchFileAsync($"https://store.steampowered.com/app/" + game.GetSteamID()))?.Dispose();
-                        RCF.Logger.LogTraceSource($"The game {game} Steam store page was opened");
-                    })));
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamCommunity, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
-                    {
-                        (await RCFRCP.File.LaunchFileAsync($"https://steamcommunity.com/app/" + game.GetSteamID()))?.Dispose();
-                        RCF.Logger.LogTraceSource($"The game {game} Steam community page was opened");
-                    })));
+                    actions.AddRange(additionalItems);
 
                     actions.Add(new OverflowButtonItemViewModel());
                 }
@@ -272,9 +297,9 @@ namespace RayCarrot.RCP.Metro
                     // Get the install directory
                     var instDir = gameInfo.InstallDirectory;
 
-                    // Select the file if not a Windows store game
-                    if (gameInfo.GameType != GameType.WinStore)
-                        instDir = instDir + game.GetLaunchName();
+                    // Select the file in Explorer if it exists
+                    if ((instDir + game.GetLaunchName()).FileExists)
+                        instDir += game.GetLaunchName();
 
                     // Open the location
                     await RCFRCP.File.OpenExplorerLocationAsync(instDir);
@@ -291,8 +316,7 @@ namespace RayCarrot.RCP.Metro
                     GameOptions.Show(game, GameOptionsPage.Options);
                 })));
 
-                return new GameDisplayViewModel(game.GetDisplayName(), game.GetIconSource(),
-                    new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.Play, new AsyncRelayCommand(async () => await RCFRCP.Game.LaunchGameAsync(game, false))), actions);
+                return new GameDisplayViewModel(game.GetDisplayName(), game.GetIconSource(), new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.Play, new AsyncRelayCommand(async () => await game.GetGameManager().LaunchGameAsync(false))), actions);
             }
             else
             {
@@ -332,7 +356,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Create the command
-                var locateCommand = new AsyncRelayCommand(async () => await RCFRCP.Game.LocateGameAsync(game));
+                var locateCommand = new AsyncRelayCommand(async () => await RCFRCP.App.LocateGameAsync(game));
 
                 // Return the view model
                 return new GameDisplayViewModel(game.GetDisplayName(), game.GetIconSource(),
@@ -464,20 +488,20 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="game">The game to get the links for</param>
         /// <returns>The collection of game links</returns>
-        public static List<GameFileLink> GetGameFileLinks(this Games game)
+        public static GameFileLink[] GetGameFileLinks(this Games game)
         {
             var info = game.GetInfo();
 
             switch (game)
             {
                 case Games.RaymanDesigner:
-                    return new List<GameFileLink>()
+                    return new GameFileLink[]
                     {
                         new GameFileLink(Resources.GameLink_RDMapper, info.InstallDirectory + "MAPPER.EXE")
                     };
 
                 case Games.Rayman2:
-                    return new List<GameFileLink>()
+                    return new GameFileLink[]
                     {
                         new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "GXSetup.exe"),
                         new GameFileLink(Resources.GameLink_R2nGlide, info.InstallDirectory + "nglide_config.exe"),
@@ -485,25 +509,25 @@ namespace RayCarrot.RCP.Metro
                     };
 
                 case Games.RaymanM:
-                    return new List<GameFileLink>()
+                    return new GameFileLink[]
                     {
                         new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "RM_Setup_DX8.exe")
                     };
 
                 case Games.RaymanArena:
-                    return new List<GameFileLink>()
+                    return new GameFileLink[]
                     {
                         new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "RM_Setup_DX8.exe")
                     };
 
                 case Games.Rayman3:
-                    return new List<GameFileLink>()
+                    return new GameFileLink[]
                     {
                         new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "R3_Setup_DX8.exe")
                     };
 
                 case Games.RaymanRavingRabbids:
-                    return new List<GameFileLink>()
+                    return new GameFileLink[]
                     {
                         new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "SettingsApplication.exe")
                     };
@@ -515,40 +539,10 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanLegends:
                 case Games.RaymanJungleRun:
                 case Games.RaymanFiestaRun:
-                    return null;
+                    return new GameFileLink[0];
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);
-            }
-        }
-
-        /// <summary>
-        /// Gets the launch information for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the launch information for</param>
-        /// <returns>The launch info</returns>
-        public static GameLaunchInfo GetLaunchInfo(this Games game)
-        {
-            // Get the info
-            var info = game.GetInfo();
-
-            switch (info.GameType)
-            {
-                case GameType.Win32:
-                    return new GameLaunchInfo(info.InstallDirectory + game.GetLaunchName(), null);
-
-                case GameType.Steam:
-                    return new GameLaunchInfo(@"steam://rungameid/" + game.GetSteamID(), null);
-
-                case GameType.WinStore:
-                    return new GameLaunchInfo("shell:appsFolder\\" + $"{game.GetLaunchName()}!App", null);
-
-                case GameType.DosBox:
-                    var options = RCFRCP.Data.DosBoxGames[game];
-                    return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, game.GetDosBoxArguments(info.InstallDirectory, options.MountPath, game.GetLaunchName()));
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(info.GameType));
             }
         }
 
@@ -1213,9 +1207,9 @@ namespace RayCarrot.RCP.Metro
                 if (dinput == Rayman2ConfigViewModel.R2Dinput.Mapping)
                     output.Add(Resources.Config_ButtonMapping);
 
-                var texturesVersion = Rayman2UtilitiesViewModel.GetTexturesVersion(Rayman2UtilitiesViewModel.GetTexturesCntFilePath(Games.Rayman2.GetInfo().InstallDirectory));
+                var translation = Rayman2UtilitiesViewModel.GetAppliedRayman2Translation(Rayman2UtilitiesViewModel.GetFixSnaFilePath(Games.Rayman2.GetInfo().InstallDirectory));
 
-                if (texturesVersion != Rayman2UtilitiesViewModel.Rayman2Translation.Original && texturesVersion == null)
+                if (translation != Rayman2UtilitiesViewModel.Rayman2Translation.Original && translation != null)
                     output.Add(Resources.R2U_TranslationsHeader);
             }
             else if (game == Games.RaymanOrigins)

@@ -1,10 +1,11 @@
-﻿//using RayCarrot.CarrotFramework;
+﻿//using System;
+//using RayCarrot.CarrotFramework;
 //using System.Threading.Tasks;
 //using System.Windows;
 //using System.Windows.Controls;
 
 //namespace RayCarrot.RCP.Metro
-//{ 
+//{
 //    //TODO: Finish this
 //    //Below is my attempt to make the app more modular - WIP for version 5.0.0
 
@@ -118,30 +119,5 @@
 //        }
 
 //        #endregion
-//    }
-
-//    /// <summary>
-//    /// Defines a type of game
-//    /// </summary>
-//    public abstract class RCPGameType
-//    {
-//        public abstract Task LaunchGame(Games game);
-
-//        public abstract Task CreateShortcut(Games game);
-
-//        public abstract bool IsValid(Games game, FileSystemPath installDir);
-//    }
-
-//    public class DOSBoxGame : RCPGameType
-//    {
-//        public override async Task LaunchGame(Games game)
-//        {
-
-//        }
-
-//        public override async Task CreateShortcut(Games game)
-//        {
-
-//        }
 //    }
 //}

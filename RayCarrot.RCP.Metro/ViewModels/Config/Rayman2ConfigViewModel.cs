@@ -406,7 +406,7 @@ namespace RayCarrot.RCP.Metro
                 RCF.Logger.LogInformationSource($"The Rayman 2 aspect ratio is being set...");
 
                 // Get the file path
-                FileSystemPath path = Games.Rayman2.GetLaunchInfo().Path;
+                FileSystemPath path = Games.Rayman2.GetGameManager().GetLaunchInfo().Path;
 
                 // Make sure the file exists
                 if (!path.FileExists)
@@ -629,7 +629,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Get the file path
-                FileSystemPath path = Games.Rayman2.GetLaunchInfo().Path;
+                FileSystemPath path = Games.Rayman2.GetGameManager().GetLaunchInfo().Path;
 
                 // Get the location
                 var location = GetAspectRatioLocation(path);

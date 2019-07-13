@@ -29,7 +29,7 @@ namespace RayCarrot.RCP.Metro
             DisplayName = game.GetDisplayName();
             IconSource = game.GetIconSource();
             GameInfo = game.GetInfo();
-            LaunchInfo = GameInfo.GameType == GameType.Win32 || GameInfo.GameType == GameType.DosBox ? game.GetLaunchInfo() : null;
+            LaunchInfo = GameInfo.GameType == GameType.Win32 || GameInfo.GameType == GameType.DosBox ? game.GetGameManager().GetLaunchInfo() : null;
             InstallDir = GameInfo.InstallDirectory;
 
             if (GameInfo.GameType == GameType.WinStore)
@@ -229,7 +229,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 else
                 {
-                    var launchInfo = Game.GetLaunchInfo();
+                    var launchInfo = Game.GetGameManager().GetLaunchInfo();
 
                     await RCFRCP.File.CreateFileShortcutAsync(shortcutName, result.SelectedDirectory, launchInfo.Path, launchInfo.Args);
                 }

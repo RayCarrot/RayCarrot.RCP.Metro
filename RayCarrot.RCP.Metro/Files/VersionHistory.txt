@@ -1,4 +1,9 @@
-﻿-----   Version 4.6.0 - July 8, 2019   -----
+﻿-----   Version 4.6.1 - July ??, 2019   -----
+• The applied Rayman 2 translation will now be shown in the Rayman 2 utilities
+• Fixed a bug where Windows Store and Steam games would not show up in the jump list
+
+
+-----   Version 4.6.0 - July 8, 2019   -----
 • The program has now been translated to Dutch (thanks 432 Hz!)
 • Added a splash screen
 • Cheat codes are now displayed in grids for readability

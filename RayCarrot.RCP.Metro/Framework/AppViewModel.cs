@@ -118,12 +118,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(4, 6, 0, 2);
+        public Version CurrentVersion => new Version(4, 6, 1, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
-        public bool IsBeta => false;
+        public bool IsBeta => true;
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -1134,6 +1134,33 @@ namespace RayCarrot.RCP.Metro
                 }
                 
                 await RCFRCP.File.LaunchFileAsync(path, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
+            }
+        }
+
+        /// <summary>
+        /// Allows the user to locate the specified game and add it
+        /// </summary>
+        /// <param name="game">The game to locate</param>
+        /// <returns>The task</returns>
+        public async Task LocateGameAsync(Games game)
+        {
+            try
+            {
+                RCF.Logger.LogTraceSource($"The game {game} is being located...");
+
+                var typeResult = await game.GetGameTypeAsync();
+
+                if (typeResult.CanceledByUser)
+                    return;
+
+                RCF.Logger.LogInformationSource($"The game {game} type has been detected as {typeResult.SelectedType}");
+
+                await game.GetGameManager(typeResult.SelectedType).LocateAddGameAsync();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Locating game");
+                await RCF.MessageUI.DisplayMessageAsync(Resources.LocateGame_Error, Resources.LocateGame_ErrorHeader, MessageType.Error);
             }
         }
 

@@ -320,7 +320,7 @@ namespace RayCarrot.RCP.Metro
                     await App.AddNewGameAsync(Game, GameType.Win32, output);
 
                     // Get the launch info
-                    var launchInfo = Game.GetLaunchInfo();
+                    var launchInfo = Game.GetGameManager().GetLaunchInfo();
 
                     // Get the shortcut name
                     var shortcutName = String.Format(Resources.Installer_ShortcutName, Game.GetDisplayName());

@@ -88,8 +88,6 @@ namespace RayCarrot.RCP.Metro
                 AddDialogBaseManager<RCPDialogBaseManager>().
                 // Add Rayman defaults
                 AddRaymanDefaults().
-                // Add game manager
-                AddTransient<GameManager>().
                 // Add App UI manager
                 AddTransient<AppUIManager>().
                 // Add backup manager
@@ -523,12 +521,10 @@ namespace RayCarrot.RCP.Metro
                     new JumpList(RCFRCP.App.GetGames.
                             // Add only games which have been added
                             Where(x => x.IsAdded()).
-                            // Add only games where the launch info returns a valid path
-                            Where(x => x.GetLaunchInfo().Path.FileExists).
                             // Create a jump task item for each game
                             Select(x =>
                             {
-                                var launchInfo = x.GetLaunchInfo();
+                                var launchInfo = x.GetGameManager().GetLaunchInfo();
                                 var info = x.GetInfo();
 
                                 return new JumpTask()
@@ -536,9 +532,9 @@ namespace RayCarrot.RCP.Metro
                                     Title = x.GetDisplayName(),
                                     Description = String.Format(Metro.Resources.JumpListItemDescription, x.GetDisplayName()),
                                     ApplicationPath = launchInfo.Path,
-                                    WorkingDirectory = info.GameType == GameType.Win32 || info.GameType == GameType.DosBox ? launchInfo.Path.Parent : FileSystemPath.EmptyPath,
+                                    WorkingDirectory = launchInfo.Path.FileExists ? launchInfo.Path.Parent : FileSystemPath.EmptyPath,
                                     Arguments = launchInfo.Args,
-                                    IconResourcePath = info.GameType == GameType.DosBox || info.GameType == GameType.Steam ? info.InstallDirectory + x.GetLaunchName() : launchInfo.Path,
+                                    IconResourcePath = info.GameType == GameType.DosBox || info.GameType == GameType.Steam ? info.InstallDirectory + x.GetLaunchName() : launchInfo.Path
                                 };
                             }), false, false).
                         // Apply the new jump list

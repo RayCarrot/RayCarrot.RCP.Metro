@@ -24,11 +24,6 @@ namespace RayCarrot.RCP.Metro
         public static RCPFileManager File => RCF.GetService<RCPFileManager>();       
 
         /// <summary>
-        /// The game manager
-        /// </summary>
-        public static GameManager Game => RCF.GetService<GameManager>();
-
-        /// <summary>
         /// The App UI manager
         /// </summary>
         public static AppUIManager UI => RCF.GetService<AppUIManager>();

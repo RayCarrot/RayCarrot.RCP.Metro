@@ -21,8 +21,10 @@ namespace RayCarrot.RCP.Metro
             // Create commands
             ApplyTranslationCommand = new AsyncRelayCommand(ApplyTranslationAsync);
 
-            // Default properties
-            SelectedTranslation = Rayman2Translation.Original;
+            // Get current translation
+            SelectedTranslation = GetAppliedRayman2Translation(GetFixSnaFilePath(Games.Rayman2.GetInfo().InstallDirectory)) ?? Rayman2Translation.Original;
+
+            RCF.Logger.LogInformationSource($"The applied Rayman 2 translation has been detected as {SelectedTranslation}");
         }
 
         #endregion
@@ -237,6 +239,48 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Getting R2 textures file size");
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets the currently applied Rayman 2 translation
+        /// </summary>
+        /// <param name="fixSnaFilePath">The path of the fix.sna file</param>
+        /// <returns>The applied translation or null in case of error or unknown version</returns>
+        public static Rayman2Translation? GetAppliedRayman2Translation(FileSystemPath fixSnaFilePath)
+        {
+            // TODO: Use this method when checking for applied utilities
+
+            try
+            {
+                // Get the checksum
+                var hash = fixSnaFilePath.GetSHA256CheckSum();
+
+                switch (hash)
+                {
+                    case "0A1A9A86D20CB69F978E7C897A511CDB77C2C948149669E5A34EC1C74DA21147":
+                        return Rayman2Translation.Original;
+
+                    case "93F75AE59EAB1FA16DA21FCD88D811CA28220CCFC8826565B72FA571BAFADB83":
+                        return Rayman2Translation.Swedish;
+
+                    case "3DEAABD8E0956C63AF5E17A34CD70CDA4FAC528D78EFCA69E0039D85E4312CC5":
+                        return Rayman2Translation.Slovak;
+
+                    case "ED22B3087C52DAECE6DB653E47AAF84F3E0EAAF3C59ED2BBF9C91354CA9669AA":
+                        return Rayman2Translation.Irish;
+
+                    case "14D84894F5B14891F42FE1F2A31109A9064435B78907BB0DA90B086DFAB029FE":
+                        return Rayman2Translation.Portuguese;
+
+                    default:
+                        return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Getting applied R2 translation");
                 return null;
             }
         }
