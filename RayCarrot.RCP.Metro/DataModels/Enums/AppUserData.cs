@@ -249,6 +249,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public ExceptionLevel DisplayExceptionLevel { get; set; }
 
+        // TODO: Remove this and instead back up the latest modified file and restore to BOTH places
         /// <summary>
         /// Indicates if the Rayman Raving Rabbids save data is in the install directory
         /// </summary>

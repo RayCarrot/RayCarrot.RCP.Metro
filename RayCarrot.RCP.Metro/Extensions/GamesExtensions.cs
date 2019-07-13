@@ -179,39 +179,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Determines if the specified game is valid
-        /// </summary>
-        /// <param name="game">The game to check if it's valid</param>
-        /// <param name="type">The game type</param>
-        /// <param name="installDir">The game install directory, if any</param>
-        /// <returns>True if the game is valid, otherwise false</returns>
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static bool IsValid(this Games game, GameType type, FileSystemPath installDir)
-        {
-            // TODO: Move to game manager
-
-            switch (type)
-            {
-                case GameType.DosBox:
-                case GameType.Win32:
-                    return (installDir + game.GetLaunchName()).FileExists;
-
-                case GameType.Steam:
-                    return RCFWinReg.RegistryManager.KeyExists(RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {game.GetSteamID()}"), RegistryView.Registry64);
-
-                case GameType.WinStore:
-                    // Make sure version is at least Windows 8
-                    if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
-                        return false;
-
-                    return game.GetGamePackage() != null;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
-            }
-        }
-
-        /// <summary>
         /// Determines if the specified game has been added to the program
         /// </summary>
         /// <param name="game">The game to check if it's added</param>
@@ -228,8 +195,6 @@ namespace RayCarrot.RCP.Metro
         /// <returns>A new display view model</returns>
         public static GameDisplayViewModel GetDisplayViewModel(this Games game)
         {
-            // TODO: Move parts of this to game manager
-
             if (game.IsAdded())
             {
                 var actions = new List<OverflowButtonItemViewModel>();

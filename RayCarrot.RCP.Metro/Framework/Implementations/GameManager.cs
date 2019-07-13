@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using MahApps.Metro.IconPacks;
+using Microsoft.Win32;
 using RayCarrot.CarrotFramework;
+using RayCarrot.Windows.Registry;
+using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -49,7 +53,7 @@ namespace RayCarrot.RCP.Metro
                 return null;
 
             // Make sure the game is valid
-            if (!Game.IsValid(GameType.Win32, result.SelectedDirectory))
+            if (!IsValid(result.SelectedDirectory))
             {
                 RCF.Logger.LogInformationSource($"The selected install directory for {Game} is not valid");
 
@@ -71,6 +75,16 @@ namespace RayCarrot.RCP.Metro
         public override GameLaunchInfo GetLaunchInfo()
         {
             return new GameLaunchInfo(Info.InstallDirectory + Game.GetLaunchName(), null);
+        }
+
+        /// <summary>
+        /// Indicates if the game is valid
+        /// </summary>
+        /// <param name="installDir">The game install directory, if any</param>
+        /// <returns>True if the game is valid, otherwise false</returns>
+        public override bool IsValid(FileSystemPath installDir)
+        {
+            return (installDir + Game.GetLaunchName()).FileExists;
         }
 
         #endregion
@@ -103,7 +117,7 @@ namespace RayCarrot.RCP.Metro
         protected override async Task<FileSystemPath?> LocateAsync()
         {
             // Make sure the game is valid
-            if (!Game.IsValid(GameType.Steam, FileSystemPath.EmptyPath))
+            if (!IsValid(FileSystemPath.EmptyPath))
             {
                 RCF.Logger.LogInformationSource($"The {Game} was not found under Steam Apps");
 
@@ -147,6 +161,16 @@ namespace RayCarrot.RCP.Metro
         public override GameLaunchInfo GetLaunchInfo()
         {
             return new GameLaunchInfo(@"steam://rungameid/" + Game.GetSteamID(), null);
+        }
+
+        /// <summary>
+        /// Indicates if the game is valid
+        /// </summary>
+        /// <param name="installDir">The game install directory, if any</param>
+        /// <returns>True if the game is valid, otherwise false</returns>
+        public override bool IsValid(FileSystemPath installDir)
+        {
+            return RCFWinReg.RegistryManager.KeyExists(RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {Game.GetSteamID()}"), RegistryView.Registry64);
         }
 
         #endregion
@@ -301,7 +325,7 @@ namespace RayCarrot.RCP.Metro
             // Helper method for finding and adding a Windows Store app
             bool FindWinStoreApp() =>
                 // Check if the game is installed
-                Game.IsValid(GameType.WinStore, FileSystemPath.EmptyPath);
+                IsValid(FileSystemPath.EmptyPath);
 
             bool found;
 
@@ -348,6 +372,21 @@ namespace RayCarrot.RCP.Metro
             // NOTE: This method of launching a WinStore game should only be used when no other method is available. If the package is not found this method will launch a new Windows Explorer window instead. The entry point ("!APP") may not always be correct (that is the default used for most packages with a single entry point).
 
             return new GameLaunchInfo("shell:appsFolder\\" + $"{Game.GetLaunchName()}!App", null);
+        }
+
+        /// <summary>
+        /// Indicates if the game is valid
+        /// </summary>
+        /// <param name="installDir">The game install directory, if any</param>
+        /// <returns>True if the game is valid, otherwise false</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public override bool IsValid(FileSystemPath installDir)
+        {
+            // Make sure version is at least Windows 8
+            if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
+                return false;
+
+            return Game.GetGamePackage() != null;
         }
 
         #endregion
@@ -518,6 +557,13 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <returns>The launch info</returns>
         public abstract GameLaunchInfo GetLaunchInfo();
+
+        /// <summary>
+        /// Indicates if the game is valid
+        /// </summary>
+        /// <param name="installDir">The game install directory, if any</param>
+        /// <returns>True if the game is valid, otherwise false</returns>
+        public abstract bool IsValid(FileSystemPath installDir);
 
         #endregion
 

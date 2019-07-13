@@ -256,6 +256,7 @@ namespace RayCarrot.RCP.Metro
                 return;
             }
 
+            // TODO: Move to game manager
             // Get the install directory
             if (installDirectory == null)   
             {
@@ -301,6 +302,7 @@ namespace RayCarrot.RCP.Metro
             // Add the game
             Data.Games.Add(game, new GameInfo(type, installDirectory ?? FileSystemPath.EmptyPath));
 
+            // TODO: Add to game manager (postAdd)
             // If it's a DosBox game, create the auto config file
             if (type == GameType.DosBox)
                 // Create config file

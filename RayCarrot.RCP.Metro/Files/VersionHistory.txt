@@ -1,6 +1,7 @@
 ﻿-----   Version 4.6.1 - July ??, 2019   -----
 • The applied Rayman 2 translation will now be shown in the Rayman 2 utilities
 • Fixed a bug where Windows Store and Steam games would not show up in the jump list
+• Major code changes
 
 
 -----   Version 4.6.0 - July 8, 2019   -----
