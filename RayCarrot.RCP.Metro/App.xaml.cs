@@ -376,8 +376,11 @@ namespace RayCarrot.RCP.Metro
                 Data.GetBetaUpdates = false;
             }
 
-            if (Data.LastVersion < new Version(4, 5, 1, 0))
+            if (Data.LastVersion < new Version(4, 6, 0, 0))
                 Data.LinkListHorizontalAlignment = HorizontalAlignment.Left;
+
+            if (Data.LastVersion < new Version(4, 7, 0, 0))
+                Data.CompressBackups = true;
 
             // Re-deploy the uninstaller
             Directory.CreateDirectory(CommonPaths.UninstallFilePath.Parent);
@@ -401,6 +404,7 @@ namespace RayCarrot.RCP.Metro
         /// Imports legacy app data from version 2.x to 3.x
         /// </summary>
         /// <returns>The task</returns>
+        [Obsolete("This will be removed in a future release")]
         private static async Task ImportLegacyDataAsync()
         {
             try
@@ -427,10 +431,6 @@ namespace RayCarrot.RCP.Metro
                     new JsonTextReader(x).RunAndDispose(y => s.Deserialize<LegacyGameUserData>(y)));
 
                 RCF.Logger.LogInformationSource($"Legacy app data found from version {appData.LastVersion}");
-
-                // Ask the user
-                //if (!await RCF.MessageUI.DisplayMessageAsync($"Application data was found for version {appData.LastVersion}. Do you want to import it?", "Import data", MessageType.Question, true))
-                //    return;
 
                 // Get current app data
                 var data = RCFRCP.Data;
@@ -481,7 +481,7 @@ namespace RayCarrot.RCP.Metro
                             continue;
 
                         // Make sure the game is valid
-                        if (!currentGame.Value.IsValid(currentType.Value, game.Dir ?? FileSystemPath.EmptyPath))
+                        if (!currentGame.Value.GetGameManager(currentType.Value).IsValid(game.Dir ?? FileSystemPath.EmptyPath))
                             continue;
 
                         // Add the game

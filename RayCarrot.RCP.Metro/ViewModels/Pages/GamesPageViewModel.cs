@@ -81,11 +81,8 @@ namespace RayCarrot.RCP.Metro
                         continue;
                     }
 
-                    // Get the game info
-                    var info = game.GetInfo();
-
                     // Check if it's valid
-                    if (!game.IsValid(info.GameType, info.InstallDirectory))
+                    if (!game.GetGameManager().IsValid(game.GetInfo().InstallDirectory))
                     {
                         // Show message
                         await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.GetDisplayName()), Resources.GameNotFoundHeader, MessageType.Error);

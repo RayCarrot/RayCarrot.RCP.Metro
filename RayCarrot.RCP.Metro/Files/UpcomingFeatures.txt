@@ -34,3 +34,5 @@
 - Create two core .NET Standard projects. One which is the minimum core (common app paths, user data model etc.) which updater/uninstaller references. The other one holds all non-UI logic, such as view models. NOTE: This will mess up the current localization system due to it all being in one file. Might need to be split up.
 
 - Move program over from .NET Framework to .NET Core 3.0 when it releases. Do the same for control libraries. There might still be .NET Framework dependencies from 3-party ones?
+
+- Remove the legacy converter (converts app data from 2.x to 3.x)

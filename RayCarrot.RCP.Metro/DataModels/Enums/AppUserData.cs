@@ -86,6 +86,7 @@ namespace RayCarrot.RCP.Metro
             PendingRegUninstallKeyRefresh = false;
             GetBetaUpdates = false;
             LinkListHorizontalAlignment = HorizontalAlignment.Left;
+            CompressBackups = true;
         }
 
         #endregion
@@ -382,6 +383,11 @@ namespace RayCarrot.RCP.Metro
         /// The horizontal alignment for link items in list view
         /// </summary>
         public HorizontalAlignment LinkListHorizontalAlignment { get; set; }
+
+        /// <summary>
+        /// Indicates if backups should be compressed
+        /// </summary>
+        public bool CompressBackups { get; set; }
 
         #endregion
 

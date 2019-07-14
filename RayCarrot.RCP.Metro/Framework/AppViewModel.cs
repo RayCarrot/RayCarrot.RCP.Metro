@@ -118,7 +118,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(4, 6, 1, 0);
+        public Version CurrentVersion => new Version(4, 7, 0, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
@@ -687,7 +687,7 @@ namespace RayCarrot.RCP.Metro
                     async Task FindWinStoreAppAsync(Games game)
                     {
                         // Check if the game is installed
-                        if (game.IsValid(GameType.WinStore, FileSystemPath.EmptyPath))
+                        if (game.GetGameManager().IsValid(FileSystemPath.EmptyPath))
                         {
                             result.Add(game);
 

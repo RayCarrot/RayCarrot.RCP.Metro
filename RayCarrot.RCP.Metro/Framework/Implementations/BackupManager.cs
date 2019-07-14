@@ -1,6 +1,8 @@
 ﻿using RayCarrot.CarrotFramework;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
@@ -30,6 +32,169 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Private Methods
+
+        /// <summary>
+        /// Performs a backup on the game
+        /// </summary>
+        /// <param name="game">The game to perform the backup on</param>
+        /// <param name="backupInfo">The backup info</param>
+        /// <returns>True if the backup was successful</returns>
+        private static async Task<bool> PerformBackupAsync(Games game, IEnumerable<BackupDir> backupInfo)
+        {
+            // Get the destination directory
+            FileSystemPath destinationDir = game.GetBackupDir();
+
+            // Get the temp path
+            var tempPath = CommonPaths.TempPath + game.GetBackupName();
+
+            // Delete temp backup
+            RCFRCP.File.DeleteDirectory(tempPath);
+
+            // Create temp path
+            Directory.CreateDirectory(CommonPaths.TempPath);
+
+            // Check if a backup already exists
+            if (destinationDir.DirectoryExists)
+                // Create a new temp backup
+                Directory.Move(destinationDir, tempPath);
+
+            try
+            {
+                // Enumerate the backup information
+                foreach (var item in backupInfo)
+                {
+                    // Check if the entire directory should be copied
+                    if (item.IsEntireDir())
+                    {
+                        // Copy the directory   
+                        RCFRCP.File.CopyDirectory(item.DirPath, destinationDir + item.ID, true, true);
+                    }
+                    else
+                    {
+                        // Get the files
+                        var files = Directory.GetFiles(item.DirPath, item.ExtensionFilter ?? "*", item.SearchOption);
+
+                        // Backup each file
+                        foreach (FileSystemPath file in files)
+                        {
+                            // Get the destination file
+                            var destFile = destinationDir + item.ID + file.GetRelativePath(item.DirPath);
+
+                            // Check if the directory does not exist
+                            if (!destFile.Parent.DirectoryExists)
+                                // Create the directory
+                                Directory.CreateDirectory(destFile.Parent);
+
+                            // Copy the file
+                            File.Copy(file, destFile);
+                        }
+                    }
+                }
+
+                // Check if any files were backed up
+                if (!destinationDir.DirectoryExists)
+                {
+                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
+
+                    // Check if a temp backup exists
+                    if (tempPath.DirectoryExists)
+                        // Restore temp backup
+                        RCFRCP.File.MoveDirectory(tempPath, destinationDir, true);
+
+                    return false;
+                }
+
+                // Delete temp backup
+                RCFRCP.File.DeleteDirectory(tempPath);
+
+                RCF.Logger.LogInformationSource($"Backup complete");
+
+                return true;
+            }
+            catch
+            {
+                // Check if a temp backup exists
+                if (tempPath.DirectoryExists)
+                    // Restore temp backup
+                    RCFRCP.File.MoveDirectory(tempPath, destinationDir, true);
+
+                RCF.Logger.LogInformationSource($"Backup failed - clean up succeeded");
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Performs a compressed backup on the game
+        /// </summary>
+        /// <param name="game">The game to perform the backup on</param>
+        /// <param name="backupInfo">The backup info</param>
+        /// <returns>True if the backup was successful</returns>
+        private static bool PerformCompressedBackup(Games game, IEnumerable<BackupDir> backupInfo)
+        {
+            // Get the destination file
+            FileSystemPath destinationFile = game.GetCompressedBackupFile();
+
+            // Get the temp file path
+            var tempPath = CommonPaths.TempPath + (game.GetBackupName() + CommonPaths.BackupCompressionExtension);
+
+            // Delete temp backup
+            RCFRCP.File.DeleteFile(tempPath);
+
+            // Check if a backup already exists
+            if (destinationFile.FileExists)
+                // Create a new temp backup
+                File.Move(destinationFile, tempPath);
+
+            try
+            {
+                // Create the compressed file
+                using (var fileStream = File.OpenWrite(destinationFile))
+                {
+                    using (var zip = new ZipArchive(fileStream, ZipArchiveMode.Create))
+                    {
+                        // Enumerate the backup information
+                        foreach (var item in backupInfo)
+                        {
+                            // Get the files
+                            var files = Directory.GetFiles(item.DirPath, item.ExtensionFilter ?? "*", item.SearchOption);
+
+                            // Backup each file
+                            foreach (FileSystemPath file in files)
+                            {
+                                // Get the destination file
+                                var destFile = item.ID + file.GetRelativePath(item.DirPath);
+
+                                // Copy the file
+                                zip.CreateEntryFromFile(file, destFile, CompressionLevel.Optimal);
+                            }
+                        }
+                    }
+                }
+
+                // Delete temp backup
+                RCFRCP.File.DeleteFile(tempPath);
+
+                RCF.Logger.LogInformationSource($"Backup complete");
+
+                return true;
+            }
+            catch
+            {
+                // Check if a temp backup exists
+                if (tempPath.FileExists)
+                    // Restore temp backup
+                    RCFRCP.File.MoveFile(tempPath, destinationFile, true);
+
+                RCF.Logger.LogInformationSource($"Backup failed - clean up succeeded");
+
+                throw;
+            }
+        }
+
+        #endregion
+
         #region Public Methods
 
         /// <summary>
@@ -45,9 +210,6 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
-                    // Get the destination directory
-                    FileSystemPath destinationDir = game.GetBackupDir();
-
                     // Get the backup information
                     var backupInfo = game.GetBackupInfo();
 
@@ -60,87 +222,43 @@ namespace RayCarrot.RCP.Metro
                         return false;
                     }
 
-                    // Get the temp path
-                    var tempPath = CommonPaths.TempPath + game.GetBackupName();
+                    // Check if the backup should be compressed
+                    bool compress = RCFRCP.Data.CompressBackups;
 
-                    // Delete temp backup
-                    RCFRCP.File.DeleteDirectory(tempPath);
+                    // Perform the backup and keep track if it succeeded
+                    bool success = compress ? PerformCompressedBackup(game, backupInfo) : await PerformBackupAsync(game, backupInfo);
 
-                    // Create temp path
-                    Directory.CreateDirectory(CommonPaths.TempPath);
+                    // Get the backup locations
+                    var compressedLocation = game.GetCompressedBackupFile();
+                    var normalLocation = game.GetBackupDir();
 
-                    // Check if a backup already exists
-                    if (destinationDir.DirectoryExists)
-                        // Create a new temp backup
-                        Directory.Move(destinationDir, tempPath);
-
+                    // Check if the non-relevant one exists
                     try
                     {
-                        // Enumerate the backup information
-                        foreach (var item in backupInfo)
+                        if (compress && normalLocation.DirectoryExists)
                         {
-                            // Check if the entire directory should be copied
-                            if (item.IsEntireDir())
-                            {
-                                // Copy the directory   
-                                RCFRCP.File.CopyDirectory(item.DirPath, destinationDir + item.ID, true, true);
-                            }
-                            else
-                            {
-                                // Get the files
-                                var files = Directory.GetFiles(item.DirPath, item.ExtensionFilter ?? "*", item.SearchOption);
+                            // Delete the directory
+                            RCFRCP.File.DeleteDirectory(normalLocation);
 
-                                // Backup each file
-                                foreach (FileSystemPath file in files)
-                                {
-                                    // Get the destination file
-                                    var destFile = destinationDir + item.ID + file.GetRelativePath(item.DirPath);
-
-                                    // Check if the directory does not exist
-                                    if (!destFile.Parent.DirectoryExists)
-                                        // Create the directory
-                                        Directory.CreateDirectory(destFile.Parent);
-
-                                    // Copy the file
-                                    File.Copy(file, destFile);
-                                }
-                            }
+                            RCF.Logger.LogInformationSource("Non-compressed backup was deleted due to a compressed backup having been performed");
                         }
-
-                        // Check if any files were backed up
-                        if (!destinationDir.DirectoryExists)
+                        else if (!compress && compressedLocation.FileExists)
                         {
-                            await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
+                            // Delete the file
+                            RCFRCP.File.DeleteFile(compressedLocation);
 
-                            // Check if a temp backup exists
-                            if (tempPath.DirectoryExists)
-                                // Restore temp backup
-                                RCFRCP.File.MoveDirectory(tempPath, destinationDir, true);
-
-                            return false;
+                            RCF.Logger.LogInformationSource("Compressed backup was deleted due to a non-compressed backup having been performed");
                         }
-
-                        // Delete temp backup
-                        RCFRCP.File.DeleteDirectory(tempPath);
-
-                        RCF.Logger.LogInformationSource($"Backup complete");
-
-                        return true;
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        // Check if a temp backup exists
-                        if (tempPath.DirectoryExists)
-                            // Restore temp backup
-                            RCFRCP.File.MoveDirectory(tempPath, destinationDir, true);
-
-                        RCF.Logger.LogInformationSource($"Backup failed - clean up succeeded");
-
-                        throw;
+                        ex.HandleError("Deleting leftover backups from previous compression setting");
                     }
+
+                    return success;
                 }
                 catch (Exception ex)
-                {
+                {   
                     ex.HandleCritical("Backing up game", game);
                     await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Failed, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
 
@@ -163,16 +281,18 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Get the backup directory
-                    FileSystemPath backupDir = game.GetBackupDir();
+                    var existingBackup = game.GetExistingBackup();
 
                     // Make sure a backup exists
-                    if (!backupDir.DirectoryExists)
+                    if (!existingBackup?.Exists ?? true)
                     {
-                        RCF.Logger.LogInformationSource($"Restore failed - the input directory could not be found");
+                        RCF.Logger.LogInformationSource($"Restore failed - the input location could not be found");
 
                         await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_MissingBackup, game.GetDisplayName()), Resources.Restore_FailedHeader, MessageType.Error);
                         return false;
                     }
+
+                    var backupLocation = existingBackup.Value;
 
                     // Get the backup information
                     var backupInfo = game.GetBackupInfo();
@@ -186,8 +306,25 @@ namespace RayCarrot.RCP.Metro
                     // Create the temp path
                     Directory.CreateDirectory(tempPath);
 
+                    // Get temp archive path
+                    var archiveTempPath = CommonPaths.TempPath + (game.GetBackupName() + "_archive");
+
                     try
                     {
+                        // If the backup is an archive, extract it
+                        if (backupLocation.FileExists)
+                        {
+                            // Delete the temp archive
+                            RCFRCP.File.DeleteDirectory(archiveTempPath);
+
+                            // Create the temp archive path
+                            Directory.CreateDirectory(archiveTempPath);
+
+                            using (var file = File.OpenRead(backupLocation))
+                                using (var zip = new ZipArchive(file, ZipArchiveMode.Read))
+                                    zip.ExtractToDirectory(archiveTempPath);
+                        }
+
                         // Enumerate the backup information
                         foreach (var item in backupInfo)
                         {
@@ -218,7 +355,7 @@ namespace RayCarrot.RCP.Metro
                             }
 
                             // Get the combined directory path
-                            var dirPath = backupDir + item.ID;
+                            var dirPath = (backupLocation.DirectoryExists ? backupLocation : archiveTempPath) + item.ID;
 
                             // Restore the backup
                             if (dirPath.DirectoryExists)
@@ -277,9 +414,14 @@ namespace RayCarrot.RCP.Metro
 
                         throw;
                     }
+                    finally
+                    {
+                        // Delete temp backup
+                        RCFRCP.File.DeleteDirectory(tempPath);
 
-                    // Delete temp backup
-                    RCFRCP.File.DeleteDirectory(tempPath);
+                        // Delete the temp archive
+                        RCFRCP.File.DeleteDirectory(archiveTempPath);
+                    }
 
                     RCF.Logger.LogInformationSource($"Restore complete");
 

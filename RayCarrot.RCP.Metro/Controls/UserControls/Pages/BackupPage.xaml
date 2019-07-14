@@ -24,19 +24,33 @@
 
         <StackPanel>
 
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
-                       Text="{Resx Settings_BackupLocation}" />
+            <Expander Header="{Resx BackupPage_Options}"
+                      Padding="10"
+                      IsExpanded="False">
+                <StackPanel>
 
-            <rwpf:BrowseBox SelectedPath="{Binding Path=Data.BackupLocation, UpdateSourceTrigger=LostFocus}"
-                            UseCurrentPathAsDefaultLocationIfValid="True"
-                            BrowseType="Directory"
-                            PathValidation="DirectoryExistsAndNotEmpty"
+                    <TextBlock Style="{StaticResource HeaderTextBlock}"
+                               Text="{Resx Settings_BackupLocation}" />
+
+                    <rwpf:BrowseBox SelectedPath="{Binding Path=Data.BackupLocation, UpdateSourceTrigger=LostFocus}"
+                                    UseCurrentPathAsDefaultLocationIfValid="True"
+                                    BrowseType="Directory"
+                                    PathValidation="DirectoryExistsAndNotEmpty"
+                                    Margin="0 8"/>
+
+                    <CheckBox Content="{Resx Backup_Compress}"
+                              ToolTip="{Resx Backup_CompressInfo}"
+                              IsChecked="{Binding Path=Data.CompressBackups}"
+                              Margin="0 8"/>
+
+                    <Button Content="{Resx Backup_BackupAll}"
+                            Command="{Binding Path=BackupAllCommand}" 
+                            HorizontalAlignment="Left"
                             Margin="0 8"/>
 
-            <Button Content="{Resx Backup_BackupAll}"
-                    Command="{Binding Path=BackupAllCommand}" 
-                    HorizontalAlignment="Left"
-                    Margin="0 8"/>
+
+                </StackPanel>
+            </Expander>
 
             <Separator Margin="0 5" />
 

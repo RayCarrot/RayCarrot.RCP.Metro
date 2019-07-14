@@ -67,7 +67,7 @@ namespace RayCarrot.RCP.Metro
                             continue;
 
                         // Check if the directory is valid
-                        if ((result.Type == GameType.Win32 || result.Type == GameType.DosBox) && !game.Key.IsValid(result.Type, result.Path))
+                        if ((result.Type == GameType.Win32 || result.Type == GameType.DosBox) && !game.Key.GetGameManager(result.Type).IsValid(result.Path))
                         {
                             RCF.Logger.LogInformationSource($"The install directory for {game} is not valid");
                             continue;

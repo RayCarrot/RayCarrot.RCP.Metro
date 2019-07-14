@@ -803,6 +803,53 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
+        /// Gets the backup file for the specified game if the backup is compressed
+        /// </summary>
+        /// <param name="game">The game to get the backup file for</param>
+        /// <returns>The backup file</returns>
+        public static FileSystemPath GetCompressedBackupFile(this Games game)
+        {
+            return RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + (game.GetBackupName() + CommonPaths.BackupCompressionExtension);
+        }
+
+        /// <summary>
+        /// Gets the existing backup location for the specified game if one exists
+        /// </summary>
+        /// <param name="game">The game to get the backup location for</param>
+        /// <returns>The backup location or null if none was found</returns>
+        public static FileSystemPath? GetExistingBackup(this Games game)
+        {
+            // Get the backup locations
+            var compressedLocation = game.GetCompressedBackupFile();
+            var normalLocation = game.GetBackupDir();
+
+            if (RCFRCP.Data.CompressBackups)
+            {
+                // Start by checking the location based on current setting
+                if (compressedLocation.FileExists)
+                    return compressedLocation;
+                // Fall back to secondary location
+                else if (normalLocation.DirectoryExists && Directory.GetFileSystemEntries(normalLocation).Any())
+                    return normalLocation;
+                else
+                    // No valid location exists
+                    return null;
+            }
+            else
+            {
+                // Start by checking the location based on current setting
+                if (normalLocation.DirectoryExists && Directory.GetFileSystemEntries(normalLocation).Any())
+                    return normalLocation;
+                // Fall back to secondary location
+                else if (compressedLocation.FileExists)
+                    return compressedLocation;
+                else
+                    // No valid location exists
+                    return null;
+            }
+        }
+
+        /// <summary>
         /// Gets the backup info for the specified game
         /// </summary>
         /// <param name="game">The game to get the backup info for</param>

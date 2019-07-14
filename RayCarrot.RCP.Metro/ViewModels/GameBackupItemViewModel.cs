@@ -121,18 +121,16 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                // Get the backup directory
-                var dir = Game.GetBackupDir();
+                FileSystemPath? backupLocation = Game.GetExistingBackup();
 
-                // Make sure the directory exists or is not empty
-                if (!dir.DirectoryExists || !Directory.GetFileSystemEntries(dir).Any())
+                if (backupLocation == null)
                     return;
 
                 // Get the backup date
-                LastBackup = dir.GetDirectoryInfo().CreationTime;
+                LastBackup = backupLocation.Value.GetFileSystemInfo().CreationTime;
 
                 // Get the backup size
-                BackupSize = dir.GetSize();
+                BackupSize = backupLocation.Value.GetSize();
 
                 CanRestore = true;
             }
@@ -203,10 +201,9 @@ namespace RayCarrot.RCP.Metro
                 PerformingBackupRestore = true;
 
                 // Confirm backup if one already exists
-                if (Game.GetBackupDir().DirectoryExists && !await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, Game.GetDisplayName()), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
+                if ((Game.GetExistingBackup()?.Exists ?? false) && !await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, Game.GetDisplayName()), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
                 {
                     RCF.Logger.LogInformationSource($"Backup canceled");
-
                     return;
                 }
 

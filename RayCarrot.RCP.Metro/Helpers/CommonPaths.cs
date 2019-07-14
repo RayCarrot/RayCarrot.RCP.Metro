@@ -94,5 +94,10 @@ namespace RayCarrot.RCP.Metro
         /// The Rayman Legends registry key path
         /// </summary>
         public const string RaymanLegendsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman Legends";
+
+        /// <summary>
+        /// The file extension for compressed backups
+        /// </summary>
+        public const string BackupCompressionExtension = ".rcpb";
     }
 }
