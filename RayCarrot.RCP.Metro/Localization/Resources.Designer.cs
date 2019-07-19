@@ -469,6 +469,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compress backups.
+        /// </summary>
+        public static string Backup_Compress {
+            get {
+                return ResourceManager.GetString("Backup_Compress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compressed backups will take less space and be easier to manage due to being in a single file for each game. The change will go into effect the next time a backup is performed..
+        /// </summary>
+        public static string Backup_CompressInfo {
+            get {
+                return ResourceManager.GetString("Backup_CompressInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This will replace any previous backups for {0}.
         /// </summary>
         public static string Backup_Confirm {
@@ -600,6 +618,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Backup_SuccessHeader {
             get {
                 return ResourceManager.GetString("Backup_SuccessHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string BackupPage_Options {
+            get {
+                return ResourceManager.GetString("BackupPage_Options", resourceCulture);
             }
         }
         
@@ -2293,6 +2320,24 @@ namespace RayCarrot.RCP.Metro {
         public static string DebugPageHeader {
             get {
                 return ResourceManager.GetString("DebugPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The language could not be updated.
+        /// </summary>
+        public static string DosBoxConfig_SetLanguageError {
+            get {
+                return ResourceManager.GetString("DosBoxConfig_SetLanguageError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error updating language.
+        /// </summary>
+        public static string DosBoxConfig_SetLanguageErrorHeader {
+            get {
+                return ResourceManager.GetString("DosBoxConfig_SetLanguageErrorHeader", resourceCulture);
             }
         }
         

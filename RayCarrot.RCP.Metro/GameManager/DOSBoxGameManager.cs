@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework;
@@ -23,7 +24,83 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Public Methods
+
+        /// <summary>
+        /// Gets the game executable name for the specified DOSBox game
+        /// </summary>
+        /// <returns>The executable file name</returns>
+        public string GetGameExectuable()
+        {
+            switch (Game)
+            {
+                case Games.Rayman1:
+                    return "RAYMAN.EXE";
+
+                case Games.RaymanDesigner:
+                    return "RAYKIT.EXE";
+
+                case Games.RaymanByHisFans:
+                    return "RAYFAN.EXE";
+
+                case Games.Rayman60Levels:
+                    return "RAYPLUS.EXE";
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(Game));
+            }
+        }
+
+        #endregion
+
         #region Protected Overrides
+
+        /// <summary>
+        /// Locates the game
+        /// </summary>
+        /// <returns>Null if the game was not found. Otherwise a valid or empty path for the instal directory</returns>
+        protected override async Task<FileSystemPath?> LocateAsync()
+        {
+            var result = await RCF.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+            {
+                Title = Resources.LocateGame_BrowserHeader,
+                DefaultDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
+                MultiSelection = false
+            });
+
+            if (result.CanceledByUser)
+                return null;
+
+            if (!result.SelectedDirectory.DirectoryExists)
+                return null;
+
+            // Check if the location if valid
+            if (IsValid(result.SelectedDirectory))
+                return result.SelectedDirectory;
+
+            // Check if the location contains the executable file
+            var exe = GetGameExectuable();
+
+            // If the executable does not exist the location is not valid
+            if (!(result.SelectedDirectory + exe).FileExists)
+            {
+                RCF.Logger.LogInformationSource($"The selected install directory for {Game} is not valid");
+
+                await RCF.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
+                return null;
+            }
+
+            // Create the .bat file
+            File.WriteAllLines(result.SelectedDirectory + Game.GetLaunchName(), new string[]
+            {
+                "@echo off",
+                $"{Path.GetFileNameWithoutExtension(exe)} ver=usa"
+            });
+
+            RCF.Logger.LogInformationSource($"A batch file was created for {Game}");
+
+            return result.SelectedDirectory;
+        }
 
         /// <summary>
         /// Post launch operations for the game which launched
@@ -42,6 +119,11 @@ namespace RayCarrot.RCP.Metro
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// The implementation for launching the game
+        /// </summary>
+        /// <param name="forceRunAsAdmin">Indicated if the game should be forced to run as admin</param>
+        /// <returns>The launch result</returns>
         protected override async Task<GameLaunchResult> LaunchAsync(bool forceRunAsAdmin)
         {
             if (Game != Games.Rayman1 || RCFRCP.Data.TPLSData?.IsEnabled != true)

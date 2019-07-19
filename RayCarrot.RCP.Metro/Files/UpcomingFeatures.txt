@@ -15,9 +15,7 @@
 --- Configuration ---
 - Add the remaining fields to the Rayman 2 configuration and have pre-sets for DirectX/nGlide based on the GOG setup
 
-
---- Game Finder ---
-- Auto create .bat files for DOSBox games + allow language switching based on editing the .bat file's launch argument
+- Allow DOSBox games to change language by editing the .bat file (does not work for Rayman 1)
 
 
 --- User Interface ---

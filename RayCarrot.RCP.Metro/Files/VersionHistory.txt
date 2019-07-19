@@ -1,8 +1,10 @@
 ﻿-----   Version 4.7.0 - July ??, 2019   -----
 • Backups can now be compressed
+• The game language can now be changed for Rayman, Rayman Designer, Rayman by his Fans and Rayman 60 Levels
+• If the .bat file is missing for a DOSBox game it will now automatically be created if the location contains a valid executable
 • The applied Rayman 2 translation will now be shown in the Rayman 2 utilities
 • Fixed a bug where Windows Store and Steam games would not show up in the jump list
-• Major code changes
+• Fixed a bug where the debug option to start TPLS would appear even if it wasn't installed
 
 
 -----   Version 4.6.0 - July 8, 2019   -----

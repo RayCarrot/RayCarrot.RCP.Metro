@@ -1570,7 +1570,7 @@ Als er een fout plaatsvindt vanwege de update-service, kan de update handmatig w
     <value>Compatibiliteit</value>
   </data>
   <data name="Help_RCP_Compatibility" xml:space="preserve">
-    <value>De minimumvereiste versie van Windows is Vista, waarbij Windows 7 of hoger aanbevolen zijn voor het programma.</value>
+    <value>De minimumvereiste versie van Windows is Vista, waarbij Windows 7 of hoger aanbevolen is voor het programma.</value>
   </data>
   <data name="Help_RCP_GameInstallerHeader" xml:space="preserve">
     <value>Game Installer</value>
@@ -2533,5 +2533,14 @@ Voor het activeren, ga je naar Race Mode en pauzeer je het spel. Op het pauzesch
   </data>
   <data name="AdminWorker_Error" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens een poging de Admin Worker te starten</value>
+  </data>
+  <data name="BackupPage_Options" xml:space="preserve">
+    <value>Opties</value>
+  </data>
+  <data name="Backup_Compress" xml:space="preserve">
+    <value>Comprimeer back-ups</value>
+  </data>
+  <data name="Backup_CompressInfo" xml:space="preserve">
+    <value>Gecomprimeerde back-ups zullen minder ruimte in beslag nemen en zijn makkelijker te beheren, doordat ze per game in één bestand zitten. De wijziging is van kracht wanneer er een nieuwe back-up wordt gemaakt.</value>
   </data>
 </root>

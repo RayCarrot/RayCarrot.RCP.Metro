@@ -197,7 +197,7 @@ namespace RayCarrot.RCP.Metro
                     // Attempt to detect Rayman version
                     if (RaymanVersion == TPLSRaymanVersion.Auto)
                     {
-                        // TODO: Look for other versions too
+                        // TODO: Look for remaining versions
 
                         if (!ReadProcessMemory((int)ProcessHandle, eAX + 0x16D7BC, baseBuffer, 4, ref bytesRead))
                             throw new Win32Exception();

@@ -1538,4 +1538,16 @@ Starta om?</value>
   <data name="AdminWorker_Error" xml:space="preserve">
     <value>Ett fel inträffade när admin worker programmet skulle köras</value>
   </data>
+  <data name="BackupPage_Options" xml:space="preserve">
+    <value>Alternativ</value>
+  </data>
+  <data name="Backup_Compress" xml:space="preserve">
+    <value>Komprimera säkerhetskopior</value>
+  </data>
+  <data name="Backup_CompressInfo" xml:space="preserve">
+    <value>Komprimerade säkerhetskopior tar mindre plats och gör dem enklare att hantera på grund av att de är i en enda fil för varje spel. Ändringen träder i kraft vid nästa säkerhetskopiering.</value>
+  </data>
+  <data name="DosBoxConfig_SetLanguageError" xml:space="preserve">
+    <value>Språket kunde inte uppdateras</value>
+  </data>
 </root>

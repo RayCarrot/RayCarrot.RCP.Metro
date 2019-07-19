@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
         <Expander Grid.Row="0"
-                  Header="{Resx LinksPage_Options}"
+                  Header="{Resx GenericPage_Options}"
                   Padding="10"
                   IsExpanded="False">
             <Grid>

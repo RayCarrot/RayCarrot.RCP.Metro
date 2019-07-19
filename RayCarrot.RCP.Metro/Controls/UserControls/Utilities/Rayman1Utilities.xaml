@@ -61,6 +61,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
                 <Grid.Resources>
@@ -102,20 +104,26 @@
                     <TextBlock Text="{Resx R1U_TPLS_DosBoxVersions_SVN_Daum}" />
                 </ComboBox>
 
+                <Button Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        rwpf:UserLevelTag.MinUserLevel="Debug"
+                        Command="{Binding Path=StartTPLSCommand}"
+                        IsEnabled="{Binding Source={x:Static local:TPLS.Data}, Path=IsRunning, Converter={rwpf:InvertedBooleanConverter}}"
+                        Content="Start independently" 
+                        ToolTip="This starts the utility independently of the game, searching for any currently running games"
+                        HorizontalAlignment="Left"/>
+
+                <Button Grid.Row="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        rwpf:UserLevelTag.MinUserLevel="Debug"
+                        Command="{Binding Path=StopTPLSCommand}"
+                        IsEnabled="{Binding Source={x:Static local:TPLS.Data}, Path=IsRunning}"
+                        Content="Stop TPLS" 
+                        HorizontalAlignment="Left"/>
+
             </Grid>
-
-            <Button rwpf:UserLevelTag.MinUserLevel="Debug"
-                    Command="{Binding Path=StartTPLSCommand}"
-                    IsEnabled="{Binding Source={x:Static local:TPLS.Data}, Path=IsRunning, Converter={rwpf:InvertedBooleanConverter}}"
-                    Content="Start independently" 
-                    ToolTip="This starts the utility independently of the game, searching for any currently running games"
-                    HorizontalAlignment="Left"/>
-
-            <Button rwpf:UserLevelTag.MinUserLevel="Debug"
-                    Command="{Binding Path=StopTPLSCommand}"
-                    IsEnabled="{Binding Source={x:Static local:TPLS.Data}, Path=IsRunning}"
-                    Content="Stop TPLS" 
-                    HorizontalAlignment="Left"/>
 
             <Grid rwpf:UnifiedMargin.Ignored="True"
                   rwpf:UserLevelTag.MinUserLevel="Debug">

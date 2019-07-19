@@ -424,4 +424,22 @@
     <value>reverse</value>
     <comment>reverse</comment>
   </data>
+  <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
+    <value>Коју резолуцију користити за цео екран: оригинал или фиксирану величину ( нпр. 1024x768)</value>
+  </data>
+  <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
+    <value>Резолуција прозора</value>
+  </data>
+  <data name="DosBoxOptions_WindowedResInfo" xml:space="preserve">
+    <value>Скалирај прозор на ту величину АКО излазни уређај подржава скалирање хардвера</value>
+  </data>
+  <data name="DosBoxOptions_Scaler" xml:space="preserve">
+    <value>Скалер</value>
+  </data>
+  <data name="DosBoxOptions_ScalerInfo" xml:space="preserve">
+    <value>Скалер који се користи за повећање/побољшање режима ниске резолуције</value>
+  </data>
+  <data name="DosBoxOptions_Core" xml:space="preserve">
+    <value>Језгро</value>
+  </data>
 </root>

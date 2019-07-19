@@ -63,6 +63,34 @@
                                  ToolTip="{Resx MountOption_DriveInfo}" />
                 </WrapPanel>
 
+                <!-- Language -->
+
+                <StackPanel Orientation="Horizontal"
+                            Visibility="{Binding Path=IsGameLanguageAvailable, Converter={rwpf:BooleanToVisibilityConverter}}">
+                    <TextBlock Style="{StaticResource HeaderTextBlock}"
+                               Text="{Resx Config_Language}" />
+
+                    <local:InfoIcon Text="{Resx DosBoxConfig_LanguageInfo}" />
+
+                </StackPanel>
+
+                <ComboBox SelectedIndex="{Binding Path=GameLanguage, Converter={rwpf:EnumToIntConverter}}"
+                          Visibility="{Binding Path=IsGameLanguageAvailable, Converter={rwpf:BooleanToVisibilityConverter}}"
+                          HorizontalAlignment="Left">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                            <Setter Property="Visibility" Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.Visibility}" />
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+
+                    <TextBlock Text="{Resx Lang_English}"
+                               Visibility="{Binding Path=IsEnglishAvailable, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+                    <TextBlock Text="{Resx Lang_French}" 
+                               Visibility="{Binding Path=IsFrenchAvailable, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+                    <TextBlock Text="{Resx Lang_German}"
+                               Visibility="{Binding Path=IsGermanAvailable, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+                </ComboBox>
+
                 <!-- General settings -->
 
                 <StackPanel Orientation="Horizontal">

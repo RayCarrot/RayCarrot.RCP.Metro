@@ -45,15 +45,14 @@ namespace RayCarrot.RCP.Metro
                 return null;
 
             // Make sure the game is valid
-            if (!IsValid(result.SelectedDirectory))
-            {
-                RCF.Logger.LogInformationSource($"The selected install directory for {Game} is not valid");
+            if (IsValid(result.SelectedDirectory))
+                return result.SelectedDirectory;
 
-                await RCF.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
-                return null;
-            }
+            RCF.Logger.LogInformationSource($"The selected install directory for {Game} is not valid");
 
-            return result.SelectedDirectory;
+            await RCF.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
+            return null;
+
         }
 
         #endregion

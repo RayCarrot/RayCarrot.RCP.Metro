@@ -2534,4 +2534,13 @@ Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, dei
   <data name="AdminWorker_Error" xml:space="preserve">
     <value>Ocorreu um erro quando se tentava executar o admin worker</value>
   </data>
+  <data name="BackupPage_Options" xml:space="preserve">
+    <value>Opções</value>
+  </data>
+  <data name="Backup_Compress" xml:space="preserve">
+    <value>Comprimir cópias de segurança</value>
+  </data>
+  <data name="Backup_CompressInfo" xml:space="preserve">
+    <value>Comprimir as cópias de segurança irá ocupar menos espaço e fazer com que sejam geridas com maior facilidade por serem um ficheiro único para cada jogo. Esta alteração terá efeito numa próxima vez que uma cópia de segurança seja efectuada.</value>
+  </data>
 </root>

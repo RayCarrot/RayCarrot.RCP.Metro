@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using Nito.AsyncEx;
@@ -132,6 +134,8 @@ namespace RayCarrot.RCP.Metro
         private string _selectedCycles;
 
         private string _customCommands;
+
+        private R1Languages _gameLanguage;
 
         #endregion
 
@@ -371,6 +375,39 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// The selected game language, if any
+        /// </summary>
+        public R1Languages GameLanguage
+        {
+            get => _gameLanguage;
+            set
+            {
+                _gameLanguage = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
+        /// Indicates if <see cref="GameLanguage"/> is available
+        /// </summary>
+        public bool IsGameLanguageAvailable { get; set; }
+
+        /// <summary>
+        /// Indicates if <see cref="R1Languages.English"/> is available
+        /// </summary>
+        public bool IsEnglishAvailable { get; set; }
+
+        /// <summary>
+        /// Indicates if <see cref="R1Languages.French"/> is available
+        /// </summary>
+        public bool IsFrenchAvailable { get; set; }
+
+        /// <summary>
+        /// Indicates if <see cref="R1Languages.German"/> is available
+        /// </summary>
+        public bool IsGermanAvailable { get; set; }
+
         #endregion
 
         #region Commands
@@ -378,6 +415,157 @@ namespace RayCarrot.RCP.Metro
         public AsyncRelayCommand SaveCommand { get; }
 
         public RelayCommand UseRecommendedCommand { get; }
+
+        #endregion
+
+        #region Private Static Methods
+
+        /// <summary>
+        /// Gets the Rayman 1 language from the specified config file
+        /// </summary>
+        /// <param name="configFile">The config file to get the language from</param>
+        /// <returns>The language or null if none was found</returns>
+        private static R1Languages? GetR1Language(FileSystemPath configFile)
+        {
+            try
+            {
+                // Open the file
+                using (var stream = File.OpenRead(configFile))
+                {
+                    switch (stream.ReadByte())
+                    {
+                        case 0:
+                            return R1Languages.English;
+
+                        case 1:
+                            return R1Languages.French;
+
+                        case 2:
+                            return R1Languages.German;
+
+                        default:
+                            return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Getting Rayman 1 language from config file");
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Sets the Rayman 1 language in the specified config file
+        /// </summary>
+        /// <param name="configFile">The config file to set the language in</param>
+        /// <param name="language">The language</param>
+        /// <returns>The task</returns>
+        private static async Task SetR1LanguageAsync(FileSystemPath configFile, R1Languages language)
+        {
+            try
+            {
+                using (var stream = File.OpenWrite(configFile))
+                    stream.WriteByte((byte)language);
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Setting Rayman 1 game language from config file");
+                await RCF.MessageUI.DisplayMessageAsync(Resources.DosBoxConfig_SetLanguageError, Resources.DosBoxConfig_SetLanguageErrorHeader, MessageType.Error);
+            }
+        }
+
+        /// <summary>
+        /// Gets the current game language from the specified batch file
+        /// </summary>
+        /// <param name="batchFile">The batch file to get the language from</param>
+        /// <returns>The language or null if none was found</returns>
+        private static R1Languages? GetBatchFileanguage(FileSystemPath batchFile)
+        {
+            try
+            {
+                // Read the file into an array
+                var file = File.ReadAllLines(batchFile);
+
+                // Check each line for the launch argument
+                foreach (string line in file)
+                {
+                    // Find the argument
+                    var index = line.IndexOf("ver=", StringComparison.Ordinal);
+
+                    if (index == -1)
+                        continue;
+
+                    string lang = line.Substring(index + 4);
+
+                    if (lang.Equals("usa", StringComparison.InvariantCultureIgnoreCase))
+                        return R1Languages.English;
+
+                    if (lang.Equals("fr", StringComparison.InvariantCultureIgnoreCase))
+                        return R1Languages.French;
+
+                    if (lang.Equals("al", StringComparison.InvariantCultureIgnoreCase))
+                        return R1Languages.German;
+                    
+                    return null;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Getting DOSBox game language from batch file");
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Sets the current game language in the specified batch file
+        /// </summary>
+        /// <param name="batchFile">The batch file to set the language in</param>
+        /// <param name="language">The language</param>
+        /// <param name="game">The game to set the language for</param>
+        /// <returns>The task</returns>
+        private static async Task SetBatchFileLanguageAsync(FileSystemPath batchFile, R1Languages language, Games game)
+        {
+            try
+            {
+                string lang;
+
+                switch (language)
+                {
+                    case R1Languages.English:
+                        lang = "usa";
+                        break;
+
+                    case R1Languages.French:
+                        lang = "fr";
+                        break;
+
+                    case R1Languages.German:
+                        lang = "al";
+                        break;
+
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(language), language, null);
+                }
+
+                // Delete the existing file
+                RCFRCP.File.DeleteFile(batchFile);
+
+                // Create the .bat file
+                File.WriteAllLines(batchFile, new string[]
+                {
+                    "@echo off",
+                    $"{Path.GetFileNameWithoutExtension(new DOSBoxGameManager(game).GetGameExectuable())} ver={lang}"
+                });
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Setting DOSBox game language from batch file");
+                await RCF.MessageUI.DisplayMessageAsync(Resources.DosBoxConfig_SetLanguageError, Resources.DosBoxConfig_SetLanguageErrorHeader, MessageType.Error);
+            }
+        }
 
         #endregion
 
@@ -395,6 +583,47 @@ namespace RayCarrot.RCP.Metro
             var options = Data.DosBoxGames[Game];
 
             MountPath = options.MountPath;
+
+            // Default game language to not be available
+            IsGameLanguageAvailable = false;
+
+            var instDir = Game.GetInfo().InstallDirectory;
+
+            // Attempt to get the game language from the .bat file or config file
+            var batchFile = instDir + Game.GetLaunchName();
+            var configFile = instDir + "RAYMAN.CFG";
+
+            if (Game == Games.Rayman1 && configFile.FileExists || batchFile.FullPath.EndsWith(".bat", StringComparison.InvariantCultureIgnoreCase) && batchFile.FileExists)
+            {
+                // Check language availability
+                if (Game != Games.Rayman1)
+                {
+                    var pcmapDir = instDir + "pcmap";
+
+                    IsEnglishAvailable = (pcmapDir + "usa").DirectoryExists;
+                    IsFrenchAvailable = (pcmapDir + "fr").DirectoryExists;
+                    IsGermanAvailable = (pcmapDir + "al").DirectoryExists;
+                }
+                else
+                {
+                    // NOTE: Currently there is no consistent way to check the availability in Rayman 1
+                    IsEnglishAvailable = true;
+                    IsFrenchAvailable = true;
+                    IsGermanAvailable = true;
+                }
+
+                // Make sure at least one language is available
+                if (IsEnglishAvailable || IsFrenchAvailable || IsGermanAvailable)
+                {
+                    var lang = Game == Games.Rayman1 ? GetR1Language(configFile) : GetBatchFileanguage(batchFile);
+
+                    if (lang != null)
+                    {
+                        GameLanguage = lang.Value;
+                        IsGameLanguageAvailable = true;
+                    }
+                }
+            }
 
             // Get the config manager
             var configManager = new DosBoxAutoConfigManager(Game.GetDosBoxConfigFile());
@@ -447,6 +676,15 @@ namespace RayCarrot.RCP.Metro
                     var options = Data.DosBoxGames[Game];
 
                     options.MountPath = MountPath;
+
+                    // If game language is available, update it
+                    if (IsGameLanguageAvailable)
+                    {
+                        if (Game == Games.Rayman1)
+                            await SetR1LanguageAsync(Game.GetInfo().InstallDirectory + "RAYMAN.CFG", GameLanguage);
+                        else
+                            await SetBatchFileLanguageAsync(Game.GetInfo().InstallDirectory + Game.GetLaunchName(), GameLanguage, Game);
+                    }
 
                     // Get the config manager
                     var configManager = new DosBoxAutoConfigManager(Game.GetDosBoxConfigFile());
@@ -514,5 +752,12 @@ namespace RayCarrot.RCP.Metro
         }
 
         #endregion
+    }
+
+    public enum R1Languages
+    {
+        English,
+        French,
+        German
     }
 }

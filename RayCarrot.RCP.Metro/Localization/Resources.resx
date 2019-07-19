@@ -2610,4 +2610,19 @@ To activate it, enter race mode and pause the game. On the pause screen, hold L1
     <value>An error occurred when attempting to run the admin worker</value>
     <comment>Leave the "admin worker" part in English due to that being the name of the program which is displayed to the user</comment>
   </data>
+  <data name="BackupPage_Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="Backup_Compress" xml:space="preserve">
+    <value>Compress backups</value>
+  </data>
+  <data name="Backup_CompressInfo" xml:space="preserve">
+    <value>Compressed backups will take less space and be easier to manage due to being in a single file for each game. The change will go into effect the next time a backup is performed.</value>
+  </data>
+  <data name="DosBoxConfig_SetLanguageError" xml:space="preserve">
+    <value>The language could not be updated</value>
+  </data>
+  <data name="DosBoxConfig_SetLanguageErrorHeader" xml:space="preserve">
+    <value>Error updating language</value>
+  </data>
 </root>

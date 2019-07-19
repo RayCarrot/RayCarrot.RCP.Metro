@@ -24,7 +24,7 @@
 
         <StackPanel>
 
-            <Expander Header="{Resx BackupPage_Options}"
+            <Expander Header="{Resx GenericPage_Options}"
                       Padding="10"
                       IsExpanded="False">
                 <StackPanel>
