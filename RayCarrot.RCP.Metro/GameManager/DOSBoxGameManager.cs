@@ -2,7 +2,9 @@
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -61,7 +63,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>Null if the game was not found. Otherwise a valid or empty path for the instal directory</returns>
         protected override async Task<FileSystemPath?> LocateAsync()
         {
-            var result = await RCF.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+            var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
             {
                 Title = Resources.LocateGame_BrowserHeader,
                 DefaultDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
@@ -84,9 +86,9 @@ namespace RayCarrot.RCP.Metro
             // If the executable does not exist the location is not valid
             if (!(result.SelectedDirectory + exe).FileExists)
             {
-                RCF.Logger.LogInformationSource($"The selected install directory for {Game} is not valid");
+                RCFCore.Logger?.LogInformationSource($"The selected install directory for {Game} is not valid");
 
-                await RCF.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
                 return null;
             }
 
@@ -97,7 +99,7 @@ namespace RayCarrot.RCP.Metro
                 $"{Path.GetFileNameWithoutExtension(exe)} ver=usa"
             });
 
-            RCF.Logger.LogInformationSource($"A batch file was created for {Game}");
+            RCFCore.Logger?.LogInformationSource($"A batch file was created for {Game}");
 
             return result.SelectedDirectory;
         }
@@ -134,12 +136,12 @@ namespace RayCarrot.RCP.Metro
 
             var launchInfo = new GameLaunchInfo(RCFRCP.Data.DosBoxPath, Games.Rayman1.GetDosBoxArguments(Games.Rayman1.GetInfo().InstallDirectory, RCFRCP.Data.TPLSData.InstallDir + "RayCD.cue", Game.GetLaunchName()));
 
-            RCF.Logger.LogTraceSource($"The game {Game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
+            RCFCore.Logger?.LogTraceSource($"The game {Game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
 
             // Launch the game
             var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, forceRunAsAdmin || Info.LaunchMode == GameLaunchMode.AsAdmin, launchInfo.Args);
 
-            RCF.Logger.LogInformationSource($"The game {Game} has been launched in TPLS mode");
+            RCFCore.Logger?.LogInformationSource($"The game {Game} has been launched in TPLS mode");
 
             return new GameLaunchResult(process, process != null);
         }
@@ -153,14 +155,14 @@ namespace RayCarrot.RCP.Metro
             // Make sure the DosBox executable exists
             if (!File.Exists(RCFRCP.Data.DosBoxPath))
             {
-                await RCF.MessageUI.DisplayMessageAsync(Resources.LaunchGame_DosBoxNotFound, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LaunchGame_DosBoxNotFound, MessageType.Error);
                 return false;
             }
 
             // Make sure the mount path exists, unless the game is Rayman 1 and TPLS is enabled
             if (!RCFRCP.Data.DosBoxGames[Game].MountPath.Exists && !(Game == Games.Rayman1 && RCFRCP.Data.TPLSData?.IsEnabled == true))
             {
-                await RCF.MessageUI.DisplayMessageAsync(Resources.LaunchGame_MountPathNotFound, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LaunchGame_MountPathNotFound, MessageType.Error);
                 return false;
             }
 

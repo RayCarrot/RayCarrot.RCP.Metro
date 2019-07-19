@@ -1,5 +1,5 @@
-﻿using RayCarrot.CarrotFramework;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro.Legacy
 {

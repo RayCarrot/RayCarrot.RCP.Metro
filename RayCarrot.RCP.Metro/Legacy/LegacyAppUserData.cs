@@ -1,4 +1,5 @@
-﻿using RayCarrot.CarrotFramework;
+﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro.Legacy
 {

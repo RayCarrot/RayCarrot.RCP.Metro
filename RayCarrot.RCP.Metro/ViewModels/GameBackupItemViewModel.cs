@@ -1,9 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ByteSizeLib;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -137,7 +140,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Getting backup info", Game);
-                await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.ReadingBackupError, Game.GetDisplayName()), MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.ReadingBackupError, Game.GetDisplayName()), MessageType.Error);
             }
         }
 
@@ -152,16 +155,16 @@ namespace RayCarrot.RCP.Metro
 
             // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
             if (IsGOGCloudSyncUsed)
-                await RCF.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
 
             try
             {
                 PerformingBackupRestore = true;
 
                 // Confirm restore
-                if (!await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, Game.GetDisplayName()), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
+                if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, Game.GetDisplayName()), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
                 {
-                    RCF.Logger.LogInformationSource($"Restore canceled");
+                    RCFCore.Logger?.LogInformationSource($"Restore canceled");
 
                     return;
                 }
@@ -173,7 +176,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     ShowBackupRestoreIndicator = false;
 
-                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, Game.GetDisplayName()), Resources.Restore_SuccessHeader);
+                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, Game.GetDisplayName()), Resources.Restore_SuccessHeader);
                 }
             }
             finally
@@ -194,16 +197,16 @@ namespace RayCarrot.RCP.Metro
 
             // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
             if (IsGOGCloudSyncUsed)
-                await RCF.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
 
             try
             {
                 PerformingBackupRestore = true;
 
                 // Confirm backup if one already exists
-                if ((Game.GetExistingBackup()?.Exists ?? false) && !await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, Game.GetDisplayName()), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
+                if ((Game.GetExistingBackup()?.Exists ?? false) && !await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, Game.GetDisplayName()), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
                 {
-                    RCF.Logger.LogInformationSource($"Backup canceled");
+                    RCFCore.Logger?.LogInformationSource($"Backup canceled");
                     return;
                 }
 
@@ -214,7 +217,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     ShowBackupRestoreIndicator = false;
 
-                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, Game.GetDisplayName()), Resources.Backup_SuccessHeader);
+                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, Game.GetDisplayName()), Resources.Backup_SuccessHeader);
                 }
 
                 // Refresh the item

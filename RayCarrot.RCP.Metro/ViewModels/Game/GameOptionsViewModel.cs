@@ -4,7 +4,9 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.ApplicationModel;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
+using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
@@ -170,7 +172,7 @@ namespace RayCarrot.RCP.Metro
         {
             if (!(Game.GetGamePackage() is Package package))
             {
-                RCF.Logger.LogErrorSource("Game options WinStore package is null");
+                RCFCore.Logger?.LogErrorSource("Game options WinStore package is null");
                 return;
             }
 
@@ -192,7 +194,7 @@ namespace RayCarrot.RCP.Metro
         public async Task RemoveAsync()
         {
             // Ask the user
-            if (!await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGameQuestion, DisplayName), Resources.RemoveGameQuestionHeader,  MessageType.Question, true))
+            if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGameQuestion, DisplayName), Resources.RemoveGameQuestionHeader,  MessageType.Question, true))
                 return;
 
             // Remove the game
@@ -207,7 +209,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                var result = await RCF.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                 {
                     DefaultDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
                     Title = Resources.GameShortcut_BrowseHeader
@@ -223,9 +225,9 @@ namespace RayCarrot.RCP.Metro
                 {
                     WindowsHelpers.CreateURLShortcut(shortcutName, result.SelectedDirectory, $@"steam://rungameid/{Game.GetSteamID()}");
 
-                    RCF.Logger.LogTraceSource($"A shortcut was created for {Game} under {result.SelectedDirectory}");
+                    RCFCore.Logger?.LogTraceSource($"A shortcut was created for {Game} under {result.SelectedDirectory}");
 
-                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.GameShortcut_Success);
+                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.GameShortcut_Success);
                 }
                 else
                 {
@@ -237,7 +239,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Creating game shortcut", Game);
-                await RCF.MessageUI.DisplayMessageAsync(Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader, MessageType.Error);
             }
         }
 

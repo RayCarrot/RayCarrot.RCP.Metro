@@ -1,10 +1,13 @@
-﻿using RayCarrot.CarrotFramework;
+﻿using RayCarrot.CarrotFramework.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Net;
+using RayCarrot.Extensions;
+using RayCarrot.IO;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -148,7 +151,7 @@ namespace RayCarrot.RCP.Metro
                 OnStatusUpdated(OperationState.Paused);
 
                 // Get a drive from the user
-                var result = await RCF.BrowseUI.BrowseDriveAsync(new DriveBrowserViewModel()
+                var result = await RCFUI.BrowseUI.BrowseDriveAsync(new DriveBrowserViewModel()
                 {
                     Title = Resources.Installer_BrowseDiscHeader,
                     MultiSelection = false,
@@ -199,7 +202,7 @@ namespace RayCarrot.RCP.Metro
                 // Save drive information if new items were added
                 if (anyAdded)
                 {
-                    RCF.Logger.LogInformationSource($"The drive {drive} was added to the installation");
+                    RCFCore.Logger?.LogInformationSource($"The drive {drive} was added to the installation");
 
                     // Get the drive info
                     var driveInfo = new RayGameDriveInfo(drive, new DriveInfo(drive).VolumeLabel);
@@ -207,7 +210,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure the label and drive path are not the same as an existing one
                     if (drives.Any(x => x.Root == driveInfo.Root && x.VolumeLabel == driveInfo.VolumeLabel))
                     {
-                        await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_DriveNameConflict, Resources.Installer_DriveNameConflictHeader, MessageType.Error);
+                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_DriveNameConflict, Resources.Installer_DriveNameConflictHeader, MessageType.Error);
                         return false;
                     }
 
@@ -216,7 +219,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 else
                 {
-                    RCF.Logger.LogInformationSource($"The drive {drive} was not added to the installation");
+                    RCFCore.Logger?.LogInformationSource($"The drive {drive} was not added to the installation");
                 }
 
                 // Check if only optional items are remaining
@@ -229,7 +232,7 @@ namespace RayCarrot.RCP.Metro
                     // Update the status to paused
                     OnStatusUpdated(OperationState.Paused);
 
-                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_MissingFiles, missingItems), Resources.Installer_MissingFilesHeader, MessageType.Information);
+                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_MissingFiles, missingItems), Resources.Installer_MissingFilesHeader, MessageType.Information);
 
                     // Update the status to default
                     OnStatusUpdated();
@@ -239,7 +242,7 @@ namespace RayCarrot.RCP.Metro
             // Save the drives
             Drives = drives.ToArray();
 
-            RCF.Logger.LogInformationSource($"The drives have been verified as {Drives.JoinItems(", ")}");
+            RCFCore.Logger?.LogInformationSource($"The drives have been verified as {Drives.JoinItems(", ")}");
 
             return true;
         }
@@ -251,7 +254,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the drive is available, false if the request was canceled</returns>
         protected virtual async Task<bool> RequestDriveAsync(RayGameDriveInfo drive)
         {
-            RCF.Logger.LogInformationSource($"The drive {drive.Root} has been requested");
+            RCFCore.Logger?.LogInformationSource($"The drive {drive.Root} has been requested");
 
             // Make sure the drive is available
             while (!drive.IsAvailable)
@@ -262,14 +265,14 @@ namespace RayCarrot.RCP.Metro
                 // Update the status to paused
                 OnStatusUpdated(OperationState.Paused);
 
-                if (!await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_InsertDriveRequest, drive.VolumeLabel, drive.Root), Resources.Installer_InsertDriveRequestHeader, MessageType.Information, true))
+                if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_InsertDriveRequest, drive.VolumeLabel, drive.Root), Resources.Installer_InsertDriveRequestHeader, MessageType.Information, true))
                     return false;
 
                 // Update the status to default
                 OnStatusUpdated();
             }
 
-            RCF.Logger.LogInformationSource($"The drive {drive.Root} is available");
+            RCFCore.Logger?.LogInformationSource($"The drive {drive.Root} is available");
 
             return true;
         }
@@ -282,7 +285,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected virtual async Task HandleItemAsync(WebClient wc, RayGameInstallItem item)
         {
-            RCF.Logger.LogDebugSource($"The installation item {item.BasePath} is being handled");
+            RCFCore.Logger?.LogDebugSource($"The installation item {item.BasePath} is being handled");
 
             // Check if cancellation has been requested
             InstallData.CancellationToken.ThrowIfCancellationRequested();
@@ -301,7 +304,7 @@ namespace RayCarrot.RCP.Metro
                 // Flag that the item has been handled
                 item.ProcessStage = RayGameInstallItemStage.Complete;
 
-                RCF.Logger.LogDebugSource($"The installation item {item.BasePath} has been handled as a directory");
+                RCFCore.Logger?.LogDebugSource($"The installation item {item.BasePath} has been handled as a directory");
             }
             else if (item.InputPath.FileExists)
             {
@@ -314,11 +317,11 @@ namespace RayCarrot.RCP.Metro
                 // Flag that the item has been handled
                 item.ProcessStage = RayGameInstallItemStage.Complete;
 
-                RCF.Logger.LogDebugSource($"The installation item {item.BasePath} has been handled as a file");
+                RCFCore.Logger?.LogDebugSource($"The installation item {item.BasePath} has been handled as a file");
             }
             else
             {
-                RCF.Logger.LogWarningSource($"The installation item {item.BasePath} is not a valid file or directory");
+                RCFCore.Logger?.LogWarningSource($"The installation item {item.BasePath} is not a valid file or directory");
             }
 
             CurrentItem++;
@@ -353,13 +356,13 @@ namespace RayCarrot.RCP.Metro
                     if (ex is WebException we && we.Status == WebExceptionStatus.RequestCanceled)
                         throw;
 
-                    RCF.Logger.LogInformationSource($"Failed to copy file {source.FullPath} during installation. Requesting retry.");
+                    RCFCore.Logger?.LogInformationSource($"Failed to copy file {source.FullPath} during installation. Requesting retry.");
 
                     // Ask user to retry
-                    if (!await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_FileCopyError, source.Name, ex.Message), Resources.Installer_FileCopyErrorHeader, MessageType.Warning, true))
+                    if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_FileCopyError, source.Name, ex.Message), Resources.Installer_FileCopyErrorHeader, MessageType.Warning, true))
                         throw;
 
-                    RCF.Logger.LogInformationSource($"Attempting to retry to copy file");
+                    RCFCore.Logger?.LogInformationSource($"Attempting to retry to copy file");
 
                     // Remove partially copied file
                     RCFRCP.File.DeleteFile(destination);
@@ -380,7 +383,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task to run</returns>
         public virtual async Task<RayGameInstallerResult> InstallAsync()
         {
-            RCF.Logger.LogInformationSource($"An installation has begun");
+            RCFCore.Logger?.LogInformationSource($"An installation has begun");
 
             // Store the web client
             WebClient wc = null;
@@ -388,7 +391,7 @@ namespace RayCarrot.RCP.Metro
             // Get the temp directory
             var temp = CommonPaths.TempPath + "Installer";
 
-            RCF.Logger.LogDebugSource($"The installation temp path has been set to {temp}");
+            RCFCore.Logger?.LogDebugSource($"The installation temp path has been set to {temp}");
 
             // Flag indicating if we've got file conflicts
             bool fileConflicts = false;
@@ -411,12 +414,12 @@ namespace RayCarrot.RCP.Metro
                 if (!await VerifyInstallationAsync())
                     return RayGameInstallerResult.Canceled;
 
-                RCF.Logger.LogInformationSource($"The installation has been verified");
+                RCFCore.Logger?.LogInformationSource($"The installation has been verified");
 
                 // Check if the output directory already exists
                 if (InstallData.OutputDir.DirectoryExists)
                 {
-                    RCF.Logger.LogInformationSource($"The installation output already exists");
+                    RCFCore.Logger?.LogInformationSource($"The installation output already exists");
 
                     var existingPaths = new List<FileSystemPath>();
 
@@ -428,7 +431,7 @@ namespace RayCarrot.RCP.Metro
                     // Check if we got any existing paths
                     if (existingPaths.Count > 0)
                     {
-                        RCF.Logger.LogInformationSource($"The installation output has file conflicts");
+                        RCFCore.Logger?.LogInformationSource($"The installation output has file conflicts");
 
                         // Update the status to paused
                         OnStatusUpdated(OperationState.Paused);
@@ -436,7 +439,7 @@ namespace RayCarrot.RCP.Metro
                         // Flag that we have file conflicts
                         fileConflicts = true;
 
-                        if (!(await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_FileConflicts, existingPaths.Count), Resources.Installer_FileConflictsHeader, MessageType.Question, true)))
+                        if (!(await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_FileConflicts, existingPaths.Count), Resources.Installer_FileConflictsHeader, MessageType.Question, true)))
                             return RayGameInstallerResult.Canceled;
 
                         // Update the status to default
@@ -477,7 +480,7 @@ namespace RayCarrot.RCP.Metro
                     // Update the status to paused
                     OnStatusUpdated(OperationState.Paused);
 
-                    if (!(await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_UnhandledItems, Resources.Installer_UnhandledItemsHeader, MessageType.Warning, true)))
+                    if (!(await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_UnhandledItems, Resources.Installer_UnhandledItemsHeader, MessageType.Warning, true)))
                         return RayGameInstallerResult.Canceled;
 
                     // Update the status to default
@@ -506,7 +509,7 @@ namespace RayCarrot.RCP.Metro
                 // Flag that the installation completed
                 complete = true;
 
-                RCF.Logger.LogInformationSource($"The installation has completed");
+                RCFCore.Logger?.LogInformationSource($"The installation has completed");
 
                 return RayGameInstallerResult.Successful;
             }
@@ -544,8 +547,8 @@ namespace RayCarrot.RCP.Metro
                         }
                     }
 
-                    if (error && RCF.Data.CurrentUserLevel >= UserLevel.Advanced)
-                        await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_CleanupError, InstallData.OutputDir), MessageType.Error);
+                    if (error && RCFCore.Data.CurrentUserLevel >= UserLevel.Advanced)
+                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_CleanupError, InstallData.OutputDir), MessageType.Error);
 
                     try
                     {

@@ -1,4 +1,4 @@
-﻿using RayCarrot.CarrotFramework;
+﻿using RayCarrot.CarrotFramework.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +6,8 @@ using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
+using RayCarrot.IO;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {   
@@ -95,7 +97,7 @@ namespace RayCarrot.RCP.Metro
                 // Check if any files were backed up
                 if (!destinationDir.DirectoryExists)
                 {
-                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
 
                     // Check if a temp backup exists
                     if (tempPath.DirectoryExists)
@@ -108,7 +110,7 @@ namespace RayCarrot.RCP.Metro
                 // Delete temp backup
                 RCFRCP.File.DeleteDirectory(tempPath);
 
-                RCF.Logger.LogInformationSource($"Backup complete");
+                RCFCore.Logger?.LogInformationSource($"Backup complete");
 
                 return true;
             }
@@ -119,7 +121,7 @@ namespace RayCarrot.RCP.Metro
                     // Restore temp backup
                     RCFRCP.File.MoveDirectory(tempPath, destinationDir, true);
 
-                RCF.Logger.LogInformationSource($"Backup failed - clean up succeeded");
+                RCFCore.Logger?.LogInformationSource($"Backup failed - clean up succeeded");
 
                 throw;
             }
@@ -176,7 +178,7 @@ namespace RayCarrot.RCP.Metro
                 // Delete temp backup
                 RCFRCP.File.DeleteFile(tempPath);
 
-                RCF.Logger.LogInformationSource($"Backup complete");
+                RCFCore.Logger?.LogInformationSource($"Backup complete");
 
                 return true;
             }
@@ -187,7 +189,7 @@ namespace RayCarrot.RCP.Metro
                     // Restore temp backup
                     RCFRCP.File.MoveFile(tempPath, destinationFile, true);
 
-                RCF.Logger.LogInformationSource($"Backup failed - clean up succeeded");
+                RCFCore.Logger?.LogInformationSource($"Backup failed - clean up succeeded");
 
                 throw;
             }
@@ -206,7 +208,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                RCF.Logger.LogInformationSource($"A backup has been requested for {game}");
+                RCFCore.Logger?.LogInformationSource($"A backup has been requested for {game}");
 
                 try
                 {
@@ -216,9 +218,9 @@ namespace RayCarrot.RCP.Metro
                     // Check if the directories to back up exist
                     if (!backupInfo.Select(x => x.DirPath).DirectoriesExist())
                     {
-                        RCF.Logger.LogInformationSource($"Backup failed - the input directories could not be found");
+                        RCFCore.Logger?.LogInformationSource($"Backup failed - the input directories could not be found");
 
-                        await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingDirectoriesError, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
+                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingDirectoriesError, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
                         return false;
                     }
 
@@ -240,14 +242,14 @@ namespace RayCarrot.RCP.Metro
                             // Delete the directory
                             RCFRCP.File.DeleteDirectory(normalLocation);
 
-                            RCF.Logger.LogInformationSource("Non-compressed backup was deleted due to a compressed backup having been performed");
+                            RCFCore.Logger?.LogInformationSource("Non-compressed backup was deleted due to a compressed backup having been performed");
                         }
                         else if (!compress && compressedLocation.FileExists)
                         {
                             // Delete the file
                             RCFRCP.File.DeleteFile(compressedLocation);
 
-                            RCF.Logger.LogInformationSource("Compressed backup was deleted due to a non-compressed backup having been performed");
+                            RCFCore.Logger?.LogInformationSource("Compressed backup was deleted due to a non-compressed backup having been performed");
                         }
                     }
                     catch (Exception ex)
@@ -260,7 +262,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {   
                     ex.HandleCritical("Backing up game", game);
-                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Failed, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Failed, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
 
                     return false;
                 }
@@ -276,7 +278,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                RCF.Logger.LogInformationSource($"A backup restore has been requested for {game}");
+                RCFCore.Logger?.LogInformationSource($"A backup restore has been requested for {game}");
 
                 try
                 {
@@ -286,9 +288,9 @@ namespace RayCarrot.RCP.Metro
                     // Make sure a backup exists
                     if (!existingBackup?.Exists ?? true)
                     {
-                        RCF.Logger.LogInformationSource($"Restore failed - the input location could not be found");
+                        RCFCore.Logger?.LogInformationSource($"Restore failed - the input location could not be found");
 
-                        await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_MissingBackup, game.GetDisplayName()), Resources.Restore_FailedHeader, MessageType.Error);
+                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_MissingBackup, game.GetDisplayName()), Resources.Restore_FailedHeader, MessageType.Error);
                         return false;
                     }
 
@@ -410,7 +412,7 @@ namespace RayCarrot.RCP.Metro
                             }
                         }
 
-                        RCF.Logger.LogInformationSource($"Restore failed - clean up succeeded");
+                        RCFCore.Logger?.LogInformationSource($"Restore failed - clean up succeeded");
 
                         throw;
                     }
@@ -423,14 +425,14 @@ namespace RayCarrot.RCP.Metro
                         RCFRCP.File.DeleteDirectory(archiveTempPath);
                     }
 
-                    RCF.Logger.LogInformationSource($"Restore complete");
+                    RCFCore.Logger?.LogInformationSource($"Restore complete");
 
                     return true;
                 }
                 catch (Exception ex)
                 {
                     ex.HandleCritical("Restoring game", game);
-                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Failed, game.GetDisplayName()), Resources.Restore_FailedHeader, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Failed, game.GetDisplayName()), Resources.Restore_FailedHeader, MessageType.Error);
 
                     return false;
                 }

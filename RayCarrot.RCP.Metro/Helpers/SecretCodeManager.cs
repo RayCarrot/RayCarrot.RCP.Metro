@@ -6,7 +6,9 @@ using System.Windows;
 using System.Windows.Input;
 using MahApps.Metro;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -42,7 +44,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Red"), ThemeManager.GetAppTheme("BaseDark"));
 
-                        await RCF.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Konami, Resources.SecretCodes_KonamiHeader, MessageType.Success);
+                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Konami, Resources.SecretCodes_KonamiHeader, MessageType.Success);
                     }
                 },
                 {
@@ -63,7 +65,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Orange"), ThemeManager.GetAppTheme("BaseDark"));
 
-                        await RCF.MessageUI.DisplayMessageAsync(Resources.SecretCodes_RayCarrot, Resources.SecretCodes_RayCarrotHeader, MessageType.Success);
+                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.SecretCodes_RayCarrot, Resources.SecretCodes_RayCarrotHeader, MessageType.Success);
                     }
                 },
                 {
@@ -79,7 +81,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Lime"), ThemeManager.GetAppTheme("BaseDark"));
 
-                        await RCF.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Lime, Resources.SecretCodes_LimeHeader, MessageType.Success);
+                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Lime, Resources.SecretCodes_LimeHeader, MessageType.Success);
                     }
                 },
                 {
@@ -95,7 +97,7 @@ namespace RayCarrot.RCP.Metro
                     },
                     async () =>
                     {
-                        await RCF.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Secret, Resources.SecretCodes_SecretHeader, MessageType.Success);
+                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Secret, Resources.SecretCodes_SecretHeader, MessageType.Success);
                     }
                 },
             };
@@ -129,7 +131,7 @@ namespace RayCarrot.RCP.Metro
                 if (Codes.All(x => x.Key.Length <= CurrentInput.Count || x.Key[CurrentInput.Count] != key))
                 {
                     CurrentInput.Clear();
-                    RCF.Logger.LogDebugSource("The secret code inputs were reset due to an invalid key being pressed");
+                    RCFCore.Logger?.LogDebugSource("The secret code inputs were reset due to an invalid key being pressed");
                     return;
                 }
 
@@ -143,7 +145,7 @@ namespace RayCarrot.RCP.Metro
                     return;
 
                 CurrentInput.Clear();
-                RCF.Logger.LogDebugSource("The secret code inputs were reset due to a valid code having been entered");
+                RCFCore.Logger?.LogDebugSource("The secret code inputs were reset due to a valid code having been entered");
 
                 // Run the task
                 await task();

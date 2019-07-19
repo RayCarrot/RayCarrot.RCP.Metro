@@ -3,8 +3,9 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.CarrotFramework;
-using RayCarrot.Windows.Shell;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -21,7 +22,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="game"></param>
         public GameInstallerViewModel(Games game)
         {
-            RCF.Logger.LogInformationSource($"An installation has been requested for the game {game}");
+            RCFCore.Logger?.LogInformationSource($"An installation has been requested for the game {game}");
 
             // Create the commands
             InstallCommand = new AsyncRelayCommand(InstallAsync);
@@ -115,7 +116,7 @@ namespace RayCarrot.RCP.Metro
                     return;
                 }
 
-                Task.Run(async () => await RCF.MessageUI.DisplayMessageAsync("You need to run the program as administrator in order to install for all users", "Missing permissions", MessageType.Warning));
+                Task.Run(async () => await RCFUI.MessageUI.DisplayMessageAsync("You need to run the program as administrator in order to install for all users", "Missing permissions", MessageType.Warning));
             }
         }
 
@@ -177,13 +178,13 @@ namespace RayCarrot.RCP.Metro
         {
             if (CancellationTokenSource.IsCancellationRequested)
             {
-                await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_CancelAlreadyRequested, Resources.Installer_CancelAlreadyRequestedHeader, MessageType.Information);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_CancelAlreadyRequested, Resources.Installer_CancelAlreadyRequestedHeader, MessageType.Information);
                 return;
             }
 
-            if (await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_CancelQuestion, Resources.Installer_CancelQuestionHeader, MessageType.Question, true))
+            if (await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_CancelQuestion, Resources.Installer_CancelQuestionHeader, MessageType.Question, true))
             {
-                RCF.Logger.LogInformationSource($"The installation has been requested to cancel");
+                RCFCore.Logger?.LogInformationSource($"The installation has been requested to cancel");
                 CancellationTokenSource.Cancel();
             }
         }
@@ -194,7 +195,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RefreshGifsAsync()
         {
-            RCF.Logger.LogInformationSource($"The gif images are being refreshed for the installation");
+            RCFCore.Logger?.LogInformationSource($"The gif images are being refreshed for the installation");
 
             ShowGifImage = true;
 
@@ -223,21 +224,21 @@ namespace RayCarrot.RCP.Metro
             // Make sure the installer is not already running
             if (InstallerRunning)
             {
-                RCF.Logger.LogWarningSource($"A requested installation was canceled due to already running");
+                RCFCore.Logger?.LogWarningSource($"A requested installation was canceled due to already running");
                 return;
             }
 
             // Make sure the selected directory exists
             if (!InstallDir.DirectoryExists)
             {
-                await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_InvalidDirectory, Resources.Installer_InvalidDirectoryHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_InvalidDirectory, Resources.Installer_InvalidDirectoryHeader, MessageType.Error);
                 return;
             }
 
             // Make sure write permission is granted to the selected directory
             if (!RCFRCP.File.CheckDirectoryWriteAccess(InstallDir))
             {
-                await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_DirMissingWritePermission, Resources.Installer_DirMissingWritePermissionHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_DirMissingWritePermission, Resources.Installer_DirMissingWritePermissionHeader, MessageType.Error);
                 return;
             }
 
@@ -261,7 +262,7 @@ namespace RayCarrot.RCP.Metro
                 // Run the installer
                 var result = await Task.Run(async () => await installer.InstallAsync());
 
-                RCF.Logger.LogInformationSource($"The installation finished with the result of {result}");
+                RCFCore.Logger?.LogInformationSource($"The installation finished with the result of {result}");
 
                 // Check if the game is Rayman 2
                 if (result == RayGameInstallerResult.Successful && Game == Games.Rayman2)
@@ -337,16 +338,16 @@ namespace RayCarrot.RCP.Metro
                 switch (result)
                 {
                     case RayGameInstallerResult.Successful:
-                        await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_Success, Game.GetDisplayName()), Resources.Installer_SuccessHeader, MessageType.Success);
+                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_Success, Game.GetDisplayName()), Resources.Installer_SuccessHeader, MessageType.Success);
                         break;
 
                     default:
                     case RayGameInstallerResult.Failed:
-                        await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_Failed, Resources.Installer_FailedHeader, MessageType.Error);
+                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_Failed, Resources.Installer_FailedHeader, MessageType.Error);
                         break;
 
                     case RayGameInstallerResult.Canceled:
-                        await RCF.MessageUI.DisplayMessageAsync(Resources.Installer_Canceled, Resources.Installer_FailedHeader, MessageType.Information);
+                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_Canceled, Resources.Installer_FailedHeader, MessageType.Information);
                         break;
                 }
             }

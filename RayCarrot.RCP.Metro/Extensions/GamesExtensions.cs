@@ -1,7 +1,5 @@
 ﻿using MahApps.Metro.IconPacks;
-using Microsoft.Win32;
-using RayCarrot.CarrotFramework;
-using RayCarrot.Windows.Registry;
+using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
 using System;
@@ -12,6 +10,9 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using Windows.Management.Deployment;
+using RayCarrot.Extensions;
+using RayCarrot.IO;
+using RayCarrot.UI;
 using Package = Windows.ApplicationModel.Package;
 
 namespace RayCarrot.RCP.Metro
@@ -269,7 +270,7 @@ namespace RayCarrot.RCP.Metro
                     // Open the location
                     await RCFRCP.File.OpenExplorerLocationAsync(instDir);
 
-                    RCF.Logger.LogTraceSource($"The game {game} install location was opened");
+                    RCFCore.Logger?.LogTraceSource($"The game {game} install location was opened");
                 }), UserLevel.Advanced));
 
                 actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
@@ -277,7 +278,7 @@ namespace RayCarrot.RCP.Metro
                 // Add game options
                 actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.SettingsOutline, new RelayCommand(() =>
                 {
-                    RCF.Logger.LogTraceSource($"The game {game} options dialog is opening...");
+                    RCFCore.Logger?.LogTraceSource($"The game {game} options dialog is opening...");
                     GameOptions.Show(game, GameOptionsPage.Options);
                 })));
 

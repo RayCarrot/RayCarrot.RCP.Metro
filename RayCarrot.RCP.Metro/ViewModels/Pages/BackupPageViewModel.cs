@@ -6,7 +6,9 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -112,9 +114,9 @@ namespace RayCarrot.RCP.Metro
                 GameBackupItems.ForEach(x => x.PerformingBackupRestore = true);
 
                 // Confirm backup
-                if (!await RCF.MessageUI.DisplayMessageAsync(Resources.Backup_ConfirmBackupAll, Resources.Backup_ConfirmBackupAllHeader, MessageType.Warning, true))
+                if (!await RCFUI.MessageUI.DisplayMessageAsync(Resources.Backup_ConfirmBackupAll, Resources.Backup_ConfirmBackupAllHeader, MessageType.Warning, true))
                 {
-                    RCF.Logger.LogInformationSource($"Backup canceled");
+                    RCFCore.Logger?.LogInformationSource($"Backup canceled");
 
                     return;
                 }
@@ -136,9 +138,9 @@ namespace RayCarrot.RCP.Metro
                 });
 
                 if (completed == GameBackupItems.Count)
-                    await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Backup_BackupAllSuccess);
+                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Backup_BackupAllSuccess);
                 else
-                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, GameBackupItems.Count), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
+                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, GameBackupItems.Count), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
 
                 // Refresh the item
                 await RefreshAsync();

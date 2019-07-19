@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ByteSizeLib;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -24,7 +26,7 @@ namespace RayCarrot.RCP.Metro
             // Get current translation
             SelectedTranslation = GetAppliedRayman2Translation(GetFixSnaFilePath(Games.Rayman2.GetInfo().InstallDirectory)) ?? Rayman2Translation.Original;
 
-            RCF.Logger.LogInformationSource($"The applied Rayman 2 translation has been detected as {SelectedTranslation}");
+            RCFCore.Logger?.LogInformationSource($"The applied Rayman 2 translation has been detected as {SelectedTranslation}");
         }
 
         #endregion
@@ -54,7 +56,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RCF.Logger.LogInformationSource($"The Rayman 2 translation patch is downloading...");
+                RCFCore.Logger?.LogInformationSource($"The Rayman 2 translation patch is downloading...");
 
                 // Get the game install directory
                 var instDir = Games.Rayman2.GetInfo().InstallDirectory;
@@ -66,9 +68,9 @@ namespace RayCarrot.RCP.Metro
                 // Verify the files
                 if (!fixSna.FileExists || !texturesCnt.FileExists)
                 {
-                    RCF.Logger.LogInformationSource($"The Rayman 2 translation patch could not be downloaded due to the required local files not being found");
+                    RCFCore.Logger?.LogInformationSource($"The Rayman 2 translation patch could not be downloaded due to the required local files not being found");
 
-                    await RCF.MessageUI.DisplayMessageAsync(Resources.R2U_Translations_FilesNotFound, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.R2U_Translations_FilesNotFound, MessageType.Error);
                     return;
                 }
 
@@ -81,12 +83,12 @@ namespace RayCarrot.RCP.Metro
                 if (!succeeded)
                     return;
 
-                RCF.Logger.LogInformationSource($"The Rayman 2 fix.sna file has been downloaded");
+                RCFCore.Logger?.LogInformationSource($"The Rayman 2 fix.sna file has been downloaded");
 
                 // Get the current textures file
                 var textures = GetTexturesVersion(texturesCnt);
 
-                RCF.Logger.LogInformationSource($"The Rayman 2 textures file has been retrieved as {textures}");
+                RCFCore.Logger?.LogInformationSource($"The Rayman 2 textures file has been retrieved as {textures}");
 
                 if (textures == SelectedTranslation || 
                     (textures == Rayman2Translation.Original && SelectedTranslation == Rayman2Translation.Irish) ||
@@ -97,9 +99,9 @@ namespace RayCarrot.RCP.Metro
                     ? Resources.R2U_Translations_RevertTextures
                     : Resources.R2U_Translations_ReplaceTextures;
 
-                if (await RCF.MessageUI.DisplayMessageAsync(message, Resources.R2U_Translations_ReplaceTexturesHeader, MessageType.Question, true))
+                if (await RCFUI.MessageUI.DisplayMessageAsync(message, Resources.R2U_Translations_ReplaceTexturesHeader, MessageType.Question, true))
                 {
-                    RCF.Logger.LogInformationSource($"The Rayman 2 translation texture patch is downloading...");
+                    RCFCore.Logger?.LogInformationSource($"The Rayman 2 translation texture patch is downloading...");
 
                     // Replace the textures.cnt file
                     var succeeded2 = await App.DownloadAsync(new Uri[]
@@ -111,14 +113,14 @@ namespace RayCarrot.RCP.Metro
                         return;
                 }
 
-                RCF.Logger.LogInformationSource($"The Rayman 2 translation has been applied");
+                RCFCore.Logger?.LogInformationSource($"The Rayman 2 translation has been applied");
 
-                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_Translations_Success);
+                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_Translations_Success);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Applying R2 translation patch");
-                await RCF.MessageUI.DisplayMessageAsync(Resources.R2U_Translations_Error, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.R2U_Translations_Error, MessageType.Error);
             }
         }
 

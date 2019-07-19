@@ -1,8 +1,8 @@
-﻿using RayCarrot.CarrotFramework;
-using RayCarrot.Windows.Shell;
+﻿using RayCarrot.CarrotFramework.Abstractions;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {

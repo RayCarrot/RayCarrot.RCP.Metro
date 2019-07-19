@@ -1,10 +1,12 @@
-﻿using RayCarrot.CarrotFramework;
+﻿using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.WPF;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interop;
+using RayCarrot.Extensions;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -26,7 +28,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RCF.Logger.LogInformationSource($"A dialog is being created...");
+                RCFCore.Logger?.LogInformationSource($"A dialog is being created...");
 
                 using (dialog)
                 {
@@ -113,7 +115,7 @@ namespace RayCarrot.RCP.Metro
                         else
                             window.Owner = Application.Current?.Windows.Cast<Window>().FindItem(x => x.IsActive);
 
-                        RCF.Logger.LogInformationSource($"The owner window has been set to {window.Owner?.ToString() ?? "null"}");
+                        RCFCore.Logger?.LogInformationSource($"The owner window has been set to {window.Owner?.ToString() ?? "null"}");
 
                         // Set startup location
                         window.WindowStartupLocation = window.Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
@@ -129,7 +131,7 @@ namespace RayCarrot.RCP.Metro
                         // Close window on request
                         dialog.CloseDialog += Dialog_CloseDialog;
 
-                        RCF.Logger.LogInformationSource($"A dialog has been created and is showing...");
+                        RCFCore.Logger?.LogInformationSource($"A dialog has been created and is showing...");
 
                         // Show window as dialog
                         window.ShowDialog();
@@ -137,7 +139,7 @@ namespace RayCarrot.RCP.Metro
                         // Unsubscribe
                         dialog.CloseDialog -= Dialog_CloseDialog;
 
-                        RCF.Logger.LogInformationSource($"The dialog has closed");
+                        RCFCore.Logger?.LogInformationSource($"The dialog has closed");
 
                         // Return the result
                         return Task.FromResult(dialog.GetResult());

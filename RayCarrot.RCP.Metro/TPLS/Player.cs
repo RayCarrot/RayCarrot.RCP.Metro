@@ -1,10 +1,11 @@
 ﻿using NAudio.Vorbis;
 using NAudio.Wave;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
 using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -32,19 +33,19 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("TPLS: Playing music");
 
-                await RCF.MessageUI.DisplayMessageAsync(Resources.TPLS_PlaybackError_FileNotFound, Resources.TPLS_PlaybackErrorHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.TPLS_PlaybackError_FileNotFound, Resources.TPLS_PlaybackErrorHeader, MessageType.Error);
             }
             catch (InvalidDataException ex)
             {
                 ex.HandleError("TPLS: Playing music");
 
-                await RCF.MessageUI.DisplayMessageAsync(Resources.TPLS_PlaybackError_InvalidData, Resources.TPLS_PlaybackErrorHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.TPLS_PlaybackError_InvalidData, Resources.TPLS_PlaybackErrorHeader, MessageType.Error);
             }
             catch (Exception ex)
             {
                 ex.HandleError("TPLS: Playing music");
 
-                await RCF.MessageUI.DisplayMessageAsync(Resources.TPLS_PlaybackError, Resources.TPLS_PlaybackErrorHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.TPLS_PlaybackError, Resources.TPLS_PlaybackErrorHeader, MessageType.Error);
             }
         }
 

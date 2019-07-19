@@ -7,7 +7,9 @@ using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
+using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 using RayCarrot.WPF;
 
@@ -107,39 +109,39 @@ namespace RayCarrot.RCP.Metro
                     break;
 
                 case DebugDialogTypes.Message:
-                    await RCF.MessageUI.DisplayMessageAsync("Debug message", "Debug header", MessageType.Information);
+                    await RCFUI.MessageUI.DisplayMessageAsync("Debug message", "Debug header", MessageType.Information);
                     break;
 
                 case DebugDialogTypes.Directory:
-                    await RCF.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                    await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
                 case DebugDialogTypes.Drive:
-                    await RCF.BrowseUI.BrowseDriveAsync(new DriveBrowserViewModel()
+                    await RCFUI.BrowseUI.BrowseDriveAsync(new DriveBrowserViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
                 case DebugDialogTypes.File:
-                    await RCF.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+                    await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
                 case DebugDialogTypes.SaveFile:
-                    await RCF.BrowseUI.SaveFileAsync(new SaveFileViewModel()
+                    await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
                 default:
-                    await RCF.MessageUI.DisplayMessageAsync("Invalid selection");
+                    await RCFUI.MessageUI.DisplayMessageAsync("Invalid selection");
                     break;
             }
         }
@@ -166,7 +168,7 @@ namespace RayCarrot.RCP.Metro
                     lines.AddRange(from utility in await game.GetAppliedUtilitiesAsync() select $"{utility} ({game.GetDisplayName()})");
             }
 
-            await RCF.MessageUI.DisplayMessageAsync(lines.JoinItems(Environment.NewLine), MessageType.Information);
+            await RCFUI.MessageUI.DisplayMessageAsync(lines.JoinItems(Environment.NewLine), MessageType.Information);
         }
 
         /// <summary>

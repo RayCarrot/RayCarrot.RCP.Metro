@@ -10,10 +10,11 @@ using MahApps.Metro;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
+using RayCarrot.UI;
 using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
-using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
@@ -132,8 +133,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public UserLevel UserLevel
         {
-            get => RCF.Data.CurrentUserLevel;
-            set => RCF.Data.CurrentUserLevel = value;
+            get => RCFCore.Data.CurrentUserLevel;
+            set => RCFCore.Data.CurrentUserLevel = value;
         }
 
         /// <summary>
@@ -230,11 +231,11 @@ namespace RayCarrot.RCP.Metro
 
                 if (!oldValue.DirectoryExists)
                 {
-                    RCF.Logger.LogInformationSource("The backup location has been changed, but the previous directory does not exist");
+                    RCFCore.Logger?.LogInformationSource("The backup location has been changed, but the previous directory does not exist");
                     return;
                 }
 
-                RCF.Logger.LogInformationSource("The backup location has been changed and old backups are being moved...");
+                RCFCore.Logger?.LogInformationSource("The backup location has been changed and old backups are being moved...");
 
                 _ = RCFRCP.App.MoveBackupsAsync(oldValue, value);
             }
@@ -286,7 +287,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string CurrentCulture
         {
-            get => RCF.Data.CurrentCulture?.Name ?? AppLanguages.DefaultCulture.Name;
+            get => RCFCore.Data.CurrentCulture?.Name ?? AppLanguages.DefaultCulture.Name;
             set => RefreshCulture(value);
         }
 
@@ -425,9 +426,9 @@ namespace RayCarrot.RCP.Metro
                 CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture = ci;
 
                 // Set the framework culture
-                RCF.Data.CurrentCulture = ci;
+                RCFCore.Data.CurrentCulture = ci;
 
-                RCF.Logger.LogInformationSource($"The current culture was set to {ci.EnglishName}");
+                RCFCore.Logger?.LogInformationSource($"The current culture was set to {ci.EnglishName}");
             }
         }
 
@@ -441,7 +442,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await RefreshShowUnderInstalledProgramsAsyncLock.LockAsync())
             {
-                RCF.Logger.LogDebugSource("The program Registry key is being updated...");
+                RCFCore.Logger?.LogDebugSource("The program Registry key is being updated...");
 
                 _showUnderInstalledPrograms = showUnderInstalledPrograms;
 
@@ -449,14 +450,14 @@ namespace RayCarrot.RCP.Metro
 
                 if (!forceRefresh && showUnderInstalledPrograms && keyExists)
                 {
-                    RCF.Logger.LogDebugSource("The program Registry key does not need to be modified due to already existing");
+                    RCFCore.Logger?.LogDebugSource("The program Registry key does not need to be modified due to already existing");
 
                     return true;
                 }
 
                 if (!showUnderInstalledPrograms && !keyExists)
                 {
-                    RCF.Logger.LogDebugSource("The program Registry key does not need to be modified due to not existing");
+                    RCFCore.Logger?.LogDebugSource("The program Registry key does not need to be modified due to not existing");
 
                     return true;
                 }
@@ -465,11 +466,11 @@ namespace RayCarrot.RCP.Metro
                 {
                     if (!RCFRCP.App.IsRunningAsAdmin)
                     {
-                        await RCF.MessageUI.DisplayMessageAsync(Resources.UninstallRegKeyRequiresRefresh, MessageType.Warning);
+                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.UninstallRegKeyRequiresRefresh, MessageType.Warning);
                         return false;
                     }
 
-                    RCF.Logger.LogInformationSource("The program Registry key is being modified...");
+                    RCFCore.Logger?.LogInformationSource("The program Registry key is being modified...");
 
                     using (var parentKey = RCFWinReg.RegistryManager.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms, RegistryView.Default, true))
                     {
@@ -511,14 +512,14 @@ namespace RayCarrot.RCP.Metro
                                     ex.HandleUnexpected("Getting app creation time");
                                 }
 
-                                RCF.Logger.LogInformationSource("The program Registry key has been created");
+                                RCFCore.Logger?.LogInformationSource("The program Registry key has been created");
                             }
                         }
                         else
                         {
                             parentKey.DeleteSubKey(CommonPaths.RegistryUninstallKeyName);
 
-                            RCF.Logger.LogInformationSource("The program Registry key has been deleted");
+                            RCFCore.Logger?.LogInformationSource("The program Registry key has been deleted");
                         }
                     }
 
@@ -528,7 +529,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     ex.HandleError("Updating program in Registry uninstall key");
 
-                    await RCF.MessageUI.DisplayMessageAsync(Resources.Settings_ShowUnderInstalledPrograms_UpdateError, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.Settings_ShowUnderInstalledPrograms_UpdateError, MessageType.Error);
 
                     return false;
                 }

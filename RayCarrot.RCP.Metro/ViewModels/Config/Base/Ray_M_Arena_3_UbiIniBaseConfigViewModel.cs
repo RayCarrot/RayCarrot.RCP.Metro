@@ -3,8 +3,10 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using ByteSizeLib;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
 using RayCarrot.Rayman;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -255,7 +257,7 @@ namespace RayCarrot.RCP.Metro
             // Get the current dinput type
             var dinputType = GetCurrentDinput();
 
-            RCF.Logger.LogInformationSource($"The dinput type has been retrieved as {dinputType}");
+            RCFCore.Logger?.LogInformationSource($"The dinput type has been retrieved as {dinputType}");
 
             AllowDinputHack = dinputType != DinputType.Unknown;
             ControllerSupport = dinputType == DinputType.Controller;
@@ -268,13 +270,13 @@ namespace RayCarrot.RCP.Metro
                     // Create the file
                     RCFRCP.File.CreateFile(CommonPaths.UbiIniPath1);
 
-                    RCF.Logger.LogInformationSource($"A new ubi.ini file has been created under {CommonPaths.UbiIniPath1}");
+                    RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {CommonPaths.UbiIniPath1}");
                 }
                 catch (Exception ex)
                 {
                     ex.HandleError("Creating ubi.ini file");
 
-                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Config_InvalidUbiIni, CommonPaths.UbiIniPath1.Parent), MessageType.Error);
+                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Config_InvalidUbiIni, CommonPaths.UbiIniPath1.Parent), MessageType.Error);
 
                     throw;
                 }
@@ -288,7 +290,7 @@ namespace RayCarrot.RCP.Metro
                     // Create the file
                     RCFRCP.File.CreateFile(CommonPaths.UbiIniPath2);
 
-                    RCF.Logger.LogInformationSource($"A new ubi.ini file has been created under {CommonPaths.UbiIniPath2}");
+                    RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {CommonPaths.UbiIniPath2}");
                 }
                 catch (Exception ex)
                 {
@@ -332,7 +334,7 @@ namespace RayCarrot.RCP.Metro
                 var dt = GetCurrentDinput();
                 var path = GetDinputPath();
 
-                RCF.Logger.LogInformationSource($"The dinput type has been retrieved as {dt}");
+                RCFCore.Logger?.LogInformationSource($"The dinput type has been retrieved as {dt}");
 
                 if (ControllerSupport)
                 {

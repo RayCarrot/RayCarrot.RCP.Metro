@@ -1,10 +1,13 @@
-﻿using RayCarrot.CarrotFramework;
+﻿using RayCarrot.CarrotFramework.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.Extensions;
+using RayCarrot.IO;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -55,7 +58,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ReplaceRayKitAsync()
         {
-            RCF.Logger.LogInformationSource($"The Rayman Designer replacement patch is downloading...");
+            RCFCore.Logger?.LogInformationSource($"The Rayman Designer replacement patch is downloading...");
 
             // Find the files to be replaced
             var files = new Tuple<string, Uri>[]
@@ -99,9 +102,9 @@ namespace RayCarrot.RCP.Metro
                 }
             }
 
-            RCF.Logger.LogInformationSource($"The following Rayman Designer files were found to replace: {foundFiles.Select(x => x.Item1.Name).JoinItems(", ")}");
+            RCFCore.Logger?.LogInformationSource($"The following Rayman Designer files were found to replace: {foundFiles.Select(x => x.Item1.Name).JoinItems(", ")}");
 
-            await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.RDU_ReplaceFiles_InfoMessage, foundFiles.Count, files.Length), MessageType.Information);
+            await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.RDU_ReplaceFiles_InfoMessage, foundFiles.Count, files.Length), MessageType.Information);
 
             try
             {
@@ -113,14 +116,14 @@ namespace RayCarrot.RCP.Metro
                     // Download the files
                     await App.DownloadAsync(group.Select(x => x.Item2).ToList(), false, group.Key);
 
-                RCF.Logger.LogInformationSource($"The Rayman Designer files have been replaced");
+                RCFCore.Logger?.LogInformationSource($"The Rayman Designer files have been replaced");
 
-                await RCF.MessageUI.DisplayMessageAsync(Resources.RDU_ReplaceFiles_Complete, MessageType.Information);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.RDU_ReplaceFiles_Complete, MessageType.Information);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Replacing R1 soundtrack");
-                await RCF.MessageUI.DisplayMessageAsync(Resources.RDU_ReplaceFiles_Error, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.RDU_ReplaceFiles_Error, MessageType.Error);
             }
         }
 
@@ -136,7 +139,7 @@ namespace RayCarrot.RCP.Metro
             // Check if the file exists
             if (path.FileExists)
             {
-                if (!await RCF.MessageUI.DisplayMessageAsync(Resources.RDU_CreateConfig_ReplaceQuestion, Resources.RDU_CreateConfig_ReplaceQuestionHeader, MessageType.Question, true))
+                if (!await RCFUI.MessageUI.DisplayMessageAsync(Resources.RDU_CreateConfig_ReplaceQuestion, Resources.RDU_CreateConfig_ReplaceQuestionHeader, MessageType.Question, true))
                     return;
             }
 
@@ -159,14 +162,14 @@ namespace RayCarrot.RCP.Metro
                     "Directory =.\\"
                 });
 
-                RCF.Logger.LogInformationSource($"The Rayman Designer config file has been recreated");
+                RCFCore.Logger?.LogInformationSource($"The Rayman Designer config file has been recreated");
 
-                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RDU_CreateConfig_Success);
+                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RDU_CreateConfig_Success);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Applying RD config patch");
-                await RCF.MessageUI.DisplayMessageAsync(Resources.RDU_CreateConfig_Error, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.RDU_CreateConfig_Error, MessageType.Error);
             }
         }
 

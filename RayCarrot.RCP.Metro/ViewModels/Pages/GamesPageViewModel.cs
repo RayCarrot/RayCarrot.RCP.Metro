@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -28,7 +29,7 @@ namespace RayCarrot.RCP.Metro
             BindingOperations.EnableCollectionSynchronization(NotInstalledGames, Application.Current);
 
             RCFRCP.App.RefreshRequired += async (s, e) => await RefreshAsync();
-            RCF.Data.CultureChanged += async (s, e) => await RefreshAsync();
+            RCFCore.Data.CultureChanged += async (s, e) => await RefreshAsync();
         }
 
         #endregion
@@ -64,7 +65,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RefreshAsync()
         {
-            RCF.Logger.LogInformationSource($"The displayed games are being refreshed...");
+            RCFCore.Logger?.LogInformationSource($"The displayed games are being refreshed...");
 
             using (await AsyncLock.LockAsync())
             {
@@ -85,14 +86,14 @@ namespace RayCarrot.RCP.Metro
                     if (!game.GetGameManager().IsValid(game.GetInfo().InstallDirectory))
                     {
                         // Show message
-                        await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.GetDisplayName()), Resources.GameNotFoundHeader, MessageType.Error);
+                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.GetDisplayName()), Resources.GameNotFoundHeader, MessageType.Error);
 
                         // Remove the game from app data
                         await RCFRCP.App.RemoveGameAsync(game, true);
 
                         Application.Current.Dispatcher.Invoke(() => NotInstalledGames.Add(game.GetDisplayViewModel()));
 
-                        RCF.Logger.LogInformationSource($"The game {game} has been removed due to not being valid");
+                        RCFCore.Logger?.LogInformationSource($"The game {game} has been removed due to not being valid");
 
                         continue;
                     }
@@ -106,7 +107,7 @@ namespace RayCarrot.RCP.Metro
                 OnPropertyChanged(nameof(NotInstalledGames));
             }
 
-            RCF.Logger.LogInformationSource($"The displayed games have been refreshed");
+            RCFCore.Logger?.LogInformationSource($"The displayed games have been refreshed");
         }
 
         #endregion

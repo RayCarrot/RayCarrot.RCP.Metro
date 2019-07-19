@@ -2,7 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 // ReSharper disable StringLiteralTypo
 
@@ -22,7 +23,7 @@ namespace RayCarrot.RCP.Metro
         {
             Refresh();
 
-            RCF.Data.CultureChanged += (s, e) => Refresh();
+            RCFCore.Data.CultureChanged += (s, e) => Refresh();
             
             OpenDiscordCommand = new RelayCommand(OpenDiscord);
         }

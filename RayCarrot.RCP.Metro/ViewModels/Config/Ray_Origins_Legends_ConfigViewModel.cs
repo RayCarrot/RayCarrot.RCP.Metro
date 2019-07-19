@@ -3,7 +3,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 
 namespace RayCarrot.RCP.Metro
@@ -148,11 +149,11 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override Task SetupAsync()
         {
-            RCF.Logger.LogInformationSource($"{Game.GetDisplayName()} config is being set up");
+            RCFCore.Logger?.LogInformationSource($"{Game.GetDisplayName()} config is being set up");
 
             using (var key = GetKey(false))
             {
-                RCF.Logger.LogInformationSource(key != null
+                RCFCore.Logger?.LogInformationSource(key != null
                     ? $"The key {key.Name} has been opened"
                     : $"The key for {Game.GetDisplayName()} does not exist. Default values will be used.");
 
@@ -166,7 +167,7 @@ namespace RayCarrot.RCP.Metro
 
             UnsavedChanges = false;
 
-            RCF.Logger.LogInformationSource($"All values have been loaded");
+            RCFCore.Logger?.LogInformationSource($"All values have been loaded");
 
             return Task.CompletedTask;
         }
@@ -179,7 +180,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                RCF.Logger.LogInformationSource($"{Game.GetDisplayName()} configuration is saving...");
+                RCFCore.Logger?.LogInformationSource($"{Game.GetDisplayName()} configuration is saving...");
 
                 try
                 {
@@ -188,25 +189,25 @@ namespace RayCarrot.RCP.Metro
                         if (key == null)
                             throw new Exception("The Registry key could not be created");
 
-                        RCF.Logger.LogInformationSource($"The key {key.Name} has been opened");
+                        RCFCore.Logger?.LogInformationSource($"The key {key.Name} has been opened");
 
                         key.SetValue(ScreenHeightKey, ScreenHeight.ToString());
                         key.SetValue(ScreenWidthKey, ScreenWidth.ToString());
                         key.SetValue(FullScreenKey, FullscreenMode ? 1 : 0);
                     }
 
-                    RCF.Logger.LogInformationSource($"{Game.GetDisplayName()} configuration has been saved");
+                    RCFCore.Logger?.LogInformationSource($"{Game.GetDisplayName()} configuration has been saved");
                 }
                 catch (Exception ex)
                 {
                     ex.HandleError($"Saving {Game.GetDisplayName()} registry data");
-                    await RCF.MessageUI.DisplayMessageAsync($"An error occurred when saving your {Game.GetDisplayName()} configuration", "Error saving", MessageType.Error);
+                    await RCFUI.MessageUI.DisplayMessageAsync($"An error occurred when saving your {Game.GetDisplayName()} configuration", "Error saving", MessageType.Error);
                     return;
                 }
 
                 UnsavedChanges = false;
 
-                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
+                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
 
                 OnSave();
             }
@@ -231,7 +232,7 @@ namespace RayCarrot.RCP.Metro
             {
                 var key = RCFWinReg.RegistryManager.CreateRegistryKey(keyPath, RegistryView.Default, true);
 
-                RCF.Logger.LogInformationSource($"The Registry key {key?.Name} has been created");
+                RCFCore.Logger?.LogInformationSource($"The Registry key {key?.Name} has been created");
 
                 return key;
             }

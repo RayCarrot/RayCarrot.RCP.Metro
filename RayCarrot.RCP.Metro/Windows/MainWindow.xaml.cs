@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using Infralution.Localization.Wpf;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -66,21 +66,21 @@ namespace RayCarrot.RCP.Metro
                     // Try for 2 seconds first
                     if (retryTime < 20)
                     {
-                        RCF.Logger.LogDebugSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
+                        RCFCore.Logger?.LogDebugSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
 
                         await Task.Delay(100);
                     }
                     // Now it's taking a long time... Try for 10 more seconds
                     else if (retryTime < 70)
                     {
-                        RCF.Logger.LogWarningSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
+                        RCFCore.Logger?.LogWarningSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
 
                         await Task.Delay(200);
                     }
                     // Give up and let the deleting of the file give an error message
                     else
                     {
-                        RCF.Logger.LogCriticalSource($"The updater can not be removed due to not having write access");
+                        RCFCore.Logger?.LogCriticalSource($"The updater can not be removed due to not having write access");
                         break;
                     }
                 }
@@ -90,7 +90,7 @@ namespace RayCarrot.RCP.Metro
                     // Remove the updater
                     RCFRCP.File.DeleteFile(CommonPaths.UpdaterFilePath);
 
-                    RCF.Logger.LogInformationSource($"The updater has been removed");
+                    RCFCore.Logger?.LogInformationSource($"The updater has been removed");
                 }
                 catch (Exception ex)
                 {
@@ -110,7 +110,7 @@ namespace RayCarrot.RCP.Metro
 
             TaskbarIcon.Visibility = Visibility.Visible;
 
-            RCF.Logger.LogInformationSource("The program has been minimized to tray");
+            RCFCore.Logger?.LogInformationSource("The program has been minimized to tray");
         }
 
         private void TaskbarIcon_Show_OnClick(object sender, RoutedEventArgs e)
@@ -120,12 +120,12 @@ namespace RayCarrot.RCP.Metro
 
             TaskbarIcon.Visibility = Visibility.Collapsed;
 
-            RCF.Logger.LogInformationSource("The program has been shown from the tray icon");
+            RCFCore.Logger?.LogInformationSource("The program has been shown from the tray icon");
         }
 
         private void TaskbarIcon_Close_OnClick(object sender, RoutedEventArgs e)
         {
-            RCF.Logger.LogInformationSource("The program is being closed from the tray icon");
+            RCFCore.Logger?.LogInformationSource("The program is being closed from the tray icon");
 
             Close();
         }

@@ -1,4 +1,4 @@
-﻿using RayCarrot.CarrotFramework;
+﻿using RayCarrot.CarrotFramework.Abstractions;
 using System;
 using System.Diagnostics;
 using System.Threading;
@@ -17,7 +17,7 @@ namespace RayCarrot.RCP.Metro
 
         public TPLS()
         {
-            RCF.Logger.LogInformationSource("A new instance of TPLS has been started");
+            RCFCore.Logger?.LogInformationSource("A new instance of TPLS has been started");
 
             BGM = new BGM(Data);
             MidiPlayer = new Midi(Data);
@@ -60,7 +60,7 @@ namespace RayCarrot.RCP.Metro
         {
             if (Data.IsRunning)
             {
-                RCF.Logger.LogInformationSource("TPLS: Is already running");
+                RCFCore.Logger?.LogInformationSource("TPLS: Is already running");
                 return;
             }
 

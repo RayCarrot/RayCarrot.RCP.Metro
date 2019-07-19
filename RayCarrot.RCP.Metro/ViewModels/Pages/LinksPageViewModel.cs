@@ -1,10 +1,12 @@
 ﻿using Microsoft.Win32;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Windows.Registry;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
+using RayCarrot.IO;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -27,7 +29,7 @@ namespace RayCarrot.RCP.Metro
 
             Refresh();
 
-            RCF.Data.CultureChanged += (s, e) => Refresh();
+            RCFCore.Data.CultureChanged += (s, e) => Refresh();
 
             RefreshCommand = new RelayCommand(Refresh);
         }

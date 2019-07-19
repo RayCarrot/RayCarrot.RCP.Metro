@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using RayCarrot.CarrotFramework;
+using RayCarrot.Extensions;
 using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro

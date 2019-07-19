@@ -1,8 +1,9 @@
-﻿using RayCarrot.CarrotFramework;
+﻿using RayCarrot.CarrotFramework.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -23,7 +24,7 @@ namespace RayCarrot.RCP.Metro
                 .Where(x => !x.IsAdded())
                 .ToDictionary(x => x, y => new List<Func<GameFinderActionResult>>());
 
-            RCF.Logger.LogTraceSource($"The following games were added to the game checker: {GameItems.Keys.JoinItems(", ")}");
+            RCFCore.Logger?.LogTraceSource($"The following games were added to the game checker: {GameItems.Keys.JoinItems(", ")}");
         }
 
         #endregion
@@ -69,17 +70,17 @@ namespace RayCarrot.RCP.Metro
                         // Check if the directory is valid
                         if ((result.Type == GameType.Win32 || result.Type == GameType.DosBox) && !game.Key.GetGameManager(result.Type).IsValid(result.Path))
                         {
-                            RCF.Logger.LogInformationSource($"The install directory for {game} is not valid");
+                            RCFCore.Logger?.LogInformationSource($"The install directory for {game} is not valid");
                             continue;
                         }
 
-                        RCF.Logger.LogTraceSource($"The game {game.Key} was found from the game checker with the source {result.Source}");
+                        RCFCore.Logger?.LogTraceSource($"The game {game.Key} was found from the game checker with the source {result.Source}");
 
                         // Add the game
                         await RCFRCP.App.AddNewGameAsync(game.Key, result.Type, result.Path);
                         foundGames.Add(game.Key);
 
-                        RCF.Logger.LogInformationSource($"The game {game.Key} has been added from the game finder");
+                        RCFCore.Logger?.LogInformationSource($"The game {game.Key} has been added from the game finder");
 
                         break;
                     }

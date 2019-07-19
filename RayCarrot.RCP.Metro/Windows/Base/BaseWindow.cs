@@ -4,7 +4,8 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using Infralution.Localization.Wpf;
 using MahApps.Metro.Controls;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -37,7 +38,7 @@ namespace RayCarrot.RCP.Metro
                 // Set transition
                 WindowTransitionsEnabled = RCFRCP.Data?.EnableAnimations ?? true;
 
-                RCF.Logger.LogInformationSource($"The window {this} has been created");
+                RCFCore.Logger?.LogInformationSource($"The window {this} has been created");
             }
         }
 

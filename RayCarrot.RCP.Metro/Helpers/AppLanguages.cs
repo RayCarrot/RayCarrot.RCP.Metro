@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
-using RayCarrot.CarrotFramework;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {

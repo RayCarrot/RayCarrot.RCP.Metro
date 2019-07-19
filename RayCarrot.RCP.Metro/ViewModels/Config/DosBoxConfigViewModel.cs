@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
+using RayCarrot.IO;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -471,7 +473,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Setting Rayman 1 game language from config file");
-                await RCF.MessageUI.DisplayMessageAsync(Resources.DosBoxConfig_SetLanguageError, Resources.DosBoxConfig_SetLanguageErrorHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.DosBoxConfig_SetLanguageError, Resources.DosBoxConfig_SetLanguageErrorHeader, MessageType.Error);
             }
         }
 
@@ -563,7 +565,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Setting DOSBox game language from batch file");
-                await RCF.MessageUI.DisplayMessageAsync(Resources.DosBoxConfig_SetLanguageError, Resources.DosBoxConfig_SetLanguageErrorHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.DosBoxConfig_SetLanguageError, Resources.DosBoxConfig_SetLanguageErrorHeader, MessageType.Error);
             }
         }
 
@@ -577,7 +579,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override Task SetupAsync()
         {
-            RCF.Logger.LogInformationSource($"{Game.GetDisplayName()} config is being set up");
+            RCFCore.Logger?.LogInformationSource($"{Game.GetDisplayName()} config is being set up");
 
             // Get the current DosBox options for the specified game
             var options = Data.DosBoxGames[Game];
@@ -650,7 +652,7 @@ namespace RayCarrot.RCP.Metro
 
             UnsavedChanges = false;
 
-            RCF.Logger.LogInformationSource($"DosBox configuration for {Game} has been loaded");
+            RCFCore.Logger?.LogInformationSource($"DosBox configuration for {Game} has been loaded");
 
             return Task.CompletedTask;
 
@@ -668,7 +670,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                RCF.Logger.LogInformationSource($"DosBox configuration for {Game} is saving...");
+                RCFCore.Logger?.LogInformationSource($"DosBox configuration for {Game} is saving...");
 
                 try
                 {
@@ -711,7 +713,7 @@ namespace RayCarrot.RCP.Metro
                     // Write to the config file
                     configManager.WriteFile(configData);
 
-                    RCF.Logger.LogInformationSource($"DosBox configuration for {Game} has been saved");
+                    RCFCore.Logger?.LogInformationSource($"DosBox configuration for {Game} has been saved");
 
                     // Helper methods for setting properties
                     void SetProp(string propName, object value, bool ignoreDefault = false)
@@ -725,13 +727,13 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Saving DosBox configuration data");
-                    await RCF.MessageUI.DisplayMessageAsync(Resources.Config_DosBoxSaveError, Resources.Config_SaveErrorHeader, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.Config_DosBoxSaveError, Resources.Config_SaveErrorHeader, MessageType.Error);
                     return;
                 }
 
                 UnsavedChanges = false;
 
-                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
+                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
 
                 OnSave();
             }
@@ -748,7 +750,7 @@ namespace RayCarrot.RCP.Metro
             SelectedOutput = "default";
             SelectedCycles = "20000";
 
-            RCF.Logger.LogTraceSource($"Recommended DosBox settings were applied");
+            RCFCore.Logger?.LogTraceSource($"Recommended DosBox settings were applied");
         }
 
         #endregion

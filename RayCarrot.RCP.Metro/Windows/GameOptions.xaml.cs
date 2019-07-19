@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
 using System.Windows;
+using RayCarrot.UI;
 using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
@@ -114,7 +115,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Set up game config view model");
-                ViewModel.ConfigContent = RCF.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
+                ViewModel.ConfigContent = RCFCore.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
             }
         }
 
@@ -143,7 +144,7 @@ namespace RayCarrot.RCP.Metro
 
             ChangePage(GameOptionsPage.Config);
 
-            if (!await RCF.MessageUI.DisplayMessageAsync(Metro.Resources.GameOptions_UnsavedChanges, Metro.Resources.GameOptions_UnsavedChangesHeader, MessageType.Question, true))
+            if (!await RCFUI.MessageUI.DisplayMessageAsync(Metro.Resources.GameOptions_UnsavedChanges, Metro.Resources.GameOptions_UnsavedChangesHeader, MessageType.Question, true))
                 return;
 
             ForceClose = true;

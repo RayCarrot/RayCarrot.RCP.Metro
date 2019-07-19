@@ -1,7 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -69,12 +70,12 @@ namespace RayCarrot.RCP.Metro
             // Get the launch info
             GameLaunchInfo launchInfo = GetLaunchInfo();
 
-            RCF.Logger.LogTraceSource($"The game {Game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
+            RCFCore.Logger?.LogTraceSource($"The game {Game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
 
             // Launch the game
             var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, forceRunAsAdmin || Info.LaunchMode == GameLaunchMode.AsAdmin, launchInfo.Args);
 
-            RCF.Logger.LogInformationSource($"The game {Game} has been launched");
+            RCFCore.Logger?.LogInformationSource($"The game {Game} has been launched");
 
             return new GameLaunchResult(process, process != null);
         }
@@ -127,12 +128,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task LaunchGameAsync(bool forceRunAsAdmin)
         {
-            RCF.Logger.LogTraceSource($"The game {Game} is being launched...");
+            RCFCore.Logger?.LogTraceSource($"The game {Game} is being launched...");
 
             // Verify that the game can launch
             if (!await VerifyCanLaunchAsync())
             {
-                RCF.Logger.LogInformationSource($"The game {Game} could not be launched");
+                RCFCore.Logger?.LogInformationSource($"The game {Game} could not be launched");
                 return;
             }
 
@@ -158,7 +159,7 @@ namespace RayCarrot.RCP.Metro
             // Add the game
             await RCFRCP.App.AddNewGameAsync(Game, Type, path);
 
-            RCF.Logger.LogInformationSource($"The game {Game} has been added");
+            RCFCore.Logger?.LogInformationSource($"The game {Game} has been added");
         }
 
         #endregion

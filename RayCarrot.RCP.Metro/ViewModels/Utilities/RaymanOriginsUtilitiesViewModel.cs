@@ -8,7 +8,10 @@ using System.Windows.Input;
 using ByteSizeLib;
 using Microsoft.WindowsAPICodePack.Shell;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
+using RayCarrot.IO;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -307,7 +310,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RCF.Logger.LogInformationSource($"The Rayman Origins videos are being replaced with {(IsOriginalVideos ? "HQ Videos" : "original videos")}");
+                RCFCore.Logger?.LogInformationSource($"The Rayman Origins videos are being replaced with {(IsOriginalVideos ? "HQ Videos" : "original videos")}");
 
                 // Download the files
                 var succeeded = await App.DownloadAsync(new Uri[]
@@ -321,7 +324,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Replacing RO videos");
-                await RCF.MessageUI.DisplayMessageAsync(Resources.ROU_HQVideosFailed, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.ROU_HQVideosFailed, MessageType.Error);
             }
         }
 
@@ -333,7 +336,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RCF.Logger.LogInformationSource($"The Rayman Origins disc updater is being downloaded...");
+                RCFCore.Logger?.LogInformationSource($"The Rayman Origins disc updater is being downloaded...");
 
                 // Download the file
                 var succeeded = await App.DownloadAsync(new Uri[]
@@ -347,7 +350,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Downloading RO updater");
-                await RCF.MessageUI.DisplayMessageAsync(Resources.ROU_UpdateFailed, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.ROU_UpdateFailed, MessageType.Error);
             }
 
 
@@ -361,16 +364,16 @@ namespace RayCarrot.RCP.Metro
         {
             using (await UpdateDebugCommandsAsyncLock.LockAsync())
             {
-                RCF.Logger.LogInformationSource($"The Rayman Origins debug commands are being updated...");
+                RCFCore.Logger?.LogInformationSource($"The Rayman Origins debug commands are being updated...");
 
                 // Make sure the install directory was found
                 if (!DebugCommandFilePath.Parent.DirectoryExists)
                 {
                     IsDebugModeEnabled = false;
 
-                    RCF.Logger.LogWarningSource($"The Rayman Origins debug commands could not be updated due to the install directory not being found");
+                    RCFCore.Logger?.LogWarningSource($"The Rayman Origins debug commands could not be updated due to the install directory not being found");
 
-                    await RCF.MessageUI.DisplayMessageAsync(Resources.ROU_DebugCommandsInstallationNotFound, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.ROU_DebugCommandsInstallationNotFound, MessageType.Error);
                     return;
                 }
 
@@ -380,19 +383,19 @@ namespace RayCarrot.RCP.Metro
 
                     if (!IsDebugModeEnabled)
                     {
-                        RCF.Logger.LogInformationSource($"The Rayman Origins debug commands have been disabled");
+                        RCFCore.Logger?.LogInformationSource($"The Rayman Origins debug commands have been disabled");
 
                         return;
                     }
 
                     File.WriteAllLines(DebugCommandFilePath, DebugCommands.Select(x => $"{x.Key}={x.Value}"));
 
-                    RCF.Logger.LogInformationSource($"The Rayman Origins debug commands have been updated");
+                    RCFCore.Logger?.LogInformationSource($"The Rayman Origins debug commands have been updated");
                 }
                 catch (Exception ex)
                 {
                     ex.HandleError("Applying RO debug commands");
-                    await RCF.MessageUI.DisplayMessageAsync(Resources.ROU_DebugCommandsError, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.ROU_DebugCommandsError, MessageType.Error);
                 }
             }
         }

@@ -2,8 +2,11 @@
 using System.Threading.Tasks;
 using IniParser.Model;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
+using RayCarrot.IO;
 using RayCarrot.Rayman;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -71,7 +74,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task SetupAsync()
         {
-            RCF.Logger.LogInformationSource($"{Game.GetDisplayName()} config is being set up");
+            RCFCore.Logger?.LogInformationSource($"{Game.GetDisplayName()} config is being set up");
 
             // Run setup code
             await OnSetupAsync();
@@ -79,7 +82,7 @@ namespace RayCarrot.RCP.Metro
             // Load the configuration data
             ConfigData = await LoadConfigAsync();
 
-            RCF.Logger.LogInformationSource($"The ubi.ini file has been loaded");
+            RCFCore.Logger?.LogInformationSource($"The ubi.ini file has been loaded");
 
             // Keep track if the data had to be recreated
             bool recreated = false;
@@ -89,7 +92,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ConfigData.ReCreate();
                 recreated = true;
-                RCF.Logger.LogInformationSource($"The ubi.ini section for {Game.GetDisplayName()} was recreated");
+                RCFCore.Logger?.LogInformationSource($"The ubi.ini section for {Game.GetDisplayName()} was recreated");
             }
 
             // Import config data
@@ -98,7 +101,7 @@ namespace RayCarrot.RCP.Metro
             // If the data was recreated we mark that there are unsaved changes available
             UnsavedChanges = recreated;
 
-            RCF.Logger.LogInformationSource($"All section properties have been loaded");
+            RCFCore.Logger?.LogInformationSource($"All section properties have been loaded");
         }
 
         /// <summary>
@@ -109,7 +112,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                RCF.Logger.LogInformationSource($"{Game.GetDisplayName()} configuration is saving...");
+                RCFCore.Logger?.LogInformationSource($"{Game.GetDisplayName()} configuration is saving...");
 
                 try
                 {
@@ -119,12 +122,12 @@ namespace RayCarrot.RCP.Metro
                     // Save the config data
                     ConfigData.Save();
 
-                    RCF.Logger.LogInformationSource($"{Game.GetDisplayName()} configuration has been saved");
+                    RCFCore.Logger?.LogInformationSource($"{Game.GetDisplayName()} configuration has been saved");
                 }
                 catch (Exception ex)
                 {
                     ex.HandleError("Saving ubi.ini data");
-                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.Config_SaveError, Game.GetDisplayName()), Resources.Config_SaveErrorHeader, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Config_SaveError, Game.GetDisplayName()), Resources.Config_SaveErrorHeader, MessageType.Error);
                     return;
                 }
 
@@ -136,14 +139,14 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("On save config");
-                    await RCF.MessageUI.DisplayMessageAsync(Resources.Config_SaveWarning, Resources.Config_SaveErrorHeader, MessageType.Warning);
+                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.Config_SaveWarning, Resources.Config_SaveErrorHeader, MessageType.Warning);
 
                     return;
                 }
 
                 UnsavedChanges = false;
 
-                await RCF.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
+                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
 
                 OnSave();
             }

@@ -1,6 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -23,7 +24,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure the setting to show success messages is on
             if (!RCFRCP.Data.ShowActionComplete)
             {
-                RCF.Logger.LogTraceSource($"A message of type {MessageType.Success} was not displayed with the content of: '{message}'", origin: origin, filePath: filePath, lineNumber: lineNumber);
+                RCFCore.Logger?.LogTraceSource($"A message of type {MessageType.Success} was not displayed with the content of: '{message}'", origin: origin, filePath: filePath, lineNumber: lineNumber);
                 return;
             }
 

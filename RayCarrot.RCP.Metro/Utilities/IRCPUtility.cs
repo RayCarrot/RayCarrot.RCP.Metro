@@ -1,11 +1,7 @@
-﻿using System;
+﻿using RayCarrot.IO;
+using System;
 using System.IO;
-using RayCarrot.CarrotFramework;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using Microsoft.Build.Framework;
-using LoggerExtensions = Microsoft.Extensions.Logging.LoggerExtensions;
 
 namespace RayCarrot.RCP.Metro
 {

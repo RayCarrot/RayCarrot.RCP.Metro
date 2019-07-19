@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
 using MahApps.Metro.IconPacks;
 using Microsoft.Win32;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
+using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 
 namespace RayCarrot.RCP.Metro
@@ -35,9 +37,9 @@ namespace RayCarrot.RCP.Metro
             // Make sure the game is valid
             if (!IsValid(FileSystemPath.EmptyPath))
             {
-                RCF.Logger.LogInformationSource($"The {Game} was not found under Steam Apps");
+                RCFCore.Logger?.LogInformationSource($"The {Game} was not found under Steam Apps");
 
-                await RCF.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGame, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGame, MessageType.Error);
                 return null;
             }
 
@@ -60,12 +62,12 @@ namespace RayCarrot.RCP.Metro
                 new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamStore, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
                 {
                     (await RCFRCP.File.LaunchFileAsync($"https://store.steampowered.com/app/" + Game.GetSteamID()))?.Dispose();
-                    RCF.Logger.LogTraceSource($"The game {Game} Steam store page was opened");
+                    RCFCore.Logger?.LogTraceSource($"The game {Game} Steam store page was opened");
                 })),
                 new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamCommunity, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
                 {
                     (await RCFRCP.File.LaunchFileAsync($"https://steamcommunity.com/app/" + Game.GetSteamID()))?.Dispose();
-                    RCF.Logger.LogTraceSource($"The game {Game} Steam community page was opened");
+                    RCFCore.Logger?.LogTraceSource($"The game {Game} Steam community page was opened");
                 }))
             };
         }

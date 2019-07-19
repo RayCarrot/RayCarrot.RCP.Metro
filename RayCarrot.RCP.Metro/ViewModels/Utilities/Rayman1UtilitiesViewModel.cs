@@ -3,7 +3,9 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ByteSizeLib;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -98,7 +100,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                RCF.Logger.LogInformationSource($"The TPLS utility is downloading...");
+                RCFCore.Logger?.LogInformationSource($"The TPLS utility is downloading...");
 
                 // Check if the directory exists
                 if (CommonPaths.TPLSDir.DirectoryExists)
@@ -119,12 +121,12 @@ namespace RayCarrot.RCP.Metro
                 // Save
                 RCFRCP.Data.TPLSData = new TPLSData(CommonPaths.TPLSDir);
 
-                RCF.Logger.LogInformationSource($"The TPLS utility has been downloaded");
+                RCFCore.Logger?.LogInformationSource($"The TPLS utility has been downloaded");
             }
             catch (Exception ex)
             {
                 ex.HandleError("Installing TPLS");
-                await RCF.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSInstallationFailed, Resources.R1U_TPLSInstallationFailedHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSInstallationFailed, Resources.R1U_TPLSInstallationFailedHeader, MessageType.Error);
             }
         }
 
@@ -150,22 +152,22 @@ namespace RayCarrot.RCP.Metro
         public async Task UninstallTPLSAsync()
         {
             // Have user confirm uninstall
-            if (!await RCF.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSConfirmUninstall, Resources.R1U_TPLSConfirmUninstallHeader, MessageType.Question, true))
+            if (!await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSConfirmUninstall, Resources.R1U_TPLSConfirmUninstallHeader, MessageType.Question, true))
                 return;
 
             try
             {
                 RCFRCP.File.DeleteDirectory(RCFRCP.Data.TPLSData.InstallDir);
-                await RCF.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSUninstallSuccess, Resources.R1U_TPLSUninstallSuccessHeader, MessageType.Success);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSUninstallSuccess, Resources.R1U_TPLSUninstallSuccessHeader, MessageType.Success);
 
                 RCFRCP.Data.TPLSData = null;
 
-                RCF.Logger.LogInformationSource($"The TPLS utility has been uninstalled");
+                RCFCore.Logger?.LogInformationSource($"The TPLS utility has been uninstalled");
             }
             catch (Exception ex)
             {
                 ex.HandleError("Uninstalling TPLS");
-                await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.R1U_TPLSUninstallError, ex.Message), Resources.R1U_TPLSUninstallErrorHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.R1U_TPLSUninstallError, ex.Message), Resources.R1U_TPLSUninstallErrorHeader, MessageType.Error);
             }
         }
 
@@ -177,7 +179,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RCF.Logger.LogInformationSource($"The Rayman 1 soundtrack is being replaced with the {(IsOriginalMusic ? "complete version" : "original version")}");
+                RCFCore.Logger?.LogInformationSource($"The Rayman 1 soundtrack is being replaced with the {(IsOriginalMusic ? "complete version" : "original version")}");
 
                 // Download the files
                 var succeeded = await App.DownloadAsync(new Uri[]
@@ -191,7 +193,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Replacing R1 soundtrack");
-                await RCF.MessageUI.DisplayMessageAsync(Resources.R1U_CompleteOSTReplaceError, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_CompleteOSTReplaceError, MessageType.Error);
             }
         }
 
@@ -214,7 +216,7 @@ namespace RayCarrot.RCP.Metro
 
             if (!files.FilesExist() || !Directory.Exists(dir + "PCMAP"))
             {
-                await RCF.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSInvalidDirectory, Resources.R1U_TPLSInvalidDirectoryHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSInvalidDirectory, Resources.R1U_TPLSInvalidDirectoryHeader, MessageType.Error);
                 return false;
             }
 

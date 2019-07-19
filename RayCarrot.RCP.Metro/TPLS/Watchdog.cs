@@ -1,4 +1,6 @@
-﻿using RayCarrot.CarrotFramework;
+﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
+using RayCarrot.UI;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -128,7 +130,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="token">The cancellation token</param>
         public async Task StartWatchingRaymanAsync(Process dosBoxProcess, CancellationToken token)
         {
-            RCF.Logger.LogInformationSource("TPLS: TPLS has started searching for Rayman");
+            RCFCore.Logger?.LogInformationSource("TPLS: TPLS has started searching for Rayman");
 
             int eAX = 0;
             byte[] baseBuffer = new byte[4];
@@ -142,7 +144,7 @@ namespace RayCarrot.RCP.Metro
                 // Stop searching after 20 seconds
                 if (sw.Elapsed.Seconds > 20)
                 {
-                    RCF.Logger.LogInformationSource("TPLS: Search has timed out");
+                    RCFCore.Logger?.LogInformationSource("TPLS: Search has timed out");
                     return;
                 }
 
@@ -248,7 +250,7 @@ namespace RayCarrot.RCP.Metro
             // Stop the stop watch
             sw.Stop();
 
-            RCF.Logger.LogInformationSource($"TPLS: Rayman version {RaymanVersion} detected at {eAX:X} using DOSBox version {DOSBoxVersion}");
+            RCFCore.Logger?.LogInformationSource($"TPLS: Rayman version {RaymanVersion} detected at {eAX:X} using DOSBox version {DOSBoxVersion}");
 
             // Begin refreshing for the game
             // Add the world base offset as it is always loaded in first
@@ -322,7 +324,7 @@ namespace RayCarrot.RCP.Metro
                         Level = level;
                         LevelChanged?.Invoke(this, new ValueEventArgs<string>(Level));
 
-                        RCF.Logger.LogInformationSource($"TPLS: Level has changed to {Level}");
+                        RCFCore.Logger?.LogInformationSource($"TPLS: Level has changed to {Level}");
                     }
 
                     if (World != world)
@@ -330,7 +332,7 @@ namespace RayCarrot.RCP.Metro
                         World = world;
                         WorldChanged?.Invoke(this, new ValueEventArgs<string>(World));
 
-                        RCF.Logger.LogInformationSource($"TPLS: World has changed to {World}");
+                        RCFCore.Logger?.LogInformationSource($"TPLS: World has changed to {World}");
                     }
 
                     if (OptionsOn != optionsOn)
@@ -339,7 +341,7 @@ namespace RayCarrot.RCP.Metro
                         OptionsOnChanged?.Invoke(this,
                             OptionsOn == 1 ? new ValueEventArgs<bool>(true) : new ValueEventArgs<bool>(false));
 
-                        RCF.Logger.LogInformationSource($"TPLS: OptionsOn has changed to {OptionsOn}");
+                        RCFCore.Logger?.LogInformationSource($"TPLS: OptionsOn has changed to {OptionsOn}");
                     }
 
                     if (OptionsOff != optionsOff)
@@ -347,7 +349,7 @@ namespace RayCarrot.RCP.Metro
                         OptionsOff = optionsOff;
                         OptionsOffChanged?.Invoke(this, new ValueEventArgs<bool>(OptionsOff == 1));
 
-                        RCF.Logger.LogInformationSource($"TPLS: OptionsOff has changed to {OptionsOff}");
+                        RCFCore.Logger?.LogInformationSource($"TPLS: OptionsOff has changed to {OptionsOff}");
                     }
 
                     if (MusicOnOff != musicOnOff)
@@ -355,7 +357,7 @@ namespace RayCarrot.RCP.Metro
                         MusicOnOff = musicOnOff;
                         MusicOnOffChanged?.Invoke(this, MusicOnOff == 0 ? new ValueEventArgs<bool>(false) : new ValueEventArgs<bool>(true));
 
-                        RCF.Logger.LogInformationSource($"TPLS: MusicOnOff has changed to {MusicOnOff}");
+                        RCFCore.Logger?.LogInformationSource($"TPLS: MusicOnOff has changed to {MusicOnOff}");
                     }
 
                     if (RaymanInLevel != raymanInLevel)
@@ -363,7 +365,7 @@ namespace RayCarrot.RCP.Metro
                         RaymanInLevel = raymanInLevel;
                         RaymanInLevelChanged?.Invoke(this, new ValueEventArgs<bool>(RaymanInLevel == 1));
 
-                        RCF.Logger.LogInformationSource($"TPLS: RaymanInLevel has changed to {RaymanInLevel}");
+                        RCFCore.Logger?.LogInformationSource($"TPLS: RaymanInLevel has changed to {RaymanInLevel}");
                     }
 
                     if (BossEvent != bossEvent)
@@ -371,7 +373,7 @@ namespace RayCarrot.RCP.Metro
                         BossEvent = bossEvent;
                         BossEventChanged?.Invoke(this, new ValueEventArgs<bool>(BossEvent == 1));
 
-                        RCF.Logger.LogInformationSource($"TPLS: BossEvent has changed to {BossEvent}");
+                        RCFCore.Logger?.LogInformationSource($"TPLS: BossEvent has changed to {BossEvent}");
                     }
 
                     if (Volume != VolumeMixer.GetApplicationVolume(Process.Id))
@@ -383,7 +385,7 @@ namespace RayCarrot.RCP.Metro
                     await Task.Delay(10, token);
                 }
 
-                RCF.Logger.LogInformationSource("TPLS: TPLS has stopped due to the DOSBox process having exited");
+                RCFCore.Logger?.LogInformationSource("TPLS: TPLS has stopped due to the DOSBox process having exited");
             }
             catch (OperationCanceledException ex)
             {
@@ -393,7 +395,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("TPLS");
 
-                if (Process.HasExited || !await RCF.MessageUI.DisplayMessageAsync(String.Format(Resources.TPLS_Error, ex.Message), Resources.TPLS_ErrorHeader, MessageType.Error, true))
+                if (Process.HasExited || !await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.TPLS_Error, ex.Message), Resources.TPLS_ErrorHeader, MessageType.Error, true))
                     return;
 
                 await StartWatchingRaymanAsync(Process, token);

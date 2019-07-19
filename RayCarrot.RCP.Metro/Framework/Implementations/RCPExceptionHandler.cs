@@ -1,4 +1,4 @@
-﻿using RayCarrot.CarrotFramework;
+﻿using RayCarrot.CarrotFramework.Abstractions;
 using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -42,7 +42,7 @@ namespace RayCarrot.RCP.Metro
                 var sb = new StringBuilder();
                 sb.AppendLine(Resources.ExceptionMessageInfo);
                 sb.AppendLine();
-                if (RCF.Data.CurrentUserLevel >= UserLevel.Debug)
+                if (RCFCore.Data.CurrentUserLevel >= UserLevel.Debug)
                 {
                     sb.AppendLine($"Exception: {exception}");
                     sb.AppendLine();
@@ -59,7 +59,7 @@ namespace RayCarrot.RCP.Metro
                     sb.AppendLine($"Exception message: {exception.Message}");
                 }
 
-                if (RCF.Data.CurrentUserLevel < UserLevel.Advanced)
+                if (RCFCore.Data.CurrentUserLevel < UserLevel.Advanced)
                     return sb.ToString();
 
                 sb.AppendLine();

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{879B35F2-0456-4C5F-B4B8-F9088D687423}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.Windows.Shell", "..\..\Carrot Framework Extensions\RayCarrot.Windows.Shell\RayCarrot.Windows.Shell.csproj", "{55F49D1E-C9BD-4CC4-9FF0-D646D9F42A21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.Windows.Shell", "..\..\Carrot Framework\RayCarrot.Windows.Shell\RayCarrot.Windows.Shell.csproj", "{55F49D1E-C9BD-4CC4-9FF0-D646D9F42A21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.WPF", "..\..\Carrot WPF\RayCarrot.WPF\RayCarrot.WPF.csproj", "{9B10DC81-CB32-45A1-B52B-FBB3E4D056A0}"
 EndProject

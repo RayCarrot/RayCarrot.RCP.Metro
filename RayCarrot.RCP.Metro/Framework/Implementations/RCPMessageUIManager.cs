@@ -1,9 +1,11 @@
-﻿using RayCarrot.CarrotFramework;
+﻿using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.WPF;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows;
+using RayCarrot.UI;
+using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -23,7 +25,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the user accepted the message, otherwise false</returns>
         public async Task<bool> DisplayMessageAsync(string message, string header, MessageType messageType, bool allowCancel, string origin = "", string filePath = "", int lineNumber = 0)
         {
-            RCF.Logger.LogTraceSource($"A message of type {messageType} was displayed with the content of: '{message}'", origin: origin, filePath: filePath, lineNumber: lineNumber);
+            RCFCore.Logger?.LogTraceSource($"A message of type {messageType} was displayed with the content of: '{message}'", origin: origin, filePath: filePath, lineNumber: lineNumber);
 
             string headerMessage;
             if (!header.IsNullOrWhiteSpace())

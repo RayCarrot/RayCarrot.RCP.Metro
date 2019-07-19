@@ -552,7 +552,7 @@
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Carrot Framework Extensions\RayCarrot.Windows.Shell\RayCarrot.Windows.Shell.csproj">
+    <ProjectReference Include="..\..\..\Carrot Framework\RayCarrot.Windows.Shell\RayCarrot.Windows.Shell.csproj">
       <Project>{55f49d1e-c9bd-4cc4-9ff0-d646d9f42a21}</Project>
       <Name>RayCarrot.Windows.Shell</Name>
     </ProjectReference>
@@ -703,13 +703,22 @@
       <Version>3.0.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.CarrotFramework">
-      <Version>2.3.0</Version>
+      <Version>3.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="RayCarrot.Extensions">
+      <Version>1.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="RayCarrot.IO">
+      <Version>1.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="RayCarrot.UI">
+      <Version>1.0.2</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.UserData">
-      <Version>2.0.4</Version>
+      <Version>3.0.0</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Windows.Registry">
-      <Version>2.1.2</Version>
+      <Version>3.0.0</Version>
     </PackageReference>
     <PackageReference Include="Resource.Embedder">
       <Version>2.0.1</Version>

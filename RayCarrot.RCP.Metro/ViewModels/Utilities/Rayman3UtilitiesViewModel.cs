@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Management.Automation;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework;
-using RayCarrot.Windows.Shell;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
 {

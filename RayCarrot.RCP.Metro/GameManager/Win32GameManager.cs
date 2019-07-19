@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -31,7 +33,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>Null if the game was not found. Otherwise a valid or empty path for the instal directory</returns>
         protected override async Task<FileSystemPath?> LocateAsync()
         {
-            var result = await RCF.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+            var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
             {
                 Title = Resources.LocateGame_BrowserHeader,
                 DefaultDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
@@ -48,9 +50,9 @@ namespace RayCarrot.RCP.Metro
             if (IsValid(result.SelectedDirectory))
                 return result.SelectedDirectory;
 
-            RCF.Logger.LogInformationSource($"The selected install directory for {Game} is not valid");
+            RCFCore.Logger?.LogInformationSource($"The selected install directory for {Game} is not valid");
 
-            await RCF.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
+            await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
             return null;
 
         }

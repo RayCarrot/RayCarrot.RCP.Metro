@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -11,8 +10,12 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
+using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.RCP.Metro.Legacy;
+using RayCarrot.UI;
 using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
@@ -58,7 +61,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="construction">The construction</param>
         /// <param name="logLevel">The level to log</param>
-        protected override void SetupFramework(FrameworkConstruction construction, LogLevel logLevel)
+        protected override void SetupFramework(IFrameworkConstruction construction, LogLevel logLevel)
         {
             construction.
                 // Add console, debug, session and file loggers
@@ -71,7 +74,7 @@ namespace RayCarrot.RCP.Metro
                 // Add exception handler
                 AddExceptionHandler<RCPExceptionHandler>().
                 // Add user data manager
-                AddUserDataManager().
+                AddUserDataManager(() => new JsonBaseSerializer()).
                 // Add message UI manager
                 AddMessageUIManager<RCPMessageUIManager>().
                 // Add browse UI manager
@@ -107,7 +110,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 await RCFData.UserDataCollection.AddUserDataAsync<AppUserData>(CommonPaths.AppUserDataPath);
-                RCF.Logger.LogInformationSource($"The app user data has been loaded");
+                RCFCore.Logger?.LogInformationSource($"The app user data has been loaded");
             }
             catch (Exception ex)
             {
@@ -135,7 +138,7 @@ namespace RayCarrot.RCP.Metro
 
             // Subscribe to when to refresh the jump list
             RCFRCP.App.RefreshRequired += (s, e) => RefreshJumpList();
-            RCF.Data.CultureChanged += (s, e) => RefreshJumpList();
+            RCFCore.Data.CultureChanged += (s, e) => RefreshJumpList();
 
             // Listen to data binding logs
             WPFTraceListener.Setup(LogLevel.Warning);
@@ -146,7 +149,7 @@ namespace RayCarrot.RCP.Metro
             // Create the temp folder
             Directory.CreateDirectory(CommonPaths.TempPath);
 
-            RCF.Logger.LogInformationSource($"The temp directory has been created");
+            RCFCore.Logger?.LogInformationSource($"The temp directory has been created");
 
             // Run basic startup
             await BasicStartupAsync();
@@ -175,7 +178,7 @@ namespace RayCarrot.RCP.Metro
             // Save state
             Data.WindowState = WindowSessionState.GetWindowState(mainWindow);
 
-            RCF.Logger.LogInformationSource($"The application is exiting...");
+            RCFCore.Logger?.LogInformationSource($"The application is exiting...");
 
             // Clean the temp
             RCFRCP.App.CleanTemp();
@@ -275,15 +278,15 @@ namespace RayCarrot.RCP.Metro
         private async Task BasicStartupAsync()
         {
             // Check for reset argument
-            if (RCF.Data.Arguments.Contains("-reset"))
+            if (RCFCore.Data.Arguments.Contains("-reset"))
                 RCFRCP.Data.Reset();
 
             // Check for user level argument
-            if (RCF.Data.Arguments.Contains("-ul"))
+            if (RCFCore.Data.Arguments.Contains("-ul"))
             {
                 try
                 {
-                    string ul = RCF.Data.Arguments[RCF.Data.Arguments.FindItemIndex(x => x == "-ul") + 1];
+                    string ul = RCFCore.Data.Arguments[RCFCore.Data.Arguments.FindItemIndex(x => x == "-ul") + 1];
                     Data.UserLevel = Enum.Parse(typeof(UserLevel), ul, true).CastTo<UserLevel>();
                 }
                 catch (Exception ex)
@@ -294,15 +297,15 @@ namespace RayCarrot.RCP.Metro
 
             // NOTE: Starting with the updater 3.0.0 (available from 4.5.0) this is no longer used. It must however be maintained for legacy support (i.e. updating to version 4.5.0+ using an updater below 3.0.0)
             // Check for updater install argument
-            if (RCF.Data.Arguments.Contains("-install"))
+            if (RCFCore.Data.Arguments.Contains("-install"))
             {
                 try
                 {
-                    FileSystemPath updateFile = RCF.Data.Arguments[RCF.Data.Arguments.FindItemIndex(x => x == "-install") + 1];
+                    FileSystemPath updateFile = RCFCore.Data.Arguments[RCFCore.Data.Arguments.FindItemIndex(x => x == "-install") + 1];
                     if (updateFile.FileExists)
                     {
                         updateFile.GetFileInfo().Delete();
-                        RCF.Logger.LogInformationSource($"The updater was deleted");
+                        RCFCore.Logger?.LogInformationSource($"The updater was deleted");
                     }
                 }
                 catch (Exception ex)
@@ -317,7 +320,7 @@ namespace RayCarrot.RCP.Metro
             {
                 Data.ApplicationPath = appPath;
 
-                RCF.Logger.LogInformationSource("The application path has been updated");
+                RCFCore.Logger?.LogInformationSource("The application path has been updated");
 
                 // Refresh Registry value to reflect new application path
                 Data.PendingRegUninstallKeyRefresh = true;
@@ -345,7 +348,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         private async Task PostUpdateAsync()
         {
-            RCF.Logger.LogInformationSource($"Current version is {RCFRCP.App.CurrentVersion}");
+            RCFCore.Logger?.LogInformationSource($"Current version is {RCFRCP.App.CurrentVersion}");
 
             // Make sure this is a new version
             if (!(Data.LastVersion < RCFRCP.App.CurrentVersion))
@@ -353,9 +356,9 @@ namespace RayCarrot.RCP.Metro
                 // Check if it's a lower version than previously recorded
                 if (Data.LastVersion > RCFRCP.App.CurrentVersion)
                 {
-                    RCF.Logger.LogWarningSource($"A newer version $({Data.LastVersion}) has been recorded in the application data");
+                    RCFCore.Logger?.LogWarningSource($"A newer version $({Data.LastVersion}) has been recorded in the application data");
 
-                    await RCF.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, RCFRCP.App.CurrentVersion, Data.LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
+                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, RCFRCP.App.CurrentVersion, Data.LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
                 }
 
                 return;
@@ -430,7 +433,7 @@ namespace RayCarrot.RCP.Metro
                 LegacyGameUserData gameData = new StringReader(File.ReadAllText(gameDataLocation)).RunAndDispose(x =>
                     new JsonTextReader(x).RunAndDispose(y => s.Deserialize<LegacyGameUserData>(y)));
 
-                RCF.Logger.LogInformationSource($"Legacy app data found from version {appData.LastVersion}");
+                RCFCore.Logger?.LogInformationSource($"Legacy app data found from version {appData.LastVersion}");
 
                 // Get current app data
                 var data = RCFRCP.Data;
@@ -500,7 +503,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Import legacy data");
-                await RCF.MessageUI.DisplayMessageAsync("An error occurred when importing legacy data", MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync("An error occurred when importing legacy data", MessageType.Error);
             }
         }
 
