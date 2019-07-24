@@ -121,7 +121,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(4, 7, 0, 0);
+        public Version CurrentVersion => new Version(5, 0, 0, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
@@ -690,7 +690,7 @@ namespace RayCarrot.RCP.Metro
                     async Task FindWinStoreAppAsync(Games game)
                     {
                         // Check if the game is installed
-                        if (game.GetGameManager().IsValid(FileSystemPath.EmptyPath))
+                        if (game.GetGameManager(GameType.WinStore).IsValid(FileSystemPath.EmptyPath))
                         {
                             result.Add(game);
 
@@ -705,17 +705,12 @@ namespace RayCarrot.RCP.Metro
                     if (!Games.RaymanJungleRun.IsAdded())
                         await FindWinStoreAppAsync(Games.RaymanJungleRun);
 
-                    if (!Games.RaymanFiestaRun.IsAdded())
+                    foreach (FiestaRunEdition version in Enum.GetValues(typeof(FiestaRunEdition)))
                     {
-                        Data.IsFiestaRunWin10Edition = true;
+                        if (Games.RaymanFiestaRun.IsAdded())
+                            break;
 
-                        await FindWinStoreAppAsync(Games.RaymanFiestaRun);
-                    }
-
-                    if (!Games.RaymanFiestaRun.IsAdded())
-                    {
-                        Data.IsFiestaRunWin10Edition = false;
-
+                        Data.FiestaRunVersion = version;
                         await FindWinStoreAppAsync(Games.RaymanFiestaRun);
                     }
 

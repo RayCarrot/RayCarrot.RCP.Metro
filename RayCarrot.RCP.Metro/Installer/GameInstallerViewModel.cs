@@ -40,6 +40,9 @@ namespace RayCarrot.RCP.Metro
 
             // Default the install directory
             InstallDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+
+            // Default gif source to an empty string
+            CurrentGifImageSource = String.Empty;
         }
 
         #endregion

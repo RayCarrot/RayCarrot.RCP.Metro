@@ -441,7 +441,7 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanFiestaRun:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, "https://www.microsoft.com/store/productId/9NBLGGH59M6B")
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, "https://www.microsoft.com/store/productId/9wzdncrdcw9b")
                     };
 
                 default:
@@ -558,10 +558,20 @@ namespace RayCarrot.RCP.Metro
                     return "UbisoftEntertainment.RaymanJungleRun_dbgk1hhpxymar";
 
                 case Games.RaymanFiestaRun:
-                    return RCFRCP.Data.IsFiestaRunWin10Edition ? "Ubisoft.RaymanFiestaRunWindows10Edition_ngz4m417e0mpw" : "Ubisoft.RaymanFiestaRun_ngz4m417e0mpw";
+                    switch (RCFRCP.Data.FiestaRunVersion)
+                    {
+                        case FiestaRunEdition.Default:
+                            return "Ubisoft.RaymanFiestaRun_ngz4m417e0mpw";
 
-                //case Games.RaymanRavingRabbids2Orange:
-                //    return "Jade.exe";
+                        case FiestaRunEdition.Preload:
+                            return "UbisoftEntertainment.RaymanFiestaRunPreloadEdition_dbgk1hhpxymar";
+
+                        case FiestaRunEdition.Win10:
+                            return "Ubisoft.RaymanFiestaRunWindows10Edition_ngz4m417e0mpw";
+
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(RCFRCP.Data.FiestaRunVersion), RCFRCP.Data.FiestaRunVersion, null);
+                    }
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);
@@ -787,8 +797,22 @@ namespace RayCarrot.RCP.Metro
         {
             if (game == Games.RaymanJungleRun)
                 return "UbisoftEntertainment.RaymanJungleRun";
+
             else if (game == Games.RaymanFiestaRun)
-                return RCFRCP.Data.IsFiestaRunWin10Edition ? "Ubisoft.RaymanFiestaRunWindows10Edition" : "Ubisoft.RaymanFiestaRun";
+                switch (RCFRCP.Data.FiestaRunVersion)
+                {
+                    case FiestaRunEdition.Default:
+                        return "Ubisoft.RaymanFiestaRun";
+
+                    case FiestaRunEdition.Preload:
+                        return "UbisoftEntertainment.RaymanFiestaRunPreloadEdition";
+
+                    case FiestaRunEdition.Win10:
+                        return "Ubisoft.RaymanFiestaRunWindows10Edition";
+
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(RCFRCP.Data.FiestaRunVersion), RCFRCP.Data.FiestaRunVersion, null);
+                }
 
             throw new ArgumentOutOfRangeException(nameof(game), game, "A package name can not be obtained from the specified game");
         }

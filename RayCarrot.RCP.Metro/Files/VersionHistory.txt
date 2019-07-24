@@ -1,11 +1,19 @@
-﻿-----   Version 4.7.0 - July ??, 2019   -----
+﻿-----   Version 5.0.0 - July ??, 2019   -----
 • Updated the Carrot Framework to version 3.0.0
 • Backups can now be compressed
 • The game language can now be changed for Rayman, Rayman Designer, Rayman by his Fans and Rayman 60 Levels
-• If the .bat file is missing for a DOSBox game it will now automatically be created if the location contains a valid executable
+• Locating DOSBox games will now work even if they do not have a valid batch file
+• Rayman Fiesta Run Preload Edition is now supported. If multiple versions of Rayman Fiesta Run are installed, the default one to launch can now be selected.
+
+Other changes:
+• Updated the purchase link for Rayman Fiesta Run to the Preload edition
 • The applied Rayman 2 translation will now be shown in the Rayman 2 utilities
+• Separators will now longer display for empty groups in the links page
+• Cancellations are now longer displayed as errors in the log
+• Lowered default window height
 • Fixed a bug where Windows Store and Steam games would not show up in the jump list
 • Fixed a bug where the debug option to start TPLS would appear even if it wasn't installed
+• Bug fixes
 
 
 -----   Version 4.6.0 - July 8, 2019   -----

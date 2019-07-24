@@ -2,7 +2,6 @@
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Windows.Registry;
 using System;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Input;
 using RayCarrot.IO;
@@ -22,10 +21,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public LinksPageViewModel()
         {
-            LocalLinkItems = new ObservableCollection<LinkItemViewModel[]>();
-            CommunityLinkItems = new ObservableCollection<LinkItemViewModel[]>();
-            ForumLinkItems = new ObservableCollection<LinkItemViewModel[]>();
-            ToolsLinkItems = new ObservableCollection<LinkItemViewModel[]>();
+            LocalLinkItems = new LinkItemCollection();
+            CommunityLinkItems = new LinkItemCollection();
+            ForumLinkItems = new LinkItemCollection();
+            ToolsLinkItems = new LinkItemCollection();
 
             Refresh();
 
@@ -41,22 +40,22 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The local link items
         /// </summary>
-        public ObservableCollection<LinkItemViewModel[]> LocalLinkItems { get; }
+        public LinkItemCollection LocalLinkItems { get; }
 
         /// <summary>
         /// The community link items
         /// </summary>
-        public ObservableCollection<LinkItemViewModel[]> CommunityLinkItems { get; }
+        public LinkItemCollection CommunityLinkItems { get; }
 
         /// <summary>
         /// The forum link items
         /// </summary>
-        public ObservableCollection<LinkItemViewModel[]> ForumLinkItems { get; }
+        public LinkItemCollection ForumLinkItems { get; }
 
         /// <summary>
         /// The tools link items
         /// </summary>
-        public ObservableCollection<LinkItemViewModel[]> ToolsLinkItems { get; }
+        public LinkItemCollection ToolsLinkItems { get; }
 
         #endregion
 
@@ -80,12 +79,11 @@ namespace RayCarrot.RCP.Metro
             });
 
             // DOSBox files
-            if (File.Exists(Data.DosBoxPath))
-                LocalLinkItems.Add(new LinkItemViewModel[]
-                {
-                    new LinkItemViewModel(new FileSystemPath(Data.DosBoxPath), Resources.Links_Local_DOSBox),
-                    new LinkItemViewModel(new FileSystemPath(Data.DosBoxConfig), Resources.Links_Local_DOSBoxConfig, UserLevel.Technical)
-                });
+            LocalLinkItems.Add(new LinkItemViewModel[]
+            {
+                new LinkItemViewModel(new FileSystemPath(Data.DosBoxPath), Resources.Links_Local_DOSBox),
+                new LinkItemViewModel(new FileSystemPath(Data.DosBoxConfig), Resources.Links_Local_DOSBoxConfig, UserLevel.Technical)
+            });
 
             // Steam paths
             try
@@ -99,11 +97,13 @@ namespace RayCarrot.RCP.Metro
                         var steamExe = key.GetValue("SteamExe", null)?.ToString();
 
                         if (steamDir.DirectoryExists)
+                        {
                             LocalLinkItems.Add(new LinkItemViewModel[]
                             {
                                 new LinkItemViewModel(steamDir + steamExe, Resources.Links_Local_Steam),
                                 new LinkItemViewModel(steamDir + @"steamapps\common", Resources.Links_Local_SteamGames, UserLevel.Advanced)
                             });
+                        }
                     }
                 }
             }
@@ -122,11 +122,13 @@ namespace RayCarrot.RCP.Metro
                         FileSystemPath gogDir = key.GetValue("client", null)?.ToString();
 
                         if (gogDir.DirectoryExists)
+                        {
                             LocalLinkItems.Add(new LinkItemViewModel[]
                             {
                                 new LinkItemViewModel(gogDir + "GalaxyClient.exe", Resources.Links_Local_GOGClient),
                                 new LinkItemViewModel(gogDir + @"Games", Resources.Links_Local_GOGGames, UserLevel.Advanced)
                             });
+                        }
                     }
                 }
             }

@@ -63,6 +63,11 @@ namespace RayCarrot.RCP.Metro
         /// <param name="logLevel">The level to log</param>
         protected override void SetupFramework(IFrameworkConstruction construction, LogLevel logLevel)
         {
+            // Set file log level
+            FileLogger.FileLoggerLogLevel = logLevel;
+
+            // NOTE: Perhaps don't default to include session and debug loggers and instead have them through launch arguments?
+
             construction.
                 // Add console, debug, session and file loggers
                 AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, logLevel, builder => builder.AddProvider(new BaseLogProvider<FileLogger>())).
@@ -384,6 +389,13 @@ namespace RayCarrot.RCP.Metro
 
             if (Data.LastVersion < new Version(4, 7, 0, 0))
                 Data.CompressBackups = true;
+
+            if (Data.LastVersion < new Version(5, 0, 0, 0))
+            {
+                // Due to the fiesta run version system being changed the game has to be removed and then re-added
+                Data.FiestaRunVersion = FiestaRunEdition.Default;
+                Data.Games.Remove(Games.RaymanFiestaRun);
+            }
 
             // Re-deploy the uninstaller
             Directory.CreateDirectory(CommonPaths.UninstallFilePath.Parent);

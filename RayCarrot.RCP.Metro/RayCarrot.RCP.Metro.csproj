@@ -287,6 +287,7 @@
     <Compile Include="ViewModels\Cheats\Base\BaseCheatCodeItemViewModel.cs" />
     <Compile Include="ViewModels\Cheats\GenericCheatCodeItemViewModel.cs" />
     <Compile Include="ViewModels\LinkItemViewModel.cs" />
+    <Compile Include="DataModels\LinkItemCollection.cs" />
     <Compile Include="ViewModels\Pages\LinksPageViewModel.cs" />
     <Compile Include="ViewModels\Cheats\Rayman1CheatCodeItemViewModel.cs" />
     <Compile Include="ViewModels\Utilities\Rayman3UtilitiesViewModel.cs" />

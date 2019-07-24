@@ -8,8 +8,8 @@
                   xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                   xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
                   Closing="GameInstaller_OnClosingAsync"
+                  ResizeMode="NoResize"
                   SizeToContent="WidthAndHeight"
-                  ResizeMode="NoResize" 
                   ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                   mc:Ignorable="d"
                   d:DataContext="{d:DesignInstance local:GameInstallerViewModel}">
@@ -78,8 +78,11 @@
 
         <TextBlock Text="{Binding Path=CurrentItemInfo}"
                    Visibility="{Binding Path=InstallerRunning, Converter={rwpf:BooleanToVisibilityConverter}}"
+                   TextWrapping="Wrap"
                    HorizontalAlignment="Center"
-                   rwpf:UserLevelTag.MinUserLevel="Advanced"/>
+                   rwpf:UserLevelTag.MinUserLevel="Advanced"
+                   MaxWidth="450"
+                   Height="50"/>
 
         <Button Content="{Resx Installer_Install}"
                 Command="{Binding Path=InstallCommand}"

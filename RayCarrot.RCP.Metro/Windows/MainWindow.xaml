@@ -8,10 +8,11 @@
                   xmlns:tb="http://www.hardcodet.net/taskbar"
                   xmlns:mah="http://metro.mahapps.com/winfx/xaml/shared"
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  mc:Ignorable="d"
                   Language="{UICulture}"
                   ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
-                  Height="750"
+                  Height="680"
                   Width="950"
                   DataContext="{x:Static local:RCFRCP.App}">
     <local:BaseWindow.TitleTemplate>

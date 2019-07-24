@@ -57,7 +57,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates the log level to log
         /// </summary>
-        protected static LogLevel FileLoggerLogLevel { get; set; } = LogLevel.Information;
+        public static LogLevel FileLoggerLogLevel { get; set; } = LogLevel.Information;
 
         #endregion
     }

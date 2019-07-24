@@ -515,9 +515,16 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Installing game", InstallData);
-
-                return InstallData.CancellationToken.IsCancellationRequested ? RayGameInstallerResult.Canceled : RayGameInstallerResult.Failed;
+                if (InstallData.CancellationToken.IsCancellationRequested)
+                {
+                    ex.HandleExpected("Installing game");
+                    return RayGameInstallerResult.Canceled;
+                }
+                else
+                {
+                    ex.HandleError("Installing game", InstallData);
+                    return RayGameInstallerResult.Failed;
+                }
             }
             finally
             {

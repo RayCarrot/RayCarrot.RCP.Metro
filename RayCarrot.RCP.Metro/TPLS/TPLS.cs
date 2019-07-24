@@ -77,7 +77,10 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("TPLS watchdog");
+                    if (CancellationTokenSource.Token.IsCancellationRequested)
+                        ex.HandleExpected("TPLS watchdog");
+                    else
+                        ex.HandleError("TPLS watchdog");
                 }
                 finally
                 {

@@ -67,7 +67,6 @@ namespace RayCarrot.RCP.Metro
             DosBoxConfig = FileSystemPath.EmptyPath;
             AutoLocateGames = true;
             AutoUpdate = true;
-            IsFiestaRunWin10Edition = true;
             ShowNotInstalledGames = true;
             CloseAppOnGameLaunch = false;
             CloseConfigOnSave = true;
@@ -88,6 +87,7 @@ namespace RayCarrot.RCP.Metro
             GetBetaUpdates = false;
             LinkListHorizontalAlignment = HorizontalAlignment.Left;
             CompressBackups = true;
+            FiestaRunVersion = FiestaRunEdition.Default;
         }
 
         #endregion
@@ -197,7 +197,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the version of Rayman Fiesta Run is the Windows 10 Edition
         /// </summary>
-        public bool IsFiestaRunWin10Edition { get; set; }
+        //public bool IsFiestaRunWin10Edition { get; set; }
 
         /// <summary>
         /// Indicates if not installed games should be shown
@@ -390,6 +390,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool CompressBackups { get; set; }
 
+        /// <summary>
+        /// Indicates the current version of Rayman Fiesta Run
+        /// </summary>
+        public FiestaRunEdition FiestaRunVersion { get; set; }
+
         #endregion
 
         #region Public Methods
@@ -551,5 +556,28 @@ namespace RayCarrot.RCP.Metro
         }
 
         #endregion
+    }
+
+    // TODO: Save this in user data
+
+    /// <summary>
+    /// The available Rayman Fiesta Run versions
+    /// </summary>
+    public enum FiestaRunEdition
+    {
+        /// <summary>
+        /// Rayman Fiesta Run
+        /// </summary>
+        Default,
+
+        /// <summary>
+        /// Rayman Fiesta Run Preload Edition
+        /// </summary>
+        Preload,
+
+        /// <summary>
+        /// Rayman Fiesta Run Windows 10 Edition
+        /// </summary>
+        Win10
     }
 }

@@ -363,12 +363,16 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Downloading files");
-
                 if (CancellationRequested)
+                {
+                    ex.HandleExpected("Downloading files");
                     await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_Canceled, Resources.Download_CanceledHeader, MessageType.Information);
+                }
                 else
+                {
+                    ex.HandleError("Downloading files");
                     await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_Failed, Resources.Download_FailedHeader, MessageType.Error);
+                }
 
                 // Restore the stopped download
                 await RestoreStoppedDownloadAsync();

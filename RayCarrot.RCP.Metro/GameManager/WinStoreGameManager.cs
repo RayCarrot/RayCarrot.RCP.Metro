@@ -62,18 +62,16 @@ namespace RayCarrot.RCP.Metro
                 // Check if the game is installed
                 IsValid(FileSystemPath.EmptyPath);
 
-            bool found;
+            bool found = false;
 
             if (Game == Games.RaymanFiestaRun)
             {
-                RCFRCP.Data.IsFiestaRunWin10Edition = true;
-
-                found = FindWinStoreApp();
-
-                if (!found)
+                foreach (FiestaRunEdition version in Enum.GetValues(typeof(FiestaRunEdition)))
                 {
-                    RCFRCP.Data.IsFiestaRunWin10Edition = false;
+                    if (found)
+                        break;
 
+                    RCFRCP.Data.FiestaRunVersion = version;
                     found = FindWinStoreApp();
                 }
             }
