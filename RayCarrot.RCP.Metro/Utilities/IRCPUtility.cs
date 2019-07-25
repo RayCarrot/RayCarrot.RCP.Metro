@@ -74,6 +74,11 @@ namespace RayCarrot.RCP.Metro
         string Developers { get; }
 
         /// <summary>
+        /// Any additional developers to credit for the utility
+        /// </summary>
+        string AdditionalDevelopers { get; }
+
+        /// <summary>
         /// The game which the utility was made for
         /// </summary>
         Games Game { get; }
@@ -90,22 +95,22 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The utility ID
         /// </summary>
-        public string ID { get; }
+        public string ID => "82622dc8-8212-40b3-b6d5-ba84678d017b";
 
         /// <summary>
         /// The header for the utility. This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string DisplayHeader { get; }
+        public string DisplayHeader => Resources.R2U_TranslationsHeader;
 
         /// <summary>
         /// The utility information text (optional). This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string InfoText { get; }
+        public string InfoText => Resources.R2U_TranslationsInfo;
 
         /// <summary>
         /// The utility warning text (optional). This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string WarningText { get; }
+        public string WarningText => null;
 
         /// <summary>
         /// The utility UI content
@@ -125,12 +130,17 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The developers of the utility
         /// </summary>
-        public string Developers { get; }
+        public string Developers => "RayCarrot";
+
+        /// <summary>
+        /// Any additional developers to credit for the utility
+        /// </summary>
+        public string AdditionalDevelopers => "PluMGMK, Haruka Tavares, MixerX";
 
         /// <summary>
         /// The game which the utility was made for
         /// </summary>
-        public Games Game { get; }
+        public Games Game => Games.Rayman2;
 
         /// <summary>
         /// Retrieves a list of applied utilities from this utility
@@ -138,7 +148,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The applied utilities</returns>
         public string[] GetAppliedUtilities()
         {
-            return new string[0];
+            throw new NotImplementedException();
         }
     }
 

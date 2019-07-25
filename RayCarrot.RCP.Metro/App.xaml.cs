@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -9,6 +10,7 @@ using ByteSizeLib;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RayCarrot.CarrotFramework;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
@@ -71,15 +73,13 @@ namespace RayCarrot.RCP.Metro
             construction.
                 // Add console, debug, session and file loggers
                 AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, logLevel, builder => builder.AddProvider(new BaseLogProvider<FileLogger>())).
-                // Add a serializer
-                AddTransient<IBaseSerializer, JsonBaseSerializer>(x => new JsonBaseSerializer()
-                {
-                    Formatting = Formatting.Indented
-                }).
                 // Add exception handler
                 AddExceptionHandler<RCPExceptionHandler>().
                 // Add user data manager
-                AddUserDataManager(() => new JsonBaseSerializer()).
+                AddUserDataManager(() => new JsonBaseSerializer()
+                {
+                    Formatting = Formatting.Indented
+                }).
                 // Add message UI manager
                 AddMessageUIManager<RCPMessageUIManager>().
                 // Add browse UI manager
@@ -363,7 +363,8 @@ namespace RayCarrot.RCP.Metro
                 {
                     RCFCore.Logger?.LogWarningSource($"A newer version $({Data.LastVersion}) has been recorded in the application data");
 
-                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, RCFRCP.App.CurrentVersion, Data.LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
+                    if (!Data.DisableDowngradeWarning)
+                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, RCFRCP.App.CurrentVersion, Data.LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
                 }
 
                 return;
@@ -387,14 +388,42 @@ namespace RayCarrot.RCP.Metro
             if (Data.LastVersion < new Version(4, 6, 0, 0))
                 Data.LinkListHorizontalAlignment = HorizontalAlignment.Left;
 
-            if (Data.LastVersion < new Version(4, 7, 0, 0))
-                Data.CompressBackups = true;
-
             if (Data.LastVersion < new Version(5, 0, 0, 0))
             {
-                // Due to the fiesta run version system being changed the game has to be removed and then re-added
+                Data.CompressBackups = true;
                 Data.FiestaRunVersion = FiestaRunEdition.Default;
+
+                // Due to the fiesta run version system being changed the game has to be removed and then re-added
                 Data.Games.Remove(Games.RaymanFiestaRun);
+
+                // If a Fiesta Run backup exists the name needs to change to the new standard
+                var fiestaBackupDir = RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + "Rayman Fiesta Run";
+                if (fiestaBackupDir.DirectoryExists)
+                {
+                    try
+                    {
+                        // Read the app data file
+                        JObject appData = new StringReader(File.ReadAllText(CommonPaths.AppUserDataPath)).RunAndDispose(x =>
+                            new JsonTextReader(x).RunAndDispose(y => JsonSerializer.Create().Deserialize(y))).CastTo<JObject>();
+
+                        // Get the previous Fiesta Run version
+                        var isWin10 = appData["IsFiestaRunWin10Edition"].Value<bool>();
+
+                        // Set the current edition
+                        Data.FiestaRunVersion = isWin10 ? FiestaRunEdition.Win10 : FiestaRunEdition.Default;
+
+                        RCFRCP.File.MoveDirectory(fiestaBackupDir, Games.RaymanFiestaRun.GetBackupDir(), true);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleError("Moving Fiesta Run backups to 5.0.0 standard");
+
+                        // TODO: Localize
+                        await RCFUI.MessageUI.DisplayMessageAsync("An error occured when updating your Rayman Fiesta Run backup to the new 5.0.0 backup standard. Due to this your backup will become unavailable, but will remain and can still be restored manually.", "Backup migration error", MessageType.Error);
+                    }
+                }
+
+                Data.DisableDowngradeWarning = false;
             }
 
             // Re-deploy the uninstaller

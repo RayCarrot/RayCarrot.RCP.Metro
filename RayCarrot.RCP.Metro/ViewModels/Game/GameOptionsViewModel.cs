@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Windows.ApplicationModel;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
+using RayCarrot.IO;
 using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
 
@@ -41,6 +42,49 @@ namespace RayCarrot.RCP.Metro
 
             UtilitiesContent = game.GetUtilitiesContent();
             ConfigContent = game.GetConfigContent();
+
+            // TODO: Move out of here
+            if (Game == Games.RaymanFiestaRun)
+            {
+                // Save current Fiesta Run version
+                var fiestaVersion = Data.FiestaRunVersion;
+
+                var manager = Game.GetGameManager();
+
+                // Get available versions
+                Data.FiestaRunVersion = FiestaRunEdition.Default;
+                IsFiestaRunDefaultAvailable = manager.IsValid(FileSystemPath.EmptyPath);
+
+                Data.FiestaRunVersion = FiestaRunEdition.Preload;
+                IsFiestaRunPreloadAvailable = manager.IsValid(FileSystemPath.EmptyPath);
+
+                Data.FiestaRunVersion = FiestaRunEdition.Win10;
+                IsFiestaRunWin10Available = manager.IsValid(FileSystemPath.EmptyPath);
+
+                // Revert version
+                Data.FiestaRunVersion = fiestaVersion;
+
+                // Update the package info if it changes
+                Data.PropertyChanged += (s, e) =>
+                {
+                    if (e.PropertyName == nameof(AppUserData.FiestaRunVersion))
+                    {
+                        // Update the install directory and game info
+                        try
+                        {
+                            GameInfo = new GameInfo(GameType.WinStore, game.GetPackageInstallDirectory());
+                            RCFRCP.Data.Games[game] = GameInfo;
+                        }
+                        catch (Exception ex)
+                        {
+                            ex.HandleError("Getting updated Windows Store game install directory");
+                        }
+
+                        InstallDir = GameInfo.InstallDirectory;
+                        AddPackageInfo();
+                    }
+                };
+            }
         }
 
         #endregion
@@ -55,7 +99,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game info
         /// </summary>
-        public GameInfo GameInfo { get; }
+        public GameInfo GameInfo { get; set; }
 
         /// <summary>
         /// The display name
@@ -145,6 +189,21 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the game has config content
         /// </summary>
         public bool HasConfigContent => ConfigContent != null;
+
+        /// <summary>
+        /// Indicates if <see cref="FiestaRunEdition.Default"/> is available
+        /// </summary>
+        public bool IsFiestaRunDefaultAvailable { get; }
+
+        /// <summary>
+        /// Indicates if <see cref="FiestaRunEdition.Preload"/> is available
+        /// </summary>
+        public bool IsFiestaRunPreloadAvailable { get; }
+
+        /// <summary>
+        /// Indicates if <see cref="FiestaRunEdition.Win10"/> is available
+        /// </summary>
+        public bool IsFiestaRunWin10Available { get; }
 
         #endregion
 

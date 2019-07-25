@@ -35,7 +35,7 @@ namespace RayCarrot.RCP.Metro
             App.RefreshRequired += async (s, e) => await RefreshAsync();
             Data.PropertyChanged += async (s, e) =>
             {
-                if (e.PropertyName == nameof(AppUserData.BackupLocation))
+                if (e.PropertyName == nameof(AppUserData.BackupLocation) || e.PropertyName == nameof(AppUserData.FiestaRunVersion))
                     await RefreshAsync();
             };
         }

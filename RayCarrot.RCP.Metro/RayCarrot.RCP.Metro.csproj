@@ -115,6 +115,7 @@
     </Compile>
     <Compile Include="Converters\TPLSRaymanVersionEnumToComboBoxIndexConverter.cs" />
     <Compile Include="Converters\AppendSpacesToStringConverter.cs" />
+    <Compile Include="DataModels\Enums\FiestaRunEdition.cs" />
     <Compile Include="DataModels\Enums\PopupPromptResult.cs" />
     <Compile Include="DataModels\Enums\Pages.cs" />
     <Page Include="Controls\Dialogs\GameTypeSelectionDialog.xaml">
@@ -281,7 +282,7 @@
     <Compile Include="Controls\UserControls\Utilities\Rayman3Utilities.xaml.cs">
       <DependentUpon>Rayman3Utilities.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserData\LinkItemStyles.cs" />
+    <Compile Include="DataModels\Enums\LinkItemStyles.cs" />
     <Compile Include="DataModels\Enums\CheatCodeItemsType.cs" />
     <Compile Include="Utilities\IRCPUtility.cs" />
     <Compile Include="ViewModels\Cheats\Base\BaseCheatCodeItemViewModel.cs" />
@@ -460,7 +461,7 @@
     <Compile Include="Controls\UserControls\Pages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\Enums\AppUserData.cs" />
+    <Compile Include="UserData\AppUserData.cs" />
     <Compile Include="ViewModels\ActionItemViewModel.cs" />
     <Compile Include="Framework\AppViewModel.cs" />
     <Compile Include="DataModels\Enums\DebugDialogTypes.cs" />

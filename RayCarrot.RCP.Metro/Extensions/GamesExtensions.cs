@@ -162,7 +162,7 @@ namespace RayCarrot.RCP.Metro
                     return "Rayman Jungle Run";
 
                 case Games.RaymanFiestaRun:
-                    return "Rayman Fiesta Run";
+                    return $"Rayman Fiesta Run ({RCFRCP.Data.FiestaRunVersion})";
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);

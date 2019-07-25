@@ -7,9 +7,12 @@
 
 Other changes:
 • Updated the purchase link for Rayman Fiesta Run to the Preload edition
+• Backups for Rayman Fiesta Run are now differentiated between the available versions
 • The applied Rayman 2 translation will now be shown in the Rayman 2 utilities
+• Minor improvements to the game installer
 • Separators will now longer display for empty groups in the links page
 • Cancellations are now longer displayed as errors in the log
+• Added debug option to disable downgrade warnings
 • Lowered default window height
 • Fixed a bug where Windows Store and Steam games would not show up in the jump list
 • Fixed a bug where the debug option to start TPLS would appear even if it wasn't installed

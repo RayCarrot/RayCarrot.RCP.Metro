@@ -326,16 +326,13 @@ namespace RayCarrot.RCP.Metro
                     // Get the launch info
                     var launchInfo = Game.GetGameManager().GetLaunchInfo();
 
-                    // Get the shortcut name
-                    var shortcutName = String.Format(Resources.Installer_ShortcutName, Game.GetDisplayName());
-
                     if (CreateDesktopShortcut)
-                        await AddShortcutAsync(Environment.GetFolderPath(CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop));
+                        await AddShortcutAsync(Environment.GetFolderPath(CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop), String.Format(Resources.Installer_ShortcutName, Game.GetDisplayName()));
 
                     if (CreateStartMenuShortcut)
-                        await AddShortcutAsync(Path.Combine(Environment.GetFolderPath(CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonStartMenu : Environment.SpecialFolder.StartMenu), "Programs"));
+                        await AddShortcutAsync(Path.Combine(Environment.GetFolderPath(CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonStartMenu : Environment.SpecialFolder.StartMenu), "Programs"), Game.GetDisplayName());
 
-                    async Task AddShortcutAsync(FileSystemPath dir) => await RCFRCP.File.CreateFileShortcutAsync(shortcutName, dir, launchInfo.Path, launchInfo.Args);
+                    async Task AddShortcutAsync(FileSystemPath dir, string shortcutName) => await RCFRCP.File.CreateFileShortcutAsync(shortcutName, dir, launchInfo.Path, launchInfo.Args);
                 }
 
                 switch (result)

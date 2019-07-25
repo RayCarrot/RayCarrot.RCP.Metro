@@ -8,6 +8,7 @@ using System.Windows;
 using Infralution.Localization.Wpf;
 using MahApps.Metro;
 using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Shell;
 using Newtonsoft.Json;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
@@ -88,6 +89,7 @@ namespace RayCarrot.RCP.Metro
             LinkListHorizontalAlignment = HorizontalAlignment.Left;
             CompressBackups = true;
             FiestaRunVersion = FiestaRunEdition.Default;
+            DisableDowngradeWarning = false;
         }
 
         #endregion
@@ -195,11 +197,6 @@ namespace RayCarrot.RCP.Metro
         public bool AutoUpdate { get; set; }
 
         /// <summary>
-        /// Indicates if the version of Rayman Fiesta Run is the Windows 10 Edition
-        /// </summary>
-        //public bool IsFiestaRunWin10Edition { get; set; }
-
-        /// <summary>
         /// Indicates if not installed games should be shown
         /// </summary>
         public bool ShowNotInstalledGames { get; set; }
@@ -251,7 +248,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public ExceptionLevel DisplayExceptionLevel { get; set; }
 
-        // TODO: Remove this and instead back up the latest modified file and restore to BOTH places
         /// <summary>
         /// Indicates if the Rayman Raving Rabbids save data is in the install directory
         /// </summary>
@@ -394,6 +390,11 @@ namespace RayCarrot.RCP.Metro
         /// Indicates the current version of Rayman Fiesta Run
         /// </summary>
         public FiestaRunEdition FiestaRunVersion { get; set; }
+
+        /// <summary>
+        /// Indicates if the downgrade warnings should be disabled
+        /// </summary>
+        public bool DisableDowngradeWarning { get; set; }
 
         #endregion
 
@@ -556,28 +557,5 @@ namespace RayCarrot.RCP.Metro
         }
 
         #endregion
-    }
-
-    // TODO: Save this in user data
-
-    /// <summary>
-    /// The available Rayman Fiesta Run versions
-    /// </summary>
-    public enum FiestaRunEdition
-    {
-        /// <summary>
-        /// Rayman Fiesta Run
-        /// </summary>
-        Default,
-
-        /// <summary>
-        /// Rayman Fiesta Run Preload Edition
-        /// </summary>
-        Preload,
-
-        /// <summary>
-        /// Rayman Fiesta Run Windows 10 Edition
-        /// </summary>
-        Win10
     }
 }

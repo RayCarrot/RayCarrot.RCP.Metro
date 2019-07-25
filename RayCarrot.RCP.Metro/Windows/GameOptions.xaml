@@ -96,11 +96,10 @@
 
                             <!-- GameType WinStore -->
 
-                            <local:DuoGridItem
-                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
-                                Header="{Resx GameInfo_GameType}"
-                                Text="{Resx GameType_WinStore}"
-                                MinUserLevel="Advanced" />
+                            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
+                                               Header="{Resx GameInfo_GameType}"
+                                               Text="{Resx GameType_WinStore}"
+                                               MinUserLevel="Advanced" />
 
                             <!-- GameType DosBox -->
 
@@ -128,23 +127,22 @@
 
                             <!-- Launch Path -->
 
-                            <local:DuoGridItem
-                                Visibility="{Binding Path=LaunchInfo, Mode=OneTime, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
-                                Header="{Resx GameInfo_LaunchArgs}"
-                                Text="{Binding Path=LaunchInfo.Args, Mode=OneTime}"
-                                MinUserLevel="Technical" />
+                            <local:DuoGridItem Visibility="{Binding Path=LaunchInfo, Mode=OneTime, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
+                                               Header="{Resx GameInfo_LaunchArgs}"
+                                               Text="{Binding Path=LaunchInfo.Args, Mode=OneTime}"
+                                               MinUserLevel="Technical" />
 
                             <!-- Install Directory -->
 
                             <local:DuoGridItem Header="{Resx GameInfo_InstallDir}"
-                                               Text="{Binding Path=InstallDir, Mode=OneTime}" />
+                                               Text="{Binding Path=InstallDir}" />
 
                             <!-- WinStore Dependencies -->
 
                             <local:DuoGridItem
                                 Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
                                 Header="{Resx GameInfo_WinStoreDependencies}"
-                                Text="{Binding Path=WinStoreDependencies, Mode=OneTime}"
+                                Text="{Binding Path=WinStoreDependencies}"
                                 MinUserLevel="Technical" />
 
                             <!-- WinStore Full Name -->
@@ -152,7 +150,7 @@
                             <local:DuoGridItem
                                 Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
                                 Header="{Resx GameInfo_WinStoreFullName}"
-                                Text="{Binding Path=WinStoreFullName, Mode=OneTime}"
+                                Text="{Binding Path=WinStoreFullName}"
                                 MinUserLevel="Technical" />
 
                             <!-- WinStore Architecture -->
@@ -160,7 +158,7 @@
                             <local:DuoGridItem
                                 Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
                                 Header="{Resx GameInfo_WinStoreArchitecture}"
-                                Text="{Binding Path=WinStoreArchitecture, Mode=OneTime}"
+                                Text="{Binding Path=WinStoreArchitecture}"
                                 MinUserLevel="Technical" />
 
                             <!-- WinStore Version -->
@@ -168,14 +166,14 @@
                             <local:DuoGridItem
                                 Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
                                 Header="{Resx GameInfo_WinStoreVersion}"
-                                Text="{Binding Path=WinStoreVersion, Mode=OneTime}"
+                                Text="{Binding Path=WinStoreVersion}"
                                 MinUserLevel="Technical" />
 
                             <!-- WinStore Install Date -->
 
                             <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
                                                Header="{Resx GameInfo_WinStoreInstallDate}"
-                                               Text="{Binding Path=WinStoreInstallDate, Mode=OneTime}"
+                                               Text="{Binding Path=WinStoreInstallDate}"
                                                MinUserLevel="Technical" />
 
                         </ItemsControl>
@@ -226,8 +224,7 @@
 
                         </WrapPanel>
 
-                        <Separator
-                            Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanRavingRabbids}" />
+                        <Separator Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanRavingRabbids}" />
 
                         <StackPanel Orientation="Horizontal"
                                     Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanRavingRabbids}">
@@ -250,6 +247,38 @@
                                          IsChecked="{Binding Path=Data.RRRIsSaveDataInInstallDir, Converter={rwpf:InvertedBooleanConverter}}" />
 
                         </StackPanel>
+
+                        <Separator Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanFiestaRun}" />
+
+                        <StackPanel Orientation="Horizontal"
+                                    Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanFiestaRun}">
+
+                            <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                       Text="{Resx Config_FiestaRunVersion}" />
+
+                            <local:InfoIcon Text="{Resx Config_FiestaRunVersionInfo}" />
+
+                        </StackPanel>
+
+                        <WrapPanel Orientation="Horizontal"
+                                   Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanFiestaRun}">
+
+                            <rwpf:RadioButtonExtended Content="{Resx FiestaRunVersion_Default}"
+                                                      IsEnabled="{Binding Path=IsFiestaRunDefaultAvailable}"
+                                                      IsChecked="{Binding Path=Data.FiestaRunVersion, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Default}"
+                                                      Margin="0 0 8 0" />
+
+                            <rwpf:RadioButtonExtended Content="{Resx FiestaRunVersion_Preload}"
+                                                      IsEnabled="{Binding Path=IsFiestaRunPreloadAvailable}"
+                                                      IsChecked="{Binding Path=Data.FiestaRunVersion, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Preload}"
+                                                      Margin="0 0 8 0" />
+
+                            <rwpf:RadioButtonExtended Content="{Resx FiestaRunVersion_Win10}"
+                                                      IsEnabled="{Binding Path=IsFiestaRunWin10Available}"
+                                                      IsChecked="{Binding Path=Data.FiestaRunVersion, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Win10}"
+                                                      Margin="0 0 8 0" />
+
+                        </WrapPanel>
 
                     </StackPanel>
                 </ScrollViewer>

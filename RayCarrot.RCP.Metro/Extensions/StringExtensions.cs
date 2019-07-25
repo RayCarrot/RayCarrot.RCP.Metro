@@ -8,7 +8,7 @@ namespace RayCarrot.RCP.Metro
     public static class StringExtensions
     {
         //
-        // TODO: Find an alternative to using this when getting Registry values which are not correctly NULL-terminated (like the Legends resolution strings)
+        // NOTE: I'd like to find an alternative to using this when getting Registry values which are not correctly NULL-terminated (like the Legends resolution strings)
         // https://social.msdn.microsoft.com/Forums/vstudio/en-US/ddf0e860-0fcb-45b8-96db-b275255e644b/registrykey-getvalue-function-returns-string-with-invalid-unicode-char?forum=clr
         // https://docs.microsoft.com/en-us/windows/desktop/api/winreg/nf-winreg-reggetvaluea
         // http://www.pinvoke.net/default.aspx/advapi32.regqueryvalueex
