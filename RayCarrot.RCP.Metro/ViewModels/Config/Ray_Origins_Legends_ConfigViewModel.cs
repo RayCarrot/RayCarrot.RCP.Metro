@@ -201,7 +201,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError($"Saving {Game.GetDisplayName()} registry data");
-                    await RCFUI.MessageUI.DisplayMessageAsync($"An error occurred when saving your {Game.GetDisplayName()} configuration", "Error saving", MessageType.Error);
+                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Config_SaveError, Game.GetDisplayName()), Resources.Config_SaveErrorHeader, MessageType.Error);
                     return;
                 }
 

@@ -319,4 +319,12 @@
     <value>reverse</value>
     <comment>reverse</comment>
   </data>
+  <data name="FiestaRunVersion_Preload" xml:space="preserve">
+    <value>Preload Edition</value>
+    <comment>Preload Edition</comment>
+  </data>
+  <data name="FiestaRunVersion_Win10" xml:space="preserve">
+    <value>Windows 10 Edition</value>
+    <comment>Windows 10 Edition</comment>
+  </data>
 </root>

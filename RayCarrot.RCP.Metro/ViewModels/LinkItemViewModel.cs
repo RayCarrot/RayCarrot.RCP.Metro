@@ -97,7 +97,7 @@ namespace RayCarrot.RCP.Metro
             {
                 var bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();
-                bitmapImage.UriSource = new Uri($"{"https://www.google.com/s2/favicons?domain="}{ExternalLinkPath}"); ;
+                bitmapImage.UriSource = new Uri("https://www.google.com/s2/favicons?domain=" + ExternalLinkPath);
                 bitmapImage.EndInit();
                 IconSource = bitmapImage;
             }

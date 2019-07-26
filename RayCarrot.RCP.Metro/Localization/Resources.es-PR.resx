@@ -1095,9 +1095,6 @@ Notícias:
   <data name="Links_Local_AppData" xml:space="preserve">
     <value>Datos de usuario de la aplicación</value>
   </data>
-  <data name="Links_Local_TempDir" xml:space="preserve">
-    <value>Directório temporário de la aplicación</value>
-  </data>
   <data name="Links_Local_LogFile" xml:space="preserve">
     <value>Archivo de diário</value>
   </data>
@@ -1362,5 +1359,12 @@ Notícias:
   <data name="Cheats_RM3_ReverseMapInput" xml:space="preserve">
     <value>reverse</value>
     <comment>reverse</comment>
+  </data>
+  <data name="FiestaRunVersion_Preload" xml:space="preserve">
+    <value>Preload Edition</value>
+  </data>
+  <data name="FiestaRunVersion_Win10" xml:space="preserve">
+    <value>Windows 10 Edition</value>
+    <comment>Windows 10 Edition</comment>
   </data>
 </root>

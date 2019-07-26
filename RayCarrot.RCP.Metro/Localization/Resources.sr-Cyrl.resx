@@ -222,6 +222,24 @@
   <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
     <value>Резолуција целог екрана</value>
   </data>
+  <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
+    <value>Коју резолуцију користити за цео екран: оригинал или фиксирану величину ( нпр. 1024x768)</value>
+  </data>
+  <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
+    <value>Резолуција прозора</value>
+  </data>
+  <data name="DosBoxOptions_WindowedResInfo" xml:space="preserve">
+    <value>Скалирај прозор на ту величину АКО излазни уређај подржава скалирање хардвера</value>
+  </data>
+  <data name="DosBoxOptions_Scaler" xml:space="preserve">
+    <value>Скалер</value>
+  </data>
+  <data name="DosBoxOptions_ScalerInfo" xml:space="preserve">
+    <value>Скалер који се користи за повећање/побољшање режима ниске резолуције</value>
+  </data>
+  <data name="DosBoxOptions_Core" xml:space="preserve">
+    <value>Језгро</value>
+  </data>
   <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
     <value>1.20</value>
   </data>
@@ -424,22 +442,12 @@
     <value>reverse</value>
     <comment>reverse</comment>
   </data>
-  <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
-    <value>Коју резолуцију користити за цео екран: оригинал или фиксирану величину ( нпр. 1024x768)</value>
+  <data name="FiestaRunVersion_Preload" xml:space="preserve">
+    <value>Preload Edition</value>
+    <comment>Preload Edition</comment>
   </data>
-  <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
-    <value>Резолуција прозора</value>
-  </data>
-  <data name="DosBoxOptions_WindowedResInfo" xml:space="preserve">
-    <value>Скалирај прозор на ту величину АКО излазни уређај подржава скалирање хардвера</value>
-  </data>
-  <data name="DosBoxOptions_Scaler" xml:space="preserve">
-    <value>Скалер</value>
-  </data>
-  <data name="DosBoxOptions_ScalerInfo" xml:space="preserve">
-    <value>Скалер који се користи за повећање/побољшање режима ниске резолуције</value>
-  </data>
-  <data name="DosBoxOptions_Core" xml:space="preserve">
-    <value>Језгро</value>
+  <data name="FiestaRunVersion_Win10" xml:space="preserve">
+    <value>Windows 10 Edition</value>
+    <comment>Windows 10 Edition</comment>
   </data>
 </root>

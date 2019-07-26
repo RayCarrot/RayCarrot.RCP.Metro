@@ -285,6 +285,9 @@
     <Compile Include="DataModels\Enums\LinkItemStyles.cs" />
     <Compile Include="DataModels\Enums\CheatCodeItemsType.cs" />
     <Compile Include="Utilities\IRCPUtility.cs" />
+    <Compile Include="Temp\TempDirectory.cs" />
+    <Compile Include="Temp\TempFile.cs" />
+    <Compile Include="Temp\TempFileSystemEntry.cs" />
     <Compile Include="ViewModels\Cheats\Base\BaseCheatCodeItemViewModel.cs" />
     <Compile Include="ViewModels\Cheats\GenericCheatCodeItemViewModel.cs" />
     <Compile Include="ViewModels\LinkItemViewModel.cs" />

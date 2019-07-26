@@ -379,15 +379,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred when attempting to run the admin worker.
-        /// </summary>
-        public static string AdminWorker_Error {
-            get {
-                return ResourceManager.GetString("AdminWorker_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Rayman Control Panel.
         /// </summary>
         public static string AppName {
@@ -618,15 +609,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Backup_SuccessHeader {
             get {
                 return ResourceManager.GetString("Backup_SuccessHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Options.
-        /// </summary>
-        public static string BackupPage_Options {
-            get {
-                return ResourceManager.GetString("BackupPage_Options", resourceCulture);
             }
         }
         
@@ -1865,6 +1847,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman Fiesta Run version.
+        /// </summary>
+        public static string Config_FiestaRunVersion {
+            get {
+                return ResourceManager.GetString("Config_FiestaRunVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you have multiple versions of Rayman Fiesta Run you can change the default version to launch here.
+        /// </summary>
+        public static string Config_FiestaRunVersionInfo {
+            get {
+                return ResourceManager.GetString("Config_FiestaRunVersionInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fullscreen.
         /// </summary>
         public static string Config_Fullscreen {
@@ -2320,6 +2320,24 @@ namespace RayCarrot.RCP.Metro {
         public static string DebugPageHeader {
             get {
                 return ResourceManager.GetString("DebugPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured when setting up the additional required files. Certain features of the program might not function like intended. It is recommended to attempt to restart the program.&quot;.
+        /// </summary>
+        public static string DeployFilesError {
+            get {
+                return ResourceManager.GetString("DeployFilesError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The available languages may vary between releases.
+        /// </summary>
+        public static string DosBoxConfig_LanguageInfo {
+            get {
+                return ResourceManager.GetString("DosBoxConfig_LanguageInfo", resourceCulture);
             }
         }
         
@@ -2869,6 +2887,33 @@ namespace RayCarrot.RCP.Metro {
         public static string ExceptionMessageInfo {
             get {
                 return ResourceManager.GetString("ExceptionMessageInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string FiestaRunVersion_Default {
+            get {
+                return ResourceManager.GetString("FiestaRunVersion_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preload Edition.
+        /// </summary>
+        public static string FiestaRunVersion_Preload {
+            get {
+                return ResourceManager.GetString("FiestaRunVersion_Preload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows 10 Edition.
+        /// </summary>
+        public static string FiestaRunVersion_Win10 {
+            get {
+                return ResourceManager.GetString("FiestaRunVersion_Win10", resourceCulture);
             }
         }
         
@@ -3541,6 +3586,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string GenericPage_Options {
+            get {
+                return ResourceManager.GetString("GenericPage_Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For additional help, check the Discord server.
         /// </summary>
         public static string Help_AdditionalHelp {
@@ -3902,8 +3956,7 @@ namespace RayCarrot.RCP.Metro {
         ///
         ///• Main application data - {0}
         ///• Registry Settings - {1}
-        ///• Framework Registry Settings - {2}
-        ///• Temporary data - {3}.
+        ///• Framework Registry Settings - {2}.
         /// </summary>
         public static string Help_RCP_AppData {
             get {
@@ -4275,6 +4328,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Installer_InstallAllUsers {
             get {
                 return ResourceManager.GetString("Installer_InstallAllUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to run the program as administrator in order to install for all users.
+        /// </summary>
+        public static string Installer_InstallAllUsersError {
+            get {
+                return ResourceManager.GetString("Installer_InstallAllUsersError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing permissions.
+        /// </summary>
+        public static string Installer_InstallAllUsersErrorHeader {
+            get {
+                return ResourceManager.GetString("Installer_InstallAllUsersErrorHeader", resourceCulture);
             }
         }
         
@@ -4801,15 +4872,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to App temp directory.
-        /// </summary>
-        public static string Links_Local_TempDir {
-            get {
-                return ResourceManager.GetString("Links_Local_TempDir", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Utilities directory.
         /// </summary>
         public static string Links_Local_Utilities {
@@ -4986,15 +5048,6 @@ namespace RayCarrot.RCP.Metro {
         public static string LinksPage_LocalHeader {
             get {
                 return ResourceManager.GetString("LinksPage_LocalHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Options.
-        /// </summary>
-        public static string LinksPage_Options {
-            get {
-                return ResourceManager.GetString("LinksPage_Options", resourceCulture);
             }
         }
         
@@ -5283,6 +5336,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Ok {
             get {
                 return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup migration error.
+        /// </summary>
+        public static string PostUpdate_MigrateBackupErrorHeader {
+            get {
+                return ResourceManager.GetString("PostUpdate_MigrateBackupErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured when migrating the existing Rayman Fiesta Run backup to the new 5.0.0 backup standard. Due to this your backup will become unavailable, but will remain in your backup folder and can be restored manually..
+        /// </summary>
+        public static string PostUpdate_MigrateFiestaRunBackup5Error {
+            get {
+                return ResourceManager.GetString("PostUpdate_MigrateFiestaRunBackup5Error", resourceCulture);
             }
         }
         
@@ -6651,6 +6722,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_DesignSuccessMessagesInfo {
             get {
                 return ResourceManager.GetString("Settings_DesignSuccessMessagesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable downgrade warning.
+        /// </summary>
+        public static string Settings_DisableDowngradeWarning {
+            get {
+                return ResourceManager.GetString("Settings_DisableDowngradeWarning", resourceCulture);
             }
         }
         

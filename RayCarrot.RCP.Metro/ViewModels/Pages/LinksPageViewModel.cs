@@ -2,7 +2,6 @@
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Windows.Registry;
 using System;
-using System.IO;
 using System.Windows.Input;
 using RayCarrot.IO;
 using RayCarrot.UI;
@@ -151,7 +150,6 @@ namespace RayCarrot.RCP.Metro
             LocalLinkItems.Add(new LinkItemViewModel[]
             {
                 new LinkItemViewModel(CommonPaths.UserDataBaseDir, Resources.Links_Local_AppData, UserLevel.Technical),
-                new LinkItemViewModel(CommonPaths.TempPath, Resources.Links_Local_TempDir, UserLevel.Debug),
                 new LinkItemViewModel(CommonPaths.LogFile, Resources.Links_Local_LogFile, UserLevel.Debug),
                 new LinkItemViewModel(CommonPaths.UtilitiesBaseDir, Resources.Links_Local_Utilities, UserLevel.Debug),
                 new LinkItemViewModel(CommonPaths.RegistryBaseKey, Resources.Links_Local_RegAppData, UserLevel.Technical)

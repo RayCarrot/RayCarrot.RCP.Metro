@@ -12,6 +12,7 @@ Other changes:
 • Minor improvements to the game installer
 • Separators will now longer display for empty groups in the links page
 • Cancellations are now longer displayed as errors in the log
+• Reworked the temp file system to no longer use a dedicated temp directory
 • Added debug option to disable downgrade warnings
 • Lowered default window height
 • Fixed a bug where Windows Store and Steam games would not show up in the jump list

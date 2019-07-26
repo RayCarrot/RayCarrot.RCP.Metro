@@ -50,10 +50,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public static FileSystemPath UninstallFilePath => InstallTempPath + "Uninstaller.exe";
 
+        // TODO: Create this like uninstaller
         /// <summary>
-        /// The path for temporary files in this application
+        /// The admin worker file path
         /// </summary>
-        public static FileSystemPath TempPath => Path.Combine(Path.GetTempPath(), "RCP_Metro");
+        public static FileSystemPath AdminWorkerPath => UserDataBaseDir + "Temp\\AdditionalFiles\\Rayman Control Panel - Admin Worker.exe";
 
         /// <summary>
         /// The common path to the ubi.ini file

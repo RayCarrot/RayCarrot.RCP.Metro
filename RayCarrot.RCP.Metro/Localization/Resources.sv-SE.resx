@@ -1532,13 +1532,7 @@ Starta om?</value>
   <data name="LinksPage_LinkAlignmentStyle_Left" xml:space="preserve">
     <value>Vänster</value>
   </data>
-  <data name="LinksPage_Options" xml:space="preserve">
-    <value>Alternativ</value>
-  </data>
-  <data name="AdminWorker_Error" xml:space="preserve">
-    <value>Ett fel inträffade när admin worker programmet skulle köras</value>
-  </data>
-  <data name="BackupPage_Options" xml:space="preserve">
+  <data name="GenericPage_Options" xml:space="preserve">
     <value>Alternativ</value>
   </data>
   <data name="Backup_Compress" xml:space="preserve">
@@ -1549,5 +1543,13 @@ Starta om?</value>
   </data>
   <data name="DosBoxConfig_SetLanguageError" xml:space="preserve">
     <value>Språket kunde inte uppdateras</value>
+  </data>
+  <data name="FiestaRunVersion_Preload" xml:space="preserve">
+    <value>Preload Edition</value>
+    <comment>Preload Edition</comment>
+  </data>
+  <data name="FiestaRunVersion_Win10" xml:space="preserve">
+    <value>Windows 10 Edition</value>
+    <comment>Windows 10 Edition</comment>
   </data>
 </root>

@@ -113,13 +113,14 @@ namespace RayCarrot.RCP.Metro
             get => _createShortcutsForAllUsers;
             set
             {
-                if (!value || App.IsRunningAsAdmin)
+                if (value && !App.IsRunningAsAdmin)
                 {
-                    _createShortcutsForAllUsers = value;
+                    Task.Run(async () => await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_InstallAllUsersError, Resources.Installer_InstallAllUsersErrorHeader, MessageType.Warning));
+
                     return;
                 }
 
-                Task.Run(async () => await RCFUI.MessageUI.DisplayMessageAsync("You need to run the program as administrator in order to install for all users", "Missing permissions", MessageType.Warning));
+                _createShortcutsForAllUsers = value;
             }
         }
 

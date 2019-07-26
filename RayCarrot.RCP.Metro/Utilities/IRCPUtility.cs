@@ -1,6 +1,4 @@
-﻿using RayCarrot.IO;
-using System;
-using System.IO;
+﻿using System;
 using System.Windows;
 
 namespace RayCarrot.RCP.Metro
@@ -149,98 +147,6 @@ namespace RayCarrot.RCP.Metro
         public string[] GetAppliedUtilities()
         {
             throw new NotImplementedException();
-        }
-    }
-
-    /// <summary>
-    /// Used for temporary file system entries which have a local path and are to be disposed
-    /// </summary>
-    public abstract class TempFileSystemEntry : IDisposable
-    {
-        /// <summary>
-        /// The path of the temporary entry
-        /// </summary>
-        public abstract FileSystemPath TempPath { get; }
-
-        /// <summary>
-        /// Removes the temporary entry
-        /// </summary>
-        public abstract void Dispose();
-    }
-
-    /// <summary>
-    /// A temporary file
-    /// </summary>
-    public sealed class TempFile : TempFileSystemEntry
-    {
-        /// <summary>
-        /// Creates a new temporary file
-        /// </summary>
-        public TempFile()
-        {
-            // Get the temp path
-            TempPath = Path.GetTempFileName();
-
-            // Get the file info
-            var info = TempPath.GetFileInfo();
-
-            // Set the attribute to temporary
-            info.Attributes |= FileAttributes.Temporary;
-        }
-
-        /// <summary>
-        /// The path of the temporary file
-        /// </summary>
-        public override FileSystemPath TempPath { get; }
-
-        /// <summary>
-        /// Removes the temporary file
-        /// </summary>
-        public override void Dispose()
-        {
-            // Delete the temp file
-            RCFRCP.File.DeleteFile(TempPath);
-        }
-    }
-
-    /// <summary>
-    /// A temporary directory
-    /// </summary>
-    public sealed class TempDirectory : TempFileSystemEntry
-    {
-        /// <summary>
-        /// Creates a new temporary directory
-        /// </summary>
-        public TempDirectory()
-        {
-            // Get the temp path
-            FileSystemPath tempDir;
-
-            // Get a random temp path until one does not exist
-            do
-            {
-                tempDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            } while (tempDir.DirectoryExists);
-
-            // Set the temp path
-            TempPath = tempDir;
-
-            // Create the directory
-            Directory.CreateDirectory(TempPath);
-        }
-
-        /// <summary>
-        /// The path of the temporary directory
-        /// </summary>
-        public override FileSystemPath TempPath { get; }
-
-        /// <summary>
-        /// Removes the temporary directory
-        /// </summary>
-        public override void Dispose()
-        {
-            // Delete the temp directory
-            RCFRCP.File.DeleteDirectory(TempPath);
         }
     }
 }

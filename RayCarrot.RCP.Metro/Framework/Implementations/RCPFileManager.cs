@@ -280,7 +280,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                using (FileStream fs = File.Create(path + Path.GetRandomFileName(), 1, FileOptions.DeleteOnClose))
+                using (File.Create(path + Path.GetRandomFileName(), 1, FileOptions.DeleteOnClose))
                     return true;
             }
             catch

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -22,7 +21,6 @@ using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
-using JumpList = System.Windows.Shell.JumpList;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -148,12 +146,6 @@ namespace RayCarrot.RCP.Metro
             // Listen to data binding logs
             WPFTraceListener.Setup(LogLevel.Warning);
 
-            // Clean temp folder
-            RCFRCP.File.DeleteDirectory(CommonPaths.TempPath);
-
-            // Create the temp folder
-            Directory.CreateDirectory(CommonPaths.TempPath);
-
             RCFCore.Logger?.LogInformationSource($"The temp directory has been created");
 
             // Run basic startup
@@ -184,9 +176,6 @@ namespace RayCarrot.RCP.Metro
             Data.WindowState = WindowSessionState.GetWindowState(mainWindow);
 
             RCFCore.Logger?.LogInformationSource($"The application is exiting...");
-
-            // Clean the temp
-            RCFRCP.App.CleanTemp();
 
             // Save all user data
             await RCFRCP.App.SaveUserDataAsync();
@@ -331,12 +320,7 @@ namespace RayCarrot.RCP.Metro
                 Data.PendingRegUninstallKeyRefresh = true;
             }
 
-            // Deploy the uninstaller if it doesn't exist
-            if (!CommonPaths.UninstallFilePath.FileExists)
-            {
-                Directory.CreateDirectory(CommonPaths.UninstallFilePath.Parent);
-                File.WriteAllBytes(CommonPaths.UninstallFilePath, Files.Uninstaller);
-            }
+            await RCFRCP.App.DeployFilesAsync(false);
 
             // Show first launch info
             if (Data.IsFirstLaunch)
@@ -418,18 +402,25 @@ namespace RayCarrot.RCP.Metro
                     {
                         ex.HandleError("Moving Fiesta Run backups to 5.0.0 standard");
 
-                        // TODO: Localize
-                        await RCFUI.MessageUI.DisplayMessageAsync("An error occured when updating your Rayman Fiesta Run backup to the new 5.0.0 backup standard. Due to this your backup will become unavailable, but will remain and can still be restored manually.", "Backup migration error", MessageType.Error);
+                        await RCFUI.MessageUI.DisplayMessageAsync(Metro.Resources.PostUpdate_MigrateFiestaRunBackup5Error, Metro.Resources.PostUpdate_MigrateBackupErrorHeader, MessageType.Error);
                     }
+                }
+
+                // Remove old temp dir
+                try
+                {
+                    RCFRCP.File.DeleteDirectory(Path.Combine(Path.GetTempPath(), "RCP_Metro"));
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Cleaning pre-5.0.0 temp");
                 }
 
                 Data.DisableDowngradeWarning = false;
             }
 
-            // Re-deploy the uninstaller
-            Directory.CreateDirectory(CommonPaths.UninstallFilePath.Parent);
-            RCFRCP.File.DeleteFile(CommonPaths.UninstallFilePath);
-            File.WriteAllBytes(CommonPaths.UninstallFilePath, Files.Uninstaller);
+            // Re-deploy files
+            await RCFRCP.App.DeployFilesAsync(true);
 
             // Force refresh the Registry value to reflect the new update
             Data.PendingRegUninstallKeyRefresh = true;

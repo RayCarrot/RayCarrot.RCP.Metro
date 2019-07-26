@@ -786,26 +786,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Cleans the temporary files of the application
-        /// </summary>
-        public void CleanTemp()
-        {
-            lock (this)
-            {
-                try
-                {
-                    RCFRCP.File.DeleteDirectory(CommonPaths.TempPath);
-
-                    RCFCore.Logger?.LogInformationSource($"The application temp was cleaned");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleCritical("Cleaning temp");
-                }
-            }
-        }
-
-        /// <summary>
         /// Downloads the specified files to a specified output directory
         /// </summary>
         /// <param name="inputSources">The files to download</param>
@@ -1110,31 +1090,7 @@ namespace RayCarrot.RCP.Metro
         public async Task RunAdminWorkerAsync(AdminWorkerModes mode, params string[] args)
         {
             using (await AdminWorkerAsyncLock.LockAsync())
-            {
-                // Get the file path
-                var path = CommonPaths.TempPath + "Rayman Control Panel - Admin Worker.exe";
-
-                try
-                {
-                    if (!path.Parent.DirectoryExists)
-                        Directory.CreateDirectory(path.Parent);
-
-                    RCFRCP.File.DeleteFile(path);
-
-                    // Deploy the file
-                    File.WriteAllBytes(path, Files.AdminWorker);
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Deploying admin worker executable");
-
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.AdminWorker_Error, MessageType.Error);
-
-                    return;
-                }
-                
-                await RCFRCP.File.LaunchFileAsync(path, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
-            }
+                await RCFRCP.File.LaunchFileAsync(CommonPaths.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
         }
 
         /// <summary>
@@ -1161,6 +1117,35 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Locating game");
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_Error, Resources.LocateGame_ErrorHeader, MessageType.Error);
+            }
+        }
+
+        /// <summary>
+        /// Deploys additional files, such as the uninstaller
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task DeployFilesAsync(bool overwrite)
+        {
+            try
+            {
+                // Deploy the uninstaller
+                if (overwrite || !CommonPaths.UninstallFilePath.FileExists)
+                {
+                    Directory.CreateDirectory(CommonPaths.UninstallFilePath.Parent);
+                    File.WriteAllBytes(CommonPaths.UninstallFilePath, Files.Uninstaller);
+                }
+
+                // Deploy the admin worker
+                if (overwrite || !CommonPaths.UninstallFilePath.FileExists)
+                {
+                    Directory.CreateDirectory(CommonPaths.AdminWorkerPath.Parent);
+                    File.WriteAllBytes(CommonPaths.AdminWorkerPath, Files.AdminWorker);
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.HandleCritical("Deploying additional files");
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.DeployFilesError, MessageType.Error);
             }
         }
 

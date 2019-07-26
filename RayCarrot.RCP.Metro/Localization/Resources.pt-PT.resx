@@ -1602,8 +1602,7 @@ As cópias de segurança em si são sempre arquivados no sub-directório '{0}'. 
   
 • Dados da aplicação principal - {0}
 • Definições de registo - {1}
-• Definições de registo de Framework - {2}
-• Dados temporários - {3}</value>
+• Definições de registo de Framework - {2}</value>
   </data>
   <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
     <value>Argumentos de execução</value>
@@ -1976,9 +1975,6 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   </data>
   <data name="Links_Local_AppData" xml:space="preserve">
     <value>Dados da aplicação do utilizador</value>
-  </data>
-  <data name="Links_Local_TempDir" xml:space="preserve">
-    <value>Directório temporário da aplicação</value>
   </data>
   <data name="Links_Local_LogFile" xml:space="preserve">
     <value>Ficheiro de diário</value>
@@ -2522,19 +2518,13 @@ Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, dei
   <data name="LinksPage_LinkAlignmentStyle_Stretch" xml:space="preserve">
     <value>Esticar</value>
   </data>
-  <data name="LinksPage_Options" xml:space="preserve">
-    <value>Opções</value>
-  </data>
   <data name="Installer_DirMissingWritePermission" xml:space="preserve">
     <value>O acesso à localização de instalação seleccionada foi recusada. Selecciona outra localização ou executa o programa como administrador.</value>
   </data>
   <data name="Installer_DirMissingWritePermissionHeader" xml:space="preserve">
     <value>Acesso recusado</value>
   </data>
-  <data name="AdminWorker_Error" xml:space="preserve">
-    <value>Ocorreu um erro quando se tentava executar o admin worker</value>
-  </data>
-  <data name="BackupPage_Options" xml:space="preserve">
+  <data name="GenericPage_Options" xml:space="preserve">
     <value>Opções</value>
   </data>
   <data name="Backup_Compress" xml:space="preserve">
@@ -2542,5 +2532,22 @@ Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, dei
   </data>
   <data name="Backup_CompressInfo" xml:space="preserve">
     <value>Comprimir as cópias de segurança irá ocupar menos espaço e fazer com que sejam geridas com maior facilidade por serem um ficheiro único para cada jogo. Esta alteração terá efeito numa próxima vez que uma cópia de segurança seja efectuada.</value>
+  </data>
+  <data name="DosBoxConfig_SetLanguageError" xml:space="preserve">
+    <value>O idioma não pode ser actualizado</value>
+  </data>
+  <data name="DosBoxConfig_SetLanguageErrorHeader" xml:space="preserve">
+    <value>Erro ao actualizar o idioma</value>
+  </data>
+  <data name="DosBoxConfig_LanguageInfo" xml:space="preserve">
+    <value>Os idiomas disponíveis podem variar entre lançamentos</value>
+  </data>
+  <data name="FiestaRunVersion_Preload" xml:space="preserve">
+    <value>Preload Edition</value>
+    <comment>Preload Edition</comment>
+  </data>
+  <data name="FiestaRunVersion_Win10" xml:space="preserve">
+    <value>Windows 10 Edition</value>
+    <comment>Windows 10 Edition</comment>
   </data>
 </root>

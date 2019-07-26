@@ -77,7 +77,7 @@ namespace RayCarrot.RCP.Metro
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_RCP_AppDataHeader,
-                            HelpText = String.Format(Resources.Help_RCP_AppData, CommonPaths.UserDataBaseDir, CommonPaths.RegistryBaseKey, RCFRegistryPaths.RCFBasePath, CommonPaths.TempPath),
+                            HelpText = String.Format(Resources.Help_RCP_AppData, CommonPaths.UserDataBaseDir, CommonPaths.RegistryBaseKey, RCFRegistryPaths.RCFBasePath),
                             RequiredUserLevel = UserLevel.Advanced
                         },
 

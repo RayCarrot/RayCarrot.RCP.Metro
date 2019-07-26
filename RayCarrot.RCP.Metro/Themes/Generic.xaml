@@ -1,7 +1,6 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
+                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
 
     <Style TargetType="{x:Type local:OneWayToggleButton}">
         <Style.Triggers>

@@ -1692,13 +1692,11 @@ backupFamilyName</comment>
 
 • Main application data - {0}
 • Registry Settings - {1}
-• Framework Registry Settings - {2}
-• Temporary data - {3}</value>
+• Framework Registry Settings - {2}</value>
     <comment>Arguments:
 userDataBaseDir
 registryBaseKeyPath
-RCFRegistryBaseKeyPath
-tempPath</comment>
+RCFRegistryBaseKeyPath</comment>
   </data>
   <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
     <value>Launch Arguments</value>
@@ -2078,9 +2076,6 @@ downloadURL</comment>
   </data>
   <data name="Links_Local_AppData" xml:space="preserve">
     <value>App user data</value>
-  </data>
-  <data name="Links_Local_TempDir" xml:space="preserve">
-    <value>App temp directory</value>
   </data>
   <data name="Links_Local_LogFile" xml:space="preserve">
     <value>Log file</value>
@@ -2597,20 +2592,13 @@ To activate it, enter race mode and pause the game. On the pause screen, hold L1
   <data name="LinksPage_LinkAlignmentStyle_Stretch" xml:space="preserve">
     <value>Stretch</value>
   </data>
-  <data name="LinksPage_Options" xml:space="preserve">
-    <value>Options</value>
-  </data>
   <data name="Installer_DirMissingWritePermission" xml:space="preserve">
     <value>Access was denied to the selected install location. Select another location or run the program as administrator.</value>
   </data>
   <data name="Installer_DirMissingWritePermissionHeader" xml:space="preserve">
     <value>Access denied</value>
   </data>
-  <data name="AdminWorker_Error" xml:space="preserve">
-    <value>An error occurred when attempting to run the admin worker</value>
-    <comment>Leave the "admin worker" part in English due to that being the name of the program which is displayed to the user</comment>
-  </data>
-  <data name="BackupPage_Options" xml:space="preserve">
+  <data name="GenericPage_Options" xml:space="preserve">
     <value>Options</value>
   </data>
   <data name="Backup_Compress" xml:space="preserve">
@@ -2624,5 +2612,41 @@ To activate it, enter race mode and pause the game. On the pause screen, hold L1
   </data>
   <data name="DosBoxConfig_SetLanguageErrorHeader" xml:space="preserve">
     <value>Error updating language</value>
+  </data>
+  <data name="DosBoxConfig_LanguageInfo" xml:space="preserve">
+    <value>The available languages may vary between releases</value>
+  </data>
+  <data name="Settings_DisableDowngradeWarning" xml:space="preserve">
+    <value>Disable downgrade warning</value>
+  </data>
+  <data name="FiestaRunVersion_Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="FiestaRunVersion_Preload" xml:space="preserve">
+    <value>Preload Edition</value>
+  </data>
+  <data name="FiestaRunVersion_Win10" xml:space="preserve">
+    <value>Windows 10 Edition</value>
+  </data>
+  <data name="Config_FiestaRunVersion" xml:space="preserve">
+    <value>Rayman Fiesta Run version</value>
+  </data>
+  <data name="Config_FiestaRunVersionInfo" xml:space="preserve">
+    <value>If you have multiple versions of Rayman Fiesta Run you can change the default version to launch here</value>
+  </data>
+  <data name="PostUpdate_MigrateFiestaRunBackup5Error" xml:space="preserve">
+    <value>An error occured when migrating the existing Rayman Fiesta Run backup to the new 5.0.0 backup standard. Due to this your backup will become unavailable, but will remain in your backup folder and can be restored manually.</value>
+  </data>
+  <data name="PostUpdate_MigrateBackupErrorHeader" xml:space="preserve">
+    <value>Backup migration error</value>
+  </data>
+  <data name="Installer_InstallAllUsersError" xml:space="preserve">
+    <value>You need to run the program as administrator in order to install for all users</value>
+  </data>
+  <data name="Installer_InstallAllUsersErrorHeader" xml:space="preserve">
+    <value>Missing permissions</value>
+  </data>
+  <data name="DeployFilesError" xml:space="preserve">
+    <value>An error occured when setting up the additional required files. Certain features of the program might not function like intended. It is recommended to attempt to restart the program."</value>
   </data>
 </root>

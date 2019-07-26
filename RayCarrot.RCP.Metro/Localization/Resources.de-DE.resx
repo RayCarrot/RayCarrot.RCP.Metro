@@ -290,4 +290,10 @@
   <data name="Cheats_RM3_ReverseMapInput" xml:space="preserve">
     <value>reverse</value>
   </data>
+  <data name="FiestaRunVersion_Preload" xml:space="preserve">
+    <value>Preload Edition</value>
+  </data>
+  <data name="FiestaRunVersion_Win10" xml:space="preserve">
+    <value>Windows 10 Edition</value>
+  </data>
 </root>

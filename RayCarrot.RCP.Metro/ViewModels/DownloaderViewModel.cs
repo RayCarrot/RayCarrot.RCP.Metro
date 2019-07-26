@@ -110,10 +110,10 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Restore backed up files
-                foreach (FileSystemPath item in Directory.EnumerateFiles(TempDirLocal, "*", SearchOption.AllDirectories))
+                foreach (FileSystemPath item in Directory.EnumerateFiles(LocalTempDir.TempPath, "*", SearchOption.AllDirectories))
                 {
                     // Get the path to move to
-                    FileSystemPath file = OutputDirectory + item.GetRelativePath(TempDirLocal);
+                    FileSystemPath file = OutputDirectory + item.GetRelativePath(LocalTempDir.TempPath);
 
                     try
                     {
@@ -131,7 +131,7 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Cleaning up incomplete download operation");
 
                 // Let the user know the restore failed
-                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Download_RestoreStoppedDownloadError, TempDirLocal, TempDirServer), "Restore and clean up failed", MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Download_RestoreStoppedDownloadError, LocalTempDir.TempPath, ServerTempDir.TempPath), "Restore and clean up failed", MessageType.Error);
             }
         }
 
@@ -145,7 +145,7 @@ namespace RayCarrot.RCP.Metro
             ItemCurrentProgress = 0;
 
             // Get the absolute output path
-            FileSystemPath file = TempDirServer + Path.GetFileName(InputSources.First().AbsolutePath);
+            FileSystemPath file = ServerTempDir.TempPath + Path.GetFileName(InputSources.First().AbsolutePath);
 
             await Task.Run(async () =>
             {
@@ -175,7 +175,7 @@ namespace RayCarrot.RCP.Metro
 
                         // Backup conflict file
                         if (outputPath.FileExists)
-                            await Task.Run(() => RCFRCP.File.MoveFile(outputPath, TempDirLocal + entry.FullName.Replace('/', '\\'), false));
+                            await Task.Run(() => RCFRCP.File.MoveFile(outputPath, LocalTempDir.TempPath + entry.FullName.Replace('/', '\\'), false));
 
                         // Create directory if it doesn't exist
                         if (!outputPath.Parent.DirectoryExists)
@@ -220,7 +220,7 @@ namespace RayCarrot.RCP.Metro
                     continue;
 
                 // Move the file to temp
-                await Task.Run(() => RCFRCP.File.MoveFile(file, TempDirLocal + file.Name, false));
+                await Task.Run(() => RCFRCP.File.MoveFile(file, LocalTempDir.TempPath + file.Name, false));
             }
 
             // Move downloaded files to output
@@ -229,7 +229,7 @@ namespace RayCarrot.RCP.Metro
                 ThrowIfCancellationRequested();
 
                 // Get the absolute path
-                var file = TempDirServer + Path.GetFileName(item.AbsolutePath);
+                var file = ServerTempDir.TempPath + Path.GetFileName(item.AbsolutePath);
 
                 var outputPath = OutputDirectory + Path.GetFileName(item.AbsolutePath);
 
@@ -259,7 +259,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     RCFCore.Logger?.LogInformationSource($"The file {item} is being downloaded");
 
-                    await WCServer.DownloadFileTaskAsync(item, TempDirServer + Path.GetFileName(item.AbsolutePath));
+                    await WCServer.DownloadFileTaskAsync(item, ServerTempDir.TempPath + Path.GetFileName(item.AbsolutePath));
                     ItemCurrentProgress = 100;
                     CurrentStep++;
                 }
@@ -275,15 +275,6 @@ namespace RayCarrot.RCP.Metro
         {
             if (CancellationRequested)
                 throw new OperationCanceledException();
-        }
-
-        /// <summary>
-        /// Cleans the temp files
-        /// </summary>
-        protected void CleanTemp()
-        {
-            RCFRCP.File.DeleteDirectory(TempDirLocal);
-            RCFRCP.File.DeleteDirectory(TempDirServer);
         }
 
         /// <summary>
@@ -343,55 +334,44 @@ namespace RayCarrot.RCP.Metro
             // Reset the progress counter
             CurrentStep = 0;
 
-            try
+            using (LocalTempDir = new TempDirectory())
             {
-                // Clean existing download temp
-                CleanTemp();
-
-                // Create the temp directories
-                Directory.CreateDirectory(TempDirLocal);
-                Directory.CreateDirectory(TempDirServer);
-
-                // Download files to temp
-                await DownloadFromServerToTempAsync();
-
-                // Process the download
-                if (IsCompressed)
-                    await ProcessCompressedDownloadAsync();
-                else
-                    await ProcessDownloadedFilesAsync();
-            }
-            catch (Exception ex)
-            {
-                if (CancellationRequested)
+                using (ServerTempDir = new TempDirectory())
                 {
-                    ex.HandleExpected("Downloading files");
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_Canceled, Resources.Download_CanceledHeader, MessageType.Information);
+                    try
+                    {
+                        // Download files to temp
+                        await DownloadFromServerToTempAsync();
+
+                        // Process the download
+                        if (IsCompressed)
+                            await ProcessCompressedDownloadAsync();
+                        else
+                            await ProcessDownloadedFilesAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        if (CancellationRequested)
+                        {
+                            ex.HandleExpected("Downloading files");
+                            await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_Canceled, Resources.Download_CanceledHeader, MessageType.Information);
+                        }
+                        else
+                        {
+                            ex.HandleError("Downloading files");
+                            await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_Failed, Resources.Download_FailedHeader, MessageType.Error);
+                        }
+
+                        // Restore the stopped download
+                        await RestoreStoppedDownloadAsync();
+
+                        // Flag that the operation is no longer running
+                        OperationRunning = false;
+                        DownloadState = CancellationRequested ? DownloadState.Canceled : DownloadState.Failed;
+                        OnDownloadComplete();
+                        return;
+                    }
                 }
-                else
-                {
-                    ex.HandleError("Downloading files");
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_Failed, Resources.Download_FailedHeader, MessageType.Error);
-                }
-
-                // Restore the stopped download
-                await RestoreStoppedDownloadAsync();
-
-                // Flag that the operation is no longer running
-                OperationRunning = false;
-                DownloadState = CancellationRequested ? DownloadState.Canceled : DownloadState.Failed;
-                OnDownloadComplete();
-                return;
-            }
-
-            try
-            {
-                // Clean temp
-                CleanTemp();
-            }
-            catch (Exception ex)
-            {
-                ex.HandleUnexpected("Cleaning download temp");
             }
 
             // Max out the progress
@@ -453,6 +433,16 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected List<FileSystemPath> ProcessedFiles { get; }
 
+        /// <summary>
+        /// The temp directory for the local files
+        /// </summary>
+        protected TempDirectory LocalTempDir { get; set; }
+
+        /// <summary>
+        /// The temp directory for the sever files
+        /// </summary>
+        protected TempDirectory ServerTempDir { get; set; }
+
         #endregion
 
         #region Public Properties
@@ -496,20 +486,6 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the download is compressed
         /// </summary>
         public bool IsCompressed { get; }
-
-        #endregion
-
-        #region Protected Static Properties
-
-        /// <summary>
-        /// The temp directory for the local files
-        /// </summary>
-        protected static FileSystemPath TempDirLocal => CommonPaths.TempPath + "Download" + "Local";
-
-        /// <summary>
-        /// The temp directory for the sever files
-        /// </summary>
-        protected static FileSystemPath TempDirServer => CommonPaths.TempPath + "Download" + "Server";
 
         #endregion
     }

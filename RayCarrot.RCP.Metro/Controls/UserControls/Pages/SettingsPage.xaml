@@ -8,7 +8,6 @@
                     xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     IsTabStop="False"
                     mc:Ignorable="d"    
