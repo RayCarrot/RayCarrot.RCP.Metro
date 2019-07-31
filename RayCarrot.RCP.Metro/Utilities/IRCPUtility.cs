@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Windows;
 
 namespace RayCarrot.RCP.Metro
@@ -31,6 +31,7 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public interface IRCPUtility
     {
+        // TODO: Show in UI (debug only)
         /// <summary>
         /// The utility ID
         /// </summary>
@@ -52,25 +53,34 @@ namespace RayCarrot.RCP.Metro
         string WarningText { get; }
 
         /// <summary>
+        /// Indicates if the utility requires additional files to be downloaded remotely
+        /// </summary>
+        bool RequiresAdditionalFiles { get; }
+
+        /// <summary>
         /// The utility UI content
         /// </summary>
         UIElement UIContent { get; }
 
+        // TODO: Show in UI
         /// <summary>
         /// Indicates if the utility requires administration privileges
         /// </summary>
         bool RequiresAdmin { get; }
 
+        // TODO: Show in UI
         /// <summary>
         /// Indicates if the utility is available to the user
         /// </summary>
         bool IsAvailable { get; }
 
+        // TODO: Show in UI
         /// <summary>
         /// The developers of the utility
         /// </summary>
         string Developers { get; }
 
+        // TODO: Show in UI
         /// <summary>
         /// Any additional developers to credit for the utility
         /// </summary>
@@ -85,68 +95,6 @@ namespace RayCarrot.RCP.Metro
         /// Retrieves a list of applied utilities from this utility
         /// </summary>
         /// <returns>The applied utilities</returns>
-        string[] GetAppliedUtilities();
-    }
-
-    public class R2TranslationUtility : IRCPUtility
-    {
-        /// <summary>
-        /// The utility ID
-        /// </summary>
-        public string ID => "82622dc8-8212-40b3-b6d5-ba84678d017b";
-
-        /// <summary>
-        /// The header for the utility. This property is retrieved again when the current culture is changed.
-        /// </summary>
-        public string DisplayHeader => Resources.R2U_TranslationsHeader;
-
-        /// <summary>
-        /// The utility information text (optional). This property is retrieved again when the current culture is changed.
-        /// </summary>
-        public string InfoText => Resources.R2U_TranslationsInfo;
-
-        /// <summary>
-        /// The utility warning text (optional). This property is retrieved again when the current culture is changed.
-        /// </summary>
-        public string WarningText => null;
-
-        /// <summary>
-        /// The utility UI content
-        /// </summary>
-        public UIElement UIContent { get; }
-
-        /// <summary>
-        /// Indicates if the utility requires administration privileges
-        /// </summary>
-        public bool RequiresAdmin { get; }
-
-        /// <summary>
-        /// Indicates if the utility is available to the user
-        /// </summary>
-        public bool IsAvailable { get; }
-
-        /// <summary>
-        /// The developers of the utility
-        /// </summary>
-        public string Developers => "RayCarrot";
-
-        /// <summary>
-        /// Any additional developers to credit for the utility
-        /// </summary>
-        public string AdditionalDevelopers => "PluMGMK, Haruka Tavares, MixerX";
-
-        /// <summary>
-        /// The game which the utility was made for
-        /// </summary>
-        public Games Game => Games.Rayman2;
-
-        /// <summary>
-        /// Retrieves a list of applied utilities from this utility
-        /// </summary>
-        /// <returns>The applied utilities</returns>
-        public string[] GetAppliedUtilities()
-        {
-            throw new NotImplementedException();
-        }
+        IEnumerable<string> GetAppliedUtilities();
     }
 }

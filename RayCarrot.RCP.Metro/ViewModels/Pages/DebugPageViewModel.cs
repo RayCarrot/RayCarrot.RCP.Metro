@@ -34,11 +34,11 @@ namespace RayCarrot.RCP.Metro
             RefreshDataOutputCommand = new AsyncRelayCommand(RefreshDataOutputAsync);
 
             // Show log viewer if a debugger is attached
-            if (!_firstConstruction || !Debugger.IsAttached)
+            if (!FirstConstruction || !Debugger.IsAttached)
                 return;
 
             ShowLog();
-            _firstConstruction = false;
+            FirstConstruction = false;
         }
 
         #endregion
@@ -48,11 +48,18 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if this is the first time the class has been constructed
         /// </summary>
-        private static bool _firstConstruction = true;
+        private static bool FirstConstruction = true;
 
         #endregion
 
         #region Public Properties
+
+        // TODO: Remove
+        public IEnumerable<IRCPUtility> TestUtilities => new List<IRCPUtility>()
+        {
+             new R2TranslationUtility(),
+             new R1TPLSUtility()
+        };
 
         /// <summary>
         /// The selected dialog type

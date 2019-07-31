@@ -147,7 +147,7 @@
                     </i:Interaction.Behaviors>
 
                     <ItemsControl Style="{DynamicResource LinkItemsDisplay}"
-                                  ItemsSource="{Binding Path=LocalLinkItems, Mode=OneTime}" />
+                                  ItemsSource="{Binding Path=LocalLinkItems, Mode=OneTime}"/>
 
                 </ScrollViewer>
             </local:RCPTabItem>

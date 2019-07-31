@@ -85,6 +85,9 @@
                     <local:DuoGridItem Header="RibShark"
                                        Text="{Resx About_Credits_RibShark}" />
 
+                    <local:DuoGridItem Header="Snagglebee"
+                                       Text="{Resx About_Credits_Snagglebee}" />
+
                 </ItemsControl>
 
                 <TextBlock Text="{Resx About_SpecialThanks}" 

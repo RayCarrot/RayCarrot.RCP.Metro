@@ -722,7 +722,7 @@ namespace RayCarrot.RCP.Metro
                     return new RaymanDesignerUtilities();
 
                 case Games.Rayman2:
-                    return new Rayman2Utilities();
+                    return null;
 
                 case Games.Rayman3:
                     return AppViewModel.WindowsVersion < WindowsVersion.Win8 ? null : new Rayman3Utilities();
@@ -1225,9 +1225,6 @@ namespace RayCarrot.RCP.Metro
 
             if (game == Games.Rayman1)
             {
-                if (RCFRCP.Data.TPLSData != null)
-                    output.Add(Resources.R1U_TPLSHeader);
-
                 if (Rayman1UtilitiesViewModel.GetIsOriginalSoundtrack(Rayman1UtilitiesViewModel.GetMusicDirectory()) == false)
                     output.Add(Resources.R1U_CompleteOSTHeader);
             }
@@ -1243,11 +1240,6 @@ namespace RayCarrot.RCP.Metro
 
                 if (dinput == Rayman2ConfigViewModel.R2Dinput.Mapping)
                     output.Add(Resources.Config_ButtonMapping);
-
-                var translation = Rayman2UtilitiesViewModel.GetAppliedRayman2Translation(Rayman2UtilitiesViewModel.GetFixSnaFilePath(Games.Rayman2.GetInfo().InstallDirectory));
-
-                if (translation != Rayman2UtilitiesViewModel.Rayman2Translation.Original && translation != null)
-                    output.Add(Resources.R2U_TranslationsHeader);
             }
             else if (game == Games.RaymanOrigins)
             {

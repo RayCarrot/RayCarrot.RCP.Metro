@@ -17,6 +17,9 @@ namespace RayCarrot.RCP.Metro
                 case TPLSRaymanVersion.Ray_1_00:
                     return 0x16D310;
 
+                case TPLSRaymanVersion.Ray_1_10:
+                    return 0x16D7B4;
+
                 case TPLSRaymanVersion.Ray_1_12_0:
                     return 0x16D804;
 
@@ -47,6 +50,7 @@ namespace RayCarrot.RCP.Metro
                 case TPLSRaymanVersion.Ray_1_00:
                     return 0x174FE;
 
+                case TPLSRaymanVersion.Ray_1_10:
                 case TPLSRaymanVersion.Ray_1_12_0:
                 case TPLSRaymanVersion.Ray_1_12_1:
                 case TPLSRaymanVersion.Ray_1_12_2:
@@ -73,6 +77,7 @@ namespace RayCarrot.RCP.Metro
                 case TPLSRaymanVersion.Ray_1_00:
                     return 0x00020;
 
+                case TPLSRaymanVersion.Ray_1_10:
                 case TPLSRaymanVersion.Ray_1_12_0:
                 case TPLSRaymanVersion.Ray_1_12_1:
                 case TPLSRaymanVersion.Ray_1_12_2:
@@ -99,6 +104,7 @@ namespace RayCarrot.RCP.Metro
                 case TPLSRaymanVersion.Ray_1_00:
                     return 0x02228;
 
+                case TPLSRaymanVersion.Ray_1_10:
                 case TPLSRaymanVersion.Ray_1_12_0:
                 case TPLSRaymanVersion.Ray_1_12_1:
                 case TPLSRaymanVersion.Ray_1_12_2:
@@ -125,6 +131,7 @@ namespace RayCarrot.RCP.Metro
                 case TPLSRaymanVersion.Ray_1_00:
                     return 0x02234;
 
+                case TPLSRaymanVersion.Ray_1_10:
                 case TPLSRaymanVersion.Ray_1_12_0:
                 case TPLSRaymanVersion.Ray_1_12_1:
                 case TPLSRaymanVersion.Ray_1_12_2:
@@ -151,6 +158,7 @@ namespace RayCarrot.RCP.Metro
                 case TPLSRaymanVersion.Ray_1_00:
                     return 0x174FB;
 
+                case TPLSRaymanVersion.Ray_1_10:
                 case TPLSRaymanVersion.Ray_1_12_0:
                 case TPLSRaymanVersion.Ray_1_12_1:
                 case TPLSRaymanVersion.Ray_1_12_2:
@@ -177,6 +185,7 @@ namespace RayCarrot.RCP.Metro
                 case TPLSRaymanVersion.Ray_1_00:
                     return 0x174FD;
 
+                case TPLSRaymanVersion.Ray_1_10:
                 case TPLSRaymanVersion.Ray_1_12_0:
                 case TPLSRaymanVersion.Ray_1_12_1:
                 case TPLSRaymanVersion.Ray_1_12_2:
@@ -203,6 +212,7 @@ namespace RayCarrot.RCP.Metro
                 case TPLSRaymanVersion.Ray_1_00:
                     return 0x02257;
 
+                case TPLSRaymanVersion.Ray_1_10:
                 case TPLSRaymanVersion.Ray_1_12_0:
                 case TPLSRaymanVersion.Ray_1_12_1:
                 case TPLSRaymanVersion.Ray_1_12_2:
@@ -229,6 +239,7 @@ namespace RayCarrot.RCP.Metro
                 case TPLSRaymanVersion.Ray_1_00:
                     return 0x00E5C;
 
+                case TPLSRaymanVersion.Ray_1_10:
                 case TPLSRaymanVersion.Ray_1_12_0:
                 case TPLSRaymanVersion.Ray_1_12_1:
                 case TPLSRaymanVersion.Ray_1_12_2:
@@ -255,6 +266,7 @@ namespace RayCarrot.RCP.Metro
                 case TPLSRaymanVersion.Ray_1_00:
                     return 0x00E60;
 
+                case TPLSRaymanVersion.Ray_1_10:
                 case TPLSRaymanVersion.Ray_1_12_0:
                 case TPLSRaymanVersion.Ray_1_12_1:
                 case TPLSRaymanVersion.Ray_1_12_2:

@@ -9,22 +9,25 @@ using RayCarrot.UI;
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// View model for the Rayman 2 utilities
+    /// View model for the Rayman 2 translation utility
     /// </summary>
-    public class Rayman2UtilitiesViewModel : BaseRCPViewModel
+    public class R2TranslationUtilityViewModel : BaseRCPViewModel
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public Rayman2UtilitiesViewModel()
+        public R2TranslationUtilityViewModel()
         {
             // Create commands
             ApplyTranslationCommand = new AsyncRelayCommand(ApplyTranslationAsync);
 
+            // Get the game info
+            GameInfo = Games.Rayman2.GetInfo();
+
             // Get current translation
-            SelectedTranslation = GetAppliedRayman2Translation(GetFixSnaFilePath(Games.Rayman2.GetInfo().InstallDirectory)) ?? Rayman2Translation.Original;
+            SelectedTranslation = GetAppliedRayman2Translation() ?? Rayman2Translation.Original;
 
             RCFCore.Logger?.LogInformationSource($"The applied Rayman 2 translation has been detected as {SelectedTranslation}");
         }
@@ -37,6 +40,11 @@ namespace RayCarrot.RCP.Metro
         /// The selected translation
         /// </summary>
         public Rayman2Translation SelectedTranslation { get; set; }
+
+        /// <summary>
+        /// The game info
+        /// </summary>
+        public GameInfo GameInfo { get; }
 
         #endregion
 
@@ -58,12 +66,9 @@ namespace RayCarrot.RCP.Metro
             {
                 RCFCore.Logger?.LogInformationSource($"The Rayman 2 translation patch is downloading...");
 
-                // Get the game install directory
-                var instDir = Games.Rayman2.GetInfo().InstallDirectory;
-
                 // Attempt to get the files
-                var fixSna = GetFixSnaFilePath(instDir);
-                var texturesCnt = GetTexturesCntFilePath(instDir);
+                var fixSna = GetFixSnaFilePath();
+                var texturesCnt = GetTexturesCntFilePath();
 
                 // Verify the files
                 if (!fixSna.FileExists || !texturesCnt.FileExists)
@@ -126,14 +131,14 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Private Static Methods
+        #region Public Methods
 
         /// <summary>
         /// Gets the fix.sna URL for the specified Rayman 2 translation
         /// </summary>
         /// <param name="translation">The translation to get the URL for</param>
         /// <returns>The URL for the specified translation</returns>
-        private static string GetFixSnaUrl(Rayman2Translation translation)
+        public string GetFixSnaUrl(Rayman2Translation translation)
         {
             switch (translation)
             {
@@ -162,7 +167,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="translation">The translation to get the URL for</param>
         /// <returns>The URL for the specified translation</returns>
-        private static string GetTexturesCntUrl(Rayman2Translation translation)
+        public string GetTexturesCntUrl(Rayman2Translation translation)
         {
             switch (translation)
             {
@@ -186,28 +191,22 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        #endregion
-
-        #region Public Static Methods
-
         /// <summary>
         /// Gets the file path for the textures.cnt file
         /// </summary>
-        /// <param name="installDir">The game install directory</param>
         /// <returns>The file path</returns>
-        public static FileSystemPath GetTexturesCntFilePath(FileSystemPath installDir)
+        public FileSystemPath GetTexturesCntFilePath()
         {
-            return installDir + "Data" + "Textures.cnt";
+            return GameInfo.InstallDirectory + "Data" + "Textures.cnt";
         }
 
         /// <summary>
         /// Gets the file path for the fix.sna file
         /// </summary>
-        /// <param name="installDir">The game install directory</param>
         /// <returns>The file path</returns>
-        public static FileSystemPath GetFixSnaFilePath(FileSystemPath installDir)
+        public FileSystemPath GetFixSnaFilePath()
         {
-            return installDir + "Data" + "World" + "Levels" + "Fix.sna";
+            return GameInfo.InstallDirectory + "Data" + "World" + "Levels" + "Fix.sna";
         }
 
         /// <summary>
@@ -215,7 +214,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="path">The textures file path</param>
         /// <returns>The version or null if not found</returns>
-        public static Rayman2Translation? GetTexturesVersion(FileSystemPath path)
+        public Rayman2Translation? GetTexturesVersion(FileSystemPath path)
         {
             if (!path.FileExists)
                 return null;
@@ -248,16 +247,13 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the currently applied Rayman 2 translation
         /// </summary>
-        /// <param name="fixSnaFilePath">The path of the fix.sna file</param>
         /// <returns>The applied translation or null in case of error or unknown version</returns>
-        public static Rayman2Translation? GetAppliedRayman2Translation(FileSystemPath fixSnaFilePath)
+        public Rayman2Translation? GetAppliedRayman2Translation()
         {
-            // TODO: Use this method when checking for applied utilities
-
             try
             {
                 // Get the checksum
-                var hash = fixSnaFilePath.GetSHA256CheckSum();
+                var hash = GetFixSnaFilePath().GetSHA256CheckSum();
 
                 switch (hash)
                 {

@@ -38,6 +38,11 @@
         /// <summary>
         /// Version 1.12 - 2
         /// </summary>
-        Ray_1_12_2
+        Ray_1_12_2,
+
+        /// <summary>
+        /// Version 1.10
+        /// </summary>
+        Ray_1_10
     }
 }

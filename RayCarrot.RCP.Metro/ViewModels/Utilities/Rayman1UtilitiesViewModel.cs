@@ -22,22 +22,7 @@ namespace RayCarrot.RCP.Metro
         public Rayman1UtilitiesViewModel()
         {
             // Create the commands
-            InstallTPLSCommand = new AsyncRelayCommand(InstallTPLSAsync);
-            StartTPLSCommand = new RelayCommand(StartTPLS);
-            StopTPLSCommand = new RelayCommand(StopTPLS);
-            UninstallTPLSCommand = new AsyncRelayCommand(UninstallTPLSAsync);
             ReplaceSoundtrackCommand = new AsyncRelayCommand(ReplaceSoundtrackAsync);
-
-            // Check if TPLS is installed under the default location
-            if (CommonPaths.TPLSDir.DirectoryExists)
-            {
-                if (Data.TPLSData == null)
-                    Data.TPLSData = new TPLSData(CommonPaths.TPLSDir);
-            }
-            else
-            {
-                Data.TPLSData = null;
-            }
 
             // Attempt to find the Rayman Forever music directory
             var dir = GetMusicDirectory();
@@ -75,101 +60,11 @@ namespace RayCarrot.RCP.Metro
 
         #region Commands
 
-        public ICommand InstallTPLSCommand { get; }
-
-        public ICommand StartTPLSCommand { get; }
-
-        public ICommand StopTPLSCommand { get; }
-
-        public ICommand UninstallTPLSCommand { get; }
-
         public ICommand ReplaceSoundtrackCommand { get; }
 
         #endregion
 
         #region Public Methods
-
-        /// <summary>
-        /// Installs TPLS
-        /// </summary>
-        public async Task InstallTPLSAsync()
-        {
-            // Verify the install directory
-            if (!await VerifyInstallDirAsync(Games.Rayman1.GetInfo().InstallDirectory))
-                return;
-
-            try
-            {
-                RCFCore.Logger?.LogInformationSource($"The TPLS utility is downloading...");
-
-                // Check if the directory exists
-                if (CommonPaths.TPLSDir.DirectoryExists)
-                    // Delete the directory
-                    RCFRCP.File.DeleteDirectory(CommonPaths.TPLSDir);
-
-                // Download the files
-                if (!await App.DownloadAsync(new Uri[]
-                {
-                    new Uri(CommonUrls.R1_TPLS_Url), 
-                }, true, CommonPaths.TPLSDir))
-                {
-                    // If cancelled, delete the directory
-                    RCFRCP.File.DeleteDirectory(CommonPaths.TPLSDir);
-                    return;
-                }
-
-                // Save
-                RCFRCP.Data.TPLSData = new TPLSData(CommonPaths.TPLSDir);
-
-                RCFCore.Logger?.LogInformationSource($"The TPLS utility has been downloaded");
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Installing TPLS");
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSInstallationFailed, Resources.R1U_TPLSInstallationFailedHeader, MessageType.Error);
-            }
-        }
-
-        /// <summary>
-        /// Starts the TPLS service
-        /// </summary>
-        public void StartTPLS()
-        {
-            new TPLS().Start(null);
-        }
-
-        /// <summary>
-        /// Stops a running TPLS service
-        /// </summary>
-        public void StopTPLS()
-        {
-            TPLS.StopCurrent();
-        }
-
-        /// <summary>
-        /// Uninstalls TPLS
-        /// </summary>
-        public async Task UninstallTPLSAsync()
-        {
-            // Have user confirm uninstall
-            if (!await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSConfirmUninstall, Resources.R1U_TPLSConfirmUninstallHeader, MessageType.Question, true))
-                return;
-
-            try
-            {
-                RCFRCP.File.DeleteDirectory(RCFRCP.Data.TPLSData.InstallDir);
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSUninstallSuccess, Resources.R1U_TPLSUninstallSuccessHeader, MessageType.Success);
-
-                RCFRCP.Data.TPLSData = null;
-
-                RCFCore.Logger?.LogInformationSource($"The TPLS utility has been uninstalled");
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Uninstalling TPLS");
-                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.R1U_TPLSUninstallError, ex.Message), Resources.R1U_TPLSUninstallErrorHeader, MessageType.Error);
-            }
-        }
 
         /// <summary>
         /// Replaces the current soundtrack
@@ -195,32 +90,6 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Replacing R1 soundtrack");
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_CompleteOSTReplaceError, MessageType.Error);
             }
-        }
-
-        #endregion
-
-        #region Private Static Methods
-
-        /// <summary>
-        /// Verifies the specified install directory for a valid Rayman installation
-        /// </summary>
-        /// <param name="dir">The directory</param>
-        /// <returns>True if it is valid, false if not</returns>
-        private static async Task<bool> VerifyInstallDirAsync(FileSystemPath dir)
-        {
-            var files = new FileSystemPath[]
-            {
-                dir + "RAYMAN.EXE",
-                dir + "VIGNET.DAT",
-            };
-
-            if (!files.FilesExist() || !Directory.Exists(dir + "PCMAP"))
-            {
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSInvalidDirectory, Resources.R1U_TPLSInvalidDirectoryHeader, MessageType.Error);
-                return false;
-            }
-
-            return true;
         }
 
         #endregion

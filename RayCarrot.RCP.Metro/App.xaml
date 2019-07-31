@@ -16,6 +16,7 @@
 
                 <!-- Local -->
 
+                <ResourceDictionary Source="Styles/UnifiedMargins.xaml" />
                 <ResourceDictionary Source="Styles/TextStyles.xaml" />
                 <ResourceDictionary Source="Styles/ContentStyles.xaml" />
                 <ResourceDictionary Source="Styles/LinkItemStyles - List.xaml" />

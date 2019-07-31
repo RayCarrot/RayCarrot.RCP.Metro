@@ -1,0 +1,147 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.R1TPLSUtilityUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Interactions="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:wpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+             mc:Ignorable="d"
+             d:DesignWidth="550" d:DataContext="{d:DesignInstance local:R1TPLSUtilityViewModel}">
+    <StackPanel>
+        <Interactions:Interaction.Behaviors>
+            <wpf:UnifiedMarginBehavior Margin="{StaticResource UtilitiesMargin}" />
+        </Interactions:Interaction.Behaviors>
+
+        <Button Content="{Resx R1U_TPLSInstall}"
+                Command="{Binding Path=InstallTPLSCommand}"
+                HorizontalAlignment="Left"
+                Visibility="{Binding Path=Data.TPLSData, Converter={wpf:ObjectNullToVisibilityConverter}}" />
+
+        <Button Content="{Resx R1U_TPLSUninstall}"
+                Command="{Binding Path=UninstallTPLSCommand}"
+                HorizontalAlignment="Left"
+                Visibility="{Binding Path=Data.TPLSData, Converter={wpf:InvertedObjectNullToVisibilityConverter}}" />
+
+        <mah:ToggleSwitch IsChecked="{Binding Path=Data.TPLSData.IsEnabled}"
+                          Visibility="{Binding Path=Data.TPLSData, Converter={wpf:InvertedObjectNullToVisibilityConverter}}"
+                          HorizontalAlignment="Left"
+                          OnLabel="{Resx R1U_TPLSEnabled}"
+                          OffLabel="{Resx R1U_TPLSDisabled}" />
+
+        <Grid Visibility="{Binding Path=Data.TPLSData, Converter={wpf:InvertedObjectNullToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" MinWidth="110" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Padding" Value="0 0 10 0" />
+                </Style>
+            </Grid.Resources>
+
+            <Interactions:Interaction.Behaviors>
+                <wpf:UnifiedMarginBehavior Margin="0 8" />
+            </Interactions:Interaction.Behaviors>
+
+            <TextBlock Grid.Column="0"
+                       Grid.Row="0"
+                       Text="{Resx R1U_TPLSRaymanVersion}" />
+
+            <ComboBox Grid.Column="1"
+                      Grid.Row="0"
+                      SelectedIndex="{Binding Path=Data.TPLSData.RaymanVersion, Converter={local:TPLSRaymanVersionEnumToComboBoxIndexConverter}}">
+
+                <TextBlock Text="{Resx R1U_TPLS_RayVersions_Auto}" />
+                <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_00}" />
+                <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_10}" />
+                <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_12}" />
+                <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_12_1}" />
+                <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_12_2}" />
+                <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_20}" />
+                <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_21}" />
+
+            </ComboBox>
+
+            <TextBlock Grid.Column="0"
+                       Grid.Row="1"
+                       Text="{Resx R1U_TPLSDosBoxVersion }" />
+
+            <ComboBox Grid.Column="1"
+                      Grid.Row="1"
+                      SelectedIndex="{Binding Path=Data.TPLSData.DosBoxVersion, Converter={wpf:EnumToIntConverter}}">
+                <TextBlock Text="{Resx R1U_TPLS_DosBoxVersions_0_74}" />
+                <TextBlock Text="{Resx R1U_TPLS_DosBoxVersions_SVN_Daum}" />
+            </ComboBox>
+
+            <Button Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    wpf:UserLevelTag.MinUserLevel="Debug"
+                    Command="{Binding Path=StartTPLSCommand}"
+                    IsEnabled="{Binding Source={x:Static local:TPLS.Data}, Path=IsRunning, Converter={wpf:InvertedBooleanConverter}}"
+                    Content="Start independently"
+                    ToolTip="This starts the utility independently of the game, searching for any currently running games"
+                    HorizontalAlignment="Left" />
+
+            <Button Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    wpf:UserLevelTag.MinUserLevel="Debug"
+                    Command="{Binding Path=StopTPLSCommand}"
+                    IsEnabled="{Binding Source={x:Static local:TPLS.Data}, Path=IsRunning}"
+                    Content="Stop TPLS"
+                    HorizontalAlignment="Left" />
+
+        </Grid>
+
+        <Grid wpf:UnifiedMargin.Ignored="True"
+              wpf:UserLevelTag.MinUserLevel="Debug">
+            <ItemsControl DataContext="{x:Static local:TPLS.Data}"
+                          Visibility="{Binding Path=IsRunning, Converter={wpf:BooleanToVisibilityConverter}}"
+                          Grid.IsSharedSizeScope="True"
+                          Margin="0 8">
+
+                <local:DuoGridItem Header="World"
+                                   Text="{Binding Path=World}" />
+
+                <local:DuoGridItem Header="Level"
+                                   Text="{Binding Path=Level}" />
+
+                <local:DuoGridItem Header="BossEvent"
+                                   Text="{Binding Path=BossEvent}" />
+
+                <local:DuoGridItem Header="InLevel"
+                                   Text="{Binding Path=InLevel}" />
+
+                <local:DuoGridItem Header="Music"
+                                   Text="{Binding Path=Music}" />
+
+                <local:DuoGridItem Header="OptionsOff"
+                                   Text="{Binding Path=OptionsOff}" />
+
+                <local:DuoGridItem Header="OptionsOn"
+                                   Text="{Binding Path=OptionsOn}" />
+
+                <local:DuoGridItem Header="XAxis"
+                                   Text="{Binding Path=XAxis}" />
+
+                <local:DuoGridItem Header="YAxis"
+                                   Text="{Binding Path=YAxis}" />
+
+            </ItemsControl>
+        </Grid>
+
+    </StackPanel>
+</UserControl>

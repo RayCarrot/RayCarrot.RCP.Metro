@@ -4,8 +4,10 @@
 • The game language can now be changed for Rayman, Rayman Designer, Rayman by his Fans and Rayman 60 Levels
 • Locating DOSBox games will now work even if they do not have a valid batch file
 • Rayman Fiesta Run Preload Edition is now supported. If multiple versions of Rayman Fiesta Run are installed, the default one to launch can now be selected.
+• Added support for version 1.10 in the PlayStation soundtrack utility for Rayman 1
 
 Other changes:
+• Added Snagglebee to the credits for the PlayStation Soundtrack utility
 • Updated the purchase link for Rayman Fiesta Run to the Preload edition
 • Backups for Rayman Fiesta Run are now differentiated between the available versions
 • The applied Rayman 2 translation will now be shown in the Rayman 2 utilities

@@ -190,10 +190,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Utilities\Rayman2Utilities.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\UserControls\Utilities\RaymanDesignerUtilities.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -218,9 +214,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\UnifiedMargins.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\Rayman 1\TPLS\R1TPLSUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\Rayman 2\Translations\R2TranslationUtilityUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Utilities\UtilitiesContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AppNewsDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -288,6 +300,18 @@
     <Compile Include="Temp\TempDirectory.cs" />
     <Compile Include="Temp\TempFile.cs" />
     <Compile Include="Temp\TempFileSystemEntry.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\R1TPLSUtility.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\R1TPLSUtilityUI.xaml.cs">
+      <DependentUpon>R1TPLSUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Rayman 1\TPLS\R1TPLSUtilityViewModel.cs" />
+    <Compile Include="Utilities\Rayman 2\Translations\R2TranslationUtility.cs" />
+    <Compile Include="Utilities\Rayman 2\Translations\R2TranslationUtilityUI.xaml.cs">
+      <DependentUpon>R2TranslationUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\UtilitiesContainer.xaml.cs">
+      <DependentUpon>UtilitiesContainer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Cheats\Base\BaseCheatCodeItemViewModel.cs" />
     <Compile Include="ViewModels\Cheats\GenericCheatCodeItemViewModel.cs" />
     <Compile Include="ViewModels\LinkItemViewModel.cs" />
@@ -313,11 +337,8 @@
     <Compile Include="Controls\UserControls\Utilities\RaymanOriginsUtilities.xaml.cs">
       <DependentUpon>RaymanOriginsUtilities.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserControls\Utilities\Rayman2Utilities.xaml.cs">
-      <DependentUpon>Rayman2Utilities.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\Utilities\RaymanOriginsUtilitiesViewModel.cs" />
-    <Compile Include="ViewModels\Utilities\Rayman2UtilitiesViewModel.cs" />
+    <Compile Include="Utilities\Rayman 2\Translations\R2TranslationUtilityViewModel.cs" />
     <Compile Include="Controls\UserControls\Utilities\RaymanDesignerUtilities.xaml.cs">
       <DependentUpon>RaymanDesignerUtilities.xaml</DependentUpon>
     </Compile>
@@ -327,24 +348,24 @@
     <Compile Include="ViewModels\Utilities\RaymanDesignerUtilitiesViewModel.cs" />
     <Compile Include="Helpers\CommonUrls.cs" />
     <Compile Include="ViewModels\Utilities\Rayman1UtilitiesViewModel.cs" />
-    <Compile Include="TPLS\Enums\TPLSDOSBoxVersion.cs" />
-    <Compile Include="TPLS\Enums\TPLSRaymanVersion.cs" />
-    <Compile Include="TPLS\Exceptions\SoundtrackUnplaybaleException.cs" />
-    <Compile Include="TPLS\FileResolver.cs" />
-    <Compile Include="TPLS\Music\DelayFadeOutSampleProvider.cs" />
-    <Compile Include="TPLS\Music\LoopStream.cs" />
-    <Compile Include="TPLS\Music\VolumeMixer.cs" />
-    <Compile Include="TPLS\Player.cs" />
-    <Compile Include="TPLS\SoundtrackList.cs" />
-    <Compile Include="TPLS\SoundtrackPlayer\BGM.cs" />
-    <Compile Include="TPLS\SoundtrackPlayer\Midi.cs" />
-    <Compile Include="TPLS\SoundtrackPlayer\PositionedBGM.cs" />
-    <Compile Include="TPLS\SoundtrackPlayer\SoundtrackPlayer.cs" />
-    <Compile Include="TPLS\TPLS.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Enums\TPLSDOSBoxVersion.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Enums\TPLSRaymanVersion.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Exceptions\SoundtrackUnplaybaleException.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\FileResolver.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Music\DelayFadeOutSampleProvider.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Music\LoopStream.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Music\VolumeMixer.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Player.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\SoundtrackList.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\SoundtrackPlayer\BGM.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\SoundtrackPlayer\Midi.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\SoundtrackPlayer\PositionedBGM.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\SoundtrackPlayer\SoundtrackPlayer.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\TPLS.cs" />
     <Compile Include="DataModels\Enums\DownloadState.cs" />
     <Compile Include="Extensions\TPLSRaymanVersionExtensions.cs" />
     <Compile Include="DataModels\TPLSDataViewModel.cs" />
-    <Compile Include="TPLS\Watchdog.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Watchdog.cs" />
     <Compile Include="DataModels\ValueEventArgs.cs" />
     <Compile Include="Legacy\Extensions\LegacyTPLSDOSBoxVersionExtensions.cs" />
     <Compile Include="Legacy\Extensions\LegacyTPLSRaymanVersionExtensions.cs" />

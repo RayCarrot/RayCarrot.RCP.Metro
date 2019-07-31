@@ -1136,7 +1136,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Deploy the admin worker
-                if (overwrite || !CommonPaths.UninstallFilePath.FileExists)
+                if (overwrite || !CommonPaths.AdminWorkerPath.FileExists)
                 {
                     Directory.CreateDirectory(CommonPaths.AdminWorkerPath.Parent);
                     File.WriteAllBytes(CommonPaths.AdminWorkerPath, Files.AdminWorker);

@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.R2TranslationUtilityUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Interactions="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:wpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+             mc:Ignorable="d"
+             d:DesignWidth="550" d:DataContext="{d:DesignInstance local:R2TranslationUtilityViewModel}">
+    <StackPanel>
+        <Interactions:Interaction.Behaviors>
+            <wpf:UnifiedMarginBehavior Margin="{StaticResource UtilitiesMargin}" />
+        </Interactions:Interaction.Behaviors>
+
+        <ComboBox SelectedIndex="{Binding Path=SelectedTranslation, Converter={wpf:EnumToIntConverter}}"
+                  HorizontalAlignment="Left"
+                  MinWidth="110">
+            <TextBlock Text="{Resx R2U_Translations_Original}" />
+            <TextBlock Text="{Resx R2U_Translations_Irish}" />
+            <TextBlock Text="{Resx R2U_Translations_Swedish}" />
+            <TextBlock Text="{Resx R2U_Translations_Portuguese}" />
+            <TextBlock Text="{Resx R2U_Translations_Slovak}" />
+        </ComboBox>
+
+        <TextBlock Text="{Resx R2U_Translations_IrishInfo}"
+                   Visibility="{Binding Path=SelectedTranslation, Converter={wpf:EnumVisibilityConverter}, ConverterParameter=Irish}"
+                   TextWrapping="WrapWithOverflow" />
+
+        <TextBlock Text="{Resx R2U_Translations_SwedishInfo}"
+                       Visibility="{Binding Path=SelectedTranslation, Converter={wpf:EnumVisibilityConverter}, ConverterParameter=Swedish}"
+                       TextWrapping="WrapWithOverflow" />
+
+        <TextBlock Text="{Resx R2U_Translations_PortugueseInfo}"
+                   Visibility="{Binding Path=SelectedTranslation, Converter={wpf:EnumVisibilityConverter}, ConverterParameter=Portuguese}"
+                   TextWrapping="WrapWithOverflow" />
+
+        <TextBlock Text="{Resx R2U_Translations_SlovakInfo}"
+                   Visibility="{Binding Path=SelectedTranslation, Converter={wpf:EnumVisibilityConverter}, ConverterParameter=Slovak}"
+                   TextWrapping="WrapWithOverflow" />
+
+        <Button Content="{Resx R2U_Apply}"
+                HorizontalAlignment="Left"
+                Command="{Binding Path=ApplyTranslationCommand}"/>
+
+    </StackPanel>
+</UserControl>
