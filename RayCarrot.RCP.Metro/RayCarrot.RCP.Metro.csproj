@@ -182,21 +182,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Utilities\RaymanLegendsUtilities.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\UserControls\Utilities\RaymanOriginsUtilities.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Utilities\RaymanDesignerUtilities.xaml">
+    <Page Include="Utilities\Rayman Designer\CreateConfig\RDCreateConfigUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\UserControls\Utilities\Rayman1Utilities.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Installer\GameInstaller.xaml">
       <SubType>Designer</SubType>
@@ -222,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Utilities\Rayman 1\TPLS\R1TPLSUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -229,6 +225,14 @@
     <Page Include="Utilities\Rayman 2\Translations\R2TranslationUtilityUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Utilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Utilities\UtilitiesContainer.xaml">
       <SubType>Designer</SubType>
@@ -300,6 +304,11 @@
     <Compile Include="Temp\TempDirectory.cs" />
     <Compile Include="Temp\TempFile.cs" />
     <Compile Include="Temp\TempFileSystemEntry.cs" />
+    <Compile Include="Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtility.cs" />
+    <Compile Include="Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityUI.xaml.cs">
+      <DependentUpon>R1CompleteSoundtrackUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityViewModel.cs" />
     <Compile Include="Utilities\Rayman 1\TPLS\R1TPLSUtility.cs" />
     <Compile Include="Utilities\Rayman 1\TPLS\R1TPLSUtilityUI.xaml.cs">
       <DependentUpon>R1TPLSUtilityUI.xaml</DependentUpon>
@@ -309,6 +318,21 @@
     <Compile Include="Utilities\Rayman 2\Translations\R2TranslationUtilityUI.xaml.cs">
       <DependentUpon>R2TranslationUtilityUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Rayman Designer\CreateConfig\RDCreateConfigUtility.cs" />
+    <Compile Include="Utilities\Rayman Designer\CreateConfig\RDCreateConfigUtilityUI.xaml.cs">
+      <DependentUpon>RDCreateConfigUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Rayman Designer\CreateConfig\RDCreateConfigUtilityViewModel.cs" />
+    <Compile Include="Utilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtility.cs" />
+    <Compile Include="Utilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityUI.xaml.cs">
+      <DependentUpon>RDReplaceFilesUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityViewModel.cs" />
+    <Compile Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtility.cs" />
+    <Compile Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtilityUI.xaml.cs">
+      <DependentUpon>RLUbiRayUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtilityViewModel.cs" />
     <Compile Include="Utilities\UtilitiesContainer.xaml.cs">
       <DependentUpon>UtilitiesContainer.xaml</DependentUpon>
     </Compile>
@@ -330,24 +354,12 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="ViewModels\Pages\AboutPageViewModel.cs" />
-    <Compile Include="Controls\UserControls\Utilities\RaymanLegendsUtilities.xaml.cs">
-      <DependentUpon>RaymanLegendsUtilities.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\Utilities\RaymanLegendsUtilitiesViewModel.cs" />
     <Compile Include="Controls\UserControls\Utilities\RaymanOriginsUtilities.xaml.cs">
       <DependentUpon>RaymanOriginsUtilities.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Utilities\RaymanOriginsUtilitiesViewModel.cs" />
     <Compile Include="Utilities\Rayman 2\Translations\R2TranslationUtilityViewModel.cs" />
-    <Compile Include="Controls\UserControls\Utilities\RaymanDesignerUtilities.xaml.cs">
-      <DependentUpon>RaymanDesignerUtilities.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UserControls\Utilities\Rayman1Utilities.xaml.cs">
-      <DependentUpon>Rayman1Utilities.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\Utilities\RaymanDesignerUtilitiesViewModel.cs" />
     <Compile Include="Helpers\CommonUrls.cs" />
-    <Compile Include="ViewModels\Utilities\Rayman1UtilitiesViewModel.cs" />
     <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Enums\TPLSDOSBoxVersion.cs" />
     <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Enums\TPLSRaymanVersion.cs" />
     <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Exceptions\SoundtrackUnplaybaleException.cs" />
@@ -735,7 +747,7 @@
       <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
-      <Version>1.0.1</Version>
+      <Version>1.0.2</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.UI">
       <Version>1.0.2</Version>

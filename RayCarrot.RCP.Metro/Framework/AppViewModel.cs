@@ -59,6 +59,40 @@ namespace RayCarrot.RCP.Metro
             SaveUserDataAsyncLock = new AsyncLock();
             MoveBackupsAsyncLock = new AsyncLock();
             AdminWorkerAsyncLock = new AsyncLock();
+
+            LocalUtilities = new Dictionary<Games, Type[]>()
+            {
+                {
+                    Games.Rayman1,
+                    new Type[]
+                    {
+                        typeof(R1TPLSUtility),
+                        typeof(R1CompleteSoundtrackUtility),
+                    }
+                },
+                {
+                    Games.Rayman2,
+                    new Type[]
+                    {
+                        typeof(R2TranslationUtility),
+                    }
+                },
+                {
+                    Games.RaymanDesigner,
+                    new Type[]
+                    {
+                        typeof(RDReplaceFilesUtility),
+                        typeof(RDCreateConfigUtility),
+                    }
+                },
+                {
+                    Games.RaymanLegends,
+                    new Type[]
+                    {
+                        typeof(RLUbiRayUtility),
+                    }
+                },
+            };
         }
 
         #endregion
@@ -92,6 +126,11 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// The available local utilities
+        /// </summary>
+        public Dictionary<Games, Type[]> LocalUtilities { get; }
 
         /// <summary>
         /// The currently selected page
@@ -228,6 +267,16 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Methods
+
+        /// <summary>
+        /// Gets new instances of utilities for a specific game
+        /// </summary>
+        /// <param name="game">The game to get the utilities for</param>
+        /// <returns>The utilities instances</returns>
+        public IEnumerable<IRCPUtility> GetUtilities(Games game)
+        {
+            return LocalUtilities[game].Select(x => x.CreateInstance<IRCPUtility>()).Where(x => x.IsAvailable);
+        }
 
         /// <summary>
         /// Fires the <see cref="RefreshRequired"/> event
@@ -1081,6 +1130,16 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        // TODO: Use this ad option when utility requires admin
+        /// <summary>
+        /// Restarts the Rayman Control Panel as administrator
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task RestartAsAdminAsync()
+        {
+            await RunAdminWorkerAsync(AdminWorkerModes.RestartAsAdmin, Process.GetCurrentProcess().Id.ToString());
+        }
+
         /// <summary>
         /// Runs the admin worker
         /// </summary>
@@ -1209,6 +1268,11 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Grants full control to the specified file
         /// </summary>
-        GrantFullControl
+        GrantFullControl,
+
+        /// <summary>
+        /// Restarts the Rayman Control Panel as administrator
+        /// </summary>
+        RestartAsAdmin
     }
 }

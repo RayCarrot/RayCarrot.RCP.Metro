@@ -707,47 +707,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Gets the utilities content for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the utilities content for</param>
-        /// <returns>The utilities content</returns>
-        public static FrameworkElement GetUtilitiesContent(this Games game)
-        {
-            switch (game)
-            {
-                case Games.Rayman1:
-                    return new Rayman1Utilities();
-
-                case Games.RaymanDesigner:
-                    return new RaymanDesignerUtilities();
-
-                case Games.Rayman2:
-                    return null;
-
-                case Games.Rayman3:
-                    return AppViewModel.WindowsVersion < WindowsVersion.Win8 ? null : new Rayman3Utilities();
-
-                case Games.RaymanOrigins:
-                    return new RaymanOriginsUtilities();
-
-                case Games.RaymanLegends:
-                    return new RaymanLegendsUtilities();
-
-                case Games.RaymanByHisFans:
-                case Games.Rayman60Levels:
-                case Games.RaymanM:
-                case Games.RaymanArena:
-                case Games.RaymanRavingRabbids:
-                case Games.RaymanJungleRun:
-                case Games.RaymanFiestaRun:
-                    return null;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(game), game, null);
-            }
-        }
-
-        /// <summary>
         /// Gets the game package for a Windows Store game
         /// </summary>
         /// <param name="game">The game to get the package for</param>
@@ -1223,12 +1182,7 @@ namespace RayCarrot.RCP.Metro
         {
             var output = new List<string>();
 
-            if (game == Games.Rayman1)
-            {
-                if (Rayman1UtilitiesViewModel.GetIsOriginalSoundtrack(Rayman1UtilitiesViewModel.GetMusicDirectory()) == false)
-                    output.Add(Resources.R1U_CompleteOSTHeader);
-            }
-            else if (game == Games.Rayman2)
+            if (game == Games.Rayman2)
             {
                 if (await Rayman2ConfigViewModel.GetIsWidescreenHackAppliedAsync() == true)
                     output.Add(Resources.Config_WidescreenSupport);

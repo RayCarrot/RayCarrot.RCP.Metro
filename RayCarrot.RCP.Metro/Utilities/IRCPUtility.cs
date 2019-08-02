@@ -31,12 +31,6 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public interface IRCPUtility
     {
-        // TODO: Show in UI (debug only)
-        /// <summary>
-        /// The utility ID
-        /// </summary>
-        string ID { get; }
-
         /// <summary>
         /// The header for the utility. This property is retrieved again when the current culture is changed.
         /// </summary>
@@ -68,7 +62,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         bool RequiresAdmin { get; }
 
-        // TODO: Show in UI
         /// <summary>
         /// Indicates if the utility is available to the user
         /// </summary>
@@ -85,11 +78,6 @@ namespace RayCarrot.RCP.Metro
         /// Any additional developers to credit for the utility
         /// </summary>
         string AdditionalDevelopers { get; }
-
-        /// <summary>
-        /// The game which the utility was made for
-        /// </summary>
-        Games Game { get; }
 
         /// <summary>
         /// Retrieves a list of applied utilities from this utility

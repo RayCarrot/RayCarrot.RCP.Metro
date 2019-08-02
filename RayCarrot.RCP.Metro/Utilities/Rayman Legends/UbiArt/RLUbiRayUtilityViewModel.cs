@@ -1,27 +1,28 @@
-﻿using System;
+﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
+using RayCarrot.UI;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.IO;
-using RayCarrot.UI;
+using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// The view model for the Rayman Legends utilities
+    /// View model for the Rayman Legends UbiRay utility
     /// </summary>
-    public class RaymanLegendsUtilitiesViewModel : BaseRCPViewModel
+    public class RLUbiRayUtilityViewModel : BaseRCPViewModel
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public RaymanLegendsUtilitiesViewModel()
+        public RLUbiRayUtilityViewModel()
         {
             ApplyUbiRayCommand = new AsyncRelayCommand(ApplyUbiRayAsync);
 

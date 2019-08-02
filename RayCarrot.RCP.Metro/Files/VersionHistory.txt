@@ -7,6 +7,7 @@
 • Added support for version 1.10 in the PlayStation soundtrack utility for Rayman 1
 
 Other changes:
+• Utilities are now modular, making plugins possible (contact me if you want to create a plugin-utility!)
 • Added Snagglebee to the credits for the PlayStation Soundtrack utility
 • Updated the purchase link for Rayman Fiesta Run to the Preload edition
 • Backups for Rayman Fiesta Run are now differentiated between the available versions

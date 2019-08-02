@@ -4,18 +4,18 @@ using System.Windows;
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// The Rayman 2 translation utility
+    /// The Rayman 1 complete soundtrack utility
     /// </summary>
-    public class R2TranslationUtility : IRCPUtility
+    public class R1CompleteSoundtrackUtility : IRCPUtility
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public R2TranslationUtility()
+        public R1CompleteSoundtrackUtility()
         {
-            ViewModel = new R2TranslationUtilityViewModel();
+            ViewModel = new R1CompleteSoundtrackUtilityViewModel();
         }
 
         #endregion
@@ -25,12 +25,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The header for the utility. This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string DisplayHeader => Resources.R2U_TranslationsHeader;
+        public string DisplayHeader => Resources.R1U_CompleteOSTHeader;
 
         /// <summary>
         /// The utility information text (optional). This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string InfoText => Resources.R2U_TranslationsInfo;
+        public string InfoText => Resources.R1U_CompleteOSTInfo;
 
         /// <summary>
         /// The utility warning text (optional). This property is retrieved again when the current culture is changed.
@@ -45,7 +45,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The utility UI content
         /// </summary>
-        public UIElement UIContent => new R2TranslationUtilityUI()
+        public UIElement UIContent => new R1CompleteSoundtrackUtilityUI()
         {
             DataContext = ViewModel
         };
@@ -53,12 +53,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility requires administration privileges
         /// </summary>
-        public bool RequiresAdmin => !RCFRCP.File.CheckFileWriteAccess(ViewModel.GetFixSnaFilePath());
+        public bool RequiresAdmin => !RCFRCP.File.CheckDirectoryWriteAccess(ViewModel.MusicDir);
 
         /// <summary>
         /// Indicates if the utility is available to the user
         /// </summary>
-        public bool IsAvailable => ViewModel.GameInfo.InstallDirectory.DirectoryExists && ViewModel.GetFixSnaFilePath().FileExists && ViewModel.GetTexturesCntFilePath().FileExists;
+        public bool IsAvailable => ViewModel.CanMusicBeReplaced;
 
         /// <summary>
         /// The developers of the utility
@@ -68,7 +68,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Any additional developers to credit for the utility
         /// </summary>
-        public string AdditionalDevelopers => "PluMGMK, Haruka Tavares, MixerX";
+        public string AdditionalDevelopers => null;
 
         /// <summary>
         /// Retrieves a list of applied utilities from this utility
@@ -76,10 +76,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The applied utilities</returns>
         public IEnumerable<string> GetAppliedUtilities()
         {
-            var translation = ViewModel.GetAppliedRayman2Translation();
-
-            if (translation != R2TranslationUtilityViewModel.Rayman2Translation.Original && translation != null)
-                yield return Resources.R2U_TranslationsHeader;
+            if (ViewModel.GetIsOriginalSoundtrack() == false)
+                yield return Resources.R1U_CompleteOSTHeader;
         }
 
         #endregion
@@ -89,7 +87,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The view model
         /// </summary>
-        public R2TranslationUtilityViewModel ViewModel { get; }
+        public R1CompleteSoundtrackUtilityViewModel ViewModel { get; }
 
         #endregion
     }

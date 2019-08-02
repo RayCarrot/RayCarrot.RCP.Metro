@@ -16,7 +16,6 @@
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -48,10 +47,8 @@
 
         </Grid>
 
-        <Separator Grid.Row="1" />
-
         <metro:MetroAnimatedTabControl x:Name="ContentTabControl"
-                                       Grid.Row="2"
+                                       Grid.Row="1"
                                        metro:TabControlHelper.Transition="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}">
 
             <metro:MetroAnimatedTabControl.Resources>
@@ -298,7 +295,14 @@
                               IconKind="BriefcaseOutline"
                               Header="{Resx GameOptions_Utilities}"
                               Visibility="{Binding Path=HasUtilities, Converter={rwpf:BooleanToVisibilityConverter}}">
-                <ContentPresenter Content="{Binding Path=UtilitiesContent}" />
+                <ScrollViewer Padding="5">
+                    <i:Interaction.Behaviors>
+                        <rwpf:FocusScrollViewerOnLoad />
+                    </i:Interaction.Behaviors>
+
+                    <local:UtilitiesContainer Utilities="{Binding Path=Utilities, Mode=OneTime}"/>
+
+                </ScrollViewer>
             </local:RCPTabItem>
 
         </metro:MetroAnimatedTabControl>

@@ -23,11 +23,6 @@ namespace RayCarrot.RCP.Metro
         #region Interface Members
 
         /// <summary>
-        /// The utility ID
-        /// </summary>
-        public string ID => "b3b0b04b-21b6-44a9-b397-1e9f627fd62b";
-
-        /// <summary>
         /// The header for the utility. This property is retrieved again when the current culture is changed.
         /// </summary>
         public string DisplayHeader => Resources.R1U_TPLSHeader;
@@ -74,11 +69,6 @@ namespace RayCarrot.RCP.Metro
         /// Any additional developers to credit for the utility
         /// </summary>
         public string AdditionalDevelopers => null;
-
-        /// <summary>
-        /// The game which the utility was made for
-        /// </summary>
-        public Games Game => Games.Rayman1;
 
         /// <summary>
         /// Retrieves a list of applied utilities from this utility

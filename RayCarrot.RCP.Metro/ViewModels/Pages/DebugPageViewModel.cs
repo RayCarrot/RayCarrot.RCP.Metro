@@ -54,13 +54,6 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Properties
 
-        // TODO: Remove
-        public IEnumerable<IRCPUtility> TestUtilities => new List<IRCPUtility>()
-        {
-             new R2TranslationUtility(),
-             new R1TPLSUtility()
-        };
-
         /// <summary>
         /// The selected dialog type
         /// </summary>

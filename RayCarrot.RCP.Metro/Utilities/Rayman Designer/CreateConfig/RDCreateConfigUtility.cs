@@ -4,18 +4,18 @@ using System.Windows;
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// The Rayman 2 translation utility
+    /// The Rayman Designer create config utility
     /// </summary>
-    public class R2TranslationUtility : IRCPUtility
+    public class RDCreateConfigUtility : IRCPUtility
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public R2TranslationUtility()
+        public RDCreateConfigUtility()
         {
-            ViewModel = new R2TranslationUtilityViewModel();
+            ViewModel = new RDCreateConfigUtilityViewModel();
         }
 
         #endregion
@@ -25,12 +25,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The header for the utility. This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string DisplayHeader => Resources.R2U_TranslationsHeader;
+        public string DisplayHeader => Resources.RDU_CreateConfigHeader;
 
         /// <summary>
         /// The utility information text (optional). This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string InfoText => Resources.R2U_TranslationsInfo;
+        public string InfoText => Resources.RDU_CreateConfigInfo;
 
         /// <summary>
         /// The utility warning text (optional). This property is retrieved again when the current culture is changed.
@@ -40,12 +40,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility requires additional files to be downloaded remotely
         /// </summary>
-        public bool RequiresAdditionalFiles => true;
+        public bool RequiresAdditionalFiles => false;
 
         /// <summary>
         /// The utility UI content
         /// </summary>
-        public UIElement UIContent => new R2TranslationUtilityUI()
+        public UIElement UIContent => new RDCreateConfigUtilityUI()
         {
             DataContext = ViewModel
         };
@@ -53,12 +53,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility requires administration privileges
         /// </summary>
-        public bool RequiresAdmin => !RCFRCP.File.CheckFileWriteAccess(ViewModel.GetFixSnaFilePath());
+        public bool RequiresAdmin => ViewModel.ConfigPath.FileExists && !RCFRCP.File.CheckFileWriteAccess(ViewModel.ConfigPath);
 
         /// <summary>
         /// Indicates if the utility is available to the user
         /// </summary>
-        public bool IsAvailable => ViewModel.GameInfo.InstallDirectory.DirectoryExists && ViewModel.GetFixSnaFilePath().FileExists && ViewModel.GetTexturesCntFilePath().FileExists;
+        public bool IsAvailable => Games.RaymanDesigner.GetInfo().InstallDirectory.DirectoryExists;
 
         /// <summary>
         /// The developers of the utility
@@ -68,7 +68,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Any additional developers to credit for the utility
         /// </summary>
-        public string AdditionalDevelopers => "PluMGMK, Haruka Tavares, MixerX";
+        public string AdditionalDevelopers => null;
 
         /// <summary>
         /// Retrieves a list of applied utilities from this utility
@@ -76,10 +76,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The applied utilities</returns>
         public IEnumerable<string> GetAppliedUtilities()
         {
-            var translation = ViewModel.GetAppliedRayman2Translation();
-
-            if (translation != R2TranslationUtilityViewModel.Rayman2Translation.Original && translation != null)
-                yield return Resources.R2U_TranslationsHeader;
+            // Due to the changes not being able to be reverted this is not considered an applied utility
+            return new string[0];
         }
 
         #endregion
@@ -89,7 +87,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The view model
         /// </summary>
-        public R2TranslationUtilityViewModel ViewModel { get; }
+        public RDCreateConfigUtilityViewModel ViewModel { get; }
 
         #endregion
     }
