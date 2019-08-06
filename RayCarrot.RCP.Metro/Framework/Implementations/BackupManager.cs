@@ -135,6 +135,9 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
+                    // Create the parent directory
+                    Directory.CreateDirectory(destinationFile.Parent);
+
                     // Create the compressed file
                     using (var fileStream = File.OpenWrite(destinationFile))
                     {

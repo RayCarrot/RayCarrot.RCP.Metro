@@ -19,7 +19,7 @@
                    VerticalAlignment="Center">
 
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="0 0 8 0" />
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
             </i:Interaction.Behaviors>
 
             <!-- Win32 -->

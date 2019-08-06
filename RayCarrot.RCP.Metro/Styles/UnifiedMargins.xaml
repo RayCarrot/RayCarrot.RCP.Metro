@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
 
-    <Thickness x:Key="UtilitiesMargin">0 8</Thickness>
-    
+    <Thickness x:Key="DefaultVerticalStackMargin">0 8</Thickness>
+
+    <Thickness x:Key="DefaultHorizontalStackMargin">0 0 8 0</Thickness>
+
 </ResourceDictionary>

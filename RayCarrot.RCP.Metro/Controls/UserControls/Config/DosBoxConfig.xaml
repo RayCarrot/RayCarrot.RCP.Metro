@@ -24,7 +24,7 @@
                       Padding="5">
             <StackPanel>
                 <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 8" />
+                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                 </i:Interaction.Behaviors>
 
                 <!-- Mount path -->
@@ -149,7 +149,7 @@
                     </Grid.Resources>
 
                     <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="0 8" />
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
                     <TextBlock Grid.Column="0"

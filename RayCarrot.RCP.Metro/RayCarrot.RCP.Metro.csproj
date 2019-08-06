@@ -178,11 +178,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\UserControls\Utilities\Rayman3Utilities.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\UserControls\Utilities\RaymanOriginsUtilities.xaml">
+    <Page Include="Utilities\Rayman 3\DirectPlay\R3DirectPlayUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -231,6 +227,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\Rayman Origins\DebugCommands\RODebugCommandsUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\Rayman Origins\HQVideos\ROHQVideosUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\Rayman Origins\Update\ROUpdateUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -295,9 +303,6 @@
     <Compile Include="Controls\UserControls\Pages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserControls\Utilities\Rayman3Utilities.xaml.cs">
-      <DependentUpon>Rayman3Utilities.xaml</DependentUpon>
-    </Compile>
     <Compile Include="DataModels\Enums\LinkItemStyles.cs" />
     <Compile Include="DataModels\Enums\CheatCodeItemsType.cs" />
     <Compile Include="Utilities\IRCPUtility.cs" />
@@ -318,6 +323,11 @@
     <Compile Include="Utilities\Rayman 2\Translations\R2TranslationUtilityUI.xaml.cs">
       <DependentUpon>R2TranslationUtilityUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Rayman 3\DirectPlay\R3DirectPlayUtility.cs" />
+    <Compile Include="Utilities\Rayman 3\DirectPlay\R3DirectPlayUtilityUI.xaml.cs">
+      <DependentUpon>R3DirectPlayUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Rayman 3\DirectPlay\R3DirectPlayUtilityViewModel.cs" />
     <Compile Include="Utilities\Rayman Designer\CreateConfig\RDCreateConfigUtility.cs" />
     <Compile Include="Utilities\Rayman Designer\CreateConfig\RDCreateConfigUtilityUI.xaml.cs">
       <DependentUpon>RDCreateConfigUtilityUI.xaml</DependentUpon>
@@ -333,6 +343,22 @@
       <DependentUpon>RLUbiRayUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtilityViewModel.cs" />
+    <Compile Include="Utilities\Rayman Origins\DebugCommands\RODebugCommandsUtility.cs" />
+    <Compile Include="Utilities\Rayman Origins\DebugCommands\RODebugCommandsUtilityUI.xaml.cs">
+      <DependentUpon>RODebugCommandsUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Rayman Origins\DebugCommands\RODebugCommandsUtilityViewModel.cs" />
+    <Compile Include="Utilities\Rayman Origins\HQVideos\ROHQVideosUtility.cs" />
+    <Compile Include="Utilities\Rayman Origins\HQVideos\ROHQVideosUtilityUI.xaml.cs">
+      <DependentUpon>ROHQVideosUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Rayman Origins\HQVideos\ROHQVideosUtilityViewModel.cs" />
+    <Compile Include="Utilities\Rayman Origins\Update\ROUpdateUtility.cs" />
+    <Compile Include="Utilities\Rayman Origins\Update\ROUpdateUtilityUI.xaml.cs">
+      <DependentUpon>ROUpdateUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Rayman Origins\Update\ROUpdateUtilityViewModel.cs" />
+    <Compile Include="Utilities\RCPUtilityViewModel.cs" />
     <Compile Include="Utilities\UtilitiesContainer.xaml.cs">
       <DependentUpon>UtilitiesContainer.xaml</DependentUpon>
     </Compile>
@@ -342,7 +368,6 @@
     <Compile Include="DataModels\LinkItemCollection.cs" />
     <Compile Include="ViewModels\Pages\LinksPageViewModel.cs" />
     <Compile Include="ViewModels\Cheats\Rayman1CheatCodeItemViewModel.cs" />
-    <Compile Include="ViewModels\Utilities\Rayman3UtilitiesViewModel.cs" />
     <Compile Include="Converters\BooleanToTransitionTypeConverter.cs" />
     <Compile Include="Converters\BooleanToFluidMoveDurationConverter.cs" />
     <Compile Include="DataModels\DosBoxAutoConfigData.cs" />
@@ -354,10 +379,6 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="ViewModels\Pages\AboutPageViewModel.cs" />
-    <Compile Include="Controls\UserControls\Utilities\RaymanOriginsUtilities.xaml.cs">
-      <DependentUpon>RaymanOriginsUtilities.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\Utilities\RaymanOriginsUtilitiesViewModel.cs" />
     <Compile Include="Utilities\Rayman 2\Translations\R2TranslationUtilityViewModel.cs" />
     <Compile Include="Helpers\CommonUrls.cs" />
     <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Enums\TPLSDOSBoxVersion.cs" />

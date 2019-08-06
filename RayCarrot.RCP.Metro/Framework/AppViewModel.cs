@@ -7,6 +7,7 @@ using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using ByteSizeLib;
 using IniParser;
 using IniParser.Model;
@@ -60,6 +61,8 @@ namespace RayCarrot.RCP.Metro
             MoveBackupsAsyncLock = new AsyncLock();
             AdminWorkerAsyncLock = new AsyncLock();
 
+            RestartAsAdminCommand = new AsyncRelayCommand(RestartAsAdminAsync);
+
             LocalUtilities = new Dictionary<Games, Type[]>()
             {
                 {
@@ -71,6 +74,14 @@ namespace RayCarrot.RCP.Metro
                     }
                 },
                 {
+                    Games.RaymanDesigner,
+                    new Type[]
+                    {
+                        typeof(RDReplaceFilesUtility),
+                        typeof(RDCreateConfigUtility),
+                    }
+                },
+                {
                     Games.Rayman2,
                     new Type[]
                     {
@@ -78,11 +89,19 @@ namespace RayCarrot.RCP.Metro
                     }
                 },
                 {
-                    Games.RaymanDesigner,
+                    Games.Rayman3,
                     new Type[]
                     {
-                        typeof(RDReplaceFilesUtility),
-                        typeof(RDCreateConfigUtility),
+                        typeof(R3DirectPlayUtility),
+                    }
+                },
+                {
+                    Games.RaymanOrigins,
+                    new Type[]
+                    {
+                        typeof(ROHQVideosUtility),
+                        typeof(RODebugCommandsUtility),
+                        typeof(ROUpdateUtility),
                     }
                 },
                 {
@@ -94,6 +113,12 @@ namespace RayCarrot.RCP.Metro
                 },
             };
         }
+
+        #endregion
+
+        #region Commands
+
+        public ICommand RestartAsAdminCommand { get; }
 
         #endregion
 
@@ -275,7 +300,16 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The utilities instances</returns>
         public IEnumerable<IRCPUtility> GetUtilities(Games game)
         {
-            return LocalUtilities[game].Select(x => x.CreateInstance<IRCPUtility>()).Where(x => x.IsAvailable);
+            var utilities = LocalUtilities.TryGetValue(game);
+
+            if (utilities == null)
+                return new IRCPUtility[0]; 
+
+            return utilities.
+                // Create a new instance of each utility
+                Select(x => x.CreateInstance<IRCPUtility>()).
+                // Make sure it's available
+                Where(x => x.IsAvailable);
         }
 
         /// <summary>
@@ -1130,7 +1164,6 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        // TODO: Use this ad option when utility requires admin
         /// <summary>
         /// Restarts the Rayman Control Panel as administrator
         /// </summary>

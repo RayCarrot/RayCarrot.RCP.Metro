@@ -18,9 +18,9 @@
             <rwpf:FocusScrollViewerOnLoad />
         </i:Interaction.Behaviors>
 
-        <StackPanel>
+        <StackPanel Margin="2 0">
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="2 5" />
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
             </i:Interaction.Behaviors>
 
             <!-- User Level -->
@@ -40,7 +40,7 @@
 
                 <StackPanel>
                     <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
                     <!-- User Levels -->
@@ -48,7 +48,7 @@
                     <WrapPanel>
 
                         <i:Interaction.Behaviors>
-                            <rwpf:UnifiedMarginBehavior Margin="0 0 8 0" />
+                            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
                         </i:Interaction.Behaviors>
 
                         <!-- Normal -->
@@ -94,7 +94,7 @@
 
                 <StackPanel>
                     <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
                     <ComboBox DataContext="{Binding Path=Data}"
@@ -138,7 +138,7 @@
 
                 <StackPanel>
                     <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
                     <metro:ToggleSwitch IsChecked="{Binding Path=DarkMode}"
@@ -182,7 +182,7 @@
 
                 <StackPanel>
                     <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
                     <StackPanel>
@@ -233,7 +233,7 @@
 
                 <StackPanel>
                     <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
                     <CheckBox Content="{Resx Settings_StartupGameFinder}"
@@ -258,7 +258,7 @@
 
                 <StackPanel>
                     <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
                     <CheckBox Content="{Resx Settings_GeneralCloseOnLaunch}"
@@ -301,7 +301,7 @@
 
                 <StackPanel>
                     <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="2 8" />
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
                     <StackPanel>

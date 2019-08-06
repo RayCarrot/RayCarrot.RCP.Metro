@@ -8,16 +8,16 @@ using RayCarrot.Extensions;
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// View model for the Rayman 3 utilities
+    /// View model for the Rayman 3 Direct Play utility
     /// </summary>
-    public class Rayman3UtilitiesViewModel : BaseRCPViewModel
+    public class R3DirectPlayUtilityViewModel : BaseRCPViewModel
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public Rayman3UtilitiesViewModel()
+        public R3DirectPlayUtilityViewModel()
         {
             IsLoadingDirectPlay = true;
 
@@ -50,11 +50,6 @@ namespace RayCarrot.RCP.Metro
                 Task.Run(() => SetDirectPlayState(value));
             }
         }
-
-        /// <summary>
-        /// Indicates if the DirectPlay state can be modified
-        /// </summary>
-        public bool CanModifyDirectPlay { get; set; }
 
         /// <summary>
         /// Indicates if the DirectPlay status is loading
@@ -95,15 +90,12 @@ namespace RayCarrot.RCP.Metro
         {
             if (!App.IsRunningAsAdmin)
             {
-                CanModifyDirectPlay = false;
                 IsLoadingDirectPlay = false;
                 return;
             }
 
             try
             {
-                CanModifyDirectPlay = true;
-
                 var result = PowerShell.Create().RunAndDispose(x =>
                     x.AddCommand("Get-WindowsOptionalFeature").
                         AddParameter("-Online").
@@ -119,7 +111,6 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Getting DirectPlay info");
-                CanModifyDirectPlay = false;
                 IsLoadingDirectPlay = false;
             }
         }

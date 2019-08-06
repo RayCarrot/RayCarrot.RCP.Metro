@@ -1,22 +1,21 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// The Rayman Legends UbiRay utility
+    /// The Rayman Origins update utility
     /// </summary>
-    public class RLUbiRayUtility : IRCPUtility
+    public class ROUpdateUtility : IRCPUtility
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public RLUbiRayUtility()
+        public ROUpdateUtility()
         {
-            ViewModel = new RLUbiRayUtilityViewModel();
+            ViewModel = new ROUpdateUtilityViewModel();
         }
 
         #endregion
@@ -26,27 +25,27 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The header for the utility. This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string DisplayHeader => Resources.RLU_UbiRayHeader;
+        public string DisplayHeader => Resources.ROU_UpdateHeader;
 
         /// <summary>
         /// The utility information text (optional). This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string InfoText => Resources.RLU_UbiRayInfo;
+        public string InfoText => Resources.ROU_UpdateInfo;
 
         /// <summary>
         /// The utility warning text (optional). This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string WarningText => Resources.RLU_UbiRayWarning;
+        public string WarningText => null;
 
         /// <summary>
         /// Indicates if the utility requires additional files to be downloaded remotely
         /// </summary>
-        public bool RequiresAdditionalFiles => false;
+        public bool RequiresAdditionalFiles => true;
 
         /// <summary>
         /// The utility UI content
         /// </summary>
-        public UIElement UIContent => new RLUbiRayUtilityUI()
+        public UIElement UIContent => new ROUpdateUtilityUI()
         {
             DataContext = ViewModel
         };
@@ -59,7 +58,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility is available to the user
         /// </summary>
-        public bool IsAvailable => ViewModel.AvailableSaveFiles.Any();
+        public bool IsAvailable => true;
 
         /// <summary>
         /// Retrieves a list of applied utilities from this utility
@@ -67,7 +66,6 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The applied utilities</returns>
         public IEnumerable<string> GetAppliedUtilities()
         {
-            // Due to the changes not being able to be reverted this is not considered an applied utility
             return new string[0];
         }
 
@@ -78,7 +76,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The view model
         /// </summary>
-        public RLUbiRayUtilityViewModel ViewModel { get; }
+        public ROUpdateUtilityViewModel ViewModel { get; }
 
         #endregion
     }

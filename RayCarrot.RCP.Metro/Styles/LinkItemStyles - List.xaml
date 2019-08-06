@@ -9,7 +9,11 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <StackPanel>
+                    <StackPanel Visibility="{Binding Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
+
+                        <Separator x:Name="ItemSeparator"
+                                   Margin="0 7"/>
+
                         <ItemsControl ItemsSource="{Binding}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="{x:Type local:LinkItemViewModel}">
@@ -50,9 +54,14 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
 
-                        <Separator Visibility="{Binding Converter={rwpf:EnumerableEmptyVisibilityConverter}}" />
-
                     </StackPanel>
+
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">
+                            <Setter Property="Visibility" TargetName="ItemSeparator" Value="Collapsed"/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+
                 </DataTemplate>
             </Setter.Value>
         </Setter>

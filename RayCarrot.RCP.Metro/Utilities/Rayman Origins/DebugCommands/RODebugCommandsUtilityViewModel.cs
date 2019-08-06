@@ -1,36 +1,32 @@
-﻿using System;
+﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
+using RayCarrot.UI;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ByteSizeLib;
-using Microsoft.WindowsAPICodePack.Shell;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
-using RayCarrot.IO;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// View model for the Rayman Origins utilities
+    /// View model for the Rayman Origins debug commands utility
     /// </summary>
-    public class RaymanOriginsUtilitiesViewModel : BaseRCPViewModel
+    public class RODebugCommandsUtilityViewModel : BaseRCPViewModel
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public RaymanOriginsUtilitiesViewModel()
+        public RODebugCommandsUtilityViewModel()
         {
-            // Create the commands
-            ReplaceVideosCommand = new AsyncRelayCommand(ReplaceVideosAsync);
-            UpdateDiscVersionCommand = new AsyncRelayCommand(UpdateDiscVersionAsync);
-
             // Create properties
             UpdateDebugCommandsAsyncLock = new AsyncLock();
             DebugCommands = new Dictionary<string, string>();
@@ -38,25 +34,6 @@ namespace RayCarrot.RCP.Metro
 
             // Get the Rayman Origins install directory
             var instDir = Games.RaymanOrigins.GetInfo().InstallDirectory;
-
-            // Attempt to find the Rayman Origins video directory
-            var dir = GetVideosDirectory(instDir);
-
-            // Set to music path if found
-            VideoDir = dir.DirectoryExists && (dir + "intro.bik").FileExists ? dir : FileSystemPath.EmptyPath;
-
-            // Indicate if music can be replaces
-            CanVideosBeReplaced = VideoDir.DirectoryExists;
-
-            if (CanVideosBeReplaced)
-            {
-                var result = GetIsOriginalVideos(VideoDir);
-
-                if (result == null)
-                    CanVideosBeReplaced = false;
-                else
-                    IsOriginalVideos = result.Value;
-            }
 
             DebugCommandFilePath = GetDebugCommandFilePath(instDir);
 
@@ -86,7 +63,6 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError($"Reading RO command file");
             }
-
         }
 
         #endregion
@@ -123,21 +99,6 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Properties
-
-        /// <summary>
-        /// The Rayman Origins video directory
-        /// </summary>
-        public FileSystemPath VideoDir { get; }
-
-        /// <summary>
-        /// Indicates if the Rayman Origins videos can be replaced
-        /// </summary>
-        public bool CanVideosBeReplaced { get; set; }
-
-        /// <summary>
-        /// Indicates if the current video files are the original ones
-        /// </summary>
-        public bool IsOriginalVideos { get; set; }
 
         /// <summary>
         /// The Rayman Origins debug command file path
@@ -292,68 +253,16 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Commands
-
-        public ICommand ReplaceVideosCommand { get; }
-
-        public ICommand UpdateDiscVersionCommand { get; }
-
-        #endregion
-
         #region Public Methods
 
         /// <summary>
-        /// Replaces the current videos
+        /// Gets the debug command file path
         /// </summary>
-        /// <returns>The task</returns>
-        public async Task ReplaceVideosAsync()
+        /// <param name="installDir">The game install directory</param>
+        /// <returns>The file path</returns>
+        public FileSystemPath GetDebugCommandFilePath(FileSystemPath installDir)
         {
-            try
-            {
-                RCFCore.Logger?.LogInformationSource($"The Rayman Origins videos are being replaced with {(IsOriginalVideos ? "HQ Videos" : "original videos")}");
-
-                // Download the files
-                var succeeded = await App.DownloadAsync(new Uri[]
-                {
-                    new Uri(IsOriginalVideos ? CommonUrls.RO_HQVideos_URL : CommonUrls.RO_OriginalVideos_URL), 
-                }, true, VideoDir);
-
-                if (succeeded)
-                    IsOriginalVideos ^= true;
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Replacing RO videos");
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.ROU_HQVideosFailed, MessageType.Error);
-            }
-        }
-
-        /// <summary>
-        /// Updates the disc version to the latest version (1.02)
-        /// </summary>
-        /// <returns>The task</returns>
-        public async Task UpdateDiscVersionAsync()
-        {
-            try
-            {
-                RCFCore.Logger?.LogInformationSource($"The Rayman Origins disc updater is being downloaded...");
-
-                // Download the file
-                var succeeded = await App.DownloadAsync(new Uri[]
-                {
-                    new Uri(CommonUrls.RO_Updater_URL)
-                }, true, KnownFolders.Downloads.Path);
-
-                if (succeeded)
-                    (await RCFRCP.File.LaunchFileAsync(Path.Combine(KnownFolders.Downloads.Path, "RaymanOriginspc_1.02.exe")))?.Dispose();
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Downloading RO updater");
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.ROU_UpdateFailed, MessageType.Error);
-            }
-
-
+            return installDir + "cmdline.txt";
         }
 
         /// <summary>
@@ -398,55 +307,6 @@ namespace RayCarrot.RCP.Metro
                     await RCFUI.MessageUI.DisplayMessageAsync(Resources.ROU_DebugCommandsError, MessageType.Error);
                 }
             }
-        }
-
-        #endregion
-
-        #region Public Static Methods
-
-        /// <summary>
-        /// Gets the videos directory
-        /// </summary>
-        /// <param name="installDir">The game install directory</param>
-        /// <returns>The directory path</returns>
-        public static FileSystemPath GetVideosDirectory(FileSystemPath installDir)
-        {
-            return installDir + "GameData";
-        }
-
-        /// <summary>
-        /// Gets a value indicating if the original videos are available in the specified path
-        /// </summary>
-        /// <param name="path">The video directory</param>
-        /// <returns>True if the original videos are available, false if not. Null if an error occurred while checking.</returns>
-        public static bool? GetIsOriginalVideos(FileSystemPath path)
-        {
-            try
-            {
-                var file = path + "intro.bik";
-
-                if (!path.FileExists)
-                    return null;
-
-                var size = file.GetSize();
-
-                return size == new ByteSize(59748732);
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Getting RO video size");
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Gets the debug command file path
-        /// </summary>
-        /// <param name="installDir">The game install directory</param>
-        /// <returns>The file path</returns>
-        public static FileSystemPath GetDebugCommandFilePath(FileSystemPath installDir)
-        {
-            return installDir + "cmdline.txt";
         }
 
         #endregion

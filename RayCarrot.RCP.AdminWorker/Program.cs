@@ -61,7 +61,7 @@ namespace RayCarrot.RCP.AdminWorker
 
                     return;
                 }
-
+                
                 // Get the path
                 var path = p.MainModule?.FileName;
 
@@ -75,15 +75,24 @@ namespace RayCarrot.RCP.AdminWorker
 
                 try
                 {
-                    // Close the main window
+                    // Close the app
                     p.CloseMainWindow();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred while exiting the process.{Environment.NewLine}{Environment.NewLine}Error message: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                    return;
+                }
+
+                try
+                {
                     // Wait a maximum of 20 seconds for exit
                     p.WaitForExit(20000);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"An error occurred while exiting the process.{Environment.NewLine}{Environment.NewLine}Error message: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"An error occurred while waiting to exit the process.{Environment.NewLine}{Environment.NewLine}Error message: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     return;
                 }

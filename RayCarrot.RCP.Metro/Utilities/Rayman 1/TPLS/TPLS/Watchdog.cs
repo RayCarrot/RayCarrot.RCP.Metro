@@ -176,7 +176,6 @@ namespace RayCarrot.RCP.Metro
                     // Get the process handle using P/Invoke
                     ProcessHandle = OpenProcess(PROCESS_WM_READ, false, Process.Id);
                     
-                    // TODO: Allow DOSBox ECE
                     if (!ReadProcessMemory((int)ProcessHandle, DOSBoxVersion == TPLSDOSBoxVersion.DOSBox_0_74 ? 0x74B6B0 : DOSBoxVersion == TPLSDOSBoxVersion.DOSBox_SVN_Daum ? 0x8B5B84 : throw new IndexOutOfRangeException(), baseBuffer, 4, ref bytesRead))
                         throw new Win32Exception();
 

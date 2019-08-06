@@ -40,7 +40,7 @@ namespace RayCarrot.RCP.Metro
 
             CanChangeLaunchMode = GameInfo.GameType == GameType.Win32 || GameInfo.GameType == GameType.DosBox;
 
-            Utilities = App.GetUtilities(Game).ToArray();
+            Utilities = App.GetUtilities(Game).Select(x => new RCPUtilityViewModel(x)).ToArray();
             ConfigContent = game.GetConfigContent();
 
             // TODO: Move out of here
@@ -173,7 +173,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The utilities for the game
         /// </summary>
-        public IRCPUtility[] Utilities { get; }
+        public RCPUtilityViewModel[] Utilities { get; }
 
         /// <summary>
         /// Indicates if the game has utilities content

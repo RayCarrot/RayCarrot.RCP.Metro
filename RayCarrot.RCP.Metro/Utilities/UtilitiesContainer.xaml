@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -17,32 +18,75 @@
             <DataTemplate>
                 <StackPanel>
                     <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="0 8" />
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
+
+                    <Separator x:Name="ItemSeparator"/>
 
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="{Binding Path=DisplayHeader, Mode=OneTime}" />
+                                   Text="{Binding Path=DisplayHeader}" />
 
                         <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}"
                                         Text="{Resx Utility_AdditionalFilesRequired}"
-                                        Visibility="{Binding Path=RequiresAdditionalFiles, Converter={rwpf:BooleanToVisibilityConverter}, Mode=OneTime}"/>
+                                        Visibility="{Binding Path=Utility.RequiresAdditionalFiles, Converter={rwpf:BooleanToVisibilityConverter}, Mode=OneTime}"/>
 
-                        <local:InfoIcon Text="{Binding Path=InfoText, Mode=OneTime}"
+                        <local:InfoIcon Text="{Binding Path=InfoText}"
                                         Visibility="{Binding Path=InfoText, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"/>
 
                         <local:InfoIcon IconKind="InformationOutline"
                                         Foreground="Red"
-                                        Text="{Binding Path=WarningText, Mode=OneTime}"
+                                        Text="{Binding Path=WarningText}"
                                         Visibility="{Binding Path=WarningText, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}" />
 
                     </StackPanel>
 
-                    <ContentPresenter Content="{Binding Path=UIContent, Mode=OneTime}" />
+                    <ContentControl>
+                        <ContentControl.Style>
+                            <Style TargetType="{x:Type ContentControl}">
+                                <Setter Property="Content" Value="{Binding Path=Utility.UIContent, Mode=OneTime}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=RequiresAdmin}" Value="True">
+                                        <Setter Property="Content">
+                                            <Setter.Value>
 
-                    <Separator />
+                                                <StackPanel HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center">
+                                                    <StackPanel Orientation="Horizontal">
+
+                                                        <iconPacks:PackIconMaterial Kind="Security"
+                                                                                    Margin="0 0 10 0" />
+
+                                                        <TextBlock Foreground="Red"
+                                                                   Text="{Resx Utilities_RequiresAdmin}"
+                                                                   TextWrapping="Wrap" />
+
+                                                    </StackPanel>
+
+                                                    <Button HorizontalAlignment="Center"
+                                                            Margin="0 10 0 0"
+                                                            Content="{Resx App_RestartAsAdmin}"
+                                                            Command="{Binding Path=RestartAsAdminCommand, Mode=OneTime, Source={x:Static local:RCFRCP.App}}"/>
+
+                                                </StackPanel>
+
+                                            </Setter.Value>
+                                        </Setter>
+
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentControl.Style>
+                    </ContentControl>
 
                 </StackPanel>
+
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">
+                        <Setter Property="Visibility" TargetName="ItemSeparator" Value="Collapsed"/>
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+
             </DataTemplate>
         </ItemsControl.ItemTemplate>
 

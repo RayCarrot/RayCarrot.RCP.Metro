@@ -50,7 +50,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public static FileSystemPath UninstallFilePath => InstallTempPath + "Uninstaller.exe";
 
-        // TODO: Create this like uninstaller
         /// <summary>
         /// The admin worker file path
         /// </summary>

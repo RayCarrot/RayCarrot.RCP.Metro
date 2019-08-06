@@ -61,16 +61,6 @@ namespace RayCarrot.RCP.Metro
         public bool IsAvailable => ViewModel.CanMusicBeReplaced;
 
         /// <summary>
-        /// The developers of the utility
-        /// </summary>
-        public string Developers => "RayCarrot";
-
-        /// <summary>
-        /// Any additional developers to credit for the utility
-        /// </summary>
-        public string AdditionalDevelopers => null;
-
-        /// <summary>
         /// Retrieves a list of applied utilities from this utility
         /// </summary>
         /// <returns>The applied utilities</returns>

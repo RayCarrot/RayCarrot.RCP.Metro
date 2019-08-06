@@ -1,22 +1,22 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
+using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// The Rayman Legends UbiRay utility
+    /// The Rayman 3 Direct Play utility
     /// </summary>
-    public class RLUbiRayUtility : IRCPUtility
+    public class R3DirectPlayUtility : IRCPUtility
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public RLUbiRayUtility()
+        public R3DirectPlayUtility()
         {
-            ViewModel = new RLUbiRayUtilityViewModel();
+            ViewModel = new R3DirectPlayUtilityViewModel();
         }
 
         #endregion
@@ -26,17 +26,17 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The header for the utility. This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string DisplayHeader => Resources.RLU_UbiRayHeader;
+        public string DisplayHeader => Resources.R3U_DirectPlayHeader;
 
         /// <summary>
         /// The utility information text (optional). This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string InfoText => Resources.RLU_UbiRayInfo;
+        public string InfoText => Resources.R3U_DirectPlayInfo;
 
         /// <summary>
         /// The utility warning text (optional). This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string WarningText => Resources.RLU_UbiRayWarning;
+        public string WarningText => null;
 
         /// <summary>
         /// Indicates if the utility requires additional files to be downloaded remotely
@@ -46,7 +46,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The utility UI content
         /// </summary>
-        public UIElement UIContent => new RLUbiRayUtilityUI()
+        public UIElement UIContent => new R3DirectPlayUtilityUI()
         {
             DataContext = ViewModel
         };
@@ -54,12 +54,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility requires administration privileges
         /// </summary>
-        public bool RequiresAdmin => false;
+        public bool RequiresAdmin => true;
 
         /// <summary>
         /// Indicates if the utility is available to the user
         /// </summary>
-        public bool IsAvailable => ViewModel.AvailableSaveFiles.Any();
+        public bool IsAvailable => AppViewModel.WindowsVersion >= WindowsVersion.Win8;
 
         /// <summary>
         /// Retrieves a list of applied utilities from this utility
@@ -67,7 +67,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The applied utilities</returns>
         public IEnumerable<string> GetAppliedUtilities()
         {
-            // Due to the changes not being able to be reverted this is not considered an applied utility
+            // Due to this being a common Windows setting it is not marked as an applied utility
             return new string[0];
         }
 
@@ -78,7 +78,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The view model
         /// </summary>
-        public RLUbiRayUtilityViewModel ViewModel { get; }
+        public R3DirectPlayUtilityViewModel ViewModel { get; }
 
         #endregion
     }

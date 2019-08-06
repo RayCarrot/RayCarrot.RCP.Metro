@@ -61,16 +61,6 @@ namespace RayCarrot.RCP.Metro
         public bool IsAvailable => ViewModel.GameInfo.InstallDirectory.DirectoryExists && ViewModel.GetFixSnaFilePath().FileExists && ViewModel.GetTexturesCntFilePath().FileExists;
 
         /// <summary>
-        /// The developers of the utility
-        /// </summary>
-        public string Developers => "RayCarrot";
-
-        /// <summary>
-        /// Any additional developers to credit for the utility
-        /// </summary>
-        public string AdditionalDevelopers => "PluMGMK, Haruka Tavares, MixerX";
-
-        /// <summary>
         /// Retrieves a list of applied utilities from this utility
         /// </summary>
         /// <returns>The applied utilities</returns>

@@ -1180,8 +1180,10 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The applied utilities</returns>
         public static async Task<string[]> GetAppliedUtilitiesAsync(this Games game)
         {
+            // Create the output
             var output = new List<string>();
 
+            // Get hard-coded utilities
             if (game == Games.Rayman2)
             {
                 if (await Rayman2ConfigViewModel.GetIsWidescreenHackAppliedAsync() == true)
@@ -1195,16 +1197,9 @@ namespace RayCarrot.RCP.Metro
                 if (dinput == Rayman2ConfigViewModel.R2Dinput.Mapping)
                     output.Add(Resources.Config_ButtonMapping);
             }
-            else if (game == Games.RaymanOrigins)
-            {
-                var instDir = game.GetInfo().InstallDirectory;
 
-                if (RaymanOriginsUtilitiesViewModel.GetDebugCommandFilePath(instDir).FileExists)
-                    output.Add(Resources.ROU_DebugCommandsHeader);
-
-                if (RaymanOriginsUtilitiesViewModel.GetIsOriginalVideos(RaymanOriginsUtilitiesViewModel.GetVideosDirectory(instDir)) == false)
-                    output.Add(Resources.ROU_HQVideosHeader);
-            }
+            // Get other utilities
+            output.AddRange(RCFRCP.App.GetUtilities(game).SelectMany(x => x.GetAppliedUtilities()));
 
             return output.ToArray();
         }

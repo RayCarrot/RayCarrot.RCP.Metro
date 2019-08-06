@@ -1,6 +1,4 @@
 ﻿--- Utilities ---
-- Separate utilities in code so they do not share the same view models. Abstract it by having methods which return a collection of utilities, all defined by an interface. Allow utilities to be loaded as plugins could be done using this through .dll files.
-
 - Rayman Legends debug commands (Uplay version only)
 
 - Add support for more utilities (R2 texture extract, .sna import/export etc.) - since these require additional executable due to a lack of public source code they will be downloaded to the Utilities folder from the server (similarly to TPLS).
@@ -14,8 +12,6 @@
 
 --- Configuration ---
 - Add the remaining fields to the Rayman 2 configuration and have pre-sets for DirectX/nGlide based on the GOG setup
-
-- Allow DOSBox games to change language by editing the .bat file (does not work for Rayman 1)
 
 
 --- User Interface ---
@@ -34,3 +30,5 @@
 - Move program over from .NET Framework to .NET Core 3.0 when it releases. Do the same for control libraries. There might still be .NET Framework dependencies from 3-party ones?
 
 - Remove the legacy converter (converts app data from 2.x to 3.x)
+
+- Remove localization duplicates

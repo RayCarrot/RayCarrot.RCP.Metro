@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -9,18 +11,45 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public partial class UtilitiesContainer : UserControl
     {
+        #region Constructor
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public UtilitiesContainer()
         {
             InitializeComponent();
             DataContextRoot.DataContext = this;
+            Loaded += UtilitiesContainer_Loaded;
         }
 
-        public IEnumerable<IRCPUtility> Utilities
+        #endregion
+
+        #region Event Handlers
+
+        private void UtilitiesContainer_Loaded(object sender, RoutedEventArgs e)
         {
-            get => (IEnumerable<IRCPUtility>)GetValue(UtilitiesProperty);
+            var win = Window.GetWindow(this);
+
+            if (win == null)
+                return;
+
+            win.Closing += (ss, ee) => Utilities.ForEach(x => x.Dispose());
+            Loaded -= UtilitiesContainer_Loaded;
+        }
+
+        #endregion
+
+        #region Dependency Properties
+
+        public IEnumerable<RCPUtilityViewModel> Utilities
+        {
+            get => (IEnumerable<RCPUtilityViewModel>)GetValue(UtilitiesProperty);
             set => SetValue(UtilitiesProperty, value);
         }
 
-        public static readonly DependencyProperty UtilitiesProperty = DependencyProperty.Register(nameof(Utilities), typeof(IEnumerable<IRCPUtility>), typeof(UtilitiesContainer), new PropertyMetadata(new IRCPUtility[0]));
+        public static readonly DependencyProperty UtilitiesProperty = DependencyProperty.Register(nameof(Utilities), typeof(IEnumerable<RCPUtilityViewModel>), typeof(UtilitiesContainer));
+
+        #endregion
     }
 }

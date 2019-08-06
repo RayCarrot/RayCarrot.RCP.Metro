@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="RayCarrot.RCP.Metro.RDCreateConfigUtilityUI"
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.R3DirectPlayUtilityUI"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,18 +6,26 @@
              xmlns:Interactions="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
              mc:Ignorable="d"
-             d:DesignWidth="550" d:DataContext="{d:DesignInstance local:RDCreateConfigUtilityViewModel}">
+             d:DesignWidth="550" d:DataContext="{d:DesignInstance local:R3DirectPlayUtilityViewModel}">
     <StackPanel>
         <Interactions:Interaction.Behaviors>
             <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
         </Interactions:Interaction.Behaviors>
 
-        <Button Content="{Resx RDU_CreateConfigCreate}"
-                Command="{Binding Path=CreateConfigCommand}"
-                HorizontalAlignment="Left"/>
+        <Grid>
+
+            <metro:ProgressRing Visibility="{Binding Path=IsLoadingDirectPlay, Converter={rwpf:BooleanToVisibilityConverter}}" />
+
+            <metro:ToggleSwitch IsChecked="{Binding Path=IsDirectPlayEnabled}"
+                                IsEnabled="{Binding Path=IsLoadingDirectPlay, Converter={rwpf:InvertedBooleanConverter}}"
+                                HorizontalAlignment="Left"
+                                OnLabel="{Resx R3U_DirectPlayEnabled}"
+                                OffLabel="{Resx R3U_DirectPlayDisabled}" />
+
+        </Grid>
 
     </StackPanel>
 </UserControl>
