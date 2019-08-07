@@ -206,8 +206,7 @@
 
                         </StackPanel>
 
-                        <Separator
-                            Visibility="{Binding Path=CanChangeLaunchMode, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                        <Separator Visibility="{Binding Path=CanChangeLaunchMode, Converter={rwpf:BooleanToVisibilityConverter}}" />
 
                         <WrapPanel Orientation="Horizontal">
 
@@ -219,30 +218,6 @@
                                     Content="{Resx GameOptions_Remove}" />
 
                         </WrapPanel>
-
-                        <Separator Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanRavingRabbids}" />
-
-                        <StackPanel Orientation="Horizontal"
-                                    Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanRavingRabbids}">
-
-                            <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                       Text="{Resx Config_SaveDataLocation}" />
-
-                            <local:InfoIcon Text="{Resx Config_SaveDataLocationInfo}" />
-
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal"
-                                    Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanRavingRabbids}">
-
-                            <RadioButton Content="{Resx Config_SaveDataLocationInstDir}"
-                                         IsChecked="{Binding Path=Data.RRRIsSaveDataInInstallDir}"
-                                         Margin="0 0 8 0" />
-
-                            <RadioButton Content="{Resx Config_SaveDataLocationAppData}"
-                                         IsChecked="{Binding Path=Data.RRRIsSaveDataInInstallDir, Converter={rwpf:InvertedBooleanConverter}}" />
-
-                        </StackPanel>
 
                         <Separator Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanFiestaRun}" />
 

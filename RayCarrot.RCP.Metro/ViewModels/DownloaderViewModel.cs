@@ -334,9 +334,9 @@ namespace RayCarrot.RCP.Metro
             // Reset the progress counter
             CurrentStep = 0;
 
-            using (LocalTempDir = new TempDirectory())
+            using (LocalTempDir = new TempDirectory(true))
             {
-                using (ServerTempDir = new TempDirectory())
+                using (ServerTempDir = new TempDirectory(true))
                 {
                     try
                     {

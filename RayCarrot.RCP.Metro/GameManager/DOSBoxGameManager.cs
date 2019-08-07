@@ -183,6 +183,21 @@ namespace RayCarrot.RCP.Metro
             return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, Game.GetDosBoxArguments(Info.InstallDirectory, options.MountPath, Game.GetLaunchName()));
         }
 
+        /// <summary>
+        /// Gets called as soon as the game is added for the first time
+        /// </summary>
+        /// <returns>The task</returns>
+        public override Task PostGameAddAsync()
+        {
+            // Create config file
+            new DosBoxAutoConfigManager(Game.GetDosBoxConfigFile()).Create();
+
+            if (!RCFRCP.Data.DosBoxGames.ContainsKey(Game))
+                RCFRCP.Data.DosBoxGames.Add(Game, new DosBoxOptions());
+
+            return Task.CompletedTask;
+        }
+
         #endregion
     }
 }

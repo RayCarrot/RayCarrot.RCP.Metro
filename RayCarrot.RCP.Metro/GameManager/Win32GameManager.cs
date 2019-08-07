@@ -80,6 +80,12 @@ namespace RayCarrot.RCP.Metro
             return (installDir + Game.GetLaunchName()).FileExists;
         }
 
+        /// <summary>
+        /// Gets the install directory for the game
+        /// </summary>
+        /// <returns>The install directory</returns>
+        public override FileSystemPath GetInstallDirectory() => FileSystemPath.EmptyPath;
+
         #endregion
     }
 }

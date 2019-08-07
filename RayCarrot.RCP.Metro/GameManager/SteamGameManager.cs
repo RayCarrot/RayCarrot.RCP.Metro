@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MahApps.Metro.IconPacks;
 using Microsoft.Win32;
 using RayCarrot.CarrotFramework.Abstractions;
@@ -89,6 +90,27 @@ namespace RayCarrot.RCP.Metro
         public override bool IsValid(FileSystemPath installDir)
         {
             return RCFWinReg.RegistryManager.KeyExists(RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {Game.GetSteamID()}"), RegistryView.Registry64);
+        }
+
+        /// <summary>
+        /// Gets the install directory for the game
+        /// </summary>
+        /// <returns>The install directory</returns>
+        public override FileSystemPath GetInstallDirectory()
+        {
+            try
+            {
+                // Get the key path
+                var keyPath = RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {Game.GetSteamID()}");
+
+                using (var key = RCFWinReg.RegistryManager.GetKeyFromFullPath(keyPath, RegistryView.Registry64))
+                    return key?.GetValue("InstallLocation") as string;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Getting Steam game install directory");
+                return FileSystemPath.EmptyPath;
+            }
         }
 
         #endregion

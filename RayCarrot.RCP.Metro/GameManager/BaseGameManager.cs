@@ -107,6 +107,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The items</returns>
         public virtual OverflowButtonItemViewModel[] GetAdditionalOverflowButtonItems() => new OverflowButtonItemViewModel[0];
 
+        /// <summary>
+        /// Gets called as soon as the game is added for the first time
+        /// </summary>
+        /// <returns>The task</returns>
+        public virtual Task PostGameAddAsync() => Task.CompletedTask;
+
         #endregion
 
         #region Protected Abstract Methods
@@ -178,6 +184,12 @@ namespace RayCarrot.RCP.Metro
         /// <param name="installDir">The game install directory, if any</param>
         /// <returns>True if the game is valid, otherwise false</returns>
         public abstract bool IsValid(FileSystemPath installDir);
+
+        /// <summary>
+        /// Gets the install directory for the game
+        /// </summary>
+        /// <returns>The install directory</returns>
+        public abstract FileSystemPath GetInstallDirectory();
 
         #endregion
 

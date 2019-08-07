@@ -12,6 +12,7 @@ Other changes:
 • Added Snagglebee to the credits for the PlayStation Soundtrack utility
 • Updated the purchase link for Rayman Fiesta Run to the Preload edition due to the previous ones being taken down from the store
 • Backups for Rayman Fiesta Run are now differentiated between the available versions to avoid errors on restore
+• Removed the option to change the backup location for Rayman Raving Rabbids
 • The applied Rayman 2 translation will now be shown in the Rayman 2 utilities
 • Minor improvements to the game installer & links page
 • Cancellations are now longer displayed as errors in the log

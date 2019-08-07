@@ -342,63 +342,22 @@ namespace RayCarrot.RCP.Metro
                 return;
             }
 
-            // TODO: Move to game manager
             // Get the install directory
             if (installDirectory == null)   
             {
-                if (type == GameType.Steam)
-                {
-                    try
-                    {
-                        // Get the key path
-                        var keyPath = RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {game.GetSteamID()}");
-
-                        using (var key = RCFWinReg.RegistryManager.GetKeyFromFullPath(keyPath, RegistryView.Registry64))
-                            installDirectory = key?.GetValue("InstallLocation") as string;
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.HandleError("Getting Steam game install directory");
-                    }
-                }
-                else if (type == GameType.WinStore)
-                {
-                    try
-                    {
-                        installDirectory = game.GetPackageInstallDirectory();
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.HandleError("Getting Windows Store game install directory");
-                    }
-                }
-                else
-                {
-                    RCFCore.Logger?.LogErrorSource($"The game {game} can not be added due to the install directory being null");
-                    return;
-                }
+                // Attempt to get path from game manager
+                installDirectory = game.GetGameManager(type).GetInstallDirectory();
 
                 RCFCore.Logger?.LogInformationSource($"The game {game} install directory was retrieved as {installDirectory}");
             }
 
-            // Default save data location based on version
-            if (game == Games.RaymanRavingRabbids)
-                Data.RRRIsSaveDataInInstallDir = type == GameType.Steam;
-
             // Add the game
-            Data.Games.Add(game, new GameInfo(type, installDirectory ?? FileSystemPath.EmptyPath));
-
-            // TODO: Add to game manager (postAdd)
-            // If it's a DosBox game, create the auto config file
-            if (type == GameType.DosBox)
-                // Create config file
-                new DosBoxAutoConfigManager(game.GetDosBoxConfigFile()).Create();
-
-            // If it's a DosBox game, add the DosBox options
-            if (type == GameType.DosBox && !Data.DosBoxGames.ContainsKey(game))
-                Data.DosBoxGames.Add(game, new DosBoxOptions());
+            Data.Games.Add(game, new GameInfo(type, installDirectory.Value));
 
             RCFCore.Logger?.LogInformationSource($"The game {game} has been added");
+
+            // Run post-add operations
+            await game.GetGameManager().PostGameAddAsync();
 
             // Refresh
             OnRefreshRequired(true);

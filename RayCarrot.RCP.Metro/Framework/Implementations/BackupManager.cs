@@ -48,7 +48,7 @@ namespace RayCarrot.RCP.Metro
             FileSystemPath destinationDir = game.GetBackupDir();
 
             // Use a temporary directory to store the files in case of error
-            using (var tempDir = new TempDirectory())
+            using (var tempDir = new TempDirectory(false))
             {
                 // Check if a backup already exists
                 if (destinationDir.DirectoryExists)
@@ -198,7 +198,37 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Get the backup information
-                    var backupInfo = game.GetBackupInfo();
+                    List<BackupDir> backupInfo = game.GetBackupInfo();
+
+                    // Group the items by ID
+                    var backupInfoByID = backupInfo.GroupBy(x => x.ID).ToList();
+
+                    // Clear the list
+                    backupInfo.Clear();
+
+                    // Get the latest version from each group
+                    foreach (var group in backupInfoByID)
+                    {
+                        if (group.Count() == 1)
+                            backupInfo.Add(group.First());
+
+                        // Find which group is the latest one
+                        var groupItems = new Dictionary<BackupDir, DateTime>();
+
+                        foreach (BackupDir item in group)
+                        {
+                            if (!item.DirPath.DirectoryExists)
+                            {
+                                groupItems.Add(item, DateTime.MinValue);
+                                continue;
+                            }
+
+                            groupItems.Add(item, Directory.GetFiles(item.DirPath, item.ExtensionFilter, item.SearchOption).Select(x => new FileInfo(x).LastWriteTime).OrderByDescending(x => x).FirstOrDefault());
+                        }
+
+                        // Add the latest directory
+                        backupInfo.Add(groupItems.OrderByDescending(x => x.Value).First().Key);
+                    }
 
                     // Check if the directories to back up exist
                     if (!backupInfo.Select(x => x.DirPath).DirectoriesExist())
@@ -281,17 +311,19 @@ namespace RayCarrot.RCP.Metro
 
                     var backupLocation = existingBackup.Value;
 
+                    var isCompressed = backupLocation.FileExists;
+
                     // Get the backup information
                     var backupInfo = game.GetBackupInfo();
 
-                    using (var tempDir = new TempDirectory())
+                    using (var tempDir = new TempDirectory(true))
                     {
-                        using (var archiveTempDir = new TempDirectory())
+                        using (var archiveTempDir = new TempDirectory(true))
                         {
                             try
                             {
                                 // If the backup is an archive, extract it
-                                if (backupLocation.FileExists)
+                                if (isCompressed)
                                 {
                                     using (var file = File.OpenRead(backupLocation))
                                     using (var zip = new ZipArchive(file, ZipArchiveMode.Read))
@@ -299,7 +331,7 @@ namespace RayCarrot.RCP.Metro
                                 }
 
                                 // Enumerate the backup information
-                                foreach (var item in backupInfo)
+                                foreach (BackupDir item in backupInfo)
                                 {
                                     // Move existing files if the directory exists to temp
                                     if (item.DirPath.DirectoryExists)
@@ -308,7 +340,7 @@ namespace RayCarrot.RCP.Metro
                                         if (item.IsEntireDir())
                                         {
                                             // Get the destination directory
-                                            var destDir = tempDir.TempPath + item.ID + item.DirPath.Name;
+                                            var destDir = tempDir.TempPath + backupInfo.IndexOf(item).ToString() + item.DirPath.Name;
 
                                             // Move the directory
                                             RCFRCP.File.MoveDirectory(item.DirPath, destDir, true);
@@ -319,7 +351,7 @@ namespace RayCarrot.RCP.Metro
                                             foreach (FileSystemPath file in Directory.GetFiles(item.DirPath, item.ExtensionFilter, item.SearchOption))
                                             {
                                                 // Get the destination file
-                                                var destFile = tempDir.TempPath + item.ID + file.GetRelativePath(item.DirPath);
+                                                var destFile = tempDir.TempPath + backupInfo.IndexOf(item).ToString() + file.GetRelativePath(item.DirPath);
 
                                                 // Move the file
                                                 RCFRCP.File.MoveFile(file, destFile, true);
@@ -328,7 +360,7 @@ namespace RayCarrot.RCP.Metro
                                     }
 
                                     // Get the combined directory path
-                                    var dirPath = (backupLocation.DirectoryExists ? backupLocation : archiveTempDir.TempPath) + item.ID;
+                                    var dirPath = (isCompressed ? archiveTempDir.TempPath : backupLocation) + item.ID;
 
                                     // Restore the backup
                                     if (dirPath.DirectoryExists)
@@ -338,10 +370,10 @@ namespace RayCarrot.RCP.Metro
                             catch
                             {
                                 // Restore temp backup
-                                foreach (var item in backupInfo)
+                                foreach (BackupDir item in backupInfo)
                                 {
                                     // Get the combined directory path
-                                    var dirPath = tempDir.TempPath + item.ID;
+                                    var dirPath = tempDir.TempPath + backupInfo.IndexOf(item).ToString();
 
                                     // Make sure there is a directory to restore
                                     if (!dirPath.DirectoryExists)

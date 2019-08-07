@@ -122,6 +122,23 @@ namespace RayCarrot.RCP.Metro
             return Game.GetGamePackage() != null;
         }
 
+        /// <summary>
+        /// Gets the install directory for the game
+        /// </summary>
+        /// <returns>The install directory</returns>
+        public override FileSystemPath GetInstallDirectory()
+        {
+            try
+            {
+                return Game.GetPackageInstallDirectory();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Getting Windows Store game install directory");
+                return FileSystemPath.EmptyPath;
+            }
+        }
+
         #endregion
     }
 }

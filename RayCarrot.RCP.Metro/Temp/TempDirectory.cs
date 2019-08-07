@@ -13,7 +13,8 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Creates a new temporary directory
         /// </summary>
-        public TempDirectory()
+        /// <param name="createDir">Indicates if the directory should be created</param>
+        public TempDirectory(bool createDir)
         {
             // Get the temp path
             FileSystemPath tempDir;
@@ -27,8 +28,9 @@ namespace RayCarrot.RCP.Metro
             // Set the temp path
             TempPath = tempDir;
 
-            // Create the directory
-            Directory.CreateDirectory(TempPath);
+            if (createDir)
+                // Create the directory
+                Directory.CreateDirectory(TempPath);
 
             RCFCore.Logger?.LogDebugSource($"A new temp directory has been created under {TempPath}");
         }

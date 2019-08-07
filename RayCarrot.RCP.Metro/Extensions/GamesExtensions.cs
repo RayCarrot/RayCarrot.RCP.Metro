@@ -1014,11 +1014,19 @@ namespace RayCarrot.RCP.Metro
                     {
                         new BackupDir()
                         {
-                            DirPath = RCFRCP.Data.RRRIsSaveDataInInstallDir ? gameInfo.InstallDirectory : new FileSystemPath(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore\\Program Files(x86)\\Ubisoft\\Rayman Raving Rabbids")),
+                            DirPath = gameInfo.InstallDirectory,
                             SearchOption = SearchOption.TopDirectoryOnly,
                             ExtensionFilter = "*.sav",
                             ID = "0"
-                        }
+                        },
+                        new BackupDir()
+                        {
+                            // TODO: Don't hard code virtual store to program files, instead get the path from the install directory
+                            DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore\\Program Files (x86)\\Ubisoft\\Rayman Raving Rabbids"),
+                            SearchOption = SearchOption.TopDirectoryOnly,
+                            ExtensionFilter = "*.sav",
+                            ID = "0"
+                        },
                     };
 
                 case Games.RaymanOrigins:

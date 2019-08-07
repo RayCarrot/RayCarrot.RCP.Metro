@@ -113,6 +113,7 @@ namespace RayCarrot.RCP.Metro
                     if (RCFRCP.Data.CloseConfigOnSave)
                         Close();
                 };
+
                 await ConfigViewModel.SetupAsync();
             }
             catch (Exception ex)

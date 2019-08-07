@@ -388,7 +388,7 @@ namespace RayCarrot.RCP.Metro
             // Store the web client
             WebClient wc = null;
 
-            using (var tempDir = new TempDirectory())
+            using (var tempDir = new TempDirectory(true))
             {
                 // Flag indicating if we've got file conflicts
                 bool fileConflicts = false;
