@@ -402,18 +402,6 @@
   <data name="Config_RRRScreenModeInfo" xml:space="preserve">
     <value>The screen mode options will behave differently depending on the selected resolution. Usually keeping the 4:3 mode enabled will allow the game not to be stretched on different aspect ratios.</value>
   </data>
-  <data name="Config_SaveDataLocation" xml:space="preserve">
-    <value>Save Data Location</value>
-  </data>
-  <data name="Config_SaveDataLocationInfo" xml:space="preserve">
-    <value>This will not change where the game saves its data. Use this only to specify the data location for the backup tool.</value>
-  </data>
-  <data name="Config_SaveDataLocationInstDir" xml:space="preserve">
-    <value>Install directory</value>
-  </data>
-  <data name="Config_SaveDataLocationAppData" xml:space="preserve">
-    <value>App data</value>
-  </data>
   <data name="About_ProgramInfo" xml:space="preserve">
     <value>Rayman Control Panel is an open source community project created by RayCarrot. This software is a single free to use executable file with the intent to easily access settings and fixes for the various Rayman titles released for Windows.
 This is a growing project with more features planned on being added with future updates. The utilities and various configuration tools have been created with help from various members of the Rayman community, all credited below.</value>
@@ -636,9 +624,6 @@ This is a growing project with more features planned on being added with future 
   </data>
   <data name="R3U_DirectPlayDisabled" xml:space="preserve">
     <value>Disabled</value>
-  </data>
-  <data name="R3U_DirectPlayErrorInfo" xml:space="preserve">
-    <value>Run the program as administrator in order to set the DirectPlay status</value>
   </data>
   <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
     <value>Replace Infected Files</value>
@@ -2647,6 +2632,15 @@ To activate it, enter race mode and pause the game. On the pause screen, hold L1
     <value>Missing permissions</value>
   </data>
   <data name="DeployFilesError" xml:space="preserve">
-    <value>An error occured when setting up the additional required files. Certain features of the program might not function like intended. It is recommended to attempt to restart the program."</value>
+    <value>An error occured when setting up the additional required files. Certain features of the program might not function like intended. It is recommended to attempt to restart the program.</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
+    <value>1.10</value>
+  </data>
+  <data name="Utilities_RequiresAdmin" xml:space="preserve">
+    <value>This utility requires the application to run as administrator</value>
+  </data>
+  <data name="App_RestartAsAdmin" xml:space="preserve">
+    <value>Restart as Administrator</value>
   </data>
 </root>

@@ -379,6 +379,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restart as Administrator.
+        /// </summary>
+        public static string App_RestartAsAdmin {
+            get {
+                return ResourceManager.GetString("App_RestartAsAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman Control Panel.
         /// </summary>
         public static string AppName {
@@ -2045,42 +2054,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save Data Location.
-        /// </summary>
-        public static string Config_SaveDataLocation {
-            get {
-                return ResourceManager.GetString("Config_SaveDataLocation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to App data.
-        /// </summary>
-        public static string Config_SaveDataLocationAppData {
-            get {
-                return ResourceManager.GetString("Config_SaveDataLocationAppData", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This will not change where the game saves its data. Use this only to specify the data location for the backup tool..
-        /// </summary>
-        public static string Config_SaveDataLocationInfo {
-            get {
-                return ResourceManager.GetString("Config_SaveDataLocationInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Install directory.
-        /// </summary>
-        public static string Config_SaveDataLocationInstDir {
-            get {
-                return ResourceManager.GetString("Config_SaveDataLocationInstDir", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An error occurred when saving your {0} configuration.
         /// </summary>
         public static string Config_SaveError {
@@ -2324,7 +2297,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured when setting up the additional required files. Certain features of the program might not function like intended. It is recommended to attempt to restart the program.&quot;.
+        ///   Looks up a localized string similar to An error occured when setting up the additional required files. Certain features of the program might not function like intended. It is recommended to attempt to restart the program..
         /// </summary>
         public static string DeployFilesError {
             get {
@@ -5430,6 +5403,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1.10.
+        /// </summary>
+        public static string R1U_TPLS_RayVersions_1_10 {
+            get {
+                return ResourceManager.GetString("R1U_TPLS_RayVersions_1_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1.12 (Edition 1).
         /// </summary>
         public static string R1U_TPLS_RayVersions_1_12 {
@@ -5885,15 +5867,6 @@ namespace RayCarrot.RCP.Metro {
         public static string R3U_DirectPlayEnabled {
             get {
                 return ResourceManager.GetString("R3U_DirectPlayEnabled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Run the program as administrator in order to set the DirectPlay status.
-        /// </summary>
-        public static string R3U_DirectPlayErrorInfo {
-            get {
-                return ResourceManager.GetString("R3U_DirectPlayErrorInfo", resourceCulture);
             }
         }
         
@@ -7248,6 +7221,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Update_WebError {
             get {
                 return ResourceManager.GetString("Update_WebError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This utility requires the application to run as administrator.
+        /// </summary>
+        public static string Utilities_RequiresAdmin {
+            get {
+                return ResourceManager.GetString("Utilities_RequiresAdmin", resourceCulture);
             }
         }
         

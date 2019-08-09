@@ -402,18 +402,6 @@
   <data name="Config_RRRScreenModeInfo" xml:space="preserve">
     <value>De schermmodus-opties zullen, afhankelijk van de geselecteerde resolutie, een bepaald effect hebben. Normaal gesproken zal het beeld in geval van een andere resolutie/aspect ratio niet opgerekt worden als de 4:3 modus ingeschakeld is.</value>
   </data>
-  <data name="Config_SaveDataLocation" xml:space="preserve">
-    <value>Locatie Spelgegevens</value>
-  </data>
-  <data name="Config_SaveDataLocationInfo" xml:space="preserve">
-    <value>Dit zal er níét voor zorgen dat het spel zijn data ergens anders opslaat. Gebruik deze optie alleen om de datalocatie voor de back-up tool aan te geven.</value>
-  </data>
-  <data name="Config_SaveDataLocationInstDir" xml:space="preserve">
-    <value>Installatielocatie</value>
-  </data>
-  <data name="Config_SaveDataLocationAppData" xml:space="preserve">
-    <value>App data</value>
-  </data>
   <data name="About_ProgramInfo" xml:space="preserve">
     <value>Rayman Control Panel is een Open Source community project, geïnitieerd door RayCarrot. De software is gratis te gebruiken en heeft als doel, gemakkelijk instellingen en fixes te benaderen voor de verschillende Rayman games, uitgebracht voor Windows. Het project kent vooruitgang en zal meer features bieden in de toekomst. De hulpprogramma's en verscheidene configuratietools zijn ontwikkeld met hulp van diverse leden van de Rayman community; credits hieronder.</value>
   </data>
@@ -635,9 +623,6 @@
   </data>
   <data name="R3U_DirectPlayDisabled" xml:space="preserve">
     <value>Uitgeschakeld</value>
-  </data>
-  <data name="R3U_DirectPlayErrorInfo" xml:space="preserve">
-    <value>Start het programma als administrator om de DirectPlay status in te kunnen stellen</value>
   </data>
   <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
     <value>Vervang Geïnfecteerde Bestanden</value>
@@ -2542,6 +2527,12 @@ Voor het activeren, ga je naar Race Mode en pauzeer je het spel. Op het pauzesch
   <data name="DosBoxConfig_LanguageInfo" xml:space="preserve">
     <value>De hoeveelheid beschikbare talen verschilt per release</value>
   </data>
+  <data name="Settings_DisableDowngradeWarning" xml:space="preserve">
+    <value>Schakel downgrade-waarschuwing uit</value>
+  </data>
+  <data name="FiestaRunVersion_Default" xml:space="preserve">
+    <value>Standaard</value>
+  </data>
   <data name="FiestaRunVersion_Preload" xml:space="preserve">
     <value>Preload Edition</value>
     <comment>Preload Edition</comment>
@@ -2549,5 +2540,36 @@ Voor het activeren, ga je naar Race Mode en pauzeer je het spel. Op het pauzesch
   <data name="FiestaRunVersion_Win10" xml:space="preserve">
     <value>Windows 10 Edition</value>
     <comment>Windows 10 Edition</comment>
+  </data>
+  <data name="Config_FiestaRunVersion" xml:space="preserve">
+    <value>Rayman Fiesta Run versie</value>
+  </data>
+  <data name="Config_FiestaRunVersionInfo" xml:space="preserve">
+    <value>Als je meerdere versies van Rayman Fiesta Run in je bezit hebt, kun je kiezen om de standaardversie te starten</value>
+  </data>
+  <data name="PostUpdate_MigrateFiestaRunBackup5Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het migreren van de bestaande Rayman Fiesta Run back-up naar de nieuwe 5.0.0 back-up standaard. Hierdoor is je back-up niet meer beschikbaar, maar zal die in je back-up map blijven zitten, zodat hij vanaf hier handmatig hersteld kan worden.</value>
+  </data>
+  <data name="PostUpdate_MigrateBackupErrorHeader" xml:space="preserve">
+    <value>Back-up migratiefout</value>
+  </data>
+  <data name="Installer_InstallAllUsersError" xml:space="preserve">
+    <value>Je dient het programma als administrator uit te voeren alvorens het programma voor alle gebruikers geïnstalleerd kan worden</value>
+  </data>
+  <data name="Installer_InstallAllUsersErrorHeader" xml:space="preserve">
+    <value>Ontbrekende machtigingen</value>
+  </data>
+  <data name="DeployFilesError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het instellen van de bijkomende, vereiste bestanden. Zekere features van het programma werken mogelijk niet zoals bedoeld. Het is aanbevolen om het programma proberen te herstarten.</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
+    <value>1.10</value>
+    <comment>1.10</comment>
+  </data>
+  <data name="Utilities_RequiresAdmin" xml:space="preserve">
+    <value>Dit hulpprogramma vereist dat de applicatie als administrator wordt uitgevoerd</value>
+  </data>
+  <data name="App_RestartAsAdmin" xml:space="preserve">
+    <value>Herstart als administrator</value>
   </data>
 </root>

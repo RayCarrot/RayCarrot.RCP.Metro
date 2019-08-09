@@ -296,4 +296,7 @@
   <data name="FiestaRunVersion_Win10" xml:space="preserve">
     <value>Windows 10 Edition</value>
   </data>
+  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
+    <value>1.10</value>
+  </data>
 </root>

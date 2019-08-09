@@ -185,7 +185,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(5, 0, 0, 0);
+        public Version CurrentVersion => new Version(5, 0, 0, 1);
 
         /// <summary>
         /// Indicates if the current version is a beta version
@@ -763,7 +763,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         var dir = CheckUninstall("Rayman Forever").Path;
 
-                        FileSystemPath[] mountFiles = new FileSystemPath[]
+                        FileSystemPath[] mountFiles = 
                         {
                             dir + "game.inst",
                             dir + "Music\\game.inst",
@@ -772,11 +772,11 @@ namespace RayCarrot.RCP.Metro
                         };
 
                         if (mountFiles.Any(x => x.FileExists) &&
-                            File.Exists(Path.Combine(dir, "Rayman\\RAYMAN.EXE")) &&
-                            File.Exists(Path.Combine(dir, "RayKit\\RayKit.exe")) &&
-                            File.Exists(Path.Combine(dir, "RayFan\\RayFan.exe")) &&
-                            File.Exists(Path.Combine(dir, "DosBox\\DOSBox.exe")) &&
-                            File.Exists(Path.Combine(dir, "dosboxRayman.conf")))
+                            File.Exists(dir + "Rayman" + Games.Rayman1.GetLaunchName()) &&
+                            File.Exists(dir + "RayKit" + Games.RaymanDesigner.GetLaunchName()) &&
+                            File.Exists(dir + "RayFan" + Games.RaymanByHisFans.GetLaunchName()) &&
+                            File.Exists(dir + "DosBox" + "DOSBox.exe") &&
+                            File.Exists(dir + "dosboxRayman.conf"))
                         {
                             result.InsertRange(0, new Games[]
                             {
@@ -786,9 +786,9 @@ namespace RayCarrot.RCP.Metro
                             });
 
                             if (!File.Exists(Data.DosBoxPath))
-                                Data.DosBoxPath = Path.Combine(dir, "DosBox\\DOSBox.exe");
+                                Data.DosBoxPath = dir + "DosBox" + "DOSBox.exe";
 
-                            Data.DosBoxConfig = Path.Combine(dir, "dosboxRayman.conf");
+                            Data.DosBoxConfig = dir + "dosboxRayman.conf";
 
                             // Add the games
                             await AddNewGameAsync(Games.Rayman1, GameType.DosBox, dir + "Rayman");

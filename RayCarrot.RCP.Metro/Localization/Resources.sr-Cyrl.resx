@@ -450,4 +450,8 @@
     <value>Windows 10 Edition</value>
     <comment>Windows 10 Edition</comment>
   </data>
+  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
+    <value>1.10</value>
+    <comment>1.10</comment>
+  </data>
 </root>

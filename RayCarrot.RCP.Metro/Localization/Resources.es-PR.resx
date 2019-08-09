@@ -243,15 +243,6 @@
   <data name="Config_WidescreenHorizontal" xml:space="preserve">
     <value>Widescreen horizontal</value>
   </data>
-  <data name="Config_SaveDataLocation" xml:space="preserve">
-    <value>Localización de datos de progreso</value>
-  </data>
-  <data name="Config_SaveDataLocationInstDir" xml:space="preserve">
-    <value>Directório de instalación</value>
-  </data>
-  <data name="Config_SaveDataLocationAppData" xml:space="preserve">
-    <value>Datos de aplicación</value>
-  </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Créditos</value>
   </data>
@@ -1218,9 +1209,6 @@ Notícias:
   <data name="Settings_GetBetaUpdates" xml:space="preserve">
     <value>Obtener actualizaciones beta</value>
   </data>
-  <data name="UninstallRegKeyRequiresRefresh" xml:space="preserve">
-    <value>{0}</value>
-  </data>
   <data name="About_Credits_RayActivity" xml:space="preserve">
     <value>Gráficos, prueba de programa</value>
   </data>
@@ -1366,5 +1354,9 @@ Notícias:
   <data name="FiestaRunVersion_Win10" xml:space="preserve">
     <value>Windows 10 Edition</value>
     <comment>Windows 10 Edition</comment>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
+    <value>1.10</value>
+    <comment>1.10</comment>
   </data>
 </root>

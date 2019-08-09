@@ -402,18 +402,6 @@
   <data name="Config_RRRScreenModeInfo" xml:space="preserve">
     <value>As opções do modo de ecrã irão comportar-se de forma diferente dependendo da resolução seleccionada. Normalmente mantendo o modo 4:3 activo irá permitir que o jogo não seja esticado para outras proporções de aspecto diferentes.</value>
   </data>
-  <data name="Config_SaveDataLocation" xml:space="preserve">
-    <value>Localização de dados de progresso</value>
-  </data>
-  <data name="Config_SaveDataLocationInfo" xml:space="preserve">
-    <value>Isto não irá mudar onde o jogo guarda os seus dados. Utiliza isto apenas para especificar a localização dos dados para a ferramenta da cópia de segurança.</value>
-  </data>
-  <data name="Config_SaveDataLocationInstDir" xml:space="preserve">
-    <value>Directório de instalação</value>
-  </data>
-  <data name="Config_SaveDataLocationAppData" xml:space="preserve">
-    <value>Dados de aplicação</value>
-  </data>
   <data name="About_ProgramInfo" xml:space="preserve">
     <value>O Painel de Controlo Rayman é um projecto de comunidade open source criado por RayCarrot. Este software é um executável de utilização única livre com o intuito de aceder fácilmente a definições e correcções para os vários títulos do Rayman lançados para o Windows. Isto é um projecto crescente com mais funcionalidades planeadas para actualizações futuras. Os utilitários e as várias ferramentas de configuração foram criados com a ajuda de vários membros da comunidade Rayman, todos creditados abaixo.</value>
   </data>
@@ -635,9 +623,6 @@
   </data>
   <data name="R3U_DirectPlayDisabled" xml:space="preserve">
     <value>Desactivado</value>
-  </data>
-  <data name="R3U_DirectPlayErrorInfo" xml:space="preserve">
-    <value>Executar o programa como administrador de maneira a definir o estatuto DirectPlay</value>
   </data>
   <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
     <value>Substituir ficheiros infectados</value>
@@ -2542,12 +2527,49 @@ Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, dei
   <data name="DosBoxConfig_LanguageInfo" xml:space="preserve">
     <value>Os idiomas disponíveis podem variar entre lançamentos</value>
   </data>
+  <data name="Settings_DisableDowngradeWarning" xml:space="preserve">
+    <value>Desactivar aviso de downgrade</value>
+  </data>
+  <data name="FiestaRunVersion_Default" xml:space="preserve">
+    <value>Padrão</value>
+  </data>
   <data name="FiestaRunVersion_Preload" xml:space="preserve">
-    <value>Preload Edition</value>
+    <value>Edição Pré-Carregada</value>
     <comment>Preload Edition</comment>
   </data>
   <data name="FiestaRunVersion_Win10" xml:space="preserve">
     <value>Windows 10 Edition</value>
     <comment>Windows 10 Edition</comment>
+  </data>
+  <data name="Config_FiestaRunVersion" xml:space="preserve">
+    <value>Versão Rayman Fiesta Run</value>
+  </data>
+  <data name="Config_FiestaRunVersionInfo" xml:space="preserve">
+    <value>Se tiveres versões múltiplas do Rayman Fiesta Run podes alterar a versão padrão a lançar por aqui</value>
+  </data>
+  <data name="PostUpdate_MigrateFiestaRunBackup5Error" xml:space="preserve">
+    <value>Ocorreu um erro quando se migrava a cópia de segurança existente do Rayman Fiesta Run para o novo standard da nova cópia de segurança 5.0.0. Devido a isto a tua cópia de segurança ficará indisponível, mas manter-se-á na tua pasta de cópias de segurança e pode ser manualmente restaurada.</value>
+  </data>
+  <data name="PostUpdate_MigrateBackupErrorHeader" xml:space="preserve">
+    <value>Erro de migração de cópia de segurança</value>
+  </data>
+  <data name="Installer_InstallAllUsersError" xml:space="preserve">
+    <value>Necessitas de executar o programa como administrador de forma a instalar para todos os utilizadores</value>
+  </data>
+  <data name="Installer_InstallAllUsersErrorHeader" xml:space="preserve">
+    <value>Permissões em falta</value>
+  </data>
+  <data name="DeployFilesError" xml:space="preserve">
+    <value>Ocorreu um erro quando se preparavam os ficheiros adicionais requeridos. Certas características do programa poderão não funcionar como pretendido. É recomendado tentar reiniciar o programa.</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
+    <value>1.10</value>
+    <comment>1.10</comment>
+  </data>
+  <data name="Utilities_RequiresAdmin" xml:space="preserve">
+    <value>Este utilitário requer que a aplicação se execute como admnistrador</value>
+  </data>
+  <data name="App_RestartAsAdmin" xml:space="preserve">
+    <value>Reiniciar como Administrador</value>
   </data>
 </root>

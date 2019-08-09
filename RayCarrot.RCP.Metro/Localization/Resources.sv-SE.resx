@@ -402,18 +402,6 @@
   <data name="Config_RRRScreenModeInfo" xml:space="preserve">
     <value>Skärmlägena fungerar olika beroende på den valda upplösningen. Oftast får 4:3 läget spelet att inte sträcka ut bilden på olika bildförhållanden.</value>
   </data>
-  <data name="Config_SaveDataLocation" xml:space="preserve">
-    <value>Speldata</value>
-  </data>
-  <data name="Config_SaveDataLocationInfo" xml:space="preserve">
-    <value>Det här kommer inte att ändra var spelet sparar speldatan. Det här är till för att visa var speldatan ska säkerhetskopieras från.</value>
-  </data>
-  <data name="Config_SaveDataLocationInstDir" xml:space="preserve">
-    <value>Spelmappen</value>
-  </data>
-  <data name="Config_SaveDataLocationAppData" xml:space="preserve">
-    <value>App data</value>
-  </data>
   <data name="About_ProgramInfo" xml:space="preserve">
     <value>Rayman Kontrollpanelen är ett open source projekt skapat av RayCarrot. Det här programmet är en enda fri att använda körbar fil med avsikt att enkelt komma åt inställningar och korrigeringar för de olika Rayman-spelen som släppts för Windows.
 Det här är ett växande projekt med fler funktioner planerade att läggas till med framtida uppdateringar. Verktygen och olika konfigurationsverktyg har skapats med hjälp av olika medlemmar av Rayman-gemenskapen, alla krediteras nedan.</value>
@@ -636,9 +624,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   </data>
   <data name="R3U_DirectPlayDisabled" xml:space="preserve">
     <value>Inaktiverad</value>
-  </data>
-  <data name="R3U_DirectPlayErrorInfo" xml:space="preserve">
-    <value>Kör programmet som administratör för att kunna göra ändringar gällande DirectPlay</value>
   </data>
   <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
     <value>Ersätt infekterade filer</value>
@@ -1544,6 +1529,12 @@ Starta om?</value>
   <data name="DosBoxConfig_SetLanguageError" xml:space="preserve">
     <value>Språket kunde inte uppdateras</value>
   </data>
+  <data name="DosBoxConfig_SetLanguageErrorHeader" xml:space="preserve">
+    <value>Fel vid uppdatering av språk</value>
+  </data>
+  <data name="FiestaRunVersion_Default" xml:space="preserve">
+    <value>Standard</value>
+  </data>
   <data name="FiestaRunVersion_Preload" xml:space="preserve">
     <value>Preload Edition</value>
     <comment>Preload Edition</comment>
@@ -1551,5 +1542,15 @@ Starta om?</value>
   <data name="FiestaRunVersion_Win10" xml:space="preserve">
     <value>Windows 10 Edition</value>
     <comment>Windows 10 Edition</comment>
+  </data>
+  <data name="Config_FiestaRunVersion" xml:space="preserve">
+    <value>Rayman Fiesta Run version</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
+    <value>1.10</value>
+    <comment>1.10</comment>
+  </data>
+  <data name="App_RestartAsAdmin" xml:space="preserve">
+    <value>Starta om som administratör</value>
   </data>
 </root>

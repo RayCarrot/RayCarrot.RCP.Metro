@@ -50,13 +50,13 @@ namespace RayCarrot.RCP.Metro
             // Use a temporary directory to store the files in case of error
             using (var tempDir = new TempDirectory(false))
             {
-                // Check if a backup already exists
-                if (destinationDir.DirectoryExists)
-                    // Create a new temp backup
-                    Directory.Move(destinationDir, tempDir.TempPath);
-
                 try
                 {
+                    // Check if a backup already exists
+                    if (destinationDir.DirectoryExists)
+                        // Create a new temp backup
+                        RCFRCP.File.MoveDirectory(destinationDir, tempDir.TempPath, true);
+
                     // Enumerate the backup information
                     foreach (var item in backupInfo)
                     {
@@ -77,10 +77,8 @@ namespace RayCarrot.RCP.Metro
                                 // Get the destination file
                                 var destFile = destinationDir + item.ID + file.GetRelativePath(item.DirPath);
 
-                                // Check if the directory does not exist
-                                if (!destFile.Parent.DirectoryExists)
-                                    // Create the directory
-                                    Directory.CreateDirectory(destFile.Parent);
+                                // Create the parent directory
+                                Directory.CreateDirectory(destFile.Parent);
 
                                 // Copy the file
                                 File.Copy(file, destFile);
@@ -93,8 +91,9 @@ namespace RayCarrot.RCP.Metro
                     {
                         await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
 
-                        // Restore temp backup
-                        RCFRCP.File.MoveDirectory(tempDir.TempPath, destinationDir, true);
+                        if (tempDir.TempPath.DirectoryExists)
+                            // Restore temp backup
+                            RCFRCP.File.MoveDirectory(tempDir.TempPath, destinationDir, true);
 
                         return false;
                     }
@@ -103,10 +102,13 @@ namespace RayCarrot.RCP.Metro
 
                     return true;
                 }
-                catch
+                catch (Exception ex)
                 {
-                    // Restore temp backup
-                    RCFRCP.File.MoveDirectory(tempDir.TempPath, destinationDir, true);
+                    ex.HandleError("Performing backup");
+
+                    if (tempDir.TempPath.DirectoryExists)
+                        // Restore temp backup
+                        RCFRCP.File.MoveDirectory(tempDir.TempPath, destinationDir, true);
 
                     RCFCore.Logger?.LogInformationSource($"Backup failed - clean up succeeded");
 
@@ -128,13 +130,13 @@ namespace RayCarrot.RCP.Metro
 
             using (var tempFile = new TempFile(false))
             {
-                // Check if a backup already exists
-                if (destinationFile.FileExists)
-                    // Create a new temp backup
-                    RCFRCP.File.MoveFile(destinationFile, tempFile.TempPath, true);
-
                 try
                 {
+                    // Check if a backup already exists
+                    if (destinationFile.FileExists)
+                        // Create a new temp backup
+                        RCFRCP.File.MoveFile(destinationFile, tempFile.TempPath, true);
+
                     // Create the parent directory
                     Directory.CreateDirectory(destinationFile.Parent);
 
@@ -166,14 +168,16 @@ namespace RayCarrot.RCP.Metro
 
                     return true;
                 }
-                catch
+                catch (Exception ex)
                 {
+                    ex.HandleError("Performing compressed backup");
+
                     // Check if a temp backup exists
                     if (tempFile.TempPath.FileExists)
                         // Restore temp backup
                         RCFRCP.File.MoveFile(tempFile.TempPath, destinationFile, true);
 
-                    RCFCore.Logger?.LogInformationSource($"Backup failed - clean up succeeded");
+                    RCFCore.Logger?.LogInformationSource($"Compressed backup failed - clean up succeeded");
 
                     throw;
                 }
@@ -210,7 +214,10 @@ namespace RayCarrot.RCP.Metro
                     foreach (var group in backupInfoByID)
                     {
                         if (group.Count() == 1)
+                        {
                             backupInfo.Add(group.First());
+                            continue;
+                        }
 
                         // Find which group is the latest one
                         var groupItems = new Dictionary<BackupDir, DateTime>();
@@ -218,24 +225,22 @@ namespace RayCarrot.RCP.Metro
                         foreach (BackupDir item in group)
                         {
                             if (!item.DirPath.DirectoryExists)
-                            {
                                 groupItems.Add(item, DateTime.MinValue);
-                                continue;
-                            }
-
-                            groupItems.Add(item, Directory.GetFiles(item.DirPath, item.ExtensionFilter, item.SearchOption).Select(x => new FileInfo(x).LastWriteTime).OrderByDescending(x => x).FirstOrDefault());
+                            else
+                                groupItems.Add(item, Directory.GetFiles(item.DirPath, item.ExtensionFilter, item.SearchOption).Select(x => new FileInfo(x).LastWriteTime).OrderByDescending(x => x).FirstOrDefault());
                         }
 
                         // Add the latest directory
                         backupInfo.Add(groupItems.OrderByDescending(x => x.Value).First().Key);
                     }
 
-                    // Check if the directories to back up exist
+                    // Make sure all the directories to back up exist
                     if (!backupInfo.Select(x => x.DirPath).DirectoriesExist())
                     {
                         RCFCore.Logger?.LogInformationSource($"Backup failed - the input directories could not be found");
 
                         await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingDirectoriesError, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
+
                         return false;
                     }
 
@@ -249,7 +254,7 @@ namespace RayCarrot.RCP.Metro
                     var compressedLocation = game.GetCompressedBackupFile();
                     var normalLocation = game.GetBackupDir();
 
-                    // Check if the non-relevant one exists
+                    // Check if the non-relevant one exists, as there should not be a compressed and normal backup at the same time
                     try
                     {
                         if (compress && normalLocation.DirectoryExists)
@@ -276,9 +281,13 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {   
-                    ex.HandleCritical("Backing up game", game);
+                    // Handle error
+                    ex.HandleError("Backing up game", game);
+
+                    // Display message to user
                     await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Failed, game.GetDisplayName()), Resources.Backup_FailedHeader, MessageType.Error);
 
+                    // Return that backup did not succeed
                     return false;
                 }
             }
