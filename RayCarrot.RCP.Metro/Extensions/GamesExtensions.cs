@@ -1021,8 +1021,8 @@ namespace RayCarrot.RCP.Metro
                         },
                         new BackupDir()
                         {
-                            // TODO: Don't hard code virtual store to program files, instead get the path from the install directory
-                            DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore\\Program Files (x86)\\Ubisoft\\Rayman Raving Rabbids"),
+                            // TODO: Test this
+                            DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore", gameInfo.InstallDirectory.RemoveRoot()),
                             SearchOption = SearchOption.TopDirectoryOnly,
                             ExtensionFilter = "*.sav",
                             ID = "0"

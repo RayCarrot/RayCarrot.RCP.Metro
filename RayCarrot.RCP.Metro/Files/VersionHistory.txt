@@ -9,10 +9,11 @@
 
 Other changes:
 • Utilities are now modular, making plugins possible (contact me if you want to create a plugin-utility)
+• Added Rayman M cheat menu cheat code
 • Added Snagglebee to the credits for the PlayStation Soundtrack utility
 • Updated the purchase link for Rayman Fiesta Run to the Preload edition due to the previous ones being taken down from the store
 • Backups for Rayman Fiesta Run are now differentiated between the available versions to avoid errors on restore
-• Removed the option to change the backup location for Rayman Raving Rabbids
+• Backups for Rayman Raving Rabbids have been improved, now backing up the latest files no matter the location
 • The applied Rayman 2 translation will now be shown in the Rayman 2 utilities
 • Minor improvements to the game installer & links page
 • Cancellations are now longer displayed as errors in the log
@@ -21,6 +22,7 @@ Other changes:
 • Lowered default window height
 • Fixed a bug where Windows Store and Steam games would not show up in the jump list
 • Fixed a bug where the debug option to start TPLS would appear even if it wasn't installed
+• Fixed a bug where the progress of a download or install operation would not show in the task bar
 • Bug fixes
 
 

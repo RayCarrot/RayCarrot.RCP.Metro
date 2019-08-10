@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Windows.Shell;
+using Microsoft.WindowsAPICodePack.Taskbar;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Windows.Shell;
+using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -22,7 +24,6 @@ namespace RayCarrot.RCP.Metro
 
             // Set text properties
             Title = $"Install {game.GetDisplayName()}";
-            TaskbarItemInfo = new TaskbarItemInfo();
 
             // Create the view model
             DataContext = new GameInstallerViewModel(game);
@@ -56,42 +57,42 @@ namespace RayCarrot.RCP.Metro
                 // Close window normally
                 return;
             }
-
+                
             // Cancel the closing
             e.Cancel = true;
 
             // Attempt to cancel the installation
-            await VM.AttemptCancelAsync();
+            await Task.Run(VM.AttemptCancelAsync);
         }
 
         private void VM_StatusUpdated(object sender, OperationProgressEventArgs e)
         {
-            Dispatcher.Invoke(() =>
+            Dispatcher?.Invoke(() =>
             {
                 // Set the progress
-                TaskbarItemInfo.ProgressValue = e.Progress.TotalProgress.Percentage / 100;
+                this.SetTaskbarProgressValue(new Progress(e.Progress.TotalProgress.Percentage, 100, 0));
 
                 // Set the state
                 switch (e.State)
                 {
                     case OperationState.None:
-                        TaskbarItemInfo.ProgressState = TaskbarItemProgressState.None;
+                        this.SetTaskbarProgressState(TaskbarProgressBarState.NoProgress);
                         break;
 
                     case OperationState.Running:
-                        TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Normal;
+                        this.SetTaskbarProgressState(TaskbarProgressBarState.Normal);
                         break;
 
                     case OperationState.Paused:
-                        TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Paused;
+                        this.SetTaskbarProgressState(TaskbarProgressBarState.Paused);
                         break;
 
                     case OperationState.Error:
-                        TaskbarItemInfo.ProgressState = TaskbarItemProgressState.Error;
+                        this.SetTaskbarProgressState(TaskbarProgressBarState.Error);
                         break;
 
                     default:
-                        TaskbarItemInfo.ProgressState = TaskbarItemProgressState.None;
+                        this.SetTaskbarProgressState(TaskbarProgressBarState.NoProgress);
                         break;
                 }
             });

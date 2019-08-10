@@ -1,18 +1,10 @@
 ﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using ByteSizeLib;
 using Microsoft.WindowsAPICodePack.Shell;
-using Nito.AsyncEx;
-using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
 {

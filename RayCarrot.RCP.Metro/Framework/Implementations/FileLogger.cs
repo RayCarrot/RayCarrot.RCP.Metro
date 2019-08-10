@@ -31,6 +31,9 @@ namespace RayCarrot.RCP.Metro
         /// <param name="message">The message to write</param>
         public override void Log(LogLevel logLevel, string message)
         {
+            if (Application.Current == null)
+                return;
+
             lock (Application.Current)
             {
                 try

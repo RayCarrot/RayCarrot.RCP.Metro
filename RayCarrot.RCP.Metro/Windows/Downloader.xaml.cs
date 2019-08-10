@@ -1,8 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Shell;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -20,8 +21,6 @@ namespace RayCarrot.RCP.Metro
         public Downloader(DownloaderViewModel viewModel)
         {
             InitializeComponent();
-
-            TaskbarItemInfo = new TaskbarItemInfo();
 
             ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
 
@@ -50,10 +49,10 @@ namespace RayCarrot.RCP.Metro
 
         private void ViewModel_StatusUpdated(object sender, ValueEventArgs<Progress> e)
         {
-            Dispatcher.Invoke(() =>
+            Dispatcher?.Invoke(() =>
             {
                 // Set the progress
-                TaskbarItemInfo.ProgressValue = e.Value.Percentage / 100;
+                this.SetTaskbarProgressValue(new Progress(e.Value.Percentage, 100, 0));
             });
         }
 
@@ -82,7 +81,7 @@ namespace RayCarrot.RCP.Metro
             e.Cancel = true;
 
             // Attempt to cancel the installation
-            await ViewModel.AttemptCancelAsync();
+            await Task.Run(ViewModel.AttemptCancelAsync);
         }
 
         #endregion
