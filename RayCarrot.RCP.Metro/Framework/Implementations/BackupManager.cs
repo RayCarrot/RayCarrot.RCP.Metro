@@ -201,14 +201,11 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
-                    // Get the backup information
-                    List<BackupDir> backupInfo = game.GetBackupInfo();
+                    // Get the backup information and group items by ID
+                    var backupInfoByID = game.GetBackupInfo().GroupBy(x => x.ID).ToList();
 
-                    // Group the items by ID
-                    var backupInfoByID = backupInfo.GroupBy(x => x.ID).ToList();
-
-                    // Clear the list
-                    backupInfo.Clear();
+                    // Get the backup info
+                    var backupInfo = new List<BackupDir>();
 
                     // Get the latest version from each group
                     foreach (var group in backupInfoByID)

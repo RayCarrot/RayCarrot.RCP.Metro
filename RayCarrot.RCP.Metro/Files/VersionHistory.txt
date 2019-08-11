@@ -2,13 +2,13 @@
 • Updated the Carrot Framework to version 3.0.0
 • Backups can now be compressed
 • The game language can now be changed for Rayman, Rayman Designer, Rayman by his Fans and Rayman 60 Levels
-• Locating DOSBox games will now work even if they do not have a valid batch file
 • Rayman Fiesta Run Preload Edition is now supported. If multiple versions of Rayman Fiesta Run are installed, the default one to launch can now be selected.
 • Added support for version 1.10 in the PlayStation soundtrack utility for Rayman 1
 • The Rayman 2 swimming controls can now be remapped
 
 Other changes:
 • Utilities are now modular, making plugins possible (contact me if you want to create a plugin-utility)
+• Locating DOSBox games will now work even if they do not have a valid batch file
 • Added Rayman M cheat menu cheat code
 • Added Snagglebee to the credits for the PlayStation Soundtrack utility
 • Updated the purchase link for Rayman Fiesta Run to the Preload edition due to the previous ones being taken down from the store

@@ -1010,7 +1010,7 @@ namespace RayCarrot.RCP.Metro
                     };
 
                 case Games.RaymanRavingRabbids:
-                    return new List<BackupDir>()
+                    var dirs = new List<BackupDir>()
                     {
                         new BackupDir()
                         {
@@ -1019,15 +1019,18 @@ namespace RayCarrot.RCP.Metro
                             ExtensionFilter = "*.sav",
                             ID = "0"
                         },
-                        new BackupDir()
+                    };
+
+                    if (gameInfo.GameType == GameType.Win32)
+                        dirs.Add(new BackupDir()
                         {
-                            // TODO: Test this
                             DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore", gameInfo.InstallDirectory.RemoveRoot()),
                             SearchOption = SearchOption.TopDirectoryOnly,
                             ExtensionFilter = "*.sav",
                             ID = "0"
-                        },
-                    };
+                        });
+
+                    return dirs;
 
                 case Games.RaymanOrigins:
                     return new List<BackupDir>()
