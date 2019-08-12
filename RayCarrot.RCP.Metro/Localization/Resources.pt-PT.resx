@@ -2424,7 +2424,11 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   </data>
   <data name="Cheats_RM" xml:space="preserve">
     <value>Equipa de música:
-Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, deixa premido L1 + R1 (Ou o equivalente no comando a ser utilizado actualmente), e pressiona o botão de optimização. Cinco bolas azuis vão aparecer no fundo do ecrã. Liberta tudo e prime Saltar. O jogador deverá ouvir um som agudo "Ding", e depois de 0,5 segundos, a primeira bola deverá tornar-se amarela. Assim que a bola se torna amarela, pressiona Saltar. A segunda bola deverá tornar-se amarela. Assim que a segunda bola se torna amarela, liberta o Saltar. A terceira bola deverá tornar-se amarela. Assim que a terceira bola se torna amarela, pressiona Saltar novamente. A quarta bola deverá tornar-se amarela. Assim que a quarta bola se torna amarela, liberta o Saltar. O jogador deverá ser levado ao ecrã "Music Mode" onde o jogador poderá escolher o "Music Team".</value>
+Para activá-la, entra no modo de corrida e pausa o jogo. No ecrã de pausa, deixa premido L1 + R1 (Ou o equivalente no comando a ser utilizado actualmente), e pressiona o botão de optimização. Cinco bolas azuis vão aparecer no fundo do ecrã. Liberta tudo e prime Saltar. O jogador deverá ouvir um som agudo "Ding", e depois de 0,5 segundos, a primeira bola deverá tornar-se amarela. Assim que a bola se torna amarela, pressiona Saltar. A segunda bola deverá tornar-se amarela. Assim que a segunda bola se torna amarela, liberta o Saltar. A terceira bola deverá tornar-se amarela. Assim que a terceira bola se torna amarela, pressiona Saltar novamente. A quarta bola deverá tornar-se amarela. Assim que a quarta bola se torna amarela, liberta o Saltar. O jogador deverá ser levado ao ecrã "Music Mode" onde o jogador poderá escolher o "Music Team".
+
+Menu de batota:
+Mantém premido L1 + R1 no menu (ou equivalente no comando a ser utilizado correntemente), depois mantém premido Círculo, depois prime os restantes botões de face + L2 + R2. 10 bolas irão aparecer no findo e contabilizar. O menu será desbloqueado quando alcançar a última.
+</value>
   </data>
   <data name="Cheats_RM3_SkipMovieTitle" xml:space="preserve">
     <value>Saltar cinemáticos</value>

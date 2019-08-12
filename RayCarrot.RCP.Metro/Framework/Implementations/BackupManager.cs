@@ -201,8 +201,21 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
+                    // Make sure we have write access to the backup location
+                    if (!RCFRCP.File.CheckDirectoryWriteAccess(RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily))
+                    {
+                        RCFCore.Logger?.LogInformationSource($"Backup failed - backup location lacks write access");
+
+                        if (await RCFUI.MessageUI.DisplayMessageAsync(Resources.App_RequiresAdminQuestion, Resources.Backup_FailedHeader, MessageType.Error, true))
+                            await RCFRCP.App.RestartAsAdminAsync();
+
+                        return false;
+                    }
+
                     // Get the backup information and group items by ID
                     var backupInfoByID = game.GetBackupInfo().GroupBy(x => x.ID).ToList();
+
+                    RCFCore.Logger?.LogDebugSource($"{backupInfoByID.Count} backup directory ID groups were found");
 
                     // Get the backup info
                     var backupInfo = new List<BackupDir>();
@@ -216,6 +229,8 @@ namespace RayCarrot.RCP.Metro
                             continue;
                         }
 
+                        RCFCore.Logger?.LogDebugSource($"ID {group.Key} has multiple items");
+
                         // Find which group is the latest one
                         var groupItems = new Dictionary<BackupDir, DateTime>();
 
@@ -227,8 +242,13 @@ namespace RayCarrot.RCP.Metro
                                 groupItems.Add(item, Directory.GetFiles(item.DirPath, item.ExtensionFilter, item.SearchOption).Select(x => new FileInfo(x).LastWriteTime).OrderByDescending(x => x).FirstOrDefault());
                         }
 
+                        // Get the latest directory
+                        var latestDir = groupItems.OrderByDescending(x => x.Value).First().Key;
+
                         // Add the latest directory
-                        backupInfo.Add(groupItems.OrderByDescending(x => x.Value).First().Key);
+                        backupInfo.Add(latestDir);
+
+                        RCFCore.Logger?.LogDebugSource($"The most recent backup directory was found under {latestDir.DirPath}");
                     }
 
                     // Make sure all the directories to back up exist
@@ -243,6 +263,8 @@ namespace RayCarrot.RCP.Metro
 
                     // Check if the backup should be compressed
                     bool compress = RCFRCP.Data.CompressBackups;
+
+                    RCFCore.Logger?.LogDebugSource(compress ? $"The backup will be compressed" : $"The backup will not be compressed");
 
                     // Perform the backup and keep track if it succeeded
                     bool success = compress ? PerformCompressedBackup(game, backupInfo) : await PerformBackupAsync(game, backupInfo);
@@ -312,15 +334,27 @@ namespace RayCarrot.RCP.Metro
                         RCFCore.Logger?.LogInformationSource($"Restore failed - the input location could not be found");
 
                         await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_MissingBackup, game.GetDisplayName()), Resources.Restore_FailedHeader, MessageType.Error);
+
+                        return false;
+                    }
+
+                    // Get the backup information
+                    var backupInfo = game.GetBackupInfo();
+
+                    // Make sure we have write access to the restore destinations
+                    if (backupInfo.Any(x => !RCFRCP.File.CheckDirectoryWriteAccess(x.DirPath)))
+                    {
+                        RCFCore.Logger?.LogInformationSource($"Restore failed - one or more restore destinations lack write access");
+
+                        if (await RCFUI.MessageUI.DisplayMessageAsync(Resources.App_RequiresAdminQuestion, Resources.Restore_FailedHeader, MessageType.Error, true))
+                            await RCFRCP.App.RestartAsAdminAsync();
+
                         return false;
                     }
 
                     var backupLocation = existingBackup.Value;
 
                     var isCompressed = backupLocation.FileExists;
-
-                    // Get the backup information
-                    var backupInfo = game.GetBackupInfo();
 
                     using (var tempDir = new TempDirectory(true))
                     {

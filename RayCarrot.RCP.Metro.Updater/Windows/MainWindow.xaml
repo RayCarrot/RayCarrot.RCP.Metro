@@ -21,7 +21,8 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBox Text="{Binding Path=Log}" 
+        <TextBox Text="{Binding Path=Log}"
+                 IsReadOnly="True"
                  TextWrapping="Wrap"/>
 
         <ProgressBar Grid.Row="1"

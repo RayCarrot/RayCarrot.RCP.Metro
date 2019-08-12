@@ -74,6 +74,10 @@
                         Command="{Binding Path=RefreshJumpListCommand}"
                         HorizontalAlignment="Left"/>
 
+                <Button Content="Restart as administrator"
+                        Command="{Binding Path=App.RestartAsAdminCommand}"
+                        HorizontalAlignment="Left"/>
+
             </StackPanel>
 
             <StackPanel>

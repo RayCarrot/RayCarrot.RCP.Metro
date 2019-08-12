@@ -2500,7 +2500,10 @@ appDataLocations</comment>
   </data>
   <data name="Cheats_RM" xml:space="preserve">
     <value>Music team:
-To activate it, enter race mode and pause the game. On the pause screen, hold L1 + R1 (or equivalent on the currently used controller), then press the optimize button. Five blue balls will appear at the bottom of the screen. Release alll buttons and press jump. The player should hear a high pitched "ding" sound, and after 0.5 seconds, the first ball should turn yellow. As soon as the ball turns yellow, hold jump. The second ball should then turn yellow. As soon as the second ball turns yellow, release jump. The third ball should then turn yellow. As soon as the third ball turns yellow, hold jump again. The fourth ball should then turn yellow. As soon as the fourth ball turns yellow, release jump. The player should be taken to the "Music Mode" screen where the player will be able to choose "Music Team".</value>
+To activate it, enter race mode and pause the game. On the pause screen, hold L1 + R1 (or equivalent on the currently used controller), then press the optimize button. Five blue balls will appear at the bottom of the screen. Release alll buttons and press jump. The player should hear a high pitched "ding" sound, and after 0.5 seconds, the first ball should turn yellow. As soon as the ball turns yellow, hold jump. The second ball should then turn yellow. As soon as the second ball turns yellow, release jump. The third ball should then turn yellow. As soon as the third ball turns yellow, hold jump again. The fourth ball should then turn yellow. As soon as the fourth ball turns yellow, release jump. The player should be taken to the "Music Mode" screen where the player will be able to choose "Music Team".
+
+Cheat menu:
+Hold L1 + R1 in the menu (or equivalent on the currently used controller), then hold circle, then hold the rest of the face buttons + L2 + R2. 10 balls will appear at the bottom and count up. When it reaches the last one the menu will be unlocked.</value>
   </data>
   <data name="Cheats_RM3_SkipMovieTitle" xml:space="preserve">
     <value>Skip cutscenes</value>
@@ -2642,5 +2645,8 @@ To activate it, enter race mode and pause the game. On the pause screen, hold L1
   </data>
   <data name="App_RestartAsAdmin" xml:space="preserve">
     <value>Restart as Administrator</value>
+  </data>
+  <data name="App_RequiresAdminQuestion" xml:space="preserve">
+    <value>The application does not have the required permissions for this operation. Restart the app as administrator?</value>
   </data>
 </root>

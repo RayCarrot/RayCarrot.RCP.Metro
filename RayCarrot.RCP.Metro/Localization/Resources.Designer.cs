@@ -379,6 +379,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The application does not have the required permissions for this operation. Restart the app as administrator?.
+        /// </summary>
+        public static string App_RequiresAdminQuestion {
+            get {
+                return ResourceManager.GetString("App_RequiresAdminQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restart as Administrator.
         /// </summary>
         public static string App_RestartAsAdmin {

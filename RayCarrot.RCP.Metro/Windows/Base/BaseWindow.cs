@@ -33,6 +33,16 @@ namespace RayCarrot.RCP.Metro
             // Set localization source
             ResxExtension.SetDefaultResxName(this, AppLanguages.ResourcePath);
 
+            // Set owner window
+            Owner = Application.Current?.Windows.Cast<Window>().FindItem(x => x.IsActive);
+
+            // Due to a WPF glitch the main window needs to be focused upon closing
+            Closed += (s, e) =>
+            {
+                if (this != Application.Current.MainWindow)
+                    Application.Current.MainWindow?.Focus();
+            };
+
             if (RCF.IsBuilt)
             {
                 // Set transition
@@ -47,9 +57,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public new void ShowDialog()
         {
-            // Set owner window
-            Owner = Application.Current?.Windows.Cast<Window>().FindItem(x => x.IsActive);
-
             // Set startup location
             WindowStartupLocation = Owner == null ? WindowStartupLocation.CenterScreen : WindowStartupLocation.CenterOwner;
 

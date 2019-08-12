@@ -89,10 +89,7 @@ namespace RayCarrot.RCP.Metro
 
             groupNames.Add(game.ToString());
 
-            WindowHelpers.ShowWindow(() => new GameOptions(game, page)
-            {
-                Owner = Application.Current.MainWindow
-            }, WindowHelpers.ShowWindowFlags.DuplicatesAllowed, groupNames.ToArray());
+            WindowHelpers.ShowWindow(() => new GameOptions(game, page), WindowHelpers.ShowWindowFlags.DuplicatesAllowed, groupNames.ToArray());
         }
 
         #endregion

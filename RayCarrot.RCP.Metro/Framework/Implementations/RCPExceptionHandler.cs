@@ -1,9 +1,11 @@
 ﻿using RayCarrot.CarrotFramework.Abstractions;
 using System;
+using System.Linq;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
+using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -24,7 +26,7 @@ namespace RayCarrot.RCP.Metro
         {
             // Call base implementation
             base.HandleException(exception, debugMessage, exceptionLevel, debugObject, origin, filePath, lineNumber);
-
+            
             try
             {
                 if (RCFRCP.Data?.DisplayExceptionLevel <= exceptionLevel)
@@ -46,9 +48,9 @@ namespace RayCarrot.RCP.Metro
                 {
                     sb.AppendLine($"Exception: {exception}");
                     sb.AppendLine();
-                    sb.AppendLine($"Origin: {origin}");
-                    sb.AppendLine($"File: {filePath}");
-                    sb.AppendLine($"Line: {lineNumber}");
+                    sb.AppendLine($"Data: {exception.Data.Values.Cast<object>().JoinItems(", ")}");
+                    sb.AppendLine();
+                    sb.AppendLine($"Origin: {origin}  -  File: {filePath}  -  Line: {lineNumber}");
                     sb.AppendLine();
                     sb.AppendLine($"Debug message: {debugMessage}");
                     if (debugObject != null)
@@ -59,11 +61,6 @@ namespace RayCarrot.RCP.Metro
                     sb.AppendLine($"Exception message: {exception.Message}");
                 }
 
-                if (RCFCore.Data.CurrentUserLevel < UserLevel.Advanced)
-                    return sb.ToString();
-
-                sb.AppendLine();
-                sb.AppendLine($"Exception level: {exceptionLevel}");
                 return sb.ToString();
             }
         }

@@ -2424,7 +2424,10 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
   </data>
   <data name="Cheats_RM" xml:space="preserve">
     <value>Music Team:
-Voor het activeren, ga je naar Race Mode en pauzeer je het spel. Op het pauzescherm houd je L1 + R1 ingedrukt (of soortgelijke knoppen op de gebruikte controller) en druk je op de Optimialiseer knop. 5 blauwe ballen zullen verschijnen onderaan het scherm. Laat alle knoppen los en spring. De speler zou een hoog "ding" geluid moeten horen, en na 0,5 seconde zou de eerste bal geel moeten kleuren. Wanneer de bal geel kleurt, houd de Spring knop ingedrukt. De tweede bal zou nu geel moeten kleuren. Wanneer de tweede bal geel kleurt, laat je de Spring knop weer los. De derde bal zou nu geel moeten kleuren. Wanneer dit gebeurt, houd je de Spring knop weer ingedrukt. De vierde bal zou nu geel moeten kleuren. Gebeurt dit, laat wederom de Spring knop los! De speler zou nu naar het "Music Mode" scherm gebracht moeten worden, waar de speler kan kiezen voor "Music Team".</value>
+Voor het activeren, ga je naar Race Mode en pauzeer je het spel. Op het pauzescherm houd je L1 + R1 ingedrukt (of soortgelijke knoppen op de gebruikte controller) en druk je op de Optimialiseer knop. 5 blauwe ballen zullen verschijnen onderaan het scherm. Laat alle knoppen los en spring. De speler zou een hoog "ding" geluid moeten horen, en na 0,5 seconde zou de eerste bal geel moeten kleuren. Wanneer de bal geel kleurt, houd de Spring knop ingedrukt. De tweede bal zou nu geel moeten kleuren. Wanneer de tweede bal geel kleurt, laat je de Spring knop weer los. De derde bal zou nu geel moeten kleuren. Wanneer dit gebeurt, houd je de Spring knop weer ingedrukt. De vierde bal zou nu geel moeten kleuren. Gebeurt dit, laat wederom de Spring knop los! De speler zou nu naar het "Music Mode" scherm gebracht moeten worden, waar de speler kan kiezen voor "Music Team".
+
+Cheat menu:
+Houd L1 + R1 (of gelijkwaardige knoppen op de huidige controller) in het menu vast, vervolgens de cirkel, daarna de rest van de 'face' knoppen + L2 + R2. 10 ballen zullen onderaan verschijnen en opgeteld worden. Wanneer de laatste bereikt wordt, zal het menu ontgrendeld worden.</value>
   </data>
   <data name="Cheats_RM3_SkipMovieTitle" xml:space="preserve">
     <value>Skip cutscenes</value>
