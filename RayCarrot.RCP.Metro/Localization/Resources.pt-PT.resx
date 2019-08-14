@@ -2576,4 +2576,7 @@ Mantém premido L1 + R1 no menu (ou equivalente no comando a ser utilizado corre
   <data name="App_RestartAsAdmin" xml:space="preserve">
     <value>Reiniciar como Administrador</value>
   </data>
+  <data name="App_RequiresAdminQuestion" xml:space="preserve">
+    <value>A aplicação não tem as permissões necessárias para esta operação. Reiniciar a aplicação como administrador?</value>
+  </data>
 </root>

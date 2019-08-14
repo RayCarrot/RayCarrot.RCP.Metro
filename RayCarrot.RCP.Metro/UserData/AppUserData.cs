@@ -224,6 +224,8 @@ namespace RayCarrot.RCP.Metro
 
                 _backupLocation = value;
 
+                RCFRCP.App.OnBackupRefreshRequired();
+
                 if (!oldValue.DirectoryExists)
                 {
                     RCFCore.Logger?.LogInformationSource("The backup location has been changed, but the previous directory does not exist");

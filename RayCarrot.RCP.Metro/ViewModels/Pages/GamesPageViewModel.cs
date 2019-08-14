@@ -28,7 +28,7 @@ namespace RayCarrot.RCP.Metro
             BindingOperations.EnableCollectionSynchronization(InstalledGames, Application.Current);
             BindingOperations.EnableCollectionSynchronization(NotInstalledGames, Application.Current);
 
-            RCFRCP.App.RefreshRequired += async (s, e) => await RefreshAsync();
+            RCFRCP.App.GameRefreshRequired += async (s, e) => await RefreshAsync();
             RCFCore.Data.CultureChanged += async (s, e) => await RefreshAsync();
         }
 

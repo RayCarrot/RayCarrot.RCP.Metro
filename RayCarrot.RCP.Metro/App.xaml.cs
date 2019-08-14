@@ -140,7 +140,7 @@ namespace RayCarrot.RCP.Metro
                 await ImportLegacyDataAsync();
 
             // Subscribe to when to refresh the jump list
-            RCFRCP.App.RefreshRequired += (s, e) => RefreshJumpList();
+            RCFRCP.App.GameRefreshRequired += (s, e) => RefreshJumpList();
             RCFCore.Data.CultureChanged += (s, e) => RefreshJumpList();
 
             // Listen to data binding logs

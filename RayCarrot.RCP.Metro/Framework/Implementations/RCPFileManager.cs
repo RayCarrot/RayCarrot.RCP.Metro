@@ -280,6 +280,8 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
+                Directory.CreateDirectory(path);
+
                 using (File.Create(path + Path.GetRandomFileName(), 1, FileOptions.DeleteOnClose))
                     return true;
             }

@@ -185,12 +185,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(5, 0, 0, 2);
+        public Version CurrentVersion => new Version(5, 0, 0, 3);
 
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
-        public bool IsBeta => true;
+        public bool IsBeta => false;
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -313,12 +313,20 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Fires the <see cref="RefreshRequired"/> event
+        /// Fires the <see cref="GameRefreshRequired"/> event
         /// </summary>
         /// <param name="major">Indicates if a major change has occurred, such as a game having been removed or added</param>
-        public void OnRefreshRequired(bool major)
+        public void OnGameRefreshRequired(bool major)
         {
-            RefreshRequired?.Invoke(this, new ValueEventArgs<bool>(major));
+            GameRefreshRequired?.Invoke(this, new ValueEventArgs<bool>(major));
+        }
+
+        /// <summary>
+        /// Fires the <see cref="BackupRefreshRequired"/> event
+        /// </summary>
+        public void OnBackupRefreshRequired()
+        {
+            BackupRefreshRequired?.Invoke(this, new EventArgs());
         }
 
         /// <summary>
@@ -360,7 +368,7 @@ namespace RayCarrot.RCP.Metro
             await game.GetGameManager().PostGameAddAsync();
 
             // Refresh
-            OnRefreshRequired(true);
+            OnGameRefreshRequired(true);
         }
 
         /// <summary>
@@ -402,7 +410,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Refresh the games
-            OnRefreshRequired(true);
+            OnGameRefreshRequired(true);
         }
 
         /// <summary>
@@ -1097,6 +1105,8 @@ namespace RayCarrot.RCP.Metro
 
                     RCFCore.Logger?.LogInformationSource("Old backups have been moved");
 
+                    RCFRCP.App.OnBackupRefreshRequired();
+
                     await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.MoveBackups_Success);
                 }
                 catch (Exception ex)
@@ -1247,7 +1257,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Occurs when a refresh is required for the games
         /// </summary>
-        public event EventHandler<ValueEventArgs<bool>> RefreshRequired;
+        public event EventHandler<ValueEventArgs<bool>> GameRefreshRequired;
+
+        /// <summary>
+        /// Occurs when a refresh is required for the backups
+        /// </summary>
+        public event EventHandler BackupRefreshRequired;
 
         #endregion
     }

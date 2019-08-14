@@ -98,7 +98,7 @@ namespace RayCarrot.RCP.Metro
 
         private async void GameOptions_OnLoadedAsync(object sender, RoutedEventArgs e)
         {
-            RCFRCP.App.RefreshRequired += App_RefreshRequired;
+            RCFRCP.App.GameRefreshRequired += AppGameRefreshRequired;
 
             try
             {
@@ -120,7 +120,7 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        private void App_RefreshRequired(object sender, ValueEventArgs<bool> e)
+        private void AppGameRefreshRequired(object sender, ValueEventArgs<bool> e)
         {
             if (e.Value)
             {
@@ -133,7 +133,7 @@ namespace RayCarrot.RCP.Metro
         {
             if (ForceClose || ConfigViewModel?.UnsavedChanges != true)
             {
-                RCFRCP.App.RefreshRequired -= App_RefreshRequired;
+                RCFRCP.App.GameRefreshRequired -= AppGameRefreshRequired;
 
                 if (ConfigViewModel != null)
                     ConfigViewModel.OnSave = null;

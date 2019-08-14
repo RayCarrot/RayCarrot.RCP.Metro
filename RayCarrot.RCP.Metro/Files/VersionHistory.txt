@@ -1,4 +1,4 @@
-﻿-----   Version 5.0.0 - August ??, 2019   -----
+﻿-----   Version 5.0.0 - August 14, 2019   -----
 • Updated the Carrot Framework to version 3.0.0
 • Backups can now be compressed
 • The game language can now be changed for Rayman, Rayman Designer, Rayman by his Fans and Rayman 60 Levels

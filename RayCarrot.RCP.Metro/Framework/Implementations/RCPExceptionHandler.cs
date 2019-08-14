@@ -47,8 +47,13 @@ namespace RayCarrot.RCP.Metro
                 if (RCFCore.Data.CurrentUserLevel >= UserLevel.Debug)
                 {
                     sb.AppendLine($"Exception: {exception}");
-                    sb.AppendLine();
-                    sb.AppendLine($"Data: {exception.Data.Values.Cast<object>().JoinItems(", ")}");
+
+                    if (exception.Data.Any())
+                    {
+                        sb.AppendLine();
+                        sb.AppendLine($"Data: {exception.Data.Values.Cast<object>().JoinItems(", ")}");
+                    }
+
                     sb.AppendLine();
                     sb.AppendLine($"Origin: {origin}  -  File: {filePath}  -  Line: {lineNumber}");
                     sb.AppendLine();
@@ -60,6 +65,12 @@ namespace RayCarrot.RCP.Metro
                 {
                     sb.AppendLine($"Exception message: {exception.Message}");
                 }
+
+                if (RCFCore.Data.CurrentUserLevel < UserLevel.Advanced)
+                    return sb.ToString();
+
+                sb.AppendLine();
+                sb.AppendLine($"Exception level: {exceptionLevel}");
 
                 return sb.ToString();
             }

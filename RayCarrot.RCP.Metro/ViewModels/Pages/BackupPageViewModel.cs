@@ -32,10 +32,11 @@ namespace RayCarrot.RCP.Metro
 
             BindingOperations.EnableCollectionSynchronization(GameBackupItems, Application.Current);
 
-            App.RefreshRequired += async (s, e) => await RefreshAsync();
+            App.GameRefreshRequired += async (s, e) => await RefreshAsync();
+            App.BackupRefreshRequired += async (s, e) => await RefreshAsync();
             Data.PropertyChanged += async (s, e) =>
             {
-                if (e.PropertyName == nameof(AppUserData.BackupLocation) || e.PropertyName == nameof(AppUserData.FiestaRunVersion))
+                if (e.PropertyName == nameof(AppUserData.FiestaRunVersion))
                     await RefreshAsync();
             };
         }

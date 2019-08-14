@@ -2575,4 +2575,7 @@ Houd L1 + R1 (of gelijkwaardige knoppen op de huidige controller) in het menu va
   <data name="App_RestartAsAdmin" xml:space="preserve">
     <value>Herstart als administrator</value>
   </data>
+  <data name="App_RequiresAdminQuestion" xml:space="preserve">
+    <value>De applicatie heeft niet de vereiste machtigingen voor deze bewerking. Wil je de app herstarten als administrator?</value>
+  </data>
 </root>

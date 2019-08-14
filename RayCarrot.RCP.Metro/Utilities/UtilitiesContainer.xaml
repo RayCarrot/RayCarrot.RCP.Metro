@@ -51,7 +51,8 @@
                                             <Setter.Value>
 
                                                 <StackPanel HorizontalAlignment="Center"
-                                                            VerticalAlignment="Center">
+                                                            VerticalAlignment="Center"
+                                                            ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
                                                     <StackPanel Orientation="Horizontal">
 
                                                         <iconPacks:PackIconMaterial Kind="Security"
