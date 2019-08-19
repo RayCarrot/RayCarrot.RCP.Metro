@@ -1,4 +1,8 @@
 ﻿-----   Version 5.1.0 - August ??, 2019   -----
+• 
+
+Other changes:
+• Dialog windows now center the main window
 • The legacy data converter has been removed
 • Normalized the font size in the help page
 • Minor changes to how the widescreen patch is applied for Rayman 2
@@ -15,7 +19,7 @@
 • The Rayman 2 swimming controls can now be remapped
 
 Other changes:
-• Utilities are now modular, making plugins possible (contact me if you want to create a plugin-utility)
+• Utilities are now modular
 • Locating DOSBox games will now work even if they do not have a valid batch file
 • Added Rayman M cheat menu cheat code
 • Added Snagglebee to the credits for the PlayStation Soundtrack utility

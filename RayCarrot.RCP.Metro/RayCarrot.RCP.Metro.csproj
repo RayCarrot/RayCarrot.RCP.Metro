@@ -115,6 +115,7 @@
     </Compile>
     <Compile Include="DataModels\AsyncEventHandler.cs" />
     <Compile Include="Extensions\AsyncEventHandlertExtensions.cs" />
+    <Compile Include="ViewModels\Controls\DuoGridItemViewModel.cs" />
     <Compile Include="ViewModels\Options\FiestaRunOptionsViewModel.cs" />
     <Compile Include="Controls\UserControls\Pages\LinksPage.xaml.cs">
       <DependentUpon>LinksPage.xaml</DependentUpon>

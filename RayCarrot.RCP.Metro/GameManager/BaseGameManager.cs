@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using RayCarrot.CarrotFramework.Abstractions;
@@ -49,6 +50,20 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the game has been added
         /// </summary>
         protected bool IsAdded { get; }
+
+        #endregion
+
+        #region Public Abstract Properties
+
+        /// <summary>
+        /// The display name for the game type
+        /// </summary>
+        public abstract string GameTypeDisplayName { get; }
+
+        /// <summary>
+        /// Indicates if using <see cref="GameLaunchMode"/> is supported
+        /// </summary>
+        public abstract bool SupportsGameLaunchMode { get; }
 
         #endregion
 
@@ -112,6 +127,16 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <returns>The task</returns>
         public virtual Task PostGameAddAsync() => Task.CompletedTask;
+
+        /// <summary>
+        /// Gets the info items for the specified game
+        /// </summary>
+        /// <returns>The info items</returns>
+        public virtual IEnumerable<DuoGridItemViewModel> GetGameInfoItems()
+        {
+            yield return new DuoGridItemViewModel(Resources.GameInfo_GameType, GameTypeDisplayName, UserLevel.Advanced);
+            yield return new DuoGridItemViewModel(Resources.GameInfo_InstallDir, Info.InstallDirectory);
+        }
 
         #endregion
 

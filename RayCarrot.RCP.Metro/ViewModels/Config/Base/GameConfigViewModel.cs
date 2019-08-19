@@ -23,7 +23,5 @@ namespace RayCarrot.RCP.Metro
         /// Action to run upon saving
         /// </summary>
         public Action OnSave { get; set; }
-
-        public bool IsAvailable { get; set; }
     }
 }

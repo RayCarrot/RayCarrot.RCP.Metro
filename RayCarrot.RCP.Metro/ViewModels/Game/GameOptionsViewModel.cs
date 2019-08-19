@@ -4,6 +4,7 @@ using RayCarrot.IO;
 using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
 using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for a game options dialog
     /// </summary>
-    public class GameOptionsViewModel : BaseRCPViewModel
+    public class GameOptionsViewModel : BaseRCPViewModel, IDisposable
     {
         #region Constructor
 
@@ -29,20 +30,22 @@ namespace RayCarrot.RCP.Metro
             RemoveCommand = new AsyncRelayCommand(RemoveAsync);
             ShortcutCommand = new AsyncRelayCommand(CreateShortcutAsync);
 
-            // TODO: Refresh this when game refresh event is called
-            // TODO: Get dynamically as list of VMs from managers
+            // Set properties
             Game = game;
             DisplayName = game.GetDisplayName();
             IconSource = game.GetIconSource();
             GameInfo = game.GetInfo();
-            LaunchInfo = GameInfo.GameType == GameType.Win32 || GameInfo.GameType == GameType.DosBox ? game.GetGameManager().GetLaunchInfo() : null;
-            InstallDir = GameInfo.InstallDirectory;
-            if (GameInfo.GameType == GameType.WinStore)
-                AddPackageInfo();
+            GameInfoItems = new ObservableCollection<DuoGridItemViewModel>();
 
-            // TODO: Get property from manager?
+            // Refresh the game info
+            RefreshGameInfo();
+
+            // Refresh the game info on certain events
+            RCFCore.Data.CultureChanged += Data_CultureChanged;
+            App.RefreshRequired += App_RefreshRequired;
+
             // Check if the launch mode can be changed
-            CanChangeLaunchMode = GameInfo.GameType == GameType.Win32 || GameInfo.GameType == GameType.DosBox;
+            CanChangeLaunchMode = Game.GetGameManager().SupportsGameLaunchMode;
 
             // Get the utilities view models
             Utilities = App.GetUtilities(Game).Select(x => new RCPUtilityViewModel(x)).ToArray();
@@ -67,6 +70,11 @@ namespace RayCarrot.RCP.Metro
         public GameInfo GameInfo { get; set; }
 
         /// <summary>
+        /// The game info items
+        /// </summary>
+        public ObservableCollection<DuoGridItemViewModel> GameInfoItems { get; }
+
+        /// <summary>
         /// The game options content
         /// </summary>
         public object OptionsContent { get; }
@@ -80,46 +88,6 @@ namespace RayCarrot.RCP.Metro
         /// The icons source
         /// </summary>
         public string IconSource { get; }
-
-        /// <summary>
-        /// The game launch info, if available
-        /// </summary>
-        public GameLaunchInfo LaunchInfo { get; }
-
-        /// <summary>
-        /// The game's Steam ID
-        /// </summary>
-        public string SteamID => GameInfo.GameType == GameType.Steam ? Game.GetGameManager<SteamGameManager>().GetSteamID() : null;
-
-        /// <summary>
-        /// The game install directory
-        /// </summary>
-        public string InstallDir { get; set; }
-
-        /// <summary>
-        /// The Windows Store app dependencies
-        /// </summary>
-        public string WinStoreDependencies { get; set; }
-
-        /// <summary>
-        /// The Windows Store app full name
-        /// </summary>
-        public string WinStoreFullName { get; set; }
-
-        /// <summary>
-        /// The Windows Store app architecture
-        /// </summary>
-        public string WinStoreArchitecture { get; set; }
-
-        /// <summary>
-        /// The Windows Store app version
-        /// </summary>
-        public string WinStoreVersion { get; set; }
-
-        /// <summary>
-        /// The Windows Store app install date
-        /// </summary>
-        public DateTime WinStoreInstallDate { get; set; }
 
         /// <summary>
         /// Indicates if the launch mode can be changed
@@ -175,25 +143,32 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Event Handlers
+
+        private Task App_RefreshRequired(object sender, RefreshRequiredEventArgs e)
+        {
+            if (e.GameInfoModified && e.ModifiedGame == Game)
+                RefreshGameInfo();
+
+            return Task.CompletedTask;
+        }
+
+        private void Data_CultureChanged(object sender, PropertyChangedEventArgs<System.Globalization.CultureInfo> e)
+        {
+            RefreshGameInfo();
+        }
+
+        #endregion
+
         #region Private Methods
 
         /// <summary>
-        /// Adds Windows store package information
+        /// Refreshes the game info
         /// </summary>
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        private void AddPackageInfo()
+        private void RefreshGameInfo()
         {
-            if (!(Game.GetGameManager<WinStoreGameManager>().GetGamePackage() is Package package))
-            {
-                RCFCore.Logger?.LogErrorSource("Game options WinStore package is null");
-                return;
-            }
-
-            WinStoreDependencies = package.Dependencies.Select(x => x.Id.Name).JoinItems(", ");
-            WinStoreFullName = package.Id.FullName;
-            WinStoreArchitecture = package.Id.Architecture.ToString();
-            WinStoreVersion = $"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}";
-            WinStoreInstallDate = package.InstalledDate.DateTime;
+            GameInfoItems.Clear();
+            GameInfoItems.AddRange(Game.GetGameManager().GetGameInfoItems());
         }
 
         #endregion
@@ -254,6 +229,15 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Creating game shortcut", Game);
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader, MessageType.Error);
             }
+        }
+
+        /// <summary>
+        /// Disposes the view model
+        /// </summary>
+        public void Dispose()
+        {
+            RCFCore.Data.CultureChanged -= Data_CultureChanged;
+            App.RefreshRequired -= App_RefreshRequired;
         }
 
         #endregion

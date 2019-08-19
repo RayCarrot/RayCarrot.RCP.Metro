@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
@@ -22,6 +23,20 @@ namespace RayCarrot.RCP.Metro
         {
 
         }
+
+        #endregion
+
+        #region Protected Overrides Properties
+
+        /// <summary>
+        /// The display name for the game type
+        /// </summary>
+        public override string GameTypeDisplayName => Resources.GameType_Desktop;
+
+        /// <summary>
+        /// Indicates if using <see cref="GameLaunchMode"/> is supported
+        /// </summary>
+        public override bool SupportsGameLaunchMode => true;
 
         #endregion
 
@@ -85,6 +100,23 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <returns>The install directory</returns>
         public override FileSystemPath GetInstallDirectory() => FileSystemPath.EmptyPath;
+
+        /// <summary>
+        /// Gets the info items for the specified game
+        /// </summary>
+        /// <returns>The info items</returns>
+        public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems()
+        {
+            // Return from base
+            foreach (var item in base.GetGameInfoItems())
+                yield return item;
+
+            var launchInfo = GetLaunchInfo();
+
+            // Return new items
+            yield return new DuoGridItemViewModel(Resources.GameInfo_LaunchPath, launchInfo.Path, UserLevel.Technical);
+            yield return new DuoGridItemViewModel(Resources.GameInfo_LaunchArgs, launchInfo.Args, UserLevel.Technical);
+        }
 
         #endregion
     }

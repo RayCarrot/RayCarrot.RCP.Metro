@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MahApps.Metro.IconPacks;
 using Microsoft.Win32;
@@ -24,6 +25,20 @@ namespace RayCarrot.RCP.Metro
         {
 
         }
+
+        #endregion
+
+        #region Protected Overrides Properties
+
+        /// <summary>
+        /// The display name for the game type
+        /// </summary>
+        public override string GameTypeDisplayName => Resources.GameType_Steam;
+
+        /// <summary>
+        /// Indicates if using <see cref="GameLaunchMode"/> is supported
+        /// </summary>
+        public override bool SupportsGameLaunchMode => false;
 
         #endregion
 
@@ -140,6 +155,20 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Getting Steam game install directory");
                 return FileSystemPath.EmptyPath;
             }
+        }
+
+        /// <summary>
+        /// Gets the info items for the specified game
+        /// </summary>
+        /// <returns>The info items</returns>
+        public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems()
+        {
+            // Return from base
+            foreach (var item in base.GetGameInfoItems())
+                yield return item;
+
+            // Return new items
+            yield return new DuoGridItemViewModel(Resources.GameInfo_SteamID, GetSteamID(), UserLevel.Advanced);
         }
 
         #endregion

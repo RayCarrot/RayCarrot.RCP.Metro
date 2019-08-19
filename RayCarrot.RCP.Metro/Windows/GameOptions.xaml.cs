@@ -25,6 +25,7 @@ namespace RayCarrot.RCP.Metro
         {
             InitializeComponent();
             ViewModel = new GameOptionsViewModel(game);
+            Dispatcher.ShutdownStarted += Dispatcher_ShutdownStarted;
 
             ChangePage(page);
         }
@@ -120,6 +121,16 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        private void Dispatcher_ShutdownStarted(object sender, EventArgs e)
+        {
+            RCFRCP.App.RefreshRequired -= AppGameRefreshRequiredAsync;
+
+            ViewModel?.Dispose();
+
+            if (ConfigViewModel != null)
+                ConfigViewModel.OnSave = null;
+        }
+
         private Task AppGameRefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
         {
             if (!e.GameCollectionModified || e.ModifiedGame != ViewModel.Game)
@@ -134,14 +145,7 @@ namespace RayCarrot.RCP.Metro
         private async void GameOptions_OnClosingAsync(object sender, CancelEventArgs e)
         {
             if (ForceClose || ConfigViewModel?.UnsavedChanges != true)
-            {
-                RCFRCP.App.RefreshRequired -= AppGameRefreshRequiredAsync;
-
-                if (ConfigViewModel != null)
-                    ConfigViewModel.OnSave = null;
-
                 return;
-            }
 
             e.Cancel = true;
 

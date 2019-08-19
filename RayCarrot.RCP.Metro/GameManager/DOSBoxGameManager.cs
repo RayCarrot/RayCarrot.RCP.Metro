@@ -26,6 +26,15 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Protected Overrides Properties
+
+        /// <summary>
+        /// The display name for the game type
+        /// </summary>
+        public override string GameTypeDisplayName => Resources.GameType_DosBox;
+
+        #endregion
+
         #region Private Methods
 
         /// <summary>

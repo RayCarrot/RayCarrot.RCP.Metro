@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -27,6 +29,20 @@ namespace RayCarrot.RCP.Metro
         {
 
         }
+
+        #endregion
+
+        #region Protected Overrides Properties
+
+        /// <summary>
+        /// The display name for the game type
+        /// </summary>
+        public override string GameTypeDisplayName => Resources.GameType_WinStore;
+
+        /// <summary>
+        /// Indicates if using <see cref="GameLaunchMode"/> is supported
+        /// </summary>
+        public override bool SupportsGameLaunchMode => false;
 
         #endregion
 
@@ -212,6 +228,33 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Getting Windows Store game install directory");
                 return FileSystemPath.EmptyPath;
+            }
+        }
+
+        /// <summary>
+        /// Gets the info items for the specified game
+        /// </summary>
+        /// <returns>The info items</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public override IEnumerable<DuoGridItemViewModel> GetGameInfoItems()
+        {
+            // Return from base
+            foreach (var item in base.GetGameInfoItems())
+                yield return item;
+
+            // Get the package
+            if (Game.GetGameManager<WinStoreGameManager>().GetGamePackage() is Package package)
+            {
+                // Return new items
+                yield return new DuoGridItemViewModel(Resources.GameInfo_WinStoreDependencies, package.Dependencies.Select(x => x.Id.Name).JoinItems(", "), UserLevel.Technical);
+                yield return new DuoGridItemViewModel(Resources.GameInfo_WinStoreFullName, package.Id.FullName, UserLevel.Advanced);
+                yield return new DuoGridItemViewModel(Resources.GameInfo_WinStoreArchitecture, package.Id.Architecture.ToString(), UserLevel.Technical);
+                yield return new DuoGridItemViewModel(Resources.GameInfo_WinStoreVersion, $"{package.Id.Version.Major}.{package.Id.Version.Minor}.{package.Id.Version.Build}.{package.Id.Version.Revision}", UserLevel.Technical);
+                yield return new DuoGridItemViewModel(Resources.GameInfo_WinStoreInstallDate, package.InstalledDate.DateTime.ToString(CultureInfo.CurrentCulture), UserLevel.Advanced);
+            }
+            else
+            {
+                RCFCore.Logger?.LogErrorSource("Game options WinStore package is null");
             }
         }
 

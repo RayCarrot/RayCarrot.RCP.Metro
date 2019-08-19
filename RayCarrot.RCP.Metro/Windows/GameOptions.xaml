@@ -10,6 +10,7 @@
                   Title="{Binding Path=DisplayName}"
                   Loaded="GameOptions_OnLoadedAsync"
                   Closing="GameOptions_OnClosingAsync"
+                  WindowStartupLocation="CenterOwner"
                   Height="700" Width="600"
                   mc:Ignorable="d"
                   d:DataContext="{d:DesignInstance local:GameOptionsViewModel}">
@@ -71,106 +72,19 @@
                             <rwpf:FocusScrollViewerOnLoad />
                         </i:Interaction.Behaviors>
 
-                        <!-- Technical Information -->
+                        <!-- Game Information -->
 
                         <ItemsControl Visibility="{Binding Path=Data.ShowDetailedGameInfo, Converter={rwpf:BooleanToVisibilityConverter}}"
+                                      ItemsSource="{Binding Path=GameInfoItems, Mode=OneTime}"
                                       Grid.IsSharedSizeScope="True">
 
-                            <!-- GameType Desktop -->
-
-                            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Win32}"
-                                               Header="{Resx GameInfo_GameType}"
-                                               Text="{Resx GameType_Desktop}"
-                                               MinUserLevel="Advanced" />
-
-                            <!-- GameType Steam -->
-
-                            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Steam}"
-                                               Header="{Resx GameInfo_GameType}"
-                                               Text="{Resx GameType_Steam}"
-                                               MinUserLevel="Advanced" />
-
-                            <!-- GameType WinStore -->
-
-                            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
-                                               Header="{Resx GameInfo_GameType}"
-                                               Text="{Resx GameType_WinStore}"
-                                               MinUserLevel="Advanced" />
-
-                            <!-- GameType DosBox -->
-
-                            <local:DuoGridItem
-                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=DosBox}"
-                                Header="{Resx GameInfo_GameType}"
-                                Text="{Resx GameType_DosBox}"
-                                MinUserLevel="Advanced" />
-
-                            <!-- Steam ID -->
-
-                            <local:DuoGridItem
-                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Steam}"
-                                Header="{Resx GameInfo_SteamID}"
-                                Text="{Binding Path=SteamID, Mode=OneTime}"
-                                MinUserLevel="Advanced" />
-
-                            <!-- Launch Path -->
-
-                            <local:DuoGridItem
-                                Visibility="{Binding Path=LaunchInfo, Mode=OneTime, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
-                                Header="{Resx GameInfo_LaunchPath}"
-                                Text="{Binding Path=LaunchInfo.Path, Mode=OneTime}"
-                                MinUserLevel="Technical" />
-
-                            <!-- Launch Path -->
-
-                            <local:DuoGridItem Visibility="{Binding Path=LaunchInfo, Mode=OneTime, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
-                                               Header="{Resx GameInfo_LaunchArgs}"
-                                               Text="{Binding Path=LaunchInfo.Args, Mode=OneTime}"
-                                               MinUserLevel="Technical" />
-
-                            <!-- Install Directory -->
-
-                            <local:DuoGridItem Header="{Resx GameInfo_InstallDir}"
-                                               Text="{Binding Path=InstallDir}" />
-
-                            <!-- WinStore Dependencies -->
-
-                            <local:DuoGridItem
-                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
-                                Header="{Resx GameInfo_WinStoreDependencies}"
-                                Text="{Binding Path=WinStoreDependencies}"
-                                MinUserLevel="Technical" />
-
-                            <!-- WinStore Full Name -->
-
-                            <local:DuoGridItem
-                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
-                                Header="{Resx GameInfo_WinStoreFullName}"
-                                Text="{Binding Path=WinStoreFullName}"
-                                MinUserLevel="Technical" />
-
-                            <!-- WinStore Architecture -->
-
-                            <local:DuoGridItem
-                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
-                                Header="{Resx GameInfo_WinStoreArchitecture}"
-                                Text="{Binding Path=WinStoreArchitecture}"
-                                MinUserLevel="Technical" />
-
-                            <!-- WinStore Version -->
-
-                            <local:DuoGridItem
-                                Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
-                                Header="{Resx GameInfo_WinStoreVersion}"
-                                Text="{Binding Path=WinStoreVersion}"
-                                MinUserLevel="Technical" />
-
-                            <!-- WinStore Install Date -->
-
-                            <local:DuoGridItem Visibility="{Binding Path=GameInfo.GameType, Mode=OneTime, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=WinStore}"
-                                               Header="{Resx GameInfo_WinStoreInstallDate}"
-                                               Text="{Binding Path=WinStoreInstallDate}"
-                                               MinUserLevel="Technical" />
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <local:DuoGridItem Text="{Binding Path=Text}"
+                                                       Header="{Binding Path=Header}"
+                                                       MinUserLevel="{Binding Path=MinUserLevel}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
 
                         </ItemsControl>
 
