@@ -21,19 +21,31 @@ namespace RayCarrot.RCP.Metro
             InitializeComponent();
 
             // Subscribe to events
-            RCFRCP.App.GameRefreshRequired += AppGameRefreshRequired;
+            RCFRCP.App.RefreshRequired += AppGameRefreshRequiredAsync;
             Loaded += MainWindow_LoadedAsync;
             Loaded += MainWindow_Loaded2Async;
         }
 
         #endregion
 
+        #region Private Methods
+
+        /// <summary>
+        /// Refreshes the enabled state of the backup page based on if there are any games available
+        /// </summary>
+        private void RefreshBackupPageEnabled() => Dispatcher?.Invoke(() => BackupPageTab.IsEnabled = RCFRCP.Data.Games.Any());
+
+        #endregion
+
         #region Event Handlers
 
-        private void AppGameRefreshRequired(object sender, EventArgs e)
+        private Task AppGameRefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
         {
             // Disable the backup page tab when there are no games
-            Dispatcher.Invoke(() => BackupPageTab.IsEnabled = RCFRCP.Data.Games.Any());
+            if (e.GameCollectionModified)
+                RefreshBackupPageEnabled();
+
+            return Task.CompletedTask;
         }
 
         private async void MainWindow_LoadedAsync(object sender, RoutedEventArgs e)
@@ -42,7 +54,7 @@ namespace RayCarrot.RCP.Metro
             SecretCodeManager.Setup();
 
             await GamesPage.ViewModel.RefreshAsync();
-            AppGameRefreshRequired(null, null);
+            RefreshBackupPageEnabled();
 
             // Save settings
             await RCFRCP.App.SaveUserDataAsync();

@@ -32,11 +32,9 @@ namespace RayCarrot.RCP.Metro
 
             BindingOperations.EnableCollectionSynchronization(GameBackupItems, Application.Current);
 
-            App.GameRefreshRequired += async (s, e) => await RefreshAsync();
-            App.BackupRefreshRequired += async (s, e) => await RefreshAsync();
-            Data.PropertyChanged += async (s, e) =>
+            App.RefreshRequired += async (s, e) =>
             {
-                if (e.PropertyName == nameof(AppUserData.FiestaRunVersion))
+                if (e.BackupsModified)
                     await RefreshAsync();
             };
         }
@@ -87,6 +85,13 @@ namespace RayCarrot.RCP.Metro
                     // Enumerate the saved games
                     foreach (Games game in App.GetGames.Where(x => x.IsAdded()))
                     {
+                        if (game == Games.Educational)
+                        {
+                            // TODO: Treat as several games
+
+                            continue;
+                        }
+
                         // Create the backup item
                         var backupItem = new GameBackupItemViewModel(game);
 

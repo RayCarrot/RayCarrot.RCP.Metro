@@ -28,8 +28,8 @@
         <mah:ToggleSwitch IsChecked="{Binding Path=Data.TPLSData.IsEnabled}"
                           Visibility="{Binding Path=Data.TPLSData, Converter={wpf:InvertedObjectNullToVisibilityConverter}}"
                           HorizontalAlignment="Left"
-                          OnLabel="{Resx R1U_TPLSEnabled}"
-                          OffLabel="{Resx R1U_TPLSDisabled}" />
+                          OnLabel="{Resx SettingEnabled}"
+                          OffLabel="{Resx SettingDisabled}" />
 
         <Grid Visibility="{Binding Path=Data.TPLSData, Converter={wpf:InvertedObjectNullToVisibilityConverter}}">
             <Grid.ColumnDefinitions>

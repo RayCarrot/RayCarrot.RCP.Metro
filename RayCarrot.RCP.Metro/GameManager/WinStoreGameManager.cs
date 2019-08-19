@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
+using Windows.Management.Deployment;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
@@ -26,6 +30,78 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Public Methods
+
+        /// <summary>
+        /// Gets the package name for Rayman Fiesta Run based on edition
+        /// </summary>
+        /// <param name="edition">The edition</param>
+        /// <returns></returns>
+        public string GetFiestaRunPackageName(FiestaRunEdition edition)
+        {
+            switch (edition)
+            {
+                case FiestaRunEdition.Default:
+                    return "Ubisoft.RaymanFiestaRun";
+
+                case FiestaRunEdition.Preload:
+                    return "UbisoftEntertainment.RaymanFiestaRunPreloadEdition";
+
+                case FiestaRunEdition.Win10:
+                    return "Ubisoft.RaymanFiestaRunWindows10Edition";
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(RCFRCP.Data.FiestaRunVersion), RCFRCP.Data.FiestaRunVersion, null);
+            }
+        }
+
+        /// <summary>
+        /// Gets the game package for a Windows Store game
+        /// </summary>
+        /// <paramref name="packageName">The name of the package or null to use default</paramref>
+        /// <returns>The package or null if not found</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public object GetGamePackage(string packageName = null)
+        {
+            return new PackageManager().FindPackagesForUser(String.Empty).FindItem(x => x.Id.Name == (packageName ?? GetPackageName()));
+        }
+
+        /// <summary>
+        /// Gets the game package install directory for a Windows Store game
+        /// </summary>
+        /// <returns>The package install directory</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public FileSystemPath GetPackageInstallDirectory()
+        {
+            return (GetGamePackage() as Package)?.InstalledLocation.Path ?? FileSystemPath.EmptyPath;
+        }
+
+        /// <summary>
+        /// Launches the first package entry for a game
+        /// </summary>
+        /// <returns>The task</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public async Task LaunchFirstPackageEntryAsync()
+        {
+            await (await GetGamePackage().CastTo<Package>().GetAppListEntriesAsync()).First().LaunchAsync();
+        }
+        /// <summary>
+        /// Gets the package name for a Windows Store game
+        /// </summary>
+        /// <returns>The package name</returns>
+        public string GetPackageName()
+        {
+            if (Game == Games.RaymanJungleRun)
+                return "UbisoftEntertainment.RaymanJungleRun";
+
+            else if (Game == Games.RaymanFiestaRun)
+                return GetFiestaRunPackageName(RCFRCP.Data.FiestaRunVersion);
+
+            throw new ArgumentOutOfRangeException(nameof(Game), Game, "A package name can not be obtained from the specified game");
+        }
+
+        #endregion
+
         #region Protected Overrides
 
         /// <summary>
@@ -38,7 +114,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Launch the first app entry for the package
-                await Game.LaunchFirstPackageEntryAsync();
+                await LaunchFirstPackageEntryAsync();
 
                 return new GameLaunchResult(null, true);
             }
@@ -119,7 +195,7 @@ namespace RayCarrot.RCP.Metro
             if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
                 return false;
 
-            return Game.GetGamePackage() != null;
+            return GetGamePackage() != null;
         }
 
         /// <summary>
@@ -130,7 +206,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                return Game.GetPackageInstallDirectory();
+                return GetPackageInstallDirectory();
             }
             catch (Exception ex)
             {

@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Windows.UI.Xaml.Controls;
 using ByteSizeLib;
 using IniParser;
 using IniParser.Model;
@@ -185,7 +186,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(5, 0, 0, 3);
+        public Version CurrentVersion => new Version(5, 1, 0, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
@@ -313,20 +314,14 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Fires the <see cref="GameRefreshRequired"/> event
+        /// Fires the <see cref="RefreshRequired"/> event
         /// </summary>
-        /// <param name="major">Indicates if a major change has occurred, such as a game having been removed or added</param>
-        public void OnGameRefreshRequired(bool major)
+        /// <returns>The task</returns>
+        public async Task OnRefreshRequiredAsync(RefreshRequiredEventArgs eventArgs)
         {
-            GameRefreshRequired?.Invoke(this, new ValueEventArgs<bool>(major));
-        }
+            RCFCore.Logger?.LogDebugSource("A refresh is being requested");
 
-        /// <summary>
-        /// Fires the <see cref="BackupRefreshRequired"/> event
-        /// </summary>
-        public void OnBackupRefreshRequired()
-        {
-            BackupRefreshRequired?.Invoke(this, new EventArgs());
+            await (RefreshRequired?.RaiseAsync(this, eventArgs) ?? Task.CompletedTask);
         }
 
         /// <summary>
@@ -368,7 +363,7 @@ namespace RayCarrot.RCP.Metro
             await game.GetGameManager().PostGameAddAsync();
 
             // Refresh
-            OnGameRefreshRequired(true);
+            await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(game, true, false, false, false));
         }
 
         /// <summary>
@@ -410,7 +405,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Refresh the games
-            OnGameRefreshRequired(true);
+            await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(game, true, false, false, false));
         }
 
         /// <summary>
@@ -485,7 +480,7 @@ namespace RayCarrot.RCP.Metro
 
             IsGameFinderRunning = true;
 
-            return await Task.Run(async () =>
+            return await Task.Run<bool>(async () =>
             {
                 try
                 {
@@ -1105,7 +1100,7 @@ namespace RayCarrot.RCP.Metro
 
                     RCFCore.Logger?.LogInformationSource("Old backups have been moved");
 
-                    RCFRCP.App.OnBackupRefreshRequired();
+                    await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, true, false));
 
                     await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.MoveBackups_Success);
                 }
@@ -1255,31 +1250,10 @@ namespace RayCarrot.RCP.Metro
         #region Events
 
         /// <summary>
-        /// Occurs when a refresh is required for the games
+        /// Occurs when a refresh is required for the app
         /// </summary>
-        public event EventHandler<ValueEventArgs<bool>> GameRefreshRequired;
-
-        /// <summary>
-        /// Occurs when a refresh is required for the backups
-        /// </summary>
-        public event EventHandler BackupRefreshRequired;
+        public event AsyncEventHandler<RefreshRequiredEventArgs> RefreshRequired;
 
         #endregion
-    }
-
-    /// <summary>
-    /// The available modes for the admin worker
-    /// </summary>
-    public enum AdminWorkerModes
-    {
-        /// <summary>
-        /// Grants full control to the specified file
-        /// </summary>
-        GrantFullControl,
-
-        /// <summary>
-        /// Restarts the Rayman Control Panel as administrator
-        /// </summary>
-        RestartAsAdmin
     }
 }

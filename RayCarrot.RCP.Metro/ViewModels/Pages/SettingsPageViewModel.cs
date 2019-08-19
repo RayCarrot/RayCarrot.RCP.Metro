@@ -1,6 +1,7 @@
 ﻿using RayCarrot.CarrotFramework.Abstractions;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Windows.Input;
 using RayCarrot.UI;
 
@@ -32,6 +33,15 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// The current culture info
+        /// </summary>
+        public CultureInfo CurrentCultureInfo
+        {
+            get => new CultureInfo(Data.CurrentCulture);
+            set => Data.CurrentCulture = value?.Name ?? AppLanguages.DefaultCulture.Name;
+        }
 
         /// <summary>
         /// Indicates if the property <see cref="AppUserData.ShowUnderInstalledPrograms"/> can be edited

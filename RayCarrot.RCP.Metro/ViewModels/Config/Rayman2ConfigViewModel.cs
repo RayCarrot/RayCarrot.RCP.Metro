@@ -317,7 +317,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     ex.HandleError("Creating ubi.ini file");
 
-                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Config_InvalidR2UbiIniFile, newFile.Parent.FullPath), MessageType.Error);
+                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Config_InvalidUbiIni, newFile.Parent.FullPath), MessageType.Error);
 
                     throw;
                 }
@@ -410,7 +410,7 @@ namespace RayCarrot.RCP.Metro
                 RCFCore.Logger?.LogInformationSource($"The Rayman 2 aspect ratio is being set...");
 
                 // Get the file path
-                FileSystemPath path = Games.Rayman2.GetGameManager().GetLaunchInfo().Path;
+                FileSystemPath path = Games.Rayman2.GetInfo().InstallDirectory + Games.Rayman2.GetLaunchName();
 
                 // Make sure the file exists
                 if (!path.FileExists)
@@ -460,7 +460,7 @@ namespace RayCarrot.RCP.Metro
                     RCFCore.Logger?.LogDebugSource($"The Rayman 2 aspect ratio bytes detected as {input.JoinItems(", ")}");
 
                     // Open the file
-                    using (Stream stream = File.Open(path, FileMode.Open))
+                    using (Stream stream = File.Open(path, FileMode.Open, FileAccess.Write, FileShare.Read))
                     {
                         // Set the position
                         stream.Position = location;
@@ -475,7 +475,7 @@ namespace RayCarrot.RCP.Metro
                 else
                 {
                     // Open the file
-                    using (Stream stream = File.Open(path, FileMode.Open))
+                    using (Stream stream = File.Open(path, FileMode.Open, FileAccess.ReadWrite, FileShare.Read))
                     {
                         // Set the position
                         stream.Position = location;
@@ -633,7 +633,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Get the file path
-                FileSystemPath path = Games.Rayman2.GetGameManager().GetLaunchInfo().Path;
+                FileSystemPath path = Games.Rayman2.GetInfo().InstallDirectory + Games.Rayman2.GetLaunchName();
 
                 // Get the location
                 var location = GetAspectRatioLocation(path);
@@ -642,7 +642,7 @@ namespace RayCarrot.RCP.Metro
                     return null;
 
                 // Open the file
-                using (Stream stream = File.Open(path, FileMode.Open))
+                using (Stream stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     // Set the position
                     stream.Position = location;
@@ -669,6 +669,9 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Checking if R2 aspect ratio has been modified");
+
+                // TODO: Show error message
+
                 return null;
             }
         }

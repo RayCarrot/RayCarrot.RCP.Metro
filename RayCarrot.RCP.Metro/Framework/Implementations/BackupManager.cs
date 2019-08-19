@@ -236,6 +236,7 @@ namespace RayCarrot.RCP.Metro
 
                         foreach (BackupDir item in group)
                         {
+                            // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
                             if (!item.DirPath.DirectoryExists)
                                 groupItems.Add(item, DateTime.MinValue);
                             else

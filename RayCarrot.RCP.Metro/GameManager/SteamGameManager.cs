@@ -27,6 +27,35 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Public Methods
+
+        /// <summary>
+        /// Gets a Steam ID for the specified game
+        /// </summary>
+        /// <returns>The Steam ID</returns>
+        public string GetSteamID()
+        {
+            switch (Game)
+            {
+                case Games.Rayman2:
+                    return "15060";
+
+                case Games.RaymanRavingRabbids:
+                    return "15080";
+
+                case Games.RaymanOrigins:
+                    return "207490";
+
+                case Games.RaymanLegends:
+                    return "242550";
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(Game), Game, "The game is not a Steam game");
+            }
+        }
+
+        #endregion
+
         #region Protected Overrides
 
         /// <summary>
@@ -62,12 +91,12 @@ namespace RayCarrot.RCP.Metro
             {
                 new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamStore, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
                 {
-                    (await RCFRCP.File.LaunchFileAsync($"https://store.steampowered.com/app/" + Game.GetSteamID()))?.Dispose();
+                    (await RCFRCP.File.LaunchFileAsync($"https://store.steampowered.com/app/" + GetSteamID()))?.Dispose();
                     RCFCore.Logger?.LogTraceSource($"The game {Game} Steam store page was opened");
                 })),
                 new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamCommunity, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
                 {
-                    (await RCFRCP.File.LaunchFileAsync($"https://steamcommunity.com/app/" + Game.GetSteamID()))?.Dispose();
+                    (await RCFRCP.File.LaunchFileAsync($"https://steamcommunity.com/app/" + GetSteamID()))?.Dispose();
                     RCFCore.Logger?.LogTraceSource($"The game {Game} Steam community page was opened");
                 }))
             };
@@ -79,7 +108,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The launch info</returns>
         public override GameLaunchInfo GetLaunchInfo()
         {
-            return new GameLaunchInfo(@"steam://rungameid/" + Game.GetSteamID(), null);
+            return new GameLaunchInfo(@"steam://rungameid/" + GetSteamID(), null);
         }
 
         /// <summary>
@@ -89,7 +118,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game is valid, otherwise false</returns>
         public override bool IsValid(FileSystemPath installDir)
         {
-            return RCFWinReg.RegistryManager.KeyExists(RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {Game.GetSteamID()}"), RegistryView.Registry64);
+            return RCFWinReg.RegistryManager.KeyExists(RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {GetSteamID()}"), RegistryView.Registry64);
         }
 
         /// <summary>
@@ -101,7 +130,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Get the key path
-                var keyPath = RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {Game.GetSteamID()}");
+                var keyPath = RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {GetSteamID()}");
 
                 using (var key = RCFWinReg.RegistryManager.GetKeyFromFullPath(keyPath, RegistryView.Registry64))
                     return key?.GetValue("InstallLocation") as string;

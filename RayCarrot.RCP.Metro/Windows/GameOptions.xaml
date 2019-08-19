@@ -219,37 +219,10 @@
 
                         </WrapPanel>
 
-                        <Separator Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanFiestaRun}" />
+                        <Separator Visibility="{Binding Path=OptionsContent, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}" />
 
-                        <StackPanel Orientation="Horizontal"
-                                    Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanFiestaRun}">
-
-                            <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                       Text="{Resx Config_FiestaRunVersion}" />
-
-                            <local:InfoIcon Text="{Resx Config_FiestaRunVersionInfo}" />
-
-                        </StackPanel>
-
-                        <WrapPanel Orientation="Horizontal"
-                                   Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanFiestaRun}">
-
-                            <rwpf:RadioButtonExtended Content="{Resx FiestaRunVersion_Default}"
-                                                      IsEnabled="{Binding Path=IsFiestaRunDefaultAvailable}"
-                                                      IsChecked="{Binding Path=Data.FiestaRunVersion, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Default}"
-                                                      Margin="0 0 8 0" />
-
-                            <rwpf:RadioButtonExtended Content="{Resx FiestaRunVersion_Preload}"
-                                                      IsEnabled="{Binding Path=IsFiestaRunPreloadAvailable}"
-                                                      IsChecked="{Binding Path=Data.FiestaRunVersion, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Preload}"
-                                                      Margin="0 0 8 0" />
-
-                            <rwpf:RadioButtonExtended Content="{Resx FiestaRunVersion_Win10}"
-                                                      IsEnabled="{Binding Path=IsFiestaRunWin10Available}"
-                                                      IsChecked="{Binding Path=Data.FiestaRunVersion, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Win10}"
-                                                      Margin="0 0 8 0" />
-
-                        </WrapPanel>
+                        <ContentPresenter Content="{Binding Path=OptionsContent}"
+                                          rwpf:UnifiedMargin.Ignored="True" />
 
                     </StackPanel>
                 </ScrollViewer>

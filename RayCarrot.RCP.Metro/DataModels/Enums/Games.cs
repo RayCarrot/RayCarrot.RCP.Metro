@@ -73,6 +73,6 @@
         /// <summary>
         /// Educational Rayman games
         /// </summary>
-        // Educational
+        Educational
     }
 }

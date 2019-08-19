@@ -1,14 +1,14 @@
-﻿using System;
+﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
+using RayCarrot.IO;
+using RayCarrot.UI;
+using RayCarrot.Windows.Shell;
+using System;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.ApplicationModel;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
-using RayCarrot.IO;
-using RayCarrot.UI;
-using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -25,66 +25,31 @@ namespace RayCarrot.RCP.Metro
         /// <param name="game">The game to show the options for</param>
         public GameOptionsViewModel(Games game)
         {
+            // Create the commands
             RemoveCommand = new AsyncRelayCommand(RemoveAsync);
             ShortcutCommand = new AsyncRelayCommand(CreateShortcutAsync);
 
+            // TODO: Refresh this when game refresh event is called
+            // TODO: Get dynamically as list of VMs from managers
             Game = game;
             DisplayName = game.GetDisplayName();
             IconSource = game.GetIconSource();
             GameInfo = game.GetInfo();
             LaunchInfo = GameInfo.GameType == GameType.Win32 || GameInfo.GameType == GameType.DosBox ? game.GetGameManager().GetLaunchInfo() : null;
             InstallDir = GameInfo.InstallDirectory;
-
             if (GameInfo.GameType == GameType.WinStore)
                 AddPackageInfo();
 
+            // TODO: Get property from manager?
+            // Check if the launch mode can be changed
             CanChangeLaunchMode = GameInfo.GameType == GameType.Win32 || GameInfo.GameType == GameType.DosBox;
 
+            // Get the utilities view models
             Utilities = App.GetUtilities(Game).Select(x => new RCPUtilityViewModel(x)).ToArray();
+
+            // Get the options and config content, if available
             ConfigContent = game.GetConfigContent();
-
-            // TODO: Move out of here
-            if (Game == Games.RaymanFiestaRun)
-            {
-                // Save current Fiesta Run version
-                var fiestaVersion = Data.FiestaRunVersion;
-
-                var manager = Game.GetGameManager();
-
-                // Get available versions
-                Data.FiestaRunVersion = FiestaRunEdition.Default;
-                IsFiestaRunDefaultAvailable = manager.IsValid(FileSystemPath.EmptyPath);
-
-                Data.FiestaRunVersion = FiestaRunEdition.Preload;
-                IsFiestaRunPreloadAvailable = manager.IsValid(FileSystemPath.EmptyPath);
-
-                Data.FiestaRunVersion = FiestaRunEdition.Win10;
-                IsFiestaRunWin10Available = manager.IsValid(FileSystemPath.EmptyPath);
-
-                // Revert version
-                Data.FiestaRunVersion = fiestaVersion;
-
-                // Update the package info if it changes
-                Data.PropertyChanged += (s, e) =>
-                {
-                    if (e.PropertyName == nameof(AppUserData.FiestaRunVersion))
-                    {
-                        // Update the install directory and game info
-                        try
-                        {
-                            GameInfo = new GameInfo(GameType.WinStore, game.GetPackageInstallDirectory());
-                            RCFRCP.Data.Games[game] = GameInfo;
-                        }
-                        catch (Exception ex)
-                        {
-                            ex.HandleError("Getting updated Windows Store game install directory");
-                        }
-
-                        InstallDir = GameInfo.InstallDirectory;
-                        AddPackageInfo();
-                    }
-                };
-            }
+            OptionsContent = game.GetOptionsContent();
         }
 
         #endregion
@@ -100,6 +65,11 @@ namespace RayCarrot.RCP.Metro
         /// The game info
         /// </summary>
         public GameInfo GameInfo { get; set; }
+
+        /// <summary>
+        /// The game options content
+        /// </summary>
+        public object OptionsContent { get; }
 
         /// <summary>
         /// The display name
@@ -119,7 +89,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game's Steam ID
         /// </summary>
-        public string SteamID => GameInfo.GameType == GameType.Steam ? Game.GetSteamID() : null;
+        public string SteamID => GameInfo.GameType == GameType.Steam ? Game.GetGameManager<SteamGameManager>().GetSteamID() : null;
 
         /// <summary>
         /// The game install directory
@@ -161,12 +131,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public GameLaunchMode LaunchMode
         {
-
             get => GameInfo.LaunchMode;
             set
             {
                 GameInfo.LaunchMode = value;
-                App.OnGameRefreshRequired(false);
+                _ = App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, false, true, false, false));
             }
         }
 
@@ -189,21 +158,6 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the game has config content
         /// </summary>
         public bool HasConfigContent => ConfigContent != null;
-
-        /// <summary>
-        /// Indicates if <see cref="FiestaRunEdition.Default"/> is available
-        /// </summary>
-        public bool IsFiestaRunDefaultAvailable { get; }
-
-        /// <summary>
-        /// Indicates if <see cref="FiestaRunEdition.Preload"/> is available
-        /// </summary>
-        public bool IsFiestaRunPreloadAvailable { get; }
-
-        /// <summary>
-        /// Indicates if <see cref="FiestaRunEdition.Win10"/> is available
-        /// </summary>
-        public bool IsFiestaRunWin10Available { get; }
 
         #endregion
 
@@ -229,7 +183,7 @@ namespace RayCarrot.RCP.Metro
         [MethodImpl(MethodImplOptions.NoInlining)]
         private void AddPackageInfo()
         {
-            if (!(Game.GetGamePackage() is Package package))
+            if (!(Game.GetGameManager<WinStoreGameManager>().GetGamePackage() is Package package))
             {
                 RCFCore.Logger?.LogErrorSource("Game options WinStore package is null");
                 return;
@@ -282,7 +236,7 @@ namespace RayCarrot.RCP.Metro
 
                 if (gameInfo.GameType == GameType.Steam)
                 {
-                    WindowsHelpers.CreateURLShortcut(shortcutName, result.SelectedDirectory, $@"steam://rungameid/{Game.GetSteamID()}");
+                    WindowsHelpers.CreateURLShortcut(shortcutName, result.SelectedDirectory, $@"steam://rungameid/{Game.GetGameManager<SteamGameManager>().GetSteamID()}");
 
                     RCFCore.Logger?.LogTraceSource($"A shortcut was created for {Game} under {result.SelectedDirectory}");
 

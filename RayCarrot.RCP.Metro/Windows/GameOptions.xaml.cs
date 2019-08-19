@@ -98,7 +98,7 @@ namespace RayCarrot.RCP.Metro
 
         private async void GameOptions_OnLoadedAsync(object sender, RoutedEventArgs e)
         {
-            RCFRCP.App.GameRefreshRequired += AppGameRefreshRequired;
+            RCFRCP.App.RefreshRequired += AppGameRefreshRequiredAsync;
 
             try
             {
@@ -120,20 +120,22 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        private void AppGameRefreshRequired(object sender, ValueEventArgs<bool> e)
+        private Task AppGameRefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
         {
-            if (e.Value)
-            {
-                ForceClose = true;
-                Close();
-            }
+            if (!e.GameCollectionModified || e.ModifiedGame != ViewModel.Game)
+                return Task.CompletedTask;
+
+            ForceClose = true;
+            Close();
+
+            return Task.CompletedTask;
         }
 
         private async void GameOptions_OnClosingAsync(object sender, CancelEventArgs e)
         {
             if (ForceClose || ConfigViewModel?.UnsavedChanges != true)
             {
-                RCFRCP.App.GameRefreshRequired -= AppGameRefreshRequired;
+                RCFRCP.App.RefreshRequired -= AppGameRefreshRequiredAsync;
 
                 if (ConfigViewModel != null)
                     ConfigViewModel.OnSave = null;

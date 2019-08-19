@@ -17,8 +17,8 @@
 
         <mah:ToggleSwitch IsChecked="{Binding Path=IsDebugModeEnabled}"
                                 HorizontalAlignment="Left"
-                                OnLabel="{Resx ROU_DebugCommandsEnabled}"
-                                OffLabel="{Resx ROU_DebugCommandsDisabled}" />
+                                OnLabel="{Resx SettingEnabled}"
+                                OffLabel="{Resx SettingDisabled}" />
 
         <CheckBox Content="{Resx ROU_DebugCommandsInvincibility}"
                       ToolTip="{Resx ROU_DebugCommandsInvincibility}"

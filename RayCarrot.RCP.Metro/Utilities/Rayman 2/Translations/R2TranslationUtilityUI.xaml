@@ -40,7 +40,7 @@
                    Visibility="{Binding Path=SelectedTranslation, Converter={wpf:EnumVisibilityConverter}, ConverterParameter=Slovak}"
                    TextWrapping="WrapWithOverflow" />
 
-        <Button Content="{Resx R2U_Apply}"
+        <Button Content="{Resx Utility_Apply}"
                 HorizontalAlignment="Left"
                 Command="{Binding Path=ApplyTranslationCommand}"/>
 

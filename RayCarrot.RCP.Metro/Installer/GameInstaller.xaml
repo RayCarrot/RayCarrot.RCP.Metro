@@ -88,7 +88,7 @@
                 Command="{Binding Path=InstallCommand}"
                 IsEnabled="{Binding Path=InstallerRunning, Converter={rwpf:InvertedBooleanConverter}}"/>
 
-        <Button Content="{Resx Installer_Cancel}"
+        <Button Content="{Resx Cancel}"
                 Command="{Binding Path=CancelCommand}"
                 IsEnabled="{Binding Path=InstallerRunning}" />
 

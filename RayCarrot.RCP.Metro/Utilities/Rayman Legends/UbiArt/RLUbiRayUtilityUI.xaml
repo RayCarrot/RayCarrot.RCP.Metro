@@ -20,7 +20,7 @@
                  DisplayMemberPath="Name"
                  HorizontalAlignment="Left"/>
 
-        <Button Content="{Resx RLU_Apply}"
+        <Button Content="{Resx Utility_Apply}"
                 HorizontalAlignment="Left" 
                 Command="{Binding Path=ApplyUbiRayCommand}"/>
 

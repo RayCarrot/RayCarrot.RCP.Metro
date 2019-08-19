@@ -121,8 +121,7 @@
                         </DataGrid>
                     </ScrollViewer>
 
-                    <TextBlock FontSize="16"
-                               Margin="5"
+                    <TextBlock Margin="5"
                                DataContext="{Binding ElementName=HelpTreeView, Path=SelectedItem}"
                                d:DataContext="{d:DesignInstance local:HelpItemViewModel}"
                                Text="{Binding Path=HelpText}"

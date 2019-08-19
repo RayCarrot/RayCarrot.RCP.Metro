@@ -22,6 +22,8 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public static class GamesExtensions
     {
+        #region Helpers
+
         /// <summary>
         /// Gets the <see cref="BaseGameManager"/> for the added game
         /// </summary>
@@ -50,6 +52,140 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
+        /// Gets the <see cref="BaseGameManager"/> for the added game
+        /// </summary>
+        /// <param name="game">The game to get the manager for</param>
+        /// <returns>The game manager</returns>
+        public static T GetGameManager<T>(this Games game)
+            where T : BaseGameManager
+        {
+            return typeof(T).CreateInstance(game).CastTo<T>();
+        }
+
+        /// <summary>
+        /// Gets the saved game info for the specified game
+        /// </summary>
+        /// <param name="game">The game to get the saved game info for</param>
+        /// <returns>The saved game info</returns>
+        public static GameInfo GetInfo(this Games game)
+        {
+            return RCFRCP.Data.Games[game];
+        }
+
+        /// <summary>
+        /// Determines if the specified game has been added to the program
+        /// </summary>
+        /// <param name="game">The game to check if it's added</param>
+        /// <returns>True if the game has been added, otherwise false</returns>
+        public static bool IsAdded(this Games game)
+        {
+            return RCFRCP.Data.Games.ContainsKey(game);
+        }
+
+        /// <summary>
+        /// Gets the backup directory for the specified game
+        /// </summary>
+        /// <param name="game">The game to get the backup directory for</param>
+        /// <returns>The backup directory</returns>
+        public static FileSystemPath GetBackupDir(this Games game)
+        {
+            return RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + game.GetBackupName();
+        }
+
+        /// <summary>
+        /// Gets the backup file for the specified game if the backup is compressed
+        /// </summary>
+        /// <param name="game">The game to get the backup file for</param>
+        /// <returns>The backup file</returns>
+        public static FileSystemPath GetCompressedBackupFile(this Games game)
+        {
+            return RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + (game.GetBackupName() + CommonPaths.BackupCompressionExtension);
+        }
+
+        /// <summary>
+        /// Gets the existing backup location for the specified game if one exists
+        /// </summary>
+        /// <param name="game">The game to get the backup location for</param>
+        /// <returns>The backup location or null if none was found</returns>
+        public static FileSystemPath? GetExistingBackup(this Games game)
+        {
+            // Get the backup locations
+            var compressedLocation = game.GetCompressedBackupFile();
+            var normalLocation = game.GetBackupDir();
+
+            if (RCFRCP.Data.CompressBackups)
+            {
+                // Start by checking the location based on current setting
+                if (compressedLocation.FileExists)
+                    return compressedLocation;
+                // Fall back to secondary location
+                else if (normalLocation.DirectoryExists && Directory.GetFileSystemEntries(normalLocation).Any())
+                    return normalLocation;
+                else
+                    // No valid location exists
+                    return null;
+            }
+            else
+            {
+                // Start by checking the location based on current setting
+                if (normalLocation.DirectoryExists && Directory.GetFileSystemEntries(normalLocation).Any())
+                    return normalLocation;
+                // Fall back to secondary location
+                else if (compressedLocation.FileExists)
+                    return compressedLocation;
+                else
+                    // No valid location exists
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets the installer items for the specified game
+        /// </summary>
+        /// <param name="game">The game to get the installer items for</param>
+        /// <param name="outputPath">The output path for the installation</param>
+        /// <returns>The installer items</returns>
+        public static List<RayGameInstallItem> GetInstallerItems(this Games game, FileSystemPath outputPath)
+        {
+            // Create the result
+            var result = new List<RayGameInstallItem>();
+
+            // Attempt to get the text file
+            if (!(InstallerGames.ResourceManager.GetObject($"{game}") is string file))
+                throw new Exception("Installer item not found");
+
+            using (StringReader reader = new StringReader(file))
+            {
+                string line;
+
+                while ((line = reader.ReadLine()) != null)
+                {
+                    // Check if the item is optional, in which case
+                    // it has a blank space before the path
+                    bool optional = line.StartsWith(" ");
+
+                    // Remove the blank space if optional
+                    if (optional)
+                        line = line.Substring(1);
+
+                    result.Add(new RayGameInstallItem(line, outputPath + line, optional));
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets the DosBox configuration file path for the auto config for the specific game
+        /// </summary>
+        /// <param name="game">The game to get the file path for</param>
+        /// <returns>The file path</returns>
+        public static FileSystemPath GetDosBoxConfigFile(this Games game)
+        {
+            return CommonPaths.UserDataBaseDir + "DosBox" + (game + ".ini");
+        }
+
+        /// <summary>
         /// Gets the icon source for the specified game
         /// </summary>
         /// <param name="game">The game to get the icon source for</param>
@@ -58,6 +194,10 @@ namespace RayCarrot.RCP.Metro
         {
             return $"{AppViewModel.ApplicationBasePath}Img/GameIcons/{game}.png";
         }
+
+        #endregion
+
+        #region Data
 
         /// <summary>
         /// Gets the display name for the specified game
@@ -108,6 +248,9 @@ namespace RayCarrot.RCP.Metro
 
                 case Games.RaymanFiestaRun:
                     return "Rayman Fiesta Run";
+
+                case Games.Educational:
+                    return "Educational Games";
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);
@@ -164,29 +307,11 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanFiestaRun:
                     return $"Rayman Fiesta Run ({RCFRCP.Data.FiestaRunVersion})";
 
+                // TODO: Educational games support
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);
             }
-        }
-
-        /// <summary>
-        /// Gets the saved game info for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the saved game info for</param>
-        /// <returns>The saved game info</returns>
-        public static GameInfo GetInfo(this Games game)
-        {
-            return RCFRCP.Data.Games[game];
-        }
-
-        /// <summary>
-        /// Determines if the specified game has been added to the program
-        /// </summary>
-        /// <param name="game">The game to check if it's added</param>
-        /// <returns>True if the game has been added, otherwise false</returns>
-        public static bool IsAdded(this Games game)
-        {
-            return RCFRCP.Data.Games.ContainsKey(game);
         }
 
         /// <summary>
@@ -316,7 +441,7 @@ namespace RayCarrot.RCP.Metro
                         actions.Add(new OverflowButtonItemViewModel());
 
                     // Add disc installer action
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, PackIconMaterialKind.Disk, new RelayCommand(() => 
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, PackIconMaterialKind.Disk, new RelayCommand(() =>
                         // NOTE: This is a blocking dialog
                         new GameInstaller(game).ShowDialog())));
                 }
@@ -327,32 +452,6 @@ namespace RayCarrot.RCP.Metro
                 // Return the view model
                 return new GameDisplayViewModel(game.GetDisplayName(), game.GetIconSource(),
                     new ActionItemViewModel(Resources.GameDisplay_Locate, PackIconMaterialKind.FolderOutline, locateCommand), actions);
-            }
-        }
-
-        /// <summary>
-        /// Gets a Steam ID for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the Steam ID for</param>
-        /// <returns>The Steam ID</returns>
-        public static string GetSteamID(this Games game)
-        {
-            switch (game)
-            {
-                case Games.Rayman2:
-                    return "15060";
-
-                case Games.RaymanRavingRabbids:
-                    return "15080";
-
-                case Games.RaymanOrigins:
-                    return "207490";
-
-                case Games.RaymanLegends:
-                    return "242550";
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(game), game, "The game is not a Steam game");
             }
         }
 
@@ -386,21 +485,12 @@ namespace RayCarrot.RCP.Metro
                         new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
                     };
 
-                case Games.Rayman60Levels:
-                    return null;
-
                 case Games.Rayman2:
                     return new List<GamePurchaseLink>()
                     {
                         new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_2_the_great_escape"),
                         new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-2--the-great-escape/56c4947e88a7e300458b465c.html")
                     };
-
-                case Games.RaymanM:
-                    return null;
-
-                case Games.RaymanArena:
-                    return null;
 
                 case Games.Rayman3:
                     return new List<GamePurchaseLink>()
@@ -412,7 +502,7 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanRavingRabbids:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink(Resources.GameDisplay_Steam, AppViewModel.SteamStoreBaseUrl + game.GetSteamID()),
+                        new GamePurchaseLink(Resources.GameDisplay_Steam, AppViewModel.SteamStoreBaseUrl + game.GetGameManager<SteamGameManager>().GetSteamID()),
                         new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_raving_rabbids"),
                         new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-raving-rabbids/56c4948888a7e300458b47de.html")
                     };
@@ -420,7 +510,7 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanOrigins:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink(Resources.GameDisplay_Steam, AppViewModel.SteamStoreBaseUrl + game.GetSteamID()),
+                        new GamePurchaseLink(Resources.GameDisplay_Steam, AppViewModel.SteamStoreBaseUrl + game.GetGameManager<SteamGameManager>().GetSteamID()),
                         new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_origins"),
                         new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-origins/56c4948888a7e300458b47dc.html")
                     };
@@ -428,7 +518,7 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanLegends:
                     return new List<GamePurchaseLink>()
                     {
-                        new GamePurchaseLink(Resources.GameDisplay_Steam, AppViewModel.SteamStoreBaseUrl + game.GetSteamID()),
+                        new GamePurchaseLink(Resources.GameDisplay_Steam, AppViewModel.SteamStoreBaseUrl + game.GetGameManager<SteamGameManager>().GetSteamID()),
                         new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--legends/56c4948888a7e300458b47da.html")
                     };
 
@@ -445,7 +535,7 @@ namespace RayCarrot.RCP.Metro
                     };
 
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(game), game, null);
+                    return null;
             }
         }
 
@@ -498,17 +588,8 @@ namespace RayCarrot.RCP.Metro
                         new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "SettingsApplication.exe")
                     };
 
-                case Games.Rayman1:
-                case Games.RaymanByHisFans:
-                case Games.Rayman60Levels:
-                case Games.RaymanOrigins:
-                case Games.RaymanLegends:
-                case Games.RaymanJungleRun:
-                case Games.RaymanFiestaRun:
-                    return new GameFileLink[0];
-
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(game), game, null);
+                    return new GameFileLink[0];
             }
         }
 
@@ -519,6 +600,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The launch name</returns>
         public static string GetLaunchName(this Games game)
         {
+            // TODO: Educational
+
             switch (game)
             {
                 case Games.Rayman1:
@@ -551,7 +634,7 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanOrigins:
                     return "Rayman Origins.exe";
 
-                case Games.RaymanLegends:   
+                case Games.RaymanLegends:
                     return "Rayman Legends.exe";
 
                 case Games.RaymanJungleRun:
@@ -585,6 +668,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The type or null if the operation was cancelled</returns>
         public static async Task<GameTypeSelectionResult> GetGameTypeAsync(this Games game)
         {
+            // TODO: Educational
+
             // Create the view model
             var vm = new GameTypeSelectionViewModel()
             {
@@ -666,169 +751,24 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanLegends:
                     return new Ray_Origins_Legends_Config(game);
 
-                case Games.RaymanJungleRun:
-                case Games.RaymanFiestaRun:
+                default:
                     return null;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(game), game, null);
             }
         }
 
         /// <summary>
-        /// Gets a value indicating if the specified game has utilities
+        /// Gets the options content for the specified game
         /// </summary>
-        /// <param name="game">The game to check</param>
-        /// <returns>True if the game has utilities, otherwise false</returns>
-        public static bool HasUtilities(this Games game)
-        {
-            if (game == Games.Rayman3)
-                return AppViewModel.WindowsVersion >= WindowsVersion.Win8;
-
-            switch (game)
-            {
-                case Games.Rayman1:
-                case Games.RaymanDesigner:
-                case Games.Rayman2:
-                case Games.RaymanOrigins:
-                case Games.RaymanLegends:
-                    return true;
-
-                case Games.RaymanByHisFans:
-                case Games.Rayman60Levels:
-                case Games.RaymanM:
-                case Games.RaymanArena:
-                case Games.RaymanRavingRabbids:
-                case Games.RaymanJungleRun:
-                case Games.RaymanFiestaRun:
-                default:
-                    return false;
-            }
-        }
-
-        /// <summary>
-        /// Gets the game package for a Windows Store game
-        /// </summary>
-        /// <param name="game">The game to get the package for</param>
-        /// <returns>The package or null if not found</returns>
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static object GetGamePackage(this Games game)
+        /// <param name="game">The game to get the options content for</param>
+        /// <returns>The options content</returns>
+        public static FrameworkElement GetOptionsContent(this Games game)
         {
             switch (game)
             {
-                case Games.RaymanJungleRun:
                 case Games.RaymanFiestaRun:
-                    return new PackageManager().FindPackagesForUser(String.Empty).FindItem(x => x.Id.Name == game.GetPackageName());
+                    return new FiestaRunOptions();
 
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(game), game, "A game package can only be retrieved for Rayman Jungle Run or Rayman Fiesta Run");
-            }
-        }
-
-        /// <summary>
-        /// Gets the game package install directory for a Windows Store game
-        /// </summary>
-        /// <param name="game">The game to get the package install directory for</param>
-        /// <returns>The package install directory</returns>
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static FileSystemPath GetPackageInstallDirectory(this Games game)
-        {
-            return (game.GetGamePackage() as Package)?.InstalledLocation.Path ?? FileSystemPath.EmptyPath;
-        }
-
-        /// <summary>
-        /// Launches the first package entry for a game
-        /// </summary>
-        /// <param name="game">The game to launch</param>
-        /// <returns>The task</returns>
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public static async Task LaunchFirstPackageEntryAsync(this Games game)
-        {
-            await (await game.GetGamePackage().CastTo<Package>().GetAppListEntriesAsync()).First().LaunchAsync();
-        }
-
-        /// <summary>
-        /// Gets the package name for a Windows Store game
-        /// </summary>
-        /// <param name="game">The game to get the package name for</param>
-        /// <returns>The package name</returns>
-        public static string GetPackageName(this Games game)
-        {
-            if (game == Games.RaymanJungleRun)
-                return "UbisoftEntertainment.RaymanJungleRun";
-
-            else if (game == Games.RaymanFiestaRun)
-                switch (RCFRCP.Data.FiestaRunVersion)
-                {
-                    case FiestaRunEdition.Default:
-                        return "Ubisoft.RaymanFiestaRun";
-
-                    case FiestaRunEdition.Preload:
-                        return "UbisoftEntertainment.RaymanFiestaRunPreloadEdition";
-
-                    case FiestaRunEdition.Win10:
-                        return "Ubisoft.RaymanFiestaRunWindows10Edition";
-
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(RCFRCP.Data.FiestaRunVersion), RCFRCP.Data.FiestaRunVersion, null);
-                }
-
-            throw new ArgumentOutOfRangeException(nameof(game), game, "A package name can not be obtained from the specified game");
-        }
-
-        /// <summary>
-        /// Gets the backup directory for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the backup directory for</param>
-        /// <returns>The backup directory</returns>
-        public static FileSystemPath GetBackupDir(this Games game)
-        {
-            return RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + game.GetBackupName(); 
-        }
-
-        /// <summary>
-        /// Gets the backup file for the specified game if the backup is compressed
-        /// </summary>
-        /// <param name="game">The game to get the backup file for</param>
-        /// <returns>The backup file</returns>
-        public static FileSystemPath GetCompressedBackupFile(this Games game)
-        {
-            return RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + (game.GetBackupName() + CommonPaths.BackupCompressionExtension);
-        }
-
-        /// <summary>
-        /// Gets the existing backup location for the specified game if one exists
-        /// </summary>
-        /// <param name="game">The game to get the backup location for</param>
-        /// <returns>The backup location or null if none was found</returns>
-        public static FileSystemPath? GetExistingBackup(this Games game)
-        {
-            // Get the backup locations
-            var compressedLocation = game.GetCompressedBackupFile();
-            var normalLocation = game.GetBackupDir();
-
-            if (RCFRCP.Data.CompressBackups)
-            {
-                // Start by checking the location based on current setting
-                if (compressedLocation.FileExists)
-                    return compressedLocation;
-                // Fall back to secondary location
-                else if (normalLocation.DirectoryExists && Directory.GetFileSystemEntries(normalLocation).Any())
-                    return normalLocation;
-                else
-                    // No valid location exists
-                    return null;
-            }
-            else
-            {
-                // Start by checking the location based on current setting
-                if (normalLocation.DirectoryExists && Directory.GetFileSystemEntries(normalLocation).Any())
-                    return normalLocation;
-                // Fall back to secondary location
-                else if (compressedLocation.FileExists)
-                    return compressedLocation;
-                else
-                    // No valid location exists
                     return null;
             }
         }
@@ -840,6 +780,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The game backup info</returns>
         public static List<BackupDir> GetBackupInfo(this Games game)
         {
+            // TODO: Educational
+
             // Get the game info
             var gameInfo = game.GetInfo();
 
@@ -1118,73 +1060,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Gets the installer items for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the installer items for</param>
-        /// <param name="outputPath">The output path for the installation</param>
-        /// <returns>The installer items</returns>
-        public static List<RayGameInstallItem> GetInstallerItems(this Games game, FileSystemPath outputPath)
-        {
-            // Create the result
-            var result = new List<RayGameInstallItem>();
-
-            // Attempt to get the text file
-            if (!(InstallerGames.ResourceManager.GetObject($"{game}") is string file))
-                throw new Exception("Installer item not found");
-
-            using (StringReader reader = new StringReader(file))
-            {
-                string line;
-
-                while ((line = reader.ReadLine()) != null)
-                {
-                    // Check if the item is optional, in which case
-                    // it has a blank space before the path
-                    bool optional = line.StartsWith(" ");
-
-                    // Remove the blank space if optional
-                    if (optional)
-                        line = line.Substring(1);
-
-                    result.Add(new RayGameInstallItem(line, outputPath + line, optional));
-                }
-            }
-
-            return result;
-        }
-
-        /// <summary>
-        /// Gets the DosBox configuration file path for the auto config for the specific game
-        /// </summary>
-        /// <param name="game">The game to get the file path for</param>
-        /// <returns>The file path</returns>
-        public static FileSystemPath GetDosBoxConfigFile(this Games game)
-        {
-            return CommonPaths.UserDataBaseDir + "DosBox" + (game + ".ini"); 
-        }
-
-        /// <summary>
-        /// Gets the DosBox launch arguments for the specific game
-        /// </summary>
-        /// <param name="game">The game to get the arguments for</param>
-        /// <param name="installPath">Game install path</param>
-        /// <param name="mountPath">The disc/file to mount</param>
-        /// <param name="exe">The game executable file to launch</param>
-        /// <returns>The launch arguments</returns>
-        public static string GetDosBoxArguments(this Games game, FileSystemPath installPath, FileSystemPath mountPath, string exe)
-        {
-            return $"{(File.Exists(RCFRCP.Data.DosBoxConfig) ? $"-conf \"{RCFRCP.Data.DosBoxConfig} \"" : String.Empty)} " +
-                   $"-conf \"{game.GetDosBoxConfigFile()}\" " +
-                   // The mounting differs if it's a physical disc vs. a disc image
-                   $"{(mountPath.IsDirectoryRoot() ? "-c \"mount d " + mountPath.FullPath + " -t cdrom\"" : "-c \"imgmount d '" + mountPath.FullPath + "' -t iso -fs iso\"")} " +
-                   $"-c \"MOUNT C '{installPath.FullPath}'\" " +
-                   $"-c C: " +
-                   $"-c \"{exe}\" " +
-                   $"-noconsole " +
-                   $"-c exit";
-        }
-
-        /// <summary>
         /// Gets the applied utilities for the specified game
         /// </summary>
         /// <param name="game">The game to get the applied utilities for</param>
@@ -1214,5 +1089,7 @@ namespace RayCarrot.RCP.Metro
 
             return output.ToArray();
         }
+
+        #endregion
     }
 }

@@ -110,6 +110,12 @@
     </ApplicationDefinition>
     <Compile Include="Controls\OneWayToggleButton.cs" />
     <Compile Include="Controls\RCPTabItem.cs" />
+    <Compile Include="Controls\UserControls\Options\FiestaRunOptions.xaml.cs">
+      <DependentUpon>FiestaRunOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\AsyncEventHandler.cs" />
+    <Compile Include="Extensions\AsyncEventHandlertExtensions.cs" />
+    <Compile Include="ViewModels\Options\FiestaRunOptionsViewModel.cs" />
     <Compile Include="Controls\UserControls\Pages\LinksPage.xaml.cs">
       <DependentUpon>LinksPage.xaml</DependentUpon>
     </Compile>
@@ -155,6 +161,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\UserControls\Config\Rayman2Config.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UserControls\Options\FiestaRunOptions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -287,6 +297,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Files.resx</DependentUpon>
     </Compile>
+    <Compile Include="DataModels\EventArgs\RefreshRequiredEventArgs.cs" />
+    <Compile Include="DataModels\Enums\AdminWorkerModes.cs" />
     <Compile Include="GameManager\DOSBoxGameManager.cs" />
     <Compile Include="GameManager\SteamGameManager.cs" />
     <Compile Include="GameManager\Win32GameManager.cs" />
@@ -338,6 +350,7 @@
       <DependentUpon>RDReplaceFilesUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityViewModel.cs" />
+    <Compile Include="Utilities\Rayman Legends\GamePatch\UbiArtGamePatchManager.cs" />
     <Compile Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtility.cs" />
     <Compile Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtilityUI.xaml.cs">
       <DependentUpon>RLUbiRayUtilityUI.xaml</DependentUpon>
@@ -397,11 +410,9 @@
     <Compile Include="Utilities\Rayman 1\TPLS\TPLS\TPLS.cs" />
     <Compile Include="DataModels\Enums\DownloadState.cs" />
     <Compile Include="Extensions\TPLSRaymanVersionExtensions.cs" />
-    <Compile Include="DataModels\TPLSDataViewModel.cs" />
+    <Compile Include="ViewModels\TPLSDataViewModel.cs" />
     <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Watchdog.cs" />
-    <Compile Include="DataModels\ValueEventArgs.cs" />
-    <Compile Include="Legacy\Extensions\LegacyTPLSDOSBoxVersionExtensions.cs" />
-    <Compile Include="Legacy\Extensions\LegacyTPLSRaymanVersionExtensions.cs" />
+    <Compile Include="DataModels\EventArgs\ValueEventArgs.cs" />
     <Compile Include="DataModels\TPLSData.cs" />
     <Compile Include="ViewModels\Config\Ray_Origins_Legends_ConfigViewModel.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
@@ -448,19 +459,10 @@
     <Compile Include="Installer\RayGameInstallerResult.cs" />
     <Compile Include="Installer\RayGameInstallItem.cs" />
     <Compile Include="Installer\RayGameInstallItemStage.cs" />
-    <Compile Include="Legacy\Extensions\LegacyGameTypeExtensions.cs" />
-    <Compile Include="Legacy\Extensions\LegacyGamesExtensions.cs" />
     <Compile Include="ViewModels\HelpItemViewModel.cs" />
     <Compile Include="ViewModels\Pages\BackupPageViewModel.cs" />
     <Compile Include="Extensions\GameTypeExtensions.cs" />
     <Compile Include="Framework\Implementations\RCPExceptionHandler.cs" />
-    <Compile Include="Legacy\LegacyAppUserData.cs" />
-    <Compile Include="Legacy\LegacyGames.cs" />
-    <Compile Include="Legacy\LegacyGameType.cs" />
-    <Compile Include="Legacy\LegacyGameUserData.cs" />
-    <Compile Include="Legacy\LegacyRaymanGame.cs" />
-    <Compile Include="Legacy\LegacyTPLSDOSBoxVersion.cs" />
-    <Compile Include="Legacy\LegacyTPLSRaymanVersion.cs" />
     <Compile Include="ViewModels\Base\BaseRCPViewModel.cs" />
     <Compile Include="ViewModels\Config\DosBoxConfigViewModel.cs" />
     <Compile Include="Framework\Implementations\AppUIManager.cs" />
@@ -682,6 +684,7 @@
     <Resource Include="Img\MessageIcons\Question.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\GameIcons\Educational.png" />
     <SplashScreen Include="Files\Splash Screen.png" />
     <Content Include="Files\Programs\AdminWorker.exe" />
     <Content Include="Files\Programs\Rayman Control Panel Updater.exe" />
@@ -726,7 +729,7 @@
       <Version>4.0.0</Version>
     </PackageReference>
     <PackageReference Include="Fody">
-      <Version>5.1.1</Version>
+      <Version>5.2.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

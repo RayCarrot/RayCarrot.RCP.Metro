@@ -22,8 +22,8 @@
             <metro:ToggleSwitch IsChecked="{Binding Path=IsDirectPlayEnabled}"
                                 IsEnabled="{Binding Path=IsLoadingDirectPlay, Converter={rwpf:InvertedBooleanConverter}}"
                                 HorizontalAlignment="Left"
-                                OnLabel="{Resx R3U_DirectPlayEnabled}"
-                                OffLabel="{Resx R3U_DirectPlayDisabled}" />
+                                OnLabel="{Resx SettingEnabled}"
+                                OffLabel="{Resx SettingDisabled}" />
 
         </Grid>
 

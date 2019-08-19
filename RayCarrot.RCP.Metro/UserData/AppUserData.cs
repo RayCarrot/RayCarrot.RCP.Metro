@@ -94,14 +94,6 @@ namespace RayCarrot.RCP.Metro
 
         #region Private Fields
 
-        private bool _darkMode;
-
-        private FileSystemPath _backupLocation;
-
-        private bool _showIncompleteTranslations;
-
-        private LinkItemStyles _linkItemStyle;
-
         private bool _showUnderInstalledPrograms;
 
         #endregion
@@ -145,11 +137,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The last used version of the program
         /// </summary>
-        public Version LastVersion
-        {
-            get;
-            set;
-        }
+        public Version LastVersion { get; set; }
 
         /// <summary>
         /// The previous Window session state
@@ -159,15 +147,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the dark mode is on
         /// </summary>
-        public bool DarkMode
-        {
-            get => _darkMode;
-            set
-            {
-                _darkMode = value;
-                ThemeManager.ChangeAppTheme(Application.Current, $"Base{(DarkMode ? "Dark" : "Light")}");
-            }
-        }
+        public bool DarkMode { get; set; }
 
         /// <summary>
         /// Indicates if action complete messages should be shown
@@ -212,31 +192,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The backup directory path
         /// </summary>
-        public FileSystemPath BackupLocation
-        {
-            get => _backupLocation;
-            set
-            {
-                if (value == _backupLocation)
-                    return;
-
-                var oldValue = _backupLocation;
-
-                _backupLocation = value;
-
-                RCFRCP.App.OnBackupRefreshRequired();
-
-                if (!oldValue.DirectoryExists)
-                {
-                    RCFCore.Logger?.LogInformationSource("The backup location has been changed, but the previous directory does not exist");
-                    return;
-                }
-
-                RCFCore.Logger?.LogInformationSource("The backup location has been changed and old backups are being moved...");
-
-                _ = RCFRCP.App.MoveBackupsAsync(oldValue, value);
-            }
-        }
+        public FileSystemPath BackupLocation { get; set; }
 
         /// <summary>
         /// Indicates if progress should be shown on the task bar
@@ -264,16 +220,6 @@ namespace RayCarrot.RCP.Metro
         public bool EnableAnimations { get; set; }
 
         /// <summary>
-        /// The current culture info
-        /// </summary>
-        [JsonIgnore]
-        public CultureInfo CurrentCultureInfo
-        {
-            get => new CultureInfo(CurrentCulture);
-            set => CurrentCulture = value?.Name ?? AppLanguages.DefaultCulture.Name;
-        }
-
-        /// <summary>
         /// The current culture in the application
         /// </summary>
         public string CurrentCulture
@@ -285,46 +231,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if languages with incomplete translations should be shown
         /// </summary>
-        public bool ShowIncompleteTranslations
-        {
-            get => _showIncompleteTranslations;
-            set
-            {
-                _showIncompleteTranslations = value;
-                AppLanguages.RefreshLanguages(value);
-            }
-        }
+        public bool ShowIncompleteTranslations { get; set; }
 
         /// <summary>
         /// The current link item style
         /// </summary>
-        public LinkItemStyles LinkItemStyle
-        {
-            get => _linkItemStyle;
-            set
-            {
-                // Get previous source
-                var oldSource = GetStyleSource(LinkItemStyle);
-
-                _linkItemStyle = value;
-
-                // Remove old source
-                foreach (ResourceDictionary resourceDictionary in Application.Current.Resources.MergedDictionaries)
-                {
-                    if (!String.Equals(resourceDictionary.Source?.ToString(), oldSource, StringComparison.OrdinalIgnoreCase))
-                        continue;
-
-                    Application.Current.Resources.MergedDictionaries.Remove(resourceDictionary);
-                    break;
-                }
-
-                // Add new source
-                Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary
-                {
-                    Source = new Uri(GetStyleSource(LinkItemStyle))
-                });
-            }
-        }
+        public LinkItemStyles LinkItemStyle { get; set; }
 
         /// <summary>
         /// The last recorded path of the application
@@ -535,20 +447,6 @@ namespace RayCarrot.RCP.Metro
                     return false;
                 }
             }
-        }
-
-        #endregion
-
-        #region Private Static Methods
-
-        /// <summary>
-        /// Gets the style source name for a link item style
-        /// </summary>
-        /// <param name="linkItemStye">The style to get the source for</param>
-        /// <returns>The source</returns>
-        private static string GetStyleSource(LinkItemStyles linkItemStye)
-        {
-            return $"{AppViewModel.ApplicationBasePath}/Styles/LinkItemStyles - {linkItemStye}.xaml";
         }
 
         #endregion

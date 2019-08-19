@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -6,16 +7,17 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Shell;
 using ByteSizeLib;
+using MahApps.Metro;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Nito.AsyncEx;
 using RayCarrot.CarrotFramework;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
-using RayCarrot.RCP.Metro.Legacy;
 using RayCarrot.UI;
 using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
@@ -34,7 +36,10 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        public App() : base(true) { }
+        public App() : base(true)
+        {
+            DataChangedHandlerAsyncLock = new AsyncLock();
+        }
 
         #endregion
 
@@ -118,7 +123,11 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError($"Loading app user data");
+
+                // NOTE: This is not localized due to the current culture not having been set at this point
                 MessageBox.Show($"An error occurred reading saved app data. Some settings may be reset to their default values.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                // Recreate the user data and reset it
                 RCFData.UserDataCollection.Add(new AppUserData());
                 RCFRCP.Data.Reset();
             }
@@ -126,6 +135,11 @@ namespace RayCarrot.RCP.Metro
             Data = RCFRCP.Data;
 
             LogStartupTime("User data has been loaded");
+
+            // Track changes to the user data
+            PreviousLinkItemStyle = Data.LinkItemStyle;
+            PreviousBackupLocation = Data.BackupLocation;
+            Data.PropertyChanged += Data_PropertyChangedAsync;
 
             // Apply the current culture if defaulted
             if (Data.CurrentCulture == AppLanguages.DefaultCulture.Name)
@@ -135,12 +149,14 @@ namespace RayCarrot.RCP.Metro
             if (Data.ShowUnderInstalledPrograms == false)
                 Data.PendingRegUninstallKeyRefresh = true;
 
-            // Attempt to import legacy data on first launch
-            if (Data.IsFirstLaunch)
-                await ImportLegacyDataAsync();
-
             // Subscribe to when to refresh the jump list
-            RCFRCP.App.GameRefreshRequired += (s, e) => RefreshJumpList();
+            RCFRCP.App.RefreshRequired += (s, e) =>
+            {
+                if (e.GameCollectionModified)
+                    RefreshJumpList();
+
+                return Task.CompletedTask;
+            };
             RCFCore.Data.CultureChanged += (s, e) => RefreshJumpList();
 
             // Listen to data binding logs
@@ -435,107 +451,90 @@ namespace RayCarrot.RCP.Metro
             Data.LastVersion = RCFRCP.App.CurrentVersion;
         }
 
-        /// <summary>
-        /// Imports legacy app data from version 2.x to 3.x
-        /// </summary>
-        /// <returns>The task</returns>
-        [Obsolete("This will be removed in a future release")]
-        private static async Task ImportLegacyDataAsync()
+        #endregion
+
+        #region Event Handlers
+
+        private async void Data_PropertyChangedAsync(object sender, PropertyChangedEventArgs e)
         {
-            try
+            using (await DataChangedHandlerAsyncLock.LockAsync())
             {
-                // Get the legacy file locations
-                FileSystemPath baseDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Rayman Control Panel");
-                var appDataLocation = baseDir + "appuserdata.json";
-                var gameDataLocation = baseDir + "gameuserdata.json";
-
-                // Make sure the files exist
-                if (!appDataLocation.FileExists || !gameDataLocation.FileExists)
-                    return;
-
-                // Create the serializer
-                var s = JsonSerializer.Create(new JsonSerializerSettings()
+                switch (e.PropertyName)
                 {
-                    MissingMemberHandling = MissingMemberHandling.Ignore
-                });
+                    case nameof(AppUserData.DarkMode):
+                        ThemeManager.ChangeAppTheme(Application.Current, $"Base{(Data.DarkMode ? "Dark" : "Light")}");
+                        break;
 
-                // Load the data
-                LegacyAppUserData appData = new StringReader(File.ReadAllText(appDataLocation)).RunAndDispose(x =>
-                    new JsonTextReader(x).RunAndDispose(y => s.Deserialize<LegacyAppUserData>(y)));
-                LegacyGameUserData gameData = new StringReader(File.ReadAllText(gameDataLocation)).RunAndDispose(x =>
-                    new JsonTextReader(x).RunAndDispose(y => s.Deserialize<LegacyGameUserData>(y)));
+                    case nameof(AppUserData.BackupLocation):
 
-                RCFCore.Logger?.LogInformationSource($"Legacy app data found from version {appData.LastVersion}");
+                        await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, true, false));
 
-                // Get current app data
-                var data = RCFRCP.Data;
+                        if (!PreviousBackupLocation.DirectoryExists)
+                        {
+                            RCFCore.Logger?.LogInformationSource("The backup location has been changed, but the previous directory does not exist");
+                            return;
+                        }
 
-                // Import app data properties
-                data.AutoLocateGames = appData.AutoGameCheck ?? true;
-                data.AutoUpdate = appData.AutoUpdateCheck ?? true;
-                data.CloseAppOnGameLaunch = appData.AutoClose ?? false;
-                data.CloseConfigOnSave = appData.AutoCloseConfig ?? true;
-                data.ShowActionComplete = appData.ShowActionComplete ?? true;
-                data.ShowProgressOnTaskBar = appData.ShowTaskBarProgress ?? true;
-                data.UserLevel = appData.UserLevel ?? UserLevel.Normal;
-                data.DisplayExceptionLevel = appData.DisplayExceptionLevel ?? ExceptionLevel.Critical;
+                        RCFCore.Logger?.LogInformationSource("The backup location has been changed and old backups are being moved...");
 
-                if (appData.BackupLocation?.DirectoryExists == true)
-                    data.BackupLocation = appData.BackupLocation.Value;
+                        await RCFRCP.App.MoveBackupsAsync(PreviousBackupLocation, Data.BackupLocation);
 
-                // Import game data properties
-                if (gameData.DosBoxConfig?.FileExists == true)
-                    data.DosBoxConfig = gameData.DosBoxConfig.Value;
-                if (gameData.DosBoxExe?.FileExists == true)
-                    data.DosBoxPath = gameData.DosBoxExe.Value;
+                        PreviousBackupLocation = Data.BackupLocation;
 
-                var TPLSDir = gameData.TPLSDir != null ? gameData.TPLSDir.Value + "TPLS" : FileSystemPath.EmptyPath;
+                        break;
 
-                if (gameData.TPLSIsInstalled == true && TPLSDir.DirectoryExists)
-                    data.TPLSData = new TPLSData(TPLSDir)
-                    {
-                        RaymanVersion = gameData.TPLSRaymanVersion?.GetCurrent() ?? TPLSRaymanVersion.Auto,
-                        DosBoxVersion = gameData.TPLSDOSBoxVersion?.GetCurrent() ?? TPLSDOSBoxVersion.DOSBox_0_74
-                    };
-                
-                if (gameData.RayGames != null)
-                {
-                    // Import games
-                    foreach (LegacyRaymanGame game in gameData.RayGames)
-                    {
-                        // Convert legacy values
-                        var currentGame = game.Game?.GetCurrent();
-                        var currentType = game.Type?.GetCurrent();
+                    case nameof(AppUserData.ShowIncompleteTranslations):
+                        AppLanguages.RefreshLanguages(Data.ShowIncompleteTranslations);
+                        break;
 
-                        // Make sure we got current valid values
-                        if (currentGame == null || currentType == null)
-                            continue;
+                    case nameof(AppUserData.LinkItemStyle):
 
-                        // Ignore Windows store games
-                        if (currentType == GameType.WinStore)
-                            continue;
+                        string GetStyleSource(LinkItemStyles linkItemStye)
+                        {
+                            return $"{AppViewModel.ApplicationBasePath}/Styles/LinkItemStyles - {linkItemStye}.xaml";
+                        }
 
-                        // Make sure the game is valid
-                        if (!currentGame.Value.GetGameManager(currentType.Value).IsValid(game.Dir ?? FileSystemPath.EmptyPath))
-                            continue;
+                        // Get previous source
+                        var oldSource = GetStyleSource(PreviousLinkItemStyle);
 
-                        // Add the game
-                        await RCFRCP.App.AddNewGameAsync(currentGame.Value, currentType.Value, game.Dir?.DirectoryExists == true ? game.Dir : null);
+                        // Remove old source
+                        foreach (ResourceDictionary resourceDictionary in Resources.MergedDictionaries)
+                        {
+                            if (!String.Equals(resourceDictionary.Source?.ToString(), oldSource,
+                                StringComparison.OrdinalIgnoreCase))
+                                continue;
 
-                        // Add mount directory if DosBox game
-                        if (currentType == GameType.DosBox && game.MountDir != null)
-                            RCFRCP.Data.DosBoxGames[currentGame.Value].MountPath = game.MountDir.Value;
-                    }
+                            Resources.MergedDictionaries.Remove(resourceDictionary);
+                            break;
+                        }
+
+                        // Add new source
+                        Resources.MergedDictionaries.Add(new ResourceDictionary
+                        {
+                            Source = new Uri(GetStyleSource(Data.LinkItemStyle))
+                        });
+
+                        PreviousLinkItemStyle = Data.LinkItemStyle;
+
+                        break;
+
+                    case nameof(AppUserData.FiestaRunVersion):
+
+                        // Update the install directory and game info
+                        try
+                        {
+                            GameInfo GameInfo = new GameInfo(GameType.WinStore, Games.RaymanFiestaRun.GetGameManager<WinStoreGameManager>().GetPackageInstallDirectory());
+                            RCFRCP.Data.Games[Games.RaymanFiestaRun] = GameInfo;
+                        }
+                        catch (Exception ex)
+                        {
+                            ex.HandleError("Getting updated Windows Store game install directory");
+                        }
+
+                        await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun, false, false, true, true));
+
+                        break;
                 }
-
-                // Remove old data
-                RCFRCP.File.DeleteFile(appDataLocation);
-                RCFRCP.File.DeleteFile(gameDataLocation);
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Import legacy data");
-                await RCFUI.MessageUI.DisplayMessageAsync("An error occurred when importing legacy data", MessageType.Error);
             }
         }
 
@@ -548,7 +547,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void RefreshJumpList()
         {
-            Dispatcher.Invoke(() =>
+            Dispatcher?.Invoke(() =>
             {
                 try
                 {
@@ -590,6 +589,21 @@ namespace RayCarrot.RCP.Metro
         /// The app user data
         /// </summary>
         private AppUserData Data { get; set; }
+
+        /// <summary>
+        /// The async lock for <see cref="Data_PropertyChangedAsync"/>
+        /// </summary>
+        private AsyncLock DataChangedHandlerAsyncLock { get; }
+
+        /// <summary>
+        /// The saved previous backup location
+        /// </summary>
+        private FileSystemPath PreviousBackupLocation { get; set; }
+
+        /// <summary>
+        /// The saved previous link item style
+        /// </summary>
+        private LinkItemStyles PreviousLinkItemStyle { get; set; }
 
         #endregion
 

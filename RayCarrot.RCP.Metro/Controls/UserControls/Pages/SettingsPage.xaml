@@ -97,8 +97,7 @@
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
-                    <ComboBox DataContext="{Binding Path=Data}"
-                              SelectedItem="{Binding Path=CurrentCultureInfo}"
+                    <ComboBox SelectedItem="{Binding Path=CurrentCultureInfo}"
                               ItemsSource="{Binding Source={x:Static local:AppLanguages.Languages}}">
                         <ComboBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">

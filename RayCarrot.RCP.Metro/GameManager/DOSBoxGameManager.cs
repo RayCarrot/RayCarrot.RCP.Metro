@@ -26,6 +26,28 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Private Methods
+
+        /// <summary>
+        /// Gets the DosBox launch arguments for the specific game
+        /// </summary>
+        /// <param name="mountPath">The disc/file to mount</param>
+        /// <returns>The launch arguments</returns>
+        private string GetDosBoxArguments(FileSystemPath mountPath)
+        {
+            return $"{(File.Exists(RCFRCP.Data.DosBoxConfig) ? $"-conf \"{RCFRCP.Data.DosBoxConfig} \"" : String.Empty)} " +
+                   $"-conf \"{Game.GetDosBoxConfigFile()}\" " +
+                   // The mounting differs if it's a physical disc vs. a disc image
+                   $"{(mountPath.IsDirectoryRoot() ? "-c \"mount d " + mountPath.FullPath + " -t cdrom\"" : "-c \"imgmount d '" + mountPath.FullPath + "' -t iso -fs iso\"")} " +
+                   $"-c \"MOUNT C '{Info.InstallDirectory.FullPath}'\" " +
+                   $"-c C: " +
+                   $"-c \"{Game.GetLaunchName()}\" " +
+                   $"-noconsole " +
+                   $"-c exit";
+        }
+
+        #endregion
+
         #region Public Methods
 
         /// <summary>
@@ -134,7 +156,7 @@ namespace RayCarrot.RCP.Metro
             // Handle Rayman 1 differently if TPLS is enabled
             // TODO: This should be moved into a utility class which then injects code here
 
-            var launchInfo = new GameLaunchInfo(RCFRCP.Data.DosBoxPath, Games.Rayman1.GetDosBoxArguments(Games.Rayman1.GetInfo().InstallDirectory, RCFRCP.Data.TPLSData.InstallDir + "RayCD.cue", Game.GetLaunchName()));
+            var launchInfo = new GameLaunchInfo(RCFRCP.Data.DosBoxPath, GetDosBoxArguments(RCFRCP.Data.TPLSData.InstallDir + "RayCD.cue"));
 
             RCFCore.Logger?.LogTraceSource($"The game {Game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
 
@@ -180,7 +202,7 @@ namespace RayCarrot.RCP.Metro
         public override GameLaunchInfo GetLaunchInfo()
         {
             var options = RCFRCP.Data.DosBoxGames[Game];
-            return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, Game.GetDosBoxArguments(Info.InstallDirectory, options.MountPath, Game.GetLaunchName()));
+            return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, GetDosBoxArguments(options.MountPath));
         }
 
         /// <summary>
