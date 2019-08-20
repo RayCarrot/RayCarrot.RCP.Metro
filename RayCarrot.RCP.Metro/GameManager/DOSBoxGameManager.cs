@@ -19,7 +19,8 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         /// <param name="game">The game to manage</param>
-        public DOSBoxGameManager(Games game) : base(game, GameType.DosBox)
+        /// <param name="type">The game type</param>
+        public DOSBoxGameManager(Games game, GameType type = GameType.DosBox) : base(game, type)
         {
 
         }
@@ -35,14 +36,15 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Private Methods
+        #region Protected Methods
 
         /// <summary>
         /// Gets the DosBox launch arguments for the specific game
         /// </summary>
         /// <param name="mountPath">The disc/file to mount</param>
+        /// <param name="launchName">The launch name</param>
         /// <returns>The launch arguments</returns>
-        private string GetDosBoxArguments(FileSystemPath mountPath)
+        protected string GetDosBoxArguments(FileSystemPath mountPath, string launchName)
         {
             return $"{(File.Exists(RCFRCP.Data.DosBoxConfig) ? $"-conf \"{RCFRCP.Data.DosBoxConfig} \"" : String.Empty)} " +
                    $"-conf \"{Game.GetDosBoxConfigFile()}\" " +
@@ -50,7 +52,7 @@ namespace RayCarrot.RCP.Metro
                    $"{(mountPath.IsDirectoryRoot() ? "-c \"mount d " + mountPath.FullPath + " -t cdrom\"" : "-c \"imgmount d '" + mountPath.FullPath + "' -t iso -fs iso\"")} " +
                    $"-c \"MOUNT C '{Info.InstallDirectory.FullPath}'\" " +
                    $"-c C: " +
-                   $"-c \"{Game.GetLaunchName()}\" " +
+                   $"-c \"{launchName}\" " +
                    $"-noconsole " +
                    $"-c exit";
         }
@@ -165,7 +167,7 @@ namespace RayCarrot.RCP.Metro
             // Handle Rayman 1 differently if TPLS is enabled
             // TODO: This should be moved into a utility class which then injects code here
 
-            var launchInfo = new GameLaunchInfo(RCFRCP.Data.DosBoxPath, GetDosBoxArguments(RCFRCP.Data.TPLSData.InstallDir + "RayCD.cue"));
+            var launchInfo = new GameLaunchInfo(RCFRCP.Data.DosBoxPath, GetDosBoxArguments(RCFRCP.Data.TPLSData.InstallDir + "RayCD.cue", Game.GetLaunchName()));
 
             RCFCore.Logger?.LogTraceSource($"The game {Game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
 
@@ -211,7 +213,7 @@ namespace RayCarrot.RCP.Metro
         public override GameLaunchInfo GetLaunchInfo()
         {
             var options = RCFRCP.Data.DosBoxGames[Game];
-            return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, GetDosBoxArguments(options.MountPath));
+            return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, GetDosBoxArguments(options.MountPath, Game.GetLaunchName()));
         }
 
         /// <summary>
@@ -228,6 +230,37 @@ namespace RayCarrot.RCP.Metro
 
             return Task.CompletedTask;
         }
+
+        /// <summary>
+        /// Gets called as soon as the game is removed
+        /// </summary>
+        /// <returns>The task</returns>
+        public override Task PostGameRemovedAsync()
+        {
+            // If there is DosBox options saved, remove those as well
+            if (RCFRCP.Data.DosBoxGames.ContainsKey(Game))
+            {
+                RCFRCP.Data.DosBoxGames.Remove(Game);
+
+                try
+                {
+                    // Remove the config file
+                    RCFRCP.File.DeleteFile(Game.GetDosBoxConfigFile());
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Removing DosBox auto config file");
+                }
+            }
+
+            return Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// Gets the icon resource path for the game based on its launch information
+        /// </summary>
+        /// <returns>The icon resource path</returns>
+        public override string GetIconResourcePath() => Info.InstallDirectory + Game.GetLaunchName();
 
         #endregion
     }

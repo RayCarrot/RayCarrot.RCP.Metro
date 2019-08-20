@@ -88,6 +88,7 @@ namespace RayCarrot.RCP.Metro
             CompressBackups = true;
             FiestaRunVersion = FiestaRunEdition.Default;
             DisableDowngradeWarning = false;
+            EducationalDosBoxGames = null;
         }
 
         #endregion
@@ -302,6 +303,11 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the downgrade warnings should be disabled
         /// </summary>
         public bool DisableDowngradeWarning { get; set; }
+
+        /// <summary>
+        /// The saved educational DOSBox games
+        /// </summary>
+        public List<EducationalDosBoxGameInfo> EducationalDosBoxGames { get; set; }
 
         #endregion
 

@@ -46,6 +46,12 @@
                                       IsChecked="{Binding Path=SelectedType, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=DosBox}"
                                       Visibility="{Binding Path=AllowDosBox, Converter={rwpf:BooleanToVisibilityConverter}}" />
 
+            <!-- Educational DosBox -->
+
+            <rwpf:RadioButtonExtended Content="{Resx GameType_EducationalDosBox}"
+                                      IsChecked="{Binding Path=SelectedType, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=EducationalDosBox}"
+                                      Visibility="{Binding Path=AllowEducationalDosBox, Converter={rwpf:BooleanToVisibilityConverter}}" />
+
         </WrapPanel>
 
         <StackPanel Grid.Row="1" 

@@ -1,4 +1,6 @@
 ﻿-----   Version 5.1.0 - August ??, 2019   -----
+• Educational Rayman games are now supported
+• Rabbids Big Bang is now supported
 • 
 
 Other changes:
@@ -6,6 +8,7 @@ Other changes:
 • The legacy data converter has been removed
 • Normalized the font size in the help page
 • Minor changes to how the widescreen patch is applied for Rayman 2
+• Debug loggers are now longer available by default, improving the application performance (they can be enabled using a launch argument or by attaching a debugger)
 • Major code changes to how games are handled and the application refreshes
 • Bug fixes
 
@@ -324,7 +327,7 @@ Installer improvements:
 
 -----   Version 2.2.1 - September 19, 2018   -----
 
-• Added a launch argument for forcing the legacy converter for pre V8 app data to run
+• Added a launch argument for forcing the legacy converter for pre-V8 app data to run
 • Updated the Portuguese translation of Rayman 2
 • Made the program paths absolute in the help page
 
@@ -383,7 +386,7 @@ Other changes:
 • Disabled Jungle/Fiesta Run page when running Windows 7 or lower
 • Support for nGlide 2.0
 • Some windows are now resizable
-• Option to use the Windows 7 Api Code pack folder browser instead of default one
+• Option to use the Windows 7 API Code pack folder browser instead of default one
 • The backup manager, game checker and exception handling have been reworked
 • Removed ability to navigate between pages using the arrow keys
 • The escape key can now be used to close dialogs

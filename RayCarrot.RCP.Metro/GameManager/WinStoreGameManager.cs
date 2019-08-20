@@ -110,6 +110,9 @@ namespace RayCarrot.RCP.Metro
             if (Game == Games.RaymanJungleRun)
                 return "UbisoftEntertainment.RaymanJungleRun";
 
+            if (Game == Games.RabbidsBigBang)
+                return "UbisoftEntertainment.RabbidsBigBang";
+
             else if (Game == Games.RaymanFiestaRun)
                 return GetFiestaRunPackageName(RCFRCP.Data.FiestaRunVersion);
 
@@ -257,6 +260,12 @@ namespace RayCarrot.RCP.Metro
                 RCFCore.Logger?.LogErrorSource("Game options WinStore package is null");
             }
         }
+
+        /// <summary>
+        /// Gets the icon resource path for the game based on its launch information
+        /// </summary>
+        /// <returns>The icon resource path</returns>
+        public override string GetIconResourcePath() => GetLaunchInfo().Path;
 
         #endregion
     }

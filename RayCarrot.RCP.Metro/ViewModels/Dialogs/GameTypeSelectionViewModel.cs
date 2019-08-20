@@ -13,23 +13,28 @@ namespace RayCarrot.RCP.Metro
         public GameType SelectedType { get; set; }
 
         /// <summary>
-        /// Indicates if Win32 is a valid selection
+        /// Indicates if <see cref="GameType.Win32"/> is a valid selection
         /// </summary>
         public bool AllowWin32 { get; set; }
 
         /// <summary>
-        /// Indicates if Steam is a valid selection
+        /// Indicates if <see cref="GameType.Steam"/> is a valid selection
         /// </summary>
         public bool AllowSteam { get; set; }
 
         /// <summary>
-        /// Indicates if WinStore is a valid selection
+        /// Indicates if <see cref="GameType.WinStore"/> is a valid selection
         /// </summary>
         public bool AllowWinStore { get; set; }
 
         /// <summary>
-        /// Indicates if DosBox is a valid selection
+        /// Indicates if <see cref="GameType.DosBox"/> is a valid selection
         /// </summary>
         public bool AllowDosBox { get; set; }
+
+        /// <summary>
+        /// Indicates if <see cref="GameType.EducationalDosBox"/> is a valid selection
+        /// </summary>
+        public bool AllowEducationalDosBox { get; set; }
     }
 }

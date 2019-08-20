@@ -129,6 +129,12 @@ namespace RayCarrot.RCP.Metro
         public virtual Task PostGameAddAsync() => Task.CompletedTask;
 
         /// <summary>
+        /// Gets called as soon as the game is removed
+        /// </summary>
+        /// <returns>The task</returns>
+        public virtual Task PostGameRemovedAsync() => Task.CompletedTask;
+
+        /// <summary>
         /// Gets the info items for the specified game
         /// </summary>
         /// <returns>The info items</returns>
@@ -215,6 +221,12 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <returns>The install directory</returns>
         public abstract FileSystemPath GetInstallDirectory();
+
+        /// <summary>
+        /// Gets the icon resource path for the game based on its launch information
+        /// </summary>
+        /// <returns>The icon resource path</returns>
+        public abstract string GetIconResourcePath();
 
         #endregion
 

@@ -85,7 +85,7 @@ namespace RayCarrot.RCP.Metro
                     // Enumerate the saved games
                     foreach (Games game in App.GetGames.Where(x => x.IsAdded()))
                     {
-                        if (game == Games.Educational)
+                        if (game == Games.EducationalDos)
                         {
                             // TODO: Treat as several games
 

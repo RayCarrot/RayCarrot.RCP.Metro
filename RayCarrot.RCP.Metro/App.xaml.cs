@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -66,16 +68,21 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="construction">The construction</param>
         /// <param name="logLevel">The level to log</param>
-        protected override void SetupFramework(IFrameworkConstruction construction, LogLevel logLevel)
+        /// <param name="args">The launch arguments</param>
+        protected override void SetupFramework(IFrameworkConstruction construction, LogLevel logLevel, string[] args)
         {
             // Set file log level
             FileLogger.FileLoggerLogLevel = logLevel;
 
-            // NOTE: Perhaps don't default to include session and debug loggers and instead have them through launch arguments?
+            var loggers = DefaultLoggers.Console;
+
+            // Only add debug loggers if a launch argument specifies it or if a debugger is attached
+            if (Debugger.IsAttached || args.Contains("-debugLoggers"))
+                loggers = loggers | DefaultLoggers.Debug | DefaultLoggers.Session;
 
             construction.
-                // Add console, debug, session and file loggers
-                AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, logLevel, builder => builder.AddProvider(new BaseLogProvider<FileLogger>())).
+                // Add loggers
+                AddLoggers(loggers, logLevel, builder => builder.AddProvider(new BaseLogProvider<FileLogger>())).
                 // Add exception handler
                 AddExceptionHandler<RCPExceptionHandler>().
                 // Add user data manager
@@ -152,7 +159,7 @@ namespace RayCarrot.RCP.Metro
             // Subscribe to when to refresh the jump list
             RCFRCP.App.RefreshRequired += (s, e) =>
             {
-                if (e.GameCollectionModified)
+                if (e.GameCollectionModified || e.GameInfoModified)
                     RefreshJumpList();
 
                 return Task.CompletedTask;
@@ -435,6 +442,9 @@ namespace RayCarrot.RCP.Metro
                 Data.DisableDowngradeWarning = false;
             }
 
+            if (Data.LastVersion < new Version(5, 1, 0, 0))
+                Data.EducationalDosBoxGames = null;
+
             // Re-deploy files
             await RCFRCP.App.DeployFilesAsync(true);
 
@@ -558,8 +568,8 @@ namespace RayCarrot.RCP.Metro
                             // Create a jump task item for each game
                             Select(x =>
                             {
-                                var launchInfo = x.GetGameManager().GetLaunchInfo();
-                                var info = x.GetInfo();
+                                var manager = x.GetGameManager();
+                                var launchInfo = manager.GetLaunchInfo();
 
                                 return new JumpTask()
                                 {
@@ -568,7 +578,7 @@ namespace RayCarrot.RCP.Metro
                                     ApplicationPath = launchInfo.Path,
                                     WorkingDirectory = launchInfo.Path.FileExists ? launchInfo.Path.Parent : FileSystemPath.EmptyPath,
                                     Arguments = launchInfo.Args,
-                                    IconResourcePath = info.GameType == GameType.DosBox || info.GameType == GameType.Steam ? info.InstallDirectory + x.GetLaunchName() : launchInfo.Path
+                                    IconResourcePath = manager.GetIconResourcePath()
                                 };
                             }), false, false).
                         // Apply the new jump list

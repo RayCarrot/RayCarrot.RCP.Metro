@@ -46,6 +46,9 @@ namespace RayCarrot.RCP.Metro
                 case GameType.DosBox:
                     return new DOSBoxGameManager(game);
 
+                case GameType.EducationalDosBox:
+                    return new EducationalDosBoxGameManager(game); 
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -249,7 +252,10 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanFiestaRun:
                     return "Rayman Fiesta Run";
 
-                case Games.Educational:
+                case Games.RabbidsBigBang:
+                    return "Rabbids Big Bang";
+
+                case Games.EducationalDos:
                     return "Educational Games";
 
                 default:
@@ -306,6 +312,9 @@ namespace RayCarrot.RCP.Metro
 
                 case Games.RaymanFiestaRun:
                     return $"Rayman Fiesta Run ({RCFRCP.Data.FiestaRunVersion})";
+
+                case Games.RabbidsBigBang:
+                    return "Rabbids Big Bang";
 
                 // TODO: Educational games support
 
@@ -534,6 +543,12 @@ namespace RayCarrot.RCP.Metro
                         new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, "https://www.microsoft.com/store/productId/9wzdncrdcw9b")
                     };
 
+                case Games.RabbidsBigBang:
+                    return new List<GamePurchaseLink>()
+                    {
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, "https://www.microsoft.com/store/productId/9WZDNCRFJCS3")
+                    };
+
                 default:
                     return null;
             }
@@ -600,8 +615,6 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The launch name</returns>
         public static string GetLaunchName(this Games game)
         {
-            // TODO: Educational
-
             switch (game)
             {
                 case Games.Rayman1:
@@ -656,6 +669,12 @@ namespace RayCarrot.RCP.Metro
                             throw new ArgumentOutOfRangeException(nameof(RCFRCP.Data.FiestaRunVersion), RCFRCP.Data.FiestaRunVersion, null);
                     }
 
+                case Games.RabbidsBigBang:
+                    return "UbisoftEntertainment.RabbidsBigBang_dbgk1hhpxymar";
+
+                case Games.EducationalDos:
+                    return RCFRCP.Data.EducationalDosBoxGames.First().LaunchName;
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);
             }
@@ -707,10 +726,18 @@ namespace RayCarrot.RCP.Metro
 
                 case Games.RaymanJungleRun:
                 case Games.RaymanFiestaRun:
+                case Games.RabbidsBigBang:
                     return new GameTypeSelectionResult()
                     {
                         CanceledByUser = false,
                         SelectedType = GameType.WinStore
+                    };
+
+                case Games.EducationalDos:
+                    return new GameTypeSelectionResult()
+                    {
+                        CanceledByUser = false,
+                        SelectedType = GameType.EducationalDosBox
                     };
 
                 default:
@@ -734,6 +761,7 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanDesigner:
                 case Games.RaymanByHisFans:
                 case Games.Rayman60Levels:
+                case Games.EducationalDos:
                     return new DosBoxConfig(game);
 
                 case Games.Rayman2:
@@ -767,6 +795,9 @@ namespace RayCarrot.RCP.Metro
             {
                 case Games.RaymanFiestaRun:
                     return new FiestaRunOptions();
+
+                case Games.EducationalDos:
+                    return new EducationalDosOptions();
 
                 default:
                     return null;
@@ -997,17 +1028,8 @@ namespace RayCarrot.RCP.Metro
                     };
 
                 case Games.RaymanJungleRun:
-                    return new List<BackupDir>()
-                    {
-                        new BackupDir()
-                        {
-                            DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Packages", game.GetLaunchName()),
-                            SearchOption = SearchOption.AllDirectories,
-                            ID = "0"
-                        }
-                    };
-
                 case Games.RaymanFiestaRun:
+                case Games.RabbidsBigBang:
                     return new List<BackupDir>()
                     {
                         new BackupDir()

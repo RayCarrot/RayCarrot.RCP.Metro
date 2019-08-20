@@ -26,6 +26,11 @@
         Rayman60Levels,
 
         /// <summary>
+        /// Educational DOS Rayman games
+        /// </summary>
+        EducationalDos,
+
+        /// <summary>
         /// Rayman 2
         /// </summary>
         Rayman2,
@@ -50,6 +55,8 @@
         /// </summary>
         RaymanRavingRabbids,
 
+        // RabbidsGoHome
+
         /// <summary>
         /// Rayman Origins
         /// </summary>
@@ -71,8 +78,8 @@
         RaymanFiestaRun,
 
         /// <summary>
-        /// Educational Rayman games
+        /// Rabbids Big Bang
         /// </summary>
-        Educational
+        RabbidsBigBang,
     }
 }

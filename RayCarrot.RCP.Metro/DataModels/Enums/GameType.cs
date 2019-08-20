@@ -21,8 +21,13 @@
         WinStore,
 
         /// <summary>
-        /// A DosBox game
+        /// A DOSBox game
         /// </summary>
-        DosBox
+        DosBox,
+
+        /// <summary>
+        /// An education DOSBox game
+        /// </summary>
+        EducationalDosBox
     }
 }

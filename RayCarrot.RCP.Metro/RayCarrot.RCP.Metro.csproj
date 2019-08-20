@@ -110,12 +110,22 @@
     </ApplicationDefinition>
     <Compile Include="Controls\OneWayToggleButton.cs" />
     <Compile Include="Controls\RCPTabItem.cs" />
+    <Compile Include="Controls\UserControls\Options\EducationalDosOptions.xaml.cs">
+      <DependentUpon>EducationalDosOptions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserControls\Options\FiestaRunOptions.xaml.cs">
       <DependentUpon>FiestaRunOptions.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModels\AsyncEventHandler.cs" />
     <Compile Include="Extensions\AsyncEventHandlertExtensions.cs" />
+    <Compile Include="DataModels\EducationalDosBoxGameInfo.cs" />
+    <Compile Include="GameManager\EducationalDosBoxGameManager.cs" />
+    <Compile Include="DataModels\Enums\R1Languages.cs" />
+    <Compile Include="ViewModels\Config\EducationalDosBoxGameConfigViewModel.cs" />
+    <Compile Include="ViewModels\Config\Rayman1ConfigViewModel.cs" />
+    <Compile Include="ViewModels\Config\RaymanDesignerConfigViewModel.cs" />
     <Compile Include="ViewModels\Controls\DuoGridItemViewModel.cs" />
+    <Compile Include="ViewModels\Options\EducationalDosOptionsViewModel.cs" />
     <Compile Include="ViewModels\Options\FiestaRunOptionsViewModel.cs" />
     <Compile Include="Controls\UserControls\Pages\LinksPage.xaml.cs">
       <DependentUpon>LinksPage.xaml</DependentUpon>
@@ -164,6 +174,10 @@
     <Page Include="Controls\UserControls\Config\Rayman2Config.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UserControls\Options\EducationalDosOptions.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\UserControls\Options\FiestaRunOptions.xaml">
       <SubType>Designer</SubType>
@@ -462,10 +476,9 @@
     <Compile Include="Installer\RayGameInstallItemStage.cs" />
     <Compile Include="ViewModels\HelpItemViewModel.cs" />
     <Compile Include="ViewModels\Pages\BackupPageViewModel.cs" />
-    <Compile Include="Extensions\GameTypeExtensions.cs" />
     <Compile Include="Framework\Implementations\RCPExceptionHandler.cs" />
     <Compile Include="ViewModels\Base\BaseRCPViewModel.cs" />
-    <Compile Include="ViewModels\Config\DosBoxConfigViewModel.cs" />
+    <Compile Include="ViewModels\Config\Base\BaseDosBoxConfigViewModel.cs" />
     <Compile Include="Framework\Implementations\AppUIManager.cs" />
     <Compile Include="Framework\Implementations\FileLogger.cs" />
     <Compile Include="DataModels\KeyMappingItem.cs" />
@@ -685,7 +698,9 @@
     <Resource Include="Img\MessageIcons\Question.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Img\GameIcons\Educational.png" />
+    <Resource Include="Img\GameIcons\RabbidsGoHome.png" />
+    <Resource Include="Img\GameIcons\RabbidsBigBang.png" />
+    <Resource Include="Img\GameIcons\EducationalDos.png" />
     <SplashScreen Include="Files\Splash Screen.png" />
     <Content Include="Files\Programs\AdminWorker.exe" />
     <Content Include="Files\Programs\Rayman Control Panel Updater.exe" />
@@ -733,6 +748,9 @@
       <Version>5.2.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="gong-wpf-dragdrop">
+      <Version>2.0.4</Version>
     </PackageReference>
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf">
       <Version>1.0.8</Version>

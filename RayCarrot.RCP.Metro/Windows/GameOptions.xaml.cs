@@ -25,7 +25,7 @@ namespace RayCarrot.RCP.Metro
         {
             InitializeComponent();
             ViewModel = new GameOptionsViewModel(game);
-            Dispatcher.ShutdownStarted += Dispatcher_ShutdownStarted;
+            Closed += Window_Closed;
 
             ChangePage(page);
         }
@@ -121,7 +121,7 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        private void Dispatcher_ShutdownStarted(object sender, EventArgs e)
+        private void Window_Closed(object sender, EventArgs e)
         {
             RCFRCP.App.RefreshRequired -= AppGameRefreshRequiredAsync;
 

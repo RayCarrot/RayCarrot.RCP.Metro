@@ -374,6 +374,9 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RemoveGameAsync(Games game, bool forceRemove)
         {
+            // Get the game type
+            var type = game.GetInfo().GameType;
+
             if (!forceRemove)
             {
                 // Get applied utilities
@@ -388,21 +391,8 @@ namespace RayCarrot.RCP.Metro
             // Remove the game
             Data.Games.Remove(game);
 
-            // If there is DosBox options saved, remove those as well
-            if (Data.DosBoxGames.ContainsKey(game))
-            {
-                Data.DosBoxGames.Remove(game);
-
-                try
-                {
-                    // Remove the config file
-                    RCFRCP.File.DeleteFile(game.GetDosBoxConfigFile());
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Removing DosBox auto config file");
-                }
-            }
+            // Run post game removal
+            await game.GetGameManager(type).PostGameRemovedAsync();
 
             // Refresh the games
             await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(game, true, false, false, false));
@@ -749,6 +739,9 @@ namespace RayCarrot.RCP.Metro
                     // Check Windows Store apps
                     if (!Games.RaymanJungleRun.IsAdded())
                         await FindWinStoreAppAsync(Games.RaymanJungleRun);
+
+                    if (!Games.RabbidsBigBang.IsAdded())
+                        await FindWinStoreAppAsync(Games.RabbidsBigBang);
 
                     foreach (FiestaRunEdition version in Enum.GetValues(typeof(FiestaRunEdition)))
                     {

@@ -171,6 +171,12 @@ namespace RayCarrot.RCP.Metro
             yield return new DuoGridItemViewModel(Resources.GameInfo_SteamID, GetSteamID(), UserLevel.Advanced);
         }
 
+        /// <summary>
+        /// Gets the icon resource path for the game based on its launch information
+        /// </summary>
+        /// <returns>The icon resource path</returns>
+        public override string GetIconResourcePath() => Info.InstallDirectory + Game.GetLaunchName();
+
         #endregion
     }
 }

@@ -1,18 +1,17 @@
-﻿<rwpf:VMUserControl x:Class="RayCarrot.RCP.Metro.DosBoxConfig"
-                    x:TypeArguments="local:DosBoxConfigViewModel"
-                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-                    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                    xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-                    ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
-                    IsTabStop="False"
-                    mc:Ignorable="d"
-                    d:DesignHeight="450" d:DesignWidth="800"
-                    d:DataContext="{d:DesignInstance local:DosBoxConfigViewModel}">
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.DosBoxConfig"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+             IsTabStop="False"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance local:RaymanDesignerConfigViewModel}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -29,7 +28,8 @@
 
                 <!-- Mount path -->
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal"
+                            Visibility="{Binding Path=IsMountLocationAvailable, Converter={rwpf:BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="{Resx MountPathHeader}" />
 
@@ -37,7 +37,8 @@
 
                 </StackPanel>
 
-                <rwpf:BrowseBox SelectedPath="{Binding Path=MountPath, Converter={rwpf:FileSystemPathToStringConverter}, UpdateSourceTrigger=LostFocus}">
+                <rwpf:BrowseBox SelectedPath="{Binding Path=MountPath, Converter={rwpf:FileSystemPathToStringConverter}, UpdateSourceTrigger=LostFocus}"
+                                Visibility="{Binding Path=IsMountLocationAvailable, Converter={rwpf:BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
                     <rwpf:BrowseBox.Style>
                         <Style TargetType="{x:Type rwpf:BrowseBox}" BasedOn="{StaticResource {x:Type rwpf:BrowseBox}}">
                             <Style.Triggers>
@@ -53,7 +54,7 @@
                     </rwpf:BrowseBox.Style>
                 </rwpf:BrowseBox>
 
-                <WrapPanel>
+                <WrapPanel Visibility="{Binding Path=IsMountLocationAvailable, Converter={rwpf:BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
                     <RadioButton Content="{Resx MountOption_File}"
                                  ToolTip="{Resx MountOption_FileInfo}"
                                  Margin="0 0 8 0"
@@ -66,7 +67,7 @@
                 <!-- Language -->
 
                 <StackPanel Orientation="Horizontal"
-                            Visibility="{Binding Path=IsGameLanguageAvailable, Converter={rwpf:BooleanToVisibilityConverter}}">
+                            Visibility="{Binding Path=IsGameLanguageAvailable, Converter={rwpf:BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="{Resx Config_Language}" />
 
@@ -295,4 +296,4 @@
         </StackPanel>
 
     </Grid>
-</rwpf:VMUserControl>
+</UserControl>
