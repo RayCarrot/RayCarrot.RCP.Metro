@@ -61,6 +61,7 @@ namespace RayCarrot.RCP.Metro
             SaveUserDataAsyncLock = new AsyncLock();
             MoveBackupsAsyncLock = new AsyncLock();
             AdminWorkerAsyncLock = new AsyncLock();
+            OnRefreshRequiredAsyncLock = new AsyncLock();
 
             RestartAsAdminCommand = new AsyncRelayCommand(RestartAsAdminAsync);
 
@@ -151,6 +152,30 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Private Properties
+
+        /// <summary>
+        /// An async lock for the <see cref="SaveUserDataAsync"/> method
+        /// </summary>
+        private AsyncLock SaveUserDataAsyncLock { get; }
+
+        /// <summary>
+        /// An async lock for the <see cref="MoveBackupsAsync"/> method
+        /// </summary>
+        private AsyncLock MoveBackupsAsyncLock { get; }
+
+        /// <summary>
+        /// An async lock for the <see cref="RunAdminWorkerAsync"/> method
+        /// </summary>
+        private AsyncLock AdminWorkerAsyncLock { get; }
+
+        /// <summary>
+        /// An async lock for the <see cref="OnRefreshRequiredAsync"/> method
+        /// </summary>
+        private AsyncLock OnRefreshRequiredAsyncLock { get; }
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
@@ -167,21 +192,6 @@ namespace RayCarrot.RCP.Metro
         /// A flag indicating if an update check is in progress
         /// </summary>
         public bool CheckingForUpdates { get; set; }
-
-        /// <summary>
-        /// An async lock for the <see cref="SaveUserDataAsync"/> method
-        /// </summary>
-        private AsyncLock SaveUserDataAsyncLock { get; }
-
-        /// <summary>
-        /// An async lock for the <see cref="MoveBackupsAsync"/> method
-        /// </summary>
-        private AsyncLock MoveBackupsAsyncLock { get; }
-
-        /// <summary>
-        /// An async lock for the <see cref="RunAdminWorkerAsync"/> method
-        /// </summary>
-        private AsyncLock AdminWorkerAsyncLock { get; }
 
         /// <summary>
         /// The current app version
@@ -319,9 +329,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task OnRefreshRequiredAsync(RefreshRequiredEventArgs eventArgs)
         {
-            RCFCore.Logger?.LogDebugSource("A refresh is being requested");
+            using (await OnRefreshRequiredAsyncLock.LockAsync())
+            {
+                RCFCore.Logger?.LogDebugSource("A refresh is being requested");
 
-            await (RefreshRequired?.RaiseAsync(this, eventArgs) ?? Task.CompletedTask);
+                await (RefreshRequired?.RaiseAsync(this, eventArgs) ?? Task.CompletedTask);
+            }
         }
 
         /// <summary>

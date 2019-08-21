@@ -146,16 +146,6 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Protected Abstract Methods
-
-        /// <summary>
-        /// Locates the game
-        /// </summary>
-        /// <returns>Null if the game was not found. Otherwise a valid or empty path for the instal directory</returns>
-        protected abstract Task<FileSystemPath?> LocateAsync();
-
-        #endregion
-
         #region Public Methods
 
         /// <summary>
@@ -202,6 +192,12 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Abstract Methods
+
+        /// <summary>
+        /// Locates the game
+        /// </summary>
+        /// <returns>Null if the game was not found. Otherwise a valid or empty path for the instal directory</returns>
+        public abstract Task<FileSystemPath?> LocateAsync();
 
         /// <summary>
         /// Gets the launch info for the game

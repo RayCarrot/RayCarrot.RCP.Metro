@@ -40,13 +40,13 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Protected Overrides
+        #region Public Overrides
 
         /// <summary>
         /// Locates the game
         /// </summary>
         /// <returns>Null if the game was not found. Otherwise a valid or empty path for the instal directory</returns>
-        protected override async Task<FileSystemPath?> LocateAsync()
+        public override async Task<FileSystemPath?> LocateAsync()
         {
             var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
             {
@@ -71,10 +71,6 @@ namespace RayCarrot.RCP.Metro
             return null;
 
         }
-
-        #endregion
-
-        #region Public Overrides
 
         /// <summary>
         /// Gets the launch info for the game

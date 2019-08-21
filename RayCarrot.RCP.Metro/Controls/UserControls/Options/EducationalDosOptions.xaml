@@ -17,6 +17,16 @@
             <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
         </i:Interaction.Behaviors>
 
+        <!-- TODO: Localize -->
+        <StackPanel Orientation="Horizontal">
+
+            <TextBlock Style="{StaticResource HeaderTextBlock}"
+                       Text="Educational Games" />
+
+            <local:InfoIcon Text="Multiple educational games can be added to launch, or the same game with different launch modes. The first game in the list is always the default one. The list can be reordered by dragging/dropping the items." />
+
+        </StackPanel>
+
         <ItemsControl ItemsSource="{Binding Path=Games, Mode=OneTime}"
                       Grid.IsSharedSizeScope="True"
                       dd:DragDrop.IsDragSource="True"
@@ -37,23 +47,44 @@
                             <ColumnDefinition Width="Auto"
                                               SharedSizeGroup="C" />
 
+                            <ColumnDefinition Width="Auto"
+                                              SharedSizeGroup="D" />
+
                         </Grid.ColumnDefinitions>
 
                         <Image Grid.Column="0"
                                Source="../../../Img/GameIcons/EducationalDos.png"
                                Height="32" Width="32"
-                               Margin="5 0 8 0"/>
+                               Margin="0 0 8 0"/>
 
+                        <!-- TODO: Doesn't wrap -->
                         <TextBlock Grid.Column="1"
+                                   TextWrapping="Wrap"
                                    VerticalAlignment="Center"
-                                   Text="{Binding Path=Name, Mode=OneTime}" />
+                                   Text="{Binding Path=Name}" />
 
+                        <!-- TODO: Localize -->
                         <Button Grid.Column="2"
+                                ToolTip="Edit"
                                 Style="{StaticResource FlatButton}"
+                                Command="{Binding Path=EditGameCommand}"
                                 VerticalAlignment="Center" 
                                 Margin="15 0 10 0">
                             <iconPacks:PackIconMaterial Background="Transparent"
                                                         Kind="Pencil" 
+                                                        Width="16"
+                                                        Height="16"/>
+                        </Button>
+
+                        <!-- TODO: Localize -->
+                        <Button Grid.Column="3"
+                                ToolTip="Remove"
+                                Style="{StaticResource FlatButton}"
+                                Command="{Binding Path=RemoveGameCommand}"
+                                VerticalAlignment="Center" 
+                                Margin="15 0 10 0">
+                            <iconPacks:PackIconMaterial Background="Transparent"
+                                                        Kind="Delete" 
                                                         Width="16"
                                                         Height="16"/>
                         </Button>
@@ -63,6 +94,17 @@
             </ItemsControl.ItemTemplate>
 
         </ItemsControl>
+
+        <!-- TODO: Localize -->
+        <Button ToolTip="Add new game"
+                Style="{StaticResource FlatButton}"
+                HorizontalAlignment="Left"
+                Command="{Binding Path=AddGameCommand}">
+            <iconPacks:PackIconMaterial Background="Transparent"
+                                        Kind="PlusCircleOutline" 
+                                        Width="16"
+                                        Height="16"/>
+        </Button>
 
     </StackPanel>
 </rwpf:VMUserControl>

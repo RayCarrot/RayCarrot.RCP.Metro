@@ -25,7 +25,8 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         /// <param name="game">The game to manage</param>
-        public WinStoreGameManager(Games game) : base(game, GameType.WinStore)
+        /// <param name="type">The game type</param>
+        public WinStoreGameManager(Games game, GameType type = GameType.WinStore) : base(game, type)
         {
 
         }
@@ -146,11 +147,15 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        #endregion
+
+        #region Public Overrides
+
         /// <summary>
         /// Locates the game
         /// </summary>
         /// <returns>Null if the game was not found. Otherwise a valid or empty path for the instal directory</returns>
-        protected override async Task<FileSystemPath?> LocateAsync()
+        public override async Task<FileSystemPath?> LocateAsync()
         {
             // Helper method for finding and adding a Windows Store app
             bool FindWinStoreApp() =>
@@ -186,10 +191,6 @@ namespace RayCarrot.RCP.Metro
 
             return FileSystemPath.EmptyPath;
         }
-
-        #endregion
-
-        #region Public Overrides
 
         /// <summary>
         /// Gets the launch info for the game

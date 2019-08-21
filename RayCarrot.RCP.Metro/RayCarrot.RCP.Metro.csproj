@@ -108,6 +108,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\Dialogs\EducationalDosGameEditDialog.xaml.cs">
+      <DependentUpon>EducationalDosGameEditDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Dialogs\EducationalDosGameEditResult.cs" />
+    <Compile Include="ViewModels\Dialogs\EducationalDosGameEditViewModel.cs" />
     <Compile Include="Controls\OneWayToggleButton.cs" />
     <Compile Include="Controls\RCPTabItem.cs" />
     <Compile Include="Controls\UserControls\Options\EducationalDosOptions.xaml.cs">
@@ -125,6 +130,7 @@
     <Compile Include="ViewModels\Config\Rayman1ConfigViewModel.cs" />
     <Compile Include="ViewModels\Config\RaymanDesignerConfigViewModel.cs" />
     <Compile Include="ViewModels\Controls\DuoGridItemViewModel.cs" />
+    <Compile Include="ViewModels\Options\EducationalDosBoxGameInfoViewModel.cs" />
     <Compile Include="ViewModels\Options\EducationalDosOptionsViewModel.cs" />
     <Compile Include="ViewModels\Options\FiestaRunOptionsViewModel.cs" />
     <Compile Include="Controls\UserControls\Pages\LinksPage.xaml.cs">
@@ -135,6 +141,10 @@
     <Compile Include="DataModels\Enums\FiestaRunEdition.cs" />
     <Compile Include="DataModels\Enums\PopupPromptResult.cs" />
     <Compile Include="DataModels\Enums\Pages.cs" />
+    <Page Include="Controls\Dialogs\EducationalDosGameEditDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\Dialogs\GameTypeSelectionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

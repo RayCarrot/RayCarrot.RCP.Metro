@@ -34,7 +34,6 @@ namespace RayCarrot.RCP.Metro
             Game = game;
             DisplayName = game.GetDisplayName();
             IconSource = game.GetIconSource();
-            GameInfo = game.GetInfo();
             GameInfoItems = new ObservableCollection<DuoGridItemViewModel>();
 
             // Refresh the game info
@@ -67,7 +66,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game info
         /// </summary>
-        public GameInfo GameInfo { get; set; }
+        public GameInfo GameInfo => Game.GetInfo();
 
         /// <summary>
         /// The game info items

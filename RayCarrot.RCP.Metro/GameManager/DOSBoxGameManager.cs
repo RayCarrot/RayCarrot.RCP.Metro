@@ -91,53 +91,6 @@ namespace RayCarrot.RCP.Metro
         #region Protected Overrides
 
         /// <summary>
-        /// Locates the game
-        /// </summary>
-        /// <returns>Null if the game was not found. Otherwise a valid or empty path for the instal directory</returns>
-        protected override async Task<FileSystemPath?> LocateAsync()
-        {
-            var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
-            {
-                Title = Resources.LocateGame_BrowserHeader,
-                DefaultDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
-                MultiSelection = false
-            });
-
-            if (result.CanceledByUser)
-                return null;
-
-            if (!result.SelectedDirectory.DirectoryExists)
-                return null;
-
-            // Check if the location if valid
-            if (IsValid(result.SelectedDirectory))
-                return result.SelectedDirectory;
-
-            // Check if the location contains the executable file
-            var exe = GetGameExectuable();
-
-            // If the executable does not exist the location is not valid
-            if (!(result.SelectedDirectory + exe).FileExists)
-            {
-                RCFCore.Logger?.LogInformationSource($"The selected install directory for {Game} is not valid");
-
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
-                return null;
-            }
-
-            // Create the .bat file
-            File.WriteAllLines(result.SelectedDirectory + Game.GetLaunchName(), new string[]
-            {
-                "@echo off",
-                $"{Path.GetFileNameWithoutExtension(exe)} ver=usa"
-            });
-
-            RCFCore.Logger?.LogInformationSource($"A batch file was created for {Game}");
-
-            return result.SelectedDirectory;
-        }
-
-        /// <summary>
         /// Post launch operations for the game which launched
         /// </summary>
         /// <param name="process">The game process</param>
@@ -205,6 +158,53 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Overrides
+
+        /// <summary>
+        /// Locates the game
+        /// </summary>
+        /// <returns>Null if the game was not found. Otherwise a valid or empty path for the instal directory</returns>
+        public override async Task<FileSystemPath?> LocateAsync()
+        {
+            var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+            {
+                Title = Resources.LocateGame_BrowserHeader,
+                DefaultDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
+                MultiSelection = false
+            });
+
+            if (result.CanceledByUser)
+                return null;
+
+            if (!result.SelectedDirectory.DirectoryExists)
+                return null;
+
+            // Check if the location if valid
+            if (IsValid(result.SelectedDirectory))
+                return result.SelectedDirectory;
+
+            // Check if the location contains the executable file
+            var exe = GetGameExectuable();
+
+            // If the executable does not exist the location is not valid
+            if (!(result.SelectedDirectory + exe).FileExists)
+            {
+                RCFCore.Logger?.LogInformationSource($"The selected install directory for {Game} is not valid");
+
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
+                return null;
+            }
+
+            // Create the .bat file
+            File.WriteAllLines(result.SelectedDirectory + Game.GetLaunchName(), new string[]
+            {
+                "@echo off",
+                $"{Path.GetFileNameWithoutExtension(exe)} ver=usa"
+            });
+
+            RCFCore.Logger?.LogInformationSource($"A batch file was created for {Game}");
+
+            return result.SelectedDirectory;
+        }
 
         /// <summary>
         /// Gets the launch info for the game

@@ -62,7 +62,27 @@ namespace RayCarrot.RCP.Metro
         public static T GetGameManager<T>(this Games game)
             where T : BaseGameManager
         {
-            return typeof(T).CreateInstance(game).CastTo<T>();
+            GameType type;
+
+            if (typeof(T) == typeof(Win32GameManager))
+                type = GameType.Win32;
+
+            else if (typeof(T) == typeof(SteamGameManager))
+                type = GameType.Steam;
+
+            else if (typeof(T) == typeof(WinStoreGameManager))
+                type = GameType.WinStore;
+
+            else if (typeof(T) == typeof(DOSBoxGameManager))
+                type = GameType.DosBox;
+
+            else if (typeof(T) == typeof(EducationalDosBoxGameManager))
+                type = GameType.EducationalDosBox;
+
+            else
+                throw new Exception("The provided game manager type is not valid");
+
+            return typeof(T).CreateInstance(game, type).CastTo<T>();
         }
 
         /// <summary>

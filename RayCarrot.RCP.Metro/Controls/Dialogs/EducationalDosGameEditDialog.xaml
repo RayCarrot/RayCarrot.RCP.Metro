@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.EducationalDosGameEditDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:EducationalDosGameEditViewModel}">
+    <StackPanel Margin="10"
+                MinWidth="300">
+        <i:Interaction.Behaviors>
+            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+        </i:Interaction.Behaviors>
+
+        <!-- Name -->
+
+        <!-- TODO: Localize -->
+        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                   Text="Name" />
+
+        <TextBox Text="{Binding Path=Name, UpdateSourceTrigger=LostFocus}"
+                 AcceptsReturn="False"
+                 MaxLength="55"
+                 TextWrapping="Wrap"/>
+
+        <!-- Mount path -->
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Style="{StaticResource HeaderTextBlock}"
+                               Text="{Resx MountPathHeader}" />
+
+            <local:InfoIcon Text="{Resx MountPathInfo}" />
+
+        </StackPanel>
+
+        <rwpf:BrowseBox SelectedPath="{Binding Path=MountPath, Converter={rwpf:FileSystemPathToStringConverter}, UpdateSourceTrigger=LostFocus}">
+            <rwpf:BrowseBox.Style>
+                <Style TargetType="{x:Type rwpf:BrowseBox}" BasedOn="{StaticResource {x:Type rwpf:BrowseBox}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsChecked, ElementName=DriveBrowseToggle}"
+                                             Value="True">
+                            <Setter Property="BrowseType" Value="Drive" />
+                        </DataTrigger>
+                    </Style.Triggers>
+
+                    <Setter Property="BrowseType" Value="File" />
+
+                </Style>
+            </rwpf:BrowseBox.Style>
+        </rwpf:BrowseBox>
+
+        <WrapPanel>
+            <RadioButton Content="{Resx MountOption_File}"
+                                 ToolTip="{Resx MountOption_FileInfo}"
+                                 Margin="0 0 8 0"
+                                 IsChecked="True" />
+            <RadioButton x:Name="DriveBrowseToggle"
+                                 Content="{Resx MountOption_Drive}" 
+                                 ToolTip="{Resx MountOption_DriveInfo}" />
+        </WrapPanel>
+
+        <!-- Launch mode -->
+
+        <!-- TODO: Localize -->
+        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                   Text="Launch mode" />
+
+        <ComboBox ItemsSource="{Binding Path=AvailableLaunchModes, Mode=OneTime}"
+                  SelectedItem="{Binding Path=LaunchMode}"
+                  HorizontalAlignment="Left"
+                  MinWidth="100"/>
+
+        <!-- Actions -->
+
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Right">
+
+            <Button Content="{Resx Cancel}"
+                    IsCancel="True"
+                    Click="CancelButton_Click"/>
+
+            <Button Content="{Resx Accept}"
+                    Margin="10 0 0 0"
+                    IsDefault="True"
+                    Click="OKButton_Click"/>
+
+        </StackPanel>
+
+    </StackPanel>
+</UserControl>

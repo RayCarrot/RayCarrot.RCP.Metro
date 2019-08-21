@@ -21,7 +21,8 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         /// <param name="game">The game to manage</param>
-        public SteamGameManager(Games game) : base(game, GameType.Steam)
+        /// <param name="type">The game type</param>
+        public SteamGameManager(Games game, GameType type = GameType.Steam) : base(game, type)
         {
 
         }
@@ -71,13 +72,13 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Protected Overrides
+        #region Public Overrides
 
         /// <summary>
         /// Locates the game
         /// </summary>
         /// <returns>Null if the game was not found. Otherwise a valid or empty path for the instal directory</returns>
-        protected override async Task<FileSystemPath?> LocateAsync()
+        public override async Task<FileSystemPath?> LocateAsync()
         {
             // Make sure the game is valid
             if (!IsValid(FileSystemPath.EmptyPath))
@@ -90,10 +91,6 @@ namespace RayCarrot.RCP.Metro
 
             return FileSystemPath.EmptyPath;
         }
-
-        #endregion
-
-        #region Public Overrides
 
         /// <summary>
         /// Gets the additional overflow button items for the game

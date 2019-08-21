@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -41,10 +42,61 @@ namespace RayCarrot.RCP.Metro
         #region Protected Overrides
 
         /// <summary>
+        /// Verifies if the game can launch
+        /// </summary>
+        /// <returns>True if the game can launch, otherwise false</returns>
+        protected override async Task<bool> VerifyCanLaunchAsync()
+        {
+            return await VerifyCanLaunchAsync(RCFRCP.Data.EducationalDosBoxGames.First());
+        }
+
+        #endregion
+
+        #region Public Overrides
+
+        /// <summary>
+        /// Gets the additional overflow button items for the game
+        /// </summary>
+        /// <returns>The items</returns>
+        public override OverflowButtonItemViewModel[] GetAdditionalOverflowButtonItems()
+        {
+            if (!RCFRCP.Data.EducationalDosBoxGames.Any())
+                return new OverflowButtonItemViewModel[0];
+
+            return RCFRCP.Data.EducationalDosBoxGames.
+                Select(x => new OverflowButtonItemViewModel(x.Name, new BitmapImage(new Uri(AppViewModel.ApplicationBasePath + @"img\GameIcons\EducationalDos.png")), new AsyncRelayCommand(async () =>
+            {
+                RCFCore.Logger?.LogTraceSource($"The educational game {x.ID} is being launched...");
+
+                // Verify that the game can launch
+                if (!await VerifyCanLaunchAsync(x))
+                {
+                    RCFCore.Logger?.LogInformationSource($"The educational game {x.ID} could not be launched");
+                    return;
+                }
+
+                // Get the launch info
+                GameLaunchInfo launchInfo = GetLaunchInfo(x);
+
+                RCFCore.Logger?.LogTraceSource($"The educational game {x.ID} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
+
+                // Launch the game
+                var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, Info.LaunchMode == GameLaunchMode.AsAdmin, launchInfo.Args);
+
+                RCFCore.Logger?.LogInformationSource($"The educational game {x.ID} has been launched");
+
+                if (process != null)
+                    // Run any post launch operations on the process
+                    await PostLaunchAsync(process);
+
+            }))).ToArray();
+        }
+
+        /// <summary>
         /// Locates the game
         /// </summary>
         /// <returns>Null if the game was not found. Otherwise a valid or empty path for the instal directory</returns>
-        protected override async Task<FileSystemPath?> LocateAsync()
+        public override async Task<FileSystemPath?> LocateAsync()
         {
             var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
             {
@@ -72,33 +124,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Verifies if the game can launch
-        /// </summary>
-        /// <returns>True if the game can launch, otherwise false</returns>
-        protected override async Task<bool> VerifyCanLaunchAsync()
-        {
-            // Make sure the DosBox executable exists
-            if (!File.Exists(RCFRCP.Data.DosBoxPath))
-            {
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LaunchGame_DosBoxNotFound, MessageType.Error);
-                return false;
-            }
-
-            // Make sure the mount path exists, unless the game is Rayman 1 and TPLS is enabled
-            if (!RCFRCP.Data.EducationalDosBoxGames.First().MountPath.Exists)
-            {
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LaunchGame_MountPathNotFound, MessageType.Error);
-                return false;
-            }
-
-            return true;
-        }
-
-        #endregion
-
-        #region Public Overrides
-
-        /// <summary>
         /// Gets the launch info for the game
         /// </summary>
         /// <returns>The launch info</returns>
@@ -107,7 +132,7 @@ namespace RayCarrot.RCP.Metro
             // Get the default game
             var defaultGame = RCFRCP.Data.EducationalDosBoxGames.First();
 
-            return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, GetDosBoxArguments(defaultGame.MountPath, defaultGame.LaunchName));
+            return GetLaunchInfo(defaultGame);
         }
 
         /// <summary>
@@ -119,23 +144,11 @@ namespace RayCarrot.RCP.Metro
             // Create config file
             new DosBoxAutoConfigManager(Game.GetDosBoxConfigFile()).Create();
 
-            // Get the install directory
-            var instDir = Game.GetInfo().InstallDirectory;
-
-            // TODO: Try/catch
-            // Find the launch name
-            FileSystemPath launchName = Directory.EnumerateFiles(instDir, "*.exe", SearchOption.TopDirectoryOnly).FirstOrDefault();
-
-            // TODO: Make sure launch name is not null
+            // Create the collection of games
+            RCFRCP.Data.EducationalDosBoxGames = new List<EducationalDosBoxGameInfo>();
 
             // Add the game to the list of educational games
-            RCFRCP.Data.EducationalDosBoxGames = new List<EducationalDosBoxGameInfo>()
-            {
-                new EducationalDosBoxGameInfo(null, instDir, launchName.Name)
-                {
-                    Name = instDir.Name
-                }
-            };
+            AddEducationalDosBoxGameInfo(Game.GetInfo().InstallDirectory);
 
             return Task.CompletedTask;
         }
@@ -157,7 +170,67 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game is valid, otherwise false</returns>
         public override bool IsValid(FileSystemPath installDir)
         {
+            // TODO: Make sure each added game is valid too, remove if not and return false if no games are left
+
             return (installDir + "PCMAP").DirectoryExists;
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Adds a new educational DOSBox game
+        /// </summary>
+        /// <param name="installDir">The install directory</param>
+        public void AddEducationalDosBoxGameInfo(FileSystemPath installDir)
+        {
+            // Find the launch name
+            FileSystemPath launchName = Directory.EnumerateFiles(installDir, "*.exe", SearchOption.TopDirectoryOnly).FirstOrDefault();
+
+            // Create the collection if it doesn't exist
+            if (RCFRCP.Data.EducationalDosBoxGames == null)
+                RCFRCP.Data.EducationalDosBoxGames = new List<EducationalDosBoxGameInfo>();
+
+            // Add the game to the list of educational games
+            RCFRCP.Data.EducationalDosBoxGames.Add(new EducationalDosBoxGameInfo(null, installDir, launchName.Name)
+            {
+                Name = installDir.Name
+            });
+        }
+
+        /// <summary>
+        /// Verifies if the game can launch
+        /// </summary>
+        /// <param name="game">The game</param>
+        /// <returns>True if the game can launch, otherwise false</returns>
+        public async Task<bool> VerifyCanLaunchAsync(EducationalDosBoxGameInfo game)
+        {
+            // Make sure the DosBox executable exists
+            if (!File.Exists(RCFRCP.Data.DosBoxPath))
+            {
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LaunchGame_DosBoxNotFound, MessageType.Error);
+                return false;
+            }
+
+            // Make sure the mount path exists, unless the game is Rayman 1 and TPLS is enabled
+            if (!game.MountPath.Exists)
+            {
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LaunchGame_MountPathNotFound, MessageType.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Gets the launch info for the game
+        /// </summary>
+        /// <param name="game">The game</param>
+        /// <returns>The launch info</returns>
+        public GameLaunchInfo GetLaunchInfo(EducationalDosBoxGameInfo game)
+        {
+            return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, GetDosBoxArguments(game.MountPath, $"{game.LaunchName} ver={game.LaunchMode}"));
         }
 
         #endregion

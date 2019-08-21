@@ -40,6 +40,11 @@ namespace RayCarrot.RCP.Metro
         public string Name { get; set; }
 
         /// <summary>
+        /// The launch mode argument
+        /// </summary>
+        public string LaunchMode { get; set; }
+
+        /// <summary>
         /// The game install directory
         /// </summary>
         public FileSystemPath InstallDIr { get; }

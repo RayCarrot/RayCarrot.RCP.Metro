@@ -30,6 +30,24 @@ namespace RayCarrot.RCP.Metro
             return result;
         }
 
+        public async Task<EducationalDosGameEditResult> EditEducationalDosGameAsync(EducationalDosGameEditViewModel viewModel, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
+        {
+            RCFCore.Logger?.LogTraceSource($"An educational DOS game edit dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+
+            // Create the dialog and get the result
+            var result = await new EducationalDosGameEditDialog(viewModel).ShowDialogAsync();
+
+            if (result == null)
+                RCFCore.Logger?.LogTraceSource($"The educational DOS game edit dialog returned null");
+            else if (result.CanceledByUser)
+                RCFCore.Logger?.LogTraceSource($"The educational DOS game edit dialog was canceled by the user");
+            else
+                RCFCore.Logger?.LogTraceSource($"The educational DOS game edit dialog returned the selected name {result.Name}");
+
+            // Return the result
+            return result;
+        }
+
         #endregion
     }
 }

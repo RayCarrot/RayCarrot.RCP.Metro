@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
@@ -87,7 +88,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Check if it's valid
-                    if (!game.GetGameManager().IsValid(game.GetInfo().InstallDirectory))
+                    if (!game.GetGameManager().IsValid(game.GetInfo().InstallDirectory) || (game == Games.EducationalDos && Data.EducationalDosBoxGames?.Any() != true))
                     {
                         // Show message
                         await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.GetDisplayName()), Resources.GameNotFoundHeader, MessageType.Error);
