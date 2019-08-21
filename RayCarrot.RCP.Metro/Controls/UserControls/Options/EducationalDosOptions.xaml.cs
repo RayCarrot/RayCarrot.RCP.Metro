@@ -10,6 +10,7 @@ namespace RayCarrot.RCP.Metro
         public EducationalDosOptions()
         {
             InitializeComponent();
+            EducationalGameCollectionDropHandler.ViewModel = ViewModel;
         }
     }
 }

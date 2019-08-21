@@ -1838,7 +1838,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred when saving your DosBox configuration.
+        ///   Looks up a localized string similar to An error occurred when saving your DOSBox configuration.
         /// </summary>
         public static string Config_DosBoxSaveError {
             get {
@@ -2657,7 +2657,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Setting one of the below options to disabled or empty will use the default value specified in the DosBox configuration file. If a specific configuration file has been specified in the settings it may overwrite some of the settings below..
+        ///   Looks up a localized string similar to Setting one of the below options to disabled or empty will use the default value specified in the DOSBox configuration file. If a specific configuration file has been specified in the settings it may overwrite some of the settings below..
         /// </summary>
         public static string DosBoxSettingsInfo {
             get {
@@ -2851,6 +2851,96 @@ namespace RayCarrot.RCP.Metro {
         public static string Download_TotalProgress {
             get {
                 return ResourceManager.GetString("Download_TotalProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch mode.
+        /// </summary>
+        public static string EducationalConfig_LaunchMode {
+            get {
+                return ResourceManager.GetString("EducationalConfig_LaunchMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Name.
+        /// </summary>
+        public static string EducationalConfig_Name {
+            get {
+                return ResourceManager.GetString("EducationalConfig_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new game.
+        /// </summary>
+        public static string EducationalOptions_AddNew {
+            get {
+                return ResourceManager.GetString("EducationalOptions_AddNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string EducationalOptions_Edit {
+            get {
+                return ResourceManager.GetString("EducationalOptions_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit game.
+        /// </summary>
+        public static string EducationalOptions_EditHeader {
+            get {
+                return ResourceManager.GetString("EducationalOptions_EditHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Educational Games.
+        /// </summary>
+        public static string EducationalOptions_Header {
+            get {
+                return ResourceManager.GetString("EducationalOptions_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple educational games can be added to launch, or the same game with different launch modes. The first game in the list is always the default one. The list can be reordered by dragging/dropping the items..
+        /// </summary>
+        public static string EducationalOptions_Info {
+            get {
+                return ResourceManager.GetString("EducationalOptions_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        public static string EducationalOptions_Remove {
+            get {
+                return ResourceManager.GetString("EducationalOptions_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The has to be at least one game available to launch.
+        /// </summary>
+        public static string EducationalOptions_RemoveErrorLastOne {
+            get {
+                return ResourceManager.GetString("EducationalOptions_RemoveErrorLastOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t remove game.
+        /// </summary>
+        public static string EducationalOptions_RemoveErrorLastOneHeader {
+            get {
+                return ResourceManager.GetString("EducationalOptions_RemoveErrorLastOneHeader", resourceCulture);
             }
         }
         
@@ -3550,6 +3640,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Educational DOSBox.
+        /// </summary>
+        public static string GameType_EducationalDosBox {
+            get {
+                return ResourceManager.GetString("GameType_EducationalDosBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Steam.
         /// </summary>
         public static string GameType_Steam {
@@ -3700,7 +3799,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman 1, and most of its PC spin-offs (including Rayman Designer, Rayman by his Fans and Rayman 60 Levels) are MS-DOS programs and are not compatible with modern versions of Windows. Running them requires a DOS emulator, such as DosBox. Currently DosBox is the only supported emulator by the Rayman Control Panel..
+        ///   Looks up a localized string similar to Rayman 1, and most of its PC spin-offs (including Rayman Designer, Rayman by his Fans and Rayman 60 Levels) are MS-DOS programs and are not compatible with modern versions of Windows. Running them requires a DOS emulator, such as DOSBox. Currently DOSBox is the only supported emulator by the Rayman Control Panel..
         /// </summary>
         public static string Help_Games_R1_Emulator {
             get {
@@ -4039,7 +4138,7 @@ namespace RayCarrot.RCP.Metro {
         ///
         ///-reset (Resets all app data before launch)
         ///-install {filePath} (Removes the installer from the specified path - no longer used as of version 4.5.0)
-        ///-ul {userLevel} (sets the user level once  [rest of string was truncated]&quot;;.
+        ///-ul {userLevel} (Sets the user level once  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Help_RCP_LaunchArgs {
             get {
@@ -4512,7 +4611,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DosBox could not be found. Specify a valid path under settings to run this game..
+        ///   Looks up a localized string similar to DOSBox could not be found. Specify a valid path under settings to run this game..
         /// </summary>
         public static string LaunchGame_DosBoxNotFound {
             get {
@@ -5844,7 +5943,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The aspect ratio could not be set due to the game executable not being found..
+        ///   Looks up a localized string similar to The aspect ratio could not be set due to the game executable not being found.
         /// </summary>
         public static string R2Widescreen_ExeNotFound {
             get {
@@ -5853,7 +5952,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The aspect ratio could not be set due to the game executable not being valid..
+        ///   Looks up a localized string similar to The aspect ratio could not be set due to the game executable not being valid.
         /// </summary>
         public static string R2Widescreen_ExeNotValid {
             get {
@@ -6542,6 +6641,24 @@ namespace RayCarrot.RCP.Metro {
         public static string SecretCodes_SecretHeader {
             get {
                 return ResourceManager.GetString("SecretCodes_SecretHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disabled.
+        /// </summary>
+        public static string SettingDisabled {
+            get {
+                return ResourceManager.GetString("SettingDisabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        public static string SettingEnabled {
+            get {
+                return ResourceManager.GetString("SettingEnabled", resourceCulture);
             }
         }
         
@@ -7248,6 +7365,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utility_AdditionalFilesRequired {
             get {
                 return ResourceManager.GetString("Utility_AdditionalFilesRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        public static string Utility_Apply {
+            get {
+                return ResourceManager.GetString("Utility_Apply", resourceCulture);
             }
         }
         

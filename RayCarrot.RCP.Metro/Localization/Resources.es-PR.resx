@@ -1359,4 +1359,13 @@ Notícias:
     <value>1.10</value>
     <comment>1.10</comment>
   </data>
+  <data name="SettingEnabled" xml:space="preserve">
+    <value>Activado</value>
+  </data>
+  <data name="SettingDisabled" xml:space="preserve">
+    <value>Desactivado</value>
+  </data>
+  <data name="Utility_Apply" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
 </root>

@@ -88,7 +88,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Check if it's valid
-                    if (!game.GetGameManager().IsValid(game.GetInfo().InstallDirectory) || (game == Games.EducationalDos && Data.EducationalDosBoxGames?.Any() != true))
+                    if (!game.GetGameManager().IsValid(game.GetInfo().InstallDirectory))
                     {
                         // Show message
                         await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.GetDisplayName()), Resources.GameNotFoundHeader, MessageType.Error);

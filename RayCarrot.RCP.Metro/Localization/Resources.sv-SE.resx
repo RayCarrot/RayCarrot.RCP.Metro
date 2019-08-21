@@ -196,10 +196,10 @@
     <value>Använd dubble buffering i fullskärm</value>
   </data>
   <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
-    <value>Aspect ratio correction</value>
+    <value>Bildförhållande korrektion</value>
   </data>
   <data name="DosBoxOptions_AspectCorrectionInfo" xml:space="preserve">
-    <value>Använd aspect ratio correction. Om utmatningens-metoden inte stöder bildskalning så kan det få spelet att köras långsammare.</value>
+    <value>Använd bildförhållande korrektion. Om utmatningens-metoden inte stöder bildskalning så kan det få spelet att köras långsammare.</value>
   </data>
   <data name="DosBoxOptions_MemorySize" xml:space="preserve">
     <value>Minnesstorlek</value>
@@ -857,7 +857,7 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
     <value>Ett fel inträffade när {0} skulle starta</value>
   </data>
   <data name="LaunchGame_DosBoxNotFound" xml:space="preserve">
-    <value>DosBox kunde inte hittas. Ange en giltig sökväg under inställningarna för att starta spelet.</value>
+    <value>DOSBox kunde inte hittas. Ange en giltig sökväg under inställningarna för att starta spelet.</value>
   </data>
   <data name="LaunchGame_MountPathNotFound" xml:space="preserve">
     <value>Monterings-sökvägen kunde inte hittas. Specificera en giltig sökväg under spel-alternativen.</value>
@@ -1552,5 +1552,101 @@ Starta om?</value>
   </data>
   <data name="App_RestartAsAdmin" xml:space="preserve">
     <value>Starta om som administratör</value>
+  </data>
+  <data name="SettingEnabled" xml:space="preserve">
+    <value>Aktiverad</value>
+  </data>
+  <data name="SettingDisabled" xml:space="preserve">
+    <value>Inaktiverad</value>
+  </data>
+  <data name="Utility_Apply" xml:space="preserve">
+    <value>Tillämpa</value>
+  </data>
+  <data name="DosBoxCyclesValidation_InvalidFormat" xml:space="preserve">
+    <value>Cycles värdet är inte i ett giltigt format</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NullOrEmpty" xml:space="preserve">
+    <value>Cycles värdet kan inte vara tomt</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NonDigit" xml:space="preserve">
+    <value>Bara siffror kan användas när ett specifikt värde anges</value>
+  </data>
+  <data name="DosBoxResolutionValidation_NullOrEmpty" xml:space="preserve">
+    <value>Upplösningsvärdet kan inte vara tomt</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidFormat" xml:space="preserve">
+    <value>Ogiltigt format</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidCharacter" xml:space="preserve">
+    <value>Tecknet '{0}' är inte giltig</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MultipleSeparators" xml:space="preserve">
+    <value>Upplösningsseparatorn 'x' kan bara användas en gång</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MissingSeparator" xml:space="preserve">
+    <value>Upplösningsseparatorn 'x' måste användas</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
+    <value>En giltig höjd måste anges</value>
+  </data>
+  <data name="Config_InvalidUbiIni" xml:space="preserve">
+    <value>Ingen giltig ubi.ini fil kunde hittas och att skapa en ny misslyckades. Prova att köra programmet som administratör eller ändra mappbehörigheterna för följande sökväg: {0}</value>
+  </data>
+  <data name="Config_SaveError" xml:space="preserve">
+    <value>Ett fel uppstod när konfigurationen för {0} skulle sparas</value>
+  </data>
+  <data name="Config_SaveErrorHeader" xml:space="preserve">
+    <value>Fel vid sparning</value>
+  </data>
+  <data name="Config_DosBoxSaveError" xml:space="preserve">
+    <value>Ett fel uppstod när DOSBox-konfiguration skulle sparas</value>
+  </data>
+  <data name="Config_SaveSuccess" xml:space="preserve">
+    <value>Dina ändringar har sparats</value>
+  </data>
+  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
+    <value>Bildförhållandet kunde inte ställas in på grund av att spelet inte kunde hittas</value>
+  </data>
+  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
+    <value>Bildförhållandet kunde inte ställas in på grund av att spelet inte är av ett giltigt format</value>
+  </data>
+  <data name="R2Widescreen_Error" xml:space="preserve">
+    <value>Ett fel inträffade när bildförhållandet ändrades för Rayman 2</value>
+  </data>
+  <data name="Config_SaveRRRError" xml:space="preserve">
+    <value>Ett fel inträffade när konfigurationen för Rayman Raving Rabbid sparades</value>
+  </data>
+  <data name="SecretCodes_Konami" xml:space="preserve">
+    <value>Du har precis skrivit in Konami-koden! Njut av detta nya röda tema.</value>
+  </data>
+  <data name="SecretCodes_KonamiHeader" xml:space="preserve">
+    <value>Konami kod</value>
+  </data>
+  <data name="SecretCodes_RayCarrot" xml:space="preserve">
+    <value>Du har precis skrivit in RayCarrot-koden! Njut av detta nya orange tema.</value>
+  </data>
+  <data name="SecretCodes_RayCarrotHeader" xml:space="preserve">
+    <value>RayCarrot kod</value>
+  </data>
+  <data name="SecretCodes_Lime" xml:space="preserve">
+    <value>Du har precis skrivit in Lime-koden! Njut av detta nya lime-temat.</value>
+  </data>
+  <data name="SecretCodes_LimeHeader" xml:space="preserve">
+    <value>Lime kod</value>
+  </data>
+  <data name="SecretCodes_Secret" xml:space="preserve">
+    <value>Du har precis skrivit in den hemliga koden! Tyvärr så gör den ingenting.</value>
+  </data>
+  <data name="GameInfo_LaunchPath" xml:space="preserve">
+    <value>Start-sökväg:</value>
+  </data>
+  <data name="GameInfo_LaunchArgs" xml:space="preserve">
+    <value>Startparametrar:</value>
+  </data>
+  <data name="GameInfo_GameType" xml:space="preserve">
+    <value>Speltyp:</value>
+  </data>
+  <data name="GameInfo_InstallDir" xml:space="preserve">
+    <value>Spel-sökväg:</value>
   </data>
 </root>

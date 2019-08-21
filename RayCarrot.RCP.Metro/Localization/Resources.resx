@@ -181,7 +181,7 @@
     <value>DOSBox Settings</value>
   </data>
   <data name="DosBoxSettingsInfo" xml:space="preserve">
-    <value>Setting one of the below options to disabled or empty will use the default value specified in the DosBox configuration file. If a specific configuration file has been specified in the settings it may overwrite some of the settings below.</value>
+    <value>Setting one of the below options to disabled or empty will use the default value specified in the DOSBox configuration file. If a specific configuration file has been specified in the settings it may overwrite some of the settings below.</value>
   </data>
   <data name="DosBoxOptions_Fullscreeen" xml:space="preserve">
     <value>Fullscreen</value>
@@ -863,7 +863,7 @@ filePath</comment>
 gameDisplayName</comment>
   </data>
   <data name="LaunchGame_DosBoxNotFound" xml:space="preserve">
-    <value>DosBox could not be found. Specify a valid path under settings to run this game.</value>
+    <value>DOSBox could not be found. Specify a valid path under settings to run this game.</value>
   </data>
   <data name="LaunchGame_MountPathNotFound" xml:space="preserve">
     <value>The mount path could not be found. Specify a valid path under the game options to run this game.</value>
@@ -1243,7 +1243,7 @@ gameDisplayName</comment>
     <value>Error saving</value>
   </data>
   <data name="Config_DosBoxSaveError" xml:space="preserve">
-    <value>An error occurred when saving your DosBox configuration</value>
+    <value>An error occurred when saving your DOSBox configuration</value>
   </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Your changes have been saved</value>
@@ -1254,10 +1254,10 @@ gameDisplayName</comment>
 ubiIniFilePath</comment>
   </data>
   <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
-    <value>The aspect ratio could not be set due to the game executable not being found.</value>
+    <value>The aspect ratio could not be set due to the game executable not being found</value>
   </data>
   <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
-    <value>The aspect ratio could not be set due to the game executable not being valid.</value>
+    <value>The aspect ratio could not be set due to the game executable not being valid</value>
   </data>
   <data name="R2Widescreen_Error" xml:space="preserve">
     <value>An error occurred when setting the Rayman 2 aspect ratio</value>
@@ -1691,8 +1691,10 @@ RCFRegistryBaseKeyPath</comment>
 
 -reset (Resets all app data before launch)
 -install {filePath} (Removes the installer from the specified path - no longer used as of version 4.5.0)
--ul {userLevel} (sets the user level once the framework is built)
--loglevel {logLevel} (sets the log level to log, default is Information)</value>
+-ul {userLevel} (Sets the user level once the framework is built)
+-loglevel {logLevel} (Sets the log level to log, default is Information)
+-debugLoggers (Specifies that debug loggers should be included)
+</value>
   </data>
   <data name="Help_RCP_DebugHeader" xml:space="preserve">
     <value>Debugging</value>
@@ -1728,7 +1730,7 @@ Running an application in compatibility mode is done by selecting the option und
     <value>MS-Dos Emulator</value>
   </data>
   <data name="Help_Games_R1_Emulator" xml:space="preserve">
-    <value>Rayman 1, and most of its PC spin-offs (including Rayman Designer, Rayman by his Fans and Rayman 60 Levels) are MS-DOS programs and are not compatible with modern versions of Windows. Running them requires a DOS emulator, such as DosBox. Currently DosBox is the only supported emulator by the Rayman Control Panel.</value>
+    <value>Rayman 1, and most of its PC spin-offs (including Rayman Designer, Rayman by his Fans and Rayman 60 Levels) are MS-DOS programs and are not compatible with modern versions of Windows. Running them requires a DOS emulator, such as DOSBox. Currently DOSBox is the only supported emulator by the Rayman Control Panel.</value>
   </data>
   <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
     <value>Installation Failed</value>
@@ -2648,5 +2650,47 @@ Hold L1 + R1 in the menu (or equivalent on the currently used controller), then 
   </data>
   <data name="App_RequiresAdminQuestion" xml:space="preserve">
     <value>The application does not have the required permissions for this operation. Restart the app as administrator?</value>
+  </data>
+  <data name="SettingEnabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="SettingDisabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
+  <data name="Utility_Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="GameType_EducationalDosBox" xml:space="preserve">
+    <value>Educational DOSBox</value>
+  </data>
+  <data name="EducationalConfig_Name" xml:space="preserve">
+    <value>Game Name</value>
+  </data>
+  <data name="EducationalConfig_LaunchMode" xml:space="preserve">
+    <value>Launch mode</value>
+  </data>
+  <data name="EducationalOptions_Header" xml:space="preserve">
+    <value>Educational Games</value>
+  </data>
+  <data name="EducationalOptions_Info" xml:space="preserve">
+    <value>Multiple educational games can be added to launch, or the same game with different launch modes. The first game in the list is always the default one. The list can be reordered by dragging/dropping the items.</value>
+  </data>
+  <data name="EducationalOptions_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EducationalOptions_Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="EducationalOptions_AddNew" xml:space="preserve">
+    <value>Add new game</value>
+  </data>
+  <data name="EducationalOptions_EditHeader" xml:space="preserve">
+    <value>Edit game</value>
+  </data>
+  <data name="EducationalOptions_RemoveErrorLastOne" xml:space="preserve">
+    <value>The has to be at least one game available to launch</value>
+  </data>
+  <data name="EducationalOptions_RemoveErrorLastOneHeader" xml:space="preserve">
+    <value>Can't remove game</value>
   </data>
 </root>

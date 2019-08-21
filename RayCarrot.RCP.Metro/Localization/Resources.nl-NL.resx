@@ -856,7 +856,7 @@
     <value>Er heeft een fout plaatsgevonden tijdens een startpoging {0}</value>
   </data>
   <data name="LaunchGame_DosBoxNotFound" xml:space="preserve">
-    <value>DosBox kon niet worden gevonden. Specificeer een geldig pad onder Instellingen om het spel te kunnen starten.</value>
+    <value>DOSBox kon niet worden gevonden. Specificeer een geldig pad onder Instellingen om het spel te kunnen starten.</value>
   </data>
   <data name="LaunchGame_MountPathNotFound" xml:space="preserve">
     <value>De 'mount path' kon niet gevonden worden. Specificeer een geldig pad via de spelinstellingen om het spel te kunnen starten.</value>
@@ -1180,7 +1180,7 @@ Herstarten?</value>
     <value>Fout bij het opslaan</value>
   </data>
   <data name="Config_DosBoxSaveError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het opslaan van je DosBox configuratie</value>
+    <value>Er heeft een fout plaatsgevonden tijdens het opslaan van je DOSBox configuratie</value>
   </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Je wijzigingen zijn opgeslagen</value>
@@ -1189,10 +1189,10 @@ Herstarten?</value>
     <value>Geen geldig ubi.ini bestand gevonden, en het aanmaken van een nieuw bestand is mislukt. Probeer het programma als administrator te starten of wijzig de maprechten voor de volgende paden: {0}</value>
   </data>
   <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
-    <value>De aspectratio kon niet ingesteld worden vanwege het ontbreken van de executable van het spel.</value>
+    <value>De aspectratio kon niet ingesteld worden vanwege het ontbreken van de executable van het spel</value>
   </data>
   <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
-    <value>De aspectratio kon niet ingesteld worden vanwege het ongeldig zijn van de executable van het spel.</value>
+    <value>De aspectratio kon niet ingesteld worden vanwege het ongeldig zijn van de executable van het spel</value>
   </data>
   <data name="R2Widescreen_Error" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het instellen van de aspectratio van Rayman 2</value>
@@ -1630,7 +1630,7 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
     <value>MS-Dos Emulator</value>
   </data>
   <data name="Help_Games_R1_Emulator" xml:space="preserve">
-    <value>Rayman 1 en de meeste PC spin-offs (inclusief Rayman Designer, Rayman By His Fans en Rayman 60 Levels) zijn MS-DOS programma's en zijn daarom niet compatible met moderne versies van Windows. Als je ze wilt spelen, heb je een DOS-emulator nodig, zoals DosBox. Momenteel is DosBox de enige, ondersteunde emulator door het Rayman Control Panel.</value>
+    <value>Rayman 1 en de meeste PC spin-offs (inclusief Rayman Designer, Rayman By His Fans en Rayman 60 Levels) zijn MS-DOS programma's en zijn daarom niet compatible met moderne versies van Windows. Als je ze wilt spelen, heb je een DOS-emulator nodig, zoals DOSBox. Momenteel is DOSBox de enige, ondersteunde emulator door het Rayman Control Panel.</value>
   </data>
   <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
     <value>Installatie Mislukt</value>
@@ -2577,5 +2577,14 @@ Houd L1 + R1 (of gelijkwaardige knoppen op de huidige controller) in het menu va
   </data>
   <data name="App_RequiresAdminQuestion" xml:space="preserve">
     <value>De applicatie heeft niet de vereiste machtigingen voor deze bewerking. Wil je de app herstarten als administrator?</value>
+  </data>
+  <data name="SettingEnabled" xml:space="preserve">
+    <value>Ingeschakeld</value>
+  </data>
+  <data name="SettingDisabled" xml:space="preserve">
+    <value>Uitgeschakeld</value>
+  </data>
+  <data name="Utility_Apply" xml:space="preserve">
+    <value>Toepassen</value>
   </data>
 </root>

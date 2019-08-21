@@ -17,9 +17,8 @@
 
         <!-- Name -->
 
-        <!-- TODO: Localize -->
         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                   Text="Name" />
+                   Text="{Resx EducationalConfig_Name}" />
 
         <TextBox Text="{Binding Path=Name, UpdateSourceTrigger=LostFocus}"
                  AcceptsReturn="False"
@@ -64,9 +63,8 @@
 
         <!-- Launch mode -->
 
-        <!-- TODO: Localize -->
         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                   Text="Launch mode" />
+                   Text="{Resx EducationalConfig_LaunchMode}" />
 
         <ComboBox ItemsSource="{Binding Path=AvailableLaunchModes, Mode=OneTime}"
                   SelectedItem="{Binding Path=LaunchMode}"

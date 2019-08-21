@@ -17,93 +17,105 @@
             <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
         </i:Interaction.Behaviors>
 
-        <!-- TODO: Localize -->
         <StackPanel Orientation="Horizontal">
 
             <TextBlock Style="{StaticResource HeaderTextBlock}"
-                       Text="Educational Games" />
+                       Text="{Resx EducationalOptions_Header}" />
 
-            <local:InfoIcon Text="Multiple educational games can be added to launch, or the same game with different launch modes. The first game in the list is always the default one. The list can be reordered by dragging/dropping the items." />
+            <local:InfoIcon Text="{Resx EducationalOptions_Info}" />
 
         </StackPanel>
 
-        <ItemsControl ItemsSource="{Binding Path=Games, Mode=OneTime}"
+        <ItemsControl ItemsSource="{Binding Path=GameItems, Mode=OneTime}"
                       Grid.IsSharedSizeScope="True"
                       dd:DragDrop.IsDragSource="True"
                       dd:DragDrop.IsDropTarget="True">
 
+            <dd:DragDrop.DropHandler>
+                <local:EducationalGameCollectionDropHandler x:Name="EducationalGameCollectionDropHandler" />
+            </dd:DragDrop.DropHandler>
+
+            <dd:DragDrop.DragAdornerTemplate>
+                <DataTemplate>
+
+                    <Image Source="../../../Img/GameIcons/EducationalDos.png"
+                           Height="16"
+                           Width="16"
+                           Margin="0 0 8 0" />
+
+                </DataTemplate>
+            </dd:DragDrop.DragAdornerTemplate>
+
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="0 5">
-                        <Grid.ColumnDefinitions>
-                            
-                            <ColumnDefinition Width="Auto"
-                                              SharedSizeGroup="A" />
+                    <Grid Background="Transparent">
+                        <Grid Margin="0 5">
+                            <Grid.ColumnDefinitions>
 
-                            <ColumnDefinition Width="*"
-                                              SharedSizeGroup="B"
-                                              MinWidth="150"/>
+                                <ColumnDefinition Width="Auto"
+                                                  SharedSizeGroup="A" />
 
-                            <ColumnDefinition Width="Auto"
-                                              SharedSizeGroup="C" />
+                                <ColumnDefinition Width="*"
+                                                  SharedSizeGroup="B"
+                                                  MinWidth="150" />
 
-                            <ColumnDefinition Width="Auto"
-                                              SharedSizeGroup="D" />
+                                <ColumnDefinition Width="Auto"
+                                                  SharedSizeGroup="C" />
 
-                        </Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"
+                                                  SharedSizeGroup="D" />
 
-                        <Image Grid.Column="0"
-                               Source="../../../Img/GameIcons/EducationalDos.png"
-                               Height="32" Width="32"
-                               Margin="0 0 8 0"/>
+                            </Grid.ColumnDefinitions>
 
-                        <!-- TODO: Doesn't wrap -->
-                        <TextBlock Grid.Column="1"
-                                   TextWrapping="Wrap"
-                                   VerticalAlignment="Center"
-                                   Text="{Binding Path=Name}" />
+                            <Image Grid.Column="0"
+                                   Source="../../../Img/GameIcons/EducationalDos.png"
+                                   Height="32" Width="32"
+                                   Margin="0 0 8 0" />
 
-                        <!-- TODO: Localize -->
-                        <Button Grid.Column="2"
-                                ToolTip="Edit"
-                                Style="{StaticResource FlatButton}"
-                                Command="{Binding Path=EditGameCommand}"
-                                VerticalAlignment="Center" 
-                                Margin="15 0 10 0">
-                            <iconPacks:PackIconMaterial Background="Transparent"
-                                                        Kind="Pencil" 
-                                                        Width="16"
-                                                        Height="16"/>
-                        </Button>
+                            <TextBlock Grid.Column="1"
+                                       TextWrapping="Wrap"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding Path=Name}" />
 
-                        <!-- TODO: Localize -->
-                        <Button Grid.Column="3"
-                                ToolTip="Remove"
-                                Style="{StaticResource FlatButton}"
-                                Command="{Binding Path=RemoveGameCommand}"
-                                VerticalAlignment="Center" 
-                                Margin="15 0 10 0">
-                            <iconPacks:PackIconMaterial Background="Transparent"
-                                                        Kind="Delete" 
-                                                        Width="16"
-                                                        Height="16"/>
-                        </Button>
+                            <Button Grid.Column="2"
+                                    ToolTip="{Resx EducationalOptions_Edit}"
+                                    Style="{StaticResource FlatButton}"
+                                    Command="{Binding Path=EditGameCommand}"
+                                    VerticalAlignment="Center"
+                                    Margin="15 0 10 0">
+                                <iconPacks:PackIconMaterial Background="Transparent"
+                                                            Kind="Pencil"
+                                                            Width="16"
+                                                            Height="16" />
+                            </Button>
 
+                            <Button Grid.Column="3"
+                                    ToolTip="{Resx EducationalOptions_Remove}"
+                                    Style="{StaticResource FlatButton}"
+                                    Command="{Binding Path=RemoveGameCommand}"
+                                    VerticalAlignment="Center"
+                                    Margin="15 0 10 0">
+                                <iconPacks:PackIconMaterial Background="Transparent"
+                                                            Kind="Delete"
+                                                            Width="16"
+                                                            Height="16" />
+                            </Button>
+
+                        </Grid>
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
 
         </ItemsControl>
 
-        <!-- TODO: Localize -->
-        <Button ToolTip="Add new game"
+        <Button ToolTip="{Resx EducationalOptions_AddNew}"
                 Style="{StaticResource FlatButton}"
                 HorizontalAlignment="Left"
                 Command="{Binding Path=AddGameCommand}">
             <iconPacks:PackIconMaterial Background="Transparent"
-                                        Kind="PlusCircleOutline" 
+                                        Kind="PlusCircleOutline"
                                         Width="16"
-                                        Height="16"/>
+                                        Height="16" />
         </Button>
 
     </StackPanel>

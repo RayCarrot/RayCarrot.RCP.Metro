@@ -707,8 +707,6 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The type or null if the operation was cancelled</returns>
         public static async Task<GameTypeSelectionResult> GetGameTypeAsync(this Games game)
         {
-            // TODO: Educational
-
             // Create the view model
             var vm = new GameTypeSelectionViewModel()
             {

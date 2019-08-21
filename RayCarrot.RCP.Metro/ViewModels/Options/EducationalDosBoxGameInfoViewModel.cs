@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.Extensions;
 using RayCarrot.UI;
@@ -65,11 +67,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task EditGameAsync()
         {
+            // TODO: Log
+
             // Show the edit dialog and get the result
             var result = await RCFRCP.UI.EditEducationalDosGameAsync(new EducationalDosGameEditViewModel(GameInfo)
             {
-                // TODO: Localize
-                Title = "Edit game"
+                Title = Resources.EducationalOptions_EditHeader
             });
 
             if (result.CanceledByUser)
@@ -97,23 +100,32 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RemoveGameAsync()
         {
-            // TODO: Localize
+            // TODO: Log
 
             // Make sure it's not the last remaining game
-            if (ParentVM.Games.Count <= 1)
+            if (ParentVM.GameItems.Count <= 1)
             {
-                await RCFUI.MessageUI.DisplayMessageAsync("The has to be at least one game available to launch", "Error removing game", MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.EducationalOptions_RemoveErrorLastOne, Resources.EducationalOptions_RemoveErrorLastOneHeader, MessageType.Error);
                 return;
             }
 
-            // Have user confirm
-            if (!await RCFUI.MessageUI.DisplayMessageAsync("", "", MessageType.Question, true))
-            {
+            // Ask the user
+            if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGameQuestion, Name), Resources.RemoveGameQuestionHeader, MessageType.Question, true))
                 return;
-            }
+
+            // Check if the game is the default game
+            var isDefault = ParentVM.GameItems.First() == this;
 
             // Remove the game
-            ParentVM.Games.Remove(this);
+            ParentVM.GameItems.Remove(this);
+            Data.EducationalDosBoxGames.Remove(GameInfo);
+
+            // Refresh the default if this game was the default
+            if (isDefault)
+                Games.EducationalDos.GetGameManager<EducationalDosBoxGameManager>().RefreshDefault();
+
+            // Refresh
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
         }
 
         #endregion

@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using RayCarrot.Extensions;
 using RayCarrot.UI;
+using DragDrop = GongSolutions.Wpf.DragDrop.DragDrop;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -23,36 +24,7 @@ namespace RayCarrot.RCP.Metro
         public EducationalDosOptionsViewModel()
         {
             // Get the games
-            Games = Data.EducationalDosBoxGames.Select(x => new EducationalDosBoxGameInfoViewModel(this, x, x.Name)).ToObservableCollection();
-
-            // Refresh when the view model collection changes
-            Games.CollectionChanged += async (s, e) =>
-            {
-                // NOTE: This gets hit twice times when reordering...
-
-                // Clear the games
-                Data.EducationalDosBoxGames.Clear();
-
-                // Add the games
-                Data.EducationalDosBoxGames.AddRange(Games.Select(x => new EducationalDosBoxGameInfo(x.GameInfo.ID, x.GameInfo.InstallDIr, x.GameInfo.LaunchName)
-                {
-                    LaunchMode = x.GameInfo.LaunchMode,
-                    MountPath = x.GameInfo.MountPath,
-                    Name = x.GameInfo.Name
-                }));
-
-                // Get the current launch mode
-                var launchMode = Metro.Games.EducationalDos.GetInfo().LaunchMode;
-
-                // Reset the game info with new install directory
-                Data.Games[Metro.Games.EducationalDos] = new GameInfo(GameType.EducationalDosBox, Games.First().GameInfo.InstallDIr)
-                {
-                    LaunchMode = launchMode
-                };
-
-                // Refresh
-                await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Metro.Games.EducationalDos, false, true, true, true));
-            };
+            GameItems = Data.EducationalDosBoxGames.Select(x => new EducationalDosBoxGameInfoViewModel(this, x, x.Name)).ToObservableCollection();
 
             // Create the commands
             AddGameCommand = new AsyncRelayCommand(AddGameAsync);
@@ -71,7 +43,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The educational games
         /// </summary>
-        public ObservableCollection<EducationalDosBoxGameInfoViewModel> Games { get; }
+        public ObservableCollection<EducationalDosBoxGameInfoViewModel> GameItems { get; }
 
         #endregion
 
@@ -83,8 +55,10 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task AddGameAsync()
         {
+            // TODO: Log
+
             // Get the manager
-            var manager = Metro.Games.EducationalDos.GetGameManager<EducationalDosBoxGameManager>();
+            var manager = Games.EducationalDos.GetGameManager<EducationalDosBoxGameManager>();
 
             // Locate the new game
             var path = await manager.LocateAsync();
@@ -93,19 +67,45 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Add the game
-            manager.AddEducationalDosBoxGameInfo(path.Value);
-
-            // Get the new game info
-            var newItem = Data.EducationalDosBoxGames.Last();
+            var newItem = manager.AddEducationalDosBoxGameInfo(path.Value);
 
             // Create the view model
             var vm = new EducationalDosBoxGameInfoViewModel(this, newItem, newItem.Name);
 
             // Add the view model
-            Games.Add(vm);
+            GameItems.Add(vm);
+
+            // Refresh
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
 
             // Edit the game
             await vm.EditGameAsync();
+        }
+
+        /// <summary>
+        /// Saves the changes made from the game items
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task SaveAsync()
+        {
+            // TODO: Log
+
+            // Clear the games
+            Data.EducationalDosBoxGames.Clear();
+
+            // Add the games
+            Data.EducationalDosBoxGames.AddRange(GameItems.Select(x => new EducationalDosBoxGameInfo(x.GameInfo.ID, x.GameInfo.InstallDIr, x.GameInfo.LaunchName)
+            {
+                LaunchMode = x.GameInfo.LaunchMode,
+                MountPath = x.GameInfo.MountPath,
+                Name = x.GameInfo.Name
+            }));
+
+            // Refresh the default game
+            Games.EducationalDos.GetGameManager<EducationalDosBoxGameManager>().RefreshDefault();
+
+            // Refresh
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
         }
 
         #endregion

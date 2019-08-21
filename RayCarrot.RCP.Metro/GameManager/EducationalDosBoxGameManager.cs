@@ -1,4 +1,5 @@
 ﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
@@ -34,8 +35,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The display name for the game type
         /// </summary>
-        // TODO: Localize as "GameType_EducationalDosBox"
-        public override string GameTypeDisplayName => "Educational DOSBox";
+        public override string GameTypeDisplayName => Resources.Educational DOSBox;
 
         #endregion
 
@@ -112,7 +112,7 @@ namespace RayCarrot.RCP.Metro
                 return null;
 
             // Check if the location if valid
-            if (!IsValid(result.SelectedDirectory))
+            if (!IsGameDirValid(result.SelectedDirectory))
             {
                 RCFCore.Logger?.LogInformationSource($"The selected install directory for {Game} is not valid");
 
@@ -170,9 +170,28 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game is valid, otherwise false</returns>
         public override bool IsValid(FileSystemPath installDir)
         {
-            // TODO: Make sure each added game is valid too, remove if not and return false if no games are left
+            List<EducationalDosBoxGameInfo> toRemove = new List<EducationalDosBoxGameInfo>();
 
-            return (installDir + "PCMAP").DirectoryExists;
+            foreach (var game in RCFRCP.Data.EducationalDosBoxGames)
+            {
+                if (!IsGameDirValid(game.InstallDIr) || game.LaunchName.IsNullOrWhiteSpace())
+                    toRemove.Add(game);
+            }
+
+            // Remove invalid games
+            foreach (var game in toRemove)
+                RCFRCP.Data.EducationalDosBoxGames.Remove(game);
+
+            // Make sure there is at least one game
+            if (RCFRCP.Data.EducationalDosBoxGames?.Any() != true)
+                return false;
+
+            // If any games were removed, refresh the default game
+            if (toRemove.Any())
+                // Reset the game info with new install directory
+                RefreshDefault();
+
+            return true;
         }
 
         #endregion
@@ -183,7 +202,8 @@ namespace RayCarrot.RCP.Metro
         /// Adds a new educational DOSBox game
         /// </summary>
         /// <param name="installDir">The install directory</param>
-        public void AddEducationalDosBoxGameInfo(FileSystemPath installDir)
+        /// <returns>The added game</returns>
+        public EducationalDosBoxGameInfo AddEducationalDosBoxGameInfo(FileSystemPath installDir)
         {
             // Find the launch name
             FileSystemPath launchName = Directory.EnumerateFiles(installDir, "*.exe", SearchOption.TopDirectoryOnly).FirstOrDefault();
@@ -192,11 +212,16 @@ namespace RayCarrot.RCP.Metro
             if (RCFRCP.Data.EducationalDosBoxGames == null)
                 RCFRCP.Data.EducationalDosBoxGames = new List<EducationalDosBoxGameInfo>();
 
-            // Add the game to the list of educational games
-            RCFRCP.Data.EducationalDosBoxGames.Add(new EducationalDosBoxGameInfo(null, installDir, launchName.Name)
+            // Create the game info
+            var info = new EducationalDosBoxGameInfo(null, installDir, launchName.Name)
             {
                 Name = installDir.Name
-            });
+            };
+
+            // Add the game to the list of educational games
+            RCFRCP.Data.EducationalDosBoxGames.Add(info);
+
+            return info;
         }
 
         /// <summary>
@@ -231,6 +256,42 @@ namespace RayCarrot.RCP.Metro
         public GameLaunchInfo GetLaunchInfo(EducationalDosBoxGameInfo game)
         {
             return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, GetDosBoxArguments(game.MountPath, $"{game.LaunchName} ver={game.LaunchMode}"));
+        }
+
+        /// <summary>
+        /// Indicates if the specified game directory is valid for an educational game
+        /// </summary>
+        /// <param name="dir">The directory to check</param>
+        /// <returns>True if it's valid, false if not</returns>
+        public bool IsGameDirValid(FileSystemPath dir)
+        {
+            try
+            {
+                var engineDir = dir + "PCMAP";
+
+                return engineDir.DirectoryExists && Directory.EnumerateDirectories(engineDir).Any();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Checking if educational game directory is valid");
+
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Refreshes the default game
+        /// </summary>
+        public void RefreshDefault()
+        {
+            // Get the current launch mode
+            var launchMode = Games.EducationalDos.GetInfo().LaunchMode;
+
+            // Reset the game info with new install directory
+            RCFRCP.Data.Games[Games.EducationalDos] = new GameInfo(GameType.EducationalDosBox, RCFRCP.Data.EducationalDosBoxGames.First().InstallDIr)
+            {
+                LaunchMode = launchMode
+            };
         }
 
         #endregion
