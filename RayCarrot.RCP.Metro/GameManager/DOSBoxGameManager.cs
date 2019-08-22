@@ -43,14 +43,15 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="mountPath">The disc/file to mount</param>
         /// <param name="launchName">The launch name</param>
+        /// <param name="installDir">The game install directory or null for the default one</param>
         /// <returns>The launch arguments</returns>
-        protected string GetDosBoxArguments(FileSystemPath mountPath, string launchName)
+        protected string GetDosBoxArguments(FileSystemPath mountPath, string launchName, FileSystemPath? installDir = null)
         {
             return $"{(File.Exists(RCFRCP.Data.DosBoxConfig) ? $"-conf \"{RCFRCP.Data.DosBoxConfig} \"" : String.Empty)} " +
                    $"-conf \"{Game.GetDosBoxConfigFile()}\" " +
                    // The mounting differs if it's a physical disc vs. a disc image
                    $"{(mountPath.IsDirectoryRoot() ? "-c \"mount d " + mountPath.FullPath + " -t cdrom\"" : "-c \"imgmount d '" + mountPath.FullPath + "' -t iso -fs iso\"")} " +
-                   $"-c \"MOUNT C '{Info.InstallDirectory.FullPath}'\" " +
+                   $"-c \"MOUNT C '{installDir ?? Info.InstallDirectory.FullPath}'\" " +
                    $"-c C: " +
                    $"-c \"{launchName}\" " +
                    $"-noconsole " +

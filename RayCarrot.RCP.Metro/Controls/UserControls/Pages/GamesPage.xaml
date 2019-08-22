@@ -16,6 +16,9 @@
     <Grid>
         <ScrollViewer Visibility="{Binding Path=App.IsGameFinderRunning, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
                       Padding="5">
+            <Interactions:Interaction.Behaviors>
+                <rwpf:FocusScrollViewerOnLoad />
+            </Interactions:Interaction.Behaviors>
 
             <StackPanel>
                 <StackPanel.Resources>

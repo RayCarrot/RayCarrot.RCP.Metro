@@ -8,7 +8,6 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Windows.UI.Xaml.Controls;
 using ByteSizeLib;
 using IniParser;
 using IniParser.Model;
@@ -132,7 +131,7 @@ namespace RayCarrot.RCP.Metro
         public const string ApplicationBasePath = "pack://application:,,,/RayCarrot.RCP.Metro;component/";
 
         /// <summary>
-        /// The Steam store base url
+        /// The Steam store base URL
         /// </summary>
         public const string SteamStoreBaseUrl = "https://store.steampowered.com/app/";
 
@@ -201,7 +200,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
-        public bool IsBeta => false;
+        public bool IsBeta => true;
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -387,28 +386,36 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RemoveGameAsync(Games game, bool forceRemove)
         {
-            // Get the game type
-            var type = game.GetInfo().GameType;
-
-            if (!forceRemove)
+            try
             {
-                // Get applied utilities
-                var utilities = await game.GetAppliedUtilitiesAsync();
+                // Get the game type
+                var type = game.GetInfo().GameType;
 
-                // Warn about utilities
-                if (utilities.Any() && !await RCFUI.MessageUI.DisplayMessageAsync(
-                        $"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}{utilities.JoinItems(Environment.NewLine)}", Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
-                    return;
+                if (!forceRemove)
+                {
+                    // Get applied utilities
+                    var utilities = await game.GetAppliedUtilitiesAsync();
+
+                    // Warn about utilities
+                    if (utilities.Any() && !await RCFUI.MessageUI.DisplayMessageAsync(
+                            $"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}{utilities.JoinItems(Environment.NewLine)}", Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
+                        return;
+                }
+
+                // Remove the game
+                Data.Games.Remove(game);
+
+                // Run post game removal
+                await game.GetGameManager(type).PostGameRemovedAsync();
+
+                // Refresh the games
+                await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(game, true, false, false, false));
             }
-
-            // Remove the game
-            Data.Games.Remove(game);
-
-            // Run post game removal
-            await game.GetGameManager(type).PostGameRemovedAsync();
-
-            // Refresh the games
-            await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(game, true, false, false, false));
+            catch (Exception ex)
+            {
+                ex.HandleCritical("Removing game");
+                throw;
+            }
         }
 
         /// <summary>
@@ -1119,9 +1126,9 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Opens the specified url
+        /// Opens the specified URL
         /// </summary>
-        /// <param name="url">The url to open</param>
+        /// <param name="url">The URL to open</param>
         public void OpenUrl(string url)
         {
             try
@@ -1130,7 +1137,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError($"Opening url {url}");
+                ex.HandleError($"Opening URL {url}");
             }
         }
 

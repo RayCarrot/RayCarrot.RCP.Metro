@@ -6,7 +6,6 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using Infralution.Localization.Wpf;
-using MahApps.Metro;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using Nito.AsyncEx;

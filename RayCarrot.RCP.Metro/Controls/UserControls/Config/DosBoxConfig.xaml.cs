@@ -1,5 +1,4 @@
 ﻿using System;
-using RayCarrot.WPF;
 using System.Windows;
 using System.Windows.Controls;
 

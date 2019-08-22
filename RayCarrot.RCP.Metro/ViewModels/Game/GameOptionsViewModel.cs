@@ -1,15 +1,11 @@
 ﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
-using RayCarrot.IO;
 using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Windows.ApplicationModel;
 
 namespace RayCarrot.RCP.Metro
 {

@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.VisualBasic.FileIO;
 using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro

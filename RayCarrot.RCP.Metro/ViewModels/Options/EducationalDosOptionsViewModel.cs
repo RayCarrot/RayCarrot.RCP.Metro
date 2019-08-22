@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
+﻿using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.UI;
-using DragDrop = GongSolutions.Wpf.DragDrop.DragDrop;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -55,7 +52,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task AddGameAsync()
         {
-            // TODO: Log
+            RCFCore.Logger?.LogInformationSource($"A new educational game is being added...");
 
             // Get the manager
             var manager = Games.EducationalDos.GetGameManager<EducationalDosBoxGameManager>();
@@ -75,6 +72,8 @@ namespace RayCarrot.RCP.Metro
             // Add the view model
             GameItems.Add(vm);
 
+            RCFCore.Logger?.LogInformationSource($"A new educational game has been added with the ID {newItem.ID}");
+
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
 
@@ -88,7 +87,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task SaveAsync()
         {
-            // TODO: Log
+            RCFCore.Logger?.LogInformationSource($"The educational game options are saving...");
 
             // Clear the games
             Data.EducationalDosBoxGames.Clear();
@@ -106,6 +105,8 @@ namespace RayCarrot.RCP.Metro
 
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
+
+            RCFCore.Logger?.LogInformationSource($"The educational game options have saved");
         }
 
         #endregion

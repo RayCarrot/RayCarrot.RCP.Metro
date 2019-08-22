@@ -4,6 +4,7 @@
 • 
 
 Other changes:
+• The list box in the Rayman Legends UbiRay utility now consists of radio buttons for clarity when selecting
 • Dialog windows now center the main window
 • The legacy data converter has been removed
 • Normalized the font size in the help page

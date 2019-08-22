@@ -35,7 +35,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The display name for the game type
         /// </summary>
-        public override string GameTypeDisplayName => Resources.Educational DOSBox;
+        public override string GameTypeDisplayName => Resources.GameType_EducationalDosBox;
 
         #endregion
 
@@ -255,7 +255,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The launch info</returns>
         public GameLaunchInfo GetLaunchInfo(EducationalDosBoxGameInfo game)
         {
-            return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, GetDosBoxArguments(game.MountPath, $"{game.LaunchName} ver={game.LaunchMode}"));
+            return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, GetDosBoxArguments(game.MountPath, $"{game.LaunchName} ver={game.LaunchMode}", game.InstallDIr));
         }
 
         /// <summary>
@@ -292,6 +292,8 @@ namespace RayCarrot.RCP.Metro
             {
                 LaunchMode = launchMode
             };
+
+            RCFCore.Logger?.LogInformationSource($"The default educational game has been refreshed");
         }
 
         #endregion

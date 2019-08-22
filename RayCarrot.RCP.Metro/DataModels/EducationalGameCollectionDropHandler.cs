@@ -1,4 +1,5 @@
 ﻿using GongSolutions.Wpf.DragDrop;
+using RayCarrot.CarrotFramework.Abstractions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -15,8 +16,8 @@ namespace RayCarrot.RCP.Metro
         public override async void Drop(IDropInfo dropInfo)
         {
             base.Drop(dropInfo);
-
-            // TODO: Log
+            
+            RCFCore.Logger?.LogDebugSource("The educational games have been reordered");
 
             await ViewModel.SaveAsync();
         }

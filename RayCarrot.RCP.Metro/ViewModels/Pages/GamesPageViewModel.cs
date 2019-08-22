@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -83,28 +80,12 @@ namespace RayCarrot.RCP.Metro
                     // Check if it has been added
                     if (!game.IsAdded())
                     {
-                        Application.Current.Dispatcher.Invoke(() => NotInstalledGames.Add(game.GetDisplayViewModel()));
-                        continue;
-                    }
-
-                    // Check if it's valid
-                    if (!game.GetGameManager().IsValid(game.GetInfo().InstallDirectory))
-                    {
-                        // Show message
-                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.GetDisplayName()), Resources.GameNotFoundHeader, MessageType.Error);
-
-                        // Remove the game from app data
-                        await RCFRCP.App.RemoveGameAsync(game, true);
-
-                        Application.Current.Dispatcher.Invoke(() => NotInstalledGames.Add(game.GetDisplayViewModel()));
-
-                        RCFCore.Logger?.LogInformationSource($"The game {game} has been removed due to not being valid");
-
+                        NotInstalledGames.Add(game.GetDisplayViewModel());
                         continue;
                     }
 
                     // Add the game to the collection
-                    Application.Current.Dispatcher.Invoke(() => InstalledGames.Add(game.GetDisplayViewModel()));
+                    InstalledGames.Add(game.GetDisplayViewModel());
                 }
 
                 // Notify the UI

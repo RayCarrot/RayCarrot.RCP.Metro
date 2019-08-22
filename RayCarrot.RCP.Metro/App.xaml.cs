@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -235,7 +234,7 @@ namespace RayCarrot.RCP.Metro
             // Hard code the current directory
             Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? Directory.GetCurrentDirectory());
 
-            // Attempt to remove log file if over 2 mb
+            // Attempt to remove log file if over 2 Mb
             try
             {
                 if (CommonPaths.LogFile.FileExists && CommonPaths.LogFile.GetSize() > ByteSize.FromMegaBytes(2))
@@ -353,6 +352,22 @@ namespace RayCarrot.RCP.Metro
             }
 
             await RCFRCP.App.EnableUbiIniWriteAccessAsync();
+
+            // Make sure every game is valid
+            foreach (var game in RCFRCP.App.GetGames)
+            {
+                // Check if it's valid
+                if (game.GetGameManager().IsValid(game.GetInfo().InstallDirectory))
+                    continue;
+
+                // Show message
+                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.GameNotFound, game.GetDisplayName()), Metro.Resources.GameNotFoundHeader, MessageType.Error);
+
+                // Remove the game from app data
+                await RCFRCP.App.RemoveGameAsync(game, true);
+
+                RCFCore.Logger?.LogInformationSource($"The game {game} has been removed due to not being valid");
+            }
         }
 
         /// <summary>

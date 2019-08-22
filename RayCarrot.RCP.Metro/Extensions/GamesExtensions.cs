@@ -6,14 +6,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
-using Windows.Management.Deployment;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.UI;
-using Package = Windows.ApplicationModel.Package;
 
 namespace RayCarrot.RCP.Metro
 {
