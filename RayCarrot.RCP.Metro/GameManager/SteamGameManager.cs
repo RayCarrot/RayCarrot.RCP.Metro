@@ -81,7 +81,7 @@ namespace RayCarrot.RCP.Metro
         public override async Task<FileSystemPath?> LocateAsync()
         {
             // Make sure the game is valid
-            if (!IsValid(FileSystemPath.EmptyPath))
+            if (!await IsValidAsync(FileSystemPath.EmptyPath))
             {
                 RCFCore.Logger?.LogInformationSource($"The {Game} was not found under Steam Apps");
 
@@ -128,9 +128,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="installDir">The game install directory, if any</param>
         /// <returns>True if the game is valid, otherwise false</returns>
-        public override bool IsValid(FileSystemPath installDir)
+        public override Task<bool> IsValidAsync(FileSystemPath installDir)
         {
-            return RCFWinReg.RegistryManager.KeyExists(RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {GetSteamID()}"), RegistryView.Registry64);
+            return Task.FromResult(RCFWinReg.RegistryManager.KeyExists(RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {GetSteamID()}"), RegistryView.Registry64));
         }
 
         /// <summary>

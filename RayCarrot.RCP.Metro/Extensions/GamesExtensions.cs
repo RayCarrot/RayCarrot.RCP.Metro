@@ -103,63 +103,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Gets the backup directory for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the backup directory for</param>
-        /// <returns>The backup directory</returns>
-        public static FileSystemPath GetBackupDir(this Games game)
-        {
-            return RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + game.GetBackupName();
-        }
-
-        /// <summary>
-        /// Gets the backup file for the specified game if the backup is compressed
-        /// </summary>
-        /// <param name="game">The game to get the backup file for</param>
-        /// <returns>The backup file</returns>
-        public static FileSystemPath GetCompressedBackupFile(this Games game)
-        {
-            return RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + (game.GetBackupName() + CommonPaths.BackupCompressionExtension);
-        }
-
-        /// <summary>
-        /// Gets the existing backup location for the specified game if one exists
-        /// </summary>
-        /// <param name="game">The game to get the backup location for</param>
-        /// <returns>The backup location or null if none was found</returns>
-        public static FileSystemPath? GetExistingBackup(this Games game)
-        {
-            // Get the backup locations
-            var compressedLocation = game.GetCompressedBackupFile();
-            var normalLocation = game.GetBackupDir();
-
-            if (RCFRCP.Data.CompressBackups)
-            {
-                // Start by checking the location based on current setting
-                if (compressedLocation.FileExists)
-                    return compressedLocation;
-                // Fall back to secondary location
-                else if (normalLocation.DirectoryExists && Directory.GetFileSystemEntries(normalLocation).Any())
-                    return normalLocation;
-                else
-                    // No valid location exists
-                    return null;
-            }
-            else
-            {
-                // Start by checking the location based on current setting
-                if (normalLocation.DirectoryExists && Directory.GetFileSystemEntries(normalLocation).Any())
-                    return normalLocation;
-                // Fall back to secondary location
-                else if (compressedLocation.FileExists)
-                    return compressedLocation;
-                else
-                    // No valid location exists
-                    return null;
-            }
-        }
-
-        /// <summary>
         /// Gets the installer items for the specified game
         /// </summary>
         /// <param name="game">The game to get the installer items for</param>
@@ -332,8 +275,6 @@ namespace RayCarrot.RCP.Metro
 
                 case Games.RabbidsBigBang:
                     return "Rabbids Big Bang";
-
-                // TODO: Educational games support
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);
@@ -668,26 +609,9 @@ namespace RayCarrot.RCP.Metro
                     return "Rayman Legends.exe";
 
                 case Games.RaymanJungleRun:
-                    return "UbisoftEntertainment.RaymanJungleRun_dbgk1hhpxymar";
-
                 case Games.RaymanFiestaRun:
-                    switch (RCFRCP.Data.FiestaRunVersion)
-                    {
-                        case FiestaRunEdition.Default:
-                            return "Ubisoft.RaymanFiestaRun_ngz4m417e0mpw";
-
-                        case FiestaRunEdition.Preload:
-                            return "UbisoftEntertainment.RaymanFiestaRunPreloadEdition_dbgk1hhpxymar";
-
-                        case FiestaRunEdition.Win10:
-                            return "Ubisoft.RaymanFiestaRunWindows10Edition_ngz4m417e0mpw";
-
-                        default:
-                            throw new ArgumentOutOfRangeException(nameof(RCFRCP.Data.FiestaRunVersion), RCFRCP.Data.FiestaRunVersion, null);
-                    }
-
                 case Games.RabbidsBigBang:
-                    return "UbisoftEntertainment.RabbidsBigBang_dbgk1hhpxymar";
+                    return game.GetGameManager<WinStoreGameManager>().GetFullPackageName();
 
                 case Games.EducationalDos:
                     return RCFRCP.Data.EducationalDosBoxGames.First().LaunchName;
@@ -826,8 +750,6 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The game backup info</returns>
         public static List<BackupDir> GetBackupInfo(this Games game)
         {
-            // TODO: Educational
-
             // Get the game info
             var gameInfo = game.GetInfo();
 
@@ -1045,15 +967,7 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanJungleRun:
                 case Games.RaymanFiestaRun:
                 case Games.RabbidsBigBang:
-                    return new List<BackupDir>()
-                    {
-                        new BackupDir()
-                        {
-                            DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Packages", game.GetLaunchName()),
-                            SearchOption = SearchOption.AllDirectories,
-                            ID = "0"
-                        }
-                    };
+                    return game.GetGameManager<WinStoreGameManager>().GetWinStoreBackupDirs(game.GetLaunchName());
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(game), game, null);

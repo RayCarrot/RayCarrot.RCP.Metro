@@ -4,9 +4,11 @@
 • 
 
 Other changes:
+• Backups for all installed versions of Rayman Fiesta Run are now supported without changing the default version
 • The list box in the Rayman Legends UbiRay utility now consists of radio buttons for clarity when selecting
 • Dialog windows now center the main window
 • The legacy data converter has been removed
+• Increased the width in the backup page
 • Normalized the font size in the help page
 • Minor changes to how the widescreen patch is applied for Rayman 2
 • Debug loggers are now longer available by default, improving the application performance (they can be enabled using a launch argument or by attaching a debugger)

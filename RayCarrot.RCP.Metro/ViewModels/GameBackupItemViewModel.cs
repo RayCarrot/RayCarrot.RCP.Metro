@@ -21,18 +21,19 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         /// <param name="game">The game</param>
-        public GameBackupItemViewModel(Games game)
+        /// <param name="backupInfo">The backup info</param>
+        public GameBackupItemViewModel(Games game, IBackupInfo backupInfo)
         {
-            Game = game;
+            BackupInfo = backupInfo;
             IconSource = game.GetIconSource();
-            DisplayName = game.GetDisplayName();
+            DisplayName = backupInfo.GameDisplayName;
 
             // If the type if DOSBox, check if GOG cloud sync is being used
-            if (Game.GetInfo().GameType == GameType.DosBox)
+            if (game.GetInfo().GameType == GameType.DosBox)
             {
                 try
                 {
-                    var cloudSyncDir = Game.GetInfo().InstallDirectory.Parent + "cloud_saves";
+                    var cloudSyncDir = game.GetInfo().InstallDirectory.Parent + "cloud_saves";
                     IsGOGCloudSyncUsed = cloudSyncDir.DirectoryExists && Directory.GetFileSystemEntries(cloudSyncDir).Any();
                 }
                 catch (Exception ex)
@@ -55,9 +56,9 @@ namespace RayCarrot.RCP.Metro
         #region Public Properties
 
         /// <summary>
-        /// The game
+        /// The backup info
         /// </summary>
-        public Games Game { get; }
+        public IBackupInfo BackupInfo { get; }
 
         /// <summary>
         /// Indicates if there is a backup available to restore from
@@ -124,7 +125,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                FileSystemPath? backupLocation = Game.GetExistingBackup();
+                FileSystemPath? backupLocation = BackupInfo.ExistingBackupLocation;
 
                 if (backupLocation == null)
                     return;
@@ -139,8 +140,8 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting backup info", Game);
-                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.ReadingBackupError, Game.GetDisplayName()), MessageType.Error);
+                ex.HandleError("Getting backup info", BackupInfo);
+                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.ReadingBackupError, BackupInfo.GameDisplayName), MessageType.Error);
             }
         }
 
@@ -162,7 +163,7 @@ namespace RayCarrot.RCP.Metro
                 PerformingBackupRestore = true;
 
                 // Confirm restore
-                if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, Game.GetDisplayName()), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
+                if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, BackupInfo.GameDisplayName), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
                 {
                     RCFCore.Logger?.LogInformationSource($"Restore canceled");
 
@@ -172,11 +173,11 @@ namespace RayCarrot.RCP.Metro
                 ShowBackupRestoreIndicator = true;
 
                 // Perform the restore
-                if (await Task.Run(async () => await RCFRCP.Backup.RestoreAsync(Game)))
+                if (await Task.Run(async () => await RCFRCP.Backup.RestoreAsync(BackupInfo)))
                 {
                     ShowBackupRestoreIndicator = false;
 
-                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, Game.GetDisplayName()), Resources.Restore_SuccessHeader);
+                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, BackupInfo.GameDisplayName), Resources.Restore_SuccessHeader);
                 }
             }
             finally
@@ -204,7 +205,7 @@ namespace RayCarrot.RCP.Metro
                 PerformingBackupRestore = true;
 
                 // Confirm backup if one already exists
-                if ((Game.GetExistingBackup()?.Exists ?? false) && !await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, Game.GetDisplayName()), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
+                if ((BackupInfo.ExistingBackupLocation?.Exists ?? false) && !await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, BackupInfo.GameDisplayName), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
                 {
                     RCFCore.Logger?.LogInformationSource($"Backup canceled");
                     return;
@@ -213,11 +214,11 @@ namespace RayCarrot.RCP.Metro
                 ShowBackupRestoreIndicator = true;
 
                 // Perform the backup
-                if (await Task.Run(async () => await RCFRCP.Backup.BackupAsync(Game)))
+                if (await Task.Run(async () => await RCFRCP.Backup.BackupAsync(BackupInfo)))
                 {
                     ShowBackupRestoreIndicator = false;
 
-                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, Game.GetDisplayName()), Resources.Backup_SuccessHeader);
+                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, BackupInfo.GameDisplayName), Resources.Backup_SuccessHeader);
                 }
 
                 // Refresh the item

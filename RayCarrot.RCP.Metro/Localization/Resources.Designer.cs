@@ -2882,6 +2882,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The game has already been added. To add the same game several times they need to use the same install directory..
+        /// </summary>
+        public static string EducationalOptions_AddNewDuplicateIDError {
+            get {
+                return ResourceManager.GetString("EducationalOptions_AddNewDuplicateIDError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error adding game.
+        /// </summary>
+        public static string EducationalOptions_AddNewDuplicateIDErrorHeader {
+            get {
+                return ResourceManager.GetString("EducationalOptions_AddNewDuplicateIDErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string EducationalOptions_Edit {
@@ -2896,6 +2914,15 @@ namespace RayCarrot.RCP.Metro {
         public static string EducationalOptions_EditHeader {
             get {
                 return ResourceManager.GetString("EducationalOptions_EditHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game has been edited successfully.
+        /// </summary>
+        public static string EducationalOptions_EditSuccess {
+            get {
+                return ResourceManager.GetString("EducationalOptions_EditSuccess", resourceCulture);
             }
         }
         

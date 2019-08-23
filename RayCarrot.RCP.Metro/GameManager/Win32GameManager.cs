@@ -62,7 +62,7 @@ namespace RayCarrot.RCP.Metro
                 return null;
 
             // Make sure the game is valid
-            if (IsValid(result.SelectedDirectory))
+            if (await IsValidAsync(result.SelectedDirectory))
                 return result.SelectedDirectory;
 
             RCFCore.Logger?.LogInformationSource($"The selected install directory for {Game} is not valid");
@@ -86,9 +86,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="installDir">The game install directory, if any</param>
         /// <returns>True if the game is valid, otherwise false</returns>
-        public override bool IsValid(FileSystemPath installDir)
+        public override Task<bool> IsValidAsync(FileSystemPath installDir)
         {
-            return (installDir + Game.GetLaunchName()).FileExists;
+            return Task.FromResult((installDir + Game.GetLaunchName()).FileExists);
         }
 
         /// <summary>

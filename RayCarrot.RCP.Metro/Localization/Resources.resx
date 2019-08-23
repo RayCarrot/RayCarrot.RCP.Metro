@@ -2693,4 +2693,13 @@ Hold L1 + R1 in the menu (or equivalent on the currently used controller), then 
   <data name="EducationalOptions_RemoveErrorLastOneHeader" xml:space="preserve">
     <value>Can't remove game</value>
   </data>
+  <data name="EducationalOptions_AddNewDuplicateIDError" xml:space="preserve">
+    <value>The game has already been added. To add the same game several times they need to use the same install directory.</value>
+  </data>
+  <data name="EducationalOptions_AddNewDuplicateIDErrorHeader" xml:space="preserve">
+    <value>Error adding game</value>
+  </data>
+  <data name="EducationalOptions_EditSuccess" xml:space="preserve">
+    <value>The game has been edited successfully</value>
+  </data>
 </root>

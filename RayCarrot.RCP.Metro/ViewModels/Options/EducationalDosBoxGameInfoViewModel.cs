@@ -28,6 +28,7 @@ namespace RayCarrot.RCP.Metro
             Name = name;
 
             EditGameCommand = new AsyncRelayCommand(EditGameAsync);
+            OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
             RemoveGameCommand = new AsyncRelayCommand(RemoveGameAsync);
         }
 
@@ -36,6 +37,8 @@ namespace RayCarrot.RCP.Metro
         #region Commands
 
         public ICommand EditGameCommand { get; }
+
+        public ICommand OpenLocationCommand { get; }
 
         public ICommand RemoveGameCommand { get; }
 
@@ -82,7 +85,7 @@ namespace RayCarrot.RCP.Metro
             // If the name is blank, add default name
             if (result.Name.IsNullOrWhiteSpace())
             {
-                result.Name = GameInfo.InstallDIr.Name;
+                result.Name = GameInfo.InstallDir.Name;
                 RCFCore.Logger?.LogInformationSource($"The game name was blank and was defaulted to the installdir name");
             }
 
@@ -94,10 +97,31 @@ namespace RayCarrot.RCP.Metro
             GameInfo.LaunchMode = result.LaunchMode;
             GameInfo.MountPath = result.MountPath;
 
+            await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.EducationalOptions_EditSuccess);
+
             RCFCore.Logger?.LogInformationSource($"The educational game {GameInfo.ID} has been edited");
 
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
+        }
+
+        /// <summary>
+        /// Opens the game location
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task OpenLocationAsync()
+        {
+            // Get the install directory
+            var instDir = GameInfo.InstallDir;
+
+            // Select the file in Explorer if it exists
+            if ((instDir + GameInfo.LaunchName).FileExists)
+                instDir += GameInfo.LaunchName;
+
+            // Open the location
+            await RCFRCP.File.OpenExplorerLocationAsync(instDir);
+
+            RCFCore.Logger?.LogTraceSource($"The educational game {GameInfo.ID} install location was opened");
         }
 
         /// <summary>

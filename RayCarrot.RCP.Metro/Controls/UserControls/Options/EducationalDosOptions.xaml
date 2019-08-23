@@ -52,18 +52,17 @@
                         <Grid Margin="0 5">
                             <Grid.ColumnDefinitions>
 
-                                <ColumnDefinition Width="Auto"
-                                                  SharedSizeGroup="A" />
+                                <ColumnDefinition Width="Auto"/>
 
                                 <ColumnDefinition Width="*"
-                                                  SharedSizeGroup="B"
+                                                  SharedSizeGroup="GameName"
                                                   MinWidth="150" />
 
-                                <ColumnDefinition Width="Auto"
-                                                  SharedSizeGroup="C" />
+                                <ColumnDefinition Width="Auto"/>
 
-                                <ColumnDefinition Width="Auto"
-                                                  SharedSizeGroup="D" />
+                                <ColumnDefinition Width="Auto" />
+
+                                <ColumnDefinition Width="Auto" />
 
                             </Grid.ColumnDefinitions>
 
@@ -90,6 +89,18 @@
                             </Button>
 
                             <Button Grid.Column="3"
+                                    ToolTip="{Resx GameDisplay_OpenLocation}"
+                                    Style="{StaticResource FlatButton}"
+                                    Command="{Binding Path=OpenLocationCommand}"
+                                    VerticalAlignment="Center"
+                                    Margin="15 0 10 0">
+                                <iconPacks:PackIconMaterial Background="Transparent"
+                                                            Kind="FolderOutline"
+                                                            Width="16"
+                                                            Height="16" />
+                            </Button>
+
+                            <Button Grid.Column="4"
                                     ToolTip="{Resx EducationalOptions_Remove}"
                                     Style="{StaticResource FlatButton}"
                                     Command="{Binding Path=RemoveGameCommand}"

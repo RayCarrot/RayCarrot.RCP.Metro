@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -102,6 +103,7 @@ namespace RayCarrot.RCP.Metro
         {
             await (await GetGamePackage().CastTo<Package>().GetAppListEntriesAsync()).First().LaunchAsync();
         }
+
         /// <summary>
         /// Gets the package name for a Windows Store game
         /// </summary>
@@ -118,6 +120,87 @@ namespace RayCarrot.RCP.Metro
                 return GetFiestaRunPackageName(RCFRCP.Data.FiestaRunVersion);
 
             throw new ArgumentOutOfRangeException(nameof(Game), Game, "A package name can not be obtained from the specified game");
+        }
+
+        /// <summary>
+        /// Gets the display name for the Fiesta Run edition
+        /// </summary>
+        /// <param name="edition">The edition to get the name for</param>
+        /// <returns>The display name</returns>
+        public string GetFiestaRunEditionDisplayName(FiestaRunEdition edition)
+        {
+            switch (edition)
+            {
+                case FiestaRunEdition.Default:
+                    return Resources.FiestaRunVersion_Default;
+
+                case FiestaRunEdition.Preload:
+                    return Resources.FiestaRunVersion_Preload;
+
+                case FiestaRunEdition.Win10:
+                    return Resources.FiestaRunVersion_Win10;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(edition), edition, null);
+            }
+        }
+
+        /// <summary>
+        /// Gets the backup directories for a Windows Store game
+        /// </summary>
+        /// <param name="fullPackageName">The full package name</param>
+        /// <returns>The backup directories</returns>
+        public List<BackupDir> GetWinStoreBackupDirs(string fullPackageName)
+        {
+            return new List<BackupDir>()
+            {
+                new BackupDir()
+                {
+                    DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Packages", fullPackageName),
+                    SearchOption = SearchOption.AllDirectories,
+                    ID = "0"
+                }
+            };
+        }
+
+        /// <summary>
+        /// Gets the full package name for a Windows Store game
+        /// </summary>
+        public string GetFullPackageName()
+        {
+            if (Game == Games.RaymanJungleRun)
+                return "UbisoftEntertainment.RaymanJungleRun_dbgk1hhpxymar";
+
+            if (Game == Games.RabbidsBigBang)
+                return "UbisoftEntertainment.RabbidsBigBang_dbgk1hhpxymar";
+
+            else if (Game == Games.RaymanFiestaRun)
+                return GetFiestaRunFullPackageName(RCFRCP.Data.FiestaRunVersion);
+
+            throw new ArgumentOutOfRangeException(nameof(Game), Game, "A package name can not be obtained from the specified game");
+        }
+
+        /// <summary>
+        /// Gets the full package name for Rayman Fiesta Run based on edition
+        /// </summary>
+        /// <param name="edition">The edition</param>
+        /// <returns></returns>
+        public string GetFiestaRunFullPackageName(FiestaRunEdition edition)
+        {
+            switch (edition)
+            {
+                case FiestaRunEdition.Default:
+                    return "Ubisoft.RaymanFiestaRun_ngz4m417e0mpw";
+
+                case FiestaRunEdition.Preload:
+                    return "UbisoftEntertainment.RaymanFiestaRunPreloadEdition_dbgk1hhpxymar";
+
+                case FiestaRunEdition.Win10:
+                    return "Ubisoft.RaymanFiestaRunWindows10Edition_ngz4m417e0mpw";
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(RCFRCP.Data.FiestaRunVersion), RCFRCP.Data.FiestaRunVersion, null);
+            }
         }
 
         #endregion
@@ -157,11 +240,6 @@ namespace RayCarrot.RCP.Metro
         /// <returns>Null if the game was not found. Otherwise a valid or empty path for the instal directory</returns>
         public override async Task<FileSystemPath?> LocateAsync()
         {
-            // Helper method for finding and adding a Windows Store app
-            bool FindWinStoreApp() =>
-                // Check if the game is installed
-                IsValid(FileSystemPath.EmptyPath);
-
             bool found = false;
 
             if (Game == Games.RaymanFiestaRun)
@@ -171,13 +249,15 @@ namespace RayCarrot.RCP.Metro
                     if (found)
                         break;
 
-                    RCFRCP.Data.FiestaRunVersion = version;
-                    found = FindWinStoreApp();
+                    found = GetGamePackage(GetFiestaRunPackageName(version)) != null;
+
+                    if (found)
+                        RCFRCP.Data.FiestaRunVersion = version;
                 }
             }
             else
             {
-                found = FindWinStoreApp();
+                found = await IsValidAsync(FileSystemPath.EmptyPath);
             }
 
             if (!found)
@@ -209,13 +289,13 @@ namespace RayCarrot.RCP.Metro
         /// <param name="installDir">The game install directory, if any</param>
         /// <returns>True if the game is valid, otherwise false</returns>
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public override bool IsValid(FileSystemPath installDir)
+        public override Task<bool> IsValidAsync(FileSystemPath installDir)
         {
             // Make sure version is at least Windows 8
             if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
-                return false;
+                return Task.FromResult(false);
 
-            return GetGamePackage() != null;
+            return Task.FromResult(GetGamePackage() != null);
         }
 
         /// <summary>
@@ -267,6 +347,27 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <returns>The icon resource path</returns>
         public override string GetIconResourcePath() => GetLaunchInfo().Path;
+
+        /// <summary>
+        /// Gets the backup infos for this game
+        /// </summary>
+        /// <returns>The backup infos</returns>
+        public override List<IBackupInfo> GetBackupInfos()
+        {
+            if (Game != Games.RaymanFiestaRun)
+                return base.GetBackupInfos();
+
+            // Get every installed version
+            var versions = FiestaRunEdition.Preload.GetValues().Where(x => GetGamePackage(GetFiestaRunPackageName(x)) != null);
+
+            // Return a backup info for each version
+            return versions.Select(x =>
+            {
+                var backupName = $"Rayman Fiesta Run ({x})";
+
+                return new BaseBackupInfo(RCFRCP.App.GetCompressedBackupFile(backupName), RCFRCP.App.GetBackupDir(backupName), GetWinStoreBackupDirs(GetFiestaRunFullPackageName(x)), $"{Games.RaymanFiestaRun.GetDisplayName()} {GetFiestaRunEditionDisplayName(x)}") as IBackupInfo;
+            }).ToList();
+        }
 
         #endregion
     }

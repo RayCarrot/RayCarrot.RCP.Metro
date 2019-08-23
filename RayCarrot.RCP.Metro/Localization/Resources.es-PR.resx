@@ -304,7 +304,7 @@
     <value>Contribuir con traducciones</value>
   </data>
   <data name="Settings_DesignHeader" xml:space="preserve">
-    <value>Design</value>
+    <value>Diseño</value>
   </data>
   <data name="Settings_DesignLight" xml:space="preserve">
     <value>Luz</value>
@@ -379,7 +379,7 @@
     <value>Desactivado</value>
   </data>
   <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
-    <value>Reemplazar ficheros infectados</value>
+    <value>Reemplazar archivos infectados</value>
   </data>
   <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
     <value>Idioma</value>
@@ -1367,5 +1367,104 @@ Notícias:
   </data>
   <data name="Utility_Apply" xml:space="preserve">
     <value>Aplicar</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
+    <value>Corrección de relación de aspecto</value>
+  </data>
+  <data name="DosBoxOptions_MemorySize" xml:space="preserve">
+    <value>Tamaño de Memoria</value>
+  </data>
+  <data name="DosBoxOptions_Frameskip" xml:space="preserve">
+    <value>Salto de imagen</value>
+  </data>
+  <data name="DosBoxOptions_Output" xml:space="preserve">
+    <value>Salida</value>
+  </data>
+  <data name="Config_TnLInfo" xml:space="preserve">
+    <value>Desmarca esto si hay fallas gráficas en el juego.</value>
+  </data>
+  <data name="Config_Language" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="Config_Controller" xml:space="preserve">
+    <value>Controlador</value>
+  </data>
+  <data name="Config_UseController" xml:space="preserve">
+    <value>Usar controlador conectado</value>
+  </data>
+  <data name="Config_Network" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="Config_VerticalHorizontal" xml:space="preserve">
+    <value>Widescreen vertical</value>
+  </data>
+  <data name="Config_ButtonMappingActionHeader" xml:space="preserve">
+    <value>Acción</value>
+  </data>
+  <data name="Config_ButtonMappingKeyHeader" xml:space="preserve">
+    <value>Tecla</value>
+  </data>
+  <data name="Config_ButtonMappingReset" xml:space="preserve">
+    <value>Reiniciar</value>
+  </data>
+  <data name="Config_RRRScreenMode" xml:space="preserve">
+    <value>Modo de pantalla</value>
+  </data>
+  <data name="Settings_StartupGameFinder" xml:space="preserve">
+    <value>Buscar juegos instalados</value>
+  </data>
+  <data name="Settings_StartupUpdateCheck" xml:space="preserve">
+    <value>Buscar actualizaciones del programa</value>
+  </data>
+  <data name="ROU_HQVideosHeader" xml:space="preserve">
+    <value>Vídeos de mejor calidad</value>
+  </data>
+  <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
+    <value>Juego no encontrado</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Ninguna versión nueva fue encontrado</value>
+  </data>
+  <data name="Update_ManifestError" xml:space="preserve">
+    <value>El manifiesto del servidor no pudo ser leído</value>
+  </data>
+  <data name="Installer_InsertDriveRequestHeader" xml:space="preserve">
+    <value>Insertar disco</value>
+  </data>
+  <data name="Installer_CancelQuestion" xml:space="preserve">
+    <value>¿Deseas cancelar la instalación?</value>
+  </data>
+  <data name="Installer_CancelQuestionHeader" xml:space="preserve">
+    <value>Cancelar instalación en progreso</value>
+  </data>
+  <data name="TPLS_PlaybackError_FileNotFound" xml:space="preserve">
+    <value>Falta el archivo de la banda sonora</value>
+  </data>
+  <data name="GameInfo_LaunchPath" xml:space="preserve">
+    <value>Dirección de ejecución:</value>
+  </data>
+  <data name="GameInfo_LaunchArgs" xml:space="preserve">
+    <value>Dirección de argumentos:</value>
+  </data>
+  <data name="GameNotFoundHeader" xml:space="preserve">
+    <value>No se pudo encontrar el juego</value>
+  </data>
+  <data name="About_SpecialThanks" xml:space="preserve">
+    <value>¡Un agradecimiento especial a AuToMaNiAk005, MixerX, ICUP321, PokGOT4N y todos los demás fanáticos de Rayman!</value>
+  </data>
+  <data name="About_Credits_Noserdog" xml:space="preserve">
+    <value>Parches de controlador</value>
+  </data>
+  <data name="Cheats_RM_UnlockRacesTitle" xml:space="preserve">
+    <value>Desbloquear todos los niveles de carrera</value>
+  </data>
+  <data name="Cheats_RM_UnlockAllTitle" xml:space="preserve">
+    <value>Desbloquear todos los niveles</value>
+  </data>
+  <data name="Cheats_RM_AllCharactersTitle" xml:space="preserve">
+    <value>Desbloquear todos los personajes</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyle_Left" xml:space="preserve">
+    <value>Izquierda</value>
   </data>
 </root>

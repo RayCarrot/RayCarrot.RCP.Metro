@@ -28,7 +28,7 @@
                         <Setter Property="ItemTemplate">
                             <Setter.Value>
                                 <DataTemplate>
-                                    <local:GameDisplay DataContext="{Binding}"
+                                    <local:GameDisplay DataContext="{Binding Path=Value}"
                                                        HorizontalAlignment="Left"
                                                        Padding="10" />
                                 </DataTemplate>
@@ -53,7 +53,7 @@
                     <rwpf:UnifiedMarginBehavior Margin="0 5" />
                 </Interactions:Interaction.Behaviors>
 
-                <Grid Visibility="{Binding Path=InstalledGames, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
+                <Grid Visibility="{Binding Path=AnyInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}">
                     <TextBlock Text="{Resx Games_Installed}"
                                Padding="10 0 0 0"
                                Style="{StaticResource LargeHeaderTextBlock}"
@@ -63,7 +63,7 @@
                 <ItemsControl Style="{StaticResource GamesDisplay}"
                               ItemsSource="{Binding Path=InstalledGames}" />
 
-                <Grid Visibility="{Binding Path=NotInstalledGames, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
+                <Grid Visibility="{Binding Path=AnyNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}">
                     <TextBlock Text="{Resx Games_NotInstalled}"
                                Padding="10 0 0 0"
                                Style="{StaticResource LargeHeaderTextBlock}"

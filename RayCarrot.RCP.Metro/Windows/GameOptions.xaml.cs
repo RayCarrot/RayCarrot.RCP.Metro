@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using System.Windows;
@@ -133,11 +134,13 @@ namespace RayCarrot.RCP.Metro
 
         private Task AppGameRefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
         {
-            if (!e.GameCollectionModified || e.ModifiedGame != ViewModel.Game)
-                return Task.CompletedTask;
+            if (e.GameCollectionModified && e.ModifiedGames.Contains(ViewModel.Game))
+            {
+                ForceClose = true;
+                Close();
 
-            ForceClose = true;
-            Close();
+                return Task.CompletedTask;
+            }
 
             return Task.CompletedTask;
         }

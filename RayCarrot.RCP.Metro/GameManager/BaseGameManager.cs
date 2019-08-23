@@ -144,6 +144,18 @@ namespace RayCarrot.RCP.Metro
             yield return new DuoGridItemViewModel(Resources.GameInfo_InstallDir, Info.InstallDirectory);
         }
 
+        /// <summary>
+        /// Gets the backup infos for this game
+        /// </summary>
+        /// <returns>The backup infos</returns>
+        public virtual List<IBackupInfo> GetBackupInfos()
+        {
+            return new List<IBackupInfo>()
+            {
+                BaseBackupInfo.FromGame(Game)
+            };
+        }
+
         #endregion
 
         #region Public Methods
@@ -186,6 +198,9 @@ namespace RayCarrot.RCP.Metro
             // Add the game
             await RCFRCP.App.AddNewGameAsync(Game, Type, path);
 
+            // Refresh
+            await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
+
             RCFCore.Logger?.LogInformationSource($"The game {Game} has been added");
         }
 
@@ -210,7 +225,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="installDir">The game install directory, if any</param>
         /// <returns>True if the game is valid, otherwise false</returns>
-        public abstract bool IsValid(FileSystemPath installDir);
+        public abstract Task<bool> IsValidAsync(FileSystemPath installDir);
 
         /// <summary>
         /// Gets the install directory for the game

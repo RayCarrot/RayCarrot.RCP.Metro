@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -353,11 +354,18 @@ namespace RayCarrot.RCP.Metro
 
             await RCFRCP.App.EnableUbiIniWriteAccessAsync();
 
+            // Keep track of removed games
+            var removed = new List<Games>();
+
             // Make sure every game is valid
             foreach (var game in RCFRCP.App.GetGames)
             {
+                // Check if it has been added
+                if (!game.IsAdded())
+                    continue;
+
                 // Check if it's valid
-                if (game.GetGameManager().IsValid(game.GetInfo().InstallDirectory))
+                if (await game.GetGameManager().IsValidAsync(game.GetInfo().InstallDirectory))
                     continue;
 
                 // Show message
@@ -366,8 +374,15 @@ namespace RayCarrot.RCP.Metro
                 // Remove the game from app data
                 await RCFRCP.App.RemoveGameAsync(game, true);
 
+                // Add to removed games
+                removed.Add(game);
+
                 RCFCore.Logger?.LogInformationSource($"The game {game} has been removed due to not being valid");
             }
+
+            // Refresh if any games were removed
+            if (removed.Any())
+                await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(removed, true, false, false, false));
         }
 
         /// <summary>
@@ -434,7 +449,7 @@ namespace RayCarrot.RCP.Metro
                         // Set the current edition
                         Data.FiestaRunVersion = isWin10 ? FiestaRunEdition.Win10 : FiestaRunEdition.Default;
 
-                        RCFRCP.File.MoveDirectory(fiestaBackupDir, Games.RaymanFiestaRun.GetBackupDir(), true);
+                        RCFRCP.File.MoveDirectory(fiestaBackupDir, RCFRCP.App.GetBackupDir(Games.RaymanFiestaRun.GetBackupName()), true);
                     }
                     catch (Exception ex)
                     {
@@ -556,7 +571,7 @@ namespace RayCarrot.RCP.Metro
                             ex.HandleError("Getting updated Windows Store game install directory");
                         }
 
-                        await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun, false, false, true, true));
+                        await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun, false, false, false, true));
 
                         break;
                 }

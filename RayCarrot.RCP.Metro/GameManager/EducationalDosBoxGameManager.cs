@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
@@ -144,11 +146,11 @@ namespace RayCarrot.RCP.Metro
             // Create config file
             new DosBoxAutoConfigManager(Game.GetDosBoxConfigFile()).Create();
 
-            // Create the collection of games
-            RCFRCP.Data.EducationalDosBoxGames = new List<EducationalDosBoxGameInfo>();
+            // Get the info
+            var info = GetNewEducationalDosBoxGameInfo(Game.GetInfo().InstallDirectory);
 
             // Add the game to the list of educational games
-            AddEducationalDosBoxGameInfo(Game.GetInfo().InstallDirectory);
+            RCFRCP.Data.EducationalDosBoxGames.Add(info);
 
             return Task.CompletedTask;
         }
@@ -168,19 +170,23 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="installDir">The game install directory, if any</param>
         /// <returns>True if the game is valid, otherwise false</returns>
-        public override bool IsValid(FileSystemPath installDir)
+        public override async Task<bool> IsValidAsync(FileSystemPath installDir)
         {
             List<EducationalDosBoxGameInfo> toRemove = new List<EducationalDosBoxGameInfo>();
 
             foreach (var game in RCFRCP.Data.EducationalDosBoxGames)
             {
-                if (!IsGameDirValid(game.InstallDIr) || game.LaunchName.IsNullOrWhiteSpace())
+                if (!IsGameDirValid(game.InstallDir) || game.LaunchName.IsNullOrWhiteSpace())
                     toRemove.Add(game);
             }
 
             // Remove invalid games
             foreach (var game in toRemove)
                 RCFRCP.Data.EducationalDosBoxGames.Remove(game);
+
+            // Notify user
+            foreach (var game in toRemove)
+                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.Name), Resources.GameNotFoundHeader, MessageType.Error);
 
             // Make sure there is at least one game
             if (RCFRCP.Data.EducationalDosBoxGames?.Any() != true)
@@ -194,16 +200,25 @@ namespace RayCarrot.RCP.Metro
             return true;
         }
 
+        /// <summary>
+        /// Gets the backup infos for this game
+        /// </summary>
+        /// <returns>The backup infos</returns>
+        public override List<IBackupInfo> GetBackupInfos()
+        {
+            return RCFRCP.Data.EducationalDosBoxGames.GroupBy(x => x.ID).Select(x => BaseBackupInfo.FromEducationalDosGameInfos(x.ToArray()) as IBackupInfo).ToList();
+        }
+
         #endregion
 
         #region Public Methods
 
         /// <summary>
-        /// Adds a new educational DOSBox game
+        /// Get new info for a new educational DOSBox game
         /// </summary>
         /// <param name="installDir">The install directory</param>
-        /// <returns>The added game</returns>
-        public EducationalDosBoxGameInfo AddEducationalDosBoxGameInfo(FileSystemPath installDir)
+        /// <returns>The info</returns>
+        public EducationalDosBoxGameInfo GetNewEducationalDosBoxGameInfo(FileSystemPath installDir)
         {
             // Find the launch name
             FileSystemPath launchName = Directory.EnumerateFiles(installDir, "*.exe", SearchOption.TopDirectoryOnly).FirstOrDefault();
@@ -217,9 +232,6 @@ namespace RayCarrot.RCP.Metro
             {
                 Name = installDir.Name
             };
-
-            // Add the game to the list of educational games
-            RCFRCP.Data.EducationalDosBoxGames.Add(info);
 
             return info;
         }
@@ -255,7 +267,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The launch info</returns>
         public GameLaunchInfo GetLaunchInfo(EducationalDosBoxGameInfo game)
         {
-            return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, GetDosBoxArguments(game.MountPath, $"{game.LaunchName} ver={game.LaunchMode}", game.InstallDIr));
+            return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, GetDosBoxArguments(game.MountPath, $"{game.LaunchName} ver={game.LaunchMode}", game.InstallDir));
         }
 
         /// <summary>
@@ -288,12 +300,42 @@ namespace RayCarrot.RCP.Metro
             var launchMode = Games.EducationalDos.GetInfo().LaunchMode;
 
             // Reset the game info with new install directory
-            RCFRCP.Data.Games[Games.EducationalDos] = new GameInfo(GameType.EducationalDosBox, RCFRCP.Data.EducationalDosBoxGames.First().InstallDIr)
+            RCFRCP.Data.Games[Games.EducationalDos] = new GameInfo(GameType.EducationalDosBox, RCFRCP.Data.EducationalDosBoxGames.First().InstallDir)
             {
                 LaunchMode = launchMode
             };
 
             RCFCore.Logger?.LogInformationSource($"The default educational game has been refreshed");
+        }
+
+        /// <summary>
+        /// Gets the game ID for an educational game
+        /// </summary>
+        /// <param name="installDir">The game install directory</param>
+        /// <param name="exeName">The executable file name, relative to the install directory</param>
+        /// <returns>The ID</returns>
+        public string GetGameID(FileSystemPath installDir, string exeName)
+        {
+            //
+            // The ID is based on the hash of the executable file as well as the available PCMAP files. This is to make sure that the ID
+            // is the same if you add the same game again.
+            //
+
+            // Get the paths to use for getting the ID
+            List<string> inputPaths = Directory.GetFiles(installDir + "PCMAP", "*", SearchOption.AllDirectories).Select(Path.GetFileName).ToList();
+
+            // Add the hash from the executable file
+            inputPaths.Add((installDir + exeName).GetSHA256CheckSum());
+
+            // Combine the strings into an array of bytes
+            var bytes = Encoding.ASCII.GetBytes(inputPaths.SelectMany(x => x).ToArray());
+
+            // Get the hash
+            using (SHA256Managed sha = new SHA256Managed())
+            {
+                byte[] checksum = sha.ComputeHash(bytes);       
+                return BitConverter.ToString(checksum).Replace("-", String.Empty);
+            }
         }
 
         #endregion

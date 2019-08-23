@@ -108,6 +108,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="RCPBackups\BaseBackupInfo.cs" />
+    <Compile Include="RCPBackups\IBackupInfo.cs" />
     <Compile Include="Controls\Dialogs\EducationalDosGameEditDialog.xaml.cs">
       <DependentUpon>EducationalDosGameEditDialog.xaml</DependentUpon>
     </Compile>
@@ -214,11 +216,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Utilities\Rayman 3\DirectPlay\R3DirectPlayUtilityUI.xaml">
+    <Page Include="RCPUtilities\Rayman 3\DirectPlay\R3DirectPlayUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Utilities\Rayman Designer\CreateConfig\RDCreateConfigUtilityUI.xaml">
+    <Page Include="RCPUtilities\Rayman Designer\CreateConfig\RDCreateConfigUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -246,39 +248,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityUI.xaml">
+    <Page Include="RCPUtilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Utilities\Rayman 1\TPLS\R1TPLSUtilityUI.xaml">
+    <Page Include="RCPUtilities\Rayman 1\TPLS\R1TPLSUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Utilities\Rayman 2\Translations\R2TranslationUtilityUI.xaml">
+    <Page Include="RCPUtilities\Rayman 2\Translations\R2TranslationUtilityUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Utilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityUI.xaml">
+    <Page Include="RCPUtilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtilityUI.xaml">
+    <Page Include="RCPUtilities\Rayman Legends\UbiArt\RLUbiRayUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Utilities\Rayman Origins\DebugCommands\RODebugCommandsUtilityUI.xaml">
+    <Page Include="RCPUtilities\Rayman Origins\DebugCommands\RODebugCommandsUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Utilities\Rayman Origins\HQVideos\ROHQVideosUtilityUI.xaml">
+    <Page Include="RCPUtilities\Rayman Origins\HQVideos\ROHQVideosUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Utilities\Rayman Origins\Update\ROUpdateUtilityUI.xaml">
+    <Page Include="RCPUtilities\Rayman Origins\Update\ROUpdateUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Utilities\UtilitiesContainer.xaml">
+    <Page Include="RCPUtilities\UtilitiesContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -343,62 +345,62 @@
     </Compile>
     <Compile Include="DataModels\Enums\LinkItemStyles.cs" />
     <Compile Include="DataModels\Enums\CheatCodeItemsType.cs" />
-    <Compile Include="Utilities\IRCPUtility.cs" />
+    <Compile Include="RCPUtilities\IRCPUtility.cs" />
     <Compile Include="Temp\TempDirectory.cs" />
     <Compile Include="Temp\TempFile.cs" />
     <Compile Include="Temp\TempFileSystemEntry.cs" />
-    <Compile Include="Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtility.cs" />
-    <Compile Include="Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityUI.xaml.cs">
+    <Compile Include="RCPUtilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtility.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityUI.xaml.cs">
       <DependentUpon>R1CompleteSoundtrackUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityViewModel.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\R1TPLSUtility.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\R1TPLSUtilityUI.xaml.cs">
+    <Compile Include="RCPUtilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityViewModel.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\R1TPLSUtility.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\R1TPLSUtilityUI.xaml.cs">
       <DependentUpon>R1TPLSUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Rayman 1\TPLS\R1TPLSUtilityViewModel.cs" />
-    <Compile Include="Utilities\Rayman 2\Translations\R2TranslationUtility.cs" />
-    <Compile Include="Utilities\Rayman 2\Translations\R2TranslationUtilityUI.xaml.cs">
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\R1TPLSUtilityViewModel.cs" />
+    <Compile Include="RCPUtilities\Rayman 2\Translations\R2TranslationUtility.cs" />
+    <Compile Include="RCPUtilities\Rayman 2\Translations\R2TranslationUtilityUI.xaml.cs">
       <DependentUpon>R2TranslationUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Rayman 3\DirectPlay\R3DirectPlayUtility.cs" />
-    <Compile Include="Utilities\Rayman 3\DirectPlay\R3DirectPlayUtilityUI.xaml.cs">
+    <Compile Include="RCPUtilities\Rayman 3\DirectPlay\R3DirectPlayUtility.cs" />
+    <Compile Include="RCPUtilities\Rayman 3\DirectPlay\R3DirectPlayUtilityUI.xaml.cs">
       <DependentUpon>R3DirectPlayUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Rayman 3\DirectPlay\R3DirectPlayUtilityViewModel.cs" />
-    <Compile Include="Utilities\Rayman Designer\CreateConfig\RDCreateConfigUtility.cs" />
-    <Compile Include="Utilities\Rayman Designer\CreateConfig\RDCreateConfigUtilityUI.xaml.cs">
+    <Compile Include="RCPUtilities\Rayman 3\DirectPlay\R3DirectPlayUtilityViewModel.cs" />
+    <Compile Include="RCPUtilities\Rayman Designer\CreateConfig\RDCreateConfigUtility.cs" />
+    <Compile Include="RCPUtilities\Rayman Designer\CreateConfig\RDCreateConfigUtilityUI.xaml.cs">
       <DependentUpon>RDCreateConfigUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Rayman Designer\CreateConfig\RDCreateConfigUtilityViewModel.cs" />
-    <Compile Include="Utilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtility.cs" />
-    <Compile Include="Utilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityUI.xaml.cs">
+    <Compile Include="RCPUtilities\Rayman Designer\CreateConfig\RDCreateConfigUtilityViewModel.cs" />
+    <Compile Include="RCPUtilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtility.cs" />
+    <Compile Include="RCPUtilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityUI.xaml.cs">
       <DependentUpon>RDReplaceFilesUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityViewModel.cs" />
-    <Compile Include="Utilities\Rayman Legends\GamePatch\UbiArtGamePatchManager.cs" />
-    <Compile Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtility.cs" />
-    <Compile Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtilityUI.xaml.cs">
+    <Compile Include="RCPUtilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityViewModel.cs" />
+    <Compile Include="RCPUtilities\Rayman Legends\GamePatch\UbiArtGamePatchManager.cs" />
+    <Compile Include="RCPUtilities\Rayman Legends\UbiArt\RLUbiRayUtility.cs" />
+    <Compile Include="RCPUtilities\Rayman Legends\UbiArt\RLUbiRayUtilityUI.xaml.cs">
       <DependentUpon>RLUbiRayUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtilityViewModel.cs" />
-    <Compile Include="Utilities\Rayman Origins\DebugCommands\RODebugCommandsUtility.cs" />
-    <Compile Include="Utilities\Rayman Origins\DebugCommands\RODebugCommandsUtilityUI.xaml.cs">
+    <Compile Include="RCPUtilities\Rayman Legends\UbiArt\RLUbiRayUtilityViewModel.cs" />
+    <Compile Include="RCPUtilities\Rayman Origins\DebugCommands\RODebugCommandsUtility.cs" />
+    <Compile Include="RCPUtilities\Rayman Origins\DebugCommands\RODebugCommandsUtilityUI.xaml.cs">
       <DependentUpon>RODebugCommandsUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Rayman Origins\DebugCommands\RODebugCommandsUtilityViewModel.cs" />
-    <Compile Include="Utilities\Rayman Origins\HQVideos\ROHQVideosUtility.cs" />
-    <Compile Include="Utilities\Rayman Origins\HQVideos\ROHQVideosUtilityUI.xaml.cs">
+    <Compile Include="RCPUtilities\Rayman Origins\DebugCommands\RODebugCommandsUtilityViewModel.cs" />
+    <Compile Include="RCPUtilities\Rayman Origins\HQVideos\ROHQVideosUtility.cs" />
+    <Compile Include="RCPUtilities\Rayman Origins\HQVideos\ROHQVideosUtilityUI.xaml.cs">
       <DependentUpon>ROHQVideosUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Rayman Origins\HQVideos\ROHQVideosUtilityViewModel.cs" />
-    <Compile Include="Utilities\Rayman Origins\Update\ROUpdateUtility.cs" />
-    <Compile Include="Utilities\Rayman Origins\Update\ROUpdateUtilityUI.xaml.cs">
+    <Compile Include="RCPUtilities\Rayman Origins\HQVideos\ROHQVideosUtilityViewModel.cs" />
+    <Compile Include="RCPUtilities\Rayman Origins\Update\ROUpdateUtility.cs" />
+    <Compile Include="RCPUtilities\Rayman Origins\Update\ROUpdateUtilityUI.xaml.cs">
       <DependentUpon>ROUpdateUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Rayman Origins\Update\ROUpdateUtilityViewModel.cs" />
-    <Compile Include="Utilities\RCPUtilityViewModel.cs" />
-    <Compile Include="Utilities\UtilitiesContainer.xaml.cs">
+    <Compile Include="RCPUtilities\Rayman Origins\Update\ROUpdateUtilityViewModel.cs" />
+    <Compile Include="RCPUtilities\RCPUtilityViewModel.cs" />
+    <Compile Include="RCPUtilities\UtilitiesContainer.xaml.cs">
       <DependentUpon>UtilitiesContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Cheats\Base\BaseCheatCodeItemViewModel.cs" />
@@ -418,26 +420,26 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="ViewModels\Pages\AboutPageViewModel.cs" />
-    <Compile Include="Utilities\Rayman 2\Translations\R2TranslationUtilityViewModel.cs" />
+    <Compile Include="RCPUtilities\Rayman 2\Translations\R2TranslationUtilityViewModel.cs" />
     <Compile Include="Helpers\CommonUrls.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Enums\TPLSDOSBoxVersion.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Enums\TPLSRaymanVersion.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Exceptions\SoundtrackUnplaybaleException.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\FileResolver.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Music\DelayFadeOutSampleProvider.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Music\LoopStream.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Music\VolumeMixer.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Player.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\SoundtrackList.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\SoundtrackPlayer\BGM.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\SoundtrackPlayer\Midi.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\SoundtrackPlayer\PositionedBGM.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\SoundtrackPlayer\SoundtrackPlayer.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\TPLS.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\TPLS\Enums\TPLSDOSBoxVersion.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\TPLS\Enums\TPLSRaymanVersion.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\TPLS\Exceptions\SoundtrackUnplaybaleException.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\TPLS\FileResolver.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\TPLS\Music\DelayFadeOutSampleProvider.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\TPLS\Music\LoopStream.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\TPLS\Music\VolumeMixer.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\TPLS\Player.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\TPLS\SoundtrackList.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\TPLS\SoundtrackPlayer\BGM.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\TPLS\SoundtrackPlayer\Midi.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\TPLS\SoundtrackPlayer\PositionedBGM.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\TPLS\SoundtrackPlayer\SoundtrackPlayer.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\TPLS\TPLS.cs" />
     <Compile Include="DataModels\Enums\DownloadState.cs" />
     <Compile Include="Extensions\TPLSRaymanVersionExtensions.cs" />
     <Compile Include="ViewModels\TPLSDataViewModel.cs" />
-    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Watchdog.cs" />
+    <Compile Include="RCPUtilities\Rayman 1\TPLS\TPLS\Watchdog.cs" />
     <Compile Include="DataModels\EventArgs\ValueEventArgs.cs" />
     <Compile Include="DataModels\TPLSData.cs" />
     <Compile Include="ViewModels\Config\Ray_Origins_Legends_ConfigViewModel.cs" />
@@ -467,9 +469,8 @@
     </Compile>
     <Compile Include="ViewModels\Config\Base\Ray_M_Arena_3_UbiIniBaseConfigViewModel.cs" />
     <Compile Include="ViewModels\Pages\HelpPageViewModel.cs" />
-    <Compile Include="Design\DesignTimeVM.cs" />
     <Compile Include="DataModels\BackupDir.cs" />
-    <Compile Include="Framework\Implementations\BackupManager.cs" />
+    <Compile Include="RCPBackups\BackupManager.cs" />
     <Compile Include="Installer\GameInstaller.xaml.cs">
       <DependentUpon>GameInstaller.xaml</DependentUpon>
     </Compile>
@@ -806,7 +807,7 @@
       <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
-      <Version>1.0.3</Version>
+      <Version>1.0.4</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.UI">
       <Version>1.0.2</Version>

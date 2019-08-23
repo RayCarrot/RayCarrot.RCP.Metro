@@ -142,7 +142,7 @@ namespace RayCarrot.RCP.Metro
 
         private Task App_RefreshRequired(object sender, RefreshRequiredEventArgs e)
         {
-            if (e.GameInfoModified && e.ModifiedGame == Game)
+            if (e.GameInfoModified && e.ModifiedGames.Contains(Game))
                 RefreshGameInfo();
 
             return Task.CompletedTask;
@@ -182,6 +182,9 @@ namespace RayCarrot.RCP.Metro
 
             // Remove the game
             await RCFRCP.App.RemoveGameAsync(Game, false);
+
+            // Refresh
+            await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
         }
 
         /// <summary>

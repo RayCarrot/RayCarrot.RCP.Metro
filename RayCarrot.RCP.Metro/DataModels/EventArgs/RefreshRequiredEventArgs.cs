@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -7,17 +9,22 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class RefreshRequiredEventArgs : EventArgs
     {
+        #region Constructor
+
         /// <summary>
-        /// Default constructor
+        /// Default constructor for a single modified game
         /// </summary>
-        /// <param name="modifiedGame">The game which has been modified, if a single game</param>
+        /// <param name="modifiedGame">The game which has been modified</param>
         /// <param name="gameCollectionModified">Indicates if the collection of games has been modified, such as a game having been added or removed</param>
         /// <param name="launchInfoModified">Indicates if the launch info for a game has been modified, such as running as administrator and/or additional launch items</param>
         /// <param name="backupsModified">Indicates if the backups have been changed, such as the location having been changed and/or existing backups having been modified</param>
         /// <param name="gameInfoModified">Indicates if the game info for a game has been modified, such as the game install directory</param>
-        public RefreshRequiredEventArgs(Games? modifiedGame, bool gameCollectionModified, bool launchInfoModified, bool backupsModified, bool gameInfoModified)
+        public RefreshRequiredEventArgs(Games modifiedGame, bool gameCollectionModified, bool launchInfoModified, bool backupsModified, bool gameInfoModified)
         {
-            ModifiedGame = modifiedGame;
+            ModifiedGames = new Games[]
+            {
+                modifiedGame
+            };
             GameCollectionModified = gameCollectionModified;
             LaunchInfoModified = launchInfoModified;
             BackupsModified = backupsModified;
@@ -25,9 +32,30 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// The game which has been modified, if a single game
+        /// Default constructor for multiple modified games
         /// </summary>
-        public Games? ModifiedGame { get; }
+        /// <param name="modifiedGames">The games which have been modified</param>
+        /// <param name="gameCollectionModified">Indicates if the collection of games has been modified, such as a game having been added or removed</param>
+        /// <param name="launchInfoModified">Indicates if the launch info for a game has been modified, such as running as administrator and/or additional launch items</param>
+        /// <param name="backupsModified">Indicates if the backups have been changed, such as the location having been changed and/or existing backups having been modified</param>
+        /// <param name="gameInfoModified">Indicates if the game info for a game has been modified, such as the game install directory</param>
+        public RefreshRequiredEventArgs(IEnumerable<Games> modifiedGames, bool gameCollectionModified, bool launchInfoModified, bool backupsModified, bool gameInfoModified)
+        {
+            ModifiedGames = modifiedGames.ToArray();
+            GameCollectionModified = gameCollectionModified;
+            LaunchInfoModified = launchInfoModified;
+            BackupsModified = backupsModified;
+            GameInfoModified = gameInfoModified;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// The games which have been modified
+        /// </summary>
+        public Games[] ModifiedGames { get; }
 
         /// <summary>
         /// Indicates if the collection of games has been modified, such as a game having been added or removed
@@ -48,5 +76,7 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the game info for a game has been modified, such as the game install directory
         /// </summary>
         public bool GameInfoModified { get; }
+
+        #endregion
     }
 }

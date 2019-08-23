@@ -180,7 +180,7 @@ namespace RayCarrot.RCP.Metro
                 return null;
 
             // Check if the location if valid
-            if (IsValid(result.SelectedDirectory))
+            if (await IsValidAsync(result.SelectedDirectory))
                 return result.SelectedDirectory;
 
             // Check if the location contains the executable file

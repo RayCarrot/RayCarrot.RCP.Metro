@@ -34,9 +34,10 @@ namespace RayCarrot.RCP.Metro
 
             App.RefreshRequired += async (s, e) =>
             {
-                if (e.BackupsModified)
+                if (e.BackupsModified || e.GameCollectionModified)
                     await RefreshAsync();
             };
+            RCFCore.Data.CultureChanged += async (s, e) => await RefreshAsync();
         }
 
         #endregion
@@ -50,7 +51,7 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Properties
+        #region Public Properties   
 
         /// <summary>
         /// The game backup items
@@ -85,21 +86,18 @@ namespace RayCarrot.RCP.Metro
                     // Enumerate the saved games
                     foreach (Games game in App.GetGames.Where(x => x.IsAdded()))
                     {
-                        if (game == Games.EducationalDos)
+                        // Enumerate the backup info
+                        foreach (IBackupInfo info in game.GetGameManager().GetBackupInfos())
                         {
-                            // TODO: Treat as several games
+                            // Create the backup item
+                            var backupItem = new GameBackupItemViewModel(game, info);
 
-                            continue;
+                            // Add the item
+                            GameBackupItems.Add(backupItem);
+
+                            // Refresh the item
+                            await backupItem.RefreshAsync();
                         }
-
-                        // Create the backup item
-                        var backupItem = new GameBackupItemViewModel(game);
-
-                        // Add the item
-                        GameBackupItems.Add(backupItem);
-
-                        // Refresh the item
-                        await backupItem.RefreshAsync();
                     }
                 });
             }
@@ -136,7 +134,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         game.ShowBackupRestoreIndicator = true;
 
-                        if (await RCFRCP.Backup.BackupAsync(game.Game))
+                        if (await RCFRCP.Backup.BackupAsync(game.BackupInfo))
                             completed++;
 
                         game.ShowBackupRestoreIndicator = false;

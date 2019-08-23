@@ -59,7 +59,7 @@
             <Grid Margin="0 15">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" SharedSizeGroup="GameImage" />
-                    <ColumnDefinition Width="*" MaxWidth="340" />
+                    <ColumnDefinition Width="*" MaxWidth="550" />
                     <ColumnDefinition Width="Auto" SharedSizeGroup="LastBackup" MinWidth="100" />
                     <ColumnDefinition Width="Auto" SharedSizeGroup="BackupSize" MinWidth="100" />
                     <ColumnDefinition Width="Auto" SharedSizeGroup="Actions" />
@@ -110,14 +110,13 @@
             </Grid>
 
             <ItemsControl DataContext="{Binding Path=GameBackupItems}" 
-                          d:DataContext="{x:Static local:DesignTimeVM.GameBackupItems}" 
                           ItemsSource="{Binding}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0 0 0 15">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="GameImage" />
-                                <ColumnDefinition Width="*" MaxWidth="340" />
+                                <ColumnDefinition Width="*" MaxWidth="550" />
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="LastBackup" MinWidth="100" />
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="BackupSize" MinWidth="100" />
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Actions" />
@@ -137,7 +136,7 @@
                                        VerticalAlignment="Center" 
                                        HorizontalAlignment="Left" 
                                        TextWrapping="WrapWithOverflow"
-                                       MaxWidth="300"
+                                       MaxWidth="510"
                                        Margin="20 0" />
 
                             <!-- Last Backup -->

@@ -317,12 +317,11 @@ namespace RayCarrot.RCP.Metro
                 // Make sure the result was successful
                 if (result == RayGameInstallerResult.Successful)
                 {
-                    // Remove the game if it has been added
-                    if (Game.IsAdded())
-                        await App.RemoveGameAsync(Game, true);
-
                     // Add the game
                     await App.AddNewGameAsync(Game, GameType.Win32, output);
+
+                    // Refresh
+                    await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
 
                     // Get the launch info
                     var launchInfo = Game.GetGameManager().GetLaunchInfo();
