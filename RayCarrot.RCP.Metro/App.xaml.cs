@@ -74,15 +74,9 @@ namespace RayCarrot.RCP.Metro
             // Set file log level
             FileLogger.FileLoggerLogLevel = logLevel;
 
-            var loggers = DefaultLoggers.Console;
-
-            // Only add debug loggers if a launch argument specifies it or if a debugger is attached
-            if (Debugger.IsAttached || args.Contains("-debugLoggers"))
-                loggers = loggers | DefaultLoggers.Debug | DefaultLoggers.Session;
-
             construction.
                 // Add loggers
-                AddLoggers(loggers, logLevel, builder => builder.AddProvider(new BaseLogProvider<FileLogger>())).
+                AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, logLevel, builder => builder.AddProvider(new BaseLogProvider<FileLogger>())).
                 // Add exception handler
                 AddExceptionHandler<RCPExceptionHandler>().
                 // Add user data manager

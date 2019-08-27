@@ -45,7 +45,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Locates the game
         /// </summary>
-        /// <returns>Null if the game was not found. Otherwise a valid or empty path for the instal directory</returns>
+        /// <returns>Null if the game was not found. Otherwise a valid or empty path for the install directory</returns>
         public override async Task<FileSystemPath?> LocateAsync()
         {
             var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()

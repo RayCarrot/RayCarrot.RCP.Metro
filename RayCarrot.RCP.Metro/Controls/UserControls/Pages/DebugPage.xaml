@@ -78,6 +78,14 @@
                         Command="{Binding Path=App.RestartAsAdminCommand}"
                         HorizontalAlignment="Left"/>
 
+                <Button Content="Refresh all"
+                        Command="{Binding Path=RefreshAllCommand}"
+                        HorizontalAlignment="Left"/>
+
+                <Button Content="Refresh all async"
+                        Command="{Binding Path=RefreshAllAsyncCommand}"
+                        HorizontalAlignment="Left"/>
+
             </StackPanel>
 
             <StackPanel>
@@ -106,22 +114,6 @@
 
                 <TextBox IsReadOnly="True"
                          Text="{Binding Path=DataOutput}"
-                         TextWrapping="Wrap"
-                         VerticalScrollBarVisibility="Auto"
-                         MaxHeight="250"/>
-
-            </StackPanel>
-
-            <StackPanel>
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-                </i:Interaction.Behaviors>
-
-                <TextBlock Text="Upcoming features"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
-
-                <TextBox IsReadOnly="True"
-                         Text="{Binding Source={x:Static local:Files.UpcomingFeatures}, Mode=OneTime}"
                          TextWrapping="Wrap"
                          VerticalScrollBarVisibility="Auto"
                          MaxHeight="250"/>

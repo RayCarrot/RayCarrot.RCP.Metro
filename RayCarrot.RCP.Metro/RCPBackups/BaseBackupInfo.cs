@@ -103,10 +103,14 @@ namespace RayCarrot.RCP.Metro
         public static BaseBackupInfo FromGame(Games game)
         {
             var backupName = game.GetBackupName();
+            var backupInfo = game.GetBackupInfo();
+
+            if (backupInfo == null)
+                return null;
 
             return new BaseBackupInfo(RCFRCP.App.GetCompressedBackupFile(backupName),
                 RCFRCP.App.GetBackupDir(backupName),
-                game.GetBackupInfo(),
+                backupInfo,
                 game.GetDisplayName());
         }
 

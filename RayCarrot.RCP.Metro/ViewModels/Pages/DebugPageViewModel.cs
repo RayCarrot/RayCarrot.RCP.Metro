@@ -32,6 +32,8 @@ namespace RayCarrot.RCP.Metro
             ShowInstalledUtilitiesCommand = new AsyncRelayCommand(ShowInstalledUtilitiesAsync);
             RefreshJumpListCommand = new RelayCommand(Metro.App.Current.RefreshJumpList);
             RefreshDataOutputCommand = new AsyncRelayCommand(RefreshDataOutputAsync);
+            RefreshAllCommand = new AsyncRelayCommand(RefreshAllAsync);
+            RefreshAllAsyncCommand = new AsyncRelayCommand(RefreshAllTaskAsync);
 
             // Show log viewer if a debugger is attached
             if (!FirstConstruction || !Debugger.IsAttached)
@@ -245,6 +247,24 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// Refreshes everything in the app
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task RefreshAllAsync()
+        {
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, true, true, true, true));
+        }
+
+        /// <summary>
+        /// Refreshes everything in the app on a new thread
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task RefreshAllTaskAsync()
+        {
+            await Task.Run(async () => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, true, true, true, true)));
+        }
+
         #endregion
 
         #region Commands
@@ -259,27 +279,10 @@ namespace RayCarrot.RCP.Metro
 
         public ICommand RefreshDataOutputCommand { get; }
 
+        public ICommand RefreshAllCommand { get; }
+
+        public ICommand RefreshAllAsyncCommand { get; }
+
         #endregion
-    }
-
-    /// <summary>
-    /// The available debug data output types
-    /// </summary>
-    public enum DebugDataOutputTypes
-    {
-        /// <summary>
-        /// Displays a list of the referenced assemblies
-        /// </summary>
-        ReferencedAssemblies,
-
-        /// <summary>
-        /// Displays the app user data file contents
-        /// </summary>
-        AppUserData,
-
-        /// <summary>
-        /// Displays the update manifest from the server
-        /// </summary>
-        UpdateManifest
     }
 }

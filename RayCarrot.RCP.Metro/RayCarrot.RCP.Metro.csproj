@@ -407,6 +407,7 @@
     <Compile Include="ViewModels\Cheats\GenericCheatCodeItemViewModel.cs" />
     <Compile Include="ViewModels\LinkItemViewModel.cs" />
     <Compile Include="DataModels\LinkItemCollection.cs" />
+    <Compile Include="DataModels\Enums\DebugDataOutputTypes.cs" />
     <Compile Include="ViewModels\Pages\LinksPageViewModel.cs" />
     <Compile Include="ViewModels\Cheats\Rayman1CheatCodeItemViewModel.cs" />
     <Compile Include="Converters\BooleanToTransitionTypeConverter.cs" />
@@ -710,6 +711,7 @@
     <Resource Include="Img\MessageIcons\Question.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\GameIcons\RaymanRavingRabbids2.png" />
     <Resource Include="Img\GameIcons\RabbidsGoHome.png" />
     <Resource Include="Img\GameIcons\RabbidsBigBang.png" />
     <Resource Include="Img\GameIcons\EducationalDos.png" />
@@ -727,7 +729,6 @@
     <Resource Include="Img\RayIcons\LightNSH.png" />
     <Resource Include="Img\RayIcons\LightNSNH.png" />
     <Resource Include="Img\RayIcons\LightSNH.png" />
-    <Resource Include="Files\UpcomingFeatures.txt" />
     <Resource Include="Files\RaymanOrigins\RO_Levels.txt" />
     <Resource Include="Img\GameLogos\RaymanArena_Logo.png" />
     <Resource Include="Img\GameLogos\RaymanM_Logo.png" />
@@ -798,25 +799,25 @@
       <Version>0.8.6</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.1.0</Version>
+      <Version>3.1.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.CarrotFramework">
-      <Version>3.0.2</Version>
+      <Version>3.0.4</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Extensions">
-      <Version>1.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="RayCarrot.IO">
-      <Version>1.0.4</Version>
-    </PackageReference>
-    <PackageReference Include="RayCarrot.UI">
       <Version>1.0.2</Version>
     </PackageReference>
+    <PackageReference Include="RayCarrot.IO">
+      <Version>1.0.5</Version>
+    </PackageReference>
+    <PackageReference Include="RayCarrot.UI">
+      <Version>1.0.3</Version>
+    </PackageReference>
     <PackageReference Include="RayCarrot.UserData">
-      <Version>3.0.0</Version>
+      <Version>3.0.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Windows.Registry">
-      <Version>3.0.0</Version>
+      <Version>3.0.1</Version>
     </PackageReference>
     <PackageReference Include="Resource.Embedder">
       <Version>2.0.1</Version>

@@ -150,10 +150,15 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The backup infos</returns>
         public virtual List<IBackupInfo> GetBackupInfos()
         {
-            return new List<IBackupInfo>()
-            {
-                BaseBackupInfo.FromGame(Game)
-            };
+            var info = BaseBackupInfo.FromGame(Game);
+
+            if (info == null)
+                return new List<IBackupInfo>();
+            else
+                return new List<IBackupInfo>()
+                {
+                    BaseBackupInfo.FromGame(Game)
+                };
         }
 
         #endregion

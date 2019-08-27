@@ -195,7 +195,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(5, 1, 0, 0);
+        public Version CurrentVersion => new Version(6, 0, 0, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
@@ -668,6 +668,26 @@ namespace RayCarrot.RCP.Metro
 
                         // Start menu
                         () => CheckStartMenu("Rayman Raving Rabbids", Games.RaymanRavingRabbids.GetLaunchName()),
+                    });
+
+                    // Rayman Raving Rabbids 2
+                    AddActions(Games.RaymanRavingRabbids2, new Func<GameFinderActionResult>[]
+                    {
+                        // Uninstall
+                        () => CheckUninstall("Rayman: Raving Rabbids 2", "Rayman Raving Rabbids 2"),
+
+                        // Start menu
+                        () => CheckStartMenu("Rayman Raving Rabbids 2", Games.RaymanRavingRabbids2.GetLaunchName()),
+                    });
+
+                    // Rabbids Go Home
+                    AddActions(Games.RabbidsGoHome, new Func<GameFinderActionResult>[]
+                    {
+                        // Uninstall
+                        () => CheckUninstall("Rabbids Go Home"),
+
+                        // Start menu
+                        () => CheckStartMenu("Rabbids Go Home", Games.RabbidsGoHome.GetLaunchName()),
                     });
 
                     // Rayman Origins
@@ -1337,5 +1357,70 @@ namespace RayCarrot.RCP.Metro
         public event AsyncEventHandler<RefreshRequiredEventArgs> RefreshRequired;
 
         #endregion
+    }
+
+    // TODO: Separate game logic into classes and move game independent logic out of managers?
+
+    public abstract class RCPGame
+    {
+        public abstract Games Game { get; }
+
+        public abstract GameType Type { get; }
+
+        public abstract string DisplayName { get; }
+
+        public abstract string BackupName { get; }
+
+        // TODO: Get backup dirs
+    }
+
+    public abstract class RCPWin32Game : RCPGame
+    {
+        public override GameType Type => GameType.Win32;
+
+        public abstract string GetLaunchName { get; }
+
+        public abstract string GetLaunchArgs { get; }
+
+        /*
+        
+        Put game manager logic here
+
+         */
+    }
+
+    public class Rayman2_Win32 : RCPWin32Game
+    {
+        public override Games Game { get; }
+
+        public override string DisplayName { get; }
+
+        public override string BackupName { get; }
+
+        public override string GetLaunchName { get; }
+
+        public override string GetLaunchArgs { get; }
+    }
+
+    public static class RCPHelpers
+    {
+        private static Dictionary<Games, Dictionary<GameType, Type>> GameGenerator { get; } = new Dictionary<Games, Dictionary<GameType, Type>>()
+        {
+            {
+                Games.Rayman2,
+                new Dictionary<GameType, Type>()
+                {
+                    {
+                        GameType.Win32,
+                        typeof(Rayman2_Win32)
+                    }
+                }
+            }
+        };
+
+        public static RCPGame GetGame(Games game, GameType type)
+        {
+            return GameGenerator[game][type].CreateInstance<RCPGame>();
+        }
     }
 }

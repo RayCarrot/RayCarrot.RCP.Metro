@@ -179,7 +179,7 @@
                                                   ToolTip="{Resx Backup_Restore}"
                                                   IsEnabled="{Binding Path=CanRestore}"/>
 
-                                <mah:ProgressRing Visibility="{Binding Path=ShowBackupRestoreIndicator, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                                <mah:ProgressRing Visibility="{Binding Path=ShowBackupRestoreIndicator, Converter={rwpf:BooleanToVisibilityHiddenConverter}}" />
 
                             </StackPanel>
 

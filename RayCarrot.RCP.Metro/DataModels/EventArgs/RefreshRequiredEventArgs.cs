@@ -41,7 +41,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="gameInfoModified">Indicates if the game info for a game has been modified, such as the game install directory</param>
         public RefreshRequiredEventArgs(IEnumerable<Games> modifiedGames, bool gameCollectionModified, bool launchInfoModified, bool backupsModified, bool gameInfoModified)
         {
-            ModifiedGames = modifiedGames.ToArray();
+            ModifiedGames = modifiedGames?.ToArray() ?? new Games[0];
             GameCollectionModified = gameCollectionModified;
             LaunchInfoModified = launchInfoModified;
             BackupsModified = backupsModified;

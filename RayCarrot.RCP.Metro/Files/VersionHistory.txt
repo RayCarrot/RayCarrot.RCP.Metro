@@ -1,17 +1,19 @@
-﻿-----   Version 5.1.0 - August ??, 2019   -----
-• Educational Rayman games are now supported
-• Rabbids Big Bang is now supported
+﻿-----   Version 6.0.0 - September ??, 2019   -----
+• Educational Rayman games, Rayman Raving Rabbids 2, Rabbids Go Home (DVD release) and Rabbids Big Bang are now supported
+• A mod manager has been added for Rayman Origins and Rayman Legends, allowing mods to be downloaded and applied
+• Backups for all installed versions of Rayman Fiesta Run are now supported without changing the default version
 • 
 
 Other changes:
-• Backups for all installed versions of Rayman Fiesta Run are now supported without changing the default version
 • The list box in the Rayman Legends UbiRay utility now consists of radio buttons for clarity when selecting
 • Dialog windows now center the main window
 • The legacy data converter has been removed
 • Increased the width in the backup page
 • Normalized the font size in the help page
 • Minor changes to how the widescreen patch is applied for Rayman 2
-• Debug loggers are now longer available by default, improving the application performance (they can be enabled using a launch argument or by attaching a debugger)
+• Session logging is now limited when not debugging to decrease the application memory usage
+• Added new debug options
+• Removed the upcoming features section from the debug page
 • Major code changes to how games are handled and the application refreshes
 • Bug fixes
 

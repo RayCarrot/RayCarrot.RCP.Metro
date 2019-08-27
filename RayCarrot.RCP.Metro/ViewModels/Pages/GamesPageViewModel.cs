@@ -89,15 +89,18 @@ namespace RayCarrot.RCP.Metro
 
             using (await AsyncLock.LockAsync())
             {
-                // Make sure the game has been added
-                if (!game.IsAdded())
-                    throw new Exception("Only added games can be refreshed individually");
+                await Application.Current.Dispatcher.InvokeAsync(() =>
+                {
+                    // Make sure the game has been added
+                    if (!game.IsAdded())
+                        throw new Exception("Only added games can be refreshed individually");
 
-                // Get the collection containing the game
-                var collection = InstalledGames.Any(x => x.Key == game) ? InstalledGames : NotInstalledGames;
+                    // Get the collection containing the game
+                    var collection = InstalledGames.Any(x => x.Key == game) ? InstalledGames : NotInstalledGames;
 
-                // Refresh the game
-                collection[collection.FindItemIndex(x => x.Key == game)] = new KeyValuePair<Games, GameDisplayViewModel>(game, game.GetDisplayViewModel());
+                    // Refresh the game
+                    collection[collection.FindItemIndex(x => x.Key == game)] = new KeyValuePair<Games, GameDisplayViewModel>(game, game.GetDisplayViewModel());
+                });
             }
 
             RCFCore.Logger?.LogInformationSource($"The displayed game {game} has been refreshed");
@@ -113,23 +116,26 @@ namespace RayCarrot.RCP.Metro
 
             using (await AsyncLock.LockAsync())
             {
-                InstalledGames.Clear();
-                NotInstalledGames.Clear();
-
-                // Enumerate each game
-                foreach (Games game in RCFRCP.App.GetGames)
+                await Application.Current.Dispatcher.InvokeAsync(() =>
                 {
-                    // Check if it has been added
-                    if (game.IsAdded())
-                        // Add the game to the collection
-                        InstalledGames.Add(new KeyValuePair<Games, GameDisplayViewModel>(game, game.GetDisplayViewModel()));
-                    else
-                        NotInstalledGames.Add(new KeyValuePair<Games, GameDisplayViewModel>(game, game.GetDisplayViewModel()));
-                }
+                    InstalledGames.Clear();
+                    NotInstalledGames.Clear();
 
-                // Update flags
-                AnyInstalledGames = InstalledGames.Any();
-                AnyNotInstalledGames = NotInstalledGames.Any();
+                    // Enumerate each game
+                    foreach (Games game in RCFRCP.App.GetGames)
+                    {
+                        // Check if it has been added
+                        if (game.IsAdded())
+                            // Add the game to the collection
+                            InstalledGames.Add(new KeyValuePair<Games, GameDisplayViewModel>(game, game.GetDisplayViewModel()));
+                        else
+                            NotInstalledGames.Add(new KeyValuePair<Games, GameDisplayViewModel>(game, game.GetDisplayViewModel()));
+                    }
+
+                    // Update flags
+                    AnyInstalledGames = InstalledGames.Any();
+                    AnyNotInstalledGames = NotInstalledGames.Any();
+                });
             }
 
             RCFCore.Logger?.LogInformationSource($"The displayed games have been refreshed");

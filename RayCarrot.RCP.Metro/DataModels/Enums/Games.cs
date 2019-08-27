@@ -55,7 +55,15 @@
         /// </summary>
         RaymanRavingRabbids,
 
-        // RabbidsGoHome
+        /// <summary>
+        /// Rayman Raving Rabbids 2
+        /// </summary>
+        RaymanRavingRabbids2,
+
+        /// <summary>
+        /// Rabbids Go Home
+        /// </summary>
+        RabbidsGoHome,
 
         /// <summary>
         /// Rayman Origins

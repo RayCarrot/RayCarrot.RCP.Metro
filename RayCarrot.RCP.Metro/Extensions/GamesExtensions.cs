@@ -200,6 +200,12 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanRavingRabbids:
                     return "Rayman Raving Rabbids";
 
+                case Games.RaymanRavingRabbids2:
+                    return "Rayman Raving Rabbids 2";
+
+                case Games.RabbidsGoHome:
+                    return "Rabbids Go Home";
+
                 case Games.RaymanOrigins:
                     return "Rayman Origins";
 
@@ -260,6 +266,12 @@ namespace RayCarrot.RCP.Metro
 
                 case Games.RaymanRavingRabbids:
                     return "Rayman Raving Rabbids";
+
+                case Games.RaymanRavingRabbids2:
+                    return "Rayman Raving Rabbids 2";
+
+                case Games.RabbidsGoHome:
+                    return "Rabbids Go Home";
 
                 case Games.RaymanOrigins:
                     return "Rayman Origins";
@@ -561,6 +573,18 @@ namespace RayCarrot.RCP.Metro
                         new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "SettingsApplication.exe")
                     };
 
+                case Games.RaymanRavingRabbids2:
+                    return new GameFileLink[]
+                    {
+                        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "SettingsApplication.exe")
+                    };
+
+                //case Games.RabbidsGoHome:
+                //    return new GameFileLink[]
+                //    {
+                //        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "Launcher.exe")
+                //    };
+
                 default:
                     return new GameFileLink[0];
             }
@@ -601,6 +625,17 @@ namespace RayCarrot.RCP.Metro
 
                 case Games.RaymanRavingRabbids:
                     return "CheckApplication.exe";
+
+                case Games.RaymanRavingRabbids2:
+                    return "Autorun.exe";
+
+                //
+                //  The main .exe file (LyN_f.exe) can be launched individually by using the following launch command structure
+                //  "RGH_defrag.bf" /binload/fe /lang/en /vsync /fullscreen /res1920x1080 /versionIndex:5
+                //  Main big file - Unknown  -  Language - V-Sync - Fullscreen - Resolution - Version (1-4 = 4 lvl CD releases, 5 = 16 lvl DVD release)
+                //
+                case Games.RabbidsGoHome:
+                    return "Launcher.exe";
 
                 case Games.RaymanOrigins:
                     return "Rayman Origins.exe";
@@ -649,6 +684,8 @@ namespace RayCarrot.RCP.Metro
                 case Games.RaymanM:
                 case Games.RaymanArena:
                 case Games.Rayman3:
+                case Games.RaymanRavingRabbids2:
+                case Games.RabbidsGoHome:
                     return new GameTypeSelectionResult()
                     {
                         CanceledByUser = false,
@@ -942,6 +979,17 @@ namespace RayCarrot.RCP.Metro
 
                     return dirs;
 
+                case Games.RaymanRavingRabbids2:
+                    return new List<BackupDir>()
+                    {
+                        new BackupDir()
+                        {
+                            DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "RRR2"),
+                            SearchOption = SearchOption.TopDirectoryOnly,
+                            ID = "0"
+                        }
+                    };
+
                 case Games.RaymanOrigins:
                     return new List<BackupDir>()
                     {
@@ -970,7 +1018,7 @@ namespace RayCarrot.RCP.Metro
                     return game.GetGameManager<WinStoreGameManager>().GetWinStoreBackupDirs(game.GetLaunchName());
 
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(game), game, null);
+                    return null;
             }
         }
 
