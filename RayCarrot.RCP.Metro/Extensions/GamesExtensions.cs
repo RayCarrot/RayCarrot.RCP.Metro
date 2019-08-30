@@ -89,6 +89,9 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The saved game info</returns>
         public static GameInfo GetInfo(this Games game)
         {
+            if (!RCFRCP.Data.Games.ContainsKey(game))
+                throw new Exception($"The requested game {game} has not been added");
+
             return RCFRCP.Data.Games[game];
         }
 
@@ -465,7 +468,11 @@ namespace RayCarrot.RCP.Metro
                     };
 
                 case Games.Rayman2:
-                    return new Rayman2_Win32().GetGamePurchaseLinks;
+                    return new List<GamePurchaseLink>()
+                    {
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_2_the_great_escape"),
+                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-2--the-great-escape/56c4947e88a7e300458b465c.html")
+                    };
 
                 case Games.Rayman3:
                     return new List<GamePurchaseLink>()
@@ -538,7 +545,12 @@ namespace RayCarrot.RCP.Metro
                     };
 
                 case Games.Rayman2:
-                    return new Rayman2_Win32().GetGameFileLinks;
+                    return new GameFileLink[]
+                    {
+                        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "GXSetup.exe"),
+                        new GameFileLink(Resources.GameLink_R2nGlide, info.InstallDirectory + "nglide_config.exe"),
+                        new GameFileLink(Resources.GameLink_R2dgVoodoo, info.InstallDirectory + "dgVoodooCpl.exe")
+                    };
 
                 case Games.RaymanM:
                     return new GameFileLink[]
@@ -727,7 +739,7 @@ namespace RayCarrot.RCP.Metro
                     return new DosBoxConfig(game);
 
                 case Games.Rayman2:
-                    return new Rayman2_Win32().ConfigUI;
+                    return new Rayman2Config();
 
                 case Games.RaymanM:
                 case Games.RaymanArena:
@@ -909,7 +921,21 @@ namespace RayCarrot.RCP.Metro
                     };
 
                 case Games.Rayman2:
-                    return new Rayman2_Win32().GetBackupDirectories;
+                    return new List<BackupDir>()
+                    {
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory + "Data" + "SaveGame",
+                            SearchOption = SearchOption.AllDirectories,
+                            ID = "0"
+                        },
+                        new BackupDir()
+                        {
+                            DirPath = gameInfo.InstallDirectory + "Data" + "Options",
+                            SearchOption = SearchOption.AllDirectories,
+                            ID = "1"
+                        },
+                    };
 
                 case Games.Rayman3:
                     return new List<BackupDir>()

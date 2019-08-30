@@ -26,7 +26,7 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Protected Overrides Properties
+        #region Public Overrides Properties
 
         /// <summary>
         /// The display name for the game type
@@ -68,8 +68,8 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogInformationSource($"The selected install directory for {Game} is not valid");
 
             await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
-            return null;
 
+            return null;
         }
 
         /// <summary>

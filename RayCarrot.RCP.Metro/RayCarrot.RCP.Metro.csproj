@@ -115,6 +115,9 @@
       <DependentUpon>RabbidsGoHomeConfig.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModels\RabbidsGoHomeLaunchData.cs" />
+    <Compile Include="RCPGames\Win32\Rayman2_Win32.cs" />
+    <Compile Include="RCPGames\Win32\RCPWin32Game.cs" />
+    <Compile Include="RCPGames\RCPGame.cs" />
     <Compile Include="ViewModels\Config\RabbidsGoHomeConfigViewModel.cs" />
     <Compile Include="Controls\UserControls\Options\RavingRabbids2Options.xaml.cs">
       <DependentUpon>RavingRabbids2Options.xaml</DependentUpon>
@@ -776,6 +779,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Files\RaymanLegends\" />
+    <Folder Include="RCPGames\Steam\" />
+    <Folder Include="RCPGames\Win32\DOSBox\EducationalDOSBox\" />
+    <Folder Include="RCPGames\WinStore\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Costura.Fody">

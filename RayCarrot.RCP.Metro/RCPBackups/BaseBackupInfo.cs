@@ -21,7 +21,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="backupLocation"></param>
         /// <param name="backupDirectories"></param>
         /// <param name="displayName"></param>
-        public BaseBackupInfo(FileSystemPath compressedBackupLocation, FileSystemPath backupLocation, List<BackupDir> backupDirectories, string displayName)
+        public BaseBackupInfo(FileSystemPath compressedBackupLocation, FileSystemPath backupLocation, IList<BackupDir> backupDirectories, string displayName)
         {
             CompressedBackupLocation = compressedBackupLocation;
             BackupLocation = backupLocation;
@@ -56,7 +56,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The backup directories
         /// </summary>
-        public List<BackupDir> BackupDirectories { get; }
+        public IList<BackupDir> BackupDirectories { get; }
 
         #endregion
 
@@ -108,10 +108,7 @@ namespace RayCarrot.RCP.Metro
             if (backupInfo == null)
                 return null;
 
-            return new BaseBackupInfo(RCFRCP.App.GetCompressedBackupFile(backupName),
-                RCFRCP.App.GetBackupDir(backupName),
-                backupInfo,
-                game.GetDisplayName());
+            return new BaseBackupInfo(RCFRCP.App.GetCompressedBackupFile(backupName), RCFRCP.App.GetBackupDir(backupName), backupInfo, game.GetDisplayName());
         }
 
         #endregion

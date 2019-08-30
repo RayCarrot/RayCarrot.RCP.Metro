@@ -31,6 +31,6 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The backup directories
         /// </summary>
-        List<BackupDir> BackupDirectories { get; }
+        IList<BackupDir> BackupDirectories { get; }
     }
 }

@@ -191,8 +191,8 @@ namespace RayCarrot.RCP.Metro
                 case 0x1C:
                     return Key.Return;
 
-                //case 0x1D:
-                //    return "LCONTROL";
+                case 0x1D:
+                    return Key.LeftCtrl;
 
                 case 0x1E:
                     return Key.A;

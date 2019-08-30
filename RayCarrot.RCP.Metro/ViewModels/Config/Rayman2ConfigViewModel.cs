@@ -470,7 +470,7 @@ namespace RayCarrot.RCP.Metro
                     var items = KeyItems.
                         // Get only the ones that have changed
                         Where(x => x.NewKey != x.OriginalKey).
-                        // Convert to a ket mapping item
+                        // Convert to a key mapping item
                         Select(x => new KeyMappingItem(R2ButtonMappingManager.GetKeyCode(x.OriginalKey), R2ButtonMappingManager.GetKeyCode(x.NewKey))).
                         // Convert to a list
                         ToList();
