@@ -119,7 +119,7 @@
 
     <!-- Default toggle switch -->
 
-    <Style TargetType="{x:Type mah:ToggleSwitch}" BasedOn="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" />
+    <Style TargetType="mah:ToggleSwitch" BasedOn="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" />
 
     <!-- Default radio button extended -->
 

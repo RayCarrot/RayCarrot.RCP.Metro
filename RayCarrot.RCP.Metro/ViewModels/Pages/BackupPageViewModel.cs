@@ -24,20 +24,29 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public BackupPageViewModel()
         {
+            // Create commands
             RefresCommand = new AsyncRelayCommand(RefreshAsync);
             BackupAllCommand = new AsyncRelayCommand(BackupAllAsync);
 
+            // Create properties
             AsyncLock = new AsyncLock();
             GameBackupItems = new ObservableCollection<GameBackupItemViewModel>();
 
+            // Enable collection synchronization
             BindingOperations.EnableCollectionSynchronization(GameBackupItems, Application.Current);
 
+            // Refresh on app refresh
             App.RefreshRequired += async (s, e) =>
             {
                 if (e.BackupsModified || e.GameCollectionModified)
                     await RefreshAsync();
             };
+
+            // Refresh on culture changed
             RCFCore.Data.CultureChanged += async (s, e) => await RefreshAsync();
+
+            // Refresh on startup
+            Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();
         }
 
         #endregion

@@ -88,6 +88,8 @@ namespace RayCarrot.RCP.Metro
             FiestaRunVersion = FiestaRunEdition.Default;
             DisableDowngradeWarning = false;
             EducationalDosBoxGames = null;
+            RRR2LaunchMode = RRR2LaunchMode.AllGames;
+            RabbidsGoHomeLaunchData = null;
         }
 
         #endregion
@@ -307,6 +309,16 @@ namespace RayCarrot.RCP.Metro
         /// The saved educational DOSBox games
         /// </summary>
         public List<EducationalDosBoxGameInfo> EducationalDosBoxGames { get; set; }
+
+        /// <summary>
+        /// The launch mode to use for Rayman Raving Rabbids 2
+        /// </summary>
+        public RRR2LaunchMode RRR2LaunchMode { get; set; }
+
+        /// <summary>
+        /// The launch data for Rabbids Go Home
+        /// </summary>
+        public RabbidsGoHomeLaunchData RabbidsGoHomeLaunchData { get; set; }
 
         #endregion
 

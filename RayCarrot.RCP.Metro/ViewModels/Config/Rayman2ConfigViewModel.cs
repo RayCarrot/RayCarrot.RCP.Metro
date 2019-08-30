@@ -56,6 +56,22 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Private Constants
+
+        private const string GLI_DllFile_DirectX = "GliDX6";
+
+        private const string GLI_Dll_DirectX = "DirectX6";
+
+        private const string GLI_Driver_DirectX = "display";
+
+        private const string GLI_Device_DirectX = "Direct3D HAL";
+
+        private const string GLI_DllFile_nGlide = "GliVd1";
+
+        private const string GLI_Dll_nGlide = "Glide2";
+
+        #endregion
+
         #region Private Fields
 
         private int _resX;
@@ -69,6 +85,16 @@ namespace RayCarrot.RCP.Metro
         private bool _controllerSupport;
 
         private R2Languages _currentLanguage;
+
+        private R2GraphicsMode _selectedGraphicsMode;
+
+        private string _gliDllFile;
+
+        private string _gliDll;
+
+        private string _gliDriver;
+
+        private string _gliDevice;
 
         #endregion
 
@@ -179,9 +205,83 @@ namespace RayCarrot.RCP.Metro
         public ObservableCollection<R2KeyItemViewModel> KeyItems { get; }
 
         /// <summary>
-        /// Indicates if dinput hacks are allowed
+        /// The currently selected graphics mode
         /// </summary>
-        public bool AllowDinputHack { get; set; }
+        public R2GraphicsMode SelectedGraphicsMode
+        {
+            get => _selectedGraphicsMode;
+            set
+            {
+                _selectedGraphicsMode = value;
+
+                if (SelectedGraphicsMode == R2GraphicsMode.DirectX)
+                {
+                    GLI_DllFile = GLI_DllFile_DirectX;
+                    GLI_Dll = GLI_Dll_DirectX;
+                    GLI_Driver = GLI_Driver_DirectX;
+                    GLI_Device = GLI_Device_DirectX;
+                }
+                else if (SelectedGraphicsMode == R2GraphicsMode.nGlide)
+                {
+                    GLI_DllFile = GLI_DllFile_nGlide;
+                    GLI_Dll = GLI_Dll_nGlide;
+                    GLI_Driver = String.Empty;
+                    GLI_Device = String.Empty;
+                }
+            }
+        }
+
+        /// <summary>
+        /// The GLI_DllFile field
+        /// </summary>
+        public string GLI_DllFile
+        {
+            get => _gliDllFile;
+            set
+            {
+                _gliDllFile = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
+        /// The GLI_Dll field
+        /// </summary>
+        public string GLI_Dll
+        {
+            get => _gliDll;
+            set
+            {
+                _gliDll = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
+        /// The GLI_Driver field
+        /// </summary>
+        public string GLI_Driver
+        {
+            get => _gliDriver;
+            set
+            {
+                _gliDriver = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
+        /// The GLI_Device field
+        /// </summary>
+        public string GLI_Device
+        {
+            get => _gliDevice;
+            set
+            {
+                _gliDevice = value;
+                UnsavedChanges = true;
+            }
+        }
 
         #endregion
 
@@ -216,6 +316,16 @@ namespace RayCarrot.RCP.Metro
             }
 
             CurrentLanguage = ConfigData.FormattedLanguage ?? R2Languages.English;
+
+            GLI_DllFile = ConfigData.GLI_DllFile;
+            GLI_Dll = ConfigData.GLI_Dll;
+            GLI_Driver = ConfigData.GLI_Driver;
+            GLI_Device = ConfigData.GLI_Device;
+
+            SetGraphicsMode();
+
+            if (!CanModifyGame)
+                return;
 
             // Check if the aspect ratio has been modified
             if (await GetIsWidescreenHackAppliedAsync() == true)
@@ -289,12 +399,11 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogInformationSource($"The ubi.ini path has been retrieved as {ConfigPath}");
 
             // Get the dinput type
-            var dt = GetCurrentDinput();
+            var dt = CanModifyGame ? GetCurrentDinput() : R2Dinput.Unknown;
 
             RCFCore.Logger?.LogInformationSource($"The dinput type has been retrieved as {dt}");
 
             ControllerSupport = dt == R2Dinput.Controller;
-            AllowDinputHack = dt != R2Dinput.Unknown;
 
             // If the file does not exist, create a new one
             if (!ConfigPath.FileExists)
@@ -330,6 +439,9 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task OnSaveAsync()
         {
+            if (!CanModifyGame)
+                return;
+
             // Set the aspect ratio
             await SetAspectRatioAsync();
 
@@ -519,6 +631,33 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// Sets the graphics mode based on the graphics settings
+        /// </summary>
+        private void SetGraphicsMode()
+        {
+            if (GLI_DllFile.Equals(GLI_DllFile_DirectX, StringComparison.InvariantCultureIgnoreCase) &&
+                GLI_Dll.Equals(GLI_Dll_DirectX, StringComparison.InvariantCultureIgnoreCase) &&
+                GLI_Driver.Equals(GLI_Driver_DirectX, StringComparison.InvariantCultureIgnoreCase) &&
+                GLI_Device.Equals(GLI_Device_DirectX, StringComparison.InvariantCultureIgnoreCase))
+            {
+                _selectedGraphicsMode = R2GraphicsMode.DirectX;
+            }
+            else if (GLI_DllFile.Equals(GLI_DllFile_nGlide, StringComparison.InvariantCultureIgnoreCase) &&
+                     GLI_Dll.Equals(GLI_Dll_nGlide, StringComparison.InvariantCultureIgnoreCase) &&
+                     GLI_Driver.IsNullOrEmpty() &&
+                     GLI_Device.IsNullOrEmpty())
+            {
+                _selectedGraphicsMode = R2GraphicsMode.nGlide;
+            }
+            else
+            {
+                _selectedGraphicsMode = R2GraphicsMode.Custom;
+            }
+
+            OnPropertyChanged(nameof(SelectedGraphicsMode));
+        }
+
         #endregion
 
         #region Private Static Methods
@@ -678,7 +817,7 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Enum
+        #region Public Enums
 
         /// <summary>
         /// The available types of Rayman 2 dinput.dll file
@@ -704,6 +843,27 @@ namespace RayCarrot.RCP.Metro
             /// Unknown
             /// </summary>
             Unknown
+        }
+
+        /// <summary>
+        /// The available pre-set Rayman 2 graphics modes
+        /// </summary>
+        public enum R2GraphicsMode
+        {
+            /// <summary>
+            /// DirectX
+            /// </summary>
+            DirectX,
+
+            /// <summary>
+            /// nGlide
+            /// </summary>
+            nGlide,
+            
+            /// <summary>
+            /// Custom
+            /// </summary>
+            Custom
         }
 
         #endregion

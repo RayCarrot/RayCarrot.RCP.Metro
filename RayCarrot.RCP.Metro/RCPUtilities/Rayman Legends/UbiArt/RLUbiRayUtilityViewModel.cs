@@ -153,7 +153,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Applying RL UbiRay patch");
-                await RCFUI.MessageUI.DisplayMessageAsync(ex.Message, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex);
             }
         }
 

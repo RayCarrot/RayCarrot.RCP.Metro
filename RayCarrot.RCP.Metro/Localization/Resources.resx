@@ -1425,7 +1425,7 @@ gameDisplayName</comment>
     <value>Uninstall Complete</value>
   </data>
   <data name="R1U_TPLSUninstallError" xml:space="preserve">
-    <value>An error occurred uninstalling. Error message: {0}</value>
+    <value>An error occurred when uninstalling</value>
     <comment>Arguments:
 exceptionMessage</comment>
   </data>
@@ -1692,9 +1692,7 @@ RCFRegistryBaseKeyPath</comment>
 -reset (Resets all app data before launch)
 -install {filePath} (Removes the installer from the specified path - no longer used as of version 4.5.0)
 -ul {userLevel} (Sets the user level once the framework is built)
--loglevel {logLevel} (Sets the log level to log, default is Information)
--debugLoggers (Specifies that debug loggers should be included)
-</value>
+-loglevel {logLevel} (Sets the log level to log, default is Information)</value>
   </data>
   <data name="Help_RCP_DebugHeader" xml:space="preserve">
     <value>Debugging</value>
@@ -2701,5 +2699,19 @@ Hold L1 + R1 in the menu (or equivalent on the currently used controller), then 
   </data>
   <data name="EducationalOptions_EditSuccess" xml:space="preserve">
     <value>The game has been edited successfully</value>
+  </data>
+  <data name="App_ExceptionMessage" xml:space="preserve">
+    <value>{0}
+
+Error message: {1}</value>
+    <comment>Arguments:
+message
+exceptionMessage</comment>
+  </data>
+  <data name="App_ExceptionMessageDefaultHeader" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
+    <value>An error has occured.</value>
   </data>
 </root>

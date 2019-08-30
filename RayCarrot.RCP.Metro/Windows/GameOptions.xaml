@@ -103,20 +103,21 @@
                         <StackPanel Orientation="Horizontal"
                                     Visibility="{Binding Path=CanChangeLaunchMode, Converter={rwpf:BooleanToVisibilityConverter}}">
 
+                            <i:Interaction.Behaviors>
+                                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
+                            </i:Interaction.Behaviors>
+
                             <rwpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsInvoker}"
                                                       IsChecked="{Binding Path=LaunchMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AsInvoker}"
-                                                      ToolTip="{Resx GameOptions_LaunchMode_AsInvokerInfo}"
-                                                      Margin="0 0 8 0" />
+                                                      ToolTip="{Resx GameOptions_LaunchMode_AsInvokerInfo}" />
 
                             <rwpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdminOption}"
                                                       IsChecked="{Binding Path=LaunchMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AsAdminOption}"
-                                                      ToolTip="{Resx GameOptions_LaunchMode_AsAdminOptionInfo}"
-                                                      Margin="0 0 8 0" />
+                                                      ToolTip="{Resx GameOptions_LaunchMode_AsAdminOptionInfo}" />
 
                             <rwpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsAdmin}"
                                                       IsChecked="{Binding Path=LaunchMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AsAdmin}"
-                                                      ToolTip="{Resx GameOptions_LaunchMode_AsAdminInfo}"
-                                                      Margin="0 0 8 0" />
+                                                      ToolTip="{Resx GameOptions_LaunchMode_AsAdminInfo}" />
 
                         </StackPanel>
 

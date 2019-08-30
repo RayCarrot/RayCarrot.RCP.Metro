@@ -12,8 +12,7 @@
                     IsTabStop="False"
                     mc:Ignorable="d"
                     d:DesignWidth="800"
-                    d:DataContext="{d:DesignInstance local:BackupPageViewModel}"
-                    Loaded="BackupPage_OnLoaded">
+                    d:DataContext="{d:DesignInstance local:BackupPageViewModel}">
     <ScrollViewer x:Name="BackupPageScrollViewer"
                   Padding="15" 
                   Grid.IsSharedSizeScope="True"
@@ -110,7 +109,7 @@
             </Grid>
 
             <ItemsControl DataContext="{Binding Path=GameBackupItems}" 
-                          ItemsSource="{Binding}">
+                          ItemsSource="{Binding IsAsync=True}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0 0 0 15">

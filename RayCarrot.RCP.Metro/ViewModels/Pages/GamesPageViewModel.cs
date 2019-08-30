@@ -23,13 +23,16 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public GamesPageViewModel()
         {
+            // Create properties
             AsyncLock = new AsyncLock();
             InstalledGames = new ObservableCollection<KeyValuePair<Games, GameDisplayViewModel>>();
             NotInstalledGames = new ObservableCollection<KeyValuePair<Games, GameDisplayViewModel>>();
 
+            // Enable collection synchronization
             BindingOperations.EnableCollectionSynchronization(InstalledGames, Application.Current);
             BindingOperations.EnableCollectionSynchronization(NotInstalledGames, Application.Current);
 
+            // Refresh on app refresh
             App.RefreshRequired += async (s, e) =>
             {
                 if (e.LaunchInfoModified && e.ModifiedGames?.Any() == true)
@@ -39,7 +42,12 @@ namespace RayCarrot.RCP.Metro
                 else if (e.LaunchInfoModified || e.GameCollectionModified)
                     await RefreshAsync();
             };
+
+            // Refresh on culture changed
             RCFCore.Data.CultureChanged += async (s, e) => await RefreshAsync();
+
+            // Refresh on startup
+            Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();
         }
 
         #endregion
@@ -89,7 +97,7 @@ namespace RayCarrot.RCP.Metro
 
             using (await AsyncLock.LockAsync())
             {
-                await Application.Current.Dispatcher.InvokeAsync(() =>
+                await Task.Run(() =>
                 {
                     // Make sure the game has been added
                     if (!game.IsAdded())
@@ -116,10 +124,13 @@ namespace RayCarrot.RCP.Metro
 
             using (await AsyncLock.LockAsync())
             {
-                await Application.Current.Dispatcher.InvokeAsync(() =>
+                await Task.Run(() =>
                 {
                     InstalledGames.Clear();
                     NotInstalledGames.Clear();
+
+                    AnyInstalledGames = false;
+                    AnyNotInstalledGames = false;
 
                     // Enumerate each game
                     foreach (Games game in RCFRCP.App.GetGames)
@@ -127,14 +138,16 @@ namespace RayCarrot.RCP.Metro
                         // Check if it has been added
                         if (game.IsAdded())
                             // Add the game to the collection
+                        {
                             InstalledGames.Add(new KeyValuePair<Games, GameDisplayViewModel>(game, game.GetDisplayViewModel()));
+                            AnyInstalledGames = true;
+                        }
                         else
+                        {
                             NotInstalledGames.Add(new KeyValuePair<Games, GameDisplayViewModel>(game, game.GetDisplayViewModel()));
+                            AnyNotInstalledGames = true;
+                        }
                     }
-
-                    // Update flags
-                    AnyInstalledGames = InstalledGames.Any();
-                    AnyNotInstalledGames = NotInstalledGames.Any();
                 });
             }
 

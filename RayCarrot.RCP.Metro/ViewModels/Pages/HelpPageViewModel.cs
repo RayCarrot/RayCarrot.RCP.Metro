@@ -37,6 +37,12 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void Refresh()
         {
+            var time = new Stopwatch();
+
+            time.Start();
+
+            RCFCore.Logger?.LogInformationSource("The help items are refreshing...");
+
             HelpItems = new ObservableCollection<HelpItemViewModel>()
             {
                 // Rayman Control Panel
@@ -336,6 +342,11 @@ namespace RayCarrot.RCP.Metro
                     }
                 }
             };
+
+            time.Stop();
+
+            RCFCore.Logger?.LogInformationSource("The help items have refreshed");
+            RCFCore.Logger?.LogDebugSource($"The help items refresh time was {time.ElapsedMilliseconds} ms");
         }
 
         /// <summary>

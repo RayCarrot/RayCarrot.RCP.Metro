@@ -36,6 +36,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="minUserLevel">The minimum user level for the action</param>
         public ActionItemViewModel(string header, ImageSource iconSource, ICommand command, UserLevel minUserLevel = UserLevel.Normal)
         {
+            iconSource?.Freeze();
+
             Header = header;
             IconSource = iconSource;
             Command = command;

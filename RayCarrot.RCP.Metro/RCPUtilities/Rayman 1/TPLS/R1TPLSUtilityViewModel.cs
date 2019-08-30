@@ -127,7 +127,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Uninstalling TPLS");
-                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.R1U_TPLSUninstallError, ex.Message), Resources.R1U_TPLSUninstallErrorHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_TPLSUninstallError, Resources.R1U_TPLSUninstallErrorHeader);
             }
         }
 

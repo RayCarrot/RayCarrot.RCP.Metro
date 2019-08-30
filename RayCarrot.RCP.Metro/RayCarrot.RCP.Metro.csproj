@@ -108,11 +108,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\AdminButton.xaml.cs">
+      <DependentUpon>AdminButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserControls\Config\RabbidsGoHomeConfig.xaml.cs">
+      <DependentUpon>RabbidsGoHomeConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataModels\RabbidsGoHomeLaunchData.cs" />
+    <Compile Include="ViewModels\Config\RabbidsGoHomeConfigViewModel.cs" />
+    <Compile Include="Controls\UserControls\Options\RavingRabbids2Options.xaml.cs">
+      <DependentUpon>RavingRabbids2Options.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RCPBackups\BaseBackupInfo.cs" />
     <Compile Include="RCPBackups\IBackupInfo.cs" />
     <Compile Include="Controls\Dialogs\EducationalDosGameEditDialog.xaml.cs">
       <DependentUpon>EducationalDosGameEditDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataModels\Enums\RRR2LaunchMode.cs" />
     <Compile Include="ViewModels\Dialogs\EducationalDosGameEditResult.cs" />
     <Compile Include="ViewModels\Dialogs\EducationalDosGameEditViewModel.cs" />
     <Compile Include="Controls\OneWayToggleButton.cs" />
@@ -144,6 +156,10 @@
     <Compile Include="DataModels\Enums\FiestaRunEdition.cs" />
     <Compile Include="DataModels\Enums\PopupPromptResult.cs" />
     <Compile Include="DataModels\Enums\Pages.cs" />
+    <Page Include="Controls\AdminButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Dialogs\EducationalDosGameEditDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -172,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\UserControls\Config\RabbidsGoHomeConfig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\UserControls\Config\Ray_Origins_Legends_Config.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -189,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\UserControls\Options\EducationalDosOptions.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\UserControls\Options\RavingRabbids2Options.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -799,7 +823,7 @@
       <Version>0.8.6</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.1.1</Version>
+      <Version>3.1.3</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.CarrotFramework">
       <Version>3.0.4</Version>
@@ -823,7 +847,7 @@
       <Version>2.0.1</Version>
     </PackageReference>
     <PackageReference Include="XamlAnimatedGif">
-      <Version>1.2.1</Version>
+      <Version>1.2.2</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -172,9 +172,16 @@
 
                 </StackPanel>
 
-                <CheckBox Content="{Resx Config_EnableNativeController}"
-                          IsChecked="{Binding Path=ControllerSupport}"
-                          IsEnabled="{Binding Path=AllowDinputHack}"/>
+                <StackPanel Orientation="Horizontal">
+
+                    <local:AdminButton Visibility="{Binding Path=CanModifyGame, Converter={rwpf:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                                       Margin="0 0 5 0" />
+
+                    <CheckBox Content="{Resx Config_EnableNativeController}"
+                              IsChecked="{Binding Path=ControllerSupport}"
+                              IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}"/>
+
+                </StackPanel>
 
                 <TextBlock Text="{Resx Config_ControllerVertical}" 
                            Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"/>

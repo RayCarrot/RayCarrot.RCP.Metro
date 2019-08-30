@@ -1467,4 +1467,19 @@ Notícias:
   <data name="LinksPage_LinkAlignmentStyle_Left" xml:space="preserve">
     <value>Izquierda</value>
   </data>
+  <data name="Cheats_R2_SkipMoviesTitle" xml:space="preserve">
+    <value>Saltar cinemáticos</value>
+  </data>
+  <data name="Cheats_R2_LoadingScreensTitle" xml:space="preserve">
+    <value>Nuevas pantallas de carga</value>
+  </data>
+  <data name="Cheats_R2_NoMurfyTitle" xml:space="preserve">
+    <value>Desactivar Murfy</value>
+  </data>
+  <data name="Cheats_R2_TotASecretTitle" xml:space="preserve">
+    <value>Acceder el área oculta en el Tumbo de los Antiguos</value>
+  </data>
+  <data name="Cheats_R2_MenezisTitle" xml:space="preserve">
+    <value>Acceder Menezis</value>
+  </data>
 </root>

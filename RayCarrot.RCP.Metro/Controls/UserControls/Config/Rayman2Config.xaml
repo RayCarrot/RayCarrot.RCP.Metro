@@ -63,9 +63,15 @@
                               ToolTip="{Resx Config_LockResInfo}"
                               IsChecked="{Binding Path=LockToScreenRes}" />
 
-                    <CheckBox Content="{Resx Config_WidescreenSupport}"
-                              ToolTip="{Resx Config_WidescreenSupportInfo}"
-                              IsChecked="{Binding Path=WidescreenSupport}" />
+                    <StackPanel Orientation="Horizontal">
+                        <local:AdminButton Visibility="{Binding Path=CanModifyGame, Converter={rwpf:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                                           Margin="0 0 5 0" />
+
+                        <CheckBox Content="{Resx Config_WidescreenSupport}"
+                                  ToolTip="{Resx Config_WidescreenSupportInfo}"
+                                  IsChecked="{Binding Path=WidescreenSupport}" 
+                                  IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}"/>
+                    </StackPanel>
 
                 </WrapPanel>
 
@@ -109,9 +115,94 @@
 
                 </StackPanel>
 
-                <CheckBox Content="{Resx Config_EnableNativeController}"
-                          IsChecked="{Binding Path=ControllerSupport}"
-                          IsEnabled="{Binding Path=AllowDinputHack}" />
+                <StackPanel Orientation="Horizontal">
+                    <local:AdminButton Visibility="{Binding Path=CanModifyGame, Converter={rwpf:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                                       Margin="0 0 5 0" />
+
+                    <CheckBox Content="{Resx Config_EnableNativeController}"
+                              IsChecked="{Binding Path=ControllerSupport}"
+                              IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
+
+                </StackPanel>
+
+                <!-- TODO: Localize -->
+
+                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                           Text="Graphics" />
+
+                <WrapPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
+                    </i:Interaction.Behaviors>
+
+                    <rwpf:RadioButtonExtended Content="DirectX"
+                                              IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=DirectX}"/>
+
+                    <rwpf:RadioButtonExtended Content="nGlide"
+                                              IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=nGlide}" />
+
+                    <rwpf:RadioButtonExtended Content="Custom"
+                                              IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Custom}" />
+
+                </WrapPanel>
+
+                <Grid Visibility="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Custom}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" MinWidth="110" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Padding" Value="0 0 10 0" />
+                        </Style>
+                    </Grid.Resources>
+
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                    </i:Interaction.Behaviors>
+
+                    <TextBlock Grid.Column="0"
+                               Grid.Row="0"
+                               Text="GLI_DllFile"/>
+
+                    <TextBox Grid.Column="1"
+                             Grid.Row="0"
+                             Text="{Binding Path=GLI_DllFile}" />
+
+                    <TextBlock Grid.Column="0"
+                               Grid.Row="1"
+                               Text="GLI_Dll"/>
+
+                    <TextBox Grid.Column="1"
+                             Grid.Row="1"
+                             Text="{Binding Path=GLI_Dll}" />
+
+                    <TextBlock Grid.Column="0"
+                               Grid.Row="2"
+                               Text="GLI_Driver"/>
+
+                    <TextBox Grid.Column="1"
+                             Grid.Row="2"
+                             Text="{Binding Path=GLI_Driver}" />
+
+                    <TextBlock Grid.Column="0"
+                               Grid.Row="3"
+                               Text="GLI_Device"/>
+
+                    <TextBox Grid.Column="1"
+                             Grid.Row="3"
+                             Text="{Binding Path=GLI_Device}" />
+
+                </Grid>
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
@@ -121,7 +212,7 @@
 
                 </StackPanel>
 
-                <Grid IsEnabled="{Binding Path=AllowDinputHack}">
+                <Grid IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}">
                     <DataGrid ItemsSource="{Binding Path=KeyItems}"
                               IsEnabled="{Binding Path=ControllerSupport, Converter={rwpf:InvertedBooleanConverter}}"
                               AutoGenerateColumns="False"

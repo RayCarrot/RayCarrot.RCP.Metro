@@ -25,6 +25,9 @@ Rayman M, Rayman Arena and Rayman 3 have their configuration saved in two ubi.in
 #### Rayman Raving Rabbids
 Rayman Raving Rabbids stores its data in the Registry. Most of the values can be changed from within the game, thus they are not available in the configuration tool.
 
+#### Rabbids Go Home
+Rabbids Go Home sends the config as launch arguments when launching the game. As an option in the configuration this can be done in the Rayman Control Panel, allowing for a custom configuration.
+
 #### Rayman Origins/Legends
 Rayman Origins and Rayman Legends both store their data in the Registry.
 
@@ -82,6 +85,7 @@ The Rayman Control Panel uses these main dependencies:
 - [Infralution.Localization.Wpf](https://www.codeproject.com/Articles/35159/WPF-Localization-Using-RESX-Files)
 - [Resource.Embedder](https://github.com/MarcStan/Resource.Embedder)
 - [Hardcodet.NotifyIcon.Wpf](http://www.hardcodet.net/wpf-notifyicon)
+- [gong-wpf-dragdrop](https://github.com/punker76/gong-wpf-dragdrop)
 
 ## Localization
 Starting with version 4.1.0 the Rayman Control Panel will support localization.

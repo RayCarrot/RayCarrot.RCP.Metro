@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.RavingRabbids2Options"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+             mc:Ignorable="d">
+    <StackPanel>
+        <i:Interaction.Behaviors>
+            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+        </i:Interaction.Behaviors>
+
+        <StackPanel Orientation="Horizontal">
+
+            <!-- TODO: Localize -->
+
+            <TextBlock Style="{StaticResource HeaderTextBlock}"
+                       Text="Game mode" />
+
+            <local:InfoIcon Text="The game mode determines which sets of minigames are available in the game. Certain editions of the game are limited to a specific game mode, while others support all of them. If an error occurs when launching the game, try changing the game mode." />
+
+        </StackPanel>
+
+        <ComboBox SelectedIndex="{Binding Source={x:Static local:RCFRCP.Data}, Path=RRR2LaunchMode, Converter={rwpf:EnumToIntConverter}}"
+                  HorizontalAlignment="Left">
+
+            <!-- TODO: Localize -->
+
+            <TextBlock Text="All games" />
+
+            <TextBlock Text="Orange" />
+
+            <TextBlock Text="Red" />
+
+            <TextBlock Text="Green" />
+
+            <TextBlock Text="Blue" />
+
+        </ComboBox>
+
+    </StackPanel>
+</UserControl>

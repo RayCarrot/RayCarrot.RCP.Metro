@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.AdminButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
+    <Button Style="{StaticResource FlatButton}"
+            ToolTip="{Resx Settings_AdminInfo}"
+            Command="{Binding Path=RequestRestartAsAdminCommand, Source={x:Static local:RCFRCP.App}}">
+
+        <iconPacks:PackIconMaterial Background="Transparent"
+                                    Kind="Security"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Width="16"
+                                    Height="16"/>
+
+    </Button>
+</UserControl>

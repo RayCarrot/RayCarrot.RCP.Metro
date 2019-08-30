@@ -439,7 +439,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="game">The game to get the links for</param>
         /// <returns>The collection of game links</returns>
-        public static List<GamePurchaseLink> GetGamePurchaseLinks(this Games game)
+        public static IList<GamePurchaseLink> GetGamePurchaseLinks(this Games game)
         {
             switch (game)
             {
@@ -465,11 +465,7 @@ namespace RayCarrot.RCP.Metro
                     };
 
                 case Games.Rayman2:
-                    return new List<GamePurchaseLink>()
-                    {
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_2_the_great_escape"),
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-2--the-great-escape/56c4947e88a7e300458b465c.html")
-                    };
+                    return new Rayman2_Win32().GetGamePurchaseLinks;
 
                 case Games.Rayman3:
                     return new List<GamePurchaseLink>()
@@ -529,7 +525,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="game">The game to get the links for</param>
         /// <returns>The collection of game links</returns>
-        public static GameFileLink[] GetGameFileLinks(this Games game)
+        public static IList<GameFileLink> GetGameFileLinks(this Games game)
         {
             var info = game.GetInfo();
 
@@ -542,12 +538,7 @@ namespace RayCarrot.RCP.Metro
                     };
 
                 case Games.Rayman2:
-                    return new GameFileLink[]
-                    {
-                        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "GXSetup.exe"),
-                        new GameFileLink(Resources.GameLink_R2nGlide, info.InstallDirectory + "nglide_config.exe"),
-                        new GameFileLink(Resources.GameLink_R2dgVoodoo, info.InstallDirectory + "dgVoodooCpl.exe")
-                    };
+                    return new Rayman2_Win32().GetGameFileLinks;
 
                 case Games.RaymanM:
                     return new GameFileLink[]
@@ -627,15 +618,10 @@ namespace RayCarrot.RCP.Metro
                     return "CheckApplication.exe";
 
                 case Games.RaymanRavingRabbids2:
-                    return "Autorun.exe";
+                    return "Jade.exe";
 
-                //
-                //  The main .exe file (LyN_f.exe) can be launched individually by using the following launch command structure
-                //  "RGH_defrag.bf" /binload/fe /lang/en /vsync /fullscreen /res1920x1080 /versionIndex:5
-                //  Main big file - Unknown  -  Language - V-Sync - Fullscreen - Resolution - Version (1-4 = 4 lvl CD releases, 5 = 16 lvl DVD release)
-                //
                 case Games.RabbidsGoHome:
-                    return "Launcher.exe";
+                    return RCFRCP.Data.RabbidsGoHomeLaunchData == null ? "Launcher.exe" : "LyN_f.exe";
 
                 case Games.RaymanOrigins:
                     return "Rayman Origins.exe";
@@ -741,7 +727,7 @@ namespace RayCarrot.RCP.Metro
                     return new DosBoxConfig(game);
 
                 case Games.Rayman2:
-                    return new Rayman2Config();
+                    return new Rayman2_Win32().ConfigUI;
 
                 case Games.RaymanM:
                 case Games.RaymanArena:
@@ -750,6 +736,9 @@ namespace RayCarrot.RCP.Metro
 
                 case Games.RaymanRavingRabbids:
                     return new RaymanRavingRabbidsConfig();
+
+                case Games.RabbidsGoHome:
+                    return new RabbidsGoHomeConfig();
 
                 case Games.RaymanOrigins:
                 case Games.RaymanLegends:
@@ -775,6 +764,9 @@ namespace RayCarrot.RCP.Metro
                 case Games.EducationalDos:
                     return new EducationalDosOptions();
 
+                case Games.RaymanRavingRabbids2:
+                    return new RavingRabbids2Options();
+
                 default:
                     return null;
             }
@@ -785,7 +777,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="game">The game to get the backup info for</param>
         /// <returns>The game backup info</returns>
-        public static List<BackupDir> GetBackupInfo(this Games game)
+        public static IList<BackupDir> GetBackupInfo(this Games game)
         {
             // Get the game info
             var gameInfo = game.GetInfo();
@@ -917,21 +909,7 @@ namespace RayCarrot.RCP.Metro
                     };
 
                 case Games.Rayman2:
-                    return new List<BackupDir>()
-                    {
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory + "Data\\SaveGame",
-                            SearchOption = SearchOption.AllDirectories,
-                            ID = "0"
-                        },
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory + "Data\\Options",
-                            SearchOption = SearchOption.AllDirectories,
-                            ID = "1"
-                        },
-                    };
+                    return new Rayman2_Win32().GetBackupDirectories;
 
                 case Games.Rayman3:
                     return new List<BackupDir>()

@@ -60,6 +60,19 @@ namespace RayCarrot.RCP.Metro
             if (RCFRCP.Data.WindowState != null)
                 RCFRCP.Data.WindowState.ApplyToWindow(window);
 
+            bool hasLoaded = false;
+
+            // Refresh when the main window loads for the first time
+            window.Loaded += async (s, e) =>
+            {
+                if (hasLoaded)
+                    return;
+
+                hasLoaded = true;
+
+                await (StartupComplete?.RaiseAsync(this, new EventArgs()) ?? Task.CompletedTask);
+            };
+
             return window;
         }
 
@@ -159,6 +172,10 @@ namespace RayCarrot.RCP.Metro
                 return Task.CompletedTask;
             };
             RCFCore.Data.CultureChanged += (s, e) => RefreshJumpList();
+
+            // Subscribe to when the app has finished setting up
+            StartupComplete += App_StartupCompleteAsync;
+            StartupComplete += App_StartupComplete2Async;
 
             // Listen to data binding logs
             WPFTraceListener.Setup(LogLevel.Warning);
@@ -466,8 +483,12 @@ namespace RayCarrot.RCP.Metro
                 Data.DisableDowngradeWarning = false;
             }
 
-            if (Data.LastVersion < new Version(5, 1, 0, 0))
+            if (Data.LastVersion < new Version(6, 0, 0, 0))
+            {
                 Data.EducationalDosBoxGames = null;
+                Data.RRR2LaunchMode = RRR2LaunchMode.AllGames;
+                Data.RabbidsGoHomeLaunchData = null;
+            }
 
             // Re-deploy files
             await RCFRCP.App.DeployFilesAsync(true);
@@ -568,8 +589,73 @@ namespace RayCarrot.RCP.Metro
                         await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun, false, false, false, true));
 
                         break;
+
+                    case nameof(AppUserData.RRR2LaunchMode):
+                        await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, false, false, false, true));
+                        break;
                 }
             }
+        }
+
+        private async Task App_StartupCompleteAsync(object sender, EventArgs eventArgs)
+        {
+            // Set up the secret code manager
+            SecretCodeManager.Setup();
+
+            // Check for installed games
+            if (RCFRCP.Data.AutoLocateGames)
+                await RCFRCP.App.RunGameFinderAsync();
+        }
+
+        private async Task App_StartupComplete2Async(object sender, EventArgs eventArgs)
+        {
+            if (CommonPaths.UpdaterFilePath.FileExists)
+            {
+                int retryTime = 0;
+
+                // Wait until we can write to the file (i.e. it closing after an update)
+                while (!RCFRCP.File.CheckFileWriteAccess(CommonPaths.UpdaterFilePath))
+                {
+                    retryTime++;
+
+                    // Try for 2 seconds first
+                    if (retryTime < 20)
+                    {
+                        RCFCore.Logger?.LogDebugSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
+
+                        await Task.Delay(100);
+                    }
+                    // Now it's taking a long time... Try for 10 more seconds
+                    else if (retryTime < 70)
+                    {
+                        RCFCore.Logger?.LogWarningSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
+
+                        await Task.Delay(200);
+                    }
+                    // Give up and let the deleting of the file give an error message
+                    else
+                    {
+                        RCFCore.Logger?.LogCriticalSource($"The updater can not be removed due to not having write access");
+                        break;
+                    }
+                }
+
+                try
+                {
+                    // Remove the updater
+                    RCFRCP.File.DeleteFile(CommonPaths.UpdaterFilePath);
+
+                    RCFCore.Logger?.LogInformationSource($"The updater has been removed");
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleCritical("Removing updater");
+                }
+            }
+
+            // Check for updates
+            if (RCFRCP.Data.AutoUpdate)
+                await RCFRCP.App.CheckForUpdatesAsync(false);
         }
 
         #endregion
@@ -647,6 +733,15 @@ namespace RayCarrot.RCP.Metro
         /// The current application
         /// </summary>
         public new static App Current => Application.Current as App;
+
+        #endregion
+
+        #region Event
+
+        /// <summary>
+        /// Occurs on startup, after the main window has been loaded
+        /// </summary>
+        public event AsyncEventHandler<EventArgs> StartupComplete; 
 
         #endregion
     }

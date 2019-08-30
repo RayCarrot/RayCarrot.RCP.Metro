@@ -8,6 +8,7 @@
                     xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     IsTabStop="False"
                     mc:Ignorable="d"    
@@ -270,10 +271,8 @@
 
                     <StackPanel Orientation="Horizontal">
 
-                        <local:InfoIcon IconKind="Security" 
-                                        Margin="0 0 5 0"
-                                        Text="{Resx Settings_AdminInfo}"
-                                        Visibility="{Binding Path=CanEditShowUnderInstalledPrograms, Converter={rwpf:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"/>
+                        <local:AdminButton Visibility="{Binding Path=CanEditShowUnderInstalledPrograms, Converter={rwpf:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                                           Margin="0 0 5 0" />
 
                         <CheckBox Content="{Resx Settings_ShowUnderInstalledPrograms}"
                                   IsChecked="{Binding Path=Data.ShowUnderInstalledPrograms}"

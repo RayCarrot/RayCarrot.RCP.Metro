@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -40,7 +41,9 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                IconSource = LocalLinkPath.GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource();
+                var image = LocalLinkPath.GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource();
+                image.Freeze();
+                IconSource = image;
             }
             catch (Exception ex)
             {
@@ -67,7 +70,9 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                IconSource = new FileSystemPath(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "regedit.exe")).GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource();
+                var image = new FileSystemPath(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "regedit.exe")).GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource();
+                image.Freeze();
+                IconSource = image;
             }
             catch (Exception ex)
             {
@@ -95,11 +100,14 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                var bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.UriSource = new Uri("https://www.google.com/s2/favicons?domain=" + ExternalLinkPath);
-                bitmapImage.EndInit();
-                IconSource = bitmapImage;
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    var bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.UriSource = new Uri("https://www.google.com/s2/favicons?domain=" + ExternalLinkPath);
+                    bitmapImage.EndInit();
+                    IconSource = bitmapImage;
+                });
             }
             catch (Exception ex)
             {
@@ -119,7 +127,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The icon image source
         /// </summary>
-        public ImageSource IconSource { get; }
+        public ImageSource IconSource { get; set; }
 
         /// <summary>
         /// The local link path

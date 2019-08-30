@@ -239,11 +239,6 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        /// <summary>
-        /// Indicates if dinput hacks are allowed
-        /// </summary>
-        public bool AllowDinputHack { get; set; }
-
         #endregion
 
         #region Protected Override Methods
@@ -255,11 +250,10 @@ namespace RayCarrot.RCP.Metro
         protected override async Task OnSetupAsync()
         {
             // Get the current dinput type
-            var dinputType = GetCurrentDinput();
+            var dinputType = CanModifyGame ? GetCurrentDinput() : DinputType.Unknown;
 
             RCFCore.Logger?.LogInformationSource($"The dinput type has been retrieved as {dinputType}");
 
-            AllowDinputHack = dinputType != DinputType.Unknown;
             ControllerSupport = dinputType == DinputType.Controller;
 
             // If the primary config file does not exist, create a new one
@@ -328,37 +322,40 @@ namespace RayCarrot.RCP.Metro
                 }
             }
 
-            try
+            if (CanModifyGame)
             {
-                // Get the current dinput type
-                var dt = GetCurrentDinput();
-                var path = GetDinputPath();
-
-                RCFCore.Logger?.LogInformationSource($"The dinput type has been retrieved as {dt}");
-
-                if (ControllerSupport)
+                try
                 {
-                    if (dt != DinputType.Controller)
+                    // Get the current dinput type
+                    var dt = GetCurrentDinput();
+                    var path = GetDinputPath();
+
+                    RCFCore.Logger?.LogInformationSource($"The dinput type has been retrieved as {dt}");
+
+                    if (ControllerSupport)
                     {
-                        if (dt != DinputType.None)
-                            // Attempt to delete existing dinput file
-                            File.Delete(path);
+                        if (dt != DinputType.Controller)
+                        {
+                            if (dt != DinputType.None)
+                                // Attempt to delete existing dinput file
+                                File.Delete(path);
 
-                        // Write controller patch
-                        File.WriteAllBytes(path, Files.dinput8_controller);
+                            // Write controller patch
+                            File.WriteAllBytes(path, Files.dinput8_controller);
+                        }
                     }
-                }
-                else if (dt == DinputType.Controller)
-                {
-                    // Attempt to delete existing dinput file
-                    File.Delete(path);
-                }
+                    else if (dt == DinputType.Controller)
+                    {
+                        // Attempt to delete existing dinput file
+                        File.Delete(path);
+                    }
 
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError($"Saving {Game.GetDisplayName()} dinput hack data");
-                throw;
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError($"Saving {Game.GetDisplayName()} dinput hack data");
+                    throw;
+                }
             }
 
             return Task.CompletedTask;

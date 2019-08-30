@@ -379,6 +379,35 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}
+        ///
+        ///Error message: {1}.
+        /// </summary>
+        public static string App_ExceptionMessage {
+            get {
+                return ResourceManager.GetString("App_ExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string App_ExceptionMessageDefaultHeader {
+            get {
+                return ResourceManager.GetString("App_ExceptionMessageDefaultHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error has occured..
+        /// </summary>
+        public static string App_ExceptionMessageDefaultMessage {
+            get {
+                return ResourceManager.GetString("App_ExceptionMessageDefaultMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The application does not have the required permissions for this operation. Restart the app as administrator?.
         /// </summary>
         public static string App_RequiresAdminQuestion {
@@ -5736,7 +5765,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred uninstalling. Error message: {0}.
+        ///   Looks up a localized string similar to An error occurred when uninstalling.
         /// </summary>
         public static string R1U_TPLSUninstallError {
             get {

@@ -21,7 +21,7 @@
 
         <TreeView x:Name="HelpTreeView"
                   Grid.Column="0"
-                  ItemsSource="{Binding Path=HelpItems}">
+                  ItemsSource="{Binding Path=HelpItems, IsAsync=True}">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Path=SubItems}">
                     <TextBlock Text="{Binding Path=DisplayHeader}"

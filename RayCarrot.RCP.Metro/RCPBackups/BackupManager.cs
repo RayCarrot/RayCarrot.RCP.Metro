@@ -204,8 +204,8 @@ namespace RayCarrot.RCP.Metro
                     {
                         RCFCore.Logger?.LogInformationSource($"Backup failed - backup location lacks write access");
 
-                        if (await RCFUI.MessageUI.DisplayMessageAsync(Resources.App_RequiresAdminQuestion, Resources.Backup_FailedHeader, MessageType.Error, true))
-                            await RCFRCP.App.RestartAsAdminAsync();
+                        // Request to restart as admin
+                        await RCFRCP.App.RequestRestartAsAdminAsync();
 
                         return false;
                     }
@@ -345,8 +345,8 @@ namespace RayCarrot.RCP.Metro
                     {
                         RCFCore.Logger?.LogInformationSource($"Restore failed - one or more restore destinations lack write access");
 
-                        if (await RCFUI.MessageUI.DisplayMessageAsync(Resources.App_RequiresAdminQuestion, Resources.Restore_FailedHeader, MessageType.Error, true))
-                            await RCFRCP.App.RestartAsAdminAsync();
+                        // Request to restart as admin
+                        await RCFRCP.App.RequestRestartAsAdminAsync();
 
                         return false;
                     }

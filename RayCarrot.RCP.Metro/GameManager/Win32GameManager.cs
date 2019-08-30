@@ -78,7 +78,14 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The launch info</returns>
         public override GameLaunchInfo GetLaunchInfo()
         {
-            return new GameLaunchInfo(Info.InstallDirectory + Game.GetLaunchName(), null);
+            string args = null;
+
+            if (Game == Games.RaymanRavingRabbids2)
+                args = $"/{RCFRCP.Data.RRR2LaunchMode.ToString().ToLower()} /B Rrr2.bf";
+            else if (Game == Games.RabbidsGoHome)
+                args = RCFRCP.Data.RabbidsGoHomeLaunchData?.ToString();
+
+            return new GameLaunchInfo(Info.InstallDirectory + Game.GetLaunchName(), args);
         }
 
         /// <summary>
@@ -119,6 +126,18 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <returns>The icon resource path</returns>
         public override string GetIconResourcePath() => GetLaunchInfo().Path;
+
+        /// <summary>
+        /// Gets called as soon as the game is removed
+        /// </summary>
+        /// <returns>The task</returns>
+        public override Task PostGameRemovedAsync()
+        {
+            if (Game == Games.RabbidsGoHome)
+                RCFRCP.Data.RabbidsGoHomeLaunchData = null;
+
+            return base.PostGameRemovedAsync();
+        }
 
         #endregion
     }

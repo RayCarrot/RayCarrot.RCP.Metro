@@ -177,31 +177,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to --- Utilities ---
-        ///- Separate utilities in code so they do not share the same view models. Abstract it by having methods which return a collection of utilities, all defined by an interface. Allow utilities to be loaded as plugins could be done using this through .dll files. Security is an issue - have user manually load them?
+        ///   Looks up a localized string similar to -----   Version 6.0.0 - September ??, 2019   -----
+        ///• Educational Rayman games, Rayman Raving Rabbids 2, Rabbids Go Home (DVD release) and Rabbids Big Bang are now supported
+        ///• A mod manager has been added for Rayman Origins and Rayman Legends, allowing mods to be downloaded and applied
+        ///• Backups for all installed versions of Rayman Fiesta Run are now supported without changing the default version
+        ///• Improved game icon quality
+        ///• 
         ///
-        ///- Rayman Legends debug commands (Uplay version only)
-        ///
-        ///- Add support for more utilities (R2 texture extract, .sna import/export etc.) - since these require additional executable du [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string UpcomingFeatures {
-            get {
-                return ResourceManager.GetString("UpcomingFeatures", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to -----   Version 4.6.0 - July ??, 2019   -----
-        ///• Added a splash screen
-        ///• Cheat codes are now displayed in grids for readability
-        ///• Added the option to change the link button alignment when in list view
-        ///• The installer will now warn if the selected install location is not valid due to missing write permission
-        ///
-        ///
-        ///-----   Version 4.5.1 - June 24, 2019   -----
-        ///• The install date for the program will now show the last update time rather than first install
-        ///• Updated referenced assemblies
-        ///• Fixed an error c [rest of string was truncated]&quot;;.
+        ///Other changes:
+        ///• The list box in the Rayman Legends UbiRay utility now c [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

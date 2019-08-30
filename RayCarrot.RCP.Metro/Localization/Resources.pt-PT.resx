@@ -1354,7 +1354,7 @@ Reiniciar?</value>
     <value>Desinstalação completa</value>
   </data>
   <data name="R1U_TPLSUninstallError" xml:space="preserve">
-    <value>Ocorreu um erro ao desinstalar. Mensagem de erro: {0}</value>
+    <value>Ocorreu um erro ao desinstalar</value>
   </data>
   <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
     <value>A desinstalação falhou</value>

@@ -30,7 +30,7 @@
                                 <DataTemplate>
                                     <local:GameDisplay DataContext="{Binding Path=Value}"
                                                        HorizontalAlignment="Left"
-                                                       Padding="10" />
+                                                       Padding="7 10" />
                                 </DataTemplate>
                             </Setter.Value>
                         </Setter>
@@ -61,7 +61,7 @@
                 </Grid>
 
                 <ItemsControl Style="{StaticResource GamesDisplay}"
-                              ItemsSource="{Binding Path=InstalledGames}" />
+                              ItemsSource="{Binding Path=InstalledGames, IsAsync=True}" />
 
                 <Grid Visibility="{Binding Path=AnyNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}">
                     <TextBlock Text="{Resx Games_NotInstalled}"
@@ -71,7 +71,7 @@
                 </Grid>
 
                 <ItemsControl Style="{StaticResource GamesDisplay}"
-                              ItemsSource="{Binding Path=NotInstalledGames}"
+                              ItemsSource="{Binding Path=NotInstalledGames, IsAsync=True}"
                               Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
             </StackPanel>
         </ScrollViewer>

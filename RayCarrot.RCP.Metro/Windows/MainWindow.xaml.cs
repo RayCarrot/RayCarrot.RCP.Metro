@@ -22,8 +22,7 @@ namespace RayCarrot.RCP.Metro
 
             // Subscribe to events
             RCFRCP.App.RefreshRequired += AppGameRefreshRequiredAsync;
-            Loaded += MainWindow_LoadedAsync;
-            Loaded += MainWindow_Loaded2Async;
+            Loaded += MainWindow_Loaded;
         }
 
         #endregion
@@ -48,71 +47,9 @@ namespace RayCarrot.RCP.Metro
             return Task.CompletedTask;
         }
 
-        private async void MainWindow_LoadedAsync(object sender, RoutedEventArgs e)
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            // Set up the secret code manager
-            SecretCodeManager.Setup();
-
-            await GamesPage.ViewModel.RefreshAsync();
             RefreshBackupPageEnabled();
-
-            // Save settings
-            await RCFRCP.App.SaveUserDataAsync();
-
-            // Check for installed games
-            if (RCFRCP.Data.AutoLocateGames)
-                await RCFRCP.App.RunGameFinderAsync();
-        }
-
-        private async void MainWindow_Loaded2Async(object sender, RoutedEventArgs e)
-        {
-            if (CommonPaths.UpdaterFilePath.FileExists)
-            {
-                int retryTime = 0;
-
-                // Wait until we can write to the file (i.e. it closing after an update)
-                while (!RCFRCP.File.CheckFileWriteAccess(CommonPaths.UpdaterFilePath))
-                {
-                    retryTime++;
-
-                    // Try for 2 seconds first
-                    if (retryTime < 20)
-                    {
-                        RCFCore.Logger?.LogDebugSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
-
-                        await Task.Delay(100);
-                    }
-                    // Now it's taking a long time... Try for 10 more seconds
-                    else if (retryTime < 70)
-                    {
-                        RCFCore.Logger?.LogWarningSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
-
-                        await Task.Delay(200);
-                    }
-                    // Give up and let the deleting of the file give an error message
-                    else
-                    {
-                        RCFCore.Logger?.LogCriticalSource($"The updater can not be removed due to not having write access");
-                        break;
-                    }
-                }
-
-                try
-                {
-                    // Remove the updater
-                    RCFRCP.File.DeleteFile(CommonPaths.UpdaterFilePath);
-
-                    RCFCore.Logger?.LogInformationSource($"The updater has been removed");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleCritical("Removing updater");
-                }
-            }
-
-            // Check for updates
-            if (RCFRCP.Data.AutoUpdate)
-                await RCFRCP.App.CheckForUpdatesAsync(false);
         }
 
         private void MinimizeToTrayButton_OnClick(object sender, RoutedEventArgs e)
