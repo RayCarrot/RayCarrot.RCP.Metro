@@ -580,10 +580,10 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="R1U_TPLSUninstall" xml:space="preserve">
     <value>Avinstallera</value>
   </data>
-  <data name="R1U_TPLSEnabled" xml:space="preserve">
+  <data name="SettingEnabled" xml:space="preserve">
     <value>Aktiverad</value>
   </data>
-  <data name="R1U_TPLSDisabled" xml:space="preserve">
+  <data name="SettingDisabled" xml:space="preserve">
     <value>Inaktiverad</value>
   </data>
   <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
@@ -610,7 +610,7 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="R2U_TranslationsInfo" xml:space="preserve">
     <value>När en inofficiell översättning tillämpas kommer det att ersätta ett av språken i spelet med det valda språket. I de flesta fall kommer det att vara engelska som ersätts. Ändringarna kan när som helst återställas genom att tillämpa originalversionen.</value>
   </data>
-  <data name="R2U_Apply" xml:space="preserve">
+  <data name="Utility_Apply" xml:space="preserve">
     <value>Tillämpa</value>
   </data>
   <data name="R3U_DirectPlayHeader" xml:space="preserve">
@@ -618,12 +618,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   </data>
   <data name="R3U_DirectPlayInfo" xml:space="preserve">
     <value>DirectPlay måste aktiveras för att kunna köra Rayman 3. Som standard är det vanligtvis inaktiverat i Windows 10.</value>
-  </data>
-  <data name="R3U_DirectPlayEnabled" xml:space="preserve">
-    <value>Aktiverad</value>
-  </data>
-  <data name="R3U_DirectPlayDisabled" xml:space="preserve">
-    <value>Inaktiverad</value>
   </data>
   <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
     <value>Ersätt infekterade filer</value>
@@ -655,9 +649,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="RLU_UbiRayWarning" xml:space="preserve">
     <value>VARNING: Det här verktyget är experimentellt och kan korrumpera din spelfil. Gör alltid en säkerhetskopia innan du använder verktyget.</value>
   </data>
-  <data name="RLU_Apply" xml:space="preserve">
-    <value>Tillämpa</value>
-  </data>
   <data name="ROU_HQVideosHeader" xml:space="preserve">
     <value>Högre kvalitet videor</value>
   </data>
@@ -678,12 +669,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   </data>
   <data name="ROU_DebugCommandsWarning" xml:space="preserve">
     <value>VARNING: Användning av dessa kommandon kan korrumpera din spelfil. Gör alltid en säkerhetskopia innan du använder dem.</value>
-  </data>
-  <data name="ROU_DebugCommandsEnabled" xml:space="preserve">
-    <value>Aktiverad</value>
-  </data>
-  <data name="ROU_DebugCommandsDisabled" xml:space="preserve">
-    <value>Inaktiverad</value>
   </data>
   <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
     <value>Osårbar</value>
@@ -807,15 +792,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   </data>
   <data name="File_ErrorLaunchingFile" xml:space="preserve">
     <value>Ett fel uppstod vid försök att starta {0}</value>
-  </data>
-  <data name="File_ShortcutCreated" xml:space="preserve">
-    <value>Genväg har skapats</value>
-  </data>
-  <data name="File_CreatingShortcutError" xml:space="preserve">
-    <value>Ett fel inträffade när genvägen skulle skapas</value>
-  </data>
-  <data name="File_CreatingShortcutErrorHeader" xml:space="preserve">
-    <value>Det gick inte att skapa genvägen</value>
   </data>
   <data name="File_LocationNotFound" xml:space="preserve">
     <value>Mappen kunde inte hittas</value>
@@ -1030,9 +1006,6 @@ Nyheter:
   <data name="Installer_Install" xml:space="preserve">
     <value>Installera</value>
   </data>
-  <data name="Installer_Cancel" xml:space="preserve">
-    <value>Avbryt</value>
-  </data>
   <data name="Installer_BrowseDiscHeader" xml:space="preserve">
     <value>Välj skiva att installera från</value>
   </data>
@@ -1076,12 +1049,6 @@ Försök igen?"</value>
   </data>
   <data name="Installer_CleanupError" xml:space="preserve">
     <value>Delar av installationen kunde inte tas bort och kvarstår under {0}</value>
-  </data>
-  <data name="Installer_CancelAlreadyRequested" xml:space="preserve">
-    <value>Operationen håller redan på att avbrytas</value>
-  </data>
-  <data name="Installer_CancelAlreadyRequestedHeader" xml:space="preserve">
-    <value>Operationen avbryts</value>
   </data>
   <data name="Installer_CancelQuestion" xml:space="preserve">
     <value>Vill du avbryta installationen?</value>
@@ -1144,11 +1111,107 @@ Starta om?</value>
   <data name="R2HotKeyValidation_InvalidKey" xml:space="preserve">
     <value>Tangenten är ogiltig</value>
   </data>
+  <data name="DosBoxCyclesValidation_InvalidFormat" xml:space="preserve">
+    <value>Cycles värdet är inte i ett giltigt format</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NullOrEmpty" xml:space="preserve">
+    <value>Cycles värdet kan inte vara tomt</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NonDigit" xml:space="preserve">
+    <value>Bara siffror kan användas när ett specifikt värde anges</value>
+  </data>
+  <data name="DosBoxResolutionValidation_NullOrEmpty" xml:space="preserve">
+    <value>Upplösningsvärdet kan inte vara tomt</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidFormat" xml:space="preserve">
+    <value>Ogiltigt format</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidCharacter" xml:space="preserve">
+    <value>Tecknet '{0}' är inte giltig</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MultipleSeparators" xml:space="preserve">
+    <value>Upplösningsseparatorn 'x' kan bara användas en gång</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MissingSeparator" xml:space="preserve">
+    <value>Upplösningsseparatorn 'x' måste användas</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
+    <value>En giltig höjd måste anges</value>
+  </data>
+  <data name="Config_InvalidUbiIni" xml:space="preserve">
+    <value>Ingen giltig ubi.ini fil kunde hittas och att skapa en ny misslyckades. Prova att köra programmet som administratör eller ändra mappbehörigheterna för följande sökväg: {0}</value>
+  </data>
+  <data name="Config_SaveError" xml:space="preserve">
+    <value>Ett fel uppstod när konfigurationen för {0} skulle sparas</value>
+  </data>
+  <data name="Config_SaveErrorHeader" xml:space="preserve">
+    <value>Fel vid sparning</value>
+  </data>
+  <data name="Config_DosBoxSaveError" xml:space="preserve">
+    <value>Ett fel uppstod när DOSBox-konfiguration skulle sparas</value>
+  </data>
+  <data name="Config_SaveSuccess" xml:space="preserve">
+    <value>Dina ändringar har sparats</value>
+  </data>
+  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
+    <value>Bildförhållandet kunde inte ställas in på grund av att spelet inte kunde hittas</value>
+  </data>
+  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
+    <value>Bildförhållandet kunde inte ställas in på grund av att spelet inte är av ett giltigt format</value>
+  </data>
+  <data name="R2Widescreen_Error" xml:space="preserve">
+    <value>Ett fel inträffade när bildförhållandet ändrades för Rayman 2</value>
+  </data>
+  <data name="Config_SaveRRRError" xml:space="preserve">
+    <value>Ett fel inträffade när konfigurationen för Rayman Raving Rabbid sparades</value>
+  </data>
+  <data name="SecretCodes_Konami" xml:space="preserve">
+    <value>Du har precis skrivit in Konami-koden! Njut av detta nya röda tema.</value>
+  </data>
+  <data name="SecretCodes_KonamiHeader" xml:space="preserve">
+    <value>Konami kod</value>
+  </data>
+  <data name="SecretCodes_RayCarrot" xml:space="preserve">
+    <value>Du har precis skrivit in RayCarrot-koden! Njut av detta nya orange tema.</value>
+  </data>
+  <data name="SecretCodes_RayCarrotHeader" xml:space="preserve">
+    <value>RayCarrot kod</value>
+  </data>
+  <data name="SecretCodes_Lime" xml:space="preserve">
+    <value>Du har precis skrivit in Lime-koden! Njut av detta nya lime-temat.</value>
+  </data>
+  <data name="SecretCodes_LimeHeader" xml:space="preserve">
+    <value>Lime kod</value>
+  </data>
+  <data name="SecretCodes_Secret" xml:space="preserve">
+    <value>Du har precis skrivit in den hemliga koden! Tyvärr så gör den ingenting.</value>
+  </data>
   <data name="SecretCodes_SecretHeader" xml:space="preserve">
     <value>Hemlig kod</value>
   </data>
+  <data name="GameInfo_LaunchPath" xml:space="preserve">
+    <value>Start-sökväg:</value>
+  </data>
+  <data name="GameInfo_LaunchArgs" xml:space="preserve">
+    <value>Startparametrar:</value>
+  </data>
   <data name="GameInfo_SteamID" xml:space="preserve">
     <value>Steam ID:</value>
+  </data>
+  <data name="GameInfo_GameType" xml:space="preserve">
+    <value>Speltyp:</value>
+  </data>
+  <data name="GameInfo_InstallDir" xml:space="preserve">
+    <value>Spel-sökväg:</value>
+  </data>
+  <data name="GameInfo_WinStoreDependencies" xml:space="preserve">
+    <value>Referenser</value>
+  </data>
+  <data name="GameInfo_WinStoreFullName" xml:space="preserve">
+    <value>Fullständigt namn</value>
+  </data>
+  <data name="GameInfo_WinStoreArchitecture" xml:space="preserve">
+    <value>Arkitektur</value>
   </data>
   <data name="GameInfo_WinStoreVersion" xml:space="preserve">
     <value>Version</value>
@@ -1156,14 +1219,35 @@ Starta om?</value>
   <data name="GameInfo_WinStoreInstallDate" xml:space="preserve">
     <value>Installerad</value>
   </data>
+  <data name="RemoveGameQuestion" xml:space="preserve">
+    <value>Är du säker på att du vill ta bort {0} från Rayman Kontrollpanelen? Det här kommer inte att ta bort spelet från din dator eller några av dess filer, inklusive säkerhetskopior som skapats med detta program.</value>
+  </data>
+  <data name="RemoveGameQuestionHeader" xml:space="preserve">
+    <value>Bekräfta borttagning</value>
+  </data>
+  <data name="GameShortcut_BrowseHeader" xml:space="preserve">
+    <value>Välj genvägsdestination</value>
+  </data>
   <data name="GameShortcut_ShortcutName" xml:space="preserve">
     <value>Starta {0}</value>
+  </data>
+  <data name="GameShortcut_Success" xml:space="preserve">
+    <value>Genväg har skapats</value>
+  </data>
+  <data name="GameShortcut_Error" xml:space="preserve">
+    <value>Genvägen kunde inte skapas</value>
+  </data>
+  <data name="GameShortcut_ErrorHeader" xml:space="preserve">
+    <value>Skapandet av genvägen misslyckades</value>
   </data>
   <data name="GameNotFound" xml:space="preserve">
     <value>Spelet {0} kunde inte hittas</value>
   </data>
   <data name="GameNotFoundHeader" xml:space="preserve">
     <value>Kunde inte hitta spel</value>
+  </data>
+  <data name="About_SpecialThanks" xml:space="preserve">
+    <value>Ett särskilt tack till AuToMaNiAk005, MixerX, ICUP321, PokGOT4N och alla andra Rayman fans!</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
     <value>Rayman 2 översättningar</value>
@@ -1182,6 +1266,12 @@ Starta om?</value>
   </data>
   <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
     <value>SVN Daum</value>
+  </data>
+  <data name="Download_OperationCanceling" xml:space="preserve">
+    <value>Operationen håller redan på att avbrytas</value>
+  </data>
+  <data name="Download_OperationCancelingHeader" xml:space="preserve">
+    <value>Operationen avbryts</value>
   </data>
   <data name="Download_SuccessHeader" xml:space="preserve">
     <value>Nedladdning har slutförts</value>
@@ -1553,100 +1643,22 @@ Starta om?</value>
   <data name="App_RestartAsAdmin" xml:space="preserve">
     <value>Starta om som administratör</value>
   </data>
-  <data name="SettingEnabled" xml:space="preserve">
-    <value>Aktiverad</value>
+  <data name="Lang_Dutch" xml:space="preserve">
+    <value>Holländska</value>
   </data>
-  <data name="SettingDisabled" xml:space="preserve">
-    <value>Inaktiverad</value>
+  <data name="RR2Options_GameMode_All" xml:space="preserve">
+    <value>Alla spel</value>
   </data>
-  <data name="Utility_Apply" xml:space="preserve">
-    <value>Tillämpa</value>
+  <data name="RR2Options_GameMode_Orange" xml:space="preserve">
+    <value>Orange</value>
   </data>
-  <data name="DosBoxCyclesValidation_InvalidFormat" xml:space="preserve">
-    <value>Cycles värdet är inte i ett giltigt format</value>
+  <data name="RR2Options_GameMode_Red" xml:space="preserve">
+    <value>Röd</value>
   </data>
-  <data name="DosBoxCyclesValidation_NullOrEmpty" xml:space="preserve">
-    <value>Cycles värdet kan inte vara tomt</value>
+  <data name="RR2Options_GameMode_Green" xml:space="preserve">
+    <value>Grön</value>
   </data>
-  <data name="DosBoxCyclesValidation_NonDigit" xml:space="preserve">
-    <value>Bara siffror kan användas när ett specifikt värde anges</value>
-  </data>
-  <data name="DosBoxResolutionValidation_NullOrEmpty" xml:space="preserve">
-    <value>Upplösningsvärdet kan inte vara tomt</value>
-  </data>
-  <data name="DosBoxResolutionValidation_InvalidFormat" xml:space="preserve">
-    <value>Ogiltigt format</value>
-  </data>
-  <data name="DosBoxResolutionValidation_InvalidCharacter" xml:space="preserve">
-    <value>Tecknet '{0}' är inte giltig</value>
-  </data>
-  <data name="DosBoxResolutionValidation_MultipleSeparators" xml:space="preserve">
-    <value>Upplösningsseparatorn 'x' kan bara användas en gång</value>
-  </data>
-  <data name="DosBoxResolutionValidation_MissingSeparator" xml:space="preserve">
-    <value>Upplösningsseparatorn 'x' måste användas</value>
-  </data>
-  <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
-    <value>En giltig höjd måste anges</value>
-  </data>
-  <data name="Config_InvalidUbiIni" xml:space="preserve">
-    <value>Ingen giltig ubi.ini fil kunde hittas och att skapa en ny misslyckades. Prova att köra programmet som administratör eller ändra mappbehörigheterna för följande sökväg: {0}</value>
-  </data>
-  <data name="Config_SaveError" xml:space="preserve">
-    <value>Ett fel uppstod när konfigurationen för {0} skulle sparas</value>
-  </data>
-  <data name="Config_SaveErrorHeader" xml:space="preserve">
-    <value>Fel vid sparning</value>
-  </data>
-  <data name="Config_DosBoxSaveError" xml:space="preserve">
-    <value>Ett fel uppstod när DOSBox-konfiguration skulle sparas</value>
-  </data>
-  <data name="Config_SaveSuccess" xml:space="preserve">
-    <value>Dina ändringar har sparats</value>
-  </data>
-  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
-    <value>Bildförhållandet kunde inte ställas in på grund av att spelet inte kunde hittas</value>
-  </data>
-  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
-    <value>Bildförhållandet kunde inte ställas in på grund av att spelet inte är av ett giltigt format</value>
-  </data>
-  <data name="R2Widescreen_Error" xml:space="preserve">
-    <value>Ett fel inträffade när bildförhållandet ändrades för Rayman 2</value>
-  </data>
-  <data name="Config_SaveRRRError" xml:space="preserve">
-    <value>Ett fel inträffade när konfigurationen för Rayman Raving Rabbid sparades</value>
-  </data>
-  <data name="SecretCodes_Konami" xml:space="preserve">
-    <value>Du har precis skrivit in Konami-koden! Njut av detta nya röda tema.</value>
-  </data>
-  <data name="SecretCodes_KonamiHeader" xml:space="preserve">
-    <value>Konami kod</value>
-  </data>
-  <data name="SecretCodes_RayCarrot" xml:space="preserve">
-    <value>Du har precis skrivit in RayCarrot-koden! Njut av detta nya orange tema.</value>
-  </data>
-  <data name="SecretCodes_RayCarrotHeader" xml:space="preserve">
-    <value>RayCarrot kod</value>
-  </data>
-  <data name="SecretCodes_Lime" xml:space="preserve">
-    <value>Du har precis skrivit in Lime-koden! Njut av detta nya lime-temat.</value>
-  </data>
-  <data name="SecretCodes_LimeHeader" xml:space="preserve">
-    <value>Lime kod</value>
-  </data>
-  <data name="SecretCodes_Secret" xml:space="preserve">
-    <value>Du har precis skrivit in den hemliga koden! Tyvärr så gör den ingenting.</value>
-  </data>
-  <data name="GameInfo_LaunchPath" xml:space="preserve">
-    <value>Start-sökväg:</value>
-  </data>
-  <data name="GameInfo_LaunchArgs" xml:space="preserve">
-    <value>Startparametrar:</value>
-  </data>
-  <data name="GameInfo_GameType" xml:space="preserve">
-    <value>Speltyp:</value>
-  </data>
-  <data name="GameInfo_InstallDir" xml:space="preserve">
-    <value>Spel-sökväg:</value>
+  <data name="RR2Options_GameMode_Blue" xml:space="preserve">
+    <value>Blå</value>
   </data>
 </root>

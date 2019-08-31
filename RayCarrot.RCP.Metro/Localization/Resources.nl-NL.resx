@@ -579,10 +579,10 @@
   <data name="R1U_TPLSUninstall" xml:space="preserve">
     <value>Deïnstalleren</value>
   </data>
-  <data name="R1U_TPLSEnabled" xml:space="preserve">
+  <data name="SettingEnabled" xml:space="preserve">
     <value>Ingeschakeld</value>
   </data>
-  <data name="R1U_TPLSDisabled" xml:space="preserve">
+  <data name="SettingDisabled" xml:space="preserve">
     <value>Uitgeschakeld</value>
   </data>
   <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
@@ -609,7 +609,7 @@
   <data name="R2U_TranslationsInfo" xml:space="preserve">
     <value>Het toepassen van niet-officiële vertalingen zorgt ervoor dat één van de in-game vertalingen vervangen wordt door de geselecteerde; in de meeste gevallen Engels. De wijzigingen kunnen op elk gewenst moment ongedaan worden gemaakt door de originele versie toe te passen.</value>
   </data>
-  <data name="R2U_Apply" xml:space="preserve">
+  <data name="Utility_Apply" xml:space="preserve">
     <value>Toepassen</value>
   </data>
   <data name="R3U_DirectPlayHeader" xml:space="preserve">
@@ -617,12 +617,6 @@
   </data>
   <data name="R3U_DirectPlayInfo" xml:space="preserve">
     <value>DirectPlay moet ingeschakeld zijn om Rayman 3 te kunnen spelen. DirectPlay is in Windows 10 in de meeste gevallen standaard uitgeschakeld.</value>
-  </data>
-  <data name="R3U_DirectPlayEnabled" xml:space="preserve">
-    <value>Ingeschakeld</value>
-  </data>
-  <data name="R3U_DirectPlayDisabled" xml:space="preserve">
-    <value>Uitgeschakeld</value>
   </data>
   <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
     <value>Vervang Geïnfecteerde Bestanden</value>
@@ -654,9 +648,6 @@
   <data name="RLU_UbiRayWarning" xml:space="preserve">
     <value>WAARSCHUWING: dit hulpprogramma is experimenteel en zou je save file corrupt kunnen maken. Maak daarom altijd eerst een back-up alvorens hier gebruik van te maken!</value>
   </data>
-  <data name="RLU_Apply" xml:space="preserve">
-    <value>Toepassen</value>
-  </data>
   <data name="ROU_HQVideosHeader" xml:space="preserve">
     <value>Hogere Kwaliteit Video's</value>
   </data>
@@ -677,12 +668,6 @@
   </data>
   <data name="ROU_DebugCommandsWarning" xml:space="preserve">
     <value>WAARSCHUWING: door gebruik te maken van deze debug commando's, kan de save file corrupt raken. Maak daarom altijd eerst een back-up alvorens ze te gebruiken!</value>
-  </data>
-  <data name="ROU_DebugCommandsEnabled" xml:space="preserve">
-    <value>Ingeschakeld</value>
-  </data>
-  <data name="ROU_DebugCommandsDisabled" xml:space="preserve">
-    <value>Uitgeschakeld</value>
   </data>
   <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
     <value>Onoverwinnelijkheid</value>
@@ -806,15 +791,6 @@
   </data>
   <data name="File_ErrorLaunchingFile" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens een startpoging {0}</value>
-  </data>
-  <data name="File_ShortcutCreated" xml:space="preserve">
-    <value>Snelkoppeling succesvol aangemaakt</value>
-  </data>
-  <data name="File_CreatingShortcutError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het aanmaken van een snelkoppeling</value>
-  </data>
-  <data name="File_CreatingShortcutErrorHeader" xml:space="preserve">
-    <value>Fout bij aanmaken snelkoppeling</value>
   </data>
   <data name="File_LocationNotFound" xml:space="preserve">
     <value>Locatie niet gevonden</value>
@@ -1029,9 +1005,6 @@ Nieuws:
   <data name="Installer_Install" xml:space="preserve">
     <value>Installeren</value>
   </data>
-  <data name="Installer_Cancel" xml:space="preserve">
-    <value>Annuleren</value>
-  </data>
   <data name="Installer_BrowseDiscHeader" xml:space="preserve">
     <value>Selecteer een schijfstation om vanaf te installeren</value>
   </data>
@@ -1075,12 +1048,6 @@ Opnieuw proberen?</value>
   </data>
   <data name="Installer_CleanupError" xml:space="preserve">
     <value>Een deel van de installatie kon niet opgeschoond worden in {0}</value>
-  </data>
-  <data name="Installer_CancelAlreadyRequested" xml:space="preserve">
-    <value>De bewerking wordt momenteel geannuleerd</value>
-  </data>
-  <data name="Installer_CancelAlreadyRequestedHeader" xml:space="preserve">
-    <value>Annuleerverzoek reeds ontvangen</value>
   </data>
   <data name="Installer_CancelQuestion" xml:space="preserve">
     <value>Wil je de installatie afbreken?</value>
@@ -1184,9 +1151,6 @@ Herstarten?</value>
   </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Je wijzigingen zijn opgeslagen</value>
-  </data>
-  <data name="Config_InvalidR2UbiIniFile" xml:space="preserve">
-    <value>Geen geldig ubi.ini bestand gevonden, en het aanmaken van een nieuw bestand is mislukt. Probeer het programma als administrator te starten of wijzig de maprechten voor de volgende paden: {0}</value>
   </data>
   <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
     <value>De aspectratio kon niet ingesteld worden vanwege het ontbreken van de executable van het spel</value>
@@ -2577,14 +2541,5 @@ Houd L1 + R1 (of gelijkwaardige knoppen op de huidige controller) in het menu va
   </data>
   <data name="App_RequiresAdminQuestion" xml:space="preserve">
     <value>De applicatie heeft niet de vereiste machtigingen voor deze bewerking. Wil je de app herstarten als administrator?</value>
-  </data>
-  <data name="SettingEnabled" xml:space="preserve">
-    <value>Ingeschakeld</value>
-  </data>
-  <data name="SettingDisabled" xml:space="preserve">
-    <value>Uitgeschakeld</value>
-  </data>
-  <data name="Utility_Apply" xml:space="preserve">
-    <value>Toepassen</value>
   </data>
 </root>

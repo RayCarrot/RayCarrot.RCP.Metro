@@ -182,7 +182,7 @@ namespace RayCarrot.RCP.Metro
         {
             if (CancellationTokenSource.IsCancellationRequested)
             {
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_CancelAlreadyRequested, Resources.Installer_CancelAlreadyRequestedHeader, MessageType.Information);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_OperationCanceling, Resources.Download_OperationCancelingHeader, MessageType.Information);
                 return;
             }
 

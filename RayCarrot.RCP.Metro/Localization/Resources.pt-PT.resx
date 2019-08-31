@@ -579,10 +579,10 @@
   <data name="R1U_TPLSUninstall" xml:space="preserve">
     <value>Desinstalar</value>
   </data>
-  <data name="R1U_TPLSEnabled" xml:space="preserve">
+  <data name="SettingEnabled" xml:space="preserve">
     <value>Activado</value>
   </data>
-  <data name="R1U_TPLSDisabled" xml:space="preserve">
+  <data name="SettingDisabled" xml:space="preserve">
     <value>Desactivado</value>
   </data>
   <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
@@ -609,7 +609,7 @@
   <data name="R2U_TranslationsInfo" xml:space="preserve">
     <value>Aplicar uma tradução não-oficial irá substituir uma das línguas implementadas no jogo pela seleccionada. Na maioria dos casos será a Inglesa. As alterações podem ser revertidas a qualquer momento ao aplicar a versão original.</value>
   </data>
-  <data name="R2U_Apply" xml:space="preserve">
+  <data name="Utility_Apply" xml:space="preserve">
     <value>Aplicar</value>
   </data>
   <data name="R3U_DirectPlayHeader" xml:space="preserve">
@@ -617,12 +617,6 @@
   </data>
   <data name="R3U_DirectPlayInfo" xml:space="preserve">
     <value>O DirectPlay necessita de estar activo de maneira a executar o Rayman 3. Está normalmente desactivado no Windows 10 por defeito.</value>
-  </data>
-  <data name="R3U_DirectPlayEnabled" xml:space="preserve">
-    <value>Activado</value>
-  </data>
-  <data name="R3U_DirectPlayDisabled" xml:space="preserve">
-    <value>Desactivado</value>
   </data>
   <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
     <value>Substituir ficheiros infectados</value>
@@ -654,9 +648,6 @@
   <data name="RLU_UbiRayWarning" xml:space="preserve">
     <value>AVISO: Este utilitário é experimental e poderá corromper o teu ficheiro de progresso. Faz sempre uma cópia de segurança antes de o utilizar.</value>
   </data>
-  <data name="RLU_Apply" xml:space="preserve">
-    <value>Aplicar</value>
-  </data>
   <data name="ROU_HQVideosHeader" xml:space="preserve">
     <value>Vídeos de maior qualidade</value>
   </data>
@@ -677,12 +668,6 @@
   </data>
   <data name="ROU_DebugCommandsWarning" xml:space="preserve">
     <value>AVISO: Utilizar estes comandos de depuração podem corromper o teu ficheiro de progresso. Faz sempre uma cópia de segurança antes de os utilizar.</value>
-  </data>
-  <data name="ROU_DebugCommandsEnabled" xml:space="preserve">
-    <value>Activado</value>
-  </data>
-  <data name="ROU_DebugCommandsDisabled" xml:space="preserve">
-    <value>Desactivado</value>
   </data>
   <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
     <value>Invencibilidade</value>
@@ -806,15 +791,6 @@
   </data>
   <data name="File_ErrorLaunchingFile" xml:space="preserve">
     <value>Ocorreu um erro quando se tentava executar o {0}</value>
-  </data>
-  <data name="File_ShortcutCreated" xml:space="preserve">
-    <value>Atalho criado com sucesso</value>
-  </data>
-  <data name="File_CreatingShortcutError" xml:space="preserve">
-    <value>Ocorreu um erro ao criar o atalho</value>
-  </data>
-  <data name="File_CreatingShortcutErrorHeader" xml:space="preserve">
-    <value>Erro ao criar atalho</value>
   </data>
   <data name="File_LocationNotFound" xml:space="preserve">
     <value>A localização não pode ser aberta</value>
@@ -1029,9 +1005,6 @@ Notícias:
   <data name="Installer_Install" xml:space="preserve">
     <value>Instalar</value>
   </data>
-  <data name="Installer_Cancel" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
   <data name="Installer_BrowseDiscHeader" xml:space="preserve">
     <value>Seleccionar disco para instalar através</value>
   </data>
@@ -1075,12 +1048,6 @@ Tentar novamente?</value>
   </data>
   <data name="Installer_CleanupError" xml:space="preserve">
     <value>Parte da instalação não pode ser limpa através sob {0}</value>
-  </data>
-  <data name="Installer_CancelAlreadyRequested" xml:space="preserve">
-    <value>A operação está actualmente a ser cancelada</value>
-  </data>
-  <data name="Installer_CancelAlreadyRequestedHeader" xml:space="preserve">
-    <value>O pedido de cancelamento já foi recebido</value>
   </data>
   <data name="Installer_CancelQuestion" xml:space="preserve">
     <value>Desejas cancelar a instalação?</value>
@@ -1184,9 +1151,6 @@ Reiniciar?</value>
   </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>As tuas alterações foram guardadas</value>
-  </data>
-  <data name="Config_InvalidR2UbiIniFile" xml:space="preserve">
-    <value>Não foi encontrado um ficheiro ubi.ini válido e falhou criar um novo. Tenta executar o programa como administrador ou mudar as permissões da pasta pelo seguinte endereço: {0}</value>
   </data>
   <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
     <value>A proporção de aspecto não pode ser preparada devido ao executável do jogo não ter sido encontrado</value>
@@ -2579,13 +2543,102 @@ Mantém premido L1 + R1 no menu (ou equivalente no comando a ser utilizado corre
   <data name="App_RequiresAdminQuestion" xml:space="preserve">
     <value>A aplicação não tem as permissões necessárias para esta operação. Reiniciar a aplicação como administrador?</value>
   </data>
-  <data name="SettingEnabled" xml:space="preserve">
-    <value>Activado</value>
+  <data name="GameType_EducationalDosBox" xml:space="preserve">
+    <value>DOSBox Educacional</value>
   </data>
-  <data name="SettingDisabled" xml:space="preserve">
-    <value>Desactivado</value>
+  <data name="EducationalConfig_Name" xml:space="preserve">
+    <value>Nome de jogo</value>
   </data>
-  <data name="Utility_Apply" xml:space="preserve">
-    <value>Aplicar</value>
+  <data name="EducationalConfig_LaunchMode" xml:space="preserve">
+    <value>Modo de arranque</value>
+  </data>
+  <data name="EducationalOptions_Header" xml:space="preserve">
+    <value>Jogos Educativos</value>
+  </data>
+  <data name="EducationalOptions_Info" xml:space="preserve">
+    <value>Podem ser adicionados múltiplos jogos educativos ao arranque, ou o mesmo jogo com modos de arranque diferentes. O primeiro jogo na lista é sempre o pré-definido. A lista pode ser reordenada ao arrastar/largar os itens.</value>
+  </data>
+  <data name="EducationalOptions_Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="EducationalOptions_Remove" xml:space="preserve">
+    <value>Remover</value>
+  </data>
+  <data name="EducationalOptions_AddNew" xml:space="preserve">
+    <value>Adicionar novo jogo</value>
+  </data>
+  <data name="EducationalOptions_EditHeader" xml:space="preserve">
+    <value>Editar jogo</value>
+  </data>
+  <data name="EducationalOptions_RemoveErrorLastOne" xml:space="preserve">
+    <value>Tem de ter pelo menos um jogo disponível para o arranque</value>
+  </data>
+  <data name="EducationalOptions_RemoveErrorLastOneHeader" xml:space="preserve">
+    <value>Não foi possível remover o jogo</value>
+  </data>
+  <data name="EducationalOptions_EditSuccess" xml:space="preserve">
+    <value>O jogo foi editado com sucesso</value>
+  </data>
+  <data name="App_ExceptionMessage" xml:space="preserve">
+    <value>{0}
+
+Error message: {1}</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultHeader" xml:space="preserve">
+    <value>Erro</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
+    <value>Ocorreu um erro.</value>
+  </data>
+  <data name="Lang_Dutch" xml:space="preserve">
+    <value>Holandês</value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchHeader" xml:space="preserve">
+    <value>Definições de arranque personalizadas</value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchInfo" xml:space="preserve">
+    <value>Se activo, as definições abaixo serão utilizadas ao executar o jogo pelo Painel de Controlo Rayman</value>
+  </data>
+  <data name="Config_VSync" xml:space="preserve">
+    <value>V-Sync</value>
+  </data>
+  <data name="GoHomeConfig_VersionIndex" xml:space="preserve">
+    <value>Índice de versões</value>
+  </data>
+  <data name="GoHomeConfig_BigFile" xml:space="preserve">
+    <value>Ficheiro grande</value>
+  </data>
+  <data name="GoHomeConfig_Commands" xml:space="preserve">
+    <value>Comandos personalizados</value>
+  </data>
+  <data name="R2Config_Graphics_DirectX" xml:space="preserve">
+    <value>DirectX</value>
+  </data>
+  <data name="R2Config_Graphics_nGlide" xml:space="preserve">
+    <value>nGlide</value>
+  </data>
+  <data name="R2Config_Graphics_Custom" xml:space="preserve">
+    <value>Personalizado</value>
+  </data>
+  <data name="RR2Options_GameModeHeader" xml:space="preserve">
+    <value>Modo de jogo</value>
+  </data>
+  <data name="RR2Options_GameModeInfo" xml:space="preserve">
+    <value>O modo de jogo determina que grupos de mini-jogos estão disponíveis no jogo. Certas edições do jogo estão limitadas a um modo de jogo específico, enquanto outros suportam-nos a todos. Se ocorrer um erro ao executar um jogo, tenta alterar o modo de jogo.</value>
+  </data>
+  <data name="RR2Options_GameMode_All" xml:space="preserve">
+    <value>Todos os jogos</value>
+  </data>
+  <data name="RR2Options_GameMode_Orange" xml:space="preserve">
+    <value>Laranja</value>
+  </data>
+  <data name="RR2Options_GameMode_Red" xml:space="preserve">
+    <value>Vermelho</value>
+  </data>
+  <data name="RR2Options_GameMode_Green" xml:space="preserve">
+    <value>Verde</value>
+  </data>
+  <data name="RR2Options_GameMode_Blue" xml:space="preserve">
+    <value>Azul</value>
   </data>
 </root>

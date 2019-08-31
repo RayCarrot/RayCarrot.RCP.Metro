@@ -71,7 +71,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task EditGameAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"The educational game {GameInfo.ID} is being edited...");
+            RCFCore.Logger?.LogInformationSource($"The educational game {GameInfo.Name} is being edited...");
 
             // Show the edit dialog and get the result
             var result = await RCFRCP.UI.EditEducationalDosGameAsync(new EducationalDosGameEditViewModel(GameInfo)
@@ -99,7 +99,7 @@ namespace RayCarrot.RCP.Metro
 
             await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.EducationalOptions_EditSuccess);
 
-            RCFCore.Logger?.LogInformationSource($"The educational game {GameInfo.ID} has been edited");
+            RCFCore.Logger?.LogInformationSource($"The educational game {GameInfo.Name} has been edited");
 
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
@@ -121,7 +121,7 @@ namespace RayCarrot.RCP.Metro
             // Open the location
             await RCFRCP.File.OpenExplorerLocationAsync(instDir);
 
-            RCFCore.Logger?.LogTraceSource($"The educational game {GameInfo.ID} install location was opened");
+            RCFCore.Logger?.LogTraceSource($"The educational game {GameInfo.Name} install location was opened");
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RemoveGameAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"The educational game {GameInfo.ID} is being removed...");
+            RCFCore.Logger?.LogInformationSource($"The educational game {GameInfo.Name} is being removed...");
 
             // Make sure it's not the last remaining game
             if (ParentVM.GameItems.Count <= 1)

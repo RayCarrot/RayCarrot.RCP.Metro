@@ -71,13 +71,13 @@ namespace RayCarrot.RCP.Metro
                 ShortcutName = ShortcutName.ChangeFileExtension(".lnk");
                 WindowsHelpers.CreateFileShortcut(ShortcutName, DestinationDirectory, TargetFile, arguments);
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.File_ShortcutCreated);
+                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.GameShortcut_Success);
                 RCFCore.Logger?.LogInformationSource($"The shortcut {ShortcutName} was created");
             }
             catch (Exception ex)
             {
                 ex.HandleUnexpected("Creating shortcut", DestinationDirectory);
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.File_CreatingShortcutError, Resources.File_CreatingShortcutErrorHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader, MessageType.Error);
             }
         }
 

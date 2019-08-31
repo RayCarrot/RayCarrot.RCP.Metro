@@ -125,23 +125,21 @@
 
                 </StackPanel>
 
-                <!-- TODO: Localize -->
-
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="Graphics" />
+                           Text="{Resx Config_Graphics}" />
 
                 <WrapPanel>
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
                     </i:Interaction.Behaviors>
 
-                    <rwpf:RadioButtonExtended Content="DirectX"
+                    <rwpf:RadioButtonExtended Content="{Resx R2Config_Graphics_DirectX}"
                                               IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=DirectX}"/>
 
-                    <rwpf:RadioButtonExtended Content="nGlide"
+                    <rwpf:RadioButtonExtended Content="{Resx R2Config_Graphics_nGlide}"
                                               IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=nGlide}" />
 
-                    <rwpf:RadioButtonExtended Content="Custom"
+                    <rwpf:RadioButtonExtended Content="{Resx R2Config_Graphics_Custom}"
                                               IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Custom}" />
 
                 </WrapPanel>

@@ -580,10 +580,10 @@ This is a growing project with more features planned on being added with future 
   <data name="R1U_TPLSUninstall" xml:space="preserve">
     <value>Uninstall</value>
   </data>
-  <data name="R1U_TPLSEnabled" xml:space="preserve">
+  <data name="SettingEnabled" xml:space="preserve">
     <value>Enabled</value>
   </data>
-  <data name="R1U_TPLSDisabled" xml:space="preserve">
+  <data name="SettingDisabled" xml:space="preserve">
     <value>Disabled</value>
   </data>
   <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
@@ -610,7 +610,7 @@ This is a growing project with more features planned on being added with future 
   <data name="R2U_TranslationsInfo" xml:space="preserve">
     <value>Applying an unofficial translation will replace one of the in-game languages with the selected one. In most cases this will be the English one. The changes can at any time be reverted by applying the original version.</value>
   </data>
-  <data name="R2U_Apply" xml:space="preserve">
+  <data name="Utility_Apply" xml:space="preserve">
     <value>Apply</value>
   </data>
   <data name="R3U_DirectPlayHeader" xml:space="preserve">
@@ -618,12 +618,6 @@ This is a growing project with more features planned on being added with future 
   </data>
   <data name="R3U_DirectPlayInfo" xml:space="preserve">
     <value>DirectPlay needs to be enabled in order to run Rayman 3. By default it is usually disabled on Windows 10.</value>
-  </data>
-  <data name="R3U_DirectPlayEnabled" xml:space="preserve">
-    <value>Enabled</value>
-  </data>
-  <data name="R3U_DirectPlayDisabled" xml:space="preserve">
-    <value>Disabled</value>
   </data>
   <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
     <value>Replace Infected Files</value>
@@ -655,9 +649,6 @@ This is a growing project with more features planned on being added with future 
   <data name="RLU_UbiRayWarning" xml:space="preserve">
     <value>WARNING: This utility is experimental and might corrupt your save file. Always make a backup before using it.</value>
   </data>
-  <data name="RLU_Apply" xml:space="preserve">
-    <value>Apply</value>
-  </data>
   <data name="ROU_HQVideosHeader" xml:space="preserve">
     <value>Higher Quality Videos</value>
   </data>
@@ -678,12 +669,6 @@ This is a growing project with more features planned on being added with future 
   </data>
   <data name="ROU_DebugCommandsWarning" xml:space="preserve">
     <value>WARNING: Using these debug commands may corrupt your save file. Always make a backup before using them.</value>
-  </data>
-  <data name="ROU_DebugCommandsEnabled" xml:space="preserve">
-    <value>Enabled</value>
-  </data>
-  <data name="ROU_DebugCommandsDisabled" xml:space="preserve">
-    <value>Disabled</value>
   </data>
   <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
     <value>Invincibility</value>
@@ -811,15 +796,6 @@ filePath</comment>
     <value>An error occurred when attempting to run {0}</value>
     <comment>Arguments:
 filePath</comment>
-  </data>
-  <data name="File_ShortcutCreated" xml:space="preserve">
-    <value>Shortcut created successfully</value>
-  </data>
-  <data name="File_CreatingShortcutError" xml:space="preserve">
-    <value>An error occurred creating the shortcut</value>
-  </data>
-  <data name="File_CreatingShortcutErrorHeader" xml:space="preserve">
-    <value>Error creating shortcut</value>
   </data>
   <data name="File_LocationNotFound" xml:space="preserve">
     <value>Location not found</value>
@@ -1068,9 +1044,6 @@ newBackupLocation</comment>
   <data name="Installer_Install" xml:space="preserve">
     <value>Install</value>
   </data>
-  <data name="Installer_Cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
   <data name="Installer_BrowseDiscHeader" xml:space="preserve">
     <value>Select disc to install from</value>
   </data>
@@ -1126,12 +1099,6 @@ fileConflictCount</comment>
     <value>Part of the installation could not be cleaned up under {0}</value>
     <comment>Arguments:
 outputDirectory</comment>
-  </data>
-  <data name="Installer_CancelAlreadyRequested" xml:space="preserve">
-    <value>The operation is currently canceling</value>
-  </data>
-  <data name="Installer_CancelAlreadyRequestedHeader" xml:space="preserve">
-    <value>Cancel request already received</value>
   </data>
   <data name="Installer_CancelQuestion" xml:space="preserve">
     <value>Do you wish to cancel the installation?</value>
@@ -1247,11 +1214,6 @@ gameDisplayName</comment>
   </data>
   <data name="Config_SaveSuccess" xml:space="preserve">
     <value>Your changes have been saved</value>
-  </data>
-  <data name="Config_InvalidR2UbiIniFile" xml:space="preserve">
-    <value>No valid ubi.ini file was found and creating a new one failed. Try running the program as administrator or changing the folder permissions for the following path: {0}</value>
-    <comment>Arguments:
-ubiIniFilePath</comment>
   </data>
   <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
     <value>The aspect ratio could not be set due to the game executable not being found</value>
@@ -1426,8 +1388,6 @@ gameDisplayName</comment>
   </data>
   <data name="R1U_TPLSUninstallError" xml:space="preserve">
     <value>An error occurred when uninstalling</value>
-    <comment>Arguments:
-exceptionMessage</comment>
   </data>
   <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
     <value>Uninstallation Failed</value>
@@ -2649,15 +2609,6 @@ Hold L1 + R1 in the menu (or equivalent on the currently used controller), then 
   <data name="App_RequiresAdminQuestion" xml:space="preserve">
     <value>The application does not have the required permissions for this operation. Restart the app as administrator?</value>
   </data>
-  <data name="SettingEnabled" xml:space="preserve">
-    <value>Enabled</value>
-  </data>
-  <data name="SettingDisabled" xml:space="preserve">
-    <value>Disabled</value>
-  </data>
-  <data name="Utility_Apply" xml:space="preserve">
-    <value>Apply</value>
-  </data>
   <data name="GameType_EducationalDosBox" xml:space="preserve">
     <value>Educational DOSBox</value>
   </data>
@@ -2691,12 +2642,6 @@ Hold L1 + R1 in the menu (or equivalent on the currently used controller), then 
   <data name="EducationalOptions_RemoveErrorLastOneHeader" xml:space="preserve">
     <value>Can't remove game</value>
   </data>
-  <data name="EducationalOptions_AddNewDuplicateIDError" xml:space="preserve">
-    <value>The game has already been added. To add the same game several times they need to use the same install directory.</value>
-  </data>
-  <data name="EducationalOptions_AddNewDuplicateIDErrorHeader" xml:space="preserve">
-    <value>Error adding game</value>
-  </data>
   <data name="EducationalOptions_EditSuccess" xml:space="preserve">
     <value>The game has been edited successfully</value>
   </data>
@@ -2713,5 +2658,68 @@ exceptionMessage</comment>
   </data>
   <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
     <value>An error has occured.</value>
+  </data>
+  <data name="Lang_Dutch" xml:space="preserve">
+    <value>Dutch</value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchHeader" xml:space="preserve">
+    <value>Custom launch settings</value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchInfo" xml:space="preserve">
+    <value>If enabled, the below settings will be used when launching the game from the Rayman Control Panel</value>
+  </data>
+  <data name="Config_VSync" xml:space="preserve">
+    <value>V-Sync</value>
+  </data>
+  <data name="GoHomeConfig_VersionIndex" xml:space="preserve">
+    <value>Version index</value>
+  </data>
+  <data name="GoHomeConfig_BigFile" xml:space="preserve">
+    <value>Big file</value>
+  </data>
+  <data name="GoHomeConfig_Commands" xml:space="preserve">
+    <value>Custom commands</value>
+  </data>
+  <data name="R2Config_Graphics_DirectX" xml:space="preserve">
+    <value>DirectX</value>
+  </data>
+  <data name="R2Config_Graphics_nGlide" xml:space="preserve">
+    <value>nGlide</value>
+  </data>
+  <data name="R2Config_Graphics_Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="RR2Options_GameModeHeader" xml:space="preserve">
+    <value>Game Mode</value>
+  </data>
+  <data name="RR2Options_GameModeInfo" xml:space="preserve">
+    <value>The game mode determines which sets of minigames are available in the game. Certain editions of the game are limited to a specific game mode, while others support all of them. If an error occurs when launching the game, try changing the game mode.</value>
+  </data>
+  <data name="RR2Options_GameMode_All" xml:space="preserve">
+    <value>All games</value>
+  </data>
+  <data name="RR2Options_GameMode_Orange" xml:space="preserve">
+    <value>Orange</value>
+  </data>
+  <data name="RR2Options_GameMode_Red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="RR2Options_GameMode_Green" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="RR2Options_GameMode_Blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="LaunchModeConflict" xml:space="preserve">
+    <value>Two or more of the educational games share the same launch mode name and will thus use the same backup. Change the launch mode names to be different to avoid this.</value>
+  </data>
+  <data name="LaunchModeConflictHeader" xml:space="preserve">
+    <value>Launch mode conflict</value>
+  </data>
+  <data name="Links_Local_RGHConfig" xml:space="preserve">
+    <value>Rabbids Go Home config</value>
+  </data>
+  <data name="Links_Local_RRR2RegSettings" xml:space="preserve">
+    <value>Rayman Raving Rabbids 2 settings</value>
   </data>
 </root>

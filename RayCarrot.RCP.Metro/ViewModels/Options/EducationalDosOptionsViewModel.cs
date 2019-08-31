@@ -67,14 +67,6 @@ namespace RayCarrot.RCP.Metro
             // Get the game info
             var newItem = manager.GetNewEducationalDosBoxGameInfo(path.Value);
 
-            // Check that if it shares the same ID as an existing game that the install directory is the same
-            if (RCFRCP.Data.EducationalDosBoxGames.Any(x => x.ID == newItem.ID && x.InstallDir.CorrectPathCasing() != newItem.InstallDir.CorrectPathCasing()))
-            {
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.EducationalOptions_AddNewDuplicateIDError, Resources.EducationalOptions_AddNewDuplicateIDErrorHeader, MessageType.Error);
-
-                return;
-            }
-
             // Add the game to the list of educational games
             RCFRCP.Data.EducationalDosBoxGames.Add(newItem);
 
@@ -84,7 +76,7 @@ namespace RayCarrot.RCP.Metro
             // Add the view model
             GameItems.Add(vm);
 
-            RCFCore.Logger?.LogInformationSource($"A new educational game has been added with the ID {newItem.ID}");
+            RCFCore.Logger?.LogInformationSource($"A new educational game has been added with the name {newItem.Name}");
 
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
@@ -105,7 +97,7 @@ namespace RayCarrot.RCP.Metro
             Data.EducationalDosBoxGames.Clear();
 
             // Add the games
-            Data.EducationalDosBoxGames.AddRange(GameItems.Select(x => new EducationalDosBoxGameInfo(x.GameInfo.ID, x.GameInfo.InstallDir, x.GameInfo.LaunchName)
+            Data.EducationalDosBoxGames.AddRange(GameItems.Select(x => new EducationalDosBoxGameInfo(x.GameInfo.InstallDir, x.GameInfo.LaunchName)
             {
                 LaunchMode = x.GameInfo.LaunchMode,
                 MountPath = x.GameInfo.MountPath,

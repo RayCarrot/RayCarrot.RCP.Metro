@@ -68,24 +68,24 @@ namespace RayCarrot.RCP.Metro
             return RCFRCP.Data.EducationalDosBoxGames.
                 Select(x => new OverflowButtonItemViewModel(x.Name, new BitmapImage(new Uri(AppViewModel.ApplicationBasePath + @"img\GameIcons\EducationalDos.png")), new AsyncRelayCommand(async () =>
             {
-                RCFCore.Logger?.LogTraceSource($"The educational game {x.ID} is being launched...");
+                RCFCore.Logger?.LogTraceSource($"The educational game {x.Name} is being launched...");
 
                 // Verify that the game can launch
                 if (!await VerifyCanLaunchAsync(x))
                 {
-                    RCFCore.Logger?.LogInformationSource($"The educational game {x.ID} could not be launched");
+                    RCFCore.Logger?.LogInformationSource($"The educational game {x.Name} could not be launched");
                     return;
                 }
 
                 // Get the launch info
                 GameLaunchInfo launchInfo = GetLaunchInfo(x);
 
-                RCFCore.Logger?.LogTraceSource($"The educational game {x.ID} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
+                RCFCore.Logger?.LogTraceSource($"The educational game {x.Name} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
 
                 // Launch the game
                 var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, Info.LaunchMode == GameLaunchMode.AsAdmin, launchInfo.Args);
 
-                RCFCore.Logger?.LogInformationSource($"The educational game {x.ID} has been launched");
+                RCFCore.Logger?.LogInformationSource($"The educational game {x.Name} has been launched");
 
                 if (process != null)
                     // Run any post launch operations on the process
@@ -204,9 +204,17 @@ namespace RayCarrot.RCP.Metro
         /// Gets the backup infos for this game
         /// </summary>
         /// <returns>The backup infos</returns>
-        public override List<IBackupInfo> GetBackupInfos()
+        public override async Task<List<IBackupInfo>> GetBackupInfosAsync()
         {
-            return RCFRCP.Data.EducationalDosBoxGames.GroupBy(x => x.ID).Select(x => BaseBackupInfo.FromEducationalDosGameInfos(x.ToArray()) as IBackupInfo).ToList();
+            // Get the games
+            var games = RCFRCP.Data.EducationalDosBoxGames;
+
+            // Check if any games have the same launch mode
+            if (games.Select(x => x.LaunchMode).Distinct(StringComparer.InvariantCultureIgnoreCase).Count() < games.Count)
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LaunchModeConflict, Resources.LaunchModeConflictHeader, MessageType.Warning);
+
+            // Return a collection of the backup infos for the available games
+            return games.Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).Select(BaseBackupInfo.FromEducationalDosGameInfos).ToList();
         }
 
         #endregion
@@ -228,7 +236,7 @@ namespace RayCarrot.RCP.Metro
                 RCFRCP.Data.EducationalDosBoxGames = new List<EducationalDosBoxGameInfo>();
 
             // Create the game info
-            var info = new EducationalDosBoxGameInfo(null, installDir, launchName.Name)
+            var info = new EducationalDosBoxGameInfo(installDir, launchName.Name)
             {
                 Name = installDir.Name
             };
@@ -308,35 +316,35 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogInformationSource($"The default educational game has been refreshed");
         }
 
-        /// <summary>
-        /// Gets the game ID for an educational game
-        /// </summary>
-        /// <param name="installDir">The game install directory</param>
-        /// <param name="exeName">The executable file name, relative to the install directory</param>
-        /// <returns>The ID</returns>
-        public string GetGameID(FileSystemPath installDir, string exeName)
-        {
-            //
-            // The ID is based on the hash of the executable file as well as the available PCMAP files. This is to make sure that the ID
-            // is the same if you add the same game again.
-            //
+        ///// <summary>
+        ///// Gets the game ID for an educational game
+        ///// </summary>
+        ///// <param name="installDir">The game install directory</param>
+        ///// <param name="exeName">The executable file name, relative to the install directory</param>
+        ///// <returns>The ID</returns>
+        //public string GetGameID(FileSystemPath installDir, string exeName)
+        //{
+        //    //
+        //    // The ID is based on the hash of the executable file as well as the available PCMAP files. This is to make sure that the ID
+        //    // is the same if you add the same game again.
+        //    //
 
-            // Get the paths to use for getting the ID
-            List<string> inputPaths = Directory.GetFiles(installDir + "PCMAP", "*", SearchOption.AllDirectories).Select(Path.GetFileName).ToList();
+        //    // Get the paths to use for getting the ID
+        //    List<string> inputPaths = Directory.GetFiles(installDir + "PCMAP", "*", SearchOption.AllDirectories).Select(Path.GetFileName).ToList();
 
-            // Add the hash from the executable file
-            inputPaths.Add((installDir + exeName).GetSHA256CheckSum());
+        //    // Add the hash from the executable file
+        //    inputPaths.Add((installDir + exeName).GetSHA256CheckSum());
 
-            // Combine the strings into an array of bytes
-            var bytes = Encoding.ASCII.GetBytes(inputPaths.SelectMany(x => x).ToArray());
+        //    // Combine the strings into an array of bytes
+        //    var bytes = Encoding.ASCII.GetBytes(inputPaths.SelectMany(x => x).ToArray());
 
-            // Get the hash
-            using (SHA256Managed sha = new SHA256Managed())
-            {
-                byte[] checksum = sha.ComputeHash(bytes);       
-                return BitConverter.ToString(checksum).Replace("-", String.Empty);
-            }
-        }
+        //    // Get the hash
+        //    using (SHA256Managed sha = new SHA256Managed())
+        //    {
+        //        byte[] checksum = sha.ComputeHash(bytes);       
+        //        return BitConverter.ToString(checksum).Replace("-", String.Empty);
+        //    }
+        //}
 
         #endregion
     }

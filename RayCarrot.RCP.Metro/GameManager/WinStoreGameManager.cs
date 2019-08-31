@@ -352,21 +352,21 @@ namespace RayCarrot.RCP.Metro
         /// Gets the backup infos for this game
         /// </summary>
         /// <returns>The backup infos</returns>
-        public override List<IBackupInfo> GetBackupInfos()
+        public override Task<List<IBackupInfo>> GetBackupInfosAsync()
         {
             if (Game != Games.RaymanFiestaRun)
-                return base.GetBackupInfos();
+                return base.GetBackupInfosAsync();
 
             // Get every installed version
             var versions = FiestaRunEdition.Preload.GetValues().Where(x => GetGamePackage(GetFiestaRunPackageName(x)) != null);
 
             // Return a backup info for each version
-            return versions.Select(x =>
+            return Task.FromResult(versions.Select(x =>
             {
                 var backupName = $"Rayman Fiesta Run ({x})";
 
                 return new BaseBackupInfo(RCFRCP.App.GetCompressedBackupFile(backupName), RCFRCP.App.GetBackupDir(backupName), GetWinStoreBackupDirs(GetFiestaRunFullPackageName(x)), $"{Games.RaymanFiestaRun.GetDisplayName()} {GetFiestaRunEditionDisplayName(x)}") as IBackupInfo;
-            }).ToList();
+            }).ToList());
         }
 
         #endregion

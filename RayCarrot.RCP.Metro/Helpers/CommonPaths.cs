@@ -86,6 +86,11 @@ namespace RayCarrot.RCP.Metro
         public const string RaymanRavingRabbidsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman4\{05D2C1BC-A857-4493-9BDA-C7707CACB937}";
 
         /// <summary>
+        /// The Rayman Raving Rabbids 2 registry key path
+        /// </summary>
+        public const string RaymanRavingRabbids2RegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\Rayman Raving Rabbids 2";
+
+        /// <summary>
         /// The Rayman Origins registry key path
         /// </summary>
         public const string RaymanOriginsRegistryKey = @"HKEY_CURRENT_USER\Software\Ubisoft\RaymanOrigins";

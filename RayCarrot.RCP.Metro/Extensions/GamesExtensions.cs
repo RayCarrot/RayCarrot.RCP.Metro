@@ -803,14 +803,14 @@ namespace RayCarrot.RCP.Metro
                         {
                             DirPath = gameInfo.InstallDirectory,
                             SearchOption = SearchOption.TopDirectoryOnly,
-                            ExtensionFilter = "*.sav",
+                            SearchPattern = "*.sav",
                             ID = "0"
                         },
                         new BackupDir()
                         {
                             DirPath = gameInfo.InstallDirectory,
                             SearchOption = SearchOption.TopDirectoryOnly,
-                            ExtensionFilter = "*.cfg",
+                            SearchPattern = "*.cfg",
                             ID = "1"
                         },
                     };
@@ -822,14 +822,14 @@ namespace RayCarrot.RCP.Metro
                         {
                             DirPath = gameInfo.InstallDirectory,
                             SearchOption = SearchOption.TopDirectoryOnly,
-                            ExtensionFilter = "*.cfg",
+                            SearchPattern = "*.cfg",
                             ID = "0"
                         },
                         new BackupDir()
                         {
                             DirPath = gameInfo.InstallDirectory + "PCMAP",
                             SearchOption = SearchOption.TopDirectoryOnly,
-                            ExtensionFilter = "*.sct",
+                            SearchPattern = "*.sct",
                             ID = "1"
                         },
                         //
@@ -842,42 +842,42 @@ namespace RayCarrot.RCP.Metro
                         {
                             DirPath = gameInfo.InstallDirectory + "CAKE",
                             SearchOption = SearchOption.AllDirectories,
-                            ExtensionFilter = "*",
+                            SearchPattern = "*",
                             ID = "Mapper0"
                         },
                         new BackupDir()
                         {
                             DirPath = gameInfo.InstallDirectory + "CAVE",
                             SearchOption = SearchOption.AllDirectories,
-                            ExtensionFilter = "*",
+                            SearchPattern = "*",
                             ID = "Mapper1"
                         },
                         new BackupDir()
                         {
                             DirPath = gameInfo.InstallDirectory + "IMAGE",
                             SearchOption = SearchOption.AllDirectories,
-                            ExtensionFilter = "*",
+                            SearchPattern = "*",
                             ID = "Mapper2"
                         },
                         new BackupDir()
                         {
                             DirPath = gameInfo.InstallDirectory + "JUNGLE",
                             SearchOption = SearchOption.AllDirectories,
-                            ExtensionFilter = "*",
+                            SearchPattern = "*",
                             ID = "Mapper3"
                         },
                         new BackupDir()
                         {
                             DirPath = gameInfo.InstallDirectory + "MOUNTAIN",
                             SearchOption = SearchOption.AllDirectories,
-                            ExtensionFilter = "*",
+                            SearchPattern = "*",
                             ID = "Mapper4"
                         },
                         new BackupDir()
                         {
                             DirPath = gameInfo.InstallDirectory + "MUSIC",
                             SearchOption = SearchOption.AllDirectories,
-                            ExtensionFilter = "*",
+                            SearchPattern = "*",
                             ID = "Mapper5"
                         },
                     };
@@ -889,14 +889,14 @@ namespace RayCarrot.RCP.Metro
                         {
                             DirPath = gameInfo.InstallDirectory,
                             SearchOption = SearchOption.TopDirectoryOnly,
-                            ExtensionFilter = "*.cfg",
+                            SearchPattern = "*.cfg",
                             ID = "1"
                         },
                         new BackupDir()
                         {
                             DirPath = gameInfo.InstallDirectory + "PCMAP",
                             SearchOption = SearchOption.TopDirectoryOnly,
-                            ExtensionFilter = "*.sct",
+                            SearchPattern = "*.sct",
                             ID = "1"
                         },
                     };
@@ -908,14 +908,14 @@ namespace RayCarrot.RCP.Metro
                         {
                             DirPath = gameInfo.InstallDirectory,
                             SearchOption = SearchOption.TopDirectoryOnly,
-                            ExtensionFilter = "*.cfg",
+                            SearchPattern = "*.cfg",
                             ID = "0"
                         },
                         new BackupDir()
                         {
                             DirPath = gameInfo.InstallDirectory + "PCMAP",
                             SearchOption = SearchOption.TopDirectoryOnly,
-                            ExtensionFilter = "*.sct",
+                            SearchPattern = "*.sct",
                             ID = "1"
                         },
                     };
@@ -967,7 +967,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             DirPath = gameInfo.InstallDirectory,
                             SearchOption = SearchOption.TopDirectoryOnly,
-                            ExtensionFilter = "*.sav",
+                            SearchPattern = "*.sav",
                             ID = "0"
                         },
                     };
@@ -977,7 +977,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore", gameInfo.InstallDirectory.RemoveRoot()),
                             SearchOption = SearchOption.TopDirectoryOnly,
-                            ExtensionFilter = "*.sav",
+                            SearchPattern = "*.sav",
                             ID = "0"
                         });
 

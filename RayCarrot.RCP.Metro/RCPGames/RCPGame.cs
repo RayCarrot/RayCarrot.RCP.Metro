@@ -96,7 +96,5 @@ namespace RayCarrot.RCP.Metro
     //    public abstract Task<FileSystemPath?> LocateAsync();
 
     //    #endregion
-
-    //    // TODO: Get backup dirs
     //}
 }

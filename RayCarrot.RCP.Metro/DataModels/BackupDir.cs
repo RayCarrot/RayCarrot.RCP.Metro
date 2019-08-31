@@ -21,7 +21,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// File extension to filter by
         /// </summary>
-        public string ExtensionFilter { get; set; } = "*";
+        public string SearchPattern { get; set; } = "*";
 
         /// <summary>
         /// The ID of the <see cref="BackupDir"/>
@@ -32,6 +32,6 @@ namespace RayCarrot.RCP.Metro
         /// Gets a value indicating if the current instance should include the entire directory and its sub content
         /// </summary>
         /// <returns>True if the current instance should include the entire directory and its sub content, otherwise false</returns>
-        public bool IsEntireDir() => (ExtensionFilter == null || ExtensionFilter == "*") && SearchOption == SearchOption.AllDirectories;
+        public bool IsEntireDir() => (SearchPattern == null || SearchPattern == "*") && SearchOption == SearchOption.AllDirectories;
     }
 }

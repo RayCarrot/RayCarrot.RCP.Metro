@@ -27,13 +27,11 @@
                     <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                 </i:Interaction.Behaviors>
 
-                <!-- TODO: Localize -->
-
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
-                               Text="Custom launch settings" />
+                               Text="{Resx GoHomeConfig_CustomLaunchHeader}" />
 
-                    <local:InfoIcon Text="If enabled, the below settings will be used when launching the game from the Rayman Control Panel" />
+                    <local:InfoIcon Text="{Resx GoHomeConfig_CustomLaunchInfo}" />
 
                 </StackPanel>
 
@@ -49,7 +47,7 @@
                     </i:Interaction.Behaviors>
 
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
-                               Text="Resolution" />
+                               Text="{Resx Config_Resolution}" />
 
                     <StackPanel Orientation="Horizontal">
                         <metro:NumericUpDown Value="{Binding Path=ResX}"
@@ -78,7 +76,7 @@
                               ToolTip="{Resx Config_FullscreenInfo}"
                               IsChecked="{Binding Path=Fullscreen}" />
 
-                    <CheckBox Content="V-Sync"
+                    <CheckBox Content="{Resx Config_VSync}"
                               IsChecked="{Binding Path=VSync}" />
 
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
@@ -95,7 +93,7 @@
                     </ComboBox>
 
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
-                               Text="Version index" />
+                               Text="{Resx GoHomeConfig_VersionIndex}" />
 
                     <metro:NumericUpDown Value="{Binding Path=VersionIndex}"
                                          Minimum="1"
@@ -103,14 +101,14 @@
                                          HorizontalAlignment="Left"/>
 
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
-                               Text="Big file"
+                               Text="{Resx GoHomeConfig_BigFile}"
                                rwpf:UserLevelTag.MinUserLevel="Technical" />
 
                     <TextBox Text="{Binding Path=BigFile}"
                              rwpf:UserLevelTag.MinUserLevel="Technical" />
 
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
-                               Text="Custom commands"
+                               Text="{Resx GoHomeConfig_Commands}"
                                rwpf:UserLevelTag.MinUserLevel="Technical" />
 
                     <TextBox Text="{Binding Path=CustomCommands}"

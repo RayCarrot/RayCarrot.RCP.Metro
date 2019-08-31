@@ -15,26 +15,18 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="id">The game ID or null to generate a new one</param>
         /// <param name="installDir">The game install directory</param>
         /// <param name="launchName">The launch name</param>
-        public EducationalDosBoxGameInfo(string id, FileSystemPath installDir, string launchName)
+        public EducationalDosBoxGameInfo(FileSystemPath installDir, string launchName)
         {
             //ID = id ?? Regex.Replace(Convert.ToBase64String(Guid.NewGuid().ToByteArray()), "[/+=]", "");
-
-            // The ID is calculated based on the files so that it will be the same if the same game is added again
-            ID = id ?? Games.EducationalDos.GetGameManager<EducationalDosBoxGameManager>().GetGameID(installDir, launchName);
+            //ID = id ?? Games.EducationalDos.GetGameManager<EducationalDosBoxGameManager>().GetGameID(installDir, launchName);
 
             InstallDir = installDir;
             LaunchName = launchName;
             Name = String.Empty;
             MountPath = FileSystemPath.EmptyPath;
         }
-
-        /// <summary>
-        /// The game ID
-        /// </summary>
-        public string ID { get; }
 
         /// <summary>
         /// The launch name

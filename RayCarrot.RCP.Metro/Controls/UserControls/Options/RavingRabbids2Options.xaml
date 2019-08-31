@@ -15,29 +15,25 @@
 
         <StackPanel Orientation="Horizontal">
 
-            <!-- TODO: Localize -->
-
             <TextBlock Style="{StaticResource HeaderTextBlock}"
-                       Text="Game mode" />
+                       Text="{Resx RR2Options_GameModeHeader}" />
 
-            <local:InfoIcon Text="The game mode determines which sets of minigames are available in the game. Certain editions of the game are limited to a specific game mode, while others support all of them. If an error occurs when launching the game, try changing the game mode." />
+            <local:InfoIcon Text="{Resx RR2Options_GameModeInfo}" />
 
         </StackPanel>
 
         <ComboBox SelectedIndex="{Binding Source={x:Static local:RCFRCP.Data}, Path=RRR2LaunchMode, Converter={rwpf:EnumToIntConverter}}"
                   HorizontalAlignment="Left">
 
-            <!-- TODO: Localize -->
+            <TextBlock Text="{Resx RR2Options_GameMode_All}" />
 
-            <TextBlock Text="All games" />
+            <TextBlock Text="{Resx RR2Options_GameMode_Orange}" />
 
-            <TextBlock Text="Orange" />
+            <TextBlock Text="{Resx RR2Options_GameMode_Red}" />
 
-            <TextBlock Text="Red" />
+            <TextBlock Text="{Resx RR2Options_GameMode_Green}" />
 
-            <TextBlock Text="Green" />
-
-            <TextBlock Text="Blue" />
+            <TextBlock Text="{Resx RR2Options_GameMode_Blue}" />
 
         </ComboBox>
 

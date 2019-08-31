@@ -809,8 +809,6 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Checking if R2 aspect ratio has been modified");
 
-                // TODO: Show error message
-
                 return null;
             }
         }

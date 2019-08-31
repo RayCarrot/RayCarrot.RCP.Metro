@@ -96,7 +96,7 @@ namespace RayCarrot.RCP.Metro
                     foreach (Games game in App.GetGames.Where(x => x.IsAdded()))
                     {
                         // Enumerate the backup info
-                        foreach (IBackupInfo info in game.GetGameManager().GetBackupInfos())
+                        foreach (IBackupInfo info in await game.GetGameManager().GetBackupInfosAsync())
                         {
                             // Create the backup item
                             var backupItem = new GameBackupItemViewModel(game, info);

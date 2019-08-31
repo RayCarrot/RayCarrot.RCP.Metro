@@ -1941,15 +1941,6 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to No valid ubi.ini file was found and creating a new one failed. Try running the program as administrator or changing the folder permissions for the following path: {0}.
         /// </summary>
-        public static string Config_InvalidR2UbiIniFile {
-            get {
-                return ResourceManager.GetString("Config_InvalidR2UbiIniFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No valid ubi.ini file was found and creating a new one failed. Try running the program as administrator or changing the folder permissions for the following path: {0}.
-        /// </summary>
         public static string Config_InvalidUbiIni {
             get {
                 return ResourceManager.GetString("Config_InvalidUbiIni", resourceCulture);
@@ -2268,6 +2259,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_VideoGood {
             get {
                 return ResourceManager.GetString("Config_VideoGood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to V-Sync.
+        /// </summary>
+        public static string Config_VSync {
+            get {
+                return ResourceManager.GetString("Config_VSync", resourceCulture);
             }
         }
         
@@ -2911,24 +2911,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The game has already been added. To add the same game several times they need to use the same install directory..
-        /// </summary>
-        public static string EducationalOptions_AddNewDuplicateIDError {
-            get {
-                return ResourceManager.GetString("EducationalOptions_AddNewDuplicateIDError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error adding game.
-        /// </summary>
-        public static string EducationalOptions_AddNewDuplicateIDErrorHeader {
-            get {
-                return ResourceManager.GetString("EducationalOptions_AddNewDuplicateIDErrorHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string EducationalOptions_Edit {
@@ -3046,24 +3028,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred creating the shortcut.
-        /// </summary>
-        public static string File_CreatingShortcutError {
-            get {
-                return ResourceManager.GetString("File_CreatingShortcutError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error creating shortcut.
-        /// </summary>
-        public static string File_CreatingShortcutErrorHeader {
-            get {
-                return ResourceManager.GetString("File_CreatingShortcutErrorHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An error occurred when attempting to run {0}.
         /// </summary>
         public static string File_ErrorLaunchingFile {
@@ -3150,15 +3114,6 @@ namespace RayCarrot.RCP.Metro {
         public static string File_RegKeyNotFoundHeader {
             get {
                 return ResourceManager.GetString("File_RegKeyNotFoundHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Shortcut created successfully.
-        /// </summary>
-        public static string File_ShortcutCreated {
-            get {
-                return ResourceManager.GetString("File_ShortcutCreated", resourceCulture);
             }
         }
         
@@ -3732,6 +3687,51 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Big file.
+        /// </summary>
+        public static string GoHomeConfig_BigFile {
+            get {
+                return ResourceManager.GetString("GoHomeConfig_BigFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom commands.
+        /// </summary>
+        public static string GoHomeConfig_Commands {
+            get {
+                return ResourceManager.GetString("GoHomeConfig_Commands", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom launch settings.
+        /// </summary>
+        public static string GoHomeConfig_CustomLaunchHeader {
+            get {
+                return ResourceManager.GetString("GoHomeConfig_CustomLaunchHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If enabled, the below settings will be used when launching the game from the Rayman Control Panel.
+        /// </summary>
+        public static string GoHomeConfig_CustomLaunchInfo {
+            get {
+                return ResourceManager.GetString("GoHomeConfig_CustomLaunchInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version index.
+        /// </summary>
+        public static string GoHomeConfig_VersionIndex {
+            get {
+                return ResourceManager.GetString("GoHomeConfig_VersionIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to For additional help, check the Discord server.
         /// </summary>
         public static string Help_AdditionalHelp {
@@ -4251,33 +4251,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        public static string Installer_Cancel {
-            get {
-                return ResourceManager.GetString("Installer_Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The operation is currently canceling.
-        /// </summary>
-        public static string Installer_CancelAlreadyRequested {
-            get {
-                return ResourceManager.GetString("Installer_CancelAlreadyRequested", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancel request already received.
-        /// </summary>
-        public static string Installer_CancelAlreadyRequestedHeader {
-            get {
-                return ResourceManager.GetString("Installer_CancelAlreadyRequestedHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Installation canceled.
         /// </summary>
         public static string Installer_Canceled {
@@ -4595,6 +4568,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dutch.
+        /// </summary>
+        public static string Lang_Dutch {
+            get {
+                return ResourceManager.GetString("Lang_Dutch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string Lang_English {
@@ -4690,6 +4672,24 @@ namespace RayCarrot.RCP.Metro {
         public static string LaunchGame_WinStoreError {
             get {
                 return ResourceManager.GetString("LaunchGame_WinStoreError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Two or more of the educational games share the same launch mode name and will thus use the same backup. Change the launch mode names to be different to avoid this..
+        /// </summary>
+        public static string LaunchModeConflict {
+            get {
+                return ResourceManager.GetString("LaunchModeConflict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch mode conflict.
+        /// </summary>
+        public static string LaunchModeConflictHeader {
+            get {
+                return ResourceManager.GetString("LaunchModeConflictHeader", resourceCulture);
             }
         }
         
@@ -4955,6 +4955,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rabbids Go Home config.
+        /// </summary>
+        public static string Links_Local_RGHConfig {
+            get {
+                return ResourceManager.GetString("Links_Local_RGHConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman Legends settings.
         /// </summary>
         public static string Links_Local_RLRegSettings {
@@ -4969,6 +4978,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Links_Local_RORegSettings {
             get {
                 return ResourceManager.GetString("Links_Local_RORegSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids 2 settings.
+        /// </summary>
+        public static string Links_Local_RRR2RegSettings {
+            get {
+                return ResourceManager.GetString("Links_Local_RRR2RegSettings", resourceCulture);
             }
         }
         
@@ -5648,29 +5666,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disabled.
-        /// </summary>
-        public static string R1U_TPLSDisabled {
-            get {
-                return ResourceManager.GetString("R1U_TPLSDisabled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to DOSBox version.
         /// </summary>
         public static string R1U_TPLSDosBoxVersion {
             get {
                 return ResourceManager.GetString("R1U_TPLSDosBoxVersion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enabled.
-        /// </summary>
-        public static string R1U_TPLSEnabled {
-            get {
-                return ResourceManager.GetString("R1U_TPLSEnabled", resourceCulture);
             }
         }
         
@@ -5801,6 +5801,33 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Custom.
+        /// </summary>
+        public static string R2Config_Graphics_Custom {
+            get {
+                return ResourceManager.GetString("R2Config_Graphics_Custom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DirectX.
+        /// </summary>
+        public static string R2Config_Graphics_DirectX {
+            get {
+                return ResourceManager.GetString("R2Config_Graphics_DirectX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nGlide.
+        /// </summary>
+        public static string R2Config_Graphics_nGlide {
+            get {
+                return ResourceManager.GetString("R2Config_Graphics_nGlide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid format.
         /// </summary>
         public static string R2HotKeyValidation_InvalidFormat {
@@ -5824,15 +5851,6 @@ namespace RayCarrot.RCP.Metro {
         public static string R2HotKeyValidation_ModifierKeysUsed {
             get {
                 return ResourceManager.GetString("R2HotKeyValidation_ModifierKeysUsed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Apply.
-        /// </summary>
-        public static string R2U_Apply {
-            get {
-                return ResourceManager.GetString("R2U_Apply", resourceCulture);
             }
         }
         
@@ -6013,24 +6031,6 @@ namespace RayCarrot.RCP.Metro {
         public static string R2Widescreen_ExeNotValid {
             get {
                 return ResourceManager.GetString("R2Widescreen_ExeNotValid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Disabled.
-        /// </summary>
-        public static string R3U_DirectPlayDisabled {
-            get {
-                return ResourceManager.GetString("R3U_DirectPlayDisabled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enabled.
-        /// </summary>
-        public static string R3U_DirectPlayEnabled {
-            get {
-                return ResourceManager.GetString("R3U_DirectPlayEnabled", resourceCulture);
             }
         }
         
@@ -6287,15 +6287,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply.
-        /// </summary>
-        public static string RLU_Apply {
-            get {
-                return ResourceManager.GetString("RLU_Apply", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Could not read save file.
         /// </summary>
         public static string RLU_UbiRay_CouldNotReadFile {
@@ -6364,24 +6355,6 @@ namespace RayCarrot.RCP.Metro {
         public static string RLU_UbiRayWarning {
             get {
                 return ResourceManager.GetString("RLU_UbiRayWarning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Disabled.
-        /// </summary>
-        public static string ROU_DebugCommandsDisabled {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsDisabled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enabled.
-        /// </summary>
-        public static string ROU_DebugCommandsEnabled {
-            get {
-                return ResourceManager.GetString("ROU_DebugCommandsEnabled", resourceCulture);
             }
         }
         
@@ -6616,6 +6589,69 @@ namespace RayCarrot.RCP.Metro {
         public static string ROU_UpdateUpdate {
             get {
                 return ResourceManager.GetString("ROU_UpdateUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All games.
+        /// </summary>
+        public static string RR2Options_GameMode_All {
+            get {
+                return ResourceManager.GetString("RR2Options_GameMode_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue.
+        /// </summary>
+        public static string RR2Options_GameMode_Blue {
+            get {
+                return ResourceManager.GetString("RR2Options_GameMode_Blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green.
+        /// </summary>
+        public static string RR2Options_GameMode_Green {
+            get {
+                return ResourceManager.GetString("RR2Options_GameMode_Green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orange.
+        /// </summary>
+        public static string RR2Options_GameMode_Orange {
+            get {
+                return ResourceManager.GetString("RR2Options_GameMode_Orange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red.
+        /// </summary>
+        public static string RR2Options_GameMode_Red {
+            get {
+                return ResourceManager.GetString("RR2Options_GameMode_Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Mode.
+        /// </summary>
+        public static string RR2Options_GameModeHeader {
+            get {
+                return ResourceManager.GetString("RR2Options_GameModeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game mode determines which sets of minigames are available in the game. Certain editions of the game are limited to a specific game mode, while others support all of them. If an error occurs when launching the game, try changing the game mode..
+        /// </summary>
+        public static string RR2Options_GameModeInfo {
+            get {
+                return ResourceManager.GetString("RR2Options_GameModeInfo", resourceCulture);
             }
         }
         

@@ -65,34 +65,31 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Creates a new instance of <see cref="BaseBackupInfo"/> from an <see cref="EducationalDosBoxGameInfo"/>
         /// </summary>
-        /// <param name="gameInfos">The game infos, all having the same ID</param>
+        /// <param name="gameInfo">The game info</param>
         /// <returns>The backup info</returns>
-        public static BaseBackupInfo FromEducationalDosGameInfos(EducationalDosBoxGameInfo[] gameInfos)
+        public static IBackupInfo FromEducationalDosGameInfos(EducationalDosBoxGameInfo gameInfo)
         {
-            if (gameInfos.Any(x => x.ID != gameInfos.First().ID))
-                throw new Exception("The educational games must share the same ID to be used for the same backup info");
-
-            var backupName = $"Educational Games - {gameInfos.First().ID}";
-
+            var backupName = $"Educational Games - {gameInfo.LaunchMode}";
+            
             return new BaseBackupInfo(RCFRCP.App.GetCompressedBackupFile(backupName),
                 RCFRCP.App.GetBackupDir(backupName),
                 new List<BackupDir>()
                 {
                     new BackupDir()
                     {
-                        DirPath = gameInfos.First().InstallDir,
+                        DirPath = gameInfo.InstallDir,
                         SearchOption = SearchOption.TopDirectoryOnly,
-                        ExtensionFilter = "*.sav",
+                        SearchPattern = $"EDU{gameInfo.LaunchMode}??.SAV",
                         ID = "0"
                     },
                     new BackupDir()
                     {
-                        DirPath = gameInfos.First().InstallDir,
+                        DirPath = gameInfo.InstallDir,
                         SearchOption = SearchOption.TopDirectoryOnly,
-                        ExtensionFilter = "*.cfg",
+                        SearchPattern = $"EDU{gameInfo.LaunchMode}.CFG",
                         ID = "1"
                     },
-                }, gameInfos.JoinItems(Environment.NewLine, x => x.Name));
+                }, gameInfo.Name);
         }
 
         /// <summary>
@@ -100,7 +97,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="game">The game</param>
         /// <returns>The backup info</returns>
-        public static BaseBackupInfo FromGame(Games game)
+        public static IBackupInfo FromGame(Games game)
         {
             var backupName = game.GetBackupName();
             var backupInfo = game.GetBackupInfo();

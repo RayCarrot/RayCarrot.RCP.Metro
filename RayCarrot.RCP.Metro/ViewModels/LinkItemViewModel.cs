@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,6 +21,15 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class LinkItemViewModel : BaseRCPViewModel
     {
+        #region Static Constructor
+
+        static LinkItemViewModel()
+        {
+            IconCache = new Dictionary<string, ImageSource>();
+        }
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -41,9 +51,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                var image = LocalLinkPath.GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource();
-                image.Freeze();
-                IconSource = image;
+                IconSource = GetImageSource(LocalLinkPath);
             }
             catch (Exception ex)
             {
@@ -70,9 +78,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                var image = new FileSystemPath(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "regedit.exe")).GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource();
-                image.Freeze();
-                IconSource = image;
+                IconSource = GetImageSource(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "regedit.exe"));
             }
             catch (Exception ex)
             {
@@ -114,6 +120,15 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleUnexpected("Getting external link icon");
             }
         }
+
+        #endregion
+
+        #region Private Static Properties
+
+        /// <summary>
+        /// The icon cache for the icon image sources
+        /// </summary>
+        private static Dictionary<string, ImageSource> IconCache { get; }
 
         #endregion
 
@@ -179,6 +194,31 @@ namespace RayCarrot.RCP.Metro
         #region Commands
 
         public ICommand OpenLinkCommand { get; }
+
+        #endregion
+
+        #region Private Static Methods
+
+        /// <summary>
+        /// Gets the image source for the specified path
+        /// </summary>
+        /// <param name="path">The path to get the image source for</param>
+        /// <returns>The image source</returns>
+        private static ImageSource GetImageSource(FileSystemPath path)
+        {
+            if (IconCache.ContainsKey(path.FullPath))
+                return IconCache[path.FullPath];
+
+            var image = path.GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource(); ;
+
+            image.Freeze();
+
+            RCFCore.Logger?.LogDebugSource($"The link item image source has been created for the path '{path}'");
+
+            IconCache.Add(path.FullPath, image);
+
+            return image;
+        }
 
         #endregion
 

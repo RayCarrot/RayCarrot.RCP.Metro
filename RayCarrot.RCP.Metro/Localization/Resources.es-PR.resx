@@ -171,6 +171,18 @@
   <data name="DosBoxSettingsHeader" xml:space="preserve">
     <value>Ajustes de DOSBox</value>
   </data>
+  <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
+    <value>Corrección de relación de aspecto</value>
+  </data>
+  <data name="DosBoxOptions_MemorySize" xml:space="preserve">
+    <value>Tamaño de Memoria</value>
+  </data>
+  <data name="DosBoxOptions_Frameskip" xml:space="preserve">
+    <value>Salto de imagen</value>
+  </data>
+  <data name="DosBoxOptions_Output" xml:space="preserve">
+    <value>Salida</value>
+  </data>
   <data name="DosBoxOptions_Scaler" xml:space="preserve">
     <value>Escalador</value>
   </data>
@@ -200,6 +212,9 @@
   </data>
   <data name="Config_TnL" xml:space="preserve">
     <value>Transform y Lightning</value>
+  </data>
+  <data name="Config_TnLInfo" xml:space="preserve">
+    <value>Desmarca esto si hay fallas gráficas en el juego.</value>
   </data>
   <data name="Config_DynamicShadows" xml:space="preserve">
     <value>Sombras dinámicas</value>
@@ -237,11 +252,38 @@
   <data name="Config_Video32Bpp" xml:space="preserve">
     <value>32 bits por pixel</value>
   </data>
+  <data name="Config_Language" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="Config_Controller" xml:space="preserve">
+    <value>Controlador</value>
+  </data>
+  <data name="Config_UseController" xml:space="preserve">
+    <value>Usar controlador conectado</value>
+  </data>
+  <data name="Config_Network" xml:space="preserve">
+    <value>Red</value>
+  </data>
   <data name="Config_WidescreenSupport" xml:space="preserve">
     <value>Soporte widescreen</value>
   </data>
   <data name="Config_WidescreenHorizontal" xml:space="preserve">
     <value>Widescreen horizontal</value>
+  </data>
+  <data name="Config_VerticalHorizontal" xml:space="preserve">
+    <value>Widescreen vertical</value>
+  </data>
+  <data name="Config_ButtonMappingActionHeader" xml:space="preserve">
+    <value>Acción</value>
+  </data>
+  <data name="Config_ButtonMappingKeyHeader" xml:space="preserve">
+    <value>Tecla</value>
+  </data>
+  <data name="Config_ButtonMappingReset" xml:space="preserve">
+    <value>Reiniciar</value>
+  </data>
+  <data name="Config_RRRScreenMode" xml:space="preserve">
+    <value>Modo de pantalla</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Créditos</value>
@@ -330,6 +372,12 @@
   <data name="Settings_StartupHeader" xml:space="preserve">
     <value>Inicio</value>
   </data>
+  <data name="Settings_StartupGameFinder" xml:space="preserve">
+    <value>Buscar juegos instalados</value>
+  </data>
+  <data name="Settings_StartupUpdateCheck" xml:space="preserve">
+    <value>Buscar actualizaciones del programa</value>
+  </data>
   <data name="Settings_GeneralHeader" xml:space="preserve">
     <value>General</value>
   </data>
@@ -342,10 +390,10 @@
   <data name="R1U_TPLSUninstall" xml:space="preserve">
     <value>Desinstalar</value>
   </data>
-  <data name="R1U_TPLSEnabled" xml:space="preserve">
+  <data name="SettingEnabled" xml:space="preserve">
     <value>Activado</value>
   </data>
-  <data name="R1U_TPLSDisabled" xml:space="preserve">
+  <data name="SettingDisabled" xml:space="preserve">
     <value>Desactivado</value>
   </data>
   <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
@@ -366,17 +414,11 @@
   <data name="R2U_TranslationsHeader" xml:space="preserve">
     <value>Traducciones no-oficiales</value>
   </data>
-  <data name="R2U_Apply" xml:space="preserve">
+  <data name="Utility_Apply" xml:space="preserve">
     <value>Aplicar</value>
   </data>
   <data name="R3U_DirectPlayHeader" xml:space="preserve">
     <value>DirectPlay</value>
-  </data>
-  <data name="R3U_DirectPlayEnabled" xml:space="preserve">
-    <value>Activado</value>
-  </data>
-  <data name="R3U_DirectPlayDisabled" xml:space="preserve">
-    <value>Desactivado</value>
   </data>
   <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
     <value>Reemplazar archivos infectados</value>
@@ -393,17 +435,14 @@
   <data name="RLU_UbiRayHeader" xml:space="preserve">
     <value>Personaje UbiRay</value>
   </data>
+  <data name="ROU_HQVideosHeader" xml:space="preserve">
+    <value>Vídeos de mejor calidad</value>
+  </data>
   <data name="ROU_DebugCommandsHeader" xml:space="preserve">
     <value>Comandos de depurar</value>
   </data>
   <data name="ROU_DebugCommandsWarning" xml:space="preserve">
     <value>ADVERTENCIA: El uso de estos comandos de depuración puede dañar el archivo guardado. Siempre haga una copia de seguridad antes de usarlos.</value>
-  </data>
-  <data name="ROU_DebugCommandsEnabled" xml:space="preserve">
-    <value>Habilitado</value>
-  </data>
-  <data name="ROU_DebugCommandsDisabled" xml:space="preserve">
-    <value>Deshabilitado</value>
   </data>
   <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
     <value>Invencibilidad</value>
@@ -513,11 +552,20 @@
   <data name="LocateGame_InvalidSteamGameHeader" xml:space="preserve">
     <value>Juego no encontrado</value>
   </data>
+  <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
+    <value>Juego no encontrado</value>
+  </data>
   <data name="Download_ConfirmHeader" xml:space="preserve">
     <value>Confirmar descarga</value>
   </data>
   <data name="Update_UnknownError" xml:space="preserve">
     <value>Error desconocido</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Ninguna versión nueva fue encontrado</value>
+  </data>
+  <data name="Update_ManifestError" xml:space="preserve">
+    <value>El manifiesto del servidor no pudo ser leído</value>
   </data>
   <data name="Update_NewsError" xml:space="preserve">
     <value>Error al recibir noticias</value>
@@ -555,17 +603,23 @@ Notícias:
   <data name="Installer_Install" xml:space="preserve">
     <value>Instalar</value>
   </data>
-  <data name="Installer_Cancel" xml:space="preserve">
-    <value>Cancelar</value>
-  </data>
   <data name="Installer_BrowseDiscHeader" xml:space="preserve">
     <value>Seleccionar disco para instalar a través</value>
   </data>
   <data name="Installer_DriveNameConflictHeader" xml:space="preserve">
     <value>Conflicto de disco</value>
   </data>
+  <data name="Installer_InsertDriveRequestHeader" xml:space="preserve">
+    <value>Insertar disco</value>
+  </data>
   <data name="Installer_FileConflictsHeader" xml:space="preserve">
     <value>Conflictos de archivo</value>
+  </data>
+  <data name="Installer_CancelQuestion" xml:space="preserve">
+    <value>¿Deseas cancelar la instalación?</value>
+  </data>
+  <data name="Installer_CancelQuestionHeader" xml:space="preserve">
+    <value>Cancelar instalación en progreso</value>
   </data>
   <data name="Installer_InvalidDirectoryHeader" xml:space="preserve">
     <value>Directorio no fue encontrado</value>
@@ -587,6 +641,9 @@ Notícias:
   </data>
   <data name="TPLS_ErrorHeader" xml:space="preserve">
     <value>Error TPLS</value>
+  </data>
+  <data name="TPLS_PlaybackError_FileNotFound" xml:space="preserve">
+    <value>Falta el archivo de la banda sonora</value>
   </data>
   <data name="TPLS_PlaybackErrorHeader" xml:space="preserve">
     <value>Error de playback</value>
@@ -611,6 +668,12 @@ Notícias:
   </data>
   <data name="SecretCodes_SecretHeader" xml:space="preserve">
     <value>Código Secreto</value>
+  </data>
+  <data name="GameInfo_LaunchPath" xml:space="preserve">
+    <value>Dirección de ejecución:</value>
+  </data>
+  <data name="GameInfo_LaunchArgs" xml:space="preserve">
+    <value>Dirección de argumentos:</value>
   </data>
   <data name="GameInfo_SteamID" xml:space="preserve">
     <value>ID de Steam:</value>
@@ -644,6 +707,15 @@ Notícias:
   </data>
   <data name="GameShortcut_ShortcutName" xml:space="preserve">
     <value>Iniciar {0}</value>
+  </data>
+  <data name="GameNotFoundHeader" xml:space="preserve">
+    <value>No se pudo encontrar el juego</value>
+  </data>
+  <data name="About_SpecialThanks" xml:space="preserve">
+    <value>¡Un agradecimiento especial a AuToMaNiAk005, MixerX, ICUP321, PokGOT4N y todos los demás fanáticos de Rayman!</value>
+  </data>
+  <data name="About_Credits_Noserdog" xml:space="preserve">
+    <value>Parches de controlador</value>
   </data>
   <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
     <value>Automático</value>
@@ -1320,21 +1392,36 @@ Notícias:
     <value>hangon</value>
     <comment>hangon</comment>
   </data>
+  <data name="Cheats_R2_SkipMoviesTitle" xml:space="preserve">
+    <value>Saltar cinemáticos</value>
+  </data>
   <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
     <value>NOMOVIES</value>
     <comment>NOMOVIES</comment>
+  </data>
+  <data name="Cheats_R2_LoadingScreensTitle" xml:space="preserve">
+    <value>Nuevas pantallas de carga</value>
   </data>
   <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
     <value>allvign</value>
     <comment>allvign</comment>
   </data>
+  <data name="Cheats_R2_NoMurfyTitle" xml:space="preserve">
+    <value>Desactivar Murfy</value>
+  </data>
   <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
     <value>nomoremurfy</value>
     <comment>nomoremurfy</comment>
   </data>
+  <data name="Cheats_R2_TotASecretTitle" xml:space="preserve">
+    <value>Acceder el área oculta en el Tumbo de los Antiguos</value>
+  </data>
   <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
     <value>playjeff</value>
     <comment>playjeff</comment>
+  </data>
+  <data name="Cheats_R2_MenezisTitle" xml:space="preserve">
+    <value>Acceder Menezis</value>
   </data>
   <data name="Cheats_R2_MenezisInput" xml:space="preserve">
     <value>shootemup</value>
@@ -1348,113 +1435,6 @@ Notícias:
     <value>reverse</value>
     <comment>reverse</comment>
   </data>
-  <data name="FiestaRunVersion_Preload" xml:space="preserve">
-    <value>Preload Edition</value>
-  </data>
-  <data name="FiestaRunVersion_Win10" xml:space="preserve">
-    <value>Windows 10 Edition</value>
-    <comment>Windows 10 Edition</comment>
-  </data>
-  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
-    <value>1.10</value>
-    <comment>1.10</comment>
-  </data>
-  <data name="SettingEnabled" xml:space="preserve">
-    <value>Activado</value>
-  </data>
-  <data name="SettingDisabled" xml:space="preserve">
-    <value>Desactivado</value>
-  </data>
-  <data name="Utility_Apply" xml:space="preserve">
-    <value>Aplicar</value>
-  </data>
-  <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
-    <value>Corrección de relación de aspecto</value>
-  </data>
-  <data name="DosBoxOptions_MemorySize" xml:space="preserve">
-    <value>Tamaño de Memoria</value>
-  </data>
-  <data name="DosBoxOptions_Frameskip" xml:space="preserve">
-    <value>Salto de imagen</value>
-  </data>
-  <data name="DosBoxOptions_Output" xml:space="preserve">
-    <value>Salida</value>
-  </data>
-  <data name="Config_TnLInfo" xml:space="preserve">
-    <value>Desmarca esto si hay fallas gráficas en el juego.</value>
-  </data>
-  <data name="Config_Language" xml:space="preserve">
-    <value>Idioma</value>
-  </data>
-  <data name="Config_Controller" xml:space="preserve">
-    <value>Controlador</value>
-  </data>
-  <data name="Config_UseController" xml:space="preserve">
-    <value>Usar controlador conectado</value>
-  </data>
-  <data name="Config_Network" xml:space="preserve">
-    <value>Red</value>
-  </data>
-  <data name="Config_VerticalHorizontal" xml:space="preserve">
-    <value>Widescreen vertical</value>
-  </data>
-  <data name="Config_ButtonMappingActionHeader" xml:space="preserve">
-    <value>Acción</value>
-  </data>
-  <data name="Config_ButtonMappingKeyHeader" xml:space="preserve">
-    <value>Tecla</value>
-  </data>
-  <data name="Config_ButtonMappingReset" xml:space="preserve">
-    <value>Reiniciar</value>
-  </data>
-  <data name="Config_RRRScreenMode" xml:space="preserve">
-    <value>Modo de pantalla</value>
-  </data>
-  <data name="Settings_StartupGameFinder" xml:space="preserve">
-    <value>Buscar juegos instalados</value>
-  </data>
-  <data name="Settings_StartupUpdateCheck" xml:space="preserve">
-    <value>Buscar actualizaciones del programa</value>
-  </data>
-  <data name="ROU_HQVideosHeader" xml:space="preserve">
-    <value>Vídeos de mejor calidad</value>
-  </data>
-  <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
-    <value>Juego no encontrado</value>
-  </data>
-  <data name="Update_LatestInstalledHeader" xml:space="preserve">
-    <value>Ninguna versión nueva fue encontrado</value>
-  </data>
-  <data name="Update_ManifestError" xml:space="preserve">
-    <value>El manifiesto del servidor no pudo ser leído</value>
-  </data>
-  <data name="Installer_InsertDriveRequestHeader" xml:space="preserve">
-    <value>Insertar disco</value>
-  </data>
-  <data name="Installer_CancelQuestion" xml:space="preserve">
-    <value>¿Deseas cancelar la instalación?</value>
-  </data>
-  <data name="Installer_CancelQuestionHeader" xml:space="preserve">
-    <value>Cancelar instalación en progreso</value>
-  </data>
-  <data name="TPLS_PlaybackError_FileNotFound" xml:space="preserve">
-    <value>Falta el archivo de la banda sonora</value>
-  </data>
-  <data name="GameInfo_LaunchPath" xml:space="preserve">
-    <value>Dirección de ejecución:</value>
-  </data>
-  <data name="GameInfo_LaunchArgs" xml:space="preserve">
-    <value>Dirección de argumentos:</value>
-  </data>
-  <data name="GameNotFoundHeader" xml:space="preserve">
-    <value>No se pudo encontrar el juego</value>
-  </data>
-  <data name="About_SpecialThanks" xml:space="preserve">
-    <value>¡Un agradecimiento especial a AuToMaNiAk005, MixerX, ICUP321, PokGOT4N y todos los demás fanáticos de Rayman!</value>
-  </data>
-  <data name="About_Credits_Noserdog" xml:space="preserve">
-    <value>Parches de controlador</value>
-  </data>
   <data name="Cheats_RM_UnlockRacesTitle" xml:space="preserve">
     <value>Desbloquear todos los niveles de carrera</value>
   </data>
@@ -1467,19 +1447,15 @@ Notícias:
   <data name="LinksPage_LinkAlignmentStyle_Left" xml:space="preserve">
     <value>Izquierda</value>
   </data>
-  <data name="Cheats_R2_SkipMoviesTitle" xml:space="preserve">
-    <value>Saltar cinemáticos</value>
+  <data name="FiestaRunVersion_Preload" xml:space="preserve">
+    <value>Preload Edition</value>
   </data>
-  <data name="Cheats_R2_LoadingScreensTitle" xml:space="preserve">
-    <value>Nuevas pantallas de carga</value>
+  <data name="FiestaRunVersion_Win10" xml:space="preserve">
+    <value>Windows 10 Edition</value>
+    <comment>Windows 10 Edition</comment>
   </data>
-  <data name="Cheats_R2_NoMurfyTitle" xml:space="preserve">
-    <value>Desactivar Murfy</value>
-  </data>
-  <data name="Cheats_R2_TotASecretTitle" xml:space="preserve">
-    <value>Acceder el área oculta en el Tumbo de los Antiguos</value>
-  </data>
-  <data name="Cheats_R2_MenezisTitle" xml:space="preserve">
-    <value>Acceder Menezis</value>
+  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
+    <value>1.10</value>
+    <comment>1.10</comment>
   </data>
 </root>

@@ -148,17 +148,17 @@ namespace RayCarrot.RCP.Metro
         /// Gets the backup infos for this game
         /// </summary>
         /// <returns>The backup infos</returns>
-        public virtual List<IBackupInfo> GetBackupInfos()
+        public virtual Task<List<IBackupInfo>> GetBackupInfosAsync()
         {
             var info = BaseBackupInfo.FromGame(Game);
 
             if (info == null)
-                return new List<IBackupInfo>();
+                return Task.FromResult(new List<IBackupInfo>());
             else
-                return new List<IBackupInfo>()
+                return Task.FromResult(new List<IBackupInfo>()
                 {
                     BaseBackupInfo.FromGame(Game)
-                };
+                });
         }
 
         #endregion

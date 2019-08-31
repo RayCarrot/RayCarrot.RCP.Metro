@@ -68,7 +68,7 @@ namespace RayCarrot.RCP.Metro
                         else
                         {
                             // Get the files
-                            var files = Directory.GetFiles(item.DirPath, item.ExtensionFilter ?? "*", item.SearchOption);
+                            var files = Directory.GetFiles(item.DirPath, item.SearchPattern ?? "*", item.SearchOption);
 
                             // Backup each file
                             foreach (FileSystemPath file in files)
@@ -147,7 +147,7 @@ namespace RayCarrot.RCP.Metro
                             foreach (var item in backupInformation.BackupDirectories)
                             {
                                 // Get the files
-                                var files = Directory.GetFiles(item.DirPath, item.ExtensionFilter ?? "*", item.SearchOption);
+                                var files = Directory.GetFiles(item.DirPath, item.SearchPattern ?? "*", item.SearchOption);
 
                                 // Backup each file
                                 foreach (FileSystemPath file in files)
@@ -238,7 +238,7 @@ namespace RayCarrot.RCP.Metro
                             if (!item.DirPath.DirectoryExists)
                                 groupItems.Add(item, DateTime.MinValue);
                             else
-                                groupItems.Add(item, Directory.GetFiles(item.DirPath, item.ExtensionFilter, item.SearchOption).Select(x => new FileInfo(x).LastWriteTime).OrderByDescending(x => x).FirstOrDefault());
+                                groupItems.Add(item, Directory.GetFiles(item.DirPath, item.SearchPattern, item.SearchOption).Select(x => new FileInfo(x).LastWriteTime).OrderByDescending(x => x).FirstOrDefault());
                         }
 
                         // Get the latest directory
@@ -387,7 +387,7 @@ namespace RayCarrot.RCP.Metro
                                         else
                                         {
                                             // Move each file
-                                            foreach (FileSystemPath file in Directory.GetFiles(item.DirPath, item.ExtensionFilter, item.SearchOption))
+                                            foreach (FileSystemPath file in Directory.GetFiles(item.DirPath, item.SearchPattern, item.SearchOption))
                                             {
                                                 // Get the destination file
                                                 var destFile = tempDir.TempPath + backupInfo.IndexOf(item).ToString() + file.GetRelativePath(item.DirPath);
