@@ -184,16 +184,23 @@ namespace RayCarrot.RCP.Metro
 
             // Notify user
             foreach (var game in toRemove)
+            {
+                RCFRCP.Data.JumpListItemIDCollection.Remove(game.ID);
+
                 await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.Name), Resources.GameNotFoundHeader, MessageType.Error);
+            }
 
             // Make sure there is at least one game
             if (RCFRCP.Data.EducationalDosBoxGames?.Any() != true)
                 return false;
 
-            // If any games were removed, refresh the default game
+            // If any games were removed, refresh the default game and jump list
             if (toRemove.Any())
                 // Reset the game info with new install directory
+            {
                 RefreshDefault();
+                await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, false, false, false, true));
+            }
 
             return true;
         }

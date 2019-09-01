@@ -142,7 +142,7 @@ namespace RayCarrot.RCP.Metro
 
         private Task App_RefreshRequired(object sender, RefreshRequiredEventArgs e)
         {
-            if (e.GameInfoModified && e.ModifiedGames.Contains(Game))
+            if (e.GameInfoModified)
                 RefreshGameInfo();
 
             return Task.CompletedTask;

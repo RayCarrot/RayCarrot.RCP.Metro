@@ -64,7 +64,7 @@
                                     <TextBlock Grid.Column="1"
                                                TextWrapping="Wrap"
                                                VerticalAlignment="Center"
-                                               Text="{Binding Path=Name}" />
+                                               Text="{Binding Path=Name, Mode=OneTime}" />
 
                                 </Grid>
                             </DataTemplate>

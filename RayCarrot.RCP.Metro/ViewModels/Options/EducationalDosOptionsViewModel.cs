@@ -68,7 +68,7 @@ namespace RayCarrot.RCP.Metro
             var newItem = manager.GetNewEducationalDosBoxGameInfo(path.Value);
 
             // Add the game to the list of educational games
-            RCFRCP.Data.EducationalDosBoxGames.Add(newItem);
+            Data.EducationalDosBoxGames.Add(newItem);
 
             // Create the view model
             var vm = new EducationalDosBoxGameInfoViewModel(this, newItem, newItem.Name);

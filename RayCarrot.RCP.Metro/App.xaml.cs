@@ -602,6 +602,11 @@ namespace RayCarrot.RCP.Metro
                     case nameof(AppUserData.RRR2LaunchMode):
                         await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, false, false, false, true));
                         break;
+
+                    case nameof(AppUserData.DosBoxPath):
+                    case nameof(AppUserData.DosBoxConfig):
+                        await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, false, true));
+                        break;
                 }
             }
         }

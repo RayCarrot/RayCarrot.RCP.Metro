@@ -1,4 +1,6 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Windows.Media;
+using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
@@ -28,6 +30,21 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
+        /// Sets the icon image source
+        /// </summary>
+        public void SetIconImageSource()
+        {
+            try
+            {
+                IconImageSource = IconSource == null ? null : new FileSystemPath(IconSource).GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleUnexpected("Getting jump list icon image source");
+            }
+        }
+
+        /// <summary>
         /// The item name
         /// </summary>
         public string Name { get; }
@@ -40,7 +57,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The item icon image source
         /// </summary>
-        public ImageSource IconImageSource => new FileSystemPath(IconSource).GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource();
+        public ImageSource IconImageSource { get; set; }
 
         /// <summary>
         /// The item launch path

@@ -108,7 +108,4 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
     }
-
-    // TODO: The jump list needs to change the same way as when a game is added/removed as when it happens to an educational game!
-    // TODO: Might crash if dos box path doesn't exist
 }

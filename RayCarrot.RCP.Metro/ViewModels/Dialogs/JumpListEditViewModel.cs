@@ -34,6 +34,8 @@ namespace RayCarrot.RCP.Metro
                         included.Add(item);
                     else
                         NotIncluded.Add(item);
+
+                    item.SetIconImageSource();
                 }
             }
 
