@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

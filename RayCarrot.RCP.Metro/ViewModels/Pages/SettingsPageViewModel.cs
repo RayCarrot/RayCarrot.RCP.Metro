@@ -2,6 +2,8 @@
 using System;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.UI;
 
@@ -20,6 +22,7 @@ namespace RayCarrot.RCP.Metro
         public SettingsPageViewModel()
         {
             ContributeLocalizationCommand = new RelayCommand(ContributeLocalization);
+            EditJumpListCommand = new AsyncRelayCommand(EditJumpListAsync);
 
             CanEditShowUnderInstalledPrograms = App.IsRunningAsAdmin;
         }
@@ -29,6 +32,8 @@ namespace RayCarrot.RCP.Metro
         #region Commands
 
         public ICommand ContributeLocalizationCommand { get; }
+
+        public ICommand EditJumpListCommand { get; }
 
         #endregion
 
@@ -65,6 +70,25 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError($"Opening localization contribute url");
             }
+        }
+
+        /// <summary>
+        /// Edits the jump list items
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task EditJumpListAsync()
+        {
+            // Get the result
+            var result = await RCFRCP.UI.EditJumpListAsync(new JumpListEditViewModel());
+
+            if (result.CanceledByUser)
+                return;
+
+            // Update the jump list items collection
+            Data.JumpListItemIDCollection = result.IncludedItems.Select(x => x.ID).ToList();
+
+            // Refresh
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, false, false, true));
         }
 
         #endregion

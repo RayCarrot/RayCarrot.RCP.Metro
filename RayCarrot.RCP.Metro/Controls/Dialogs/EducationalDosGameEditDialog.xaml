@@ -8,9 +8,10 @@
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance local:EducationalDosGameEditViewModel}">
-    <StackPanel Margin="10"
-                MinWidth="300">
+             d:DataContext="{d:DesignInstance local:EducationalDosGameEditViewModel}"
+             MinWidth="300"
+             MaxWidth="600">
+    <StackPanel Margin="10">
         <i:Interaction.Behaviors>
             <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
         </i:Interaction.Behaviors>

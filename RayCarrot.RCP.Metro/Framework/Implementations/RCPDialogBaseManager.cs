@@ -39,7 +39,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             Content = dialog.DialogContent,
                             ResizeMode = dialog.Resizable ? ResizeMode.CanResize : ResizeMode.NoResize,
-                            Title = dialog.ViewModel.Title,
+                            Title = dialog.ViewModel.Title ?? String.Empty,
                             SizeToContent = dialog.Resizable ? SizeToContent.Manual : SizeToContent.WidthAndHeight
                         };
 

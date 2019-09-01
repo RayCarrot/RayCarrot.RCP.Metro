@@ -30,7 +30,6 @@ namespace RayCarrot.RCP.Metro
             ShowDialogCommand = new AsyncRelayCommand(ShowDialogAsync);
             ShowLogCommand = new RelayCommand(ShowLog);
             ShowInstalledUtilitiesCommand = new AsyncRelayCommand(ShowInstalledUtilitiesAsync);
-            RefreshJumpListCommand = new RelayCommand(Metro.App.Current.RefreshJumpList);
             RefreshDataOutputCommand = new AsyncRelayCommand(RefreshDataOutputAsync);
             RefreshAllCommand = new AsyncRelayCommand(RefreshAllAsync);
             RefreshAllAsyncCommand = new AsyncRelayCommand(RefreshAllTaskAsync);
@@ -253,7 +252,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RefreshAllAsync()
         {
-            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, true, true, true, true));
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, true, true, true, true, true));
         }
 
         /// <summary>
@@ -262,7 +261,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RefreshAllTaskAsync()
         {
-            await Task.Run(async () => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, true, true, true, true)));
+            await Task.Run(async () => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, true, true, true, true, true)));
         }
 
         #endregion
@@ -274,8 +273,6 @@ namespace RayCarrot.RCP.Metro
         public ICommand ShowLogCommand { get; }
 
         public ICommand ShowInstalledUtilitiesCommand { get; }
-
-        public ICommand RefreshJumpListCommand { get; }
 
         public ICommand RefreshDataOutputCommand { get; }
 

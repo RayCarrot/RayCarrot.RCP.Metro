@@ -24,6 +24,49 @@
                 <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
             </i:Interaction.Behaviors>
 
+            <!-- Language -->
+
+            <StackPanel>
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                </i:Interaction.Behaviors>
+
+                <TextBlock Text="{Resx Settings_Language}"
+                           Style="{StaticResource LargeHeaderTextBlock}" />
+
+                <StackPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                    </i:Interaction.Behaviors>
+
+                    <ComboBox SelectedItem="{Binding Path=CurrentCultureInfo}"
+                              ItemsSource="{Binding Source={x:Static local:AppLanguages.Languages}}">
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                                <Setter Property="ToolTip" Value="{Binding Path=NativeName}" />
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=EnglishName, Mode=OneTime}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+
+                    <TextBlock>
+                        <Hyperlink Command="{Binding Path=ContributeLocalizationCommand}">
+                            <TextBlock Text="{Resx Settings_LanguageContribute}" />
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <CheckBox rwpf:UserLevelTag.MinUserLevel="Debug"
+                              Content="{Resx Settings_IncompleteTranslations}"
+                              IsChecked="{Binding Path=Data.ShowIncompleteTranslations}" />
+
+                </StackPanel>
+
+            </StackPanel>
+
             <!-- User Level -->
 
             <StackPanel DataContext="{Binding Path=Data}">
@@ -83,14 +126,14 @@
 
             </StackPanel>
 
-            <!-- Language -->
+            <!-- General -->
 
             <StackPanel>
                 <i:Interaction.Behaviors>
                     <rwpf:UnifiedMarginBehavior Margin="0 2" />
                 </i:Interaction.Behaviors>
 
-                <TextBlock Text="{Resx Settings_Language}"
+                <TextBlock Text="{Resx Settings_GeneralHeader}"
                            Style="{StaticResource LargeHeaderTextBlock}" />
 
                 <StackPanel>
@@ -98,29 +141,31 @@
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
-                    <ComboBox SelectedItem="{Binding Path=CurrentCultureInfo}"
-                              ItemsSource="{Binding Source={x:Static local:AppLanguages.Languages}}">
-                        <ComboBox.ItemContainerStyle>
-                            <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
-                                <Setter Property="ToolTip" Value="{Binding Path=NativeName}" />
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Path=EnglishName, Mode=OneTime}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+                    <CheckBox Content="{Resx Settings_GeneralCloseOnLaunch}"
+                              DataContext="{Binding Path=Data}"
+                              IsChecked="{Binding Path=CloseAppOnGameLaunch}"/>
 
-                    <TextBlock>
-                        <Hyperlink Command="{Binding Path=ContributeLocalizationCommand}">
-                            <TextBlock Text="{Resx Settings_LanguageContribute}" />
-                        </Hyperlink>
-                    </TextBlock>
+                    <CheckBox Content="{Resx Settings_GeneralCloseOnSave}"
+                              DataContext="{Binding Path=Data}"
+                              IsChecked="{Binding Path=CloseConfigOnSave}" />
 
-                    <CheckBox rwpf:UserLevelTag.MinUserLevel="Debug"
-                              Content="{Resx Settings_IncompleteTranslations}"
-                              IsChecked="{Binding Path=Data.ShowIncompleteTranslations}" />
+                    <StackPanel Orientation="Horizontal">
+
+                        <local:AdminButton Visibility="{Binding Path=CanEditShowUnderInstalledPrograms, Converter={rwpf:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                                           Margin="0 0 5 0" />
+
+                        <CheckBox Content="{Resx Settings_ShowUnderInstalledPrograms}"
+                                  IsChecked="{Binding Path=Data.ShowUnderInstalledPrograms}"
+                                  IsEnabled="{Binding Path=CanEditShowUnderInstalledPrograms, Mode=OneTime}" />
+
+                        <local:InfoIcon Text="{Resx Settings_ShowUnderInstalledProgramsInfo}" />
+
+                    </StackPanel>
+
+                    <Button Content="{Resx Settings_EditJumpList}"
+                            ToolTip="{Resx Settings_EditJumpListInfo}"
+                            Command="{Binding Path=EditJumpListCommand}"
+                            HorizontalAlignment="Left"/>
 
                 </StackPanel>
 
@@ -170,6 +215,31 @@
 
             </StackPanel>
 
+            <!-- Startup -->
+
+            <StackPanel DataContext="{Binding Path=Data}">
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                </i:Interaction.Behaviors>
+
+                <TextBlock Text="{Resx Settings_StartupHeader}"
+                           Style="{StaticResource LargeHeaderTextBlock}" />
+
+                <StackPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                    </i:Interaction.Behaviors>
+
+                    <CheckBox Content="{Resx Settings_StartupGameFinder}"
+                              IsChecked="{Binding Path=AutoLocateGames}" />
+
+                    <CheckBox Content="{Resx Settings_StartupUpdateCheck}"
+                              IsChecked="{Binding Path=AutoUpdate}" />
+
+                </StackPanel>
+
+            </StackPanel>
+
             <!-- DosBox -->
 
             <StackPanel DataContext="{Binding Path=Data}">
@@ -214,71 +284,6 @@
                                         ToolTip="{Resx Settings_OptionalDosBoxConfigPathInfo}"
                                         BrowseType="File"
                                         PathValidation="FileExists" />
-
-                    </StackPanel>
-
-                </StackPanel>
-
-            </StackPanel>
-
-            <!-- Startup -->
-
-            <StackPanel DataContext="{Binding Path=Data}">
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
-                </i:Interaction.Behaviors>
-
-                <TextBlock Text="{Resx Settings_StartupHeader}"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
-
-                <StackPanel>
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-                    </i:Interaction.Behaviors>
-
-                    <CheckBox Content="{Resx Settings_StartupGameFinder}"
-                              IsChecked="{Binding Path=AutoLocateGames}" />
-
-                    <CheckBox Content="{Resx Settings_StartupUpdateCheck}"
-                              IsChecked="{Binding Path=AutoUpdate}" />
-
-                </StackPanel>
-
-            </StackPanel>
-
-            <!-- Behavior -->
-
-            <StackPanel>
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
-                </i:Interaction.Behaviors>
-
-                <TextBlock Text="{Resx Settings_GeneralHeader}"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
-
-                <StackPanel>
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-                    </i:Interaction.Behaviors>
-
-                    <CheckBox Content="{Resx Settings_GeneralCloseOnLaunch}"
-                              DataContext="{Binding Path=Data}"
-                              IsChecked="{Binding Path=CloseAppOnGameLaunch}"/>
-
-                    <CheckBox Content="{Resx Settings_GeneralCloseOnSave}"
-                              DataContext="{Binding Path=Data}"
-                              IsChecked="{Binding Path=CloseConfigOnSave}" />
-
-                    <StackPanel Orientation="Horizontal">
-
-                        <local:AdminButton Visibility="{Binding Path=CanEditShowUnderInstalledPrograms, Converter={rwpf:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
-                                           Margin="0 0 5 0" />
-
-                        <CheckBox Content="{Resx Settings_ShowUnderInstalledPrograms}"
-                                  IsChecked="{Binding Path=Data.ShowUnderInstalledPrograms}"
-                                  IsEnabled="{Binding Path=CanEditShowUnderInstalledPrograms, Mode=OneTime}" />
-
-                        <local:InfoIcon Text="{Resx Settings_ShowUnderInstalledProgramsInfo}" />
 
                     </StackPanel>
 

@@ -261,7 +261,7 @@ namespace RayCarrot.RCP.Metro
         /// Gets the icon resource path for the game based on its launch information
         /// </summary>
         /// <returns>The icon resource path</returns>
-        public override string GetIconResourcePath() => Info.InstallDirectory + Game.GetLaunchName();
+        public override string GetIconResourcePath() => RCFRCP.Data.DosBoxPath;
 
         #endregion
     }

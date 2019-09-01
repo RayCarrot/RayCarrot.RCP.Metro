@@ -111,6 +111,12 @@
     <Compile Include="Controls\AdminButton.xaml.cs">
       <DependentUpon>AdminButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Dialogs\JumpListEditDialog.xaml.cs">
+      <DependentUpon>JumpListEditDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Dialogs\JumpListEditResult.cs" />
+    <Compile Include="ViewModels\Dialogs\JumpListEditViewModel.cs" />
+    <Compile Include="ViewModels\JumpListItemViewModel.cs" />
     <Compile Include="Controls\UserControls\Config\RabbidsGoHomeConfig.xaml.cs">
       <DependentUpon>RabbidsGoHomeConfig.xaml</DependentUpon>
     </Compile>
@@ -170,6 +176,10 @@
     <Page Include="Controls\Dialogs\GameTypeSelectionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Dialogs\JumpListEditDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\GameDisplay.xaml">
       <SubType>Designer</SubType>

@@ -19,6 +19,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public BaseWindow()
         {
+            RCFCore.Logger?.LogInformationSource($"A window is being created...");
+
             // Set minimum size
             MinWidth = 400;
             MinHeight = 300;
@@ -35,6 +37,8 @@ namespace RayCarrot.RCP.Metro
 
             // Set owner window
             Owner = Application.Current?.Windows.Cast<Window>().FindItem(x => x.IsActive);
+
+            RCFCore.Logger?.LogInformationSource($"The owner window has been set to {Owner?.ToString() ?? "null"}");
 
             // Due to a WPF glitch the main window needs to be focused upon closing
             Closed += (s, e) =>

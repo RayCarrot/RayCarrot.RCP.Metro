@@ -372,6 +372,9 @@ namespace RayCarrot.RCP.Metro
             // Add the game
             Data.Games.Add(game, new GameInfo(type, installDirectory.Value));
 
+            // Add the game to the jump list
+            Data.JumpListItemIDCollection.AddRange(game.GetGameManager().GetJumpListItems().Select(x => x.ID));
+
             RCFCore.Logger?.LogInformationSource($"The game {game} has been added");
 
             // Run post-add operations
@@ -391,6 +394,9 @@ namespace RayCarrot.RCP.Metro
                 // Get the game type
                 var type = game.GetInfo().GameType;
 
+                // Get the manager
+                var manager = game.GetGameManager();
+
                 if (!forceRemove)
                 {
                     // Get applied utilities
@@ -404,6 +410,10 @@ namespace RayCarrot.RCP.Metro
 
                 // Remove the game
                 Data.Games.Remove(game);
+
+                // Remove the game from the jump list
+                foreach (var item in manager.GetJumpListItems())
+                    Data.JumpListItemIDCollection.Remove(item.ID);
 
                 // Run post game removal
                 await game.GetGameManager(type).PostGameRemovedAsync();

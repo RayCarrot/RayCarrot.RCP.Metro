@@ -97,7 +97,7 @@ namespace RayCarrot.RCP.Metro
             Data.EducationalDosBoxGames.Clear();
 
             // Add the games
-            Data.EducationalDosBoxGames.AddRange(GameItems.Select(x => new EducationalDosBoxGameInfo(x.GameInfo.InstallDir, x.GameInfo.LaunchName)
+            Data.EducationalDosBoxGames.AddRange(GameItems.Select(x => new EducationalDosBoxGameInfo(x.GameInfo.InstallDir, x.GameInfo.LaunchName, x.GameInfo.ID)
             {
                 LaunchMode = x.GameInfo.LaunchMode,
                 MountPath = x.GameInfo.MountPath,

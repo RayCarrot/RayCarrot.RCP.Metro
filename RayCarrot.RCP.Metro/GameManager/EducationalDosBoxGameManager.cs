@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
@@ -215,6 +213,20 @@ namespace RayCarrot.RCP.Metro
 
             // Return a collection of the backup infos for the available games
             return games.Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).Select(BaseBackupInfo.FromEducationalDosGameInfos).ToList();
+        }
+
+        /// <summary>
+        /// Gets the available jump list items for this game
+        /// </summary>
+        /// <returns>The items</returns>
+        public override IList<JumpListItemViewModel> GetJumpListItems()
+        {
+            return RCFRCP.Data.EducationalDosBoxGames.Select(x =>
+            {
+                var launchInfo = GetLaunchInfo(x);
+
+                return new JumpListItemViewModel(x.Name, launchInfo.Path, launchInfo.Path, launchInfo.Args, x.ID);
+            }).ToList();
         }
 
         #endregion

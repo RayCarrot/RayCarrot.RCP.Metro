@@ -48,6 +48,22 @@ namespace RayCarrot.RCP.Metro
             return result;
         }
 
+        public async Task<JumpListEditResult> EditJumpListAsync(JumpListEditViewModel viewModel, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
+        {
+            RCFCore.Logger?.LogTraceSource($"A jump list edit dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+
+            // Create the dialog and get the result
+            var result = await new JumpListEditDialog(viewModel).ShowDialogAsync();
+
+            if (result == null)
+                RCFCore.Logger?.LogTraceSource($"The jump list edit dialog returned null");
+            else if (result.CanceledByUser)
+                RCFCore.Logger?.LogTraceSource($"The jump list edit dialog was canceled by the user");
+
+            // Return the result
+            return result;
+        }
+
         #endregion
     }
 }

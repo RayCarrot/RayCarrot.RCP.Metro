@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Shell;
-using ByteSizeLib;
+﻿using ByteSizeLib;
 using MahApps.Metro;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
@@ -25,6 +15,15 @@ using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -166,7 +165,7 @@ namespace RayCarrot.RCP.Metro
             // Subscribe to when to refresh the jump list
             RCFRCP.App.RefreshRequired += (s, e) =>
             {
-                if (e.GameCollectionModified || e.GameInfoModified)
+                if (e.GameCollectionModified || e.GameInfoModified || e.JumpListModified)
                     RefreshJumpList();
 
                 return Task.CompletedTask;
@@ -490,6 +489,16 @@ namespace RayCarrot.RCP.Metro
                 Data.RabbidsGoHomeLaunchData = null;
             }
 
+            if (Data.LastVersion < new Version(6, 0, 0, 2))
+            {
+                // By default, add all games to the jump list collection
+                Data.JumpListItemIDCollection = RCFRCP.App.GetGames.
+                    Where(x => x.IsAdded()).
+                    Select(x => x.GetGameManager().GetJumpListItems().Select(y => y.ID)).
+                    SelectMany(x => x).
+                    ToList();
+            }
+
             // Re-deploy files
             await RCFRCP.App.DeployFilesAsync(true);
 
@@ -675,24 +684,28 @@ namespace RayCarrot.RCP.Metro
                     new JumpList(RCFRCP.App.GetGames.
                             // Add only games which have been added
                             Where(x => x.IsAdded()).
-                            // Create a jump task item for each game
-                            Select(x =>
+                            // Get the items for each game
+                            Select(x => x.GetGameManager().GetJumpListItems()).
+                            // Select into single collection
+                            SelectMany(x => x).
+                            // Keep only the included items
+                            Where(x => x.IsIncluded).
+                            // Keep custom order
+                            OrderBy(x => RCFRCP.Data.JumpListItemIDCollection.IndexOf(x.ID)).
+                            // Create the jump tasks
+                            Select(x => new JumpTask()
                             {
-                                var manager = x.GetGameManager();
-                                var launchInfo = manager.GetLaunchInfo();
-
-                                return new JumpTask()
-                                {
-                                    Title = x.GetDisplayName(),
-                                    Description = String.Format(Metro.Resources.JumpListItemDescription, x.GetDisplayName()),
-                                    ApplicationPath = launchInfo.Path,
-                                    WorkingDirectory = launchInfo.Path.FileExists ? launchInfo.Path.Parent : FileSystemPath.EmptyPath,
-                                    Arguments = launchInfo.Args,
-                                    IconResourcePath = manager.GetIconResourcePath()
-                                };
+                                Title = x.Name,
+                                Description = String.Format(Metro.Resources.JumpListItemDescription, x.Name),
+                                ApplicationPath = x.LaunchPath,
+                                WorkingDirectory = File.Exists(x.LaunchPath) ? Path.GetDirectoryName(x.LaunchPath) : String.Empty,
+                                Arguments = x.LaunchArguments,
+                                IconResourcePath = x.IconSource
                             }), false, false).
                         // Apply the new jump list
                         Apply();
+
+                    RCFCore.Logger?.LogInformationSource("The jump list has been refreshed");
                 }
                 catch (Exception ex)
                 {

@@ -161,6 +161,20 @@ namespace RayCarrot.RCP.Metro
                 });
         }
 
+        /// <summary>
+        /// Gets the available jump list items for this game
+        /// </summary>
+        /// <returns>The items</returns>
+        public virtual IList<JumpListItemViewModel> GetJumpListItems()
+        {
+            var launchInfo = GetLaunchInfo();
+
+            return new List<JumpListItemViewModel>()
+            {
+                new JumpListItemViewModel(Game.GetDisplayName(), GetIconResourcePath(), launchInfo.Path, launchInfo.Args, Game.ToString())
+            };
+        }
+
         #endregion
 
         #region Public Methods

@@ -2722,4 +2722,19 @@ exceptionMessage</comment>
   <data name="Links_Local_RRR2RegSettings" xml:space="preserve">
     <value>Rayman Raving Rabbids 2 settings</value>
   </data>
+  <data name="Settings_EditJumpList" xml:space="preserve">
+    <value>Edit jump list</value>
+  </data>
+  <data name="Settings_EditJumpListInfo" xml:space="preserve">
+    <value>The jump list is the list of game shortcuts which appears when right-clicking the app in the taskbar or start menu</value>
+  </data>
+  <data name="JumpListEditor_Header" xml:space="preserve">
+    <value>Edit jump list items</value>
+  </data>
+  <data name="JumpListEditor_IncludedHeader" xml:space="preserve">
+    <value>Included</value>
+  </data>
+  <data name="JumpListEditor_NotIncludedHeader" xml:space="preserve">
+    <value>Not Included</value>
+  </data>
 </root>

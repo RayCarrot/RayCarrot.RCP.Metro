@@ -90,6 +90,7 @@ namespace RayCarrot.RCP.Metro
             EducationalDosBoxGames = null;
             RRR2LaunchMode = RRR2LaunchMode.AllGames;
             RabbidsGoHomeLaunchData = null;
+            JumpListItemIDCollection = new List<string>();
         }
 
         #endregion
@@ -319,6 +320,11 @@ namespace RayCarrot.RCP.Metro
         /// The launch data for Rabbids Go Home
         /// </summary>
         public RabbidsGoHomeLaunchData RabbidsGoHomeLaunchData { get; set; }
+
+        /// <summary>
+        /// The collection of jump list item IDs
+        /// </summary>
+        public List<string> JumpListItemIDCollection { get; set; }
 
         #endregion
 

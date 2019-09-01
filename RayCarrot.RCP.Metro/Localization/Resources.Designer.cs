@@ -4550,6 +4550,33 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit jump list items.
+        /// </summary>
+        public static string JumpListEditor_Header {
+            get {
+                return ResourceManager.GetString("JumpListEditor_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Included.
+        /// </summary>
+        public static string JumpListEditor_IncludedHeader {
+            get {
+                return ResourceManager.GetString("JumpListEditor_IncludedHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Included.
+        /// </summary>
+        public static string JumpListEditor_NotIncludedHeader {
+            get {
+                return ResourceManager.GetString("JumpListEditor_NotIncludedHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Launch {0}.
         /// </summary>
         public static string JumpListItemDescription {
@@ -6949,6 +6976,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_DosBoxPathInfo {
             get {
                 return ResourceManager.GetString("Settings_DosBoxPathInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit jump list.
+        /// </summary>
+        public static string Settings_EditJumpList {
+            get {
+                return ResourceManager.GetString("Settings_EditJumpList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The jump list is the list of game shortcuts which appears when right-clicking the app in the taskbar or start menu.
+        /// </summary>
+        public static string Settings_EditJumpListInfo {
+            get {
+                return ResourceManager.GetString("Settings_EditJumpListInfo", resourceCulture);
             }
         }
         
