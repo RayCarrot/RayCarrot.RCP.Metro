@@ -85,7 +85,7 @@ namespace RayCarrot.RCP.Metro
             {
                 RCFCore.Logger?.LogInformationSource($"The {Game} was not found under Steam Apps");
 
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGame, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGameHeader, MessageType.Error);
                 return null;
             }
 

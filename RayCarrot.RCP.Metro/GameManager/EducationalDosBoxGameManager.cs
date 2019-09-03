@@ -141,16 +141,14 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override Task PostGameAddAsync()
         {
-            // Create config file
-            new DosBoxAutoConfigManager(Game.GetDosBoxConfigFile()).Create();
-
             // Get the info
             var info = GetNewEducationalDosBoxGameInfo(Game.GetInfo().InstallDirectory);
 
             // Add the game to the list of educational games
             RCFRCP.Data.EducationalDosBoxGames.Add(info);
 
-            return Task.CompletedTask;
+            // Create config file
+            return base.PostGameAddAsync();
         }
 
         /// <summary>
@@ -170,6 +168,9 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game is valid, otherwise false</returns>
         public override async Task<bool> IsValidAsync(FileSystemPath installDir)
         {
+            if (RCFRCP.Data.EducationalDosBoxGames == null)
+                return false;
+
             List<EducationalDosBoxGameInfo> toRemove = new List<EducationalDosBoxGameInfo>();
 
             foreach (var game in RCFRCP.Data.EducationalDosBoxGames)
@@ -211,15 +212,15 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The backup infos</returns>
         public override async Task<List<IBackupInfo>> GetBackupInfosAsync()
         {
-            // Get the games
-            var games = RCFRCP.Data.EducationalDosBoxGames;
+            // Get the games with a launch mode
+            var games = RCFRCP.Data.EducationalDosBoxGames.Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).ToArray();
 
             // Check if any games have the same launch mode
-            if (games.Select(x => x.LaunchMode).Distinct(StringComparer.InvariantCultureIgnoreCase).Count() < games.Count)
+            if (games.Select(x => x.LaunchMode).Distinct(StringComparer.InvariantCultureIgnoreCase).Count() < games.Length)
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.LaunchModeConflict, Resources.LaunchModeConflictHeader, MessageType.Warning);
 
             // Return a collection of the backup infos for the available games
-            return games.Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).Select(BaseBackupInfo.FromEducationalDosGameInfos).ToList();
+            return games.Select(BaseBackupInfo.FromEducationalDosGameInfos).ToList();
         }
 
         /// <summary>
@@ -228,12 +229,15 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The items</returns>
         public override IList<JumpListItemViewModel> GetJumpListItems()
         {
+            if (RCFRCP.Data.EducationalDosBoxGames == null)
+                return new JumpListItemViewModel[0];
+
             return RCFRCP.Data.EducationalDosBoxGames.Select(x =>
             {
                 var launchInfo = GetLaunchInfo(x);
 
                 return new JumpListItemViewModel(x.Name, launchInfo.Path, launchInfo.Path, launchInfo.Args, x.ID);
-            }).ToList();
+            }).ToArray();
         }
 
         #endregion

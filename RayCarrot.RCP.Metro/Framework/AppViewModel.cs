@@ -198,7 +198,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(6, 0, 0, 2);
+        public Version CurrentVersion => new Version(6, 0, 0, 3);
 
         /// <summary>
         /// Indicates if the current version is a beta version
@@ -372,13 +372,13 @@ namespace RayCarrot.RCP.Metro
             // Add the game
             Data.Games.Add(game, new GameInfo(type, installDirectory.Value));
 
-            // Add the game to the jump list
-            Data.JumpListItemIDCollection.AddRange(game.GetGameManager().GetJumpListItems().Select(x => x.ID));
-
             RCFCore.Logger?.LogInformationSource($"The game {game} has been added");
 
             // Run post-add operations
             await game.GetGameManager().PostGameAddAsync();
+
+            // Add the game to the jump list
+            Data.JumpListItemIDCollection.AddRange(game.GetGameManager().GetJumpListItems().Select(x => x.ID));
         }
 
         /// <summary>
@@ -482,7 +482,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Changing ubi.ini file permissions");
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_Error, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.UbiIniWriteAccess_Error);
             }
         }
 
@@ -508,10 +508,7 @@ namespace RayCarrot.RCP.Metro
                     var manager = new GameFinderManager();
 
                     // Helper method for checking if the specified games are being checked for
-                    bool AreGamesIncluded(params Games[] games)
-                    {
-                        return games.Any(game => manager.GameItems.ContainsKey(game));
-                    }
+                    bool AreGamesIncluded(params Games[] games) => games.Any(game => manager.GameItems.ContainsKey(game));
 
                     // The ubi.ini data
                     IniData iniData = null;
@@ -552,26 +549,36 @@ namespace RayCarrot.RCP.Metro
                         ex.HandleUnexpected("Getting installed programs for game checker");
                     }
 
-                    // Start menu items
-                    List<string> startMenuItems = new List<string>();
+                    // Start menu & desktop shortcuts
+                    List<string> shortcuts = new List<string>();
                     try
                     {
                         if (manager.GameItems.Any())
                         {
                             // Get items from user start menu
-                            startMenuItems.AddRange(Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu), "*.lnk", SearchOption.AllDirectories));
+                            shortcuts.AddRange(Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu), "*.lnk", SearchOption.AllDirectories));
 
                             RCFCore.Logger?.LogTraceSource("The user start menu programs were retrieved for the game checker");
 
                             // Get items from common start menu
-                            startMenuItems.AddRange(Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "*.lnk", SearchOption.AllDirectories));
+                            shortcuts.AddRange(Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), "*.lnk", SearchOption.AllDirectories));
 
                             RCFCore.Logger?.LogTraceSource("The common start menu programs were retrieved for the game checker");
+
+                            // Get items from user desktop
+                            shortcuts.AddRange(Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "*.lnk", SearchOption.TopDirectoryOnly));
+
+                            RCFCore.Logger?.LogTraceSource("The user desktop shortcuts were retrieved for the game checker");
+
+                            // Get items from common start menu
+                            shortcuts.AddRange(Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.CommonDesktopDirectory), "*.lnk", SearchOption.TopDirectoryOnly));
+
+                            RCFCore.Logger?.LogTraceSource("The common desktop shortcuts were retrieved for the game checker");
                         }
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleUnexpected("Getting start menu programs for game checker");
+                        ex.HandleUnexpected("Getting start menu & desktop shortcuts for game checker");
                     }
 
                     // Helper methods
@@ -583,9 +590,9 @@ namespace RayCarrot.RCP.Metro
                         var type = program == null ? GameType.Win32 : program.IsSteamGame ? GameType.Steam : GameType.Win32;
                         return new GameFinderActionResult(path, type, "RegistryUninstall");
                     }
-                    GameFinderActionResult CheckStartMenu(string name, string requiredFile)
+                    GameFinderActionResult CheckShortcuts(string name, string requiredFile)
                     {
-                        foreach (string startMenuItem in startMenuItems)
+                        foreach (string startMenuItem in shortcuts)
                         {
                             if (Path.GetFileName(startMenuItem)?.IndexOf(name, StringComparison.CurrentCultureIgnoreCase) < 0)
                                 continue;
@@ -631,7 +638,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman 2 - The Great Escape", "Rayman 2", "Rayman2", "GOG.com Rayman 2"),
 
                         // Start menu
-                        () => CheckStartMenu("Rayman 2", Games.Rayman2.GetLaunchName()),
+                        () => CheckShortcuts("Rayman 2", Games.Rayman2.GetLaunchName()),
                     });
 
                     // Rayman M
@@ -644,7 +651,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman M", "RaymanM"),
 
                         // Start menu
-                        () => CheckStartMenu("Rayman M", Games.RaymanM.GetLaunchName()),
+                        () => CheckShortcuts("Rayman M", Games.RaymanM.GetLaunchName()),
                     });
 
                     // Rayman Arena
@@ -657,7 +664,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman Arena", "RaymanArena"),
 
                         // Start menu
-                        () => CheckStartMenu("Rayman Arena", Games.RaymanArena.GetLaunchName()),
+                        () => CheckShortcuts("Rayman Arena", Games.RaymanArena.GetLaunchName()),
                     });
 
                     // Rayman 3
@@ -670,7 +677,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman 3 - Hoodlum Havoc", "Rayman 3", "Rayman3"),
 
                         // Start menu
-                        () => CheckStartMenu("Rayman 3", Games.Rayman3.GetLaunchName()),
+                        () => CheckShortcuts("Rayman 3", Games.Rayman3.GetLaunchName()),
                     });
 
                     // Rayman Raving Rabbids
@@ -680,7 +687,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman: Raving Rabbids", "Rayman Raving Rabbids"),
 
                         // Start menu
-                        () => CheckStartMenu("Rayman Raving Rabbids", Games.RaymanRavingRabbids.GetLaunchName()),
+                        () => CheckShortcuts("Rayman Raving Rabbids", Games.RaymanRavingRabbids.GetLaunchName()),
                     });
 
                     // Rayman Raving Rabbids 2
@@ -690,7 +697,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman: Raving Rabbids 2", "Rayman Raving Rabbids 2"),
 
                         // Start menu
-                        () => CheckStartMenu("Rayman Raving Rabbids 2", Games.RaymanRavingRabbids2.GetLaunchName()),
+                        () => CheckShortcuts("Rayman Raving Rabbids 2", Games.RaymanRavingRabbids2.GetLaunchName()),
                     });
 
                     // Rabbids Go Home
@@ -700,7 +707,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rabbids Go Home"),
 
                         // Start menu
-                        () => CheckStartMenu("Rabbids Go Home", Games.RabbidsGoHome.GetLaunchName()),
+                        () => CheckShortcuts("Rabbids Go Home", Games.RabbidsGoHome.GetLaunchName()),
                     });
 
                     // Rayman Origins
@@ -710,7 +717,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman Origins", "RaymanOrigins"),
 
                         // Start menu
-                        () => CheckStartMenu("Rayman Origins", Games.RaymanOrigins.GetLaunchName()),
+                        () => CheckShortcuts("Rayman Origins", Games.RaymanOrigins.GetLaunchName()),
                     });
 
                     // Rayman Legends
@@ -720,7 +727,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman Legends", "RaymanLegends"),
 
                         // Start menu
-                        () => CheckStartMenu("Rayman Legends", Games.RaymanLegends.GetLaunchName()),
+                        () => CheckShortcuts("Rayman Legends", Games.RaymanLegends.GetLaunchName()),
                     });
 
                     // Run the checker and get the results
@@ -737,7 +744,7 @@ namespace RayCarrot.RCP.Metro
                             () => CheckUninstall("DosBox", "Dos Box"),
 
                             // Start menu
-                            () => CheckStartMenu("DosBox", "DOSBox.exe"),
+                            () => CheckShortcuts("DosBox", "DOSBox.exe"),
                         };
 
                         // Run every check action until one is successful
@@ -802,7 +809,7 @@ namespace RayCarrot.RCP.Metro
                             break;
 
                         // Add the game if it's found
-                        if (fiestaRunManager.GetGamePackage(fiestaRunManager.GetFiestaRunPackageName(version)) != null)
+                        if (fiestaRunManager.IsFiestaRunEditionValidAsync(version))
                         {
                             addedGames.Add(Games.RaymanFiestaRun);
 
@@ -875,7 +882,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Game finder");
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.GameFinder_Error, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameFinder_Error);
                 }
                 finally
                 {
@@ -956,7 +963,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError($"Downloading files");
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_Error, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Download_Error);
                 return false;
             }
         }
@@ -1098,7 +1105,7 @@ namespace RayCarrot.RCP.Metro
                     catch (Exception ex)
                     {
                         ex.HandleError("Writing updater to temp path", CommonPaths.UpdaterFilePath);
-                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_UpdaterError, "raycarrot.ylemnova.com"), Resources.Update_UpdaterErrorHeader, MessageType.Error);
+                        await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, "raycarrot.ylemnova.com"), Resources.Update_UpdaterErrorHeader);
                         return;
                     }
 
@@ -1168,7 +1175,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Moving backups");
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.MoveBackups_Error, Resources.MoveBackups_ErrorHeader, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.MoveBackups_Error, Resources.MoveBackups_ErrorHeader);
                 }
             }
         }
@@ -1233,7 +1240,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Locating game");
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_Error, Resources.LocateGame_ErrorHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.LocateGame_Error, Resources.LocateGame_ErrorHeader);
             }
         }
 
@@ -1262,7 +1269,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleCritical("Deploying additional files");
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.DeployFilesError, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.DeployFilesError);
             }
         }
 

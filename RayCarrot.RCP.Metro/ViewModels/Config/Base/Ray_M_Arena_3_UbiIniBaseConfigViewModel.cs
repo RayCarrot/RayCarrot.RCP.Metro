@@ -270,7 +270,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     ex.HandleError("Creating ubi.ini file");
 
-                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Config_InvalidUbiIni, CommonPaths.UbiIniPath1.Parent), MessageType.Error);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_InvalidUbiIni, CommonPaths.UbiIniPath1.Parent));
 
                     throw;
                 }

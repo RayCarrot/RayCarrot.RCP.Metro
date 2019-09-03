@@ -2737,4 +2737,7 @@ exceptionMessage</comment>
   <data name="JumpListEditor_NotIncludedHeader" xml:space="preserve">
     <value>Not Included</value>
   </data>
+  <data name="LocateGame_WinStoreNotSupported" xml:space="preserve">
+    <value>Windows Store apps are not supported on the current version of Windows</value>
+  </data>
 </root>

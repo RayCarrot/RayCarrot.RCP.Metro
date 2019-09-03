@@ -5342,6 +5342,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Windows Store apps are not supported on the current version of Windows.
+        /// </summary>
+        public static string LocateGame_WinStoreNotSupported {
+            get {
+                return ResourceManager.GetString("LocateGame_WinStoreNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error Message.
         /// </summary>
         public static string MessageHeader_Error {

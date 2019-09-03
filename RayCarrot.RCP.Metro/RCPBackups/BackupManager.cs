@@ -303,7 +303,7 @@ namespace RayCarrot.RCP.Metro
                     ex.HandleError("Backing up game", backupInformation);
 
                     // Display message to user
-                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Failed, backupInformation.GameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Backup_Failed, backupInformation.GameDisplayName), Resources.Backup_FailedHeader);
 
                     // Return that backup did not succeed
                     return false;
@@ -468,7 +468,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleCritical("Restoring game", backupInformation);
-                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Failed, backupInformation.GameDisplayName), Resources.Restore_FailedHeader, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Restore_Failed, backupInformation.GameDisplayName), Resources.Restore_FailedHeader);
 
                     return false;
                 }

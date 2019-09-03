@@ -110,7 +110,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Replacing R1 soundtrack");
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.RDU_ReplaceFiles_Error, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.RDU_ReplaceFiles_Error);
             }
         }
 

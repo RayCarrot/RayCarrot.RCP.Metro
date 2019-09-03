@@ -85,7 +85,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Applying RD config patch");
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.RDU_CreateConfig_Error, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.RDU_CreateConfig_Error);
             }
         }
 

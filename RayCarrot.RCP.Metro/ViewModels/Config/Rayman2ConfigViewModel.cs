@@ -426,7 +426,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     ex.HandleError("Creating ubi.ini file");
 
-                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Config_InvalidUbiIni, newFile.Parent.FullPath), MessageType.Error);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_InvalidUbiIni, newFile.Parent.FullPath));
 
                     throw;
                 }
@@ -624,7 +624,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Setting R2 aspect ratio");
 
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.R2Widescreen_Error, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2Widescreen_Error);
 
                 if (WidescreenSupport)
                     throw;

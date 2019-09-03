@@ -56,7 +56,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Downloading RO updater");
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.ROU_UpdateFailed, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ROU_UpdateFailed);
             }
 
 

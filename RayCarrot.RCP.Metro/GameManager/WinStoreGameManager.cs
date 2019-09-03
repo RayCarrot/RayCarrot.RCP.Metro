@@ -203,6 +203,21 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// Indicates if the edition of Fiesta Run is valid based on edition
+        /// </summary>
+        /// <param name="edition">The edition to check</param>
+        /// <returns>True if the game is valid, otherwise false</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public bool IsFiestaRunEditionValidAsync(FiestaRunEdition edition)
+        {
+            // Make sure version is at least Windows 8
+            if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
+                return false;
+
+            return GetGamePackage(GetFiestaRunFullPackageName(edition)) != null;
+        }
+
         #endregion
 
         #region Protected Overrides
@@ -224,7 +239,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Launching Windows Store application");
-                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.LaunchGame_WinStoreError, Game.GetDisplayName()), MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.LaunchGame_WinStoreError, Game.GetDisplayName()));
 
                 return new GameLaunchResult(null, false);
             }
@@ -240,6 +255,14 @@ namespace RayCarrot.RCP.Metro
         /// <returns>Null if the game was not found. Otherwise a valid or empty path for the instal directory</returns>
         public override async Task<FileSystemPath?> LocateAsync()
         {
+            // Make sure version is at least Windows 8
+            if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
+            {
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_WinStoreNotSupported, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
+
+                return null;
+            }
+
             bool found = false;
 
             if (Game == Games.RaymanFiestaRun)
@@ -249,7 +272,7 @@ namespace RayCarrot.RCP.Metro
                     if (found)
                         break;
 
-                    found = GetGamePackage(GetFiestaRunPackageName(version)) != null;
+                    found = IsFiestaRunEditionValidAsync(version);
 
                     if (found)
                         RCFRCP.Data.FiestaRunVersion = version;

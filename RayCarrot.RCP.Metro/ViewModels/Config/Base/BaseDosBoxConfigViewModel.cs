@@ -473,7 +473,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Saving DosBox configuration data");
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.Config_DosBoxSaveError, Resources.Config_SaveErrorHeader, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_DosBoxSaveError, Resources.Config_SaveErrorHeader);
                     return;
                 }
 

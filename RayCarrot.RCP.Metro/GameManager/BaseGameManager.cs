@@ -169,7 +169,7 @@ namespace RayCarrot.RCP.Metro
         {
             var launchInfo = GetLaunchInfo();
 
-            return new List<JumpListItemViewModel>()
+            return new JumpListItemViewModel[]
             {
                 new JumpListItemViewModel(Game.GetDisplayName(), GetIconResourcePath(), launchInfo.Path, launchInfo.Args, Game.ToString())
             };

@@ -87,7 +87,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Replacing R1 soundtrack");
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_CompleteOSTReplaceError, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_CompleteOSTReplaceError);
             }
         }
 

@@ -301,7 +301,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Applying RO debug commands");
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.ROU_DebugCommandsError, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ROU_DebugCommandsError);
                 }
             }
         }

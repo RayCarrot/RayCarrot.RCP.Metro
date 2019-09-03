@@ -136,7 +136,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Saving ubi.ini data");
-                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Config_SaveError, Game.GetDisplayName()), Resources.Config_SaveErrorHeader, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetDisplayName()), Resources.Config_SaveErrorHeader);
                     return;
                 }
 
@@ -148,7 +148,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("On save config");
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.Config_SaveWarning, Resources.Config_SaveErrorHeader, MessageType.Warning);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveWarning, Resources.Config_SaveErrorHeader);
 
                     return;
                 }

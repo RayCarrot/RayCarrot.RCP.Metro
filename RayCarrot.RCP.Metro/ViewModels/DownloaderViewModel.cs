@@ -131,7 +131,7 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Cleaning up incomplete download operation");
 
                 // Let the user know the restore failed
-                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Download_RestoreStoppedDownloadError, LocalTempDir.TempPath, ServerTempDir.TempPath), "Restore and clean up failed", MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Download_RestoreStoppedDownloadError, LocalTempDir.TempPath, ServerTempDir.TempPath));
             }
         }
 

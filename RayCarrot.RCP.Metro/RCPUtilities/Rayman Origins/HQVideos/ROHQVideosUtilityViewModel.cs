@@ -94,7 +94,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Replacing RO videos");
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.ROU_HQVideosFailed, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ROU_HQVideosFailed);
             }
         }
 

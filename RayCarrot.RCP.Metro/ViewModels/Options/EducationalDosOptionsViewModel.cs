@@ -76,6 +76,9 @@ namespace RayCarrot.RCP.Metro
             // Add the view model
             GameItems.Add(vm);
 
+            // Add to the jump list
+            Data.JumpListItemIDCollection.Add(newItem.ID);
+
             RCFCore.Logger?.LogInformationSource($"A new educational game has been added with the name {newItem.Name}");
 
             // Refresh

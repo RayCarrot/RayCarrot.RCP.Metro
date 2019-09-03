@@ -54,7 +54,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleUnexpected("Launching file", file);
-                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.File_ErrorLaunchingFile, file.FullPath), MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.File_ErrorLaunchingFile, file.FullPath));
             }
 
             return null;
@@ -77,7 +77,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleUnexpected("Creating shortcut", DestinationDirectory);
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
             }
         }
 
@@ -101,7 +101,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Opening explorer location", location);
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.File_OpenLocationError, Resources.File_OpenLocationErrorHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.File_OpenLocationError, Resources.File_OpenLocationErrorHeader);
             }
         }
 
@@ -128,7 +128,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Opening Registry key path", registryKeyPath);
 
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.File_OpenRegKeyError, Resources.File_OpenRegKeyErrorHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.File_OpenRegKeyError, Resources.File_OpenRegKeyErrorHeader);
             }
         }
 

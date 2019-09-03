@@ -752,7 +752,7 @@
     <Resource Include="Img\GameIcons\RabbidsGoHome.png" />
     <Resource Include="Img\GameIcons\RabbidsBigBang.png" />
     <Resource Include="Img\GameIcons\EducationalDos.png" />
-    <SplashScreen Include="Files\Splash Screen.png" />
+    <Resource Include="Files\Splash Screen.png" />
     <Content Include="Files\Programs\AdminWorker.exe" />
     <Content Include="Files\Programs\Rayman Control Panel Updater.exe" />
     <Content Include="Files\Rayman2\GXSetup_GOG.exe" />

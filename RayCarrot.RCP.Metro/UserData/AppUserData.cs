@@ -465,7 +465,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     ex.HandleError("Updating program in Registry uninstall key");
 
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.Settings_ShowUnderInstalledPrograms_UpdateError, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Settings_ShowUnderInstalledPrograms_UpdateError);
 
                     return false;
                 }

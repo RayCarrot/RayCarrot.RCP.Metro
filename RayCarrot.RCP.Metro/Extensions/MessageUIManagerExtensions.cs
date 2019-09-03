@@ -45,8 +45,6 @@ namespace RayCarrot.RCP.Metro
         /// <param name="lineNumber">The caller line number (leave at default for compiler-time value)</param>
         public static async Task DisplayExceptionMessageAsync(this IMessageUIManager messageUIManager, Exception exception, string message = null, string header = null, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
-            // TODO: Implement in code
-
             // Show the message
             await messageUIManager.DisplayMessageAsync(String.Format(Resources.App_ExceptionMessage, message ?? Resources.App_ExceptionMessageDefaultMessage, exception.Message), header ?? Resources.App_ExceptionMessageDefaultHeader, MessageType.Error, origin, filePath, lineNumber);
         }

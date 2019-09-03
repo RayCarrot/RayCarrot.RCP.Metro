@@ -93,6 +93,11 @@
                               ItemsSource="{Binding Path=Included}" />
             </ScrollViewer>
 
+            <Separator Grid.Column="1"
+                       Grid.Row="1"
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+            
             <ScrollViewer Grid.Column="2"
                           Grid.Row="1"
                           VerticalScrollBarVisibility="Auto"

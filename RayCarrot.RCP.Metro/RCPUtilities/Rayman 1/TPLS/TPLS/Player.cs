@@ -45,7 +45,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("TPLS: Playing music");
 
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.TPLS_PlaybackError, Resources.TPLS_PlaybackErrorHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.TPLS_PlaybackError, Resources.TPLS_PlaybackErrorHeader);
             }
         }
 

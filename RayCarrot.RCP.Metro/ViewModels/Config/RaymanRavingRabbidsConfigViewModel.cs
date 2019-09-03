@@ -230,7 +230,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Saving Rayman Raving Rabbids registry data");
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.Config_SaveRRRError, Resources.Config_SaveErrorHeader, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveRRRError, Resources.Config_SaveErrorHeader);
                     return;
                 }
 

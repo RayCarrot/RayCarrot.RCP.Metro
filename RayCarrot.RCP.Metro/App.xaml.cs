@@ -37,7 +37,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        public App() : base(true)
+        public App() : base(true, "Files/Splash Screen.png")
         {
             DataChangedHandlerAsyncLock = new AsyncLock();
         }
@@ -267,7 +267,7 @@ namespace RayCarrot.RCP.Metro
         /// Shows the application license message and returns a value indicating if it was accepted
         /// </summary>
         /// <returns>True if it was accepted, false if not</returns>
-        private static bool ShowLicense()
+        private bool ShowLicense()
         {
             try
             {
@@ -280,6 +280,9 @@ namespace RayCarrot.RCP.Metro
 
                 // Create license popup dialog
                 var ld = new LicenseDialog();
+
+                // Close the splash screen
+                CloseSplashScreen();
 
                 // Show the dialog
                 ld.ShowDialog();
@@ -358,6 +361,9 @@ namespace RayCarrot.RCP.Metro
             // Show first launch info
             if (Data.IsFirstLaunch)
             {
+                // Close the splash screen
+                CloseSplashScreen();
+
                 new FirstLaunchInfoDialog().ShowDialog();
                 Data.IsFirstLaunch = false;
             }
@@ -507,6 +513,9 @@ namespace RayCarrot.RCP.Metro
 
             // Refresh the jump list
             RefreshJumpList();
+
+            // Close the splash screen
+            CloseSplashScreen();
 
             // Show app news
             new AppNewsDialog().ShowDialog();

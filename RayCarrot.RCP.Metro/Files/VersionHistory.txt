@@ -5,6 +5,7 @@
 • The application startup time has been improved
 • Backups for all installed versions of Rayman Fiesta Run are now supported without changing the default version
 • Improved game icon quality
+• The game finder can now find game installations from desktop shortcuts
 
 Other changes:
 • The list box in the Rayman Legends UbiRay utility now consists of radio buttons for clarity when selecting

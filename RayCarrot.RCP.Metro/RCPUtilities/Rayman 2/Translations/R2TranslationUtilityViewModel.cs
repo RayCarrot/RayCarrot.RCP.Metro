@@ -125,7 +125,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Applying R2 translation patch");
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.R2U_Translations_Error, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_Translations_Error);
             }
         }
 

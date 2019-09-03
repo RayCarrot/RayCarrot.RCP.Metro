@@ -86,7 +86,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Installing TPLS");
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSInstallationFailed, Resources.R1U_TPLSInstallationFailedHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_TPLSInstallationFailed, Resources.R1U_TPLSInstallationFailedHeader);
             }
         }
 
