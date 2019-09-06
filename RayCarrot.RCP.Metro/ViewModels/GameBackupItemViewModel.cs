@@ -177,6 +177,9 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Getting backup info", BackupInfo);
+
+                CanRestore = false;
+
                 await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ReadingBackupError, BackupInfo.GameDisplayName));
             }
         }

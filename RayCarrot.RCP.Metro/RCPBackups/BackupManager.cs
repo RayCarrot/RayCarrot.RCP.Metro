@@ -11,8 +11,6 @@ using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
-    // TODO: Look through thoroughly!!!
-
     /// <summary>
     /// The backup manager
     /// </summary>
@@ -74,7 +72,7 @@ namespace RayCarrot.RCP.Metro
             using (var tempDir = new TempDirectory(false))
             {
                 bool hasCreatedTempBackup = false;
-
+                
                 try
                 {
                     // Check if a backup already exists
@@ -82,8 +80,9 @@ namespace RayCarrot.RCP.Metro
                     {
                         // Create a new temp backup
                         FileManager.MoveDirectory(destinationDir, tempDir.TempPath, true, true);
-                        hasCreatedTempBackup = true;
                     }
+
+                    hasCreatedTempBackup = true;
 
                     // Backup each directory
                     foreach (BackupDir item in backupInformation.BackupDirectories)
@@ -123,6 +122,9 @@ namespace RayCarrot.RCP.Metro
                     if (tempDir.TempPath.DirectoryExists)
                         // Only replace files if the crash happened after creating the temp backup and during the backup operation
                         FileManager.MoveDirectory(tempDir.TempPath, destinationDir, hasCreatedTempBackup, false);
+                    else if (hasCreatedTempBackup)
+                        // Delete incomplete backup
+                        FileManager.DeleteDirectory(destinationDir);
 
                     RCFCore.Logger?.LogInformationSource($"Backup failed - clean up succeeded");
 
@@ -143,12 +145,16 @@ namespace RayCarrot.RCP.Metro
 
             using (var tempFile = new TempFile(false))
             {
+                bool hasCreatedTempBackup = false;
+
                 try
                 {
                     // Check if a backup already exists
                     if (destinationFile.FileExists)
                         // Create a new temp backup
                         FileManager.MoveFile(destinationFile, tempFile.TempPath, true);
+
+                    hasCreatedTempBackup = true;
 
                     // Create the parent directory
                     Directory.CreateDirectory(destinationFile.Parent);
@@ -186,6 +192,9 @@ namespace RayCarrot.RCP.Metro
                     if (tempFile.TempPath.FileExists)
                         // Restore temp backup
                         FileManager.MoveFile(tempFile.TempPath, destinationFile, true);
+                    else if (hasCreatedTempBackup)
+                        // Delete incomplete backup
+                        FileManager.DeleteFile(destinationFile);
 
                     RCFCore.Logger?.LogInformationSource($"Compressed backup failed - clean up succeeded");
 
@@ -469,7 +478,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleCritical("Restoring game", backupInformation);
+                    ex.HandleError("Restoring game", backupInformation);
                     await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Restore_Failed, backupInformation.GameDisplayName), Resources.Restore_FailedHeader);
 
                     return false;
