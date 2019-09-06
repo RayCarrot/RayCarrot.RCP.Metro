@@ -106,7 +106,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File structure for the education Rayman games.
+        ///   Looks up a localized string similar to File structure for the educational Rayman games.
         /// </summary>
         public static string About_Credits_EvelynChickentalk {
             get {
@@ -2965,7 +2965,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The has to be at least one game available to launch.
+        ///   Looks up a localized string similar to There has to be at least one game available to launch.
         /// </summary>
         public static string EducationalOptions_RemoveErrorLastOne {
             get {
@@ -3683,6 +3683,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GenericPage_Options {
             get {
                 return ResourceManager.GetString("GenericPage_Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The existing backups for {0} could not be obtained.
+        /// </summary>
+        public static string GetExistingBackupsError {
+            get {
+                return ResourceManager.GetString("GetExistingBackupsError", resourceCulture);
             }
         }
         

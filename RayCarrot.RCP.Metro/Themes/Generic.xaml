@@ -7,11 +7,15 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource GrayHoverBrush}" />
             </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource HighlightBrush}" />
+            </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsMouseOver" Value="True" />
+                    <Condition Property="IsChecked" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource HighlightBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource MetroDataGrid.MouseOverHighlightBrush}" />
             </MultiTrigger>
         </Style.Triggers>
 

@@ -441,6 +441,7 @@ namespace RayCarrot.RCP.Metro
 
                             // Move file conflicts to temp
                             foreach (FileSystemPath path in existingPaths)
+                                // TODO: Make sure this is correct
                                 // Move file
                                 RCFRCP.File.MoveFile(path, tempDir.TempPath + path.GetRelativePath(InstallData.OutputDir), false);
                         }

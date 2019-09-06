@@ -15,6 +15,8 @@ using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {
+    // NOTE: The NoInlining is requires for certain methods as the PackageManager and its types are not available on Windows 7 or lower
+
     /// <summary>
     /// The game manager for a <see cref="GameType.WinStore"/> game
     /// </summary>
@@ -154,12 +156,8 @@ namespace RayCarrot.RCP.Metro
         {
             return new List<BackupDir>()
             {
-                new BackupDir()
-                {
-                    DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Packages", fullPackageName),
-                    SearchOption = SearchOption.AllDirectories,
-                    ID = "0"
-                }
+                new BackupDir(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Packages", fullPackageName), SearchOption.AllDirectories, "*", "0", 0),
+                new BackupDir(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Packages", fullPackageName, "LocalState"), SearchOption.TopDirectoryOnly, "*", "0", 1)
             };
         }
 
@@ -215,7 +213,7 @@ namespace RayCarrot.RCP.Metro
             if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
                 return false;
 
-            return GetGamePackage(GetFiestaRunFullPackageName(edition)) != null;
+            return GetGamePackage(GetFiestaRunPackageName(edition)) != null;
         }
 
         #endregion
@@ -388,7 +386,7 @@ namespace RayCarrot.RCP.Metro
             {
                 var backupName = $"Rayman Fiesta Run ({x})";
 
-                return new BaseBackupInfo(RCFRCP.App.GetCompressedBackupFile(backupName), RCFRCP.App.GetBackupDir(backupName), GetWinStoreBackupDirs(GetFiestaRunFullPackageName(x)), $"{Games.RaymanFiestaRun.GetDisplayName()} {GetFiestaRunEditionDisplayName(x)}") as IBackupInfo;
+                return new BaseBackupInfo(backupName, GetWinStoreBackupDirs(GetFiestaRunFullPackageName(x)), $"{Games.RaymanFiestaRun.GetDisplayName()} {GetFiestaRunEditionDisplayName(x)}") as IBackupInfo;
             }).ToList());
         }
 

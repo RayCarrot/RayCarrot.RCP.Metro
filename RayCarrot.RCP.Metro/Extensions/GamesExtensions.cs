@@ -799,221 +799,92 @@ namespace RayCarrot.RCP.Metro
                 case Games.Rayman1:
                     return new List<BackupDir>()
                     {
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory,
-                            SearchOption = SearchOption.TopDirectoryOnly,
-                            SearchPattern = "*.sav",
-                            ID = "0"
-                        },
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory,
-                            SearchOption = SearchOption.TopDirectoryOnly,
-                            SearchPattern = "*.cfg",
-                            ID = "1"
-                        },
+                        new BackupDir(gameInfo.InstallDirectory, SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
+                        new BackupDir(gameInfo.InstallDirectory, SearchOption.TopDirectoryOnly, "*.cfg", "1", 0),
                     };
 
                 case Games.RaymanDesigner:
                     return new List<BackupDir>()
                     {
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory,
-                            SearchOption = SearchOption.TopDirectoryOnly,
-                            SearchPattern = "*.cfg",
-                            ID = "0"
-                        },
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory + "PCMAP",
-                            SearchOption = SearchOption.TopDirectoryOnly,
-                            SearchPattern = "*.sct",
-                            ID = "1"
-                        },
+                        new BackupDir(gameInfo.InstallDirectory, SearchOption.TopDirectoryOnly, "*.cfg", "0", 0),
+                        new BackupDir(gameInfo.InstallDirectory + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 0),
                         //
                         // Note:
                         // This will backup the pre-installed maps and the world files as well. This is due to how the backup manager works.
                         // In the future I might make a separate manager for the maps again, in which case the search pattern "MAPS???" should get the
                         // correct mapper directories withing each world directory
                         //
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory + "CAKE",
-                            SearchOption = SearchOption.AllDirectories,
-                            SearchPattern = "*",
-                            ID = "Mapper0"
-                        },
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory + "CAVE",
-                            SearchOption = SearchOption.AllDirectories,
-                            SearchPattern = "*",
-                            ID = "Mapper1"
-                        },
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory + "IMAGE",
-                            SearchOption = SearchOption.AllDirectories,
-                            SearchPattern = "*",
-                            ID = "Mapper2"
-                        },
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory + "JUNGLE",
-                            SearchOption = SearchOption.AllDirectories,
-                            SearchPattern = "*",
-                            ID = "Mapper3"
-                        },
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory + "MOUNTAIN",
-                            SearchOption = SearchOption.AllDirectories,
-                            SearchPattern = "*",
-                            ID = "Mapper4"
-                        },
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory + "MUSIC",
-                            SearchOption = SearchOption.AllDirectories,
-                            SearchPattern = "*",
-                            ID = "Mapper5"
-                        },
+                        new BackupDir(gameInfo.InstallDirectory + "CAKE", SearchOption.AllDirectories, "*", "Mapper0", 0),
+                        new BackupDir(gameInfo.InstallDirectory + "CAVE", SearchOption.AllDirectories, "*", "Mapper1", 0),
+                        new BackupDir(gameInfo.InstallDirectory + "IMAGE", SearchOption.AllDirectories, "*", "Mapper2", 0),
+                        new BackupDir(gameInfo.InstallDirectory + "JUNGLE", SearchOption.AllDirectories, "*", "Mapper3", 0),
+                        new BackupDir(gameInfo.InstallDirectory + "MOUNTAIN", SearchOption.AllDirectories, "*", "Mapper4", 0),
+                        new BackupDir(gameInfo.InstallDirectory + "MUSIC", SearchOption.AllDirectories, "*", "Mapper5", 0),
                     };
 
                 case Games.RaymanByHisFans:
                     return new List<BackupDir>()
                     {
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory,
-                            SearchOption = SearchOption.TopDirectoryOnly,
-                            SearchPattern = "*.cfg",
-                            ID = "1"
-                        },
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory + "PCMAP",
-                            SearchOption = SearchOption.TopDirectoryOnly,
-                            SearchPattern = "*.sct",
-                            ID = "1"
-                        },
+                        // NOTE: Due to a mistake where the .sct files were not included in previous backups we need to keep this version for legacy support
+                        new BackupDir(gameInfo.InstallDirectory, SearchOption.TopDirectoryOnly, "*.cfg", "1", 0),
+                        new BackupDir(gameInfo.InstallDirectory, SearchOption.TopDirectoryOnly, "*.cfg", "0", 1),
+                        new BackupDir(gameInfo.InstallDirectory + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 1),
                     };
 
                 case Games.Rayman60Levels:
                     return new List<BackupDir>()
                     {
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory,
-                            SearchOption = SearchOption.TopDirectoryOnly,
-                            SearchPattern = "*.cfg",
-                            ID = "0"
-                        },
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory + "PCMAP",
-                            SearchOption = SearchOption.TopDirectoryOnly,
-                            SearchPattern = "*.sct",
-                            ID = "1"
-                        },
+                        new BackupDir(gameInfo.InstallDirectory, SearchOption.TopDirectoryOnly, "*.cfg", "0", 0),
+                        new BackupDir(gameInfo.InstallDirectory + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 0)
                     };
 
                 case Games.Rayman2:
                     return new List<BackupDir>()
                     {
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory + "Data" + "SaveGame",
-                            SearchOption = SearchOption.AllDirectories,
-                            ID = "0"
-                        },
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory + "Data" + "Options",
-                            SearchOption = SearchOption.AllDirectories,
-                            ID = "1"
-                        },
+                        new BackupDir(gameInfo.InstallDirectory + "Data" + "SaveGame", SearchOption.AllDirectories, "*", "0", 0),
+                        new BackupDir(gameInfo.InstallDirectory + "Data" + "Options", SearchOption.AllDirectories, "*", "1", 0)
                     };
 
                 case Games.Rayman3:
                     return new List<BackupDir>()
                     {
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory + "GAMEDATA\\SaveGame",
-                            SearchOption = SearchOption.TopDirectoryOnly,
-                            ID = "0"
-                        }
+                        new BackupDir(gameInfo.InstallDirectory + "GAMEDATA"+ "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
                     };
 
                 case Games.RaymanM:
                 case Games.RaymanArena:
                     return new List<BackupDir>()
                     {
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory + "Menu\\SaveGame",
-                            SearchOption = SearchOption.TopDirectoryOnly,
-                            ID = "0"
-                        }
+                        new BackupDir(gameInfo.InstallDirectory + "Menu" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
                     };
 
                 case Games.RaymanRavingRabbids:
                     var dirs = new List<BackupDir>()
                     {
-                        new BackupDir()
-                        {
-                            DirPath = gameInfo.InstallDirectory,
-                            SearchOption = SearchOption.TopDirectoryOnly,
-                            SearchPattern = "*.sav",
-                            ID = "0"
-                        },
+                        new BackupDir(gameInfo.InstallDirectory, SearchOption.TopDirectoryOnly, "*.sav", "0", 0)
                     };
 
                     if (gameInfo.GameType == GameType.Win32)
-                        dirs.Add(new BackupDir()
-                        {
-                            DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore", gameInfo.InstallDirectory.RemoveRoot()),
-                            SearchOption = SearchOption.TopDirectoryOnly,
-                            SearchPattern = "*.sav",
-                            ID = "0"
-                        });
+                        dirs.Add(new BackupDir(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore", gameInfo.InstallDirectory.RemoveRoot()), SearchOption.TopDirectoryOnly, "*.sav", "0", 0));
 
                     return dirs;
 
                 case Games.RaymanRavingRabbids2:
                     return new List<BackupDir>()
                     {
-                        new BackupDir()
-                        {
-                            DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "RRR2"),
-                            SearchOption = SearchOption.TopDirectoryOnly,
-                            ID = "0"
-                        }
+                        new BackupDir(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "RRR2"), SearchOption.TopDirectoryOnly, "*", "0", 0)
                     };
 
                 case Games.RaymanOrigins:
                     return new List<BackupDir>()
                     {
-                        new BackupDir()
-                        {
-                            DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My games\\Rayman origins"),
-                            SearchOption = SearchOption.AllDirectories,
-                            ID = "0"
-                        }
+                        new BackupDir(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My games\\Rayman origins"), SearchOption.AllDirectories, "*", "0", 0)
                     };
 
                 case Games.RaymanLegends:
                     return new List<BackupDir>()
                     {
-                        new BackupDir()
-                        {
-                            DirPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Rayman Legends"),
-                            SearchOption = SearchOption.AllDirectories,
-                            ID = "0"
-                        }
+                        new BackupDir(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Rayman Legends"), SearchOption.AllDirectories, "*", "0", 0)
                     };
 
                 case Games.RaymanJungleRun:

@@ -186,7 +186,7 @@ namespace RayCarrot.RCP.Metro
             // Notify user
             foreach (var game in toRemove)
             {
-                RCFRCP.Data.JumpListItemIDCollection.Remove(game.ID);
+                RCFRCP.Data.JumpListItemIDCollection.RemoveWhere(x => x == game.ID);
 
                 await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.GameNotFound, game.Name), Resources.GameNotFoundHeader, MessageType.Error);
             }

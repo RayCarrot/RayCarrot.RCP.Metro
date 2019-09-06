@@ -55,7 +55,7 @@
 
                 </StackPanel>
 
-                <Button Content="{Resx LinksPage_Refresh}"
+                <Button Content="{Resx Page_Refresh}"
                         HorizontalAlignment="Right" 
                         VerticalAlignment="Top"
                         Command="{Binding Path=RefreshCommand}"

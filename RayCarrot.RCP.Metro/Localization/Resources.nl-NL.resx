@@ -2542,4 +2542,132 @@ Houd L1 + R1 (of gelijkwaardige knoppen op de huidige controller) in het menu va
   <data name="App_RequiresAdminQuestion" xml:space="preserve">
     <value>De applicatie heeft niet de vereiste machtigingen voor deze bewerking. Wil je de app herstarten als administrator?</value>
   </data>
+  <data name="GameType_EducationalDosBox" xml:space="preserve">
+    <value>Educatieve DOSBox</value>
+  </data>
+  <data name="EducationalConfig_Name" xml:space="preserve">
+    <value>Spelnaam</value>
+  </data>
+  <data name="EducationalConfig_LaunchMode" xml:space="preserve">
+    <value>Startmodus</value>
+  </data>
+  <data name="EducationalOptions_Header" xml:space="preserve">
+    <value>Educatieve Games</value>
+  </data>
+  <data name="EducationalOptions_Info" xml:space="preserve">
+    <value>Meerdere educatieve spellen kunnen worden toegevoegd voor opstart, of hetzelfde spel met meerdere startmodi. Het eerste spel in de lijst is altijd de standaard. De lijst kan opnieuw worden gerangschikt middels het slepen en neerzetten van items.</value>
+  </data>
+  <data name="EducationalOptions_Edit" xml:space="preserve">
+    <value>Bewerken</value>
+  </data>
+  <data name="EducationalOptions_Remove" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
+  <data name="EducationalOptions_AddNew" xml:space="preserve">
+    <value>Voeg nieuw spel toe</value>
+  </data>
+  <data name="EducationalOptions_EditHeader" xml:space="preserve">
+    <value>Wijzig spel</value>
+  </data>
+  <data name="EducationalOptions_RemoveErrorLastOne" xml:space="preserve">
+    <value>Er dient tenminste één spel aanwezig te zijn om gestart te worden</value>
+  </data>
+  <data name="EducationalOptions_RemoveErrorLastOneHeader" xml:space="preserve">
+    <value>Kan spel niet verwijderen</value>
+  </data>
+  <data name="EducationalOptions_EditSuccess" xml:space="preserve">
+    <value>Het spel is succesvol gewijzigd</value>
+  </data>
+  <data name="App_ExceptionMessage" xml:space="preserve">
+    <value>{0}
+
+Foutmelding: {1}</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultHeader" xml:space="preserve">
+    <value>Fout</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden</value>
+  </data>
+  <data name="Lang_Dutch" xml:space="preserve">
+    <value>Nederlands</value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchHeader" xml:space="preserve">
+    <value>Aangepaste opstartinstellingen</value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchInfo" xml:space="preserve">
+    <value>Indien ingeschakeld, zullen onderstaande instellingen worden gebruikt wanneer het spel wordt gestart via het Rayman Control Panel</value>
+  </data>
+  <data name="Config_VSync" xml:space="preserve">
+    <value>V-sync</value>
+  </data>
+  <data name="GoHomeConfig_VersionIndex" xml:space="preserve">
+    <value>Versie-index</value>
+  </data>
+  <data name="GoHomeConfig_BigFile" xml:space="preserve">
+    <value>Groot bestand</value>
+  </data>
+  <data name="GoHomeConfig_Commands" xml:space="preserve">
+    <value>Aangepaste commando's</value>
+  </data>
+  <data name="R2Config_Graphics_DirectX" xml:space="preserve">
+    <value>DirectX</value>
+  </data>
+  <data name="R2Config_Graphics_nGlide" xml:space="preserve">
+    <value>nGlide</value>
+  </data>
+  <data name="R2Config_Graphics_Custom" xml:space="preserve">
+    <value>Aangepast</value>
+  </data>
+  <data name="RR2Options_GameModeHeader" xml:space="preserve">
+    <value>Game-Modus</value>
+  </data>
+  <data name="RR2Options_GameModeInfo" xml:space="preserve">
+    <value>De game modus bepaalt welke sets van minigames er beschikbaar zijn in het spel. Bepaalde edities van het spel zijn beperkt tot een specifieke game modus, terwijl andere alle gamemodi ondersteunen. Als er een fout plaatsvindt tijdens het starten van het spel, probeer dan de game-modus te veranderen.</value>
+  </data>
+  <data name="RR2Options_GameMode_All" xml:space="preserve">
+    <value>Alle spellen</value>
+  </data>
+  <data name="RR2Options_GameMode_Orange" xml:space="preserve">
+    <value>Oranje</value>
+  </data>
+  <data name="RR2Options_GameMode_Red" xml:space="preserve">
+    <value>Rood</value>
+  </data>
+  <data name="RR2Options_GameMode_Green" xml:space="preserve">
+    <value>Groen</value>
+  </data>
+  <data name="RR2Options_GameMode_Blue" xml:space="preserve">
+    <value>Blauw</value>
+  </data>
+  <data name="LaunchModeConflict" xml:space="preserve">
+    <value>Twee of meer educatieve spellen delen dezelfde opstartmodus naam en zullen daarom gebruikmaken van dezelfde back-up. Verander de namen van de opstartmodi onderling om dit te voorkomen.</value>
+  </data>
+  <data name="LaunchModeConflictHeader" xml:space="preserve">
+    <value>Opstartmodus conflict</value>
+  </data>
+  <data name="Links_Local_RGHConfig" xml:space="preserve">
+    <value>Rabbids Go Home configuratie</value>
+  </data>
+  <data name="Links_Local_RRR2RegSettings" xml:space="preserve">
+    <value>Rayman Raving Rabbids 2 instellingen</value>
+  </data>
+  <data name="Settings_EditJumpList" xml:space="preserve">
+    <value>Wijzig jump list</value>
+  </data>
+  <data name="Settings_EditJumpListInfo" xml:space="preserve">
+    <value>De jump list is de lijst met snelkoppelingen van games die verschijnt wanneer er een rechtsklik wordt uitgevoerd op de app in de taakbalk of via het startmenu</value>
+  </data>
+  <data name="JumpListEditor_Header" xml:space="preserve">
+    <value>Wijzig jump list items</value>
+  </data>
+  <data name="JumpListEditor_IncludedHeader" xml:space="preserve">
+    <value>Inclusief</value>
+  </data>
+  <data name="JumpListEditor_NotIncludedHeader" xml:space="preserve">
+    <value>Exclusief</value>
+  </data>
+  <data name="LocateGame_WinStoreNotSupported" xml:space="preserve">
+    <value>De Windows Store apps bieden geen ondersteuning voor de huidige versie van Windows</value>
+  </data>
 </root>

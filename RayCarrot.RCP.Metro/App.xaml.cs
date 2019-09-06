@@ -40,6 +40,7 @@ namespace RayCarrot.RCP.Metro
         public App() : base(true, "Files/Splash Screen.png")
         {
             DataChangedHandlerAsyncLock = new AsyncLock();
+            SplashScreenFadeout = TimeSpan.FromMilliseconds(200);
         }
 
         #endregion
@@ -56,8 +57,7 @@ namespace RayCarrot.RCP.Metro
             var window = new MainWindow();
 
             // Load previous state
-            if (RCFRCP.Data.WindowState != null)
-                RCFRCP.Data.WindowState.ApplyToWindow(window);
+            RCFRCP.Data.WindowState?.ApplyToWindow(window);
 
             bool hasLoaded = false;
 
@@ -465,7 +465,7 @@ namespace RayCarrot.RCP.Metro
                         // Set the current edition
                         Data.FiestaRunVersion = isWin10 ? FiestaRunEdition.Win10 : FiestaRunEdition.Default;
 
-                        RCFRCP.File.MoveDirectory(fiestaBackupDir, RCFRCP.App.GetBackupDir(Games.RaymanFiestaRun.GetBackupName()), true);
+                        RCFRCP.File.MoveDirectory(fiestaBackupDir, RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetBackupName(), true, true);
                     }
                     catch (Exception ex)
                     {
@@ -694,6 +694,13 @@ namespace RayCarrot.RCP.Metro
             {
                 try
                 {
+                    if (RCFRCP.Data.JumpListItemIDCollection == null)
+                    {
+                        RCFCore.Logger?.LogWarningSource("The jump could not refresh due to collection not existing");
+
+                        return;
+                    }
+
                     // Create a jump list
                     new JumpList(RCFRCP.App.GetGames.
                             // Add only games which have been added

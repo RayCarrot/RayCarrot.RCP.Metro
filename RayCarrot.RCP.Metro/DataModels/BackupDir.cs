@@ -6,32 +6,30 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Contains information regarding a directory to include in backup
     /// </summary>
-    public class BackupDir
+    public class BackupDir : IOSearchPattern
     {
         /// <summary>
-        /// The directory to include in backup
+        /// Default constructor
         /// </summary>
-        public FileSystemPath DirPath { get; set; }
-
-        /// <summary>
-        /// The search option to use when finding files and sub directories
-        /// </summary>
-        public SearchOption SearchOption { get; set; } = SearchOption.AllDirectories;
-
-        /// <summary>
-        /// File extension to filter by
-        /// </summary>
-        public string SearchPattern { get; set; } = "*";
+        /// <param name="dirPath">The directory path</param>
+        /// <param name="searchOption">The search option to use when finding files and sub directories</param>
+        /// <param name="searchPattern">The search pattern to use when finding files and sub directories</param>
+        /// <param name="id">The ID of the <see cref="BackupDir"/></param>
+        /// <param name="backupVersion">Indicates which backup version the directory info belongs to</param>
+        public BackupDir(FileSystemPath dirPath, SearchOption searchOption, string searchPattern, string id, int backupVersion) : base(dirPath, searchOption, searchPattern)
+        {
+            ID = id;
+            BackupVersion = backupVersion;
+        }
 
         /// <summary>
         /// The ID of the <see cref="BackupDir"/>
         /// </summary>
-        public string ID { get; set; }
+        public string ID { get; }
 
         /// <summary>
-        /// Gets a value indicating if the current instance should include the entire directory and its sub content
+        /// Indicates which backup version the directory info belongs to
         /// </summary>
-        /// <returns>True if the current instance should include the entire directory and its sub content, otherwise false</returns>
-        public bool IsEntireDir() => (SearchPattern == null || SearchPattern == "*") && SearchOption == SearchOption.AllDirectories;
+        public int BackupVersion { get; }
     }
 }

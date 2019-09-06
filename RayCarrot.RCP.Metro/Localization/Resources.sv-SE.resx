@@ -1661,4 +1661,28 @@ Starta om?</value>
   <data name="RR2Options_GameMode_Blue" xml:space="preserve">
     <value>Blå</value>
   </data>
+  <data name="About_Credits_RayCarrot" xml:space="preserve">
+    <value>Användargränssnitt, Carrot Framework, spelsökaren, spelinstalleraren, verktyg, Rayman 2 översättningar, svensk programöversättning</value>
+  </data>
+  <data name="About_Credits_Noserdog" xml:space="preserve">
+    <value>Fix för handkontroller</value>
+  </data>
+  <data name="About_Credits_Janmv94" xml:space="preserve">
+    <value>Rayman 2 kontroller-konfiguration</value>
+  </data>
+  <data name="About_Credits_RibShark" xml:space="preserve">
+    <value>Hemliga spelkoder, allmän hjälp med verktygen</value>
+  </data>
+  <data name="About_Credits_HarukaTavares" xml:space="preserve">
+    <value>Rayman 2 översättningar, Portuguese programöversättning</value>
+  </data>
+  <data name="About_Credits_EvelynChickentalk" xml:space="preserve">
+    <value>Filstruktur för de pedagogiska Rayman-spelen</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
+    <value>Installationen misslyckades</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
+    <value>Installationen misslyckades</value>
+  </data>
 </root>

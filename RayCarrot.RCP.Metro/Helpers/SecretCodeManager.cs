@@ -130,8 +130,12 @@ namespace RayCarrot.RCP.Metro
                 // Check if it's the following key in any of the available codes
                 if (Codes.All(x => x.Key.Length <= CurrentInput.Count || x.Key[CurrentInput.Count] != key))
                 {
-                    CurrentInput.Clear();
-                    RCFCore.Logger?.LogDebugSource("The secret code inputs were reset due to an invalid key being pressed");
+                    if (CurrentInput.Any())
+                    {
+                        CurrentInput.Clear();
+                        RCFCore.Logger?.LogDebugSource("The secret code inputs were reset due to an invalid key being pressed");
+                    }
+
                     return;
                 }
 

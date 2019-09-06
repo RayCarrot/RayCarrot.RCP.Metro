@@ -42,11 +42,17 @@
                               IsChecked="{Binding Path=Data.CompressBackups}"
                               Margin="0 8"/>
 
-                    <Button Content="{Resx Backup_BackupAll}"
-                            Command="{Binding Path=BackupAllCommand}" 
-                            HorizontalAlignment="Left"
-                            Margin="0 8"/>
+                    <Grid Margin="0 8">
+                        <Button Content="{Resx Backup_BackupAll}"
+                                Command="{Binding Path=BackupAllCommand}" 
+                                HorizontalAlignment="Left"/>
 
+                        <Button Content="{Resx Page_Refresh}"
+                                HorizontalAlignment="Right" 
+                                Command="{Binding Path=RefreshCommand}"
+                                rwpf:UserLevelTag.MinUserLevel="Advanced"/>
+
+                    </Grid>
 
                 </StackPanel>
             </Expander>
@@ -60,7 +66,8 @@
                     <ColumnDefinition Width="Auto" SharedSizeGroup="GameImage" />
                     <ColumnDefinition Width="*" MaxWidth="550" />
                     <ColumnDefinition Width="Auto" SharedSizeGroup="LastBackup" MinWidth="100" />
-                    <ColumnDefinition Width="Auto" SharedSizeGroup="BackupSize" MinWidth="100" />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="BackupSize" />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="DebugInfo" />
                     <ColumnDefinition Width="Auto" SharedSizeGroup="Actions" />
                 </Grid.ColumnDefinitions>
 
@@ -92,15 +99,27 @@
 
                 <TextBlock Grid.Column="3"
                            rwpf:UserLevelTag.MinUserLevel="Advanced"
+                           MinWidth="100"
                            Style="{StaticResource HeaderTextBlock}"
                            Text="{Resx Backup_LastBackupSize}"
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Center"
                            Margin="10 0 0 0"/>
 
+                <!-- Debug Info -->
+                <!-- NOTE: Not localized -->
+                <TextBlock Grid.Column="4"
+                           rwpf:UserLevelTag.MinUserLevel="Debug"
+                           MinWidth="100"
+                           Style="{StaticResource HeaderTextBlock}"
+                           Text="Debug Info"
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Center"
+                           Margin="10 0 0 0"/>
+
                 <!-- Actions -->
 
-                <!--<TextBlock Grid.Column="4"
+                <!--<TextBlock Grid.Column="5"
                            Style="{StaticResource HeaderTextBlock}"
                            Text="Actions"
                            VerticalAlignment="Center" 
@@ -117,7 +136,8 @@
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="GameImage" />
                                 <ColumnDefinition Width="*" MaxWidth="550" />
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="LastBackup" MinWidth="100" />
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="BackupSize" MinWidth="100" />
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="BackupSize"  />
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="DebugInfo" />
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Actions" />
                             </Grid.ColumnDefinitions>
 
@@ -153,7 +173,8 @@
                             <!-- Backup Size -->
 
                             <Grid Grid.Column="3"
-                                  rwpf:UserLevelTag.MinUserLevel="Advanced">
+                                  rwpf:UserLevelTag.MinUserLevel="Advanced"
+                                  MinWidth="100">
 
                                 <TextBlock FontSize="14"
                                            Text="{Binding Path=BackupSize}"
@@ -163,9 +184,22 @@
 
                             </Grid>
 
+                            <!-- Debug Info -->
+
+                            <Grid Grid.Column="4"
+                                  rwpf:UserLevelTag.MinUserLevel="Debug"
+                                  MinWidth="100">
+
+                                <TextBlock FontSize="14"
+                                           Text="{Binding Path=DebugInfo}"
+                                           VerticalAlignment="Center"
+                                           Margin="20 0"/>
+
+                            </Grid>
+
                             <!-- Actions -->
 
-                            <StackPanel Grid.Column="4"
+                            <StackPanel Grid.Column="5"
                                         Orientation="Horizontal"
                                         Margin="20 0 0 0">
 

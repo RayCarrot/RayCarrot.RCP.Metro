@@ -24,6 +24,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="backupInfo">The backup info</param>
         public GameBackupItemViewModel(Games game, IBackupInfo backupInfo)
         {
+            LatestAvailableBackupVersion = backupInfo.LatestAvailableBackupVersion;
             BackupInfo = backupInfo;
             IconSource = game.GetIconSource();
             DisplayName = backupInfo.GameDisplayName;
@@ -105,6 +106,26 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool IsGOGCloudSyncUsed { get; }
 
+        /// <summary>
+        /// The latest available backup version
+        /// </summary>
+        public int LatestAvailableBackupVersion { get; }
+
+        /// <summary>
+        /// The version of the backup
+        /// </summary>
+        public int BackupVersion { get; set; }
+
+        /// <summary>
+        /// Indicates if the backup is compressed
+        /// </summary>
+        public bool IsCompressed { get; set; }
+
+        /// <summary>
+        /// Debug info to show
+        /// </summary>
+        public string DebugInfo { get; set; }
+
         #endregion
 
         #region Commands
@@ -125,16 +146,31 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                FileSystemPath? backupLocation = BackupInfo.ExistingBackupLocation;
+                var backupLocation = BackupInfo.ExistingBackups.FirstOrDefault();
 
                 if (backupLocation == null)
+                {
+                    // NOTE: Not localized
+                    DebugInfo = $"LatestBackupVersion = {LatestAvailableBackupVersion}";
+
                     return;
+                }
 
                 // Get the backup date
-                LastBackup = backupLocation.Value.GetFileSystemInfo().CreationTime;
+                LastBackup = backupLocation.Path.GetFileSystemInfo().CreationTime;
 
                 // Get the backup size
-                BackupSize = backupLocation.Value.GetSize();
+                BackupSize = backupLocation.Path.GetSize();
+
+                BackupVersion = backupLocation.BackupVersion;
+                IsCompressed = backupLocation.IsCompressed;
+
+                // NOTE: Not localized
+                DebugInfo = $"IsCompressed = {IsCompressed}" +
+                            $"{Environment.NewLine}" +
+                            $"BackupVersion = {BackupVersion}" +
+                            $"{Environment.NewLine}" +
+                            $"LatestBackupVersion = {LatestAvailableBackupVersion}";
 
                 CanRestore = true;
             }
@@ -161,6 +197,9 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 PerformingBackupRestore = true;
+
+                // Refresh the backup info
+                await BackupInfo.RefreshAsync();
 
                 // Confirm restore
                 if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, BackupInfo.GameDisplayName), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
@@ -204,8 +243,11 @@ namespace RayCarrot.RCP.Metro
             {
                 PerformingBackupRestore = true;
 
+                // Refresh the backup info
+                await BackupInfo.RefreshAsync();
+
                 // Confirm backup if one already exists
-                if ((BackupInfo.ExistingBackupLocation?.Exists ?? false) && !await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, BackupInfo.GameDisplayName), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
+                if (BackupInfo.ExistingBackups.Any() && !await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, BackupInfo.GameDisplayName), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
                 {
                     RCFCore.Logger?.LogInformationSource($"Backup canceled");
                     return;
@@ -220,6 +262,9 @@ namespace RayCarrot.RCP.Metro
 
                     await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, BackupInfo.GameDisplayName), Resources.Backup_SuccessHeader);
                 }
+
+                // Refresh the backup info
+                await BackupInfo.RefreshAsync();
 
                 // Refresh the item
                 await RefreshAsync();

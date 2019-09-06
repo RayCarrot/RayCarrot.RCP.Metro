@@ -9,6 +9,7 @@ using RayCarrot.IO;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
+using SearchOption = System.IO.SearchOption;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -183,17 +184,18 @@ namespace RayCarrot.RCP.Metro
 
             RCFCore.Logger?.LogDebugSource($"The file {filePath} was deleted");
         }
-
+    
         /// <summary>
         /// Moves a directory and creates the parent directory of its new location if it doesn't exist
         /// </summary>
         /// <param name="source">The source directory path</param>
         /// <param name="destination">The destination directory path</param>
-        /// <param name="replace">Indicates if the destination should be replaced if it already exists</param>
-        public void MoveDirectory(FileSystemPath source, FileSystemPath destination, bool replace)
+        /// <param name="replaceDir">Indicates if the destination should be replaced if it already exists</param>
+        /// <param name="replaceExistingFiles">Indicates if any existing files with the same name should be replaced</param>
+        public void MoveDirectory(FileSystemPath source, FileSystemPath destination, bool replaceDir, bool replaceExistingFiles)
         {
             // Delete existing directory if set to replace
-            if (replace)
+            if (replaceDir)
                 DeleteDirectory(destination);
 
             // Check if the parent directory does not exist
@@ -201,10 +203,59 @@ namespace RayCarrot.RCP.Metro
                 // Create the parent directory
                 Directory.CreateDirectory(destination.Parent);
 
-            // Move the directory
-            Directory.Move(source, destination);
+            // If we replace, the directory will be deleted, thus we can simply move it
+            if (replaceDir)
+            {
+                // Move the directory
+                Directory.Move(source, destination);
+            }
+            // If we do not replace we have to move file by file and directory by directory
+            else
+            {
+                // Recreate each directory
+                foreach (FileSystemPath dir in Directory.GetDirectories(source, "*", SearchOption.AllDirectories))
+                {
+                    // Get the destination directory
+                    var destDir = destination + dir.GetRelativePath(source);
+
+                    // Create the directory
+                    Directory.CreateDirectory(destDir);
+                }
+
+                // Move each file
+                MoveFiles(new IOSearchPattern(source), destination, replaceExistingFiles);
+
+                // Delete the source as there will be empty directories left there now
+                DeleteDirectory(source);
+            }
+
 
             RCFCore.Logger?.LogDebugSource($"The directory {source} was moved to {destination}");
+        }
+
+        /// <summary>
+        /// Moves files from a specified source to a new destination
+        /// </summary>
+        /// <param name="source">The source directory and search pattern to use when finding files</param>
+        /// <param name="destination">The destination directory path</param>
+        /// <param name="replaceExistingFiles">Indicates if any existing files with the same name should be replaced</param>
+        public void MoveFiles(IOSearchPattern source, FileSystemPath destination, bool replaceExistingFiles)
+        {
+            // Move each file
+            foreach (FileSystemPath file in Directory.GetFiles(source.DirPath, source.SearchPattern, source.SearchOption))
+            {
+                // Get the destination file
+                var destFile = destination + file.GetRelativePath(source.DirPath);
+
+                // Skip if the file already exists and we should not replace it
+                if (destFile.FileExists && !replaceExistingFiles)
+                    continue;
+
+                // Move the file
+                RCFRCP.File.MoveFile(file, destFile, true);
+            }
+
+            RCFCore.Logger?.LogDebugSource($"The files from {source.DirPath} were moved to {destination}");
         }
 
         /// <summary>
@@ -222,8 +273,33 @@ namespace RayCarrot.RCP.Metro
 
             // Copy the directory
             FileSystem.CopyDirectory(source, destination, replaceExistingFiles);
-
+            
             RCFCore.Logger?.LogDebugSource($"The directory {source} was copied to {destination}");
+        }
+
+        /// <summary>
+        /// Copies files from a specified source to a new destination
+        /// </summary>
+        /// <param name="source">The source directory and search pattern to use when finding files</param>
+        /// <param name="destination">The destination directory path</param>
+        /// <param name="replaceExistingFiles">Indicates if any existing files with the same name should be replaced</param>
+        public void CopyFiles(IOSearchPattern source, FileSystemPath destination, bool replaceExistingFiles)
+        {
+            // Copy each file
+            foreach (FileSystemPath file in Directory.GetFiles(source.DirPath, source.SearchPattern, source.SearchOption))
+            {
+                // Get the destination file
+                var destFile = destination + file.GetRelativePath(source.DirPath);
+
+                // Skip if the file already exists and we should not replace it
+                if (destFile.FileExists && !replaceExistingFiles)
+                    continue;
+
+                // Move the file
+                RCFRCP.File.CopyFile(file, destFile, true);
+            }
+
+            RCFCore.Logger?.LogDebugSource($"The files from {source.DirPath} were copied to {destination}");
         }
 
         /// <summary>
@@ -247,6 +323,29 @@ namespace RayCarrot.RCP.Metro
             File.Move(source, destination);
 
             RCFCore.Logger?.LogDebugSource($"The file {source} was moved to {destination}");
+        }
+
+        /// <summary>
+        /// Copies a file and creates the parent directory of its new location if it doesn't exist
+        /// </summary>
+        /// <param name="source">The source file path</param>
+        /// <param name="destination">The destination file path</param>
+        /// <param name="replace">Indicates if the destination should be replaced if it already exists</param>
+        public void CopyFile(FileSystemPath source, FileSystemPath destination, bool replace)
+        {
+            // Delete existing file if set to replace
+            if (replace)
+                DeleteFile(destination);
+
+            // Check if the parent directory does not exist
+            if (!destination.Parent.DirectoryExists)
+                // Create the parent directory
+                Directory.CreateDirectory(destination.Parent);
+
+            // Move the file
+            File.Copy(source, destination);
+
+            RCFCore.Logger?.LogDebugSource($"The file {source} was copied to {destination}");
         }
 
         /// <summary>

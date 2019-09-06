@@ -114,6 +114,8 @@
     <Compile Include="Controls\Dialogs\JumpListEditDialog.xaml.cs">
       <DependentUpon>JumpListEditDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IO\IOSearchPattern.cs" />
+    <Compile Include="RCPBackups\RCPBackup.cs" />
     <Compile Include="ViewModels\Dialogs\JumpListEditResult.cs" />
     <Compile Include="ViewModels\Dialogs\JumpListEditViewModel.cs" />
     <Compile Include="ViewModels\JumpListItemViewModel.cs" />
@@ -568,7 +570,7 @@
     <Compile Include="Framework\Implementations\RCPWPFBrowseUIManager.cs" />
     <Compile Include="Framework\Implementations\RCPMessageUIManager.cs" />
     <Compile Include="Framework\RCFRCP.cs" />
-    <Compile Include="Framework\Implementations\RCPFileManager.cs" />
+    <Compile Include="IO\RCPFileManager.cs" />
     <Compile Include="Helpers\CommonPaths.cs" />
     <Compile Include="Img\Images.Designer.cs">
       <AutoGen>True</AutoGen>

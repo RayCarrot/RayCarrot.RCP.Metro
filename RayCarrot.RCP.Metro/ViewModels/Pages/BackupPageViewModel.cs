@@ -25,7 +25,7 @@ namespace RayCarrot.RCP.Metro
         public BackupPageViewModel()
         {
             // Create commands
-            RefresCommand = new AsyncRelayCommand(RefreshAsync);
+            RefreshCommand = new AsyncRelayCommand(RefreshAsync);
             BackupAllCommand = new AsyncRelayCommand(BackupAllAsync);
 
             // Create properties
@@ -71,7 +71,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Commands
 
-        public ICommand RefresCommand { get; }
+        public ICommand RefreshCommand { get; }
 
         public ICommand BackupAllCommand { get; }
 
@@ -98,6 +98,9 @@ namespace RayCarrot.RCP.Metro
                         // Enumerate the backup info
                         foreach (IBackupInfo info in await game.GetGameManager().GetBackupInfosAsync())
                         {
+                            // Refresh the info
+                            await info.RefreshAsync();
+
                             // Create the backup item
                             var backupItem = new GameBackupItemViewModel(game, info);
 

@@ -413,7 +413,7 @@ namespace RayCarrot.RCP.Metro
 
                 // Remove the game from the jump list
                 foreach (var item in manager.GetJumpListItems())
-                    Data.JumpListItemIDCollection.Remove(item.ID);
+                    Data.JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
 
                 // Run post game removal
                 await game.GetGameManager(type).PostGameRemovedAsync();
@@ -1164,7 +1164,7 @@ namespace RayCarrot.RCP.Metro
                         return;
                     }
 
-                    RCFRCP.File.MoveDirectory(oldLocation, newLocation, false);
+                    RCFRCP.File.MoveDirectory(oldLocation, newLocation, false, false);
 
                     RCFCore.Logger?.LogInformationSource("Old backups have been moved");
 
@@ -1271,60 +1271,6 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleCritical("Deploying additional files");
                 await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.DeployFilesError);
             }
-        }
-
-        /// <summary>
-        /// Gets the existing backup location for the specified game if one exists
-        /// </summary>
-        /// <param name="compressedLocation">The location of the compressed backup file</param>
-        /// <param name="normalLocation">The location of the normal backup directory</param>
-        /// <returns>The backup location or null if none was found</returns>
-        public FileSystemPath? GetExistingBackup(FileSystemPath compressedLocation, FileSystemPath normalLocation)
-        {
-            if (RCFRCP.Data.CompressBackups)
-            {
-                // Start by checking the location based on current setting
-                if (compressedLocation.FileExists)
-                    return compressedLocation;
-                // Fall back to secondary location
-                else if (normalLocation.DirectoryExists && Directory.GetFileSystemEntries(normalLocation).Any())
-                    return normalLocation;
-                else
-                    // No valid location exists
-                    return null;
-            }
-            else
-            {
-                // Start by checking the location based on current setting
-                if (normalLocation.DirectoryExists && Directory.GetFileSystemEntries(normalLocation).Any())
-                    return normalLocation;
-                // Fall back to secondary location
-                else if (compressedLocation.FileExists)
-                    return compressedLocation;
-                else
-                    // No valid location exists
-                    return null;
-            }
-        }
-
-        /// <summary>
-        /// Gets the backup file for the specified game if the backup is compressed
-        /// </summary>
-        /// <param name="backupName">The backup name</param>
-        /// <returns>The backup file</returns>
-        public FileSystemPath GetCompressedBackupFile(string backupName)
-        {
-            return RCFRCP.Data.BackupLocation + BackupFamily + (backupName + CommonPaths.BackupCompressionExtension);
-        }
-
-        /// <summary>
-        /// Gets the backup directory for the specified game
-        /// </summary>
-        /// <param name="backupName">The backup name</param>
-        /// <returns>The backup directory</returns>
-        public FileSystemPath GetBackupDir(string backupName)
-        {
-            return RCFRCP.Data.BackupLocation + BackupFamily + backupName;
         }
 
         /// <summary>

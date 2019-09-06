@@ -112,6 +112,7 @@ namespace RayCarrot.RCP.Metro
                 // Restore backed up files
                 foreach (FileSystemPath item in Directory.EnumerateFiles(LocalTempDir.TempPath, "*", SearchOption.AllDirectories))
                 {
+                    // TODO: Make sure this is correct
                     // Get the path to move to
                     FileSystemPath file = OutputDirectory + item.GetRelativePath(LocalTempDir.TempPath);
 

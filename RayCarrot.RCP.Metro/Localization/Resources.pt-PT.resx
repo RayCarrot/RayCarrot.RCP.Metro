@@ -2641,4 +2641,34 @@ Error message: {1}</value>
   <data name="RR2Options_GameMode_Blue" xml:space="preserve">
     <value>Azul</value>
   </data>
+  <data name="LaunchModeConflict" xml:space="preserve">
+    <value>Dois ou mais jogos educativos partilham o mesmo nome de modo de arranque e utilizam a mesma cópia de segurança deste modo. Altera de forma diferente os nomes do modo de arranque para evitar que isto aconteça.</value>
+  </data>
+  <data name="LaunchModeConflictHeader" xml:space="preserve">
+    <value>Conflito do modo de arranque</value>
+  </data>
+  <data name="Links_Local_RGHConfig" xml:space="preserve">
+    <value>Arranque Rabbids Go Home</value>
+  </data>
+  <data name="Links_Local_RRR2RegSettings" xml:space="preserve">
+    <value>Definições do Rayman Raving Rabbids 2</value>
+  </data>
+  <data name="Settings_EditJumpList" xml:space="preserve">
+    <value>Editar lista de salto</value>
+  </data>
+  <data name="Settings_EditJumpListInfo" xml:space="preserve">
+    <value>A lista de salto é a lista de atalhos de jogos que aparece ao clicar na aplicação com o botão direito no menu de iniciar ou na barra de tarefas</value>
+  </data>
+  <data name="JumpListEditor_Header" xml:space="preserve">
+    <value>Editar itens da lista de salto</value>
+  </data>
+  <data name="JumpListEditor_IncludedHeader" xml:space="preserve">
+    <value>Incluído</value>
+  </data>
+  <data name="JumpListEditor_NotIncludedHeader" xml:space="preserve">
+    <value>Não incluído</value>
+  </data>
+  <data name="LocateGame_WinStoreNotSupported" xml:space="preserve">
+    <value>As aplicações da Loja Microsoft não são suportadas na versão actual do Windows</value>
+  </data>
 </root>

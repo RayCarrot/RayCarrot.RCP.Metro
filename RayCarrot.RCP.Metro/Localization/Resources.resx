@@ -1336,7 +1336,7 @@ gameDisplayName</comment>
     <value>Rayman 2 translations, Portuguese program translation</value>
   </data>
   <data name="About_Credits_EvelynChickentalk" xml:space="preserve">
-    <value>File structure for the education Rayman games</value>
+    <value>File structure for the educational Rayman games</value>
   </data>
   <data name="ROU_HQVideosFailed" xml:space="preserve">
     <value>Video replacement failed</value>
@@ -2637,7 +2637,7 @@ Hold L1 + R1 in the menu (or equivalent on the currently used controller), then 
     <value>Edit game</value>
   </data>
   <data name="EducationalOptions_RemoveErrorLastOne" xml:space="preserve">
-    <value>The has to be at least one game available to launch</value>
+    <value>There has to be at least one game available to launch</value>
   </data>
   <data name="EducationalOptions_RemoveErrorLastOneHeader" xml:space="preserve">
     <value>Can't remove game</value>
@@ -2739,5 +2739,10 @@ exceptionMessage</comment>
   </data>
   <data name="LocateGame_WinStoreNotSupported" xml:space="preserve">
     <value>Windows Store apps are not supported on the current version of Windows</value>
+  </data>
+  <data name="GetExistingBackupsError" xml:space="preserve">
+    <value>The existing backups for {0} could not be obtained</value>
+    <comment>Arguments:
+gameDisplayName</comment>
   </data>
 </root>

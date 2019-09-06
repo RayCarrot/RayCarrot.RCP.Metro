@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Threading.Tasks;
 using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
@@ -19,18 +19,40 @@ namespace RayCarrot.RCP.Metro
         FileSystemPath BackupLocation { get; }
 
         /// <summary>
-        /// The path for an existing backup, if one exists, otherwise null
-        /// </summary>
-        FileSystemPath? ExistingBackupLocation { get; }
-
-        /// <summary>
         /// The game display name
         /// </summary>
         string GameDisplayName { get; }
 
         /// <summary>
-        /// The backup directories
+        /// The existing backups for this game, ordered by priority.
+        /// The first backup in the collection is always the one to restore.
         /// </summary>
-        IList<BackupDir> BackupDirectories { get; }
+        RCPBackup[] ExistingBackups { get; set; }
+
+        /// <summary>
+        /// The backup directories to use when performing a backup
+        /// </summary>
+        BackupDir[] BackupDirectories { get; set; }
+
+        /// <summary>
+        /// The backup directories to use when performing a restore
+        /// </summary>
+        BackupDir[] RestoreDirectories { get; set; }
+
+        /// <summary>
+        /// The latest available backup version
+        /// </summary>
+        int LatestAvailableBackupVersion { get; }
+
+        /// <summary>
+        /// The latest available backup version to restore
+        /// </summary>
+        int LatestAvailableRestoreVersion { get; set; }
+
+        /// <summary>
+        /// Refreshes the backup info
+        /// </summary>
+        /// <returns>The task</returns>
+        Task RefreshAsync();
     }
 }
