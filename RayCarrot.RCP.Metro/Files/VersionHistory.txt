@@ -1,4 +1,4 @@
-﻿-----   Version 6.0.0 - September ??, 2019   -----
+﻿-----   Version 6.0.0 - September 7, 2019   -----
 • Educational Rayman games, Rayman Raving Rabbids 2, Rabbids Go Home (DVD release) and Rabbids Big Bang are now supported
 • A configuration option for Rayman 2 has been added to change the graphics mode between DirectX and nGlide
 • The jump list can now be edited from the settings page

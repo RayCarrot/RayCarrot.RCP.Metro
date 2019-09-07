@@ -2666,4 +2666,13 @@ Error message: {1}</value>
   <data name="LocateGame_WinStoreNotSupported" xml:space="preserve">
     <value>As aplicações da Loja Microsoft não são suportadas na versão actual do Windows</value>
   </data>
+  <data name="GetExistingBackupsError" xml:space="preserve">
+    <value>As cópias de segurança existentes para {0} não puderam ser obtidas.</value>
+  </data>
+  <data name="Installer_OverwriteOutput" xml:space="preserve">
+    <value>Já existe o directório {0}. Queres substituí-lo?</value>
+  </data>
+  <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
+    <value>Substituir directório</value>
+  </data>
 </root>

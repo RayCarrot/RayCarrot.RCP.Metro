@@ -126,27 +126,35 @@ namespace RayCarrot.RCP.Metro
             {
                 await Task.Run(() =>
                 {
-                    InstalledGames.Clear();
-                    NotInstalledGames.Clear();
-
-                    AnyInstalledGames = false;
-                    AnyNotInstalledGames = false;
-
-                    // Enumerate each game
-                    foreach (Games game in RCFRCP.App.GetGames)
+                    try
                     {
-                        // Check if it has been added
-                        if (game.IsAdded())
-                            // Add the game to the collection
+                        InstalledGames.Clear();
+                        NotInstalledGames.Clear();
+
+                        AnyInstalledGames = false;
+                        AnyNotInstalledGames = false;
+
+                        // Enumerate each game
+                        foreach (Games game in RCFRCP.App.GetGames)
                         {
-                            InstalledGames.Add(new KeyValuePair<Games, GameDisplayViewModel>(game, game.GetDisplayViewModel()));
-                            AnyInstalledGames = true;
+                            // Check if it has been added
+                            if (game.IsAdded())
+                            {
+                                // Add the game to the collection
+                                InstalledGames.Add(new KeyValuePair<Games, GameDisplayViewModel>(game, game.GetDisplayViewModel()));
+                                AnyInstalledGames = true;
+                            }
+                            else
+                            {
+                                NotInstalledGames.Add(new KeyValuePair<Games, GameDisplayViewModel>(game, game.GetDisplayViewModel()));
+                                AnyNotInstalledGames = true;
+                            }
                         }
-                        else
-                        {
-                            NotInstalledGames.Add(new KeyValuePair<Games, GameDisplayViewModel>(game, game.GetDisplayViewModel()));
-                            AnyNotInstalledGames = true;
-                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleCritical("Refreshing games");
+                        throw;
                     }
                 });
             }

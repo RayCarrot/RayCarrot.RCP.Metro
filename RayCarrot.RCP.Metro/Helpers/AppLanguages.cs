@@ -16,7 +16,7 @@ namespace RayCarrot.RCP.Metro
             Languages = new ObservableCollection<CultureInfo>();
 
             DefaultCulture = new CultureInfo("en-US");
-
+            
             RefreshLanguages(false);
         }
 

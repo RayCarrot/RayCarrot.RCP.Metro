@@ -25,6 +25,7 @@ namespace RayCarrot.RCP.Metro
             EditJumpListCommand = new AsyncRelayCommand(EditJumpListAsync);
 
             CanEditShowUnderInstalledPrograms = App.IsRunningAsAdmin;
+            AppLanguages.RefreshLanguages(Data.ShowIncompleteTranslations);
         }
 
         #endregion

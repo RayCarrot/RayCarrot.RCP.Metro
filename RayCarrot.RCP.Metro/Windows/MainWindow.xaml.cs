@@ -33,7 +33,18 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Refreshes the enabled state of the backup page based on if there are any games available
         /// </summary>
-        private void RefreshBackupPageEnabled() => Dispatcher?.Invoke(() => BackupPageTab.IsEnabled = RCFRCP.Data.Games.Any());
+        private void RefreshBackupPageEnabled() => Dispatcher?.Invoke(() =>
+        {
+            try
+            {
+                BackupPageTab.IsEnabled = RCFRCP.Data.Games?.Any() ?? false;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Refreshing backup page enabled");
+                BackupPageTab.IsEnabled = true;
+            }
+        });
 
         #endregion
 

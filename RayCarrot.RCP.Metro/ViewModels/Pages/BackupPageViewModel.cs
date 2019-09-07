@@ -89,27 +89,35 @@ namespace RayCarrot.RCP.Metro
             {
                 await Task.Run(async () =>
                 {
-                    // Clear current items
-                    GameBackupItems.Clear();
-
-                    // Enumerate the saved games
-                    foreach (Games game in App.GetGames.Where(x => x.IsAdded()))
+                    try
                     {
-                        // Enumerate the backup info
-                        foreach (IBackupInfo info in await game.GetGameManager().GetBackupInfosAsync())
+                        // Clear current items
+                        GameBackupItems.Clear();
+
+                        // Enumerate the saved games
+                        foreach (Games game in App.GetGames.Where(x => x.IsAdded()))
                         {
-                            // Refresh the info
-                            await info.RefreshAsync();
+                            // Enumerate the backup info
+                            foreach (IBackupInfo info in await game.GetGameManager().GetBackupInfosAsync())
+                            {
+                                // Refresh the info
+                                await info.RefreshAsync();
 
-                            // Create the backup item
-                            var backupItem = new GameBackupItemViewModel(game, info);
+                                // Create the backup item
+                                var backupItem = new GameBackupItemViewModel(game, info);
 
-                            // Add the item
-                            GameBackupItems.Add(backupItem);
+                                // Add the item
+                                GameBackupItems.Add(backupItem);
 
-                            // Refresh the item
-                            await backupItem.RefreshAsync();
+                                // Refresh the item
+                                await backupItem.RefreshAsync();
+                            }
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleCritical("Refreshing backups");
+                        throw;
                     }
                 });
             }

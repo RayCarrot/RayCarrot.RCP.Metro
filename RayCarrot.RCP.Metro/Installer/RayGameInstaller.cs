@@ -397,6 +397,9 @@ namespace RayCarrot.RCP.Metro
             // Flag indicating if the installation was completed
             bool complete = false;
 
+            // Flag indicating if the installation has started
+            var installationStarted = false;
+
             try
             {
                 // Register the cancellation token callback to cancel the web client's ongoing operation
@@ -439,6 +442,8 @@ namespace RayCarrot.RCP.Metro
                 // Set the item counts
                 TotalItems = InstallData.RelativeInputs.Count;
                 CurrentItem = 0;
+
+                installationStarted = true;
 
                 // Copy files and directories from the saved drives
                 foreach (RayGameDriveInfo drive in Drives)
@@ -509,8 +514,8 @@ namespace RayCarrot.RCP.Metro
                 // Dispose the web client
                 wc?.Dispose();
 
-                // Clean up if not complete
-                if (!complete)
+                // Clean up if started and not complete
+                if (installationStarted && !complete)
                 {
                     OnStatusUpdated(OperationState.Error);
 

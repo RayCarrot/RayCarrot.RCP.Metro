@@ -383,6 +383,10 @@ namespace RayCarrot.RCP.Metro
             }.ToString();
 
             ConfigData.Language = CurrentLanguage.ToString();
+            ConfigData.GLI_DllFile = GLI_DllFile;
+            ConfigData.GLI_Dll = GLI_Dll;
+            ConfigData.GLI_Driver = GLI_Driver;
+            ConfigData.GLI_Device = GLI_Device;
 
             return Task.CompletedTask;
         }

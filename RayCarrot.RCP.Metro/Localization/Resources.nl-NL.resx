@@ -2667,4 +2667,10 @@ Foutmelding: {1}</value>
   <data name="GetExistingBackupsError" xml:space="preserve">
     <value>De bestaande back-ups voor {0} konden niet worden verkregen</value>
   </data>
+  <data name="Installer_OverwriteOutput" xml:space="preserve">
+    <value>De map {0} bestaat al. Wil je deze overschrijven?</value>
+  </data>
+  <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
+    <value>Map overschrijven</value>
+  </data>
 </root>
