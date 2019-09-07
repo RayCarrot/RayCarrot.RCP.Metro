@@ -1035,12 +1035,6 @@ Försök igen?"</value>
   <data name="Installer_FileCopyErrorHeader" xml:space="preserve">
     <value>Misslyckades med att kopiera filen</value>
   </data>
-  <data name="Installer_FileConflicts" xml:space="preserve">
-    <value>Det finns {0} filkonflikter. Vill du skriva över dessa filer?</value>
-  </data>
-  <data name="Installer_FileConflictsHeader" xml:space="preserve">
-    <value>Filkonflikt</value>
-  </data>
   <data name="Installer_UnhandledItems" xml:space="preserve">
     <value>Vissa filer hanterades inte under installationen. Vill du försöka hantera dessa filer igen?</value>
   </data>
@@ -1249,8 +1243,26 @@ Starta om?</value>
   <data name="About_SpecialThanks" xml:space="preserve">
     <value>Ett särskilt tack till AuToMaNiAk005, MixerX, ICUP321, PokGOT4N och alla andra Rayman fans!</value>
   </data>
+  <data name="About_Credits_RayCarrot" xml:space="preserve">
+    <value>Användargränssnitt, Carrot Framework, spelsökaren, spelinstalleraren, verktyg, Rayman 2 översättningar, svensk programöversättning</value>
+  </data>
+  <data name="About_Credits_Noserdog" xml:space="preserve">
+    <value>Fix för handkontroller</value>
+  </data>
+  <data name="About_Credits_Janmv94" xml:space="preserve">
+    <value>Rayman 2 kontroller-konfiguration</value>
+  </data>
+  <data name="About_Credits_RibShark" xml:space="preserve">
+    <value>Hemliga spelkoder, allmän hjälp med verktygen</value>
+  </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
     <value>Rayman 2 översättningar</value>
+  </data>
+  <data name="About_Credits_HarukaTavares" xml:space="preserve">
+    <value>Rayman 2 översättningar, Portuguese programöversättning</value>
+  </data>
+  <data name="About_Credits_EvelynChickentalk" xml:space="preserve">
+    <value>Filstruktur för de pedagogiska Rayman-spelen</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
     <value>1.12 (Upplaga 1)</value>
@@ -1266,6 +1278,12 @@ Starta om?</value>
   </data>
   <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
     <value>SVN Daum</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
+    <value>Installationen misslyckades</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
+    <value>Installationen misslyckades</value>
   </data>
   <data name="Download_OperationCanceling" xml:space="preserve">
     <value>Operationen håller redan på att avbrytas</value>
@@ -1646,6 +1664,10 @@ Starta om?</value>
   <data name="Lang_Dutch" xml:space="preserve">
     <value>Holländska</value>
   </data>
+  <data name="GoHomeConfig_BigFile" xml:space="preserve">
+    <value>Big file</value>
+    <comment>Big file</comment>
+  </data>
   <data name="RR2Options_GameMode_All" xml:space="preserve">
     <value>Alla spel</value>
   </data>
@@ -1660,29 +1682,5 @@ Starta om?</value>
   </data>
   <data name="RR2Options_GameMode_Blue" xml:space="preserve">
     <value>Blå</value>
-  </data>
-  <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Användargränssnitt, Carrot Framework, spelsökaren, spelinstalleraren, verktyg, Rayman 2 översättningar, svensk programöversättning</value>
-  </data>
-  <data name="About_Credits_Noserdog" xml:space="preserve">
-    <value>Fix för handkontroller</value>
-  </data>
-  <data name="About_Credits_Janmv94" xml:space="preserve">
-    <value>Rayman 2 kontroller-konfiguration</value>
-  </data>
-  <data name="About_Credits_RibShark" xml:space="preserve">
-    <value>Hemliga spelkoder, allmän hjälp med verktygen</value>
-  </data>
-  <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>Rayman 2 översättningar, Portuguese programöversättning</value>
-  </data>
-  <data name="About_Credits_EvelynChickentalk" xml:space="preserve">
-    <value>Filstruktur för de pedagogiska Rayman-spelen</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
-    <value>Installationen misslyckades</value>
-  </data>
-  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
-    <value>Installationen misslyckades</value>
   </data>
 </root>

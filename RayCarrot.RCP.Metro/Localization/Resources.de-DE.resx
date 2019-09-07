@@ -299,4 +299,7 @@
   <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
     <value>1.10</value>
   </data>
+  <data name="GoHomeConfig_BigFile" xml:space="preserve">
+    <value>Big file</value>
+  </data>
 </root>

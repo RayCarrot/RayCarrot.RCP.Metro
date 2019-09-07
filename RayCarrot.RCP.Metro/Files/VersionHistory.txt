@@ -4,7 +4,6 @@
 • The jump list can now be edited from the settings page
 • The application startup time has been improved
 • Backups for all installed versions of Rayman Fiesta Run are now supported without changing the default version
-• Improved game icon quality
 • The game finder can now find game installations from desktop shortcuts
 • Backups for Windows Store games no longer back up the entire package folder
 
@@ -17,6 +16,7 @@ Other changes:
 • Updated the backup system
 • Normalized the font size in the help page
 • Reorganized the settings page
+• Improved game icon quality
 • The Rayman 2, Rayman M/Arena and Rayman 3 configuration tools will now show if a patch can't be applied
 • The admin icon can now be clicked on to restart the app as administrator
 • Minor changes to how the widescreen patch is applied for Rayman 2

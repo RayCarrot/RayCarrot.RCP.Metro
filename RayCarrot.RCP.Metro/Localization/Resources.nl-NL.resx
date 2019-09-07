@@ -1034,12 +1034,6 @@ Opnieuw proberen?</value>
   <data name="Installer_FileCopyErrorHeader" xml:space="preserve">
     <value>Kopiëren van bestand naar bestemming mislukt</value>
   </data>
-  <data name="Installer_FileConflicts" xml:space="preserve">
-    <value>Er waren {0} bestandsconflicten vanwege de geselecteerde map. Wil je deze bestanden overschrijven?</value>
-  </data>
-  <data name="Installer_FileConflictsHeader" xml:space="preserve">
-    <value>Bestandsconflicten</value>
-  </data>
   <data name="Installer_UnhandledItems" xml:space="preserve">
     <value>Sommige items zijn niet meegenomen tijdens de installatie. Wil je opnieuw proberen deze items af te handelen?</value>
   </data>
@@ -1830,7 +1824,7 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
   <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
     <value>Groep</value>
   </data>
-  <data name="LinksPage_Refresh" xml:space="preserve">
+  <data name="Page_Refresh" xml:space="preserve">
     <value>Verversen</value>
   </data>
   <data name="LinksPage_CommunityHeader" xml:space="preserve">
@@ -2605,7 +2599,7 @@ Foutmelding: {1}</value>
     <value>Versie-index</value>
   </data>
   <data name="GoHomeConfig_BigFile" xml:space="preserve">
-    <value>Groot bestand</value>
+    <value>Big file</value>
   </data>
   <data name="GoHomeConfig_Commands" xml:space="preserve">
     <value>Aangepaste commando's</value>
@@ -2669,5 +2663,8 @@ Foutmelding: {1}</value>
   </data>
   <data name="LocateGame_WinStoreNotSupported" xml:space="preserve">
     <value>De Windows Store apps bieden geen ondersteuning voor de huidige versie van Windows</value>
+  </data>
+  <data name="GetExistingBackupsError" xml:space="preserve">
+    <value>De bestaande back-ups voor {0} konden niet worden verkregen</value>
   </data>
 </root>

@@ -612,9 +612,6 @@ Notícias:
   <data name="Installer_InsertDriveRequestHeader" xml:space="preserve">
     <value>Insertar disco</value>
   </data>
-  <data name="Installer_FileConflictsHeader" xml:space="preserve">
-    <value>Conflictos de archivo</value>
-  </data>
   <data name="Installer_CancelQuestion" xml:space="preserve">
     <value>¿Deseas cancelar la instalación?</value>
   </data>
@@ -1065,7 +1062,7 @@ Notícias:
   <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
     <value>Grupo</value>
   </data>
-  <data name="LinksPage_Refresh" xml:space="preserve">
+  <data name="Page_Refresh" xml:space="preserve">
     <value>Refrescar</value>
   </data>
   <data name="LinksPage_CommunityHeader" xml:space="preserve">
@@ -1457,5 +1454,9 @@ Notícias:
   <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
     <value>1.10</value>
     <comment>1.10</comment>
+  </data>
+  <data name="GoHomeConfig_BigFile" xml:space="preserve">
+    <value>Big file</value>
+    <comment>Big file</comment>
   </data>
 </root>

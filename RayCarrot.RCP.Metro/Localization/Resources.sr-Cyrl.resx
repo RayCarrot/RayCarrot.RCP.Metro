@@ -454,4 +454,8 @@
     <value>1.10</value>
     <comment>1.10</comment>
   </data>
+  <data name="GoHomeConfig_BigFile" xml:space="preserve">
+    <value>Big file</value>
+    <comment>Big file</comment>
+  </data>
 </root>

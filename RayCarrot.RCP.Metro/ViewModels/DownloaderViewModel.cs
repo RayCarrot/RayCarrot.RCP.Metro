@@ -31,6 +31,7 @@ namespace RayCarrot.RCP.Metro
             OutputDirectory = outputDirectory;
             IsCompressed = false;
             ProcessedFiles = new List<FileSystemPath>();
+            FileManager = RCFRCP.File;
 
             // Set properties
             DownloadState = DownloadState.Paused;
@@ -55,6 +56,7 @@ namespace RayCarrot.RCP.Metro
             OutputDirectory = outputDirectory;
             IsCompressed = true;
             ProcessedFiles = new List<FileSystemPath>();
+            FileManager = RCFRCP.File;
 
             // Set properties
             DownloadState = DownloadState.Paused;
@@ -101,7 +103,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     try
                     {
-                        RCFRCP.File.DeleteFile(file);
+                        FileManager.DeleteFile(file);
                     }
                     catch (Exception ex)
                     {
@@ -112,14 +114,13 @@ namespace RayCarrot.RCP.Metro
                 // Restore backed up files
                 foreach (FileSystemPath item in Directory.EnumerateFiles(LocalTempDir.TempPath, "*", SearchOption.AllDirectories))
                 {
-                    // TODO: Make sure this is correct
                     // Get the path to move to
                     FileSystemPath file = OutputDirectory + item.GetRelativePath(LocalTempDir.TempPath);
 
                     try
                     {
                         // Move back the file
-                        RCFRCP.File.MoveFile(item, file, true);
+                        FileManager.MoveFile(item, file, true);
                     }
                     catch (Exception ex)
                     {
@@ -176,7 +177,7 @@ namespace RayCarrot.RCP.Metro
 
                         // Backup conflict file
                         if (outputPath.FileExists)
-                            await Task.Run(() => RCFRCP.File.MoveFile(outputPath, LocalTempDir.TempPath + entry.FullName.Replace('/', '\\'), false));
+                            await Task.Run(() => FileManager.MoveFile(outputPath, LocalTempDir.TempPath + entry.FullName.Replace('/', '\\'), false));
 
                         // Create directory if it doesn't exist
                         if (!outputPath.Parent.DirectoryExists)
@@ -199,7 +200,7 @@ namespace RayCarrot.RCP.Metro
             });
 
             // Delete the zip file
-            RCFRCP.File.DeleteFile(file);
+            FileManager.DeleteFile(file);
         }
 
         /// <summary>
@@ -221,7 +222,7 @@ namespace RayCarrot.RCP.Metro
                     continue;
 
                 // Move the file to temp
-                await Task.Run(() => RCFRCP.File.MoveFile(file, LocalTempDir.TempPath + file.Name, false));
+                await Task.Run(() => FileManager.MoveFile(file, LocalTempDir.TempPath + file.Name, false));
             }
 
             // Move downloaded files to output
@@ -235,7 +236,7 @@ namespace RayCarrot.RCP.Metro
                 var outputPath = OutputDirectory + Path.GetFileName(item.AbsolutePath);
 
                 // Move the downloaded file from temp to the output
-                RCFRCP.File.MoveFile(file, outputPath, false);
+                FileManager.MoveFile(file, outputPath, false);
 
                 // Flag the file as processed
                 ProcessedFiles.Add(outputPath);
@@ -408,6 +409,11 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Protected Properties
+
+        /// <summary>
+        /// The file manager to use
+        /// </summary>
+        protected RCPFileManager FileManager { get; }
 
         /// <summary>
         /// The current step in the operation

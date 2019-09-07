@@ -1081,14 +1081,6 @@ exceptionMessage</comment>
   <data name="Installer_FileCopyErrorHeader" xml:space="preserve">
     <value>Failed to copy item to destination</value>
   </data>
-  <data name="Installer_FileConflicts" xml:space="preserve">
-    <value>There were {0} file conflicts with the selected directory. Do you wish to overwrite these files?</value>
-    <comment>Arguments:
-fileConflictCount</comment>
-  </data>
-  <data name="Installer_FileConflictsHeader" xml:space="preserve">
-    <value>File Conflicts</value>
-  </data>
   <data name="Installer_UnhandledItems" xml:space="preserve">
     <value>Some items were not handled during the installation. Do you wish to retry handling those items?</value>
   </data>
@@ -1927,7 +1919,7 @@ totalGames</comment>
   <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
     <value>Group</value>
   </data>
-  <data name="LinksPage_Refresh" xml:space="preserve">
+  <data name="Page_Refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
   <data name="LinksPage_CommunityHeader" xml:space="preserve">
@@ -2744,5 +2736,13 @@ exceptionMessage</comment>
     <value>The existing backups for {0} could not be obtained</value>
     <comment>Arguments:
 gameDisplayName</comment>
+  </data>
+  <data name="Installer_OverwriteOutput" xml:space="preserve">
+    <value>The directory {0} already exists. Do you want to overwrite it?</value>
+    <comment>Arguments:
+outputDir</comment>
+  </data>
+  <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
+    <value>Overwrite directory</value>
   </data>
 </root>

@@ -25,6 +25,7 @@ namespace RayCarrot.RCP.Metro
         public RayGameInstaller(RayGameInstallerData installerData)
         {
             InstallData = installerData;
+            FileManager = RCFRCP.File;
         }
 
         #endregion
@@ -36,6 +37,11 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Protected Properties
+
+        /// <summary>
+        /// The file manager
+        /// </summary>
+        protected RCPFileManager FileManager { get; }
 
         /// <summary>
         /// The data for this installation
@@ -365,7 +371,7 @@ namespace RayCarrot.RCP.Metro
                     RCFCore.Logger?.LogInformationSource($"Attempting to retry to copy file");
 
                     // Remove partially copied file
-                    RCFRCP.File.DeleteFile(destination);
+                    FileManager.DeleteFile(destination);
 
                     // Allow retry
                     retry = true;
@@ -388,193 +394,137 @@ namespace RayCarrot.RCP.Metro
             // Store the web client
             WebClient wc = null;
 
-            using (var tempDir = new TempDirectory(true))
+            // Flag indicating if the installation was completed
+            bool complete = false;
+
+            try
             {
-                // Flag indicating if we've got file conflicts
-                bool fileConflicts = false;
+                // Register the cancellation token callback to cancel the web client's ongoing operation
+                InstallData.CancellationToken.Register(() => wc?.CancelAsync());
 
-                // Flag indicating if the installation was completed
-                bool complete = false;
+                // Check if cancellation has been requested
+                InstallData.CancellationToken.ThrowIfCancellationRequested();
 
-                try
+                // Verify the installation
+                if (!await VerifyInstallationAsync())
+                    return RayGameInstallerResult.Canceled;
+
+                RCFCore.Logger?.LogInformationSource($"The installation has been verified");
+
+                // Check if the output directory already exists
+                if (InstallData.OutputDir.DirectoryExists)
                 {
-                    // Register the cancellation token callback to cancel the web client's ongoing operation
-                    InstallData.CancellationToken.Register(() => wc?.CancelAsync());
+                    RCFCore.Logger?.LogInformationSource($"The installation output already exists");
 
-                    // Check if cancellation has been requested
-                    InstallData.CancellationToken.ThrowIfCancellationRequested();
+                    // Update the status to paused
+                    OnStatusUpdated(OperationState.Paused);
 
-                    // Verify the installation
-                    if (!await VerifyInstallationAsync())
+                    // Ask user to overwrite files
+                    if (!(await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_OverwriteOutput, InstallData.OutputDir), Resources.Installer_OverwriteOutputHeader, MessageType.Question, true)))
                         return RayGameInstallerResult.Canceled;
 
-                    RCFCore.Logger?.LogInformationSource($"The installation has been verified");
+                    // Delete the existing directory
+                    FileManager.DeleteDirectory(InstallData.OutputDir);
 
-                    // Check if the output directory already exists
-                    if (InstallData.OutputDir.DirectoryExists)
-                    {
-                        RCFCore.Logger?.LogInformationSource($"The installation output already exists");
+                    // Update the status to default
+                    OnStatusUpdated();
+                }
 
-                        var existingPaths = new List<FileSystemPath>();
+                // Create the web client
+                wc = new WebClient();
 
-                        // Check for any file conflicts
-                        foreach (RayGameInstallItem source in InstallData.RelativeInputs)
-                            if (source.OutputPath.FileExists)
-                                existingPaths.Add(source.OutputPath);
+                // Subscribe to when the progress changes
+                wc.DownloadProgressChanged += (s, e) => OnStatusUpdated(itemProgress: new Progress(e.BytesReceived, e.TotalBytesToReceive));
 
-                        // Check if we got any existing paths
-                        if (existingPaths.Count > 0)
-                        {
-                            RCFCore.Logger?.LogInformationSource($"The installation output has file conflicts");
+                // Set the item counts
+                TotalItems = InstallData.RelativeInputs.Count;
+                CurrentItem = 0;
 
-                            // Update the status to paused
-                            OnStatusUpdated(OperationState.Paused);
+                // Copy files and directories from the saved drives
+                foreach (RayGameDriveInfo drive in Drives)
+                {
+                    // Request the drive
+                    if (!await RequestDriveAsync(drive))
+                        return RayGameInstallerResult.Canceled;
 
-                            // Flag that we have file conflicts
-                            fileConflicts = true;
+                    // Copy each file and directory from the current drive
+                    foreach (var item in InstallData.RelativeInputs.Where(x => x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == drive.Root && x.ProcessStage == RayGameInstallItemStage.Verified))
+                        await HandleItemAsync(wc, item);
+                }
 
-                            if (!(await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_FileConflicts, existingPaths.Count), Resources.Installer_FileConflictsHeader, MessageType.Question, true)))
-                                return RayGameInstallerResult.Canceled;
+                // Make sure no items were not handled
+                while (InstallData.RelativeInputs.Any(x => x.ProcessStage == RayGameInstallItemStage.Verified))
+                {
+                    // Update the status to paused
+                    OnStatusUpdated(OperationState.Paused);
 
-                            // Update the status to default
-                            OnStatusUpdated();
+                    if (!(await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_UnhandledItems, Resources.Installer_UnhandledItemsHeader, MessageType.Warning, true)))
+                        return RayGameInstallerResult.Canceled;
 
-                            // Move file conflicts to temp
-                            foreach (FileSystemPath path in existingPaths)
-                                // TODO: Make sure this is correct
-                                // Move file
-                                RCFRCP.File.MoveFile(path, tempDir.TempPath + path.GetRelativePath(InstallData.OutputDir), false);
-                        }
-                    }
+                    // Update the status to default
+                    OnStatusUpdated();
 
-                    // Create the web client
-                    wc = new WebClient();
-
-                    // Subscribe to when the progress changes
-                    wc.DownloadProgressChanged += (s, e) => OnStatusUpdated(itemProgress: new Progress(e.BytesReceived, e.TotalBytesToReceive));
-
-                    // Set the item counts
-                    TotalItems = InstallData.RelativeInputs.Count;
-                    CurrentItem = 0;
-
-                    // Copy files and directories from the saved drives
+                    // Check each drive
                     foreach (RayGameDriveInfo drive in Drives)
                     {
+                        // Get the item for this drive
+                        var items = InstallData.RelativeInputs.Where(x => x.ProcessStage == RayGameInstallItemStage.Verified && x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == drive.Root).ToList();
+
+                        // Skip if there are no items
+                        if (!items.Any())
+                            continue;
+
                         // Request the drive
                         if (!await RequestDriveAsync(drive))
                             return RayGameInstallerResult.Canceled;
 
                         // Copy each file and directory from the current drive
-                        foreach (var item in InstallData.RelativeInputs.Where(x => x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == drive.Root && x.ProcessStage == RayGameInstallItemStage.Verified))
+                        foreach (var item in items)
                             await HandleItemAsync(wc, item);
                     }
-
-                    // Make sure no items were not handled
-                    while (InstallData.RelativeInputs.Any(x => x.ProcessStage == RayGameInstallItemStage.Verified))
-                    {
-                        // Update the status to paused
-                        OnStatusUpdated(OperationState.Paused);
-
-                        if (!(await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_UnhandledItems, Resources.Installer_UnhandledItemsHeader, MessageType.Warning, true)))
-                            return RayGameInstallerResult.Canceled;
-
-                        // Update the status to default
-                        OnStatusUpdated();
-
-                        // Check each drive
-                        foreach (RayGameDriveInfo drive in Drives)
-                        {
-                            // Get the item for this drive
-                            var items = InstallData.RelativeInputs.Where(x => x.ProcessStage == RayGameInstallItemStage.Verified && x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == drive.Root).ToList();
-
-                            // Skip if there are no items
-                            if (!items.Any())
-                                continue;
-
-                            // Request the drive
-                            if (!await RequestDriveAsync(drive))
-                                return RayGameInstallerResult.Canceled;
-
-                            // Copy each file and directory from the current drive
-                            foreach (var item in items)
-                                await HandleItemAsync(wc, item);
-                        }
-                    }
-
-                    // Flag that the installation completed
-                    complete = true;
-
-                    RCFCore.Logger?.LogInformationSource($"The installation has completed");
-
-                    return RayGameInstallerResult.Successful;
                 }
-                catch (Exception ex)
+
+                // Flag that the installation completed
+                complete = true;
+
+                RCFCore.Logger?.LogInformationSource($"The installation has completed");
+
+                return RayGameInstallerResult.Successful;
+            }
+            catch (Exception ex)
+            {
+                if (InstallData.CancellationToken.IsCancellationRequested)
                 {
-                    if (InstallData.CancellationToken.IsCancellationRequested)
-                    {
-                        ex.HandleExpected("Installing game");
-                        return RayGameInstallerResult.Canceled;
-                    }
-                    else
-                    {
-                        ex.HandleError("Installing game", InstallData);
-                        return RayGameInstallerResult.Failed;
-                    }
+                    ex.HandleExpected("Installing game");
+                    return RayGameInstallerResult.Canceled;
                 }
-                finally
+                else
                 {
-                    // Dispose the web client
-                    wc?.Dispose();
+                    ex.HandleError("Installing game", InstallData);
+                    return RayGameInstallerResult.Failed;
+                }
+            }
+            finally
+            {
+                // Dispose the web client
+                wc?.Dispose();
 
-                    // Clean up if not complete
-                    if (!complete)
+                // Clean up if not complete
+                if (!complete)
+                {
+                    OnStatusUpdated(OperationState.Error);
+
+                    try
                     {
-                        OnStatusUpdated(OperationState.Error);
+                        // Delete install directory
+                        FileManager.DeleteDirectory(InstallData.OutputDir);
+                    }
+                    catch (Exception ex2)
+                    {
+                        ex2.HandleError("Deleting incomplete installation directory");
 
-                        // Keep track of errors
-                        bool error = false;
-
-                        // Delete incomplete installation files
-                        foreach (var item in InstallData.RelativeInputs.Where(x => x.ProcessStage == RayGameInstallItemStage.Complete && x.OutputPath.FileExists))
-                        {
-                            try
-                            {
-                                // Delete the file
-                                RCFRCP.File.DeleteFile(item.OutputPath);
-                            }
-                            catch (Exception ex2)
-                            {
-                                ex2.HandleError("Deleting incomplete installation item", item);
-                                error = true;
-                            }
-                        }
-
-                        if (error && RCFCore.Data.CurrentUserLevel >= UserLevel.Advanced)
+                        if (RCFCore.Data.CurrentUserLevel >= UserLevel.Advanced)
                             await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_CleanupError, InstallData.OutputDir), MessageType.Error);
-
-                        try
-                        {
-                            // Delete output if empty
-                            if (!Directory.EnumerateFiles(InstallData.OutputDir, "", SearchOption.AllDirectories).Any())
-                                RCFRCP.File.DeleteDirectory(InstallData.OutputDir);
-                        }
-                        catch (Exception ex2)
-                        {
-                            ex2.HandleError("Attempting to delete incomplete installation output", InstallData);
-                        }
-
-                        // Restore from temp if there were any file conflicts
-                        if (fileConflicts)
-                        {
-                            try
-                            {
-                                RCFRCP.File.CopyDirectory(tempDir.TempPath, InstallData.OutputDir, false, true);
-                            }
-                            catch (Exception ex2)
-                            {
-                                ex2.HandleError("Restoring files from incomplete installation", InstallData);
-                            }
-                        }
                     }
                 }
             }

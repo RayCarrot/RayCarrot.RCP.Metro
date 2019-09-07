@@ -4377,24 +4377,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There were {0} file conflicts with the selected directory. Do you wish to overwrite these files?.
-        /// </summary>
-        public static string Installer_FileConflicts {
-            get {
-                return ResourceManager.GetString("Installer_FileConflicts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File Conflicts.
-        /// </summary>
-        public static string Installer_FileConflictsHeader {
-            get {
-                return ResourceManager.GetString("Installer_FileConflictsHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The file {0} failed to copy over with the error message: {1}
         ///
         ///Try again?.
@@ -4501,6 +4483,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Installer_MissingFilesHeader {
             get {
                 return ResourceManager.GetString("Installer_MissingFilesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The directory {0} already exists. Do you want to overwrite it?.
+        /// </summary>
+        public static string Installer_OverwriteOutput {
+            get {
+                return ResourceManager.GetString("Installer_OverwriteOutput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overwrite directory.
+        /// </summary>
+        public static string Installer_OverwriteOutputHeader {
+            get {
+                return ResourceManager.GetString("Installer_OverwriteOutputHeader", resourceCulture);
             }
         }
         
@@ -5243,15 +5243,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Refresh.
-        /// </summary>
-        public static string LinksPage_Refresh {
-            get {
-                return ResourceManager.GetString("LinksPage_Refresh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Modifications/Tools.
         /// </summary>
         public static string LinksPage_ToolsHeader {
@@ -5536,6 +5527,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Ok {
             get {
                 return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string Page_Refresh {
+            get {
+                return ResourceManager.GetString("Page_Refresh", resourceCulture);
             }
         }
         

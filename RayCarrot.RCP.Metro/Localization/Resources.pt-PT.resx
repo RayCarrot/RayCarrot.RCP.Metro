@@ -1034,12 +1034,6 @@ Tentar novamente?</value>
   <data name="Installer_FileCopyErrorHeader" xml:space="preserve">
     <value>Falhou a cópia do item para o destino</value>
   </data>
-  <data name="Installer_FileConflicts" xml:space="preserve">
-    <value>Houve {0} conflito(s) de ficheiro com o directório seleccionado. Desejas substituir estes ficheiros?</value>
-  </data>
-  <data name="Installer_FileConflictsHeader" xml:space="preserve">
-    <value>Conflitos de ficheiro</value>
-  </data>
   <data name="Installer_UnhandledItems" xml:space="preserve">
     <value>Alguns itens não foram manipulados durante a instalação. Desejas tentar manipular esses itens novamente?</value>
   </data>
@@ -1832,7 +1826,7 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
     <value>Grupo</value>
   </data>
-  <data name="LinksPage_Refresh" xml:space="preserve">
+  <data name="Page_Refresh" xml:space="preserve">
     <value>Actualizar</value>
   </data>
   <data name="LinksPage_CommunityHeader" xml:space="preserve">
@@ -2606,7 +2600,8 @@ Error message: {1}</value>
     <value>Índice de versões</value>
   </data>
   <data name="GoHomeConfig_BigFile" xml:space="preserve">
-    <value>Ficheiro grande</value>
+    <value>Big file</value>
+    <comment>Big file</comment>
   </data>
   <data name="GoHomeConfig_Commands" xml:space="preserve">
     <value>Comandos personalizados</value>
