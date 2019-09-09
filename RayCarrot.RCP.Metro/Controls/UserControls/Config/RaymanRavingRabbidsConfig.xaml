@@ -30,13 +30,13 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="{Resx Config_Resolution}" />
 
-                    <local:InfoIcon Text="{Resx Config_ResolutionRRRInfo}" />
+                    <!--<local:InfoIcon Text="{Resx Config_ResolutionRRRInfo}" />-->
 
                 </StackPanel>
 
-                <ComboBox ItemsSource="{Binding Path=AvailableResolutionValues, Mode=OneTime}"
+                <!--<ComboBox ItemsSource="{Binding Path=AvailableResolutionValues, Mode=OneTime}"
                           SelectedIndex="{Binding Path=ResolutionIndex}"
-                          HorizontalAlignment="Left" />
+                          HorizontalAlignment="Left" />-->
 
                 <CheckBox Content="{Resx Config_Fullscreen}"
                           ToolTip="{Resx Config_FullscreenInfo}"

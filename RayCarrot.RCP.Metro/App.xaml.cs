@@ -620,7 +620,7 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        private async Task App_StartupCompleteAsync(object sender, EventArgs eventArgs)
+        private static async Task App_StartupCompleteAsync(object sender, EventArgs eventArgs)
         {
             // Set up the secret code manager
             SecretCodeManager.Setup();
@@ -630,7 +630,7 @@ namespace RayCarrot.RCP.Metro
                 await RCFRCP.App.RunGameFinderAsync();
         }
 
-        private async Task App_StartupComplete2Async(object sender, EventArgs eventArgs)
+        private static async Task App_StartupComplete2Async(object sender, EventArgs eventArgs)
         {
             if (CommonPaths.UpdaterFilePath.FileExists)
             {

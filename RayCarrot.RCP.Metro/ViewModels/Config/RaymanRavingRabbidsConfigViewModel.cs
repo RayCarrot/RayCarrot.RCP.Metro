@@ -25,27 +25,6 @@ namespace RayCarrot.RCP.Metro
 
             // Create properties
             AsyncLock = new AsyncLock();
-            AvailableResolutionValues = new string[]
-            {
-                "640 x 400", // 16/10
-                "640 x 480", // 4/3
-                "800 x 600", // 4/3
-                "1280 x 600", // 32/15
-                "1024 x 768", // 4/3
-                "1280 x 720", // 16/9
-                "1280 x 768", // 5/3
-                "1152 x 864", // 4/3
-                "1280 x 800", // 16/10
-                "1360 x 768", // 85/48
-                "1366 x 768", // 16/9
-                "1280 x 960", // 4/3
-                "1440 x 900", // 16/10
-                "1280 x 1024", // 5/4
-                "1600 x 900", // 16/9
-                "1400 x 1050", // 4/3
-                "1680 x 1050", // 16/10
-                "1920 x 1080" // 16/9
-            };
         }
 
         #endregion
@@ -64,7 +43,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Private Constants
 
-        private const string ResolutionKey = "Mode";
+        //private const string ResolutionKey = "Mode";
 
         private const string WindowedModeKey = "WindowedMode";
 
@@ -85,10 +64,10 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Properties
 
-        /// <summary>
-        /// The available resolution values
-        /// </summary>
-        public string[] AvailableResolutionValues { get; }
+        ///// <summary>
+        ///// The available resolution values
+        ///// </summary>
+        //public string[] AvailableResolutionValues { get; }
 
         /// <summary>
         /// The selected resolution index
@@ -167,7 +146,7 @@ namespace RayCarrot.RCP.Metro
                     ? $"The key {key.Name} has been opened"
                     : $"The key for {Games.RaymanRavingRabbids.GetDisplayName()} does not exist. Default values will be used.");
 
-                ResolutionIndex = GetInt(ResolutionKey, 0);
+                //ResolutionIndex = GetInt(ResolutionKey, 0);
                 FullscreenMode = GetInt(WindowedModeKey, 0) != 1;
                 UseController = GetInt(DefaultControllerKey, 0) == 1;
                 ScreenModeIndex = GetInt(ScreenModeKey, 1) - 1;
@@ -219,7 +198,7 @@ namespace RayCarrot.RCP.Metro
 
                         RCFCore.Logger?.LogInformationSource($"The key {key.Name} has been opened");
 
-                        key.SetValue(ResolutionKey, ResolutionIndex);
+                        //key.SetValue(ResolutionKey, ResolutionIndex);
                         key.SetValue(WindowedModeKey, FullscreenMode ? 0 : 1);
                         key.SetValue(DefaultControllerKey, UseController ? 1 : 0);
                         key.SetValue(ScreenModeKey, ScreenModeIndex + 1);
