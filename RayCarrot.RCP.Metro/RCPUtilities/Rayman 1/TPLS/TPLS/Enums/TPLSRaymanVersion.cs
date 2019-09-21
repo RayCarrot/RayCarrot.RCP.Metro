@@ -43,6 +43,11 @@
         /// <summary>
         /// Version 1.10
         /// </summary>
-        Ray_1_10
+        Ray_1_10,
+
+        /// <summary>
+        /// Version 1.21 Chinese
+        /// </summary>
+        Ray_1_21_Chinese
     }
 }

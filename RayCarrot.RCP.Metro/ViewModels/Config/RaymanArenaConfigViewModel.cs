@@ -27,6 +27,99 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Protected Override Properties
+
+        /// <summary>
+        /// The offset for when patching the game check or -1 if not available
+        /// </summary>
+        protected override int PatchGameCheckOffset => 0x2FB10;
+
+        /// <summary>
+        /// The original bytes for when patching the game check
+        /// </summary>
+        protected override byte[] PatchGameCheckOriginalBytes => new byte[]
+        {
+            0x00,
+            0x00,
+            0x68,
+            0x94,
+            0xbe,
+            0x5d,
+            0x00,
+            0x51,
+            0xe8,
+            0x3b,
+            0x7a,
+            0x09,
+            0x00,
+            0x83,
+            0xc4,
+            0x08,
+            0x85,
+            0xc0,
+            0x0f,
+            0x84,
+            0x49,
+            0x01,
+            0x00,
+            0x00,
+            0x43,
+            0x83,
+            0xfb,
+            0x20,
+            0x7c,
+            0x96,
+            0x8d,
+            0x94
+        };
+
+        /// <summary>
+        /// The patched bytes when patching the game check
+        /// </summary>
+        protected override byte[] PatchGameCheckPatchedBytes => new byte[]
+        {
+            0x00,
+            0x00,
+            0x68,
+            0x94,
+            0xBE,
+            0x5D,
+            0x00,
+            0x51,
+            0xE8,
+            0x3B,
+            0x7A,
+            0x09,
+            0x00,
+            0x83,
+            0xC4,
+            0x08,
+            0x85,
+            0xC0,
+            0xE9,
+            0x4A,
+            0x01,
+            0x00,
+            0x00,
+            0x00,
+            0x43,
+            0x83,
+            0xFB,
+            0x20,
+            0x7C,
+            0x96,
+            0x8D,
+            0x94
+        };
+
+        #endregion
+
+        #region Private Fields
+
+        private int _modemQualityIndex;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
@@ -37,7 +130,15 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current modem quality index
         /// </summary>
-        public int ModemQualityIndex { get; set; }
+        public int ModemQualityIndex
+        {
+            get => _modemQualityIndex;
+            set
+            {
+                _modemQualityIndex = value;
+                UnsavedChanges = true;
+            }
+        }
 
         #endregion
 

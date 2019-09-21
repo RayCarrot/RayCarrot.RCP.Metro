@@ -37,6 +37,9 @@ namespace RayCarrot.RCP.Metro
                 case TPLSRaymanVersion.Ray_1_21:
                     return 7;
 
+                case TPLSRaymanVersion.Ray_1_21_Chinese:
+                    return 8;
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(value), value, null);
             }
@@ -69,6 +72,9 @@ namespace RayCarrot.RCP.Metro
 
                 case 7:
                     return TPLSRaymanVersion.Ray_1_21;
+
+                case 8:
+                    return TPLSRaymanVersion.Ray_1_21_Chinese;
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(value), value, null);

@@ -111,6 +111,7 @@ namespace RayCarrot.RCP.Metro
                     new Type[]
                     {
                         typeof(RLUbiRayUtility),
+                        typeof(RLDebugCommandsUtility),
                     }
                 },
             };
@@ -198,7 +199,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(6, 0, 1, 0);
+        public Version CurrentVersion => new Version(6, 1, 0, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
@@ -586,7 +587,9 @@ namespace RayCarrot.RCP.Metro
                     GameFinderActionResult CheckUninstall(params string[] names)
                     {
                         var program = programs.Find(x => x.DisplayName.Equals(StringComparison.CurrentCultureIgnoreCase, names));
-                        var path = program?.InstallLocation ?? FileSystemPath.EmptyPath;
+                        var path = program?.InstallLocation.
+                                       // Replace the separator character as Uplay games use the wrong one
+                                       Replace("/", @"\") ?? FileSystemPath.EmptyPath;
                         var type = program == null ? GameType.Win32 : program.IsSteamGame ? GameType.Steam : GameType.Win32;
                         return new GameFinderActionResult(path, type, "RegistryUninstall");
                     }

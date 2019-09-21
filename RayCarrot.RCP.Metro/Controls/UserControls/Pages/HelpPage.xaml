@@ -6,6 +6,7 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     IsTabStop="False"
                     mc:Ignorable="d"
@@ -40,6 +41,10 @@
 
         <ScrollViewer x:Name="MainScrollViewer"
                       Grid.Column="2">
+            <i:Interaction.Behaviors>
+                <rwpf:FocusScrollViewerOnLoad />
+            </i:Interaction.Behaviors>
+
             <Grid Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

@@ -35,6 +35,9 @@ namespace RayCarrot.RCP.Metro
                 case TPLSRaymanVersion.Ray_1_21:
                     return 0x16E7D8;
 
+                case TPLSRaymanVersion.Ray_1_21_Chinese:
+                    return 0x16E9F0;
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(raymanVersion));
             }
@@ -62,6 +65,9 @@ namespace RayCarrot.RCP.Metro
                 case TPLSRaymanVersion.Ray_1_21:
                     return 0x17526;
 
+                case TPLSRaymanVersion.Ray_1_21_Chinese:
+                    return 0x1752E;
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(raymanVersion));
             }
@@ -87,6 +93,7 @@ namespace RayCarrot.RCP.Metro
                     return 0x00034;
 
                 case TPLSRaymanVersion.Ray_1_21:
+                case TPLSRaymanVersion.Ray_1_21_Chinese:
                     return 0x00034;
 
                 default:
@@ -114,6 +121,7 @@ namespace RayCarrot.RCP.Metro
                     return 0x022C0;
 
                 case TPLSRaymanVersion.Ray_1_21:
+                case TPLSRaymanVersion.Ray_1_21_Chinese:
                     return 0x022C0;
 
                 default:
@@ -141,6 +149,7 @@ namespace RayCarrot.RCP.Metro
                     return 0x02278;
 
                 case TPLSRaymanVersion.Ray_1_21:
+                case TPLSRaymanVersion.Ray_1_21_Chinese:
                     return 0x02278;
 
                 default:
@@ -165,10 +174,11 @@ namespace RayCarrot.RCP.Metro
                     return 0x174E7;
 
                 case TPLSRaymanVersion.Ray_1_20:
-                    return 0x17523;
-
                 case TPLSRaymanVersion.Ray_1_21:
                     return 0x17523;
+
+                case TPLSRaymanVersion.Ray_1_21_Chinese:
+                    return 0x1752B;
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(raymanVersion));
@@ -192,10 +202,11 @@ namespace RayCarrot.RCP.Metro
                     return 0x174E9;
 
                 case TPLSRaymanVersion.Ray_1_20:
-                    return 0x17525;
-
                 case TPLSRaymanVersion.Ray_1_21:
                     return 0x17525;
+
+                case TPLSRaymanVersion.Ray_1_21_Chinese:
+                    return 0x1752D;
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(raymanVersion));
@@ -222,6 +233,7 @@ namespace RayCarrot.RCP.Metro
                     return 0x022A0;
 
                 case TPLSRaymanVersion.Ray_1_21:
+                case TPLSRaymanVersion.Ray_1_21_Chinese:
                     return 0x022A0;
 
                 default:
@@ -249,6 +261,7 @@ namespace RayCarrot.RCP.Metro
                     return 0x00EA0;
 
                 case TPLSRaymanVersion.Ray_1_21:
+                case TPLSRaymanVersion.Ray_1_21_Chinese:
                     return 0x00EA0;
 
                 default:
@@ -276,6 +289,7 @@ namespace RayCarrot.RCP.Metro
                     return 0x00EA4;
 
                 case TPLSRaymanVersion.Ray_1_21:
+                case TPLSRaymanVersion.Ray_1_21_Chinese:
                     return 0x00EA4;
 
                 default:

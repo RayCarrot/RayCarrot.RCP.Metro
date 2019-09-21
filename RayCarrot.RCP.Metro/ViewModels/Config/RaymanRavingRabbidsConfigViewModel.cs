@@ -31,7 +31,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Private Fields
 
-        private int _resolutionIndex;
+        //private int _resolutionIndex;
 
         private bool _fullscreenMode;
 
@@ -69,18 +69,18 @@ namespace RayCarrot.RCP.Metro
         ///// </summary>
         //public string[] AvailableResolutionValues { get; }
 
-        /// <summary>
-        /// The selected resolution index
-        /// </summary>
-        public int ResolutionIndex
-        {
-            get => _resolutionIndex;
-            set
-            {
-                _resolutionIndex = value;
-                UnsavedChanges = true;
-            }
-        }
+        ///// <summary>
+        ///// The selected resolution index
+        ///// </summary>
+        //public int ResolutionIndex
+        //{
+        //    get => _resolutionIndex;
+        //    set
+        //    {
+        //        _resolutionIndex = value;
+        //        UnsavedChanges = true;
+        //    }
+        //}
 
         /// <summary>
         /// True if the game should run in fullscreen,

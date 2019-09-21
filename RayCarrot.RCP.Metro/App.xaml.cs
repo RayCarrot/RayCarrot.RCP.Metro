@@ -81,7 +81,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="construction">The construction</param>
         /// <param name="logLevel">The level to log</param>
         /// <param name="args">The launch arguments</param>
-        protected override void SetupFramework(IFrameworkConstruction construction, LogLevel logLevel, string[] args)
+        /// <returns>The configuration values to pass on to the framework, if any</returns>
+        protected override IDictionary<string, object> SetupFramework(IFrameworkConstruction construction, LogLevel logLevel, string[] args)
         {
             // Set file log level
             FileLogger.FileLoggerLogLevel = logLevel;
@@ -116,6 +117,11 @@ namespace RayCarrot.RCP.Metro
                 AddTransient<AppUIManager>().
                 // Add backup manager
                 AddTransient<BackupManager>();
+
+            return new Dictionary<string, object>()
+            {
+
+            };
         }
 
         /// <summary>

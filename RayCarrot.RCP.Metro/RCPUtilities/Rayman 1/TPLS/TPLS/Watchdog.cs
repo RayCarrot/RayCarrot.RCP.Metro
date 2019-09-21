@@ -271,7 +271,7 @@ namespace RayCarrot.RCP.Metro
             {
                 // Create the buffer to read the memory into
                 byte[] buffer = new byte[RaymanVersion.GetBufferSize()];
-
+                
                 // Update values until DOSBox closes
                 while (!Process.HasExited)
                 {

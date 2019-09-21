@@ -1867,6 +1867,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable disc check.
+        /// </summary>
+        public static string Config_DisableDiscCheck {
+            get {
+                return ResourceManager.GetString("Config_DisableDiscCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disc Check.
+        /// </summary>
+        public static string Config_DiscCheck {
+            get {
+                return ResourceManager.GetString("Config_DiscCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred when saving your DOSBox configuration.
         /// </summary>
         public static string Config_DosBoxSaveError {
@@ -5684,6 +5702,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1.21 (Chinese).
+        /// </summary>
+        public static string R1U_TPLS_RayVersions_1_21_Chinese {
+            get {
+                return ResourceManager.GetString("R1U_TPLS_RayVersions_1_21_Chinese", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto.
         /// </summary>
         public static string R1U_TPLS_RayVersions_Auto {
@@ -6544,6 +6571,24 @@ namespace RayCarrot.RCP.Metro {
         public static string ROU_DebugCommandsMaxZoomInfo {
             get {
                 return ResourceManager.GetString("ROU_DebugCommandsMaxZoomInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable save file loading/saving.
+        /// </summary>
+        public static string ROU_DebugCommandsNoSave {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsNoSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will prevent the game from loading or saving to any existing save file.
+        /// </summary>
+        public static string ROU_DebugCommandsNoSaveInfo {
+            get {
+                return ResourceManager.GetString("ROU_DebugCommandsNoSaveInfo", resourceCulture);
             }
         }
         

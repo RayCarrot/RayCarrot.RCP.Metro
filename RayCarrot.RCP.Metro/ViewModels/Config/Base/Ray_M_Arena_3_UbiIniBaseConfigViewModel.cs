@@ -61,6 +61,36 @@ namespace RayCarrot.RCP.Metro
 
         private bool _controllerSupport;
 
+        private bool _isDiscCheckRemoved;
+
+        #endregion
+
+        #region Protected Abstract Properties
+
+        /// <summary>
+        /// The offset for when patching the game check or -1 if not available
+        /// </summary>
+        protected abstract int PatchGameCheckOffset { get; }
+
+        /// <summary>
+        /// The original bytes for when patching the game check
+        /// </summary>
+        protected abstract byte[] PatchGameCheckOriginalBytes { get; }
+
+        /// <summary>
+        /// The patched bytes when patching the game check
+        /// </summary>
+        protected abstract byte[] PatchGameCheckPatchedBytes { get; }
+
+        #endregion
+
+        #region Protected Properties
+
+        /// <summary>
+        /// The game patcher to use for patching the disc check
+        /// </summary>
+        protected GamePatcher Patcher { get; set; }
+
         #endregion
 
         #region Public Properties
@@ -239,6 +269,24 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// Indicates if the option to remove the disc check from the game is available
+        /// </summary>
+        public bool CanRemoveDiscCheck { get; set; }
+
+        /// <summary>
+        /// Indicates if the disc check is set to be removed
+        /// </summary>
+        public bool IsDiscCheckRemoved
+        {
+            get => _isDiscCheckRemoved;
+            set
+            {
+                _isDiscCheckRemoved = value;
+                UnsavedChanges = true;
+            }
+        }
+
         #endregion
 
         #region Protected Override Methods
@@ -255,6 +303,52 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogInformationSource($"The dinput type has been retrieved as {dinputType}");
 
             ControllerSupport = dinputType == DinputType.Controller;
+
+            // Check if the disc check has been removed
+            CanRemoveDiscCheck = PatchGameCheckOffset != -1;
+
+            if (CanRemoveDiscCheck)
+            {
+                var gameFile = Game.GetInfo().InstallDirectory + Game.GetLaunchName();
+
+                if (gameFile.FileExists)
+                {
+                    Patcher = new GamePatcher(gameFile, PatchGameCheckOriginalBytes, PatchGameCheckPatchedBytes, PatchGameCheckOffset);
+
+                    var result = Patcher.GetIsOriginal();
+
+                    if (result == true)
+                    {
+                        IsDiscCheckRemoved = false;
+                        CanRemoveDiscCheck = true;
+
+                        RCFCore.Logger?.LogInformationSource($"The game has not been modified to remove the disc checker");
+                    }
+                    else if (result == false)
+                    {
+                        IsDiscCheckRemoved = true;
+                        CanRemoveDiscCheck = true;
+
+                        RCFCore.Logger?.LogInformationSource($"The game has been modified to remove the disc checker");
+                    }
+                    else if (result == null)
+                    {
+                        CanRemoveDiscCheck = false;
+
+                        RCFCore.Logger?.LogInformationSource($"The game disc checker status could not be read");
+                    }
+                }
+                else
+                {
+                    CanRemoveDiscCheck = false;
+
+                    RCFCore.Logger?.LogInformationSource($"The game file was not found");
+                }
+            }
+            else
+            {
+                RCFCore.Logger?.LogTraceSource($"The disc checker can not be removed for this game");
+            }
 
             // If the primary config file does not exist, create a new one
             if (!CommonPaths.UbiIniPath1.FileExists)
@@ -355,6 +449,27 @@ namespace RayCarrot.RCP.Metro
                 {
                     ex.HandleError($"Saving {Game.GetDisplayName()} dinput hack data");
                     throw;
+                }
+
+                if (CanRemoveDiscCheck)
+                {
+                    try
+                    {
+                        Patcher = new GamePatcher(Game.GetInfo().InstallDirectory + Game.GetLaunchName(), PatchGameCheckOriginalBytes, PatchGameCheckPatchedBytes, PatchGameCheckOffset);
+
+                        var result = Patcher.GetIsOriginal();
+
+                        if (result == true && IsDiscCheckRemoved)
+                            Patcher.PatchFile(false);
+
+                        else if (result == false && !IsDiscCheckRemoved)
+                            Patcher.PatchFile(true);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleError($"Saving {Game.GetDisplayName()} disc check modification");
+                        throw;
+                    }
                 }
             }
 

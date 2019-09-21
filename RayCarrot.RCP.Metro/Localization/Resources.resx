@@ -2745,4 +2745,19 @@ outputDir</comment>
   <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
     <value>Overwrite directory</value>
   </data>
+  <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
+    <value>Disable save file loading/saving</value>
+  </data>
+  <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
+    <value>This will prevent the game from loading or saving to any existing save file</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
+    <value>1.21 (Chinese)</value>
+  </data>
+  <data name="Config_DiscCheck" xml:space="preserve">
+    <value>Disc Check</value>
+  </data>
+  <data name="Config_DisableDiscCheck" xml:space="preserve">
+    <value>Disable disc check</value>
+  </data>
 </root>

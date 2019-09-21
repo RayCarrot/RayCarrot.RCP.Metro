@@ -164,4 +164,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
     }
+
+    // TODO: Allow multiple display modes. Have separate collections of games in VM for grouped view. Grouped view has three groups: "Rayman Games", "Rabbids Games" and "Spin-Offs".
+    public enum GameDisplayMode
+    {
+        Default,
+        Grouped,
+        List
+    }
 }

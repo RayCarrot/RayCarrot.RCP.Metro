@@ -31,6 +31,25 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Protected Override Properties
+
+        /// <summary>
+        /// The offset for when patching the game check or -1 if not available
+        /// </summary>
+        protected override int PatchGameCheckOffset => -1;
+
+        /// <summary>
+        /// The original bytes for when patching the game check
+        /// </summary>
+        protected override byte[] PatchGameCheckOriginalBytes => null;
+
+        /// <summary>
+        /// The patched bytes when patching the game check
+        /// </summary>
+        protected override byte[] PatchGameCheckPatchedBytes => null;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>

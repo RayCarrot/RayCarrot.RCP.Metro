@@ -1,4 +1,12 @@
-﻿-----   Version 6.0.1 - September 9, 2019   -----
+﻿-----   Version 6.1.0 - September ??, 2019   -----
+• Added a utility for Rayman Legends debug commands (Uplay version only)
+• Added support for version 1.21 (Chinese) in the PlayStation soundtrack utility for Rayman 1
+• Added the option to remove the disc check for Rayman M and Rayman Arena
+• The Rayman Origins map list no longer contains graph and subscene maps
+• Incorrectly formated paths will now be fixed when finding installed games from the Registry
+
+
+-----   Version 6.0.1 - September 9, 2019   -----
 • Removed the option to set the resolution for Rayman Raving Rabbids due to inconsistencies with getting the available resolutions
 
 

@@ -2662,7 +2662,7 @@ Foutmelding: {1}</value>
     <value>Exclusief</value>
   </data>
   <data name="LocateGame_WinStoreNotSupported" xml:space="preserve">
-    <value>De Windows Store apps bieden geen ondersteuning voor de huidige versie van Windows</value>
+    <value>De Windows Store apps zijn niet ondersteund binnen de huidige versie van Windows</value>
   </data>
   <data name="GetExistingBackupsError" xml:space="preserve">
     <value>De bestaande back-ups voor {0} konden niet worden verkregen</value>

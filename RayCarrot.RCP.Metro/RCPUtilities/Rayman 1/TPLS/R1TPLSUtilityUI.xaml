@@ -71,6 +71,7 @@
                 <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_12_2}" />
                 <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_20}" />
                 <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_21}" />
+                <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_21_Chinese}" />
 
             </ComboBox>
 

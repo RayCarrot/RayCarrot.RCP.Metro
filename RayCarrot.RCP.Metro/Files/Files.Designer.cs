@@ -131,6 +131,22 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to cinematic\darkt_bosses\darkt_boss_ending_moon_cine.isc
+        ///cinematic_retro\boss\foodworld\sampledemo_bossfo.isc
+        ///enginedata\defaultloadingscreen\defaultblackscreen.isc
+        ///enginedata\defaultloadingscreen\defaultloadingscreen.isc
+        ///enginedata\defaultloadingscreen\logo_rl_mainmenu.isc
+        ///enginedata\defaultloadingscreen\interactiveloadingscreen\babeltower_rl\loading_babeltower.isc
+        ///enginedata\defaultloadingscreen\interactiveloadingscreen\babeltower_rl\score_recap_babeltower.isc
+        ///enginedata\defaultloadingscreen\interact [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string RL_Levels {
+            get {
+                return ResourceManager.GetString("RL_Levels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to cinematic\boss\foodworld\sampledemo_bossfo.isc
         ///cinematic\faery\faeryfree\background.isc
         ///cinematic\faery\faeryfree\fo_faeryfreescene.isc
@@ -177,15 +193,17 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 6.0.0 - September ??, 2019   -----
-        ///• Educational Rayman games, Rayman Raving Rabbids 2, Rabbids Go Home (DVD release) and Rabbids Big Bang are now supported
-        ///• A mod manager has been added for Rayman Origins and Rayman Legends, allowing mods to be downloaded and applied
-        ///• Backups for all installed versions of Rayman Fiesta Run are now supported without changing the default version
-        ///• Improved game icon quality
+        ///   Looks up a localized string similar to -----   Version 6.1.0 - September ??, 2019   -----
         ///• 
         ///
-        ///Other changes:
-        ///• The list box in the Rayman Legends UbiRay utility now c [rest of string was truncated]&quot;;.
+        ///
+        ///-----   Version 6.0.1 - September 9, 2019   -----
+        ///• Removed the option to set the resolution for Rayman Raving Rabbids due to inconsistencies with getting the available resolutions
+        ///
+        ///
+        ///-----   Version 6.0.0 - September 7, 2019   -----
+        ///• Educational Rayman games, Rayman Raving Rabbids 2, Rabbids Go Home (DVD release) and Rabbids Big Bang are now supported
+        ///• A configuration option for Rayman 2 has been added to change the graphics mode between Di [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -92,5 +93,24 @@ namespace RayCarrot.RCP.Metro
         }
 
         #endregion
+
+        public static ObservableCollection<TestVM> TestVMs { get; } = new ObservableCollection<TestVM>()
+        {
+            new TestVM("Rayman Games"),
+            new TestVM("Rabbids Games"),
+            new TestVM("Spin-offs")
+        };
+    }
+
+    public class TestVM : BaseRCPViewModel
+    {
+        public TestVM(string header)
+        {
+            Header = header;
+        }
+
+        public string Header { get; }
+
+        public ObservableCollection<GameDisplayViewModel> Games { get; } = new ObservableCollection<GameDisplayViewModel>();
     }
 }
