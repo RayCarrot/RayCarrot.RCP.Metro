@@ -58,7 +58,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility is available to the user
         /// </summary>
-        public bool IsAvailable => (ViewModel.GameFilePath.Parent + "uplay_r1_loader.dll").FileExists;
+        public bool IsAvailable => !(ViewModel.GameFilePath.Parent + "steam_api.dll").FileExists;
 
         /// <summary>
         /// Retrieves a list of applied utilities from this utility

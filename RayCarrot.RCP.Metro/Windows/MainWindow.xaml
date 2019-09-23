@@ -15,6 +15,9 @@
                   Height="680"
                   Width="950"
                   DataContext="{x:Static local:RCFRCP.App}">
+    <Window.Resources>
+        <local:TaskbarIconViewModel x:Key="TaskbarIconViewModel" />
+    </Window.Resources>
     <local:BaseWindow.TitleTemplate>
         <DataTemplate>
             <Grid DataContext="{x:Static local:RCFRCP.App}">
@@ -38,29 +41,31 @@
     </local:BaseWindow.TitleTemplate>
     <metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands>
-            <Button Click="MinimizeToTrayButton_OnClick"
+            <Button DataContext="{StaticResource TaskbarIconViewModel}"
+                    Command="{Binding Path=MinimizeToTaskbarCommand}"
                     ToolTip="{Resx Window_MinimizeToTray}">
                 <iconPacks:PackIconMaterial Kind="ArrowDownBoldBoxOutline" />
             </Button>
         </metro:WindowCommands>
     </metro:MetroWindow.RightWindowCommands>
     <Grid>
-        <tb:TaskbarIcon x:Name="TaskbarIcon"
+        <tb:TaskbarIcon DataContext="{StaticResource TaskbarIconViewModel}"
                         IconSource="../Img/Rayman Control Panel Icon.ico"
                         ToolTipText="{Resx AppName}"
-                        TrayMouseDoubleClick="TaskbarIcon_Show_OnClick"
-                        Visibility="Collapsed">
+                        LeftClickCommand="{Binding Path=OpenFromTaskbarCommand}"
+                        Visibility="{Binding Path=IsIconVisible, Converter={rwpf:BooleanToVisibilityConverter}}">
+
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu Padding="5"
                              ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
                     <MenuItem Header="{Resx TaskBarIcon_Open}"
-                              Click="TaskbarIcon_Show_OnClick">
+                              Command="{Binding Path=OpenFromTaskbarCommand}">
                         <MenuItem.Icon>
                             <iconPacks:PackIconMaterial Kind="OpenInApp" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="{Resx TaskBarIcon_Close}"
-                              Click="TaskbarIcon_Close_OnClick">
+                              Command="{Binding Path=CloseApplicationCommand}">
                         <MenuItem.Icon>
                             <iconPacks:PackIconMaterial Kind="CloseOutline" />
                         </MenuItem.Icon>

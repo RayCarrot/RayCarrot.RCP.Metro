@@ -173,6 +173,7 @@
     <Compile Include="DataModels\Enums\FiestaRunEdition.cs" />
     <Compile Include="DataModels\Enums\PopupPromptResult.cs" />
     <Compile Include="DataModels\Enums\Pages.cs" />
+    <Compile Include="ViewModels\TaskbarIconViewModel.cs" />
     <Page Include="Controls\AdminButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

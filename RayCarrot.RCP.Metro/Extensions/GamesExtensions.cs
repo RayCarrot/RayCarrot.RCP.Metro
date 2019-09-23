@@ -389,7 +389,7 @@ namespace RayCarrot.RCP.Metro
                     GameOptions.Show(game, GameOptionsPage.Options);
                 })));
 
-                return new GameDisplayViewModel(game.GetDisplayName(), game.GetIconSource(), new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.Play, new AsyncRelayCommand(async () => await game.GetGameManager().LaunchGameAsync(false))), actions);
+                return new GameDisplayViewModel(game, game.GetDisplayName(), game.GetIconSource(), new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.Play, new AsyncRelayCommand(async () => await game.GetGameManager().LaunchGameAsync(false))), actions);
             }
             else
             {
@@ -432,7 +432,7 @@ namespace RayCarrot.RCP.Metro
                 var locateCommand = new AsyncRelayCommand(async () => await RCFRCP.App.LocateGameAsync(game));
 
                 // Return the view model
-                return new GameDisplayViewModel(game.GetDisplayName(), game.GetIconSource(),
+                return new GameDisplayViewModel(game, game.GetDisplayName(), game.GetIconSource(),
                     new ActionItemViewModel(Resources.GameDisplay_Locate, PackIconMaterialKind.FolderOutline, locateCommand), actions);
             }
         }

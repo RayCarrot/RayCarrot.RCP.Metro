@@ -1809,7 +1809,7 @@ Running an application in compatibility mode is done by selecting the option und
     <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Rayman PlayStation Soundtrack utility</value>
+    <value>Rayman PlayStation Soundtrack utility, Rayman M/Arena disc check removal</value>
   </data>
   <data name="About_Credits_ICUP321" xml:space="preserve">
     <value>Spanish program translation</value>
@@ -2758,6 +2758,9 @@ outputDir</comment>
     <value>Disc Check</value>
   </data>
   <data name="Config_DisableDiscCheck" xml:space="preserve">
-    <value>Disable disc check</value>
+    <value>Disable disc checking</value>
+  </data>
+  <data name="Config_DiscCheckInfo" xml:space="preserve">
+    <value>Disabling the disc checking allows the game to be played without having to insert the game disc</value>
   </data>
 </root>

@@ -1719,7 +1719,7 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <value>Painel de Controlo Rayman</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Utilitário da banda sonora Rayman PlayStation</value>
+    <value>Utilitário da banda sonora Rayman PlayStation, Remoção de verificação do disco Rayman M/Arena</value>
   </data>
   <data name="About_Credits_ICUP321" xml:space="preserve">
     <value>Programa de tradução Espanhola</value>
@@ -2674,5 +2674,23 @@ Error message: {1}</value>
   </data>
   <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
     <value>Substituir directório</value>
+  </data>
+  <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
+    <value>Desactivar carregamento/salvaguarda do ficheiro de progresso</value>
+  </data>
+  <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
+    <value>Isto irá prevenir que o jogo carregue ou guarde em qualquer ficheiro de progresso</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
+    <value>1.21. (Chinês)</value>
+  </data>
+  <data name="Config_DiscCheck" xml:space="preserve">
+    <value>Verificação do disco</value>
+  </data>
+  <data name="Config_DisableDiscCheck" xml:space="preserve">
+    <value>Desactivar verificação do disco</value>
+  </data>
+  <data name="Config_DiscCheckInfo" xml:space="preserve">
+    <value>Desactivar a verificação do disco permite que o jogo seja jogado sem ter que se inserir o disco</value>
   </data>
 </root>

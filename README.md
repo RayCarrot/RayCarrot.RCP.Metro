@@ -64,6 +64,9 @@ This utility will download the official Rayman Origins disc updater which allows
 #### Rayman Legends - UbiRay Character
 This utility will edit the selected save file to have the currently selected character be UbiRay.
 
+#### Rayman Legends - Debug Commands
+This utility will allow the game to be launched with the selected debug commands. This is only available for the Uplay version.
+
 ## Dependencies
 The Rayman Control Panel uses these main dependencies:
 

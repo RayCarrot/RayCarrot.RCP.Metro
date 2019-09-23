@@ -214,7 +214,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman PlayStation Soundtrack utility.
+        ///   Looks up a localized string similar to Rayman PlayStation Soundtrack utility, Rayman M/Arena disc check removal.
         /// </summary>
         public static string About_Credits_Snagglebee {
             get {
@@ -1867,7 +1867,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable disc check.
+        ///   Looks up a localized string similar to Disable disc checking.
         /// </summary>
         public static string Config_DisableDiscCheck {
             get {
@@ -1881,6 +1881,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_DiscCheck {
             get {
                 return ResourceManager.GetString("Config_DiscCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disabling the disc checking allows the game to be played without having to insert the game disc.
+        /// </summary>
+        public static string Config_DiscCheckInfo {
+            get {
+                return ResourceManager.GetString("Config_DiscCheckInfo", resourceCulture);
             }
         }
         

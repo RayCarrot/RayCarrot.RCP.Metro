@@ -25,8 +25,8 @@ namespace RayCarrot.RCP.Metro
         {
             // Create properties
             AsyncLock = new AsyncLock();
-            InstalledGames = new ObservableCollection<KeyValuePair<Games, GameDisplayViewModel>>();
-            NotInstalledGames = new ObservableCollection<KeyValuePair<Games, GameDisplayViewModel>>();
+            InstalledGames = new ObservableCollection<GameDisplayViewModel>();
+            NotInstalledGames = new ObservableCollection<GameDisplayViewModel>();
 
             // Enable collection synchronization
             BindingOperations.EnableCollectionSynchronization(InstalledGames, Application.Current);
@@ -66,12 +66,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The installed games
         /// </summary>
-        public ObservableCollection<KeyValuePair<Games, GameDisplayViewModel>> InstalledGames { get; }
+        public ObservableCollection<GameDisplayViewModel> InstalledGames { get; }
 
         /// <summary>
         /// The not installed games
         /// </summary>
-        public ObservableCollection<KeyValuePair<Games, GameDisplayViewModel>> NotInstalledGames { get; }
+        public ObservableCollection<GameDisplayViewModel> NotInstalledGames { get; }
 
         /// <summary>
         /// Indicates if there are any installed games
@@ -99,15 +99,23 @@ namespace RayCarrot.RCP.Metro
             {
                 await Task.Run(() =>
                 {
-                    // Make sure the game has been added
-                    if (!game.IsAdded())
-                        throw new Exception("Only added games can be refreshed individually");
+                    try
+                    {
+                        // Make sure the game has been added
+                        if (!game.IsAdded())
+                            throw new Exception("Only added games can be refreshed individually");
 
-                    // Get the collection containing the game
-                    var collection = InstalledGames.Any(x => x.Key == game) ? InstalledGames : NotInstalledGames;
+                        // Get the collection containing the game
+                        var collection = InstalledGames.Any(x => x.Game == game) ? InstalledGames : NotInstalledGames;
 
-                    // Refresh the game
-                    collection[collection.FindItemIndex(x => x.Key == game)] = new KeyValuePair<Games, GameDisplayViewModel>(game, game.GetDisplayViewModel());
+                        // Refresh the game
+                        collection[collection.FindItemIndex(x => x.Game == game)] = game.GetDisplayViewModel();
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleCritical("Refreshing game", game);
+                        throw;
+                    }
                 });
             }
 
@@ -141,12 +149,12 @@ namespace RayCarrot.RCP.Metro
                             if (game.IsAdded())
                             {
                                 // Add the game to the collection
-                                InstalledGames.Add(new KeyValuePair<Games, GameDisplayViewModel>(game, game.GetDisplayViewModel()));
+                                InstalledGames.Add(game.GetDisplayViewModel());
                                 AnyInstalledGames = true;
                             }
                             else
                             {
-                                NotInstalledGames.Add(new KeyValuePair<Games, GameDisplayViewModel>(game, game.GetDisplayViewModel()));
+                                NotInstalledGames.Add(game.GetDisplayViewModel());
                                 AnyNotInstalledGames = true;
                             }
                         }
@@ -166,10 +174,53 @@ namespace RayCarrot.RCP.Metro
     }
 
     // TODO: Allow multiple display modes. Have separate collections of games in VM for grouped view. Grouped view has three groups: "Rayman Games", "Rabbids Games" and "Spin-Offs".
-    public enum GameDisplayMode
-    {
-        Default,
-        Grouped,
-        List
-    }
+
+    //public enum GameDisplayMode
+    //{
+    //    Default,
+    //    Grouped,
+    //    List
+    //}
+
+    //public enum GameGroup
+    //{
+    //    Main,
+    //    SpinOffs,
+    //    Rabbids
+    //}
+
+    //public static class GamesExtensions2
+    //{
+    //    public static GameGroup GetGroupName(this Games game)
+    //    {
+    //        switch (game)
+    //        {
+    //            case Games.Rayman1:
+    //            case Games.Rayman2:
+    //            case Games.Rayman3:
+    //            case Games.RaymanOrigins:
+    //            case Games.RaymanLegends:
+    //                return GameGroup.Main;
+
+    //            case Games.RaymanDesigner:
+    //            case Games.RaymanByHisFans:
+    //            case Games.Rayman60Levels:
+    //            case Games.EducationalDos:
+    //            case Games.RaymanM:
+    //            case Games.RaymanArena:
+    //            case Games.RaymanJungleRun:
+    //            case Games.RaymanFiestaRun:
+    //                return GameGroup.SpinOffs;
+
+    //            case Games.RaymanRavingRabbids:
+    //            case Games.RaymanRavingRabbids2:
+    //            case Games.RabbidsGoHome:
+    //            case Games.RabbidsBigBang:
+    //                return GameGroup.Rabbids;
+
+    //            default:
+    //                throw new ArgumentOutOfRangeException(nameof(game), game, null);
+    //        }
+    //    }
+    //}
 }

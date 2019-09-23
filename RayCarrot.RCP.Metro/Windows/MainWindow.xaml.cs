@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using RayCarrot.CarrotFramework.Abstractions;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -65,52 +63,6 @@ namespace RayCarrot.RCP.Metro
             RefreshBackupPageEnabled();
         }
 
-        private void MinimizeToTrayButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            foreach (Window window in App.Current.Windows)
-                window.Hide();
-
-            TaskbarIcon.Visibility = Visibility.Visible;
-
-            RCFCore.Logger?.LogInformationSource("The program has been minimized to tray");
-        }
-
-        private void TaskbarIcon_Show_OnClick(object sender, RoutedEventArgs e)
-        {
-            foreach (Window window in App.Current.Windows)
-                window.Show();
-
-            TaskbarIcon.Visibility = Visibility.Collapsed;
-
-            RCFCore.Logger?.LogInformationSource("The program has been shown from the tray icon");
-        }
-
-        private void TaskbarIcon_Close_OnClick(object sender, RoutedEventArgs e)
-        {
-            RCFCore.Logger?.LogInformationSource("The program is being closed from the tray icon");
-
-            Close();
-        }
-
         #endregion
-
-        public static ObservableCollection<TestVM> TestVMs { get; } = new ObservableCollection<TestVM>()
-        {
-            new TestVM("Rayman Games"),
-            new TestVM("Rabbids Games"),
-            new TestVM("Spin-offs")
-        };
-    }
-
-    public class TestVM : BaseRCPViewModel
-    {
-        public TestVM(string header)
-        {
-            Header = header;
-        }
-
-        public string Header { get; }
-
-        public ObservableCollection<GameDisplayViewModel> Games { get; } = new ObservableCollection<GameDisplayViewModel>();
     }
 }

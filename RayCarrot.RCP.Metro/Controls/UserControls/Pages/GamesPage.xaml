@@ -28,8 +28,7 @@
                         <Setter Property="ItemTemplate">
                             <Setter.Value>
                                 <DataTemplate>
-                                    <local:GameDisplay DataContext="{Binding Path=Value}"
-                                                       HorizontalAlignment="Left"
+                                    <local:GameDisplay HorizontalAlignment="Left"
                                                        Padding="7 10" />
                                 </DataTemplate>
                             </Setter.Value>

@@ -1717,7 +1717,7 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
     <value>Rayman Control Panel</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Rayman PlayStation Soundtrack hulpprogramma</value>
+    <value>Rayman PlayStation Soundtrack hulpprogramma, Rayman M/Arena schijfcontrole eliminatie</value>
   </data>
   <data name="About_Credits_ICUP321" xml:space="preserve">
     <value>Spaanse programmavertaling</value>
@@ -2672,5 +2672,23 @@ Foutmelding: {1}</value>
   </data>
   <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
     <value>Map overschrijven</value>
+  </data>
+  <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
+    <value>Uitschakelen laden/opslaan save file</value>
+  </data>
+  <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
+    <value>Dit zorgt ervoor dat het spel geen bestaande save files laadt of wordt opgeslagen via een bestaande save file</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
+    <value>1.21 (Chinees)</value>
+  </data>
+  <data name="Config_DiscCheck" xml:space="preserve">
+    <value>Schijfcontrole</value>
+  </data>
+  <data name="Config_DisableDiscCheck" xml:space="preserve">
+    <value>Schakel schijfcontrole uit</value>
+  </data>
+  <data name="Config_DiscCheckInfo" xml:space="preserve">
+    <value>Door het uitschakelen van de schijfcontrole, kan het spel gespeeld worden zonder de schijf in het station te plaatsen</value>
   </data>
 </root>
