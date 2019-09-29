@@ -50,7 +50,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Infralution.Localization.Wpf">
-      <HintPath>..\..\..\Files\Infralution.Localization.Wpf.dll</HintPath>
+      <HintPath>..\References\Infralution.Localization.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
@@ -67,12 +67,12 @@
     <Reference Include="System.Runtime.InteropServices.WindowsRuntime" />
     <Reference Include="System.Runtime.WindowsRuntime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Files\WinRT\System.Runtime.WindowsRuntime.dll</HintPath>
+      <HintPath>..\References\System.Runtime.WindowsRuntime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Runtime.WindowsRuntime.UI.Xaml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Files\WinRT\System.Runtime.WindowsRuntime.UI.Xaml.dll</HintPath>
+      <HintPath>..\References\System.Runtime.WindowsRuntime.UI.Xaml.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.ServiceProcess" />
@@ -88,16 +88,13 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="Windows">
-      <HintPath>..\..\..\Files\WinRT\Windows.WinMD</HintPath>
-      <Private>False</Private>
+      <HintPath>..\References\Windows.WinMD</HintPath>
     </Reference>
     <Reference Include="Windows.Foundation.FoundationContract">
-      <HintPath>..\..\..\Files\WinRT\Windows.Foundation.FoundationContract.winmd</HintPath>
-      <Private>False</Private>
+      <HintPath>..\References\Windows.Foundation.FoundationContract.winmd</HintPath>
     </Reference>
     <Reference Include="Windows.Foundation.UniversalApiContract">
-      <HintPath>..\..\..\Files\WinRT\Windows.Foundation.UniversalApiContract.winmd</HintPath>
-      <Private>False</Private>
+      <HintPath>..\References\Windows.Foundation.UniversalApiContract.winmd</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -689,17 +686,17 @@
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Carrot Framework\RayCarrot.Windows.Shell\RayCarrot.Windows.Shell.csproj">
+    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.Windows.Shell\RayCarrot.Windows.Shell.csproj">
       <Project>{55f49d1e-c9bd-4cc4-9ff0-d646d9f42a21}</Project>
       <Name>RayCarrot.Windows.Shell</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Carrot WPF\RayCarrot.WPF\RayCarrot.WPF.csproj">
-      <Project>{9b10dc81-cb32-45a1-b52b-fbb3e4d056a0}</Project>
-      <Name>RayCarrot.WPF</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\RayCarrot.Rayman\RayCarrot.Rayman\RayCarrot.Rayman.csproj">
       <Project>{e8a27323-72a7-4708-9624-ebffb5019803}</Project>
       <Name>RayCarrot.Rayman</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RayCarrot.WPF\RayCarrot.WPF\RayCarrot.WPF.csproj">
+      <Project>{9b10dc81-cb32-45a1-b52b-fbb3e4d056a0}</Project>
+      <Name>RayCarrot.WPF</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -854,22 +851,25 @@
       <Version>3.1.3</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.CarrotFramework">
-      <Version>3.1.0</Version>
+      <Version>3.1.1</Version>
     </PackageReference>
-    <PackageReference Include="RayCarrot.Extensions">
-      <Version>1.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="RayCarrot.IO">
-      <Version>1.1.6</Version>
-    </PackageReference>
-    <PackageReference Include="RayCarrot.UI">
+    <PackageReference Include="RayCarrot.CarrotFramework.Abstractions">
       <Version>1.1.3</Version>
     </PackageReference>
+    <PackageReference Include="RayCarrot.Extensions">
+      <Version>1.1.3</Version>
+    </PackageReference>
+    <PackageReference Include="RayCarrot.IO">
+      <Version>1.1.7</Version>
+    </PackageReference>
+    <PackageReference Include="RayCarrot.UI">
+      <Version>1.1.4</Version>
+    </PackageReference>
     <PackageReference Include="RayCarrot.UserData">
-      <Version>3.1.1</Version>
+      <Version>3.1.2</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Windows.Registry">
-      <Version>3.1.1</Version>
+      <Version>3.1.2</Version>
     </PackageReference>
     <PackageReference Include="Resource.Embedder">
       <Version>2.0.1</Version>
