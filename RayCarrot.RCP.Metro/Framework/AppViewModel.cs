@@ -199,7 +199,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(6, 1, 0, 0);
+        public Version CurrentVersion => new Version(6, 1, 1, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
@@ -434,21 +434,22 @@ namespace RayCarrot.RCP.Metro
             // Lock the saving of user data
             using (await SaveUserDataAsyncLock.LockAsync())
             {
-                try
+                // Run it as a new task
+                await Task.Run(async () =>
                 {
-                    // Run it as a new task
-                    await Task.Run(async () =>
+                    // Save all user data
+                    try
                     {
                         // Save all user data
                         await RCFData.UserDataCollection.SaveAllAsync();
-                    });
 
-                    RCFCore.Logger?.LogInformationSource($"The application user data was saved");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleCritical("Saving user data");
-                }
+                        RCFCore.Logger?.LogInformationSource($"The application user data was saved");
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleCritical("Saving user data");
+                    }
+                });
             }
         }
 

@@ -100,7 +100,7 @@ namespace RayCarrot.RCP.Metro
                 // Add message UI manager
                 AddMessageUIManager<RCPMessageUIManager>().
                 // Add browse UI manager
-                AddBrowseUIManager<RCPWPFBrowseUIManager>().
+                AddBrowseUIManager<DefaultWPFBrowseUIManager>().
                 // Add registry manager
                 AddRegistryManager<DefaultRegistryManager>().
                 // Add registry browse UI manager
@@ -155,6 +155,9 @@ namespace RayCarrot.RCP.Metro
 
             LogStartupTime("User data has been loaded");
 
+            // Set the theme
+            SetTheme(Data.DarkMode);
+
             // Track changes to the user data
             PreviousLinkItemStyle = Data.LinkItemStyle;
             PreviousBackupLocation = Data.BackupLocation;
@@ -184,8 +187,6 @@ namespace RayCarrot.RCP.Metro
 
             // Listen to data binding logs
             WPFTraceListener.Setup(LogLevel.Warning);
-
-            RCFCore.Logger?.LogInformationSource($"The temp directory has been created");
 
             // Run basic startup
             await BasicStartupAsync();
@@ -530,6 +531,15 @@ namespace RayCarrot.RCP.Metro
             Data.LastVersion = RCFRCP.App.CurrentVersion;
         }
 
+        /// <summary>
+        /// Sets the application theme
+        /// </summary>
+        /// <param name="darkMode">True to use dark mode or false to use light mode</param>
+        private void SetTheme(bool darkMode)
+        {
+            ThemeManager.ChangeAppTheme(Application.Current, $"Base{(darkMode ? "Dark" : "Light")}");
+        }
+
         #endregion
 
         #region Event Handlers
@@ -541,7 +551,7 @@ namespace RayCarrot.RCP.Metro
                 switch (e.PropertyName)
                 {
                     case nameof(AppUserData.DarkMode):
-                        ThemeManager.ChangeAppTheme(Application.Current, $"Base{(Data.DarkMode ? "Dark" : "Light")}");
+                        SetTheme(Data.DarkMode);
                         break;
 
                     case nameof(AppUserData.BackupLocation):

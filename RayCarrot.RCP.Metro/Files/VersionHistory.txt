@@ -1,4 +1,9 @@
-﻿-----   Version 6.1.0 - September 23, 2019   -----
+﻿-----   Version 6.1.1 - September 29, 2019   -----
+• Updated the Portuguese translation of Rayman 2
+• Fixed a bug where setting the theme to light would not save
+
+
+-----   Version 6.1.0 - September 23, 2019   -----
 • Added a utility for Rayman Legends debug commands (Uplay version only)
 • Added support for version 1.21 (Chinese) in the PlayStation soundtrack utility for Rayman 1
 • Added the option to remove the disc check for Rayman M and Rayman Arena

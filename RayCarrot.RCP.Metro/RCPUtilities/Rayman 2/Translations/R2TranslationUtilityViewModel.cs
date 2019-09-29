@@ -269,7 +269,7 @@ namespace RayCarrot.RCP.Metro
                     case "ED22B3087C52DAECE6DB653E47AAF84F3E0EAAF3C59ED2BBF9C91354CA9669AA":
                         return Rayman2Translation.Irish;
 
-                    case "14D84894F5B14891F42FE1F2A31109A9064435B78907BB0DA90B086DFAB029FE":
+                    case "A39CAFD877DB658C22E01488E38A245FBB52CE45454C08151403F53113632712":
                         return Rayman2Translation.Portuguese;
 
                     default:

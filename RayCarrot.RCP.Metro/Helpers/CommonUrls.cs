@@ -13,7 +13,7 @@
         /// <summary>
         /// The base URL for downloading utilities
         /// </summary>
-        public const string UtilityBaseUrl = BaseUrl + "Resources/4.0.0/";
+        public const string UtilityBaseUrl = BaseUrl + "Resources/6.0.0/";
 
         /// <summary>
         /// The update manifest URL
