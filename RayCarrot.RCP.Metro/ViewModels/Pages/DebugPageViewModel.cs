@@ -29,28 +29,12 @@ namespace RayCarrot.RCP.Metro
         public DebugPageViewModel()
         {
             ShowDialogCommand = new AsyncRelayCommand(ShowDialogAsync);
-            ShowLogCommand = new RelayCommand(ShowLog);
+            ShowLogCommand = new AsyncRelayCommand(ShowLogAsync);
             ShowInstalledUtilitiesCommand = new AsyncRelayCommand(ShowInstalledUtilitiesAsync);
             RefreshDataOutputCommand = new AsyncRelayCommand(RefreshDataOutputAsync);
             RefreshAllCommand = new AsyncRelayCommand(RefreshAllAsync);
             RefreshAllAsyncCommand = new AsyncRelayCommand(RefreshAllTaskAsync);
-
-            // Show log viewer if a debugger is attached
-            if (!FirstConstruction || !Debugger.IsAttached)
-                return;
-
-            ShowLog();
-            FirstConstruction = false;
         }
-
-        #endregion
-
-        #region Private Static Properties
-
-        /// <summary>
-        /// Indicates if this is the first time the class has been constructed
-        /// </summary>
-        private static bool FirstConstruction = true;
 
         #endregion
 
@@ -152,9 +136,10 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Shows the log viewer
         /// </summary>
-        public void ShowLog()
+        /// <returns>The task</returns>
+        public async Task ShowLogAsync()
         {
-            WindowHelpers.ShowWindow<LogViewer>();
+            await new LogViewer().ShowWindowAsync();
         }
 
         /// <summary>

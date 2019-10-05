@@ -37,26 +37,6 @@
         </Setter>
     </Style>
 
-    <!-- Default tool tip -->
-
-    <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource {x:Type ToolTip}}" >
-        <Setter Property="ContentTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding}" MaxWidth="400" TextWrapping='Wrap' />
-                    </StackPanel>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <!-- Tab item with a margin and no padding -->
-
-    <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
-        <Setter Property="Padding" Value="0" />
-    </Style>
-
     <!-- Default RCP tab item -->
 
     <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
@@ -79,55 +59,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    <!-- Tab control with underline -->
-
-    <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource {x:Type TabControl}}">
-        <Setter Property="mah:TabControlHelper.Underlined" Value="TabPanel" />
-    </Style>
-
-    <!-- Tab control with underline -->
-
-    <Style TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}">
-        <Setter Property="IsTabStop" Value="False" />
-    </Style>
-
-    <!-- Expander without background and larger font -->
-
-    <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource {x:Type Expander}}">
-        <Setter Property="Background" Value="{DynamicResource ControlBackgroundBrush}" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="mah:ControlsHelper.ContentCharacterCasing" Value="Normal"/>
-        <Setter Property="IsExpanded" Value="True" />
-        <Setter Property="Padding" Value="5" />
-        <Setter Property="HeaderTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <ContentPresenter Content="{Binding}"
-                                      TextElement.FontSize="20"/>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <!-- Scroll viewer with auto vertical scroll bar visibility -->
-
-    <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource {x:Type ScrollViewer}}">
-        <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-    </Style>
-
-    <!-- Default toggle switch -->
-
-    <Style TargetType="mah:ToggleSwitch" BasedOn="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" />
-
-    <!-- Default radio button extended -->
-
-    <Style TargetType="{x:Type rwpf:RadioButtonExtended}" BasedOn="{StaticResource {x:Type RadioButton}}" />
-
-    <!-- Default multi data grid -->
-
-    <Style TargetType="{x:Type rwpf:MultiDataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}" />
 
     <!-- Default NumericUpDown -->
 

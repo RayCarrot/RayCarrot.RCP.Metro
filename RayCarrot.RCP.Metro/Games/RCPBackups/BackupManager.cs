@@ -297,7 +297,7 @@ namespace RayCarrot.RCP.Metro
                         foreach (RCPBackup existingBackup in backupInformation.ExistingBackups)
                         {
                             // Ignore the newly created backup
-                            if (existingBackup.Path.Equals(newBackup, true))
+                            if (existingBackup.Path.CorrectPathCasing().Equals(newBackup.CorrectPathCasing()))
                                 continue;
 
                             if (existingBackup.IsCompressed)

@@ -18,12 +18,14 @@ using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Shell;
+using RayCarrot.WPF.Metro;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -59,35 +61,26 @@ namespace RayCarrot.RCP.Metro
             // Load previous state
             RCFRCP.Data.WindowState?.ApplyToWindow(window);
 
-            bool hasLoaded = false;
-
-            // Refresh when the main window loads for the first time
-            window.Loaded += async (s, e) =>
-            {
-                if (hasLoaded)
-                    return;
-
-                hasLoaded = true;
-
-                await (StartupComplete?.RaiseAsync(this, new EventArgs()) ?? Task.CompletedTask);
-            };
-
             return window;
         }
 
         /// <summary>
         /// Sets up the framework with loggers and other services
         /// </summary>
-        /// <param name="construction">The construction</param>
+        /// <param name="config">The configuration values to pass on to the framework, if any</param>
         /// <param name="logLevel">The level to log</param>
         /// <param name="args">The launch arguments</param>
-        /// <returns>The configuration values to pass on to the framework, if any</returns>
-        protected override IDictionary<string, object> SetupFramework(IFrameworkConstruction construction, LogLevel logLevel, string[] args)
+        protected override void SetupFramework(IDictionary<string, object> config, LogLevel logLevel, string[] args)
         {
+            // Add custom configuration
+            config.Add(RCFIO.AutoCorrectPathCasingKey,
+                // TODO: Set to true?
+                false);
+
             // Set file log level
             FileLogger.FileLoggerLogLevel = logLevel;
 
-            construction.
+            new FrameworkConstruction().
                 // Add loggers
                 AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, logLevel, builder => builder.AddProvider(new BaseLogProvider<FileLogger>())).
                 // Add exception handler
@@ -116,12 +109,9 @@ namespace RayCarrot.RCP.Metro
                 // Add App UI manager
                 AddTransient<AppUIManager>().
                 // Add backup manager
-                AddTransient<BackupManager>();
-
-            return new Dictionary<string, object>()
-            {
-
-            };
+                AddTransient<BackupManager>().
+                // Build the framework
+                Build(config);
         }
 
         /// <summary>
@@ -144,7 +134,7 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError($"Loading app user data");
 
                 // NOTE: This is not localized due to the current culture not having been set at this point
-                MessageBox.Show($"An error occurred reading saved app data. Some settings may be reset to their default values.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"An error occurred reading saved app data. Some settings have been reset to their default values.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 // Recreate the user data and reset it
                 RCFData.UserDataCollection.Add(new AppUserData());
@@ -156,7 +146,7 @@ namespace RayCarrot.RCP.Metro
             LogStartupTime("User data has been loaded");
 
             // Set the theme
-            SetTheme(Data.DarkMode);
+            this.SetTheme(Data.DarkMode);
 
             // Track changes to the user data
             PreviousLinkItemStyle = Data.LinkItemStyle;
@@ -531,15 +521,6 @@ namespace RayCarrot.RCP.Metro
             Data.LastVersion = RCFRCP.App.CurrentVersion;
         }
 
-        /// <summary>
-        /// Sets the application theme
-        /// </summary>
-        /// <param name="darkMode">True to use dark mode or false to use light mode</param>
-        private void SetTheme(bool darkMode)
-        {
-            ThemeManager.ChangeAppTheme(Application.Current, $"Base{(darkMode ? "Dark" : "Light")}");
-        }
-
         #endregion
 
         #region Event Handlers
@@ -551,7 +532,7 @@ namespace RayCarrot.RCP.Metro
                 switch (e.PropertyName)
                 {
                     case nameof(AppUserData.DarkMode):
-                        SetTheme(Data.DarkMode);
+                        this.SetTheme(Data.DarkMode);
                         break;
 
                     case nameof(AppUserData.BackupLocation):
@@ -578,10 +559,7 @@ namespace RayCarrot.RCP.Metro
 
                     case nameof(AppUserData.LinkItemStyle):
 
-                        string GetStyleSource(LinkItemStyles linkItemStye)
-                        {
-                            return $"{AppViewModel.ApplicationBasePath}/Styles/LinkItemStyles - {linkItemStye}.xaml";
-                        }
+                        string GetStyleSource(LinkItemStyles linkItemStye) => $"{AppViewModel.ApplicationBasePath}/Styles/LinkItemStyles - {linkItemStye}.xaml";
 
                         // Get previous source
                         var oldSource = GetStyleSource(PreviousLinkItemStyle);
@@ -638,6 +616,10 @@ namespace RayCarrot.RCP.Metro
 
         private static async Task App_StartupCompleteAsync(object sender, EventArgs eventArgs)
         {
+            // Show log viewer if a debugger is attached
+            if (Debugger.IsAttached)
+                await new LogViewer().ShowWindowAsync();
+
             // Set up the secret code manager
             SecretCodeManager.Setup();
 
@@ -777,21 +759,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Properties
+        #region Public Static Properties
 
         /// <summary>
         /// The current application
         /// </summary>
         public new static App Current => Application.Current as App;
-
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// Occurs on startup, after the main window has been loaded
-        /// </summary>
-        public event AsyncEventHandler<EventArgs> StartupComplete; 
 
         #endregion
     }

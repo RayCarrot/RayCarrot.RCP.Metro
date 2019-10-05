@@ -68,7 +68,7 @@
         <Separator Grid.Row="1"
                    Margin="0 5" />
 
-        <mah:MetroAnimatedTabControl Grid.Row="2"
+        <mah:MetroAnimatedTabControl Grid.Row="2" PreviewKeyDown="UIElement_OnPreviewKeyDown"
                                      mah:TabControlHelper.Transition="{Binding Path=Data.EnableAnimations, Converter={metro:BooleanToTransitionTypeConverter}}"
                                      Margin="0 15 0 0">
 

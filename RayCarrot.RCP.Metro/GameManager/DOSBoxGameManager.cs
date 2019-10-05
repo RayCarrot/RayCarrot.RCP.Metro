@@ -50,7 +50,7 @@ namespace RayCarrot.RCP.Metro
             return $"{(File.Exists(RCFRCP.Data.DosBoxConfig) ? $"-conf \"{RCFRCP.Data.DosBoxConfig} \"" : String.Empty)} " +
                    $"-conf \"{Game.GetDosBoxConfigFile()}\" " +
                    // The mounting differs if it's a physical disc vs. a disc image
-                   $"{(mountPath.IsDirectoryRoot() ? "-c \"mount d " + mountPath.FullPath + " -t cdrom\"" : "-c \"imgmount d '" + mountPath.FullPath + "' -t iso -fs iso\"")} " +
+                   $"{(mountPath.IsDirectoryRoot ? "-c \"mount d " + mountPath.FullPath + " -t cdrom\"" : "-c \"imgmount d '" + mountPath.FullPath + "' -t iso -fs iso\"")} " +
                    $"-c \"MOUNT C '{installDir ?? Info.InstallDirectory.FullPath}'\" " +
                    $"-c C: " +
                    $"-c \"{launchName}\" " +

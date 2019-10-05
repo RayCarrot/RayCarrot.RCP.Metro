@@ -26,7 +26,7 @@ namespace RayCarrot.RCP.Metro
             NotIncluded = new ObservableCollection<JumpListItemViewModel>();
 
             // Get all jump list items
-            foreach (var game in RCFRCP.App.GetGames.Where(x => GamesExtensions.IsAdded(x)))
+            foreach (var game in RCFRCP.App.GetGames.Where(x => x.IsAdded()))
             {
                 foreach (var item in game.GetGameManager().GetJumpListItems())
                 {

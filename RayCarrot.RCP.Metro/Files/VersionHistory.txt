@@ -1,4 +1,9 @@
-﻿-----   Version 6.1.1 - September 29, 2019   -----
+﻿-----   Version 6.1.2 - October ??, 2019   -----
+• 
+• Improved tab navigation
+
+
+-----   Version 6.1.1 - September 29, 2019   -----
 • Updated the Portuguese translation of Rayman 2
 • Fixed a bug where setting the theme to light would not save
 

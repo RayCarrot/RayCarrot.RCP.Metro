@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -24,7 +25,7 @@ namespace RayCarrot.RCP.Metro
             // Set minimum size
             MinWidth = 400;
             MinHeight = 300;
-
+            
             // Set title style
             TitleCharacterCasing = CharacterCasing.Normal;
 

@@ -209,7 +209,7 @@ namespace RayCarrot.RCP.Metro
             if (IconCache.ContainsKey(path.FullPath))
                 return IconCache[path.FullPath];
 
-            var image = path.GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource(); ;
+            var image = path.GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource();
 
             image.Freeze();
 

@@ -74,7 +74,8 @@
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>
 
-        <metro:MetroAnimatedTabControl Padding="5"
+        <metro:MetroAnimatedTabControl x:Name="PageTabControl"
+                                       Padding="5"
                                        metro:TabControlHelper.Transition="{Binding Source={x:Static local:RCFRCP.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}">
             <metro:MetroAnimatedTabControl.Style>
                 <Style TargetType="{x:Type metro:MetroAnimatedTabControl}" BasedOn="{StaticResource {x:Type metro:MetroAnimatedTabControl}}">

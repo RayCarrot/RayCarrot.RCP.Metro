@@ -41,7 +41,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The dialog content
         /// </summary>
-        public object DialogContent => this;
+        public object UIContent => this;
 
         /// <summary>
         /// Indicates if the dialog should be resizable
