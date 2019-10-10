@@ -1,3 +1,5 @@
+ licensbr.txt
+ Licenspl.txt
  Licensda.txt
  Licensfr.txt
  Licensge.txt
@@ -15,6 +17,10 @@
  Manual\Rayman M SP.pdf
  Manual\Rayman M Scand.pdf
  Manual\Rayman M UK.pdf
+ Instrukcja
+ Instrukcja\RaymanM-instrukcja.pdf
+ readmebr.txt
+ readmepl.txt
  readmeda.txt
  readmefi.txt
  readmefr.txt
@@ -33,6 +39,8 @@ RM_Setup_DX8.exe
 RaymanM.exe
 RaymanM.ico
 binkw32.dll
+ DX8_LOC\DX8_Polish.ini
+ DX8_LOC\DX8_Brazilian.ini
  DX8_LOC\DX8_Danish.ini
  DX8_LOC\DX8_English.ini
  DX8_LOC\DX8_Finnish.ini

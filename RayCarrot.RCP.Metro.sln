@@ -29,11 +29,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{FE77A000-16C8-4C8E-8E86-B16E8676C8FB}"
 	ProjectSection(SolutionItems) = preProject
 		References\Infralution.Localization.Wpf.dll = References\Infralution.Localization.Wpf.dll
-		References\System.Runtime.WindowsRuntime.dll = References\System.Runtime.WindowsRuntime.dll
-		References\System.Runtime.WindowsRuntime.UI.Xaml.dll = References\System.Runtime.WindowsRuntime.UI.Xaml.dll
-		References\Windows.Foundation.FoundationContract.winmd = References\Windows.Foundation.FoundationContract.winmd
-		References\Windows.Foundation.UniversalApiContract.winmd = References\Windows.Foundation.UniversalApiContract.winmd
-		References\Windows.WinMD = References\Windows.WinMD
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots", "{150B7714-F70A-42D7-8C01-FB0CF636C0A4}"

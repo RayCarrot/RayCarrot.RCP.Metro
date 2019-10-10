@@ -4,7 +4,7 @@ using System.Windows;
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// The dialog base manager for the Game Launcher
+    /// The dialog base manager for the Rayman Control Panel
     /// </summary>
     public class RCPDialogBaseManager : WindowDialogBaseManager
     {
