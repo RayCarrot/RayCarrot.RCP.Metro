@@ -146,42 +146,5 @@ namespace RayCarrot.RCP.Metro
         }
 
         #endregion
-
-        #region Public Static Methods
-
-        /// <summary>
-        /// Creates a new instance of <see cref="BaseBackupInfo"/> from an <see cref="EducationalDosBoxGameInfo"/>
-        /// </summary>
-        /// <param name="gameInfo">The game info</param>
-        /// <returns>The backup info</returns>
-        public static IBackupInfo FromEducationalDosGameInfos(EducationalDosBoxGameInfo gameInfo)
-        {
-            var backupName = $"Educational Games - {gameInfo.LaunchMode}";
-            
-            return new BaseBackupInfo(backupName,
-                new List<BackupDir>()
-                {
-                    new BackupDir(gameInfo.InstallDir, SearchOption.TopDirectoryOnly, $"EDU{gameInfo.LaunchMode}??.SAV", "0", 0),
-                    new BackupDir(gameInfo.InstallDir, SearchOption.TopDirectoryOnly, $"EDU{gameInfo.LaunchMode}.CFG", "1", 0)
-                }, gameInfo.Name);
-        }
-
-        /// <summary>
-        /// Creates a new instance of <see cref="BaseBackupInfo"/> from a <see cref="Games"/>
-        /// </summary>
-        /// <param name="game">The game</param>
-        /// <returns>The backup info</returns>
-        public static IBackupInfo FromGame(Games game)
-        {
-            var backupName = game.GetBackupName();
-            var backupInfo = game.GetBackupInfo();
-
-            if (backupInfo == null)
-                return null;
-
-            return new BaseBackupInfo(backupName, backupInfo, game.GetDisplayName());
-        }
-
-        #endregion
     }
 }

@@ -58,7 +58,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility is available to the user
         /// </summary>
-        public bool IsAvailable => Games.RaymanOrigins.GetInfo().InstallDirectory.DirectoryExists;
+        public bool IsAvailable => Games.RaymanOrigins.GetData().InstallDirectory.DirectoryExists;
 
         /// <summary>
         /// Retrieves a list of applied utilities from this utility

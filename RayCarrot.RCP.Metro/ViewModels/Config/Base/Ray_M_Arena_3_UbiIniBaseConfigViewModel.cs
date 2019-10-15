@@ -309,7 +309,7 @@ namespace RayCarrot.RCP.Metro
 
             if (CanRemoveDiscCheck)
             {
-                var gameFile = Game.GetInfo().InstallDirectory + Game.GetLaunchName();
+                var gameFile = Game.GetData().InstallDirectory + Game.GetGameInfo().DefaultFileName;
 
                 if (gameFile.FileExists)
                 {
@@ -412,7 +412,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError($"Saving {Game.GetDisplayName()} ubi.ini secondary data");
+                    ex.HandleError($"Saving {Game} ubi.ini secondary data");
                 }
             }
 
@@ -447,7 +447,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError($"Saving {Game.GetDisplayName()} dinput hack data");
+                    ex.HandleError($"Saving {Game} dinput hack data");
                     throw;
                 }
 
@@ -455,7 +455,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     try
                     {
-                        Patcher = new GamePatcher(Game.GetInfo().InstallDirectory + Game.GetLaunchName(), PatchGameCheckOriginalBytes, PatchGameCheckPatchedBytes, PatchGameCheckOffset);
+                        Patcher = new GamePatcher(Game.GetData().InstallDirectory + Game.GetGameInfo().DefaultFileName, PatchGameCheckOriginalBytes, PatchGameCheckPatchedBytes, PatchGameCheckOffset);
 
                         var result = Patcher.GetIsOriginal();
 
@@ -467,7 +467,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleError($"Saving {Game.GetDisplayName()} disc check modification");
+                        ex.HandleError($"Saving {Game} disc check modification");
                         throw;
                     }
                 }
@@ -510,7 +510,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError($"Getting {Game.GetDisplayName()} dinput file size");
+                ex.HandleError($"Getting {Game} dinput file size");
                 return DinputType.Unknown;
             }
         }
@@ -521,7 +521,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The path</returns>
         private FileSystemPath GetDinputPath()
         {
-            return Game.GetInfo().InstallDirectory + "dinput8.dll";
+            return Game.GetData().InstallDirectory + "dinput8.dll";
         }
 
         #endregion

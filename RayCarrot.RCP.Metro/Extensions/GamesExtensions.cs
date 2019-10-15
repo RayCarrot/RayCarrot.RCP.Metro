@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.UI;
@@ -22,74 +21,13 @@ namespace RayCarrot.RCP.Metro
         #region Helpers
 
         /// <summary>
-        /// Gets the <see cref="BaseGameManager"/> for the added game
+        /// Gets the saved game data for the specified game
         /// </summary>
-        /// <param name="game">The game to get the manager for</param>
-        /// <param name="gameType">The game type, or null to use the current one if the game has been added</param>
-        /// <returns>The game manager</returns>
-        public static BaseGameManager GetGameManager(this Games game, GameType? gameType = null)
+        /// <param name="game">The game to get the saved game data for</param>
+        /// <returns>The saved game data</returns>
+        public static GameData GetData(this Games game)
         {
-            switch (gameType ?? game.GetInfo().GameType)
-            {
-                case GameType.Win32:
-                    return new Win32GameManager(game);
-
-                case GameType.Steam:
-                    return new SteamGameManager(game);
-
-                case GameType.WinStore:
-                    return new WinStoreGameManager(game);
-
-                case GameType.DosBox:
-                    return new DOSBoxGameManager(game);
-
-                case GameType.EducationalDosBox:
-                    return new EducationalDosBoxGameManager(game); 
-
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        /// <summary>
-        /// Gets the <see cref="BaseGameManager"/> for the added game
-        /// </summary>
-        /// <param name="game">The game to get the manager for</param>
-        /// <returns>The game manager</returns>
-        public static T GetGameManager<T>(this Games game)
-            where T : BaseGameManager
-        {
-            GameType type;
-
-            if (typeof(T) == typeof(Win32GameManager))
-                type = GameType.Win32;
-
-            else if (typeof(T) == typeof(SteamGameManager))
-                type = GameType.Steam;
-
-            else if (typeof(T) == typeof(WinStoreGameManager))
-                type = GameType.WinStore;
-
-            else if (typeof(T) == typeof(DOSBoxGameManager))
-                type = GameType.DosBox;
-
-            else if (typeof(T) == typeof(EducationalDosBoxGameManager))
-                type = GameType.EducationalDosBox;
-
-            else
-                throw new Exception("The provided game manager type is not valid");
-
-            return typeof(T).CreateInstance(game, type).CastTo<T>();
-        }
-
-        /// <summary>
-        /// Gets the saved game info for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the saved game info for</param>
-        /// <returns>The saved game info</returns>
-        public static GameInfo GetInfo(this Games game)
-        {
-            if (!RCFRCP.Data.Games.ContainsKey(game))
+            if (!game.IsAdded())
                 throw new Exception($"The requested game {game} has not been added");
 
             return RCFRCP.Data.Games[game];
@@ -141,518 +79,9 @@ namespace RayCarrot.RCP.Metro
             return result;
         }
 
-        /// <summary>
-        /// Gets the DosBox configuration file path for the auto config for the specific game
-        /// </summary>
-        /// <param name="game">The game to get the file path for</param>
-        /// <returns>The file path</returns>
-        public static FileSystemPath GetDosBoxConfigFile(this Games game)
-        {
-            return CommonPaths.UserDataBaseDir + "DosBox" + (game + ".ini");
-        }
-
-        /// <summary>
-        /// Gets the icon source for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the icon source for</param>
-        /// <returns>The icon source</returns>
-        public static string GetIconSource(this Games game)
-        {
-            return $"{AppViewModel.ApplicationBasePath}Img/GameIcons/{game}.png";
-        }
-
         #endregion
 
         #region Data
-
-        /// <summary>
-        /// Gets the display name for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the display name for</param>
-        /// <returns>The display name</returns>
-        public static string GetDisplayName(this Games game)
-        {
-            // NOTE: Not localized
-
-            switch (game)
-            {
-                case Games.Rayman1:
-                    return "Rayman";
-
-                case Games.RaymanDesigner:
-                    return "Rayman Designer";
-
-                case Games.RaymanByHisFans:
-                    return "Rayman by his Fans";
-
-                case Games.Rayman60Levels:
-                    return "Rayman 60 Levels";
-
-                case Games.Rayman2:
-                    return "Rayman 2";
-
-                case Games.RaymanM:
-                    return "Rayman M";
-
-                case Games.RaymanArena:
-                    return "Rayman Arena";
-
-                case Games.Rayman3:
-                    return "Rayman 3";
-
-                case Games.RaymanRavingRabbids:
-                    return "Rayman Raving Rabbids";
-
-                case Games.RaymanRavingRabbids2:
-                    return "Rayman Raving Rabbids 2";
-
-                case Games.RabbidsGoHome:
-                    return "Rabbids Go Home";
-
-                case Games.RaymanOrigins:
-                    return "Rayman Origins";
-
-                case Games.RaymanLegends:
-                    return "Rayman Legends";
-
-                case Games.RaymanJungleRun:
-                    return "Rayman Jungle Run";
-
-                case Games.RaymanFiestaRun:
-                    return "Rayman Fiesta Run";
-
-                case Games.RabbidsBigBang:
-                    return "Rabbids Big Bang";
-
-                case Games.EducationalDos:
-                    return "Educational Games";
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(game), game, null);
-            }
-        }
-
-        /// <summary>
-        /// Gets the backup name for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the backup name for</param>
-        /// <returns>The backup name</returns>
-        public static string GetBackupName(this Games game)
-        {
-            // NOTE: These string can not be localized due to legacy support
-
-            switch (game)
-            {
-                case Games.Rayman1:
-                    return "Rayman 1";
-
-                case Games.RaymanDesigner:
-                    return "Rayman Designer";
-
-                case Games.RaymanByHisFans:
-                    return "Rayman by his Fans";
-
-                case Games.Rayman60Levels:
-                    return "Rayman 60 Levels";
-
-                case Games.Rayman2:
-                    return "Rayman 2";
-
-                case Games.RaymanM:
-                    return "Rayman M";
-
-                case Games.RaymanArena:
-                    return "Rayman Arena";
-
-                case Games.Rayman3:
-                    return "Rayman 3";
-
-                case Games.RaymanRavingRabbids:
-                    return "Rayman Raving Rabbids";
-
-                case Games.RaymanRavingRabbids2:
-                    return "Rayman Raving Rabbids 2";
-
-                case Games.RabbidsGoHome:
-                    return "Rabbids Go Home";
-
-                case Games.RaymanOrigins:
-                    return "Rayman Origins";
-
-                case Games.RaymanLegends:
-                    return "Rayman Legends";
-
-                case Games.RaymanJungleRun:
-                    return "Rayman Jungle Run";
-
-                case Games.RaymanFiestaRun:
-                    return $"Rayman Fiesta Run ({RCFRCP.Data.FiestaRunVersion})";
-
-                case Games.RabbidsBigBang:
-                    return "Rabbids Big Bang";
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(game), game, null);
-            }
-        }
-
-        /// <summary>
-        /// Gets a display view model for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the display view model for</param>
-        /// <returns>A new display view model</returns>
-        public static GameDisplayViewModel GetDisplayViewModel(this Games game)
-        {
-            if (game.IsAdded())
-            {
-                var actions = new List<OverflowButtonItemViewModel>();
-
-                // Get the game info
-                var info = game.GetInfo();
-
-                // Add launch options if set to do so
-                if (info.LaunchMode == GameLaunchMode.AsAdminOption)
-                {
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, PackIconMaterialKind.Security, new AsyncRelayCommand(async () => await game.GetGameManager().LaunchGameAsync(true))));
-
-                    actions.Add(new OverflowButtonItemViewModel());
-                }
-
-                // Get the game links
-                var links = game.GetGameFileLinks()?.Where(x => x.Path.FileExists).ToList();
-
-                // Add links if there are any
-                if (links?.Any() ?? false)
-                {
-                    actions.AddRange(links.
-                        Select(x =>
-                        {
-                            // Get the path
-                            string path = x.Path;
-
-                            // Create the command
-                            var command = new AsyncRelayCommand(async () => (await RCFRCP.File.LaunchFileAsync(path))?.Dispose());
-
-                            if (x.Icon != PackIconMaterialKind.None)
-                                return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
-
-                            try
-                            {
-                                return new OverflowButtonItemViewModel(x.Header, new FileSystemPath(x.Path).GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource(), command);
-                            }
-                            catch (Exception ex)
-                            {
-                                ex.HandleError("Getting file icon for overflow button item");
-                                return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
-                            }
-                        }));
-
-                    actions.Add(new OverflowButtonItemViewModel());
-                }
-
-                // Get additional items
-                var additionalItems = game.GetGameManager().GetAdditionalOverflowButtonItems();
-
-                // Add the items if there are any
-                if (additionalItems.Any())
-                {
-                    actions.AddRange(additionalItems);
-
-                    actions.Add(new OverflowButtonItemViewModel());
-                }
-
-                // Add open location
-                actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_OpenLocation, PackIconMaterialKind.FolderOutline, new AsyncRelayCommand(async () =>
-                {
-                    // Get the game info
-                    var gameInfo = game.GetInfo();
-
-                    // Get the install directory
-                    var instDir = gameInfo.InstallDirectory;
-
-                    // Select the file in Explorer if it exists
-                    if ((instDir + game.GetLaunchName()).FileExists)
-                        instDir += game.GetLaunchName();
-
-                    // Open the location
-                    await RCFRCP.File.OpenExplorerLocationAsync(instDir);
-
-                    RCFCore.Logger?.LogTraceSource($"The game {game} install location was opened");
-                }), UserLevel.Advanced));
-
-                actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
-
-                // Add game options
-                actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.SettingsOutline, new RelayCommand(() =>
-                {
-                    RCFCore.Logger?.LogTraceSource($"The game {game} options dialog is opening...");
-                    GameOptions.Show(game, GameOptionsPage.Options);
-                })));
-
-                return new GameDisplayViewModel(game, game.GetDisplayName(), game.GetIconSource(), new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.Play, new AsyncRelayCommand(async () => await game.GetGameManager().LaunchGameAsync(false))), actions);
-            }
-            else
-            {
-                var actions = new List<OverflowButtonItemViewModel>();
-
-                // Get the game links
-                var links = game.GetGamePurchaseLinks();
-
-                // Add links if there are any
-                if (links?.Any() ?? false)
-                {
-                    actions.AddRange(links.
-                        Select(x =>
-                        {
-                            // Get the path
-                            string path = x.Path;
-
-                            // Create the command
-                            var command = new AsyncRelayCommand(async () => (await RCFRCP.File.LaunchFileAsync(path))?.Dispose());
-
-                            // Return the item
-                            return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
-                        }));
-                }
-
-                // Add disc installer options for specific games
-                if (game.GetInstallerGifs()?.Any() == true)
-                {
-                    // Add separator if there are previous actions
-                    if (actions.Any())
-                        actions.Add(new OverflowButtonItemViewModel());
-
-                    // Add disc installer action
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, PackIconMaterialKind.Disk, new RelayCommand(() =>
-                        // NOTE: This is a blocking dialog
-                        new GameInstaller(game).ShowDialog())));
-                }
-
-                // Create the command
-                var locateCommand = new AsyncRelayCommand(async () => await RCFRCP.App.LocateGameAsync(game));
-
-                // Return the view model
-                return new GameDisplayViewModel(game, game.GetDisplayName(), game.GetIconSource(),
-                    new ActionItemViewModel(Resources.GameDisplay_Locate, PackIconMaterialKind.FolderOutline, locateCommand), actions);
-            }
-        }
-
-        /// <summary>
-        /// Gets a collection of <see cref="GamePurchaseLink"/> for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the links for</param>
-        /// <returns>The collection of game links</returns>
-        public static IList<GamePurchaseLink> GetGamePurchaseLinks(this Games game)
-        {
-            switch (game)
-            {
-                case Games.Rayman1:
-                    return new List<GamePurchaseLink>()
-                    {
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_forever"),
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
-                    };
-
-                case Games.RaymanDesigner:
-                    return new List<GamePurchaseLink>()
-                    {
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_forever"),
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
-                    };
-
-                case Games.RaymanByHisFans:
-                    return new List<GamePurchaseLink>()
-                    {
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_forever"),
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
-                    };
-
-                case Games.Rayman2:
-                    return new List<GamePurchaseLink>()
-                    {
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_2_the_great_escape"),
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-2--the-great-escape/56c4947e88a7e300458b465c.html")
-                    };
-
-                case Games.Rayman3:
-                    return new List<GamePurchaseLink>()
-                    {
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_3_hoodlum_havoc"),
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--3--hoodlum-havoc/5800b15eef3aa5ab3e8b4567.html")
-                    };
-
-                case Games.RaymanRavingRabbids:
-                    return new List<GamePurchaseLink>()
-                    {
-                        new GamePurchaseLink(Resources.GameDisplay_Steam, AppViewModel.SteamStoreBaseUrl + game.GetGameManager<SteamGameManager>().GetSteamID()),
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_raving_rabbids"),
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-raving-rabbids/56c4948888a7e300458b47de.html")
-                    };
-
-                case Games.RaymanOrigins:
-                    return new List<GamePurchaseLink>()
-                    {
-                        new GamePurchaseLink(Resources.GameDisplay_Steam, AppViewModel.SteamStoreBaseUrl + game.GetGameManager<SteamGameManager>().GetSteamID()),
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_origins"),
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-origins/56c4948888a7e300458b47dc.html")
-                    };
-
-                case Games.RaymanLegends:
-                    return new List<GamePurchaseLink>()
-                    {
-                        new GamePurchaseLink(Resources.GameDisplay_Steam, AppViewModel.SteamStoreBaseUrl + game.GetGameManager<SteamGameManager>().GetSteamID()),
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--legends/56c4948888a7e300458b47da.html")
-                    };
-
-                case Games.RaymanJungleRun:
-                    return new List<GamePurchaseLink>()
-                    {
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, "https://www.microsoft.com/store/productId/9WZDNCRFJ13P")
-                    };
-
-                case Games.RaymanFiestaRun:
-                    return new List<GamePurchaseLink>()
-                    {
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, "https://www.microsoft.com/store/productId/9wzdncrdcw9b")
-                    };
-
-                case Games.RabbidsBigBang:
-                    return new List<GamePurchaseLink>()
-                    {
-                        new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, "https://www.microsoft.com/store/productId/9WZDNCRFJCS3")
-                    };
-
-                default:
-                    return null;
-            }
-        }
-
-        /// <summary>
-        /// Gets a collection of <see cref="GameFileLink"/> for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the links for</param>
-        /// <returns>The collection of game links</returns>
-        public static IList<GameFileLink> GetGameFileLinks(this Games game)
-        {
-            var info = game.GetInfo();
-
-            switch (game)
-            {
-                case Games.RaymanDesigner:
-                    return new GameFileLink[]
-                    {
-                        new GameFileLink(Resources.GameLink_RDMapper, info.InstallDirectory + "MAPPER.EXE")
-                    };
-
-                case Games.Rayman2:
-                    return new GameFileLink[]
-                    {
-                        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "GXSetup.exe"),
-                        new GameFileLink(Resources.GameLink_R2nGlide, info.InstallDirectory + "nglide_config.exe"),
-                        new GameFileLink(Resources.GameLink_R2dgVoodoo, info.InstallDirectory + "dgVoodooCpl.exe")
-                    };
-
-                case Games.RaymanM:
-                    return new GameFileLink[]
-                    {
-                        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "RM_Setup_DX8.exe")
-                    };
-
-                case Games.RaymanArena:
-                    return new GameFileLink[]
-                    {
-                        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "RM_Setup_DX8.exe")
-                    };
-
-                case Games.Rayman3:
-                    return new GameFileLink[]
-                    {
-                        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "R3_Setup_DX8.exe")
-                    };
-
-                case Games.RaymanRavingRabbids:
-                    return new GameFileLink[]
-                    {
-                        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "SettingsApplication.exe")
-                    };
-
-                case Games.RaymanRavingRabbids2:
-                    return new GameFileLink[]
-                    {
-                        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "SettingsApplication.exe")
-                    };
-
-                //case Games.RabbidsGoHome:
-                //    return new GameFileLink[]
-                //    {
-                //        new GameFileLink(Resources.GameLink_Setup, info.InstallDirectory + "Launcher.exe")
-                //    };
-
-                default:
-                    return new GameFileLink[0];
-            }
-        }
-
-        /// <summary>
-        /// Gets the launch name for a game
-        /// </summary>
-        /// <param name="game">The game to get the launch name for</param>
-        /// <returns>The launch name</returns>
-        public static string GetLaunchName(this Games game)
-        {
-            switch (game)
-            {
-                case Games.Rayman1:
-                    return "Rayman.exe";
-
-                case Games.RaymanDesigner:
-                    return "RAYKIT.bat";
-
-                case Games.RaymanByHisFans:
-                    return "rayfan.bat";
-
-                case Games.Rayman60Levels:
-                    return "Rayman.bat";
-
-                case Games.Rayman2:
-                    return "Rayman2.exe";
-
-                case Games.RaymanM:
-                    return "RaymanM.exe";
-
-                case Games.RaymanArena:
-                    return "R_Arena.exe";
-
-                case Games.Rayman3:
-                    return "Rayman3.exe";
-
-                case Games.RaymanRavingRabbids:
-                    return "CheckApplication.exe";
-
-                case Games.RaymanRavingRabbids2:
-                    return "Jade.exe";
-
-                case Games.RabbidsGoHome:
-                    return RCFRCP.Data.RabbidsGoHomeLaunchData == null ? "Launcher.exe" : "LyN_f.exe";
-
-                case Games.RaymanOrigins:
-                    return "Rayman Origins.exe";
-
-                case Games.RaymanLegends:
-                    return "Rayman Legends.exe";
-
-                case Games.RaymanJungleRun:
-                case Games.RaymanFiestaRun:
-                case Games.RabbidsBigBang:
-                    return game.GetGameManager<WinStoreGameManager>().GetFullPackageName();
-
-                case Games.EducationalDos:
-                    return RCFRCP.Data.EducationalDosBoxGames.First().LaunchName;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(game), game, null);
-            }
-        }
 
         /// <summary>
         /// Gets a type for the specified game, or null if the operation was cancelled
@@ -664,6 +93,7 @@ namespace RayCarrot.RCP.Metro
             // Create the view model
             var vm = new GameTypeSelectionViewModel()
             {
+                // TODO: Localize
                 Title = "Select Game Type"
             };
 
@@ -723,181 +153,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Gets the config content for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the config content for</param>
-        /// <returns>The config content</returns>
-        public static FrameworkElement GetConfigContent(this Games game)
-        {
-            switch (game)
-            {
-                case Games.Rayman1:
-                case Games.RaymanDesigner:
-                case Games.RaymanByHisFans:
-                case Games.Rayman60Levels:
-                case Games.EducationalDos:
-                    return new DosBoxConfig(game);
-
-                case Games.Rayman2:
-                    return new Rayman2Config();
-
-                case Games.RaymanM:
-                case Games.RaymanArena:
-                case Games.Rayman3:
-                    return new Ray_M_Arena_3_Config(game);
-
-                case Games.RaymanRavingRabbids:
-                    return new RaymanRavingRabbidsConfig();
-
-                case Games.RabbidsGoHome:
-                    return new RabbidsGoHomeConfig();
-
-                case Games.RaymanOrigins:
-                case Games.RaymanLegends:
-                    return new Ray_Origins_Legends_Config(game);
-
-                default:
-                    return null;
-            }
-        }
-
-        /// <summary>
-        /// Gets the options content for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the options content for</param>
-        /// <returns>The options content</returns>
-        public static FrameworkElement GetOptionsContent(this Games game)
-        {
-            switch (game)
-            {
-                case Games.RaymanFiestaRun:
-                    return new FiestaRunOptions();
-
-                case Games.EducationalDos:
-                    return new EducationalDosOptions();
-
-                case Games.RaymanRavingRabbids2:
-                    return new RavingRabbids2Options();
-
-                default:
-                    return null;
-            }
-        }
-
-        /// <summary>
-        /// Gets the backup info for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the backup info for</param>
-        /// <returns>The game backup info</returns>
-        public static IList<BackupDir> GetBackupInfo(this Games game)
-        {
-            // Get the game info
-            var gameInfo = game.GetInfo();
-
-            switch (game)
-            {
-                case Games.Rayman1:
-                    return new List<BackupDir>()
-                    {
-                        new BackupDir(gameInfo.InstallDirectory, SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
-                        new BackupDir(gameInfo.InstallDirectory, SearchOption.TopDirectoryOnly, "*.cfg", "1", 0),
-                    };
-
-                case Games.RaymanDesigner:
-                    return new List<BackupDir>()
-                    {
-                        new BackupDir(gameInfo.InstallDirectory, SearchOption.TopDirectoryOnly, "*.cfg", "0", 0),
-                        new BackupDir(gameInfo.InstallDirectory + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 0),
-                        //
-                        // Note:
-                        // This will backup the pre-installed maps and the world files as well. This is due to how the backup manager works.
-                        // In the future I might make a separate manager for the maps again, in which case the search pattern "MAPS???" should get the
-                        // correct mapper directories withing each world directory
-                        //
-                        new BackupDir(gameInfo.InstallDirectory + "CAKE", SearchOption.AllDirectories, "*", "Mapper0", 0),
-                        new BackupDir(gameInfo.InstallDirectory + "CAVE", SearchOption.AllDirectories, "*", "Mapper1", 0),
-                        new BackupDir(gameInfo.InstallDirectory + "IMAGE", SearchOption.AllDirectories, "*", "Mapper2", 0),
-                        new BackupDir(gameInfo.InstallDirectory + "JUNGLE", SearchOption.AllDirectories, "*", "Mapper3", 0),
-                        new BackupDir(gameInfo.InstallDirectory + "MOUNTAIN", SearchOption.AllDirectories, "*", "Mapper4", 0),
-                        new BackupDir(gameInfo.InstallDirectory + "MUSIC", SearchOption.AllDirectories, "*", "Mapper5", 0),
-                    };
-
-                case Games.RaymanByHisFans:
-                    return new List<BackupDir>()
-                    {
-                        // NOTE: Due to a mistake where the .sct files were not included in previous backups we need to keep this version for legacy support
-                        new BackupDir(gameInfo.InstallDirectory, SearchOption.TopDirectoryOnly, "*.cfg", "1", 0),
-                        new BackupDir(gameInfo.InstallDirectory, SearchOption.TopDirectoryOnly, "*.cfg", "0", 1),
-                        new BackupDir(gameInfo.InstallDirectory + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 1),
-                    };
-
-                case Games.Rayman60Levels:
-                    return new List<BackupDir>()
-                    {
-                        new BackupDir(gameInfo.InstallDirectory, SearchOption.TopDirectoryOnly, "*.cfg", "0", 0),
-                        new BackupDir(gameInfo.InstallDirectory + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 0)
-                    };
-
-                case Games.Rayman2:
-                    return new List<BackupDir>()
-                    {
-                        new BackupDir(gameInfo.InstallDirectory + "Data" + "SaveGame", SearchOption.AllDirectories, "*", "0", 0),
-                        new BackupDir(gameInfo.InstallDirectory + "Data" + "Options", SearchOption.AllDirectories, "*", "1", 0)
-                    };
-
-                case Games.Rayman3:
-                    return new List<BackupDir>()
-                    {
-                        new BackupDir(gameInfo.InstallDirectory + "GAMEDATA"+ "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
-                    };
-
-                case Games.RaymanM:
-                case Games.RaymanArena:
-                    return new List<BackupDir>()
-                    {
-                        new BackupDir(gameInfo.InstallDirectory + "Menu" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
-                    };
-
-                case Games.RaymanRavingRabbids:
-                    var dirs = new List<BackupDir>()
-                    {
-                        new BackupDir(gameInfo.InstallDirectory, SearchOption.TopDirectoryOnly, "*.sav", "0", 0)
-                    };
-
-                    if (gameInfo.GameType == GameType.Win32)
-                        dirs.Add(new BackupDir(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore", gameInfo.InstallDirectory.RemoveRoot()), SearchOption.TopDirectoryOnly, "*.sav", "0", 0));
-
-                    return dirs;
-
-                case Games.RaymanRavingRabbids2:
-                    return new List<BackupDir>()
-                    {
-                        new BackupDir(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "RRR2"), SearchOption.TopDirectoryOnly, "*", "0", 0)
-                    };
-
-                case Games.RaymanOrigins:
-                    return new List<BackupDir>()
-                    {
-                        new BackupDir(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My games\\Rayman origins"), SearchOption.AllDirectories, "*", "0", 0)
-                    };
-
-                case Games.RaymanLegends:
-                    return new List<BackupDir>()
-                    {
-                        new BackupDir(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Rayman Legends"), SearchOption.AllDirectories, "*", "0", 0)
-                    };
-
-                case Games.RaymanJungleRun:
-                case Games.RaymanFiestaRun:
-                case Games.RabbidsBigBang:
-                    return game.GetGameManager<WinStoreGameManager>().GetWinStoreBackupDirs(game.GetLaunchName());
-
-                default:
-                    return null;
-            }
-        }
-
-        /// <summary>
         /// Gets the installer gif sources for a game
         /// </summary>
         /// <param name="game">The game to get the gif sources for</param>
@@ -934,34 +189,47 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Gets the applied utilities for the specified game
+        /// Gets the game manager for the specified game with the current type
         /// </summary>
-        /// <param name="game">The game to get the applied utilities for</param>
-        /// <returns>The applied utilities</returns>
-        public static async Task<string[]> GetAppliedUtilitiesAsync(this Games game)
+        /// <param name="game">The game to get the manager for</param>
+        /// <returns>The manager</returns>
+        public static RCPGameManager GetManager(this Games game)
         {
-            // Create the output
-            var output = new List<string>();
+            return RCFRCP.App.GameManagers[game][game.GetData().GameType].CreateInstance<RCPGameManager>();
+        }
 
-            // Get hard-coded utilities
-            if (game == Games.Rayman2)
-            {
-                if (await Rayman2ConfigViewModel.GetIsWidescreenHackAppliedAsync() == true)
-                    output.Add(Resources.Config_WidescreenSupport);
+        /// <summary>
+        /// Gets the game manager for the specified game
+        /// </summary>
+        /// <param name="game">The game to get the manager for</param>
+        /// <param name="type">The type of game to get the manager for</param>
+        /// <returns>The manager</returns>
+        public static RCPGameManager GetManager(this Games game, GameType type)
+        {
+            return RCFRCP.App.GameManagers[game][type].CreateInstance<RCPGameManager>();
+        }
 
-                var dinput = Rayman2ConfigViewModel.GetCurrentDinput();
+        /// <summary>
+        /// Gets the game manager of the specified type for the specified game
+        /// </summary>
+        /// <typeparam name="T">The type of manager to get</typeparam>
+        /// <param name="game">The game to get the manager for</param>
+        /// <param name="type">The type of game to get the manager for</param>
+        /// <returns>The manager</returns>
+        public static T GetManager<T>(this Games game, GameType type)
+            where T : RCPGameManager
+        {
+            return RCFRCP.App.GameManagers[game][type].CreateInstance<T>();
+        }
 
-                if (dinput == Rayman2ConfigViewModel.R2Dinput.Controller)
-                    output.Add(Resources.Config_UseController);
-
-                if (dinput == Rayman2ConfigViewModel.R2Dinput.Mapping)
-                    output.Add(Resources.Config_ButtonMapping);
-            }
-
-            // Get other utilities
-            output.AddRange(RCFRCP.App.GetUtilities(game).SelectMany(x => x.GetAppliedUtilities()));
-
-            return output.ToArray();
+        /// <summary>
+        /// Gets the game info for the specified game
+        /// </summary>
+        /// <param name="game">The game to get the info for</param>
+        /// <returns>The info</returns>
+        public static RCPGameInfo GetGameInfo(this Games game)
+        {
+            return RCFRCP.App.GameInfos[game].CreateInstance<RCPGameInfo>();
         }
 
         #endregion

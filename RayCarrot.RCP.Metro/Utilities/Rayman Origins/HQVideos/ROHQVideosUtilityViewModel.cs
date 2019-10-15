@@ -24,7 +24,7 @@ namespace RayCarrot.RCP.Metro
             ReplaceVideosCommand = new AsyncRelayCommand(ReplaceVideosAsync);
 
             // Attempt to find the Rayman Origins video directory
-            var dir = Games.RaymanOrigins.GetInfo().InstallDirectory + "GameData";
+            var dir = Games.RaymanOrigins.GetData().InstallDirectory + "GameData";
 
             // Set to music path if found
             VideoDir = dir.DirectoryExists && (dir + "intro.bik").FileExists ? dir : FileSystemPath.EmptyPath;

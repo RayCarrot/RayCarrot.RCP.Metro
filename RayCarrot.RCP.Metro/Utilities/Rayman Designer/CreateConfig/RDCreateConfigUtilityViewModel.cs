@@ -37,7 +37,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The path to the config file
         /// </summary>
-        public FileSystemPath ConfigPath => Games.RaymanDesigner.GetInfo().InstallDirectory + "Ubisoft" + "ubi.ini";
+        public FileSystemPath ConfigPath => Games.RaymanDesigner.GetData().InstallDirectory + "Ubisoft" + "ubi.ini";
 
         #endregion
 

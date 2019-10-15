@@ -23,7 +23,7 @@ namespace RayCarrot.RCP.Metro
             InitializeComponent();
 
             // Set text properties
-            Title = $"Install {game.GetDisplayName()}";
+            Title = $"Install {game.GetGameInfo().DisplayName}";
 
             // Create the view model
             DataContext = new GameInstallerViewModel(game);

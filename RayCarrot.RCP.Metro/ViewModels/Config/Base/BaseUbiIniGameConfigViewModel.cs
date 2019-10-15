@@ -33,7 +33,7 @@ namespace RayCarrot.RCP.Metro
 
             // Set properties
             Game = game;
-            CanModifyGame = RCFRCP.File.CheckDirectoryWriteAccess(Game.GetInfo().InstallDirectory);
+            CanModifyGame = RCFRCP.File.CheckDirectoryWriteAccess(Game.GetData().InstallDirectory);
 
             if (!CanModifyGame)
                 RCFCore.Logger?.LogInformationSource($"The game {Game} can't be modified");
@@ -83,7 +83,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task SetupAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"{Game.GetDisplayName()} config is being set up");
+            RCFCore.Logger?.LogInformationSource($"{Game} config is being set up");
 
             // Run setup code
             await OnSetupAsync();
@@ -101,7 +101,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ConfigData.ReCreate();
                 recreated = true;
-                RCFCore.Logger?.LogInformationSource($"The ubi.ini section for {Game.GetDisplayName()} was recreated");
+                RCFCore.Logger?.LogInformationSource($"The ubi.ini section for {Game} was recreated");
             }
 
             // Import config data
@@ -121,7 +121,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                RCFCore.Logger?.LogInformationSource($"{Game.GetDisplayName()} configuration is saving...");
+                RCFCore.Logger?.LogInformationSource($"{Game} configuration is saving...");
 
                 try
                 {
@@ -131,12 +131,12 @@ namespace RayCarrot.RCP.Metro
                     // Save the config data
                     ConfigData.Save();
 
-                    RCFCore.Logger?.LogInformationSource($"{Game.GetDisplayName()} configuration has been saved");
+                    RCFCore.Logger?.LogInformationSource($"{Game} configuration has been saved");
                 }
                 catch (Exception ex)
                 {
                     ex.HandleError("Saving ubi.ini data");
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetDisplayName()), Resources.Config_SaveErrorHeader);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
                     return;
                 }
 

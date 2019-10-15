@@ -254,8 +254,11 @@ namespace RayCarrot.RCP.Metro
                 // Begin refreshing gifs
                 _ = Task.Run(async () => await RefreshGifsAsync());
 
+                // Get the game display name
+                var displayName = Game.GetGameInfo().DisplayName;
+
                 // Get the output path
-                FileSystemPath output = InstallDir + Game.GetDisplayName();
+                FileSystemPath output = InstallDir + displayName;
 
                 // Create the installer
                 var installer = new RayGameInstaller(new RayGameInstallerData(Game.GetInstallerItems(output), output, CancellationTokenSource.Token));
@@ -323,22 +326,19 @@ namespace RayCarrot.RCP.Metro
                     // Refresh
                     await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
 
-                    // Get the launch info
-                    var launchInfo = Game.GetGameManager().GetLaunchInfo();
-
                     if (CreateDesktopShortcut)
-                        await AddShortcutAsync(Environment.GetFolderPath(CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop), String.Format(Resources.Installer_ShortcutName, Game.GetDisplayName()));
+                        await AddShortcutAsync(Environment.GetFolderPath(CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop), String.Format(Resources.Installer_ShortcutName, displayName));
 
                     if (CreateStartMenuShortcut)
-                        await AddShortcutAsync(Path.Combine(Environment.GetFolderPath(CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonStartMenu : Environment.SpecialFolder.StartMenu), "Programs"), Game.GetDisplayName());
+                        await AddShortcutAsync(Path.Combine(Environment.GetFolderPath(CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonStartMenu : Environment.SpecialFolder.StartMenu), "Programs"), displayName);
 
-                    async Task AddShortcutAsync(FileSystemPath dir, string shortcutName) => await RCFRCP.File.CreateFileShortcutAsync(shortcutName, dir, launchInfo.Path, launchInfo.Args);
+                    async Task AddShortcutAsync(FileSystemPath dir, string shortcutName) => await Game.GetManager().CreateGameShortcut(shortcutName, dir);
                 }
 
                 switch (result)
                 {
                     case RayGameInstallerResult.Successful:
-                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_Success, Game.GetDisplayName()), Resources.Installer_SuccessHeader, MessageType.Success);
+                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_Success, displayName), Resources.Installer_SuccessHeader, MessageType.Success);
                         break;
 
                     default:

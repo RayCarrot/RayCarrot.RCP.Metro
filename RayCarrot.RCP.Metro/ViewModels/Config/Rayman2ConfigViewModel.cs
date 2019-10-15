@@ -414,10 +414,10 @@ namespace RayCarrot.RCP.Metro
             {
                 // Check if the game is the GOG version,
                 // in which case the file is located in the install directory
-                bool isGOG = (Games.Rayman2.GetInfo().InstallDirectory + "goggame.sdb").FileExists;
+                bool isGOG = (Games.Rayman2.GetData().InstallDirectory + "goggame.sdb").FileExists;
 
                 // Get the new file path
-                var newFile = isGOG ? Games.Rayman2.GetInfo().InstallDirectory + "ubi.ini" : CommonPaths.UbiIniPath1;
+                var newFile = isGOG ? Games.Rayman2.GetData().InstallDirectory + "ubi.ini" : CommonPaths.UbiIniPath1;
 
                 try
                 {
@@ -526,7 +526,7 @@ namespace RayCarrot.RCP.Metro
                 RCFCore.Logger?.LogInformationSource($"The Rayman 2 aspect ratio is being set...");
 
                 // Get the file path
-                FileSystemPath path = Games.Rayman2.GetInfo().InstallDirectory + Games.Rayman2.GetLaunchName();
+                FileSystemPath path = Games.Rayman2.GetData().InstallDirectory + Games.Rayman2.GetGameInfo().DefaultFileName;
 
                 // Make sure the file exists
                 if (!path.FileExists)
@@ -591,36 +591,34 @@ namespace RayCarrot.RCP.Metro
                 else
                 {
                     // Open the file
-                    using (Stream stream = File.Open(path, FileMode.Open, FileAccess.ReadWrite, FileShare.Read))
+                    using Stream stream = File.Open(path, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
+                    // Set the position
+                    stream.Position = location;
+
+                    // Create the buffer
+                    var buffer = new byte[4];
+
+                    // Read the bytes
+                    await stream.ReadAsync(buffer, 0, 4);
+
+                    // Check if the data has been modified
+                    if (CheckAspectRatio(buffer))
                     {
+                        RCFCore.Logger?.LogInformationSource($"The Rayman 2 aspect ratio has been detected as modified");
+
                         // Set the position
                         stream.Position = location;
 
-                        // Create the buffer
-                        var buffer = new byte[4];
-
-                        // Read the bytes
-                        await stream.ReadAsync(buffer, 0, 4);
-
-                        // Check if the data has been modified
-                        if (CheckAspectRatio(buffer))
+                        // Write the bytes
+                        await stream.WriteAsync(new byte[]
                         {
-                            RCFCore.Logger?.LogInformationSource($"The Rayman 2 aspect ratio has been detected as modified");
+                            0,
+                            0,
+                            128,
+                            63
+                        }, 0, 4);
 
-                            // Set the position
-                            stream.Position = location;
-
-                            // Write the bytes
-                            await stream.WriteAsync(new byte[]
-                            {
-                                0,
-                                0,
-                                128,
-                                63
-                            }, 0, 4);
-
-                            RCFCore.Logger?.LogInformationSource($"The Rayman 2 aspect ratio has been restored");
-                        }
+                        RCFCore.Logger?.LogInformationSource($"The Rayman 2 aspect ratio has been restored");
                     }
                 }
             }
@@ -711,7 +709,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The path</returns>
         private static FileSystemPath GetDinputPath()
         {
-            return Games.Rayman2.GetInfo().InstallDirectory + "dinput.dll";
+            return Games.Rayman2.GetData().InstallDirectory + "dinput.dll";
         }
 
         /// <summary>
@@ -720,7 +718,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The path</returns>
         private static FileSystemPath GetUbiIniPath()
         {
-            var path1 = Games.Rayman2.GetInfo().InstallDirectory + "ubi.ini";
+            var path1 = Games.Rayman2.GetData().InstallDirectory + "ubi.ini";
 
             if (path1.FileExists)
                 return path1;
@@ -776,7 +774,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Get the file path
-                FileSystemPath path = Games.Rayman2.GetInfo().InstallDirectory + Games.Rayman2.GetLaunchName();
+                FileSystemPath path = Games.Rayman2.GetData().InstallDirectory + Games.Rayman2.GetGameInfo().DefaultFileName;
 
                 // Get the location
                 var location = GetAspectRatioLocation(path);
@@ -785,28 +783,26 @@ namespace RayCarrot.RCP.Metro
                     return null;
 
                 // Open the file
-                using (Stream stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                using Stream stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                // Set the position
+                stream.Position = location;
+
+                // Create the buffer
+                var buffer = new byte[4];
+
+                // Read the bytes
+                await stream.ReadAsync(buffer, 0, 4);
+
+                // Check if the data has been modified
+                if (CheckAspectRatio(buffer))
                 {
-                    // Set the position
-                    stream.Position = location;
+                    RCFCore.Logger?.LogInformationSource($"The Rayman 2 aspect ratio has been detected as modified");
 
-                    // Create the buffer
-                    var buffer = new byte[4];
-
-                    // Read the bytes
-                    await stream.ReadAsync(buffer, 0, 4);
-
-                    // Check if the data has been modified
-                    if (CheckAspectRatio(buffer))
-                    {
-                        RCFCore.Logger?.LogInformationSource($"The Rayman 2 aspect ratio has been detected as modified");
-
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
                 }
             }
             catch (Exception ex)

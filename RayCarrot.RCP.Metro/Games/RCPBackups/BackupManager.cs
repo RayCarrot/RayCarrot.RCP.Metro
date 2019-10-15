@@ -69,67 +69,66 @@ namespace RayCarrot.RCP.Metro
             FileSystemPath destinationDir = backupInformation.BackupLocation;
 
             // Use a temporary directory to store the files in case of error
-            using (var tempDir = new TempDirectory(false))
-            {
-                bool hasCreatedTempBackup = false;
+            using var tempDir = new TempDirectory(false);
+
+            bool hasCreatedTempBackup = false;
                 
-                try
+            try
+            {
+                // Check if a backup already exists
+                if (destinationDir.DirectoryExists)
                 {
-                    // Check if a backup already exists
-                    if (destinationDir.DirectoryExists)
-                    {
-                        // Create a new temp backup
-                        FileManager.MoveDirectory(destinationDir, tempDir.TempPath, true, true);
-                    }
-
-                    hasCreatedTempBackup = true;
-
-                    // Backup each directory
-                    foreach (BackupDir item in backupInformation.BackupDirectories)
-                    {
-                        var itemDestination = destinationDir + item.ID;
-
-                        // Check if the entire directory should be copied
-                        if (item.IsEntireDir())
-                            // Copy the directory   
-                            FileManager.CopyDirectory(item.DirPath, itemDestination, true, true);
-                        else
-                            // Backup the files
-                            FileManager.CopyFiles(item, itemDestination, true);
-                    }
-
-                    // Check if any files were backed up
-                    if (!destinationDir.DirectoryExists)
-                    {
-                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, backupInformation.GameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
-
-                        if (tempDir.TempPath.DirectoryExists)
-                            // Restore temp backup
-                            FileManager.MoveDirectory(tempDir.TempPath, destinationDir, true, true);
-
-                        return false;
-                    }
-
-                    RCFCore.Logger?.LogInformationSource($"Backup complete");
-
-                    return true;
+                    // Create a new temp backup
+                    FileManager.MoveDirectory(destinationDir, tempDir.TempPath, true, true);
                 }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Performing backup");
 
-                    // Restore temp backup
+                hasCreatedTempBackup = true;
+
+                // Backup each directory
+                foreach (BackupDir item in backupInformation.BackupDirectories)
+                {
+                    var itemDestination = destinationDir + item.ID;
+
+                    // Check if the entire directory should be copied
+                    if (item.IsEntireDir())
+                        // Copy the directory   
+                        FileManager.CopyDirectory(item.DirPath, itemDestination, true, true);
+                    else
+                        // Backup the files
+                        FileManager.CopyFiles(item, itemDestination, true);
+                }
+
+                // Check if any files were backed up
+                if (!destinationDir.DirectoryExists)
+                {
+                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, backupInformation.GameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
+
                     if (tempDir.TempPath.DirectoryExists)
-                        // Only replace files if the crash happened after creating the temp backup and during the backup operation
-                        FileManager.MoveDirectory(tempDir.TempPath, destinationDir, hasCreatedTempBackup, false);
-                    else if (hasCreatedTempBackup)
-                        // Delete incomplete backup
-                        FileManager.DeleteDirectory(destinationDir);
+                        // Restore temp backup
+                        FileManager.MoveDirectory(tempDir.TempPath, destinationDir, true, true);
 
-                    RCFCore.Logger?.LogInformationSource($"Backup failed - clean up succeeded");
-
-                    throw;
+                    return false;
                 }
+
+                RCFCore.Logger?.LogInformationSource($"Backup complete");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Performing backup");
+
+                // Restore temp backup
+                if (tempDir.TempPath.DirectoryExists)
+                    // Only replace files if the crash happened after creating the temp backup and during the backup operation
+                    FileManager.MoveDirectory(tempDir.TempPath, destinationDir, hasCreatedTempBackup, false);
+                else if (hasCreatedTempBackup)
+                    // Delete incomplete backup
+                    FileManager.DeleteDirectory(destinationDir);
+
+                RCFCore.Logger?.LogInformationSource($"Backup failed - clean up succeeded");
+
+                throw;
             }
         }
 
@@ -143,63 +142,59 @@ namespace RayCarrot.RCP.Metro
             // Get the destination file
             FileSystemPath destinationFile = backupInformation.CompressedBackupLocation;
 
-            using (var tempFile = new TempFile(false))
+            using var tempFile = new TempFile(false);
+            bool hasCreatedTempBackup = false;
+
+            try
             {
-                bool hasCreatedTempBackup = false;
+                // Check if a backup already exists
+                if (destinationFile.FileExists)
+                    // Create a new temp backup
+                    FileManager.MoveFile(destinationFile, tempFile.TempPath, true);
 
-                try
+                hasCreatedTempBackup = true;
+
+                // Create the parent directory
+                Directory.CreateDirectory(destinationFile.Parent);
+
+                // Create the compressed file
+                using (var fileStream = File.OpenWrite(destinationFile))
                 {
-                    // Check if a backup already exists
-                    if (destinationFile.FileExists)
-                        // Create a new temp backup
-                        FileManager.MoveFile(destinationFile, tempFile.TempPath, true);
-
-                    hasCreatedTempBackup = true;
-
-                    // Create the parent directory
-                    Directory.CreateDirectory(destinationFile.Parent);
-
-                    // Create the compressed file
-                    using (var fileStream = File.OpenWrite(destinationFile))
+                    using var zip = new ZipArchive(fileStream, ZipArchiveMode.Create);
+                    // Enumerate the backup information
+                    foreach (var item in backupInformation.BackupDirectories)
                     {
-                        using (var zip = new ZipArchive(fileStream, ZipArchiveMode.Create))
+                        // Backup each file
+                        foreach (FileSystemPath file in Directory.GetFiles(item.DirPath, item.SearchPattern ?? "*", item.SearchOption))
                         {
-                            // Enumerate the backup information
-                            foreach (var item in backupInformation.BackupDirectories)
-                            {
-                                // Backup each file
-                                foreach (FileSystemPath file in Directory.GetFiles(item.DirPath, item.SearchPattern ?? "*", item.SearchOption))
-                                {
-                                    // Get the destination file
-                                    var destFile = item.ID + file.GetRelativePath(item.DirPath);
+                            // Get the destination file
+                            var destFile = item.ID + file.GetRelativePath(item.DirPath);
 
-                                    // Copy the file
-                                    zip.CreateEntryFromFile(file, destFile, CompressionLevel.Optimal);
-                                }
-                            }
+                            // Copy the file
+                            zip.CreateEntryFromFile(file, destFile, CompressionLevel.Optimal);
                         }
                     }
-
-                    RCFCore.Logger?.LogInformationSource($"Backup complete");
-
-                    return true;
                 }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Performing compressed backup", backupInformation);
 
-                    // Check if a temp backup exists
-                    if (tempFile.TempPath.FileExists)
-                        // Restore temp backup
-                        FileManager.MoveFile(tempFile.TempPath, destinationFile, true);
-                    else if (hasCreatedTempBackup)
-                        // Delete incomplete backup
-                        FileManager.DeleteFile(destinationFile);
+                RCFCore.Logger?.LogInformationSource($"Backup complete");
 
-                    RCFCore.Logger?.LogInformationSource($"Compressed backup failed - clean up succeeded");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Performing compressed backup", backupInformation);
 
-                    throw;
-                }
+                // Check if a temp backup exists
+                if (tempFile.TempPath.FileExists)
+                    // Restore temp backup
+                    FileManager.MoveFile(tempFile.TempPath, destinationFile, true);
+                else if (hasCreatedTempBackup)
+                    // Delete incomplete backup
+                    FileManager.DeleteFile(destinationFile);
+
+                RCFCore.Logger?.LogInformationSource($"Compressed backup failed - clean up succeeded");
+
+                throw;
             }
         }
 
@@ -379,96 +374,94 @@ namespace RayCarrot.RCP.Metro
 
                     using (var tempDir = new TempDirectory(true))
                     {
-                        using (var archiveTempDir = new TempDirectory(true))
+                        using var archiveTempDir = new TempDirectory(true);
+                        bool hasCreatedTempBackup = false;
+
+                        try
                         {
-                            bool hasCreatedTempBackup = false;
-
-                            try
+                            // If the backup is an archive, extract it to temp
+                            if (existingBackup.IsCompressed)
                             {
-                                // If the backup is an archive, extract it to temp
-                                if (existingBackup.IsCompressed)
-                                {
-                                    using (var file = File.OpenRead(existingBackup.Path))
-                                    using (var zip = new ZipArchive(file, ZipArchiveMode.Read))
-                                        zip.ExtractToDirectory(archiveTempDir.TempPath);
-                                }
+                                using var file = File.OpenRead(existingBackup.Path);
+                                using var zip = new ZipArchive(file, ZipArchiveMode.Read);
+                                zip.ExtractToDirectory(archiveTempDir.TempPath);
+                            }
 
-                                // Move existing files to temp in case the restore fails    
+                            // Move existing files to temp in case the restore fails    
+                            foreach (BackupDir item in backupInfo)
+                            {
+                                // Make sure the directory exists
+                                if (!item.DirPath.DirectoryExists)
+                                    continue;
+
+                                // Get the destination directory
+                                var destDir = tempDir.TempPath + item.ID;
+
+                                // Check if the entire directory should be moved
+                                if (item.IsEntireDir())
+                                    // Move the directory
+                                    FileManager.MoveDirectory(item.DirPath, destDir, true, true);
+                                else
+                                    FileManager.MoveFiles(item, destDir, true);
+                            }
+
+                            hasCreatedTempBackup = true;
+
+                            // Restore each backup directory
+                            foreach (BackupDir item in backupInfo)
+                            {
+                                // Get the combined directory path
+                                var dirPath = (existingBackup.IsCompressed ? archiveTempDir.TempPath : existingBackup.Path) + item.ID;
+
+                                // Restore the backup
+                                if (dirPath.DirectoryExists)
+                                    FileManager.CopyDirectory(dirPath, item.DirPath, false, true);
+                            }
+                        }
+                        catch
+                        {
+                            // Delete restored files if restore began
+                            if (hasCreatedTempBackup)
+                            {
                                 foreach (BackupDir item in backupInfo)
                                 {
                                     // Make sure the directory exists
                                     if (!item.DirPath.DirectoryExists)
                                         continue;
 
-                                    // Get the destination directory
-                                    var destDir = tempDir.TempPath + item.ID;
-
-                                    // Check if the entire directory should be moved
+                                    // Check if the entire directory should be deleted
                                     if (item.IsEntireDir())
-                                        // Move the directory
-                                        FileManager.MoveDirectory(item.DirPath, destDir, true, true);
-                                    else
-                                        FileManager.MoveFiles(item, destDir, true);
-                                }
-
-                                hasCreatedTempBackup = true;
-
-                                // Restore each backup directory
-                                foreach (BackupDir item in backupInfo)
-                                {
-                                    // Get the combined directory path
-                                    var dirPath = (existingBackup.IsCompressed ? archiveTempDir.TempPath : existingBackup.Path) + item.ID;
-
-                                    // Restore the backup
-                                    if (dirPath.DirectoryExists)
-                                        FileManager.CopyDirectory(dirPath, item.DirPath, false, true);
-                                }
-                            }
-                            catch
-                            {
-                                // Delete restored files if restore began
-                                if (hasCreatedTempBackup)
-                                {
-                                    foreach (BackupDir item in backupInfo)
                                     {
-                                        // Make sure the directory exists
-                                        if (!item.DirPath.DirectoryExists)
-                                            continue;
-
-                                        // Check if the entire directory should be deleted
-                                        if (item.IsEntireDir())
-                                        {
-                                            // Delete the directory
-                                            FileManager.DeleteDirectory(item.DirPath);
-                                        }
-                                        else
-                                        {
-                                            // Delete each file
-                                            foreach (FileSystemPath file in Directory.GetFiles(item.DirPath, item.SearchPattern, item.SearchOption))
-                                                // Delete the file
-                                                FileManager.DeleteFile(file);
-                                        }
+                                        // Delete the directory
+                                        FileManager.DeleteDirectory(item.DirPath);
+                                    }
+                                    else
+                                    {
+                                        // Delete each file
+                                        foreach (FileSystemPath file in Directory.GetFiles(item.DirPath, item.SearchPattern, item.SearchOption))
+                                            // Delete the file
+                                            FileManager.DeleteFile(file);
                                     }
                                 }
-
-                                // Restore temp backup
-                                foreach (BackupDir item in backupInfo)
-                                {
-                                    // Get the combined directory path
-                                    var dirPath = tempDir.TempPath + item.ID;
-
-                                    // Make sure there is a directory to restore
-                                    if (!dirPath.DirectoryExists)
-                                        continue;
-
-                                    // Restore
-                                    FileManager.MoveDirectory(dirPath, item.DirPath, false, false);
-                                }
-
-                                RCFCore.Logger?.LogInformationSource($"Restore failed - clean up succeeded");
-
-                                throw;
                             }
+
+                            // Restore temp backup
+                            foreach (BackupDir item in backupInfo)
+                            {
+                                // Get the combined directory path
+                                var dirPath = tempDir.TempPath + item.ID;
+
+                                // Make sure there is a directory to restore
+                                if (!dirPath.DirectoryExists)
+                                    continue;
+
+                                // Restore
+                                FileManager.MoveDirectory(dirPath, item.DirPath, false, false);
+                            }
+
+                            RCFCore.Logger?.LogInformationSource($"Restore failed - clean up succeeded");
+
+                            throw;
                         }
                     }
 

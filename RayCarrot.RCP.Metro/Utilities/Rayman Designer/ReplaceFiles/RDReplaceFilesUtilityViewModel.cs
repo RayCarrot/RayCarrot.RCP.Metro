@@ -58,8 +58,8 @@ namespace RayCarrot.RCP.Metro
                         MapperLanguage == RaymanDesignerMapperLanguage.French ? CommonUrls.RD_FRMapperExe_URL : CommonUrls.RD_ALMapperExe_URL)),
             };
 
-            // Get the game info
-            var gameInfo = Games.RaymanDesigner.GetInfo();
+            // Get the game data
+            var gameInfo = Games.RaymanDesigner.GetData();
 
             // Find the directories to search
             var dirs = new FileSystemPath[]

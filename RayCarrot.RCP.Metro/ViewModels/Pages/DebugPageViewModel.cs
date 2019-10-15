@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -152,8 +153,11 @@ namespace RayCarrot.RCP.Metro
 
             foreach (Games game in App.GetGames)
             {
-                if (game.IsAdded())
-                    lines.AddRange(from utility in await game.GetAppliedUtilitiesAsync() select $"{utility} ({game.GetDisplayName()})");
+                // Get the game info
+                var info = game.GetGameInfo();
+
+                if (info.IsAdded)
+                    lines.AddRange(from utility in await info.GetAppliedUtilitiesAsync() select $"{utility} ({info.DisplayName})");
             }
 
             await RCFUI.MessageUI.DisplayMessageAsync(lines.JoinItems(Environment.NewLine), MessageType.Information);

@@ -25,29 +25,32 @@ namespace RayCarrot.RCP.Metro
             // Create the commands
             RemoveCommand = new AsyncRelayCommand(RemoveAsync);
             ShortcutCommand = new AsyncRelayCommand(CreateShortcutAsync);
+            
+            // Get the info
+            var gameInfo = game.GetGameInfo();
 
             // Set properties
             Game = game;
-            DisplayName = game.GetDisplayName();
-            IconSource = game.GetIconSource();
+            DisplayName = gameInfo.DisplayName;
+            IconSource = gameInfo.IconSource;
             GameInfoItems = new ObservableCollection<DuoGridItemViewModel>();
 
-            // Refresh the game info
+            // Refresh the game data
             RefreshGameInfo();
 
-            // Refresh the game info on certain events
+            // Refresh the game data on certain events
             RCFCore.Data.CultureChanged += Data_CultureChanged;
             App.RefreshRequired += App_RefreshRequired;
 
             // Check if the launch mode can be changed
-            CanChangeLaunchMode = Game.GetGameManager().SupportsGameLaunchMode;
+            CanChangeLaunchMode = Game.GetManager().SupportsGameLaunchMode;
 
             // Get the utilities view models
             Utilities = App.GetUtilities(Game).Select(x => new RCPUtilityViewModel(x)).ToArray();
 
             // Get the options and config content, if available
-            ConfigContent = game.GetConfigContent();
-            OptionsContent = game.GetOptionsContent();
+            ConfigContent = gameInfo.ConfigUI;
+            OptionsContent = gameInfo.OptionsUI;
         }
 
         #endregion
@@ -60,9 +63,9 @@ namespace RayCarrot.RCP.Metro
         public Games Game { get; }
 
         /// <summary>
-        /// The game info
+        /// The game data
         /// </summary>
-        public GameInfo GameInfo => Game.GetInfo();
+        public GameData GameData => Game.GetData();
 
         /// <summary>
         /// The game info items
@@ -94,10 +97,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public GameLaunchMode LaunchMode
         {
-            get => GameInfo.LaunchMode;
+            get => GameData.LaunchMode;
             set
             {
-                GameInfo.LaunchMode = value;
+                GameData.LaunchMode = value;
                 _ = App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, false, true, false, false));
             }
         }
@@ -163,7 +166,7 @@ namespace RayCarrot.RCP.Metro
         private void RefreshGameInfo()
         {
             GameInfoItems.Clear();
-            GameInfoItems.AddRange(Game.GetGameManager().GetGameInfoItems());
+            GameInfoItems.AddRange(Game.GetManager().GetGameInfoItems);
         }
 
         #endregion
@@ -204,23 +207,11 @@ namespace RayCarrot.RCP.Metro
                 if (result.CanceledByUser)
                     return;
 
-                var gameInfo = Game.GetInfo();
-                var shortcutName = String.Format(Resources.GameShortcut_ShortcutName, Game.GetDisplayName());
+                var shortcutName = String.Format(Resources.GameShortcut_ShortcutName, Game.GetGameInfo().DisplayName);
 
-                if (gameInfo.GameType == GameType.Steam)
-                {
-                    WindowsHelpers.CreateURLShortcut(shortcutName, result.SelectedDirectory, $@"steam://rungameid/{Game.GetGameManager<SteamGameManager>().GetSteamID()}");
+                await Game.GetManager().CreateGameShortcut(shortcutName, result.SelectedDirectory);
 
-                    RCFCore.Logger?.LogTraceSource($"A shortcut was created for {Game} under {result.SelectedDirectory}");
-
-                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.GameShortcut_Success);
-                }
-                else
-                {
-                    var launchInfo = Game.GetGameManager().GetLaunchInfo();
-
-                    await RCFRCP.File.CreateFileShortcutAsync(shortcutName, result.SelectedDirectory, launchInfo.Path, launchInfo.Args);
-                }
+                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.GameShortcut_Success);
             }
             catch (Exception ex)
             {

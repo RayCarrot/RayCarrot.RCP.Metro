@@ -149,13 +149,13 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override Task SetupAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"{Game.GetDisplayName()} config is being set up");
+            RCFCore.Logger?.LogInformationSource($"{Game} config is being set up");
 
             using (var key = GetKey(false))
             {
                 RCFCore.Logger?.LogInformationSource(key != null
                     ? $"The key {key.Name} has been opened"
-                    : $"The key for {Game.GetDisplayName()} does not exist. Default values will be used.");
+                    : $"The key for {Game} does not exist. Default values will be used.");
 
                 ScreenHeight = GetInt(ScreenHeightKey, (int)SystemParameters.PrimaryScreenHeight);
                 ScreenWidth = GetInt(ScreenWidthKey, (int)SystemParameters.PrimaryScreenWidth);
@@ -180,7 +180,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                RCFCore.Logger?.LogInformationSource($"{Game.GetDisplayName()} configuration is saving...");
+                RCFCore.Logger?.LogInformationSource($"{Game} configuration is saving...");
 
                 try
                 {
@@ -196,12 +196,12 @@ namespace RayCarrot.RCP.Metro
                         key.SetValue(FullScreenKey, FullscreenMode ? 1 : 0);
                     }
 
-                    RCFCore.Logger?.LogInformationSource($"{Game.GetDisplayName()} configuration has been saved");
+                    RCFCore.Logger?.LogInformationSource($"{Game} configuration has been saved");
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError($"Saving {Game.GetDisplayName()} registry data");
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetDisplayName()), Resources.Config_SaveErrorHeader);
+                    ex.HandleError($"Saving {Game} registry data");
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
                     return;
                 }
 

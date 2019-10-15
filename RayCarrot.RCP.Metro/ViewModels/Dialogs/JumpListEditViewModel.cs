@@ -28,7 +28,7 @@ namespace RayCarrot.RCP.Metro
             // Get all jump list items
             foreach (var game in RCFRCP.App.GetGames.Where(x => x.IsAdded()))
             {
-                foreach (var item in game.GetGameManager().GetJumpListItems())
+                foreach (var item in game.GetManager().GetJumpListItems())
                 {
                     if (item.IsIncluded)
                         included.Add(item);

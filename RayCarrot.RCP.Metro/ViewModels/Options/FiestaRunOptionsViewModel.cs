@@ -11,7 +11,7 @@
         public FiestaRunOptionsViewModel()
         {
             // Get the manager
-            var manager = Games.RaymanFiestaRun.GetGameManager<WinStoreGameManager>();
+            var manager = Games.RaymanFiestaRun.GetManager<RaymanFiestaRun_WinStore>(GameType.WinStore);
 
             // Get available versions
             IsFiestaRunDefaultAvailable = manager.GetGamePackage(manager.GetFiestaRunPackageName(FiestaRunEdition.Default)) != null;

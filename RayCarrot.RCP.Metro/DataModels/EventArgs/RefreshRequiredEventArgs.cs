@@ -18,7 +18,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="gameCollectionModified">Indicates if the collection of games has been modified, such as a game having been added or removed</param>
         /// <param name="launchInfoModified">Indicates if the launch info for a game has been modified, such as running as administrator and/or additional launch items</param>
         /// <param name="backupsModified">Indicates if the backups have been changed, such as the location having been changed and/or existing backups having been modified</param>
-        /// <param name="gameInfoModified">Indicates if the game info for a game has been modified, such as the game install directory</param>
+        /// <param name="gameInfoModified">Indicates if the game data for a game has been modified, such as the game install directory</param>
         /// <param name="jumpListModified">Indicates if the jump list ID collection has been modified</param>
         public RefreshRequiredEventArgs(Games modifiedGame, bool gameCollectionModified, bool launchInfoModified, bool backupsModified, bool gameInfoModified, bool jumpListModified = false)
         {
@@ -40,7 +40,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="gameCollectionModified">Indicates if the collection of games has been modified, such as a game having been added or removed</param>
         /// <param name="launchInfoModified">Indicates if the launch info for a game has been modified, such as running as administrator and/or additional launch items</param>
         /// <param name="backupsModified">Indicates if the backups have been changed, such as the location having been changed and/or existing backups having been modified</param>
-        /// <param name="gameInfoModified">Indicates if the game info for a game has been modified, such as the game install directory</param>
+        /// <param name="gameInfoModified">Indicates if the game data for a game has been modified, such as the game install directory</param>
         /// <param name="jumpListModified">Indicates if the jump list ID collection has been modified</param>
         public RefreshRequiredEventArgs(IEnumerable<Games> modifiedGames, bool gameCollectionModified, bool launchInfoModified, bool backupsModified, bool gameInfoModified, bool jumpListModified = false)
         {
@@ -77,7 +77,7 @@ namespace RayCarrot.RCP.Metro
         public bool BackupsModified { get; }
 
         /// <summary>
-        /// Indicates if the game info for a game has been modified, such as the game install directory
+        /// Indicates if the game data for a game has been modified, such as the game install directory
         /// </summary>
         public bool GameInfoModified { get; }
         

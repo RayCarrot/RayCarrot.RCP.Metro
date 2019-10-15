@@ -3,16 +3,16 @@
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// Game information for a saved game
+    /// Game data for a saved game
     /// </summary>
-    public class GameInfo
+    public class GameData
     {
         /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="gameType">The game type</param>
         /// <param name="installDirectory">The install directory</param>
-        public GameInfo(GameType gameType, FileSystemPath installDirectory)
+        public GameData(GameType gameType, FileSystemPath installDirectory)
         {
             GameType = gameType;
             InstallDirectory = installDirectory;

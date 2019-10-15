@@ -16,7 +16,7 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         /// <param name="game">The game to edit</param>
-        public EducationalDosGameEditViewModel(EducationalDosBoxGameInfo game)
+        public EducationalDosGameEditViewModel(EducationalDosBoxGameData game)
         {
             // Get the available launch modes
             AvailableLaunchModes = Directory.GetDirectories(game.InstallDir + "PCMAP", "*", SearchOption.TopDirectoryOnly).Select(x => new FileSystemPath(x).Name).ToArray();

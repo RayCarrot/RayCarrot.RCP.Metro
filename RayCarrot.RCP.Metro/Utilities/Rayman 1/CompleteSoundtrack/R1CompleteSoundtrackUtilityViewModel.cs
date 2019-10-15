@@ -24,7 +24,7 @@ namespace RayCarrot.RCP.Metro
             ReplaceSoundtrackCommand = new AsyncRelayCommand(ReplaceSoundtrackAsync);
 
             // Attempt to find the Rayman Forever music directory
-            var dir = Games.Rayman1.GetInfo().InstallDirectory.Parent + "Music";
+            var dir = Games.Rayman1.GetData().InstallDirectory.Parent + "Music";
 
             // Set to music path if found
             MusicDir = dir.DirectoryExists && (dir + "rayman02.ogg").FileExists ? dir : FileSystemPath.EmptyPath;

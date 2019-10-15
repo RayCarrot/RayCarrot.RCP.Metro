@@ -17,6 +17,22 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <LangVersion>8.0</LangVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -27,7 +43,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,7 +52,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>latest</LangVersion>
     <AllowedReferenceRelatedFileExtensions>
       <!-- Prevent default XML and PDB files copied to output in RELEASE. 
            Only *.allowedextension files will be included, which doesn't exist in my case.
@@ -93,6 +107,49 @@
       <DependentUpon>JumpListEditDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="GamePatcher\GamePatcher.cs" />
+    <Compile Include="Games\Base\RCPGameInfo.cs" />
+    <Compile Include="Games\Base\RCPGameManager.cs" />
+    <Compile Include="Games\Info\EducationalDos_Info.cs" />
+    <Compile Include="Games\Info\RabbidsBigBang_Info.cs" />
+    <Compile Include="Games\Info\RaymanFiestaRun_Info.cs" />
+    <Compile Include="Games\Info\RaymanJungleRun_Info.cs" />
+    <Compile Include="Games\Info\RaymanLegends_Info.cs" />
+    <Compile Include="Games\Info\RaymanOrigins_Info.cs" />
+    <Compile Include="Games\Info\RabbidsGoHome_Info.cs" />
+    <Compile Include="Games\Info\RaymanRavingRabbids2_Info.cs" />
+    <Compile Include="Games\Info\RaymanRavingRabbids_Info.cs" />
+    <Compile Include="Games\Info\RaymanArena_Info.cs" />
+    <Compile Include="Games\Info\Rayman3_Info.cs" />
+    <Compile Include="Games\Info\RaymanM_Info.cs" />
+    <Compile Include="Games\Info\Rayman60Levels_Info.cs" />
+    <Compile Include="Games\Info\RaymanByHisFans_Info.cs" />
+    <Compile Include="Games\Info\RaymanDesigner_Info.cs" />
+    <Compile Include="Games\Info\Rayman1_Info.cs" />
+    <Compile Include="Games\Info\Rayman2_Info.cs" />
+    <Compile Include="Games\Manager\Base\RCPEducationalDOSBoxGame.cs" />
+    <Compile Include="Games\Manager\Base\RCPDOSBoxGame.cs" />
+    <Compile Include="Games\Manager\Base\RCPWinStoreGame.cs" />
+    <Compile Include="Games\Manager\EducationalDos_EducationalDOSBox.cs" />
+    <Compile Include="Games\Manager\RabbidsGoHome_Win32.cs" />
+    <Compile Include="Games\Manager\RaymanFiestaRun_WinStore.cs" />
+    <Compile Include="Games\Manager\RabbidsBigBang_WinStore.cs" />
+    <Compile Include="Games\Manager\RaymanJungleRun_WinStore.cs" />
+    <Compile Include="Games\Manager\RaymanLegends_Steam.cs" />
+    <Compile Include="Games\Manager\RaymanOrigins_Steam.cs" />
+    <Compile Include="Games\Manager\RaymanLegends_Win32.cs" />
+    <Compile Include="Games\Manager\RaymanOrigins_Win32.cs" />
+    <Compile Include="Games\Manager\RaymanRavingRabbids_Steam.cs" />
+    <Compile Include="Games\Manager\RaymanRavingRabbids2_Win32.cs" />
+    <Compile Include="Games\Manager\RaymanRavingRabbids_Win32.cs" />
+    <Compile Include="Games\Manager\Rayman3_Win32.cs" />
+    <Compile Include="Games\Manager\RaymanArena_Win32.cs" />
+    <Compile Include="Games\Manager\RaymanM_Win32.cs" />
+    <Compile Include="Games\Manager\RaymanByHisFans_DOSBox.cs" />
+    <Compile Include="Games\Manager\Rayman60Levels_DOSBox.cs" />
+    <Compile Include="Games\Manager\RaymanDesigner_DOSBox.cs" />
+    <Compile Include="Games\Manager\Rayman2_Steam.cs" />
+    <Compile Include="Games\Manager\Base\RCPWin32Game.cs" />
+    <Compile Include="Games\Manager\Rayman1_DOSBox.cs" />
     <Compile Include="IO\IOSearchPattern.cs" />
     <Compile Include="Games\RCPBackups\RCPBackup.cs" />
     <Compile Include="Utilities\Rayman Legends\DebugCommands\RLDebugCommandsUtility.cs" />
@@ -107,9 +164,9 @@
       <DependentUpon>RabbidsGoHomeConfig.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModels\RabbidsGoHomeLaunchData.cs" />
-    <Compile Include="Games\Games\Win32\Rayman2_Win32.cs" />
-    <Compile Include="Games\Games\Win32\RCPWin32Game.cs" />
-    <Compile Include="Games\Games\RCPGame.cs" />
+    <Compile Include="Games\Manager\Rayman2_Win32.cs" />
+    <Compile Include="Games\Manager\Base\RCPSteamGame.cs" />
+    <Compile Include="Games\Base\RCPGame.cs" />
     <Compile Include="ViewModels\Config\RabbidsGoHomeConfigViewModel.cs" />
     <Compile Include="Controls\UserControls\Options\RavingRabbids2Options.xaml.cs">
       <DependentUpon>RavingRabbids2Options.xaml</DependentUpon>
@@ -130,8 +187,7 @@
     <Compile Include="Controls\UserControls\Options\FiestaRunOptions.xaml.cs">
       <DependentUpon>FiestaRunOptions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\EducationalDosBoxGameInfo.cs" />
-    <Compile Include="GameManager\EducationalDosBoxGameManager.cs" />
+    <Compile Include="DataModels\EducationalDosBoxGameData.cs" />
     <Compile Include="DataModels\Enums\R1Languages.cs" />
     <Compile Include="ViewModels\Config\EducationalDosBoxGameConfigViewModel.cs" />
     <Compile Include="ViewModels\Config\Rayman1ConfigViewModel.cs" />
@@ -349,10 +405,6 @@
     </Compile>
     <Compile Include="DataModels\EventArgs\RefreshRequiredEventArgs.cs" />
     <Compile Include="DataModels\Enums\AdminWorkerModes.cs" />
-    <Compile Include="GameManager\DOSBoxGameManager.cs" />
-    <Compile Include="GameManager\SteamGameManager.cs" />
-    <Compile Include="GameManager\Win32GameManager.cs" />
-    <Compile Include="GameManager\WinStoreGameManager.cs" />
     <Compile Include="Helpers\SecretCodeManager.cs" />
     <Compile Include="Controls\DuoGridItem.cs" />
     <Compile Include="Controls\InfoIcon.xaml.cs">
@@ -515,7 +567,6 @@
     <Compile Include="Framework\Implementations\AppUIManager.cs" />
     <Compile Include="Framework\Implementations\FileLogger.cs" />
     <Compile Include="DataModels\KeyMappingItem.cs" />
-    <Compile Include="GameManager\BaseGameManager.cs" />
     <Compile Include="GameFinder\GameFinderActionResult.cs" />
     <Compile Include="GameFinder\GameFinderManager.cs" />
     <Compile Include="Helpers\R2ButtonMappingManager.cs" />
@@ -574,7 +625,7 @@
     <Compile Include="ViewModels\Pages\GamesPageViewModel.cs" />
     <Compile Include="ViewModels\Controls\OverflowButtonItemViewModel.cs" />
     <Compile Include="Windows\Base\BaseWindow.cs" />
-    <Compile Include="DataModels\GameInfo.cs" />
+    <Compile Include="DataModels\GameData.cs" />
     <Compile Include="ViewModels\Game\GameDisplayViewModel.cs" />
     <Compile Include="ViewModels\Config\Base\GameConfigViewModel.cs" />
     <Compile Include="Windows\AppNewsDialog.xaml.cs">
@@ -771,9 +822,16 @@
     <Resource Include="Files\VersionHistory.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Games\Games\Steam\" />
-    <Folder Include="Games\Games\Win32\DOSBox\EducationalDOSBox\" />
-    <Folder Include="Games\Games\WinStore\" />
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Costura.Fody">

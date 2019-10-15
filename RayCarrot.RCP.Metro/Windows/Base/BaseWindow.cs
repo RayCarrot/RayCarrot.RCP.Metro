@@ -1,12 +1,11 @@
-﻿using System.Linq;
-using System.Threading;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using Infralution.Localization.Wpf;
+﻿using Infralution.Localization.Wpf;
 using MahApps.Metro.Controls;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro
 {

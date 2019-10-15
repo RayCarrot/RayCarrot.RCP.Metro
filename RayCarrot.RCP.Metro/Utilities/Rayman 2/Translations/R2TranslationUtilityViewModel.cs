@@ -23,8 +23,8 @@ namespace RayCarrot.RCP.Metro
             // Create commands
             ApplyTranslationCommand = new AsyncRelayCommand(ApplyTranslationAsync);
 
-            // Get the game info
-            GameInfo = Games.Rayman2.GetInfo();
+            // Get the game data
+            GameData = Games.Rayman2.GetData();
 
             // Get current translation
             SelectedTranslation = GetAppliedRayman2Translation() ?? Rayman2Translation.Original;
@@ -42,9 +42,9 @@ namespace RayCarrot.RCP.Metro
         public Rayman2Translation SelectedTranslation { get; set; }
 
         /// <summary>
-        /// The game info
+        /// The game data
         /// </summary>
-        public GameInfo GameInfo { get; }
+        public GameData GameData { get; }
 
         #endregion
 
@@ -197,7 +197,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The file path</returns>
         public FileSystemPath GetTexturesCntFilePath()
         {
-            return GameInfo.InstallDirectory + "Data" + "Textures.cnt";
+            return GameData.InstallDirectory + "Data" + "Textures.cnt";
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The file path</returns>
         public FileSystemPath GetFixSnaFilePath()
         {
-            return GameInfo.InstallDirectory + "Data" + "World" + "Levels" + "Fix.sna";
+            return GameData.InstallDirectory + "Data" + "World" + "Levels" + "Fix.sna";
         }
 
         /// <summary>

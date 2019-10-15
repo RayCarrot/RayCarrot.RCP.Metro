@@ -24,17 +24,20 @@ namespace RayCarrot.RCP.Metro
         /// <param name="backupInfo">The backup info</param>
         public GameBackupItemViewModel(Games game, IBackupInfo backupInfo)
         {
+            // Get the info
+            var gameInfo = game.GetGameInfo();
+
             LatestAvailableBackupVersion = backupInfo.LatestAvailableBackupVersion;
             BackupInfo = backupInfo;
-            IconSource = game.GetIconSource();
+            IconSource = gameInfo.IconSource;
             DisplayName = backupInfo.GameDisplayName;
 
             // If the type if DOSBox, check if GOG cloud sync is being used
-            if (game.GetInfo().GameType == GameType.DosBox)
+            if (gameInfo.GameData.GameType == GameType.DosBox)
             {
                 try
                 {
-                    var cloudSyncDir = game.GetInfo().InstallDirectory.Parent + "cloud_saves";
+                    var cloudSyncDir = game.GetData().InstallDirectory.Parent + "cloud_saves";
                     IsGOGCloudSyncUsed = cloudSyncDir.DirectoryExists && Directory.GetFileSystemEntries(cloudSyncDir).Any();
                 }
                 catch (Exception ex)

@@ -152,50 +152,48 @@ namespace RayCarrot.RCP.Metro
             await Task.Run(async () =>
             {
                 // Open the zip file
-                using (var zip = ZipFile.OpenRead(file))
+                using var zip = ZipFile.OpenRead(file);
+                // Set file progress to its entry count
+                ItemMaxProgress = zip.Entries.Count;
+
+                // Extract each entry
+                foreach (var entry in zip.Entries)
                 {
-                    // Set file progress to its entry count
-                    ItemMaxProgress = zip.Entries.Count;
+                    ThrowIfCancellationRequested();
 
-                    // Extract each entry
-                    foreach (var entry in zip.Entries)
+                    // Get the absolute output path
+                    var outputPath = OutputDirectory + entry.FullName.Replace('/', '\\');
+
+                    // Check if the entry is a directory
+                    if (entry.FullName.EndsWith("\\") && entry.Name == String.Empty)
                     {
-                        ThrowIfCancellationRequested();
-
-                        // Get the absolute output path
-                        var outputPath = OutputDirectory + entry.FullName.Replace('/', '\\');
-
-                        // Check if the entry is a directory
-                        if (entry.FullName.EndsWith("\\") && entry.Name == String.Empty)
-                        {
-                            // Create directory if it doesn't exist
-                            if (!outputPath.DirectoryExists)
-                                Directory.CreateDirectory(outputPath);
-
-                            continue;
-                        }
-
-                        // Backup conflict file
-                        if (outputPath.FileExists)
-                            await Task.Run(() => FileManager.MoveFile(outputPath, LocalTempDir.TempPath + entry.FullName.Replace('/', '\\'), false));
-
                         // Create directory if it doesn't exist
-                        if (!outputPath.Parent.DirectoryExists)
-                            Directory.CreateDirectory(outputPath.Parent);
+                        if (!outputPath.DirectoryExists)
+                            Directory.CreateDirectory(outputPath);
 
-                        // Extract the compressed file
-                        entry.ExtractToFile(outputPath);
-
-                        // Flag the file as processed
-                        ProcessedFiles.Add(outputPath);
-
-                        // Increase file progress
-                        ItemCurrentProgress++;
-
-                        // Set total progress
-                        TotalCurrentProgress = (int)Math.Floor(100 + ((ItemCurrentProgress / ItemMaxProgress) * 10));
-                        OnStatusUpdated(new Progress(TotalCurrentProgress, TotalMaxProgress));
+                        continue;
                     }
+
+                    // Backup conflict file
+                    if (outputPath.FileExists)
+                        await Task.Run(() => FileManager.MoveFile(outputPath, LocalTempDir.TempPath + entry.FullName.Replace('/', '\\'), false));
+
+                    // Create directory if it doesn't exist
+                    if (!outputPath.Parent.DirectoryExists)
+                        Directory.CreateDirectory(outputPath.Parent);
+
+                    // Extract the compressed file
+                    entry.ExtractToFile(outputPath);
+
+                    // Flag the file as processed
+                    ProcessedFiles.Add(outputPath);
+
+                    // Increase file progress
+                    ItemCurrentProgress++;
+
+                    // Set total progress
+                    TotalCurrentProgress = (int)Math.Floor(100 + ((ItemCurrentProgress / ItemMaxProgress) * 10));
+                    OnStatusUpdated(new Progress(TotalCurrentProgress, TotalMaxProgress));
                 }
             });
 

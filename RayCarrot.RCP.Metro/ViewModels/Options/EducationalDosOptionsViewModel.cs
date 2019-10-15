@@ -5,7 +5,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -56,10 +55,10 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogInformationSource($"A new educational game is being added...");
 
             // Get the manager
-            var manager = Games.EducationalDos.GetGameManager<EducationalDosBoxGameManager>();
+            var manager = Games.EducationalDos.GetManager<RCPEducationalDOSBoxGame>(GameType.EducationalDosBox);
 
             // Locate the new game
-            var path = await manager.LocateAsync();
+            var path = await Games.EducationalDos.GetManager().LocateAsync();
 
             if (path == null)
                 return;
@@ -100,15 +99,15 @@ namespace RayCarrot.RCP.Metro
             Data.EducationalDosBoxGames.Clear();
 
             // Add the games
-            Data.EducationalDosBoxGames.AddRange(GameItems.Select(x => new EducationalDosBoxGameInfo(x.GameInfo.InstallDir, x.GameInfo.LaunchName, x.GameInfo.ID)
+            Data.EducationalDosBoxGames.AddRange(GameItems.Select(x => new EducationalDosBoxGameData(x.GameData.InstallDir, x.GameData.LaunchName, x.GameData.ID)
             {
-                LaunchMode = x.GameInfo.LaunchMode,
-                MountPath = x.GameInfo.MountPath,
-                Name = x.GameInfo.Name
+                LaunchMode = x.GameData.LaunchMode,
+                MountPath = x.GameData.MountPath,
+                Name = x.GameData.Name
             }));
 
             // Refresh the default game
-            Games.EducationalDos.GetGameManager<EducationalDosBoxGameManager>().RefreshDefault();
+            Games.EducationalDos.GetManager<RCPEducationalDOSBoxGame>(GameType.EducationalDosBox).RefreshDefault();
 
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));

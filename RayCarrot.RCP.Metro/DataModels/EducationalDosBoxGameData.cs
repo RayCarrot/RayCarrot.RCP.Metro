@@ -1,16 +1,13 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// Game info for an educational DOSBox game
+    /// Game data for an educational DOSBox game
     /// </summary>
-    public class EducationalDosBoxGameInfo
+    public class EducationalDosBoxGameData
     {
         /// <summary>
         /// Default constructor
@@ -18,7 +15,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="installDir">The game install directory</param>
         /// <param name="launchName">The launch name</param>
         /// <param name="id">The game ID</param>
-        public EducationalDosBoxGameInfo(FileSystemPath installDir, string launchName, string id = null)
+        public EducationalDosBoxGameData(FileSystemPath installDir, string launchName, string id = null)
         {
             //ID = id ?? Games.EducationalDos.GetGameManager<EducationalDosBoxGameManager>().GetGameID(installDir, launchName);
 

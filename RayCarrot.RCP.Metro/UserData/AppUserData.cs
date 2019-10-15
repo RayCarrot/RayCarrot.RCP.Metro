@@ -54,7 +54,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void Reset()
         {
-            Games = new Dictionary<Games, GameInfo>();
+            Games = new Dictionary<Games, GameData>();
             DosBoxGames = new Dictionary<Games, DosBoxOptions>();
             UserLevel = UserLevel.Normal;
             IsFirstLaunch = true;
@@ -116,7 +116,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The saved games
         /// </summary>
-        public Dictionary<Games, GameInfo> Games { get; set; }
+        public Dictionary<Games, GameData> Games { get; set; }
 
         /// <summary>
         /// The DosBox games options
@@ -309,7 +309,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The saved educational DOSBox games
         /// </summary>
-        public List<EducationalDosBoxGameInfo> EducationalDosBoxGames { get; set; }
+        public List<EducationalDosBoxGameData> EducationalDosBoxGames { get; set; }
 
         /// <summary>
         /// The launch mode to use for Rayman Raving Rabbids 2
@@ -412,44 +412,42 @@ namespace RayCarrot.RCP.Metro
                     {
                         if (showUnderInstalledPrograms)
                         {
-                            using (var subKey = parentKey.CreateSubKey(CommonPaths.RegistryUninstallKeyName))
+                            using var subKey = parentKey.CreateSubKey(CommonPaths.RegistryUninstallKeyName);
+                            if (subKey == null)
+                                throw new Exception("The created Registry uninstall key for RCP was null");
+
+                            subKey.SetValue("DisplayName", "Rayman Control Panel", RegistryValueKind.String);
+                            subKey.SetValue("DisplayVersion", RCFRCP.App.CurrentVersion.ToString(), RegistryValueKind.String);
+                            subKey.SetValue("Publisher", "RayCarrot", RegistryValueKind.String);
+                            subKey.SetValue("HelpLink", CommonUrls.DiscordUrl, RegistryValueKind.String);
+                            subKey.SetValue("DisplayIcon", ApplicationPath, RegistryValueKind.String);
+                            subKey.SetValue("InstallLocation", ApplicationPath.Parent, RegistryValueKind.String);
+                            subKey.SetValue("UninstallString", $"\"{CommonPaths.UninstallFilePath}\" \"{ApplicationPath}\"", RegistryValueKind.String);
+                            subKey.SetValue("VersionMajor", RCFRCP.App.CurrentVersion.Major, RegistryValueKind.DWord);
+                            subKey.SetValue("VersionMinor", RCFRCP.App.CurrentVersion.Minor, RegistryValueKind.DWord);
+
+                            // Attempt to get application size
+                            try
                             {
-                                if (subKey == null)
-                                    throw new Exception("The created Registry uninstall key for RCP was null");
-
-                                subKey.SetValue("DisplayName", "Rayman Control Panel", RegistryValueKind.String);
-                                subKey.SetValue("DisplayVersion", RCFRCP.App.CurrentVersion.ToString(), RegistryValueKind.String);
-                                subKey.SetValue("Publisher", "RayCarrot", RegistryValueKind.String);
-                                subKey.SetValue("HelpLink", CommonUrls.DiscordUrl, RegistryValueKind.String);
-                                subKey.SetValue("DisplayIcon", ApplicationPath, RegistryValueKind.String);
-                                subKey.SetValue("InstallLocation", ApplicationPath.Parent, RegistryValueKind.String);
-                                subKey.SetValue("UninstallString", $"\"{CommonPaths.UninstallFilePath}\" \"{ApplicationPath}\"", RegistryValueKind.String);
-                                subKey.SetValue("VersionMajor", RCFRCP.App.CurrentVersion.Major, RegistryValueKind.DWord);
-                                subKey.SetValue("VersionMinor", RCFRCP.App.CurrentVersion.Minor, RegistryValueKind.DWord);
-
-                                // Attempt to get application size
-                                try
-                                {
-                                    subKey.SetValue("EstimatedSize", ApplicationPath.GetSize().KiloBytes, RegistryValueKind.DWord);
-                                }
-                                catch (Exception ex)
-                                {
-                                    ex.HandleUnexpected("Getting app size");
-                                }
-
-                                // Attempt to get install date
-                                try
-                                {
-                                    DateTime modifiedDate = File.GetLastWriteTime(ApplicationPath);
-                                    subKey.SetValue("InstallDate", modifiedDate.ToString("yyyyMMdd"), RegistryValueKind.String);
-                                }
-                                catch (Exception ex)
-                                {
-                                    ex.HandleUnexpected("Getting app creation time");
-                                }
-
-                                RCFCore.Logger?.LogInformationSource("The program Registry key has been created");
+                                subKey.SetValue("EstimatedSize", ApplicationPath.GetSize().KiloBytes, RegistryValueKind.DWord);
                             }
+                            catch (Exception ex)
+                            {
+                                ex.HandleUnexpected("Getting app size");
+                            }
+
+                            // Attempt to get install date
+                            try
+                            {
+                                DateTime modifiedDate = File.GetLastWriteTime(ApplicationPath);
+                                subKey.SetValue("InstallDate", modifiedDate.ToString("yyyyMMdd"), RegistryValueKind.String);
+                            }
+                            catch (Exception ex)
+                            {
+                                ex.HandleUnexpected("Getting app creation time");
+                            }
+
+                            RCFCore.Logger?.LogInformationSource("The program Registry key has been created");
                         }
                         else
                         {

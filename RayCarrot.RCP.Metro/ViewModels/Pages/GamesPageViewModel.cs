@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -109,7 +108,7 @@ namespace RayCarrot.RCP.Metro
                         var collection = InstalledGames.Any(x => x.Game == game) ? InstalledGames : NotInstalledGames;
 
                         // Refresh the game
-                        collection[collection.FindItemIndex(x => x.Game == game)] = game.GetDisplayViewModel();
+                        collection[collection.FindItemIndex(x => x.Game == game)] = game.GetGameInfo().GetDisplayViewModel();
                     }
                     catch (Exception ex)
                     {
@@ -145,16 +144,19 @@ namespace RayCarrot.RCP.Metro
                         // Enumerate each game
                         foreach (Games game in RCFRCP.App.GetGames)
                         {
+                            // Get the game info
+                            var info = game.GetGameInfo();
+
                             // Check if it has been added
-                            if (game.IsAdded())
+                            if (info.IsAdded)
                             {
                                 // Add the game to the collection
-                                InstalledGames.Add(game.GetDisplayViewModel());
+                                InstalledGames.Add(info.GetDisplayViewModel());
                                 AnyInstalledGames = true;
                             }
                             else
                             {
-                                NotInstalledGames.Add(game.GetDisplayViewModel());
+                                NotInstalledGames.Add(info.GetDisplayViewModel());
                                 AnyNotInstalledGames = true;
                             }
                         }

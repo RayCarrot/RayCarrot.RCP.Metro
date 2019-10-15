@@ -1,5 +1,4 @@
 ﻿using ByteSizeLib;
-using MahApps.Metro;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -378,11 +377,11 @@ namespace RayCarrot.RCP.Metro
                     continue;
 
                 // Check if it's valid
-                if (await game.GetGameManager().IsValidAsync(game.GetInfo().InstallDirectory))
+                if (await game.GetManager().IsValidAsync(game.GetData().InstallDirectory))
                     continue;
 
                 // Show message
-                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.GameNotFound, game.GetDisplayName()), Metro.Resources.GameNotFoundHeader, MessageType.Error);
+                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.GameNotFound, game.GetGameInfo().DisplayName), Metro.Resources.GameNotFoundHeader, MessageType.Error);
 
                 // Remove the game from app data
                 await RCFRCP.App.RemoveGameAsync(game, true);
@@ -462,7 +461,7 @@ namespace RayCarrot.RCP.Metro
                         // Set the current edition
                         Data.FiestaRunVersion = isWin10 ? FiestaRunEdition.Win10 : FiestaRunEdition.Default;
 
-                        RCFRCP.File.MoveDirectory(fiestaBackupDir, RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetBackupName(), true, true);
+                        RCFRCP.File.MoveDirectory(fiestaBackupDir, RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetGameInfo().BackupName, true, true);
                     }
                     catch (Exception ex)
                     {
@@ -497,7 +496,7 @@ namespace RayCarrot.RCP.Metro
                 // By default, add all games to the jump list collection
                 Data.JumpListItemIDCollection = RCFRCP.App.GetGames.
                     Where(x => x.IsAdded()).
-                    Select(x => x.GetGameManager().GetJumpListItems().Select(y => y.ID)).
+                    Select(x => x.GetManager().GetJumpListItems().Select(y => y.ID)).
                     SelectMany(x => x).
                     ToList();
             }
@@ -587,11 +586,11 @@ namespace RayCarrot.RCP.Metro
 
                     case nameof(AppUserData.FiestaRunVersion):
 
-                        // Update the install directory and game info
+                        // Update the install directory and game data
                         try
                         {
-                            GameInfo GameInfo = new GameInfo(GameType.WinStore, Games.RaymanFiestaRun.GetGameManager<WinStoreGameManager>().GetPackageInstallDirectory());
-                            RCFRCP.Data.Games[Games.RaymanFiestaRun] = GameInfo;
+                            GameData gameData = new GameData(GameType.WinStore, Games.RaymanFiestaRun.GetManager<RCPWinStoreGame>(GameType.WinStore).GetPackageInstallDirectory());
+                            RCFRCP.Data.Games[Games.RaymanFiestaRun] = gameData;
                         }
                         catch (Exception ex)
                         {
@@ -704,7 +703,7 @@ namespace RayCarrot.RCP.Metro
                             // Add only games which have been added
                             Where(x => x.IsAdded()).
                             // Get the items for each game
-                            Select(x => x.GetGameManager().GetJumpListItems()).
+                            Select(x => x.GetManager().GetJumpListItems()).
                             // Select into single collection
                             SelectMany(x => x).
                             // Keep only the included items

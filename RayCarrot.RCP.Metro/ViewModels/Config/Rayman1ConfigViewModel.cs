@@ -78,7 +78,7 @@ namespace RayCarrot.RCP.Metro
             // Default game language to not be available
             IsGameLanguageAvailable = false;
 
-            var instDir = Game.GetInfo().InstallDirectory;
+            var instDir = Game.GetData().InstallDirectory;
 
             // Attempt to get the game language from the .bat file or config file
             var configFile = instDir + "RAYMAN.CFG";
@@ -112,7 +112,7 @@ namespace RayCarrot.RCP.Metro
 
             // If game language is available, update it
             if (IsGameLanguageAvailable)
-                await SetR1LanguageAsync(Game.GetInfo().InstallDirectory + "RAYMAN.CFG", GameLanguage);
+                await SetR1LanguageAsync(Game.GetData().InstallDirectory + "RAYMAN.CFG", GameLanguage);
         }
 
         #endregion
@@ -129,22 +129,20 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Open the file
-                using (var stream = File.OpenRead(configFile))
+                using var stream = File.OpenRead(configFile);
+                switch (stream.ReadByte())
                 {
-                    switch (stream.ReadByte())
-                    {
-                        case 0:
-                            return R1Languages.English;
+                    case 0:
+                        return R1Languages.English;
 
-                        case 1:
-                            return R1Languages.French;
+                    case 1:
+                        return R1Languages.French;
 
-                        case 2:
-                            return R1Languages.German;
+                    case 2:
+                        return R1Languages.German;
 
-                        default:
-                            return null;
-                    }
+                    default:
+                        return null;
                 }
             }
             catch (Exception ex)
@@ -164,8 +162,8 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                using (var stream = File.OpenWrite(configFile))
-                    stream.WriteByte((byte)language);
+                using var stream = File.OpenWrite(configFile);
+                stream.WriteByte((byte)language);
             }
             catch (Exception ex)
             {

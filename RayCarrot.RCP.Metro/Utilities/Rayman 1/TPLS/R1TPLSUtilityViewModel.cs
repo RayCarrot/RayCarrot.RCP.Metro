@@ -55,7 +55,7 @@ namespace RayCarrot.RCP.Metro
         public async Task InstallTPLSAsync()
         {
             // Verify the install directory
-            if (!await VerifyInstallDirAsync(Games.Rayman1.GetInfo().InstallDirectory))
+            if (!await VerifyInstallDirAsync(Games.Rayman1.GetData().InstallDirectory))
                 return;
 
             try

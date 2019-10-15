@@ -59,43 +59,41 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public static async Task ApplyMappingAsync(FileSystemPath dllFile, List<KeyMappingItem> items)
         {
-            using (FileStream stream = new FileStream(dllFile, FileMode.Open, FileAccess.ReadWrite))
+            using FileStream stream = new FileStream(dllFile, FileMode.Open, FileAccess.ReadWrite);
+            int i;
+
+            stream.Seek(CodeAdress, SeekOrigin.Begin);
+
+            // Write each key item
+            for (i = 0; i < items.Count; i++)
             {
-                int i;
+                await stream.WriteAsync(_code1, 0, 4);
 
-                stream.Seek(CodeAdress, SeekOrigin.Begin);
+                stream.WriteByte((byte)items[i].NewKey);
 
-                // Write each key item
-                for (i = 0; i < items.Count; i++)
-                {
-                    await stream.WriteAsync(_code1, 0, 4);
+                await stream.WriteAsync(_code2, 0, 9);
 
-                    stream.WriteByte((byte)items[i].NewKey);
+                stream.WriteByte((byte)items[i].OriginalKey);
 
-                    await stream.WriteAsync(_code2, 0, 9);
+                await stream.WriteAsync(_code3, 0, 4);
 
-                    stream.WriteByte((byte)items[i].OriginalKey);
-
-                    await stream.WriteAsync(_code3, 0, 4);
-
-                    // Custom "jmp" instruction, you should always append to the final codef code
-                    await stream.WriteAsync(BitConverter.GetBytes((items.Count - i - 1) * 23), 0, 4);
-                }
-
-                // End code
-                await stream.WriteAsync(_codef, 0, 7);
-
-                uint n = 0xFFFE4082;
-
-                n -= (uint)(23 * i);
-
-                // Custom "jmp" instruction, go back to where we were at the beginning
-                await stream.WriteAsync(BitConverter.GetBytes(n), 0, 4);
-
-                // Set the remaining bytes to 0 until the end of the file
-                while (stream.Position < stream.Length)
-                    stream.WriteByte(0);
+                // Custom "jmp" instruction, you should always append to the final codef code
+                await stream.WriteAsync(BitConverter.GetBytes((items.Count - i - 1) * 23), 0, 4);
             }
+
+            // End code
+            await stream.WriteAsync(_codef, 0, 7);
+
+            uint n = 0xFFFE4082;
+
+            n -= (uint)(23 * i);
+
+            // Custom "jmp" instruction, go back to where we were at the beginning
+            await stream.WriteAsync(BitConverter.GetBytes(n), 0, 4);
+
+            // Set the remaining bytes to 0 until the end of the file
+            while (stream.Position < stream.Length)
+                stream.WriteByte(0);
         }
 
         /// <summary>

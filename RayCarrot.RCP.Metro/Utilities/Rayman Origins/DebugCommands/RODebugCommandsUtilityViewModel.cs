@@ -30,7 +30,7 @@ namespace RayCarrot.RCP.Metro
             AvailableMaps = Files.RO_Levels.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Where(x => !x.Contains("graph") && !x.Contains("subscene")).ToArray();
 
             // Get the Rayman Origins install directory
-            var instDir = Games.RaymanOrigins.GetInfo().InstallDirectory;
+            var instDir = Games.RaymanOrigins.GetData().InstallDirectory;
 
             DebugCommandFilePath = GetDebugCommandFilePath(instDir);
 

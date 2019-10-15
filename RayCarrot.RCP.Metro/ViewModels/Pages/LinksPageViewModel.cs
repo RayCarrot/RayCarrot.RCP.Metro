@@ -3,7 +3,6 @@ using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Windows.Registry;
 using System;
 using System.Diagnostics;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -110,7 +109,7 @@ namespace RayCarrot.RCP.Metro
                             new LinkItemViewModel(CommonPaths.UbiIniPath1, Resources.Links_Local_PrimaryUbiIni),
                             new LinkItemViewModel(CommonPaths.UbiIniPath2, Resources.Links_Local_SecondaryUbiIni, UserLevel.Advanced),
                             new LinkItemViewModel(Games.Rayman2.IsAdded()
-                                ? Games.Rayman2.GetInfo().InstallDirectory + "ubi.ini"
+                                ? Games.Rayman2.GetData().InstallDirectory + "ubi.ini"
                                 : FileSystemPath.EmptyPath, Resources.Links_Local_R2UbiIni, UserLevel.Advanced),
                             new LinkItemViewModel(new FileSystemPath(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)) + @"Ubisoft\RGH Launcher\1.0.0.0\Launcher_5.exe.config", Resources.Links_Local_RGHConfig, UserLevel.Advanced),
                         });
@@ -125,21 +124,19 @@ namespace RayCarrot.RCP.Metro
                         // Steam paths
                         try
                         {
-                            using (RegistryKey key = RCFWinReg.RegistryManager.GetKeyFromFullPath(@"HKEY_CURRENT_USER\Software\Valve\Steam", RegistryView.Default))
+                            using RegistryKey key = RCFWinReg.RegistryManager.GetKeyFromFullPath(@"HKEY_CURRENT_USER\Software\Valve\Steam", RegistryView.Default);
+                            if (key != null)
                             {
-                                if (key != null)
-                                {
-                                    FileSystemPath steamDir = key.GetValue("SteamPath", null)?.ToString();
-                                    var steamExe = key.GetValue("SteamExe", null)?.ToString();
+                                FileSystemPath steamDir = key.GetValue("SteamPath", null)?.ToString();
+                                var steamExe = key.GetValue("SteamExe", null)?.ToString();
 
-                                    if (steamDir.DirectoryExists)
+                                if (steamDir.DirectoryExists)
+                                {
+                                    LocalLinkItems.Add(new LinkItemViewModel[]
                                     {
-                                        LocalLinkItems.Add(new LinkItemViewModel[]
-                                        {
-                                            new LinkItemViewModel(steamDir + steamExe, Resources.Links_Local_Steam),
-                                            new LinkItemViewModel(steamDir + @"steamapps\common", Resources.Links_Local_SteamGames, UserLevel.Advanced)
-                                        });
-                                    }
+                                        new LinkItemViewModel(steamDir + steamExe, Resources.Links_Local_Steam),
+                                        new LinkItemViewModel(steamDir + @"steamapps\common", Resources.Links_Local_SteamGames, UserLevel.Advanced)
+                                    });
                                 }
                             }
                         }
@@ -151,20 +148,18 @@ namespace RayCarrot.RCP.Metro
                         // GOG paths
                         try
                         {
-                            using (RegistryKey key = RCFWinReg.RegistryManager.GetKeyFromFullPath(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\GalaxyClient\paths", RegistryView.Default))
+                            using RegistryKey key = RCFWinReg.RegistryManager.GetKeyFromFullPath(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\GalaxyClient\paths", RegistryView.Default);
+                            if (key != null)
                             {
-                                if (key != null)
-                                {
-                                    FileSystemPath gogDir = key.GetValue("client", null)?.ToString();
+                                FileSystemPath gogDir = key.GetValue("client", null)?.ToString();
 
-                                    if (gogDir.DirectoryExists)
+                                if (gogDir.DirectoryExists)
+                                {
+                                    LocalLinkItems.Add(new LinkItemViewModel[]
                                     {
-                                        LocalLinkItems.Add(new LinkItemViewModel[]
-                                        {
-                                            new LinkItemViewModel(gogDir + "GalaxyClient.exe", Resources.Links_Local_GOGClient),
-                                            new LinkItemViewModel(gogDir + @"Games", Resources.Links_Local_GOGGames, UserLevel.Advanced)
-                                        });
-                                    }
+                                        new LinkItemViewModel(gogDir + "GalaxyClient.exe", Resources.Links_Local_GOGClient),
+                                        new LinkItemViewModel(gogDir + @"Games", Resources.Links_Local_GOGGames, UserLevel.Advanced)
+                                    });
                                 }
                             }
                         }

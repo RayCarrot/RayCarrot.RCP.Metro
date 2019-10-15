@@ -102,10 +102,10 @@ namespace RayCarrot.RCP.Metro
             // Default game language to not be available
             IsGameLanguageAvailable = false;
 
-            var instDir = Game.GetInfo().InstallDirectory;
+            var instDir = Game.GetData().InstallDirectory;
 
             // Attempt to get the game language from the .bat file or config file
-            var batchFile = instDir + Game.GetLaunchName();
+            var batchFile = instDir + Game.GetGameInfo().DefaultFileName;
 
             if (batchFile.FullPath.EndsWith(".bat", StringComparison.InvariantCultureIgnoreCase) && batchFile.FileExists)
             {
@@ -147,7 +147,7 @@ namespace RayCarrot.RCP.Metro
 
             // If game language is available, update it
             if (IsGameLanguageAvailable)
-                await SetBatchFileLanguageAsync(Game.GetInfo().InstallDirectory + Game.GetLaunchName(), GameLanguage, Game);
+                await SetBatchFileLanguageAsync(Game.GetData().InstallDirectory + Game.GetGameInfo().DefaultFileName, GameLanguage, Game);
         }
 
         #endregion
@@ -236,7 +236,7 @@ namespace RayCarrot.RCP.Metro
                 File.WriteAllLines(batchFile, new string[]
                 {
                     "@echo off",
-                    $"{Path.GetFileNameWithoutExtension(new DOSBoxGameManager(game).GetGameExectuable())} ver={lang}"
+                    $"{Path.GetFileNameWithoutExtension(game.GetManager<RCPDOSBoxGame>(GameType.DosBox).ExecutableName)} ver={lang}"
                 });
             }
             catch (Exception ex)

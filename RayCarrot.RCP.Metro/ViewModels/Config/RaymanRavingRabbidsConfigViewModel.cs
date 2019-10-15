@@ -144,7 +144,7 @@ namespace RayCarrot.RCP.Metro
             {
                 RCFCore.Logger?.LogInformationSource(key != null
                     ? $"The key {key.Name} has been opened"
-                    : $"The key for {Games.RaymanRavingRabbids.GetDisplayName()} does not exist. Default values will be used.");
+                    : $"The key for {Games.RaymanRavingRabbids} does not exist. Default values will be used.");
 
                 //ResolutionIndex = GetInt(ResolutionKey, 0);
                 FullscreenMode = GetInt(WindowedModeKey, 0) != 1;

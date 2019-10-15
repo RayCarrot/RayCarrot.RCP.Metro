@@ -377,10 +377,10 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task SetupAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"{Game.GetDisplayName()} config is being set up");
+            RCFCore.Logger?.LogInformationSource($"{Game} config is being set up");
 
             // Get the config manager
-            var configManager = new DosBoxAutoConfigManager(Game.GetDosBoxConfigFile());
+            var configManager = new DosBoxAutoConfigManager(Game.GetManager<RCPDOSBoxGame>(GameType.DosBox).DosBoxConfigFile);
 
             // Create the file
             configManager.Create();
@@ -435,7 +435,7 @@ namespace RayCarrot.RCP.Metro
                     await SaveGameAsync();
 
                     // Get the config manager
-                    var configManager = new DosBoxAutoConfigManager(Game.GetDosBoxConfigFile());
+                    var configManager = new DosBoxAutoConfigManager(Game.GetManager<RCPDOSBoxGame>(GameType.DosBox).DosBoxConfigFile);
 
                     // Create config data
                     var configData = new DosBoxAutoConfigData();

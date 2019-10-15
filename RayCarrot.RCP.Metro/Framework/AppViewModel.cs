@@ -1,4 +1,19 @@
-﻿using System;
+﻿using ByteSizeLib;
+using IniParser;
+using IniParser.Model;
+using Microsoft.Win32;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Nito.AsyncEx;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
+using RayCarrot.IO;
+using RayCarrot.Rayman;
+using RayCarrot.UI;
+using RayCarrot.UserData;
+using RayCarrot.Windows.Registry;
+using RayCarrot.Windows.Shell;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -8,21 +23,6 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using ByteSizeLib;
-using IniParser;
-using IniParser.Model;
-using Microsoft.Win32;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.IO;
-using RayCarrot.Rayman;
-using RayCarrot.UI;
-using RayCarrot.UserData;
-using RayCarrot.Windows.Registry;
-using RayCarrot.Windows.Shell;
-using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -115,6 +115,266 @@ namespace RayCarrot.RCP.Metro
                     }
                 },
             };
+            GameManagers = new Dictionary<Games, Dictionary<GameType, Type>>()
+            {
+                {
+                    Games.Rayman1,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.DosBox,
+                            typeof(Rayman1_DOSBox)
+                        },
+                    }
+                },
+                {
+                    Games.RaymanDesigner,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.DosBox,
+                            typeof(RaymanDesigner_DOSBox)
+                        },
+                    }
+                },
+                {
+                    Games.RaymanByHisFans,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.DosBox,
+                            typeof(RaymanByHisFans_DOSBox)
+                        },
+                    }
+                },
+                {
+                    Games.Rayman60Levels,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.DosBox,
+                            typeof(Rayman60Levels_DOSBox)
+                        },
+                    }
+                },
+                {
+                    Games.Rayman2,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.Win32,
+                            typeof(Rayman2_Win32)
+                        },
+                        {
+                            GameType.Steam,
+                            typeof(Rayman2_Steam)
+                        },
+                    }
+                },
+                {
+                    Games.RaymanM,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.Win32,
+                            typeof(RaymanM_Win32)
+                        },
+                    }
+                },
+                {
+                    Games.RaymanArena,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.Win32,
+                            typeof(RaymanArena_Win32)
+                        },
+                    }
+                },
+                {
+                    Games.Rayman3,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.Win32,
+                            typeof(Rayman3_Win32)
+                        },
+                    }
+                },
+                {
+                    Games.RaymanRavingRabbids,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.Win32,
+                            typeof(RaymanRavingRabbids_Win32)
+                        },
+                        {
+                            GameType.Steam,
+                            typeof(RaymanRavingRabbids_Steam)
+                        },
+                    }
+                },
+                {
+                    Games.RaymanRavingRabbids2,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.Win32,
+                            typeof(RaymanRavingRabbids2_Win32)
+                        },
+                    }
+                },
+                {
+                    Games.RabbidsGoHome,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.Win32,
+                            typeof(RabbidsGoHome_Win32)
+                        },
+                    }
+                },
+                {
+                    Games.RaymanOrigins,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.Win32,
+                            typeof(RaymanOrigins_Win32)
+                        },
+                        {
+                            GameType.Steam,
+                            typeof(RaymanOrigins_Steam)
+                        },
+                    }
+                },
+                {
+                    Games.RaymanLegends,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.Win32,
+                            typeof(RaymanLegends_Win32)
+                        },
+                        {
+                            GameType.Steam,
+                            typeof(RaymanLegends_Steam)
+                        },
+                    }
+                },
+                {
+                    Games.RaymanJungleRun,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.WinStore,
+                            typeof(RaymanJungleRun_WinStore)
+                        },
+                    }
+                },
+                {
+                    Games.RaymanFiestaRun,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.WinStore,
+                            typeof(RaymanFiestaRun_WinStore)
+                        },
+                    }
+                },
+                {
+                    Games.RabbidsBigBang,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.WinStore,
+                            typeof(RabbidsBigBang_WinStore)
+                        },
+                    }
+                },
+                {
+                    Games.EducationalDos,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.EducationalDosBox,
+                            typeof(EducationalDos_EducationalDOSBox)
+                        },
+                    }
+                },
+            };
+            GameInfos = new Dictionary<Games, Type>()
+            {
+                {
+                    Games.Rayman1,
+                    typeof(Rayman1_Info)
+                },
+                {
+                    Games.RaymanDesigner,
+                    typeof(RaymanDesigner_Info)
+                },
+                {
+                    Games.RaymanByHisFans,
+                    typeof(RaymanByHisFans_Info)
+                },
+                {
+                    Games.Rayman60Levels,
+                    typeof(Rayman60Levels_Info)
+                },
+                {
+                    Games.Rayman2,
+                    typeof(Rayman2_Info)
+                },
+                {
+                    Games.RaymanM,
+                    typeof(RaymanM_Info)
+                },
+                {
+                    Games.RaymanArena,
+                    typeof(RaymanArena_Info)
+                },
+                {
+                    Games.Rayman3,
+                    typeof(Rayman3_Info)
+                },
+                {
+                    Games.RaymanRavingRabbids,
+                    typeof(RaymanRavingRabbids_Info)
+                },
+                {
+                    Games.RaymanRavingRabbids2,
+                    typeof(RaymanRavingRabbids2_Info)
+                },
+                {
+                    Games.RabbidsGoHome,
+                    typeof(RabbidsGoHome_Info)
+                },
+                {
+                    Games.RaymanOrigins,
+                    typeof(RaymanOrigins_Info)
+                },
+                {
+                    Games.RaymanLegends,
+                    typeof(RaymanLegends_Info)
+                },
+                {
+                    Games.RaymanJungleRun,
+                    typeof(RaymanJungleRun_Info)
+                },
+                {
+                    Games.RaymanFiestaRun,
+                    typeof(RaymanFiestaRun_Info)
+                },
+                {
+                    Games.RabbidsBigBang,
+                    typeof(RabbidsBigBang_Info)
+                },
+                {
+                    Games.EducationalDos,
+                    typeof(EducationalDos_Info)
+                },
+            };
         }
 
         #endregion
@@ -185,6 +445,16 @@ namespace RayCarrot.RCP.Metro
         /// The available local utilities
         /// </summary>
         public Dictionary<Games, Type[]> LocalUtilities { get; }
+
+        /// <summary>
+        /// The available game managers
+        /// </summary>
+        public Dictionary<Games, Dictionary<GameType, Type>> GameManagers { get; }
+
+        /// <summary>
+        /// The available game infos
+        /// </summary>
+        public Dictionary<Games, Type> GameInfos { get; }
 
         /// <summary>
         /// The currently selected page
@@ -264,36 +534,34 @@ namespace RayCarrot.RCP.Metro
                             continue;
 
                         // Open the sub key
-                        using (RegistryKey subKey = key.OpenSubKey(subKeyName))
-                        {
-                            // Make sure the key is not null
-                            if (subKey == null)
-                                continue;
+                        using RegistryKey subKey = key.OpenSubKey(subKeyName);
+                        // Make sure the key is not null
+                        if (subKey == null)
+                            continue;
 
-                            // Make sure it is not a system component
-                            if (subKey.GetValue("SystemComponent") as int? == 1)
-                                continue;
+                        // Make sure it is not a system component
+                        if (subKey.GetValue("SystemComponent") as int? == 1)
+                            continue;
 
-                            if (subKey.GetValue("WindowsInstaller") as int? == 1)
-                                continue;
+                        if (subKey.GetValue("WindowsInstaller") as int? == 1)
+                            continue;
 
-                            // Make sure it has an uninstall string
-                            if (!subKey.HasValue("UninstallString"))
-                                continue;
+                        // Make sure it has an uninstall string
+                        if (!subKey.HasValue("UninstallString"))
+                            continue;
 
-                            if (subKey.HasValue("ParentKeyName"))
-                                continue;
+                        if (subKey.HasValue("ParentKeyName"))
+                            continue;
 
-                            // Make sure it has a display name
-                            if (!(subKey.GetValue("DisplayName") is string dn))
-                                continue;
+                        // Make sure it has a display name
+                        if (!(subKey.GetValue("DisplayName") is string dn))
+                            continue;
 
-                            // Make sure it has an install location
-                            if (!(subKey.GetValue("InstallLocation") is string dir))
-                                continue;
+                        // Make sure it has an install location
+                        if (!(subKey.GetValue("InstallLocation") is string dir))
+                            continue;
 
-                            output.Add(new InstalledProgram(dn, subKey.Name, dir));
-                        }
+                        output.Add(new InstalledProgram(dn, subKey.Name, dir));
                     }
                 }
             }
@@ -361,25 +629,28 @@ namespace RayCarrot.RCP.Metro
                 return;
             }
 
+            // Get the manager
+            var manager = game.GetManager(type);
+
             // Get the install directory
             if (installDirectory == null)   
             {
                 // Attempt to get path from game manager
-                installDirectory = game.GetGameManager(type).GetInstallDirectory();
+                installDirectory = manager.FindInstallDirectory();
 
                 RCFCore.Logger?.LogInformationSource($"The game {game} install directory was retrieved as {installDirectory}");
             }
 
             // Add the game
-            Data.Games.Add(game, new GameInfo(type, installDirectory.Value));
+            Data.Games.Add(game, new GameData(type, installDirectory.Value));
 
             RCFCore.Logger?.LogInformationSource($"The game {game} has been added");
 
             // Run post-add operations
-            await game.GetGameManager().PostGameAddAsync();
+            await manager.PostGameAddAsync();
 
             // Add the game to the jump list
-            Data.JumpListItemIDCollection.AddRange(game.GetGameManager().GetJumpListItems().Select(x => x.ID));
+            Data.JumpListItemIDCollection.AddRange(manager.GetJumpListItems().Select(x => x.ID));
         }
 
         /// <summary>
@@ -392,16 +663,13 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                // Get the game type
-                var type = game.GetInfo().GameType;
-
                 // Get the manager
-                var manager = game.GetGameManager();
+                var manager = game.GetManager();
 
                 if (!forceRemove)
                 {
                     // Get applied utilities
-                    var utilities = await game.GetAppliedUtilitiesAsync();
+                    var utilities = await game.GetGameInfo().GetAppliedUtilitiesAsync();
 
                     // Warn about utilities
                     if (utilities.Any() && !await RCFUI.MessageUI.DisplayMessageAsync(
@@ -417,7 +685,7 @@ namespace RayCarrot.RCP.Metro
                     Data.JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
 
                 // Run post game removal
-                await game.GetGameManager(type).PostGameRemovedAsync();
+                await manager.PostGameRemovedAsync();
             }
             catch (Exception ex)
             {
@@ -642,7 +910,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman 2 - The Great Escape", "Rayman 2", "Rayman2", "GOG.com Rayman 2"),
 
                         // Start menu
-                        () => CheckShortcuts("Rayman 2", Games.Rayman2.GetLaunchName()),
+                        () => CheckShortcuts("Rayman 2", Games.Rayman2.GetGameInfo().DefaultFileName),
                     });
 
                     // Rayman M
@@ -655,7 +923,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman M", "RaymanM"),
 
                         // Start menu
-                        () => CheckShortcuts("Rayman M", Games.RaymanM.GetLaunchName()),
+                        () => CheckShortcuts("Rayman M", Games.RaymanM.GetGameInfo().DefaultFileName),
                     });
 
                     // Rayman Arena
@@ -668,7 +936,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman Arena", "RaymanArena"),
 
                         // Start menu
-                        () => CheckShortcuts("Rayman Arena", Games.RaymanArena.GetLaunchName()),
+                        () => CheckShortcuts("Rayman Arena", Games.RaymanArena.GetGameInfo().DefaultFileName),
                     });
 
                     // Rayman 3
@@ -681,7 +949,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman 3 - Hoodlum Havoc", "Rayman 3", "Rayman3"),
 
                         // Start menu
-                        () => CheckShortcuts("Rayman 3", Games.Rayman3.GetLaunchName()),
+                        () => CheckShortcuts("Rayman 3", Games.Rayman3.GetGameInfo().DefaultFileName),
                     });
 
                     // Rayman Raving Rabbids
@@ -691,7 +959,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman: Raving Rabbids", "Rayman Raving Rabbids"),
 
                         // Start menu
-                        () => CheckShortcuts("Rayman Raving Rabbids", Games.RaymanRavingRabbids.GetLaunchName()),
+                        () => CheckShortcuts("Rayman Raving Rabbids", Games.RaymanRavingRabbids.GetGameInfo().DefaultFileName),
                     });
 
                     // Rayman Raving Rabbids 2
@@ -701,7 +969,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman: Raving Rabbids 2", "Rayman Raving Rabbids 2"),
 
                         // Start menu
-                        () => CheckShortcuts("Rayman Raving Rabbids 2", Games.RaymanRavingRabbids2.GetLaunchName()),
+                        () => CheckShortcuts("Rayman Raving Rabbids 2", Games.RaymanRavingRabbids2.GetGameInfo().DefaultFileName),
                     });
 
                     // Rabbids Go Home
@@ -711,7 +979,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rabbids Go Home"),
 
                         // Start menu
-                        () => CheckShortcuts("Rabbids Go Home", Games.RabbidsGoHome.GetLaunchName()),
+                        () => CheckShortcuts("Rabbids Go Home", Games.RabbidsGoHome.GetGameInfo().DefaultFileName),
                     });
 
                     // Rayman Origins
@@ -721,7 +989,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman Origins", "RaymanOrigins"),
 
                         // Start menu
-                        () => CheckShortcuts("Rayman Origins", Games.RaymanOrigins.GetLaunchName()),
+                        () => CheckShortcuts("Rayman Origins", Games.RaymanOrigins.GetGameInfo().DefaultFileName),
                     });
 
                     // Rayman Legends
@@ -731,7 +999,7 @@ namespace RayCarrot.RCP.Metro
                         () => CheckUninstall("Rayman Legends", "RaymanLegends"),
 
                         // Start menu
-                        () => CheckShortcuts("Rayman Legends", Games.RaymanLegends.GetLaunchName()),
+                        () => CheckShortcuts("Rayman Legends", Games.RaymanLegends.GetGameInfo().DefaultFileName),
                     });
 
                     // Run the checker and get the results
@@ -786,14 +1054,14 @@ namespace RayCarrot.RCP.Metro
                     async Task FindWinStoreAppAsync(Games game)
                     {
                         // Check if the game is installed
-                        if (await game.GetGameManager(GameType.WinStore).IsValidAsync(FileSystemPath.EmptyPath))
+                        if (await game.GetManager(GameType.WinStore).IsValidAsync(FileSystemPath.EmptyPath))
                         {
                             addedGames.Add(game);
 
                             // Add the game
                             await AddNewGameAsync(game, GameType.WinStore);
 
-                            RCFCore.Logger?.LogInformationSource($"The game {game.GetDisplayName()} has been added from the game finder");
+                            RCFCore.Logger?.LogInformationSource($"The game {game} has been added from the game finder");
                         }
                     }
 
@@ -805,7 +1073,7 @@ namespace RayCarrot.RCP.Metro
                         await FindWinStoreAppAsync(Games.RabbidsBigBang);
 
                     // Get the fiesta run manager
-                    var fiestaRunManager = Games.RaymanFiestaRun.GetGameManager<WinStoreGameManager>();
+                    var fiestaRunManager = Games.RaymanFiestaRun.GetManager<RaymanFiestaRun_WinStore>(GameType.WinStore);
 
                     foreach (FiestaRunEdition version in Enum.GetValues(typeof(FiestaRunEdition)))
                     {
@@ -823,7 +1091,7 @@ namespace RayCarrot.RCP.Metro
                             // Set the version
                             RCFRCP.Data.FiestaRunVersion = version;
 
-                            RCFCore.Logger?.LogInformationSource($"The game {Games.RaymanFiestaRun.GetDisplayName()} has been added from the game finder");
+                            RCFCore.Logger?.LogInformationSource($"The game {Games.RaymanFiestaRun} has been added from the game finder");
                         }
                     }
 
@@ -843,9 +1111,9 @@ namespace RayCarrot.RCP.Metro
                         };
 
                         if (mountFiles.Any(x => x.FileExists) &&
-                            File.Exists(dir + "Rayman" + Games.Rayman1.GetLaunchName()) &&
-                            File.Exists(dir + "RayKit" + Games.RaymanDesigner.GetLaunchName()) &&
-                            File.Exists(dir + "RayFan" + Games.RaymanByHisFans.GetLaunchName()) &&
+                            File.Exists(dir + "Rayman" + Games.Rayman1.GetGameInfo().DefaultFileName) &&
+                            File.Exists(dir + "RayKit" + Games.RaymanDesigner.GetGameInfo().DefaultFileName) &&
+                            File.Exists(dir + "RayFan" + Games.RaymanByHisFans.GetGameInfo().DefaultFileName) &&
                             File.Exists(dir + "DosBox" + "DOSBox.exe") &&
                             File.Exists(dir + "dosboxRayman.conf"))
                         {
@@ -878,7 +1146,7 @@ namespace RayCarrot.RCP.Metro
 
                     if (addedGames.Count > 0)
                     {
-                        await RCFUI.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {addedGames.JoinItems(Environment.NewLine + "• ", x => x.GetDisplayName())}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
+                        await RCFUI.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {addedGames.JoinItems(Environment.NewLine + "• ", x => x.GetGameInfo().DisplayName)}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
                         RCFCore.Logger?.LogInformationSource($"The game finder found the following games {addedGames.JoinItems(", ")}");
                         return true;
                     }
@@ -937,8 +1205,8 @@ namespace RayCarrot.RCP.Metro
                         var webRequest = WebRequest.Create(item);
                         webRequest.Method = "HEAD";
 
-                        using (var webResponse = webRequest.GetResponse())
-                            size = size.Add(new ByteSize(Convert.ToDouble(webResponse.Headers.Get("Content-Length"))));
+                        using var webResponse = webRequest.GetResponse();
+                        size = size.Add(new ByteSize(Convert.ToDouble(webResponse.Headers.Get("Content-Length"))));
                     }
 
                     RCFCore.Logger?.LogDebugSource($"The size of the download has been retrieved as {size}");
@@ -992,11 +1260,9 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
-                    using (var wc = new WebClient())
-                    {
-                        var result = await wc.DownloadStringTaskAsync(CommonUrls.UpdateManifestUrl);
-                        manifest = JObject.Parse(result);
-                    }
+                    using var wc = new WebClient();
+                    var result = await wc.DownloadStringTaskAsync(CommonUrls.UpdateManifestUrl);
+                    manifest = JObject.Parse(result);
                 }
                 catch (WebException ex)
                 {
@@ -1239,7 +1505,7 @@ namespace RayCarrot.RCP.Metro
 
                 RCFCore.Logger?.LogInformationSource($"The game {game} type has been detected as {typeResult.SelectedType}");
 
-                await game.GetGameManager(typeResult.SelectedType).LocateAddGameAsync();
+                await game.GetManager(typeResult.SelectedType).LocateAddGameAsync();
             }
             catch (Exception ex)
             {
@@ -1338,26 +1604,4 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
     }
-
-    //public static class RCPHelpers
-    //{
-    //    private static Dictionary<Games, Dictionary<GameType, Type>> GameGenerator { get; } = new Dictionary<Games, Dictionary<GameType, Type>>()
-    //    {
-    //        {
-    //            Games.Rayman2,
-    //            new Dictionary<GameType, Type>()
-    //            {
-    //                {
-    //                    GameType.Win32,
-    //                    typeof(Rayman2_Win32)
-    //                }
-    //            }
-    //        }
-    //    };
-
-    //    public static RCPGame GetGame(Games game, GameType type)
-    //    {
-    //        return GameGenerator[game][type].CreateInstance<RCPGame>();
-    //    }
-    //}
 }
