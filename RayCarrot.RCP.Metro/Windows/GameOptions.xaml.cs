@@ -83,13 +83,13 @@ namespace RayCarrot.RCP.Metro
         /// <param name="page">The page to show</param>
         public static void Show(Games game, GameOptionsPage page)
         {
-            var groupNames = new List<string>(2);
+            var groupNames = new List<string>();
 
-            // For games which read and edit a ubi.ini file we need to add a new group name
-            if (game == Games.Rayman2 || game == Games.Rayman3 || game == Games.RaymanM || game == Games.RaymanArena)
-                groupNames.Add("ubini-config");
-
+            // The same game can only have one dialog opened at a time
             groupNames.Add(game.ToString());
+
+            // Add game specific group names
+            groupNames.AddRange(game.GetGameInfo().DialogGroupNames);
 
             WindowHelpers.ShowWindow(() => new GameOptions(game, page), WindowHelpers.ShowWindowFlags.DuplicatesAllowed, groupNames.ToArray());
         }

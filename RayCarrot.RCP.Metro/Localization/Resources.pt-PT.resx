@@ -745,7 +745,7 @@
     <value>Comprar pelo Steam</value>
   </data>
   <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
-    <value>Comprar pelo Windows Store</value>
+    <value>Comprar pelo Microsoft Store</value>
   </data>
   <data name="GameLink_RDMapper" xml:space="preserve">
     <value>Mapper</value>
@@ -817,7 +817,7 @@
     <value>Jogo não encontrado</value>
   </data>
   <data name="LocateGame_InvalidWinStoreGame" xml:space="preserve">
-    <value>O jogo não pode ser encontrado dentro das aplicações instaladas do Windows Store</value>
+    <value>O jogo não pode ser encontrado dentro das aplicações instaladas do Microsoft Store</value>
   </data>
   <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
     <value>Jogo não encontrado</value>
@@ -1333,7 +1333,7 @@ Reiniciar?</value>
     <value>Substituição completa</value>
   </data>
   <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
-    <value>A substituição da banda sonora falhou.</value>
+    <value>Falhou a substituição do ficheiro</value>
   </data>
   <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
     <value>O ficheiro de configuração já existe. Tu podes ainda recreá-lo se estiver corrompido. Continuar?</value>

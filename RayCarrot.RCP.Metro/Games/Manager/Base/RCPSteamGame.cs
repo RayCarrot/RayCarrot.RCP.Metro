@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using MahApps.Metro.IconPacks;
 using Microsoft.Win32;
@@ -57,6 +56,14 @@ namespace RayCarrot.RCP.Metro
         public override IList<DuoGridItemViewModel> GetGameInfoItems => new List<DuoGridItemViewModel>(base.GetGameInfoItems)
         {
             new DuoGridItemViewModel(Resources.GameInfo_SteamID, SteamID, UserLevel.Advanced)
+        };
+
+        /// <summary>
+        /// Gets the purchase links for the game
+        /// </summary>
+        public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
+        {
+            new GamePurchaseLink(Resources.GameDisplay_Steam, $"https://store.steampowered.com/app/" + SteamID),
         };
 
         #endregion

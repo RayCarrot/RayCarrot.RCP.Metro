@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -52,15 +51,6 @@ namespace RayCarrot.RCP.Metro
         public override FrameworkElement ConfigUI => new Rayman2Config();
 
         /// <summary>
-        /// Gets the purchase links for the game
-        /// </summary>
-        public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
-        {
-            new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_2_the_great_escape"),
-            new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-2--the-great-escape/56c4947e88a7e300458b465c.html")
-        };
-
-        /// <summary>
         /// Gets the file links for the game
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]
@@ -68,6 +58,14 @@ namespace RayCarrot.RCP.Metro
             new GameFileLink(Resources.GameLink_Setup, GameData.InstallDirectory + "GXSetup.exe"),
             new GameFileLink(Resources.GameLink_R2nGlide, GameData.InstallDirectory + "nglide_config.exe"),
             new GameFileLink(Resources.GameLink_R2dgVoodoo, GameData.InstallDirectory + "dgVoodooCpl.exe")
+        };
+
+        /// <summary>
+        /// The group names to use for the options, config and utility dialog
+        /// </summary>
+        public override IEnumerable<string> DialogGroupNames => new string[]
+        {
+            UbiIniFileGroupName
         };
 
         #endregion

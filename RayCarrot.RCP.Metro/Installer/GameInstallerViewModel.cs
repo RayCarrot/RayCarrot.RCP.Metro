@@ -271,6 +271,7 @@ namespace RayCarrot.RCP.Metro
 
                 RCFCore.Logger?.LogInformationSource($"The installation finished with the result of {result}");
 
+                // TODO: Move to utility
                 // Check if the game is Rayman 2
                 if (result == RayGameInstallerResult.Successful && Game == Games.Rayman2)
                 {

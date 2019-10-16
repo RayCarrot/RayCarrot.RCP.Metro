@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
@@ -115,24 +114,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Post launch operations for the game which launched
-        /// </summary>
-        /// <param name="process">The game process</param>
-        /// <returns>The task</returns>
-        public override Task PostLaunchAsync(Process process)
-        {
-            // TODO: Move into Rayman 1 class
-            // Check if TPLS should run
-            if (Game == Games.Rayman1 && RCFRCP.Data.TPLSData?.IsEnabled == true)
-                // Start TPLS
-                new TPLS().Start(process);
-            else
-                return base.PostLaunchAsync(process);
-
-            return Task.CompletedTask;
-        }
-
-        /// <summary>
         /// Locates the game
         /// </summary>
         /// <returns>Null if the game was not found. Otherwise a valid or empty path for the install directory</returns>
@@ -192,9 +173,8 @@ namespace RayCarrot.RCP.Metro
                 return false;
             }
 
-            // TODO: Move into Rayman 1 class
-            // Make sure the mount path exists, unless the game is Rayman 1 and TPLS is enabled
-            if (!RCFRCP.Data.DosBoxGames[Game].MountPath.Exists && !(Game == Games.Rayman1 && RCFRCP.Data.TPLSData?.IsEnabled == true))
+            // Make sure the mount path exists
+            if (!RCFRCP.Data.DosBoxGames[Game].MountPath.Exists)
             {
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.LaunchGame_MountPathNotFound, MessageType.Error);
                 return false;

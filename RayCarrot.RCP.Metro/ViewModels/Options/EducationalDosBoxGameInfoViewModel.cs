@@ -157,7 +157,7 @@ namespace RayCarrot.RCP.Metro
             // Refresh the default if this game was the default
             if (isDefault)
             {
-                Games.EducationalDos.GetManager<RCPEducationalDOSBoxGame>(GameType.EducationalDosBox).RefreshDefault();
+                Games.EducationalDos.GetManager<RCPEducationalDOSBoxGame>().RefreshDefault();
                 RCFCore.Logger?.LogInformationSource($"The educational game was the default and it has now been refreshed");
             }
 

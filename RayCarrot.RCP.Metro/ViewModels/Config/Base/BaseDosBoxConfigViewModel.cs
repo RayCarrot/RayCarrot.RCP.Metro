@@ -380,7 +380,7 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogInformationSource($"{Game} config is being set up");
 
             // Get the config manager
-            var configManager = new DosBoxAutoConfigManager(Game.GetManager<RCPDOSBoxGame>(GameType.DosBox).DosBoxConfigFile);
+            var configManager = new DosBoxAutoConfigManager(Game.GetManager<RCPDOSBoxGame>().DosBoxConfigFile);
 
             // Create the file
             configManager.Create();
@@ -435,7 +435,7 @@ namespace RayCarrot.RCP.Metro
                     await SaveGameAsync();
 
                     // Get the config manager
-                    var configManager = new DosBoxAutoConfigManager(Game.GetManager<RCPDOSBoxGame>(GameType.DosBox).DosBoxConfigFile);
+                    var configManager = new DosBoxAutoConfigManager(Game.GetManager<RCPDOSBoxGame>().DosBoxConfigFile);
 
                     // Create config data
                     var configData = new DosBoxAutoConfigData();

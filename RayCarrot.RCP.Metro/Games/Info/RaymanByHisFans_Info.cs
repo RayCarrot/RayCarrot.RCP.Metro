@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 
@@ -51,15 +50,6 @@ namespace RayCarrot.RCP.Metro
         /// The config UI, if any is available
         /// </summary>
         public override FrameworkElement ConfigUI => new DosBoxConfig(Game);
-
-        /// <summary>
-        /// Gets the purchase links for the game
-        /// </summary>
-        public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
-        {
-            new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_forever"),
-            new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--forever/5800d3fc4e016524248b4567.html")
-        };
 
         /// <summary>
         /// Gets the file links for the game

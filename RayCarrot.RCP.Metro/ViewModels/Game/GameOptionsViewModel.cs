@@ -1,6 +1,5 @@
 ﻿using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.UI;
-using RayCarrot.Windows.Shell;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;

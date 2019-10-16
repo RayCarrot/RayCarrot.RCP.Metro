@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using RayCarrot.Extensions;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -33,18 +32,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the launch name for the game
         /// </summary>
-        // TODO: Change this
         public override string DefaultFileName => RCFRCP.Data.EducationalDosBoxGames.First().LaunchName;
 
         /// <summary>
         /// The options UI, if any is available
         /// </summary>
         public override FrameworkElement OptionsUI => new EducationalDosOptions();
-
-        /// <summary>
-        /// Gets the purchase links for the game
-        /// </summary>
-        public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[0];
 
         /// <summary>
         /// Gets the file links for the game

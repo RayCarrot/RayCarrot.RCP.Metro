@@ -867,7 +867,7 @@
       <Version>10.0.18362.2005</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
-      <Version>1.0.1</Version>
+      <Version>1.0.30</Version>
     </PackageReference>
     <PackageReference Include="NAudio">
       <Version>1.9.0</Version>

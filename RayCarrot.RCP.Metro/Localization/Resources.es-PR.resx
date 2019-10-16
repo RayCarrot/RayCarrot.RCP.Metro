@@ -493,7 +493,7 @@
     <value>Comprar por Steam</value>
   </data>
   <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
-    <value>Comprar por Windows Store</value>
+    <value>Comprar por Microsoft Store</value>
   </data>
   <data name="GameLink_RDMapper" xml:space="preserve">
     <value>Mapper</value>

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
@@ -8,7 +10,7 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public sealed class RaymanFiestaRun_WinStore : RCPWinStoreGame
     {
-        #region Public Overrides
+        #region Public Override Properties
 
         /// <summary>
         /// The game
@@ -29,6 +31,40 @@ namespace RayCarrot.RCP.Metro
         /// Gets store ID for the game
         /// </summary>
         public override string StoreID => GetStoreID(RCFRCP.Data.FiestaRunVersion);
+
+        /// <summary>
+        /// Gets the purchase links for the game
+        /// </summary>
+        public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
+        {
+            // Only get the Preload edition URI as the other editions have been delisted.
+            new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, GetStorePageURI(GetStoreID(FiestaRunEdition.Preload)))
+        };
+
+        #endregion
+
+        #region Protected Override Methods
+
+        /// <summary>
+        /// Locates an installed Windows Store game and returns a value indicating if it was found
+        /// </summary>
+        /// <returns>True if the game was found, otherwise false</returns>
+        protected override Task<bool> LocateWinStoreGameAsync()
+        {
+            // Check each version to see if at least one is found
+            foreach (FiestaRunEdition version in Enum.GetValues(typeof(FiestaRunEdition)))
+            {
+                // If found, set the default version and return true
+                if (IsFiestaRunEditionValidAsync(version))
+                {
+                    RCFRCP.Data.FiestaRunVersion = version;
+                    return Task.FromResult(true);
+                }
+            }
+
+            // If none was found then return false
+            return Task.FromResult(false);
+        }
 
         #endregion
 

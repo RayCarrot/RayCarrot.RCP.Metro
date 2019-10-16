@@ -36,11 +36,6 @@ namespace RayCarrot.RCP.Metro
         public override FrameworkElement ConfigUI => new RabbidsGoHomeConfig();
 
         /// <summary>
-        /// Gets the purchase links for the game
-        /// </summary>
-        public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[0];
-
-        /// <summary>
         /// Gets the file links for the game
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[0]

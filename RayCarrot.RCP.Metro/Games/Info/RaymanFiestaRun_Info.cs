@@ -34,8 +34,7 @@ namespace RayCarrot.RCP.Metro
         public override string DefaultFileName =>
             RCFRCP.Data.FiestaRunVersion switch
             {
-                // TODO: get name
-                FiestaRunEdition.Default => "",
+                FiestaRunEdition.Default => "RFR_WinRT.exe",
                 FiestaRunEdition.Preload => "RFR_WinRT_OEM.exe",
                 FiestaRunEdition.Win10 => "RFRXAML.exe",
 
@@ -46,23 +45,6 @@ namespace RayCarrot.RCP.Metro
         /// The options UI, if any is available
         /// </summary>
         public override FrameworkElement OptionsUI => new FiestaRunOptions();
-
-        /// <summary>
-        /// Gets the purchase links for the game
-        /// </summary>
-        public override IList<GamePurchaseLink> GetGamePurchaseLinks
-        {
-            get
-            {
-                var manager = Game.GetManager<RaymanFiestaRun_WinStore>(GameType.WinStore);
-
-                return new GamePurchaseLink[]
-                {
-                    // Only get the Preload edition URI as the other editions have been delisted.
-                    new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, manager.GetStorePageURI(manager.GetStoreID(FiestaRunEdition.Preload)))
-                };
-            }
-        }
 
         /// <summary>
         /// Gets the file links for the game
@@ -76,7 +58,7 @@ namespace RayCarrot.RCP.Metro
         {
             get
             {
-                var manager = Game.GetManager<RaymanFiestaRun_WinStore>(GameType.WinStore);
+                var manager = Game.GetManager<RaymanFiestaRun_WinStore>();
 
                 // Get every installed version
                 var versions = FiestaRunEdition.Preload.GetValues().Where(x => manager.GetGamePackage(manager.GetFiestaRunPackageName(x)) != null);

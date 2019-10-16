@@ -49,20 +49,19 @@ namespace RayCarrot.RCP.Metro
         public override FrameworkElement ConfigUI => new Ray_M_Arena_3_Config(Game);
 
         /// <summary>
-        /// Gets the purchase links for the game
-        /// </summary>
-        public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
-        {
-            new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_3_hoodlum_havoc"),
-            new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--3--hoodlum-havoc/5800b15eef3aa5ab3e8b4567.html")
-        };
-
-        /// <summary>
         /// Gets the file links for the game
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]
         {
             new GameFileLink(Resources.GameLink_Setup, GameData.InstallDirectory + "R3_Setup_DX8.exe")
+        };
+
+        /// <summary>
+        /// The group names to use for the options, config and utility dialog
+        /// </summary>
+        public override IEnumerable<string> DialogGroupNames => new string[]
+        {
+            UbiIniFileGroupName
         };
 
         #endregion

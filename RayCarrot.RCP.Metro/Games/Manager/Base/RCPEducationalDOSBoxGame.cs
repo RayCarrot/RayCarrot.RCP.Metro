@@ -74,7 +74,7 @@ namespace RayCarrot.RCP.Metro
 
             return RCFRCP.Data.EducationalDosBoxGames.Select(x =>
             {
-                var launchInfo = Game.GetManager(Type).CastTo<RCPEducationalDOSBoxGame>().GetLaunchInfo(x);
+                var launchInfo = Game.GetManager<RCPEducationalDOSBoxGame>().GetLaunchInfo(x);
 
                 return new JumpListItemViewModel(x.Name, launchInfo.Path, launchInfo.Path, launchInfo.Args, x.ID);
             }).ToArray();

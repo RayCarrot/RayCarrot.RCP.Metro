@@ -589,7 +589,7 @@ namespace RayCarrot.RCP.Metro
                         // Update the install directory and game data
                         try
                         {
-                            GameData gameData = new GameData(GameType.WinStore, Games.RaymanFiestaRun.GetManager<RCPWinStoreGame>(GameType.WinStore).GetPackageInstallDirectory());
+                            GameData gameData = new GameData(GameType.WinStore, Games.RaymanFiestaRun.GetManager<RCPWinStoreGame>().GetPackageInstallDirectory());
                             RCFRCP.Data.Games[Games.RaymanFiestaRun] = gameData;
                         }
                         catch (Exception ex)

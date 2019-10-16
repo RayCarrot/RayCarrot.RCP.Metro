@@ -1,15 +1,10 @@
-﻿using MahApps.Metro.IconPacks;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Windows.Shell;
-using RayCarrot.WPF;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -93,8 +88,7 @@ namespace RayCarrot.RCP.Metro
             // Create the view model
             var vm = new GameTypeSelectionViewModel()
             {
-                // TODO: Localize
-                Title = "Select Game Type"
+                Title = Resources.App_SelectGameTypeHeader
             };
 
             switch (game)
@@ -199,6 +193,16 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
+        /// Gets the available game managers for the specified game
+        /// </summary>
+        /// <param name="game">The game to get the managers for</param>
+        /// <returns>The managers</returns>
+        public static IEnumerable<RCPGameManager> GetManagers(this Games game)
+        {
+            return RCFRCP.App.GameManagers[game].Values.Select(managerType => managerType.CreateInstance<RCPGameManager>());
+        }
+
+        /// <summary>
         /// Gets the game manager for the specified game
         /// </summary>
         /// <param name="game">The game to get the manager for</param>
@@ -216,9 +220,29 @@ namespace RayCarrot.RCP.Metro
         /// <param name="game">The game to get the manager for</param>
         /// <param name="type">The type of game to get the manager for</param>
         /// <returns>The manager</returns>
-        public static T GetManager<T>(this Games game, GameType type)
+        public static T GetManager<T>(this Games game)
             where T : RCPGameManager
         {
+            GameType type;
+
+            if (typeof(T) == typeof(RCPWin32Game))
+                type = GameType.Win32;
+
+            else if (typeof(T) == typeof(RCPSteamGame))
+                type = GameType.Steam;
+
+            else if (typeof(T) == typeof(RCPWinStoreGame))
+                type = GameType.WinStore;
+
+            else if (typeof(T) == typeof(RCPDOSBoxGame))
+                type = GameType.DosBox;
+
+            else if (typeof(T) == typeof(RCPEducationalDOSBoxGame))
+                type = GameType.EducationalDosBox;
+
+            else
+                throw new Exception("The provided game manager type is not valid");
+
             return RCFRCP.App.GameManagers[game][type].CreateInstance<T>();
         }
 

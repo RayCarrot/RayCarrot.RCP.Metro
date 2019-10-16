@@ -1,6 +1,8 @@
 ﻿-----   Version 7.0.0 - November ??, 2019   -----
+• 
 • Added the option to open Microsoft Store apps in the store
 • Microsoft Store links now open directly in the store app
+• The name "Windows Store" has been updated to say "Microsoft Store"
 • Major code changes for the games
 
 

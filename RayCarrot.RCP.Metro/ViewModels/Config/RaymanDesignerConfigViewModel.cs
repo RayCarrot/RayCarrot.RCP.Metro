@@ -236,7 +236,7 @@ namespace RayCarrot.RCP.Metro
                 File.WriteAllLines(batchFile, new string[]
                 {
                     "@echo off",
-                    $"{Path.GetFileNameWithoutExtension(game.GetManager<RCPDOSBoxGame>(GameType.DosBox).ExecutableName)} ver={lang}"
+                    $"{Path.GetFileNameWithoutExtension(game.GetManager<RCPDOSBoxGame>().ExecutableName)} ver={lang}"
                 });
             }
             catch (Exception ex)

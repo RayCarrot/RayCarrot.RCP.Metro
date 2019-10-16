@@ -746,7 +746,7 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
     <value>Köp från Steam</value>
   </data>
   <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
-    <value>Köp från Windows Store</value>
+    <value>Köp från Microsoft Store</value>
   </data>
   <data name="GameLink_RDMapper" xml:space="preserve">
     <value>Mapper</value>
@@ -818,7 +818,7 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
     <value>Spelet kunde inte hittas</value>
   </data>
   <data name="LocateGame_InvalidWinStoreGame" xml:space="preserve">
-    <value>Spelet kunde inte hittas under installerade Windows Store appar</value>
+    <value>Spelet kunde inte hittas under installerade Microsoft Store appar</value>
   </data>
   <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
     <value>Spelet kunde inte hittas</value>
@@ -1703,5 +1703,41 @@ Starta om?</value>
   </data>
   <data name="RR2Options_GameMode_Blue" xml:space="preserve">
     <value>Blå</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
+    <value>Verktyget har avinstallerats</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
+    <value>Verktyget avinstallerades</value>
+  </data>
+  <data name="R1U_TPLSUninstallError" xml:space="preserve">
+    <value>Ett fel inträffade vid avinstallation</value>
+  </data>
+  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
+    <value>Avinstallationen misslyckades</value>
+  </data>
+  <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
+    <value>Installationen av PlayStation musik-verktyget misslyckades</value>
+  </data>
+  <data name="R1U_TPLSInvalidDirectory" xml:space="preserve">
+    <value>Spelinstallationen är inte giltig</value>
+  </data>
+  <data name="R1U_TPLSInvalidDirectoryHeader" xml:space="preserve">
+    <value>Ogiltig installation</value>
+  </data>
+  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
+    <value>{0}/{1} hittades att ersätta. Det kan kräva flera nedladdningar, beroende på filernas platser.</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
+    <value>Ersättningen är klar</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
+    <value>Filersättningen misslyckades</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
+    <value>Konfigurationsfilen finns redan. Du kan fortfarande återskapa den om den är skadad. Fortsätt?</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
+    <value>Ersätt fil</value>
   </data>
 </root>

@@ -745,7 +745,7 @@
     <value>Kopen via Steam</value>
   </data>
   <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
-    <value>Kopen via de Windows Store</value>
+    <value>Kopen via de Microsoft Store</value>
   </data>
   <data name="GameLink_RDMapper" xml:space="preserve">
     <value>Mapper</value>
@@ -817,7 +817,7 @@
     <value>Spel niet gevonden</value>
   </data>
   <data name="LocateGame_InvalidWinStoreGame" xml:space="preserve">
-    <value>Het spel kon niet gevonden worden onder de geïnstalleerde Windows Store apps.</value>
+    <value>Het spel kon niet gevonden worden onder de geïnstalleerde Microsoft Store apps.</value>
   </data>
   <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
     <value>Spel niet gevonden</value>
@@ -1333,7 +1333,7 @@ Herstarten?</value>
     <value>Vervanging voltooid</value>
   </data>
   <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
-    <value>Vervangen soundtrack mislukt.</value>
+    <value>Vervangen bestanden mislukt</value>
   </data>
   <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
     <value>Het configuratiebestand bestaat al. Je kunt het nog steeds opnieuw aanmaken als het corrupt is. Doorgaan?</value>
@@ -2662,7 +2662,7 @@ Foutmelding: {1}</value>
     <value>Exclusief</value>
   </data>
   <data name="LocateGame_WinStoreNotSupported" xml:space="preserve">
-    <value>De Windows Store apps zijn niet ondersteund binnen de huidige versie van Windows</value>
+    <value>De Microsoft Store apps zijn niet ondersteund binnen de huidige versie van Windows</value>
   </data>
   <data name="GetExistingBackupsError" xml:space="preserve">
     <value>De bestaande back-ups voor {0} konden niet worden verkregen</value>

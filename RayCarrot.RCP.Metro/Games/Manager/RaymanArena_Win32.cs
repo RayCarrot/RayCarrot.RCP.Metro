@@ -5,7 +5,7 @@
     /// </summary>
     public sealed class RaymanArena_Win32 : RCPWin32Game
     {
-        #region Public Overrides
+        #region Public Override Properties
 
         /// <summary>
         /// The game

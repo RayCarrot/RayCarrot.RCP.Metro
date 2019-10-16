@@ -746,7 +746,7 @@ This is a growing project with more features planned on being added with future 
     <value>Purchase from Steam</value>
   </data>
   <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
-    <value>Purchase from Windows Store</value>
+    <value>Purchase from Microsoft Store</value>
   </data>
   <data name="GameLink_RDMapper" xml:space="preserve">
     <value>Mapper</value>
@@ -822,7 +822,7 @@ filePath</comment>
     <value>Game not found</value>
   </data>
   <data name="LocateGame_InvalidWinStoreGame" xml:space="preserve">
-    <value>The game could not be found under installed Windows Store apps</value>
+    <value>The game could not be found under installed Microsoft Store apps</value>
   </data>
   <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
     <value>Game not found</value>
@@ -1403,7 +1403,7 @@ totalFiles</comment>
     <value>Replacement complete</value>
   </data>
   <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
-    <value>Soundtrack replacement failed.</value>
+    <value>File replacement failed</value>
   </data>
   <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
     <value>The configuration file already exists. You can still recreate it if it is corrupt. Continue?</value>
@@ -2730,7 +2730,7 @@ exceptionMessage</comment>
     <value>Not Included</value>
   </data>
   <data name="LocateGame_WinStoreNotSupported" xml:space="preserve">
-    <value>Windows Store apps are not supported on the current version of Windows</value>
+    <value>Microsoft Store apps are not supported on the current version of Windows</value>
   </data>
   <data name="GetExistingBackupsError" xml:space="preserve">
     <value>The existing backups for {0} could not be obtained</value>
@@ -2762,5 +2762,11 @@ outputDir</comment>
   </data>
   <data name="Config_DiscCheckInfo" xml:space="preserve">
     <value>Disabling the disc checking allows the game to be played without having to insert the game disc</value>
+  </data>
+  <data name="App_SelectGameTypeHeader" xml:space="preserve">
+    <value>Select Game Type</value>
+  </data>
+  <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
+    <value>Open in Microsoft Store</value>
   </data>
 </root>

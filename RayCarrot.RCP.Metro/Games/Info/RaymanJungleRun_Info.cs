@@ -12,7 +12,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the backup directories for the game
         /// </summary>
-        protected override IList<BackupDir> GetBackupDirectories => RCPWinStoreGame.GetWinStoreBackupDirs(Game.GetManager<RCPWinStoreGame>(GameType.WinStore).FullPackageName);
+        protected override IList<BackupDir> GetBackupDirectories => RCPWinStoreGame.GetWinStoreBackupDirs(Game.GetManager<RCPWinStoreGame>().FullPackageName);
 
         #endregion
 
@@ -37,14 +37,6 @@ namespace RayCarrot.RCP.Metro
         /// Gets the default file name for launching the game, if available
         /// </summary>
         public override string DefaultFileName => "RO1Mobile.exe";
-
-        /// <summary>
-        /// Gets the purchase links for the game
-        /// </summary>
-        public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
-        {
-            new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, Game.GetManager<RCPWinStoreGame>(GameType.WinStore).GetStorePageURI())
-        };
 
         /// <summary>
         /// Gets the file links for the game

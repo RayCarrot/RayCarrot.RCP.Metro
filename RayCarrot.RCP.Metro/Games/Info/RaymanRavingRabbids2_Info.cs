@@ -50,11 +50,6 @@ namespace RayCarrot.RCP.Metro
         public override FrameworkElement OptionsUI => new RavingRabbids2Options();
 
         /// <summary>
-        /// Gets the purchase links for the game
-        /// </summary>
-        public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[0];
-
-        /// <summary>
         /// Gets the file links for the game
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]

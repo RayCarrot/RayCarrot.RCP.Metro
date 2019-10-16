@@ -395,11 +395,6 @@ namespace RayCarrot.RCP.Metro
         public const string ApplicationBasePath = "pack://application:,,,/RayCarrot.RCP.Metro;component/";
 
         /// <summary>
-        /// The Steam store base URL
-        /// </summary>
-        public const string SteamStoreBaseUrl = "https://store.steampowered.com/app/";
-
-        /// <summary>
         /// The name of the backup directory for this application
         /// </summary>
         public const string BackupFamily = "Rayman Game Backups";
@@ -469,12 +464,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(6, 1, 2, 0);
+        public Version CurrentVersion => new Version(7, 0, 0, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
-        public bool IsBeta => false;
+        public bool IsBeta => true;
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -1073,7 +1068,7 @@ namespace RayCarrot.RCP.Metro
                         await FindWinStoreAppAsync(Games.RabbidsBigBang);
 
                     // Get the fiesta run manager
-                    var fiestaRunManager = Games.RaymanFiestaRun.GetManager<RaymanFiestaRun_WinStore>(GameType.WinStore);
+                    var fiestaRunManager = Games.RaymanFiestaRun.GetManager<RaymanFiestaRun_WinStore>();
 
                     foreach (FiestaRunEdition version in Enum.GetValues(typeof(FiestaRunEdition)))
                     {

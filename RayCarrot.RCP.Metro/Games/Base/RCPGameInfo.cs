@@ -17,6 +17,15 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public abstract class RCPGameInfo : RCPGame
     {
+        #region Protected Constants
+
+        /// <summary>
+        /// The group name to use for a dialog which requires reading/writing to a ubi.ini file
+        /// </summary>
+        protected const string UbiIniFileGroupName = "ubini-config";
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
@@ -33,7 +42,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public abstract string DisplayName { get; }
 
-        // TODO: Remove due to sometimes being dynamic?
         /// <summary>
         /// The game backup name
         /// </summary>
@@ -68,11 +76,6 @@ namespace RayCarrot.RCP.Metro
         public virtual FrameworkElement ConfigUI => null;
 
         /// <summary>
-        /// Gets the purchase links for the game
-        /// </summary>
-        public virtual IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[0];
-
-        /// <summary>
         /// Gets the file links for the game
         /// </summary>
         public virtual IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];
@@ -94,6 +97,11 @@ namespace RayCarrot.RCP.Metro
                     };
             }
         }
+
+        /// <summary>
+        /// The group names to use for the options, config and utility dialog
+        /// </summary>
+        public virtual IEnumerable<string> DialogGroupNames => new string[0];
 
         #endregion
 
@@ -213,25 +221,26 @@ namespace RayCarrot.RCP.Metro
             {
                 var actions = new List<OverflowButtonItemViewModel>();
 
-                // Get the Game links
-                var links = GetGamePurchaseLinks;
+                // Get the purchase links
+                var links = Game.
+                    // Get all available managers
+                    GetManagers().
+                    // Get the purchase links
+                    SelectMany(x => x.GetGamePurchaseLinks);
 
-                // Add links if there are any
-                if (links?.Any() ?? false)
-                {
-                    actions.AddRange(links.
-                        Select(x =>
-                        {
-                            // Get the path
-                            string path = x.Path;
+                // Add links
+                actions.AddRange(links.
+                    Select(x =>
+                    {
+                        // Get the path
+                        string path = x.Path;
 
-                            // Create the command
-                            var command = new AsyncRelayCommand(async () => (await RCFRCP.File.LaunchFileAsync(path))?.Dispose());
+                        // Create the command
+                        var command = new AsyncRelayCommand(async () => (await RCFRCP.File.LaunchFileAsync(path))?.Dispose());
 
-                            // Return the item
-                            return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
-                        }));
-                }
+                        // Return the item
+                        return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
+                    }));
 
                 // Add disc installer options for specific Games
                 if (Game.GetInstallerGifs()?.Any() == true)

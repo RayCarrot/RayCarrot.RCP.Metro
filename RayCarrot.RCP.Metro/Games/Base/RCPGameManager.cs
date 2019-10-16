@@ -34,6 +34,11 @@ namespace RayCarrot.RCP.Metro
         #region Public Virtual Properties
 
         /// <summary>
+        /// Gets the purchase links for the game for this type
+        /// </summary>
+        public virtual IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[0];
+
+        /// <summary>
         /// Gets the additional overflow button items for the game
         /// </summary>
         public virtual IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => new OverflowButtonItemViewModel[0];

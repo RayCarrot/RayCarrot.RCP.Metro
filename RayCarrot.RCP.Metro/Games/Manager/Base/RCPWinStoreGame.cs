@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Management.Deployment;
-using Windows.Services.Store;
-using Windows.System;
 using MahApps.Metro.IconPacks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
@@ -21,7 +18,7 @@ namespace RayCarrot.RCP.Metro
     /*
         Sometimes inlining will have to be removed using this attribute:
         [MethodImpl(MethodImplOptions.NoInlining)]
-        This is due to the WinRT references used only exist on modern versions of Windows
+        This is due to the WinRT references used only exist on modern versions of Windows.
          */
 
     /// <summary>
@@ -51,8 +48,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => new OverflowButtonItemViewModel[]
         {
-            // TODO: Localize
-            new OverflowButtonItemViewModel("Open in store", PackIconMaterialKind.Windows, new AsyncRelayCommand(async () =>
+            new OverflowButtonItemViewModel(Resources.GameDisplay_OpenInWinStore, PackIconMaterialKind.Windows, new AsyncRelayCommand(async () =>
             {
                 // NOTE: We could use Launcher.LaunchURI here, but since we're targeting Windows 7 it is good to use as few of the WinRT APIs as possible to avoid any runtime errors. Launching a file as a process will work with URLs as well, although less information will be given in case of error (such as if no application is installed to handle the URI).
                 (await RCFRCP.File.LaunchFileAsync(GetStorePageURI()))?.Dispose();
@@ -80,6 +76,14 @@ namespace RayCarrot.RCP.Metro
                 };
             }
         }
+
+        /// <summary>
+        /// Gets the purchase links for the game
+        /// </summary>
+        public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
+        {
+            new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, GetStorePageURI())
+        };
 
         #endregion
 
@@ -138,6 +142,16 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Protected Virtual Methods
+
+        /// <summary>
+        /// Locates an installed Windows Store game and returns a value indicating if it was found
+        /// </summary>
+        /// <returns>True if the game was found, otherwise false</returns>
+        protected virtual Task<bool> LocateWinStoreGameAsync() => IsValidAsync(FileSystemPath.EmptyPath);
+
+        #endregion
+
         #region Public Override Methods
 
         /// <summary>
@@ -183,28 +197,8 @@ namespace RayCarrot.RCP.Metro
                 return null;
             }
 
-            bool found = false;
-
-            if (Game == Games.RaymanFiestaRun)
-            {
-                foreach (FiestaRunEdition version in Enum.GetValues(typeof(FiestaRunEdition)))
-                {
-                    if (found)
-                        break;
-
-                    // TODO: Move into fiesta run class
-                    found = new RaymanFiestaRun_WinStore().IsFiestaRunEditionValidAsync(version);
-
-                    if (found)
-                        RCFRCP.Data.FiestaRunVersion = version;
-                }
-            }
-            else
-            {
-                found = await IsValidAsync(FileSystemPath.EmptyPath);
-            }
-
-            if (!found)
+            // Attempt to locate the game
+            if (!await LocateWinStoreGameAsync())
             {
                 RCFCore.Logger?.LogInformationSource($"The {Game} was not found under Windows Store packages");
 
@@ -213,6 +207,8 @@ namespace RayCarrot.RCP.Metro
                 return null;
             }
 
+            // If located, return an empty path
+            // TODO: Get install directory here perhaps? That way one is always requires and doesn't have to be obtained separately
             return FileSystemPath.EmptyPath;
         }
 

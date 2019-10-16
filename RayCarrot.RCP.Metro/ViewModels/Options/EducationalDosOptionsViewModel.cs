@@ -55,7 +55,7 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogInformationSource($"A new educational game is being added...");
 
             // Get the manager
-            var manager = Games.EducationalDos.GetManager<RCPEducationalDOSBoxGame>(GameType.EducationalDosBox);
+            var manager = Games.EducationalDos.GetManager<RCPEducationalDOSBoxGame>();
 
             // Locate the new game
             var path = await Games.EducationalDos.GetManager().LocateAsync();
@@ -107,7 +107,7 @@ namespace RayCarrot.RCP.Metro
             }));
 
             // Refresh the default game
-            Games.EducationalDos.GetManager<RCPEducationalDOSBoxGame>(GameType.EducationalDosBox).RefreshDefault();
+            Games.EducationalDos.GetManager<RCPEducationalDOSBoxGame>().RefreshDefault();
 
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));

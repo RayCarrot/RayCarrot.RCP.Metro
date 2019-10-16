@@ -426,6 +426,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Game Type.
+        /// </summary>
+        public static string App_SelectGameTypeHeader {
+            get {
+                return ResourceManager.GetString("App_SelectGameTypeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman Control Panel.
         /// </summary>
         public static string AppName {
@@ -3201,6 +3210,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open in Microsoft Store.
+        /// </summary>
+        public static string GameDisplay_OpenInWinStore {
+            get {
+                return ResourceManager.GetString("GameDisplay_OpenInWinStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open location.
         /// </summary>
         public static string GameDisplay_OpenLocation {
@@ -3255,7 +3273,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Purchase from Windows Store.
+        ///   Looks up a localized string similar to Purchase from Microsoft Store.
         /// </summary>
         public static string GameDisplay_PurchaseWinStore {
             get {
@@ -5351,7 +5369,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The game could not be found under installed Windows Store apps.
+        ///   Looks up a localized string similar to The game could not be found under installed Microsoft Store apps.
         /// </summary>
         public static string LocateGame_InvalidWinStoreGame {
             get {
@@ -5369,7 +5387,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Windows Store apps are not supported on the current version of Windows.
+        ///   Looks up a localized string similar to Microsoft Store apps are not supported on the current version of Windows.
         /// </summary>
         public static string LocateGame_WinStoreNotSupported {
             get {
@@ -6206,7 +6224,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Soundtrack replacement failed..
+        ///   Looks up a localized string similar to File replacement failed.
         /// </summary>
         public static string RDU_ReplaceFiles_Error {
             get {
