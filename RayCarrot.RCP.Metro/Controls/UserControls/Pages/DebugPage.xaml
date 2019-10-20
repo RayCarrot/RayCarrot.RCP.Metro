@@ -55,6 +55,37 @@
                 </i:Interaction.Behaviors>
 
                 <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Installer"
+                               Style="{StaticResource LargeHeaderTextBlock}" />
+
+                    <local:InfoIcon Text="Running the installer on a game which has already been added might crash the application when complete." />
+
+                </StackPanel>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <ComboBox Grid.Column="0" 
+                              ItemsSource="{Binding Path=AvailableInstallers, Mode=OneTime}"
+                              SelectedItem="{Binding Path=SelectedInstaller}"/>
+
+                    <Button Grid.Column="2" 
+                            Content="Run installer"
+                            Command="{Binding Path=RunInstallerCommand}" />
+                </Grid>
+
+            </StackPanel>
+
+            <StackPanel>
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                </i:Interaction.Behaviors>
+
+                <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Debug Tools"
                                Style="{StaticResource LargeHeaderTextBlock}" />
 

@@ -35,6 +35,11 @@ namespace RayCarrot.RCP.Metro
         public override string DefaultFileName => RCFRCP.Data.EducationalDosBoxGames.First().LaunchName;
 
         /// <summary>
+        /// The config UI, if any is available
+        /// </summary>
+        public override FrameworkElement ConfigUI => new DosBoxConfig(Games.EducationalDos);
+
+        /// <summary>
         /// The options UI, if any is available
         /// </summary>
         public override FrameworkElement OptionsUI => new EducationalDosOptions();

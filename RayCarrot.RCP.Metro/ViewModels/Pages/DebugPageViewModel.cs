@@ -6,6 +6,7 @@ using System.Net;
 using System.Reflection;
 using System.Runtime.Versioning;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
@@ -27,12 +28,18 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public DebugPageViewModel()
         {
+            // Create commands
             ShowDialogCommand = new AsyncRelayCommand(ShowDialogAsync);
             ShowLogCommand = new AsyncRelayCommand(ShowLogAsync);
             ShowInstalledUtilitiesCommand = new AsyncRelayCommand(ShowInstalledUtilitiesAsync);
             RefreshDataOutputCommand = new AsyncRelayCommand(RefreshDataOutputAsync);
             RefreshAllCommand = new AsyncRelayCommand(RefreshAllAsync);
             RefreshAllAsyncCommand = new AsyncRelayCommand(RefreshAllTaskAsync);
+            RunInstallerCommand = new RelayCommand(RunInstaller);
+
+            // Get properties
+            AvailableInstallers = App.GetGames.Where(x => x.GetGameInfo().CanBeInstalledFromDisc).ToArray();
+            SelectedInstaller = AvailableInstallers.First();
         }
 
         #endregion
@@ -53,6 +60,16 @@ namespace RayCarrot.RCP.Metro
         /// The current data output
         /// </summary>
         public string DataOutput { get; set; }
+
+        /// <summary>
+        /// The available game installers
+        /// </summary>
+        public Games[] AvailableInstallers { get; }
+
+        /// <summary>
+        /// The selected game installer
+        /// </summary>
+        public Games SelectedInstaller { get; set; }
 
         #endregion
 
@@ -225,6 +242,36 @@ namespace RayCarrot.RCP.Metro
 
                         break;
 
+                    case DebugDataOutputTypes.AppWindows:
+                        var mainWindow = Application.Current.MainWindow;
+
+                        foreach (Window window in Application.Current.Windows)
+                        {
+                            DataOutput += Environment.NewLine;
+                            DataOutput += $"Type: {window.GetType().FullName}" + Environment.NewLine;
+                            DataOutput += $"Title: {window.Title}" + Environment.NewLine;
+                            DataOutput += $"Owner: {window.Owner}" + Environment.NewLine;
+                            DataOutput += $"Owned windows: {window.OwnedWindows.Count}" + Environment.NewLine;
+                            DataOutput += $"Show in taskbar: {window.ShowInTaskbar}" + Environment.NewLine;
+                            DataOutput += $"Show activated: {window.ShowActivated}" + Environment.NewLine;
+                            DataOutput += $"Visibility: {window.Visibility}" + Environment.NewLine;
+                            DataOutput += $"Is main window: {window == mainWindow}" + Environment.NewLine;
+                            DataOutput += Environment.NewLine;
+                            DataOutput += "------------------------------------------";
+                            DataOutput += Environment.NewLine;
+                        }
+                        
+                        break;
+
+                    case DebugDataOutputTypes.GameFinder:
+                        // Run and get the result
+                        var result = RCFRCP.GameFinder.FindGames(App.GetGames);
+                        
+                        // Output the found games
+                        DataOutput = result.Select(x => $"{x.Game} ({x.GameType}) - {x.InstallLocation}").JoinItems(Environment.NewLine);
+                        
+                        break;
+
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -253,6 +300,14 @@ namespace RayCarrot.RCP.Metro
             await Task.Run(async () => await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, true, true, true, true, true)));
         }
 
+        /// <summary>
+        /// Runs the selected installer
+        /// </summary>
+        public void RunInstaller()
+        {
+            new GameInstaller(SelectedInstaller).ShowDialog();
+        }
+
         #endregion
 
         #region Commands
@@ -268,6 +323,8 @@ namespace RayCarrot.RCP.Metro
         public ICommand RefreshAllCommand { get; }
 
         public ICommand RefreshAllAsyncCommand { get; }
+
+        public ICommand RunInstallerCommand { get; }
 
         #endregion
     }

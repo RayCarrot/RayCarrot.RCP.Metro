@@ -52,6 +52,11 @@ namespace RayCarrot.RCP.Metro
             new DuoGridItemViewModel(Resources.GameInfo_InstallDir, GameData.InstallDirectory)
         };
 
+        /// <summary>
+        /// Gets the game finder item for this game
+        /// </summary>
+        public virtual GameFinderItem GameFinderItem => null;
+
         #endregion
 
         #region Protected Abstract Methods
@@ -66,13 +71,6 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Virtual Methods
-
-        /// <summary>
-        /// Finds the install directory for the game
-        /// if one was not found automatically
-        /// </summary>
-        /// <returns>The install directory</returns>
-        public virtual FileSystemPath FindInstallDirectory() => FileSystemPath.EmptyPath;
 
         /// <summary>
         /// Gets called as soon as the game is added for the first time
@@ -109,6 +107,17 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game can launch, otherwise false</returns>
         public virtual Task<bool> VerifyCanLaunchAsync() => Task.FromResult(true);
 
+        /// <summary>
+        /// Indicates if the game is valid
+        /// </summary>
+        /// <param name="installDir">The game install directory, if any</param>
+        /// <returns>True if the game is valid, otherwise false</returns>
+        public virtual Task<bool> IsValidAsync(FileSystemPath installDir)
+        {
+            // Make sure the default file exists in the install directory
+            return Task.FromResult((installDir + Game.GetGameInfo().DefaultFileName).FileExists);
+        }
+
         #endregion
 
         #region Public Abstract Methods
@@ -118,14 +127,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <returns>Null if the game was not found. Otherwise a valid or empty path for the install directory</returns>
         public abstract Task<FileSystemPath?> LocateAsync();
-
-        /// <summary>
-        /// Indicates if the game is valid
-        /// </summary>
-        /// <param name="installDir">The game install directory, if any</param>
-        /// <returns>True if the game is valid, otherwise false</returns>
-        // TODO: Update validation system
-        public abstract Task<bool> IsValidAsync(FileSystemPath installDir);
 
         /// <summary>
         /// Gets the available jump list items for this game
@@ -181,7 +182,7 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Add the game
-            await RCFRCP.App.AddNewGameAsync(Game, Type, path);
+            await RCFRCP.App.AddNewGameAsync(Game, Type, path.Value);
 
             // Refresh
             await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));

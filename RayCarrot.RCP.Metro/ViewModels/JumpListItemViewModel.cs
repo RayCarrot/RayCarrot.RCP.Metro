@@ -18,13 +18,15 @@ namespace RayCarrot.RCP.Metro
         /// <param name="name">The item name</param>
         /// <param name="iconSource">The item icon resource path</param>
         /// <param name="launchPath">The item launch path</param>
+        /// <param name="workingDirectory">The working directory for the launch path</param>
         /// <param name="launchArguments">The item launch arguments</param>
         /// <param name="id">The item ID</param>
-        public JumpListItemViewModel(string name, string iconSource, string launchPath, string launchArguments, string id)
+        public JumpListItemViewModel(string name, string iconSource, string launchPath, string workingDirectory, string launchArguments, string id)
         {
             Name = name;
             IconSource = iconSource;
             LaunchPath = launchPath;
+            WorkingDirectory = workingDirectory;
             LaunchArguments = launchArguments;
             ID = id;
         }
@@ -63,6 +65,11 @@ namespace RayCarrot.RCP.Metro
         /// The item launch path
         /// </summary>
         public string LaunchPath { get; }
+
+        /// <summary>
+        /// The working directory for the launch path
+        /// </summary>
+        public string WorkingDirectory { get; }
 
         /// <summary>
         /// The item launch arguments

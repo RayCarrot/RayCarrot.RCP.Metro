@@ -76,7 +76,7 @@ namespace RayCarrot.RCP.Metro
             {
                 var launchInfo = Game.GetManager<RCPEducationalDOSBoxGame>().GetLaunchInfo(x);
 
-                return new JumpListItemViewModel(x.Name, launchInfo.Path, launchInfo.Path, launchInfo.Args, x.ID);
+                return new JumpListItemViewModel(x.Name, launchInfo.Path, launchInfo.Path, launchInfo.Path.Parent, launchInfo.Args, x.ID);
             }).ToArray();
         }
 
@@ -165,13 +165,9 @@ namespace RayCarrot.RCP.Metro
             if (RCFRCP.Data.EducationalDosBoxGames == null)
                 return false;
 
-            List<EducationalDosBoxGameData> toRemove = new List<EducationalDosBoxGameData>();
-
-            foreach (var game in RCFRCP.Data.EducationalDosBoxGames)
-            {
-                if (!IsGameDirValid(game.InstallDir) || game.LaunchName.IsNullOrWhiteSpace())
-                    toRemove.Add(game);
-            }
+            var toRemove = RCFRCP.Data.EducationalDosBoxGames.
+                Where(game => !IsGameDirValid(game.InstallDir) || game.LaunchName.IsNullOrWhiteSpace()).
+                ToArray();
 
             // Remove invalid games
             foreach (var game in toRemove)
@@ -191,8 +187,8 @@ namespace RayCarrot.RCP.Metro
 
             // If any games were removed, refresh the default game and jump list
             if (toRemove.Any())
-                // Reset the game data with new install directory
             {
+                // Reset the game data with new install directory
                 RefreshDefault();
                 await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, false, false, false, true));
             }

@@ -1,9 +1,15 @@
 ﻿-----   Version 7.0.0 - November ??, 2019   -----
 • 
+• The game finder has been improved
 • Added the option to open Microsoft Store apps in the store
+
+Other changes:
+• Major code changes for the games
 • Microsoft Store links now open directly in the store app
 • The name "Windows Store" has been updated to say "Microsoft Store"
-• Major code changes for the games
+• The drive selection dialog will now only show discs
+• Added more options to the debug page
+• Bug fixes
 
 
 -----   Version 6.1.2 - October 10, 2019   -----

@@ -68,6 +68,11 @@ namespace RayCarrot.RCP.Metro
             UbiIniFileGroupName
         };
 
+        /// <summary>
+        /// Indicates if the game can be installed from a disc in this program
+        /// </summary>
+        public override bool CanBeInstalledFromDisc => true;
+
         #endregion
 
         #region Public Override Methods

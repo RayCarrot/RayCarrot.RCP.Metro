@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -22,6 +23,18 @@ namespace RayCarrot.RCP.Metro
             new GamePurchaseLink(Resources.GameDisplay_PurchaseGOG, "https://www.gog.com/game/rayman_2_the_great_escape"),
             new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-2--the-great-escape/56c4947e88a7e300458b465c.html")
         };
+
+        /// <summary>
+        /// Gets the game finder item for this game
+        /// </summary>
+        public override GameFinderItem GameFinderItem => new GameFinderItem(R2UbiIniHandler.SectionName, "Rayman 2", new string[]
+        {
+            "Rayman 2",
+            "Rayman: 2",
+            "Rayman 2 - The Great Escape",
+            "Rayman: 2 - The Great Escape",
+            "GOG.com Rayman 2",
+        });
 
         #endregion
     }

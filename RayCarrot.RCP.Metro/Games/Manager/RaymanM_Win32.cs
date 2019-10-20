@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿using RayCarrot.Rayman;
+
+namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// The Rayman M (Win32) game manager
@@ -11,6 +13,15 @@
         /// The game
         /// </summary>
         public override Games Game => Games.RaymanM;
+
+        /// <summary>
+        /// Gets the game finder item for this game
+        /// </summary>
+        public override GameFinderItem GameFinderItem => new GameFinderItem(RMUbiIniHandler.SectionName, "Rayman M", new string[]
+        {
+            "Rayman M",
+            "Rayman: M",
+        });
 
         #endregion
     }

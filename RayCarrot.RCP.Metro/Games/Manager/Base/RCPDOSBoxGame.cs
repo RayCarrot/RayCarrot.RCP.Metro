@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.UI;
 
@@ -39,6 +40,25 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if using <see cref="GameLaunchMode"/> is supported
         /// </summary>
         public override bool SupportsGameLaunchMode => true;
+
+        /// <summary>
+        /// Gets the game finder item for this game
+        /// </summary>
+        public override GameFinderItem GameFinderItem => RaymanForeverFolderName == null ? null : new GameFinderItem(null, "Rayman Forever", new string[]
+            {
+                "Rayman Forever",
+            },
+            // Navigate to the sub-directory
+            x => x + RaymanForeverFolderName);
+
+        #endregion
+
+        #region Public Virtual Properties
+
+        /// <summary>
+        /// The Rayman Forever folder name, if available
+        /// </summary>
+        public virtual string RaymanForeverFolderName => null;
 
         #endregion
 
@@ -82,8 +102,42 @@ namespace RayCarrot.RCP.Metro
             // Create config file
             new DosBoxAutoConfigManager(DosBoxConfigFile).Create();
 
+            // Create the options
+            var options = new DosBoxOptions();
+
             if (!RCFRCP.Data.DosBoxGames.ContainsKey(Game))
-                RCFRCP.Data.DosBoxGames.Add(Game, new DosBoxOptions());
+                RCFRCP.Data.DosBoxGames.Add(Game, options);
+
+            // If the game was included in Rayman Forever
+            if (RaymanForeverFolderName != null)
+            {
+                // Get the install directory
+                var foreverInstallDir = GameData.InstallDirectory.Parent;
+
+                // Attempt to automatically locate the mount file (based on the Rayman Forever location)
+                FileSystemPath[] mountFiles =
+                {
+                    foreverInstallDir + "game.inst",
+                    foreverInstallDir + "Music\\game.inst",
+                    foreverInstallDir + "game.ins",
+                    foreverInstallDir + "Music\\game.ins",
+                };
+
+                var mountPath = mountFiles.FindItem(x => x.FileExists);
+
+                // TODO: Log
+                if (mountPath.FileExists)
+                    options.MountPath = mountPath;
+
+                // TODO: Find DOSBox files if not already added
+                /*
+                   if (!File.Exists(Data.DosBoxPath))
+                        Data.DosBoxPath = dir + "DosBox" + "DOSBox.exe";
+
+                   Data.DosBoxConfig = dir + "dosboxRayman.conf";
+
+                 */
+            }
 
             return Task.CompletedTask;
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using IniParser.Model;
 using MahApps.Metro.IconPacks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
@@ -102,6 +103,11 @@ namespace RayCarrot.RCP.Metro
         /// The group names to use for the options, config and utility dialog
         /// </summary>
         public virtual IEnumerable<string> DialogGroupNames => new string[0];
+
+        /// <summary>
+        /// Indicates if the game can be installed from a disc in this program
+        /// </summary>
+        public virtual bool CanBeInstalledFromDisc => false;
 
         #endregion
 
@@ -243,7 +249,7 @@ namespace RayCarrot.RCP.Metro
                     }));
 
                 // Add disc installer options for specific Games
-                if (Game.GetInstallerGifs()?.Any() == true)
+                if (CanBeInstalledFromDisc)
                 {
                     // Add separator if there are previous actions
                     if (actions.Any())

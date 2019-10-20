@@ -133,16 +133,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Indicates if the game is valid
-        /// </summary>
-        /// <param name="installDir">The game install directory, if any</param>
-        /// <returns>True if the game is valid, otherwise false</returns>
-        public override Task<bool> IsValidAsync(FileSystemPath installDir)
-        {
-            return Task.FromResult((installDir + Game.GetGameInfo().DefaultFileName).FileExists);
-        }
-
-        /// <summary>
         /// Gets the available jump list items for this game
         /// </summary>
         /// <returns>The items</returns>
@@ -150,10 +140,17 @@ namespace RayCarrot.RCP.Metro
         {
             var launchInfo = GetLaunchInfo();
 
-            return new JumpListItemViewModel[]
+            if (launchInfo.Path.FileExists)
             {
-                new JumpListItemViewModel(Game.GetGameInfo().DisplayName, IconResourcePath, launchInfo.Path, launchInfo.Args, Game.ToString())
-            };
+                return new JumpListItemViewModel[]
+                {
+                    new JumpListItemViewModel(Game.GetGameInfo().DisplayName, IconResourcePath, launchInfo.Path, launchInfo.Path.Parent, launchInfo.Args, Game.ToString())
+                };
+            }
+            else
+            {
+                return new JumpListItemViewModel[0];
+            }
         }
 
         /// <summary>

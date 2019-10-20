@@ -18,6 +18,16 @@
         /// <summary>
         /// Displays the update manifest from the server
         /// </summary>
-        UpdateManifest
+        UpdateManifest,
+
+        /// <summary>
+        /// Displays a list of windows in the current application
+        /// </summary>
+        AppWindows,
+
+        /// <summary>
+        /// Runs the game finder, searching for all games and displaying the output of found games and their install locations
+        /// </summary>
+        GameFinder
     }
 }

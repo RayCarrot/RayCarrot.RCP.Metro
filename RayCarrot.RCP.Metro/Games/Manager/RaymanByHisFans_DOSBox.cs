@@ -20,6 +20,11 @@ namespace RayCarrot.RCP.Metro
         public override string ExecutableName => "RAYFAN.EXE";
 
         /// <summary>
+        /// The Rayman Forever folder name, if available
+        /// </summary>
+        public override string RaymanForeverFolderName => "RayFan";
+
+        /// <summary>
         /// Gets the purchase links for the game
         /// </summary>
         public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]

@@ -22,6 +22,15 @@ namespace RayCarrot.RCP.Metro
             new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman--legends/56c4948888a7e300458b47da.html")
         };
 
+        /// <summary>
+        /// Gets the game finder item for this game
+        /// </summary>
+        public override GameFinderItem GameFinderItem => new GameFinderItem(null, "Rayman Legends", new string[]
+        {
+            "Rayman Legends",
+            "Rayman: Legends",
+        });
+
         #endregion
     }
 }

@@ -66,6 +66,11 @@ namespace RayCarrot.RCP.Metro
             new GamePurchaseLink(Resources.GameDisplay_Steam, $"https://store.steampowered.com/app/" + SteamID),
         };
 
+        /// <summary>
+        /// Gets the game finder item for this game
+        /// </summary>
+        public override GameFinderItem GameFinderItem => new GameFinderItem(SteamID);
+
         #endregion
 
         #region Public Abstract Properties
@@ -99,7 +104,7 @@ namespace RayCarrot.RCP.Metro
 
             return new JumpListItemViewModel[]
             {
-                new JumpListItemViewModel(info.DisplayName, GameData.InstallDirectory + info.DefaultFileName, LaunchURL, null, Game.ToString())
+                new JumpListItemViewModel(info.DisplayName, GameData.InstallDirectory + info.DefaultFileName, LaunchURL, null, null, Game.ToString())
             };
         }
 
@@ -125,28 +130,6 @@ namespace RayCarrot.RCP.Metro
         #region Public Override Methods
 
         /// <summary>
-        /// Gets the install directory for the game
-        /// </summary>
-        /// <returns>The install directory</returns>
-        public override FileSystemPath FindInstallDirectory()
-        {
-            try
-            {
-                // Get the key path
-                var keyPath = RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {SteamID}");
-
-                using var key = RCFWinReg.RegistryManager.GetKeyFromFullPath(keyPath, RegistryView.Registry64);
-
-                return key?.GetValue("InstallLocation") as string;
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Getting Steam game install directory");
-                return FileSystemPath.EmptyPath;
-            }
-        }
-
-        /// <summary>
         /// Locates the game
         /// </summary>
         /// <returns>Null if the game was not found. Otherwise a valid or empty path for the install directory</returns>
@@ -162,7 +145,24 @@ namespace RayCarrot.RCP.Metro
                 return null;
             }
 
-            return FileSystemPath.EmptyPath;
+            try
+            {
+                // Get the key path
+                var keyPath = RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {SteamID}");
+
+                using var key = RCFWinReg.RegistryManager.GetKeyFromFullPath(keyPath, RegistryView.Registry64);
+
+                // Return the install directory
+                return key?.GetValue("InstallLocation") as string;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Getting Steam game install directory");
+
+                // TODO: Show error message
+
+                return null;
+            }
         }
 
         /// <summary>
@@ -170,9 +170,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="installDir">The game install directory, if any</param>
         /// <returns>True if the game is valid, otherwise false</returns>
-        public override Task<bool> IsValidAsync(FileSystemPath installDir)
+        public override async Task<bool> IsValidAsync(FileSystemPath installDir)
         {
-            return Task.FromResult(RCFWinReg.RegistryManager.KeyExists(RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {SteamID}"), RegistryView.Registry64));
+            return await base.IsValidAsync(installDir) && RCFWinReg.RegistryManager.KeyExists(RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {SteamID}"), RegistryView.Registry64);
         }
 
         /// <summary>

@@ -7,6 +7,7 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:io="clr-namespace:System.IO;assembly=mscorlib"
              ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
@@ -38,7 +39,9 @@
                 </StackPanel>
 
                 <rwpf:BrowseBox SelectedPath="{Binding Path=MountPath, Converter={rwpf:FileSystemPathToStringConverter}, UpdateSourceTrigger=LostFocus}"
-                                Visibility="{Binding Path=IsMountLocationAvailable, Converter={rwpf:BooleanToVisibilityConverter}, FallbackValue=Collapsed}">
+                                Visibility="{Binding Path=IsMountLocationAvailable, Converter={rwpf:BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                                AllowedDriveTypes="{Binding Path=MountPathAllowedDriveTypes}">
+
                     <rwpf:BrowseBox.Style>
                         <Style TargetType="{x:Type rwpf:BrowseBox}" BasedOn="{StaticResource {x:Type rwpf:BrowseBox}}">
                             <Style.Triggers>

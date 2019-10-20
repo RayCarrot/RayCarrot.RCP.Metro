@@ -4,6 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
@@ -33,6 +34,9 @@ namespace RayCarrot.RCP.Metro
             DisplayName = gameInfo.DisplayName;
             IconSource = gameInfo.IconSource;
             GameInfoItems = new ObservableCollection<DuoGridItemViewModel>();
+
+            // Enable collection synchronization
+            BindingOperations.EnableCollectionSynchronization(GameInfoItems, this);
 
             // Refresh the game data
             RefreshGameInfo();
@@ -224,8 +228,12 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void Dispose()
         {
+            // Unsubscribe events
             RCFCore.Data.CultureChanged -= Data_CultureChanged;
             App.RefreshRequired -= App_RefreshRequired;
+
+            // Disable collection synchronization
+            BindingOperations.DisableCollectionSynchronization(GameInfoItems);
         }
 
         #endregion

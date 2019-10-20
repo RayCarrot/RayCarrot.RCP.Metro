@@ -162,7 +162,11 @@ namespace RayCarrot.RCP.Metro
                     Title = Resources.Installer_BrowseDiscHeader,
                     MultiSelection = false,
                     AllowNonReadyDrives = false,
-                    DefaultDirectory = @"D:\"
+                    DefaultDirectory = @"D:\",
+                    AllowedTypes = new DriveType[]
+                    {
+                        DriveType.CDRom
+                    }
                 });
 
                 // Make sure the user didn't cancel

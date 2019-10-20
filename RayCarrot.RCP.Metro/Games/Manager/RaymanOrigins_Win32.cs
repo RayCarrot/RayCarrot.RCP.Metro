@@ -23,6 +23,15 @@ namespace RayCarrot.RCP.Metro
             new GamePurchaseLink(Resources.GameDisplay_PurchaseUplay, "https://store.ubi.com/eu/rayman-origins/56c4948888a7e300458b47dc.html")
         };
 
+        /// <summary>
+        /// Gets the game finder item for this game
+        /// </summary>
+        public override GameFinderItem GameFinderItem => new GameFinderItem(null, "Rayman Origins", new string[]
+        {
+            "Rayman Origins",
+            "Rayman: Origins",
+        });
+
         #endregion
     }
 }

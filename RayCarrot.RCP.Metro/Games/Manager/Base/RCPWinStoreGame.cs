@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Management.Deployment;
@@ -85,6 +86,19 @@ namespace RayCarrot.RCP.Metro
             new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, GetStorePageURI())
         };
 
+        /// <summary>
+        /// Gets the game finder item for this game
+        /// </summary>
+        public override GameFinderItem GameFinderItem => new GameFinderItem(() =>
+        {
+            // Make sure version is at least Windows 8
+            if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
+                return null;
+
+            // Return the install directory, if found
+            return GetPackageInstallDirectory();
+        });
+
         #endregion
 
         #region Public Abstract Properties
@@ -155,23 +169,6 @@ namespace RayCarrot.RCP.Metro
         #region Public Override Methods
 
         /// <summary>
-        /// Gets the install directory for the game
-        /// </summary>
-        /// <returns>The install directory</returns>
-        public override FileSystemPath FindInstallDirectory()
-        {
-            try
-            {
-                return GetPackageInstallDirectory();
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Getting Windows Store game install directory");
-                return FileSystemPath.EmptyPath;
-            }
-        }
-
-        /// <summary>
         /// Gets the available jump list items for this game
         /// </summary>
         /// <returns>The items</returns>
@@ -179,7 +176,7 @@ namespace RayCarrot.RCP.Metro
         {
             return new JumpListItemViewModel[]
             {
-                new JumpListItemViewModel(Game.GetGameInfo().DisplayName, LegacyLaunchPath, LegacyLaunchPath, null, Game.ToString())
+                new JumpListItemViewModel(Game.GetGameInfo().DisplayName, LegacyLaunchPath, LegacyLaunchPath, null, null, Game.ToString())
             };
         }
 
@@ -207,9 +204,20 @@ namespace RayCarrot.RCP.Metro
                 return null;
             }
 
-            // If located, return an empty path
-            // TODO: Get install directory here perhaps? That way one is always requires and doesn't have to be obtained separately
-            return FileSystemPath.EmptyPath;
+            try
+            {
+                // Return the install location
+                return GetPackageInstallDirectory();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Getting Windows Store game install directory");
+
+                // TODO: Show error message
+
+                return null;
+            }
+
         }
 
         /// <summary>
@@ -217,13 +225,17 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="installDir">The game install directory, if any</param>
         /// <returns>True if the game is valid, otherwise false</returns>
-        public override Task<bool> IsValidAsync(FileSystemPath installDir)
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public override async Task<bool> IsValidAsync(FileSystemPath installDir)
         {
+            if (!(await base.IsValidAsync(installDir)))
+                return false;
+
             // Make sure version is at least Windows 8
             if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
-                return Task.FromResult(false);
+                return false;
 
-            return Task.FromResult(GetGamePackage() != null);
+            return GetGamePackage() != null;
         }
 
         /// <summary>
@@ -248,9 +260,10 @@ namespace RayCarrot.RCP.Metro
         /// Gets the game package install directory for a Windows Store game
         /// </summary>
         /// <returns>The package install directory</returns>
-        public FileSystemPath GetPackageInstallDirectory()
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public FileSystemPath? GetPackageInstallDirectory()
         {
-            return GetGamePackage()?.InstalledLocation.Path ?? FileSystemPath.EmptyPath;
+            return GetGamePackage()?.InstalledLocation.Path;
         }
 
         /// <summary>
@@ -258,6 +271,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <paramref name="packageName">The name of the package or null to use default</paramref>
         /// <returns>The package or null if not found</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public Package GetGamePackage(string packageName = null)
         {
             return new PackageManager().FindPackagesForUser(String.Empty).FindItem(x => x.Id.Name == (packageName ?? PackageName));
@@ -267,6 +281,7 @@ namespace RayCarrot.RCP.Metro
         /// Launches the first package entry for a game
         /// </summary>
         /// <returns>The task</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public async Task LaunchFirstPackageEntryAsync()
         {
             await (await GetGamePackage().GetAppListEntriesAsync()).First().LaunchAsync();

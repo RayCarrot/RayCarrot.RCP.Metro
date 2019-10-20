@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using Nito.AsyncEx;
@@ -358,6 +359,14 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if changing the game mount location is available
         /// </summary>
         public bool IsMountLocationAvailable { get; set; }
+
+        /// <summary>
+        /// The allowed drive types when browsing for a mount path
+        /// </summary>
+        public DriveType[] MountPathAllowedDriveTypes => new DriveType[]
+        {
+            DriveType.CDRom
+        };
 
         #endregion
 

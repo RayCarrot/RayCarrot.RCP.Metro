@@ -220,30 +220,31 @@ namespace RayCarrot.RCP.Metro
         /// <param name="game">The game to get the manager for</param>
         /// <param name="type">The type of game to get the manager for</param>
         /// <returns>The manager</returns>
-        public static T GetManager<T>(this Games game)
+        public static T GetManager<T>(this Games game, GameType? type = null)
             where T : RCPGameManager
         {
-            GameType type;
+            if (type == null)
+            {
+                if (typeof(T) == typeof(RCPWin32Game))
+                    type = GameType.Win32;
 
-            if (typeof(T) == typeof(RCPWin32Game))
-                type = GameType.Win32;
+                else if (typeof(T) == typeof(RCPSteamGame))
+                    type = GameType.Steam;
 
-            else if (typeof(T) == typeof(RCPSteamGame))
-                type = GameType.Steam;
+                else if (typeof(T) == typeof(RCPWinStoreGame))
+                    type = GameType.WinStore;
 
-            else if (typeof(T) == typeof(RCPWinStoreGame))
-                type = GameType.WinStore;
+                else if (typeof(T) == typeof(RCPDOSBoxGame))
+                    type = GameType.DosBox;
 
-            else if (typeof(T) == typeof(RCPDOSBoxGame))
-                type = GameType.DosBox;
+                else if (typeof(T) == typeof(RCPEducationalDOSBoxGame))
+                    type = GameType.EducationalDosBox;
 
-            else if (typeof(T) == typeof(RCPEducationalDOSBoxGame))
-                type = GameType.EducationalDosBox;
+                else
+                    throw new Exception("The provided game manager type is not valid");
+            }
 
-            else
-                throw new Exception("The provided game manager type is not valid");
-
-            return RCFRCP.App.GameManagers[game][type].CreateInstance<T>();
+            return RCFRCP.App.GameManagers[game][type.Value].CreateInstance<T>();
         }
 
         /// <summary>

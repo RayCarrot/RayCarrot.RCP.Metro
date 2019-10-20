@@ -109,6 +109,8 @@ namespace RayCarrot.RCP.Metro
                 AddTransient<AppUIManager>().
                 // Add backup manager
                 AddTransient<BackupManager>().
+                // Add game finder
+                AddTransient<GameFinder>().
                 // Build the framework
                 Build(config);
         }
@@ -584,23 +586,6 @@ namespace RayCarrot.RCP.Metro
 
                         break;
 
-                    case nameof(AppUserData.FiestaRunVersion):
-
-                        // Update the install directory and game data
-                        try
-                        {
-                            GameData gameData = new GameData(GameType.WinStore, Games.RaymanFiestaRun.GetManager<RCPWinStoreGame>().GetPackageInstallDirectory());
-                            RCFRCP.Data.Games[Games.RaymanFiestaRun] = gameData;
-                        }
-                        catch (Exception ex)
-                        {
-                            ex.HandleError("Getting updated Windows Store game install directory");
-                        }
-
-                        await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun, false, false, false, true));
-
-                        break;
-
                     case nameof(AppUserData.RRR2LaunchMode):
                         await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, false, false, false, true));
                         break;
@@ -711,12 +696,12 @@ namespace RayCarrot.RCP.Metro
                             // Keep custom order
                             OrderBy(x => RCFRCP.Data.JumpListItemIDCollection.IndexOf(x.ID)).
                             // Create the jump tasks
-                            Select(x => new JumpTask()
+                            Select(x => new JumpTask
                             {
                                 Title = x.Name,
                                 Description = String.Format(Metro.Resources.JumpListItemDescription, x.Name),
                                 ApplicationPath = x.LaunchPath,
-                                WorkingDirectory = File.Exists(x.LaunchPath) ? Path.GetDirectoryName(x.LaunchPath) : String.Empty,
+                                WorkingDirectory = x.WorkingDirectory,
                                 Arguments = x.LaunchArguments,
                                 IconResourcePath = x.IconSource
                             }), false, false).

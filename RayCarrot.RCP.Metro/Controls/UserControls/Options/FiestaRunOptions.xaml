@@ -28,17 +28,17 @@
 
             <rwpf:RadioButtonExtended Content="{Resx FiestaRunVersion_Default}"
                                       IsEnabled="{Binding Path=IsFiestaRunDefaultAvailable}"
-                                      IsChecked="{Binding Path=Data.FiestaRunVersion, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Default}"
+                                      IsChecked="{Binding Path=SelectedFiestaRunVersion, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Default}"
                                       Margin="0 0 8 0" />
 
             <rwpf:RadioButtonExtended Content="{Resx FiestaRunVersion_Preload}"
                                       IsEnabled="{Binding Path=IsFiestaRunPreloadAvailable}"
-                                      IsChecked="{Binding Path=Data.FiestaRunVersion, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Preload}"
+                                      IsChecked="{Binding Path=SelectedFiestaRunVersion, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Preload}"
                                       Margin="0 0 8 0" />
 
             <rwpf:RadioButtonExtended Content="{Resx FiestaRunVersion_Win10}"
                                       IsEnabled="{Binding Path=IsFiestaRunWin10Available}"
-                                      IsChecked="{Binding Path=Data.FiestaRunVersion, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Win10}"
+                                      IsChecked="{Binding Path=SelectedFiestaRunVersion, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Win10}"
                                       Margin="0 0 8 0" />
 
         </WrapPanel>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace RayCarrot.RCP.Metro
@@ -58,7 +59,7 @@ namespace RayCarrot.RCP.Metro
         {
             get
             {
-                var manager = Game.GetManager<RaymanFiestaRun_WinStore>();
+                var manager = Game.GetManager<RaymanFiestaRun_WinStore>(GameType.WinStore);
 
                 // Get every installed version
                 var versions = FiestaRunEdition.Preload.GetValues().Where(x => manager.GetGamePackage(manager.GetFiestaRunPackageName(x)) != null);

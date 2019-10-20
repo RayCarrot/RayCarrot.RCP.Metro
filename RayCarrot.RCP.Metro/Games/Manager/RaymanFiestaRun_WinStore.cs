@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using RayCarrot.IO;
 using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
@@ -41,6 +43,33 @@ namespace RayCarrot.RCP.Metro
             new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, GetStorePageURI(GetStoreID(FiestaRunEdition.Preload)))
         };
 
+        /// <summary>
+        /// Gets the game finder item for this game
+        /// </summary>
+        public override GameFinderItem GameFinderItem => new GameFinderItem(() =>
+        {
+            // Make sure version is at least Windows 8
+            if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
+                return null;
+
+            // Check each version
+            foreach (FiestaRunEdition version in Enum.GetValues(typeof(FiestaRunEdition)))
+            {
+                // Check if valid
+                if (IsFiestaRunEditionValidAsync(version))
+                {
+                    // Set the version
+                    RCFRCP.Data.FiestaRunVersion = version;
+
+                    // Return the install directory
+                    return GetPackageInstallDirectory();
+                }
+            }
+
+            // Return an empty path if not found
+            return null;
+        });
+
         #endregion
 
         #region Protected Override Methods
@@ -75,6 +104,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="edition">The edition to check</param>
         /// <returns>True if the game is valid, otherwise false</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public bool IsFiestaRunEditionValidAsync(FiestaRunEdition edition)
         {
             // Make sure version is at least Windows 8

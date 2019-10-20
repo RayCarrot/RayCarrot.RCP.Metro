@@ -19,6 +19,16 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override string GetLaunchArgs => RCFRCP.Data.RabbidsGoHomeLaunchData?.ToString();
 
+        /// <summary>
+        /// Gets the game finder item for this game
+        /// </summary>
+        public override GameFinderItem GameFinderItem => new GameFinderItem(null, "Rabbids Go Home", new string[]
+        {
+            "Rabbids Go Home",
+            "Rabbids Go Home - DVD",
+            "Rabbids: Go Home",
+        });
+
         #endregion
 
         #region Public Override Methods
