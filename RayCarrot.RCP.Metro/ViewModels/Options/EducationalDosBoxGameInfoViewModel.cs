@@ -82,6 +82,10 @@ namespace RayCarrot.RCP.Metro
             if (result.CanceledByUser)
                 return;
 
+            // Check if any games have the same launch mode
+            if (Data.EducationalDosBoxGames.Any(x => x != GameData && x.LaunchMode != null && x.LaunchMode.Equals(result.LaunchMode, StringComparison.CurrentCultureIgnoreCase)))
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LaunchModeConflict, Resources.LaunchModeConflictHeader, MessageType.Warning);
+
             // If the name is blank, add default name
             if (result.Name.IsNullOrWhiteSpace())
             {

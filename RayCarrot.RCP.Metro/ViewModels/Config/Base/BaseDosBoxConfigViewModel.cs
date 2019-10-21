@@ -18,9 +18,11 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor for a specific game
         /// </summary>
         /// <param name="game">The DosBox game</param>
-        protected BaseDosBoxConfigViewModel(Games game)
+        /// <param name="gameType">The type of game</param>
+        protected BaseDosBoxConfigViewModel(Games game, GameType gameType)
         {
             Game = game;
+            GameType = gameType;
 
             // Create the async lock
             AsyncLock = new AsyncLock();
@@ -168,6 +170,11 @@ namespace RayCarrot.RCP.Metro
         /// The DosBox game
         /// </summary>
         public Games Game { get; }
+
+        /// <summary>
+        /// The type of game
+        /// </summary>
+        public GameType GameType { get; }
 
         /// <summary>
         /// The available resolution values to use
@@ -389,7 +396,7 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogInformationSource($"{Game} config is being set up");
 
             // Get the config manager
-            var configManager = new DosBoxAutoConfigManager(Game.GetManager<RCPDOSBoxGame>().DosBoxConfigFile);
+            var configManager = new DosBoxAutoConfigManager(Game.GetManager<RCPDOSBoxGame>(GameType).DosBoxConfigFile);
 
             // Create the file
             configManager.Create();

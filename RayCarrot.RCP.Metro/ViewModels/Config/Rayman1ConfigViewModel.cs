@@ -17,7 +17,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Constructor for using the default game, <see cref="Games.Rayman1"/>
         /// </summary>
-        public Rayman1ConfigViewModel() : base(Games.Rayman1)
+        public Rayman1ConfigViewModel() : base(Games.Rayman1, GameType.DosBox)
         {
             IsMountLocationAvailable = true;
         }

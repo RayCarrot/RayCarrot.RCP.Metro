@@ -156,16 +156,6 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Protected Virtual Methods
-
-        /// <summary>
-        /// Locates an installed Windows Store game and returns a value indicating if it was found
-        /// </summary>
-        /// <returns>True if the game was found, otherwise false</returns>
-        protected virtual Task<bool> LocateWinStoreGameAsync() => IsValidAsync(FileSystemPath.EmptyPath);
-
-        #endregion
-
         #region Public Override Methods
 
         /// <summary>
@@ -194,30 +184,42 @@ namespace RayCarrot.RCP.Metro
                 return null;
             }
 
-            // Attempt to locate the game
-            if (!await LocateWinStoreGameAsync())
+            FileSystemPath installDir;
+
+            try
             {
-                RCFCore.Logger?.LogInformationSource($"The {Game} was not found under Windows Store packages");
+                // Get the install directory
+                var dir = GetPackageInstallDirectory();
+
+                // Make sure we got a valid directory
+                if (dir == null)
+                {
+                    RCFCore.Logger?.LogInformationSource($"The {Game} was not found under Windows Store packages");
+
+                    return null;
+                }
+
+                installDir = dir;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Getting Windows Store game install directory");
 
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
 
                 return null;
             }
 
-            try
+            if (!await IsValidAsync(installDir))
             {
-                // Return the install location
-                return GetPackageInstallDirectory();
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Getting Windows Store game install directory");
+                RCFCore.Logger?.LogInformationSource($"The {Game} install directory was not valid");
 
-                // TODO: Show error message
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
 
                 return null;
             }
 
+            return installDir;
         }
 
         /// <summary>
@@ -228,14 +230,14 @@ namespace RayCarrot.RCP.Metro
         [MethodImpl(MethodImplOptions.NoInlining)]
         public override async Task<bool> IsValidAsync(FileSystemPath installDir)
         {
-            if (!(await base.IsValidAsync(installDir)))
-                return false;
-
             // Make sure version is at least Windows 8
             if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
                 return false;
 
-            return GetGamePackage() != null;
+            if (!(await base.IsValidAsync(installDir)))
+                return false;
+
+            return true;
         }
 
         /// <summary>
@@ -259,11 +261,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the game package install directory for a Windows Store game
         /// </summary>
+        /// <paramref name="packageName">The name of the package or null to use default</paramref>
         /// <returns>The package install directory</returns>
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public FileSystemPath? GetPackageInstallDirectory()
+        public string GetPackageInstallDirectory(string packageName = null)
         {
-            return GetGamePackage()?.InstalledLocation.Path;
+            return GetGamePackage(packageName)?.InstalledLocation.Path;
         }
 
         /// <summary>

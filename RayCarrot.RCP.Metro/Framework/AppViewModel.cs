@@ -547,14 +547,6 @@ namespace RayCarrot.RCP.Metro
             // Get the manager
             var manager = game.GetManager(type);
 
-            // Get the install directory
-            if (!installDirectory.DirectoryExists)   
-            {
-                // TODO: Show error
-
-                return;
-            }
-
             // Add the game
             Data.Games.Add(game, new GameData(type, installDirectory));
 

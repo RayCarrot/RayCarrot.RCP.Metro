@@ -135,15 +135,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>Null if the game was not found. Otherwise a valid or empty path for the install directory</returns>
         public override async Task<FileSystemPath?> LocateAsync()
         {
-            // Make sure the game is valid
-            if (!await IsValidAsync(FileSystemPath.EmptyPath))
-            {
-                RCFCore.Logger?.LogInformationSource($"The {Game} was not found under Steam Apps");
-
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGameHeader, MessageType.Error);
-
-                return null;
-            }
+            FileSystemPath installDir;
 
             try
             {
@@ -152,27 +144,36 @@ namespace RayCarrot.RCP.Metro
 
                 using var key = RCFWinReg.RegistryManager.GetKeyFromFullPath(keyPath, RegistryView.Registry64);
 
-                // Return the install directory
-                return key?.GetValue("InstallLocation") as string;
+                // Get the install directory
+                if (!(key?.GetValue("InstallLocation") is string dir))
+                {
+                    RCFCore.Logger?.LogInformationSource($"The {Game} was not found under Steam Apps");
+
+                    return null;
+                }
+
+                installDir = dir;
             }
             catch (Exception ex)
             {
                 ex.HandleError("Getting Steam game install directory");
 
-                // TODO: Show error message
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGameHeader, MessageType.Error);
 
                 return null;
             }
-        }
 
-        /// <summary>
-        /// Indicates if the game is valid
-        /// </summary>
-        /// <param name="installDir">The game install directory, if any</param>
-        /// <returns>True if the game is valid, otherwise false</returns>
-        public override async Task<bool> IsValidAsync(FileSystemPath installDir)
-        {
-            return await base.IsValidAsync(installDir) && RCFWinReg.RegistryManager.KeyExists(RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, $"Steam App {SteamID}"), RegistryView.Registry64);
+            // Make sure the game is valid
+            if (!await IsValidAsync(installDir))
+            {
+                RCFCore.Logger?.LogInformationSource($"The {Game} install directory was not valid");
+
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGameHeader, MessageType.Error);
+
+                return null;
+            }
+
+            return installDir;
         }
 
         /// <summary>

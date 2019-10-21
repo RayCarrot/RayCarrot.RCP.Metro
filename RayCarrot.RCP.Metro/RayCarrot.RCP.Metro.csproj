@@ -513,7 +513,7 @@
     <Compile Include="Utilities\Rayman 1\TPLS\TPLS\SoundtrackPlayer\SoundtrackPlayer.cs" />
     <Compile Include="Utilities\Rayman 1\TPLS\TPLS\TPLS.cs" />
     <Compile Include="DataModels\Enums\DownloadState.cs" />
-    <Compile Include="Extensions\TPLSRaymanVersionExtensions.cs" />
+    <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Extensions\TPLSRaymanVersionExtensions.cs" />
     <Compile Include="ViewModels\TPLSDataViewModel.cs" />
     <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Watchdog.cs" />
     <Compile Include="DataModels\EventArgs\ValueEventArgs.cs" />

@@ -108,10 +108,10 @@ namespace RayCarrot.RCP.Metro
             if (!RCFRCP.Data.DosBoxGames.ContainsKey(Game))
                 RCFRCP.Data.DosBoxGames.Add(Game, options);
 
-            // If the game was included in Rayman Forever
+            // If the game was included in Rayman Forever...
             if (RaymanForeverFolderName != null)
             {
-                // Get the install directory
+                // Get the parent directory to the install directory
                 var foreverInstallDir = GameData.InstallDirectory.Parent;
 
                 // Attempt to automatically locate the mount file (based on the Rayman Forever location)
@@ -125,18 +125,29 @@ namespace RayCarrot.RCP.Metro
 
                 var mountPath = mountFiles.FindItem(x => x.FileExists);
 
-                // TODO: Log
                 if (mountPath.FileExists)
+                {
                     options.MountPath = mountPath;
+                    RCFCore.Logger?.LogInformationSource($"The mount path for {Game} was automatically found");
+                }
 
-                // TODO: Find DOSBox files if not already added
-                /*
-                   if (!File.Exists(Data.DosBoxPath))
-                        Data.DosBoxPath = dir + "DosBox" + "DOSBox.exe";
+                // Find DOSBox path if not already added
+                if (!File.Exists(RCFRCP.Data.DosBoxPath))
+                {
+                    var dosBoxPath = foreverInstallDir + "DosBox" + "DOSBox.exe";
 
-                   Data.DosBoxConfig = dir + "dosboxRayman.conf";
+                    if (dosBoxPath.FileExists)
+                        RCFRCP.Data.DosBoxPath = dosBoxPath;
+                }
 
-                 */
+                // Find DOSBox config path if not already added
+                if (!File.Exists(RCFRCP.Data.DosBoxConfig))
+                {
+                    var dosBoxConfigPath = foreverInstallDir + "dosboxRayman.conf";
+
+                    if (dosBoxConfigPath.FileExists)
+                        RCFRCP.Data.DosBoxConfig = dosBoxConfigPath;
+                }
             }
 
             return Task.CompletedTask;

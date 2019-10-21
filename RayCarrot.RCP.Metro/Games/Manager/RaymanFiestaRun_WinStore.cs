@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
@@ -75,24 +77,64 @@ namespace RayCarrot.RCP.Metro
         #region Protected Override Methods
 
         /// <summary>
-        /// Locates an installed Windows Store game and returns a value indicating if it was found
+        /// Locates the game
         /// </summary>
-        /// <returns>True if the game was found, otherwise false</returns>
-        protected override Task<bool> LocateWinStoreGameAsync()
+        /// <returns>Null if the game was not found. Otherwise a valid or empty path for the install directory</returns>
+        public override async Task<FileSystemPath?> LocateAsync()
         {
-            // Check each version to see if at least one is found
-            foreach (FiestaRunEdition version in Enum.GetValues(typeof(FiestaRunEdition)))
+            // Make sure version is at least Windows 8
+            if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
             {
-                // If found, set the default version and return true
-                if (IsFiestaRunEditionValidAsync(version))
-                {
-                    RCFRCP.Data.FiestaRunVersion = version;
-                    return Task.FromResult(true);
-                }
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_WinStoreNotSupported, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
+
+                return null;
             }
 
-            // If none was found then return false
-            return Task.FromResult(false);
+            try
+            {
+                // Check each version to see if at least one is found
+                foreach (FiestaRunEdition version in Enum.GetValues(typeof(FiestaRunEdition)))
+                {
+                    // Attempt to get the install directory
+                    var dir = GetPackageInstallDirectory(GetFiestaRunPackageName(version));
+
+                    // Make sure we got a directory
+                    if (dir == null)
+                    {
+                        RCFCore.Logger?.LogInformationSource($"The {Game} was not found under Windows Store packages");
+                        continue;
+                    }
+
+                    // Get the install directory
+                    FileSystemPath installDir = dir;
+
+                    // Make sure we got a valid directory
+                    if (!await IsValidAsync(installDir))
+                    {
+                        RCFCore.Logger?.LogInformationSource($"The {Game} install directory was not valid");
+
+                        continue;
+                    }
+
+                    // Set the version
+                    RCFRCP.Data.FiestaRunVersion = version;
+
+                    // Return the directory
+                    return installDir;
+                }
+
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Getting Fiesta Run game install directory");
+
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
+
+                return null;
+            }
         }
 
         #endregion

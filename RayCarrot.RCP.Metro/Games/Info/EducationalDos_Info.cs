@@ -59,11 +59,6 @@ namespace RayCarrot.RCP.Metro
                 // Get the games with a launch mode
                 var games = RCFRCP.Data.EducationalDosBoxGames.Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).ToArray();
 
-                // TODO: Place message somewhere else
-                // Check if any games have the same launch mode
-                //if (games.Select(x => x.LaunchMode).Distinct(StringComparer.InvariantCultureIgnoreCase).Count() < games.Length)
-                //    await RCFUI.MessageUI.DisplayMessageAsync(Resources.LaunchModeConflict, Resources.LaunchModeConflictHeader, MessageType.Warning);
-
                 // Return a collection of the backup infos for the available games
                 return games.Select(x =>
                 {
@@ -75,7 +70,7 @@ namespace RayCarrot.RCP.Metro
                             new BackupDir(x.InstallDir, SearchOption.TopDirectoryOnly, $"EDU{x.LaunchMode}??.SAV", "0", 0),
                             new BackupDir(x.InstallDir, SearchOption.TopDirectoryOnly, $"EDU{x.LaunchMode}.CFG", "1", 0)
                         }, x.Name);
-                }).ToArray();
+                }).ToArray<IBackupInfo>();
             }
         }
 

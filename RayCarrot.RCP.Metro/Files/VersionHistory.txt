@@ -8,6 +8,7 @@ Other changes:
 • Microsoft Store links now open directly in the store app
 • The name "Windows Store" has been updated to say "Microsoft Store"
 • The drive selection dialog will now only show discs
+• All games now require a valid install directory
 • Added more options to the debug page
 • Bug fixes
 

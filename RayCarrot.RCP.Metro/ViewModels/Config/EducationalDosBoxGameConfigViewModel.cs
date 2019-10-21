@@ -12,7 +12,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Constructor for using the default game, <see cref="Games.EducationalDos"/>
         /// </summary>
-        public EducationalDosBoxGameConfigViewModel() : base(Games.EducationalDos)
+        public EducationalDosBoxGameConfigViewModel() : base(Games.EducationalDos, GameType.EducationalDosBox)
         {
             IsMountLocationAvailable = false;
             IsGameLanguageAvailable = false;

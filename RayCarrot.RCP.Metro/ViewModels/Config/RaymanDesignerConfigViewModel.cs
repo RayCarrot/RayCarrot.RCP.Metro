@@ -26,7 +26,7 @@ namespace RayCarrot.RCP.Metro
         /// Constructor for specifying a game
         /// </summary>
         /// <paramref name="game">The game</paramref>
-        public RaymanDesignerConfigViewModel(Games game) : base(game)
+        public RaymanDesignerConfigViewModel(Games game) : base(game, GameType.DosBox)
         {
             IsMountLocationAvailable = true;
         }
