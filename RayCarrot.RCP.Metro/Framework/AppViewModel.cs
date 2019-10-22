@@ -47,6 +47,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public AppViewModel()
         {
+            IsStartupRunning = true;
+
             try
             {
                 IsRunningAsAdmin = WindowsHelpers.RunningAsAdmin;
@@ -437,6 +439,11 @@ namespace RayCarrot.RCP.Metro
         #region Public Properties
 
         /// <summary>
+        /// Indicates if the application startup operation is running
+        /// </summary>
+        public bool IsStartupRunning { get; set; }
+
+        /// <summary>
         /// The available local utilities
         /// </summary>
         public Dictionary<Games, Type[]> LocalUtilities { get; }
@@ -673,58 +680,80 @@ namespace RayCarrot.RCP.Metro
 
             IsGameFinderRunning = true;
 
-            return await Task.Run<bool>(async () =>
+            // Keep track of found games which have been added
+            var addedGames = new List<Games>();
+
+            try
             {
-                // Keep track of found games which have been added
-                var addedGames = new List<Games>();
+                // Get all games which have not been added
+                var games = GetGames.Where(x => !x.IsAdded()).ToArray();
 
-                try
-                {
-                    // Get all games which have not been added
-                    var games = GetGames.Where(x => !x.IsAdded()).ToArray();
+                RCFCore.Logger?.LogTraceSource($"The following games were added to the game checker: {games.JoinItems(", ")}");
 
-                    RCFCore.Logger?.LogTraceSource($"The following games were added to the game checker: {games.JoinItems(", ")}");
-
-                    // Run the game finder and get the result
-                    var foundGames = RCFRCP.GameFinder.FindGames(games);
-
-                    // Add the found games
-                    foreach (var gameResult in foundGames)
+                // Create DOSBox finder item if it doesn't exist
+                var finderItems = !File.Exists(Data.DosBoxPath)
+                    ? new FinderItem[]
                     {
-                        // Add the game
-                        await AddNewGameAsync(gameResult.Game, gameResult.GameType, gameResult.InstallLocation);
+                            new FinderItem(new string[]
+                            {
+                                "DosBox",
+                                "Dos Box"
+                            }, "DosBox", x => (x + "DOSBox.exe").FileExists ? x : null, x =>
+                            {
+                                if (File.Exists(Data.DosBoxPath))
+                                {
+                                    RCFCore.Logger?.LogWarningSource(
+                                        $"The DosBox executable was not added from the game finder due to already having been added");
+                                    return;
+                                }
 
-                        // Add to list
-                        addedGames.Add(gameResult.Game);
+                                RCFCore.Logger?.LogInformationSource(
+                                    $"The DosBox executable was found from the game finder");
+
+                                Data.DosBoxPath = x + "DOSBox.exe";
+                            })
                     }
+                    : new FinderItem[0];
 
-                    // Show message if new games were found
-                    if (foundGames.Count > 0)
-                    {
-                        await RCFUI.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {foundGames.OrderBy(x => x.Game).JoinItems(Environment.NewLine + "• ", x => x.Game.GetGameInfo().DisplayName)}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
+                // Run the game finder and get the result
+                var foundGames = RCFRCP.GameFinder.FindGames(games, finderItems);
 
-                        RCFCore.Logger?.LogInformationSource($"The game finder found the following games {foundGames.JoinItems(", ", x => x.Game.ToString())}");
-
-                        return true;
-                    }
-                }
-                catch (Exception ex)
+                // Add the found games
+                foreach (var gameResult in foundGames)
                 {
-                    ex.HandleError("Game finder");
+                    // Add the game
+                    await AddNewGameAsync(gameResult.Game, gameResult.GameType, gameResult.InstallLocation);
 
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameFinder_Error);
+                    // Add to list
+                    addedGames.Add(gameResult.Game);
                 }
-                finally
+
+                // Show message if new games were found
+                if (foundGames.Count > 0)
                 {
-                    // Refresh if any games were added
-                    if (addedGames.Any())
-                        await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(addedGames, true, false, false, false));
+                    await RCFUI.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {foundGames.OrderBy(x => x.Game).JoinItems(Environment.NewLine + "• ", x => x.Game.GetGameInfo().DisplayName)}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
 
-                    IsGameFinderRunning = false;
+                    RCFCore.Logger?.LogInformationSource($"The game finder found the following games {foundGames.JoinItems(", ", x => x.Game.ToString())}");
+
+                    return true;
                 }
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Game finder");
 
-                return false;
-            });
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameFinder_Error);
+            }
+            finally
+            {
+                // Refresh if any games were added
+                if (addedGames.Any())
+                    await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(addedGames, true, false, false, false));
+
+                IsGameFinderRunning = false;
+            }
+
+            return false;
         }
 
         /// <summary>

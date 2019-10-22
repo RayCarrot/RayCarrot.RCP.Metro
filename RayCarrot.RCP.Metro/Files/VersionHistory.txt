@@ -1,5 +1,6 @@
 ﻿-----   Version 7.0.0 - November ??, 2019   -----
 • 
+• Major changes to the application startup
 • The game finder has been improved
 • Added the option to open Microsoft Store apps in the store
 
@@ -10,6 +11,7 @@ Other changes:
 • The drive selection dialog will now only show discs
 • All games now require a valid install directory
 • Added more options to the debug page
+• Added an option to clear the logs shown in the log viewer
 • Bug fixes
 
 

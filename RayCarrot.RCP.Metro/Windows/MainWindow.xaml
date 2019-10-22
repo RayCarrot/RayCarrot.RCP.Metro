@@ -361,5 +361,10 @@
 
         </metro:MetroAnimatedTabControl>
 
+        <metro:ProgressRing HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Margin="5"
+                            Visibility="{Binding Path=IsStartupRunning, Converter={rwpf:BooleanToVisibilityConverter}}" />
+
     </Grid>
 </local:BaseWindow>

@@ -21,12 +21,14 @@ namespace RayCarrot.RCP.Metro
     {
         #region Public Methods
 
+        // TODO: When a game is found - remove it from ALL finders to avoid duplicate searching. Make helper inline method for this?
         /// <summary>
         /// Attempts to find the specified games, returning the found games and their install locations
         /// </summary>
         /// <param name="games">The games to search for</param>
+        /// <param name="finderItems">Other finder items to search for</param>
         /// <returns>The found games and their install locations</returns>
-        public IReadOnlyList<GameFinderResult> FindGames(IEnumerable<Games> games)
+        public IReadOnlyList<GameFinderResult> FindGames(IEnumerable<Games> games, params FinderItem[] finderItems)
         {
             try
             {
@@ -46,7 +48,9 @@ namespace RayCarrot.RCP.Metro
                 // Split finders into groups
                 var ubiIniGameFinders = gameFinders.Where(x => x.FinderItem.UbiIniSectionName != null).ToArray();
                 var regUninstallGameFinders = gameFinders.Where(x => x.FinderItem.PossibleWin32Names?.Any() == true).ToList();
+                var regUninstallFinders = finderItems.Where(x => x.PossibleWin32Names?.Any() == true).ToList();
                 var programShortcutGameFinders = gameFinders.Where(x => x.FinderItem.ShortcutName != null).ToList();
+                var programShortcutFinders = finderItems.Where(x => x.ShortcutName != null).ToList();
                 var steamGameFinders = gameFinders.Where(x => x.FinderItem.SteamID != null).ToList();
                 var customGameFinders = gameFinders.Where(x => x.FinderItem.CustomFinderAction != null).ToArray();
 
@@ -65,7 +69,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure the install directory exists
                     if (!installDir.DirectoryExists)
                     {
-                        RCFCore.Logger?.LogInformationSource($"{game.Game} could not be added. The install directory does not exist.");
+                        RCFCore.Logger?.LogWarningSource($"{game.Game} could not be added. The install directory does not exist.");
                         return false;
                     }
 
@@ -97,6 +101,40 @@ namespace RayCarrot.RCP.Metro
                     gamesToFind.Remove(game.Game);
 
                     RCFCore.Logger?.LogInformationSource($"The game {game.Game} was found");
+
+                    return true;
+                }
+
+                // Helper method for adding a found item
+                static bool AddItem(FinderItem item, FileSystemPath installDir)
+                {
+                    RCFCore.Logger?.LogInformationSource($"An install directory was found for a finder item");
+
+                    // Make sure the install directory exists
+                    if (!installDir.DirectoryExists)
+                    {
+                        RCFCore.Logger?.LogWarningSource($"The item could not be added. The install directory does not exist.");
+                        return false;
+                    }
+
+                    // If available, run custom verification
+                    if (item.VerifyInstallDirectory != null)
+                    {
+                        var result = item.VerifyInstallDirectory?.Invoke(installDir);
+
+                        if (result == null)
+                        {
+                            RCFCore.Logger?.LogInformationSource($"The item could not be added. The optional verification returned null.");
+                            return false;
+                        }
+
+                        installDir = result.Value;
+                    }
+
+                    // Add the item
+                    item.FoundAction(installDir);
+
+                    RCFCore.Logger?.LogInformationSource($"A finder item was found");
 
                     return true;
                 }
@@ -149,7 +187,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Search Registry uninstall programs
-                if ((regUninstallGameFinders.Any() || steamGameFinders.Any()) && gamesToFind.Any())
+                if ((regUninstallGameFinders.Any() || steamGameFinders.Any() || regUninstallFinders.Any()) && gamesToFind.Any())
                 {
                     RCFCore.Logger?.LogInformationSource("The Registry uninstall programs are being searched...");
 
@@ -158,7 +196,18 @@ namespace RayCarrot.RCP.Metro
                         // Enumerate each program
                         foreach (var program in EnumerateRegistryUninstallPrograms())
                         {
-                            // Find all matches
+                            // Check matches towards other finder items
+                            foreach (var finderItem in regUninstallFinders.Where(x => program.DisplayName.Equals(StringComparison.CurrentCultureIgnoreCase, x.PossibleWin32Names)).ToArray())
+                            {
+                                // Add the item
+                                var added = AddItem(finderItem, program.InstallLocation);
+                                
+                                // Remove if added
+                                if (added)
+                                    regUninstallFinders.Remove(finderItem);
+                            }
+
+                            // Find all game matches
                             IEnumerable<GameFinderItemContainer> gameMatches;
 
                             // Check if the program has a Steam ID associated with it
@@ -166,7 +215,7 @@ namespace RayCarrot.RCP.Metro
 
                             // Attempt to find matching game
                             if (isSteamGame)
-                                gameMatches = steamGameFinders.Where(x => x.FinderItem.SteamID == program.SteamID);
+                                gameMatches = steamGameFinders.Where(x => x.FinderItem.SteamID == program.SteamID).ToArray();
                             else
                                 gameMatches = regUninstallGameFinders.Where(x => program.DisplayName.Equals(StringComparison.CurrentCultureIgnoreCase, x.FinderItem.PossibleWin32Names)).ToArray();
 
@@ -192,7 +241,7 @@ namespace RayCarrot.RCP.Metro
                             }
 
                             // Break if no more games needed to be found
-                            if (!regUninstallGameFinders.Any() && !steamGameFinders.Any())
+                            if (!regUninstallGameFinders.Any() && !steamGameFinders.Any() && !regUninstallFinders.Any())
                                 break;
                         }
                     }
@@ -203,7 +252,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Search Win32 shortcuts
-                if (programShortcutGameFinders.Any() && gamesToFind.Any())
+                if ((programShortcutGameFinders.Any() || programShortcutFinders.Any()) && gamesToFind.Any())
                 {
                     RCFCore.Logger?.LogInformationSource("The program shortcuts are being searched...");
 
@@ -219,8 +268,32 @@ namespace RayCarrot.RCP.Metro
                             if (file == null)
                                 continue;
 
+                            // Check matches towards other finder items
+                            foreach (var finderItem in regUninstallFinders.Where(x => file.IndexOf(x.ShortcutName, StringComparison.CurrentCultureIgnoreCase) > -1).ToArray())
+                            {
+                                FileSystemPath targetDir;
+
+                                try
+                                {
+                                    // Attempt to get the shortcut target path
+                                    targetDir = WindowsHelpers.GetShortCutTarget(shortcut).Parent;
+                                }
+                                catch (Exception ex)
+                                {
+                                    ex.HandleUnexpected("Getting start menu item shortcut target for game finder", shortcut);
+                                    continue;
+                                }
+
+                                // Add the item
+                                var added = AddItem(finderItem, targetDir);
+
+                                // Remove if added
+                                if (added)
+                                    programShortcutFinders.Remove(finderItem);
+                            }
+
                             // Handle each game match
-                            foreach (var gameMatch in programShortcutGameFinders.Where(x => file.IndexOf(x.FinderItem.ShortcutName, StringComparison.CurrentCultureIgnoreCase) > -1))
+                            foreach (var gameMatch in programShortcutGameFinders.Where(x => file.IndexOf(x.FinderItem.ShortcutName, StringComparison.CurrentCultureIgnoreCase) > -1).ToArray())
                             {
                                 FileSystemPath targetDir;
 
@@ -244,7 +317,7 @@ namespace RayCarrot.RCP.Metro
                             }
 
                             // Break if no more games needed to be found
-                            if (!programShortcutGameFinders.Any())
+                            if (!programShortcutGameFinders.Any() && !programShortcutFinders.Any())
                                 break;
                         }
                     }
@@ -253,50 +326,6 @@ namespace RayCarrot.RCP.Metro
                         ex.HandleError("Searching program shortcuts for game finder");
                     }
                 }
-
-                // TODO: Hard-code DOSBox search?
-                //// Attempt to find DOSBox if not added
-                //if (!File.Exists(RCFRCP.Data.DosBoxPath))
-                //{
-                //    var actions = new Func<GameFinderActionResult>[]
-                //    {
-                //        // Uninstall
-                //        () => CheckUninstall("DosBox", "Dos Box"),
-
-                //        // Start menu
-                //        () => CheckShortcuts("DosBox", "DOSBox.exe"),
-                //    };
-
-                //    // Run every check action until one is successful
-                //    foreach (var action in actions)
-                //    {
-                //        // Stop running the check actions if the file has been found
-                //        if (File.Exists(Data.DosBoxPath))
-                //            break;
-
-                //        try
-                //        {
-                //            // Get the result from the action
-                //            var dosBoxCheckResult = action();
-
-                //            var filePath = dosBoxCheckResult.Path + "DOSBox.exe";
-
-                //            // Check if the file exists
-                //            if (!filePath.FileExists)
-                //                continue;
-
-                //            RCFCore.Logger?.LogTraceSource($"The DosBox executable was found from the game checker with the source {dosBoxCheckResult.Source}");
-
-                //            Data.DosBoxPath = filePath;
-
-                //            break;
-                //        }
-                //        catch (Exception ex)
-                //        {
-                //            ex.HandleUnexpected("DosBox check action", action);
-                //        }
-                //    }
-                //}
 
                 // Run custom finders
                 foreach (var game in customGameFinders)

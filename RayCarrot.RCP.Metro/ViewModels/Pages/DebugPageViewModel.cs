@@ -264,8 +264,14 @@ namespace RayCarrot.RCP.Metro
                         break;
 
                     case DebugDataOutputTypes.GameFinder:
+                        // Select the games to find
+                        var selectionResult = await RCFRCP.UI.SelectGamesAsync(new GamesSelectionViewModel());
+
+                        if (selectionResult.CanceledByUser)
+                            return;
+
                         // Run and get the result
-                        var result = RCFRCP.GameFinder.FindGames(App.GetGames);
+                        var result = RCFRCP.GameFinder.FindGames(selectionResult.SelectedGames);
                         
                         // Output the found games
                         DataOutput = result.Select(x => $"{x.Game} ({x.GameType}) - {x.InstallLocation}").JoinItems(Environment.NewLine);

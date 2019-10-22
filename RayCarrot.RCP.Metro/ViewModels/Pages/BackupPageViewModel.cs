@@ -25,7 +25,7 @@ namespace RayCarrot.RCP.Metro
         public BackupPageViewModel()
         {
             // Create commands
-            RefreshCommand = new AsyncRelayCommand(RefreshAsync);
+            RefreshCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await RefreshAsync()));
             BackupAllCommand = new AsyncRelayCommand(BackupAllAsync);
 
             // Create properties
@@ -39,11 +39,11 @@ namespace RayCarrot.RCP.Metro
             App.RefreshRequired += async (s, e) =>
             {
                 if (e.BackupsModified || e.GameCollectionModified)
-                    await RefreshAsync();
+                    await Task.Run(async () => await RefreshAsync());
             };
 
             // Refresh on culture changed
-            RCFCore.Data.CultureChanged += async (s, e) => await RefreshAsync();
+            RCFCore.Data.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
 
             // Refresh on startup
             Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();
@@ -87,39 +87,36 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                await Task.Run(async () =>
+                try
                 {
-                    try
+                    // Clear current items
+                    GameBackupItems.Clear();
+
+                    // Enumerate the saved games
+                    foreach (Games game in App.GetGames.Where(x => x.IsAdded()))
                     {
-                        // Clear current items
-                        GameBackupItems.Clear();
-
-                        // Enumerate the saved games
-                        foreach (Games game in App.GetGames.Where(x => x.IsAdded()))
+                        // Enumerate the backup info
+                        foreach (IBackupInfo info in game.GetGameInfo().GetBackupInfos)
                         {
-                            // Enumerate the backup info
-                            foreach (IBackupInfo info in game.GetGameInfo().GetBackupInfos)
-                            {
-                                // Refresh the info
-                                await info.RefreshAsync();
+                            // Refresh the info
+                            await info.RefreshAsync();
 
-                                // Create the backup item
-                                var backupItem = new GameBackupItemViewModel(game, info);
+                            // Create the backup item
+                            var backupItem = new GameBackupItemViewModel(game, info);
 
-                                // Add the item
-                                GameBackupItems.Add(backupItem);
+                            // Add the item
+                            GameBackupItems.Add(backupItem);
 
-                                // Refresh the item
-                                await backupItem.RefreshAsync();
-                            }
+                            // Refresh the item
+                            await backupItem.RefreshAsync();
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        ex.HandleCritical("Refreshing backups");
-                        throw;
-                    }
-                });
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleCritical("Refreshing backups");
+                    throw;
+                }
             }
         }
 
@@ -167,7 +164,7 @@ namespace RayCarrot.RCP.Metro
                     await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, GameBackupItems.Count), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
 
                 // Refresh the item
-                await RefreshAsync();
+                await Task.Run(async () => await RefreshAsync());
             }
             finally
             {

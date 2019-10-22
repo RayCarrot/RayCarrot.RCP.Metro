@@ -103,9 +103,14 @@
     <Compile Include="Controls\AdminButton.xaml.cs">
       <DependentUpon>AdminButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Dialogs\GamesSelectionDialog.xaml.cs">
+      <DependentUpon>GamesSelectionDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Dialogs\JumpListEditDialog.xaml.cs">
       <DependentUpon>JumpListEditDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GameFinder\BaseFinderItem.cs" />
+    <Compile Include="GameFinder\FinderItem.cs" />
     <Compile Include="GamePatcher\GamePatcher.cs" />
     <Compile Include="GameFinder\GameFinder.cs" />
     <Compile Include="GameFinder\GameFinderItem.cs" />
@@ -160,6 +165,8 @@
       <DependentUpon>RLDebugCommandsUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Rayman Legends\DebugCommands\RLDebugCommandsUtilityViewModel.cs" />
+    <Compile Include="ViewModels\Dialogs\GamesSelectionResult.cs" />
+    <Compile Include="ViewModels\Dialogs\GamesSelectionViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\JumpListEditResult.cs" />
     <Compile Include="ViewModels\Dialogs\JumpListEditViewModel.cs" />
     <Compile Include="ViewModels\JumpListItemViewModel.cs" />
@@ -214,6 +221,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Dialogs\EducationalDosGameEditDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Dialogs\GamesSelectionDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -886,10 +897,10 @@
       <Version>3.1.3</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.CarrotFramework">
-      <Version>3.3.1</Version>
+      <Version>3.3.3</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.CarrotFramework.Abstractions">
-      <Version>1.4.0</Version>
+      <Version>1.4.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Extensions">
       <Version>1.1.3</Version>

@@ -36,14 +36,14 @@ namespace RayCarrot.RCP.Metro
             {
                 if (e.LaunchInfoModified && e.ModifiedGames?.Any() == true)
                     foreach (Games game in e.ModifiedGames)
-                        await RefreshGameAsync(game);
+                        await Task.Run(async () => await RefreshGameAsync(game));
 
                 else if (e.LaunchInfoModified || e.GameCollectionModified)
-                    await RefreshAsync();
+                    await Task.Run(async () => await RefreshAsync());
             };
 
             // Refresh on culture changed
-            RCFCore.Data.CultureChanged += async (s, e) => await RefreshAsync();
+            RCFCore.Data.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
 
             // Refresh on startup
             Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();
@@ -96,26 +96,24 @@ namespace RayCarrot.RCP.Metro
 
             using (await AsyncLock.LockAsync())
             {
-                await Task.Run(() =>
+                try
                 {
-                    try
-                    {
-                        // Make sure the game has been added
-                        if (!game.IsAdded())
-                            throw new Exception("Only added games can be refreshed individually");
+                    // Make sure the game has been added
+                    if (!game.IsAdded())
+                        throw new Exception("Only added games can be refreshed individually");
 
-                        // Get the collection containing the game
-                        var collection = InstalledGames.Any(x => x.Game == game) ? InstalledGames : NotInstalledGames;
+                    // Get the collection containing the game
+                    var collection = InstalledGames.Any(x => x.Game == game) ? InstalledGames : NotInstalledGames;
 
-                        // Refresh the game
-                        collection[collection.FindItemIndex(x => x.Game == game)] = game.GetGameInfo().GetDisplayViewModel();
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.HandleCritical("Refreshing game", game);
-                        throw;
-                    }
-                });
+                    // TODO: This will crash if we hit here (from game finder?) before games have refreshed once
+                    // Refresh the game
+                    collection[collection.FindItemIndex(x => x.Game == game)] = game.GetGameInfo().GetDisplayViewModel();
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleCritical("Refreshing game", game);
+                    throw;
+                }
             }
 
             RCFCore.Logger?.LogInformationSource($"The displayed game {game} has been refreshed");
@@ -131,42 +129,39 @@ namespace RayCarrot.RCP.Metro
 
             using (await AsyncLock.LockAsync())
             {
-                await Task.Run(() =>
+                try
                 {
-                    try
+                    InstalledGames.Clear();
+                    NotInstalledGames.Clear();
+
+                    AnyInstalledGames = false;
+                    AnyNotInstalledGames = false;
+
+                    // Enumerate each game
+                    foreach (Games game in RCFRCP.App.GetGames)
                     {
-                        InstalledGames.Clear();
-                        NotInstalledGames.Clear();
+                        // Get the game info
+                        var info = game.GetGameInfo();
 
-                        AnyInstalledGames = false;
-                        AnyNotInstalledGames = false;
-
-                        // Enumerate each game
-                        foreach (Games game in RCFRCP.App.GetGames)
+                        // Check if it has been added
+                        if (info.IsAdded)
                         {
-                            // Get the game info
-                            var info = game.GetGameInfo();
-
-                            // Check if it has been added
-                            if (info.IsAdded)
-                            {
-                                // Add the game to the collection
-                                InstalledGames.Add(info.GetDisplayViewModel());
-                                AnyInstalledGames = true;
-                            }
-                            else
-                            {
-                                NotInstalledGames.Add(info.GetDisplayViewModel());
-                                AnyNotInstalledGames = true;
-                            }
+                            // Add the game to the collection
+                            InstalledGames.Add(info.GetDisplayViewModel());
+                            AnyInstalledGames = true;
+                        }
+                        else
+                        {
+                            NotInstalledGames.Add(info.GetDisplayViewModel());
+                            AnyNotInstalledGames = true;
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        ex.HandleCritical("Refreshing games");
-                        throw;
-                    }
-                });
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleCritical("Refreshing games");
+                    throw;
+                }
             }
 
             RCFCore.Logger?.LogInformationSource($"The displayed games have been refreshed");

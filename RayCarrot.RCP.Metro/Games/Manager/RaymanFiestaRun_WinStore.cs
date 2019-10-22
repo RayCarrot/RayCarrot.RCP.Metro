@@ -60,6 +60,7 @@ namespace RayCarrot.RCP.Metro
                 // Check if valid
                 if (IsFiestaRunEditionValidAsync(version))
                 {
+                    // TODO: It's slightly problematic that this gets set DURING the game finder operation, rather than after. Currently it'll only effect the game finder if run through the debug page
                     // Set the version
                     RCFRCP.Data.FiestaRunVersion = version;
 

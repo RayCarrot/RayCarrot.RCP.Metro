@@ -2,6 +2,7 @@
 using RayCarrot.WPF;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -11,6 +12,24 @@ namespace RayCarrot.RCP.Metro
     public class AppUIManager
     {
         #region UserInput
+
+        public async Task<GamesSelectionResult> SelectGamesAsync(GamesSelectionViewModel gamesSelectionViewModel, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
+        {
+            RCFCore.Logger?.LogTraceSource($"A games selection dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+
+            // Create the dialog and get the result
+            var result = await new GamesSelectionDialog(gamesSelectionViewModel).ShowDialogAsync();
+
+            if (result == null)
+                RCFCore.Logger?.LogTraceSource($"The games selection dialog returned null");
+            else if (result.CanceledByUser)
+                RCFCore.Logger?.LogTraceSource($"The games selection dialog was canceled by the user");
+            else
+                RCFCore.Logger?.LogTraceSource($"The games selection dialog returned the selected games {result.SelectedGames.JoinItems(", ")}");
+
+            // Return the result
+            return result;
+        }
 
         public async Task<GameTypeSelectionResult> SelectGameTypeAsync(GameTypeSelectionViewModel gameTypeSelectionViewModel, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
         {

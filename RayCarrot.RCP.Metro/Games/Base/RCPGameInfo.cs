@@ -132,112 +132,114 @@ namespace RayCarrot.RCP.Metro
         /// <returns>A new display view model</returns>
         public GameDisplayViewModel GetDisplayViewModel()
         {
-            if (IsAdded)
+            try
             {
-                var actions = new List<OverflowButtonItemViewModel>();
-
-                // Get the Game data
-                var data = GameData;
-
-                // Get the manager
-                var manager = Game.GetManager(data.GameType);
-
-                // Add launch options if set to do so
-                if (data.LaunchMode == GameLaunchMode.AsAdminOption)
+                if (IsAdded)
                 {
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, PackIconMaterialKind.Security, new AsyncRelayCommand(async () => await Game.GetManager().LaunchGameAsync(true))));
+                    var actions = new List<OverflowButtonItemViewModel>();
 
-                    actions.Add(new OverflowButtonItemViewModel());
-                }
+                    // Get the Game data
+                    var data = GameData;
 
-                // Get the Game links
-                var links = GetGameFileLinks?.Where(x => x.Path.FileExists).ToList();
+                    // Get the manager
+                    var manager = Game.GetManager(data.GameType);
 
-                // Add links if there are any
-                if (links?.Any() ?? false)
-                {
-                    actions.AddRange(links.
-                        Select(x =>
-                        {
+                    // Add launch options if set to do so
+                    if (data.LaunchMode == GameLaunchMode.AsAdminOption)
+                    {
+                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, PackIconMaterialKind.Security, new AsyncRelayCommand(async () => await Game.GetManager().LaunchGameAsync(true))));
+
+                        actions.Add(new OverflowButtonItemViewModel());
+                    }
+
+                    // Get the Game links
+                    var links = GetGameFileLinks?.Where(x => x.Path.FileExists).ToArray();
+
+                    // Add links if there are any
+                    if (links?.Any() ?? false)
+                    {
+                        actions.AddRange(links.
+                            Select(x =>
+                            {
                             // Get the path
                             string path = x.Path;
 
                             // Create the command
                             var command = new AsyncRelayCommand(async () => (await RCFRCP.File.LaunchFileAsync(path))?.Dispose());
 
-                            if (x.Icon != PackIconMaterialKind.None)
-                                return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
+                                if (x.Icon != PackIconMaterialKind.None)
+                                    return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
 
-                            try
-                            {
-                                return new OverflowButtonItemViewModel(x.Header, new FileSystemPath(x.Path).GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource(), command);
-                            }
-                            catch (Exception ex)
-                            {
-                                ex.HandleError("Getting file icon for overflow button item");
-                                return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
-                            }
-                        }));
+                                try
+                                {
+                                    return new OverflowButtonItemViewModel(x.Header, new FileSystemPath(x.Path).GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource(), command);
+                                }
+                                catch (Exception ex)
+                                {
+                                    ex.HandleError("Getting file icon for overflow button item");
+                                    return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
+                                }
+                            }));
 
-                    actions.Add(new OverflowButtonItemViewModel());
-                }
+                        actions.Add(new OverflowButtonItemViewModel());
+                    }
 
-                // Get additional items
-                var additionalItems = manager.GetAdditionalOverflowButtonItems;
+                    // Get additional items
+                    var additionalItems = manager.GetAdditionalOverflowButtonItems;
 
-                // Add the items if there are any
-                if (additionalItems.Any())
-                {
-                    actions.AddRange(additionalItems);
-
-                    actions.Add(new OverflowButtonItemViewModel());
-                }
-
-                // Add open location
-                actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_OpenLocation, PackIconMaterialKind.FolderOutline, new AsyncRelayCommand(async () =>
-                {
-                    // Get the Game data
-                    var GameInfo = Game.GetData();
-
-                    // Get the install directory
-                    var instDir = GameInfo.InstallDirectory;
-
-                    // Select the file in Explorer if it exists
-                    if ((instDir + DefaultFileName).FileExists)
-                        instDir += DefaultFileName;
-
-                    // Open the location
-                    await RCFRCP.File.OpenExplorerLocationAsync(instDir);
-
-                    RCFCore.Logger?.LogTraceSource($"The Game {Game} install location was opened");
-                }), UserLevel.Advanced));
-
-                actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
-
-                // Add Game options
-                actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.SettingsOutline, new RelayCommand(() =>
-                {
-                    RCFCore.Logger?.LogTraceSource($"The Game {Game} options dialog is opening...");
-                    GameOptions.Show(Game, GameOptionsPage.Options);
-                })));
-
-                return new GameDisplayViewModel(Game, DisplayName, IconSource, new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.Play, new AsyncRelayCommand(async () => await Game.GetManager().LaunchGameAsync(false))), actions);
-            }
-            else
-            {
-                var actions = new List<OverflowButtonItemViewModel>();
-
-                // Get the purchase links
-                var links = Game.
-                    // Get all available managers
-                    GetManagers().
-                    // Get the purchase links
-                    SelectMany(x => x.GetGamePurchaseLinks);
-
-                // Add links
-                actions.AddRange(links.
-                    Select(x =>
+                    // Add the items if there are any
+                    if (additionalItems.Any())
                     {
+                        actions.AddRange(additionalItems);
+
+                        actions.Add(new OverflowButtonItemViewModel());
+                    }
+
+                    // Add open location
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_OpenLocation, PackIconMaterialKind.FolderOutline, new AsyncRelayCommand(async () =>
+                    {
+                        // Get the Game data
+                        var GameInfo = Game.GetData();
+
+                        // Get the install directory
+                        var instDir = GameInfo.InstallDirectory;
+
+                        // Select the file in Explorer if it exists
+                        if ((instDir + DefaultFileName).FileExists)
+                            instDir += DefaultFileName;
+
+                        // Open the location
+                        await RCFRCP.File.OpenExplorerLocationAsync(instDir);
+
+                        RCFCore.Logger?.LogTraceSource($"The Game {Game} install location was opened");
+                    }), UserLevel.Advanced));
+
+                    actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
+
+                    // Add Game options
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.SettingsOutline, new RelayCommand(() =>
+                    {
+                        RCFCore.Logger?.LogTraceSource($"The Game {Game} options dialog is opening...");
+                        GameOptions.Show(Game, GameOptionsPage.Options);
+                    })));
+
+                    return new GameDisplayViewModel(Game, DisplayName, IconSource, new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.Play, new AsyncRelayCommand(async () => await Game.GetManager().LaunchGameAsync(false))), actions);
+                }
+                else
+                {
+                    var actions = new List<OverflowButtonItemViewModel>();
+
+                    // Get the purchase links
+                    var links = Game.
+                        // Get all available managers
+                        GetManagers().
+                        // Get the purchase links
+                        SelectMany(x => x.GetGamePurchaseLinks);
+
+                    // Add links
+                    actions.AddRange(links.
+                        Select(x =>
+                        {
                         // Get the path
                         string path = x.Path;
 
@@ -246,27 +248,33 @@ namespace RayCarrot.RCP.Metro
 
                         // Return the item
                         return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
-                    }));
+                        }));
 
-                // Add disc installer options for specific Games
-                if (CanBeInstalledFromDisc)
-                {
-                    // Add separator if there are previous actions
-                    if (actions.Any())
-                        actions.Add(new OverflowButtonItemViewModel());
+                    // Add disc installer options for specific Games
+                    if (CanBeInstalledFromDisc)
+                    {
+                        // Add separator if there are previous actions
+                        if (actions.Any())
+                            actions.Add(new OverflowButtonItemViewModel());
 
-                    // Add disc installer action
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, PackIconMaterialKind.Disk, new RelayCommand(() =>
-                        // NOTE: This is a blocking dialog
-                        new GameInstaller(Game).ShowDialog())));
+                        // Add disc installer action
+                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, PackIconMaterialKind.Disk, new RelayCommand(() =>
+                            // NOTE: This is a blocking dialog
+                            new GameInstaller(Game).ShowDialog())));
+                    }
+
+                    // Create the command
+                    var locateCommand = new AsyncRelayCommand(async () => await RCFRCP.App.LocateGameAsync(Game));
+
+                    // Return the view model
+                    return new GameDisplayViewModel(Game, DisplayName, IconSource,
+                        new ActionItemViewModel(Resources.GameDisplay_Locate, PackIconMaterialKind.FolderOutline, locateCommand), actions);
                 }
-
-                // Create the command
-                var locateCommand = new AsyncRelayCommand(async () => await RCFRCP.App.LocateGameAsync(Game));
-
-                // Return the view model
-                return new GameDisplayViewModel(Game, DisplayName, IconSource,
-                    new ActionItemViewModel(Resources.GameDisplay_Locate, PackIconMaterialKind.FolderOutline, locateCommand), actions);
+            }
+            catch (Exception ex)
+            {
+                ex.HandleCritical("Getting game display view model");
+                throw;
             }
         }
 

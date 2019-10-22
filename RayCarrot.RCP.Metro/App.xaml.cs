@@ -42,6 +42,8 @@ namespace RayCarrot.RCP.Metro
         {
             DataChangedHandlerAsyncLock = new AsyncLock();
             SplashScreenFadeout = TimeSpan.FromMilliseconds(200);
+
+            StartupEventsCompleted += App_StartupEventsCompleted;
         }
 
         #endregion
@@ -173,8 +175,9 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Data.CultureChanged += (s, e) => RefreshJumpList();
 
             // Subscribe to when the app has finished setting up
-            StartupComplete += App_StartupCompleteAsync;
-            StartupComplete += App_StartupComplete2Async;
+            StartupComplete += App_StartupComplete_GameFinder_Async;
+            StartupComplete += App_StartupComplete_Miscellaneous_Async;
+            StartupComplete += App_StartupComplete_Updater_Async;
 
             // Listen to data binding logs
             WPFTraceListener.Setup(LogLevel.Warning);
@@ -188,12 +191,6 @@ namespace RayCarrot.RCP.Metro
             await PostUpdateAsync();
 
             LogStartupTime("Post update has run");
-
-            // Check if a refresh is pending for the Registry uninstall key
-            if (Data.PendingRegUninstallKeyRefresh)
-                // If succeeded, remove the pending indicator
-                if (await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(Data.ShowUnderInstalledPrograms, true))
-                    Data.PendingRegUninstallKeyRefresh = false;
         }
 
         /// <summary>
@@ -366,37 +363,11 @@ namespace RayCarrot.RCP.Metro
                 Data.IsFirstLaunch = false;
             }
 
-            await RCFRCP.App.EnableUbiIniWriteAccessAsync();
+            LogStartupTime("Validating games");
 
-            // Keep track of removed games
-            var removed = new List<Games>();
+            await ValidateGamesAsync();
 
-            // Make sure every game is valid
-            foreach (var game in RCFRCP.App.GetGames)
-            {
-                // Check if it has been added
-                if (!game.IsAdded())
-                    continue;
-
-                // Check if it's valid
-                if (await game.GetManager().IsValidAsync(game.GetData().InstallDirectory))
-                    continue;
-
-                // Show message
-                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.GameNotFound, game.GetGameInfo().DisplayName), Metro.Resources.GameNotFoundHeader, MessageType.Error);
-
-                // Remove the game from app data
-                await RCFRCP.App.RemoveGameAsync(game, true);
-
-                // Add to removed games
-                removed.Add(game);
-
-                RCFCore.Logger?.LogInformationSource($"The game {game} has been removed due to not being valid");
-            }
-
-            // Refresh if any games were removed
-            if (removed.Any())
-                await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(removed, true, false, false, false));
+            LogStartupTime("Finished validating games");
         }
 
         /// <summary>
@@ -522,6 +493,43 @@ namespace RayCarrot.RCP.Metro
             Data.LastVersion = RCFRCP.App.CurrentVersion;
         }
 
+        /// <summary>
+        /// Validates the added games
+        /// </summary>
+        /// <returns></returns>
+        private static async Task ValidateGamesAsync()
+        {
+            // Keep track of removed games
+            var removed = new List<Games>();
+
+            // Make sure every game is valid
+            foreach (var game in RCFRCP.App.GetGames)
+            {
+                // Check if it has been added
+                if (!game.IsAdded())
+                    continue;
+
+                // Check if it's valid
+                if (await game.GetManager().IsValidAsync(game.GetData().InstallDirectory))
+                    continue;
+
+                // Show message
+                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.GameNotFound, game.GetGameInfo().DisplayName), Metro.Resources.GameNotFoundHeader, MessageType.Error);
+
+                // Remove the game from app data
+                await RCFRCP.App.RemoveGameAsync(game, true);
+
+                // Add to removed games
+                removed.Add(game);
+
+                RCFCore.Logger?.LogInformationSource($"The game {game} has been removed due to not being valid");
+            }
+
+            // Refresh if any games were removed
+            if (removed.Any())
+                await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(removed, true, false, false, false));
+        }
+
         #endregion
 
         #region Event Handlers
@@ -559,8 +567,7 @@ namespace RayCarrot.RCP.Metro
                         break;
 
                     case nameof(AppUserData.LinkItemStyle):
-
-                        string GetStyleSource(LinkItemStyles linkItemStye) => $"{AppViewModel.ApplicationBasePath}/Styles/LinkItemStyles - {linkItemStye}.xaml";
+                        static string GetStyleSource(LinkItemStyles linkItemStye) => $"{AppViewModel.ApplicationBasePath}/Styles/LinkItemStyles - {linkItemStye}.xaml";
 
                         // Get previous source
                         var oldSource = GetStyleSource(PreviousLinkItemStyle);
@@ -598,21 +605,47 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        private static async Task App_StartupCompleteAsync(object sender, EventArgs eventArgs)
+        private async Task App_StartupComplete_Miscellaneous_Async(object sender, EventArgs eventArgs)
         {
-            // Show log viewer if a debugger is attached
-            if (Debugger.IsAttached)
-                await new LogViewer().ShowWindowAsync();
+            if (Dispatcher == null)
+                throw new Exception("Dispatcher is null");
 
-            // Set up the secret code manager
-            SecretCodeManager.Setup();
+            // Run on UI thread
+            await Dispatcher.InvokeAsync(async () =>
+            {
+                // Show log viewer if a debugger is attached
+                if (Debugger.IsAttached)
+                {
+                    var logViewer = new LogViewer();
+                    await logViewer.ShowWindowAsync();
 
+                    // TODO: This is a temporary solution to avoid the log viewer blocking the main window
+                    MainWindow.OwnedWindows[0].Owner = null;
+                    MainWindow.Focus();
+                }
+
+                // Set up the secret code manager
+                SecretCodeManager.Setup();
+            });
+
+            // Check if a refresh is pending for the Registry uninstall key
+            if (Data.PendingRegUninstallKeyRefresh)
+                // If succeeded, remove the pending indicator
+                if (await RCFRCP.Data.RefreshShowUnderInstalledProgramsAsync(Data.ShowUnderInstalledPrograms, true))
+                    Data.PendingRegUninstallKeyRefresh = false;
+
+            // Enable primary ubi.ini file write access
+            await RCFRCP.App.EnableUbiIniWriteAccessAsync();
+        }
+
+        private static async Task App_StartupComplete_GameFinder_Async(object sender, EventArgs eventArgs)
+        {
             // Check for installed games
             if (RCFRCP.Data.AutoLocateGames)
                 await RCFRCP.App.RunGameFinderAsync();
         }
 
-        private static async Task App_StartupComplete2Async(object sender, EventArgs eventArgs)
+        private static async Task App_StartupComplete_Updater_Async(object sender, EventArgs eventArgs)
         {
             if (CommonPaths.UpdaterFilePath.FileExists)
             {
@@ -660,7 +693,13 @@ namespace RayCarrot.RCP.Metro
 
             // Check for updates
             if (RCFRCP.Data.AutoUpdate)
+                //_ = Task.Run(async () => await RCFRCP.App.CheckForUpdatesAsync(false));
                 await RCFRCP.App.CheckForUpdatesAsync(false);
+        }
+
+        private static void App_StartupEventsCompleted(object sender, EventArgs e)
+        {
+            RCFRCP.App.IsStartupRunning = false;
         }
 
         #endregion
