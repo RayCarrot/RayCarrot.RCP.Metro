@@ -261,7 +261,7 @@ namespace RayCarrot.RCP.Metro
                 FileSystemPath output = InstallDir + displayName;
 
                 // Create the installer
-                var installer = new RayGameInstaller(new RayGameInstallerData(Game.GetInstallerItems(output), output, CancellationTokenSource.Token));
+                using var installer = new RayGameInstaller(new RayGameInstallerData(Game.GetInstallerItems(output), output, CancellationTokenSource.Token));
 
                 // Subscribe to when the status is updated
                 installer.StatusUpdated += Installer_StatusUpdated;

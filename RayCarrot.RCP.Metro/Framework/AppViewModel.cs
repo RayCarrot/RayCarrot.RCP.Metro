@@ -1,17 +1,12 @@
 ﻿using ByteSizeLib;
-using IniParser;
-using IniParser.Model;
-using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
 using RayCarrot.UI;
 using RayCarrot.UserData;
-using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
 using System;
 using System.Collections.Generic;

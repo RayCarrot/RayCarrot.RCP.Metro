@@ -10,8 +10,7 @@
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     IsTabStop="False"
                     mc:Ignorable="d"
-                    d:DesignWidth="800"
-                    d:DataContext="{x:Static local:DesignTimeVM.AboutPageViewModel}">
+                    d:DesignWidth="800">
     <ScrollViewer Padding="15">
         <Grid MaxWidth="800">
             <Grid.RowDefinitions>

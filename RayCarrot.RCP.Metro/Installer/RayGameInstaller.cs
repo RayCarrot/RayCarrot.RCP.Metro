@@ -14,7 +14,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Handles game installations
     /// </summary>
-    public class RayGameInstaller : IStatusUpdated
+    public class RayGameInstaller : IStatusUpdated, IDisposable
     {
         #region Constructor
 
@@ -24,6 +24,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="installerData">The data for this installation</param>
         public RayGameInstaller(RayGameInstallerData installerData)
         {
+            WebClient = new WebClient();
             InstallData = installerData;
             FileManager = RCFRCP.File;
         }
@@ -85,6 +86,11 @@ namespace RayCarrot.RCP.Metro
         /// True if the installation has been verified and is ready to run
         /// </summary>
         protected bool IsVerified => Drives != null;
+
+        /// <summary>
+        /// The web client used to copy the files
+        /// </summary>
+        protected WebClient WebClient { get; }
 
         #endregion
 
@@ -395,9 +401,6 @@ namespace RayCarrot.RCP.Metro
         {
             RCFCore.Logger?.LogInformationSource($"An installation has begun");
 
-            // Store the web client
-            WebClient wc = null;
-
             // Flag indicating if the installation was completed
             bool complete = false;
 
@@ -407,7 +410,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Register the cancellation token callback to cancel the web client's ongoing operation
-                InstallData.CancellationToken.Register(() => wc?.CancelAsync());
+                InstallData.CancellationToken.Register(() => WebClient?.CancelAsync());
 
                 // Check if cancellation has been requested
                 InstallData.CancellationToken.ThrowIfCancellationRequested();
@@ -437,11 +440,8 @@ namespace RayCarrot.RCP.Metro
                     OnStatusUpdated();
                 }
 
-                // Create the web client
-                wc = new WebClient();
-
                 // Subscribe to when the progress changes
-                wc.DownloadProgressChanged += (s, e) => OnStatusUpdated(itemProgress: new Progress(e.BytesReceived, e.TotalBytesToReceive));
+                WebClient.DownloadProgressChanged += (s, e) => OnStatusUpdated(itemProgress: new Progress(e.BytesReceived, e.TotalBytesToReceive));
 
                 // Set the item counts
                 TotalItems = InstallData.RelativeInputs.Count;
@@ -458,7 +458,7 @@ namespace RayCarrot.RCP.Metro
 
                     // Copy each file and directory from the current drive
                     foreach (var item in InstallData.RelativeInputs.Where(x => x.BaseDriveLabel == drive.VolumeLabel && x.BasePath == drive.Root && x.ProcessStage == RayGameInstallItemStage.Verified))
-                        await HandleItemAsync(wc, item);
+                        await HandleItemAsync(WebClient, item);
                 }
 
                 // Make sure no items were not handled
@@ -489,7 +489,7 @@ namespace RayCarrot.RCP.Metro
 
                         // Copy each file and directory from the current drive
                         foreach (var item in items)
-                            await HandleItemAsync(wc, item);
+                            await HandleItemAsync(WebClient, item);
                     }
                 }
 
@@ -515,9 +515,6 @@ namespace RayCarrot.RCP.Metro
             }
             finally
             {
-                // Dispose the web client
-                wc?.Dispose();
-
                 // Clean up if started and not complete
                 if (installationStarted && !complete)
                 {
@@ -537,6 +534,14 @@ namespace RayCarrot.RCP.Metro
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Disposes the web client
+        /// </summary>
+        public void Dispose()
+        {
+            WebClient?.Dispose();
         }
 
         #endregion

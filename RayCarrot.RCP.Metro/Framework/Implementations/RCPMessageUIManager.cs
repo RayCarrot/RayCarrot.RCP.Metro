@@ -1,4 +1,5 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
+﻿using System;
+using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.WPF;
 using System.Collections.Generic;
 using System.Drawing;
@@ -25,65 +26,36 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the user accepted the message, otherwise false</returns>
         public async Task<bool> DisplayMessageAsync(string message, string header, MessageType messageType, bool allowCancel, string origin = "", string filePath = "", int lineNumber = 0)
         {
+            if (Application.Current.Dispatcher == null)
+                throw new Exception("A message box can not be shown when the application dispatcher is null");
+
             RCFCore.Logger?.LogTraceSource($"A message of type {messageType} was displayed with the content of: '{message}'", origin: origin, filePath: filePath, lineNumber: lineNumber);
 
-            string headerMessage;
-            if (!header.IsNullOrWhiteSpace())
-                headerMessage = header;
-            else
-            {
-                switch (messageType)
+            var headerMessage = !header.IsNullOrWhiteSpace()
+                ? header
+                : messageType switch
                 {
-                    default:
-                    case MessageType.Generic:
-                        headerMessage = Resources.MessageHeader_Generic;
-                        break;
+                    MessageType.Generic => Resources.MessageHeader_Generic,
+                    MessageType.Information => Resources.MessageHeader_Information,
+                    MessageType.Error => Resources.MessageHeader_Error,
+                    MessageType.Warning => Resources.MessageHeader_Warning,
+                    MessageType.Success => Resources.MessageHeader_Success,
+                    MessageType.Question => Resources.MessageHeader_Question,
+                    _ => Resources.MessageHeader_Generic
+                };
 
-                    case MessageType.Information:
-                        headerMessage = Resources.MessageHeader_Information;
-                        break;
-
-                    case MessageType.Error:
-                        headerMessage = Resources.MessageHeader_Error;
-                        break;
-
-                    case MessageType.Warning:
-                        headerMessage = Resources.MessageHeader_Warning;
-                        break;
-
-                    case MessageType.Success:
-                        headerMessage = Resources.MessageHeader_Success;
-                        break;
-
-                    case MessageType.Question:
-                        headerMessage = Resources.MessageHeader_Question;
-                        break;
-                }
-            }
-
-            Bitmap GetImgSource(MessageType mt)
+            static Bitmap GetImgSource(MessageType mt)
             {
-                switch (mt)
+                return mt switch
                 {
-                    default:
-                    case MessageType.Generic:
-                        return Images.Generic;
-
-                    case MessageType.Information:
-                        return Images.Generic;
-
-                    case MessageType.Error:
-                        return Images.Error;
-
-                    case MessageType.Warning:
-                        return Images.Info;
-
-                    case MessageType.Question:
-                        return Images.Question;
-
-                    case MessageType.Success:
-                        return Images.Happy;
-                }
+                    MessageType.Generic => Images.Generic,
+                    MessageType.Information => Images.Generic,
+                    MessageType.Error => Images.Error,
+                    MessageType.Warning => Images.Info,
+                    MessageType.Question => Images.Question,
+                    MessageType.Success => Images.Happy,
+                    _ => Images.Generic
+                };
             }
 
             var actions = new List<DialogMessageActionViewModel>();

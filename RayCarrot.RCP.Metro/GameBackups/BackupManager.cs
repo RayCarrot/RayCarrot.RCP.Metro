@@ -168,7 +168,7 @@ namespace RayCarrot.RCP.Metro
                         foreach (FileSystemPath file in Directory.GetFiles(item.DirPath, item.SearchPattern ?? "*", item.SearchOption))
                         {
                             // Get the destination file
-                            var destFile = item.ID + file.GetRelativePath(item.DirPath);
+                            var destFile = item.ID + (file - item.DirPath);
 
                             // Copy the file
                             zip.CreateEntryFromFile(file, destFile, CompressionLevel.Optimal);

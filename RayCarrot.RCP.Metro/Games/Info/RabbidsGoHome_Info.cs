@@ -38,10 +38,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the file links for the game
         /// </summary>
-        public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[0]
-        {
-            //new GameFileLink(Resources.GameLink_Setup, GameData.InstallDirectory + "Launcher.exe")
-        };
+        public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];
 
         #endregion
     }

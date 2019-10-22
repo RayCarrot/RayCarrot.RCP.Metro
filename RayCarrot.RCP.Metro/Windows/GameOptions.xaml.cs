@@ -83,10 +83,11 @@ namespace RayCarrot.RCP.Metro
         /// <param name="page">The page to show</param>
         public static void Show(Games game, GameOptionsPage page)
         {
-            var groupNames = new List<string>();
-
-            // The same game can only have one dialog opened at a time
-            groupNames.Add(game.ToString());
+            var groupNames = new List<string>
+            {
+                // The same game can only have one dialog opened at a time
+                game.ToString()
+            };
 
             // Add game specific group names
             groupNames.AddRange(game.GetGameInfo().DialogGroupNames);
@@ -158,7 +159,9 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             ForceClose = true;
-            _ = Task.Run(() => Dispatcher.Invoke(Close));
+
+            // NOTE: Not the most elegant solution - but we can't call Close() from within a closing event
+            _ = Task.Run(() => Dispatcher?.Invoke(Close));
         }
 
         #endregion

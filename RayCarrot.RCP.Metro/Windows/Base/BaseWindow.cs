@@ -5,6 +5,7 @@ using RayCarrot.Extensions;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro
@@ -20,6 +21,9 @@ namespace RayCarrot.RCP.Metro
         public BaseWindow()
         {
             RCFCore.Logger?.LogInformationSource($"A window is being created...");
+
+            // Default to true
+            CloseWithEscape = true;
 
             // Set minimum size
             MinWidth = 400;
@@ -54,6 +58,12 @@ namespace RayCarrot.RCP.Metro
 
                 RCFCore.Logger?.LogInformationSource($"The window {this} has been created");
             }
+
+            PreviewKeyDown += (s, e) =>
+            {
+                if (CloseWithEscape && e.Key == Key.Escape)
+                    Close();
+            };
         }
 
         /// <summary>
@@ -67,5 +77,10 @@ namespace RayCarrot.RCP.Metro
             // Show the window as a dialog
             base.ShowDialog();
         }
+
+        /// <summary>
+        /// Indicates if the escape key can be used to close the window
+        /// </summary>
+        public bool CloseWithEscape { get; set; }
     }
 }

@@ -375,9 +375,13 @@ namespace RayCarrot.RCP.Metro
                         RCFCore.Logger?.LogInformationSource($"TPLS: BossEvent has changed to {BossEvent}");
                     }
 
-                    if (Volume != VolumeMixer.GetApplicationVolume(Process.Id))
+                    var appVolume = VolumeMixer.GetApplicationVolume(Process.Id);
+
+                    // NOTE: A better solution should be handled here as comparing two floats is not precise
+                    // ReSharper disable once CompareOfFloatsByEqualityOperator
+                    if (Volume != appVolume)
                     {
-                        Volume = VolumeMixer.GetApplicationVolume(Process.Id) ?? Volume;
+                        Volume = appVolume ?? Volume;
                         VolumeChanged?.Invoke(this, new ValueEventArgs<float>(Volume / 100f));
                     }
 

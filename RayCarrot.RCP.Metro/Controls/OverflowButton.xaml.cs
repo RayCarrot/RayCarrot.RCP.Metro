@@ -90,7 +90,8 @@ namespace RayCarrot.RCP.Metro
             // to cause OutsideCapturedElementHandler to be called again.
             Mouse.AddLostMouseCaptureHandler(PopupControl, LostMouseCaptureHandler);
 
-            Application.Current.MainWindow.Deactivated += MainWindow_Deactivated;
+            if (Application.Current.MainWindow != null)
+                Application.Current.MainWindow.Deactivated += MainWindow_Deactivated;
 
             if (ParentScrollViewer != null)
                 ParentScrollViewer.ScrollChanged += Sv_ScrollChanged;
@@ -114,7 +115,8 @@ namespace RayCarrot.RCP.Metro
             if (IsKeyboardFocusWithin)
                 PopupControl.Focus();
 
-            Application.Current.MainWindow.Deactivated -= MainWindow_Deactivated;
+            if (Application.Current.MainWindow != null)
+                Application.Current.MainWindow.Deactivated -= MainWindow_Deactivated;
 
             if (ParentScrollViewer != null)
                 ParentScrollViewer.ScrollChanged -= Sv_ScrollChanged;

@@ -12,6 +12,7 @@
                   mc:Ignorable="d"
                   Language="{UICulture}"
                   ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+                  CloseWithEscape="False"
                   Height="680"
                   Width="950"
                   DataContext="{x:Static local:RCFRCP.App}">
@@ -78,6 +79,7 @@
                                        Padding="5"
                                        metro:TabControlHelper.Transition="{Binding Source={x:Static local:RCFRCP.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}">
             <metro:MetroAnimatedTabControl.Style>
+                <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
                 <Style TargetType="{x:Type metro:MetroAnimatedTabControl}" BasedOn="{StaticResource {x:Type metro:MetroAnimatedTabControl}}">
                     <Setter Property="Template">
                         <Setter.Value>

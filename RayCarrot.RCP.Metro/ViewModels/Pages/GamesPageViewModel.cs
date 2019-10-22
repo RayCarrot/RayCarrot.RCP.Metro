@@ -105,9 +105,19 @@ namespace RayCarrot.RCP.Metro
                     // Get the collection containing the game
                     var collection = InstalledGames.Any(x => x.Game == game) ? InstalledGames : NotInstalledGames;
 
-                    // TODO: This will crash if we hit here (from game finder?) before games have refreshed once
+                    // Get the game index
+                    var index = collection.FindItemIndex(x => x.Game == game);
+
+                    // Make sure we got a valid index
+                    if (index == -1)
+                    {
+                        RCFCore.Logger?.LogWarningSource($"The displayed game {game} could not be refreshed due to not existing in either game collection");
+
+                        return;
+                    }
+
                     // Refresh the game
-                    collection[collection.FindItemIndex(x => x.Game == game)] = game.GetGameInfo().GetDisplayViewModel();
+                    collection[index] = game.GetGameInfo().GetDisplayViewModel();
                 }
                 catch (Exception ex)
                 {

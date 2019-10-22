@@ -114,7 +114,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public static void Setup()
         {
-            Application.Current.MainWindow.PreviewKeyDown += async (s, e) => await AddKeyAsync(e.Key);
+            if (Application.Current.MainWindow != null)
+                Application.Current.MainWindow.PreviewKeyDown += async (s, e) => await AddKeyAsync(e.Key);
         }
 
         /// <summary>

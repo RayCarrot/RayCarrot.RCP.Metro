@@ -35,6 +35,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Requests that a fade-out begins (will start on the next call to Read)
         /// </summary>
+        /// <param name="fadeAfterMilliseconds"></param>
         /// <param name="fadeDurationInMilliseconds">Duration of fade in milliseconds</param>
         public void BeginFadeOut(double fadeAfterMilliseconds, double fadeDurationInMilliseconds)
         {

@@ -14,8 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{A4E18751
 		TODO.txt = TODO.txt
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.Rayman", "..\RayCarrot.Rayman\RayCarrot.Rayman\RayCarrot.Rayman.csproj", "{E8A27323-72A7-4708-9624-EBFFB5019803}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.Metro.Updater", "RayCarrot.RCP.Metro.Updater\RayCarrot.RCP.Metro.Updater.csproj", "{001CD0CA-D3A9-446D-B93A-CB941D98C25C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.Uninstaller", "RayCarrot.RCP.Uninstaller\RayCarrot.RCP.Uninstaller.csproj", "{870B044D-9987-425D-B489-312D28F2C601}"
@@ -44,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.WPF.Metro", "..\R
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{7187C3BD-9853-47B7-938F-CC45CC53F8EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.Rayman", "..\RayCarrot.Rayman\RayCarrot.Rayman\RayCarrot.Rayman.csproj", "{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,14 +60,6 @@ Global
 		{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}.Release|x86.ActiveCfg = Release|Any CPU
 		{A97AAB72-0F1B-4D6B-8E1C-DEB5D9DE0710}.Release|x86.Build.0 = Release|Any CPU
-		{E8A27323-72A7-4708-9624-EBFFB5019803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E8A27323-72A7-4708-9624-EBFFB5019803}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E8A27323-72A7-4708-9624-EBFFB5019803}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E8A27323-72A7-4708-9624-EBFFB5019803}.Debug|x86.Build.0 = Debug|Any CPU
-		{E8A27323-72A7-4708-9624-EBFFB5019803}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E8A27323-72A7-4708-9624-EBFFB5019803}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E8A27323-72A7-4708-9624-EBFFB5019803}.Release|x86.ActiveCfg = Release|Any CPU
-		{E8A27323-72A7-4708-9624-EBFFB5019803}.Release|x86.Build.0 = Release|Any CPU
 		{001CD0CA-D3A9-446D-B93A-CB941D98C25C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{001CD0CA-D3A9-446D-B93A-CB941D98C25C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{001CD0CA-D3A9-446D-B93A-CB941D98C25C}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -116,18 +108,28 @@ Global
 		{5D776C26-0212-4062-A0F4-8AD7C2561A69}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5D776C26-0212-4062-A0F4-8AD7C2561A69}.Release|x86.ActiveCfg = Release|Any CPU
 		{5D776C26-0212-4062-A0F4-8AD7C2561A69}.Release|x86.Build.0 = Release|Any CPU
+		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}.Debug|x86.Build.0 = Debug|Any CPU
+		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}.Release|x86.ActiveCfg = Release|Any CPU
+		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E8A27323-72A7-4708-9624-EBFFB5019803} = {879B35F2-0456-4C5F-B4B8-F9088D687423}
 		{9B10DC81-CB32-45A1-B52B-FBB3E4D056A0} = {7187C3BD-9853-47B7-938F-CC45CC53F8EE}
 		{55F49D1E-C9BD-4CC4-9FF0-D646D9F42A21} = {879B35F2-0456-4C5F-B4B8-F9088D687423}
 		{5D776C26-0212-4062-A0F4-8AD7C2561A69} = {7187C3BD-9853-47B7-938F-CC45CC53F8EE}
 		{7187C3BD-9853-47B7-938F-CC45CC53F8EE} = {879B35F2-0456-4C5F-B4B8-F9088D687423}
+		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D} = {879B35F2-0456-4C5F-B4B8-F9088D687423}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		RESX_TaskErrorCategory = Message
 		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
+		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"{Resx $Key}","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
 	EndGlobalSection
 EndGlobal

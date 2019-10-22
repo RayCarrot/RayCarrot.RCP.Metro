@@ -115,7 +115,7 @@ namespace RayCarrot.RCP.Metro
                 foreach (FileSystemPath item in Directory.EnumerateFiles(LocalTempDir.TempPath, "*", SearchOption.AllDirectories))
                 {
                     // Get the path to move to
-                    FileSystemPath file = OutputDirectory + item.GetRelativePath(LocalTempDir.TempPath);
+                    FileSystemPath file = OutputDirectory + (item - LocalTempDir.TempPath);
 
                     try
                     {

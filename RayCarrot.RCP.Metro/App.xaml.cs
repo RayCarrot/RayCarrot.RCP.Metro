@@ -114,7 +114,7 @@ namespace RayCarrot.RCP.Metro
                 // Add game finder
                 AddTransient<GameFinder>().
                 // Build the framework
-                Build(config);
+                Build(config, loadDefaultsFromDomain: false);
         }
 
         /// <summary>

@@ -106,6 +106,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
+                // ReSharper disable once PossibleNullReferenceException
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     var bitmapImage = new BitmapImage();

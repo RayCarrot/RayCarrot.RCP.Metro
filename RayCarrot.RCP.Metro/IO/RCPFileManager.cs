@@ -216,7 +216,7 @@ namespace RayCarrot.RCP.Metro
                 foreach (FileSystemPath dir in Directory.GetDirectories(source, "*", SearchOption.AllDirectories))
                 {
                     // Get the destination directory
-                    var destDir = destination + dir.GetRelativePath(source);
+                    var destDir = destination + (dir - source);
 
                     // Create the directory
                     Directory.CreateDirectory(destDir);
@@ -245,7 +245,7 @@ namespace RayCarrot.RCP.Metro
             foreach (FileSystemPath file in Directory.GetFiles(source.DirPath, source.SearchPattern, source.SearchOption))
             {
                 // Get the destination file
-                var destFile = destination + file.GetRelativePath(source.DirPath);
+                var destFile = destination + (file - source.DirPath);
 
                 // Skip if the file already exists and we should not replace it
                 if (destFile.FileExists && !replaceExistingFiles)
@@ -289,7 +289,7 @@ namespace RayCarrot.RCP.Metro
             foreach (FileSystemPath file in Directory.GetFiles(source.DirPath, source.SearchPattern, source.SearchOption))
             {
                 // Get the destination file
-                var destFile = destination + file.GetRelativePath(source.DirPath);
+                var destFile = destination + (file - source.DirPath);
 
                 // Skip if the file already exists and we should not replace it
                 if (destFile.FileExists && !replaceExistingFiles)

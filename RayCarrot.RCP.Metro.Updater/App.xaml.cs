@@ -114,6 +114,12 @@ namespace RayCarrot.RCP.Metro.Updater
         /// <param name="ex">The exception which caused the shutdown</param>
         public void ShutdownApplication(string debugMessage, Exception ex = null)
         {
+            if (Dispatcher == null)
+            {
+                Shutdown();
+                return;
+            }
+
             Dispatcher.Invoke(() =>
             {
                 var win = new ErrorWindow(debugMessage, ex)
