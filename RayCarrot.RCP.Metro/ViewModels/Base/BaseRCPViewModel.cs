@@ -5,7 +5,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// The base view model to use for the Rayman Control Panel
     /// </summary>
-    public class BaseRCPViewModel : BaseViewModel
+    public abstract class BaseRCPViewModel : BaseViewModel
     {
         #region Private Fields
 

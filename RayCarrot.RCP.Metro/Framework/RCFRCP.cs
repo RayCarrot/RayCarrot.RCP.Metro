@@ -32,10 +32,5 @@ namespace RayCarrot.RCP.Metro
         /// The backup manager
         /// </summary>
         public static BackupManager Backup => RCF.GetService<BackupManager>();
-
-        /// <summary>
-        /// The game finder
-        /// </summary>
-        public static GameFinder GameFinder => RCF.GetService<GameFinder>();
     }
 }

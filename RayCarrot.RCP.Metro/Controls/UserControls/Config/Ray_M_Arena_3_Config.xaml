@@ -68,6 +68,7 @@
 
                 <Grid rwpf:UserLevelTag.MinUserLevel="Advanced"
                       rwpf:UnifiedMargin.Ignored="True">
+                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                     <CheckBox Content="{Resx Config_DynamicShadows}"
                               IsChecked="{Binding Path=DynamicShadows}"
                               Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"
@@ -76,6 +77,7 @@
 
                 <Grid rwpf:UserLevelTag.MinUserLevel="Advanced"
                       rwpf:UnifiedMargin.Ignored="True">
+                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                     <CheckBox Content="{Resx Config_StaticShadows}"
                               IsChecked="{Binding Path=StaticShadows}" 
                               Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"
@@ -149,6 +151,7 @@
                           HorizontalAlignment="Left">
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                            <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                             <Setter Property="Visibility" Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.Visibility}" />
                         </Style>
                     </ComboBox.ItemContainerStyle>
@@ -186,6 +189,7 @@
                 <TextBlock Text="{Resx Config_ControllerVertical}" 
                            Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"/>
 
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                 <Slider Minimum="2"
                         Maximum="7"
                         Value="{Binding Path=VerticalAxis}"
@@ -198,6 +202,7 @@
                 <TextBlock Text="{Resx Config_ControllerHorizontal}"
                            Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}" />
 
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                 <Slider Minimum="2"
                         Maximum="7"
                         Value="{Binding Path=HorizontalAxis}"
@@ -211,6 +216,7 @@
                            Text="{Resx Config_Network}"
                            Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanArena}"/>
 
+                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                 <ComboBox ItemsSource="{Binding Path=ModemQualityOptions, Mode=OneTime}"
                           SelectedIndex="{Binding Path=ModemQualityIndex}"
                           HorizontalAlignment="Left"

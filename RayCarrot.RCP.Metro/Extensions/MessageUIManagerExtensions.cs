@@ -46,7 +46,7 @@ namespace RayCarrot.RCP.Metro
         public static async Task DisplayExceptionMessageAsync(this IMessageUIManager messageUIManager, Exception exception, string message = null, string header = null, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
             // Show the message
-            await messageUIManager.DisplayMessageAsync(String.Format(Resources.App_ExceptionMessage, message ?? Resources.App_ExceptionMessageDefaultMessage, exception.Message), header ?? Resources.App_ExceptionMessageDefaultHeader, MessageType.Error, origin, filePath, lineNumber);
+            await messageUIManager.DisplayMessageAsync(String.Format(Resources.App_ExceptionMessage, message ?? Resources.App_ExceptionMessageDefaultMessage, exception?.Message), header ?? Resources.App_ExceptionMessageDefaultHeader, MessageType.Error, origin, filePath, lineNumber);
         }
     }
 }

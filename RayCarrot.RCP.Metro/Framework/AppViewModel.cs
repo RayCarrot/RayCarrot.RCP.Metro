@@ -711,7 +711,7 @@ namespace RayCarrot.RCP.Metro
                     : new FinderItem[0];
 
                 // Run the game finder and get the result
-                var foundGames = RCFRCP.GameFinder.FindGames(games, finderItems);
+                var foundGames = new GameFinder(games, finderItems).FindGames();
 
                 // Add the found games
                 foreach (var gameResult in foundGames)
@@ -837,6 +837,7 @@ namespace RayCarrot.RCP.Metro
 
                 CheckingForUpdates = true;
                 string errorMessage = Resources.Update_UnknownError;
+                Exception exception = null;
                 JObject manifest = null;
 
                 try
@@ -847,16 +848,19 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (WebException ex)
                 {
+                    exception = ex;
                     ex.HandleUnexpected("Getting server manifest");
                     errorMessage = Resources.Update_WebError;
                 }
                 catch (JsonReaderException ex)
                 {
+                    exception = ex;
                     ex.HandleError("Parsing server manifest");
                     errorMessage = Resources.Update_FormatError;
                 }
                 catch (Exception ex)
                 {
+                    exception = ex;
                     ex.HandleError("Getting server manifest");
                     errorMessage = Resources.Update_GenericError;
                 }
@@ -864,7 +868,7 @@ namespace RayCarrot.RCP.Metro
                 // Show error if manifest was not retrieved
                 if (manifest == null)
                 {
-                    await RCFUI.MessageUI.DisplayMessageAsync(errorMessage, Resources.Update_ErrorHeader, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(exception, errorMessage, Resources.Update_ErrorHeader);
                     return;
                 }
 
@@ -911,6 +915,8 @@ namespace RayCarrot.RCP.Metro
 
                             if (noUpdateAvailable)
                             {
+                                Data.IsUpdateAvailable = false;
+                                
                                 if (isManualSearch)
                                     await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, serverVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
 
@@ -929,6 +935,8 @@ namespace RayCarrot.RCP.Metro
                     await RCFUI.MessageUI.DisplayMessageAsync(Resources.Update_ManifestError, Resources.Update_ErrorHeader, MessageType.Error);
                     return;
                 }
+
+                Data.IsUpdateAvailable = true;
 
                 string news = Resources.Update_NewsError;
 

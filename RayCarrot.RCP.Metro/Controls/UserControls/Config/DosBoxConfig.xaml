@@ -82,6 +82,7 @@
                           HorizontalAlignment="Left">
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                            <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                             <Setter Property="Visibility" Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.Visibility}" />
                         </Style>
                     </ComboBox.ItemContainerStyle>

@@ -18,6 +18,10 @@ using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
+    // TODO: Split into multiple data classes:
+    //       - AppUserData
+    //       - GameUserData
+
     /// <summary>
     /// The application user data
     /// </summary>
@@ -91,6 +95,7 @@ namespace RayCarrot.RCP.Metro
             RRR2LaunchMode = RRR2LaunchMode.AllGames;
             RabbidsGoHomeLaunchData = null;
             JumpListItemIDCollection = new List<string>();
+            IsUpdateAvailable = false;
         }
 
         #endregion
@@ -325,6 +330,11 @@ namespace RayCarrot.RCP.Metro
         /// The collection of jump list item IDs
         /// </summary>
         public List<string> JumpListItemIDCollection { get; set; }
+
+        /// <summary>
+        /// Indicates if a new update is available
+        /// </summary>
+        public bool IsUpdateAvailable { get; set; }
 
         #endregion
 

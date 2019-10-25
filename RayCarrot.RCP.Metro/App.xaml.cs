@@ -75,7 +75,7 @@ namespace RayCarrot.RCP.Metro
         {
             // Add custom configuration
             config.Add(RCFIO.AutoCorrectPathCasingKey,
-                // TODO: Set to true?
+                // NOTE: Set to true?
                 false);
 
             // Set file log level
@@ -111,8 +111,6 @@ namespace RayCarrot.RCP.Metro
                 AddTransient<AppUIManager>().
                 // Add backup manager
                 AddTransient<BackupManager>().
-                // Add game finder
-                AddTransient<GameFinder>().
                 // Build the framework
                 Build(config, loadDefaultsFromDomain: false);
         }
@@ -383,7 +381,7 @@ namespace RayCarrot.RCP.Metro
                 // Check if it's a lower version than previously recorded
                 if (Data.LastVersion > RCFRCP.App.CurrentVersion)
                 {
-                    RCFCore.Logger?.LogWarningSource($"A newer version $({Data.LastVersion}) has been recorded in the application data");
+                    RCFCore.Logger?.LogWarningSource($"A newer version ({Data.LastVersion}) has been recorded in the application data");
 
                     if (!Data.DisableDowngradeWarning)
                         await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, RCFRCP.App.CurrentVersion, Data.LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
@@ -420,6 +418,7 @@ namespace RayCarrot.RCP.Metro
 
                 // If a Fiesta Run backup exists the name needs to change to the new standard
                 var fiestaBackupDir = RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + "Rayman Fiesta Run";
+                
                 if (fiestaBackupDir.DirectoryExists)
                 {
                     try
@@ -472,6 +471,11 @@ namespace RayCarrot.RCP.Metro
                     Select(x => x.GetManager().GetJumpListItems().Select(y => y.ID)).
                     SelectMany(x => x).
                     ToList();
+            }
+
+            if (Data.LastVersion < new Version(7, 0, 0, 0))
+            {
+                Data.IsUpdateAvailable = false;
             }
 
             // Re-deploy files
@@ -611,17 +615,17 @@ namespace RayCarrot.RCP.Metro
                 throw new Exception("Dispatcher is null");
 
             // Run on UI thread
-            await Dispatcher.InvokeAsync(async () =>
+            await Dispatcher.Invoke(async () =>
             {
                 // Show log viewer if a debugger is attached
                 if (Debugger.IsAttached)
                 {
                     var logViewer = new LogViewer();
-                    await logViewer.ShowWindowAsync();
+                    var win = await logViewer.ShowWindowAsync();
 
-                    // TODO: This is a temporary solution to avoid the log viewer blocking the main window
-                    MainWindow.OwnedWindows[0].Owner = null;
-                    MainWindow.Focus();
+                    // NOTE: This is a temporary solution to avoid the log viewer blocking the main window
+                    win.Owner = null;
+                    MainWindow?.Focus();
                 }
 
                 // Set up the secret code manager

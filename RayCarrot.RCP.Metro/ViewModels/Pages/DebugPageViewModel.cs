@@ -271,7 +271,7 @@ namespace RayCarrot.RCP.Metro
                             return;
 
                         // Run and get the result
-                        var result = RCFRCP.GameFinder.FindGames(selectionResult.SelectedGames);
+                        var result = new GameFinder(selectionResult.SelectedGames).FindGames();
                         
                         // Output the found games
                         DataOutput = result.Select(x => $"{x.Game} ({x.GameType}) - {x.InstallLocation}").JoinItems(Environment.NewLine);

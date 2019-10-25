@@ -1,13 +1,12 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Interaction logic for LinksPage.xaml
     /// </summary>
-    public partial class LinksPage : VMUserControl<LinksPageViewModel>
+    public partial class LinksPage : BasePage<LinksPageViewModel>
     {
         public LinksPage()
         {
@@ -32,6 +31,7 @@ namespace RayCarrot.RCP.Metro
                     m.PageTabControl.SelectedIndex--;
                     e.Handled = true;
                 }
+
                 // If we do not hold down shift and at the last index...
                 else if ((Keyboard.Modifiers & ModifierKeys.Shift) != ModifierKeys.Shift && t.SelectedIndex == t.Items.Count - 1)
                 {

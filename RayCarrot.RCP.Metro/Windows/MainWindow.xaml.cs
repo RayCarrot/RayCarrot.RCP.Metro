@@ -3,6 +3,9 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -58,10 +61,70 @@ namespace RayCarrot.RCP.Metro
             return Task.CompletedTask;
         }
 
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            // Make sure we got a page
+            if (!(PageTabControl.SelectedContent is IBasePage page))
+                return;
+
+            // Make sure there is an overflow menu
+            if (page.OverflowMenu == null)
+                return;
+
+            // Set the button
+            OverflowMenuButton = sender.CastTo<Button>();
+
+            // Open the overflow menu
+            page.OverflowMenu.IsOpen = true;
+        }
+
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            // Refresh if the backup page should be enabled
             RefreshBackupPageEnabled();
+
+            // Subscribe to when the overflow menu first loads for each page
+            foreach (var page in PageTabControl.Items.
+                // Get all tab items
+                OfType<TabItem>().
+                // Get the content of the tab items
+                Select(x => x.Content).
+                // Only get base pages
+                OfType<IBasePage>().
+                // Make sure there is an overflow menu
+                Where(x => x.OverflowMenu != null))
+            {
+                // Get the overflow menu
+                var menu = page.OverflowMenu;
+
+                // Set the data context
+                menu.DataContext = (page as FrameworkElement)?.DataContext;
+
+                // Set the placement
+                menu.Placement = PlacementMode.Absolute;
+
+                // Subscribe to when loaded
+                menu.Loaded += (s, ee) =>
+                {
+                    // Get the point on screen
+                    var point = OverflowMenuButton.PointToScreen(
+                        new Point(0 - menu.ActualWidth + OverflowMenuButton.ActualWidth, OverflowMenuButton.ActualHeight));
+
+                    // Set the offsets with a margin of 10a
+                    menu.HorizontalOffset = point.X - 10;
+                    menu.VerticalOffset = point.Y + 10;
+                };
+            }
         }
+
+        #endregion
+
+        #region Protected Properties
+
+        /// <summary>
+        /// The overflow menu button
+        /// </summary>
+        protected Button OverflowMenuButton { get; set; }
 
         #endregion
     }

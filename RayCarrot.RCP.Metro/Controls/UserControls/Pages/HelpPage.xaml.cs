@@ -1,14 +1,13 @@
-﻿using System.Windows.Controls;
+﻿using RayCarrot.CarrotFramework.Abstractions;
+using System.Windows.Controls;
 using System.Windows.Input;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Interaction logic for HelpPage.xaml
     /// </summary>
-    public partial class HelpPage : VMUserControl<HelpPageViewModel>
+    public partial class HelpPage : BasePage<HelpPageViewModel>
     {
         public HelpPage()
         {

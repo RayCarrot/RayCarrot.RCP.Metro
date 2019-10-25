@@ -5,6 +5,9 @@
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
+    <!-- Default Menu Item Icon -->
+    <Style TargetType="{x:Type local:MenuItemIcon}" BasedOn="{StaticResource {x:Type MenuItem}}" />
+
     <!-- Flat Button -->
 
     <Style x:Key="FlatButton" TargetType="{x:Type Button}">
@@ -136,7 +139,7 @@
                                         <Binding.ValidationRules>
                                             <rwpf:BrowseBoxValidationRule ValidatesOnTargetUpdated="True">
                                                 <rwpf:BrowseBoxValidationRule.ValidationData>
-                                                    <rwpf:BrowseValidationRuleData ValidationRule="{Binding Path=Data.PathValidation, Source={StaticResource proxy}}" />
+                                                    <rwpf:BrowseValidationRuleData ValidationRule="{Binding Path=Data.(rwpf:BrowseBox.PathValidation), Source={StaticResource proxy}}" />
                                                 </rwpf:BrowseBoxValidationRule.ValidationData>
                                             </rwpf:BrowseBoxValidationRule>
                                         </Binding.ValidationRules>

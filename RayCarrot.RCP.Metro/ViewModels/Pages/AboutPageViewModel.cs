@@ -26,6 +26,13 @@ namespace RayCarrot.RCP.Metro
             ShowVersionHistoryCommand = new RelayCommand(ShowVersionHistory);
             CheckForUpdatesCommand = new AsyncRelayCommand(async () => await App.CheckForUpdatesAsync(true));
             UninstallCommand = new AsyncRelayCommand(UninstallAsync);
+
+            // Refresh the update badge property based on if new update is available
+            Data.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == nameof(Data.IsUpdateAvailable))
+                    OnPropertyChanged(nameof(UpdateBadge));
+            };
         }
 
         #endregion
@@ -39,6 +46,15 @@ namespace RayCarrot.RCP.Metro
         public ICommand CheckForUpdatesCommand { get; }
 
         public ICommand UninstallCommand { get; }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// The update badge, indicating if new updates are available
+        /// </summary>
+        public string UpdateBadge => Data.IsUpdateAvailable ? "1" : null;
 
         #endregion
 

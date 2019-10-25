@@ -102,6 +102,7 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
 
                                         <metro:Underline x:Name="Underline"
@@ -128,6 +129,19 @@
                                                                         Width="22"
                                                                         Height="22"/>
                                         </local:OneWayToggleButton>
+
+                                        <Button Grid.Column="2"
+                                                Click="ButtonBase_OnClick"
+                                                Style="{StaticResource FlatButton}"
+                                                Visibility="{Binding ElementName=PageTabControl, Path=SelectedItem.(ContentControl.Content).(local:IBasePage.OverflowMenu), Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
+                                                Margin="10"
+                                                Width="22"
+                                                Height="22">
+                                            <iconPacks:PackIconMaterial Kind="DotsVertical"
+                                                                        Background="Transparent"
+                                                                        VerticalAlignment="Center"/>
+                                        </Button>
+
                                     </Grid>
 
                                     <Border x:Name="ContentPanel"

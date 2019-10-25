@@ -1,11 +1,9 @@
-﻿using RayCarrot.WPF;
-
-namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Interaction logic for BackupPage.xaml
     /// </summary>
-    public partial class BackupPage : VMUserControl<BackupPageViewModel>
+    public partial class BackupPage : BasePage<BackupPageViewModel>
     {
         /// <summary>
         /// Default constructor
