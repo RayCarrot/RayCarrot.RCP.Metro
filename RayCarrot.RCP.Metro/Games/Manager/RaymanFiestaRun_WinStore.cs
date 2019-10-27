@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
@@ -60,18 +61,14 @@ namespace RayCarrot.RCP.Metro
                 // Check if valid
                 if (IsFiestaRunEditionValidAsync(version))
                 {
-                    // TODO: It's slightly problematic that this gets set DURING the game finder operation, rather than after. Currently it'll only effect the game finder if run through the debug page
-                    // Set the version
-                    RCFRCP.Data.FiestaRunVersion = version;
-
                     // Return the install directory
-                    return GetPackageInstallDirectory();
+                    return new FoundActionResult(GetPackageInstallDirectory(GetFiestaRunPackageName(version)), version);
                 }
             }
 
             // Return an empty path if not found
             return null;
-        });
+        }, (x, y) => RCFRCP.Data.FiestaRunVersion = y.CastTo<FiestaRunEdition>());
 
         #endregion
 
@@ -110,7 +107,7 @@ namespace RayCarrot.RCP.Metro
                     FileSystemPath installDir = dir;
 
                     // Make sure we got a valid directory
-                    if (!await IsValidAsync(installDir))
+                    if (!await IsValidAsync(installDir, version))
                     {
                         RCFCore.Logger?.LogInformationSource($"The {Game} install directory was not valid");
 
@@ -136,6 +133,29 @@ namespace RayCarrot.RCP.Metro
 
                 return null;
             }
+        }
+
+        #endregion
+
+        #region Public Override Methods
+
+        /// <summary>
+        /// Indicates if the game is valid
+        /// </summary>
+        /// <param name="installDir">The game install directory, if any</param>
+        /// <param name="parameter">Optional game parameter</param>
+        /// <returns>True if the game is valid, otherwise false</returns>
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public override Task<bool> IsValidAsync(FileSystemPath installDir, object parameter = null)
+        {
+            // Make sure version is at least Windows 8
+            if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
+                return Task.FromResult(false);
+
+            if (!((installDir + Game.GetGameInfo<RaymanFiestaRun_Info>().GetFiestaRunFileName(parameter as FiestaRunEdition? ?? RCFRCP.Data.FiestaRunVersion)).FileExists))
+                return Task.FromResult(false);
+
+            return Task.FromResult(true);
         }
 
         #endregion

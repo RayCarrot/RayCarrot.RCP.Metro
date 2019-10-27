@@ -2,9 +2,11 @@
 • 
 • Major changes to the application startup. Several operation will now run in the background, such as checking for application updates (indicated by progress indicator in the corner).
 • Moved page-specific options to an overflow menu
+• Moved game options to an overflow menu
 • Secondary windows can now be closed with the escape key
 • The game finder has been improved
 • Added the option to open Microsoft Store apps in the store
+• Added the option to manually run the game finder
 
 Other changes:
 • Major code changes for how the games are handled

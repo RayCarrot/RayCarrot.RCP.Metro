@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using System.Windows;
+using RayCarrot.Extensions;
 using RayCarrot.UI;
 using RayCarrot.WPF;
 
@@ -162,6 +163,12 @@ namespace RayCarrot.RCP.Metro
 
             // NOTE: Not the most elegant solution - but we can't call Close() from within a closing event
             _ = Task.Run(() => Dispatcher?.Invoke(Close));
+        }
+
+        private void FrameworkElement_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            // Set the data context manually due to not being inherited
+            sender.CastTo<FrameworkElement>().DataContext = DataContext;
         }
 
         #endregion

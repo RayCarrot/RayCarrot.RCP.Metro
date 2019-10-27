@@ -111,8 +111,9 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the game is valid
         /// </summary>
         /// <param name="installDir">The game install directory, if any</param>
+        /// <param name="parameter">Optional game parameter</param>
         /// <returns>True if the game is valid, otherwise false</returns>
-        public virtual Task<bool> IsValidAsync(FileSystemPath installDir)
+        public virtual Task<bool> IsValidAsync(FileSystemPath installDir, object parameter = null)
         {
             // Make sure the default file exists in the install directory
             return Task.FromResult((installDir + Game.GetGameInfo().DefaultFileName).FileExists);

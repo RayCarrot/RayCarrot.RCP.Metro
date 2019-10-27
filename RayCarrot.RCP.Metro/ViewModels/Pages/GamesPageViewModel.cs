@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -26,6 +28,9 @@ namespace RayCarrot.RCP.Metro
             AsyncLock = new AsyncLock();
             InstalledGames = new ObservableCollection<GameDisplayViewModel>();
             NotInstalledGames = new ObservableCollection<GameDisplayViewModel>();
+
+            // Create commands
+            RunGameFinderCommand = new AsyncRelayCommand(RunGameFinderAsync);
 
             // Enable collection synchronization
             BindingOperations.EnableCollectionSynchronization(InstalledGames, Application.Current);
@@ -48,6 +53,12 @@ namespace RayCarrot.RCP.Metro
             // Refresh on startup
             Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();
         }
+
+        #endregion
+
+        #region Commands
+
+        public AsyncRelayCommand RunGameFinderCommand { get; }
 
         #endregion
 
@@ -166,6 +177,9 @@ namespace RayCarrot.RCP.Metro
                             AnyNotInstalledGames = true;
                         }
                     }
+
+                    // Allow game finder to run only if there are games which have not been found
+                    await Application.Current.Dispatcher.InvokeAsync(() => RunGameFinderCommand.CanExecuteCommand = AnyNotInstalledGames);
                 }
                 catch (Exception ex)
                 {
@@ -175,6 +189,25 @@ namespace RayCarrot.RCP.Metro
             }
 
             RCFCore.Logger?.LogInformationSource($"The displayed games have been refreshed");
+        }
+
+        /// <summary>
+        /// Runs the game finder
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task RunGameFinderAsync()
+        {
+            // Make sure the game finder is not running
+            if (App.IsGameFinderRunning)
+                return;
+
+            // Run the game finder
+            var result = await Task.Run(App.RunGameFinderAsync);
+
+            // Check the result
+            if (!result)
+                // TODO: Localize
+                await RCFUI.MessageUI.DisplayMessageAsync("No new games were found", "Game finder result", MessageType.Information);
         }
 
         #endregion

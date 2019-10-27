@@ -689,46 +689,48 @@ namespace RayCarrot.RCP.Metro
                 var finderItems = !File.Exists(Data.DosBoxPath)
                     ? new FinderItem[]
                     {
-                            new FinderItem(new string[]
+                        new FinderItem(new string[]
+                        {
+                            "DosBox",
+                            "Dos Box"
+                        }, "DosBox", x => (x + "DOSBox.exe").FileExists ? x : null, (x, y) =>
+                        {
+                            if (File.Exists(Data.DosBoxPath))
                             {
-                                "DosBox",
-                                "Dos Box"
-                            }, "DosBox", x => (x + "DOSBox.exe").FileExists ? x : null, x =>
-                            {
-                                if (File.Exists(Data.DosBoxPath))
-                                {
-                                    RCFCore.Logger?.LogWarningSource(
-                                        $"The DosBox executable was not added from the game finder due to already having been added");
-                                    return;
-                                }
+                                RCFCore.Logger?.LogWarningSource(
+                                    $"The DosBox executable was not added from the game finder due to already having been added");
+                                return;
+                            }
 
-                                RCFCore.Logger?.LogInformationSource(
-                                    $"The DosBox executable was found from the game finder");
+                            RCFCore.Logger?.LogInformationSource(
+                                $"The DosBox executable was found from the game finder");
 
-                                Data.DosBoxPath = x + "DOSBox.exe";
-                            })
+                            Data.DosBoxPath = x + "DOSBox.exe";
+                        })
                     }
                     : new FinderItem[0];
 
                 // Run the game finder and get the result
-                var foundGames = new GameFinder(games, finderItems).FindGames();
+                var foundItems = await new GameFinder(games, finderItems).FindGamesAsync();
 
-                // Add the found games
-                foreach (var gameResult in foundGames)
+                // Add the found items
+                foreach (var foundItem in foundItems)
                 {
-                    // Add the game
-                    await AddNewGameAsync(gameResult.Game, gameResult.GameType, gameResult.InstallLocation);
+                    // Handle the item
+                    await foundItem.HandleItemAsync();
 
-                    // Add to list
-                    addedGames.Add(gameResult.Game);
+                    // NOTE: We're currently not showing if DOSBox was found
+                    // If a game, add to list
+                    if (foundItem is GameFinderResult game)
+                        addedGames.Add(game.Game);
                 }
 
                 // Show message if new games were found
-                if (foundGames.Count > 0)
+                if (foundItems.Count > 0)
                 {
-                    await RCFUI.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {foundGames.OrderBy(x => x.Game).JoinItems(Environment.NewLine + "• ", x => x.Game.GetGameInfo().DisplayName)}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
+                    await RCFUI.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {addedGames.OrderBy(x => x).JoinItems(Environment.NewLine + "• ", x => x.GetGameInfo().DisplayName)}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
 
-                    RCFCore.Logger?.LogInformationSource($"The game finder found the following games {foundGames.JoinItems(", ", x => x.Game.ToString())}");
+                    RCFCore.Logger?.LogInformationSource($"The game finder found the following games {foundItems.JoinItems(", ", x => x.ToString())}");
 
                     return true;
                 }

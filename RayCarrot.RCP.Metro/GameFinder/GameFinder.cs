@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using IniParser;
 using Microsoft.Win32;
 using RayCarrot.CarrotFramework.Abstractions;
@@ -31,7 +32,7 @@ namespace RayCarrot.RCP.Metro
             GamesToFind = games.ToList();
             FinderItems = finderItems;
             FoundFinderItems = new List<FinderItem>();
-            Results = new List<GameFinderResult>();
+            Results = new List<BaseFinderResult>();
             HasRun = false;
 
             RCFCore.Logger?.LogInformationSource($"The game finder has been created to search for the following games: {GamesToFind.JoinItems(", ")}");
@@ -52,7 +53,7 @@ namespace RayCarrot.RCP.Metro
         /// Attempts to find the specified games, returning the found games and their install locations. This method can only be called once per class instance.
         /// </summary>
         /// <returns>The found games and their install locations</returns>
-        public IReadOnlyList<GameFinderResult> FindGames()
+        public async Task<IReadOnlyList<BaseFinderResult>> FindGamesAsync()
         {
             if (HasRun)
                 throw new Exception("The FindGames method can only be called once per instance");
@@ -88,7 +89,7 @@ namespace RayCarrot.RCP.Metro
 
                     // If we retrieved ini data, search it
                     if (iniLocations != null)
-                        SearchIniData(iniLocations, ubiIniGameFinders);
+                        await SearchIniDataAsync(iniLocations, ubiIniGameFinders);
                     else
                         RCFCore.Logger?.LogInformationSource("The ubi.ini file data was null");
                 }
@@ -109,7 +110,7 @@ namespace RayCarrot.RCP.Metro
                         var installedPrograms = EnumerateRegistryUninstallPrograms();
 
                         // Search installed programs
-                        SearchRegistryUninstall(installedPrograms, regUninstallGameFinders, steamGameFinders, regUninstallFinders);
+                        await SearchRegistryUninstallAsync(installedPrograms, regUninstallGameFinders, steamGameFinders, regUninstallFinders);
                     }
                     catch (Exception ex)
                     {
@@ -132,7 +133,7 @@ namespace RayCarrot.RCP.Metro
                         var shortcuts = EnumerateProgramShortcuts();
 
                         // Search the shortcuts
-                        SearchWin32Shortcuts(shortcuts, programShortcutGameFinders, programShortcutFinders);
+                        await SearchWin32ShortcutsAsync(shortcuts, programShortcutGameFinders, programShortcutFinders);
                     }
                     catch (Exception ex)
                     {
@@ -140,13 +141,9 @@ namespace RayCarrot.RCP.Metro
                     }
                 }
 
-                // Run custom finders
+                // Run custom game finders
                 foreach (var game in GameFinderItems.Where(x => !FoundGames.Contains(x.Game) && x.FinderItem.CustomFinderAction != null))
                 {
-                    // Make sure the game hasn't already been found
-                    if (Results.Any(x => x.Game == game.Game))
-                        continue;
-
                     // Run the custom action and get the result
                     var result = game.FinderItem.CustomFinderAction();
 
@@ -155,7 +152,21 @@ namespace RayCarrot.RCP.Metro
                         continue;
 
                     // Add the game
-                    AddGame(game, result.Value);
+                    await AddGameAsync(game, result.InstallDir, result.Parameter);
+                }
+
+                // Run custom finders
+                foreach (var item in FinderItems.Where(x => !FoundFinderItems.Contains(x) && x.CustomFinderAction != null))
+                {
+                    // Run the custom action and get the result
+                    var result = item.CustomFinderAction();
+
+                    // Make sure we got a result
+                    if (result == null)
+                        continue;
+
+                    // Add the game
+                    AddItem(item, result.InstallDir, result.Parameter);
                 }
 
                 RCFCore.Logger?.LogInformationSource($"The game finder found {Results.Count} games");
@@ -197,12 +208,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the games which have been found
         /// </summary>
-        protected IEnumerable<Games> FoundGames => Results.Select(x => x.Game);
+        protected IEnumerable<Games> FoundGames => Results.OfType<GameFinderResult>().Select(x => x.Game);
 
         /// <summary>
         /// The list of game finder results
         /// </summary>
-        protected List<GameFinderResult> Results { get; }
+        protected List<BaseFinderResult> Results { get; }
 
         /// <summary>
         /// Indicates if the finder operation has run
@@ -219,7 +230,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="shortcuts">The shortcut paths</param>
         /// <param name="programShortcutGameFinders">The shortcut game finders</param>
         /// <param name="programShortcutFinders">The shortcut finders</param>
-        protected virtual void SearchWin32Shortcuts(IEnumerable<string> shortcuts, List<GameFinderItemContainer> programShortcutGameFinders, List<FinderItem> programShortcutFinders)
+        /// <returns>The task</returns>
+        protected virtual async Task SearchWin32ShortcutsAsync(IEnumerable<string> shortcuts, List<GameFinderItemContainer> programShortcutGameFinders, List<FinderItem> programShortcutFinders)
         {
             // Enumerate each program
             foreach (var shortcut in shortcuts)
@@ -272,7 +284,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Add the game
-                    var added = AddGame(gameMatch, targetDir);
+                    var added = await AddGameAsync(gameMatch, targetDir);
 
                     // Remove if added
                     if (added)
@@ -292,7 +304,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="regUninstallGameFinders">The Registry uninstall game finders</param>
         /// <param name="steamGameFinders">The Steam game finders</param>
         /// <param name="regUninstallFinders">The Registry uninstall finders</param>
-        protected virtual void SearchRegistryUninstall(IEnumerable<InstalledProgram> installedPrograms, List<GameFinderItemContainer> regUninstallGameFinders, List<GameFinderItemContainer> steamGameFinders, List<FinderItem> regUninstallFinders)
+        /// <returns>The task</returns>
+        protected virtual async Task SearchRegistryUninstallAsync(IEnumerable<InstalledProgram> installedPrograms, List<GameFinderItemContainer> regUninstallGameFinders, List<GameFinderItemContainer> steamGameFinders, List<FinderItem> regUninstallFinders)
         {
             // Enumerate each program
             foreach (var program in installedPrograms)
@@ -329,7 +342,7 @@ namespace RayCarrot.RCP.Metro
                         Replace("/", @"\");
 
                     // Add the game
-                    var added = AddGame(gameMatch, location);
+                    var added = await AddGameAsync(gameMatch, location);
 
                     // Remove if added
                     if (added)
@@ -352,7 +365,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="iniInstallDirData">A dictionary of the sections and their the install location value</param>
         /// <param name="finders">The game finders for this operation</param>
-        protected virtual void SearchIniData(IDictionary<string, string> iniInstallDirData, GameFinderItemContainer[] finders)
+        /// <returns>The task</returns>
+        protected virtual async Task SearchIniDataAsync(IDictionary<string, string> iniInstallDirData, GameFinderItemContainer[] finders)
         {
             RCFCore.Logger?.LogInformationSource("The ini sections are being searched...");
 
@@ -367,7 +381,7 @@ namespace RayCarrot.RCP.Metro
                     continue;
 
                 // Add the game
-                AddGame(game, location);
+                await AddGameAsync(game, location);
             }
         }
 
@@ -527,13 +541,14 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="game">The game item to add</param>
         /// <param name="installDir">The found install directory</param>
+        /// <param name="parameter">Optional parameter</param>
         /// <returns>True if the game item was added, otherwise false</returns>
-        protected virtual bool AddGame(GameFinderItemContainer game, FileSystemPath installDir)
+        protected virtual async Task<bool> AddGameAsync(GameFinderItemContainer game, FileSystemPath installDir, object parameter = null)
         {
             RCFCore.Logger?.LogInformationSource($"An install directory was found for {game.Game}");
 
             // Make sure the game hasn't already been found
-            if (Results.Any(x => x.Game == game.Game))
+            if (FoundGames.Contains(game.Game))
             {
                 RCFCore.Logger?.LogWarningSource($"{game.Game} could not be added. The game has already been found.");
                 return false;
@@ -560,15 +575,15 @@ namespace RayCarrot.RCP.Metro
                 installDir = result.Value;
             }
 
-            // Make sure that the default file is found
-            if (!(installDir + game.Game.GetGameInfo().DefaultFileName).FileExists)
+            // Make sure that the game is valid
+            if (!await game.Game.GetManager(game.GameType).IsValidAsync(installDir, parameter))
             {
                 RCFCore.Logger?.LogInformationSource($"{game.Game} could not be added. The game default file was not found.");
                 return false;
             }
 
             // Add the game to found games
-            Results.Add(new GameFinderResult(game.Game, installDir, game.GameType));
+            Results.Add(new GameFinderResult(game.Game, installDir, game.GameType, game.FinderItem.FoundAction, parameter));
 
             // Remove from games to find
             GamesToFind.Remove(game.Game);
@@ -583,8 +598,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="item">The item to add</param>
         /// <param name="installDir">The found install directory</param>
+        /// <param name="parameter">Optional parameter</param>
         /// <returns>True if the item was added, otherwise false</returns>
-        protected virtual bool AddItem(FinderItem item, FileSystemPath installDir)
+        protected virtual bool AddItem(FinderItem item, FileSystemPath installDir, object parameter = null)
         {
             RCFCore.Logger?.LogInformationSource($"An install directory was found for a finder item");
 
@@ -611,9 +627,7 @@ namespace RayCarrot.RCP.Metro
 
             // Add the item
             FoundFinderItems.Add(item);
-
-            // Run found action
-            item.FoundAction(installDir);
+            Results.Add(new FinderResult(installDir, item.FoundAction, parameter));
 
             RCFCore.Logger?.LogInformationSource($"A finder item was found");
 

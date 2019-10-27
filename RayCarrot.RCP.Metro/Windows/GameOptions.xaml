@@ -29,6 +29,7 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
@@ -45,6 +46,23 @@
                        Text="{Binding Path=DisplayName, Mode=OneTime}"
                        VerticalAlignment="Center"
                        Margin="20 0 0 0" />
+
+            <!-- Overflow menu -->
+
+            <local:OverflowMenu Grid.Column="2"
+                                Margin="7">
+                <local:OverflowMenu.Menu>
+                    <ContextMenu Loaded="FrameworkElement_OnLoaded"
+                                 ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
+                        <local:MenuItemIcon Header="{Resx GameOptions_CreateShortcut}"
+                                            Command="{Binding Path=ShortcutCommand}"
+                                            IconKind="Link"/>
+                        <local:MenuItemIcon Header="{Resx GameOptions_Remove}"
+                                            Command="{Binding Path=RemoveCommand}"
+                                            IconKind="Delete"/>
+                    </ContextMenu>
+                </local:OverflowMenu.Menu>
+            </local:OverflowMenu>
 
         </Grid>
 
@@ -120,19 +138,6 @@
                                                       ToolTip="{Resx GameOptions_LaunchMode_AsAdminInfo}" />
 
                         </StackPanel>
-
-                        <Separator Visibility="{Binding Path=CanChangeLaunchMode, Converter={rwpf:BooleanToVisibilityConverter}}" />
-
-                        <WrapPanel Orientation="Horizontal">
-
-                            <Button Command="{Binding Path=ShortcutCommand}"
-                                    Content="{Resx GameOptions_CreateShortcut}"
-                                    Margin="0 0 10 0" />
-
-                            <Button Command="{Binding Path=RemoveCommand}"
-                                    Content="{Resx GameOptions_Remove}" />
-
-                        </WrapPanel>
 
                         <Separator Visibility="{Binding Path=OptionsContent, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}" />
 

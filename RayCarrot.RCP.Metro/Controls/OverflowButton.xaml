@@ -118,46 +118,7 @@
                                                        MaxHeight="16"/>
                                             </Setter.Value>
                                         </Setter>
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type MenuItem}">
-                                                    <Grid SnapsToDevicePixels="True">
-                                                        <Rectangle x:Name="Bg" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1" />
-                                                        <Grid>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="Auto" MinWidth="24" SharedSizeGroup="MenuItemIconColumnGroup" />
-                                                                <ColumnDefinition Width="4" />
-                                                                <ColumnDefinition Width="*" />
-                                                                <ColumnDefinition Width="6" />
-                                                                <ColumnDefinition Width="Auto" SharedSizeGroup="MenuItemIGTColumnGroup" />
-                                                            </Grid.ColumnDefinitions>
-                                                            <ContentPresenter x:Name="Icon" Grid.Column="0" Margin="1" VerticalAlignment="Center" ContentSource="Icon" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                                            <Path x:Name="GlyphPanel" Grid.Column="0" Margin="5 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" Data="{StaticResource Checkmark}"
-                                                                  Fill="{DynamicResource CheckmarkFill}" FlowDirection="LeftToRight" Visibility="Collapsed" />
-                                                            <ContentPresenter Grid.Column="2" Margin="{TemplateBinding Padding}" ContentSource="Header"
-                                                                              RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                                                        </Grid>
-                                                    </Grid>
-                                                    <ControlTemplate.Triggers>
-                                                        <Trigger Property="Icon" Value="{x:Null}">
-                                                            <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
-                                                        </Trigger>
-                                                        <Trigger Property="IsChecked" Value="True">
-                                                            <Setter TargetName="GlyphPanel" Property="Visibility" Value="Visible" />
-                                                            <Setter TargetName="Icon" Property="Visibility" Value="Collapsed" />
-                                                        </Trigger>
-                                                        <Trigger Property="IsHighlighted" Value="True">
-                                                            <Setter TargetName="Bg" Property="Fill" Value="{DynamicResource MenuItemSelectionFill}" />
-                                                            <Setter TargetName="Bg" Property="Stroke" Value="{DynamicResource MenuItemSelectionStroke}" />
-                                                        </Trigger>
-                                                        <Trigger Property="IsEnabled" Value="False">
-                                                            <Setter Property="Foreground" Value="{DynamicResource DisabledMenuItemForeground}" />
-                                                            <Setter TargetName="GlyphPanel" Property="Fill" Value="{DynamicResource DisabledMenuItemGlyphPanel}" />
-                                                        </Trigger>
-                                                    </ControlTemplate.Triggers>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
+
                                     </Style>
                                 </MenuItem.Style>
                             </MenuItem>

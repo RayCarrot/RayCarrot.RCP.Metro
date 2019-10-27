@@ -31,15 +31,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the default file name for launching the game, if available
         /// </summary>
-        public override string DefaultFileName =>
-            RCFRCP.Data.FiestaRunVersion switch
-            {
-                FiestaRunEdition.Default => "RFR_WinRT.exe",
-                FiestaRunEdition.Preload => "RFR_WinRT_OEM.exe",
-                FiestaRunEdition.Win10 => "RFRXAML.exe",
-
-                _ => throw new ArgumentOutOfRangeException()
-            };
+        public override string DefaultFileName => GetFiestaRunFileName(RCFRCP.Data.FiestaRunVersion);
 
         /// <summary>
         /// The options UI, if any is available
@@ -71,6 +63,27 @@ namespace RayCarrot.RCP.Metro
                     return new BaseBackupInfo(backupName, RCPWinStoreGame.GetWinStoreBackupDirs(manager.GetFiestaRunFullPackageName(x)), $"{Games.RaymanFiestaRun.GetGameInfo().DisplayName} {manager.GetFiestaRunEditionDisplayName(x)}") as IBackupInfo;
                 }).ToArray();
             }
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Gets the Fiesta Run default file name based on version
+        /// </summary>
+        /// <param name="version">The version</param>
+        /// <returns>The file name</returns>
+        public string GetFiestaRunFileName(FiestaRunEdition version)
+        {
+            return version switch
+            {
+                FiestaRunEdition.Default => "RFR_WinRT.exe",
+                FiestaRunEdition.Preload => "RFR_WinRT_OEM.exe",
+                FiestaRunEdition.Win10 => "RFRXAML.exe",
+
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
 
         #endregion

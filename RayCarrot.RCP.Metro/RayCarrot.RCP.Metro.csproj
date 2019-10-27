@@ -112,14 +112,20 @@
     <Compile Include="Controls\MenuItemIcon.xaml.cs">
       <DependentUpon>MenuItemIcon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\OverflowMenu.xaml.cs">
+      <DependentUpon>OverflowMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserControls\Pages\Base\BasePage.cs" />
     <Compile Include="Controls\UserControls\Pages\Base\IBasePage.cs" />
-    <Compile Include="GameFinder\BaseFinderItem.cs" />
-    <Compile Include="GameFinder\FinderItem.cs" />
+    <Compile Include="GameFinder\FinderItems\BaseFinderItem.cs" />
+    <Compile Include="GameFinder\FinderItems\FoundActionResult.cs" />
+    <Compile Include="GameFinder\Results\BaseFinderResult.cs" />
+    <Compile Include="GameFinder\FinderItems\FinderItem.cs" />
+    <Compile Include="GameFinder\Results\FinderResult.cs" />
     <Compile Include="GamePatcher\GamePatcher.cs" />
     <Compile Include="GameFinder\GameFinder.cs" />
-    <Compile Include="GameFinder\GameFinderItem.cs" />
-    <Compile Include="GameFinder\GameFinderResult.cs" />
+    <Compile Include="GameFinder\FinderItems\GameFinderItem.cs" />
+    <Compile Include="GameFinder\Results\GameFinderResult.cs" />
     <Compile Include="Games\Base\RCPGameInfo.cs" />
     <Compile Include="Games\Base\RCPGameManager.cs" />
     <Compile Include="Games\Info\EducationalDos_Info.cs" />
@@ -294,6 +300,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\UserControls\Options\FiestaRunOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OverflowMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

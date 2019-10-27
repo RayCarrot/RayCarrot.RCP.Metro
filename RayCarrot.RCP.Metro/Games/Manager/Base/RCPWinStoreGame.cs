@@ -96,7 +96,7 @@ namespace RayCarrot.RCP.Metro
                 return null;
 
             // Return the install directory, if found
-            return GetPackageInstallDirectory();
+            return new FoundActionResult(GetPackageInstallDirectory(), null);
         });
 
         #endregion
@@ -226,15 +226,17 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the game is valid
         /// </summary>
         /// <param name="installDir">The game install directory, if any</param>
+        /// <param name="parameter">Optional game parameter</param>
         /// <returns>True if the game is valid, otherwise false</returns>
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public override async Task<bool> IsValidAsync(FileSystemPath installDir)
+        public override async Task<bool> IsValidAsync(FileSystemPath installDir, object parameter = null)
         {
             // Make sure version is at least Windows 8
             if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
                 return false;
 
-            if (!(await base.IsValidAsync(installDir)))
+            // Make sure the default game file is found
+            if (!(await base.IsValidAsync(installDir, parameter)))
                 return false;
 
             return true;

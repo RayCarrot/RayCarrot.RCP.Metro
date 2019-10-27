@@ -159,8 +159,9 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the game is valid
         /// </summary>
         /// <param name="installDir">The game install directory, if any</param>
+        /// <param name="parameter">Optional game parameter</param>
         /// <returns>True if the game is valid, otherwise false</returns>
-        public override async Task<bool> IsValidAsync(FileSystemPath installDir)
+        public override async Task<bool> IsValidAsync(FileSystemPath installDir, object parameter = null)
         {
             if (RCFRCP.Data.EducationalDosBoxGames == null)
                 return false;

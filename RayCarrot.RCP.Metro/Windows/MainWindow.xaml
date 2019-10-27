@@ -130,17 +130,11 @@
                                                                         Height="22"/>
                                         </local:OneWayToggleButton>
 
-                                        <Button Grid.Column="2"
-                                                Click="ButtonBase_OnClick"
-                                                Style="{StaticResource FlatButton}"
-                                                Visibility="{Binding ElementName=PageTabControl, Path=SelectedItem.(ContentControl.Content).(local:IBasePage.OverflowMenu), Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
-                                                Margin="10"
-                                                Width="22"
-                                                Height="22">
-                                            <iconPacks:PackIconMaterial Kind="DotsVertical"
-                                                                        Background="Transparent"
-                                                                        VerticalAlignment="Center"/>
-                                        </Button>
+                                        <local:OverflowMenu Grid.Column="2"
+                                                            DataContext="{Binding ElementName=PageTabControl, Path=SelectedItem.(ContentControl.Content).(local:IBasePage.OverflowMenu)}"
+                                                            Visibility="{Binding Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
+                                                            Menu="{Binding}"
+                                                            Margin="10"/>
 
                                     </Grid>
 

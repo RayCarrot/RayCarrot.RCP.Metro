@@ -257,6 +257,17 @@ namespace RayCarrot.RCP.Metro
             return RCFRCP.App.GameInfos[game].CreateInstance<RCPGameInfo>();
         }
 
+        /// <summary>
+        /// Gets the game info for the specified game
+        /// </summary>
+        /// <param name="game">The game to get the info for</param>
+        /// <returns>The info</returns>
+        public static T GetGameInfo<T>(this Games game)
+            where T : RCPGameInfo
+        {
+            return RCFRCP.App.GameInfos[game].CreateInstance<T>();
+        }
+
         #endregion
     }
 }
