@@ -129,6 +129,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string DebugInfo { get; set; }
 
+        ///// <summary>
+        ///// Indicates if the backed up files differ from the source files
+        ///// </summary>
+        //public bool RequiresBackup { get; set; }
+
         #endregion
 
         #region Commands

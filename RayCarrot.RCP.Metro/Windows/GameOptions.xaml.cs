@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using System.Windows;
+using Windows.Management.Deployment;
 using RayCarrot.Extensions;
 using RayCarrot.UI;
 using RayCarrot.WPF;
@@ -22,14 +23,24 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         /// <param name="game">The game to show the options for</param>
-        /// <param name="page">The page to show</param>
-        public GameOptions(Games game, GameOptionsPage page)
+        public GameOptions(Games game)
         {
+            // Set up UI
             InitializeComponent();
+            
+            // Create view model
             ViewModel = new GameOptionsViewModel(game);
+            
+            // Subscribe to events
             Closed += Window_Closed;
 
-            ChangePage(page);
+            RefreshTabs();
+
+            // Set default height
+            if (ViewModel.HasConfigContent || ViewModel.HasUtilities)
+                Height = 700;
+            else
+                SizeToContent = SizeToContent.Height;
         }
 
         #endregion
@@ -73,6 +84,21 @@ namespace RayCarrot.RCP.Metro
             ContentTabControl.SelectedIndex = (int)page;
         }
 
+        /// <summary>
+        /// Refreshes which page is to be shown
+        /// </summary>
+        private void RefreshTabs()
+        {
+            if (ViewModel.HasConfigContent)
+                ChangePage(GameOptionsPage.Config);
+            else if (ViewModel.HasOptionsContent)
+                ChangePage(GameOptionsPage.Options);
+            else if (ViewModel.HasUtilities)
+                ChangePage(GameOptionsPage.Utilities);
+            else
+                ChangePage(GameOptionsPage.Information);
+        }
+
         #endregion
 
         #region Public Static Methods
@@ -81,8 +107,7 @@ namespace RayCarrot.RCP.Metro
         /// Shows a new instance of this <see cref="Window"/>
         /// </summary>
         /// <param name="game">The game to show the options for</param>
-        /// <param name="page">The page to show</param>
-        public static void Show(Games game, GameOptionsPage page)
+        public static void Show(Games game)
         {
             var groupNames = new List<string>
             {
@@ -93,7 +118,7 @@ namespace RayCarrot.RCP.Metro
             // Add game specific group names
             groupNames.AddRange(game.GetGameInfo().DialogGroupNames);
 
-            WindowHelpers.ShowWindow(() => new GameOptions(game, page), WindowHelpers.ShowWindowFlags.DuplicatesAllowed, groupNames.ToArray());
+            WindowHelpers.ShowWindow(() => new GameOptions(game), WindowHelpers.ShowWindowFlags.DuplicatesAllowed, groupNames.ToArray());
         }
 
         #endregion

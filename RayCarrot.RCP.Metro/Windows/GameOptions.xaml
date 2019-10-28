@@ -11,7 +11,7 @@
                   Loaded="GameOptions_OnLoadedAsync"
                   Closing="GameOptions_OnClosingAsync"
                   WindowStartupLocation="CenterOwner"
-                  Height="700" Width="600"
+                  Width="600"
                   mc:Ignorable="d"
                   d:DataContext="{d:DesignInstance local:GameOptionsViewModel}">
     <Grid Margin="10">
@@ -77,11 +77,35 @@
                 </Style>
             </metro:MetroAnimatedTabControl.Resources>
 
+            <!-- Information -->
+
+            <!-- TODO: Localize -->
+            <local:RCPTabItem HeaderFontSize="16"
+                              IconKind="InformationOutline"
+                              Header="Information">
+
+                <ScrollViewer Padding="5">
+                    <ItemsControl ItemsSource="{Binding Path=GameInfoItems, Mode=OneTime}"
+                                  Grid.IsSharedSizeScope="True">
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:DuoGridItem Text="{Binding Path=Text}"
+                                                   Header="{Binding Path=Header}"
+                                                   MinUserLevel="{Binding Path=MinUserLevel}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+
+                    </ItemsControl>
+                </ScrollViewer>
+            </local:RCPTabItem>
+
             <!-- Options -->
 
             <local:RCPTabItem HeaderFontSize="16"
                               IconKind="SettingsOutline"
-                              Header="{Resx GameOptions_Options}">
+                              Header="{Resx GameOptions_Options}"
+                              Visibility="{Binding Path=HasOptionsContent, Converter={rwpf:BooleanToVisibilityConverter}}">
 
                 <ScrollViewer Padding="5">
                     <StackPanel>
@@ -90,23 +114,7 @@
                             <rwpf:FocusScrollViewerOnLoad />
                         </i:Interaction.Behaviors>
 
-                        <!-- Game Information -->
-
-                        <ItemsControl Visibility="{Binding Path=Data.ShowDetailedGameInfo, Converter={rwpf:BooleanToVisibilityConverter}}"
-                                      ItemsSource="{Binding Path=GameInfoItems, Mode=OneTime}"
-                                      Grid.IsSharedSizeScope="True">
-
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <local:DuoGridItem Text="{Binding Path=Text}"
-                                                       Header="{Binding Path=Header}"
-                                                       MinUserLevel="{Binding Path=MinUserLevel}" />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-
-                        </ItemsControl>
-
-                        <Separator Visibility="{Binding Path=Data.ShowDetailedGameInfo, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                        <!-- Launch Mode -->
 
                         <StackPanel Orientation="Horizontal"
                                     Visibility="{Binding Path=CanChangeLaunchMode, Converter={rwpf:BooleanToVisibilityConverter}}">
@@ -139,7 +147,11 @@
 
                         </StackPanel>
 
-                        <Separator Visibility="{Binding Path=OptionsContent, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}" />
+                        <Grid Visibility="{Binding Path=CanChangeLaunchMode, Converter={rwpf:BooleanToVisibilityConverter}}">
+                            <Separator Visibility="{Binding Path=OptionsContent, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}" />
+                        </Grid>
+
+                        <!-- Options Content -->
 
                         <ContentPresenter Content="{Binding Path=OptionsContent}"
                                           rwpf:UnifiedMargin.Ignored="True" />

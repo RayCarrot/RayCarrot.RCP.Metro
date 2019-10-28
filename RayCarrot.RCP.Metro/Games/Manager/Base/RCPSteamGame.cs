@@ -149,6 +149,8 @@ namespace RayCarrot.RCP.Metro
                 {
                     RCFCore.Logger?.LogInformationSource($"The {Game} was not found under Steam Apps");
 
+                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidSteamGame, Resources.LocateGame_InvalidSteamGameHeader, MessageType.Error);
+
                     return null;
                 }
 
@@ -181,14 +183,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="shortcutName">The name of the shortcut</param>
         /// <param name="destinationDirectory">The destination directory for the shortcut</param>
-        /// <returns>The task</returns>
-        public override Task CreateGameShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory)
+        public override void CreateGameShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory)
         {
-            WindowsHelpers.CreateURLShortcut(shortcutName, destinationDirectory, LaunchURL);
+            RCFRCP.File.CreateURLShortcut(shortcutName, destinationDirectory, LaunchURL);
 
             RCFCore.Logger?.LogTraceSource($"An URL shortcut was created for {Game} under {destinationDirectory}");
-
-            return Task.CompletedTask;
         }
 
         #endregion

@@ -128,6 +128,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool HasConfigContent => ConfigContent != null;
 
+        /// <summary>
+        /// Indicates if the game has options content
+        /// </summary>
+        public bool HasOptionsContent => OptionsContent != null || CanChangeLaunchMode;
+
         #endregion
 
         #region Commands
@@ -212,7 +217,7 @@ namespace RayCarrot.RCP.Metro
 
                 var shortcutName = String.Format(Resources.GameShortcut_ShortcutName, Game.GetGameInfo().DisplayName);
 
-                await Game.GetManager().CreateGameShortcut(shortcutName, result.SelectedDirectory);
+                Game.GetManager().CreateGameShortcut(shortcutName, result.SelectedDirectory);
 
                 await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.GameShortcut_Success);
             }

@@ -333,7 +333,19 @@ namespace RayCarrot.RCP.Metro
                     if (CreateStartMenuShortcut)
                         await AddShortcutAsync(Path.Combine(Environment.GetFolderPath(CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonStartMenu : Environment.SpecialFolder.StartMenu), "Programs"), displayName);
 
-                    async Task AddShortcutAsync(FileSystemPath dir, string shortcutName) => await Game.GetManager().CreateGameShortcut(shortcutName, dir);
+                    // Helper method for creating a shortcut
+                    async Task AddShortcutAsync(FileSystemPath dir, string shortcutName)
+                    {
+                        try
+                        {
+                            Game.GetManager().CreateGameShortcut(shortcutName, dir);
+                        }
+                        catch (Exception ex)
+                        {
+                            ex.HandleError("Creating game shortcut from installer", Game);
+                            await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
+                        }
+                    }
                 }
 
                 switch (result)

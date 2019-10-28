@@ -210,15 +210,19 @@ namespace RayCarrot.RCP.Metro
             if (IconCache.ContainsKey(path.FullPath))
                 return IconCache[path.FullPath];
 
-            var image = path.GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource();
+            // ReSharper disable once PossibleNullReferenceException
+            return Application.Current.Dispatcher.Invoke(() =>
+            {
+                var image = path.GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource();
 
-            image.Freeze();
+                image.Freeze();
 
-            RCFCore.Logger?.LogDebugSource($"The link item image source has been created for the path '{path}'");
+                RCFCore.Logger?.LogDebugSource($"The link item image source has been created for the path '{path}'");
 
-            IconCache.Add(path.FullPath, image);
+                IconCache.Add(path.FullPath, image);
 
-            return image;
+                return image;
+            });
         }
 
         #endregion

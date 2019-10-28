@@ -6,6 +6,11 @@
     public enum GameOptionsPage
     {
         /// <summary>
+        /// The game information
+        /// </summary>
+        Information,
+
+        /// <summary>
         /// The primary game options
         /// </summary>
         Options,

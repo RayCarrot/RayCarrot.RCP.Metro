@@ -219,7 +219,7 @@ namespace RayCarrot.RCP.Metro
                     actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.SettingsOutline, new RelayCommand(() =>
                     {
                         RCFCore.Logger?.LogTraceSource($"The Game {Game} options dialog is opening...");
-                        GameOptions.Show(Game, GameOptionsPage.Options);
+                        GameOptions.Show(Game);
                     })));
 
                     return new GameDisplayViewModel(Game, DisplayName, IconSource, new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.Play, new AsyncRelayCommand(async () => await Game.GetManager().LaunchGameAsync(false))), actions);

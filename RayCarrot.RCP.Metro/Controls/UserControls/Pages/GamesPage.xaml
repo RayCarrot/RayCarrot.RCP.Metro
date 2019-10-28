@@ -20,71 +20,81 @@
             <local:MenuItemIcon Header="Find Games"
                                 Command="{Binding Path=RunGameFinderCommand}"
                                 IconKind="DatabaseSearch"/>
+
+            <local:MenuItemIcon Header="{Resx Page_Refresh}"
+                                Command="{Binding Path=RefreshGamesCommand}"
+                                rwpf:UserLevelTag.MinUserLevel="Debug"
+                                IconKind="Refresh"/>
         </ContextMenu>
     </local:IBasePage.OverflowMenu>
 
-    <Grid>
-        <ScrollViewer Visibility="{Binding Path=App.IsGameFinderRunning, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
+    <Grid Visibility="{Binding Path=RefreshingGames, Converter={rwpf:InvertedBooleanToVisibilityConverter}}">
+        <Grid>
+            <ScrollViewer Visibility="{Binding Path=App.IsGameFinderRunning, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
                       Padding="5">
-            <Interactions:Interaction.Behaviors>
-                <rwpf:FocusScrollViewerOnLoad />
-            </Interactions:Interaction.Behaviors>
-
-            <StackPanel>
-                <StackPanel.Resources>
-                    <Style x:Key="GamesDisplay"
-                           TargetType="{x:Type ItemsControl}"
-                           BasedOn="{StaticResource {x:Type ItemsControl}}">
-                        <Setter Property="ItemTemplate">
-                            <Setter.Value>
-                                <DataTemplate>
-                                    <local:GameDisplay HorizontalAlignment="Left"
-                                                       Padding="7 10" />
-                                </DataTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Property="ItemsPanel">
-                            <Setter.Value>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel>
-                                        <Interactions:Interaction.Behaviors>
-                                            <Interactions:FluidMoveBehavior Duration="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToFluidMoveDurationConverter}}"
-                                                                            AppliesTo="Children" />
-                                        </Interactions:Interaction.Behaviors>
-                                    </WrapPanel>
-                                </ItemsPanelTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </StackPanel.Resources>
-
                 <Interactions:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 5" />
+                    <rwpf:FocusScrollViewerOnLoad />
                 </Interactions:Interaction.Behaviors>
 
-                <Grid Visibility="{Binding Path=AnyInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}">
-                    <TextBlock Text="{Resx Games_Installed}"
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style x:Key="GamesDisplay"
+                           TargetType="{x:Type ItemsControl}"
+                           BasedOn="{StaticResource {x:Type ItemsControl}}">
+                            <Setter Property="ItemTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <local:GameDisplay HorizontalAlignment="Left"
+                                                       Padding="7 10" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="ItemsPanel">
+                                <Setter.Value>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel>
+                                            <Interactions:Interaction.Behaviors>
+                                                <Interactions:FluidMoveBehavior Duration="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToFluidMoveDurationConverter}}"
+                                                                            AppliesTo="Children" />
+                                            </Interactions:Interaction.Behaviors>
+                                        </WrapPanel>
+                                    </ItemsPanelTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <Interactions:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="0 5" />
+                    </Interactions:Interaction.Behaviors>
+
+                    <Grid Visibility="{Binding Path=AnyInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}">
+                        <TextBlock Text="{Resx Games_Installed}"
                                Padding="10 0 0 0"
                                Style="{StaticResource LargeHeaderTextBlock}"
                                Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
-                </Grid>
+                    </Grid>
 
-                <ItemsControl Style="{StaticResource GamesDisplay}"
+                    <ItemsControl Style="{StaticResource GamesDisplay}"
                               ItemsSource="{Binding Path=InstalledGames, IsAsync=True}" />
 
-                <Grid Visibility="{Binding Path=AnyNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}">
-                    <TextBlock Text="{Resx Games_NotInstalled}"
+                    <Grid Visibility="{Binding Path=AnyNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}">
+                        <TextBlock Text="{Resx Games_NotInstalled}"
                                Padding="10 0 0 0"
                                Style="{StaticResource LargeHeaderTextBlock}"
                                Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
-                </Grid>
+                    </Grid>
 
-                <ItemsControl Style="{StaticResource GamesDisplay}"
+                    <ItemsControl Style="{StaticResource GamesDisplay}"
                               ItemsSource="{Binding Path=NotInstalledGames, IsAsync=True}"
                               Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
-            </StackPanel>
-        </ScrollViewer>
+                </StackPanel>
+            </ScrollViewer>
 
-        <mah:ProgressRing Visibility="{Binding Path=App.IsGameFinderRunning, Converter={rwpf:BooleanToVisibilityConverter}}" />
+            <mah:ProgressRing Visibility="{Binding Path=App.IsGameFinderRunning, Converter={rwpf:BooleanToVisibilityConverter}}" />
+        </Grid>
+
+        <mah:ProgressRing Visibility="{Binding Path=RefreshingGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
+
     </Grid>
 </local:BasePage>

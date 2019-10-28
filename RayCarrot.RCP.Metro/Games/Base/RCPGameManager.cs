@@ -140,8 +140,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="shortcutName">The name of the shortcut</param>
         /// <param name="destinationDirectory">The destination directory for the shortcut</param>
-        /// <returns>The task</returns>
-        public abstract Task CreateGameShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory);
+        public abstract void CreateGameShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory);
 
         #endregion
 

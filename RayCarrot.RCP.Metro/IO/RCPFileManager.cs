@@ -65,20 +65,49 @@ namespace RayCarrot.RCP.Metro
         /// Creates a file shortcut
         /// </summary>
         /// <returns>The task</returns>
-        public async Task CreateFileShortcutAsync(FileSystemPath ShortcutName, FileSystemPath DestinationDirectory, FileSystemPath TargetFile, string arguments = null)
+        public void CreateFileShortcut(FileSystemPath ShortcutName, FileSystemPath DestinationDirectory, FileSystemPath TargetFile, string arguments = null)
         {
             try
             {
                 ShortcutName = ShortcutName.ChangeFileExtension(".lnk");
+
+                // Delete if a shortcut with the same name already exists
+                DeleteFile(DestinationDirectory + ShortcutName);
+
                 WindowsHelpers.CreateFileShortcut(ShortcutName, DestinationDirectory, TargetFile, arguments);
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.GameShortcut_Success);
                 RCFCore.Logger?.LogInformationSource($"The shortcut {ShortcutName} was created");
             }
             catch (Exception ex)
             {
                 ex.HandleUnexpected("Creating shortcut", DestinationDirectory);
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Creates a shortcut for an URL
+        /// </summary>
+        /// <param name="shortcutName">The name of the shortcut file</param>
+        /// <param name="destinationDirectory">The path of the directory</param>
+        /// <param name="targetURL">The URL</param>
+        public void CreateURLShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory, string targetURL)
+        {
+            try
+            {
+                shortcutName = shortcutName.ChangeFileExtension(".url");
+
+                // Delete if a shortcut with the same name already exists
+                DeleteFile(destinationDirectory + shortcutName);
+
+                WindowsHelpers.CreateURLShortcut(shortcutName, destinationDirectory, targetURL);
+            }
+            catch (Exception ex)
+            {
+                ex.HandleUnexpected("Creating URL shortcut", destinationDirectory);
+
+                throw;
             }
         }
 

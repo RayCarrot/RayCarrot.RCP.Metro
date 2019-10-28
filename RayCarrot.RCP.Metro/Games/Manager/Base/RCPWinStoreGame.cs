@@ -247,11 +247,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="shortcutName">The name of the shortcut</param>
         /// <param name="destinationDirectory">The destination directory for the shortcut</param>
-        /// <returns>The task</returns>
-        public override async Task CreateGameShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory)
+        public override void CreateGameShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory)
         {
             // Create the shortcut
-            await RCFRCP.File.CreateFileShortcutAsync(shortcutName, destinationDirectory, LegacyLaunchPath);
+            RCFRCP.File.CreateFileShortcut(shortcutName, destinationDirectory, LegacyLaunchPath);
 
             RCFCore.Logger?.LogTraceSource($"A shortcut was created for {Game} under {destinationDirectory}");
         }

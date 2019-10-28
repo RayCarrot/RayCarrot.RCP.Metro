@@ -76,7 +76,6 @@ namespace RayCarrot.RCP.Metro
             BackupLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             ShowProgressOnTaskBar = true;
             DisplayExceptionLevel = ExceptionLevel.Critical;
-            ShowDetailedGameInfo = false;
             TPLSData = null;
             EnableAnimations = true;
             CurrentCulture = AppLanguages.DefaultCulture.Name;
@@ -211,11 +210,6 @@ namespace RayCarrot.RCP.Metro
         /// The minimum exception level to display
         /// </summary>
         public ExceptionLevel DisplayExceptionLevel { get; set; }
-
-        /// <summary>
-        /// Indicates if detailed game information should be shown in the game options
-        /// </summary>
-        public bool ShowDetailedGameInfo { get; set; }
 
         /// <summary>
         /// The current TPLS data if installed, otherwise null

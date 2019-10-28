@@ -28,9 +28,11 @@ namespace RayCarrot.RCP.Metro
             AsyncLock = new AsyncLock();
             InstalledGames = new ObservableCollection<GameDisplayViewModel>();
             NotInstalledGames = new ObservableCollection<GameDisplayViewModel>();
+            RefreshingGames = false;
 
             // Create commands
             RunGameFinderCommand = new AsyncRelayCommand(RunGameFinderAsync);
+            RefreshGamesCommand = new AsyncRelayCommand(RefreshAsync);
 
             // Enable collection synchronization
             BindingOperations.EnableCollectionSynchronization(InstalledGames, Application.Current);
@@ -59,6 +61,8 @@ namespace RayCarrot.RCP.Metro
         #region Commands
 
         public AsyncRelayCommand RunGameFinderCommand { get; }
+
+        public AsyncRelayCommand RefreshGamesCommand { get; }
 
         #endregion
 
@@ -92,6 +96,11 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if there are any not installed games
         /// </summary>
         public bool AnyNotInstalledGames { get; set; }
+
+        /// <summary>
+        /// Indicates if the games are being refreshed
+        /// </summary>
+        public bool RefreshingGames { get; set; }
 
         #endregion
 
@@ -152,6 +161,8 @@ namespace RayCarrot.RCP.Metro
             {
                 try
                 {
+                    RefreshingGames = true;
+
                     InstalledGames.Clear();
                     NotInstalledGames.Clear();
 
@@ -179,12 +190,17 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Allow game finder to run only if there are games which have not been found
+                    // ReSharper disable once PossibleNullReferenceException
                     await Application.Current.Dispatcher.InvokeAsync(() => RunGameFinderCommand.CanExecuteCommand = AnyNotInstalledGames);
                 }
                 catch (Exception ex)
                 {
                     ex.HandleCritical("Refreshing games");
                     throw;
+                }
+                finally
+                {
+                    RefreshingGames = false;
                 }
             }
 
