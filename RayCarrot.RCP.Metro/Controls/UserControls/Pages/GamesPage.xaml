@@ -16,8 +16,8 @@
 
     <local:IBasePage.OverflowMenu>
         <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
-            <!-- TODO: Localize -->
-            <local:MenuItemIcon Header="Find Games"
+            <local:MenuItemIcon Header="{Resx GamesPage_FindGames}"
+                                ToolTip="{Resx GamesPage_FindGamesInfo}"
                                 Command="{Binding Path=RunGameFinderCommand}"
                                 IconKind="DatabaseSearch"/>
 

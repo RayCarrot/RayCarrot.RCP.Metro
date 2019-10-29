@@ -3327,6 +3327,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No new games were found.
+        /// </summary>
+        public static string GameFinder_NoResults {
+            get {
+                return ResourceManager.GetString("GameFinder_NoResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game finder result.
+        /// </summary>
+        public static string GameFinder_ResultHeader {
+            get {
+                return ResourceManager.GetString("GameFinder_ResultHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Game type:.
         /// </summary>
         public static string GameInfo_GameType {
@@ -3485,6 +3503,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameOptions_CreateShortcut {
             get {
                 return ResourceManager.GetString("GameOptions_CreateShortcut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        public static string GameOptions_Info {
+            get {
+                return ResourceManager.GetString("GameOptions_Info", resourceCulture);
             }
         }
         
@@ -3669,6 +3696,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Find Games.
+        /// </summary>
+        public static string GamesPage_FindGames {
+            get {
+                return ResourceManager.GetString("GamesPage_FindGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Searches for installed games and adds them to the program.
+        /// </summary>
+        public static string GamesPage_FindGamesInfo {
+            get {
+                return ResourceManager.GetString("GamesPage_FindGamesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Games.
         /// </summary>
         public static string GamesPageHeader {
@@ -3719,15 +3764,6 @@ namespace RayCarrot.RCP.Metro {
         public static string GameType_WinStore {
             get {
                 return ResourceManager.GetString("GameType_WinStore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Options.
-        /// </summary>
-        public static string GenericPage_Options {
-            get {
-                return ResourceManager.GetString("GenericPage_Options", resourceCulture);
             }
         }
         
@@ -4026,7 +4062,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to On disc versions of the game there is a known issue where the game will display a CD error during gameplay. This issue is not present in the GOG version. If the game is installed using the Rayman Control Panel installer the game will be patched to avoid the disc check like the GOG version, avoiding this issue entirely..
+        ///   Looks up a localized string similar to On disc versions of the game there is a known issue where the game will display a CD error during gameplay. This issue is not present in the GOG version. Using the disc patch utility will fix this issue..
         /// </summary>
         public static string Help_Games_R2_NoDisc {
             get {
@@ -4226,7 +4262,7 @@ namespace RayCarrot.RCP.Metro {
         ///
         ///During the installation you will have to specify a directory to install to. The game will install in a sub-directory in the specified directory. For example, you choose to install Rayman 2 under C:\Ubisoft it will get installed under C:\Ubisoft\Rayman 2
         ///
-        ///For Rayman 2 the installer will replace the executable file with the one  [rest of string was truncated]&quot;;.
+        ///To uninstall one of the games installed using the game installer you simp [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Help_RCP_GameInstaller {
             get {
@@ -5954,6 +5990,51 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The game was successfully patched.
+        /// </summary>
+        public static string R2U_DiscPatchApplied {
+            get {
+                return ResourceManager.GetString("R2U_DiscPatchApplied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured when applying the disc patch.
+        /// </summary>
+        public static string R2U_DiscPatchError {
+            get {
+                return ResourceManager.GetString("R2U_DiscPatchError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patch Disc Version.
+        /// </summary>
+        public static string R2U_DiscPatchHeader {
+            get {
+                return ResourceManager.GetString("R2U_DiscPatchHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This utility will patch the disc release with files from the GOG version, allowing the game to run without the disc and fixing the &apos;CD missing&apos; error..
+        /// </summary>
+        public static string R2U_DiscPatchHeaderInfo {
+            get {
+                return ResourceManager.GetString("R2U_DiscPatchHeaderInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game does not need to be patched.
+        /// </summary>
+        public static string R2U_DiscPatchNotRequired {
+            get {
+                return ResourceManager.GetString("R2U_DiscPatchNotRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred when applying the Rayman 2 translation utility.
         /// </summary>
         public static string R2U_Translations_Error {
@@ -6976,24 +7057,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_DesignShowAllGamesInfo {
             get {
                 return ResourceManager.GetString("Settings_DesignShowAllGamesInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show detailed game information.
-        /// </summary>
-        public static string Settings_DesignShowGameDetails {
-            get {
-                return ResourceManager.GetString("Settings_DesignShowGameDetails", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Show detailed game information in the game options dialog.
-        /// </summary>
-        public static string Settings_DesignShowGameDetailsInfo {
-            get {
-                return ResourceManager.GetString("Settings_DesignShowGameDetailsInfo", resourceCulture);
             }
         }
         

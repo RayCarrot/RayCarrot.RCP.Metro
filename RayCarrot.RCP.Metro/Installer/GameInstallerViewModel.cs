@@ -271,53 +271,6 @@ namespace RayCarrot.RCP.Metro
 
                 RCFCore.Logger?.LogInformationSource($"The installation finished with the result of {result}");
 
-                // TODO: Move to utility
-                // Check if the game is Rayman 2
-                if (result == RayGameInstallerResult.Successful && Game == Games.Rayman2)
-                {
-                    try
-                    {
-                        // Write the GOG exe file
-                        File.WriteAllBytes(output + "Rayman2.exe", Files.Rayman2_GOG);
-
-                        // Write the GOG config file
-                        File.WriteAllBytes(output + "GXSetup.exe", Files.GXSetup_GOG);
-
-                        // Write default ubi.ini file
-                        File.WriteAllText(output + "ubi.ini", Files.ubi);
-
-                        // Delete unnecessary files
-                        RCFRCP.File.DeleteFile(output + "RAYMAN2.ICD");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\ANIMS0.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\ANIMS1.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\ANIMS2.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\GRAPHICS0.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\GRAPHICS1.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\GRAPHICS2.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\LEVELS1.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\LEVELS2.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\MAP0.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\MAP1.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\MAP2.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\MENU0.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\MENU1.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\MENU2.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\MUSIC0.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\MUSIC1.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\MUSIC2.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\SOUNDS0.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\SOUNDS1.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\SOUNDS2.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\TEXTURES0.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\TEXTURES1.DAT");
-                        RCFRCP.File.DeleteFile(output + @"Data\World\Levels\TEXTURES2.DAT");
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.HandleError("Applying R2 installer extras");
-                    }
-                }
-
                 // Make sure the result was successful
                 if (result == RayGameInstallerResult.Successful)
                 {

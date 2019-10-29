@@ -18,10 +18,6 @@ using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
-    // TODO: Split into multiple data classes:
-    //       - AppUserData
-    //       - GameUserData
-
     /// <summary>
     /// The application user data
     /// </summary>
@@ -60,7 +56,7 @@ namespace RayCarrot.RCP.Metro
         {
             Games = new Dictionary<Games, GameData>();
             DosBoxGames = new Dictionary<Games, DosBoxOptions>();
-            UserLevel = UserLevel.Normal;
+            UserLevel = UserLevel.Advanced;
             IsFirstLaunch = true;
             LastVersion = new Version(0, 0, 0, 0);
             WindowState = null;

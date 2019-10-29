@@ -15,11 +15,13 @@ namespace RayCarrot.RCP.Metro
         /// <param name="installLocation">The install location</param>
         /// <param name="handledAction">An optional action to add when the item gets handled</param>
         /// <param name="handledParameter">Optional parameter for the <see cref="HandledAction"/></param>
-        protected BaseFinderResult(FileSystemPath installLocation, Action<FileSystemPath, object> handledAction, object handledParameter)
+        /// <param name="displayName">The found item display name</param>
+        protected BaseFinderResult(FileSystemPath installLocation, Action<FileSystemPath, object> handledAction, object handledParameter, string displayName)
         {
             InstallLocation = installLocation;
             HandledAction = handledAction;
             HandledParameter = handledParameter;
+            DisplayName = displayName;
         }
 
         /// <summary>
@@ -36,6 +38,11 @@ namespace RayCarrot.RCP.Metro
         /// An optional action to add when the item gets handled
         /// </summary>
         public Action<FileSystemPath, object> HandledAction { get; }
+
+        /// <summary>
+        /// The found item display name
+        /// </summary>
+        public string DisplayName { get; }
 
         /// <summary>
         /// Handles the found item

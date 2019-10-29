@@ -508,12 +508,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
     <value>Visa alla spel på spel-sidan, även om de inte är installerade</value>
   </data>
-  <data name="Settings_DesignShowGameDetails" xml:space="preserve">
-    <value>Visa detaljerad spel-information</value>
-  </data>
-  <data name="Settings_DesignShowGameDetailsInfo" xml:space="preserve">
-    <value>Visa detaljerad spel-information i spel-alternativ dialogrutan</value>
-  </data>
   <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
     <value>Visa framsteg på ikonen i aktivitetsfältet</value>
   </data>
@@ -1306,6 +1300,42 @@ Starta om?</value>
   <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
     <value>Bekräfta avinstallation</value>
   </data>
+  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
+    <value>Verktyget har avinstallerats</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
+    <value>Verktyget avinstallerades</value>
+  </data>
+  <data name="R1U_TPLSUninstallError" xml:space="preserve">
+    <value>Ett fel inträffade vid avinstallation</value>
+  </data>
+  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
+    <value>Avinstallationen misslyckades</value>
+  </data>
+  <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
+    <value>Installationen av PlayStation musik-verktyget misslyckades</value>
+  </data>
+  <data name="R1U_TPLSInvalidDirectory" xml:space="preserve">
+    <value>Spelinstallationen är inte giltig</value>
+  </data>
+  <data name="R1U_TPLSInvalidDirectoryHeader" xml:space="preserve">
+    <value>Ogiltig installation</value>
+  </data>
+  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
+    <value>{0}/{1} hittades att ersätta. Det kan kräva flera nedladdningar, beroende på filernas platser.</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
+    <value>Ersättningen är klar</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
+    <value>Filersättningen misslyckades</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
+    <value>Konfigurationsfilen finns redan. Du kan fortfarande återskapa den om den är skadad. Fortsätt?</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
+    <value>Ersätt fil</value>
+  </data>
   <data name="Download_OperationCanceling" xml:space="preserve">
     <value>Operationen håller redan på att avbrytas</value>
   </data>
@@ -1646,9 +1676,6 @@ Starta om?</value>
   <data name="LinksPage_LinkAlignmentStyle_Left" xml:space="preserve">
     <value>Vänster</value>
   </data>
-  <data name="GenericPage_Options" xml:space="preserve">
-    <value>Alternativ</value>
-  </data>
   <data name="Backup_Compress" xml:space="preserve">
     <value>Komprimera säkerhetskopior</value>
   </data>
@@ -1703,41 +1730,5 @@ Starta om?</value>
   </data>
   <data name="RR2Options_GameMode_Blue" xml:space="preserve">
     <value>Blå</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
-    <value>Verktyget har avinstallerats</value>
-  </data>
-  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
-    <value>Verktyget avinstallerades</value>
-  </data>
-  <data name="R1U_TPLSUninstallError" xml:space="preserve">
-    <value>Ett fel inträffade vid avinstallation</value>
-  </data>
-  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
-    <value>Avinstallationen misslyckades</value>
-  </data>
-  <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
-    <value>Installationen av PlayStation musik-verktyget misslyckades</value>
-  </data>
-  <data name="R1U_TPLSInvalidDirectory" xml:space="preserve">
-    <value>Spelinstallationen är inte giltig</value>
-  </data>
-  <data name="R1U_TPLSInvalidDirectoryHeader" xml:space="preserve">
-    <value>Ogiltig installation</value>
-  </data>
-  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
-    <value>{0}/{1} hittades att ersätta. Det kan kräva flera nedladdningar, beroende på filernas platser.</value>
-  </data>
-  <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
-    <value>Ersättningen är klar</value>
-  </data>
-  <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
-    <value>Filersättningen misslyckades</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
-    <value>Konfigurationsfilen finns redan. Du kan fortfarande återskapa den om den är skadad. Fortsätt?</value>
-  </data>
-  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
-    <value>Ersätt fil</value>
   </data>
 </root>

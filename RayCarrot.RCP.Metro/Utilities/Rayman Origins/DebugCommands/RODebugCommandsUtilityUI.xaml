@@ -21,7 +21,7 @@
                                 OffLabel="{Resx SettingDisabled}" />
 
         <CheckBox Content="{Resx ROU_DebugCommandsInvincibility}"
-                      ToolTip="{Resx ROU_DebugCommandsInvincibility}"
+                      ToolTip="{Resx ROU_DebugCommandsInvincibilityInfo}"
                       IsChecked="{Binding Path=IsInvincibilityEnabled}"
                       IsThreeState="True"
                       Visibility="{Binding Path=IsDebugModeEnabled, Converter={rwpf:BooleanToVisibilityConverter}}"/>

@@ -272,7 +272,7 @@ namespace RayCarrot.RCP.Metro
                             return;
 
                         // Run and get the result
-                        var result = await new GameFinder(selectionResult.SelectedGames).FindGamesAsync();
+                        var result = await new GameFinder(selectionResult.SelectedGames, null).FindGamesAsync();
                         
                         // Output the found games
                         DataOutput = result.OfType<GameFinderResult>().Select(x => $"{x.Game} ({x.GameType}) - {x.InstallLocation}").JoinItems(Environment.NewLine);

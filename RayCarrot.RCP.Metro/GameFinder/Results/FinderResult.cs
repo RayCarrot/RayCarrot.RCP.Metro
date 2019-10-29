@@ -15,7 +15,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="installLocation">The install location</param>
         /// <param name="handledAction">An optional action to add when the item gets handled</param>
         /// <param name="handledParameter">Optional parameter for the <see cref="BaseFinderResult.HandledAction"/></param>
-        public FinderResult(FileSystemPath installLocation, Action<FileSystemPath, object> handledAction, object handledParameter) : base(installLocation, handledAction, handledParameter)
+        /// <param name="displayName">The found item display name</param>
+        public FinderResult(FileSystemPath installLocation, Action<FileSystemPath, object> handledAction, object handledParameter, string displayName) : base(installLocation, handledAction, handledParameter, displayName)
         { }
 
         /// <summary>

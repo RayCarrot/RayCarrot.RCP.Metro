@@ -77,7 +77,7 @@
 
             <TextBlock Grid.Column="0"
                        Grid.Row="1"
-                       Text="{Resx R1U_TPLSDosBoxVersion }" />
+                       Text="{Resx R1U_TPLSDosBoxVersion}" />
 
             <ComboBox Grid.Column="1"
                       Grid.Row="1"

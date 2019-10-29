@@ -26,11 +26,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="games">The games to search for</param>
         /// <param name="finderItems">Other finder items to search for</param>
-        public GameFinder(IEnumerable<Games> games, params FinderItem[] finderItems)
+        public GameFinder(IEnumerable<Games> games, IEnumerable<FinderItem> finderItems)
         {
             // Set properties
             GamesToFind = games.ToList();
-            FinderItems = finderItems;
+            FinderItems = finderItems?.ToArray() ?? new FinderItem[0];
             FoundFinderItems = new List<FinderItem>();
             Results = new List<BaseFinderResult>();
             HasRun = false;
@@ -627,7 +627,7 @@ namespace RayCarrot.RCP.Metro
 
             // Add the item
             FoundFinderItems.Add(item);
-            Results.Add(new FinderResult(installDir, item.FoundAction, parameter));
+            Results.Add(new FinderResult(installDir, item.FoundAction, parameter, item.DisplayName));
 
             RCFCore.Logger?.LogInformationSource($"A finder item was found");
 

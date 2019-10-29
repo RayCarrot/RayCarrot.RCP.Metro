@@ -476,6 +476,9 @@ namespace RayCarrot.RCP.Metro
             if (Data.LastVersion < new Version(7, 0, 0, 0))
             {
                 Data.IsUpdateAvailable = false;
+
+                if (Data.UserLevel == UserLevel.Normal)
+                    Data.UserLevel = UserLevel.Advanced;
             }
 
             // Re-deploy files

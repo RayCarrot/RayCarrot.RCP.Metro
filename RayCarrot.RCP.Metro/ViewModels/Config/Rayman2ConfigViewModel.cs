@@ -591,26 +591,32 @@ namespace RayCarrot.RCP.Metro
                 else
                 {
                     // Open the file
-                    using Stream stream = File.Open(path, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
+                    using Stream readStream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.Read);
+
                     // Set the position
-                    stream.Position = location;
+                    readStream.Position = location;
 
                     // Create the buffer
                     var buffer = new byte[4];
 
                     // Read the bytes
-                    await stream.ReadAsync(buffer, 0, 4);
+                    await readStream.ReadAsync(buffer, 0, 4);
 
                     // Check if the data has been modified
                     if (CheckAspectRatio(buffer))
                     {
                         RCFCore.Logger?.LogInformationSource($"The Rayman 2 aspect ratio has been detected as modified");
 
+                        // Close previous stream and open a new stream
+                        readStream.Dispose();
+
+                        using Stream writeStream = File.Open(path, FileMode.Open, FileAccess.Write, FileShare.Read);
+
                         // Set the position
-                        stream.Position = location;
+                        writeStream.Position = location;
 
                         // Write the bytes
-                        await stream.WriteAsync(new byte[]
+                        await writeStream.WriteAsync(new byte[]
                         {
                             0,
                             0,
@@ -638,15 +644,15 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         private void SetGraphicsMode()
         {
-            if (GLI_DllFile.Equals(GLI_DllFile_DirectX, StringComparison.InvariantCultureIgnoreCase) &&
-                GLI_Dll.Equals(GLI_Dll_DirectX, StringComparison.InvariantCultureIgnoreCase) &&
-                GLI_Driver.Equals(GLI_Driver_DirectX, StringComparison.InvariantCultureIgnoreCase) &&
-                GLI_Device.Equals(GLI_Device_DirectX, StringComparison.InvariantCultureIgnoreCase))
+            if (GLI_DllFile?.Equals(GLI_DllFile_DirectX, StringComparison.InvariantCultureIgnoreCase) == true &&
+                GLI_Dll?.Equals(GLI_Dll_DirectX, StringComparison.InvariantCultureIgnoreCase) == true &&
+                GLI_Driver?.Equals(GLI_Driver_DirectX, StringComparison.InvariantCultureIgnoreCase) == true &&
+                GLI_Device?.Equals(GLI_Device_DirectX, StringComparison.InvariantCultureIgnoreCase) == true)
             {
                 _selectedGraphicsMode = R2GraphicsMode.DirectX;
             }
-            else if (GLI_DllFile.Equals(GLI_DllFile_nGlide, StringComparison.InvariantCultureIgnoreCase) &&
-                     GLI_Dll.Equals(GLI_Dll_nGlide, StringComparison.InvariantCultureIgnoreCase) &&
+            else if (GLI_DllFile?.Equals(GLI_DllFile_nGlide, StringComparison.InvariantCultureIgnoreCase) == true &&
+                     GLI_Dll?.Equals(GLI_Dll_nGlide, StringComparison.InvariantCultureIgnoreCase) == true &&
                      GLI_Driver.IsNullOrEmpty() &&
                      GLI_Device.IsNullOrEmpty())
             {

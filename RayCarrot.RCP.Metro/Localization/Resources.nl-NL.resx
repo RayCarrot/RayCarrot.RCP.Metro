@@ -507,12 +507,6 @@
   <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
     <value>Laat alle spellen op de Games pagina zien, zelfs als deze niet geïnstalleerd zijn</value>
   </data>
-  <data name="Settings_DesignShowGameDetails" xml:space="preserve">
-    <value>Laat gedetailleerde spelinformatie zien</value>
-  </data>
-  <data name="Settings_DesignShowGameDetailsInfo" xml:space="preserve">
-    <value>Laat gedetailleerde spelinformatie zien in het dialoogvenster van de spelopties</value>
-  </data>
   <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
     <value>Laat de voortgang zien via het taakbalkpictogram</value>
   </data>
@@ -1523,8 +1517,6 @@ Als er een fout plaatsvindt vanwege de update-service, kan de update handmatig w
 
 Tijdens de installatie dien je een map te kiezen voor de installatiebestanden. Het spel zal geïnstalleerd worden in een submap binnen de geselecteerde map. Kies je bijvoorbeeld om de game te installeren in C:\Ubisoft, dan zal het spel geïnstalleerd worden onder C:\Ubisoft\Rayman 2
 
-In het geval van Rayman 2 zal de Installer het uitvoerbare bestand vervangen door het .exe-bestand van de GOG versie, om zo in staat te zijn het spel te starten zonder schijf. Dit wordt preventief gedaan tegen de veelvoorkomende schijffout, die normaal gesproken later tijdens het spel ontstaat.
-
 Om één van de games te deïnstalleren via de Game Installer, dien je simpelweg de mappen en bestanden te verwijderen. Het spel zal niet meer zichtbaar zijn onder Geïnstalleerde Programma's, omdat er geen uninstaller aanwezig is.</value>
   </data>
   <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
@@ -2469,9 +2461,6 @@ Houd L1 + R1 (of gelijkwaardige knoppen op de huidige controller) in het menu va
   </data>
   <data name="Installer_DirMissingWritePermissionHeader" xml:space="preserve">
     <value>Toegang geweigerd</value>
-  </data>
-  <data name="GenericPage_Options" xml:space="preserve">
-    <value>Opties</value>
   </data>
   <data name="Backup_Compress" xml:space="preserve">
     <value>Comprimeer back-ups</value>

@@ -222,8 +222,7 @@ namespace RayCarrot.RCP.Metro
 
             // Check the result
             if (!result)
-                // TODO: Localize
-                await RCFUI.MessageUI.DisplayMessageAsync("No new games were found", "Game finder result", MessageType.Information);
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.GameFinder_NoResults, Resources.GameFinder_ResultHeader, MessageType.Information);
         }
 
         #endregion

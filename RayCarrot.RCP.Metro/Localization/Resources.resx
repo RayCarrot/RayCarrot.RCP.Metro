@@ -508,12 +508,6 @@ This is a growing project with more features planned on being added with future 
   <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
     <value>Show all games on the games page, even if they are not installed</value>
   </data>
-  <data name="Settings_DesignShowGameDetails" xml:space="preserve">
-    <value>Show detailed game information</value>
-  </data>
-  <data name="Settings_DesignShowGameDetailsInfo" xml:space="preserve">
-    <value>Show detailed game information in the game options dialog</value>
-  </data>
   <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
     <value>Show progress on task bar icon</value>
   </data>
@@ -1607,8 +1601,6 @@ updateURL</comment>
 
 During the installation you will have to specify a directory to install to. The game will install in a sub-directory in the specified directory. For example, you choose to install Rayman 2 under C:\Ubisoft it will get installed under C:\Ubisoft\Rayman 2
 
-For Rayman 2 the installer will replace the executable file with the one from the GOG version to allow the game to run without inserting the disc. This is done to avoid a common disc error which usually occurs during the later half of the game.
-
 To uninstall one of the games installed using the game installer you simply have to delete the directory and its files. The game will not show up under installed programs due to not having an uninstaller.</value>
   </data>
   <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
@@ -1719,7 +1711,7 @@ Running an application in compatibility mode is done by selecting the option und
     <value>No Disc Error</value>
   </data>
   <data name="Help_Games_R2_NoDisc" xml:space="preserve">
-    <value>On disc versions of the game there is a known issue where the game will display a CD error during gameplay. This issue is not present in the GOG version. If the game is installed using the Rayman Control Panel installer the game will be patched to avoid the disc check like the GOG version, avoiding this issue entirely.</value>
+    <value>On disc versions of the game there is a known issue where the game will display a CD error during gameplay. This issue is not present in the GOG version. Using the disc patch utility will fix this issue.</value>
   </data>
   <data name="Help_Games_RMA" xml:space="preserve">
     <value>Rayman M/Arena</value>
@@ -2538,9 +2530,6 @@ Hold L1 + R1 in the menu (or equivalent on the currently used controller), then 
   <data name="Installer_DirMissingWritePermissionHeader" xml:space="preserve">
     <value>Access denied</value>
   </data>
-  <data name="GenericPage_Options" xml:space="preserve">
-    <value>Options</value>
-  </data>
   <data name="Backup_Compress" xml:space="preserve">
     <value>Compress backups</value>
   </data>
@@ -2768,5 +2757,35 @@ outputDir</comment>
   </data>
   <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
     <value>Open in Microsoft Store</value>
+  </data>
+  <data name="GamesPage_FindGames" xml:space="preserve">
+    <value>Find Games</value>
+  </data>
+  <data name="GamesPage_FindGamesInfo" xml:space="preserve">
+    <value>Searches for installed games and adds them to the program</value>
+  </data>
+  <data name="R2U_DiscPatchHeader" xml:space="preserve">
+    <value>Patch Disc Version</value>
+  </data>
+  <data name="R2U_DiscPatchHeaderInfo" xml:space="preserve">
+    <value>This utility will patch the disc release with files from the GOG version, allowing the game to run without the disc and fixing the 'CD missing' error.</value>
+  </data>
+  <data name="R2U_DiscPatchNotRequired" xml:space="preserve">
+    <value>The game does not need to be patched</value>
+  </data>
+  <data name="R2U_DiscPatchApplied" xml:space="preserve">
+    <value>The game was successfully patched</value>
+  </data>
+  <data name="R2U_DiscPatchError" xml:space="preserve">
+    <value>An error occured when applying the disc patch</value>
+  </data>
+  <data name="GameFinder_NoResults" xml:space="preserve">
+    <value>No new games were found</value>
+  </data>
+  <data name="GameFinder_ResultHeader" xml:space="preserve">
+    <value>Game finder result</value>
+  </data>
+  <data name="GameOptions_Info" xml:space="preserve">
+    <value>Information</value>
   </data>
 </root>

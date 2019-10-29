@@ -120,6 +120,7 @@
                                                   KeyboardNavigation.TabIndex="1" />
 
                                         <local:OneWayToggleButton Grid.Column="1"
+                                                                  ToolTip="{Resx SettingsPageHeader}"
                                                                   VerticalAlignment="Center" 
                                                                   Margin="10"
                                                                   IsChecked="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Settings}">

@@ -58,6 +58,9 @@
                     <local:DuoGridItem Header="Haruka Tavares"
                                        Text="{Resx About_Credits_HarukaTavares}" />
 
+                    <local:DuoGridItem Header="ICUP321"
+                                       Text="{Resx About_Credits_ICUP321}" />
+
                     <local:DuoGridItem Header="Juanmv94"
                                        Text="{Resx About_Credits_Janmv94}"/>
 

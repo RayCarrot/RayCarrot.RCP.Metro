@@ -507,12 +507,6 @@
   <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
     <value>Mostrar todos os jogos na página de jogos, mesmo que não estejam instalados</value>
   </data>
-  <data name="Settings_DesignShowGameDetails" xml:space="preserve">
-    <value>Mostar informação detalhada de jogo</value>
-  </data>
-  <data name="Settings_DesignShowGameDetailsInfo" xml:space="preserve">
-    <value>Mostrar definição detalhada de jogo no diálogo das opções de jogo</value>
-  </data>
   <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
     <value>Mostrar progresso no ícone da barra de tarefas</value>
   </data>
@@ -1524,8 +1518,6 @@ Se um erro ocorrer com o serviço de actualização pode ser descarregado manual
     <value>Para jogos que suportem serem instalados por um disco, podes fazê-lo através do menu drop-down do jogo. De momento, os únicos jogos suportados são o Rayman 2, Rayman M e Rayman Arena.
 
 Durante a instalação deverás ter de especificar o directório para se instalar. O jogo irá instalar num sub-directório no directório especificado. Por exemplo, tu escolheste instalar o Rayman 2 sob C:\Ubisoft ; será instalado sob C:\Ubisoft\Rayman 2. 
-
-Para o Rayman 2, o instalador irá substituir o ficheiro executável pelo da versão GOG para permitir a execução do jogo sem se inserir o disco. Isto é feito para evitar um disco de erro comum que ocorre normalmente durante a segunda metade do jogo.
  
 Para desinstalar um dos jogos instalados utilizando o instalador de jogo deverás ter de simplesmente eliminar o directório e os seus ficheiros. O jogo não irá mostrar-se dentro dos programas instalados por não ter um desinstalador.</value>
   </data>
@@ -2470,9 +2462,6 @@ Mantém premido L1 + R1 no menu (ou equivalente no comando a ser utilizado corre
   </data>
   <data name="Installer_DirMissingWritePermissionHeader" xml:space="preserve">
     <value>Acesso recusado</value>
-  </data>
-  <data name="GenericPage_Options" xml:space="preserve">
-    <value>Opções</value>
   </data>
   <data name="Backup_Compress" xml:space="preserve">
     <value>Comprimir cópias de segurança</value>

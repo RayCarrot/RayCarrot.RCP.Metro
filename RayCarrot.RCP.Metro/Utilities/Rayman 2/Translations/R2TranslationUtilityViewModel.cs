@@ -129,10 +129,6 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        #endregion
-
-        #region Public Methods
-
         /// <summary>
         /// Gets the fix.sna URL for the specified Rayman 2 translation
         /// </summary>

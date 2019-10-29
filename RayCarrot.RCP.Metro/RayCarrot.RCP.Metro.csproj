@@ -171,6 +171,11 @@
     <Compile Include="Games\Manager\Rayman1_DOSBox.cs" />
     <Compile Include="IO\IOSearchPattern.cs" />
     <Compile Include="GameBackups\RCPBackup.cs" />
+    <Compile Include="Utilities\Rayman 2\DiscPatch\R2DiscPatchUtility.cs" />
+    <Compile Include="Utilities\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml.cs">
+      <DependentUpon>R2DiscPatchUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Rayman 2\DiscPatch\R2DiscPatchUtilityViewModel.cs" />
     <Compile Include="Utilities\Rayman Legends\DebugCommands\RLDebugCommandsUtility.cs" />
     <Compile Include="Utilities\Rayman Legends\DebugCommands\RLDebugCommandsUtilityUI.xaml.cs">
       <DependentUpon>RLDebugCommandsUtilityUI.xaml</DependentUpon>
@@ -326,6 +331,10 @@
     <Page Include="Controls\UserControls\Pages\LinksPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Utilities\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Utilities\Rayman 3\DirectPlay\R3DirectPlayUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>

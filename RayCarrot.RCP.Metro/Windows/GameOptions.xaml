@@ -79,10 +79,9 @@
 
             <!-- Information -->
 
-            <!-- TODO: Localize -->
             <local:RCPTabItem HeaderFontSize="16"
                               IconKind="InformationOutline"
-                              Header="Information">
+                              Header="{Resx GameOptions_Info}">
 
                 <ScrollViewer Padding="5">
                     <ItemsControl ItemsSource="{Binding Path=GameInfoItems, Mode=OneTime}"
