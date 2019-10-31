@@ -260,7 +260,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!.
+        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, MixerX, PokGOT4N and all other Rayman fans!.
         /// </summary>
         public static string About_SpecialThanks {
             get {
@@ -399,7 +399,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error has occured..
+        ///   Looks up a localized string similar to An error has occurred..
         /// </summary>
         public static string App_ExceptionMessageDefaultMessage {
             get {
@@ -2371,7 +2371,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured when setting up the additional required files. Certain features of the program might not function like intended. It is recommended to attempt to restart the program..
+        ///   Looks up a localized string similar to An error occurred when setting up the additional required files. Certain features of the program might not function like intended. It is recommended to attempt to restart the program..
         /// </summary>
         public static string DeployFilesError {
             get {
@@ -5630,7 +5630,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured when migrating the existing Rayman Fiesta Run backup to the new 5.0.0 backup standard. Due to this your backup will become unavailable, but will remain in your backup folder and can be restored manually..
+        ///   Looks up a localized string similar to An error occurred when migrating the existing Rayman Fiesta Run backup to the new 5.0.0 backup standard. Due to this your backup will become unavailable, but will remain in your backup folder and can be restored manually..
         /// </summary>
         public static string PostUpdate_MigrateFiestaRunBackup5Error {
             get {
@@ -5999,7 +5999,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured when applying the disc patch.
+        ///   Looks up a localized string similar to An error occurred when applying the disc patch.
         /// </summary>
         public static string R2U_DiscPatchError {
             get {

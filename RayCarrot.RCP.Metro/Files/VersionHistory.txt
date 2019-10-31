@@ -1,4 +1,4 @@
-﻿-----   Version 7.0.0 - November ??, 2019   -----
+﻿-----   Version 7.0.0 - October 31, 2019   -----
 • Added a utility for patching the disc version of Rayman 2, fixing the 'CD missing' error
 • Moved several options to overflow menus
 • Moved game information to a separate tab
@@ -11,12 +11,12 @@ Other changes:
 • Defaulted the user level to 'advanced' rather than 'normal'
 • The game finder has been improved
 • Microsoft Store links now open directly in the store app rather than the web browser
-• The name "Windows Store" has been updated to "Microsoft Store" to reflect the official name change
+• The name "Windows Store" has been changed to "Microsoft Store" to reflect the official name change
 • The drive selection dialog will now only show discs, rather than all types of drives
 • All games now require a valid install directory (previously Steam and Microsoft Store games would not require that)
 • A badge will now show over the update button if a new update is available, but was postponed
 • Added ICUP321 to the credits
-• Removed the setting for showing detailed game information
+• Removed the setting for not showing detailed game information
 • Secondary windows can now be closed with the escape key
 • The game options dialog now defaults to the config tab
 • Added more options to the debug page

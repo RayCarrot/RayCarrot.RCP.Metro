@@ -1301,7 +1301,7 @@ gameDisplayName</comment>
     <value>Unable to find game</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Special thanks to AuToMaNiAk005, MixerX, ICUP321, PokGOT4N and all other Rayman fans!</value>
+    <value>Special thanks to AuToMaNiAk005, MixerX, PokGOT4N and all other Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations, Swedish program translation</value>
@@ -2564,7 +2564,7 @@ Hold L1 + R1 in the menu (or equivalent on the currently used controller), then 
     <value>If you have multiple versions of Rayman Fiesta Run you can change the default version to launch here</value>
   </data>
   <data name="PostUpdate_MigrateFiestaRunBackup5Error" xml:space="preserve">
-    <value>An error occured when migrating the existing Rayman Fiesta Run backup to the new 5.0.0 backup standard. Due to this your backup will become unavailable, but will remain in your backup folder and can be restored manually.</value>
+    <value>An error occurred when migrating the existing Rayman Fiesta Run backup to the new 5.0.0 backup standard. Due to this your backup will become unavailable, but will remain in your backup folder and can be restored manually.</value>
   </data>
   <data name="PostUpdate_MigrateBackupErrorHeader" xml:space="preserve">
     <value>Backup migration error</value>
@@ -2576,7 +2576,7 @@ Hold L1 + R1 in the menu (or equivalent on the currently used controller), then 
     <value>Missing permissions</value>
   </data>
   <data name="DeployFilesError" xml:space="preserve">
-    <value>An error occured when setting up the additional required files. Certain features of the program might not function like intended. It is recommended to attempt to restart the program.</value>
+    <value>An error occurred when setting up the additional required files. Certain features of the program might not function like intended. It is recommended to attempt to restart the program.</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
     <value>1.10</value>
@@ -2638,7 +2638,7 @@ exceptionMessage</comment>
     <value>Error</value>
   </data>
   <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
-    <value>An error has occured.</value>
+    <value>An error has occurred.</value>
   </data>
   <data name="Lang_Dutch" xml:space="preserve">
     <value>Dutch</value>
@@ -2777,7 +2777,7 @@ outputDir</comment>
     <value>The game was successfully patched</value>
   </data>
   <data name="R2U_DiscPatchError" xml:space="preserve">
-    <value>An error occured when applying the disc patch</value>
+    <value>An error occurred when applying the disc patch</value>
   </data>
   <data name="GameFinder_NoResults" xml:space="preserve">
     <value>No new games were found</value>

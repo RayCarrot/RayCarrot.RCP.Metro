@@ -11,6 +11,7 @@ using System.Windows.Input;
 using Windows.Management.Deployment;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
+using RayCarrot.IO;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 using RayCarrot.WPF;
@@ -279,6 +280,37 @@ namespace RayCarrot.RCP.Metro
                         
                         break;
 
+                    case DebugDataOutputTypes.GameInfo:
+
+                        // Helper method for adding a new line of text
+                        void AddLine(string header, object content) => DataOutput += $"{header}: {content}{Environment.NewLine}";
+
+                        IBaseSerializer serializer = new JsonBaseSerializer();
+
+                        foreach (Games game in App.GetGames)
+                        {
+                            var info = game.GetGameInfo();
+
+                            AddLine("Display name", info.DisplayName);
+                            AddLine("Default file name", info.DefaultFileName);
+                            AddLine("Icon source", info.IconSource);
+                            AddLine("Has disc installer", info.CanBeInstalledFromDisc);
+                            AddLine("Dialog group names", info.DialogGroupNames.JoinItems(", "));
+                            
+                            if (info.IsAdded)
+                            {
+                                AddLine("Backup directories", await serializer.SerializeAsync(info.GetBackupInfos));
+                                AddLine("Game file links", await serializer.SerializeAsync(info.GetGameFileLinks));
+                            }
+
+                            DataOutput += Environment.NewLine;
+                            DataOutput += "------------------------------------------";
+                            DataOutput += Environment.NewLine;
+                            DataOutput += Environment.NewLine;
+                        }
+
+                        break;
+                    
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

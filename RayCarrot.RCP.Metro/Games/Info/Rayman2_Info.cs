@@ -17,8 +17,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected override IList<BackupDir> GetBackupDirectories => new BackupDir[]
         {
-            new BackupDir(GameData.InstallDirectory + "Data" + "SaveGame", SearchOption.AllDirectories, "0", "*", 0),
-            new BackupDir(GameData.InstallDirectory + "Data" + "Options", SearchOption.AllDirectories, "1", "*", 0)
+            new BackupDir(GameData.InstallDirectory + "Data" + "SaveGame", SearchOption.AllDirectories, "*", "0", 0),
+            new BackupDir(GameData.InstallDirectory + "Data" + "Options", SearchOption.AllDirectories, "*", "1", 0)
         };
 
         #endregion

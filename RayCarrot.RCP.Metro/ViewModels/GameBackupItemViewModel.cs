@@ -165,7 +165,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Get the backup date
-                LastBackup = backupLocation.Path.GetFileSystemInfo().CreationTime;
+                LastBackup = backupLocation.Path.GetFileSystemInfo().LastWriteTime;
 
                 // Get the backup size
                 BackupSize = backupLocation.Path.GetSize();

@@ -13,6 +13,18 @@
                 mc:Ignorable="d"    
                 d:DesignWidth="800"
                 d:DataContext="{d:DesignInstance local:SettingsPageViewModel}">
+
+    <local:IBasePage.OverflowMenu>
+        <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
+
+            <local:MenuItemIcon Header="{Resx Settings_EditJumpList}"
+                                ToolTip="{Resx Settings_EditJumpListInfo}"
+                                Command="{Binding Path=EditJumpListCommand}"
+                                IconKind="PencilBoxOutline"/>
+
+        </ContextMenu>
+    </local:IBasePage.OverflowMenu>
+
     <ScrollViewer Padding="15">
         <i:Interaction.Behaviors>
             <rwpf:FocusScrollViewerOnLoad />
@@ -161,11 +173,6 @@
                         <local:InfoIcon Text="{Resx Settings_ShowUnderInstalledProgramsInfo}" />
 
                     </StackPanel>
-
-                    <Button Content="{Resx Settings_EditJumpList}"
-                            ToolTip="{Resx Settings_EditJumpListInfo}"
-                            Command="{Binding Path=EditJumpListCommand}"
-                            HorizontalAlignment="Left"/>
 
                 </StackPanel>
 

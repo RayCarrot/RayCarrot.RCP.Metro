@@ -1234,7 +1234,7 @@ Herstarten?</value>
     <value>Niet in staat het spel te vinden</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>In het bijzonder dank aan AuToMaNiAk005, MixerX, ICUP321, PokGOT4N en alle andere Rayman fans!</value>
+    <value>In het bijzonder dank aan AuToMaNiAk005, MixerX, PokGOT4N en alle andere Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>User interface, Carrot Framework, Game Finder, Game Installer, hulpprogramma's, Rayman 2 vertalingen, Zweedse programmavertaling</value>
@@ -1619,7 +1619,7 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
     <value>No Disc Fout</value>
   </data>
   <data name="Help_Games_R2_NoDisc" xml:space="preserve">
-    <value>Op fysieke kopieën van het spel bestaat er een issue, dat een CD-fout betreft, weergegeven tijdens het spel. Dit issue komt niet voor in de GOG-versie. Als het spel wordt geïnstalleerd via de Rayman Control Panel Installer, zal de game gepatcht worden, waardoor er geen schijfcheck meer plaats zal vinden en het issue niet meer voor komt.</value>
+    <value>Op fysieke kopieën van het spel bestaat er een issue, dat een CD-fout betreft, weergegeven tijdens het spel. Dit issue komt niet voor in de GOG-versie. Als je gebruikmaakt van het hulpprogramma voor het patchen van de schijf, wordt het probleem opgelost.</value>
   </data>
   <data name="Help_Games_RMA" xml:space="preserve">
     <value>Rayman M/Arena</value>
@@ -2679,5 +2679,41 @@ Foutmelding: {1}</value>
   </data>
   <data name="Config_DiscCheckInfo" xml:space="preserve">
     <value>Door het uitschakelen van de schijfcontrole, kan het spel gespeeld worden zonder de schijf in het station te plaatsen</value>
+  </data>
+  <data name="App_SelectGameTypeHeader" xml:space="preserve">
+    <value>Selecteer Type Spel</value>
+  </data>
+  <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
+    <value>Open in de Microsoft Store</value>
+  </data>
+  <data name="GamesPage_FindGames" xml:space="preserve">
+    <value>Zoek Spellen</value>
+  </data>
+  <data name="GamesPage_FindGamesInfo" xml:space="preserve">
+    <value>Zoekt naar geïnstalleerde spellen en voegt deze aan het programma toe</value>
+  </data>
+  <data name="R2U_DiscPatchHeader" xml:space="preserve">
+    <value>Patch Schijfversie</value>
+  </data>
+  <data name="R2U_DiscPatchHeaderInfo" xml:space="preserve">
+    <value>Dit hulpprogramma patcht de CD-release met bestanden van de GOG-versie, waarna het spel zonder schijf kan worden uitgevoerd; de 'CD ontbreekt'-fout is nu opgelost.</value>
+  </data>
+  <data name="R2U_DiscPatchNotRequired" xml:space="preserve">
+    <value>Het spel hoeft niet gepatcht te worden</value>
+  </data>
+  <data name="R2U_DiscPatchApplied" xml:space="preserve">
+    <value>Het spel is succesvol gepatcht</value>
+  </data>
+  <data name="R2U_DiscPatchError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het toepassen van de schijfpatch</value>
+  </data>
+  <data name="GameFinder_NoResults" xml:space="preserve">
+    <value>Geen nieuwe spellen gevonden</value>
+  </data>
+  <data name="GameFinder_ResultHeader" xml:space="preserve">
+    <value>Resultaat Game Finder</value>
+  </data>
+  <data name="GameOptions_Info" xml:space="preserve">
+    <value>Informatie</value>
   </data>
 </root>

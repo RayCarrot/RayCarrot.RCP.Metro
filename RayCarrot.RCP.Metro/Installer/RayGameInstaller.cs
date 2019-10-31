@@ -366,11 +366,14 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Copying file");
-
                     // Throw if cancellation has been requested
                     if (ex is WebException we && we.Status == WebExceptionStatus.RequestCanceled)
+                    {
+                        ex.HandleExpected("Copying file");
                         throw;
+                    }
+
+                    ex.HandleError("Copying file");
 
                     RCFCore.Logger?.LogInformationSource($"Failed to copy file {source.FullPath} during installation. Requesting retry.");
 

@@ -81,10 +81,10 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the purchase links for the game
         /// </summary>
-        public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
+        public override IList<GamePurchaseLink> GetGamePurchaseLinks => SupportsWinStoreApps ? new GamePurchaseLink[]
         {
             new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, GetStorePageURI())
-        };
+        } : new GamePurchaseLink[0];
 
         /// <summary>
         /// Gets the game finder item for this game
@@ -92,7 +92,7 @@ namespace RayCarrot.RCP.Metro
         public override GameFinderItem GameFinderItem => new GameFinderItem(() =>
         {
             // Make sure version is at least Windows 8
-            if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
+            if (!SupportsWinStoreApps)
                 return null;
 
             // Return the install directory, if found
@@ -126,6 +126,11 @@ namespace RayCarrot.RCP.Metro
         /// Gets the legacy launch path to use for launching the game. This method of launching should only be used when no other method is available. If the package is not found this method will launch a new Windows Explorer window instead. The entry point is defaulted to "!APP" and may not always be correct.
         /// </summary>
         public string LegacyLaunchPath => "shell:appsFolder\\" + $"{FullPackageName}!App";
+
+        /// <summary>
+        /// Indicates if Microsoft Store apps are supported on the current system
+        /// </summary>
+        public bool SupportsWinStoreApps => AppViewModel.WindowsVersion >= WindowsVersion.Win8;
 
         #endregion
 
@@ -177,7 +182,7 @@ namespace RayCarrot.RCP.Metro
         public override async Task<FileSystemPath?> LocateAsync()
         {
             // Make sure version is at least Windows 8
-            if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
+            if (!SupportsWinStoreApps)
             {
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_WinStoreNotSupported, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
 
@@ -232,7 +237,7 @@ namespace RayCarrot.RCP.Metro
         public override async Task<bool> IsValidAsync(FileSystemPath installDir, object parameter = null)
         {
             // Make sure version is at least Windows 8
-            if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
+            if (!SupportsWinStoreApps)
                 return false;
 
             // Make sure the default game file is found

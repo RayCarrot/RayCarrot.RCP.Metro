@@ -700,7 +700,6 @@ namespace RayCarrot.RCP.Metro
 
             // Check for updates
             if (RCFRCP.Data.AutoUpdate)
-                //_ = Task.Run(async () => await RCFRCP.App.CheckForUpdatesAsync(false));
                 await RCFRCP.App.CheckForUpdatesAsync(false);
         }
 

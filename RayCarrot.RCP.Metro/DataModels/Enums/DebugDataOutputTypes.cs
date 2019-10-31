@@ -28,6 +28,11 @@
         /// <summary>
         /// Runs the game finder, searching for all games and displaying the output of found games and their install locations
         /// </summary>
-        GameFinder
+        GameFinder,
+
+        /// <summary>
+        /// Display the info available for each game
+        /// </summary>
+        GameInfo
     }
 }

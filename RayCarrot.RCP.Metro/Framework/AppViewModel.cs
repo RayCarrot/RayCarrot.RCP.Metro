@@ -472,7 +472,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
-        public bool IsBeta => true;
+        public bool IsBeta => false;
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -1147,7 +1147,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RequestRestartAsAdminAsync()
         {
-            if (await RCFUI.MessageUI.DisplayMessageAsync(Resources.App_RequiresAdminQuestion, Resources.Restore_FailedHeader, MessageType.Warning, true))
+            if (await RCFUI.MessageUI.DisplayMessageAsync(Resources.App_RequiresAdminQuestion, Resources.App_RestartAsAdmin, MessageType.Warning, true))
                 await RestartAsAdminAsync();
         }
 

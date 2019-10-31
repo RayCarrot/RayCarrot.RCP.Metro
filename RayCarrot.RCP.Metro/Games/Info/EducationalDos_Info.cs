@@ -32,7 +32,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the launch name for the game
         /// </summary>
-        public override string DefaultFileName => RCFRCP.Data.EducationalDosBoxGames.First().LaunchName;
+        public override string DefaultFileName => RCFRCP.Data.EducationalDosBoxGames?.FirstOrDefault()?.LaunchName;
 
         /// <summary>
         /// The config UI, if any is available

@@ -40,11 +40,11 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the purchase links for the game
         /// </summary>
-        public override IList<GamePurchaseLink> GetGamePurchaseLinks => new GamePurchaseLink[]
+        public override IList<GamePurchaseLink> GetGamePurchaseLinks => SupportsWinStoreApps ? new GamePurchaseLink[]
         {
             // Only get the Preload edition URI as the other editions have been delisted.
             new GamePurchaseLink(Resources.GameDisplay_PurchaseWinStore, GetStorePageURI(GetStoreID(FiestaRunEdition.Preload)))
-        };
+        } : new GamePurchaseLink[0];
 
         /// <summary>
         /// Gets the game finder item for this game
@@ -52,7 +52,7 @@ namespace RayCarrot.RCP.Metro
         public override GameFinderItem GameFinderItem => new GameFinderItem(() =>
         {
             // Make sure version is at least Windows 8
-            if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
+            if (!SupportsWinStoreApps)
                 return null;
 
             // Check each version
@@ -81,7 +81,7 @@ namespace RayCarrot.RCP.Metro
         public override async Task<FileSystemPath?> LocateAsync()
         {
             // Make sure version is at least Windows 8
-            if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
+            if (!SupportsWinStoreApps)
             {
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_WinStoreNotSupported, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
 
@@ -149,7 +149,7 @@ namespace RayCarrot.RCP.Metro
         public override Task<bool> IsValidAsync(FileSystemPath installDir, object parameter = null)
         {
             // Make sure version is at least Windows 8
-            if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
+            if (!SupportsWinStoreApps)
                 return Task.FromResult(false);
 
             if (!((installDir + Game.GetGameInfo<RaymanFiestaRun_Info>().GetFiestaRunFileName(parameter as FiestaRunEdition? ?? RCFRCP.Data.FiestaRunVersion)).FileExists))
@@ -171,7 +171,7 @@ namespace RayCarrot.RCP.Metro
         public bool IsFiestaRunEditionValidAsync(FiestaRunEdition edition)
         {
             // Make sure version is at least Windows 8
-            if (AppViewModel.WindowsVersion < WindowsVersion.Win8)
+            if (!SupportsWinStoreApps)
                 return false;
 
             return GetGamePackage(GetFiestaRunPackageName(edition)) != null;

@@ -1234,7 +1234,7 @@ Reiniciar?</value>
     <value>Não foi possível encontrar o jogo</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Agradecimentos especiais ao AuToMaNiAk005, MixerX, ICUP321, PokGOT4N e a todos os outros fãs de Rayman!</value>
+    <value>Agradecimentos especiais ao AuToMaNiAk005, MixerX, PokGOT4N e a todos os outros fãs de Rayman!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>Interface de utilizador, Carrot Framework, Localizador de jogo, Utilitários, Traduções do Rayman 2, Programa de tradução Sueca</value>
@@ -1621,7 +1621,7 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <value>Erro Sem Disco</value>
   </data>
   <data name="Help_Games_R2_NoDisc" xml:space="preserve">
-    <value>Em versões de disco do jogo há um problema conhecido onde o jogo irá exibir um erro de CD durante a jogabilidade. Este problema não está presente na versão GOG. Se o jogo está instalado usando o instalador do Painel de Controlo Rayman o jogo irá ser corrigido de maneira a evitar que a verificação do disco como a versão GOG, evitando inteiramente este problema.</value>
+    <value>Há um problema conhecido nas versões de disco do jogo onde este exibe um erro de CD durante a jogabilidade. Este problema não está presente na versão da GOG. Utilizar o utilitário da actualização do disco irá corrigir este problema.</value>
   </data>
   <data name="Help_Games_RMA" xml:space="preserve">
     <value>Rayman M/Arena</value>
@@ -2681,5 +2681,41 @@ Error message: {1}</value>
   </data>
   <data name="Config_DiscCheckInfo" xml:space="preserve">
     <value>Desactivar a verificação do disco permite que o jogo seja jogado sem ter que se inserir o disco</value>
+  </data>
+  <data name="App_SelectGameTypeHeader" xml:space="preserve">
+    <value>Seleccionar Tipo de Jogo</value>
+  </data>
+  <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
+    <value>Abrir na Microsoft Store</value>
+  </data>
+  <data name="GamesPage_FindGames" xml:space="preserve">
+    <value>Procurar Jogos</value>
+  </data>
+  <data name="GamesPage_FindGamesInfo" xml:space="preserve">
+    <value>Procura jogos instalados e adiciona-os ao programa</value>
+  </data>
+  <data name="R2U_DiscPatchHeader" xml:space="preserve">
+    <value>Actualizar Versão de Disco</value>
+  </data>
+  <data name="R2U_DiscPatchHeaderInfo" xml:space="preserve">
+    <value>Este utilitário irá actualizar o lançamento em disco com os ficheiros da versão GOG, permitindo ao jogo que execute sem o disco e corrigir o erro "CD em falta".</value>
+  </data>
+  <data name="R2U_DiscPatchNotRequired" xml:space="preserve">
+    <value>O jogo não necessita de ser actualizado</value>
+  </data>
+  <data name="R2U_DiscPatchApplied" xml:space="preserve">
+    <value>O jogo foi actualizado com sucesso</value>
+  </data>
+  <data name="R2U_DiscPatchError" xml:space="preserve">
+    <value>O jogo foi actualizado com sucesso</value>
+  </data>
+  <data name="GameFinder_NoResults" xml:space="preserve">
+    <value>Não foi encontrado nenhum jogo novo</value>
+  </data>
+  <data name="GameFinder_ResultHeader" xml:space="preserve">
+    <value>Resultado do Localizador de Jogo</value>
+  </data>
+  <data name="GameOptions_Info" xml:space="preserve">
+    <value>Informação</value>
   </data>
 </root>
