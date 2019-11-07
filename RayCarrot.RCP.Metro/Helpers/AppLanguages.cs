@@ -60,7 +60,7 @@ namespace RayCarrot.RCP.Metro
                     new CultureInfo("sr-Cyrl"), 
 
                     // Spanish
-                    new CultureInfo("es-PR"), 
+                    new CultureInfo("es-MX"), 
                 });
             }
         }

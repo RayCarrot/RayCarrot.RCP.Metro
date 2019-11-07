@@ -1,4 +1,8 @@
-﻿-----   Version 7.0.0 - October 31, 2019   -----
+﻿-----   Version 7.1.0 - November ??, 2019   -----
+• 
+
+
+-----   Version 7.0.0 - October 31, 2019   -----
 • Added a utility for patching the disc version of Rayman 2, fixing the 'CD missing' error
 • Moved several options to overflow menus
 • Moved game information to a separate tab
