@@ -2867,4 +2867,7 @@ downloadSize</comment>
   <data name="GamesPage_Category_Fan" xml:space="preserve">
     <value>Fan-games</value>
   </data>
+  <data name="Links_Community_RaymanReanimated" xml:space="preserve">
+    <value>Rayman Reanimated</value>
+  </data>
 </root>

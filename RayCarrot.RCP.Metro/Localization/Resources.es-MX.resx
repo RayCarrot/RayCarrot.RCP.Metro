@@ -1483,4 +1483,10 @@ Notícias:
   <data name="Config_Fullscreen" xml:space="preserve">
     <value>Pantalla completa</value>
   </data>
+  <data name="GamesPage_Category_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Links_Community_RaymanReanimated" xml:space="preserve">
+    <value>Rayman Reanimated</value>
+  </data>
 </root>

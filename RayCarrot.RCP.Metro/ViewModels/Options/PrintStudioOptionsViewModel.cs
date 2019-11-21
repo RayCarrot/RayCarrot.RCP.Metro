@@ -166,7 +166,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         "[STARTUP]",
                         "message= OPENBIGFILE 16376 N { \"printstudio - " + GetVersionTag(SelectedVersion) + ".mrc\" -1L }",
-                        "",
+                        String.Empty, 
                         "[INCLUDE]",
                         "language.mms"
                     });

@@ -1,8 +1,11 @@
 ﻿-----   Version 7.1.0 - November ??, 2019   -----
 • Added support for Rayman 3 Print Studio and fan-games
-• Added support for downloading specific games directly from the program
+• Added support for downloading select games directly from the program
 • Games downloaded through the Rayman Control Panel or installed using its disc installer (post version 7.1.0) can now be uninstalled
 • Categorized the games page
+
+Other changes:
+• Added a link to the Rayman Reanimated Twitter page in the links page
 • Moved the settings page button back to the tab panel to avoid confusion with the overflow menu
 • Added Ryemanni, Droolie and MilesTheCreator to the special thanks section in the credits
 • Bug fixes

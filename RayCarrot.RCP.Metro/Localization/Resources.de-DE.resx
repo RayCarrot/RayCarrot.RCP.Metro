@@ -302,4 +302,10 @@
   <data name="GoHomeConfig_BigFile" xml:space="preserve">
     <value>Big file</value>
   </data>
+  <data name="GamesPage_Category_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Links_Community_RaymanReanimated" xml:space="preserve">
+    <value>Rayman Reanimated</value>
+  </data>
 </root>

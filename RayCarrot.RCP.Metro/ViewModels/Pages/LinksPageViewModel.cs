@@ -226,7 +226,9 @@ namespace RayCarrot.RCP.Metro
                             new LinkItemViewModel(new Uri("https://twitter.com/RaymanCentral"),
                                 Resources.Links_Community_RaymanCentral),
                             new LinkItemViewModel(new Uri("https://twitter.com/RaymanTogether"),
-                                Resources.Links_Community_RaymanTogether)
+                                Resources.Links_Community_RaymanTogether),
+                            new LinkItemViewModel(new Uri("https://twitter.com/RaymanReanimate"),
+                                Resources.Links_Community_RaymanReanimated)
                         },
                         new LinkItemViewModel[]
                         {

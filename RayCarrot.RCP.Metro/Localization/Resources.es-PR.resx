@@ -253,4 +253,12 @@
     <value></value>
     <comment>Big file</comment>
   </data>
+  <data name="GamesPage_Category_Rayman" xml:space="preserve">
+    <value></value>
+    <comment>Rayman</comment>
+  </data>
+  <data name="Links_Community_RaymanReanimated" xml:space="preserve">
+    <value></value>
+    <comment>Rayman Reanimated</comment>
+  </data>
 </root>

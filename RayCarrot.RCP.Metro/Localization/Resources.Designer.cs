@@ -4973,6 +4973,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman Reanimated.
+        /// </summary>
+        public static string Links_Community_RaymanReanimated {
+            get {
+                return ResourceManager.GetString("Links_Community_RaymanReanimated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman Together.
         /// </summary>
         public static string Links_Community_RaymanTogether {

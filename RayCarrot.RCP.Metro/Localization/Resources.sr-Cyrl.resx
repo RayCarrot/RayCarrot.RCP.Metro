@@ -572,4 +572,12 @@
   <data name="Config_ResolutionR2Info" xml:space="preserve">
     <value>Ако подршка широког екрана није омогућена, игра ће се издужити уколико су пропорције </value>
   </data>
+  <data name="GamesPage_Category_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+    <comment>Rayman</comment>
+  </data>
+  <data name="Links_Community_RaymanReanimated" xml:space="preserve">
+    <value>Rayman Reanimated</value>
+    <comment>Rayman Reanimated</comment>
+  </data>
 </root>
