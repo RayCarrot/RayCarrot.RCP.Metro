@@ -69,7 +69,7 @@ namespace RayCarrot.RCP.Metro
             ShowNotInstalledGames = true;
             CloseAppOnGameLaunch = false;
             CloseConfigOnSave = true;
-            BackupLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            BackupLocation = Environment.SpecialFolder.MyDocuments.GetFolderPath();
             ShowProgressOnTaskBar = true;
             DisplayExceptionLevel = ExceptionLevel.Critical;
             TPLSData = null;
@@ -91,6 +91,7 @@ namespace RayCarrot.RCP.Metro
             RabbidsGoHomeLaunchData = null;
             JumpListItemIDCollection = new List<string>();
             IsUpdateAvailable = false;
+            InstalledGames = new HashSet<Games>();
         }
 
         #endregion
@@ -325,6 +326,11 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if a new update is available
         /// </summary>
         public bool IsUpdateAvailable { get; set; }
+
+        /// <summary>
+        /// The games which have been installed through the Rayman Control Panel
+        /// </summary>
+        public HashSet<Games> InstalledGames { get; set; }
 
         #endregion
 

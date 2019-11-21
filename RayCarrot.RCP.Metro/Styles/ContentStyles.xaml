@@ -6,7 +6,14 @@
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
     <!-- Default Menu Item Icon -->
+
     <Style TargetType="{x:Type local:MenuItemIcon}" BasedOn="{StaticResource {x:Type MenuItem}}" />
+
+    <!-- Default Animated Tab Control -->
+
+    <Style TargetType="{x:Type mah:MetroAnimatedTabControl}" BasedOn="{StaticResource {x:Type mah:MetroAnimatedTabControl}}">
+        <Setter Property="mah:TabControlHelper.Transition" Value="{Binding Source={x:Static local:RCFRCP.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}" />
+    </Style>
 
     <!-- Flat Button -->
 
@@ -47,20 +54,35 @@
             <Setter.Value>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal"
-                                Margin="5 2">
+                                Margin="5 2"
+                                DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:RCPTabItem}}}">
 
-                        <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:RCPTabItem}}}"
+                        <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
                                                     Margin="10 0"
-                                                    VerticalAlignment="Center"/>
+                                                    VerticalAlignment="Center"
+                                                    Visibility="{Binding Path=IconVisibility}" />
 
-                        <ContentControl ContentStringFormat="{Binding Path=HeaderStringFormat, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:RCPTabItem}}}" 
-                                        FontSize="{Binding Path=HeaderFontSize, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:RCPTabItem}}}"
-                                        Content="{Binding Header, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:RCPTabItem}}}"/>
+                        <ContentControl ContentStringFormat="{Binding Path=HeaderStringFormat}" 
+                                        FontSize="{Binding Path=HeaderFontSize}"
+                                        Content="{Binding Path=Header}"/>
 
                     </StackPanel>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <!-- Small Tab Panel -->
+
+    <Style x:Key="SmallTabPanel" TargetType="{x:Type TabPanel}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0 5 0 10" />
+    </Style>
+
+    <!-- Small Tab Item -->
+
+    <Style x:Key="SmallTabItem" TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource {x:Type local:RCPTabItem}}">
+        <Setter Property="HeaderFontSize" Value="16" />
     </Style>
 
     <!-- Default NumericUpDown -->

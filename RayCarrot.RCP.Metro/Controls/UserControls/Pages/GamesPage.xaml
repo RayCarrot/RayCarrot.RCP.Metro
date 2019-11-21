@@ -7,12 +7,14 @@
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-                xmlns:Interactions="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                 ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignHeight="450" d:DesignWidth="800"
-                d:DataContext="{d:DesignInstance local:GamesPageViewModel}">
+                d:DataContext="{d:DesignInstance local:GamesPageViewModel}"
+                PreviewKeyDown="UIElement_OnPreviewKeyDown">
 
     <local:IBasePage.OverflowMenu>
         <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
@@ -30,65 +32,97 @@
 
     <Grid Visibility="{Binding Path=RefreshingGames, Converter={rwpf:InvertedBooleanToVisibilityConverter}}">
         <Grid>
-            <ScrollViewer Visibility="{Binding Path=App.IsGameFinderRunning, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
-                      Padding="5">
-                <Interactions:Interaction.Behaviors>
-                    <rwpf:FocusScrollViewerOnLoad />
-                </Interactions:Interaction.Behaviors>
+            <ScrollViewer Visibility="{Binding Path=App.IsGameFinderRunning, Converter={rwpf:InvertedBooleanToVisibilityConverter}}">
+                <mah:MetroAnimatedTabControl x:Name="GamesTabControl"
+                                             FocusVisualStyle="{x:Null}"
+                                             Margin="15"
+                                             ItemsSource="{Binding Path=GameCategories, Mode=OneTime}">
+                    <i:Interaction.Behaviors>
+                        <rwpf:FocusElementOnLoad />
+                    </i:Interaction.Behaviors>
 
-                <StackPanel>
-                    <StackPanel.Resources>
-                        <Style x:Key="GamesDisplay"
-                           TargetType="{x:Type ItemsControl}"
-                           BasedOn="{StaticResource {x:Type ItemsControl}}">
-                            <Setter Property="ItemTemplate">
-                                <Setter.Value>
-                                    <DataTemplate>
-                                        <local:GameDisplay HorizontalAlignment="Left"
-                                                       Padding="7 10" />
-                                    </DataTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="ItemsPanel">
-                                <Setter.Value>
-                                    <ItemsPanelTemplate>
-                                        <WrapPanel>
-                                            <Interactions:Interaction.Behaviors>
-                                                <Interactions:FluidMoveBehavior Duration="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToFluidMoveDurationConverter}}"
-                                                                            AppliesTo="Children" />
-                                            </Interactions:Interaction.Behaviors>
-                                        </WrapPanel>
-                                    </ItemsPanelTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </StackPanel.Resources>
+                    <mah:MetroAnimatedTabControl.Resources>
+                        <Style TargetType="{x:Type TabPanel}" BasedOn="{StaticResource SmallTabPanel}" />
+                    </mah:MetroAnimatedTabControl.Resources>
 
-                    <Interactions:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="0 5" />
-                    </Interactions:Interaction.Behaviors>
+                    <mah:MetroAnimatedTabControl.ItemTemplate>
+                        <DataTemplate DataType="local:GameCategoryViewModel">
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="5 2">
 
-                    <Grid Visibility="{Binding Path=AnyInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}">
-                        <TextBlock Text="{Resx Games_Installed}"
-                               Padding="10 0 0 0"
-                               Style="{StaticResource LargeHeaderTextBlock}"
-                               Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
-                    </Grid>
+                                <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
+                                                            Margin="10 0"
+                                                            VerticalAlignment="Center" />
 
-                    <ItemsControl Style="{StaticResource GamesDisplay}"
-                              ItemsSource="{Binding Path=InstalledGames, IsAsync=True}" />
+                                <ContentControl FontSize="16"
+                                                Content="{Binding Path=DisplayName}" />
 
-                    <Grid Visibility="{Binding Path=AnyNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}">
-                        <TextBlock Text="{Resx Games_NotInstalled}"
-                               Padding="10 0 0 0"
-                               Style="{StaticResource LargeHeaderTextBlock}"
-                               Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
-                    </Grid>
+                            </StackPanel>
+                        </DataTemplate>
+                    </mah:MetroAnimatedTabControl.ItemTemplate>
 
-                    <ItemsControl Style="{StaticResource GamesDisplay}"
-                              ItemsSource="{Binding Path=NotInstalledGames, IsAsync=True}"
-                              Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
-                </StackPanel>
+                    <mah:MetroAnimatedTabControl.ContentTemplate>
+                        <DataTemplate DataType="{x:Type local:GameCategoryViewModel}">
+                            <StackPanel>
+                                <StackPanel.Resources>
+                                    <Style x:Key="GamesDisplay"
+                                           TargetType="{x:Type ItemsControl}"
+                                           BasedOn="{StaticResource {x:Type ItemsControl}}">
+                                        <Setter Property="ItemTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <local:GameDisplay HorizontalAlignment="Left"
+                                                                       Padding="7 10" />
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="ItemsPanel">
+                                            <Setter.Value>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel>
+                                                        <i:Interaction.Behaviors>
+                                                            <i:FluidMoveBehavior
+                                                                Duration="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToFluidMoveDurationConverter}}"
+                                                                AppliesTo="Children" />
+                                                        </i:Interaction.Behaviors>
+                                                    </WrapPanel>
+                                                </ItemsPanelTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="Grid.IsSharedSizeScope" Value="True" />
+                                    </Style>
+                                </StackPanel.Resources>
+
+                                <i:Interaction.Behaviors>
+                                    <rwpf:UnifiedMarginBehavior Margin="0 5" />
+                                </i:Interaction.Behaviors>
+
+                                <Grid Visibility="{Binding Path=AnyInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}">
+                                    <TextBlock Text="{Resx Games_Installed}"
+                                               Padding="10 0 0 0"
+                                               Style="{StaticResource LargeHeaderTextBlock}"
+                                               Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                                </Grid>
+
+                                <ItemsControl Style="{StaticResource GamesDisplay}"
+                                              ItemsSource="{Binding Path=InstalledGames, IsAsync=True}" />
+
+                                <Grid Visibility="{Binding Path=AnyNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}">
+                                    <TextBlock Text="{Resx Games_NotInstalled}"
+                                               Padding="10 0 0 0"
+                                               Style="{StaticResource LargeHeaderTextBlock}"
+                                               Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                                </Grid>
+
+                                <ItemsControl Style="{StaticResource GamesDisplay}"
+                                              ItemsSource="{Binding Path=NotInstalledGames, IsAsync=True}"
+                                              Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </mah:MetroAnimatedTabControl.ContentTemplate>
+
+                </mah:MetroAnimatedTabControl>
+
             </ScrollViewer>
 
             <mah:ProgressRing Visibility="{Binding Path=App.IsGameFinderRunning, Converter={rwpf:BooleanToVisibilityConverter}}" />
@@ -97,4 +131,5 @@
         <mah:ProgressRing Visibility="{Binding Path=RefreshingGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
 
     </Grid>
+
 </local:BasePage>

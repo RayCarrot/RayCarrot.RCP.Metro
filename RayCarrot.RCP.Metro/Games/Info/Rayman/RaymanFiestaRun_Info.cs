@@ -19,6 +19,11 @@ namespace RayCarrot.RCP.Metro
         public override Games Game => Games.RaymanFiestaRun;
 
         /// <summary>
+        /// The category for the game
+        /// </summary>
+        public override GameCategory Category => GameCategory.Rayman;
+
+        /// <summary>
         /// The game display name
         /// </summary>
         public override string DisplayName => "Rayman Fiesta Run";

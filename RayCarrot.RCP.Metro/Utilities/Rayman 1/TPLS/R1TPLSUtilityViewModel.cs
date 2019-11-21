@@ -73,7 +73,7 @@ namespace RayCarrot.RCP.Metro
                     new Uri(CommonUrls.R1_TPLS_Url),
                 }, true, CommonPaths.TPLSDir))
                 {
-                    // If cancelled, delete the directory
+                    // If canceled, delete the directory
                     RCFRCP.File.DeleteDirectory(CommonPaths.TPLSDir);
                     return;
                 }

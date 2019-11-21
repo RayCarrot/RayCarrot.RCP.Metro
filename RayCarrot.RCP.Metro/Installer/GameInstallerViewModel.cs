@@ -36,12 +36,12 @@ namespace RayCarrot.RCP.Metro
 
             // Get images
             GameLogoSource = $"{AppViewModel.ApplicationBasePath}Img/GameLogos/{game}_Logo.png";
-            Gifs = game.GetInstallerGifs();
+            Gifs = game.GetGameInfo().InstallerGifs;
 
             // Default the install directory
-            InstallDir = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            InstallDir = Environment.SpecialFolder.ProgramFiles.GetFolderPath();
 
-            // Default gif source to an empty string
+            // Default image source to an empty string
             CurrentGifImageSource = String.Empty;
         }
 
@@ -277,14 +277,17 @@ namespace RayCarrot.RCP.Metro
                     // Add the game
                     await App.AddNewGameAsync(Game, GameType.Win32, output);
 
+                    // Add game to installed games
+                    RCFRCP.Data.InstalledGames.Add(Game);
+
                     // Refresh
                     await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
 
                     if (CreateDesktopShortcut)
-                        await AddShortcutAsync(Environment.GetFolderPath(CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop), String.Format(Resources.Installer_ShortcutName, displayName));
+                        await AddShortcutAsync((CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonDesktopDirectory : Environment.SpecialFolder.Desktop).GetFolderPath(), String.Format(Resources.Installer_ShortcutName, displayName));
 
                     if (CreateStartMenuShortcut)
-                        await AddShortcutAsync(Path.Combine(Environment.GetFolderPath(CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonStartMenu : Environment.SpecialFolder.StartMenu), "Programs"), displayName);
+                        await AddShortcutAsync((CreateShortcutsForAllUsers ? Environment.SpecialFolder.CommonStartMenu : Environment.SpecialFolder.StartMenu).GetFolderPath() + "Programs", displayName);
 
                     // Helper method for creating a shortcut
                     async Task AddShortcutAsync(FileSystemPath dir, string shortcutName)

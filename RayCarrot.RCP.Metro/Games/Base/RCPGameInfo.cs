@@ -33,6 +33,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string IconSource => $"{AppViewModel.ApplicationBasePath}Img/GameIcons/{Game}.png";
 
+        /// <summary>
+        /// Indicates if the game can be uninstalled
+        /// </summary>
+        public bool CanBeUninstalled => (CanBeDownloaded || CanBeInstalledFromDisc) && RCFRCP.Data.InstalledGames.Contains(Game);
+
         #endregion
 
         #region Public Abstract Properties
@@ -51,6 +56,11 @@ namespace RayCarrot.RCP.Metro
         /// Gets the default file name for launching the game, if available
         /// </summary>
         public abstract string DefaultFileName { get; }
+
+        /// <summary>
+        /// The category for the game
+        /// </summary>
+        public abstract GameCategory Category { get; }
 
         #endregion
 
@@ -104,9 +114,39 @@ namespace RayCarrot.RCP.Metro
         public virtual IEnumerable<string> DialogGroupNames => new string[0];
 
         /// <summary>
+        /// Indicates if the game can be located. If set to false the game is required to be downloadable.
+        /// </summary>
+        public virtual bool CanBeLocated => true;
+
+        /// <summary>
+        /// Indicates if the game can be downloaded
+        /// </summary>
+        public virtual bool CanBeDownloaded => false;
+
+        /// <summary>
+        /// The download URLs for the game if it can be downloaded. All sources must be compressed.
+        /// </summary>
+        public virtual IList<Uri> DownloadURLs => null;
+
+        /// <summary>
         /// Indicates if the game can be installed from a disc in this program
         /// </summary>
         public virtual bool CanBeInstalledFromDisc => false;
+
+        /// <summary>
+        /// The .gif files to use during the game installation if installing from a disc
+        /// </summary>
+        public virtual string[] InstallerGifs => null;
+
+        /// <summary>
+        /// The directories to remove when uninstalling. This should not include the game install directory as that is included by default.
+        /// </summary>
+        public virtual IEnumerable<FileSystemPath> UninstallDirectories => null;
+
+        /// <summary>
+        /// The files to remove when uninstalling
+        /// </summary>
+        public virtual IEnumerable<FileSystemPath> UninstallFiles => null;
 
         #endregion
 
@@ -228,6 +268,19 @@ namespace RayCarrot.RCP.Metro
                 {
                     var actions = new List<OverflowButtonItemViewModel>();
 
+                    OverflowButtonItemViewModel downloadItem = null;
+
+                    if (CanBeDownloaded)
+                    {
+                        downloadItem = new OverflowButtonItemViewModel(Resources.GameDisplay_CloudInstall, PackIconMaterialKind.CloudDownload, new AsyncRelayCommand(async () => await DownloadGameAsync()));
+
+                        if (CanBeLocated)
+                        {
+                            actions.Add(downloadItem);
+                            actions.Add(new OverflowButtonItemViewModel());
+                        }
+                    }
+
                     // Get the purchase links
                     var links = Game.
                         // Get all available managers
@@ -239,14 +292,14 @@ namespace RayCarrot.RCP.Metro
                     actions.AddRange(links.
                         Select(x =>
                         {
-                        // Get the path
-                        string path = x.Path;
+                            // Get the path
+                            string path = x.Path;
 
-                        // Create the command
-                        var command = new AsyncRelayCommand(async () => (await RCFRCP.File.LaunchFileAsync(path))?.Dispose());
+                            // Create the command
+                            var command = new AsyncRelayCommand(async () => (await RCFRCP.File.LaunchFileAsync(path))?.Dispose());
 
-                        // Return the item
-                        return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
+                            // Return the item
+                            return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
                         }));
 
                     // Add disc installer options for specific Games
@@ -262,18 +315,138 @@ namespace RayCarrot.RCP.Metro
                             new GameInstaller(Game).ShowDialog())));
                     }
 
-                    // Create the command
-                    var locateCommand = new AsyncRelayCommand(async () => await RCFRCP.App.LocateGameAsync(Game));
-
                     // Return the view model
-                    return new GameDisplayViewModel(Game, DisplayName, IconSource,
-                        new ActionItemViewModel(Resources.GameDisplay_Locate, PackIconMaterialKind.FolderOutline, locateCommand), actions);
+                    return new GameDisplayViewModel(Game, DisplayName, IconSource, 
+                        CanBeLocated 
+                            ? new ActionItemViewModel(Resources.GameDisplay_Locate, PackIconMaterialKind.FolderOutline, new AsyncRelayCommand(async () => await LocateGameAsync()))
+                            : downloadItem, actions);
                 }
             }
             catch (Exception ex)
             {
                 ex.HandleCritical("Getting game display view model");
                 throw;
+            }
+        }
+
+        /// <summary>
+        /// Gets a type for the game, or null if the operation was canceled
+        /// </summary>
+        /// <returns>The type or null if the operation was canceled</returns>
+        public async Task<GameTypeSelectionResult> GetGameTypeAsync()
+        {
+            // Get the available types
+            var types = RCFRCP.App.GameManagers[Game].Keys.ToArray();
+
+            // If only one type, return that
+            if (types.Length == 1)
+                return new GameTypeSelectionResult()
+                {
+                    CanceledByUser = false,
+                    SelectedType = types.First()
+                };
+
+            // Create the view model
+            var vm = new GameTypeSelectionViewModel()
+            {
+                Title = Resources.App_SelectGameTypeHeader
+            };
+
+            // Enumerate the available types
+            foreach (var type in types)
+            {
+                switch (type)
+                {
+                    case GameType.Win32:
+                        vm.AllowWin32 = true;
+                        break;
+
+                    case GameType.Steam:
+                        vm.AllowSteam = true;
+                        break;
+
+                    case GameType.WinStore:
+                        vm.AllowWinStore = true;
+                        break;
+
+                    case GameType.DosBox:
+                        vm.AllowDosBox = true;
+                        break;
+
+                    case GameType.EducationalDosBox:
+                        vm.AllowEducationalDosBox = true;
+                        break;
+
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                }
+            }
+
+            // Create and show the dialog and return the result
+            return await RCFRCP.UI.SelectGameTypeAsync(vm);
+        }
+
+        /// <summary>
+        /// Allows the user to locate the game and add it
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task LocateGameAsync()
+        {
+            try
+            {
+                RCFCore.Logger?.LogTraceSource($"The game {Game} is being located...");
+
+                var typeResult = await GetGameTypeAsync();
+
+                if (typeResult.CanceledByUser)
+                    return;
+
+                RCFCore.Logger?.LogInformationSource($"The game {Game} type has been detected as {typeResult.SelectedType}");
+
+                await Game.GetManager(typeResult.SelectedType).LocateAddGameAsync();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Locating game");
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.LocateGame_Error, Resources.LocateGame_ErrorHeader);
+            }
+        }
+
+        /// <summary>
+        /// Allows the user to download the game and add it
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task DownloadGameAsync()
+        {
+            try
+            {
+                RCFCore.Logger?.LogTraceSource($"The game {Game} is being downloaded...");
+
+                // Get the game directory
+                var gameDir = CommonPaths.GamesBaseDir + Game.ToString();
+
+                // Download the game
+                var downloaded = await RCFRCP.App.DownloadAsync(DownloadURLs, true, gameDir, true);
+
+                if (!downloaded)
+                    return;
+
+                // NOTE: Downloaded games can currently only be of type Win32
+                // Add the game
+                await RCFRCP.App.AddNewGameAsync(Game, GameType.Win32, gameDir);
+
+                // Add game to installed games
+                RCFRCP.Data.InstalledGames.Add(Game);
+
+                // Refresh
+                await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
+
+                RCFCore.Logger?.LogTraceSource($"The game {Game} has been downloaded");
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Downloading game");
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.GameInstall_Error, DisplayName), Resources.GameInstall_ErrorHeader);
             }
         }
 

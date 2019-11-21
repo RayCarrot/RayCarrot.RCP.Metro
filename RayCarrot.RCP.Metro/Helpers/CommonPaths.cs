@@ -13,12 +13,17 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The base user data directory
         /// </summary>
-        public static FileSystemPath UserDataBaseDir => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Rayman Control Panel", "RCP_Metro");
+        public static FileSystemPath UserDataBaseDir => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Rayman Control Panel" + "RCP_Metro";
 
         /// <summary>
         /// The base utilities directory
         /// </summary>
         public static FileSystemPath UtilitiesBaseDir => UserDataBaseDir + "Utilities";
+
+        /// <summary>
+        /// The base games directory
+        /// </summary>
+        public static FileSystemPath GamesBaseDir => UserDataBaseDir + "Games";
 
         /// <summary>
         /// The TPLS directory
@@ -63,7 +68,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The second common path to the ubi.ini file
         /// </summary>
-        public static FileSystemPath UbiIniPath2 => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore\\Windows\\Ubisoft\\Ubi.ini");
+        public static FileSystemPath UbiIniPath2 => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "VirtualStore\\Windows\\Ubisoft\\Ubi.ini";
 
         /// <summary>
         /// The registry base key

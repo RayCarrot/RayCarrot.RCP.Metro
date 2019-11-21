@@ -24,45 +24,24 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="inputSources">The files to download</param>
         /// <param name="outputDirectory">The output directory to download to</param>
-        public DownloaderViewModel(IEnumerable<Uri> inputSources, FileSystemPath outputDirectory)
+        /// <param name="isCompressed">Indicates if the download is compressed</param>
+        public DownloaderViewModel(IEnumerable<Uri> inputSources, FileSystemPath outputDirectory, bool isCompressed)
         {
             // Get properties
             InputSources = new List<Uri>(inputSources);
             OutputDirectory = outputDirectory;
-            IsCompressed = false;
-            ProcessedFiles = new List<FileSystemPath>();
+            IsCompressed = isCompressed;
+            ProcessedPaths = new List<FileSystemPath>();
             FileManager = RCFRCP.File;
 
             // Set properties
             DownloadState = DownloadState.Paused;
             TotalMaxProgress = InputSources.Count * 100;
 
-            RCFCore.Logger?.LogInformationSource($"A download operation has started with the files {InputSources.JoinItems(", ")}");
-        }
+            if (IsCompressed)
+                TotalMaxProgress += 10 * InputSources.Count;
 
-        /// <summary>
-        /// Downloads a compressed file and extracts its files to a specified output directory
-        /// </summary>
-        /// <param name="compressedInputSource">The compressed file to download</param>
-        /// <param name="outputDirectory">The output directory to extract to</param>
-        public DownloaderViewModel(Uri compressedInputSource, FileSystemPath outputDirectory)
-        {
-            // Get properties
-            InputSources = new List<Uri>
-            {
-                compressedInputSource
-            };
-
-            OutputDirectory = outputDirectory;
-            IsCompressed = true;
-            ProcessedFiles = new List<FileSystemPath>();
-            FileManager = RCFRCP.File;
-
-            // Set properties
-            DownloadState = DownloadState.Paused;
-            TotalMaxProgress = 100 + 10;
-
-            RCFCore.Logger?.LogInformationSource($"A download operation has started with the compressed file {compressedInputSource}");
+            RCFCore.Logger?.LogInformationSource($"A download operation has started with the {(isCompressed ? "compressed" : "")} files {InputSources.JoinItems(", ")}");
         }
 
         #endregion
@@ -99,11 +78,14 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Delete the downloaded processed files
-                foreach (FileSystemPath file in ProcessedFiles)
+                foreach (FileSystemPath path in ProcessedPaths)
                 {
                     try
                     {
-                        FileManager.DeleteFile(file);
+                        if (path.FileExists)
+                            FileManager.DeleteFile(path);
+                        else if (path.DirectoryExists)
+                            FileManager.DeleteDirectory(path);
                     }
                     catch (Exception ex)
                     {
@@ -143,62 +125,75 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected async Task ProcessCompressedDownloadAsync()
         {
-            // Reset file progress
-            ItemCurrentProgress = 0;
-
-            // Get the absolute output path
-            FileSystemPath file = ServerTempDir.TempPath + Path.GetFileName(InputSources.First().AbsolutePath);
-
             await Task.Run(async () =>
             {
-                // Open the zip file
-                using var zip = ZipFile.OpenRead(file);
-                // Set file progress to its entry count
-                ItemMaxProgress = zip.Entries.Count;
-
-                // Extract each entry
-                foreach (var entry in zip.Entries)
+                // Handle each input source
+                foreach (var inputSource in InputSources)
                 {
-                    ThrowIfCancellationRequested();
+                    // Reset file progress
+                    ItemCurrentProgress = 0;
 
                     // Get the absolute output path
-                    var outputPath = OutputDirectory + entry.FullName.Replace('/', '\\');
+                    FileSystemPath file = ServerTempDir.TempPath + Path.GetFileName(inputSource.AbsolutePath);
 
-                    // Check if the entry is a directory
-                    if (entry.FullName.EndsWith("\\") && entry.Name == String.Empty)
+                    // Open the zip file
+                    using (var zip = ZipFile.OpenRead(file))
                     {
-                        // Create directory if it doesn't exist
-                        if (!outputPath.DirectoryExists)
-                            Directory.CreateDirectory(outputPath);
+                        // Set file progress to its entry count
+                        ItemMaxProgress = zip.Entries.Count;
 
-                        continue;
+                        // Extract each entry
+                        foreach (var entry in zip.Entries)
+                        {
+                            ThrowIfCancellationRequested();
+
+                            // Get the full entry name
+                            var entryName = entry.FullName.Replace('/', '\\');
+
+                            // Get the absolute output path
+                            var outputPath = OutputDirectory + entryName;
+
+                            // Check if the entry is a directory
+                            if (entryName.EndsWith("\\") && entry.Name == String.Empty)
+                            {
+                                // Create directory if it doesn't exist
+                                if (!outputPath.DirectoryExists)
+                                {
+                                    Directory.CreateDirectory(outputPath);
+
+                                    ProcessedPaths.Add(outputPath);
+                                }
+
+                                continue;
+                            }
+
+                            // Backup conflict file
+                            if (outputPath.FileExists)
+                                await Task.Run(() => FileManager.MoveFile(outputPath, LocalTempDir.TempPath + entryName, false));
+
+                            // Create directory if it doesn't exist
+                            if (!outputPath.Parent.DirectoryExists)
+                                Directory.CreateDirectory(outputPath.Parent);
+
+                            // Extract the compressed file
+                            entry.ExtractToFile(outputPath);
+
+                            // Flag the file as processed
+                            ProcessedPaths.Add(outputPath);
+
+                            // Increase file progress
+                            ItemCurrentProgress++;
+
+                            // Set total progress
+                            TotalCurrentProgress = (int)Math.Floor(100 * InputSources.Count + ((ItemCurrentProgress / ItemMaxProgress) * 10));
+                            OnStatusUpdated(new Progress(TotalCurrentProgress, TotalMaxProgress));
+                        }
                     }
 
-                    // Backup conflict file
-                    if (outputPath.FileExists)
-                        await Task.Run(() => FileManager.MoveFile(outputPath, LocalTempDir.TempPath + entry.FullName.Replace('/', '\\'), false));
-
-                    // Create directory if it doesn't exist
-                    if (!outputPath.Parent.DirectoryExists)
-                        Directory.CreateDirectory(outputPath.Parent);
-
-                    // Extract the compressed file
-                    entry.ExtractToFile(outputPath);
-
-                    // Flag the file as processed
-                    ProcessedFiles.Add(outputPath);
-
-                    // Increase file progress
-                    ItemCurrentProgress++;
-
-                    // Set total progress
-                    TotalCurrentProgress = (int)Math.Floor(100 + ((ItemCurrentProgress / ItemMaxProgress) * 10));
-                    OnStatusUpdated(new Progress(TotalCurrentProgress, TotalMaxProgress));
+                    // Delete the zip file
+                    FileManager.DeleteFile(file);
                 }
             });
-
-            // Delete the zip file
-            FileManager.DeleteFile(file);
         }
 
         /// <summary>
@@ -237,7 +232,7 @@ namespace RayCarrot.RCP.Metro
                 FileManager.MoveFile(file, outputPath, false);
 
                 // Flag the file as processed
-                ProcessedFiles.Add(outputPath);
+                ProcessedPaths.Add(outputPath);
             }
         }
 
@@ -436,7 +431,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The list of processed files
         /// </summary>
-        protected List<FileSystemPath> ProcessedFiles { get; }
+        protected List<FileSystemPath> ProcessedPaths { get; }
 
         /// <summary>
         /// The temp directory for the local files

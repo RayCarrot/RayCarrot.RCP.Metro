@@ -105,7 +105,7 @@ namespace RayCarrot.RCP.Metro
             var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
             {
                 Title = Resources.LocateGame_BrowserHeader,
-                DefaultDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
+                DefaultDirectory = Environment.SpecialFolder.ProgramFilesX86.GetFolderPath(),
                 MultiSelection = false
             });
 

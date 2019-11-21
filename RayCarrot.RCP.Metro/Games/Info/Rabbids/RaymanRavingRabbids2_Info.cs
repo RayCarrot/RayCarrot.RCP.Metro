@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -17,7 +18,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected override IList<BackupDir> GetBackupDirectories => new BackupDir[]
         {
-            new BackupDir(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "RRR2"), SearchOption.TopDirectoryOnly, "*", "0", 0)
+            new BackupDir(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "RRR2", SearchOption.TopDirectoryOnly, "*", "0", 0)
         };
 
         #endregion
@@ -28,6 +29,11 @@ namespace RayCarrot.RCP.Metro
         /// The game
         /// </summary>
         public override Games Game => Games.RaymanRavingRabbids2;
+
+        /// <summary>
+        /// The category for the game
+        /// </summary>
+        public override GameCategory Category => GameCategory.Rabbids;
 
         /// <summary>
         /// The game display name

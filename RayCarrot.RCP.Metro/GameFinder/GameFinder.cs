@@ -408,7 +408,7 @@ namespace RayCarrot.RCP.Metro
         protected virtual IEnumerable<string> EnumerateProgramShortcuts()
         {
             // Get items from user start menu
-            foreach (string file in EnumerateShortcuts(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu), SearchOption.AllDirectories))
+            foreach (string file in EnumerateShortcuts(Environment.SpecialFolder.StartMenu.GetFolderPath(), SearchOption.AllDirectories))
             {
                 // Yield return the item
                 yield return file;
@@ -417,7 +417,7 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogTraceSource("The user start menu programs were retrieved for the game finder");
 
             // Get items from common start menu
-            foreach (string file in EnumerateShortcuts(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu), SearchOption.AllDirectories))
+            foreach (string file in EnumerateShortcuts(Environment.SpecialFolder.CommonStartMenu.GetFolderPath(), SearchOption.AllDirectories))
             {
                 // Yield return the item
                 yield return file;
@@ -426,7 +426,7 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogTraceSource("The common start menu programs were retrieved for the game finder");
 
             // Get items from user desktop
-            foreach (string file in EnumerateShortcuts(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)))
+            foreach (string file in EnumerateShortcuts(Environment.SpecialFolder.DesktopDirectory.GetFolderPath()))
             {
                 // Yield return the item
                 yield return file;
@@ -435,7 +435,7 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogTraceSource("The user desktop shortcuts were retrieved for the game finder");
 
             // Get items from common desktop
-            foreach (string file in EnumerateShortcuts(Environment.GetFolderPath(Environment.SpecialFolder.CommonDesktopDirectory)))
+            foreach (string file in EnumerateShortcuts(Environment.SpecialFolder.CommonDesktopDirectory.GetFolderPath()))
             {
                 // Yield return the item
                 yield return file;

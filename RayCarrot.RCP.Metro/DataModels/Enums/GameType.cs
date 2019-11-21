@@ -28,6 +28,6 @@
         /// <summary>
         /// An education DOSBox game
         /// </summary>
-        EducationalDosBox
+        EducationalDosBox,
     }
 }

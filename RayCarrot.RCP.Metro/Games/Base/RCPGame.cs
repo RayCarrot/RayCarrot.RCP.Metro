@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿using System;
+
+namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// The base for Rayman Control Panel game

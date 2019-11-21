@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -24,6 +25,7 @@ namespace RayCarrot.RCP.Metro
         {
             // Create the commands
             RemoveCommand = new AsyncRelayCommand(RemoveAsync);
+            UninstallCommand = new AsyncRelayCommand(UninstallAsync);
             ShortcutCommand = new AsyncRelayCommand(CreateShortcutAsync);
             
             // Get the info
@@ -34,6 +36,7 @@ namespace RayCarrot.RCP.Metro
             DisplayName = gameInfo.DisplayName;
             IconSource = gameInfo.IconSource;
             GameInfoItems = new ObservableCollection<DuoGridItemViewModel>();
+            CanUninstall = gameInfo.CanBeUninstalled;
 
             // Enable collection synchronization
             BindingOperations.EnableCollectionSynchronization(GameInfoItems, this);
@@ -74,6 +77,11 @@ namespace RayCarrot.RCP.Metro
         /// The game info items
         /// </summary>
         public ObservableCollection<DuoGridItemViewModel> GameInfoItems { get; }
+
+        /// <summary>
+        /// Indicates if the game can be uninstalled
+        /// </summary>
+        public bool CanUninstall { get; }
 
         /// <summary>
         /// The game options content
@@ -143,6 +151,11 @@ namespace RayCarrot.RCP.Metro
         public ICommand RemoveCommand { get; }
 
         /// <summary>
+        /// The command for uninstalling the game
+        /// </summary>
+        public ICommand UninstallCommand { get; }
+
+        /// <summary>
         /// The command for creating a shortcut to launch the game
         /// </summary>
         public ICommand ShortcutCommand { get; }
@@ -188,11 +201,73 @@ namespace RayCarrot.RCP.Metro
         public async Task RemoveAsync()
         {
             // Ask the user
-            if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGameQuestion, DisplayName), Resources.RemoveGameQuestionHeader,  MessageType.Question, true))
+            if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(CanUninstall ? Resources.RemoveInstalledGameQuestion : Resources.RemoveGameQuestion, DisplayName), Resources.RemoveGameQuestionHeader,  MessageType.Question, true))
                 return;
 
             // Remove the game
             await RCFRCP.App.RemoveGameAsync(Game, false);
+
+            // Refresh
+            await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
+        }
+
+        /// <summary>
+        /// Uninstalls the game
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task UninstallAsync()
+        {
+            RCFCore.Logger?.LogInformationSource($"{Game} is being uninstalled...");
+
+            // Have user confirm
+            if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.UninstallGameQuestion, DisplayName), Resources.UninstallGameQuestionHeader, MessageType.Question, true))
+            {
+                RCFCore.Logger?.LogInformationSource($"The uninstallation was canceled");
+
+                return;
+            }
+
+            try
+            {
+                // Delete the game directory
+                RCFRCP.File.DeleteDirectory(Game.GetData().InstallDirectory);
+
+                RCFCore.Logger?.LogInformationSource($"The game install directory was removed");
+
+                // Get additional uninstall directories
+                var dirs = Game.GetGameInfo().UninstallDirectories;
+
+                if (dirs != null)
+                {
+                    // Delete additional directories
+                    foreach (var dir in dirs)
+                        RCFRCP.File.DeleteDirectory(dir);
+
+                    RCFCore.Logger?.LogInformationSource($"The game additional directories were removed");
+                }
+
+                // Get additional uninstall files
+                var files = Game.GetGameInfo().UninstallFiles;
+
+                if (files != null)
+                {
+                    // Delete additional files
+                    foreach (var file in files)
+                        RCFRCP.File.DeleteFile(file);
+
+                    RCFCore.Logger?.LogInformationSource($"The game additional files were removed");
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Uninstalling game", Game);
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.UninstallGameError, DisplayName), Resources.UninstallGameErrorHeader);
+
+                return;
+            }
+
+            // Remove the game
+            await RCFRCP.App.RemoveGameAsync(Game, true);
 
             // Refresh
             await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
@@ -208,7 +283,7 @@ namespace RayCarrot.RCP.Metro
             {
                 var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                 {
-                    DefaultDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                    DefaultDirectory = Environment.SpecialFolder.Desktop.GetFolderPath(),
                     Title = Resources.GameShortcut_BrowseHeader
                 });
 

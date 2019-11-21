@@ -1301,7 +1301,7 @@ gameDisplayName</comment>
     <value>Unable to find game</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Special thanks to AuToMaNiAk005, MixerX, PokGOT4N and all other Rayman fans!</value>
+    <value>Special thanks to AuToMaNiAk005, MixerX, PokGOT4N, Ryemanni, Droolie, MilesTheCreator and all other Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations, Swedish program translation</value>
@@ -2787,5 +2787,84 @@ outputDir</comment>
   </data>
   <data name="GameOptions_Info" xml:space="preserve">
     <value>Information</value>
+  </data>
+  <data name="GameDisplay_CloudInstall" xml:space="preserve">
+    <value>Install</value>
+  </data>
+  <data name="GameInstall_Error" xml:space="preserve">
+    <value>An error occurred when installing {0}</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="GameInstall_ErrorHeader" xml:space="preserve">
+    <value>Game Installation Failed</value>
+  </data>
+  <data name="GameOptions_Uninstall" xml:space="preserve">
+    <value>Uninstall</value>
+  </data>
+  <data name="RemoveInstalledGameQuestion" xml:space="preserve">
+    <value>{0} was originally installed using the Rayman Control Panel. Removing the game from the program will not remove the game from your computer or any of its files, including the backups created using this program. It is instead recommended to uninstall the game.</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="UninstallGameQuestion" xml:space="preserve">
+    <value>Are you sure you want to uninstall {0}? This will remove the game from your computer, including the save data. Backups will not be removed.</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="UninstallGameQuestionHeader" xml:space="preserve">
+    <value>Confirm Uninstall</value>
+  </data>
+  <data name="UninstallGameError" xml:space="preserve">
+    <value>An error occurred when uninstalling {0}</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="UninstallGameErrorHeader" xml:space="preserve">
+    <value>Uninstallation Failed</value>
+  </data>
+  <data name="PrintStudioOptions_VersionHeader" xml:space="preserve">
+    <value>Print Studio version</value>
+  </data>
+  <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
+    <value>Changing the version will change how the game runs and the available options. The 2003 version has calenders for the years 2003 and 2004. The 2005 version has calenders for the years 2006 and 2007 as well as the 'goodies' section.</value>
+  </data>
+  <data name="PrintStudioOptions_Version03" xml:space="preserve">
+    <value>2003 Version</value>
+  </data>
+  <data name="PrintStudioOptions_Version05" xml:space="preserve">
+    <value>2005 Version</value>
+  </data>
+  <data name="DownloadGame_ConfirmSize" xml:space="preserve">
+    <value>This game requires its files to be downloaded. The total size of the download is {0}. Continue?</value>
+    <comment>Arguments:
+downloadSize</comment>
+  </data>
+  <data name="DownloadGame_Confirm" xml:space="preserve">
+    <value>This game requires its files to be downloaded. Continue?</value>
+  </data>
+  <data name="GameDisplay_GameJolt" xml:space="preserve">
+    <value>Download from GameJolt</value>
+  </data>
+  <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
+    <value>Open GameJolt page</value>
+  </data>
+  <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
+    <value>An error occurred when updating the Print Studio version</value>
+  </data>
+  <data name="GamesPage_Category_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="GamesPage_Category_Rabbids" xml:space="preserve">
+    <value>Rabbids</value>
+  </data>
+  <data name="GamesPage_Category_Demos" xml:space="preserve">
+    <value>Demos</value>
+  </data>
+  <data name="GamesPage_Category_Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="GamesPage_Category_Fan" xml:space="preserve">
+    <value>Fan-games</value>
   </data>
 </root>

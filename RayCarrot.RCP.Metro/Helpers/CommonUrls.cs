@@ -5,20 +5,60 @@
     /// </summary>
     public static class CommonUrls
     {
+        #region Base
+
         /// <summary>
         /// The base URL
         /// </summary>
         public const string BaseUrl = "http://raycarrot.ylemnova.com/RCP/";
 
         /// <summary>
+        /// The base resource URL
+        /// </summary>
+        public const string BaseResourceUrl = BaseUrl + "Resources/7.0.0/";
+
+        /// <summary>
         /// The base URL for downloading utilities
         /// </summary>
-        public const string UtilityBaseUrl = BaseUrl + "Resources/6.0.0/";
+        public const string UtilityBaseUrl = BaseResourceUrl + "Utilities/";
+
+        /// <summary>
+        /// The base URL for downloading games
+        /// </summary>
+        public const string GamesBaseUrl = BaseResourceUrl + "Games/";
 
         /// <summary>
         /// The update manifest URL
         /// </summary>
         public const string UpdateManifestUrl = BaseUrl + "RCP_Metro_Manifest.json";
+
+        #endregion
+
+        #region Games
+
+        /// <summary>
+        /// The Rayman 3 Print Studio part 1 download URL
+        /// </summary>
+        public const string Games_PrintStudio1_Url = GamesBaseUrl + "PrintStudio1.zip";
+
+        /// <summary>
+        /// The Rayman 3 Print Studio part 2 download URL
+        /// </summary>
+        public const string Games_PrintStudio2_Url = GamesBaseUrl + "PrintStudio2.zip";
+
+        /// <summary>
+        /// The Globox Moment download URL
+        /// </summary>
+        public const string Games_GloboxMoment_Url = GamesBaseUrl + "GloboxMoment.zip";
+
+        /// <summary>
+        /// The Rayman The Dark Magician's Reign of Terror download URL
+        /// </summary>
+        public const string Games_TheDarkMagiciansReignofTerror_Url = GamesBaseUrl + "TheDarkMagiciansReignofTerror.zip";
+
+        #endregion
+
+        #region Utilities
 
         /// <summary>
         /// The Rayman 1 TPLS utility URL
@@ -125,6 +165,10 @@
         /// </summary>
         public const string RO_Updater_URL = UtilityBaseUrl + "RO/Updater.zip";
 
+        #endregion
+
+        #region Contact
+
         /// <summary>
         /// The GitHub project URL
         /// </summary>
@@ -154,5 +198,7 @@
         /// The Steam group URL
         /// </summary>
         public const string SteamUrl = "https://steamcommunity.com/groups/RaymanControlPanel";
+
+        #endregion
     }
 }

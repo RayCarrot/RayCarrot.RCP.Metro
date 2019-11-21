@@ -2,7 +2,9 @@
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Windows.Registry;
 using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -44,6 +46,7 @@ namespace RayCarrot.RCP.Metro
             Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();
 
             RCFCore.Data.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
+            RCFCore.Data.UserLevelChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
         }
 
         #endregion
@@ -110,11 +113,7 @@ namespace RayCarrot.RCP.Metro
                         new LinkItemViewModel(Games.Rayman2.IsAdded()
                             ? Games.Rayman2.GetData().InstallDirectory + "ubi.ini"
                             : FileSystemPath.EmptyPath, Resources.Links_Local_R2UbiIni, UserLevel.Advanced),
-                        new LinkItemViewModel(
-                            new FileSystemPath(
-                                Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)) +
-                            @"Ubisoft\RGH Launcher\1.0.0.0\Launcher_5.exe.config",
-                            Resources.Links_Local_RGHConfig, UserLevel.Advanced)
+                        new LinkItemViewModel(Environment.SpecialFolder.CommonApplicationData.GetFolderPath() + @"Ubisoft\RGH Launcher\1.0.0.0\Launcher_5.exe.config", Resources.Links_Local_RGHConfig, UserLevel.Advanced)
                     });
 
                     // DOSBox files
@@ -327,6 +326,30 @@ namespace RayCarrot.RCP.Metro
         #region Commands
 
         public ICommand RefreshCommand { get; }
+
+        #endregion
+
+        #region Classes
+
+        /// <summary>
+        /// A collection of link item groups
+        /// </summary>
+        public class LinkItemCollection : ObservableCollection<LinkItemViewModel[]>
+        {
+            /// <summary>
+            /// Adds a new group to the collection
+            /// </summary>
+            /// <param name="group">The group to add</param>
+            public new void Add(LinkItemViewModel[] group)
+            {
+                // Get the valid items
+                var validItems = group.Where(x => x.IsValid && x.MinUserLevel <= RCFRCP.Data.UserLevel).ToArray();
+
+                // If there are valid items, add them
+                if (validItems.Any())
+                    base.Add(validItems);
+            }
+        }
 
         #endregion
     }

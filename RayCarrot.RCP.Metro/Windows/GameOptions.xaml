@@ -45,6 +45,7 @@
                        Style="{StaticResource LargeHeaderTextBlock}"
                        Text="{Binding Path=DisplayName, Mode=OneTime}"
                        VerticalAlignment="Center"
+                       TextTrimming="WordEllipsis"
                        Margin="20 0 0 0" />
 
             <!-- Overflow menu -->
@@ -60,6 +61,10 @@
                         <local:MenuItemIcon Header="{Resx GameOptions_Remove}"
                                             Command="{Binding Path=RemoveCommand}"
                                             IconKind="Delete"/>
+                        <local:MenuItemIcon Header="{Resx GameOptions_Uninstall}"
+                                            Visibility="{Binding Path=CanUninstall, Converter={rwpf:BooleanToVisibilityConverter}}"
+                                            Command="{Binding Path=UninstallCommand}"
+                                            IconKind="DeleteForever"/>
                     </ContextMenu>
                 </local:OverflowMenu.Menu>
             </local:OverflowMenu>
@@ -67,20 +72,16 @@
         </Grid>
 
         <metro:MetroAnimatedTabControl x:Name="ContentTabControl"
-                                       Grid.Row="1"
-                                       metro:TabControlHelper.Transition="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}">
+                                       Grid.Row="1">
 
             <metro:MetroAnimatedTabControl.Resources>
-                <Style TargetType="{x:Type TabPanel}">
-                    <Setter Property="HorizontalAlignment" Value="Center" />
-                    <Setter Property="Margin" Value="0 5 0 10" />
-                </Style>
+                <Style TargetType="{x:Type TabPanel}" BasedOn="{StaticResource SmallTabPanel}" />
+                <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
             </metro:MetroAnimatedTabControl.Resources>
 
             <!-- Information -->
 
-            <local:RCPTabItem HeaderFontSize="16"
-                              IconKind="InformationOutline"
+            <local:RCPTabItem IconKind="InformationOutline"
                               Header="{Resx GameOptions_Info}">
 
                 <ScrollViewer Padding="5">
@@ -101,8 +102,7 @@
 
             <!-- Options -->
 
-            <local:RCPTabItem HeaderFontSize="16"
-                              IconKind="SettingsOutline"
+            <local:RCPTabItem IconKind="SettingsOutline"
                               Header="{Resx GameOptions_Options}"
                               Visibility="{Binding Path=HasOptionsContent, Converter={rwpf:BooleanToVisibilityConverter}}">
 
@@ -161,8 +161,7 @@
 
             <!-- Config -->
 
-            <local:RCPTabItem HeaderFontSize="16"
-                              IconKind="Wrench"
+            <local:RCPTabItem IconKind="Wrench"
                               Header="{Resx GameOptions_Config}"
                               Visibility="{Binding Path=HasConfigContent, Converter={rwpf:BooleanToVisibilityConverter}}">
                 <ContentPresenter Content="{Binding Path=ConfigContent}" />
@@ -170,8 +169,7 @@
 
             <!-- Utilities -->
 
-            <local:RCPTabItem HeaderFontSize="16"
-                              IconKind="BriefcaseOutline"
+            <local:RCPTabItem IconKind="BriefcaseOutline"
                               Header="{Resx GameOptions_Utilities}"
                               Visibility="{Binding Path=HasUtilities, Converter={rwpf:BooleanToVisibilityConverter}}">
                 <ScrollViewer Padding="5">

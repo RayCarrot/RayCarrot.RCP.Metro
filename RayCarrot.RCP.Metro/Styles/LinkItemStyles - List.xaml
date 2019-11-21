@@ -17,9 +17,8 @@
                         <ItemsControl ItemsSource="{Binding}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="{x:Type local:LinkItemViewModel}">
-                                    <Grid rwpf:UserLevelTag.MinUserLevel="{Binding Path=MinUserLevel}">
-                                        <Grid Margin="0 5"
-                                              Visibility="{Binding Path=IsValid, Converter={rwpf:BooleanToVisibilityConverter}}">
+                                    <Grid>
+                                        <Grid Margin="0 5">
 
                                             <Grid>
                                                 <Grid.ColumnDefinitions>

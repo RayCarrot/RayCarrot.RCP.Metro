@@ -35,6 +35,20 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Dependency property for <see cref="IconKind"/>
         /// </summary>
-        public static readonly DependencyProperty HeaderFontSizeProperty = DependencyProperty.Register(nameof(HeaderFontSize), typeof(double), typeof(RCPTabItem));
+        public static readonly DependencyProperty HeaderFontSizeProperty = DependencyProperty.Register(nameof(HeaderFontSize), typeof(double), typeof(RCPTabItem));       
+        
+        /// <summary>
+        /// Indicates the icon visibility
+        /// </summary>
+        public Visibility IconVisibility
+        {
+            get => (Visibility)GetValue(IconVisibilityProperty);
+            set => SetValue(IconVisibilityProperty, value);
+        }
+
+        /// <summary>
+        /// Dependency property for <see cref="IconVisibility"/>
+        /// </summary>
+        public static readonly DependencyProperty IconVisibilityProperty = DependencyProperty.Register(nameof(IconVisibility), typeof(Visibility), typeof(RCPTabItem), new PropertyMetadata(Visibility.Visible));
     }
 }

@@ -31,6 +31,11 @@ namespace RayCarrot.RCP.Metro
         public override Games Game => Games.Rayman2;
 
         /// <summary>
+        /// The category for the game
+        /// </summary>
+        public override GameCategory Category => GameCategory.Rayman;
+
+        /// <summary>
         /// The game display name
         /// </summary>
         public override string DisplayName => "Rayman 2";
@@ -72,6 +77,28 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the game can be installed from a disc in this program
         /// </summary>
         public override bool CanBeInstalledFromDisc => true;
+
+        /// <summary>
+        /// The .gif files to use during the game installation if installing from a disc
+        /// </summary>
+        public override string[] InstallerGifs
+        {
+            get
+            {
+                var basePath = $"{AppViewModel.ApplicationBasePath}Installer/InstallerGifs/";
+
+                return new string[]
+                {
+                    basePath + "ASTRO.gif",
+                    basePath + "BAST.gif",
+                    basePath + "CASK.gif",
+                    basePath + "CHASE.gif",
+                    basePath + "GLOB.gif",
+                    basePath + "SKI.gif",
+                    basePath + "WHALE.gif"
+                };
+            }
+        }
 
         #endregion
 

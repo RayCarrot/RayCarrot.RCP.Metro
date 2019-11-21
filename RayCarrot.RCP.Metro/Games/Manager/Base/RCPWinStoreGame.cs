@@ -322,8 +322,8 @@ namespace RayCarrot.RCP.Metro
         {
             return new List<BackupDir>()
             {
-                new BackupDir(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Packages", fullPackageName), SearchOption.AllDirectories, "*", "0", 0),
-                new BackupDir(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Packages", fullPackageName, "LocalState"), SearchOption.TopDirectoryOnly, "*", "0", 1)
+                new BackupDir(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + fullPackageName, SearchOption.AllDirectories, "*", "0", 0),
+                new BackupDir(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + fullPackageName + "LocalState", SearchOption.TopDirectoryOnly, "*", "0", 1)
             };
         }
 

@@ -93,7 +93,7 @@ namespace RayCarrot.RCP.Metro
                         AllowWin32 = true,
                         AllowDosBox = true,
                         AllowWinStore = true,
-                        AllowEducationalDosBox = true
+                        AllowEducationalDosBox = true,
                     }).ShowDialogAsync();
                     break;
 

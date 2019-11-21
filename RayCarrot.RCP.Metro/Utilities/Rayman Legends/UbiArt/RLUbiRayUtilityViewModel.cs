@@ -27,7 +27,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                AvailableSaveFiles = Directory.GetDirectories(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Rayman Legends")).
+                AvailableSaveFiles = Directory.GetDirectories(Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends").
                     Select(x => new FileSystemPath(x)).Where(x => (x + "RaymanSave_0").FileExists).ToArray();
             }
             catch (Exception ex)

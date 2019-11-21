@@ -260,7 +260,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, MixerX, PokGOT4N and all other Rayman fans!.
+        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, MixerX, PokGOT4N, Ryemanni, Droolie, MilesTheCreator and all other Rayman fans!.
         /// </summary>
         public static string About_SpecialThanks {
             get {
@@ -2920,6 +2920,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This game requires its files to be downloaded. Continue?.
+        /// </summary>
+        public static string DownloadGame_Confirm {
+            get {
+                return ResourceManager.GetString("DownloadGame_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This game requires its files to be downloaded. The total size of the download is {0}. Continue?.
+        /// </summary>
+        public static string DownloadGame_ConfirmSize {
+            get {
+                return ResourceManager.GetString("DownloadGame_ConfirmSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Launch mode.
         /// </summary>
         public static string EducationalConfig_LaunchMode {
@@ -3183,11 +3201,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Install.
+        /// </summary>
+        public static string GameDisplay_CloudInstall {
+            get {
+                return ResourceManager.GetString("GameDisplay_CloudInstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Install from disc.
         /// </summary>
         public static string GameDisplay_DiscInstall {
             get {
                 return ResourceManager.GetString("GameDisplay_DiscInstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download from GameJolt.
+        /// </summary>
+        public static string GameDisplay_GameJolt {
+            get {
+                return ResourceManager.GetString("GameDisplay_GameJolt", resourceCulture);
             }
         }
         
@@ -3206,6 +3242,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameDisplay_Locate {
             get {
                 return ResourceManager.GetString("GameDisplay_Locate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open GameJolt page.
+        /// </summary>
+        public static string GameDisplay_OpenGameJoltPage {
+            get {
+                return ResourceManager.GetString("GameDisplay_OpenGameJoltPage", resourceCulture);
             }
         }
         
@@ -3435,6 +3480,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when installing {0}.
+        /// </summary>
+        public static string GameInstall_Error {
+            get {
+                return ResourceManager.GetString("GameInstall_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Installation Failed.
+        /// </summary>
+        public static string GameInstall_ErrorHeader {
+            get {
+                return ResourceManager.GetString("GameInstall_ErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to dgVoodoo.
         /// </summary>
         public static string GameLink_R2dgVoodoo {
@@ -3606,6 +3669,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uninstall.
+        /// </summary>
+        public static string GameOptions_Uninstall {
+            get {
+                return ResourceManager.GetString("GameOptions_Uninstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your configuration changes have not been saved. Do you want to exit and discard them?.
         /// </summary>
         public static string GameOptions_UnsavedChanges {
@@ -3692,6 +3764,51 @@ namespace RayCarrot.RCP.Metro {
         public static string GameShortcut_Success {
             get {
                 return ResourceManager.GetString("GameShortcut_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Demos.
+        /// </summary>
+        public static string GamesPage_Category_Demos {
+            get {
+                return ResourceManager.GetString("GamesPage_Category_Demos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fan-games.
+        /// </summary>
+        public static string GamesPage_Category_Fan {
+            get {
+                return ResourceManager.GetString("GamesPage_Category_Fan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string GamesPage_Category_Other {
+            get {
+                return ResourceManager.GetString("GamesPage_Category_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rabbids.
+        /// </summary>
+        public static string GamesPage_Category_Rabbids {
+            get {
+                return ResourceManager.GetString("GamesPage_Category_Rabbids", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman.
+        /// </summary>
+        public static string GamesPage_Category_Rayman {
+            get {
+                return ResourceManager.GetString("GamesPage_Category_Rayman", resourceCulture);
             }
         }
         
@@ -5639,6 +5756,51 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2003 Version.
+        /// </summary>
+        public static string PrintStudioOptions_Version03 {
+            get {
+                return ResourceManager.GetString("PrintStudioOptions_Version03", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2005 Version.
+        /// </summary>
+        public static string PrintStudioOptions_Version05 {
+            get {
+                return ResourceManager.GetString("PrintStudioOptions_Version05", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print Studio version.
+        /// </summary>
+        public static string PrintStudioOptions_VersionHeader {
+            get {
+                return ResourceManager.GetString("PrintStudioOptions_VersionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changing the version will change how the game runs and the available options. The 2003 version has calenders for the years 2003 and 2004. The 2005 version has calenders for the years 2006 and 2007 as well as the &apos;goodies&apos; section..
+        /// </summary>
+        public static string PrintStudioOptions_VersionInfo {
+            get {
+                return ResourceManager.GetString("PrintStudioOptions_VersionInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when updating the Print Studio version.
+        /// </summary>
+        public static string PrintStudioOptions_VersionUpdateError {
+            get {
+                return ResourceManager.GetString("PrintStudioOptions_VersionUpdateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Complete Soundtrack.
         /// </summary>
         public static string R1U_CompleteOSTHeader {
@@ -6400,6 +6562,15 @@ namespace RayCarrot.RCP.Metro {
         public static string RemoveGameQuestionHeader {
             get {
                 return ResourceManager.GetString("RemoveGameQuestionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} was originally installed using the Rayman Control Panel. Removing the game from the program will not remove the game from your computer or any of its files, including the backups created using this program. It is instead recommended to uninstall the game..
+        /// </summary>
+        public static string RemoveInstalledGameQuestion {
+            get {
+                return ResourceManager.GetString("RemoveInstalledGameQuestion", resourceCulture);
             }
         }
         
@@ -7481,6 +7652,42 @@ namespace RayCarrot.RCP.Metro {
         public static string UbiIniWriteAccess_InfoMessage {
             get {
                 return ResourceManager.GetString("UbiIniWriteAccess_InfoMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when uninstalling {0}.
+        /// </summary>
+        public static string UninstallGameError {
+            get {
+                return ResourceManager.GetString("UninstallGameError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstallation Failed.
+        /// </summary>
+        public static string UninstallGameErrorHeader {
+            get {
+                return ResourceManager.GetString("UninstallGameErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to uninstall {0}? This will remove the game from your computer, including the save data. Backups will not be removed..
+        /// </summary>
+        public static string UninstallGameQuestion {
+            get {
+                return ResourceManager.GetString("UninstallGameQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Uninstall.
+        /// </summary>
+        public static string UninstallGameQuestionHeader {
+            get {
+                return ResourceManager.GetString("UninstallGameQuestionHeader", resourceCulture);
             }
         }
         

@@ -21,6 +21,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Shell;
@@ -71,7 +72,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="config">The configuration values to pass on to the framework, if any</param>
         /// <param name="logLevel">The level to log</param>
         /// <param name="args">The launch arguments</param>
-        protected override void SetupFramework(IDictionary<string, object> config, LogLevel logLevel, string[] args)
+        protected override void SetupFramework(IDictionary<string, object> config, LogLevel logLevel, string[] args)    
         {
             // Add custom configuration
             config.Add(RCFIO.AutoCorrectPathCasingKey,
@@ -479,6 +480,11 @@ namespace RayCarrot.RCP.Metro
 
                 if (Data.UserLevel == UserLevel.Normal)
                     Data.UserLevel = UserLevel.Advanced;
+            }
+
+            if (Data.LastVersion < new Version(7, 1, 0, 0))
+            {
+                Data.InstalledGames = new HashSet<Games>();
             }
 
             // Re-deploy files

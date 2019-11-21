@@ -26,7 +26,7 @@ namespace RayCarrot.RCP.Metro
                 };
 
                 if (GameData.GameType == GameType.Win32)
-                    dirs.Add(new BackupDir(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "VirtualStore", GameData.InstallDirectory.RemoveRoot()), SearchOption.TopDirectoryOnly, "*.sav", "0", 0));
+                    dirs.Add(new BackupDir(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "VirtualStore" + GameData.InstallDirectory.RemoveRoot(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0));
 
                 return dirs;
             }
@@ -40,6 +40,11 @@ namespace RayCarrot.RCP.Metro
         /// The game
         /// </summary>
         public override Games Game => Games.RaymanRavingRabbids;
+
+        /// <summary>
+        /// The category for the game
+        /// </summary>
+        public override GameCategory Category => GameCategory.Rabbids;
 
         /// <summary>
         /// The game display name

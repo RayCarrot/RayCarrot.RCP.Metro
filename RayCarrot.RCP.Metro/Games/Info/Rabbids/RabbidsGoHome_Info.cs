@@ -16,6 +16,11 @@ namespace RayCarrot.RCP.Metro
         public override Games Game => Games.RabbidsGoHome;
 
         /// <summary>
+        /// The category for the game
+        /// </summary>
+        public override GameCategory Category => GameCategory.Rabbids;
+
+        /// <summary>
         /// The game display name
         /// </summary>
         public override string DisplayName => "Rabbids Go Home";

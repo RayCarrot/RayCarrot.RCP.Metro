@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 
 namespace RayCarrot.RCP.Metro
@@ -16,6 +17,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public FiestaRunOptionsViewModel()
         {
+            // Create properties
+            AsyncLock = new AsyncLock();
+
             // Get the manager
             var manager = Games.RaymanFiestaRun.GetManager<RaymanFiestaRun_WinStore>(GameType.WinStore);
 
@@ -52,6 +56,11 @@ namespace RayCarrot.RCP.Metro
         /// The install directory for <see cref="FiestaRunEdition.Win10"/>
         /// </summary>
         private string Win10InstallDir { get; }
+
+        /// <summary>
+        /// The async lock for <see cref="UpdateFiestaRunVersionAsync"/>
+        /// </summary>
+        private AsyncLock AsyncLock { get; }
 
         #endregion
 
@@ -98,29 +107,32 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task UpdateFiestaRunVersionAsync()
         {
-            try
+            using (await AsyncLock.LockAsync())
             {
-                // Update the version
-                Data.FiestaRunVersion = SelectedFiestaRunVersion;
-
-                // Get the new game data
-                GameData gameData = new GameData(GameType.WinStore, SelectedFiestaRunVersion switch
+                try
                 {
-                    FiestaRunEdition.Default => DefaultInstallDir,
-                    FiestaRunEdition.Preload => PreloadInstallDir,
-                    FiestaRunEdition.Win10 => Win10InstallDir,
-                    _ => throw new ArgumentOutOfRangeException(nameof(SelectedFiestaRunVersion),
-                        SelectedFiestaRunVersion, null)
-                });
+                    // Update the version
+                    Data.FiestaRunVersion = SelectedFiestaRunVersion;
 
-                // Update the game data
-                RCFRCP.Data.Games[Games.RaymanFiestaRun] = gameData;
+                    // Get the new game data
+                    GameData gameData = new GameData(GameType.WinStore, SelectedFiestaRunVersion switch
+                    {
+                        FiestaRunEdition.Default => DefaultInstallDir,
+                        FiestaRunEdition.Preload => PreloadInstallDir,
+                        FiestaRunEdition.Win10 => Win10InstallDir,
+                        _ => throw new ArgumentOutOfRangeException(nameof(SelectedFiestaRunVersion),
+                            SelectedFiestaRunVersion, null)
+                    });
 
-                await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun, false, false, false, true));
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Updating Fiesta Run install directory");
+                    // Update the game data
+                    RCFRCP.Data.Games[Games.RaymanFiestaRun] = gameData;
+
+                    await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun, false, false, false, true));
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Updating Fiesta Run install directory");
+                }
             }
         }
 

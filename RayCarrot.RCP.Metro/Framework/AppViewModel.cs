@@ -301,6 +301,36 @@ namespace RayCarrot.RCP.Metro
                         },
                     }
                 },
+                {
+                    Games.PrintStudio,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.Win32,
+                            typeof(PrintStudio_Win32)
+                        },
+                    }
+                },
+                {
+                    Games.GloboxMoment,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.Win32,
+                            typeof(GloboxMoment_Win32)
+                        },
+                    }
+                },
+                {
+                    Games.TheDarkMagiciansReignofTerror,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.Win32,
+                            typeof(TheDarkMagiciansReignofTerror_Win32)
+                        },
+                    }
+                },
             };
             GameInfos = new Dictionary<Games, Type>()
             {
@@ -371,6 +401,18 @@ namespace RayCarrot.RCP.Metro
                 {
                     Games.EducationalDos,
                     typeof(EducationalDos_Info)
+                },
+                {
+                    Games.PrintStudio,
+                    typeof(PrintStudio_Info)
+                },
+                {
+                    Games.GloboxMoment,
+                    typeof(GloboxMoment_Info)
+                },
+                {
+                    Games.TheDarkMagiciansReignofTerror,
+                    typeof(TheDarkMagiciansReignofTerror_Info)
                 },
             };
         }
@@ -467,17 +509,27 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(7, 0, 0, 0);
+        public Version CurrentVersion => new Version(7, 1, 0, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
-        public bool IsBeta => false;
+        public bool IsBeta => true;
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
         /// </summary>
         public IEnumerable<Games> GetGames => Enum.GetValues(typeof(Games)).Cast<Games>();
+
+        /// <summary>
+        /// Gets a collection of the available <see cref="Games"/> categorized
+        /// </summary>
+        public Dictionary<GameCategory, Games[]> GetCategorizedGames =>
+            GetGames
+                // Group the games by the category
+                .GroupBy(x => x.GetGameInfo().Category).
+                // Create a dictionary
+                ToDictionary(x => x.Key, y => y.ToArray());
 
         /// <summary>
         /// Indicates if the game finder is currently running
@@ -589,6 +641,10 @@ namespace RayCarrot.RCP.Metro
                 // Remove the game from the jump list
                 foreach (var item in manager.GetJumpListItems())
                     Data.JumpListItemIDCollection?.RemoveWhere(x => x == item.ID);
+
+                // Remove game from installed games
+                if (Data.InstalledGames.Contains(game))
+                    Data.InstalledGames.Remove(game);
 
                 // Remove the game
                 Data.Games.Remove(game);
@@ -766,8 +822,9 @@ namespace RayCarrot.RCP.Metro
         /// <param name="inputSources">The files to download</param>
         /// <param name="isCompressed">True if the download is a compressed file, otherwise false</param>
         /// <param name="outputDir">The output directory to download to</param>
+        /// <param name="isGame">Indicates if the download is for a game. If false it is assumed to be a generic patch.</param>
         /// <returns>True if the download succeeded, otherwise false</returns>
-        public async Task<bool> DownloadAsync(IList<Uri> inputSources, bool isCompressed, FileSystemPath outputDir)
+        public async Task<bool> DownloadAsync(IList<Uri> inputSources, bool isCompressed, FileSystemPath outputDir, bool isGame = false)
         {
             try
             {
@@ -801,18 +858,18 @@ namespace RayCarrot.RCP.Metro
 
                     RCFCore.Logger?.LogDebugSource($"The size of the download has been retrieved as {size}");
 
-                    if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Download_ConfirmSize, size), Resources.Download_ConfirmHeader, MessageType.Question, true))
+                    if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(isGame ? Resources.DownloadGame_ConfirmSize : Resources.Download_ConfirmSize, size), Resources.Download_ConfirmHeader, MessageType.Question, true))
                         return false;
                 }
                 catch (Exception ex)
                 {
                     ex.HandleUnexpected("Getting download size");
-                    if (!await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_Confirm, Resources.Download_ConfirmHeader, MessageType.Question, true))
+                    if (!await RCFUI.MessageUI.DisplayMessageAsync(isGame ? Resources.DownloadGame_Confirm : Resources.Download_Confirm, Resources.Download_ConfirmHeader, MessageType.Question, true))
                         return false;
                 }
 
                 // Create the download dialog
-                var dialog = new Downloader(isCompressed ? new DownloaderViewModel(inputSources.First(), outputDir) : new DownloaderViewModel(inputSources, outputDir));
+                var dialog = new Downloader(new DownloaderViewModel(inputSources, outputDir, isCompressed));
 
                 // Show the dialog
                 dialog.ShowDialog();
@@ -1083,33 +1140,6 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AdminWorkerAsyncLock.LockAsync())
                 await RCFRCP.File.LaunchFileAsync(CommonPaths.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
-        }
-
-        /// <summary>
-        /// Allows the user to locate the specified game and add it
-        /// </summary>
-        /// <param name="game">The game to locate</param>
-        /// <returns>The task</returns>
-        public async Task LocateGameAsync(Games game)
-        {
-            try
-            {
-                RCFCore.Logger?.LogTraceSource($"The game {game} is being located...");
-
-                var typeResult = await game.GetGameTypeAsync();
-
-                if (typeResult.CanceledByUser)
-                    return;
-
-                RCFCore.Logger?.LogInformationSource($"The game {game} type has been detected as {typeResult.SelectedType}");
-
-                await game.GetManager(typeResult.SelectedType).LocateAddGameAsync();
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Locating game");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.LocateGame_Error, Resources.LocateGame_ErrorHeader);
-            }
         }
 
         /// <summary>
