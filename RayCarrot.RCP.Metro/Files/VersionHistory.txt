@@ -8,6 +8,7 @@ Other changes:
 • Added a link to the Rayman Reanimated Twitter page in the links page
 • Moved the settings page button back to the tab panel to avoid confusion with the overflow menu
 • Added Ryemanni, Droolie and MilesTheCreator to the special thanks section in the credits
+• Fixed a bug where the Rayman 2 disc installer would fail to copy over certain files
 • Bug fixes
 
 

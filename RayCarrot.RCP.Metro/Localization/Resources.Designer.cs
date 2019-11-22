@@ -6647,6 +6647,114 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export to JSON.
+        /// </summary>
+        public static string RLU_Loc8ConverterExport {
+            get {
+                return ResourceManager.GetString("RLU_Loc8ConverterExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a file destination to export to.
+        /// </summary>
+        public static string RLU_Loc8ConverterExportDestinationSelectionHeader {
+            get {
+                return ResourceManager.GetString("RLU_Loc8ConverterExportDestinationSelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when exporting the localization file. Make sure the .loc8 file is supported..
+        /// </summary>
+        public static string RLU_Loc8ConverterExportError {
+            get {
+                return ResourceManager.GetString("RLU_Loc8ConverterExportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a localization file to export from.
+        /// </summary>
+        public static string RLU_Loc8ConverterExportSelectionHeader {
+            get {
+                return ResourceManager.GetString("RLU_Loc8ConverterExportSelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Localization Converter.
+        /// </summary>
+        public static string RLU_Loc8ConverterHeader {
+            get {
+                return ResourceManager.GetString("RLU_Loc8ConverterHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This utility can convert a localization for of type .loc8 which is used in Rayman Legends, Rayman Adventures and Rayman Mini. Converting to a .JSON file will allow the files to be edited freely. When converting back you need to select an existing .loc8 file to import the changes into..
+        /// </summary>
+        public static string RLU_Loc8ConverterHeaderInfo {
+            get {
+                return ResourceManager.GetString("RLU_Loc8ConverterHeaderInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import to loc8.
+        /// </summary>
+        public static string RLU_Loc8ConverterImport {
+            get {
+                return ResourceManager.GetString("RLU_Loc8ConverterImport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a localization file to import to.
+        /// </summary>
+        public static string RLU_Loc8ConverterImportDestinationSelectionHeader {
+            get {
+                return ResourceManager.GetString("RLU_Loc8ConverterImportDestinationSelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when importing the localization file. Make sure the format of the .JSON file is correct and that the .loc8 file is supported..
+        /// </summary>
+        public static string RLU_Loc8ConverterImportError {
+            get {
+                return ResourceManager.GetString("RLU_Loc8ConverterImportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a converted JSON file to import from.
+        /// </summary>
+        public static string RLU_Loc8ConverterImportSelectionHeader {
+            get {
+                return ResourceManager.GetString("RLU_Loc8ConverterImportSelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON files.
+        /// </summary>
+        public static string RLU_Loc8ConverterJSONFilterDescription {
+            get {
+                return ResourceManager.GetString("RLU_Loc8ConverterJSONFilterDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to localization files.
+        /// </summary>
+        public static string RLU_Loc8ConverterLoc8FilterDescription {
+            get {
+                return ResourceManager.GetString("RLU_Loc8ConverterLoc8FilterDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not read save file.
         /// </summary>
         public static string RLU_UbiRay_CouldNotReadFile {

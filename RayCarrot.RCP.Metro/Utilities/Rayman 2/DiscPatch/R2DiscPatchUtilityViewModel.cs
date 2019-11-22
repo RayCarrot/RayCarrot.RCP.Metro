@@ -79,6 +79,8 @@ namespace RayCarrot.RCP.Metro
 
                 // Delete unnecessary files
                 RCFRCP.File.DeleteFile(InstallDir + "RAYMAN2.ICD");
+
+                // NOTE: The below files are no longer included in the disc installer but have to be included here for legacy reasons
                 RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\ANIMS0.DAT");
                 RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\ANIMS1.DAT");
                 RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\ANIMS2.DAT");

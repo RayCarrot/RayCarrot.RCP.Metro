@@ -191,6 +191,11 @@
       <DependentUpon>RLDebugCommandsUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Rayman Legends\DebugCommands\RLDebugCommandsUtilityViewModel.cs" />
+    <Compile Include="Utilities\Rayman Legends\Loc8Editor\RLLoc8ConverterUtility.cs" />
+    <Compile Include="Utilities\Rayman Legends\Loc8Editor\RLLoc8ConverterUtilityUI.xaml.cs">
+      <DependentUpon>RLLoc8ConverterUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Rayman Legends\Loc8Editor\RLLoc8ConverterUtilityViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\GamesSelectionResult.cs" />
     <Compile Include="ViewModels\Dialogs\GamesSelectionViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\JumpListEditResult.cs" />
@@ -399,7 +404,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtilityUI.xaml">
+    <Page Include="Utilities\Rayman Legends\Loc8Editor\RLLoc8ConverterUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\Rayman Legends\UbiRay\RLUbiRayUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -504,11 +513,11 @@
       <DependentUpon>RDReplaceFilesUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityViewModel.cs" />
-    <Compile Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtility.cs" />
-    <Compile Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtilityUI.xaml.cs">
+    <Compile Include="Utilities\Rayman Legends\UbiRay\RLUbiRayUtility.cs" />
+    <Compile Include="Utilities\Rayman Legends\UbiRay\RLUbiRayUtilityUI.xaml.cs">
       <DependentUpon>RLUbiRayUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Rayman Legends\UbiArt\RLUbiRayUtilityViewModel.cs" />
+    <Compile Include="Utilities\Rayman Legends\UbiRay\RLUbiRayUtilityViewModel.cs" />
     <Compile Include="Utilities\Rayman Origins\DebugCommands\RODebugCommandsUtility.cs" />
     <Compile Include="Utilities\Rayman Origins\DebugCommands\RODebugCommandsUtilityUI.xaml.cs">
       <DependentUpon>RODebugCommandsUtilityUI.xaml</DependentUpon>

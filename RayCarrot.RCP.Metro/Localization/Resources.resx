@@ -2870,4 +2870,40 @@ downloadSize</comment>
   <data name="Links_Community_RaymanReanimated" xml:space="preserve">
     <value>Rayman Reanimated</value>
   </data>
+  <data name="RLU_Loc8ConverterHeader" xml:space="preserve">
+    <value>Localization Converter</value>
+  </data>
+  <data name="RLU_Loc8ConverterHeaderInfo" xml:space="preserve">
+    <value>This utility can convert a localization for of type .loc8 which is used in Rayman Legends, Rayman Adventures and Rayman Mini. Converting to a .JSON file will allow the files to be edited freely. When converting back you need to select an existing .loc8 file to import the changes into.</value>
+  </data>
+  <data name="RLU_Loc8ConverterExport" xml:space="preserve">
+    <value>Export to JSON</value>
+  </data>
+  <data name="RLU_Loc8ConverterImport" xml:space="preserve">
+    <value>Import to loc8</value>
+  </data>
+  <data name="RLU_Loc8ConverterExportSelectionHeader" xml:space="preserve">
+    <value>Select a localization file to export from</value>
+  </data>
+  <data name="RLU_Loc8ConverterLoc8FilterDescription" xml:space="preserve">
+    <value>localization files</value>
+  </data>
+  <data name="RLU_Loc8ConverterExportDestinationSelectionHeader" xml:space="preserve">
+    <value>Select a file destination to export to</value>
+  </data>
+  <data name="RLU_Loc8ConverterJSONFilterDescription" xml:space="preserve">
+    <value>JSON files</value>
+  </data>
+  <data name="RLU_Loc8ConverterImportSelectionHeader" xml:space="preserve">
+    <value>Select a converted JSON file to import from</value>
+  </data>
+  <data name="RLU_Loc8ConverterImportDestinationSelectionHeader" xml:space="preserve">
+    <value>Select a localization file to import to</value>
+  </data>
+  <data name="RLU_Loc8ConverterImportError" xml:space="preserve">
+    <value>An error occurred when importing the localization file. Make sure the format of the .JSON file is correct and that the .loc8 file is supported.</value>
+  </data>
+  <data name="RLU_Loc8ConverterExportError" xml:space="preserve">
+    <value>An error occurred when exporting the localization file. Make sure the .loc8 file is supported.</value>
+  </data>
 </root>

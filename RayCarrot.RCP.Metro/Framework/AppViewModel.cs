@@ -109,6 +109,7 @@ namespace RayCarrot.RCP.Metro
                     new Type[]
                     {
                         typeof(RLUbiRayUtility),
+                        typeof(RLLoc8ConverterUtility),
                         typeof(RLDebugCommandsUtility),
                     }
                 },

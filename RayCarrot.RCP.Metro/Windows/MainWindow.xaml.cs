@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using RayCarrot.Extensions;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
