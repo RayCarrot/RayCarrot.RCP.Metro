@@ -22,10 +22,10 @@
 
                 <!-- Local -->
 
-                <ResourceDictionary Source="Styles/UnifiedMargins.xaml" />
-                <ResourceDictionary Source="Styles/TextStyles.xaml" />
-                <ResourceDictionary Source="Styles/ContentStyles.xaml" />
-                <ResourceDictionary Source="Styles/LinkItemStyles - List.xaml" />
+                <ResourceDictionary Source="UI/Styles/UnifiedMargins.xaml" />
+                <ResourceDictionary Source="UI/Styles/TextStyles.xaml" />
+                <ResourceDictionary Source="UI/Styles/ContentStyles.xaml" />
+                <ResourceDictionary Source="UI/Styles/LinkItemStyles - List.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 

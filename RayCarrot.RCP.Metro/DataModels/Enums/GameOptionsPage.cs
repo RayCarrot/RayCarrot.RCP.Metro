@@ -11,6 +11,11 @@
         Information,
 
         /// <summary>
+        /// The game progress information
+        /// </summary>
+        Progression,
+
+        /// <summary>
         /// The primary game options
         /// </summary>
         Options,

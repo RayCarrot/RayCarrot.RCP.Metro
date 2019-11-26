@@ -1,10 +1,13 @@
 ﻿-----   Version 7.1.0 - November ??, 2019   -----
 • Added support for Rayman 3 Print Studio and fan-games
+• Added the progression tab for the game options dialog which shows the game progress from the save data (currently only available for Rayman Jungle Run - more games to follow)
+• Added a utility for converting the localization file for Rayman Origins, Rayman Fiesta Run and Rayman Legends
 • Added support for downloading select games directly from the program
 • Games downloaded through the Rayman Control Panel or installed using its disc installer (post version 7.1.0) can now be uninstalled
 • Categorized the games page
 
 Other changes:
+• Added purchase links for GOG and Uplay for Rayman Raving Rabbids
 • Added a link to the Rayman Reanimated Twitter page in the links page
 • Moved the settings page button back to the tab panel to avoid confusion with the overflow menu
 • Added Ryemanni, Droolie and MilesTheCreator to the special thanks section in the credits

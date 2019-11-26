@@ -240,6 +240,120 @@
   <data name="DosBoxOptions_Core" xml:space="preserve">
     <value>Језгро</value>
   </data>
+  <data name="DosBoxOptions_CoreInfo" xml:space="preserve">
+    <value>ЦПУ језгро је коришћено у емулацији. Аутоматски се пребацује из нормалног у динамичко ако је прикладно.</value>
+  </data>
+  <data name="DosBoxOptions_Cycles" xml:space="preserve">
+    <value>Циклуси</value>
+  </data>
+  <data name="DosBoxOptions_CyclesInfo" xml:space="preserve">
+    <value>Количина инструкција коју ДОСБокс покушава емулирати сваке милисекунде. Ако се ова вредност подеси превисоко, долази до испада звука и кочења. Такође, можеш дозволити да ДОСБокс погоди исправну вредност тако што ћете га поставити на максимум. Подразумевана поставка (аутоматски) прелази на максимум. Ако је прикладно.</value>
+  </data>
+  <data name="DosBoxOptions_Commands" xml:space="preserve">
+    <value>Команде ДОСБокса</value>
+  </data>
+  <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
+    <value>(Изборно)</value>
+  </data>
+  <data name="DosBoxOptions_Recommended" xml:space="preserve">
+    <value>Користи препоручена подешавања</value>
+  </data>
+  <data name="Config_Resolution" xml:space="preserve">
+    <value>Резолуција</value>
+  </data>
+  <data name="Config_ResolutionHorizontalInfo" xml:space="preserve">
+    <value>Хоризонтална резолуција екрана</value>
+  </data>
+  <data name="Config_ResolutionVerticalInfo" xml:space="preserve">
+    <value>Вертикална резолуција екрана</value>
+  </data>
+  <data name="Config_LockRes" xml:space="preserve">
+    <value>Закључај на резолуцију екрана</value>
+  </data>
+  <data name="Config_LockResInfo" xml:space="preserve">
+    <value>Закључава хоризонталне и вертикалне вредности према онима тренутне резолуције екрана</value>
+  </data>
+  <data name="Config_Fullscreen" xml:space="preserve">
+    <value>Цео екран</value>
+  </data>
+  <data name="Config_FullscreenInfo" xml:space="preserve">
+    <value>Омогућава да се игра покрене преко целог екрана, иначе ће бити покренута у режиму прозора.</value>
+  </data>
+  <data name="Config_Graphics" xml:space="preserve">
+    <value>Графика</value>
+  </data>
+  <data name="Config_TriLinear" xml:space="preserve">
+    <value>ТриЛинеар</value>
+  </data>
+  <data name="Config_TnL" xml:space="preserve">
+    <value>Трансформација и светлост</value>
+  </data>
+  <data name="Config_TnLInfo" xml:space="preserve">
+    <value>Поништи ово ако у игри постоје графички кварови</value>
+  </data>
+  <data name="Config_DynamicShadows" xml:space="preserve">
+    <value>Динамичке сенке</value>
+  </data>
+  <data name="Config_StaticShadows" xml:space="preserve">
+    <value>Статичке сенке</value>
+  </data>
+  <data name="Config_Textures" xml:space="preserve">
+    <value>Текстуре</value>
+  </data>
+  <data name="Config_Textures16" xml:space="preserve">
+    <value>16 бита</value>
+  </data>
+  <data name="Config_Textures32" xml:space="preserve">
+    <value>32 бита</value>
+  </data>
+  <data name="Config_Compressed" xml:space="preserve">
+    <value>Компресован</value>
+  </data>
+  <data name="Config_Video" xml:space="preserve">
+    <value>Видео</value>
+  </data>
+  <data name="Config_VideoGood" xml:space="preserve">
+    <value>Добар квалитет</value>
+  </data>
+  <data name="Config_VideoBad" xml:space="preserve">
+    <value>Лош квалитет</value>
+  </data>
+  <data name="Config_VideoAuto" xml:space="preserve">
+    <value>Аутоматски подеси квалитет</value>
+  </data>
+  <data name="Config_Video16Bpp" xml:space="preserve">
+    <value>16 бита по пикселу</value>
+  </data>
+  <data name="Config_Video32Bpp" xml:space="preserve">
+    <value>32 бита по пикселу</value>
+  </data>
+  <data name="Config_Language" xml:space="preserve">
+    <value>Језик</value>
+  </data>
+  <data name="Config_Controller" xml:space="preserve">
+    <value>Контролер</value>
+  </data>
+  <data name="Config_UseController" xml:space="preserve">
+    <value>Користи повезан контролер</value>
+  </data>
+  <data name="Config_ControllerInfo" xml:space="preserve">
+    <value>Ако твој контролер није препознат, овде можеш да омогућиш подршку за контролер</value>
+  </data>
+  <data name="Config_EnableNativeController" xml:space="preserve">
+    <value>Омогући изворну подршку контролера</value>
+  </data>
+  <data name="Config_ControllerVertical" xml:space="preserve">
+    <value>Вертикална оса</value>
+  </data>
+  <data name="Config_ControllerHorizontal" xml:space="preserve">
+    <value>Хоризонтална оса</value>
+  </data>
+  <data name="Config_Network" xml:space="preserve">
+    <value>Мрежа</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>Ако подршка широког екрана није омогућена, игра ће се издужити уколико су пропорције </value>
+  </data>
   <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
     <value>1.20</value>
   </data>
@@ -457,120 +571,6 @@
   <data name="GoHomeConfig_BigFile" xml:space="preserve">
     <value>Big file</value>
     <comment>Big file</comment>
-  </data>
-  <data name="DosBoxOptions_CoreInfo" xml:space="preserve">
-    <value>ЦПУ језгро је коришћено у емулацији. Аутоматски се пребацује из нормалног у динамичко ако је прикладно.</value>
-  </data>
-  <data name="DosBoxOptions_Cycles" xml:space="preserve">
-    <value>Циклуси</value>
-  </data>
-  <data name="DosBoxOptions_CyclesInfo" xml:space="preserve">
-    <value>Количина инструкција коју ДОСБокс покушава емулирати сваке милисекунде. Ако се ова вредност подеси превисоко, долази до испада звука и кочења. Такође, можеш дозволити да ДОСБокс погоди исправну вредност тако што ћете га поставити на максимум. Подразумевана поставка (аутоматски) прелази на максимум. Ако је прикладно.</value>
-  </data>
-  <data name="DosBoxOptions_Commands" xml:space="preserve">
-    <value>Команде ДОСБокса</value>
-  </data>
-  <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
-    <value>(Изборно)</value>
-  </data>
-  <data name="DosBoxOptions_Recommended" xml:space="preserve">
-    <value>Користи препоручена подешавања</value>
-  </data>
-  <data name="Config_Resolution" xml:space="preserve">
-    <value>Резолуција</value>
-  </data>
-  <data name="Config_ResolutionHorizontalInfo" xml:space="preserve">
-    <value>Хоризонтална резолуција екрана</value>
-  </data>
-  <data name="Config_ResolutionVerticalInfo" xml:space="preserve">
-    <value>Вертикална резолуција екрана</value>
-  </data>
-  <data name="Config_LockRes" xml:space="preserve">
-    <value>Закључај на резолуцију екрана</value>
-  </data>
-  <data name="Config_LockResInfo" xml:space="preserve">
-    <value>Закључава хоризонталне и вертикалне вредности према онима тренутне резолуције екрана</value>
-  </data>
-  <data name="Config_Fullscreen" xml:space="preserve">
-    <value>Цео екран</value>
-  </data>
-  <data name="Config_FullscreenInfo" xml:space="preserve">
-    <value>Омогућава да се игра покрене преко целог екрана, иначе ће бити покренута у режиму прозора.</value>
-  </data>
-  <data name="Config_Graphics" xml:space="preserve">
-    <value>Графика</value>
-  </data>
-  <data name="Config_TriLinear" xml:space="preserve">
-    <value>ТриЛинеар</value>
-  </data>
-  <data name="Config_TnL" xml:space="preserve">
-    <value>Трансформација и светлост</value>
-  </data>
-  <data name="Config_TnLInfo" xml:space="preserve">
-    <value>Поништи ово ако у игри постоје графички кварови</value>
-  </data>
-  <data name="Config_DynamicShadows" xml:space="preserve">
-    <value>Динамичке сенке</value>
-  </data>
-  <data name="Config_StaticShadows" xml:space="preserve">
-    <value>Статичке сенке</value>
-  </data>
-  <data name="Config_Textures" xml:space="preserve">
-    <value>Текстуре</value>
-  </data>
-  <data name="Config_Textures16" xml:space="preserve">
-    <value>16 бита</value>
-  </data>
-  <data name="Config_Textures32" xml:space="preserve">
-    <value>32 бита</value>
-  </data>
-  <data name="Config_Compressed" xml:space="preserve">
-    <value>Компресован</value>
-  </data>
-  <data name="Config_Video" xml:space="preserve">
-    <value>Видео</value>
-  </data>
-  <data name="Config_VideoGood" xml:space="preserve">
-    <value>Добар квалитет</value>
-  </data>
-  <data name="Config_VideoBad" xml:space="preserve">
-    <value>Лош квалитет</value>
-  </data>
-  <data name="Config_VideoAuto" xml:space="preserve">
-    <value>Аутоматски подеси квалитет</value>
-  </data>
-  <data name="Config_Video16Bpp" xml:space="preserve">
-    <value>16 бита по пикселу</value>
-  </data>
-  <data name="Config_Video32Bpp" xml:space="preserve">
-    <value>32 бита по пикселу</value>
-  </data>
-  <data name="Config_Language" xml:space="preserve">
-    <value>Језик</value>
-  </data>
-  <data name="Config_Controller" xml:space="preserve">
-    <value>Контролер</value>
-  </data>
-  <data name="Config_UseController" xml:space="preserve">
-    <value>Користи повезан контролер</value>
-  </data>
-  <data name="Config_ControllerInfo" xml:space="preserve">
-    <value>Ако твој контролер није препознат, овде можеш да омогућиш подршку за контролер</value>
-  </data>
-  <data name="Config_EnableNativeController" xml:space="preserve">
-    <value>Омогући изворну подршку контролера</value>
-  </data>
-  <data name="Config_ControllerVertical" xml:space="preserve">
-    <value>Вертикална оса</value>
-  </data>
-  <data name="Config_ControllerHorizontal" xml:space="preserve">
-    <value>Хоризонтална оса</value>
-  </data>
-  <data name="Config_Network" xml:space="preserve">
-    <value>Мрежа</value>
-  </data>
-  <data name="Config_ResolutionR2Info" xml:space="preserve">
-    <value>Ако подршка широког екрана није омогућена, игра ће се издужити уколико су пропорције </value>
   </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>

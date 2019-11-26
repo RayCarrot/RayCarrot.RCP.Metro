@@ -162,14 +162,29 @@
   <data name="MountPathHeader" xml:space="preserve">
     <value>Ruta de montaje</value>
   </data>
+  <data name="MountPathInfo" xml:space="preserve">
+    <value>La ruta de montaje puede ser un archivo o una unidad. Si está utilizando la versión de GOG, será el archivo 'game.inst'. Si tiene una imagen de disco, generalmente es el archivo .cue. Si no, use la letra de unidad del disco del juego.</value>
+  </data>
   <data name="MountOption_File" xml:space="preserve">
     <value>Archivo</value>
   </data>
   <data name="MountOption_Drive" xml:space="preserve">
     <value>Unidad</value>
   </data>
+  <data name="MountOption_FileInfo" xml:space="preserve">
+    <value>Indica que la ruta de montaje es un archivo</value>
+  </data>
+  <data name="MountOption_DriveInfo" xml:space="preserve">
+    <value>Indica que la ruta de montaje es una unidad o disco</value>
+  </data>
   <data name="DosBoxSettingsHeader" xml:space="preserve">
     <value>Ajustes de DOSBox</value>
+  </data>
+  <data name="DosBoxSettingsInfo" xml:space="preserve">
+    <value>Cambiar una de las siguientes opciones en deshabilitado o vacío utilizará el valor predeterminado especificado en el archivo de configuración de DOSBox. Si se ha especificado un archivo de configuración específico en la configuración, puede sobrescribir algunas de las configuraciones a continuación.</value>
+  </data>
+  <data name="DosBoxOptions_Fullscreeen" xml:space="preserve">
+    <value>Pantalla completa</value>
   </data>
   <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
     <value>Corrección de relación de aspecto</value>
@@ -182,6 +197,12 @@
   </data>
   <data name="DosBoxOptions_Output" xml:space="preserve">
     <value>Salida</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
+    <value>Resolución de pantalla completa</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
+    <value>Qué resolución de usar para la pantalla completa: tamaño original o fijo (por ejemplo, 1024x768)</value>
   </data>
   <data name="DosBoxOptions_Scaler" xml:space="preserve">
     <value>Escalador</value>
@@ -203,6 +224,9 @@
   </data>
   <data name="Config_Resolution" xml:space="preserve">
     <value>Resolución</value>
+  </data>
+  <data name="Config_Fullscreen" xml:space="preserve">
+    <value>Pantalla completa</value>
   </data>
   <data name="Config_Graphics" xml:space="preserve">
     <value>Gráficos</value>
@@ -1295,142 +1319,111 @@ Notícias:
   </data>
   <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
     <value>trj8p</value>
-    <comment>trj8p</comment>
   </data>
   <data name="Cheats_R1_99LivesInput2" xml:space="preserve">
     <value>raylives</value>
-    <comment>raylives</comment>
   </data>
   <data name="Cheats_R1_FistPowerInput1" xml:space="preserve">
     <value>2x2rmfmf</value>
-    <comment>2x2rmfmf</comment>
   </data>
   <data name="Cheats_R1_FistPowerInput2" xml:space="preserve">
     <value>goldfist</value>
-    <comment>goldfist</comment>
   </data>
   <data name="Cheats_R1_AllPowerUpsInput1" xml:space="preserve">
     <value>en5gol2g</value>
-    <comment>en5gol2g</comment>
   </data>
   <data name="Cheats_R1_AllPowerUpsInput2" xml:space="preserve">
     <value>power</value>
-    <comment>power</comment>
   </data>
   <data name="Cheats_R1_FullHealthInput1" xml:space="preserve">
     <value>kom0ogdk</value>
-    <comment>kom0ogdk</comment>
   </data>
   <data name="Cheats_R1_FullHealthInput2" xml:space="preserve">
     <value>raypoint</value>
-    <comment>raypoint</comment>
   </data>
   <data name="Cheats_R1_10TingsInput1" xml:space="preserve">
     <value>86e40g91</value>
-    <comment>86e40g91</comment>
   </data>
   <data name="Cheats_R1_10TingsInput2" xml:space="preserve">
     <value>raywiz</value>
-    <comment>raywiz</comment>
   </data>
   <data name="Cheats_R1_SkipLevelInput1" xml:space="preserve">
     <value>o8feh</value>
-    <comment>o8feh</comment>
   </data>
   <data name="Cheats_R1_SkipLevelInput2" xml:space="preserve">
     <value>winmap</value>
-    <comment>winmap</comment>
   </data>
   <data name="Cheats_R1_100RefreshRateInput2" xml:space="preserve">
     <value>freq10</value>
-    <comment>freq10</comment>
   </data>
   <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
     <value>freq80</value>
-    <comment>freq80</comment>
   </data>
   <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
     <value>lens</value>
-    <comment>lens</comment>
   </data>
   <data name="Cheats_R1_AllLevelsInput1" xml:space="preserve">
     <value>4ctrepfj</value>
-    <comment>4ctrepfj</comment>
   </data>
   <data name="Cheats_R1_AllLevelsInput2" xml:space="preserve">
     <value>alworld</value>
-    <comment>alworld</comment>
   </data>
   <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
     <value>b76b7081</value>
-    <comment>b76b7081</comment>
   </data>
   <data name="Cheats_R1_BreakoutInput2" xml:space="preserve">
     <value>cbray</value>
-    <comment>cbray</comment>
   </data>
   <data name="Cheats_R2_FistUpgradeInput" xml:space="preserve">
     <value>glowfist</value>
-    <comment>glowfist</comment>
   </data>
   <data name="Cheats_R2_RestoreHealthInput" xml:space="preserve">
     <value>gimmelife</value>
-    <comment>gimmelife</comment>
   </data>
   <data name="Cheats_R2_5LumsInput" xml:space="preserve">
     <value>gimmelumz</value>
-    <comment>gimmelumz</comment>
   </data>
   <data name="Cheats_R2_LevelSelectionInput" xml:space="preserve">
     <value>gothere</value>
-    <comment>gothere</comment>
   </data>
   <data name="Cheats_R2_GrappleInput" xml:space="preserve">
     <value>hangon</value>
-    <comment>hangon</comment>
   </data>
   <data name="Cheats_R2_SkipMoviesTitle" xml:space="preserve">
     <value>Saltar cinemáticos</value>
   </data>
   <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
     <value>NOMOVIES</value>
-    <comment>NOMOVIES</comment>
   </data>
   <data name="Cheats_R2_LoadingScreensTitle" xml:space="preserve">
     <value>Nuevas pantallas de carga</value>
   </data>
   <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
     <value>allvign</value>
-    <comment>allvign</comment>
   </data>
   <data name="Cheats_R2_NoMurfyTitle" xml:space="preserve">
     <value>Desactivar Murfy</value>
   </data>
   <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
     <value>nomoremurfy</value>
-    <comment>nomoremurfy</comment>
   </data>
   <data name="Cheats_R2_TotASecretTitle" xml:space="preserve">
     <value>Acceder el área oculta en el Tumbo de los Antiguos</value>
   </data>
   <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
     <value>playjeff</value>
-    <comment>playjeff</comment>
   </data>
   <data name="Cheats_R2_MenezisTitle" xml:space="preserve">
     <value>Acceder Menezis</value>
   </data>
   <data name="Cheats_R2_MenezisInput" xml:space="preserve">
     <value>shootemup</value>
-    <comment>shootemup</comment>
   </data>
   <data name="Cheats_RM3_SkipMovieInput" xml:space="preserve">
     <value>esc</value>
-    <comment>esc</comment>
   </data>
   <data name="Cheats_RM3_ReverseMapInput" xml:space="preserve">
     <value>reverse</value>
-    <comment>reverse</comment>
   </data>
   <data name="Cheats_RM_UnlockRacesTitle" xml:space="preserve">
     <value>Desbloquear todos los niveles de carrera</value>
@@ -1449,39 +1442,12 @@ Notícias:
   </data>
   <data name="FiestaRunVersion_Win10" xml:space="preserve">
     <value>Windows 10 Edition</value>
-    <comment>Windows 10 Edition</comment>
   </data>
   <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
     <value>1.10</value>
-    <comment>1.10</comment>
   </data>
   <data name="GoHomeConfig_BigFile" xml:space="preserve">
     <value>Big file</value>
-    <comment>Big file</comment>
-  </data>
-  <data name="MountPathInfo" xml:space="preserve">
-    <value>La ruta de montaje puede ser un archivo o una unidad. Si está utilizando la versión de GOG, será el archivo 'game.inst'. Si tiene una imagen de disco, generalmente es el archivo .cue. Si no, use la letra de unidad del disco del juego.</value>
-  </data>
-  <data name="MountOption_FileInfo" xml:space="preserve">
-    <value>Indica que la ruta de montaje es un archivo</value>
-  </data>
-  <data name="MountOption_DriveInfo" xml:space="preserve">
-    <value>Indica que la ruta de montaje es una unidad o disco</value>
-  </data>
-  <data name="DosBoxSettingsInfo" xml:space="preserve">
-    <value>Cambiar una de las siguientes opciones en deshabilitado o vacío utilizará el valor predeterminado especificado en el archivo de configuración de DOSBox. Si se ha especificado un archivo de configuración específico en la configuración, puede sobrescribir algunas de las configuraciones a continuación.</value>
-  </data>
-  <data name="DosBoxOptions_Fullscreeen" xml:space="preserve">
-    <value>Pantalla completa</value>
-  </data>
-  <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
-    <value>Resolución de pantalla completa</value>
-  </data>
-  <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
-    <value>Qué resolución de usar para la pantalla completa: tamaño original o fijo (por ejemplo, 1024x768)</value>
-  </data>
-  <data name="Config_Fullscreen" xml:space="preserve">
-    <value>Pantalla completa</value>
   </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>

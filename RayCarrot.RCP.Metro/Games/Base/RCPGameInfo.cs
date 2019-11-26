@@ -86,6 +86,11 @@ namespace RayCarrot.RCP.Metro
         public virtual FrameworkElement ConfigUI => null;
 
         /// <summary>
+        /// The progression view model, if any is available
+        /// </summary>
+        public virtual BaseProgressionViewModel ProgressionViewModel => null;
+
+        /// <summary>
         /// Gets the file links for the game
         /// </summary>
         public virtual IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];

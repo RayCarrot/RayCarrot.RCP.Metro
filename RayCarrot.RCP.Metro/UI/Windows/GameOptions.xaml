@@ -100,6 +100,60 @@
                 </ScrollViewer>
             </local:RCPTabItem>
 
+            <!-- Progression -->
+
+            <local:RCPTabItem x:Name="ProgressionTab"
+                              IconKind="TrophyVariantOutline"
+                              Header="{Resx Progression_Header}"
+                              Visibility="{Binding Path=HasProgressionContent, Converter={rwpf:BooleanToVisibilityConverter}}">
+                <ScrollViewer Padding="5"
+                              DataContext="{Binding Path=ProgressionViewModel, Mode=OneTime}">
+                    <ItemsControl ItemsSource="{Binding Path=ProgressionSlots}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Separator x:Name="ItemSeparator"
+                                               Margin="0 7"/>
+
+                                    <TextBlock Text="{Binding Path=SlotName}"
+                                               Style="{StaticResource HeaderTextBlock}"
+                                               Margin="{StaticResource SmallVerticalStackMargin}"/>
+
+                                    <ItemsControl ItemsSource="{Binding Path=Items, Mode=OneTime}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid TextBlock.FontSize="16">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Image Grid.Column="0"
+                                                           Source="{Binding Path=IconImageSource, Mode=OneTime}" 
+                                                           Margin="0 0 8 0"/>
+
+                                                    <ContentPresenter Grid.Column="1"
+                                                                      Content="{Binding Path=Content, Mode=OneTime}"
+                                                                      VerticalAlignment="Center"/>
+
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">
+                                        <Setter Property="Visibility" TargetName="ItemSeparator" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </local:RCPTabItem>
+
             <!-- Options -->
 
             <local:RCPTabItem IconKind="SettingsOutline"

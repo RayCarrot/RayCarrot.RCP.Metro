@@ -1,22 +1,22 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// The Rayman Legends Loc8 converter utility
+    /// Base UbiArt localization converter utility
     /// </summary>
-    public class RLLoc8ConverterUtility : IRCPUtility
+    public abstract class BaseUbiArtLocalizationConverterUtility<VM> : IRCPUtility
+        where VM : new()
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public RLLoc8ConverterUtility()
+        protected BaseUbiArtLocalizationConverterUtility()
         {
-            ViewModel = new RLLoc8ConverterUtilityViewModel();
+            ViewModel = new VM();
         }
 
         #endregion
@@ -26,12 +26,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The header for the utility. This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string DisplayHeader => Resources.RLU_Loc8ConverterHeader;
+        public string DisplayHeader => Resources.UbiArtU_LocalizationConverterHeader;
 
         /// <summary>
         /// The utility information text (optional). This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string InfoText => Resources.RLU_Loc8ConverterHeaderInfo;
+        public abstract string InfoText { get; }
 
         /// <summary>
         /// The utility warning text (optional). This property is retrieved again when the current culture is changed.
@@ -46,7 +46,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The utility UI content
         /// </summary>
-        public UIElement UIContent => new RLLoc8ConverterUtilityUI()
+        public UIElement UIContent => new BaseUbiArtLocalizationConverterUtilityUI()
         {
             DataContext = ViewModel
         };
@@ -78,7 +78,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The view model
         /// </summary>
-        public RLLoc8ConverterUtilityViewModel ViewModel { get; }
+        public VM ViewModel { get; }
 
         #endregion
     }

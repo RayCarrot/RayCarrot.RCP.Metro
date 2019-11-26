@@ -100,26 +100,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\AdminButton.xaml.cs">
+    <Compile Include="UI\AdminButton.xaml.cs">
       <DependentUpon>AdminButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Dialogs\GamesSelectionDialog.xaml.cs">
+    <Compile Include="UI\Dialogs\GamesSelectionDialog.xaml.cs">
       <DependentUpon>GamesSelectionDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Dialogs\JumpListEditDialog.xaml.cs">
+    <Compile Include="UI\Dialogs\JumpListEditDialog.xaml.cs">
       <DependentUpon>JumpListEditDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MenuItemIcon.xaml.cs">
+    <Compile Include="UI\MenuItemIcon.xaml.cs">
       <DependentUpon>MenuItemIcon.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\OverflowMenu.xaml.cs">
+    <Compile Include="UI\OverflowMenu.xaml.cs">
       <DependentUpon>OverflowMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserControls\Options\PrintStudioOptions.xaml.cs">
+    <Compile Include="Options\UI\PrintStudioOptions.xaml.cs">
       <DependentUpon>PrintStudioOptions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserControls\Pages\Base\BasePage.cs" />
-    <Compile Include="Controls\UserControls\Pages\Base\IBasePage.cs" />
+    <Compile Include="Pages\UI\Base\BasePage.cs" />
+    <Compile Include="Pages\UI\Base\IBasePage.cs" />
     <Compile Include="GameFinder\FinderItems\BaseFinderItem.cs" />
     <Compile Include="GameFinder\FinderItems\FoundActionResult.cs" />
     <Compile Include="GameFinder\Results\BaseFinderResult.cs" />
@@ -181,174 +181,182 @@
     <Compile Include="Games\Manager\Rayman\Rayman1_DOSBox.cs" />
     <Compile Include="IO\IOSearchPattern.cs" />
     <Compile Include="GameBackups\RCPBackup.cs" />
+    <Compile Include="Progression\Base\BaseProgressionViewModel.cs" />
+    <Compile Include="Progression\JungleRun\JungleRunProgressionViewModel.cs" />
     <Compile Include="Utilities\Rayman 2\DiscPatch\R2DiscPatchUtility.cs" />
     <Compile Include="Utilities\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml.cs">
       <DependentUpon>R2DiscPatchUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Rayman 2\DiscPatch\R2DiscPatchUtilityViewModel.cs" />
+    <Compile Include="Utilities\Rayman Fiesta Run\LocalizationConverter\RFRLocalizationConverterUtility.cs" />
+    <Compile Include="Utilities\Rayman Fiesta Run\LocalizationConverter\RFRLocalizationConverterUtilityViewModel.cs" />
     <Compile Include="Utilities\Rayman Legends\DebugCommands\RLDebugCommandsUtility.cs" />
     <Compile Include="Utilities\Rayman Legends\DebugCommands\RLDebugCommandsUtilityUI.xaml.cs">
       <DependentUpon>RLDebugCommandsUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Rayman Legends\DebugCommands\RLDebugCommandsUtilityViewModel.cs" />
-    <Compile Include="Utilities\Rayman Legends\Loc8Editor\RLLoc8ConverterUtility.cs" />
-    <Compile Include="Utilities\Rayman Legends\Loc8Editor\RLLoc8ConverterUtilityUI.xaml.cs">
-      <DependentUpon>RLLoc8ConverterUtilityUI.xaml</DependentUpon>
+    <Compile Include="Utilities\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtility.cs" />
+    <Compile Include="Utilities\Rayman Legends\LocalizationConverter\RLLocalizationConverterUtility.cs" />
+    <Compile Include="Utilities\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtilityUI.xaml.cs">
+      <DependentUpon>BaseUbiArtLocalizationConverterUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Rayman Legends\Loc8Editor\RLLoc8ConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\Rayman Legends\LocalizationConverter\RLLocalizationConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\Rayman Origins\LocalizationConverter\ROLocalizationConverterUtility.cs" />
+    <Compile Include="Utilities\Rayman Origins\LocalizationConverter\ROLocalizationConverterUtilityViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\GamesSelectionResult.cs" />
     <Compile Include="ViewModels\Dialogs\GamesSelectionViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\JumpListEditResult.cs" />
     <Compile Include="ViewModels\Dialogs\JumpListEditViewModel.cs" />
     <Compile Include="ViewModels\JumpListItemViewModel.cs" />
-    <Compile Include="Controls\UserControls\Config\RabbidsGoHomeConfig.xaml.cs">
+    <Compile Include="Config\UI\RabbidsGoHomeConfig.xaml.cs">
       <DependentUpon>RabbidsGoHomeConfig.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModels\RabbidsGoHomeLaunchData.cs" />
     <Compile Include="Games\Manager\Rayman\Rayman2_Win32.cs" />
     <Compile Include="Games\Manager\Base\RCPSteamGame.cs" />
     <Compile Include="Games\Base\RCPGame.cs" />
-    <Compile Include="ViewModels\Config\RabbidsGoHomeConfigViewModel.cs" />
-    <Compile Include="Controls\UserControls\Options\RavingRabbids2Options.xaml.cs">
+    <Compile Include="Config\ViewModels\RabbidsGoHomeConfigViewModel.cs" />
+    <Compile Include="Options\UI\RavingRabbids2Options.xaml.cs">
       <DependentUpon>RavingRabbids2Options.xaml</DependentUpon>
     </Compile>
     <Compile Include="GameBackups\BaseBackupInfo.cs" />
     <Compile Include="GameBackups\IBackupInfo.cs" />
-    <Compile Include="Controls\Dialogs\EducationalDosGameEditDialog.xaml.cs">
+    <Compile Include="UI\Dialogs\EducationalDosGameEditDialog.xaml.cs">
       <DependentUpon>EducationalDosGameEditDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModels\Enums\RRR2LaunchMode.cs" />
     <Compile Include="ViewModels\Dialogs\EducationalDosGameEditResult.cs" />
     <Compile Include="ViewModels\Dialogs\EducationalDosGameEditViewModel.cs" />
-    <Compile Include="Controls\RCPTabItem.cs" />
-    <Compile Include="Controls\UserControls\Options\EducationalDosOptions.xaml.cs">
+    <Compile Include="UI\RCPTabItem.cs" />
+    <Compile Include="Options\UI\EducationalDosOptions.xaml.cs">
       <DependentUpon>EducationalDosOptions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserControls\Options\FiestaRunOptions.xaml.cs">
+    <Compile Include="Options\UI\FiestaRunOptions.xaml.cs">
       <DependentUpon>FiestaRunOptions.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModels\EducationalDosBoxGameData.cs" />
     <Compile Include="DataModels\Enums\R1Languages.cs" />
-    <Compile Include="ViewModels\Config\EducationalDosBoxGameConfigViewModel.cs" />
-    <Compile Include="ViewModels\Config\Rayman1ConfigViewModel.cs" />
-    <Compile Include="ViewModels\Config\RaymanDesignerConfigViewModel.cs" />
+    <Compile Include="Config\ViewModels\EducationalDosBoxGameConfigViewModel.cs" />
+    <Compile Include="Config\ViewModels\Rayman1ConfigViewModel.cs" />
+    <Compile Include="Config\ViewModels\RaymanDesignerConfigViewModel.cs" />
     <Compile Include="ViewModels\Controls\DuoGridItemViewModel.cs" />
-    <Compile Include="ViewModels\Options\EducationalDosBoxGameInfoViewModel.cs" />
-    <Compile Include="ViewModels\Options\EducationalDosOptionsViewModel.cs" />
+    <Compile Include="Options\ViewModels\EducationalDosBoxGameInfoViewModel.cs" />
+    <Compile Include="Options\ViewModels\EducationalDosOptionsViewModel.cs" />
     <Compile Include="DataModels\EducationalGameCollectionDropHandler.cs" />
-    <Compile Include="ViewModels\Options\PrintStudioOptionsViewModel.cs" />
-    <Compile Include="ViewModels\Options\FiestaRunOptionsViewModel.cs" />
-    <Compile Include="Controls\UserControls\Pages\LinksPage.xaml.cs">
+    <Compile Include="Options\ViewModels\PrintStudioOptionsViewModel.cs" />
+    <Compile Include="Options\ViewModels\FiestaRunOptionsViewModel.cs" />
+    <Compile Include="Pages\UI\LinksPage.xaml.cs">
       <DependentUpon>LinksPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\TPLSRaymanVersionEnumToComboBoxIndexConverter.cs" />
-    <Compile Include="Converters\AppendSpacesToStringConverter.cs" />
+    <Compile Include="UI\Converters\TPLSRaymanVersionEnumToComboBoxIndexConverter.cs" />
+    <Compile Include="UI\Converters\AppendSpacesToStringConverter.cs" />
     <Compile Include="DataModels\Enums\FiestaRunEdition.cs" />
     <Compile Include="DataModels\Enums\PopupPromptResult.cs" />
     <Compile Include="DataModels\Enums\Pages.cs" />
     <Compile Include="ViewModels\Game\GameCategoryViewModel.cs" />
     <Compile Include="ViewModels\TaskbarIconViewModel.cs" />
-    <Page Include="Controls\AdminButton.xaml">
+    <Page Include="UI\AdminButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Dialogs\EducationalDosGameEditDialog.xaml">
+    <Page Include="UI\Dialogs\EducationalDosGameEditDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Dialogs\GamesSelectionDialog.xaml">
+    <Page Include="UI\Dialogs\GamesSelectionDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\Dialogs\GameTypeSelectionDialog.xaml">
+    <Page Include="UI\Dialogs\GameTypeSelectionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Dialogs\JumpListEditDialog.xaml">
+    <Page Include="UI\Dialogs\JumpListEditDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\GameDisplay.xaml">
+    <Page Include="UI\GameDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\InfoIcon.xaml">
+    <Page Include="UI\InfoIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\IconButton.xaml">
+    <Page Include="UI\IconButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\MenuItemIcon.xaml">
+    <Page Include="UI\MenuItemIcon.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\OverflowButton.xaml">
+    <Page Include="UI\OverflowButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\UserControls\Config\DosBoxConfig.xaml">
+    <Page Include="Config\UI\DosBoxConfig.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Config\RabbidsGoHomeConfig.xaml">
+    <Page Include="Config\UI\RabbidsGoHomeConfig.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Config\Ray_Origins_Legends_Config.xaml">
+    <Page Include="Config\UI\Ray_Origins_Legends_Config.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Config\RaymanRavingRabbidsConfig.xaml">
+    <Page Include="Config\UI\RaymanRavingRabbidsConfig.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Config\Ray_M_Arena_3_Config.xaml">
+    <Page Include="Config\UI\Ray_M_Arena_3_Config.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Config\Rayman2Config.xaml">
+    <Page Include="Config\UI\Rayman2Config.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\UserControls\Options\EducationalDosOptions.xaml">
+    <Page Include="Options\UI\EducationalDosOptions.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Options\PrintStudioOptions.xaml">
+    <Page Include="Options\UI\PrintStudioOptions.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Options\RavingRabbids2Options.xaml">
+    <Page Include="Options\UI\RavingRabbids2Options.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Options\FiestaRunOptions.xaml">
+    <Page Include="Options\UI\FiestaRunOptions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\OverflowMenu.xaml">
+    <Page Include="UI\OverflowMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\UserControls\Pages\HelpPage.xaml">
+    <Page Include="Pages\UI\HelpPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Pages\DebugPage.xaml">
+    <Page Include="Pages\UI\DebugPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Pages\BackupPage.xaml">
+    <Page Include="Pages\UI\BackupPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Pages\AboutPage.xaml">
+    <Page Include="Pages\UI\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\UserControls\Pages\LinksPage.xaml">
+    <Page Include="Pages\UI\LinksPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -372,19 +380,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\LinkItemStyles - Group.xaml">
+    <Page Include="UI\Styles\LinkItemStyles - Group.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\LinkItemStyles - List.xaml">
+    <Page Include="UI\Styles\LinkItemStyles - List.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\TextStyles.xaml">
+    <Page Include="UI\Styles\TextStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\UnifiedMargins.xaml">
+    <Page Include="UI\Styles\UnifiedMargins.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -404,7 +412,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Utilities\Rayman Legends\Loc8Editor\RLLoc8ConverterUtilityUI.xaml">
+    <Page Include="Utilities\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -428,27 +436,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\AppNewsDialog.xaml">
+    <Page Include="UI\Windows\AppNewsDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Windows\Downloader.xaml">
+    <Page Include="UI\Windows\Downloader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\FirstLaunchInfoDialog.xaml">
+    <Page Include="UI\Windows\FirstLaunchInfoDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\GameOptions.xaml">
+    <Page Include="UI\Windows\GameOptions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\LicenseDialog.xaml">
+    <Page Include="UI\Windows\LicenseDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\MainWindow.xaml">
+    <Page Include="UI\Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -456,7 +464,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\Dialogs\GameTypeSelectionDialog.xaml.cs">
+    <Compile Include="UI\Dialogs\GameTypeSelectionDialog.xaml.cs">
       <DependentUpon>GameTypeSelectionDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModels\Enums\GameLaunchMode.cs" />
@@ -468,14 +476,14 @@
     <Compile Include="DataModels\EventArgs\RefreshRequiredEventArgs.cs" />
     <Compile Include="DataModels\Enums\AdminWorkerModes.cs" />
     <Compile Include="Helpers\SecretCodeManager.cs" />
-    <Compile Include="Controls\DuoGridItem.cs" />
-    <Compile Include="Controls\InfoIcon.xaml.cs">
+    <Compile Include="UI\DuoGridItem.cs" />
+    <Compile Include="UI\InfoIcon.xaml.cs">
       <DependentUpon>InfoIcon.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\IconButton.xaml.cs">
+    <Compile Include="UI\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserControls\Pages\AboutPage.xaml.cs">
+    <Compile Include="Pages\UI\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModels\Enums\LinkItemStyles.cs" />
@@ -541,10 +549,10 @@
     <Compile Include="ViewModels\Cheats\GenericCheatCodeItemViewModel.cs" />
     <Compile Include="ViewModels\LinkItemViewModel.cs" />
     <Compile Include="DataModels\Enums\DebugDataOutputTypes.cs" />
-    <Compile Include="ViewModels\Pages\LinksPageViewModel.cs" />
+    <Compile Include="Pages\ViewModels\LinksPageViewModel.cs" />
     <Compile Include="ViewModels\Cheats\Rayman1CheatCodeItemViewModel.cs" />
-    <Compile Include="Converters\BooleanToTransitionTypeConverter.cs" />
-    <Compile Include="Converters\BooleanToFluidMoveDurationConverter.cs" />
+    <Compile Include="UI\Converters\BooleanToTransitionTypeConverter.cs" />
+    <Compile Include="UI\Converters\BooleanToFluidMoveDurationConverter.cs" />
     <Compile Include="DataModels\DosBoxAutoConfigData.cs" />
     <Compile Include="Helpers\DosBoxAutoConfigManager.cs" />
     <Compile Include="Helpers\AppLanguages.cs" />
@@ -553,7 +561,7 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="ViewModels\Pages\AboutPageViewModel.cs" />
+    <Compile Include="Pages\ViewModels\AboutPageViewModel.cs" />
     <Compile Include="Utilities\Rayman 2\Translations\R2TranslationUtilityViewModel.cs" />
     <Compile Include="Helpers\CommonUrls.cs" />
     <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Enums\TPLSDOSBoxVersion.cs" />
@@ -576,33 +584,33 @@
     <Compile Include="Utilities\Rayman 1\TPLS\TPLS\Watchdog.cs" />
     <Compile Include="DataModels\EventArgs\ValueEventArgs.cs" />
     <Compile Include="DataModels\TPLSData.cs" />
-    <Compile Include="ViewModels\Config\Ray_Origins_Legends_ConfigViewModel.cs" />
+    <Compile Include="Config\ViewModels\Ray_Origins_Legends_ConfigViewModel.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="ViewModels\Config\RaymanRavingRabbidsConfigViewModel.cs" />
-    <Compile Include="Controls\UserControls\Config\Ray_Origins_Legends_Config.xaml.cs">
+    <Compile Include="Config\ViewModels\RaymanRavingRabbidsConfigViewModel.cs" />
+    <Compile Include="Config\UI\Ray_Origins_Legends_Config.xaml.cs">
       <DependentUpon>Ray_Origins_Legends_Config.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserControls\Config\RaymanRavingRabbidsConfig.xaml.cs">
+    <Compile Include="Config\UI\RaymanRavingRabbidsConfig.xaml.cs">
       <DependentUpon>RaymanRavingRabbidsConfig.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Config\Base\BaseUbiIniGameConfigViewModel.cs" />
-    <Compile Include="Controls\UserControls\Config\DosBoxConfig.xaml.cs">
+    <Compile Include="Config\ViewModels\Base\BaseUbiIniGameConfigViewModel.cs" />
+    <Compile Include="Config\UI\DosBoxConfig.xaml.cs">
       <DependentUpon>DosBoxConfig.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserControls\Config\Ray_M_Arena_3_Config.xaml.cs">
+    <Compile Include="Config\UI\Ray_M_Arena_3_Config.xaml.cs">
       <DependentUpon>Ray_M_Arena_3_Config.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Config\Rayman3ConfigViewModel.cs" />
-    <Compile Include="ViewModels\Config\RaymanArenaConfigViewModel.cs" />
-    <Compile Include="ViewModels\Config\RaymanMConfigViewModel.cs" />
-    <Compile Include="Controls\UserControls\Pages\HelpPage.xaml.cs">
+    <Compile Include="Config\ViewModels\Rayman3ConfigViewModel.cs" />
+    <Compile Include="Config\ViewModels\RaymanArenaConfigViewModel.cs" />
+    <Compile Include="Config\ViewModels\RaymanMConfigViewModel.cs" />
+    <Compile Include="Pages\UI\HelpPage.xaml.cs">
       <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserControls\Pages\BackupPage.xaml.cs">
+    <Compile Include="Pages\UI\BackupPage.xaml.cs">
       <DependentUpon>BackupPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Config\Base\Ray_M_Arena_3_UbiIniBaseConfigViewModel.cs" />
-    <Compile Include="ViewModels\Pages\HelpPageViewModel.cs" />
+    <Compile Include="Config\ViewModels\Base\Ray_M_Arena_3_UbiIniBaseConfigViewModel.cs" />
+    <Compile Include="Pages\ViewModels\HelpPageViewModel.cs" />
     <Compile Include="DataModels\BackupDir.cs" />
     <Compile Include="GameBackups\BackupManager.cs" />
     <Compile Include="Installer\GameInstaller.xaml.cs">
@@ -621,32 +629,32 @@
     <Compile Include="Installer\RayGameInstallItem.cs" />
     <Compile Include="Installer\RayGameInstallItemStage.cs" />
     <Compile Include="ViewModels\HelpItemViewModel.cs" />
-    <Compile Include="ViewModels\Pages\BackupPageViewModel.cs" />
+    <Compile Include="Pages\ViewModels\BackupPageViewModel.cs" />
     <Compile Include="Framework\Implementations\RCPExceptionHandler.cs" />
     <Compile Include="ViewModels\Base\BaseRCPViewModel.cs" />
-    <Compile Include="ViewModels\Config\Base\BaseDosBoxConfigViewModel.cs" />
+    <Compile Include="Config\ViewModels\Base\BaseDosBoxConfigViewModel.cs" />
     <Compile Include="Framework\Implementations\AppUIManager.cs" />
     <Compile Include="Framework\Implementations\FileLogger.cs" />
     <Compile Include="DataModels\KeyMappingItem.cs" />
     <Compile Include="Helpers\R2ButtonMappingManager.cs" />
     <Compile Include="DataModels\DosBoxOptions.cs" />
-    <Compile Include="ValidationRules\DosBoxCyclesValidationRule.cs" />
-    <Compile Include="ValidationRules\DosBoxResolutionValidationRule.cs" />
+    <Compile Include="UI\ValidationRules\DosBoxCyclesValidationRule.cs" />
+    <Compile Include="UI\ValidationRules\DosBoxResolutionValidationRule.cs" />
     <Compile Include="ViewModels\GameBackupItemViewModel.cs" />
     <Compile Include="ViewModels\R2KeyItemViewModel.cs" />
-    <Compile Include="Controls\UserControls\Config\Rayman2Config.xaml.cs">
+    <Compile Include="Config\UI\Rayman2Config.xaml.cs">
       <DependentUpon>Rayman2Config.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Config\Rayman2ConfigViewModel.cs" />
-    <Compile Include="Converters\KeyToHotKeyConverter.cs" />
-    <Compile Include="Converters\KeyToStringConverter.cs" />
-    <Compile Include="ValidationRules\R2HotKeyValidationRule.cs" />
+    <Compile Include="Config\ViewModels\Rayman2ConfigViewModel.cs" />
+    <Compile Include="UI\Converters\KeyToHotKeyConverter.cs" />
+    <Compile Include="UI\Converters\KeyToStringConverter.cs" />
+    <Compile Include="UI\ValidationRules\R2HotKeyValidationRule.cs" />
     <Compile Include="ViewModels\Dialogs\GameTypeSelectionResult.cs" />
     <Compile Include="ViewModels\Dialogs\GameTypeSelectionViewModel.cs" />
-    <Compile Include="Controls\GameDisplay.xaml.cs">
+    <Compile Include="UI\GameDisplay.xaml.cs">
       <DependentUpon>GameDisplay.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\OverflowButton.xaml.cs">
+    <Compile Include="UI\OverflowButton.xaml.cs">
       <DependentUpon>OverflowButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModels\Enums\Games.cs" />
@@ -666,58 +674,58 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Images.resx</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserControls\Pages\GamesPage.xaml.cs">
+    <Compile Include="Pages\UI\GamesPage.xaml.cs">
       <DependentUpon>GamesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserControls\Pages\DebugPage.xaml.cs">
+    <Compile Include="Pages\UI\DebugPage.xaml.cs">
       <DependentUpon>DebugPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UserControls\Pages\SettingsPage.xaml.cs">
+    <Compile Include="Pages\UI\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserData\AppUserData.cs" />
+    <Compile Include="Framework\UserData\AppUserData.cs" />
     <Compile Include="ViewModels\ActionItemViewModel.cs" />
     <Compile Include="Framework\AppViewModel.cs" />
     <Compile Include="DataModels\Enums\DebugDialogTypes.cs" />
-    <Compile Include="ViewModels\Pages\DebugPageViewModel.cs" />
-    <Compile Include="ViewModels\Pages\SettingsPageViewModel.cs" />
-    <Compile Include="ViewModels\Pages\GamesPageViewModel.cs" />
+    <Compile Include="Pages\ViewModels\DebugPageViewModel.cs" />
+    <Compile Include="Pages\ViewModels\SettingsPageViewModel.cs" />
+    <Compile Include="Pages\ViewModels\GamesPageViewModel.cs" />
     <Compile Include="ViewModels\Controls\OverflowButtonItemViewModel.cs" />
-    <Compile Include="Windows\Base\BaseWindow.cs" />
+    <Compile Include="UI\Windows\Base\BaseWindow.cs" />
     <Compile Include="DataModels\GameData.cs" />
     <Compile Include="ViewModels\Game\GameDisplayViewModel.cs" />
-    <Compile Include="ViewModels\Config\Base\GameConfigViewModel.cs" />
-    <Compile Include="Windows\AppNewsDialog.xaml.cs">
+    <Compile Include="Config\ViewModels\Base\GameConfigViewModel.cs" />
+    <Compile Include="UI\Windows\AppNewsDialog.xaml.cs">
       <DependentUpon>AppNewsDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Downloader.xaml.cs">
+    <Compile Include="UI\Windows\Downloader.xaml.cs">
       <DependentUpon>Downloader.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\DownloaderViewModel.cs" />
-    <Compile Include="Windows\FirstLaunchInfoDialog.xaml.cs">
+    <Compile Include="UI\Windows\FirstLaunchInfoDialog.xaml.cs">
       <DependentUpon>FirstLaunchInfoDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\GameOptions.xaml.cs">
+    <Compile Include="UI\Windows\GameOptions.xaml.cs">
       <DependentUpon>GameOptions.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Game\GameOptionsViewModel.cs" />
     <Compile Include="DataModels\Enums\GameOptionsPage.cs" />
-    <Compile Include="Windows\LicenseDialog.xaml.cs">
+    <Compile Include="UI\Windows\LicenseDialog.xaml.cs">
       <DependentUpon>LicenseDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\MainWindow.xaml.cs">
+    <Compile Include="UI\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Controls\UserControls\Pages\GamesPage.xaml">
+    <Page Include="Pages\UI\GamesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\UserControls\Pages\SettingsPage.xaml">
+    <Page Include="Pages\UI\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\ContentStyles.xaml">
+    <Page Include="UI\Styles\ContentStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -843,6 +851,12 @@
     <Resource Include="Img\MessageIcons\Question.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\ProgressionIcons\UbiArt\Clock.png" />
+    <Resource Include="Img\ProgressionIcons\UbiArt\Electoon.png" />
+    <Resource Include="Img\ProgressionIcons\UbiArt\Lum.png" />
+    <Resource Include="Img\ProgressionIcons\UbiArt\Medal.png" />
+    <Resource Include="Img\ProgressionIcons\UbiArt\RedTooth.png" />
+    <Resource Include="Img\ProgressionIcons\UbiArt\Trophy.png" />
     <Resource Include="Img\GameIcons\TheDarkMagiciansReignofTerror.png" />
     <Resource Include="Img\GameIcons\PrintStudio.png" />
     <Resource Include="Img\GameIcons\GloboxMoment.png" />
@@ -956,7 +970,7 @@
       <Version>1.5.0</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Extensions">
-      <Version>1.2.0</Version>
+      <Version>1.2.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
       <Version>1.3.1</Version>

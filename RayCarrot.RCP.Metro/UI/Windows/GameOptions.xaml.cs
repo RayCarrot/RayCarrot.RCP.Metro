@@ -37,7 +37,7 @@ namespace RayCarrot.RCP.Metro
             RefreshTabs();
 
             // Set default height
-            if (ViewModel.HasConfigContent || ViewModel.HasUtilities)
+            if (ViewModel.HasConfigContent || ViewModel.HasUtilities || ViewModel.HasProgressionContent)
                 Height = 700;
             else
                 SizeToContent = SizeToContent.Height;
@@ -131,21 +131,32 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                if (ConfigViewModel == null)
-                    return;
-
-                ConfigViewModel.OnSave = () =>
+                if (ConfigViewModel != null)
                 {
-                    if (RCFRCP.Data.CloseConfigOnSave)
-                        Close();
-                };
+                    ConfigViewModel.OnSave = () =>
+                    {
+                        if (RCFRCP.Data.CloseConfigOnSave)
+                            Close();
+                    };
 
-                await ConfigViewModel.SetupAsync();
+                    await ConfigViewModel.SetupAsync();
+                }
             }
             catch (Exception ex)
             {
                 ex.HandleError("Set up game config view model");
                 ViewModel.ConfigContent = RCFCore.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
+            }
+
+            try
+            {
+                if (ViewModel.ProgressionViewModel != null)
+                    await ViewModel.ProgressionViewModel.LoadDataAsync();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Set up game progression view model");
+                ProgressionTab.Content = RCFCore.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
             }
         }
 

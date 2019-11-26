@@ -2,6 +2,7 @@
 using RayCarrot.UI;
 using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
@@ -54,9 +55,10 @@ namespace RayCarrot.RCP.Metro
             // Get the utilities view models
             Utilities = App.GetUtilities(Game).Select(x => new RCPUtilityViewModel(x)).ToArray();
 
-            // Get the options and config content, if available
+            // Get the UI content, if available
             ConfigContent = gameInfo.ConfigUI;
             OptionsContent = gameInfo.OptionsUI;
+            ProgressionViewModel = gameInfo.ProgressionViewModel;
         }
 
         #endregion
@@ -137,6 +139,16 @@ namespace RayCarrot.RCP.Metro
         public bool HasConfigContent => ConfigContent != null;
 
         /// <summary>
+        /// The progression view model for the game
+        /// </summary>
+        public BaseProgressionViewModel ProgressionViewModel { get; }
+
+        /// <summary>
+        /// Indicates if the game has config content
+        /// </summary>
+        public bool HasProgressionContent => ProgressionViewModel != null;
+
+        /// <summary>
         /// Indicates if the game has options content
         /// </summary>
         public bool HasOptionsContent => OptionsContent != null || CanChangeLaunchMode;
@@ -172,7 +184,7 @@ namespace RayCarrot.RCP.Metro
             return Task.CompletedTask;
         }
 
-        private void Data_CultureChanged(object sender, PropertyChangedEventArgs<System.Globalization.CultureInfo> e)
+        private void Data_CultureChanged(object sender, PropertyChangedEventArgs<CultureInfo> e)
         {
             RefreshGameInfo();
         }
@@ -311,6 +323,9 @@ namespace RayCarrot.RCP.Metro
             // Unsubscribe events
             RCFCore.Data.CultureChanged -= Data_CultureChanged;
             App.RefreshRequired -= App_RefreshRequired;
+
+            // Dispose
+            ProgressionViewModel?.Dispose();
 
             // Disable collection synchronization
             BindingOperations.DisableCollectionSynchronization(GameInfoItems);

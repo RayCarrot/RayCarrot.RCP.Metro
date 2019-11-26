@@ -51,7 +51,7 @@
     </metro:MetroWindow.RightWindowCommands>
     <Grid>
         <tb:TaskbarIcon DataContext="{StaticResource TaskbarIconViewModel}"
-                        IconSource="../Img/Rayman Control Panel Icon.ico"
+                        IconSource="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/Rayman Control Panel Icon.ico"
                         ToolTipText="{Resx AppName}"
                         LeftClickCommand="{Binding Path=OpenFromTaskbarCommand}"
                         Visibility="{Binding Path=IsIconVisible, Converter={rwpf:BooleanToVisibilityConverter}}">
@@ -224,7 +224,7 @@
                                                     <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="True"  />
                                                     <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="True"  />
                                                 </MultiDataTrigger.Conditions>
-                                                <Setter Property="Source" Value="../Img/RayIcons/DarkLightSH.png" />
+                                                <Setter Property="Source" Value="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/RayIcons/DarkLightSH.png" />
                                             </MultiDataTrigger>
 
                                             <!-- Dark - Not selected - Mouse over -->
@@ -235,7 +235,7 @@
                                                     <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="True"  />
                                                     <Condition Binding="{Binding Path=DataContext.Data.DarkMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="True" />
                                                 </MultiDataTrigger.Conditions>
-                                                <Setter Property="Source" Value="../Img/RayIcons/DarkNSH.png" />
+                                                <Setter Property="Source" Value="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/RayIcons/DarkNSH.png" />
                                             </MultiDataTrigger>
 
                                             <!-- Dark - Not selected - No mouse over -->
@@ -246,7 +246,7 @@
                                                     <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="False"  />
                                                     <Condition Binding="{Binding Path=DataContext.Data.DarkMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="True" />
                                                 </MultiDataTrigger.Conditions>
-                                                <Setter Property="Source" Value="../Img/RayIcons/DarkNSNH.png" />
+                                                <Setter Property="Source" Value="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/RayIcons/DarkNSNH.png" />
                                             </MultiDataTrigger>
 
                                             <!-- Dark - Selected - No mouse over -->
@@ -257,7 +257,7 @@
                                                     <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="False"  />
                                                     <Condition Binding="{Binding Path=DataContext.Data.DarkMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="True" />
                                                 </MultiDataTrigger.Conditions>
-                                                <Setter Property="Source" Value="../Img/RayIcons/DarkSNH.png" />
+                                                <Setter Property="Source" Value="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/RayIcons/DarkSNH.png" />
                                             </MultiDataTrigger>
 
                                             <!-- Light - Not selected - Mouse over -->
@@ -268,7 +268,7 @@
                                                     <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="True"  />
                                                     <Condition Binding="{Binding Path=DataContext.Data.DarkMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="False" />
                                                 </MultiDataTrigger.Conditions>
-                                                <Setter Property="Source" Value="../Img/RayIcons/LightNSH.png" />
+                                                <Setter Property="Source" Value="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/RayIcons/LightNSH.png" />
                                             </MultiDataTrigger>
 
                                             <!-- Light - Not selected - No mouse over -->
@@ -279,7 +279,7 @@
                                                     <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="False"  />
                                                     <Condition Binding="{Binding Path=DataContext.Data.DarkMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="False" />
                                                 </MultiDataTrigger.Conditions>
-                                                <Setter Property="Source" Value="../Img/RayIcons/LightNSNH.png" />
+                                                <Setter Property="Source" Value="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/RayIcons/LightNSNH.png" />
                                             </MultiDataTrigger>
 
                                             <!-- Light - Selected - No mouse over -->
@@ -290,7 +290,7 @@
                                                     <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}}}" Value="False"  />
                                                     <Condition Binding="{Binding Path=DataContext.Data.DarkMode, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}" Value="False" />
                                                 </MultiDataTrigger.Conditions>
-                                                <Setter Property="Source" Value="../Img/RayIcons/LightSNH.png" />
+                                                <Setter Property="Source" Value="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/RayIcons/LightSNH.png" />
                                             </MultiDataTrigger>
 
                                         </Style.Triggers>

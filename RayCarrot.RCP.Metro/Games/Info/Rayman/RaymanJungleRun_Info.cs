@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -42,6 +43,11 @@ namespace RayCarrot.RCP.Metro
         /// Gets the default file name for launching the game, if available
         /// </summary>
         public override string DefaultFileName => "RO1Mobile.exe";
+
+        /// <summary>
+        /// The progression view model, if any is available
+        /// </summary>
+        public override BaseProgressionViewModel ProgressionViewModel => new JungleRunProgressionViewModel();
 
         /// <summary>
         /// Gets the file links for the game
