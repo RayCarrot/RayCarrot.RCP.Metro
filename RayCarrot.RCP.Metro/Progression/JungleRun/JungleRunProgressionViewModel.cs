@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -15,8 +17,6 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class JungleRunProgressionViewModel : BaseProgressionViewModel
     {
-        // TODO: Option to import/export into JSON
-
         #region Constructor
 
         /// <summary>
@@ -84,11 +84,12 @@ namespace RayCarrot.RCP.Metro
         #region Protected Methods
 
         /// <summary>
-        /// Reads the save data from the specified file relative to the current save data
+        /// Get the progression slot view model for the save data from the specified file
         /// </summary>
-        /// <param name="fileName">The file name, relative to the current save data</param>
-        /// <returns>The save data or null if not found</returns>
-        protected JungleRunSaveData ReadSaveDataFile(FileSystemPath fileName)
+        /// <param name="fileName">The slot file name, relative to the save directory</param>
+        /// <param name="slotNamegenerator">The generator for the name of the save slot</param>
+        /// <returns>The progression slot view model</returns>
+        protected ProgressionSlotViewModel GetProgressionSlotViewModel(FileSystemPath fileName, Func<string> slotNamegenerator)
         {
             // Get the file path
             var filePath = SaveDir + fileName;
@@ -98,20 +99,7 @@ namespace RayCarrot.RCP.Metro
                 return null;
 
             // Deserialize and return the data
-            return new JungleRunSaveDataSerializer().Deserialize(filePath);
-        }
-
-        /// <summary>
-        /// Get the progression slot view model for the save data
-        /// </summary>
-        /// <param name="saveData">The save data to get the slot data from</param>
-        /// <param name="slotNamegenerator">The generator for the name of the save slot</param>
-        /// <returns>The progression slot view model</returns>
-        protected ProgressionSlotViewModel GetProgressionSlotViewModel(JungleRunSaveData saveData, Func<string> slotNamegenerator)
-        {
-            // Return null if no data is available
-            if (saveData == null)
-                return null;
+            var saveData = new JungleRunSaveDataSerializer().Deserialize(filePath);
 
             // Create the collection with items for each time trial level + general information
             var progressItems = new ProgressionInfoItemViewModel[saveData.Levels.Count + 2];
@@ -174,7 +162,7 @@ namespace RayCarrot.RCP.Metro
             var percentage = ((collectedLums / (double)availableLums * 50) + (collectedTeeth / (double)availableTeeth * 50)).ToString("0.##");
 
             // Return the data with the collection
-            return new ProgressionSlotViewModel(() => $"{slotNamegenerator()} ({percentage}%)", progressItems);
+            return new JungleRunProgressionSlotViewModel(() => $"{slotNamegenerator()} ({percentage}%)", progressItems, filePath, this);
         }
 
         #endregion
@@ -209,9 +197,9 @@ namespace RayCarrot.RCP.Metro
                     // Read and set slot data
                     ProgressionSlots = new ObservableCollection<ProgressionSlotViewModel>()
                     {
-                        GetProgressionSlotViewModel(ReadSaveDataFile("slot1.dat"), () => String.Format(Resources.Progression_GenericSlot, "1")),
-                        GetProgressionSlotViewModel(ReadSaveDataFile("slot2.dat"), () => String.Format(Resources.Progression_GenericSlot, "2")),
-                        GetProgressionSlotViewModel(ReadSaveDataFile("slot3.dat"), () => String.Format(Resources.Progression_GenericSlot, "3"))
+                        GetProgressionSlotViewModel("slot1.dat", () => String.Format(Resources.Progression_GenericSlot, "1")),
+                        GetProgressionSlotViewModel("slot2.dat", () => String.Format(Resources.Progression_GenericSlot, "2")),
+                        GetProgressionSlotViewModel("slot3.dat", () => String.Format(Resources.Progression_GenericSlot, "3"))
                     };
 
                     // Remove empty slots

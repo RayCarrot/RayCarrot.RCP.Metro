@@ -109,7 +109,6 @@ namespace RayCarrot.RCP.Metro
                 foreach (var category in GameCategories)
                     await category.RefreshAsync();
 
-                // TODO: If all games > game removed > game added - then this fails?
                 // Allow game finder to run only if there are games which have not been found
                 // ReSharper disable once PossibleNullReferenceException
                 await Application.Current.Dispatcher.InvokeAsync(() => RunGameFinderCommand.CanExecuteCommand = GameCategories.Any(x => x.AnyNotInstalledGames));

@@ -283,6 +283,8 @@ namespace RayCarrot.RCP.Metro
 
             // Refresh
             await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
+
+            await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.UninstallGameSuccess, DisplayName), Resources.UninstallGameSuccessHeader);
         }
 
         /// <summary>

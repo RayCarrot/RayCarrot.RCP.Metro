@@ -100,6 +100,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Progression\Base\ProgressionIcons.cs" />
+    <Compile Include="Progression\Base\ProgressionInfoItemViewModel.cs" />
+    <Compile Include="Progression\Base\ProgressionSlotViewModel.cs" />
+    <Compile Include="Progression\JungleRun\JungleRunProgressionSlotViewModel.cs" />
     <Compile Include="UI\AdminButton.xaml.cs">
       <DependentUpon>AdminButton.xaml</DependentUpon>
     </Compile>

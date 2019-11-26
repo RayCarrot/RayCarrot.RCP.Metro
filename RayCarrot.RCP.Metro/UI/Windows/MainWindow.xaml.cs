@@ -68,6 +68,7 @@ namespace RayCarrot.RCP.Metro
             // Refresh if the backup page should be enabled
             RefreshBackupPageEnabled();
 
+            // Set the data context for each overflow item
             foreach (var page in PageTabControl.Items.
                 // Get all tab items
                 OfType<TabItem>().

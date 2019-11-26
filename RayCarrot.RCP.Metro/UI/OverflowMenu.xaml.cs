@@ -1,7 +1,9 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -15,7 +17,18 @@ namespace RayCarrot.RCP.Metro
         public OverflowMenu()
         {
             InitializeComponent();
+
+            InheritDataContext = true;
         }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Indicates if the data context of the menu should inherit from this control
+        /// </summary>
+        public bool InheritDataContext { get; set; }
 
         #endregion
 
@@ -23,57 +36,41 @@ namespace RayCarrot.RCP.Metro
 
         private void OverflowMenu_OnClick(object sender, RoutedEventArgs e)
         {
-            if (Menu != null)
-                // Open the overflow menu
-                Menu.IsOpen = true;
-        }
-
-        private void OldMenu_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Get the point on screen
-            var point = PointToScreen(new Point(0 - Menu.ActualWidth + ActualWidth, ActualHeight));
-
-            // Set the offsets
-            Menu.HorizontalOffset = point.X - Margin.Left;
-            Menu.VerticalOffset = point.Y + Margin.Bottom;
-        }
-
-        #endregion
-
-        #region Dependency Properties
-
-        /// <summary>
-        /// The menu
-        /// </summary>
-        public ContextMenu Menu
-        {
-            get => (ContextMenu)GetValue(MenuProperty);
-            set => SetValue(MenuProperty, value);
-        }
-
-        public static readonly DependencyProperty MenuProperty = DependencyProperty.Register(nameof(Menu), typeof(ContextMenu), typeof(OverflowMenu), new PropertyMetadata(null, PropertyChangedCallback));
-
-        #endregion
-
-        #region Static Event Handlers
-
-        private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (!(d is OverflowMenu instance))
+            // Make sure we have a context menu
+            if (ContextMenu == null)
                 return;
 
-            // Unsubscribe old value
-            if (e.OldValue is ContextMenu oldMenu)
-                oldMenu.Loaded -= instance.OldMenu_Loaded;
+            // Set the placement
+            ContextMenu.Placement = PlacementMode.Absolute;
 
-            if (e.NewValue is ContextMenu newMenu)
-            {
-                // Set the placement
-                newMenu.Placement = PlacementMode.Absolute;
+            if (InheritDataContext)
+                // Set the data context
+                ContextMenu.DataContext = DataContext;
 
-                // Subscribe to when loaded
-                newMenu.Loaded += instance.OldMenu_Loaded;
-            }
+            // Subscribe to when loaded
+            ContextMenu.Loaded += ContextMenu_Loaded;
+
+            // Open the overflow menu
+            ContextMenu.IsOpen = true;
+        }
+
+        private void ContextMenu_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Get the point on screen
+            var point = PointToScreen(new Point(0 - ContextMenu.ActualWidth + ActualWidth, ActualHeight));
+
+            // Set the offsets
+            ContextMenu.HorizontalOffset = point.X - Margin.Left;
+            ContextMenu.VerticalOffset = point.Y + Margin.Bottom;
+
+            // Unsubscribe
+            ContextMenu.Loaded -= ContextMenu_Loaded;
+        }
+
+        private void OverflowMenu_OnContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            // Cancel opening
+            e.Handled = true;
         }
 
         #endregion

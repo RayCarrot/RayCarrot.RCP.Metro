@@ -447,6 +447,8 @@ namespace RayCarrot.RCP.Metro
                 await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
 
                 RCFCore.Logger?.LogTraceSource($"The game {Game} has been downloaded");
+
+                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.GameInstall_Success, DisplayName), Resources.GameInstall_SuccessHeader);
             }
             catch (Exception ex)
             {

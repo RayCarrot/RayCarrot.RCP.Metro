@@ -90,9 +90,9 @@ namespace RayCarrot.RCP.Metro
             // Get the output file
             var outputResult = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
             {
-                Title = Resources.UbiArtU_LocalizationConverterExportDestinationSelectionHeader,
+                Title = Resources.ExportDestinationSelectionHeader,
                 DefaultName = inputResult.SelectedFile.ChangeFileExtension(".json").Name,
-                Extensions = new FileFilterItem("*.json", Resources.UbiArtU_LocalizationConverterJSONFilterDescription).StringRepresentation
+                Extensions = new FileFilterItem("*.json", Resources.FileFilterDescription_JSON).StringRepresentation
             });
 
             if (outputResult.CanceledByUser)
@@ -102,6 +102,8 @@ namespace RayCarrot.RCP.Metro
             {
                 // Serialize the data into the new file
                 File.WriteAllText(outputResult.SelectedFileLocation, JsonConvert.SerializeObject(Deserialize(inputResult.SelectedFile), Formatting.Indented));
+
+                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.UbiArtU_LocalizationConverterExportSuccess);
             }
             catch (Exception ex)
             {
@@ -119,8 +121,8 @@ namespace RayCarrot.RCP.Metro
             // Get the input file
             var inputResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
-                Title = Resources.UbiArtU_LocalizationConverterImportSelectionHeader,
-                ExtensionFilter = new FileFilterItem("*.json", Resources.UbiArtU_LocalizationConverterJSONFilterDescription).StringRepresentation,
+                Title = Resources.ImportSelectionHeader,
+                ExtensionFilter = new FileFilterItem("*.json", Resources.FileFilterDescription_JSON).StringRepresentation,
                 DefaultName = "localisation.json"
             });
 
@@ -145,6 +147,8 @@ namespace RayCarrot.RCP.Metro
 
                 // Serialize the data to the output localization file
                 Serialize(outputResult.SelectedFile, data);
+
+                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.UbiArtU_LocalizationConverterImportSuccess);
             }
             catch (Exception ex)
             {

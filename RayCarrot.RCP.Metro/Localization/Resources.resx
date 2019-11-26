@@ -2888,13 +2888,13 @@ downloadSize</comment>
   <data name="UbiArtU_LocalizationConverterLocFilterDescription" xml:space="preserve">
     <value>localization files</value>
   </data>
-  <data name="UbiArtU_LocalizationConverterExportDestinationSelectionHeader" xml:space="preserve">
+  <data name="ExportDestinationSelectionHeader" xml:space="preserve">
     <value>Select a file destination to export to</value>
   </data>
-  <data name="UbiArtU_LocalizationConverterJSONFilterDescription" xml:space="preserve">
+  <data name="FileFilterDescription_JSON" xml:space="preserve">
     <value>JSON files</value>
   </data>
-  <data name="UbiArtU_LocalizationConverterImportSelectionHeader" xml:space="preserve">
+  <data name="ImportSelectionHeader" xml:space="preserve">
     <value>Select a converted JSON file to import from</value>
   </data>
   <data name="UbiArtU_LocalizationConverterImportDestinationSelectionHeader" xml:space="preserve">
@@ -2919,5 +2919,17 @@ downloadSize</comment>
     <value>Slot {0}</value>
     <comment>Arguments:
 slotIndex</comment>
+  </data>
+  <data name="Progression_Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Progression_Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="Progression_ExportError" xml:space="preserve">
+    <value>An error occurred when exporting the save file. Make sure the file is supported.</value>
+  </data>
+  <data name="Progression_ImportError" xml:space="preserve">
+    <value>An error occurred when importing the save file. Make sure the format of the .JSON file is correct and that the save file is supported.</value>
   </data>
 </root>

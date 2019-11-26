@@ -119,9 +119,10 @@
                                                   KeyboardNavigation.TabIndex="1" />
 
                                         <local:OverflowMenu Grid.Column="2"
+                                                            InheritDataContext="False"
                                                             DataContext="{Binding ElementName=PageTabControl, Path=SelectedItem.(ContentControl.Content).(local:IBasePage.OverflowMenu)}"
                                                             Visibility="{Binding Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
-                                                            Menu="{Binding}"
+                                                            ContextMenu="{Binding}"
                                                             Margin="10"/>
 
                                     </Grid>

@@ -52,9 +52,8 @@
 
             <local:OverflowMenu Grid.Column="2"
                                 Margin="7">
-                <local:OverflowMenu.Menu>
-                    <ContextMenu Loaded="FrameworkElement_OnLoaded"
-                                 ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
+                <local:OverflowMenu.ContextMenu>
+                    <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
                         <local:MenuItemIcon Header="{Resx GameOptions_CreateShortcut}"
                                             Command="{Binding Path=ShortcutCommand}"
                                             IconKind="Link"/>
@@ -66,7 +65,7 @@
                                             Command="{Binding Path=UninstallCommand}"
                                             IconKind="DeleteForever"/>
                     </ContextMenu>
-                </local:OverflowMenu.Menu>
+                </local:OverflowMenu.ContextMenu>
             </local:OverflowMenu>
 
         </Grid>
@@ -115,9 +114,27 @@
                                     <Separator x:Name="ItemSeparator"
                                                Margin="0 7"/>
 
-                                    <TextBlock Text="{Binding Path=SlotName}"
-                                               Style="{StaticResource HeaderTextBlock}"
-                                               Margin="{StaticResource SmallVerticalStackMargin}"/>
+                                    <Grid>
+                                        <TextBlock Text="{Binding Path=SlotName}"
+                                                   Style="{StaticResource HeaderTextBlock}"
+                                                   Margin="{StaticResource SmallVerticalStackMargin}"/>
+
+                                        <local:OverflowMenu HorizontalAlignment="Right" 
+                                                            rwpf:UserLevelTag.MinUserLevel="Technical"
+                                                            Margin="7">
+                                            <local:OverflowMenu.ContextMenu>
+                                                <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
+                                                    <local:MenuItemIcon Header="{Resx Progression_Export}"
+                                                                        Command="{Binding Path=ExportCommand, Mode=OneTime}"
+                                                                        IconKind="Export"/>
+                                                    <local:MenuItemIcon Header="{Resx Progression_Import}"
+                                                                        Command="{Binding Path=ImportCommand, Mode=OneTime}"
+                                                                        IconKind="Import"/>
+                                                </ContextMenu>
+                                            </local:OverflowMenu.ContextMenu>
+                                        </local:OverflowMenu>
+
+                                    </Grid>
 
                                     <ItemsControl ItemsSource="{Binding Path=Items, Mode=OneTime}">
                                         <ItemsControl.ItemTemplate>

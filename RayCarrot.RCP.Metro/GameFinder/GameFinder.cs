@@ -137,7 +137,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleError("Searching program shortcuts for game finder");
+                        ex.HandleUnexpected("Searching program shortcuts for game finder");
                     }
                 }
 
@@ -459,7 +459,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Enumerating shortcuts for game finder", directory);
+                ex.HandleUnexpected("Enumerating shortcuts for game finder", directory);
                 
                 // Return an empty array to enumerate
                 return new string[0];

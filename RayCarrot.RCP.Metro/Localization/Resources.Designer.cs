@@ -3055,6 +3055,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a file destination to export to.
+        /// </summary>
+        public static string ExportDestinationSelectionHeader {
+            get {
+                return ResourceManager.GetString("ExportDestinationSelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default.
         /// </summary>
         public static string FiestaRunVersion_Default {
@@ -3168,6 +3177,15 @@ namespace RayCarrot.RCP.Metro {
         public static string File_RegKeyNotFoundHeader {
             get {
                 return ResourceManager.GetString("File_RegKeyNotFoundHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON files.
+        /// </summary>
+        public static string FileFilterDescription_JSON {
+            get {
+                return ResourceManager.GetString("FileFilterDescription_JSON", resourceCulture);
             }
         }
         
@@ -4445,6 +4463,15 @@ namespace RayCarrot.RCP.Metro {
         public static string HelpPageHeader {
             get {
                 return ResourceManager.GetString("HelpPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a converted JSON file to import from.
+        /// </summary>
+        public static string ImportSelectionHeader {
+            get {
+                return ResourceManager.GetString("ImportSelectionHeader", resourceCulture);
             }
         }
         
@@ -5810,6 +5837,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string Progression_Export {
+            get {
+                return ResourceManager.GetString("Progression_Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when exporting the save file. Make sure the file is supported..
+        /// </summary>
+        public static string Progression_ExportError {
+            get {
+                return ResourceManager.GetString("Progression_ExportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Slot {0}.
         /// </summary>
         public static string Progression_GenericSlot {
@@ -5824,6 +5869,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_Header {
             get {
                 return ResourceManager.GetString("Progression_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        public static string Progression_Import {
+            get {
+                return ResourceManager.GetString("Progression_Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when importing the save file. Make sure the format of the .JSON file is correct and that the save file is supported..
+        /// </summary>
+        public static string Progression_ImportError {
+            get {
+                return ResourceManager.GetString("Progression_ImportError", resourceCulture);
             }
         }
         
@@ -7701,15 +7764,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a file destination to export to.
-        /// </summary>
-        public static string UbiArtU_LocalizationConverterExportDestinationSelectionHeader {
-            get {
-                return ResourceManager.GetString("UbiArtU_LocalizationConverterExportDestinationSelectionHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An error occurred when exporting the localization file. Make sure the file is supported..
         /// </summary>
         public static string UbiArtU_LocalizationConverterExportError {
@@ -7760,24 +7814,6 @@ namespace RayCarrot.RCP.Metro {
         public static string UbiArtU_LocalizationConverterImportError {
             get {
                 return ResourceManager.GetString("UbiArtU_LocalizationConverterImportError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select a converted JSON file to import from.
-        /// </summary>
-        public static string UbiArtU_LocalizationConverterImportSelectionHeader {
-            get {
-                return ResourceManager.GetString("UbiArtU_LocalizationConverterImportSelectionHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to JSON files.
-        /// </summary>
-        public static string UbiArtU_LocalizationConverterJSONFilterDescription {
-            get {
-                return ResourceManager.GetString("UbiArtU_LocalizationConverterJSONFilterDescription", resourceCulture);
             }
         }
         
