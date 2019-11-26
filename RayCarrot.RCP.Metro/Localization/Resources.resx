@@ -2932,4 +2932,71 @@ slotIndex</comment>
   <data name="Progression_ImportError" xml:space="preserve">
     <value>An error occurred when importing the save file. Make sure the format of the .JSON file is correct and that the save file is supported.</value>
   </data>
+  <data name="UbiArtU_LocalizationConverterExportSuccess" xml:space="preserve">
+    <value>The localization file has been successfully exported</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterImportSuccess" xml:space="preserve">
+    <value>The localization file has been successfully imported</value>
+  </data>
+  <data name="UninstallGameSuccess" xml:space="preserve">
+    <value>{0} was uninstalled</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="UninstallGameSuccessHeader" xml:space="preserve">
+    <value>Uninstallation complete</value>
+  </data>
+  <data name="GameInstall_Success" xml:space="preserve">
+    <value>{0} was successfully installed</value>
+    <comment>Arguments:
+gameDisplayName</comment>
+  </data>
+  <data name="GameInstall_SuccessHeader" xml:space="preserve">
+    <value>Installation complete</value>
+  </data>
+  <data name="Progression_ExportSuccess" xml:space="preserve">
+    <value>The save file has been successfully exported</value>
+  </data>
+  <data name="Progression_ImportSuccess" xml:space="preserve">
+    <value>The save file has been successfully imported</value>
+  </data>
+  <data name="Config_CharacterHeader" xml:space="preserve">
+    <value>Character</value>
+  </data>
+  <data name="Config_CharacterHeaderRJRInfo" xml:space="preserve">
+    <value>Selecting a character here will change the currently selected character in the game. The last two Teensy characters can only be set from here as there is no option to do so in the game.</value>
+  </data>
+  <data name="Config_RJRHeroes_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+    <comment>Only translate this if the costume name has been translated officially in a UbiArt game</comment>
+  </data>
+  <data name="Config_RJRHeroes_Globox" xml:space="preserve">
+    <value>Globox</value>
+    <comment>Only translate this if the costume name has been translated officially in a UbiArt game</comment>
+  </data>
+  <data name="Config_RJRHeroes_DarkRayman" xml:space="preserve">
+    <value>Dark Rayman</value>
+    <comment>Only translate this if the costume name has been translated officially in a UbiArt game</comment>
+  </data>
+  <data name="Config_RJRHeroes_GloboxOutfit" xml:space="preserve">
+    <value>Globox Outfit</value>
+    <comment>Only translate this if the costume name has been translated officially in a UbiArt game</comment>
+  </data>
+  <data name="Config_RJRHeroes_GreenTeensy" xml:space="preserve">
+    <value>Green Teensy</value>
+    <comment>Only translate this if the costume name has been translated officially in a UbiArt game</comment>
+  </data>
+  <data name="Config_RJRHeroes_GothTeensy" xml:space="preserve">
+    <value>Goth Teensy</value>
+    <comment>Only translate this if the costume name has been translated officially in a UbiArt game</comment>
+  </data>
+  <data name="Config_SelectedSlotHeader" xml:space="preserve">
+    <value>Selected Save Slot</value>
+  </data>
+  <data name="Config_MusicVolumeHeader" xml:space="preserve">
+    <value>Music Volume</value>
+  </data>
+  <data name="Config_SoundVolumeHeader" xml:space="preserve">
+    <value>Sound Volume</value>
+  </data>
 </root>

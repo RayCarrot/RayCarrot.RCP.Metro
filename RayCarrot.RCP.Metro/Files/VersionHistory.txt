@@ -3,6 +3,7 @@
 • Added the progression tab for the game options dialog which shows the game progress from the save data (currently only available for Rayman Jungle Run - more games to follow)
 • Added the option to export/import save files to and from JSON (currently only available for Rayman Jungle Run - more games to follow)
 • Added a utility for converting the localization file for Rayman Origins, Rayman Fiesta Run and Rayman Legends
+• Added game configuration for Rayman Jungle Run, allowing the selection of additional Teensy characters
 • Added support for downloading select games directly from the program
 
 Other changes:

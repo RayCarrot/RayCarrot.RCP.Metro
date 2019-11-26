@@ -39,48 +39,6 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        //#region Protected Methods
-
-        ///// <summary>
-        ///// Reads a single byte from the specified file relative to the current save data
-        ///// </summary>
-        ///// <param name="fileName">The file name, relative to the current save data</param>
-        ///// <returns>The byte or null if not found</returns>
-        //protected byte? ReadSingleByteFile(FileSystemPath fileName)
-        //{
-        //    return ReadMultiByteFile(fileName, 1)?.FirstOrDefault();
-        //}
-
-        ///// <summary>
-        ///// Reads multiple bytes from the specified file relative to the current save data
-        ///// </summary>
-        ///// <param name="fileName">The file name, relative to the current save data</param>
-        ///// <param name="length">The amount of bytes to read</param>
-        ///// <returns>The bytes or null if not found</returns>
-        //protected byte[] ReadMultiByteFile(FileSystemPath fileName, int length)
-        //{
-        //    // Get the file path
-        //    var filePath = SaveDir + fileName;
-
-        //    // Make sure the file exists
-        //    if (!filePath.FileExists)
-        //        return null;
-
-        //    // Create the file stream
-        //    using var stream = new FileStream(filePath, FileMode.Open);
-
-        //    // Create the byte buffer
-        //    var buffer = new byte[length];
-
-        //    // Read the bytes
-        //    stream.Read(buffer, 0, length);
-
-        //    // Return the buffer
-        //    return buffer;
-        //}
-
-        //#endregion
-
         #region Protected Methods
 
         /// <summary>
@@ -175,22 +133,11 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task LoadDataAsync()
         {
-            // %LocalAppData%\Packages\UbisoftEntertainment.RaymanJungleRun_dbgk1hhpxymar\LocalState
-
             // Run on a new thread
             await Task.Run(() =>
             {
                 try
                 {
-                    //// Read selected hero and save slot data
-                    //SelectedHero = ReadSingleByteFile("ROHeroe");
-                    //SelectedSlot = ReadSingleByteFile("ROselectedSlot");
-
-                    //// Read volume
-                    //var ROvolume = ReadMultiByteFile("ROvolume", 2);
-                    //MusicVolume = ROvolume?[0];
-                    //SoundVolume = ROvolume?[1];
-
                     // Dispose existing slot view models
                     ProgressionSlots?.ForEach(x => x.Dispose());
 

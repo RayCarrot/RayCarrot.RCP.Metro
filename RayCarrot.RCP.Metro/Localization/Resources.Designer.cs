@@ -1822,6 +1822,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Character.
+        /// </summary>
+        public static string Config_CharacterHeader {
+            get {
+                return ResourceManager.GetString("Config_CharacterHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecting a character here will change the currently selected character in the game. The last two Teensy characters can only be set from here as there is no option to do so in the game..
+        /// </summary>
+        public static string Config_CharacterHeaderRJRInfo {
+            get {
+                return ResourceManager.GetString("Config_CharacterHeaderRJRInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compressed.
         /// </summary>
         public static string Config_Compressed {
@@ -2020,6 +2038,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Music Volume.
+        /// </summary>
+        public static string Config_MusicVolumeHeader {
+            get {
+                return ResourceManager.GetString("Config_MusicVolumeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Network.
         /// </summary>
         public static string Config_Network {
@@ -2070,6 +2097,60 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_ResolutionVerticalInfo {
             get {
                 return ResourceManager.GetString("Config_ResolutionVerticalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark Rayman.
+        /// </summary>
+        public static string Config_RJRHeroes_DarkRayman {
+            get {
+                return ResourceManager.GetString("Config_RJRHeroes_DarkRayman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Globox.
+        /// </summary>
+        public static string Config_RJRHeroes_Globox {
+            get {
+                return ResourceManager.GetString("Config_RJRHeroes_Globox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Globox Outfit.
+        /// </summary>
+        public static string Config_RJRHeroes_GloboxOutfit {
+            get {
+                return ResourceManager.GetString("Config_RJRHeroes_GloboxOutfit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Goth Teensy.
+        /// </summary>
+        public static string Config_RJRHeroes_GothTeensy {
+            get {
+                return ResourceManager.GetString("Config_RJRHeroes_GothTeensy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green Teensy.
+        /// </summary>
+        public static string Config_RJRHeroes_GreenTeensy {
+            get {
+                return ResourceManager.GetString("Config_RJRHeroes_GreenTeensy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman.
+        /// </summary>
+        public static string Config_RJRHeroes_Rayman {
+            get {
+                return ResourceManager.GetString("Config_RJRHeroes_Rayman", resourceCulture);
             }
         }
         
@@ -2160,6 +2241,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_SaveWarning {
             get {
                 return ResourceManager.GetString("Config_SaveWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Save Slot.
+        /// </summary>
+        public static string Config_SelectedSlotHeader {
+            get {
+                return ResourceManager.GetString("Config_SelectedSlotHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sound Volume.
+        /// </summary>
+        public static string Config_SoundVolumeHeader {
+            get {
+                return ResourceManager.GetString("Config_SoundVolumeHeader", resourceCulture);
             }
         }
         
@@ -3512,6 +3611,24 @@ namespace RayCarrot.RCP.Metro {
         public static string GameInstall_ErrorHeader {
             get {
                 return ResourceManager.GetString("GameInstall_ErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} was successfully installed.
+        /// </summary>
+        public static string GameInstall_Success {
+            get {
+                return ResourceManager.GetString("GameInstall_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installation complete.
+        /// </summary>
+        public static string GameInstall_SuccessHeader {
+            get {
+                return ResourceManager.GetString("GameInstall_SuccessHeader", resourceCulture);
             }
         }
         
@@ -5855,6 +5972,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The save file has been successfully exported.
+        /// </summary>
+        public static string Progression_ExportSuccess {
+            get {
+                return ResourceManager.GetString("Progression_ExportSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Slot {0}.
         /// </summary>
         public static string Progression_GenericSlot {
@@ -5887,6 +6013,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_ImportError {
             get {
                 return ResourceManager.GetString("Progression_ImportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The save file has been successfully imported.
+        /// </summary>
+        public static string Progression_ImportSuccess {
+            get {
+                return ResourceManager.GetString("Progression_ImportSuccess", resourceCulture);
             }
         }
         
@@ -7782,6 +7917,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The localization file has been successfully exported.
+        /// </summary>
+        public static string UbiArtU_LocalizationConverterExportSuccess {
+            get {
+                return ResourceManager.GetString("UbiArtU_LocalizationConverterExportSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Localization Converter.
         /// </summary>
         public static string UbiArtU_LocalizationConverterHeader {
@@ -7814,6 +7958,15 @@ namespace RayCarrot.RCP.Metro {
         public static string UbiArtU_LocalizationConverterImportError {
             get {
                 return ResourceManager.GetString("UbiArtU_LocalizationConverterImportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The localization file has been successfully imported.
+        /// </summary>
+        public static string UbiArtU_LocalizationConverterImportSuccess {
+            get {
+                return ResourceManager.GetString("UbiArtU_LocalizationConverterImportSuccess", resourceCulture);
             }
         }
         
@@ -7877,6 +8030,24 @@ namespace RayCarrot.RCP.Metro {
         public static string UninstallGameQuestionHeader {
             get {
                 return ResourceManager.GetString("UninstallGameQuestionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} was uninstalled.
+        /// </summary>
+        public static string UninstallGameSuccess {
+            get {
+                return ResourceManager.GetString("UninstallGameSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstallation complete.
+        /// </summary>
+        public static string UninstallGameSuccessHeader {
+            get {
+                return ResourceManager.GetString("UninstallGameSuccessHeader", resourceCulture);
             }
         }
         

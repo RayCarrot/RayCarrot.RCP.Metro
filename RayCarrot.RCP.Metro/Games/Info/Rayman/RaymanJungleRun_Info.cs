@@ -45,6 +45,11 @@ namespace RayCarrot.RCP.Metro
         public override string DefaultFileName => "RO1Mobile.exe";
 
         /// <summary>
+        /// The config UI, if any is available
+        /// </summary>
+        public override FrameworkElement ConfigUI => new RaymanJungleRunConfig();
+
+        /// <summary>
         /// The progression view model, if any is available
         /// </summary>
         public override BaseProgressionViewModel ProgressionViewModel => new JungleRunProgressionViewModel();
