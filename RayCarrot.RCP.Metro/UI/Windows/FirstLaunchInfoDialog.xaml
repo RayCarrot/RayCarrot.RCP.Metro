@@ -56,7 +56,7 @@
             </Grid>
 
             <Image Grid.Column="1"
-                   Source="../Img/MessageIcons/Info.png"
+                   Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/MessageIcons/Info.png"
                    Height="256"
                    Width="256" 
                    RenderOptions.BitmapScalingMode="NearestNeighbor"/>

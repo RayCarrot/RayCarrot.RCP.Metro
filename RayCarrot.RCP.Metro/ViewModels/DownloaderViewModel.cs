@@ -338,6 +338,13 @@ namespace RayCarrot.RCP.Metro
                         // Download files to temp
                         await DownloadFromServerToTempAsync();
 
+                        // Create directory if it doesn't exist
+                        if (!OutputDirectory.DirectoryExists)
+                        {
+                            Directory.CreateDirectory(OutputDirectory);
+                            ProcessedPaths.Add(OutputDirectory);
+                        }
+
                         // Process the download
                         if (IsCompressed)
                             await ProcessCompressedDownloadAsync();

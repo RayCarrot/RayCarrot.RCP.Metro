@@ -8070,6 +8070,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when updating the application.
+        /// </summary>
+        public static string Update_Error {
+            get {
+                return ResourceManager.GetString("Update_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update Check Failed.
         /// </summary>
         public static string Update_ErrorHeader {

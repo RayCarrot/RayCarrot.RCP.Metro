@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.UI;
@@ -19,7 +20,7 @@ namespace RayCarrot.RCP.Metro
         {
             MinimizeToTaskbarCommand = new RelayCommand(MinimizeToTaskbar);
             OpenFromTaskbarCommand = new RelayCommand(OpenFromTaskbar);
-            CloseApplicationCommand = new RelayCommand(CloseApplication);
+            CloseApplicationCommand = new AsyncRelayCommand(CloseApplicationAsync);
         }
 
         #endregion
@@ -71,11 +72,16 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Closes the application
         /// </summary>
-        public void CloseApplication()
+        /// <returns>The task</returns>
+        public async Task CloseApplicationAsync()
         {
+            // Open the app
+            OpenFromTaskbar();
+
             RCFCore.Logger?.LogInformationSource("The program is being closed from the tray icon");
 
-            Application.Current.Shutdown();
+            // Shut down the app
+            await Metro.App.Current.ShutdownRCFAppAsync(false);
         }
 
         #endregion

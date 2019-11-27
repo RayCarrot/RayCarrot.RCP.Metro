@@ -93,7 +93,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Shut down the app
-            Application.Current.Shutdown();
+            await Metro.App.Current.ShutdownRCFAppAsync(true);
         }
 
         #endregion

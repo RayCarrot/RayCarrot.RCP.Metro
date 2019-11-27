@@ -199,7 +199,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task OnCloseAsync(Window mainWindow)
         {
-            // Save state
+            // Save window state
             Data.WindowState = WindowSessionState.GetWindowState(mainWindow);
 
             RCFCore.Logger?.LogInformationSource($"The application is exiting...");

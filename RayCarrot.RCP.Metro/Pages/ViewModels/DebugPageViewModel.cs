@@ -1,4 +1,10 @@
-﻿using System;
+﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
+using RayCarrot.IO;
+using RayCarrot.UI;
+using RayCarrot.Windows.Registry;
+using RayCarrot.WPF;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,13 +14,6 @@ using System.Runtime.Versioning;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Windows.Management.Deployment;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
-using RayCarrot.IO;
-using RayCarrot.UI;
-using RayCarrot.Windows.Registry;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -38,6 +37,7 @@ namespace RayCarrot.RCP.Metro
             RefreshAllCommand = new AsyncRelayCommand(RefreshAllAsync);
             RefreshAllAsyncCommand = new AsyncRelayCommand(RefreshAllTaskAsync);
             RunInstallerCommand = new RelayCommand(RunInstaller);
+            ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownRCFAppAsync(false)));
 
             // Get properties
             AvailableInstallers = App.GetGames.Where(x => x.GetGameInfo().CanBeInstalledFromDisc).ToArray();
@@ -364,6 +364,8 @@ namespace RayCarrot.RCP.Metro
         public ICommand RefreshAllAsyncCommand { get; }
 
         public ICommand RunInstallerCommand { get; }
+
+        public ICommand ShutdownAppCommand { get; }
 
         #endregion
     }

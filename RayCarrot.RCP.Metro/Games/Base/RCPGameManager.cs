@@ -89,16 +89,14 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="process">The game process</param>
         /// <returns>The task</returns>
-        public virtual Task PostLaunchAsync(Process process)
+        public virtual async Task PostLaunchAsync(Process process)
         {
             // Dispose the process
             process?.Dispose();
 
             // Check if the application should close
             if (RCFRCP.Data.CloseAppOnGameLaunch)
-                Application.Current.Shutdown();
-
-            return Task.CompletedTask;
+                await App.Current.ShutdownRCFAppAsync(false);
         }
 
         /// <summary>

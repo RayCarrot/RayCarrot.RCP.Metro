@@ -518,7 +518,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(7, 1, 0, 1);
+        public Version CurrentVersion => new Version(7, 1, 0, 2);
 
         /// <summary>
         /// Indicates if the current version is a beta version
@@ -839,10 +839,6 @@ namespace RayCarrot.RCP.Metro
             {
                 RCFCore.Logger?.LogInformationSource($"A download is starting...");
 
-                // Make sure the directory exists
-                if (!outputDir.DirectoryExists)
-                    Directory.CreateDirectory(outputDir);
-
                 // Make sure there are input sources to download
                 if (!inputSources.Any())
                 {
@@ -1028,32 +1024,44 @@ namespace RayCarrot.RCP.Metro
                     }
                 }
 
-                if (await RCFUI.MessageUI.DisplayMessageAsync(!isBetaUpdate ? String.Format(Resources.Update_UpdateAvailable, news) : Resources.Update_BetaUpdateAvailable, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
+                // Run as new task to mark this operation as finished
+                _ = Task.Run(async () =>
                 {
                     try
                     {
-                        Directory.CreateDirectory(CommonPaths.UpdaterFilePath.Parent);
-                        File.WriteAllBytes(CommonPaths.UpdaterFilePath, Files.Rayman_Control_Panel_Updater);
-                        RCFCore.Logger?.LogInformationSource($"The updater was created");
+                        if (await RCFUI.MessageUI.DisplayMessageAsync(!isBetaUpdate ? String.Format(Resources.Update_UpdateAvailable, news) : Resources.Update_BetaUpdateAvailable, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
+                        {
+                            try
+                            {
+                                Directory.CreateDirectory(CommonPaths.UpdaterFilePath.Parent);
+                                File.WriteAllBytes(CommonPaths.UpdaterFilePath, Files.Rayman_Control_Panel_Updater);
+                                RCFCore.Logger?.LogInformationSource($"The updater was created");
+                            }
+                            catch (Exception ex)
+                            {
+                                ex.HandleError("Writing updater to temp path", CommonPaths.UpdaterFilePath);
+                                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, "raycarrot.ylemnova.com"), Resources.Update_UpdaterErrorHeader);
+                                return;
+                            }
+
+                            // Launch the updater and run as admin is set to show under installed programs in under to update the Registry key
+                            if (await RCFRCP.File.LaunchFileAsync(CommonPaths.UpdaterFilePath, Data.ShowUnderInstalledPrograms, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.DarkMode} {RCFRCP.Data.UserLevel} {isBetaUpdate} \"{Data.CurrentCulture}\"") == null)
+                            {
+                                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, "raycarrot.ylemnova.com"), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
+
+                                return;
+                            }
+
+                            // Shut down the app
+                            await Metro.App.Current.ShutdownRCFAppAsync(true);
+                        }
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleError("Writing updater to temp path", CommonPaths.UpdaterFilePath);
-                        await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, "raycarrot.ylemnova.com"), Resources.Update_UpdaterErrorHeader);
-                        return;
+                        ex.HandleError("Updating RCP");
+                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.Update_Error, Resources.Update_ErrorHeader, MessageType.Error);
                     }
-
-                    // Launch the updater and run as admin is set to show under installed programs in under to update the Registry key
-                    if (await RCFRCP.File.LaunchFileAsync(CommonPaths.UpdaterFilePath, Data.ShowUnderInstalledPrograms, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.DarkMode} {RCFRCP.Data.UserLevel} {isBetaUpdate} \"{Data.CurrentCulture}\"") == null)
-                    {
-                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, "raycarrot.ylemnova.com"), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
-
-                        return;
-                    }
-
-                    // Shut down the app
-                    Application.Current.Shutdown();
-                }
+                });
             }
             finally
             {

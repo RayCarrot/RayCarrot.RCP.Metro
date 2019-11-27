@@ -36,6 +36,10 @@
                                 Command="{Binding Path=RefreshAllAsyncCommand}"
                                 IconKind="Refresh"/>
 
+            <local:MenuItemIcon Header="Shutdown app"
+                                Command="{Binding Path=ShutdownAppCommand}"
+                                IconKind="Close"/>
+
         </ContextMenu>
     </local:IBasePage.OverflowMenu>
 

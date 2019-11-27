@@ -2999,4 +2999,7 @@ gameDisplayName</comment>
   <data name="Config_SoundVolumeHeader" xml:space="preserve">
     <value>Sound Volume</value>
   </data>
+  <data name="Update_Error" xml:space="preserve">
+    <value>An error occurred when updating the application</value>
+  </data>
 </root>
