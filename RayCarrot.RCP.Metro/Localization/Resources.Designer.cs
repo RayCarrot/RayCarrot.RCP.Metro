@@ -3280,7 +3280,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON files.
+        ///   Looks up a localized string similar to JSON Files.
         /// </summary>
         public static string FileFilterDescription_JSON {
             get {
@@ -4512,9 +4512,7 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to For games which support to be installed from a disc you can do so from the drop down menu of the game. Currently Rayman 2, Rayman M and Rayman Arena are the only supported games.
         ///
-        ///During the installation you will have to specify a directory to install to. The game will install in a sub-directory in the specified directory. For example, you choose to install Rayman 2 under C:\Ubisoft it will get installed under C:\Ubisoft\Rayman 2
-        ///
-        ///To uninstall one of the games installed using the game installer you simp [rest of string was truncated]&quot;;.
+        ///During the installation you will have to specify a directory to install to. The game will install in a sub-directory in the specified directory. For example, you choose to install Rayman 2 under C:\Ubisoft it will get installed under C:\Ubisoft\Rayman 2.
         /// </summary>
         public static string Help_RCP_GameInstaller {
             get {
@@ -5936,7 +5934,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Changing the version will change how the game runs and the available options. The 2003 version has calenders for the years 2003 and 2004. The 2005 version has calenders for the years 2006 and 2007 as well as the &apos;goodies&apos; section..
+        ///   Looks up a localized string similar to Changing the version will change the available options in the game. The 2003 version has calenders for the years 2003 and 2004. The 2005 version has calenders for the years 2006 and 2007 as well as the &apos;goodies&apos; section..
         /// </summary>
         public static string PrintStudioOptions_VersionInfo {
             get {
@@ -6872,7 +6870,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This utility can convert a localization for of type .loc8 which is used in Rayman Legends, Rayman Adventures and Rayman Mini. Converting to a .JSON file will allow the files to be edited freely. When converting back you need to select an existing .loc8 file to import the changes into..
+        ///   Looks up a localized string similar to This utility can convert a localization file of type .loc8 which is used in Rayman Legends, Rayman Adventures and Rayman Mini. Converting to a .JSON file will allow the files to be edited freely. When converting back you need to select an existing .loc8 file to import the changes into..
         /// </summary>
         public static string RLU_LocalizationConverterHeaderInfo {
             get {
@@ -7971,7 +7969,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to localization files.
+        ///   Looks up a localized string similar to Localization Files.
         /// </summary>
         public static string UbiArtU_LocalizationConverterLocFilterDescription {
             get {

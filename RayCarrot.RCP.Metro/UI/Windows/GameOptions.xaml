@@ -107,7 +107,7 @@
                               Visibility="{Binding Path=HasProgressionContent, Converter={rwpf:BooleanToVisibilityConverter}}">
                 <ScrollViewer Padding="5"
                               DataContext="{Binding Path=ProgressionViewModel, Mode=OneTime}">
-                    <ItemsControl ItemsSource="{Binding Path=ProgressionSlots}">
+                    <ItemsControl ItemsSource="{Binding Path=ProgressionSlots, Mode=OneTime}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>

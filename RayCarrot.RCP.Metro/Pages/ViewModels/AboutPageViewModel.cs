@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using System.Threading.Tasks;
-using System.Windows;
 using RayCarrot.WPF;
 using System.Windows.Input;
 using RayCarrot.Extensions;

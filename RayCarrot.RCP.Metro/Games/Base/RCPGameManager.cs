@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Windows;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 

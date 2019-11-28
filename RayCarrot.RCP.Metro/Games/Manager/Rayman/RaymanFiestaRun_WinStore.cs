@@ -6,7 +6,6 @@ using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.UI;
-using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {

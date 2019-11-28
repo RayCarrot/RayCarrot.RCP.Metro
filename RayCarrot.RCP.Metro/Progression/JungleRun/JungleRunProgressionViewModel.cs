@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -167,17 +166,20 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Dispose existing slot view models
-                    ProgressionSlots?.ForEach(x => x.Dispose());
+                    ProgressionSlots.ForEach(x => x.Dispose());
 
                     RCFCore.Logger?.LogDebugSource($"Existing slots have been disposed");
+                    
+                    // Clear the collection
+                    ProgressionSlots.Clear();
 
                     // Read and set slot data
-                    ProgressionSlots = new ObservableCollection<ProgressionSlotViewModel>()
+                    ProgressionSlots.AddRange(new ProgressionSlotViewModel[]
                     {
                         GetProgressionSlotViewModel("slot1.dat", () => String.Format(Resources.Progression_GenericSlot, "1")),
                         GetProgressionSlotViewModel("slot2.dat", () => String.Format(Resources.Progression_GenericSlot, "2")),
                         GetProgressionSlotViewModel("slot3.dat", () => String.Format(Resources.Progression_GenericSlot, "3"))
-                    };
+                    });
 
                     RCFCore.Logger?.LogInformationSource($"Slots have been loaded");
 

@@ -1599,9 +1599,7 @@ updateURL</comment>
   <data name="Help_RCP_GameInstaller" xml:space="preserve">
     <value>For games which support to be installed from a disc you can do so from the drop down menu of the game. Currently Rayman 2, Rayman M and Rayman Arena are the only supported games.
 
-During the installation you will have to specify a directory to install to. The game will install in a sub-directory in the specified directory. For example, you choose to install Rayman 2 under C:\Ubisoft it will get installed under C:\Ubisoft\Rayman 2
-
-To uninstall one of the games installed using the game installer you simply have to delete the directory and its files. The game will not show up under installed programs due to not having an uninstaller.</value>
+During the installation you will have to specify a directory to install to. The game will install in a sub-directory in the specified directory. For example, you choose to install Rayman 2 under C:\Ubisoft it will get installed under C:\Ubisoft\Rayman 2</value>
   </data>
   <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
     <value>Backup/Restore</value>
@@ -2827,7 +2825,7 @@ gameDisplayName</comment>
     <value>Print Studio version</value>
   </data>
   <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
-    <value>Changing the version will change how the game runs and the available options. The 2003 version has calenders for the years 2003 and 2004. The 2005 version has calenders for the years 2006 and 2007 as well as the 'goodies' section.</value>
+    <value>Changing the version will change the available options in the game. The 2003 version has calenders for the years 2003 and 2004. The 2005 version has calenders for the years 2006 and 2007 as well as the 'goodies' section.</value>
   </data>
   <data name="PrintStudioOptions_Version03" xml:space="preserve">
     <value>2003 Version</value>
@@ -2874,7 +2872,7 @@ downloadSize</comment>
     <value>Localization Converter</value>
   </data>
   <data name="RLU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>This utility can convert a localization for of type .loc8 which is used in Rayman Legends, Rayman Adventures and Rayman Mini. Converting to a .JSON file will allow the files to be edited freely. When converting back you need to select an existing .loc8 file to import the changes into.</value>
+    <value>This utility can convert a localization file of type .loc8 which is used in Rayman Legends, Rayman Adventures and Rayman Mini. Converting to a .JSON file will allow the files to be edited freely. When converting back you need to select an existing .loc8 file to import the changes into.</value>
   </data>
   <data name="UbiArtU_LocalizationConverterExport" xml:space="preserve">
     <value>Export to JSON</value>
@@ -2886,13 +2884,13 @@ downloadSize</comment>
     <value>Select a localization file to export from</value>
   </data>
   <data name="UbiArtU_LocalizationConverterLocFilterDescription" xml:space="preserve">
-    <value>localization files</value>
+    <value>Localization Files</value>
   </data>
   <data name="ExportDestinationSelectionHeader" xml:space="preserve">
     <value>Select a file destination to export to</value>
   </data>
   <data name="FileFilterDescription_JSON" xml:space="preserve">
-    <value>JSON files</value>
+    <value>JSON Files</value>
   </data>
   <data name="ImportSelectionHeader" xml:space="preserve">
     <value>Select a converted JSON file to import from</value>

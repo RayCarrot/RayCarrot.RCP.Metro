@@ -634,10 +634,10 @@
     <value>Aanmaken</value>
   </data>
   <data name="RLU_UbiRayHeader" xml:space="preserve">
-    <value>UbiRay Karakter</value>
+    <value>UbiRay Personage</value>
   </data>
   <data name="RLU_UbiRayInfo" xml:space="preserve">
-    <value>UbiRay is een karakter dat niet in-game gekozen kan worden, maar wel via de gamebestanden. Dit hulpprogramma zal je save file wijzigen, zodat UbiRay het geselecteerde karakter wordt, waarna je via een omweg dus wel als hem kunt spelen.</value>
+    <value>UbiRay is een personage dat niet in-game gekozen kan worden, maar wel via de gamebestanden. Dit hulpprogramma zal je save file wijzigen, zodat UbiRay het geselecteerde personage wordt, waarna je via een omweg dus wel als hem kunt spelen.</value>
   </data>
   <data name="RLU_UbiRayWarning" xml:space="preserve">
     <value>WAARSCHUWING: dit hulpprogramma is experimenteel en zou je save file corrupt kunnen maken. Maak daarom altijd eerst een back-up alvorens hier gebruik van te maken!</value>
@@ -1342,16 +1342,16 @@ Herstarten?</value>
     <value>Bestand kon niet worden aangemaakt</value>
   </data>
   <data name="R2U_Translations_IrishInfo" xml:space="preserve">
-    <value>Irish (Iers) - door PluMGMK</value>
+    <value>Iers (Gaeilge) - door PluMGMK</value>
   </data>
   <data name="R2U_Translations_SwedishInfo" xml:space="preserve">
-    <value>Swedish (Zweeds) - door RayCarrot</value>
+    <value>Zweeds (Svenska) - door RayCarrot</value>
   </data>
   <data name="R2U_Translations_PortugueseInfo" xml:space="preserve">
-    <value>Portuguese (Portugees) - door Haruka Tavares</value>
+    <value>Portugees (Português) - door Haruka Tavares</value>
   </data>
   <data name="R2U_Translations_SlovakInfo" xml:space="preserve">
-    <value>Slovak (Slowaaks) - door MixerX</value>
+    <value>Slowaaks (Slovenský) - door MixerX</value>
   </data>
   <data name="R2U_Translations_Original" xml:space="preserve">
     <value>Origineel</value>
@@ -1515,9 +1515,7 @@ Als er een fout plaatsvindt vanwege de update-service, kan de update handmatig w
   <data name="Help_RCP_GameInstaller" xml:space="preserve">
     <value>Voor de spellen die geïnstalleerd kunnen worden vanaf een schijf, selecteer je de optie via het dropdown-menu van het spel. Rayman 2, Rayman M en Rayman Arena zijn momenteel de enige, ondersteunde games.
 
-Tijdens de installatie dien je een map te kiezen voor de installatiebestanden. Het spel zal geïnstalleerd worden in een submap binnen de geselecteerde map. Kies je bijvoorbeeld om de game te installeren in C:\Ubisoft, dan zal het spel geïnstalleerd worden onder C:\Ubisoft\Rayman 2
-
-Om één van de games te deïnstalleren via de Game Installer, dien je simpelweg de mappen en bestanden te verwijderen. Het spel zal niet meer zichtbaar zijn onder Geïnstalleerde Programma's, omdat er geen uninstaller aanwezig is.</value>
+Tijdens de installatie dien je een map te kiezen voor de installatiebestanden. Het spel zal geïnstalleerd worden in een submap binnen de geselecteerde map. Kies je bijvoorbeeld om de game te installeren in C:\Ubisoft, dan zal het spel geïnstalleerd worden onder C:\Ubisoft\Rayman 2</value>
   </data>
   <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
     <value>Back-up/Herstel</value>
@@ -2412,7 +2410,7 @@ Houd L1 + R1 (of gelijkwaardige knoppen op de huidige controller) in het menu va
     <value>Voer ALLRAYMANM als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
   </data>
   <data name="Cheats_RM_AllCharactersTitle" xml:space="preserve">
-    <value>Ontgrendel alle karakters</value>
+    <value>Ontgrendel alle personages</value>
   </data>
   <data name="Cheats_RM_AllCharactersInput" xml:space="preserve">
     <value>Voer PUPPETS als profielnaam in en houd Shift + Ctrl + Alt ingedrukt</value>
@@ -2716,12 +2714,198 @@ Foutmelding: {1}</value>
   <data name="GameOptions_Info" xml:space="preserve">
     <value>Informatie</value>
   </data>
+  <data name="GameDisplay_CloudInstall" xml:space="preserve">
+    <value>Installeren</value>
+  </data>
+  <data name="GameInstall_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het installeren van {0}</value>
+  </data>
+  <data name="GameInstall_ErrorHeader" xml:space="preserve">
+    <value>Installeren Game Mislukt</value>
+  </data>
+  <data name="GameOptions_Uninstall" xml:space="preserve">
+    <value>Deïnstalleren</value>
+  </data>
+  <data name="RemoveInstalledGameQuestion" xml:space="preserve">
+    <value>{0} is geïnstalleerd via het Rayman Control Panel. Het verwijderen van het spel uit dit programma, zal niet resulteren in definitieve verwijdering van het spel, inclusief de back-ups die zijn gemaakt via het programma. Daarom is het aanbevolen het spel te deïnstalleren.</value>
+  </data>
+  <data name="UninstallGameQuestion" xml:space="preserve">
+    <value>Weet je zeker dat je {0} wilt deïnstalleren? Dit zal het spel van je computer verwijderen, inclusief de save file. Back-ups zullen níét worden verwijderd.</value>
+  </data>
+  <data name="UninstallGameQuestionHeader" xml:space="preserve">
+    <value>Bevestig Deïnstallatie</value>
+  </data>
+  <data name="UninstallGameError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het deïnstalleren van {0}</value>
+  </data>
+  <data name="UninstallGameErrorHeader" xml:space="preserve">
+    <value>Deïnstallatie Mislukt</value>
+  </data>
+  <data name="PrintStudioOptions_VersionHeader" xml:space="preserve">
+    <value>Print Studio versie</value>
+  </data>
+  <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
+    <value>Het veranderen van de versie heeft invloed op de beschikbare opties in het spel. De 2003 versie heeft kalenders voor 2003 &amp; 2004, de 2005 versie heeft kalenders voor de jaren 2006 &amp; 2007, alsook een 'Goodies' sectie.</value>
+  </data>
+  <data name="PrintStudioOptions_Version03" xml:space="preserve">
+    <value>2003 Versie</value>
+  </data>
+  <data name="PrintStudioOptions_Version05" xml:space="preserve">
+    <value>2005 Versie</value>
+  </data>
+  <data name="DownloadGame_ConfirmSize" xml:space="preserve">
+    <value>Het spel vereist dat de volgende bestanden worden gedownload. De totale grootte van de download is {0}. Doorgaan?</value>
+  </data>
+  <data name="DownloadGame_Confirm" xml:space="preserve">
+    <value>Het spel vereist dat de volgende bestanden worden gedownload. Doorgaan?</value>
+  </data>
+  <data name="GameDisplay_GameJolt" xml:space="preserve">
+    <value>Downloaden via GameJolt</value>
+  </data>
+  <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
+    <value>Open de GameJolt pagina</value>
+  </data>
+  <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het updaten van de Print Studio versie</value>
+  </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>
     <comment>Rayman</comment>
   </data>
+  <data name="GamesPage_Category_Rabbids" xml:space="preserve">
+    <value>Rabbids</value>
+  </data>
+  <data name="GamesPage_Category_Demos" xml:space="preserve">
+    <value>Demo's</value>
+  </data>
+  <data name="GamesPage_Category_Other" xml:space="preserve">
+    <value>Overige</value>
+  </data>
+  <data name="GamesPage_Category_Fan" xml:space="preserve">
+    <value>Fan-games</value>
+  </data>
   <data name="Links_Community_RaymanReanimated" xml:space="preserve">
     <value>Rayman Reanimated</value>
     <comment>Rayman Reanimated</comment>
+  </data>
+  <data name="UbiArtU_LocalizationConverterHeader" xml:space="preserve">
+    <value>Lokalisatie Converter</value>
+  </data>
+  <data name="RLU_LocalizationConverterHeaderInfo" xml:space="preserve">
+    <value>Dit hulpprogramma kan een lokalisatiebestand converteren van het type .loc8, welke extensie gebruikt wordt in Rayman Legends, Rayman Adventures en Rayman Mini. Het converteren naar een .JSON-bestand zal ervoor zorgen dat de bestanden vrij kunnen worden bewerkt. Voor het ongedaan maken van de conversie dien je een bestaand .loc8-bestand te selecteren waarin je de wijzigingen importeert.</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterExport" xml:space="preserve">
+    <value>Exporteren naar JSON</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterImport" xml:space="preserve">
+    <value>Importeren naar lokalisatiebestand</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterExportSelectionHeader" xml:space="preserve">
+    <value>Selecteer een lokalisatiebestand om vanaf te exporteren</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterLocFilterDescription" xml:space="preserve">
+    <value>Lokalisatiebestanden</value>
+  </data>
+  <data name="ExportDestinationSelectionHeader" xml:space="preserve">
+    <value>Selecteer een bestandslocatie om naar te exporteren</value>
+  </data>
+  <data name="FileFilterDescription_JSON" xml:space="preserve">
+    <value>JSON-bestanden</value>
+  </data>
+  <data name="ImportSelectionHeader" xml:space="preserve">
+    <value>Selecteer een geconverteerd JSON-bestand om vanaf te importeren</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterImportDestinationSelectionHeader" xml:space="preserve">
+    <value>Selecteer een lokalisatiebestand om naar te importeren</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterImportError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het importeren van het lokalisatiebestand. Controleer of het format van het .JSON-bestand juist is en of het lokalisatiebestand ondersteund wordt.</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterExportError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het exporteren van het lokalisatiebestand. Controleer of het bestand ondersteund wordt.</value>
+  </data>
+  <data name="ROU_LocalizationConverterHeaderInfo" xml:space="preserve">
+    <value>Dit hulpprogramma kan een lokalisatie converteren van het type .loc8, welke extensie gebruikt wordt in Rayman Origins. Het converteren naar een .JSON-bestand zal ervoor zorgen dat de bestanden vrij kunnen worden bewerkt. Voor het ongedaan maken van de conversie dien je een bestaand .loc8-bestand te selecteren waarin je de wijzigingen importeert.</value>
+  </data>
+  <data name="RFRU_LocalizationConverterHeaderInfo" xml:space="preserve">
+    <value>Dit hulpprogramma kan een lokalisatie converteren van het type .loc8, welke extensie gebruikt wordt in Rayman Fiesta. Het converteren naar een .JSON-bestand zal ervoor zorgen dat de bestanden vrij kunnen worden bewerkt. Voor het ongedaan maken van de conversie dien je een bestaand .loc8-bestand te selecteren waarin je de wijzigingen importeert.</value>
+  </data>
+  <data name="Progression_Header" xml:space="preserve">
+    <value>Voortgang</value>
+  </data>
+  <data name="Progression_GenericSlot" xml:space="preserve">
+    <value>Slot {0}</value>
+  </data>
+  <data name="Progression_Export" xml:space="preserve">
+    <value>Exporteren</value>
+  </data>
+  <data name="Progression_Import" xml:space="preserve">
+    <value>Importeren</value>
+  </data>
+  <data name="Progression_ExportError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het exporteren van de save file. Controleer of het bestand ondersteund wordt.</value>
+  </data>
+  <data name="Progression_ImportError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het importeren van de save file. Controleer of het format van het .JSON-bestand juist is en of de save file ondersteund wordt.</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterExportSuccess" xml:space="preserve">
+    <value>Het lokalisatiebestand is succesvol geëxporteerd</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterImportSuccess" xml:space="preserve">
+    <value>Het lokalisatiebestand is succesvol geïmporteerd</value>
+  </data>
+  <data name="UninstallGameSuccess" xml:space="preserve">
+    <value>{0} is gedeïnstalleerd</value>
+  </data>
+  <data name="UninstallGameSuccessHeader" xml:space="preserve">
+    <value>Deïnstallatie voltooid</value>
+  </data>
+  <data name="GameInstall_Success" xml:space="preserve">
+    <value>{0} is succesvol geïnstalleerd</value>
+  </data>
+  <data name="GameInstall_SuccessHeader" xml:space="preserve">
+    <value>Installatie voltooid</value>
+  </data>
+  <data name="Progression_ExportSuccess" xml:space="preserve">
+    <value>De save file is succesvol geëxporteerd</value>
+  </data>
+  <data name="Progression_ImportSuccess" xml:space="preserve">
+    <value>De save file is succesvol geïmporteerd</value>
+  </data>
+  <data name="Config_CharacterHeader" xml:space="preserve">
+    <value>Personage</value>
+  </data>
+  <data name="Config_CharacterHeaderRJRInfo" xml:space="preserve">
+    <value>Het selecteren van een personage via hier, verandert het huidige geselecteerde personage in het spel. De laatste 2 Teensie personages kunnen alleen via hier worden geselecteerd, omdat dit via het spel onmogelijk is.</value>
+  </data>
+  <data name="Config_RJRHeroes_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Config_RJRHeroes_Globox" xml:space="preserve">
+    <value>Globox</value>
+  </data>
+  <data name="Config_RJRHeroes_DarkRayman" xml:space="preserve">
+    <value>Dark Rayman</value>
+  </data>
+  <data name="Config_RJRHeroes_GloboxOutfit" xml:space="preserve">
+    <value>Globox Outfit</value>
+  </data>
+  <data name="Config_RJRHeroes_GreenTeensy" xml:space="preserve">
+    <value>Green Teensy</value>
+  </data>
+  <data name="Config_RJRHeroes_GothTeensy" xml:space="preserve">
+    <value>Goth Teensy</value>
+  </data>
+  <data name="Config_SelectedSlotHeader" xml:space="preserve">
+    <value>Geselecteerde Save Slot</value>
+  </data>
+  <data name="Config_MusicVolumeHeader" xml:space="preserve">
+    <value>Muziekvolume</value>
+  </data>
+  <data name="Config_SoundVolumeHeader" xml:space="preserve">
+    <value>Geluidsvolume</value>
+  </data>
+  <data name="Update_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het updaten van de applicatie</value>
   </data>
 </root>

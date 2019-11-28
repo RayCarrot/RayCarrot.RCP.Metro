@@ -3,10 +3,10 @@ using Newtonsoft.Json.Converters;
 
 namespace RayCarrot.RCP.Metro
 {
-    [JsonConverter(typeof(StringEnumConverter))]
     /// <summary>
     /// The available games
     /// </summary>
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum Games
     {
         #region Rayman

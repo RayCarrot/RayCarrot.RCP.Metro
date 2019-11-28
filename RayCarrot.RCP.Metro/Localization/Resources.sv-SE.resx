@@ -1739,4 +1739,43 @@ Starta om?</value>
     <value>Rayman Reanimated</value>
     <comment>Rayman Reanimated</comment>
   </data>
+  <data name="RDU_CreateConfig_Success" xml:space="preserve">
+    <value>Filen har skapats</value>
+  </data>
+  <data name="RDU_CreateConfig_Error" xml:space="preserve">
+    <value>Filen kunde inte skapas</value>
+  </data>
+  <data name="R2U_Translations_IrishInfo" xml:space="preserve">
+    <value>Irländska (Gaeilge) - av PluMGMK</value>
+  </data>
+  <data name="R2U_Translations_SwedishInfo" xml:space="preserve">
+    <value>Svenska (Svenska) - av RayCarrot</value>
+  </data>
+  <data name="R2U_Translations_PortugueseInfo" xml:space="preserve">
+    <value>Portugisiska (Português) - av Haruka Tavares</value>
+  </data>
+  <data name="R2U_Translations_SlovakInfo" xml:space="preserve">
+    <value>Slovakiska (Slovenský) - av MixerX</value>
+  </data>
+  <data name="R2U_Translations_Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="R2U_Translations_Irish" xml:space="preserve">
+    <value>Irländska</value>
+  </data>
+  <data name="R2U_Translations_Swedish" xml:space="preserve">
+    <value>Svenska</value>
+  </data>
+  <data name="R2U_Translations_Portuguese" xml:space="preserve">
+    <value>Portugisiska</value>
+  </data>
+  <data name="R2U_Translations_Slovak" xml:space="preserve">
+    <value>Slovakiska</value>
+  </data>
+  <data name="R2U_Translations_FilesNotFound" xml:space="preserve">
+    <value>Filerna för verktyget kunde inte hittas</value>
+  </data>
+  <data name="R2U_Translations_RevertTextures" xml:space="preserve">
+    <value>Eftersom grafikfilen har ändrats av den tidigare översättningen rekommenderas det att den ersätts med den ursprungliga versionen.</value>
+  </data>
 </root>

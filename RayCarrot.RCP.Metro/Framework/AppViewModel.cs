@@ -518,12 +518,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(7, 1, 0, 2);
+        public Version CurrentVersion => new Version(7, 1, 0, 3);
 
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
-        public bool IsBeta => true;
+        public bool IsBeta => false;
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>

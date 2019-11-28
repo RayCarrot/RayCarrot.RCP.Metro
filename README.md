@@ -4,15 +4,15 @@ Rayman Control Panel (Metro) is the WPF redesign of the Rayman Control Panel. Fo
 ## Features
 - Manage all PC Rayman games with a unified game launcher and configuration shortcuts.
 - Configure the games with added options not normally available in the official configuration tools.
-- Option to use fan-made utilities to improve the games, such as widescreen support, button remapping, higher quality cutscenes and more!
-- Manage your Rayman save files with the backup tool.
+- Option to use fan-made utilities to improve the games, such as widescreen support, button remapping, higher quality cutscenes and more.
+- Manage your Rayman save files by creating backups and converting to/from JSON.
 - Customize how the program runs and looks, from the light/dark mode to more technical options.
 
 ### Configuration Tools
-Configuration tools are available for all games except the Windows Store ones (Rayman Jungle Run and Rayman Fiesta Run). These allow you to change settings indicating how the game runs.
+Configuration tools are available for the majority of games.
 
 #### DosBox
-For the DosBox games configuration a .ini file is created in the application's AppData directory where the chosen configuration values are saved. This file is then loaded into DosBox upon launching the game, along with the optional selected configuration file from the application settings and the mount path. The reason why all configuration commands are not passed in as parameters us due to DosBox having a parameter limit.
+For the DosBox games configuration a .ini file is created in the application's AppData directory where the chosen configuration values are saved. This file is then loaded into DosBox upon launching the game, along with the optional selected configuration file from the application settings and the mount path. The reason why all configuration commands are not passed in as parameters is due to DosBox having a parameter limit.
 
 #### Rayman 2
 The Rayman 2 configuration edits the ubi.ini file in the install directory if the GOG version is used, or else the ubi.ini file in the Windows directory. This configuration tool also has several utilities integrated into it.
@@ -30,6 +30,9 @@ Rabbids Go Home sends the config as launch arguments when launching the game. As
 
 #### Rayman Origins/Legends
 Rayman Origins and Rayman Legends both store their data in the Registry.
+
+#### Rayman Jungle Run
+Rayman Jungle Run stores its configuration in single-byte files in the app data.
 
 ### Utilities
 Utilities are available to help the games run better or add new functionality to them. Some files needed for utilities are not stored within the application due to them taking to much space. These will need to be downloaded.
@@ -49,11 +52,17 @@ This utility will recreate the Rayman Designer configuration file if it is missi
 #### Rayman 2 - Unofficial Translations
 This utility will replace the game's textures.cnt and fix.sna files with custom ones to allow custom languages to be used in the game.
 
+#### Rayman 2 - Patch Disc Version
+This utility replaced the disc version's files with those from the GOG version to avoid the disc error.
+
 #### Rayman 3 - DirectPlay
 This utility will allow the option to enable or disable the Windows legacy feature DirectPlay which is needed to run the game.
 
 #### Rayman Origins - Higher Quality Videos
 This utility will allow the PC video files to be replaced with the ones from the PlayStation 3 version which are in higher quality.
+
+#### Rayman Origins - Localization Converter
+This utility allows the localization file to be converted to/from JSON.
 
 #### Rayman Origins - Debug Commands
 This utility will create a file called "cmdline.txt" in the game's install directory with the selected debug commands.
@@ -64,8 +73,14 @@ This utility will download the official Rayman Origins disc updater which allows
 #### Rayman Legends - UbiRay Character
 This utility will edit the selected save file to have the currently selected character be UbiRay.
 
+#### Rayman Legends - Localization Converter
+This utility allows the localization file for Rayman Legends, Rayman Adventures and Rayman Mini to be converted to/from JSON.
+
 #### Rayman Legends - Debug Commands
 This utility will allow the game to be launched with the selected debug commands. This is only available for the Uplay version.
+
+#### Rayman Fiesta Run - Localization Converter
+This utility allows the localization file to be converted to/from JSON.
 
 ## Dependencies
 The Rayman Control Panel uses these main dependencies:

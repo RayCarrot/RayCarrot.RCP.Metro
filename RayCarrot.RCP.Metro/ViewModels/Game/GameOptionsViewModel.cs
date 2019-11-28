@@ -59,6 +59,8 @@ namespace RayCarrot.RCP.Metro
             ConfigContent = gameInfo.ConfigUI;
             OptionsContent = gameInfo.OptionsUI;
             ProgressionViewModel = gameInfo.ProgressionViewModel;
+
+            HasProgressionContent = ProgressionViewModel != null;
         }
 
         #endregion
@@ -146,7 +148,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the game has config content
         /// </summary>
-        public bool HasProgressionContent => ProgressionViewModel?.ProgressionSlots?.Any() == true;
+        public bool HasProgressionContent { get; set; }
 
         /// <summary>
         /// Indicates if the game has options content

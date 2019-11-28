@@ -155,7 +155,7 @@ namespace RayCarrot.RCP.Metro
                     await ViewModel.ProgressionViewModel.LoadDataAsync();
 
                     // Refresh if we have progression content
-                    ViewModel.OnPropertyChanged(nameof(GameOptionsViewModel.HasProgressionContent));
+                    ViewModel.HasProgressionContent = ViewModel.ProgressionViewModel.ProgressionSlots?.Any() == true;
                 }
             }
             catch (Exception ex)

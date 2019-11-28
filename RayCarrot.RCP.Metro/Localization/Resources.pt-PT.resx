@@ -1517,9 +1517,7 @@ Se um erro ocorrer com o serviço de actualização pode ser descarregado manual
   <data name="Help_RCP_GameInstaller" xml:space="preserve">
     <value>Para jogos que suportem serem instalados por um disco, podes fazê-lo através do menu drop-down do jogo. De momento, os únicos jogos suportados são o Rayman 2, Rayman M e Rayman Arena.
 
-Durante a instalação deverás ter de especificar o directório para se instalar. O jogo irá instalar num sub-directório no directório especificado. Por exemplo, tu escolheste instalar o Rayman 2 sob C:\Ubisoft ; será instalado sob C:\Ubisoft\Rayman 2. 
- 
-Para desinstalar um dos jogos instalados utilizando o instalador de jogo deverás ter de simplesmente eliminar o directório e os seus ficheiros. O jogo não irá mostrar-se dentro dos programas instalados por não ter um desinstalador.</value>
+Durante a instalação deverás ter de especificar o directório para se instalar. O jogo irá instalar num sub-directório no directório especificado. Por exemplo, tu escolheste instalar o Rayman 2 sob C:\Ubisoft ; será instalado sob C:\Ubisoft\Rayman 2. </value>
   </data>
   <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
     <value>Cópia de Segurança/Restauro</value>
@@ -2725,5 +2723,197 @@ Error message: {1}</value>
   <data name="Links_Community_RaymanReanimated" xml:space="preserve">
     <value>Rayman Reanimated</value>
     <comment>Rayman Reanimated</comment>
+  </data>
+  <data name="GameDisplay_CloudInstall" xml:space="preserve">
+    <value>Instalar</value>
+  </data>
+  <data name="GameInstall_Error" xml:space="preserve">
+    <value>Ocorreu um erro quando se instalava o {0}</value>
+  </data>
+  <data name="GameInstall_ErrorHeader" xml:space="preserve">
+    <value>Falhou a instalação do jogo
+</value>
+  </data>
+  <data name="GameOptions_Uninstall" xml:space="preserve">
+    <value>Desinstalar</value>
+  </data>
+  <data name="RemoveInstalledGameQuestion" xml:space="preserve">
+    <value>O {0} foi instalado originalmente utilizando o Painel de Controlo Rayman. Remover o jogo do programa não irá remover o jogo do teu computador ou nenhum dos seus ficheiros, incluíndo as cópias de segurança criadas utilizando este programa. É recomendado no entanto desinstalar-se o jogo.</value>
+  </data>
+  <data name="UninstallGameQuestion" xml:space="preserve">
+    <value>Tens a certeza que queres desinstalar o {0}? Isto irá remover o jogo do teu computador, incluíndo os dados de progressão. As cópias de segurança não serão removidas.</value>
+  </data>
+  <data name="UninstallGameQuestionHeader" xml:space="preserve">
+    <value>Confirmar desinstalação</value>
+  </data>
+  <data name="UninstallGameError" xml:space="preserve">
+    <value>Ocorreu um erro quando se desinstalava {0}
+</value>
+  </data>
+  <data name="UninstallGameErrorHeader" xml:space="preserve">
+    <value>Falhou a desinstalação</value>
+  </data>
+  <data name="PrintStudioOptions_VersionHeader" xml:space="preserve">
+    <value>Versão Print Studio</value>
+  </data>
+  <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
+    <value>Alterar a versão irá alterar as opções disponíveis no jogo. A versão de 2003 tem calendários para os anos de 2003 e 2004. A versão de 2005 tem calendários para os anos de 2006 e 2007 assim como uma secção de 'goodies'.</value>
+  </data>
+  <data name="PrintStudioOptions_Version03" xml:space="preserve">
+    <value>Versão de 2003</value>
+  </data>
+  <data name="PrintStudioOptions_Version05" xml:space="preserve">
+    <value>Versão de 2005</value>
+  </data>
+  <data name="DownloadGame_ConfirmSize" xml:space="preserve">
+    <value>Este jogo requer que sejam descarregados os seus ficheiros. O tamanho total da descarga é de {0}. Continuar?</value>
+  </data>
+  <data name="DownloadGame_Confirm" xml:space="preserve">
+    <value>Este jogo requer que sejam descarregados os seus ficheiros. Continuar?</value>
+  </data>
+  <data name="GameDisplay_GameJolt" xml:space="preserve">
+    <value>Descarregar através da GameJolt</value>
+  </data>
+  <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
+    <value>Abrir página GameJolt</value>
+  </data>
+  <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
+    <value>Ocorreu um erro quando se actualizava a versão Print Studio</value>
+  </data>
+  <data name="GamesPage_Category_Rabbids" xml:space="preserve">
+    <value>Rabbids</value>
+  </data>
+  <data name="GamesPage_Category_Demos" xml:space="preserve">
+    <value>Demos</value>
+  </data>
+  <data name="GamesPage_Category_Other" xml:space="preserve">
+    <value>Outros</value>
+  </data>
+  <data name="GamesPage_Category_Fan" xml:space="preserve">
+    <value>Jogos de Fãs</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterHeader" xml:space="preserve">
+    <value>Conversor de Localização</value>
+  </data>
+  <data name="RLU_LocalizationConverterHeaderInfo" xml:space="preserve">
+    <value>Este utilitário pode converter um ficheiro de localização de tipo .loc8 que é utilizado no Rayman Legends, Rayman Adventures e Rayman Mini. Converter para um ficheiro .JSON irá permitir que os ficheiros sejam livremente editados. Necessitas de seleccionar um ficheiro .loc8 existente para importar as alterações para lá quando convertendo de volta.</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterExport" xml:space="preserve">
+    <value>Exportar para JSON</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterImport" xml:space="preserve">
+    <value>Importar para ficheiro de localização</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterExportSelectionHeader" xml:space="preserve">
+    <value>Selecciona um ficheiro de localização para exportar</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterLocFilterDescription" xml:space="preserve">
+    <value>Ficheiros de Localização</value>
+  </data>
+  <data name="ExportDestinationSelectionHeader" xml:space="preserve">
+    <value>Selecciona um destino de ficheiro para a exportação</value>
+  </data>
+  <data name="FileFilterDescription_JSON" xml:space="preserve">
+    <value>Ficheiros JSON
+</value>
+  </data>
+  <data name="ImportSelectionHeader" xml:space="preserve">
+    <value>Selecciona um ficheiro JSON convertido para se importar</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterImportDestinationSelectionHeader" xml:space="preserve">
+    <value>Selecciona um ficheiro de localização para se importar</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterImportError" xml:space="preserve">
+    <value>Ocorreu um erro quando se importava o ficheiro de localização. Assegura-te que o formato do ficheiro .JSON está correcto e que o ficheiro de localização é suportado.</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterExportError" xml:space="preserve">
+    <value>Ocorreu um erro quando se exportava o ficheiro de localização. Assegura-te que o ficheiro é suportado.</value>
+  </data>
+  <data name="ROU_LocalizationConverterHeaderInfo" xml:space="preserve">
+    <value>Este utilitário pode converter uma localização para o tipo .loc que é utilizado no Rayman Origins. Converter para um ficheiro .JSON irá permitir que os ficheiros sejam livremente editados. Necessitas de seleccionar um ficheiro .loc8 existente para se importar as alterações para lá quando convertendo de volta.</value>
+  </data>
+  <data name="RFRU_LocalizationConverterHeaderInfo" xml:space="preserve">
+    <value>Este utilitário pode converter uma localização para o tipo .loc que é utilizado no Rayman Fiesta Run. Converter para um ficheiro .JSON irá permitir que os ficheiros sejam livremente editados. Necessitas de seleccionar um ficheiro .loc8 existente para se importar as alterações para lá quando convertendo de volta.</value>
+  </data>
+  <data name="Progression_Header" xml:space="preserve">
+    <value>Progressão</value>
+  </data>
+  <data name="Progression_GenericSlot" xml:space="preserve">
+    <value>Slot {0}</value>
+  </data>
+  <data name="Progression_Export" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="Progression_Import" xml:space="preserve">
+    <value>Importar</value>
+  </data>
+  <data name="Progression_ExportError" xml:space="preserve">
+    <value>Ocorreu um erro quando se exportava o ficheiro de progresso. Assegura-te que o ficheiro é suportado.</value>
+  </data>
+  <data name="Progression_ImportError" xml:space="preserve">
+    <value>Ocorreu um erro quando se importava o ficheiro de progresso. Assegura-te que o formato do ficheiro .JSON está correcto e que o ficheiro de progresso é suportado.</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterExportSuccess" xml:space="preserve">
+    <value>Foi exportado com sucesso o ficheiro de localização
+</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterImportSuccess" xml:space="preserve">
+    <value>Foi importado com sucesso o ficheiro de localização</value>
+  </data>
+  <data name="UninstallGameSuccess" xml:space="preserve">
+    <value>O {0} foi desinstalado</value>
+  </data>
+  <data name="UninstallGameSuccessHeader" xml:space="preserve">
+    <value>Desinstalação completa</value>
+  </data>
+  <data name="GameInstall_Success" xml:space="preserve">
+    <value>O {0} foi instalado com sucesso</value>
+  </data>
+  <data name="GameInstall_SuccessHeader" xml:space="preserve">
+    <value>Instalação completa</value>
+  </data>
+  <data name="Progression_ExportSuccess" xml:space="preserve">
+    <value>Foi exportado com sucesso o ficheiro de progresso</value>
+  </data>
+  <data name="Progression_ImportSuccess" xml:space="preserve">
+    <value>Foi importado com sucesso o ficheiro de progresso
+</value>
+  </data>
+  <data name="Config_CharacterHeader" xml:space="preserve">
+    <value>Personagem</value>
+  </data>
+  <data name="Config_CharacterHeaderRJRInfo" xml:space="preserve">
+    <value>Seleccionar uma personagem aqui irá alterar a personagem actualmente seleccionada no jogo. As últimas duas personagens Teensy só poderão ser definidas a partir daqui por não haver uma opção para se fazer no jogo.</value>
+  </data>
+  <data name="Config_RJRHeroes_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Config_RJRHeroes_Globox" xml:space="preserve">
+    <value>Globox</value>
+  </data>
+  <data name="Config_RJRHeroes_DarkRayman" xml:space="preserve">
+    <value>Rayman Escuro
+</value>
+  </data>
+  <data name="Config_RJRHeroes_GloboxOutfit" xml:space="preserve">
+    <value>Traje do Globox</value>
+  </data>
+  <data name="Config_RJRHeroes_GreenTeensy" xml:space="preserve">
+    <value>Teensy Verde</value>
+  </data>
+  <data name="Config_RJRHeroes_GothTeensy" xml:space="preserve">
+    <value>Teensy Gótico</value>
+  </data>
+  <data name="Config_SelectedSlotHeader" xml:space="preserve">
+    <value>Slot de progresso seleccionado</value>
+  </data>
+  <data name="Config_MusicVolumeHeader" xml:space="preserve">
+    <value>Volume de Música</value>
+  </data>
+  <data name="Config_SoundVolumeHeader" xml:space="preserve">
+    <value>Volume de Som</value>
+  </data>
+  <data name="Update_Error" xml:space="preserve">
+    <value>Ocorreu um erro quando se actualizava a aplicação</value>
   </data>
 </root>

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 
@@ -21,7 +20,12 @@ namespace RayCarrot.RCP.Metro
         /// <param name="game">The game</param>
         protected BaseProgressionViewModel(Games game)
         {
+            // Set properties
             Game = game;
+            ProgressionSlots = new ObservableCollection<ProgressionSlotViewModel>();
+
+            // Enable collection synchronization
+            BindingOperations.EnableCollectionSynchronization(ProgressionSlots, this);
         }
 
         #endregion
@@ -41,7 +45,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The available progression slots. These should get set when loading the data.
         /// </summary>
-        public ObservableCollection<ProgressionSlotViewModel> ProgressionSlots { get; set; }
+        public ObservableCollection<ProgressionSlotViewModel> ProgressionSlots { get; }
 
         #endregion
 
@@ -70,6 +74,9 @@ namespace RayCarrot.RCP.Metro
         {
             // Dispose each item
             ProgressionSlots?.ForEach(x => x.Dispose());
+
+            // Disable collection synchronization
+            BindingOperations.DisableCollectionSynchronization(ProgressionSlots);
         }
 
         #endregion

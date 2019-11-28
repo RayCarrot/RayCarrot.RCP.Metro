@@ -1,4 +1,4 @@
-﻿-----   Version 7.1.0 - November ??, 2019   -----
+﻿-----   Version 7.1.0 - November 28, 2019   -----
 • Added support for Rayman 3 Print Studio and fan-games
 • Added the progression tab for the game options dialog which shows the game progress from the save data (currently only available for Rayman Jungle Run - more games to follow)
 • Added the option to export/import save files to and from JSON (currently only available for Rayman Jungle Run - more games to follow)
