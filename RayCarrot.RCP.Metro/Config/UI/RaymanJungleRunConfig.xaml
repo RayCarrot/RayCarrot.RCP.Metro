@@ -59,7 +59,7 @@
 
                 <Slider Value="{Binding Path=MusicVolume}"
                         Minimum="0"
-                        Maximum="100"
+                        Maximum="99"
                         TickPlacement="BottomRight"
                         TickFrequency="25"
                         Width="300"
@@ -71,7 +71,7 @@
 
                 <Slider Value="{Binding Path=SoundVolume}"
                         Minimum="0"
-                        Maximum="100"
+                        Maximum="99"
                         TickPlacement="BottomRight"
                         TickFrequency="25"
                         Width="300"

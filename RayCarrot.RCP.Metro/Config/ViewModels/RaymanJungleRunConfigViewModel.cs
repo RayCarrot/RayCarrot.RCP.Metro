@@ -96,7 +96,7 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// The music volume, a value between 0 and 100
+        /// The music volume, a value between 0 and 99
         /// </summary>
         public byte MusicVolume
         {
@@ -109,7 +109,7 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// The sound volume, a value between 0 and 100
+        /// The sound volume, a value between 0 and 99
         /// </summary>
         public byte SoundVolume
         {

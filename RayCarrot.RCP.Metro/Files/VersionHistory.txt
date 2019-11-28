@@ -13,6 +13,7 @@ Other changes:
 • Added a link to the Rayman Reanimated Twitter page in the links page
 • Moved the settings page button back to the tab panel to avoid confusion with the overflow menu
 • Added Ryemanni, Droolie and MilesTheCreator to the special thanks section in the credits
+• Added a debug option to shutdown the application manually
 • Normalized the application shutdown. Manual app shutdowns will no longer skip the shutdown code (saving app data etc.).
 • If an update is found it will no longer run as a startup operation, avoiding the infinite loading icon
 • Fixed a bug where the app would crash if shut down from a background thread

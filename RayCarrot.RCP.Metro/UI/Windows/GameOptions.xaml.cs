@@ -1,15 +1,12 @@
-﻿using System;
+﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.UI;
+using RayCarrot.WPF;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework.Abstractions;
 using System.Windows;
-using System.Windows.Controls;
-using Windows.Management.Deployment;
-using RayCarrot.Extensions;
-using RayCarrot.UI;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -151,8 +148,15 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
+                // Make sure we have a progression view model
                 if (ViewModel.ProgressionViewModel != null)
+                {
+                    // Load the progression data
                     await ViewModel.ProgressionViewModel.LoadDataAsync();
+
+                    // Refresh if we have progression content
+                    ViewModel.OnPropertyChanged(nameof(GameOptionsViewModel.HasProgressionContent));
+                }
             }
             catch (Exception ex)
             {

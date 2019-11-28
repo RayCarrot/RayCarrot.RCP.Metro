@@ -146,7 +146,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the game has config content
         /// </summary>
-        public bool HasProgressionContent => ProgressionViewModel != null;
+        public bool HasProgressionContent => ProgressionViewModel?.ProgressionSlots?.Any() == true;
 
         /// <summary>
         /// Indicates if the game has options content
