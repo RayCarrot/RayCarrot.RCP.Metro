@@ -1,10 +1,8 @@
 ﻿using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
@@ -12,22 +10,24 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for the Rayman Jungle Run configuration
     /// </summary>
-    public class RaymanJungleRunConfigViewModel : GameConfigViewModel
+    public class RaymanJungleRunConfigViewModel : BaseRayRunConfigViewModel
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public RaymanJungleRunConfigViewModel()
+        public RaymanJungleRunConfigViewModel() : base(Games.RaymanJungleRun)
         {
             // Create commands
             SaveCommand = new AsyncRelayCommand(SaveAsync);
-
-            // Create properties
-            AsyncLock = new AsyncLock();
-            SaveDir = SaveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + Games.RaymanJungleRun.GetManager<RCPWinStoreGame>().FullPackageName + "LocalState";
         }
+
+        #endregion
+
+        #region Commands
+
+        public AsyncRelayCommand SaveCommand { get; }
 
         #endregion
 
@@ -46,24 +46,6 @@ namespace RayCarrot.RCP.Metro
         private JungleRunHeroes _selectedHero;
 
         private byte _selectedSlot;
-
-        private byte _musicVolume;
-        
-        private byte _soundVolume;
-
-        #endregion
-
-        #region Protected Properties
-
-        /// <summary>
-        /// The async lock to use for saving the configuration
-        /// </summary>
-        protected AsyncLock AsyncLock { get; }
-
-        /// <summary>
-        /// The save directory
-        /// </summary>
-        protected FileSystemPath SaveDir { get; }
 
         #endregion
 
@@ -93,110 +75,6 @@ namespace RayCarrot.RCP.Metro
                 _selectedSlot = value;
                 UnsavedChanges = true;
             }
-        }
-
-        /// <summary>
-        /// The music volume, a value between 0 and 99
-        /// </summary>
-        public byte MusicVolume
-        {
-            get => _musicVolume;
-            set
-            {
-                _musicVolume = value;
-                UnsavedChanges = true;
-            }
-        }
-
-        /// <summary>
-        /// The sound volume, a value between 0 and 99
-        /// </summary>
-        public byte SoundVolume
-        {
-            get => _soundVolume;
-            set
-            {
-                _soundVolume = value;
-                UnsavedChanges = true;
-            }
-        }
-
-        #endregion
-
-        #region Commands
-
-        public AsyncRelayCommand SaveCommand { get; }
-
-        #endregion
-
-        #region Protected Methods
-
-        /// <summary>
-        /// Reads a single byte from the specified file relative to the current save data
-        /// </summary>
-        /// <param name="fileName">The file name, relative to the current save data</param>
-        /// <returns>The byte or null if not found</returns>
-        protected byte? ReadSingleByteFile(FileSystemPath fileName)
-        {
-            return ReadMultiByteFile(fileName, 1)?.FirstOrDefault();
-        }
-
-        /// <summary>
-        /// Reads multiple bytes from the specified file relative to the current save data
-        /// </summary>
-        /// <param name="fileName">The file name, relative to the current save data</param>
-        /// <param name="length">The amount of bytes to read</param>
-        /// <returns>The bytes or null if not found</returns>
-        protected byte[] ReadMultiByteFile(FileSystemPath fileName, int length)
-        {
-            // Get the file path
-            var filePath = SaveDir + fileName;
-
-            // Make sure the file exists
-            if (!filePath.FileExists)
-                return null;
-
-            // Create the file stream
-            using var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-
-            // Create the byte buffer
-            var buffer = new byte[length];
-
-            // Read the bytes
-            stream.Read(buffer, 0, length);
-
-            // Return the buffer
-            return buffer;
-        }
-
-        /// <summary>
-        /// Writes a single byte to the specified file relative to the current save data
-        /// </summary>
-        /// <param name="fileName">The file name, relative to the current save data</param>
-        /// <param name="value">The byte to write</param>
-        protected void WriteSingleByteFile(FileSystemPath fileName, byte value)
-        {
-            WriteMultiByteFile(fileName, new byte[]
-            {
-                value
-            });
-        }
-
-        /// <summary>
-        /// Writes multiple bytes to the specified file relative to the current save data
-        /// </summary>
-        /// <param name="fileName">The file name, relative to the current save data</param>
-        /// <param name="value">The bytes to write</param>
-        protected void WriteMultiByteFile(FileSystemPath fileName, byte[] value)
-        {
-            // Get the file path
-            var filePath = SaveDir + fileName;
-
-            // Create the file stream
-            using var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read);
-
-            // Write the bytes
-            stream.Write(value, 0, value.Length);
         }
 
         #endregion

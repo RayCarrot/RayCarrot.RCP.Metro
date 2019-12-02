@@ -3000,4 +3000,7 @@ gameDisplayName</comment>
   <data name="Update_Error" xml:space="preserve">
     <value>An error occurred when updating the application</value>
   </data>
+  <data name="CategorizeGames" xml:space="preserve">
+    <value>Categorize games</value>
+  </data>
 </root>

@@ -92,6 +92,7 @@ namespace RayCarrot.RCP.Metro
             JumpListItemIDCollection = new List<string>();
             IsUpdateAvailable = false;
             InstalledGames = new HashSet<Games>();
+            CategorizeGames = true;
         }
 
         #endregion
@@ -331,6 +332,11 @@ namespace RayCarrot.RCP.Metro
         /// The games which have been installed through the Rayman Control Panel
         /// </summary>
         public HashSet<Games> InstalledGames { get; set; }
+
+        /// <summary>
+        /// Indicates if the games should be categorized
+        /// </summary>
+        public bool CategorizeGames { get; set; }
 
         #endregion
 

@@ -696,6 +696,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categorize games.
+        /// </summary>
+        public static string CategorizeGames {
+            get {
+                return ResourceManager.GetString("CategorizeGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Access Denied screen.
         /// </summary>
         public static string Cheats_Location_AccessDenied {

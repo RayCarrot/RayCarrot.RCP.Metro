@@ -2916,4 +2916,7 @@ Error message: {1}</value>
   <data name="Update_Error" xml:space="preserve">
     <value>Ocorreu um erro quando se actualizava a aplicação</value>
   </data>
+  <data name="CategorizeGames" xml:space="preserve">
+    <value>Categorizar jogos</value>
+  </data>
 </root>

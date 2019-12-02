@@ -206,10 +206,6 @@
                               ToolTip="{Resx Settings_DesignSuccessMessagesInfo}"
                               IsChecked="{Binding Path=ShowActionComplete}" />
 
-                    <CheckBox Content="{Resx Settings_DesignShowAllGames}"
-                              ToolTip="{Resx Settings_DesignShowAllGamesInfo}"
-                              IsChecked="{Binding Path=ShowNotInstalledGames}" />
-
                     <CheckBox Content="{Resx Settings_DesignShowTaskBarProgress}"
                               ToolTip="{Resx Settings_DesignShowTaskBarProgressInfo}"
                               IsChecked="{Binding Path=ShowProgressOnTaskBar}" />

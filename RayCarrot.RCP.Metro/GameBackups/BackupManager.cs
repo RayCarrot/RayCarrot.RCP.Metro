@@ -61,13 +61,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Performs a backup on the game
         /// </summary>
-        /// <param name="backupInformation">The backup information</param>
+        /// <param name="backupDirs">The backup directories</param>
+        /// <param name="destinationDir">The destination directory path</param>
+        /// <param name="gameDisplayName">The game display name</param>
         /// <returns>True if the backup was successful</returns>
-        private async Task<bool> PerformBackupAsync(IBackupInfo backupInformation)
+        private async Task<bool> PerformBackupAsync(IEnumerable<BackupDir> backupDirs, FileSystemPath destinationDir, string gameDisplayName)
         {
-            // Get the destination directory
-            FileSystemPath destinationDir = backupInformation.BackupLocation;
-
             // Use a temporary directory to store the files in case of error
             using var tempDir = new TempDirectory(false);
 
@@ -85,7 +84,7 @@ namespace RayCarrot.RCP.Metro
                 hasCreatedTempBackup = true;
 
                 // Backup each directory
-                foreach (BackupDir item in backupInformation.BackupDirectories)
+                foreach (BackupDir item in backupDirs)
                 {
                     var itemDestination = destinationDir + item.ID;
 
@@ -101,7 +100,7 @@ namespace RayCarrot.RCP.Metro
                 // Check if any files were backed up
                 if (!destinationDir.DirectoryExists)
                 {
-                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, backupInformation.GameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
+                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, gameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
 
                     if (tempDir.TempPath.DirectoryExists)
                         // Restore temp backup
@@ -135,14 +134,14 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Performs a compressed backup on the game
         /// </summary>
-        /// <param name="backupInformation">The backup information</param>
+        /// <param name="backupDirs">The backup directories</param>
+        /// <param name="destinationFile">The destination file path</param>
+        /// <param name="gameDisplayName">The game display name</param>
         /// <returns>True if the backup was successful</returns>
-        private bool PerformCompressedBackup(IBackupInfo backupInformation)
+        private async Task<bool> PerformCompressedBackupAsync(IEnumerable<BackupDir> backupDirs, FileSystemPath destinationFile, string gameDisplayName)
         {
-            // Get the destination file
-            FileSystemPath destinationFile = backupInformation.CompressedBackupLocation;
-
             using var tempFile = new TempFile(false);
+
             bool hasCreatedTempBackup = false;
 
             try
@@ -157,12 +156,17 @@ namespace RayCarrot.RCP.Metro
                 // Create the parent directory
                 Directory.CreateDirectory(destinationFile.Parent);
 
+                // Keep track if any files have been backed up
+                bool backedUp = false;
+
                 // Create the compressed file
                 using (var fileStream = File.OpenWrite(destinationFile))
                 {
+                    // Open the zip archive
                     using var zip = new ZipArchive(fileStream, ZipArchiveMode.Create);
+
                     // Enumerate the backup information
-                    foreach (var item in backupInformation.BackupDirectories)
+                    foreach (var item in backupDirs)
                     {
                         // Backup each file
                         foreach (FileSystemPath file in Directory.GetFiles(item.DirPath, item.SearchPattern ?? "*", item.SearchOption))
@@ -172,8 +176,26 @@ namespace RayCarrot.RCP.Metro
 
                             // Copy the file
                             zip.CreateEntryFromFile(file, destFile, CompressionLevel.Optimal);
+
+                            backedUp = true;
                         }
                     }
+                }
+
+                // Check if any files were backed up
+                if (!backedUp)
+                {
+                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, gameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
+                    
+                    // Check if a temp backup exists
+                    if (tempFile.TempPath.FileExists)
+                        // Restore temp backup
+                        FileManager.MoveFile(tempFile.TempPath, destinationFile, true);
+                    else
+                        // Delete incomplete backup
+                        FileManager.DeleteFile(destinationFile);
+
+                    return false;
                 }
 
                 RCFCore.Logger?.LogInformationSource($"Backup complete");
@@ -182,7 +204,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Performing compressed backup", backupInformation);
+                ex.HandleError("Performing compressed backup");
 
                 // Check if a temp backup exists
                 if (tempFile.TempPath.FileExists)
@@ -234,7 +256,7 @@ namespace RayCarrot.RCP.Metro
                     // Get the backup info
                     var backupInfo = new List<BackupDir>();
 
-                    // Get the latest version from each group
+                    // Get the latest save info from each group
                     foreach (var group in backupInfoByID)
                     {
                         if (group.Count() == 1)
@@ -282,8 +304,13 @@ namespace RayCarrot.RCP.Metro
                     RCFCore.Logger?.LogDebugSource(compress ? $"The backup will be compressed" : $"The backup will not be compressed");
 
                     // Perform the backup and keep track if it succeeded
-                    bool success = compress ? PerformCompressedBackup(backupInformation) : await PerformBackupAsync(backupInformation);
+                    bool success = await (compress ? 
+                        PerformCompressedBackupAsync(backupInfo, backupInformation.CompressedBackupLocation, backupInformation.GameDisplayName) : 
+                        PerformBackupAsync(backupInfo, backupInformation.BackupLocation, backupInformation.GameDisplayName));
 
+                    if (!success)
+                        return false;
+                    
                     // Remove old backups for the game
                     try
                     {
@@ -316,7 +343,7 @@ namespace RayCarrot.RCP.Metro
                         ex.HandleError("Deleting leftover backups");
                     }
 
-                    return success;
+                    return true;
                 }
                 catch (Exception ex)
                 {   

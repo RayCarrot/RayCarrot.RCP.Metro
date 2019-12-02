@@ -2908,4 +2908,7 @@ Foutmelding: {1}</value>
   <data name="Update_Error" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het updaten van de applicatie</value>
   </data>
+  <data name="CategorizeGames" xml:space="preserve">
+    <value>Categoriseer spellen</value>
+  </data>
 </root>

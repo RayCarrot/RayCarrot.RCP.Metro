@@ -18,6 +18,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -518,7 +519,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(7, 1, 0, 3);
+        public Version CurrentVersion => new Version(7, 1, 1, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version

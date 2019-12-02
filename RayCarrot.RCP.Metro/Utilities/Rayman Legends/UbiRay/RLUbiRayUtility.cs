@@ -59,7 +59,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility is available to the user
         /// </summary>
-        public bool IsAvailable => ViewModel.AvailableSaveFiles.Any();
+        public bool IsAvailable => ViewModel.AvailableSaveFiles?.Any() == true;
 
         /// <summary>
         /// Retrieves a list of applied utilities from this utility

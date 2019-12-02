@@ -18,6 +18,18 @@
 
     <local:IBasePage.OverflowMenu>
         <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
+
+            <MenuItem Header="{Resx CategorizeGames}"
+                      IsCheckable="True"
+                      IsChecked="{Binding Path=Data.CategorizeGames}" />
+
+            <MenuItem Header="{Resx Settings_DesignShowAllGames}"
+                      ToolTip="{Resx Settings_DesignShowAllGamesInfo}"
+                      IsCheckable="True"
+                      IsChecked="{Binding Path=Data.ShowNotInstalledGames}" />
+
+            <Separator />
+
             <local:MenuItemIcon Header="{Resx GamesPage_FindGames}"
                                 ToolTip="{Resx GamesPage_FindGamesInfo}"
                                 Command="{Binding Path=RunGameFinderCommand}"
@@ -34,6 +46,7 @@
         <Grid>
             <ScrollViewer Visibility="{Binding Path=App.IsGameFinderRunning, Converter={rwpf:InvertedBooleanToVisibilityConverter}}">
                 <mah:MetroAnimatedTabControl x:Name="GamesTabControl"
+                                             SelectedIndex="{Binding Path=SelectedCategoryIndex}"
                                              FocusVisualStyle="{x:Null}"
                                              Margin="15"
                                              ItemsSource="{Binding Path=GameCategories, Mode=OneTime}">
@@ -44,6 +57,12 @@
                     <mah:MetroAnimatedTabControl.Resources>
                         <Style TargetType="{x:Type TabPanel}" BasedOn="{StaticResource SmallTabPanel}" />
                     </mah:MetroAnimatedTabControl.Resources>
+
+                    <mah:MetroAnimatedTabControl.ItemContainerStyle>
+                        <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+                            <Setter Property="Visibility" Value="{Binding Path=IsVisible, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                        </Style>
+                    </mah:MetroAnimatedTabControl.ItemContainerStyle>
 
                     <mah:MetroAnimatedTabControl.ItemTemplate>
                         <DataTemplate DataType="local:GameCategoryViewModel">

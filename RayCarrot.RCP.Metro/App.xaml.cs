@@ -482,9 +482,10 @@ namespace RayCarrot.RCP.Metro
             }
 
             if (Data.LastVersion < new Version(7, 1, 0, 0))
-            {
                 Data.InstalledGames = new HashSet<Games>();
-            }
+
+            if (Data.LastVersion < new Version(7, 1, 1, 0))
+                Data.CategorizeGames = true;
 
             // Re-deploy files
             await RCFRCP.App.DeployFilesAsync(true);
