@@ -1,4 +1,8 @@
-﻿-----   Version 7.1.1 - December 2, 2019   -----
+﻿-----   Version 8.0.0 - December ??, 2019   -----
+• 
+
+
+-----   Version 7.1.1 - December 2, 2019   -----
 • Added an option for disabling game categorization
 • Moved game page settings to the game page overflow menu
 • Minor changes to the binary reader/writer

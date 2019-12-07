@@ -192,6 +192,10 @@
     <Compile Include="GameBackups\RCPBackup.cs" />
     <Compile Include="Progression\Base\BaseProgressionViewModel.cs" />
     <Compile Include="Progression\JungleRun\JungleRunProgressionViewModel.cs" />
+    <Compile Include="Utilities\Common\ArchiveExplorer\ArchiveExplorer.xaml.cs">
+      <DependentUpon>ArchiveExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Common\ArchiveExplorer\ArchiveExplorerDialogViewModel.cs" />
     <Compile Include="Utilities\Rayman 2\DiscPatch\R2DiscPatchUtility.cs" />
     <Compile Include="Utilities\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml.cs">
       <DependentUpon>R2DiscPatchUtilityUI.xaml</DependentUpon>
@@ -372,6 +376,10 @@
     <Page Include="Pages\UI\LinksPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Utilities\Common\ArchiveExplorer\ArchiveExplorer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Utilities\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
