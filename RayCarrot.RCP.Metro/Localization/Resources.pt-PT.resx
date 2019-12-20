@@ -2919,4 +2919,26 @@ Error message: {1}</value>
   <data name="CategorizeGames" xml:space="preserve">
     <value>Categorizar jogos</value>
   </data>
+  <data name="R1U_FixConfigHeader" xml:space="preserve">
+    <value>Reparar Configuração</value>
+  </data>
+  <data name="R1U_FixConfigInfo" xml:space="preserve">
+    <value>Reparar a configuração do jogo irá corrigir quaisquer potenciais problemas de som no jogo. Irá também reiniciar quaisquer outras definições, tais como o mapeamento de botões, mas não irá alterar os slots de progressão de jogo.</value>
+  </data>
+  <data name="R1U_FixConfig_Success" xml:space="preserve">
+    <value>Foi reparada a configuração
+</value>
+  </data>
+  <data name="R1U_FixConfig_Error" xml:space="preserve">
+    <value>Não foi reparada a configuração</value>
+  </data>
+  <data name="R1U_FixConfigRepair" xml:space="preserve">
+    <value>Reparar</value>
+  </data>
+  <data name="RabbidsActivityCenter_LaunchMessage" xml:space="preserve">
+    <value>O jogo poderá levar alguns segundos a executar. Se surgir um ecrã negro, pressiona a tecla ESC no teu teclado para jogar o jogo. Esta mensagem não voltará a aparecer.</value>
+  </data>
+  <data name="GameDisplay_DownloadUplay" xml:space="preserve">
+    <value>Descarregar pela Uplay</value>
+  </data>
 </root>

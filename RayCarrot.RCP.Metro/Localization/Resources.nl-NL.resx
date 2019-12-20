@@ -2911,4 +2911,25 @@ Foutmelding: {1}</value>
   <data name="CategorizeGames" xml:space="preserve">
     <value>Categoriseer spellen</value>
   </data>
+  <data name="R1U_FixConfigHeader" xml:space="preserve">
+    <value>Repareer Configuratie</value>
+  </data>
+  <data name="R1U_FixConfigInfo" xml:space="preserve">
+    <value>Het repareren van de spelconfiguratie zal ervoor zorgen dat elk type geluidsprobleem opgelost wordt. Hierbij worden tevens alle andere instellingen gereset, zoals die van de knoptoewijzing, maar er zullen geen wijzigingen worden aangebracht in de save slots.</value>
+  </data>
+  <data name="R1U_FixConfig_Success" xml:space="preserve">
+    <value>De configuratie is gerepareerd</value>
+  </data>
+  <data name="R1U_FixConfig_Error" xml:space="preserve">
+    <value>De configuratie kon niet gerepareerd worden</value>
+  </data>
+  <data name="R1U_FixConfigRepair" xml:space="preserve">
+    <value>Repareren</value>
+  </data>
+  <data name="RabbidsActivityCenter_LaunchMessage" xml:space="preserve">
+    <value>Het kan een paar seconden duren voordat het spel gestart wordt. Als er een zwart scherm aanwezig blijft, druk dan op de Escape-toets om het spel te starten. Het bericht zal vervolgens niet meer worden weergegeven.</value>
+  </data>
+  <data name="GameDisplay_DownloadUplay" xml:space="preserve">
+    <value>Downloaden via Uplay</value>
+  </data>
 </root>

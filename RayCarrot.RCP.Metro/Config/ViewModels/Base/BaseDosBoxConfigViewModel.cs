@@ -41,7 +41,7 @@ namespace RayCarrot.RCP.Metro
 
             AvailableResolutionValues.Add($"Original");
 
-            for (int height = minHeight; height <= maxHeight; height = height + minHeight)
+            for (int height = minHeight; height <= maxHeight; height += minHeight)
                 AvailableResolutionValues.Add($"{height * ratio}x{height}");
 
             // NOTE: Below options are not localized
