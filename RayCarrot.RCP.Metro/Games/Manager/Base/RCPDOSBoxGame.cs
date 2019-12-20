@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -111,7 +112,7 @@ namespace RayCarrot.RCP.Metro
             if (RaymanForeverFolderName != null)
             {
                 // Get the parent directory to the install directory
-                var foreverInstallDir = GameData.InstallDirectory.Parent;
+                var foreverInstallDir = Game.GetInstallDir().Parent;
 
                 // Attempt to automatically locate the mount file (based on the Rayman Forever location)
                 FileSystemPath[] mountFiles =
@@ -264,7 +265,7 @@ namespace RayCarrot.RCP.Metro
                    $"-conf \"{DosBoxConfigFile.FullPath}\" " +
                    // The mounting differs if it's a physical disc vs. a disc image
                    $"{(mountPath.IsDirectoryRoot ? $"-c \"mount d {mountPath.FullPath} -t cdrom\"" : $"-c \"imgmount d '{mountPath.FullPath}' -t iso -fs iso\"")} " +
-                   $"-c \"MOUNT C '{installDir ?? GameData.InstallDirectory.FullPath}'\" " +
+                   $"-c \"MOUNT C '{installDir ?? Game.GetInstallDir().FullPath}'\" " +
                    $"-c C: " +
                    $"-c \"{launchName}\" " +
                    $"-noconsole " +

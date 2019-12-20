@@ -1,9 +1,9 @@
 ﻿using RayCarrot.IO;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Core
 {
     /// <summary>
-    /// Game data for a saved game
+    /// Game data for a game
     /// </summary>
     public class GameData
     {

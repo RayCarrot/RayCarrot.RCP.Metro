@@ -24,6 +24,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Shell;
+using RayCarrot.RCP.Core;
 using RayCarrot.WPF.Metro;
 
 namespace RayCarrot.RCP.Metro
@@ -71,7 +72,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="config">The configuration values to pass on to the framework, if any</param>
         /// <param name="logLevel">The level to log</param>
         /// <param name="args">The launch arguments</param>
-        protected override void SetupFramework(IDictionary<string, object> config, LogLevel logLevel, string[] args)    
+        protected override void SetupFramework(IDictionary<string, object> config, LogLevel logLevel, string[] args)
         {
             // Add custom configuration
             config.Add(RCFIO.AutoCorrectPathCasingKey,
@@ -111,6 +112,8 @@ namespace RayCarrot.RCP.Metro
                 AddTransient<AppUIManager>().
                 // Add backup manager
                 AddTransient<BackupManager>().
+                // Add RCP API
+                AddRCPAPI<RCPMetroAPIControllerManager>(new APIControllerSettings()).
                 // Build the framework
                 Build(config, loadDefaultsFromDomain: false);
         }
@@ -487,6 +490,9 @@ namespace RayCarrot.RCP.Metro
             if (Data.LastVersion < new Version(7, 1, 1, 0))
                 Data.CategorizeGames = true;
 
+            if (Data.LastVersion < new Version(7, 2, 0, 0))
+                Data.ShownRabbidsActivityCenterLaunchMessage = false;
+
             // Re-deploy files
             await RCFRCP.App.DeployFilesAsync(true);
 
@@ -523,7 +529,7 @@ namespace RayCarrot.RCP.Metro
                     continue;
 
                 // Check if it's valid
-                if (await game.GetManager().IsValidAsync(game.GetData().InstallDirectory))
+                if (await game.GetManager().IsValidAsync(game.GetInstallDir()))
                     continue;
 
                 // Show message

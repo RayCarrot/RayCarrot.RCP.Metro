@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -22,11 +23,11 @@ namespace RayCarrot.RCP.Metro
             {
                 var dirs = new List<BackupDir>()
                 {
-                    new BackupDir(GameData.InstallDirectory, SearchOption.TopDirectoryOnly, "*.sav", "0", 0)
+                    new BackupDir(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0)
                 };
 
-                if (GameData.GameType == GameType.Win32)
-                    dirs.Add(new BackupDir(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "VirtualStore" + GameData.InstallDirectory.RemoveRoot(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0));
+                if (Game.GetGameType() == GameType.Win32)
+                    dirs.Add(new BackupDir(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "VirtualStore" + Game.GetInstallDir().RemoveRoot(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0));
 
                 return dirs;
             }
@@ -71,7 +72,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]
         {
-            new GameFileLink(Resources.GameLink_Setup, GameData.InstallDirectory + "SettingsApplication.exe")
+            new GameFileLink(Resources.GameLink_Setup, Game.GetInstallDir() + "SettingsApplication.exe")
         };
 
         #endregion

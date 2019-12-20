@@ -56,6 +56,11 @@
         /// </summary>
         public const string Games_TheDarkMagiciansReignofTerror_Url = GamesBaseUrl + "TheDarkMagiciansReignofTerror.zip";
 
+        /// <summary>
+        /// The Rayman Raving Rabbids Activity Center download URL
+        /// </summary>
+        public const string Games_RavingRabbidsActivityCenter_Url = GamesBaseUrl + "RavingRabbidsActivityCenter.zip";
+
         #endregion
 
         #region Utilities

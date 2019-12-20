@@ -58,7 +58,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility is available to the user
         /// </summary>
-        public bool IsAvailable => ViewModel.GameData.InstallDirectory.DirectoryExists && ViewModel.GetFixSnaFilePath().FileExists && ViewModel.GetTexturesCntFilePath().FileExists;
+        public bool IsAvailable => ViewModel.InstallDir.DirectoryExists && ViewModel.GetFixSnaFilePath().FileExists && ViewModel.GetTexturesCntFilePath().FileExists;
 
         /// <summary>
         /// Retrieves a list of applied utilities from this utility

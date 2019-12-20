@@ -6,6 +6,7 @@ using ByteSizeLib;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -309,8 +310,10 @@ namespace RayCarrot.RCP.Metro
 
             if (CanRemoveDiscCheck)
             {
-                var gameFile = Game.GetData().InstallDirectory + Game.GetGameInfo().DefaultFileName;
+                // Get the game file path
+                var gameFile = Game.GetInstallDir(false) + Game.GetGameInfo().DefaultFileName;
 
+                // Check if it exists
                 if (gameFile.FileExists)
                 {
                     Patcher = new GamePatcher(gameFile, PatchGameCheckOriginalBytes, PatchGameCheckPatchedBytes, PatchGameCheckOffset);
@@ -432,7 +435,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             if (dt != DinputType.None)
                                 // Attempt to delete existing dinput file
-                                File.Delete(path);
+                                RCFRCP.File.DeleteFile(path);
 
                             // Write controller patch
                             File.WriteAllBytes(path, Files.dinput8_controller);
@@ -441,7 +444,7 @@ namespace RayCarrot.RCP.Metro
                     else if (dt == DinputType.Controller)
                     {
                         // Attempt to delete existing dinput file
-                        File.Delete(path);
+                        RCFRCP.File.DeleteFile(path);
                     }
 
                 }
@@ -455,7 +458,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     try
                     {
-                        Patcher = new GamePatcher(Game.GetData().InstallDirectory + Game.GetGameInfo().DefaultFileName, PatchGameCheckOriginalBytes, PatchGameCheckPatchedBytes, PatchGameCheckOffset);
+                        Patcher = new GamePatcher(Game.GetInstallDir() + Game.GetGameInfo().DefaultFileName, PatchGameCheckOriginalBytes, PatchGameCheckPatchedBytes, PatchGameCheckOffset);
 
                         var result = Patcher.GetIsOriginal();
 
@@ -502,7 +505,7 @@ namespace RayCarrot.RCP.Metro
                 // as the Rayman 2 dinput file was accidentally used prior to version 4.1.2
                 if (size == new ByteSize(66560))
                 {
-                    File.Delete(path);
+                    RCFRCP.File.DeleteFile(path);
                     return DinputType.None;
                 }
 
@@ -521,7 +524,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The path</returns>
         private FileSystemPath GetDinputPath()
         {
-            return Game.GetData().InstallDirectory + "dinput8.dll";
+            return Game.GetInstallDir(false) + "dinput8.dll";
         }
 
         #endregion

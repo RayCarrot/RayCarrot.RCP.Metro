@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -29,7 +30,7 @@ namespace RayCarrot.RCP.Metro
             LaunchGameCommand = new AsyncRelayCommand(LaunchGameAsync);
 
             // Get the Rayman Origins install directory
-            var instDir = Games.RaymanLegends.GetData().InstallDirectory;
+            var instDir = Games.RaymanLegends.GetInstallDir(false);
 
             GameFilePath = instDir.DirectoryExists
                 ? instDir + Games.RaymanLegends.GetGameInfo().DefaultFileName

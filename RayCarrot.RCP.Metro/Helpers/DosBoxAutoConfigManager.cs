@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
@@ -76,6 +78,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The file data</returns>
         public DosBoxAutoConfigData ReadFile()
         {
+            // Read the file content
             var content = File.ReadAllText(FilePath);
 
             // Remove the first lines
@@ -87,23 +90,50 @@ namespace RayCarrot.RCP.Metro
             // Create the output
             var output = new DosBoxAutoConfigData();
 
-            bool customCommands = false;
+            // Keep track of if we've reached the custom commands
+            bool inCustomCommands = false;
+
+            // Keep track if we're in a section
+            bool inSection = false;
 
             // Check each line
             foreach (var line in lines)
             {
                 // Flag when the custom commands are reached
-                if (!customCommands && line == CustomCommandsSeparator)
+                if (!inCustomCommands && line == CustomCommandsSeparator)
                 {
-                    customCommands = true;
+                    inCustomCommands = true;
                     continue;
                 }
+
+                // If we've reached the custom commands, check if the line has a section name
+                if (!inSection && inCustomCommands && line.StartsWith("["))
+                {
+                    inSection = true;
+                    continue;
+                }
+
+                // Ignore section names
+                if (line.StartsWith("["))
+                    continue;
 
                 // Ignore if it's empty
                 if (line.IsNullOrWhiteSpace())
                     continue;
 
-                if (customCommands)
+                if (inSection)
+                {
+                    // Get the values
+                    var values = line.Split('=');
+
+                    // Make sure we have two values
+                    if (values.Length != 2)
+                        continue;
+
+                    // Add the values
+                    output.Configuration.Add(values[0], values[1]);
+                }
+                else if (inCustomCommands)
                 {
                     output.CustomLines.Add(line);
                 }
@@ -121,7 +151,7 @@ namespace RayCarrot.RCP.Metro
                         continue;
 
                     // Add the values
-                    output.Commands.Add(values[0], values[1]);
+                    output.Configuration.Add(values[0], values[1]);
                 }
             }
 
@@ -139,16 +169,31 @@ namespace RayCarrot.RCP.Metro
             // Add the first lines
             stringBuilder.AppendLine(FirstLines);
 
-            // Add the commands
-            foreach (var command in data.Commands)
-                stringBuilder.AppendLine($"{ConfigLineStart}\"{command.Key}={command.Value}\"");
-
             // Add the custom commands separator
             stringBuilder.AppendLine(CustomCommandsSeparator);
 
             // Add the custom commands
             foreach (string customLine in data.CustomLines)
                 stringBuilder.AppendLine(customLine);
+
+            // Add the sections
+            foreach (var sections in data.SectionNames)
+            {
+                // Add the section name
+                stringBuilder.AppendLine($"[{sections.Key}]");
+
+                // Add each command
+                foreach (var key in sections.Value)
+                {
+                    // Make sure the key has been added
+                    if (data.Configuration.ContainsKey(key))
+                        // Add the command
+                        stringBuilder.AppendLine($"{key}={data.Configuration[key]}");
+                }
+
+                // Add empty line
+                stringBuilder.AppendLine();
+            }
 
             // Write the text to the file
             File.WriteAllText(FilePath, stringBuilder.ToString());

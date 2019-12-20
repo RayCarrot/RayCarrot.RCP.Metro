@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Windows;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -16,7 +17,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected override IList<BackupDir> GetBackupDirectories => new BackupDir[]
         {
-            new BackupDir(GameData.InstallDirectory + "Menu" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
+            new BackupDir(Game.GetInstallDir() + "Menu" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
         };
 
         #endregion
@@ -58,7 +59,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]
         {
-            new GameFileLink(Resources.GameLink_Setup, GameData.InstallDirectory + "RM_Setup_DX8.exe")
+            new GameFileLink(Resources.GameLink_Setup, Game.GetInstallDir() + "RM_Setup_DX8.exe")
         };
 
         /// <summary>

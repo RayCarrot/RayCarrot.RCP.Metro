@@ -6,6 +6,7 @@ using System.Windows;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -430,9 +431,9 @@ namespace RayCarrot.RCP.Metro
             UnsavedChanges = false;
 
             // Helper methods for getting properties
-            bool? GetBool(string propName) => Boolean.TryParse(configData.Commands.TryGetValue(propName), out bool output) ? (bool?)output : null;
-            string GetString(string propName, string defaultValue = null) => configData.Commands.TryGetValue(propName) ?? defaultValue;
-            double? GetDouble(string propName) => Double.TryParse(configData.Commands.TryGetValue(propName), out double output) ? (double?)output : null;
+            bool? GetBool(string propName) => Boolean.TryParse(configData.Configuration.TryGetValue(propName), out bool output) ? (bool?)output : null;
+            string GetString(string propName, string defaultValue = null) => configData.Configuration.TryGetValue(propName) ?? defaultValue;
+            double? GetDouble(string propName) => Double.TryParse(configData.Configuration.TryGetValue(propName), out double output) ? (double?)output : null;
         }
 
         /// <summary>
@@ -472,6 +473,31 @@ namespace RayCarrot.RCP.Metro
                     SetProp(CoreKey, SelectedCoreMode, true);
                     SetProp(CyclesKey, SelectedCycles, true);
 
+                    // Add section names
+                    configData.SectionNames.Add("sdl", new []
+                    {
+                        FullScreenKey,
+                        FullDoubleKey,
+                        OutputKey,
+                        FullscreenResolutionKey,
+                        WindowedResolutionKey
+                    });
+                    configData.SectionNames.Add("render", new []
+                    {
+                        AspectCorrectionKey,
+                        FrameskipKey,
+                        ScalerKey
+                    });
+                    configData.SectionNames.Add("dosbox", new []
+                    {
+                        MemorySizeKey,
+                    });
+                    configData.SectionNames.Add("cpu", new []
+                    {
+                        CoreKey,
+                        CyclesKey
+                    });
+
                     // Write to the config file
                     configManager.WriteFile(configData);
 
@@ -481,9 +507,9 @@ namespace RayCarrot.RCP.Metro
                     void SetProp(string propName, object value, bool ignoreDefault = false)
                     {
                         if ((value != null && (!ignoreDefault || !value.ToString().Equals("default", StringComparison.CurrentCultureIgnoreCase))))
-                            configData.Commands[propName] = value.ToString();
-                        else if (configData.Commands.ContainsKey(propName))
-                            configData.Commands.Remove(propName);
+                            configData.Configuration[propName] = value.ToString();
+                        else if (configData.Configuration.ContainsKey(propName))
+                            configData.Configuration.Remove(propName);
                     }
                 }
                 catch (Exception ex)

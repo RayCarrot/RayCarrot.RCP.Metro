@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -42,6 +43,11 @@ namespace RayCarrot.RCP.Metro
         /// The options UI, if any is available
         /// </summary>
         public override FrameworkElement OptionsUI => new FiestaRunOptions();
+
+        /// <summary>
+        /// The config UI, if any is available
+        /// </summary>
+        public override FrameworkElement ConfigUI => new RaymanFiestaRunConfig();
 
         /// <summary>
         /// Gets the file links for the game

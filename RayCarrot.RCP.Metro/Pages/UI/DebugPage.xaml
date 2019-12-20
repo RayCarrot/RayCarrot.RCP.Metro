@@ -38,7 +38,7 @@
 
             <local:MenuItemIcon Header="Shutdown app"
                                 Command="{Binding Path=ShutdownAppCommand}"
-                                IconKind="Close"/>
+                                IconKind="CloseOutline"/>
 
         </ContextMenu>
     </local:IBasePage.OverflowMenu>
@@ -139,7 +139,33 @@
                          Text="{Binding Path=DataOutput}"
                          TextWrapping="Wrap"
                          VerticalScrollBarVisibility="Auto"
-                         MaxHeight="250"/>
+                         MaxHeight="450"/>
+
+            </StackPanel>
+
+            <StackPanel>
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                </i:Interaction.Behaviors>
+
+                <TextBlock Text="Archive Explorer"
+                           Style="{StaticResource LargeHeaderTextBlock}" />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <ComboBox Grid.Column="0" 
+                              ItemsSource="{Binding Path=SelectedArchiveExplorer, Converter={rwpf:EnumToListConverter}}"
+                              SelectedIndex="{Binding Path=SelectedArchiveExplorer, Converter={rwpf:EnumToIntConverter}}"/>
+
+                    <Button Grid.Column="2" 
+                            Content="Open"
+                            Command="{Binding Path=OpenArchiveExplorerCommand}" />
+                </Grid>
 
             </StackPanel>
 

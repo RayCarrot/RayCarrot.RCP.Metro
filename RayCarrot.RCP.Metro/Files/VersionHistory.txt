@@ -1,5 +1,18 @@
-﻿-----   Version 8.0.0 - December ??, 2019   -----
-• 
+﻿-----   Version 7.2.0 - December ??, 2019   -----
+• Added support for Rayman Activity Center, Rayman Raving Rabbids Activity Center (downloadable) and Rabbids Coding
+• Added a utility for repairing the configuration file in Rayman 1, fixing any potential sound issues
+• Added game configuration for Rayman Fiesta Run
+• Icons have been updated with their new outlined variants
+
+Other changes:
+• The text on buttons is no longer all capitalized
+• Removed the game purchase link for Rayman 2 due to not being available
+• Added Hakyra to the special thanks section in the credits
+• The app will now output the full exception if it crashes before the logging system has been setup
+• Added a debug option to show archive explorers, output API version info and increased the maximum size of the output text box
+• Laying the groundwork for splitting the Rayman Control Panel into multiple libraries and building an API
+• Fixed a bug which caused DOSBox related settings not to get used correctly (requires opening the options and saving to take effect)
+• Bug fixes
 
 
 -----   Version 7.1.1 - December 2, 2019   -----

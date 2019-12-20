@@ -1301,7 +1301,7 @@ gameDisplayName</comment>
     <value>Unable to find game</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Special thanks to AuToMaNiAk005, MixerX, PokGOT4N, Ryemanni, Droolie, MilesTheCreator and all other Rayman fans!</value>
+    <value>Special thanks to AuToMaNiAk005, MixerX, PokGOT4N, Ryemanni, Droolie, MilesTheCreator, Hakyra and all other Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations, Swedish program translation</value>
@@ -1931,7 +1931,7 @@ totalGames</comment>
     <value>Show under installed programs</value>
   </data>
   <data name="Settings_ShowUnderInstalledProgramsInfo" xml:space="preserve">
-    <value>If this is enabled the program will be shown under the list of installed programs on this computer, most commonly found under Uninstall Program in the Windows Control Panel. If this is enabled the program may require administration privileges during an update in order to update the program information.</value>
+    <value>If this is enabled the program will be shown in the list of installed programs on this computer, most commonly found under Uninstall Program in the Windows Control Panel. If this is enabled the program may require administration privileges during an update in order to update the program information.</value>
   </data>
   <data name="Settings_ForceUpdates" xml:space="preserve">
     <value>Force manual updates</value>
@@ -3002,5 +3002,26 @@ gameDisplayName</comment>
   </data>
   <data name="CategorizeGames" xml:space="preserve">
     <value>Categorize games</value>
+  </data>
+  <data name="R1U_FixConfigHeader" xml:space="preserve">
+    <value>Repair Configuration</value>
+  </data>
+  <data name="R1U_FixConfigInfo" xml:space="preserve">
+    <value>Repairing the game configuration will fix any potential sound issues in the game. It will also reset any other settings, such as button mapping, but will not change the save slots.</value>
+  </data>
+  <data name="R1U_FixConfig_Success" xml:space="preserve">
+    <value>The configuration has been repaired</value>
+  </data>
+  <data name="R1U_FixConfig_Error" xml:space="preserve">
+    <value>The configuration could not be repaired</value>
+  </data>
+  <data name="R1U_FixConfigRepair" xml:space="preserve">
+    <value>Repair</value>
+  </data>
+  <data name="RabbidsActivityCenter_LaunchMessage" xml:space="preserve">
+    <value>The game may take a few seconds to launch. If a black screen appears, then press the ESC key on your keyboard to play the game. This message will not show again.</value>
+  </data>
+  <data name="GameDisplay_DownloadUplay" xml:space="preserve">
+    <value>Download from Uplay</value>
   </data>
 </root>

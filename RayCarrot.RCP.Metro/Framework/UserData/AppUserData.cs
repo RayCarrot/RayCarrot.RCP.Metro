@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
@@ -93,6 +94,7 @@ namespace RayCarrot.RCP.Metro
             IsUpdateAvailable = false;
             InstalledGames = new HashSet<Games>();
             CategorizeGames = true;
+            ShownRabbidsActivityCenterLaunchMessage = false;
         }
 
         #endregion
@@ -337,6 +339,11 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the games should be categorized
         /// </summary>
         public bool CategorizeGames { get; set; }
+
+        /// <summary>
+        /// Indicates if the launch message for Rayman Raving Rabbids Activity Center has been shown
+        /// </summary>
+        public bool ShownRabbidsActivityCenterLaunchMessage { get; set; }
 
         #endregion
 

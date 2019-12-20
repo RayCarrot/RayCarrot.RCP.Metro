@@ -33,7 +33,7 @@
             <local:MenuItemIcon Header="{Resx GamesPage_FindGames}"
                                 ToolTip="{Resx GamesPage_FindGamesInfo}"
                                 Command="{Binding Path=RunGameFinderCommand}"
-                                IconKind="DatabaseSearch"/>
+                                IconKind="CardSearchOutline"/>
 
             <local:MenuItemIcon Header="{Resx Page_Refresh}"
                                 Command="{Binding Path=RefreshGamesCommand}"
@@ -124,7 +124,7 @@
                                 </Grid>
 
                                 <ItemsControl Style="{StaticResource GamesDisplay}"
-                                              ItemsSource="{Binding Path=InstalledGames, IsAsync=True}" />
+                                              ItemsSource="{Binding Path=InstalledGames}" />
 
                                 <Grid Visibility="{Binding Path=AnyNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}">
                                     <TextBlock Text="{Resx Games_NotInstalled}"
@@ -134,7 +134,7 @@
                                 </Grid>
 
                                 <ItemsControl Style="{StaticResource GamesDisplay}"
-                                              ItemsSource="{Binding Path=NotInstalledGames, IsAsync=True}"
+                                              ItemsSource="{Binding Path=NotInstalledGames}"
                                               Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
                             </StackPanel>
                         </DataTemplate>

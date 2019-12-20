@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -13,19 +14,6 @@ namespace RayCarrot.RCP.Metro
     public static class GamesExtensions
     {
         #region Helpers
-
-        /// <summary>
-        /// Gets the saved game data for the specified game
-        /// </summary>
-        /// <param name="game">The game to get the saved game data for</param>
-        /// <returns>The saved game data</returns>
-        public static GameData GetData(this Games game)
-        {
-            if (!game.IsAdded())
-                throw new Exception($"The requested game {game} has not been added");
-
-            return RCFRCP.Data.Games[game];
-        }
 
         /// <summary>
         /// Determines if the specified game has been added to the program
@@ -84,7 +72,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The manager</returns>
         public static RCPGameManager GetManager(this Games game)
         {
-            return RCFRCP.App.GameManagers[game][game.GetData().GameType].CreateInstance<RCPGameManager>();
+            return RCFRCP.App.GameManagers[game][game.GetGameType()].CreateInstance<RCPGameManager>();
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Windows;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -16,8 +17,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected override IList<BackupDir> GetBackupDirectories => new BackupDir[]
         {
-            new BackupDir(GameData.InstallDirectory, SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
-            new BackupDir(GameData.InstallDirectory, SearchOption.TopDirectoryOnly, "*.cfg", "1", 0),
+            new BackupDir(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
+            new BackupDir(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.cfg", "1", 0),
         };
 
         #endregion

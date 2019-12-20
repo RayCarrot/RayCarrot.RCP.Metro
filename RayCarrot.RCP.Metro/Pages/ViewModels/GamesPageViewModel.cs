@@ -8,6 +8,7 @@ using MahApps.Metro.IconPacks;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -37,11 +38,11 @@ namespace RayCarrot.RCP.Metro
                 new GameCategoryViewModel(App.GetGames), 
                 
                 // Create the categories
-                new GameCategoryViewModel(games[GameCategory.Rayman], () => Resources.GamesPage_Category_Rayman, PackIconMaterialKind.GamepadVariant), 
-                new GameCategoryViewModel(games[GameCategory.Rabbids], () => Resources.GamesPage_Category_Rabbids, PackIconMaterialKind.GamepadVariant), 
+                new GameCategoryViewModel(games[GameCategory.Rayman], () => Resources.GamesPage_Category_Rayman, PackIconMaterialKind.GamepadVariantOutline), 
+                new GameCategoryViewModel(games[GameCategory.Rabbids], () => Resources.GamesPage_Category_Rabbids, PackIconMaterialKind.GamepadVariantOutline), 
                 //new GameCategoryViewModel(games[GameCategory.Demo], () => Resources.GamesPage_Category_Demos, PackIconMaterialKind.ShoppingMusic), 
                 new GameCategoryViewModel(games[GameCategory.Other], () => Resources.GamesPage_Category_Other, PackIconMaterialKind.Buffer), 
-                new GameCategoryViewModel(games[GameCategory.Fan], () => Resources.GamesPage_Category_Fan, PackIconMaterialKind.Earth), 
+                new GameCategoryViewModel(games[GameCategory.Fan], () => Resources.GamesPage_Category_Fan, PackIconMaterialKind.Earth),
             };
 
             // Create commands

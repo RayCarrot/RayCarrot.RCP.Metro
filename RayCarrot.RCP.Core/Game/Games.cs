@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Core
 {
     /// <summary>
-    /// The available games
+    /// The games supported by the Rayman Control Panel
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum Games
@@ -95,6 +95,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         RabbidsBigBang,
 
+        /// <summary>
+        /// Rabbids Coding
+        /// </summary>
+        RabbidsCoding,
+
         #endregion
 
         #region Demo
@@ -123,6 +128,16 @@ namespace RayCarrot.RCP.Metro
         /// Rayman 3 Print Studio
         /// </summary>
         PrintStudio,
+
+        /// <summary>
+        /// Rayman Activity Center
+        /// </summary>
+        RaymanActivityCenter,
+
+        /// <summary>
+        /// Rayman Raving Rabbids Activity Center
+        /// </summary>
+        RaymanRavingRabbidsActivityCenter,
 
         #endregion
 

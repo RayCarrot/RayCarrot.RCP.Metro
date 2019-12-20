@@ -13,14 +13,20 @@ namespace RayCarrot.RCP.Metro
         public DosBoxAutoConfigData()
         {
             // Create properties
-            Commands = new Dictionary<string, string>();
+            Configuration = new Dictionary<string, string>();
+            SectionNames = new Dictionary<string, string[]>();
             CustomLines = new List<string>();
         }
 
         /// <summary>
-        /// The commands
+        /// The configuration and their values
         /// </summary>
-        public Dictionary<string, string> Commands { get; }
+        public Dictionary<string, string> Configuration { get; }
+
+        /// <summary>
+        /// The section configuration keys for each section name
+        /// </summary>
+        public Dictionary<string, string[]> SectionNames { get; }
 
         /// <summary>
         /// The custom lines

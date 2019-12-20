@@ -100,11 +100,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Config\UI\RaymanFiestaRunConfig.xaml.cs">
+      <DependentUpon>RaymanFiestaRunConfig.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Config\UI\RaymanJungleRunConfig.xaml.cs">
       <DependentUpon>RaymanJungleRunConfig.xaml</DependentUpon>
     </Compile>
     <Compile Include="Config\ViewModels\Base\BaseRayRunConfigViewModel.cs" />
+    <Compile Include="Config\ViewModels\RaymanFiestaRunConfigViewModel.cs" />
     <Compile Include="Config\ViewModels\RaymanJungleRunConfigViewModel.cs" />
+    <Compile Include="Framework\Implementations\RCPMetroAPIControllerManager.cs" />
+    <Compile Include="Games\Info\Other\RaymanRavingRabbidsActivityCenter_Info.cs" />
+    <Compile Include="Games\Info\Other\RaymanActivityCenter_Info.cs" />
+    <Compile Include="Games\Info\Rabbids\RabbidsCoding_Info.cs" />
+    <Compile Include="Games\Manager\Other\RaymanActivityCenter_Win32.cs" />
+    <Compile Include="Games\Manager\Other\RaymanRavingRabbidsActivityCenter_Win32.cs" />
+    <Compile Include="Games\Manager\Rabbids\RabbidsCoding_Win32.cs" />
     <Compile Include="Progression\Base\ProgressionIcons.cs" />
     <Compile Include="Progression\Base\ProgressionInfoItemViewModel.cs" />
     <Compile Include="Progression\Base\ProgressionSlotViewModel.cs" />
@@ -192,10 +203,24 @@
     <Compile Include="GameBackups\RCPBackup.cs" />
     <Compile Include="Progression\Base\BaseProgressionViewModel.cs" />
     <Compile Include="Progression\JungleRun\JungleRunProgressionViewModel.cs" />
+    <Compile Include="Utilities\Common\ArchiveExplorer\Base\ArchiveDirectory.cs" />
+    <Compile Include="Utilities\Common\ArchiveExplorer\Base\IArchiveFileData.cs" />
+    <Compile Include="Utilities\Common\ArchiveExplorer\Base\IArchiveImageFileData.cs" />
+    <Compile Include="Utilities\Common\ArchiveExplorer\R2_Cnt\R2CntArchiveFileData.cs" />
+    <Compile Include="Utilities\Common\ArchiveExplorer\R2_Cnt\R2CntArchiveDataManager.cs" />
+    <Compile Include="Utilities\Common\ArchiveExplorer\Base\IArchiveDataManager.cs" />
+    <Compile Include="Utilities\Common\ArchiveExplorer\ViewModels\ArchiveFileViewModel.cs" />
+    <Compile Include="Utilities\Common\ArchiveExplorer\ViewModels\ArchiveDirectoryViewModel.cs" />
     <Compile Include="Utilities\Common\ArchiveExplorer\ArchiveExplorer.xaml.cs">
       <DependentUpon>ArchiveExplorer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Common\ArchiveExplorer\ArchiveExplorerDialogViewModel.cs" />
+    <Compile Include="Utilities\Common\ArchiveExplorer\ViewModels\ArchiveViewModel.cs" />
+    <Compile Include="Utilities\Rayman 1\FixConfig\R1FixConfigUtility.cs" />
+    <Compile Include="Utilities\Rayman 1\FixConfig\R1FixConfigUtilityUI.xaml.cs">
+      <DependentUpon>R1FixConfigUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Rayman 1\FixConfig\R1FixConfigUtilityViewModel.cs" />
     <Compile Include="Utilities\Rayman 2\DiscPatch\R2DiscPatchUtility.cs" />
     <Compile Include="Utilities\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml.cs">
       <DependentUpon>R2DiscPatchUtilityUI.xaml</DependentUpon>
@@ -269,6 +294,10 @@
     <Compile Include="DataModels\Enums\Pages.cs" />
     <Compile Include="ViewModels\Game\GameCategoryViewModel.cs" />
     <Compile Include="ViewModels\TaskbarIconViewModel.cs" />
+    <Page Include="Config\UI\RaymanFiestaRunConfig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Config\UI\RaymanJungleRunConfig.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -381,6 +410,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Utilities\Rayman 1\FixConfig\R1FixConfigUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Utilities\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -488,7 +521,6 @@
     <Compile Include="UI\Dialogs\GameTypeSelectionDialog.xaml.cs">
       <DependentUpon>GameTypeSelectionDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\Enums\GameLaunchMode.cs" />
     <Compile Include="Files\Files.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -569,7 +601,6 @@
     <Compile Include="ViewModels\Cheats\Base\BaseCheatCodeItemViewModel.cs" />
     <Compile Include="ViewModels\Cheats\GenericCheatCodeItemViewModel.cs" />
     <Compile Include="ViewModels\LinkItemViewModel.cs" />
-    <Compile Include="DataModels\Enums\DebugDataOutputTypes.cs" />
     <Compile Include="Pages\ViewModels\LinksPageViewModel.cs" />
     <Compile Include="ViewModels\Cheats\Rayman1CheatCodeItemViewModel.cs" />
     <Compile Include="UI\Converters\BooleanToTransitionTypeConverter.cs" />
@@ -678,8 +709,6 @@
     <Compile Include="UI\OverflowButton.xaml.cs">
       <DependentUpon>OverflowButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\Enums\Games.cs" />
-    <Compile Include="DataModels\Enums\GameType.cs" />
     <Compile Include="DataModels\GameLaunchInfo.cs" />
     <Compile Include="DataModels\GamePurchaseLink.cs" />
     <Compile Include="DataModels\GameFileLink.cs" />
@@ -713,7 +742,6 @@
     <Compile Include="Pages\ViewModels\GamesPageViewModel.cs" />
     <Compile Include="ViewModels\Controls\OverflowButtonItemViewModel.cs" />
     <Compile Include="UI\Windows\Base\BaseWindow.cs" />
-    <Compile Include="DataModels\GameData.cs" />
     <Compile Include="ViewModels\Game\GameDisplayViewModel.cs" />
     <Compile Include="Config\ViewModels\Base\GameConfigViewModel.cs" />
     <Compile Include="UI\Windows\AppNewsDialog.xaml.cs">
@@ -787,6 +815,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\Resources.sr-Cyrl.resx" />
     <EmbeddedResource Include="Localization\Resources.sv-SE.resx" />
+    <None Include="Files\Rayman1\RAYMAN.CFG" />
     <None Include="Files\Rayman2\ubi.ini" />
   </ItemGroup>
   <ItemGroup>
@@ -811,6 +840,14 @@
     <ProjectReference Include="..\..\RayCarrot.WPF\RayCarrot.WPF\RayCarrot.WPF.csproj">
       <Project>{9b10dc81-cb32-45a1-b52b-fbb3e4d056a0}</Project>
       <Name>RayCarrot.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RayCarrot.RCP.Core.UI\RayCarrot.RCP.Core.UI.csproj">
+      <Project>{7c723f2e-eea2-4b41-96e2-9359af141e17}</Project>
+      <Name>RayCarrot.RCP.Core.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RayCarrot.RCP.Core\RayCarrot.RCP.Core.csproj">
+      <Project>{c911478d-3f3f-4b26-84c6-bddac5ff7c1f}</Project>
+      <Name>RayCarrot.RCP.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -871,6 +908,9 @@
     <Resource Include="Img\MessageIcons\Question.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\GameIcons\RabbidsCoding.png" />
+    <Resource Include="Img\GameIcons\RaymanActivityCenter.png" />
+    <Resource Include="Img\GameIcons\RaymanRavingRabbidsActivityCenter.png" />
     <Resource Include="Img\ProgressionIcons\UbiArt\Clock.png" />
     <Resource Include="Img\ProgressionIcons\UbiArt\Electoon.png" />
     <Resource Include="Img\ProgressionIcons\UbiArt\Lum.png" />
@@ -942,7 +982,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="gong-wpf-dragdrop">
-      <Version>2.1.0</Version>
+      <Version>2.2.0</Version>
     </PackageReference>
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf">
       <Version>1.0.8</Version>
@@ -954,7 +994,7 @@
       <Version>1.6.5</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro.IconPacks.Material">
-      <Version>2.3.0</Version>
+      <Version>3.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft-WindowsAPICodePack-Shell">
       <Version>1.1.3.3</Version>
@@ -981,7 +1021,7 @@
       <Version>0.8.6</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.1.3</Version>
+      <Version>3.2.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.CarrotFramework">
       <Version>3.4.0</Version>

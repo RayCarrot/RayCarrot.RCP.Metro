@@ -6,6 +6,7 @@ using System.Windows;
 using MahApps.Metro.IconPacks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
@@ -182,14 +183,11 @@ namespace RayCarrot.RCP.Metro
                 {
                     var actions = new List<OverflowButtonItemViewModel>();
 
-                    // Get the Game data
-                    var data = GameData;
-
                     // Get the manager
-                    var manager = Game.GetManager(data.GameType);
+                    var manager = Game.GetManager(Game.GetGameType());
 
                     // Add launch options if set to do so
-                    if (data.LaunchMode == GameLaunchMode.AsAdminOption)
+                    if (Game.GetLaunchMode() == GameLaunchMode.AsAdminOption)
                     {
                         actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_RunAsAdmin, PackIconMaterialKind.Security, new AsyncRelayCommand(async () => await Game.GetManager().LaunchGameAsync(true))));
 
@@ -242,11 +240,8 @@ namespace RayCarrot.RCP.Metro
                     // Add open location
                     actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_OpenLocation, PackIconMaterialKind.FolderOutline, new AsyncRelayCommand(async () =>
                     {
-                        // Get the Game data
-                        var GameInfo = Game.GetData();
-
                         // Get the install directory
-                        var instDir = GameInfo.InstallDirectory;
+                        var instDir = Game.GetInstallDir();
 
                         // Select the file in Explorer if it exists
                         if ((instDir + DefaultFileName).FileExists)
@@ -267,7 +262,7 @@ namespace RayCarrot.RCP.Metro
                         GameOptions.Show(Game);
                     })));
 
-                    return new GameDisplayViewModel(Game, DisplayName, IconSource, new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.Play, new AsyncRelayCommand(async () => await Game.GetManager().LaunchGameAsync(false))), actions);
+                    return new GameDisplayViewModel(Game, DisplayName, IconSource, new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.PlayOutline, new AsyncRelayCommand(async () => await Game.GetManager().LaunchGameAsync(false))), actions);
                 }
                 else
                 {
@@ -277,7 +272,7 @@ namespace RayCarrot.RCP.Metro
 
                     if (CanBeDownloaded)
                     {
-                        downloadItem = new OverflowButtonItemViewModel(Resources.GameDisplay_CloudInstall, PackIconMaterialKind.CloudDownload, new AsyncRelayCommand(async () => await DownloadGameAsync()));
+                        downloadItem = new OverflowButtonItemViewModel(Resources.GameDisplay_CloudInstall, PackIconMaterialKind.CloudDownloadOutline, new AsyncRelayCommand(async () => await DownloadGameAsync()));
 
                         if (CanBeLocated)
                         {
@@ -315,7 +310,7 @@ namespace RayCarrot.RCP.Metro
                             actions.Add(new OverflowButtonItemViewModel());
 
                         // Add disc installer action
-                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, PackIconMaterialKind.Disk, new RelayCommand(() =>
+                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, PackIconMaterialKind.Disc, new RelayCommand(() =>
                             // NOTE: This is a blocking dialog
                             new GameInstaller(Game).ShowDialog())));
                     }

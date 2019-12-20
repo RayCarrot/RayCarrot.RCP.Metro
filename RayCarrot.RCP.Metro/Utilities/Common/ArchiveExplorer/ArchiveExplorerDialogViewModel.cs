@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Media;
-using RayCarrot.Extensions;
+﻿using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
 using RayCarrot.UI;
-using RayCarrot.WPF;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -20,174 +15,71 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="filePath">The archive file path</param>
-        public ArchiveExplorerDialogViewModel(FileSystemPath filePath)
+        /// <param name="manager">The archive data manager</param>
+        /// <param name="filePaths">The archive file paths</param>
+        public ArchiveExplorerDialogViewModel(IArchiveDataManager manager, IEnumerable<FileSystemPath> filePaths)
         {
-            // Create properties
-            Directories = new ArchiveDirectoryViewModel();
+            // Get the manager
+            Manager = manager;
 
-            // Create the file stream
-            ArchiveFileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            // Get the archives
+            Archives = filePaths.Select(x => new ArchiveViewModel(x)).ToArray();
 
-            // Read the CNT data
-            Data = new R2CntSerializer().Deserialize(ArchiveFileStream);
+            // Make sure we got an archive
+            if (!Archives.Any())
+                throw new ArgumentException("At least one archive path needs to be available");
 
-            // Add the directories to the collection
-            for (var i = 0; i < Data.Directories.Length; i++)
+            // Read each archive
+            foreach (var archive in Archives)
             {
-                // Keep track of the previous item
-                var prevItem = Directories;
+                // Get the archive directories
+                var dirs = manager.GetDirectories(archive.ArchiveFileStream);
 
-                // Enumerate each sub directory
-                foreach (string dir in Data.Directories[i].Split('\\'))
+                // Add each directory
+                foreach (var dir in dirs)
                 {
-                    // Get the directory name
-                    var dirName = Path.GetFileName(dir);
+                    // Check if it's the root directory
+                    if (dir.DirectoryName == String.Empty)
+                    {
+                        // Add the files
+                        archive.Files.AddRange(dir.Files.Select(x => new ArchiveFileViewModel(x, archive.ArchiveFileStream)));
 
-                    // Set the previous item and create the item if it doesn't already exist
-                    prevItem = prevItem.FindItem(x => x.ID == dirName) ?? prevItem.Add(dirName);
-                }
+                        continue;
+                    }
 
-                // Add the files
-                foreach (var f in Data.Files.Where(x => x.DirectoryIndex == i))
-                {
-                    // Add the file
-                    prevItem.Files.Add(new ArchiveFileViewModel(f, ArchiveFileStream));
+                    // Keep track of the previous item
+                    ArchiveDirectoryViewModel prevItem = archive;
+
+                    // Enumerate each sub directory
+                    foreach (string subDir in dir.DirectoryName.Split('\\'))
+                    {
+                        // Set the previous item and create the item if it doesn't already exist
+                        prevItem = prevItem.FindItem(x => x.ID == subDir) ?? prevItem.Add(subDir);
+                    }
+
+                    // Add the files
+                    prevItem.Files.AddRange(dir.Files.Select(x => new ArchiveFileViewModel(x, archive.ArchiveFileStream)));
                 }
             }
+
+            // Select and expand the first item
+            Archives.First().IsSelected = true;
+            Archives.First().IsExpanded = true;
         }
 
         /// <summary>
         /// The directories
         /// </summary>
-        public ArchiveDirectoryViewModel Directories { get; }
+        public ArchiveViewModel[] Archives { get; }
 
         /// <summary>
-        /// The archive data
+        /// The archive data manager
         /// </summary>
-        public R2CntData Data { get; }
-
-        /// <summary>
-        /// The archive file stream
-        /// </summary>
-        public FileStream ArchiveFileStream { get; }
+        public IArchiveDataManager Manager { get; }
 
         public void Dispose()
         {
-            ArchiveFileStream?.Dispose();
+            Archives?.ForEach(x => x.Dispose());
         }
-    }
-
-    /// <summary>
-    /// View model for a directory in an archive
-    /// </summary>
-    public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryViewModel>
-    {
-        #region Constructors
-
-        /// <summary>
-        /// Creates a generic parent directory item view model which contains other items
-        /// </summary>
-        public ArchiveDirectoryViewModel() : base(String.Empty)
-        {
-
-        }
-
-        /// <summary>
-        /// Creates a directory item view model with the parent and directory name
-        /// </summary>
-        /// <param name="parent">The parent directory</param>
-        /// <param name="dirName">The directory name</param>
-        protected ArchiveDirectoryViewModel(ArchiveDirectoryViewModel parent, string dirName) : base(parent, dirName)
-        {
-            // Create the file collection
-            Files = new ObservableCollection<ArchiveFileViewModel>();
-        }
-
-        #endregion
-
-        #region Public Methods
-
-        /// <summary>
-        /// Adds a new directory item to the view model
-        /// </summary>
-        /// <param name="dirName">The name of the directory. This is not the full relative path.</param>
-        /// <returns>The item</returns>
-        public ArchiveDirectoryViewModel Add(string dirName)
-        {
-            // Create the item
-            var item = new ArchiveDirectoryViewModel(this, dirName);
-
-            // Add the item
-            Add(item);
-
-            // Return the item
-            return item;
-        }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// The files
-        /// </summary>
-        public ObservableCollection<ArchiveFileViewModel> Files { get; }
-
-        #endregion
-    }
-
-    /// <summary>
-    /// View model for a file in an archive
-    /// </summary>
-    public class ArchiveFileViewModel : BaseRCPViewModel
-    {
-        #region Constructor
-
-        public ArchiveFileViewModel(R2CntFile fileData, FileStream cntFileStream)
-        {
-            FileData = fileData;
-            CNTFileStream = cntFileStream;
-            FileName = FileData.FileName;
-        }
-
-        #endregion
-
-        #region Public Properties
-
-        public R2CntFile FileData { get; }
-
-        public ImageSource ThumbnailSource { get; set; }
-
-        protected FileStream CNTFileStream { get; }
-
-        public string FileName { get; }
-
-        #endregion
-
-        #region Public Methods
-
-        /// <summary>
-        /// Loads the thumbnail image source for the file
-        /// </summary>
-        public void LoadThumbnail()
-        {
-            // Get the thumbnail
-            var img = FileData.
-                // Get the image file content from the stream
-                GetFileContent(CNTFileStream).
-                // Get the bitmap image
-                GetBitmapThumbnail(64, 64).
-                // Get an image source from the bitmap
-                ToImageSource();
-
-            // Freeze the image to avoid thread errors
-            img.Freeze();
-
-            // Set the image source
-            ThumbnailSource = img;
-        }
-
-        #endregion
     }
 }

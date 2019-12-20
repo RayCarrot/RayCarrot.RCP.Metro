@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -30,7 +31,7 @@ namespace RayCarrot.RCP.Metro
             AvailableMaps = Files.RO_Levels.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Where(x => !x.Contains("graph") && !x.Contains("subscene")).ToArray();
 
             // Get the Rayman Origins install directory
-            var instDir = Games.RaymanOrigins.GetData().InstallDirectory;
+            var instDir = Games.RaymanOrigins.GetInstallDir();
 
             DebugCommandFilePath = GetDebugCommandFilePath(instDir);
 

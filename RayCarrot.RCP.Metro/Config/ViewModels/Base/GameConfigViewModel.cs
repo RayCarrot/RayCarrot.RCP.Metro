@@ -23,5 +23,10 @@ namespace RayCarrot.RCP.Metro
         /// Action to run upon saving
         /// </summary>
         public Action OnSave { get; set; }
+
+        /// <summary>
+        /// Indicates if the config should reload when the game info changes
+        /// </summary>
+        public bool ReloadOnGameInfoChanged { get; set; }
     }
 }

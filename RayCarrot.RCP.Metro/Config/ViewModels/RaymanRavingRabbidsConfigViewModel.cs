@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Win32;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 

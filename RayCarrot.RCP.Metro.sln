@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{A4E18751-83F7-4896-84DE-2998C17BA5AF}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
+		Plan.txt = Plan.txt
 		README.md = README.md
 		TODO.txt = TODO.txt
 	EndProjectSection
@@ -48,9 +49,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rayman Control Panel", "Ray
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployable", "Deployable", "{65E77864-A23C-4B4F-8219-BB141B902815}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{BD3FD629-CC69-4E39-B1CB-5804EFDF06F1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{BD3FD629-CC69-4E39-B1CB-5804EFDF06F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.API", "RayCarrot.RCP.API\RayCarrot.RCP.API.csproj", "{C911478D-3F3F-4B26-84C6-BDDAC5FF7C1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.RCP.Core", "RayCarrot.RCP.Core\RayCarrot.RCP.Core.csproj", "{C911478D-3F3F-4B26-84C6-BDDAC5FF7C1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayCarrot.RCP.Core.UI", "RayCarrot.RCP.Core.UI\RayCarrot.RCP.Core.UI.csproj", "{7C723F2E-EEA2-4B41-96E2-9359AF141E17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -132,6 +135,14 @@ Global
 		{C911478D-3F3F-4B26-84C6-BDDAC5FF7C1F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C911478D-3F3F-4B26-84C6-BDDAC5FF7C1F}.Release|x86.ActiveCfg = Release|Any CPU
 		{C911478D-3F3F-4B26-84C6-BDDAC5FF7C1F}.Release|x86.Build.0 = Release|Any CPU
+		{7C723F2E-EEA2-4B41-96E2-9359AF141E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C723F2E-EEA2-4B41-96E2-9359AF141E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C723F2E-EEA2-4B41-96E2-9359AF141E17}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7C723F2E-EEA2-4B41-96E2-9359AF141E17}.Debug|x86.Build.0 = Debug|Any CPU
+		{7C723F2E-EEA2-4B41-96E2-9359AF141E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C723F2E-EEA2-4B41-96E2-9359AF141E17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C723F2E-EEA2-4B41-96E2-9359AF141E17}.Release|x86.ActiveCfg = Release|Any CPU
+		{7C723F2E-EEA2-4B41-96E2-9359AF141E17}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -149,10 +160,11 @@ Global
 		{65E77864-A23C-4B4F-8219-BB141B902815} = {5428B0C5-4DD5-4A42-BA9E-3DFF74D61362}
 		{BD3FD629-CC69-4E39-B1CB-5804EFDF06F1} = {5428B0C5-4DD5-4A42-BA9E-3DFF74D61362}
 		{C911478D-3F3F-4B26-84C6-BDDAC5FF7C1F} = {BD3FD629-CC69-4E39-B1CB-5804EFDF06F1}
+		{7C723F2E-EEA2-4B41-96E2-9359AF141E17} = {BD3FD629-CC69-4E39-B1CB-5804EFDF06F1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_TaskErrorCategory = Message
-		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
 		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"{Resx $Key}","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
+		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
+		RESX_TaskErrorCategory = Message
 	EndGlobalSection
 EndGlobal

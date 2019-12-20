@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -37,7 +38,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The path to the config file
         /// </summary>
-        public FileSystemPath ConfigPath => Games.RaymanDesigner.GetData().InstallDirectory + "Ubisoft" + "ubi.ini";
+        public FileSystemPath ConfigPath => Games.RaymanDesigner.GetInstallDir() + "Ubisoft" + "ubi.ini";
 
         #endregion
 

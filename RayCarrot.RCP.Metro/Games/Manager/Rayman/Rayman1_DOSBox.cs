@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -58,7 +59,7 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogTraceSource($"The game {Game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
 
             // Launch the game
-            var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, forceRunAsAdmin || GameData.LaunchMode == GameLaunchMode.AsAdmin, launchInfo.Args);
+            var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, forceRunAsAdmin || Game.GetLaunchMode() == GameLaunchMode.AsAdmin, launchInfo.Args);
 
             RCFCore.Logger?.LogInformationSource($"The game {Game} has been launched in TPLS mode");
 

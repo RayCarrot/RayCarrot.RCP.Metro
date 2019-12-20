@@ -4,6 +4,7 @@ using RayCarrot.UI;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -18,16 +19,7 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         public RaymanJungleRunConfigViewModel() : base(Games.RaymanJungleRun)
-        {
-            // Create commands
-            SaveCommand = new AsyncRelayCommand(SaveAsync);
-        }
-
-        #endregion
-
-        #region Commands
-
-        public AsyncRelayCommand SaveCommand { get; }
+        { }
 
         #endregion
 
@@ -79,73 +71,32 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Methods
+        #region Public Override Methods
 
         /// <summary>
-        /// Loads and sets up the current configuration properties
+        /// Sets up the game specific values
         /// </summary>
         /// <returns>The task</returns>
-        public override Task SetupAsync()
+        protected override Task SetupGameAsync()
         {
-            RCFCore.Logger?.LogInformationSource("Rayman Jungle Run config is being set up");
-
             // Read selected hero and save slot data
             SelectedHero = (JungleRunHeroes)(ReadSingleByteFile(SelectedHeroFileName) ?? 0);
             SelectedSlot = ReadSingleByteFile(SelectedSlotFileName) ?? 0;
-
-            // Read volume
-            var ROvolume = ReadMultiByteFile(SelectedVolumeFileName, 2);
-            MusicVolume = ROvolume?[0] ?? 100;
-            SoundVolume = ROvolume?[1] ?? 100;
-
-            UnsavedChanges = false;
-
-            RCFCore.Logger?.LogInformationSource($"All values have been loaded");
 
             return Task.CompletedTask;
         }
 
         /// <summary>
-        /// Saves the changes
+        /// Saves the game specific values
         /// </summary>
         /// <returns>The task</returns>
-        public async Task SaveAsync()
+        protected override Task SaveGameAsync()
         {
-            using (await AsyncLock.LockAsync())
-            {
-                RCFCore.Logger?.LogInformationSource($"Rayman Jungle Run configuration is saving...");
+            // Save selected hero and save slot data
+            WriteSingleByteFile(SelectedHeroFileName, (byte)SelectedHero);
+            WriteSingleByteFile(SelectedSlotFileName, SelectedSlot);
 
-                try
-                {
-                    // Create directory if it doesn't exist
-                    Directory.CreateDirectory(SaveDir);
-
-                    // Save selected hero and save slot data
-                    WriteSingleByteFile(SelectedHeroFileName, (byte)SelectedHero);
-                    WriteSingleByteFile(SelectedSlotFileName, SelectedSlot);
-
-                    // Save the volume
-                    WriteMultiByteFile(SelectedVolumeFileName, new byte[]
-                    {
-                        MusicVolume,
-                        SoundVolume
-                    });
-
-                    RCFCore.Logger?.LogInformationSource($"Rayman Jungle Run configuration has been saved");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Saving Rayman Jungle Run config");
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Games.RaymanJungleRun.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
-                    return;
-                }
-
-                UnsavedChanges = false;
-
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
-
-                OnSave();
-            }
+            return Task.CompletedTask;
         }
 
         #endregion

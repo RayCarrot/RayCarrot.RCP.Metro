@@ -260,7 +260,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, MixerX, PokGOT4N, Ryemanni, Droolie, MilesTheCreator and all other Rayman fans!.
+        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, MixerX, PokGOT4N, Ryemanni, Droolie, MilesTheCreator, Hakyra and all other Rayman fans!.
         /// </summary>
         public static string About_SpecialThanks {
             get {
@@ -3345,6 +3345,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download from Uplay.
+        /// </summary>
+        public static string GameDisplay_DownloadUplay {
+            get {
+                return ResourceManager.GetString("GameDisplay_DownloadUplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download from GameJolt.
         /// </summary>
         public static string GameDisplay_GameJolt {
@@ -6078,6 +6087,51 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The configuration could not be repaired.
+        /// </summary>
+        public static string R1U_FixConfig_Error {
+            get {
+                return ResourceManager.GetString("R1U_FixConfig_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The configuration has been repaired.
+        /// </summary>
+        public static string R1U_FixConfig_Success {
+            get {
+                return ResourceManager.GetString("R1U_FixConfig_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repair Configuration.
+        /// </summary>
+        public static string R1U_FixConfigHeader {
+            get {
+                return ResourceManager.GetString("R1U_FixConfigHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repairing the game configuration will fix any potential sound issues in the game. It will also reset any other settings, such as button mapping, but will not change the save slots..
+        /// </summary>
+        public static string R1U_FixConfigInfo {
+            get {
+                return ResourceManager.GetString("R1U_FixConfigInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repair.
+        /// </summary>
+        public static string R1U_FixConfigRepair {
+            get {
+                return ResourceManager.GetString("R1U_FixConfigRepair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 0.74.
         /// </summary>
         public static string R1U_TPLS_DosBoxVersions_0_74 {
@@ -6623,6 +6677,15 @@ namespace RayCarrot.RCP.Metro {
         public static string R3U_DirectPlayInfo {
             get {
                 return ResourceManager.GetString("R3U_DirectPlayInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game may take a few seconds to launch. If a black screen appears, then press the ESC key on your keyboard to play the game. This message will not show again..
+        /// </summary>
+        public static string RabbidsActivityCenter_LaunchMessage {
+            get {
+                return ResourceManager.GetString("RabbidsActivityCenter_LaunchMessage", resourceCulture);
             }
         }
         
@@ -7689,7 +7752,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If this is enabled the program will be shown under the list of installed programs on this computer, most commonly found under Uninstall Program in the Windows Control Panel. If this is enabled the program may require administration privileges during an update in order to update the program information..
+        ///   Looks up a localized string similar to If this is enabled the program will be shown in the list of installed programs on this computer, most commonly found under Uninstall Program in the Windows Control Panel. If this is enabled the program may require administration privileges during an update in order to update the program information..
         /// </summary>
         public static string Settings_ShowUnderInstalledProgramsInfo {
             get {

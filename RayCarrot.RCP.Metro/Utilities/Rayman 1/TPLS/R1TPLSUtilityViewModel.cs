@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -55,7 +56,7 @@ namespace RayCarrot.RCP.Metro
         public async Task InstallTPLSAsync()
         {
             // Verify the install directory
-            if (!await VerifyInstallDirAsync(Games.Rayman1.GetData().InstallDirectory))
+            if (!await VerifyInstallDirAsync(Games.Rayman1.GetInstallDir(false)))
                 return;
 
             try

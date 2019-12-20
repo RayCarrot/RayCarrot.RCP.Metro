@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -63,11 +64,6 @@ namespace RayCarrot.RCP.Metro
             get => DataContext as GameOptionsViewModel;
             set => DataContext = value;
         }
-
-        /// <summary>
-        /// The game config view model
-        /// </summary>
-        public GameConfigViewModel ConfigViewModel => (ViewModel.ConfigContent as FrameworkElement)?.DataContext as GameConfigViewModel;
 
         #endregion
 
@@ -129,15 +125,15 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                if (ConfigViewModel != null)
+                if (ViewModel.ConfigViewModel != null)
                 {
-                    ConfigViewModel.OnSave = () =>
+                    ViewModel.ConfigViewModel.OnSave = () =>
                     {
                         if (RCFRCP.Data.CloseConfigOnSave)
                             Close();
                     };
 
-                    await ConfigViewModel.SetupAsync();
+                    await ViewModel.ConfigViewModel.SetupAsync();
                 }
             }
             catch (Exception ex)
@@ -171,8 +167,8 @@ namespace RayCarrot.RCP.Metro
 
             ViewModel?.Dispose();
 
-            if (ConfigViewModel != null)
-                ConfigViewModel.OnSave = null;
+            if (ViewModel?.ConfigViewModel != null)
+                ViewModel.ConfigViewModel.OnSave = null;
         }
 
         private Task AppGameRefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
@@ -190,7 +186,7 @@ namespace RayCarrot.RCP.Metro
 
         private async void GameOptions_OnClosingAsync(object sender, CancelEventArgs e)
         {
-            if (ForceClose || ConfigViewModel?.UnsavedChanges != true)
+            if (ForceClose || ViewModel?.ConfigViewModel?.UnsavedChanges != true)
                 return;
 
             e.Cancel = true;

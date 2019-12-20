@@ -15,6 +15,12 @@
         <Setter Property="mah:TabControlHelper.Transition" Value="{Binding Source={x:Static local:RCFRCP.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}" />
     </Style>
 
+    <!-- Default Button -->
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="mah:ControlsHelper.ContentCharacterCasing" Value="Normal" />
+    </Style>
+
     <!-- Flat Button -->
 
     <Style x:Key="FlatButton" TargetType="{x:Type Button}">

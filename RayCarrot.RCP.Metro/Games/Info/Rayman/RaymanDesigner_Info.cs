@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Windows;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -16,20 +17,20 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected override IList<BackupDir> GetBackupDirectories => new BackupDir[]
         {
-            new BackupDir(GameData.InstallDirectory, SearchOption.TopDirectoryOnly, "*.cfg", "0", 0),
-            new BackupDir(GameData.InstallDirectory + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 0),
+            new BackupDir(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.cfg", "0", 0),
+            new BackupDir(Game.GetInstallDir() + "PCMAP", SearchOption.TopDirectoryOnly, "*.sct", "1", 0),
             //
             // Note:
             // This will backup the pre-installed maps and the world files as well. This is due to how the backup manager works.
             // In the future I might make a separate manager for the maps again, in which case the search pattern "MAPS???" should get the
             // correct mapper directories withing each world directory
             //
-            new BackupDir(GameData.InstallDirectory + "CAKE", SearchOption.AllDirectories, "*", "Mapper0", 0),
-            new BackupDir(GameData.InstallDirectory + "CAVE", SearchOption.AllDirectories, "*", "Mapper1", 0),
-            new BackupDir(GameData.InstallDirectory + "IMAGE", SearchOption.AllDirectories, "*", "Mapper2", 0),
-            new BackupDir(GameData.InstallDirectory + "JUNGLE", SearchOption.AllDirectories, "*", "Mapper3", 0),
-            new BackupDir(GameData.InstallDirectory + "MOUNTAIN", SearchOption.AllDirectories, "*", "Mapper4", 0),
-            new BackupDir(GameData.InstallDirectory + "MUSIC", SearchOption.AllDirectories, "*", "Mapper5", 0),
+            new BackupDir(Game.GetInstallDir() + "CAKE", SearchOption.AllDirectories, "*", "Mapper0", 0),
+            new BackupDir(Game.GetInstallDir() + "CAVE", SearchOption.AllDirectories, "*", "Mapper1", 0),
+            new BackupDir(Game.GetInstallDir() + "IMAGE", SearchOption.AllDirectories, "*", "Mapper2", 0),
+            new BackupDir(Game.GetInstallDir() + "JUNGLE", SearchOption.AllDirectories, "*", "Mapper3", 0),
+            new BackupDir(Game.GetInstallDir() + "MOUNTAIN", SearchOption.AllDirectories, "*", "Mapper4", 0),
+            new BackupDir(Game.GetInstallDir() + "MUSIC", SearchOption.AllDirectories, "*", "Mapper5", 0),
         };
 
         #endregion
@@ -71,7 +72,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]
         {
-            new GameFileLink(Resources.GameLink_RDMapper, GameData.InstallDirectory + "MAPPER.EXE")
+            new GameFileLink(Resources.GameLink_RDMapper, Game.GetInstallDir() + "MAPPER.EXE")
         };
 
         #endregion

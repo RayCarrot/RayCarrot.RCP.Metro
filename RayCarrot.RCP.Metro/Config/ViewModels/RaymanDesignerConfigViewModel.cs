@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -102,7 +103,7 @@ namespace RayCarrot.RCP.Metro
             // Default game language to not be available
             IsGameLanguageAvailable = false;
 
-            var instDir = Game.GetData().InstallDirectory;
+            var instDir = Game.GetInstallDir(false);
 
             // Attempt to get the game language from the .bat file or config file
             var batchFile = instDir + Game.GetGameInfo().DefaultFileName;
@@ -147,7 +148,7 @@ namespace RayCarrot.RCP.Metro
 
             // If game language is available, update it
             if (IsGameLanguageAvailable)
-                await SetBatchFileLanguageAsync(Game.GetData().InstallDirectory + Game.GetGameInfo().DefaultFileName, GameLanguage, Game);
+                await SetBatchFileLanguageAsync(Game.GetInstallDir() + Game.GetGameInfo().DefaultFileName, GameLanguage, Game);
         }
 
         #endregion

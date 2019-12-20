@@ -6,6 +6,7 @@ using RayCarrot.Windows.Registry;
 using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -14,6 +15,7 @@ using System.Runtime.Versioning;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -38,6 +40,7 @@ namespace RayCarrot.RCP.Metro
             RefreshAllAsyncCommand = new AsyncRelayCommand(RefreshAllTaskAsync);
             RunInstallerCommand = new RelayCommand(RunInstaller);
             ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownRCFAppAsync(false)));
+            OpenArchiveExplorerCommand = new AsyncRelayCommand(OpenArchiveExplorerAsync);
 
             // Get properties
             AvailableInstallers = App.GetGames.Where(x => x.GetGameInfo().CanBeInstalledFromDisc).ToArray();
@@ -72,6 +75,11 @@ namespace RayCarrot.RCP.Metro
         /// The selected game installer
         /// </summary>
         public Games SelectedInstaller { get; set; }
+
+        /// <summary>
+        /// The selected archive explorer
+        /// </summary>
+        public DebugArchiveExplorer SelectedArchiveExplorer { get; set; }
 
         #endregion
 
@@ -310,7 +318,74 @@ namespace RayCarrot.RCP.Metro
                         }
 
                         break;
-                    
+
+                    case DebugDataOutputTypes.GameSizes:
+
+                        // TODO: Update with new system when done
+
+                        var totalTime = 0L;
+
+                        // Enumerate each game
+                        foreach (var game in App.GetGames.Where(x => x.IsAdded()))
+                        {
+                            try
+                            {
+                                var gameTimer = new Stopwatch();
+
+                                gameTimer.Start();
+
+                                // Get the size
+                                var size = game.GetInstallDir().GetSize();
+
+                                gameTimer.Stop();
+
+                                totalTime += gameTimer.ElapsedMilliseconds;
+
+                                // Output the size
+                                DataOutput += $"{game.GetGameInfo().DisplayName}: {size.ToString()} ({gameTimer.ElapsedMilliseconds} ms){Environment.NewLine}";
+                            }
+                            catch (Exception ex)
+                            {
+                                ex.HandleError("Getting game install dir size");
+                                DataOutput += $"{game.GetGameInfo().DisplayName}: N/A{Environment.NewLine}";
+                            }
+                        }
+
+                        DataOutput += $"{Environment.NewLine}{totalTime} ms";
+
+                        break;
+
+                    case DebugDataOutputTypes.APIVersions:
+
+                        // Get the API libraries
+                        var libraries = new string[]
+                        {
+                            "RayCarrot.RCP.Core",
+                            "RayCarrot.RCP.Core.UI",
+                            "RayCarrot.CarrotFramework",
+                            "RayCarrot.CarrotFramework.Abstractions",
+                            "RayCarrot.UI",
+                            "RayCarrot.IO",
+                            "RayCarrot.Extensions",
+                            "RayCarrot.UserData",
+                            "RayCarrot.Windows.Shell",
+                            "RayCarrot.Windows.Registry",
+                        };
+
+                        // Enumerate each library
+                        foreach (string lib in libraries)
+                        {
+                            // Load the assembly
+                            var a = Assembly.Load(lib);
+
+                            // Output
+                            DataOutput += $"{lib} ({a.GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version ?? "N/A"})";
+
+                            DataOutput += Environment.NewLine;
+                        }
+
+                        break;
+
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -347,6 +422,44 @@ namespace RayCarrot.RCP.Metro
             new GameInstaller(SelectedInstaller).ShowDialog();
         }
 
+        /// <summary>
+        /// Opens the selected archive explorer
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task OpenArchiveExplorerAsync()
+        {
+            // Helper method for getting the game for the selected archive explorer mode
+            Games GetGame() => SelectedArchiveExplorer switch
+            {
+                DebugArchiveExplorer.Rayman2_CNT => Games.Rayman2,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
+            // Helper method for getting the extension filter for the selected archive explorer mode
+            FileFilterItemCollection GetExtensionFilter() => SelectedArchiveExplorer switch
+            {
+                DebugArchiveExplorer.Rayman2_CNT => new FileFilterItemCollection()
+                {
+                    new FileFilterItem("*.cnt", "CNT files")
+                },
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
+            // Allow the user to select the file
+            var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+            {
+                Title = "Select archive files",
+                DefaultDirectory = GetGame().GetInstallDir(false),
+                ExtensionFilter = GetExtensionFilter().ToString(),
+                MultiSelection = true
+            });
+
+            if (fileResult.CanceledByUser)
+                return;
+
+            await new ArchiveExplorer(new ArchiveExplorerDialogViewModel(new R2CntArchiveDataManager(), fileResult.SelectedFiles)).ShowWindowAsync();
+        }
+
         #endregion
 
         #region Commands
@@ -366,6 +479,69 @@ namespace RayCarrot.RCP.Metro
         public ICommand RunInstallerCommand { get; }
 
         public ICommand ShutdownAppCommand { get; }
+
+        public ICommand OpenArchiveExplorerCommand { get; }
+
+        #endregion
+
+        #region Enums
+
+        /// <summary>
+        /// The available debug data output types
+        /// </summary>
+        public enum DebugDataOutputTypes
+        {
+            /// <summary>
+            /// Displays a list of the referenced assemblies
+            /// </summary>
+            ReferencedAssemblies,
+
+            /// <summary>
+            /// Displays the app user data file contents
+            /// </summary>
+            AppUserData,
+
+            /// <summary>
+            /// Displays the update manifest from the server
+            /// </summary>
+            UpdateManifest,
+
+            /// <summary>
+            /// Displays a list of windows in the current application
+            /// </summary>
+            AppWindows,
+
+            /// <summary>
+            /// Runs the game finder, searching for all games and displaying the output of found games and their install locations
+            /// </summary>
+            GameFinder,
+
+            /// <summary>
+            /// Display the info available for each game
+            /// </summary>
+            GameInfo,
+
+            /// <summary>
+            /// Displays the install sizes for each game
+            /// </summary>
+            GameSizes,
+
+            /// <summary>
+            /// Displays the versions of the Carrot Framework and Rayman Control Panel API
+            /// </summary>
+            APIVersions
+        }
+
+        /// <summary>
+        /// The available archive explorer modes
+        /// </summary>
+        public enum DebugArchiveExplorer
+        {
+            /// <summary>
+            /// Rayman 2 .cnt archives
+            /// </summary>
+            Rayman2_CNT
+        }
 
         #endregion
     }

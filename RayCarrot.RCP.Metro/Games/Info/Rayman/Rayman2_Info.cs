@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -17,8 +18,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected override IList<BackupDir> GetBackupDirectories => new BackupDir[]
         {
-            new BackupDir(GameData.InstallDirectory + "Data" + "SaveGame", SearchOption.AllDirectories, "*", "0", 0),
-            new BackupDir(GameData.InstallDirectory + "Data" + "Options", SearchOption.AllDirectories, "*", "1", 0)
+            new BackupDir(Game.GetInstallDir() + "Data" + "SaveGame", SearchOption.AllDirectories, "*", "0", 0),
+            new BackupDir(Game.GetInstallDir() + "Data" + "Options", SearchOption.AllDirectories, "*", "1", 0)
         };
 
         #endregion
@@ -60,9 +61,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]
         {
-            new GameFileLink(Resources.GameLink_Setup, GameData.InstallDirectory + "GXSetup.exe"),
-            new GameFileLink(Resources.GameLink_R2nGlide, GameData.InstallDirectory + "nglide_config.exe"),
-            new GameFileLink(Resources.GameLink_R2dgVoodoo, GameData.InstallDirectory + "dgVoodooCpl.exe")
+            new GameFileLink(Resources.GameLink_Setup, Game.GetInstallDir() + "GXSetup.exe"),
+            new GameFileLink(Resources.GameLink_R2nGlide, Game.GetInstallDir() + "nglide_config.exe"),
+            new GameFileLink(Resources.GameLink_R2dgVoodoo, Game.GetInstallDir() + "dgVoodooCpl.exe")
         };
 
         /// <summary>

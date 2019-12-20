@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -53,12 +54,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility requires administration privileges
         /// </summary>
-        public bool RequiresAdmin => !RCFRCP.File.CheckDirectoryWriteAccess(Games.RaymanDesigner.GetData().InstallDirectory);
+        public bool RequiresAdmin => !RCFRCP.File.CheckDirectoryWriteAccess(Games.RaymanDesigner.GetInstallDir());
 
         /// <summary>
         /// Indicates if the utility is available to the user
         /// </summary>
-        public bool IsAvailable => Games.RaymanDesigner.GetData().InstallDirectory.DirectoryExists;
+        public bool IsAvailable => Games.RaymanDesigner.GetInstallDir(false).DirectoryExists;
 
         /// <summary>
         /// Retrieves a list of applied utilities from this utility

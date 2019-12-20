@@ -5,9 +5,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -47,7 +49,7 @@ namespace RayCarrot.RCP.Metro
 
             // Refresh the game data on certain events
             RCFCore.Data.CultureChanged += Data_CultureChanged;
-            App.RefreshRequired += App_RefreshRequired;
+            App.RefreshRequired += App_RefreshRequiredAsync;
 
             // Check if the launch mode can be changed
             CanChangeLaunchMode = Game.GetManager().SupportsGameLaunchMode;
@@ -75,7 +77,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game data
         /// </summary>
-        public GameData GameData => Game.GetData();
+        public GameData GameData => RCFRCPA.API.GetGameData(Game);
 
         /// <summary>
         /// The game info items
@@ -136,6 +138,11 @@ namespace RayCarrot.RCP.Metro
         public object ConfigContent { get; set; }
 
         /// <summary>
+        /// The game config view model
+        /// </summary>
+        public GameConfigViewModel ConfigViewModel => (ConfigContent as FrameworkElement)?.Dispatcher?.Invoke(() => (ConfigContent as FrameworkElement)?.DataContext as GameConfigViewModel);
+
+        /// <summary>
         /// Indicates if the game has config content
         /// </summary>
         public bool HasConfigContent => ConfigContent != null;
@@ -178,12 +185,17 @@ namespace RayCarrot.RCP.Metro
 
         #region Event Handlers
 
-        private Task App_RefreshRequired(object sender, RefreshRequiredEventArgs e)
+        private async Task App_RefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
         {
             if (e.GameInfoModified)
+            {
+                // Refresh the game info
                 RefreshGameInfo();
 
-            return Task.CompletedTask;
+                // Reload the config if needed
+                if (ConfigViewModel.ReloadOnGameInfoChanged)
+                    await ConfigViewModel.SetupAsync();
+            }
         }
 
         private void Data_CultureChanged(object sender, PropertyChangedEventArgs<CultureInfo> e)
@@ -244,7 +256,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Delete the game directory
-                RCFRCP.File.DeleteDirectory(Game.GetData().InstallDirectory);
+                RCFRCP.File.DeleteDirectory(Game.GetInstallDir(false));
 
                 RCFCore.Logger?.LogInformationSource($"The game install directory was removed");
 
@@ -326,7 +338,7 @@ namespace RayCarrot.RCP.Metro
         {
             // Unsubscribe events
             RCFCore.Data.CultureChanged -= Data_CultureChanged;
-            App.RefreshRequired -= App_RefreshRequired;
+            App.RefreshRequired -= App_RefreshRequiredAsync;
 
             // Dispose
             ProgressionViewModel?.Dispose();

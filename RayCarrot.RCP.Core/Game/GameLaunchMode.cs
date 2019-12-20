@@ -1,4 +1,4 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Core
 {
     /// <summary>
     /// The different game launch modes

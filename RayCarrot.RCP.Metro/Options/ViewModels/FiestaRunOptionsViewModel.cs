@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {

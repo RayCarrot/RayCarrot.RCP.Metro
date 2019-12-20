@@ -113,6 +113,16 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] RAYMAN {
+            get {
+                object obj = ResourceManager.GetObject("RAYMAN", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] Rayman_Control_Panel_Updater {
             get {
                 object obj = ResourceManager.GetObject("Rayman_Control_Panel_Updater", resourceCulture);
@@ -193,17 +203,17 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 6.1.0 - September ??, 2019   -----
+        ///   Looks up a localized string similar to -----   Version 7.2.0 - December ??, 2019   -----
+        ///• Added support for Rayman Activity Center, Rayman Raving Rabbids Activity Center (downloadable) and Rabbids Coding
+        ///• Added a utility for fixing the sound issue in Rayman 1
+        ///• Icons have been updated with their new outlined variants
+        ///• Added game configuration for Rayman Fiesta Run
         ///• 
         ///
-        ///
-        ///-----   Version 6.0.1 - September 9, 2019   -----
-        ///• Removed the option to set the resolution for Rayman Raving Rabbids due to inconsistencies with getting the available resolutions
-        ///
-        ///
-        ///-----   Version 6.0.0 - September 7, 2019   -----
-        ///• Educational Rayman games, Rayman Raving Rabbids 2, Rabbids Go Home (DVD release) and Rabbids Big Bang are now supported
-        ///• A configuration option for Rayman 2 has been added to change the graphics mode between Di [rest of string was truncated]&quot;;.
+        ///Other changes:
+        ///• The text on buttons is no longer all capitalized
+        ///• Removed the game purchase link for Rayman 2 due to not being available
+        ///• Added Hakyra to the specia [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -60,7 +61,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]
         {
-            new GameFileLink(Resources.GameLink_Setup, GameData.InstallDirectory + "SettingsApplication.exe")
+            new GameFileLink(Resources.GameLink_Setup, Game.GetInstallDir() + "SettingsApplication.exe")
         };
 
         #endregion

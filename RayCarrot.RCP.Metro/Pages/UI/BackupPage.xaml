@@ -24,7 +24,7 @@
             <Separator />
 
             <local:MenuItemIcon Header="{Resx Backup_BackupAll}"
-                                IconKind="FolderUpload"
+                                IconKind="FolderUploadOutline"
                                 Command="{Binding Path=BackupAllCommand}" />
 
             <local:MenuItemIcon Header="{Resx Page_Refresh}"
@@ -200,11 +200,11 @@
                                         Orientation="Horizontal"
                                         Margin="20 0 0 0">
 
-                                <local:IconButton IconKind="FolderUpload"
+                                <local:IconButton IconKind="FolderUploadOutline"
                                                   Command="{Binding Path=BackupCommand}"
                                                   ToolTip="{Resx Backup_Backup}" />
 
-                                <local:IconButton IconKind="FolderDownload"
+                                <local:IconButton IconKind="FolderDownloadOutline"
                                                   Command="{Binding Path=RestoreCommand}"
                                                   ToolTip="{Resx Backup_Restore}"
                                                   IsEnabled="{Binding Path=CanRestore}"/>

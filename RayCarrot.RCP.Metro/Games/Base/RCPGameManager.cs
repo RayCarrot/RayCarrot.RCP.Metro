@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using ByteSizeLib;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -48,7 +50,8 @@ namespace RayCarrot.RCP.Metro
         public virtual IList<DuoGridItemViewModel> GetGameInfoItems => new DuoGridItemViewModel[]
         {
             new DuoGridItemViewModel(Resources.GameInfo_GameType, GameTypeDisplayName, UserLevel.Advanced),
-            new DuoGridItemViewModel(Resources.GameInfo_InstallDir, GameData.InstallDirectory)
+            new DuoGridItemViewModel(Resources.GameInfo_InstallDir, Game.GetInstallDir()),
+            //new DuoGridItemViewModel("Install size", GameData.InstallDirectory.GetSize().ToString())
         };
 
         /// <summary>
@@ -217,6 +220,37 @@ namespace RayCarrot.RCP.Metro
             /// </summary>
             public bool SuccessfulLaunch { get; }
         }
+
+        #endregion
+
+        #region Public Classes
+
+        // TODO: Finish game install size system
+        ///// <summary>
+        ///// The install size for a game
+        ///// </summary>
+        //public class GameInstallSize
+        //{
+        //    public Games Game { get; }
+
+        //    public GameInstallSizePart[] Parts { get; }
+        //}
+
+        ///// <summary>
+        ///// The install size for a part of a game
+        ///// </summary>
+        //public class GameInstallSizePart
+        //{
+        //    /// <summary>
+        //    /// The display name
+        //    /// </summary>
+        //    public string DisplayName { get; }
+
+        //    /// <summary>
+        //    /// The install size
+        //    /// </summary>
+        //    public ByteSize Size { get; }
+        //}
 
         #endregion
     }

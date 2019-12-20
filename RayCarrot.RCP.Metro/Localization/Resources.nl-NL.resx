@@ -1234,7 +1234,7 @@ Herstarten?</value>
     <value>Niet in staat het spel te vinden</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>In het bijzonder dank aan AuToMaNiAk005, MixerX, PokGOT4N, Ryemanni, Droolie, MilesTheCreator en alle andere Rayman fans!</value>
+    <value>In het bijzonder dank aan AuToMaNiAk005, MixerX, PokGOT4N, Ryemanni, Droolie, MilesTheCreator, Hakyra en alle andere Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>User interface, Carrot Framework, Game Finder, Game Installer, hulpprogramma's, Rayman 2 vertalingen, Zweedse programmavertaling</value>
@@ -1836,7 +1836,7 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
     <value>Laat zien onder geïnstalleerde programma's</value>
   </data>
   <data name="Settings_ShowUnderInstalledProgramsInfo" xml:space="preserve">
-    <value>Als dit is ingeschakeld, zal het programma zichtbaar zijn onder de lijst met geïnstalleerde programma's op deze computer. Het is hierdoor mogelijk dat er administratorrechten vereist zijn tijdens een update, om zo de programma-informatie te kunnen updaten.</value>
+    <value>Als dit is ingeschakeld, zal het programma zichtbaar zijn in de lijst met geïnstalleerde programma's op deze computer. Hierdoor zijn er mogelijk administratorrechten vereist tijdens een update, om zo de programma-informatie te kunnen updaten.</value>
   </data>
   <data name="Settings_ForceUpdates" xml:space="preserve">
     <value>Forceer handmatige updates</value>

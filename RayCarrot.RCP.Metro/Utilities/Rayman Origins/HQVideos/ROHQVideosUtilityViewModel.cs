@@ -5,6 +5,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ByteSizeLib;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -24,7 +25,7 @@ namespace RayCarrot.RCP.Metro
             ReplaceVideosCommand = new AsyncRelayCommand(ReplaceVideosAsync);
 
             // Attempt to find the Rayman Origins video directory
-            var dir = Games.RaymanOrigins.GetData().InstallDirectory + "GameData";
+            var dir = Games.RaymanOrigins.GetInstallDir(false) + "GameData";
 
             // Set to music path if found
             VideoDir = dir.DirectoryExists && (dir + "intro.bik").FileExists ? dir : FileSystemPath.EmptyPath;

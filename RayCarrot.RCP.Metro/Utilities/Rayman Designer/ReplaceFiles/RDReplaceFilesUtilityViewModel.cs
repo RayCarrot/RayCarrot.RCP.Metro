@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.Extensions;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -58,14 +59,14 @@ namespace RayCarrot.RCP.Metro
                         MapperLanguage == RaymanDesignerMapperLanguage.French ? CommonUrls.RD_FRMapperExe_URL : CommonUrls.RD_ALMapperExe_URL)),
             };
 
-            // Get the game data
-            var gameInfo = Games.RaymanDesigner.GetData();
+            // Get the game install dir
+            var installDir = Games.RaymanDesigner.GetInstallDir();
 
             // Find the directories to search
             var dirs = new FileSystemPath[]
             {
-                gameInfo.InstallDirectory,
-                gameInfo.InstallDirectory + "OSD"
+                installDir,
+                installDir + "OSD"
             };
 
             // Keep track of the found files

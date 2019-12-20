@@ -4,6 +4,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ArchiveExplorerDialogViewModel}"
@@ -18,24 +20,43 @@
         <TreeView x:Name="DirTreeView"
                   Grid.Column="0"
                   SelectedItemChanged="DirTreeView_OnSelectedItemChangedAsync"
-                  ItemsSource="{Binding Path=Directories, Mode=OneTime}">
+                  ItemsSource="{Binding Path=Archives, Mode=OneTime}"
+                  MinWidth="80">
+
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                    <Setter Property="ContextMenu">
+                        <Setter.Value>
+                            <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
+
+                                <local:MenuItemIcon Header="{Resx Progression_Export}"
+                                                    IconKind="Export"/>
+
+                            </ContextMenu>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
+                    <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded}" />
+                </Style>
+            </TreeView.ItemContainerStyle>
+
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Mode=OneTime}">
                     <StackPanel Orientation="Horizontal">
-                        <Grid Background="Transparent">
-                            <Grid.ContextMenu>
-                                <ContextMenu>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="5" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                                    <!-- TODO: Localize -->
+                            <iconPacks:PackIconMaterial Grid.Column="0"
+                                                        Kind="FolderOutline" />
 
-                                    <local:MenuItemIcon Header="Export"
-                                                        IconKind="Export"/>
-
-                                </ContextMenu>
-                            </Grid.ContextMenu>
-
-                            <TextBlock Text="{Binding Path=ID, Mode=OneTime}"
-                                       VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="2"
+                                       Text="{Binding Path=DisplayName, Mode=OneTime}"
+                                       VerticalAlignment="Center"
+                                       Margin="0 0 10 0"/>
 
                         </Grid>
                     </StackPanel>
@@ -50,6 +71,25 @@
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      Padding="5">
 
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="ContextMenu">
+                            <Setter.Value>
+                                <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
+
+                                    <local:MenuItemIcon Header="{Resx Progression_Export}"
+                                                        IconKind="FileExportOutline"/>
+
+                                    <local:MenuItemIcon Header="{Resx Progression_Import}"
+                                                        IconKind="FileImportOutline"/>
+                                </ContextMenu>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />
@@ -58,26 +98,12 @@
 
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="local:ArchiveFileViewModel">
-                        <Grid Margin="10"
-                              Background="Transparent">
+                        <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="5" />
                                 <RowDefinition Height="*" SharedSizeGroup="FileName" />
                             </Grid.RowDefinitions>
-
-                            <Grid.ContextMenu>
-                                <ContextMenu>
-
-                                    <!-- TODO: Localize -->
-
-                                    <local:MenuItemIcon Header="Export"
-                                                        IconKind="FileExport"/>
-                                    
-                                    <local:MenuItemIcon Header="Import"
-                                                        IconKind="FileImport"/>
-                                </ContextMenu>
-                            </Grid.ContextMenu>
 
                             <Image Grid.Row="0"
                                    Source="{Binding Path=ThumbnailSource}"

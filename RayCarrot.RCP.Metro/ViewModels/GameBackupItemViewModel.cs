@@ -6,6 +6,7 @@ using System.Windows.Input;
 using ByteSizeLib;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -33,11 +34,11 @@ namespace RayCarrot.RCP.Metro
             DisplayName = backupInfo.GameDisplayName;
 
             // If the type if DOSBox, check if GOG cloud sync is being used
-            if (gameInfo.GameData.GameType == GameType.DosBox)
+            if (game.GetGameType() == GameType.DosBox)
             {
                 try
                 {
-                    var cloudSyncDir = game.GetData().InstallDirectory.Parent + "cloud_saves";
+                    var cloudSyncDir = game.GetInstallDir(false).Parent + "cloud_saves";
                     IsGOGCloudSyncUsed = cloudSyncDir.DirectoryExists && Directory.GetFileSystemEntries(cloudSyncDir).Any();
                 }
                 catch (Exception ex)

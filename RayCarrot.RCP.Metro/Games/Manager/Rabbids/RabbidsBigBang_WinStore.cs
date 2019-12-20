@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿using RayCarrot.RCP.Core;
+
+namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// The Rabbids Big Bang (WinStore) game manager

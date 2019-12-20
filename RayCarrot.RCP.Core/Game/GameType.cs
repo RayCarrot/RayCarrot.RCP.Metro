@@ -1,7 +1,7 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Core
 {
     /// <summary>
-    /// Determines the type of a game
+    /// The game types supported by the Rayman Control Panel
     /// </summary>
     public enum GameType
     {

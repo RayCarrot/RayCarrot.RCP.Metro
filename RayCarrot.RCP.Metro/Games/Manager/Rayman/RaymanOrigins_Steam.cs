@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿using RayCarrot.RCP.Core;
+
+namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// The Rayman Origins (Steam) game manager

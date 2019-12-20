@@ -5,6 +5,7 @@ using MahApps.Metro.IconPacks;
 using Microsoft.Win32;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 
@@ -103,7 +104,7 @@ namespace RayCarrot.RCP.Metro
 
             return new JumpListItemViewModel[]
             {
-                new JumpListItemViewModel(info.DisplayName, GameData.InstallDirectory + info.DefaultFileName, LaunchURL, null, null, Game.ToString())
+                new JumpListItemViewModel(info.DisplayName, Game.GetInstallDir() + info.DefaultFileName, LaunchURL, null, null, Game.ToString())
             };
         }
 

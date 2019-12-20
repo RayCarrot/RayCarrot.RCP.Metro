@@ -4,6 +4,7 @@ using Microsoft.WindowsAPICodePack.Taskbar;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Windows.Shell;
 using System.Threading.Tasks;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {

@@ -7,6 +7,7 @@ using System.Windows.Media.Imaging;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -49,7 +50,7 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogTraceSource($"The educational game {x.Name} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
 
             // Launch the game
-            var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, GameData.LaunchMode == GameLaunchMode.AsAdmin, launchInfo.Args);
+            var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, Game.GetLaunchMode() == GameLaunchMode.AsAdmin, launchInfo.Args);
 
             RCFCore.Logger?.LogInformationSource($"The educational game {x.Name} has been launched");
 
@@ -99,7 +100,7 @@ namespace RayCarrot.RCP.Metro
         public override Task PostGameAddAsync()
         {
             // Get the info
-            var info = GetNewEducationalDosBoxGameInfo(Game.GetData().InstallDirectory);
+            var info = GetNewEducationalDosBoxGameInfo(Game.GetInstallDir());
 
             // Add the game to the list of educational games
             RCFRCP.Data.EducationalDosBoxGames.Add(info);
@@ -294,7 +295,7 @@ namespace RayCarrot.RCP.Metro
         public void RefreshDefault()
         {
             // Get the current launch mode
-            var launchMode = Games.EducationalDos.GetData().LaunchMode;
+            var launchMode = Games.EducationalDos.GetLaunchMode();
 
             // Reset the game data with new install directory
             RCFRCP.Data.Games[Games.EducationalDos] = new GameData(GameType.EducationalDosBox, RCFRCP.Data.EducationalDosBoxGames.First().InstallDir)

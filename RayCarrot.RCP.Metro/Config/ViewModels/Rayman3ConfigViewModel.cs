@@ -1,5 +1,6 @@
 ﻿using RayCarrot.Rayman;
 using System.Threading.Tasks;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {

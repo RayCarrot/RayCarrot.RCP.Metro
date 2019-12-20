@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using Nito.AsyncEx;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -111,7 +112,7 @@ namespace RayCarrot.RCP.Metro
                         new LinkItemViewModel(CommonPaths.UbiIniPath2, Resources.Links_Local_SecondaryUbiIni,
                             UserLevel.Advanced),
                         new LinkItemViewModel(Games.Rayman2.IsAdded()
-                            ? Games.Rayman2.GetData().InstallDirectory + "ubi.ini"
+                            ? Games.Rayman2.GetInstallDir() + "ubi.ini"
                             : FileSystemPath.EmptyPath, Resources.Links_Local_R2UbiIni, UserLevel.Advanced),
                         new LinkItemViewModel(Environment.SpecialFolder.CommonApplicationData.GetFolderPath() + @"Ubisoft\RGH Launcher\1.0.0.0\Launcher_5.exe.config", Resources.Links_Local_RGHConfig, UserLevel.Advanced)
                     });

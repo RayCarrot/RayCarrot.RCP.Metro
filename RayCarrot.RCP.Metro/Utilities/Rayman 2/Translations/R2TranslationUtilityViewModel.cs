@@ -4,6 +4,7 @@ using System.Windows.Input;
 using ByteSizeLib;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -24,7 +25,7 @@ namespace RayCarrot.RCP.Metro
             ApplyTranslationCommand = new AsyncRelayCommand(ApplyTranslationAsync);
 
             // Get the game data
-            GameData = Games.Rayman2.GetData();
+            InstallDir = Games.Rayman2.GetInstallDir();
 
             // Get current translation
             SelectedTranslation = GetAppliedRayman2Translation() ?? Rayman2Translation.Original;
@@ -42,9 +43,9 @@ namespace RayCarrot.RCP.Metro
         public Rayman2Translation SelectedTranslation { get; set; }
 
         /// <summary>
-        /// The game data
+        /// The game install directory
         /// </summary>
-        public GameData GameData { get; }
+        public FileSystemPath InstallDir { get; }
 
         #endregion
 
@@ -193,7 +194,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The file path</returns>
         public FileSystemPath GetTexturesCntFilePath()
         {
-            return GameData.InstallDirectory + "Data" + "Textures.cnt";
+            return InstallDir + "Data" + "Textures.cnt";
         }
 
         /// <summary>
@@ -202,7 +203,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The file path</returns>
         public FileSystemPath GetFixSnaFilePath()
         {
-            return GameData.InstallDirectory + "Data" + "World" + "Levels" + "Fix.sna";
+            return InstallDir + "Data" + "World" + "Levels" + "Fix.sna";
         }
 
         /// <summary>

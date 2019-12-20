@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using RayCarrot.Rayman;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -71,6 +72,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         typeof(R1TPLSUtility),
                         typeof(R1CompleteSoundtrackUtility),
+                        typeof(R1FixConfigUtility),
                     }
                 },
                 {
@@ -322,6 +324,26 @@ namespace RayCarrot.RCP.Metro
                     }
                 },
                 {
+                    Games.RaymanActivityCenter,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.Win32,
+                            typeof(RaymanActivityCenter_Win32)
+                        },
+                    }
+                },
+                {
+                    Games.RaymanRavingRabbidsActivityCenter,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.Win32,
+                            typeof(RaymanRavingRabbidsActivityCenter_Win32)
+                        },
+                    }
+                },
+                {
                     Games.GloboxMoment,
                     new Dictionary<GameType, Type>()
                     {
@@ -338,6 +360,16 @@ namespace RayCarrot.RCP.Metro
                         {
                             GameType.Win32,
                             typeof(TheDarkMagiciansReignofTerror_Win32)
+                        },
+                    }
+                },
+                {
+                    Games.RabbidsCoding,
+                    new Dictionary<GameType, Type>()
+                    {
+                        {
+                            GameType.Win32,
+                            typeof(RabbidsCoding_Win32)
                         },
                     }
                 },
@@ -417,12 +449,24 @@ namespace RayCarrot.RCP.Metro
                     typeof(PrintStudio_Info)
                 },
                 {
+                    Games.RaymanActivityCenter,
+                    typeof(RaymanActivityCenter_Info)
+                },
+                {
+                    Games.RaymanRavingRabbidsActivityCenter,
+                    typeof(RaymanRavingRabbidsActivityCenter_Info)
+                },
+                {
                     Games.GloboxMoment,
                     typeof(GloboxMoment_Info)
                 },
                 {
                     Games.TheDarkMagiciansReignofTerror,
                     typeof(TheDarkMagiciansReignofTerror_Info)
+                },
+                {
+                    Games.RabbidsCoding,
+                    typeof(RabbidsCoding_Info)
                 },
             };
         }
@@ -519,7 +563,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(7, 1, 1, 0);
+        public Version CurrentVersion => new Version(7, 2, 0, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -24,7 +25,7 @@ namespace RayCarrot.RCP.Metro
             AsyncLock = new AsyncLock();
 
             // Get the .mms file path
-            MMSFilePath = Games.PrintStudio.GetData().InstallDirectory + "Run.MMS";
+            MMSFilePath = Games.PrintStudio.GetInstallDir() + "Run.MMS";
 
             var currentVersion = GetCurrentVersion();
 
@@ -172,7 +173,7 @@ namespace RayCarrot.RCP.Metro
                     });
 
                     // Get the install directory
-                    var installDir = Games.PrintStudio.GetData().InstallDirectory;
+                    var installDir = Games.PrintStudio.GetInstallDir();
 
                     // Move existing files to the calender data
                     RCFRCP.File.MoveFiles(new IOSearchPattern(installDir + @"Pictures\Common\calendars", SearchOption.TopDirectoryOnly, "Picture*"), installDir + "CalendarData" + GetVersionTag(previousVersion) + "Common", true);

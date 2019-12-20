@@ -105,7 +105,7 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Bottom">
 
-                <local:IconButton IconKind="TooltipText"
+                <local:IconButton IconKind="TooltipTextOutline"
                                   ToolTip="{Resx About_UpdateHistory}"
                                   Command="{Binding Path=ShowVersionHistoryCommand}"/>
 
@@ -115,7 +115,7 @@
                                       Command="{Binding Path=CheckForUpdatesCommand}"/>
                 </mah:Badged>
 
-                <local:IconButton IconKind="DeleteForever"
+                <local:IconButton IconKind="DeleteForeverOutline"
                                   ToolTip="{Resx About_Uninstall}"
                                   Command="{Binding Path=UninstallCommand}"/>
 

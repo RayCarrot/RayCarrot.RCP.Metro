@@ -59,11 +59,11 @@
                                             IconKind="Link"/>
                         <local:MenuItemIcon Header="{Resx GameOptions_Remove}"
                                             Command="{Binding Path=RemoveCommand}"
-                                            IconKind="Delete"/>
+                                            IconKind="DeleteOutline"/>
                         <local:MenuItemIcon Header="{Resx GameOptions_Uninstall}"
                                             Visibility="{Binding Path=CanUninstall, Converter={rwpf:BooleanToVisibilityConverter}}"
                                             Command="{Binding Path=UninstallCommand}"
-                                            IconKind="DeleteForever"/>
+                                            IconKind="DeleteForeverOutline"/>
                     </ContextMenu>
                 </local:OverflowMenu.ContextMenu>
             </local:OverflowMenu>
@@ -126,10 +126,10 @@
                                                 <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
                                                     <local:MenuItemIcon Header="{Resx Progression_Export}"
                                                                         Command="{Binding Path=ExportCommand, Mode=OneTime}"
-                                                                        IconKind="Export"/>
+                                                                        IconKind="FileExportOutline"/>
                                                     <local:MenuItemIcon Header="{Resx Progression_Import}"
                                                                         Command="{Binding Path=ImportCommand, Mode=OneTime}"
-                                                                        IconKind="Import"/>
+                                                                        IconKind="FileImportOutline"/>
                                                 </ContextMenu>
                                             </local:OverflowMenu.ContextMenu>
                                         </local:OverflowMenu>
@@ -232,7 +232,7 @@
 
             <!-- Config -->
 
-            <local:RCPTabItem IconKind="Wrench"
+            <local:RCPTabItem IconKind="WrenchOutline"
                               Header="{Resx GameOptions_Config}"
                               Visibility="{Binding Path=HasConfigContent, Converter={rwpf:BooleanToVisibilityConverter}}">
                 <ContentPresenter Content="{Binding Path=ConfigContent}" />

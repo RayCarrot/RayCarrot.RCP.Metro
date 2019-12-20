@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -21,7 +22,7 @@ namespace RayCarrot.RCP.Metro
         public R2DiscPatchUtilityViewModel()
         {
             // Set properties
-            InstallDir = Games.Rayman2.GetData().InstallDirectory;
+            InstallDir = Games.Rayman2.GetInstallDir();
             RequiresPatching = (InstallDir + "RAYMAN2.ICD").FileExists;
 
             RCFCore.Logger?.LogInformationSource($"The R2 disc patch utility has detected that the currently installed game does {(RequiresPatching ? "require" : "not require")} the patch");

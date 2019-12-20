@@ -1,5 +1,6 @@
 ﻿using RayCarrot.IO;
 using RayCarrot.Rayman;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -11,7 +12,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The default localization directory for the game, if available
         /// </summary>
-        protected override FileSystemPath? DefaultLocalizationDirectory => Games.RaymanLegends.GetData().InstallDirectory + "EngineData" + "Localisation";
+        protected override FileSystemPath? DefaultLocalizationDirectory => Games.RaymanLegends.GetInstallDir() + "EngineData" + "Localisation";
 
         /// <summary>
         /// The localization file extension

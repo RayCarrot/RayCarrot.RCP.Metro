@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MahApps.Metro.IconPacks;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro

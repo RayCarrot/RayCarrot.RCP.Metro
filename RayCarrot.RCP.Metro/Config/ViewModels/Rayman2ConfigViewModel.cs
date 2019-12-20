@@ -11,6 +11,7 @@ using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -412,12 +413,11 @@ namespace RayCarrot.RCP.Metro
             // If the file does not exist, create a new one
             if (!ConfigPath.FileExists)
             {
-                // Check if the game is the GOG version,
-                // in which case the file is located in the install directory
-                bool isGOG = (Games.Rayman2.GetData().InstallDirectory + "goggame.sdb").FileExists;
+                // Check if the game is the GOG version, in which case the file is located in the install directory
+                bool isGOG = (Games.Rayman2.GetInstallDir(false) + "goggame.sdb").FileExists;
 
                 // Get the new file path
-                var newFile = isGOG ? Games.Rayman2.GetData().InstallDirectory + "ubi.ini" : CommonPaths.UbiIniPath1;
+                var newFile = isGOG ? Games.Rayman2.GetInstallDir(false) + "ubi.ini" : CommonPaths.UbiIniPath1;
 
                 try
                 {
@@ -526,7 +526,7 @@ namespace RayCarrot.RCP.Metro
                 RCFCore.Logger?.LogInformationSource($"The Rayman 2 aspect ratio is being set...");
 
                 // Get the file path
-                FileSystemPath path = Games.Rayman2.GetData().InstallDirectory + Games.Rayman2.GetGameInfo().DefaultFileName;
+                FileSystemPath path = Games.Rayman2.GetInstallDir(false) + Games.Rayman2.GetGameInfo().DefaultFileName;
 
                 // Make sure the file exists
                 if (!path.FileExists)
@@ -715,7 +715,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The path</returns>
         private static FileSystemPath GetDinputPath()
         {
-            return Games.Rayman2.GetData().InstallDirectory + "dinput.dll";
+            return Games.Rayman2.GetInstallDir(false) + "dinput.dll";
         }
 
         /// <summary>
@@ -724,7 +724,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The path</returns>
         private static FileSystemPath GetUbiIniPath()
         {
-            var path1 = Games.Rayman2.GetData().InstallDirectory + "ubi.ini";
+            var path1 = Games.Rayman2.GetInstallDir(false) + "ubi.ini";
 
             if (path1.FileExists)
                 return path1;
@@ -780,7 +780,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Get the file path
-                FileSystemPath path = Games.Rayman2.GetData().InstallDirectory + Games.Rayman2.GetGameInfo().DefaultFileName;
+                FileSystemPath path = Games.Rayman2.GetInstallDir() + Games.Rayman2.GetGameInfo().DefaultFileName;
 
                 // Get the location
                 var location = GetAspectRatioLocation(path);
@@ -790,6 +790,7 @@ namespace RayCarrot.RCP.Metro
 
                 // Open the file
                 using Stream stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+
                 // Set the position
                 stream.Position = location;
 

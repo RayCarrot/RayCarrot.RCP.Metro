@@ -31,8 +31,8 @@ Rabbids Go Home sends the config as launch arguments when launching the game. As
 #### Rayman Origins/Legends
 Rayman Origins and Rayman Legends both store their data in the Registry.
 
-#### Rayman Jungle Run
-Rayman Jungle Run stores its configuration in single-byte files in the app data.
+#### Rayman Jungle/Fiesta Run
+Rayman Jungle/Fiesta Run stores its configuration in single-byte files in the app data.
 
 ### Utilities
 Utilities are available to help the games run better or add new functionality to them. Some files needed for utilities are not stored within the application due to them taking to much space. These will need to be downloaded.
