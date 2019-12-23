@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Windows;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Core
 {
     /// <summary>
     /// Interface for a RCP utility
@@ -31,7 +30,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The utility UI content
         /// </summary>
-        UIElement UIContent { get; }
+        object UIContent { get; }
 
         /// <summary>
         /// Indicates if the utility requires administration privileges

@@ -8,6 +8,7 @@
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:ui="clr-namespace:RayCarrot.RCP.Core.UI;assembly=RayCarrot.RCP.Core.UI"
                 ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
@@ -23,11 +24,11 @@
 
             <Separator />
 
-            <local:MenuItemIcon Header="{Resx Backup_BackupAll}"
+            <ui:MenuItemIcon Header="{Resx Backup_BackupAll}"
                                 IconKind="FolderUploadOutline"
                                 Command="{Binding Path=BackupAllCommand}" />
 
-            <local:MenuItemIcon Header="{Resx Page_Refresh}"
+            <ui:MenuItemIcon Header="{Resx Page_Refresh}"
                                 IconKind="Refresh"
                                 Command="{Binding Path=RefreshCommand}"
                                 rwpf:UserLevelTag.MinUserLevel="Advanced"/>

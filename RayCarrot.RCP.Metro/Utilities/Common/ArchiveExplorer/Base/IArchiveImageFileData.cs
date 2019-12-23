@@ -16,12 +16,11 @@ namespace RayCarrot.RCP.Metro
         Bitmap GetBitmap(Stream archiveFileStream);
 
         /// <summary>
-        /// Gets the image as a bitmap with a specified size
+        /// Gets the image as a bitmap with a specified width, while maintaining the aspect ratio
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <param name="width">The width</param>
-        /// <param name="height">The height</param>
         /// <returns>The image as a bitmap</returns>
-        Bitmap GetBitmap(Stream archiveFileStream, int width, int height);
+        Bitmap GetBitmap(Stream archiveFileStream, int width);
     }
 }

@@ -25,6 +25,7 @@
                 <ResourceDictionary Source="UI/Styles/UnifiedMargins.xaml" />
                 <ResourceDictionary Source="UI/Styles/TextStyles.xaml" />
                 <ResourceDictionary Source="UI/Styles/ContentStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/RayCarrot.RCP.Core.UI;component/Styles/ContentStyles.xaml" />
                 <ResourceDictionary Source="UI/Styles/LinkItemStyles - List.xaml" />
 
             </ResourceDictionary.MergedDictionaries>

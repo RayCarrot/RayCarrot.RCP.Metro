@@ -14,7 +14,7 @@ namespace RayCarrot.RCP.Metro
     public partial class ArchiveExplorer : UserControl, IWindowBaseControl<ArchiveExplorerDialogViewModel>
     {
         #region Constructor
-
+        
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -25,6 +25,18 @@ namespace RayCarrot.RCP.Metro
             ViewModel = vm;
             DataContext = ViewModel;
             AsyncLock = new AsyncLock();
+
+            // TODO: Clean up
+            Loaded += (s, e) =>
+            {
+                // Attempt to get parent window
+                var window = Window.GetWindow(this);
+
+                if (window == null)
+                    return;
+
+                window.Closed += (ss, ee) => ViewModel?.Dispose();
+            };
         }
 
         #endregion
@@ -134,6 +146,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public event EventHandler CloseDialog;
 
-        #endregion
+        #endregion  
     }
 }

@@ -8,6 +8,7 @@
                     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                    xmlns:ui="clr-namespace:RayCarrot.RCP.Core.UI;assembly=RayCarrot.RCP.Core.UI"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     IsTabStop="False"
                     mc:Ignorable="d"
@@ -31,7 +32,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="{Resx Config_Resolution}" />
 
-                    <local:InfoIcon Text="{Resx Config_ResolutionR2Info}" />
+                    <ui:InfoIcon Text="{Resx Config_ResolutionR2Info}" />
 
                 </StackPanel>
 
@@ -94,7 +95,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="{Resx Config_Language}" />
 
-                    <local:InfoIcon Text="{Resx Config_LanguageR2Info}" />
+                    <ui:InfoIcon Text="{Resx Config_LanguageR2Info}" />
 
                 </StackPanel>
 
@@ -111,7 +112,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="{Resx Config_Controller}" />
 
-                    <local:InfoIcon Text="{Resx Config_ControllerR2Info}" />
+                    <ui:InfoIcon Text="{Resx Config_ControllerR2Info}" />
 
                 </StackPanel>
 
@@ -206,7 +207,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="{Resx Config_ButtonMapping}" />
 
-                    <local:InfoIcon Text="{Resx Config_ButtonMappingInfo}" />
+                    <ui:InfoIcon Text="{Resx Config_ButtonMappingInfo}" />
 
                 </StackPanel>
 

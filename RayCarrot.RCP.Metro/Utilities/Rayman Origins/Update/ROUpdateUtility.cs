@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -45,7 +46,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The utility UI content
         /// </summary>
-        public UIElement UIContent => new ROUpdateUtilityUI()
+        public object UIContent => new ROUpdateUtilityUI()
         {
             DataContext = ViewModel
         };

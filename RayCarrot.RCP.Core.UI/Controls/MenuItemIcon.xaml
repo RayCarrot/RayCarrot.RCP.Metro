@@ -1,16 +1,16 @@
-﻿<MenuItem x:Class="RayCarrot.RCP.Metro.MenuItemIcon"
+﻿<MenuItem x:Class="RayCarrot.RCP.Core.UI.MenuItemIcon"
           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
           xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
           xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-          xmlns:metro="clr-namespace:RayCarrot.RCP.Metro"
+          xmlns:local="clr-namespace:RayCarrot.RCP.Core.UI"
           mc:Ignorable="d">
     <MenuItem.Icon>
         <iconPacks:PackIconMaterial x:Name="PackIcon"
                                     Kind="{Binding Path=IconKind}"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    d:DataContext="{d:DesignInstance metro:MenuItemIcon}" />
+                                    d:DataContext="{d:DesignInstance local:MenuItemIcon}" />
     </MenuItem.Icon>
 </MenuItem>

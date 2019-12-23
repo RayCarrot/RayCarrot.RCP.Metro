@@ -7,6 +7,7 @@
                   xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                   xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                   xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                  xmlns:ui="clr-namespace:RayCarrot.RCP.Core.UI;assembly=RayCarrot.RCP.Core.UI"
                   Title="{Binding Path=DisplayName}"
                   Loaded="GameOptions_OnLoadedAsync"
                   Closing="GameOptions_OnClosingAsync"
@@ -54,13 +55,13 @@
                                 Margin="7">
                 <local:OverflowMenu.ContextMenu>
                     <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
-                        <local:MenuItemIcon Header="{Resx GameOptions_CreateShortcut}"
+                        <ui:MenuItemIcon Header="{Resx GameOptions_CreateShortcut}"
                                             Command="{Binding Path=ShortcutCommand}"
                                             IconKind="Link"/>
-                        <local:MenuItemIcon Header="{Resx GameOptions_Remove}"
+                        <ui:MenuItemIcon Header="{Resx GameOptions_Remove}"
                                             Command="{Binding Path=RemoveCommand}"
                                             IconKind="DeleteOutline"/>
-                        <local:MenuItemIcon Header="{Resx GameOptions_Uninstall}"
+                        <ui:MenuItemIcon Header="{Resx GameOptions_Uninstall}"
                                             Visibility="{Binding Path=CanUninstall, Converter={rwpf:BooleanToVisibilityConverter}}"
                                             Command="{Binding Path=UninstallCommand}"
                                             IconKind="DeleteForeverOutline"/>
@@ -89,7 +90,7 @@
 
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <local:DuoGridItem Text="{Binding Path=Text}"
+                                <ui:DuoGridItem Text="{Binding Path=Text}"
                                                    Header="{Binding Path=Header}"
                                                    MinUserLevel="{Binding Path=MinUserLevel}" />
                             </DataTemplate>
@@ -124,10 +125,10 @@
                                                             Margin="7">
                                             <local:OverflowMenu.ContextMenu>
                                                 <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
-                                                    <local:MenuItemIcon Header="{Resx Progression_Export}"
+                                                    <ui:MenuItemIcon Header="{Resx Progression_Export}"
                                                                         Command="{Binding Path=ExportCommand, Mode=OneTime}"
                                                                         IconKind="FileExportOutline"/>
-                                                    <local:MenuItemIcon Header="{Resx Progression_Import}"
+                                                    <ui:MenuItemIcon Header="{Resx Progression_Import}"
                                                                         Command="{Binding Path=ImportCommand, Mode=OneTime}"
                                                                         IconKind="FileImportOutline"/>
                                                 </ContextMenu>
@@ -192,7 +193,7 @@
                             <TextBlock Style="{StaticResource HeaderTextBlock}"
                                        Text="{Resx GameOptions_LaunchMode}" />
 
-                            <local:InfoIcon Text="{Resx GameOptions_LaunchModeInfo}" />
+                            <ui:InfoIcon Text="{Resx GameOptions_LaunchModeInfo}" />
 
                         </StackPanel>
 

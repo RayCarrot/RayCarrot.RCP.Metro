@@ -2,7 +2,7 @@
 using RayCarrot.CarrotFramework.Abstractions;
 using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Core.UI
 {
     /// <summary>
     /// A duo grid item

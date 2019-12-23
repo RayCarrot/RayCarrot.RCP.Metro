@@ -23,7 +23,7 @@ namespace RayCarrot.RCP.Metro
             Manager = manager;
 
             // Get the archives
-            Archives = filePaths.Select(x => new ArchiveViewModel(x)).ToArray();
+            Archives = filePaths.Select(x => new ArchiveViewModel(x, manager)).ToArray();
 
             // Make sure we got an archive
             if (!Archives.Any())
@@ -42,7 +42,7 @@ namespace RayCarrot.RCP.Metro
                     if (dir.DirectoryName == String.Empty)
                     {
                         // Add the files
-                        archive.Files.AddRange(dir.Files.Select(x => new ArchiveFileViewModel(x, archive.ArchiveFileStream)));
+                        archive.Files.AddRange(dir.Files.Select(x => new ArchiveFileViewModel(x, archive)));
 
                         continue;
                     }
@@ -58,7 +58,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Add the files
-                    prevItem.Files.AddRange(dir.Files.Select(x => new ArchiveFileViewModel(x, archive.ArchiveFileStream)));
+                    prevItem.Files.AddRange(dir.Files.Select(x => new ArchiveFileViewModel(x, archive)));
                 }
             }
 

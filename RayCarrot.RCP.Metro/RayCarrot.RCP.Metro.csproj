@@ -129,9 +129,6 @@
     <Compile Include="UI\Dialogs\JumpListEditDialog.xaml.cs">
       <DependentUpon>JumpListEditDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\MenuItemIcon.xaml.cs">
-      <DependentUpon>MenuItemIcon.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\OverflowMenu.xaml.cs">
       <DependentUpon>OverflowMenu.xaml</DependentUpon>
     </Compile>
@@ -206,8 +203,8 @@
     <Compile Include="Utilities\Common\ArchiveExplorer\Base\ArchiveDirectory.cs" />
     <Compile Include="Utilities\Common\ArchiveExplorer\Base\IArchiveFileData.cs" />
     <Compile Include="Utilities\Common\ArchiveExplorer\Base\IArchiveImageFileData.cs" />
-    <Compile Include="Utilities\Common\ArchiveExplorer\R2_Cnt\R2CntArchiveFileData.cs" />
-    <Compile Include="Utilities\Common\ArchiveExplorer\R2_Cnt\R2CntArchiveDataManager.cs" />
+    <Compile Include="Utilities\Common\ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
+    <Compile Include="Utilities\Common\ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
     <Compile Include="Utilities\Common\ArchiveExplorer\Base\IArchiveDataManager.cs" />
     <Compile Include="Utilities\Common\ArchiveExplorer\ViewModels\ArchiveFileViewModel.cs" />
     <Compile Include="Utilities\Common\ArchiveExplorer\ViewModels\ArchiveDirectoryViewModel.cs" />
@@ -288,7 +285,6 @@
       <DependentUpon>LinksPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Converters\TPLSRaymanVersionEnumToComboBoxIndexConverter.cs" />
-    <Compile Include="UI\Converters\AppendSpacesToStringConverter.cs" />
     <Compile Include="DataModels\Enums\FiestaRunEdition.cs" />
     <Compile Include="DataModels\Enums\PopupPromptResult.cs" />
     <Compile Include="DataModels\Enums\Pages.cs" />
@@ -326,17 +322,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\InfoIcon.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UI\IconButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\MenuItemIcon.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\OverflowButton.xaml">
       <SubType>Designer</SubType>
@@ -529,10 +517,6 @@
     <Compile Include="DataModels\EventArgs\RefreshRequiredEventArgs.cs" />
     <Compile Include="DataModels\Enums\AdminWorkerModes.cs" />
     <Compile Include="Helpers\SecretCodeManager.cs" />
-    <Compile Include="UI\DuoGridItem.cs" />
-    <Compile Include="UI\InfoIcon.xaml.cs">
-      <DependentUpon>InfoIcon.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
     </Compile>
@@ -541,7 +525,6 @@
     </Compile>
     <Compile Include="DataModels\Enums\LinkItemStyles.cs" />
     <Compile Include="DataModels\Enums\CheatCodeItemsType.cs" />
-    <Compile Include="Utilities\IRCPUtility.cs" />
     <Compile Include="Temp\TempDirectory.cs" />
     <Compile Include="Temp\TempFile.cs" />
     <Compile Include="Temp\TempFileSystemEntry.cs" />
@@ -594,7 +577,6 @@
       <DependentUpon>ROUpdateUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Rayman Origins\Update\ROUpdateUtilityViewModel.cs" />
-    <Compile Include="Utilities\RCPUtilityViewModel.cs" />
     <Compile Include="Utilities\UtilitiesContainer.xaml.cs">
       <DependentUpon>UtilitiesContainer.xaml</DependentUpon>
     </Compile>
@@ -1030,10 +1012,10 @@
       <Version>1.5.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Extensions">
-      <Version>1.2.3</Version>
+      <Version>1.2.4</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
-      <Version>1.3.2</Version>
+      <Version>1.3.6</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.UI">
       <Version>1.2.1</Version>

@@ -17,5 +17,14 @@ namespace RayCarrot.RCP.Metro
         {
             return RCFRCP.Data.Games.TryGetValue(game);
         }
+
+        /// <summary>
+        /// Gets a value indicating if the application is running as administrator
+        /// </summary>
+        /// <returns>True if the application is running as administrator</returns>
+        public bool IsRunningAsAdmin()
+        {
+            return RCFRCP.App.IsRunningAsAdmin;
+        }
     }
 }

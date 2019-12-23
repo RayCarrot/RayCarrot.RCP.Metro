@@ -2,7 +2,7 @@
 using System;
 using System.Globalization;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Core.UI
 {
     /// <summary>
     /// Converts a <see cref="String"/> to a <see cref="String"/> with spaces appended

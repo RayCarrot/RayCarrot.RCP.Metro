@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:ui="clr-namespace:RayCarrot.RCP.Core.UI;assembly=RayCarrot.RCP.Core.UI"
              ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ArchiveExplorerDialogViewModel}"
@@ -28,8 +29,13 @@
                         <Setter.Value>
                             <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
 
-                                <local:MenuItemIcon Header="{Resx Progression_Export}"
+                                <ui:MenuItemIcon Header="{Resx Progression_Export}"
+                                                    Command="{Binding Path=ExportCommand}"
                                                     IconKind="Export"/>
+
+                                <ui:MenuItemIcon Header="{Resx Progression_Export}"
+                                                    Command="{Binding Path=ImportCommand}"
+                                                    IconKind="Import"/>
 
                             </ContextMenu>
                         </Setter.Value>
@@ -78,10 +84,12 @@
                             <Setter.Value>
                                 <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
 
-                                    <local:MenuItemIcon Header="{Resx Progression_Export}"
+                                    <ui:MenuItemIcon Header="{Resx Progression_Export}"
+                                                        Command="{Binding Path=ExportCommand}"
                                                         IconKind="FileExportOutline"/>
 
-                                    <local:MenuItemIcon Header="{Resx Progression_Import}"
+                                    <ui:MenuItemIcon Header="{Resx Progression_Import}"
+                                                        Command="{Binding Path=ImportCommand}"
                                                         IconKind="FileImportOutline"/>
                                 </ContextMenu>
                             </Setter.Value>

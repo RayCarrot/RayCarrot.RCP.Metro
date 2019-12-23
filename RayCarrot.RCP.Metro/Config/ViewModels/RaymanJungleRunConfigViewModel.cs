@@ -1,9 +1,4 @@
-﻿using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.UI;
-using System;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro

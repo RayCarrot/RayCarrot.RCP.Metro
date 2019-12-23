@@ -46,7 +46,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The utility UI content
         /// </summary>
-        public UIElement UIContent => new RDReplaceFilesUtilityUI()
+        public object UIContent => new RDReplaceFilesUtilityUI()
         {
             DataContext = ViewModel
         };

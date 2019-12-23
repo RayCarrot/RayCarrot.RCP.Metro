@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

@@ -8,6 +8,7 @@
                 xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:ui="clr-namespace:RayCarrot.RCP.Core.UI;assembly=RayCarrot.RCP.Core.UI"
                 ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"    
@@ -17,10 +18,10 @@
     <local:IBasePage.OverflowMenu>
         <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
 
-            <local:MenuItemIcon Header="{Resx Settings_EditJumpList}"
-                                ToolTip="{Resx Settings_EditJumpListInfo}"
-                                Command="{Binding Path=EditJumpListCommand}"
-                                IconKind="PencilBoxOutline"/>
+            <ui:MenuItemIcon Header="{Resx Settings_EditJumpList}"
+                             ToolTip="{Resx Settings_EditJumpListInfo}"
+                             Command="{Binding Path=EditJumpListCommand}"
+                             IconKind="PencilBoxOutline"/>
 
         </ContextMenu>
     </local:IBasePage.OverflowMenu>
@@ -90,7 +91,7 @@
                     <TextBlock Text="{Resx Settings_UserLevel}"
                                Style="{StaticResource LargeHeaderTextBlock}" />
 
-                    <local:InfoIcon Text="{Resx Settings_UserLevelInfo}" />
+                    <ui:InfoIcon Text="{Resx Settings_UserLevelInfo}" />
 
                 </StackPanel>
 
@@ -170,7 +171,7 @@
                                   IsChecked="{Binding Path=Data.ShowUnderInstalledPrograms}"
                                   IsEnabled="{Binding Path=CanEditShowUnderInstalledPrograms, Mode=OneTime}" />
 
-                        <local:InfoIcon Text="{Resx Settings_ShowUnderInstalledProgramsInfo}" />
+                        <ui:InfoIcon Text="{Resx Settings_ShowUnderInstalledProgramsInfo}" />
 
                     </StackPanel>
 

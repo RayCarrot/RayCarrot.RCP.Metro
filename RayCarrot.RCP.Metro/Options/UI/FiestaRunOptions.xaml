@@ -7,6 +7,7 @@
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                    xmlns:ui="clr-namespace:RayCarrot.RCP.Core.UI;assembly=RayCarrot.RCP.Core.UI"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     mc:Ignorable="d"
                     d:DataContext="{d:DesignInstance local:FiestaRunOptionsViewModel}">
@@ -20,7 +21,7 @@
             <TextBlock Style="{StaticResource HeaderTextBlock}"
                        Text="{Resx Config_FiestaRunVersion}" />
 
-            <local:InfoIcon Text="{Resx Config_FiestaRunVersionInfo}" />
+            <ui:InfoIcon Text="{Resx Config_FiestaRunVersionInfo}" />
 
         </StackPanel>
 

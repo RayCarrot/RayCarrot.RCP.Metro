@@ -1,12 +1,15 @@
-﻿using System;
-using RayCarrot.CarrotFramework.Abstractions;
+﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.RCP.Core;
+using RayCarrot.UI;
+using System;
+using System.Globalization;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// View model for a RCP utility
     /// </summary>
-    public class RCPUtilityViewModel : BaseRCPViewModel, IDisposable
+    public class RCPUtilityViewModel : BaseViewModel, IDisposable
     {
         #region Constructor
 
@@ -27,7 +30,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility can not be run due to requiring the app to run as administrator
         /// </summary>
-        public bool RequiresAdmin => !App.IsRunningAsAdmin && Utility.RequiresAdmin;
+        public bool RequiresAdmin => !RCFRCPA.API.IsRunningAsAdmin() && Utility.RequiresAdmin;
 
         /// <summary>
         /// The utility header
@@ -53,7 +56,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Event Handlers
 
-        private void Data_CultureChanged(object sender, PropertyChangedEventArgs<System.Globalization.CultureInfo> e)
+        private void Data_CultureChanged(object sender, PropertyChangedEventArgs<CultureInfo> e)
         {
             OnPropertyChanged(nameof(DisplayHeader));
             OnPropertyChanged(nameof(InfoText));

@@ -1,10 +1,5 @@
-﻿using System.Collections;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Threading.Tasks;
 using RayCarrot.RCP.Core;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

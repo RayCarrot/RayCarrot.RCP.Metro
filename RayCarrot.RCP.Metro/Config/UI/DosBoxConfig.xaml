@@ -7,6 +7,7 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:ui="clr-namespace:RayCarrot.RCP.Core.UI;assembly=RayCarrot.RCP.Core.UI"
              ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
@@ -33,7 +34,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="{Resx MountPathHeader}" />
 
-                    <local:InfoIcon Text="{Resx MountPathInfo}" />
+                    <ui:InfoIcon Text="{Resx MountPathInfo}" />
 
                 </StackPanel>
 
@@ -73,7 +74,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="{Resx Config_Language}" />
 
-                    <local:InfoIcon Text="{Resx DosBoxConfig_LanguageInfo}" />
+                    <ui:InfoIcon Text="{Resx DosBoxConfig_LanguageInfo}" />
 
                 </StackPanel>
 
@@ -102,7 +103,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="{Resx DosBoxSettingsHeader}" />
 
-                    <local:InfoIcon Text="{Resx DosBoxSettingsInfo}" />
+                    <ui:InfoIcon Text="{Resx DosBoxSettingsInfo}" />
 
                 </StackPanel>
 

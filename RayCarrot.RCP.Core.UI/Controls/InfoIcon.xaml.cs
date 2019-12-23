@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using MahApps.Metro.IconPacks;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Core.UI
 {
     /// <summary>
     /// Interaction logic for InfoIcon.xaml

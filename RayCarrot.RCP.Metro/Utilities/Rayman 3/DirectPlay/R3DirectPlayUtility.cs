@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
+using RayCarrot.RCP.Core;
 using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
@@ -46,7 +47,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The utility UI content
         /// </summary>
-        public UIElement UIContent => new R3DirectPlayUtilityUI()
+        public object UIContent => new R3DirectPlayUtilityUI()
         {
             DataContext = ViewModel
         };

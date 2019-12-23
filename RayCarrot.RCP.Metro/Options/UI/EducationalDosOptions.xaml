@@ -9,6 +9,7 @@
                     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     xmlns:dd="urn:gong-wpf-dragdrop"
+                    xmlns:ui="clr-namespace:RayCarrot.RCP.Core.UI;assembly=RayCarrot.RCP.Core.UI"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     mc:Ignorable="d"
                     d:DataContext="{d:DesignInstance local:EducationalDosOptionsViewModel}">
@@ -22,7 +23,7 @@
             <TextBlock Style="{StaticResource HeaderTextBlock}"
                        Text="{Resx EducationalOptions_Header}" />
 
-            <local:InfoIcon Text="{Resx EducationalOptions_Info}" />
+            <ui:InfoIcon Text="{Resx EducationalOptions_Info}" />
 
         </StackPanel>
 

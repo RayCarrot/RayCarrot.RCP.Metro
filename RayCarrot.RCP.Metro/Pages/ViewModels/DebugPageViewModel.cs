@@ -15,6 +15,7 @@ using System.Runtime.Versioning;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using RayCarrot.Rayman;
 using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
@@ -80,6 +81,16 @@ namespace RayCarrot.RCP.Metro
         /// The selected archive explorer
         /// </summary>
         public DebugArchiveExplorer SelectedArchiveExplorer { get; set; }
+
+        /// <summary>
+        /// The selected OpenSpace game mode
+        /// </summary>
+        public OpenSpaceGameMode SelectedOpenSpaceGameMode { get; set; }
+
+        /// <summary>
+        /// The available OpenSpace game modes
+        /// </summary>
+        public string[] OpenSpaceGameModes => OpenSpaceGameMode.DinosaurPC.GetValues().Select(x => x.GetDisplayName()).ToArray();
 
         #endregion
 
@@ -429,16 +440,26 @@ namespace RayCarrot.RCP.Metro
         public async Task OpenArchiveExplorerAsync()
         {
             // Helper method for getting the game for the selected archive explorer mode
-            Games GetGame() => SelectedArchiveExplorer switch
+            Games? GetGame()
             {
-                DebugArchiveExplorer.Rayman2_CNT => Games.Rayman2,
-                _ => throw new ArgumentOutOfRangeException()
-            };
+                return SelectedArchiveExplorer switch
+                {
+                    DebugArchiveExplorer.OpenSpace_CNT => (SelectedOpenSpaceGameMode switch
+                    {
+                        OpenSpaceGameMode.Rayman2PC => Games.Rayman2,
+                        OpenSpaceGameMode.RaymanMPC => Games.RaymanM,
+                        OpenSpaceGameMode.RaymanArenaPC => Games.RaymanArena,
+                        OpenSpaceGameMode.Rayman3PC => Games.Rayman3,
+                        _ => (Games?) null
+                    }),
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+            }
 
             // Helper method for getting the extension filter for the selected archive explorer mode
             FileFilterItemCollection GetExtensionFilter() => SelectedArchiveExplorer switch
             {
-                DebugArchiveExplorer.Rayman2_CNT => new FileFilterItemCollection()
+                DebugArchiveExplorer.OpenSpace_CNT => new FileFilterItemCollection()
                 {
                     new FileFilterItem("*.cnt", "CNT files")
                 },
@@ -449,7 +470,7 @@ namespace RayCarrot.RCP.Metro
             var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
                 Title = "Select archive files",
-                DefaultDirectory = GetGame().GetInstallDir(false),
+                DefaultDirectory = GetGame()?.GetInstallDir(false).FullPath,
                 ExtensionFilter = GetExtensionFilter().ToString(),
                 MultiSelection = true
             });
@@ -457,7 +478,7 @@ namespace RayCarrot.RCP.Metro
             if (fileResult.CanceledByUser)
                 return;
 
-            await new ArchiveExplorer(new ArchiveExplorerDialogViewModel(new R2CntArchiveDataManager(), fileResult.SelectedFiles)).ShowWindowAsync();
+            await new ArchiveExplorer(new ArchiveExplorerDialogViewModel(new OpenSpaceCntArchiveDataManager(SelectedOpenSpaceGameMode.GetSettings()), fileResult.SelectedFiles)).ShowWindowAsync();
         }
 
         #endregion
@@ -538,9 +559,9 @@ namespace RayCarrot.RCP.Metro
         public enum DebugArchiveExplorer
         {
             /// <summary>
-            /// Rayman 2 .cnt archives
+            /// OpenSpace .cnt archives
             /// </summary>
-            Rayman2_CNT
+            OpenSpace_CNT
         }
 
         #endregion

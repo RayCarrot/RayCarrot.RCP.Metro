@@ -1,4 +1,9 @@
-﻿-----   Version 7.2.0 - December 20, 2019   -----
+﻿-----   Version 7.3.0 - December ??, 2019   -----
+• 
+• Fixed a minor memory issue when a Bitmap image was loaded
+
+
+-----   Version 7.2.0 - December 20, 2019   -----
 • Added support for Rayman Activity Center, Rayman Raving Rabbids Activity Center (downloadable) and Rabbids Coding
 • Added a utility for repairing the configuration file in Rayman 1, fixing any potential sound issues
 • Added game configuration for Rayman Fiesta Run
