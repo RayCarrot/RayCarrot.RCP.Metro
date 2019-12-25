@@ -2,7 +2,9 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using ByteSizeLib;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 
@@ -56,6 +58,16 @@ namespace RayCarrot.RCP.Metro
         /// The file name
         /// </summary>
         public string FileName { get; }
+
+        // TODO: Localize + limit to user level
+        /// <summary>
+        /// The info about the file to display
+        /// </summary>
+        public string FileDisplayInfo => $"Directory = {Directory}{Environment.NewLine}" +
+                                         $"Encrypted = {FileData.FileXORKey.Any(x => x != 0)}{Environment.NewLine}" +
+                                         $"Size = {new ByteSize(FileData.Size)}{Environment.NewLine}" +
+                                         $"Modified = {FileData.Unknown1 == 0}{Environment.NewLine}" +
+                                         $"Pointer = {FileData.Pointer}";
 
         /// <summary>
         /// The name of the file format
@@ -117,13 +129,13 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Saves the file to the specified path
+        /// Exports the file to the specified path
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
-        /// <param name="filePath">The path to save the file to</param>
+        /// <param name="filePath">The path to export the file to</param>
         /// <param name="fileFormat">The file extension to use</param>
         /// <returns>The task</returns>
-        public Task SaveFileAsync(Stream archiveFileStream, FileSystemPath filePath, string fileFormat)
+        public Task ExportFileAsync(Stream archiveFileStream, FileSystemPath filePath, string fileFormat)
         {
             // Open the file
             using var file = File.Open(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
@@ -168,6 +180,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public Task ImportFileAsync(Stream archiveFileStream, FileSystemPath filePath)
         {
+            // TODO: Show warning if file size (height x width) is different
+
             // Get the temporary file to save to, without disposing it
             var tempFile = new TempFile(false);
 

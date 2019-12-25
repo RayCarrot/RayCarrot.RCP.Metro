@@ -130,7 +130,7 @@ namespace RayCarrot.RCP.Metro
                     var format = file.FileData.AvailableFileFormats[selectedFormats[file.FileData.FileFormatName]].Filter;
 
                     // Save the file
-                    await file.FileData.SaveFileAsync(file.ArchiveFileStream, 
+                    await file.FileData.ExportFileAsync(file.ArchiveFileStream, 
                         path + (new FileSystemPath(file.FileName).ChangeFileExtension(format)), format);
                 }
             }

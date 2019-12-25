@@ -80,6 +80,7 @@
                     <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                         <Setter Property="Padding" Value="10" />
                         <Setter Property="Margin" Value="0" />
+                        <Setter Property="ToolTip" Value="{Binding Path=FileDisplayInfo}" />
                         <Setter Property="ContextMenu">
                             <Setter.Value>
                                 <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">

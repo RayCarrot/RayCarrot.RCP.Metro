@@ -49,6 +49,45 @@ namespace RayCarrot.RCP.Metro
         public IArchiveDataManager Manager { get; }
 
         /// <summary>
+        /// Loads the archive
+        /// </summary>
+        public void LoadArchive()
+        {
+            // Clear existing items
+            Files.Clear();
+            Clear();
+
+            // Get the archive directories
+            var dirs = Manager.GetDirectories(ArchiveFileStream);
+
+            // Add each directory
+            foreach (var dir in dirs)
+            {
+                // Check if it's the root directory
+                if (dir.DirectoryName == String.Empty)
+                {
+                    // Add the files
+                    Files.AddRange(dir.Files.Select(x => new ArchiveFileViewModel(x, this)));
+
+                    continue;
+                }
+
+                // Keep track of the previous item
+                ArchiveDirectoryViewModel prevItem = this;
+
+                // Enumerate each sub directory
+                foreach (string subDir in dir.DirectoryName.Split('\\'))
+                {
+                    // Set the previous item and create the item if it doesn't already exist
+                    prevItem = prevItem.FindItem(x => x.ID == subDir) ?? prevItem.Add(subDir);
+                }
+
+                // Add the files
+                prevItem.Files.AddRange(dir.Files.Select(x => new ArchiveFileViewModel(x, this)));
+            }
+        }
+
+        /// <summary>
         /// Updates the archive with the pending imports
         /// </summary>
         public Task UpdateArchiveAsync()
@@ -61,8 +100,15 @@ namespace RayCarrot.RCP.Metro
             // Update the archive
             Manager.UpdateArchive(ArchiveFileStream, files);
             
-            // Update thumbnails for selected directory
-            this.GetAllChildren<ArchiveDirectoryViewModel>().FindItem(x => x.IsSelected)?.Files.ForEach(y => y.LoadThumbnail());
+            // Reload the archive
+            LoadArchive();
+
+            // Find the selected item
+            var selected = this.GetAllChildren<ArchiveDirectoryViewModel>(true).FindItem(x => x.IsSelected);
+
+            // Refresh the selection to refresh the thumbnails
+            selected.IsSelected = false;
+            selected.IsSelected = true;
 
             return Task.CompletedTask;
         }

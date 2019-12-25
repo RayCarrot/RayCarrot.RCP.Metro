@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
@@ -34,6 +35,9 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The directories</returns>
         public IEnumerable<ArchiveDirectory> GetDirectories(Stream archiveFileStream)
         {
+            // Set the stream position to 0
+            archiveFileStream.Position = 0;
+
             // Read the file data
             var data = new OpenSpaceCntSerializer(Settings).Deserialize(archiveFileStream);
 
@@ -97,7 +101,11 @@ namespace RayCarrot.RCP.Metro
                     // Set the file size
                     file.Size = (int)tempFilePath.GetSize().Bytes;
 
-                    //// Remove the encryption
+                    // NOTE: Leaving this unknown value causes the game to crash if the texture is modified - why?
+                    // Remove unknown value
+                    file.Unknown1 = 0;
+
+                    // Remove the encryption
                     file.FileXORKey = new byte[]
                     {
                         0, 0, 0, 0

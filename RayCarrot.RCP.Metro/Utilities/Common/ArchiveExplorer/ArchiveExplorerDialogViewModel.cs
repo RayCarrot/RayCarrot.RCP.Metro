@@ -31,36 +31,7 @@ namespace RayCarrot.RCP.Metro
 
             // Read each archive
             foreach (var archive in Archives)
-            {
-                // Get the archive directories
-                var dirs = manager.GetDirectories(archive.ArchiveFileStream);
-
-                // Add each directory
-                foreach (var dir in dirs)
-                {
-                    // Check if it's the root directory
-                    if (dir.DirectoryName == String.Empty)
-                    {
-                        // Add the files
-                        archive.Files.AddRange(dir.Files.Select(x => new ArchiveFileViewModel(x, archive)));
-
-                        continue;
-                    }
-
-                    // Keep track of the previous item
-                    ArchiveDirectoryViewModel prevItem = archive;
-
-                    // Enumerate each sub directory
-                    foreach (string subDir in dir.DirectoryName.Split('\\'))
-                    {
-                        // Set the previous item and create the item if it doesn't already exist
-                        prevItem = prevItem.FindItem(x => x.ID == subDir) ?? prevItem.Add(subDir);
-                    }
-
-                    // Add the files
-                    prevItem.Files.AddRange(dir.Files.Select(x => new ArchiveFileViewModel(x, archive)));
-                }
-            }
+                archive.LoadArchive();
 
             // Select and expand the first item
             Archives.First().IsSelected = true;

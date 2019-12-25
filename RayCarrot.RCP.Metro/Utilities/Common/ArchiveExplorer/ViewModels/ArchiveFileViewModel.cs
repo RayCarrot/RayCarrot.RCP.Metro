@@ -70,6 +70,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string FileName { get; }
 
+        /// <summary>
+        /// The info about the file to display
+        /// </summary>
+        public string FileDisplayInfo => FileData.FileDisplayInfo;
+
         #endregion
 
         #region Public Methods
@@ -128,7 +133,7 @@ namespace RayCarrot.RCP.Metro
 
             // TODO: Try/catch
             // Save the file
-            await FileData.SaveFileAsync(ArchiveFileStream, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
+            await FileData.ExportFileAsync(ArchiveFileStream, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
 
             // TODO: Success message
         }
