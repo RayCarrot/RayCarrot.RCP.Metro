@@ -1,9 +1,11 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
 using RayCarrot.UI;
 using RayCarrot.WPF;
 
@@ -77,6 +79,15 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Protected Methods
+
+        protected FileFilterItemCollection GetFileFilterCollection()
+        {
+            return new FileFilterItemCollection(FileData.SupportedFileExtensions.Select(x => new FileFilterItem($"*{x}", x.Substring(1).ToUpper())));
+        }
+
+        #endregion
+
         #region Public Methods
 
         /// <summary>
@@ -101,6 +112,9 @@ namespace RayCarrot.RCP.Metro
 
                     // Set the image source
                     ThumbnailSource = img;
+
+                    // Update the info
+                    OnPropertyChanged(nameof(FileDisplayInfo));
                 }
                 catch (Exception ex)
                 {
@@ -119,23 +133,31 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ExportFileAsync()
         {
-            // Get the output path
-            var result = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
+            // Run as a load operation
+            using (Archive.LoadOperation.Run())
             {
-                // TODO: Localize
-                Title = "Export file to...",
-                DefaultName = FileName,
-                Extensions = FileData.AvailableFileFormats.ToString()
-            });
+                // Run as a task
+                await Task.Run(async () =>
+                {
+                    // Get the output path
+                    var result = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
+                    {
+                        // TODO: Localize
+                        Title = "Export file to...",
+                        DefaultName = FileName,
+                        Extensions = GetFileFilterCollection().ToString()
+                    });
 
-            if (result.CanceledByUser)
-                return;
+                    if (result.CanceledByUser)
+                        return;
 
-            // TODO: Try/catch
-            // Save the file
-            await FileData.ExportFileAsync(ArchiveFileStream, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
+                    // TODO: Try/catch
+                    // Save the file
+                    await FileData.ExportFileAsync(ArchiveFileStream, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
 
-            // TODO: Success message
+                    // TODO: Success message
+                });
+            }
         }
 
         /// <summary>
@@ -144,24 +166,36 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ImportFileAsync()
         {
-            // TODO: Try/catch
-
-            // Get the file
-            var result = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+            // Run as a load operation
+            using (Archive.LoadOperation.Run())
             {
-                // TODO: Localize
-                Title = "Select file to import",
-                ExtensionFilter = FileData.AvailableFileFormats.ToString()
-            });
+                // Run as a task
+                await Task.Run(async () =>
+                {
+                    // TODO: Try/catch
 
-            if (result.CanceledByUser)
-                return;
+                    // Get the file
+                    var result = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+                    {
+                        // TODO: Localize
+                        Title = "Select file to import",
+                        // TODO: Localize
+                        ExtensionFilter = GetFileFilterCollection().CombineAll("Supported files").ToString()
+                    });
 
-            // Import the file
-            await FileData.ImportFileAsync(ArchiveFileStream, result.SelectedFile);
+                    if (result.CanceledByUser)
+                        return;
 
-            // Update the archive
-            await Archive.UpdateArchiveAsync();
+                    // Import the file
+                    var succeeded = await FileData.ImportFileAsync(ArchiveFileStream, result.SelectedFile);
+
+                    if (!succeeded)
+                        return;
+
+                    // Update the archive
+                    await Archive.UpdateArchiveAsync();
+                });
+            }
         }
 
         #endregion

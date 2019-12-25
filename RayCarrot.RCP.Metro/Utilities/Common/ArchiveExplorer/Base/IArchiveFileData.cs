@@ -37,9 +37,9 @@ namespace RayCarrot.RCP.Metro
         string FileFormatName { get; }
 
         /// <summary>
-        /// The available file formats for the file
+        /// The supported file formats to import/export from
         /// </summary>
-        FileFilterItemCollection AvailableFileFormats { get; }
+        string[] SupportedFileExtensions { get; }
 
         /// <summary>
         /// The path to the temporary file containing the data to be imported
@@ -60,7 +60,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <param name="filePath">The path of the file to import</param>
-        /// <returns>The task</returns>
-        Task ImportFileAsync(Stream archiveFileStream, FileSystemPath filePath);
+        /// <returns>A value indicating if the file was successfully imported</returns>
+        Task<bool> ImportFileAsync(Stream archiveFileStream, FileSystemPath filePath);
     }
 }

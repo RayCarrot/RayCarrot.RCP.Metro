@@ -206,6 +206,7 @@
     <Compile Include="Utilities\Common\ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
     <Compile Include="Utilities\Common\ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
     <Compile Include="Utilities\Common\ArchiveExplorer\Base\IArchiveDataManager.cs" />
+    <Compile Include="Helpers\Operation.cs" />
     <Compile Include="Utilities\Common\ArchiveExplorer\ViewModels\ArchiveFileViewModel.cs" />
     <Compile Include="Utilities\Common\ArchiveExplorer\ViewModels\ArchiveDirectoryViewModel.cs" />
     <Compile Include="Utilities\Common\ArchiveExplorer\ArchiveExplorer.xaml.cs">
@@ -1015,7 +1016,7 @@
       <Version>1.2.4</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
-      <Version>1.3.6</Version>
+      <Version>1.3.7</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.UI">
       <Version>1.2.1</Version>

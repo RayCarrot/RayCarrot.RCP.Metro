@@ -14,6 +14,8 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
     {
+        #region Constructor
+
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -23,10 +25,23 @@ namespace RayCarrot.RCP.Metro
             Settings = settings;
         }
 
+        #endregion
+
+        #region Protected Properties
+
         /// <summary>
         /// The settings when serializing the data
         /// </summary>
         protected OpenSpaceSettings Settings { get; }
+
+        /// <summary>
+        /// Indicates if the files should be encrypted when imported. Defaulted to false due to encrypting the file being very slow.
+        /// </summary>
+        protected virtual bool EncryptFiles => false;
+
+        #endregion
+
+        #region Public Methods
 
         /// <summary>
         /// Gets the available directories from the archive along with their contents
@@ -48,7 +63,7 @@ namespace RayCarrot.RCP.Metro
                 var dir = i == -1 ? String.Empty : data.Directories[i];
 
                 // Return each directory with the available files, including the root directory
-                yield return new ArchiveDirectory(dir, data.Files.Where(x => x.DirectoryIndex == i).Select(f => new OpenSpaceCntArchiveFileData(f, Settings, dir) as IArchiveFileData).ToArray());
+                yield return new ArchiveDirectory(dir, data.Files.Where(x => x.DirectoryIndex == i).Select(f => new OpenSpaceCntArchiveFileData(f, Settings, dir, EncryptFiles) as IArchiveFileData).ToArray());
             }
         }
 
@@ -105,11 +120,14 @@ namespace RayCarrot.RCP.Metro
                     // Remove unknown value
                     file.Unknown1 = 0;
 
-                    // Remove the encryption
-                    file.FileXORKey = new byte[]
+                    // Remove the encryption if set to do so
+                    if (!EncryptFiles)
                     {
-                        0, 0, 0, 0
-                    };
+                        file.FileXORKey = new byte[]
+                        {
+                            0, 0, 0, 0
+                        };
+                    }
                 }
                 // Use the original file without decrypting it
                 else
@@ -127,13 +145,13 @@ namespace RayCarrot.RCP.Metro
                 pointer += file.Size;
             }
 
-            // TODO: Backup existing .cnt file in case it fails
-
             // Set the stream position to 0
             archiveFileStream.Position = 0;
 
             // Serialize the data
             new OpenSpaceCntSerializer(Settings).Serialize(archiveFileStream, data);
         }
+
+        #endregion
     }
 }

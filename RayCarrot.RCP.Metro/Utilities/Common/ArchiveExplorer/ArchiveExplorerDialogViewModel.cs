@@ -22,8 +22,11 @@ namespace RayCarrot.RCP.Metro
             // Get the manager
             Manager = manager;
 
+            // Create the load action
+            var load = new Operation(() => IsLoading = true, () => IsLoading = false);
+
             // Get the archives
-            Archives = filePaths.Select(x => new ArchiveViewModel(x, manager)).ToArray();
+            Archives = filePaths.Select(x => new ArchiveViewModel(x, manager, load)).ToArray();
 
             // Make sure we got an archive
             if (!Archives.Any())
@@ -39,6 +42,11 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
+        /// Indicates if a process is running, such as importing/exporting
+        /// </summary>
+        public bool IsLoading { get; set; }
+
+        /// <summary>
         /// The directories
         /// </summary>
         public ArchiveViewModel[] Archives { get; }
@@ -50,6 +58,7 @@ namespace RayCarrot.RCP.Metro
 
         public void Dispose()
         {
+            // Dispose every archive
             Archives?.ForEach(x => x.Dispose());
         }
     }

@@ -450,7 +450,7 @@ namespace RayCarrot.RCP.Metro
                         OpenSpaceGameMode.RaymanMPC => Games.RaymanM,
                         OpenSpaceGameMode.RaymanArenaPC => Games.RaymanArena,
                         OpenSpaceGameMode.Rayman3PC => Games.Rayman3,
-                        _ => (Games?) null
+                        _ => (null as Games?)
                     }),
                     _ => throw new ArgumentOutOfRangeException()
                 };

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ByteSizeLib;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -23,9 +24,11 @@ namespace RayCarrot.RCP.Metro
         /// <param name="fileData">The file data</param>
         /// <param name="settings">The settings when serializing the data</param>
         /// <param name="directory">The directory the file is located under</param>
-        public OpenSpaceCntArchiveFileData(OpenSpaceCntFile fileData, OpenSpaceSettings settings, string directory)
+        /// <param name="encryptFiles">Indicates if the files should be encrypted when imported</param>
+        public OpenSpaceCntArchiveFileData(OpenSpaceCntFile fileData, OpenSpaceSettings settings, string directory, bool encryptFiles)
         {
             Directory = directory;
+            EncryptFiles = encryptFiles;
             FileData = fileData;
             FileName = FileData.FileName;
             Settings = settings;
@@ -39,6 +42,11 @@ namespace RayCarrot.RCP.Metro
         /// The settings when serializing the data
         /// </summary>
         protected OpenSpaceSettings Settings { get; }
+
+        /// <summary>
+        /// Indicates if the files should be encrypted when imported
+        /// </summary>
+        protected bool EncryptFiles { get; }
 
         #endregion
 
@@ -59,14 +67,31 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string FileName { get; }
 
+        /// <summary>
+        /// The file size height
+        /// </summary>
+        public uint Height { get; set; }
+
+        /// <summary>
+        /// The file size width
+        /// </summary>
+        public uint Width { get; set; }
+
+        /// <summary>
+        /// Indicates if the file uses transparency
+        /// </summary>
+        public bool IsTransparent { get; set; }
+
         // TODO: Localize + limit to user level
         /// <summary>
         /// The info about the file to display
         /// </summary>
         public string FileDisplayInfo => $"Directory = {Directory}{Environment.NewLine}" +
+                                         $"Size = {Width} x {Height}{Environment.NewLine}" +
                                          $"Encrypted = {FileData.FileXORKey.Any(x => x != 0)}{Environment.NewLine}" +
                                          $"Size = {new ByteSize(FileData.Size)}{Environment.NewLine}" +
                                          $"Modified = {FileData.Unknown1 == 0}{Environment.NewLine}" +
+                                         $"Transparent = {IsTransparent}{Environment.NewLine}" +
                                          $"Pointer = {FileData.Pointer}";
 
         /// <summary>
@@ -75,15 +100,15 @@ namespace RayCarrot.RCP.Metro
         public string FileFormatName => "GF";
 
         /// <summary>
-        /// The available file formats for the file
+        /// The supported file formats to import/export from
         /// </summary>
-        public FileFilterItemCollection AvailableFileFormats => new FileFilterItemCollection()
+        public string[] SupportedFileExtensions => new string[]
         {
-            new FileFilterItem("*.gf", "OpenSpace GF file"),
-            new FileFilterItem("*.bmp", "Bitmap file"),
-            new FileFilterItem("*.png", "PNG file"),
-            new FileFilterItem("*.jpeg", "JPEG file"),
-            new FileFilterItem("*.jpg", "JPG file"),
+            ".gf",
+            ".bmp",
+            ".png",
+            ".jpeg",
+            ".jpg"
         };
 
         /// <summary>
@@ -112,7 +137,16 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The image as a bitmap</returns>
         public Bitmap GetBitmap(Stream archiveFileStream)
         {
-            return FileData.GetFileContent(archiveFileStream, Settings).GetBitmap();
+            // Load the file
+            var file = FileData.GetFileContent(archiveFileStream, Settings);
+
+            // Set properties
+            Height = file.Height;
+            Width = file.Width;
+            IsTransparent = file.IsTransparent;
+
+            // Get the thumbnail
+            return file.GetBitmap();
         }
 
         /// <summary>
@@ -123,8 +157,15 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The image as a bitmap</returns>
         public Bitmap GetBitmap(Stream archiveFileStream, int width)
         {
+            // Load the file
             var file = FileData.GetFileContent(archiveFileStream, Settings);
 
+            // Set properties
+            Height = file.Height;
+            Width = file.Width;
+            IsTransparent = file.IsTransparent;
+
+            // Get the thumbnail with the specified size
             return file.GetBitmapThumbnail(width);
         }
 
@@ -177,11 +218,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <param name="filePath">The path of the file to import</param>
-        /// <returns>The task</returns>
-        public Task ImportFileAsync(Stream archiveFileStream, FileSystemPath filePath)
+        /// <returns>A value indicating if the file was successfully imported</returns>
+        public async Task<bool> ImportFileAsync(Stream archiveFileStream, FileSystemPath filePath)
         {
-            // TODO: Show warning if file size (height x width) is different
-
+            // TODO: Make sure this is being disposed/removed
             // Get the temporary file to save to, without disposing it
             var tempFile = new TempFile(false);
 
@@ -197,6 +237,17 @@ namespace RayCarrot.RCP.Metro
                 // Load the bitmap
                 using var bmp = new Bitmap(filePath);
 
+                // TODO: Option not to ask
+                // Check if the file size differs
+                if (bmp.Height != Height || bmp.Width != Width )
+                {
+                    //// TODO: Localize
+                    //if (!await RCFUI.MessageUI.DisplayMessageAsync($"The image {filePath.Name} does not match the size of the current file {FileName}. Importing it might result in it not being correctly displayed in the game. Do you want to continue?", "Image size warning", MessageType.Warning, true))
+                    //{
+                    //    return false;
+                    //}
+                }
+
                 // Load the current file
                 var file = FileData.GetFileContent(archiveFileStream, Settings);
 
@@ -210,27 +261,33 @@ namespace RayCarrot.RCP.Metro
                 new OpenSpaceGfSerializer(Settings).Serialize(stream, file);
             }
 
-            // NOTE: This is unused as we're removing the encryption to speed up the modding process
-            //// Encrypt the file
-            //using (var fileSteam = File.Open(tempFile.TempPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
-            //{
-            //    for (int i = 0; i < fileSteam.Length; i++)
-            //    {
-            //        if ((fileSteam.Length % 4) + i < fileSteam.Length)
-            //        {
-            //            var b = fileSteam.ReadByte();
+            // Encrypt the file if set to do so
+            if (EncryptFiles)
+            {
+                // Open the file with read/write access
+                using var fileSteam = File.Open(tempFile.TempPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
 
-            //            fileSteam.Position--;
+                // Encrypt each byte
+                for (int i = 0; i < fileSteam.Length; i++)
+                {
+                    if ((fileSteam.Length % 4) + i >= fileSteam.Length) 
+                        continue;
 
-            //            fileSteam.WriteByte((byte)(b ^ FileData.FileXORKey[i % 4]));
-            //        }
-            //    }
-            //}
+                    // Read the byte
+                    var b = fileSteam.ReadByte();
+
+                    // Go back to the same byte as reading advances it forward
+                    fileSteam.Position--;
+
+                    // Overwrite the byte with the encrypted version
+                    fileSteam.WriteByte((byte)(b ^ FileData.FileXORKey[i % 4]));
+                }
+            }
 
             // Set the pending path
             PendingImportTempPath = tempFile.TempPath;
 
-            return Task.CompletedTask;
+            return true;
         }
 
         #endregion

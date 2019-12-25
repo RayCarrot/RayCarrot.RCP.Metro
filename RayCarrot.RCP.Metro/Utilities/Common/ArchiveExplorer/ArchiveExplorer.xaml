@@ -6,134 +6,143 @@
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:ui="clr-namespace:RayCarrot.RCP.Core.UI;assembly=RayCarrot.RCP.Core.UI"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ArchiveExplorerDialogViewModel}"
              MinHeight="400"
              MinWidth="600">
-    <Grid Margin="10">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid Margin="10"
+              IsEnabled="{Binding Path=IsLoading, Converter={rwpf:InvertedBooleanConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <TreeView x:Name="DirTreeView"
-                  Grid.Column="0"
-                  SelectedItemChanged="DirTreeView_OnSelectedItemChangedAsync"
-                  ItemsSource="{Binding Path=Archives, Mode=OneTime}"
-                  MinWidth="80">
+            <TreeView x:Name="DirTreeView"
+                      Grid.Column="0"
+                      ItemsSource="{Binding Path=Archives, Mode=OneTime}"
+                      MinWidth="80">
 
-            <TreeView.ItemContainerStyle>
-                <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
-                    <Setter Property="ContextMenu">
-                        <Setter.Value>
-                            <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
-
-                                <ui:MenuItemIcon Header="{Resx Progression_Export}"
-                                                    Command="{Binding Path=ExportCommand}"
-                                                    IconKind="Export"/>
-
-                                <ui:MenuItemIcon Header="{Resx Progression_Export}"
-                                                    Command="{Binding Path=ImportCommand}"
-                                                    IconKind="Import"/>
-
-                            </ContextMenu>
-                        </Setter.Value>
-                    </Setter>
-                    <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
-                    <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded}" />
-                </Style>
-            </TreeView.ItemContainerStyle>
-
-            <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding Mode=OneTime}">
-                    <StackPanel Orientation="Horizontal">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="5" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-
-                            <iconPacks:PackIconMaterial Grid.Column="0"
-                                                        Kind="FolderOutline" />
-
-                            <TextBlock Grid.Column="2"
-                                       Text="{Binding Path=DisplayName, Mode=OneTime}"
-                                       VerticalAlignment="Center"
-                                       Margin="0 0 10 0"/>
-
-                        </Grid>
-                    </StackPanel>
-                </HierarchicalDataTemplate>
-            </TreeView.ItemTemplate>
-        </TreeView>
-
-        <Grid Grid.Column="1">
-
-            <ListBox ItemsSource="{Binding ElementName=DirTreeView, Path=SelectedItem.Files}"
-                     Grid.IsSharedSizeScope="True"
-                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                     Padding="5">
-
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
-                        <Setter Property="Padding" Value="10" />
-                        <Setter Property="Margin" Value="0" />
-                        <Setter Property="ToolTip" Value="{Binding Path=FileDisplayInfo}" />
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
                         <Setter Property="ContextMenu">
                             <Setter.Value>
                                 <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
 
                                     <ui:MenuItemIcon Header="{Resx Progression_Export}"
-                                                        Command="{Binding Path=ExportCommand}"
-                                                        IconKind="FileExportOutline"/>
+                                                     Command="{Binding Path=ExportCommand}"
+                                                     IconKind="Export"/>
 
                                     <ui:MenuItemIcon Header="{Resx Progression_Import}"
-                                                        Command="{Binding Path=ImportCommand}"
-                                                        IconKind="FileImportOutline"/>
+                                                     Command="{Binding Path=ImportCommand}"
+                                                     IconKind="Import"/>
+
                                 </ContextMenu>
                             </Setter.Value>
                         </Setter>
+                        <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
+                        <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded}" />
                     </Style>
-                </ListBox.ItemContainerStyle>
+                </TreeView.ItemContainerStyle>
 
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding Mode=OneTime}">
+                        <StackPanel Orientation="Horizontal">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                <ListBox.ItemTemplate>
-                    <DataTemplate DataType="local:ArchiveFileViewModel">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="5" />
-                                <RowDefinition Height="*" SharedSizeGroup="FileName" />
-                            </Grid.RowDefinitions>
+                                <iconPacks:PackIconMaterial Grid.Column="0"
+                                                            Kind="FolderOutline" />
 
-                            <Image Grid.Row="0"
-                                   Source="{Binding Path=ThumbnailSource}"
-                                   HorizontalAlignment="Center"
-                                   Width="64"
-                                   Height="64"/>
+                                <TextBlock Grid.Column="2"
+                                           Text="{Binding Path=DisplayName, Mode=OneTime}"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 10 0"/>
 
-                            <TextBlock Grid.Row="2"
-                                       Width="70"
+                            </Grid>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+
+            <Grid Grid.Column="1">
+
+                <ListBox ItemsSource="{Binding ElementName=DirTreeView, Path=SelectedItem.Files}"
+                         Grid.IsSharedSizeScope="True"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         Padding="5">
+
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                            <Setter Property="Padding" Value="10" />
+                            <Setter Property="Margin" Value="0" />
+                            <Setter Property="ToolTip" Value="{Binding Path=FileDisplayInfo}" />
+                            <Setter Property="ContextMenu">
+                                <Setter.Value>
+                                    <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
+
+                                        <ui:MenuItemIcon Header="{Resx Progression_Export}"
+                                                         Command="{Binding Path=ExportCommand}"
+                                                         IconKind="FileExportOutline"/>
+
+                                        <ui:MenuItemIcon Header="{Resx Progression_Import}"
+                                                         Command="{Binding Path=ImportCommand}"
+                                                         IconKind="FileImportOutline"/>
+                                    </ContextMenu>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="local:ArchiveFileViewModel">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="5" />
+                                    <RowDefinition Height="*" SharedSizeGroup="FileName" />
+                                </Grid.RowDefinitions>
+
+                                <Image Grid.Row="0"
+                                       Source="{Binding Path=ThumbnailSource}"
                                        HorizontalAlignment="Center"
-                                       TextAlignment="Center"
-                                       Text="{Binding Path=FileName}"
-                                       TextWrapping="Wrap" />
+                                       Width="64"
+                                       Height="64"/>
 
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
+                                <TextBlock Grid.Row="2"
+                                           Width="70"
+                                           HorizontalAlignment="Center"
+                                           TextAlignment="Center"
+                                           Text="{Binding Path=FileName}"
+                                           TextWrapping="Wrap" />
+
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
 
 
-            </ListBox>
+                </ListBox>
+
+            </Grid>
 
         </Grid>
+
+        <mah:ProgressRing HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Visibility="{Binding Path=IsLoading, Converter={rwpf:BooleanToVisibilityConverter}}"/>
 
     </Grid>
 </UserControl>

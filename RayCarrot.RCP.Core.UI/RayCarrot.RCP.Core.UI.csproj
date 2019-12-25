@@ -100,7 +100,7 @@
       <Version>1.2.4</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
-      <Version>1.3.6</Version>
+      <Version>1.3.7</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.UI">
       <Version>1.2.1</Version>

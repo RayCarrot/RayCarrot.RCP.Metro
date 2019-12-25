@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using MahApps.Metro.Controls;
 using Nito.AsyncEx;
 using RayCarrot.Extensions;
 
@@ -21,31 +22,16 @@ namespace RayCarrot.RCP.Metro
         /// <param name="vm">The view model</param>
         public ArchiveExplorer(ArchiveExplorerDialogViewModel vm)
         {
+            // Set up UI
             InitializeComponent();
+
+            // Set properties
             ViewModel = vm;
             DataContext = ViewModel;
-            AsyncLock = new AsyncLock();
 
-            // TODO: Clean up
-            Loaded += (s, e) =>
-            {
-                // Attempt to get parent window
-                var window = Window.GetWindow(this);
-
-                if (window == null)
-                    return;
-
-                window.Closed += (ss, ee) => ViewModel?.Dispose();
-            };
+            // Set up remaining things once fully loaded
+            Loaded += ArchiveExplorer_Loaded;
         }
-
-        #endregion
-
-        #region Private Properties
-
-        private bool IsRefreshingImages { get; set; }
-
-        private bool CancelRefreshingImages { get; set; }
 
         #endregion
 
@@ -72,9 +58,9 @@ namespace RayCarrot.RCP.Metro
         public DialogBaseSize BaseSize => DialogBaseSize.Largest;
 
         /// <summary>
-        /// The async lock to use for refreshing the images
+        /// The window the control belongs to
         /// </summary>
-        public AsyncLock AsyncLock { get; }
+        public MetroWindow ParentWindow { get; set; }
 
         #endregion
 
@@ -92,49 +78,29 @@ namespace RayCarrot.RCP.Metro
 
         #region Event Handlers
 
-        private async void DirTreeView_OnSelectedItemChangedAsync(object sender, RoutedPropertyChangedEventArgs<object> e)
+        private void ArchiveExplorer_Loaded(object sender, RoutedEventArgs e)
         {
-            if (IsRefreshingImages)
-                CancelRefreshingImages = true;
+            // Make sure this won't get called again
+            Loaded -= ArchiveExplorer_Loaded;
 
-            // Lock to avoid it running multiple times at once
-            using (await AsyncLock.LockAsync())
+            // Get the parent window
+            ParentWindow = Window.GetWindow(this).CastTo<MetroWindow>();
+
+            // Create events
+            ParentWindow.Closing += (ss, ee) =>
             {
-                try
-                {
-                    IsRefreshingImages = true;
+                // Cancel the closing if an archive is running an operation (the window can otherwise be closed with F4 etc.)
+                if (ViewModel.IsLoading)
+                    ee.Cancel = true;
+            };
 
-                    // Get the items
-                    var prevDir = e.OldValue?.CastTo<ArchiveDirectoryViewModel>();
-                    var newDir = e.NewValue?.CastTo<ArchiveDirectoryViewModel>();
+            ParentWindow.Closed += (ss, ee) => ViewModel?.Dispose();
 
-                    // Remove all thumbnail image sources from memory
-                    prevDir?.Files.ForEach(x => x.ThumbnailSource = null);
-
-                    // Make sure we have a new directory
-                    if (newDir?.Files == null)
-                        return;
-
-                    // Load the thumbnail image sources for the new directory
-                    await Task.Run(() =>
-                    {
-                        // Load the thumbnail for each file
-                        foreach (var x in newDir.Files)
-                        {
-                            x.LoadThumbnail();
-
-                            // Check if the operation should be canceled
-                            if (CancelRefreshingImages)
-                                return;
-                        }
-                    });
-                }
-                finally
-                {
-                    IsRefreshingImages = false;
-                    CancelRefreshingImages = false;
-                }
-            }
+            ViewModel.PropertyChanged += (ss, ee) =>
+            {
+                if (ee.PropertyName == nameof(ArchiveExplorerDialogViewModel.IsLoading))
+                    ParentWindow.IsCloseButtonEnabled = !ViewModel.IsLoading;
+            };
         }
 
         #endregion
