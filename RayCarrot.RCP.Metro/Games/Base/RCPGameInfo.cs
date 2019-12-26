@@ -7,6 +7,7 @@ using MahApps.Metro.IconPacks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.RCP.Core;
+using RayCarrot.RCP.Core.UI;
 using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
@@ -32,7 +33,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The icon source for the game
         /// </summary>
-        public string IconSource => $"{AppViewModel.ApplicationBasePath}Img/GameIcons/{Game}.png";
+        public string IconSource => $"{APIControllerUISettings.GetSettings().ApplicationBasePath}Img/GameIcons/{Game}.png";
 
         /// <summary>
         /// Indicates if the game can be uninstalled

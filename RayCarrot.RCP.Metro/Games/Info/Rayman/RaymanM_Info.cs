@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using RayCarrot.RCP.Core;
+using RayCarrot.RCP.Core.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -82,7 +83,7 @@ namespace RayCarrot.RCP.Metro
         {
             get
             {
-                var basePath = $"{AppViewModel.ApplicationBasePath}Installer/InstallerGifs/";
+                var basePath = $"{APIControllerUISettings.GetSettings().ApplicationBasePath}Installer/InstallerGifs/";
 
                 return new string[]
                 {

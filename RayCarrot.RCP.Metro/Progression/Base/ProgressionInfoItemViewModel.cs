@@ -1,4 +1,5 @@
 ﻿using System.Windows.Media;
+using RayCarrot.RCP.Core.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -26,7 +27,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The icon as an image source
         /// </summary>
-        public ImageSource IconImageSource => new ImageSourceConverter().ConvertFrom($"{AppViewModel.ApplicationBasePath}Img/ProgressionIcons/UbiArt/{Icon}.png") as ImageSource;
+        public ImageSource IconImageSource => new ImageSourceConverter().ConvertFrom($"{APIControllerUISettings.GetSettings().ApplicationBasePath}Img/ProgressionIcons/UbiArt/{Icon}.png") as ImageSource;
 
         /// <summary>
         /// The content

@@ -103,6 +103,12 @@ namespace RayCarrot.RCP.Metro
             };
         }
 
+        private void EventSetter_OnHandler(object sender, ToolTipEventArgs e)
+        {
+            // Update the tool tip info each time it's shown
+            sender.CastTo<ListBoxItem>().GetBindingExpression(ToolTipProperty)?.UpdateTarget();
+        }
+
         #endregion
 
         #region Events
@@ -112,6 +118,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public event EventHandler CloseDialog;
 
-        #endregion  
+        #endregion
     }
 }

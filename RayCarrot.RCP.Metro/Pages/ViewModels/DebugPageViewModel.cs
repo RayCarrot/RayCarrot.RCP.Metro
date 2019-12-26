@@ -478,7 +478,16 @@ namespace RayCarrot.RCP.Metro
             if (fileResult.CanceledByUser)
                 return;
 
-            await new ArchiveExplorer(new ArchiveExplorerDialogViewModel(new OpenSpaceCntArchiveDataManager(SelectedOpenSpaceGameMode.GetSettings()), fileResult.SelectedFiles)).ShowWindowAsync();
+            try
+            {
+                await new ArchiveExplorer(new ArchiveExplorerDialogViewModel(new OpenSpaceCntArchiveDataManager(SelectedOpenSpaceGameMode.GetSettings()), fileResult.SelectedFiles)).ShowWindowAsync();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Archive explorer");
+
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred in the Archive Explorer and it had to close");
+            }
         }
 
         #endregion

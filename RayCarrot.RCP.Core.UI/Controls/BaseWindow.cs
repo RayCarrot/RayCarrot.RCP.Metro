@@ -1,5 +1,4 @@
-﻿using Infralution.Localization.Wpf;
-using MahApps.Metro.Controls;
+﻿using MahApps.Metro.Controls;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Core.UI
 {
     /// <summary>
     /// A base window to inherit from
@@ -33,11 +32,11 @@ namespace RayCarrot.RCP.Metro
             TitleCharacterCasing = CharacterCasing.Normal;
 
             // Set icon style
-            Icon = new ImageSourceConverter().ConvertFromString(AppViewModel.ApplicationBasePath + "/Img/Rayman Control Panel Icon.ico") as ImageSource;
+            Icon = new ImageSourceConverter().ConvertFromString(APIControllerUISettings.GetSettings().WindowIconPath) as ImageSource;
             IconBitmapScalingMode = BitmapScalingMode.NearestNeighbor;
 
-            // Set localization source
-            ResxExtension.SetDefaultResxName(this, AppLanguages.ResourcePath);
+            // Run custom set up
+            APIControllerUISettings.GetSettings().OnWindowSetup(this);
 
             // Set owner window
             Owner = Application.Current?.Windows.Cast<Window>().FindItem(x => x.IsActive);
@@ -54,7 +53,7 @@ namespace RayCarrot.RCP.Metro
             if (RCF.IsBuilt)
             {
                 // Set transition
-                WindowTransitionsEnabled = RCFRCP.Data?.EnableAnimations ?? true;
+                WindowTransitionsEnabled = APIControllerUISettings.GetSettings().AreWindowTransitionsEnabled;
 
                 RCFCore.Logger?.LogInformationSource($"The window {this} has been created");
             }

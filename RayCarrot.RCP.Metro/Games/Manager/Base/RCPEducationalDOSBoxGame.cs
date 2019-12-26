@@ -8,6 +8,7 @@ using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.RCP.Core;
+using RayCarrot.RCP.Core.UI;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -33,7 +34,7 @@ namespace RayCarrot.RCP.Metro
         /// Gets the additional overflow button items for the game
         /// </summary>
         public override IList<OverflowButtonItemViewModel> GetAdditionalOverflowButtonItems => RCFRCP.Data.EducationalDosBoxGames.
-            Select(x => new OverflowButtonItemViewModel(x.Name, new BitmapImage(new Uri(AppViewModel.ApplicationBasePath + @"img\GameIcons\EducationalDos.png")), new AsyncRelayCommand(async () =>
+            Select(x => new OverflowButtonItemViewModel(x.Name, new BitmapImage(new Uri(APIControllerUISettings.GetSettings().ApplicationBasePath + @"img\GameIcons\EducationalDos.png")), new AsyncRelayCommand(async () =>
         {
             RCFCore.Logger?.LogTraceSource($"The educational game {x.Name} is being launched...");
 

@@ -1,7 +1,7 @@
 ﻿using RayCarrot.WPF;
 using System.Windows;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Core.UI
 {
     /// <summary>
     /// The dialog base manager for the Rayman Control Panel

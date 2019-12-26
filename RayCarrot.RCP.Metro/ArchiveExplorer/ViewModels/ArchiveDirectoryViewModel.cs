@@ -18,8 +18,6 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryViewModel>, IDisposable
     {
-        private bool _isSelected;
-
         #region Constructors
 
         /// <summary>
@@ -58,6 +56,12 @@ namespace RayCarrot.RCP.Metro
             ExportCommand = new AsyncRelayCommand(ExportAsync);
             ImportCommand = new AsyncRelayCommand(ImportAsync);
         }
+
+        #endregion
+
+        #region Private Fields
+
+        private bool _isSelected;
 
         #endregion
 
@@ -113,6 +117,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string FullPath => FullID.JoinItems(Path.DirectorySeparatorChar.ToString());
 
+        /// <summary>
+        /// The current status to display
+        /// </summary>
+        public string DisplayStatus { get; set; } = String.Empty;
+
         #endregion
 
         #region Commands
@@ -158,7 +167,7 @@ namespace RayCarrot.RCP.Metro
                     var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                     {
                         // TODO: Localize
-                        Title = "Export files to..."
+                        Title = "Select destination to export to"
                     });
 
                     if (result.CanceledByUser)
@@ -202,11 +211,16 @@ namespace RayCarrot.RCP.Metro
                             // Get the selected format
                             var format = file.FileData.SupportedFileExtensions[selectedFormats[file.FileData.FileFormatName]];
 
+                            // TODO: Localize
+                            Archive.DisplayStatus = $"Exporting {file.FileName}";
+
                             // Save the file
                             await file.FileData.ExportFileAsync(file.ArchiveFileStream,
                                 path + (new FileSystemPath(file.FileName).ChangeFileExtension(format)), format);
                         }
                     }
+
+                    Archive.DisplayStatus = String.Empty;
 
                     // TODO: Success message
                 });
@@ -263,6 +277,9 @@ namespace RayCarrot.RCP.Metro
                                 if (!fullFilePath.FileExists)
                                     continue;
 
+                                // TODO: Localize
+                                Archive.DisplayStatus = $"Importing {file.FileName}";
+
                                 // Import the file
                                 var succeeded = await file.FileData.ImportFileAsync(Archive.ArchiveFileStream, fullFilePath);
 
@@ -284,6 +301,8 @@ namespace RayCarrot.RCP.Metro
 
                         return;
                     }
+
+                    Archive.DisplayStatus = String.Empty;
 
                     if (failes)
                     {

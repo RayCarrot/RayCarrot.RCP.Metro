@@ -42,8 +42,10 @@ namespace RayCarrot.RCP.Metro
             string GetMessage()
             {
                 var sb = new StringBuilder();
+                
                 sb.AppendLine(Resources.ExceptionMessageInfo);
                 sb.AppendLine();
+
                 if (RCFCore.Data.CurrentUserLevel >= UserLevel.Debug)
                 {
                     sb.AppendLine($"Exception: {exception}");

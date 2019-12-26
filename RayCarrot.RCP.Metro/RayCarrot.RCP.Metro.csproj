@@ -60,7 +60,8 @@
     </AllowedReferenceRelatedFileExtensions>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Img\Rayman Control Panel Icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Infralution.Localization.Wpf">
@@ -100,6 +101,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="API\RCPMetroAPIControllerUISettings.cs" />
     <Compile Include="Config\UI\RaymanFiestaRunConfig.xaml.cs">
       <DependentUpon>RaymanFiestaRunConfig.xaml</DependentUpon>
     </Compile>
@@ -109,7 +111,7 @@
     <Compile Include="Config\ViewModels\Base\BaseRayRunConfigViewModel.cs" />
     <Compile Include="Config\ViewModels\RaymanFiestaRunConfigViewModel.cs" />
     <Compile Include="Config\ViewModels\RaymanJungleRunConfigViewModel.cs" />
-    <Compile Include="Framework\Implementations\RCPMetroAPIControllerManager.cs" />
+    <Compile Include="API\RCPMetroAPIControllerManager.cs" />
     <Compile Include="Games\Info\Other\RaymanRavingRabbidsActivityCenter_Info.cs" />
     <Compile Include="Games\Info\Other\RaymanActivityCenter_Info.cs" />
     <Compile Include="Games\Info\Rabbids\RabbidsCoding_Info.cs" />
@@ -200,20 +202,20 @@
     <Compile Include="GameBackups\RCPBackup.cs" />
     <Compile Include="Progression\Base\BaseProgressionViewModel.cs" />
     <Compile Include="Progression\JungleRun\JungleRunProgressionViewModel.cs" />
-    <Compile Include="Utilities\Common\ArchiveExplorer\Base\ArchiveDirectory.cs" />
-    <Compile Include="Utilities\Common\ArchiveExplorer\Base\IArchiveFileData.cs" />
-    <Compile Include="Utilities\Common\ArchiveExplorer\Base\IArchiveImageFileData.cs" />
-    <Compile Include="Utilities\Common\ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
-    <Compile Include="Utilities\Common\ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
-    <Compile Include="Utilities\Common\ArchiveExplorer\Base\IArchiveDataManager.cs" />
+    <Compile Include="ArchiveExplorer\Base\ArchiveDirectory.cs" />
+    <Compile Include="ArchiveExplorer\Base\IArchiveFileData.cs" />
+    <Compile Include="ArchiveExplorer\Base\IArchiveImageFileData.cs" />
+    <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
+    <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
+    <Compile Include="ArchiveExplorer\Base\IArchiveDataManager.cs" />
     <Compile Include="Helpers\Operation.cs" />
-    <Compile Include="Utilities\Common\ArchiveExplorer\ViewModels\ArchiveFileViewModel.cs" />
-    <Compile Include="Utilities\Common\ArchiveExplorer\ViewModels\ArchiveDirectoryViewModel.cs" />
-    <Compile Include="Utilities\Common\ArchiveExplorer\ArchiveExplorer.xaml.cs">
+    <Compile Include="ArchiveExplorer\ViewModels\ArchiveFileViewModel.cs" />
+    <Compile Include="ArchiveExplorer\ViewModels\ArchiveDirectoryViewModel.cs" />
+    <Compile Include="ArchiveExplorer\ArchiveExplorer.xaml.cs">
       <DependentUpon>ArchiveExplorer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Common\ArchiveExplorer\ArchiveExplorerDialogViewModel.cs" />
-    <Compile Include="Utilities\Common\ArchiveExplorer\ViewModels\ArchiveViewModel.cs" />
+    <Compile Include="ArchiveExplorer\ArchiveExplorerDialogViewModel.cs" />
+    <Compile Include="ArchiveExplorer\ViewModels\ArchiveViewModel.cs" />
     <Compile Include="Utilities\Rayman 1\FixConfig\R1FixConfigUtility.cs" />
     <Compile Include="Utilities\Rayman 1\FixConfig\R1FixConfigUtilityUI.xaml.cs">
       <DependentUpon>R1FixConfigUtilityUI.xaml</DependentUpon>
@@ -395,7 +397,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Utilities\Common\ArchiveExplorer\ArchiveExplorer.xaml">
+    <Page Include="ArchiveExplorer\ArchiveExplorer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -697,7 +699,6 @@
     <Compile Include="DataModels\GameFileLink.cs" />
     <Compile Include="Extensions\GamesExtensions.cs" />
     <Compile Include="Extensions\MessageUIManagerExtensions.cs" />
-    <Compile Include="Framework\Implementations\RCPDialogBaseManager.cs" />
     <Compile Include="Framework\Implementations\RCPMessageUIManager.cs" />
     <Compile Include="Framework\RCFRCP.cs" />
     <Compile Include="IO\RCPFileManager.cs" />
@@ -724,7 +725,6 @@
     <Compile Include="Pages\ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="Pages\ViewModels\GamesPageViewModel.cs" />
     <Compile Include="ViewModels\Controls\OverflowButtonItemViewModel.cs" />
-    <Compile Include="UI\Windows\Base\BaseWindow.cs" />
     <Compile Include="ViewModels\Game\GameDisplayViewModel.cs" />
     <Compile Include="Config\ViewModels\Base\GameConfigViewModel.cs" />
     <Compile Include="UI\Windows\AppNewsDialog.xaml.cs">
@@ -832,9 +832,6 @@
       <Project>{c911478d-3f3f-4b26-84c6-bddac5ff7c1f}</Project>
       <Name>RayCarrot.RCP.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Img\Rayman Control Panel Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\GameIcons\Rayman2.png" />

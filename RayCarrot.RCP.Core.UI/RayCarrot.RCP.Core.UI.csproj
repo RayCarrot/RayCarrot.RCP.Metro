@@ -48,6 +48,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\BaseRCPApp.cs" />
+    <Compile Include="Controls\BaseWindow.cs" />
     <Compile Include="Controls\DuoGridItem.cs" />
     <Compile Include="Controls\InfoIcon.xaml.cs">
       <DependentUpon>InfoIcon.xaml</DependentUpon>
@@ -56,6 +58,9 @@
       <DependentUpon>MenuItemIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\AppendSpacesToStringConverter.cs" />
+    <Compile Include="Extensions\APIControllerSettingsExtensions.cs" />
+    <Compile Include="API\APIControllerUISettings.cs" />
+    <Compile Include="Framework\RCPDialogBaseManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -124,5 +129,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Rayman Control Panel Icon.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

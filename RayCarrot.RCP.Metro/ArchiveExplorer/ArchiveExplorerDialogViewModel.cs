@@ -23,7 +23,7 @@ namespace RayCarrot.RCP.Metro
             Manager = manager;
 
             // Create the load action
-            var load = new Operation(() => IsLoading = true, () => IsLoading = false);
+            var load = new Operation(() => IsLoading = true, () => IsLoading = false, true);
 
             // Get the archives
             Archives = filePaths.Select(x => new ArchiveViewModel(x, manager, load)).ToArray();

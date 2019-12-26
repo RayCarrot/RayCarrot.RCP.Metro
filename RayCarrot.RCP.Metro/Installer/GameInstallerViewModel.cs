@@ -5,6 +5,7 @@ using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.RCP.Core;
+using RayCarrot.RCP.Core.UI;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -35,7 +36,7 @@ namespace RayCarrot.RCP.Metro
             CancellationTokenSource = new CancellationTokenSource();
 
             // Get images
-            GameLogoSource = $"{AppViewModel.ApplicationBasePath}Img/GameLogos/{game}_Logo.png";
+            GameLogoSource = $"{APIControllerUISettings.GetSettings().ApplicationBasePath}Img/GameLogos/{game}_Logo.png";
             Gifs = game.GetGameInfo().InstallerGifs;
 
             // Default the install directory

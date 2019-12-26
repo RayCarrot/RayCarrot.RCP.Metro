@@ -21,8 +21,15 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
             <TreeView x:Name="DirTreeView"
                       Grid.Column="0"
+                      Grid.Row="0"
                       ItemsSource="{Binding Path=Archives, Mode=OneTime}"
                       MinWidth="80">
 
@@ -72,7 +79,8 @@
                 </TreeView.ItemTemplate>
             </TreeView>
 
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1"
+                  Grid.Row="0">
 
                 <ListBox ItemsSource="{Binding ElementName=DirTreeView, Path=SelectedItem.Files}"
                          Grid.IsSharedSizeScope="True"
@@ -84,6 +92,7 @@
                             <Setter Property="Padding" Value="10" />
                             <Setter Property="Margin" Value="0" />
                             <Setter Property="ToolTip" Value="{Binding Path=FileDisplayInfo}" />
+                            <EventSetter Event="ToolTipOpening" Handler="EventSetter_OnHandler" />
                             <Setter Property="ContextMenu">
                                 <Setter.Value>
                                     <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
@@ -137,6 +146,16 @@
                 </ListBox>
 
             </Grid>
+
+            <Separator Grid.Row="1"
+                       Grid.Column="1"/>
+
+            <StatusBar Grid.Row="2"
+                       Grid.Column="1"
+                       Background="Transparent">
+                <TextBlock DataContext="{Binding ElementName=DirTreeView, Path=SelectedItem}" 
+                           Text="{Binding Path=DisplayStatus}" />
+            </StatusBar>
 
         </Grid>
 

@@ -1,7 +1,7 @@
-﻿<rwpf:BaseRCFApp x:Class="RayCarrot.RCP.Metro.App"
-                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF">
+﻿<ui:BaseRCPApp x:Class="RayCarrot.RCP.Metro.App"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:ui="clr-namespace:RayCarrot.RCP.Core.UI;assembly=RayCarrot.RCP.Core.UI">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -33,4 +33,4 @@
         </ResourceDictionary>
     </Application.Resources>
 
-</rwpf:BaseRCFApp>
+</ui:BaseRCPApp>

@@ -1,4 +1,5 @@
 ﻿using System;
+using Nito.AsyncEx;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -12,10 +13,12 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="startAction">The action to run before running the operation</param>
         /// <param name="disposeAction">The action to run after running the operation</param>
-        public Operation(Action startAction, Action disposeAction)
+        /// <param name="lockOperation">Indicates if the operation should be locked</param>
+        public Operation(Action startAction, Action disposeAction, bool lockOperation)
         {
             StartAction = startAction;
             DisposeAction = disposeAction;
+            LockOperation = lockOperation;
         }
 
         /// <summary>
@@ -28,7 +31,7 @@ namespace RayCarrot.RCP.Metro
             StartAction?.Invoke();
 
             // Create the disposable action
-            return new DisposableAction(DisposeAction);
+            return new DisposableAction(DisposeAction, LockOperation);
         }
 
         /// <summary>
@@ -42,6 +45,11 @@ namespace RayCarrot.RCP.Metro
         private Action DisposeAction { get; }
 
         /// <summary>
+        /// Indicates if the operation should be locked
+        /// </summary>
+        private bool LockOperation { get; }
+
+        /// <summary>
         /// The disposable wrapper
         /// </summary>
         public sealed class DisposableAction : IDisposable
@@ -50,10 +58,19 @@ namespace RayCarrot.RCP.Metro
             /// Default constructor
             /// </summary>
             /// <param name="disposeAction">The action to run after running the operation</param>
-            public DisposableAction(Action disposeAction)
+            /// <param name="lockOperation">Indicates if the operation should be locked</param>
+            public DisposableAction(Action disposeAction, bool lockOperation)
             {
                 DisposeAction = disposeAction;
+
+                if (lockOperation)
+                    DisposableLock = new AsyncLock().Lock();
             }
+
+            /// <summary>
+            /// The disposable lock
+            /// </summary>
+            private IDisposable DisposableLock { get; }
 
             /// <summary>
             /// The action to run after running the operation
@@ -63,6 +80,7 @@ namespace RayCarrot.RCP.Metro
             public void Dispose()
             {
                 DisposeAction?.Invoke();
+                DisposableLock?.Dispose();
             }
         }
     }

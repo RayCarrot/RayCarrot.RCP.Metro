@@ -203,6 +203,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public Task UpdateArchiveAsync()
         {
+            // TODO: Localize
+            DisplayStatus = $"Repacking archive {DisplayName}";
+
             // TODO: Error handling
 
             // Find the selected item ID
@@ -235,6 +238,8 @@ namespace RayCarrot.RCP.Metro
 
             // Select the previously selected item
             previouslySelectedItem.IsSelected = true;
+
+            DisplayStatus = String.Empty;
 
             return Task.CompletedTask;
         }

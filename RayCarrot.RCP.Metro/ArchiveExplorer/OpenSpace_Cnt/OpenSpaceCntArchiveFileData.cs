@@ -88,9 +88,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string FileDisplayInfo => $"Directory = {Directory}{Environment.NewLine}" +
                                          $"Size = {Width} x {Height}{Environment.NewLine}" +
-                                         $"Encrypted = {FileData.FileXORKey.Any(x => x != 0)}{Environment.NewLine}" +
-                                         $"Size = {new ByteSize(FileData.Size)}{Environment.NewLine}" +
+                                         $"File size = {new ByteSize(FileData.Size)}{Environment.NewLine}" +
                                          $"Modified = {FileData.Unknown1 == 0}{Environment.NewLine}" +
+                                         $"Encrypted = {FileData.FileXORKey.Any(x => x != 0)}{Environment.NewLine}" +
                                          $"Transparent = {IsTransparent}{Environment.NewLine}" +
                                          $"Pointer = {FileData.Pointer}";
 
@@ -236,17 +236,6 @@ namespace RayCarrot.RCP.Metro
             {
                 // Load the bitmap
                 using var bmp = new Bitmap(filePath);
-
-                // TODO: Option not to ask
-                // Check if the file size differs
-                if (bmp.Height != Height || bmp.Width != Width )
-                {
-                    //// TODO: Localize
-                    //if (!await RCFUI.MessageUI.DisplayMessageAsync($"The image {filePath.Name} does not match the size of the current file {FileName}. Importing it might result in it not being correctly displayed in the game. Do you want to continue?", "Image size warning", MessageType.Warning, true))
-                    //{
-                    //    return false;
-                    //}
-                }
 
                 // Load the current file
                 var file = FileData.GetFileContent(archiveFileStream, Settings);

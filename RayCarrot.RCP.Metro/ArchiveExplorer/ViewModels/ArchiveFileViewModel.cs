@@ -8,7 +8,7 @@ using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.UI;
 using RayCarrot.WPF;
-
+    
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
@@ -112,9 +112,6 @@ namespace RayCarrot.RCP.Metro
 
                     // Set the image source
                     ThumbnailSource = img;
-
-                    // Update the info
-                    OnPropertyChanged(nameof(FileDisplayInfo));
                 }
                 catch (Exception ex)
                 {
@@ -123,7 +120,7 @@ namespace RayCarrot.RCP.Metro
             }
             else
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException("A thumbnail can currently not be generated for non-image files in archives");
             }
         }
 
@@ -143,7 +140,7 @@ namespace RayCarrot.RCP.Metro
                     var result = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
                     {
                         // TODO: Localize
-                        Title = "Export file to...",
+                        Title = "Select destination to export to",
                         DefaultName = FileName,
                         Extensions = GetFileFilterCollection().ToString()
                     });
@@ -151,9 +148,14 @@ namespace RayCarrot.RCP.Metro
                     if (result.CanceledByUser)
                         return;
 
+                    // TODO: Localize
+                    Archive.DisplayStatus = $"Exporting {FileName}";
+
                     // TODO: Try/catch
-                    // Save the file
+                    // Export the file
                     await FileData.ExportFileAsync(ArchiveFileStream, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
+
+                    Archive.DisplayStatus = String.Empty;
 
                     // TODO: Success message
                 });
@@ -186,6 +188,9 @@ namespace RayCarrot.RCP.Metro
                     if (result.CanceledByUser)
                         return;
 
+                    // TODO: Localize
+                    Archive.DisplayStatus = $"Importing {FileName}";
+
                     // Import the file
                     var succeeded = await FileData.ImportFileAsync(ArchiveFileStream, result.SelectedFile);
 
@@ -194,6 +199,8 @@ namespace RayCarrot.RCP.Metro
 
                     // Update the archive
                     await Archive.UpdateArchiveAsync();
+
+                    Archive.DisplayStatus = String.Empty;
                 });
             }
         }

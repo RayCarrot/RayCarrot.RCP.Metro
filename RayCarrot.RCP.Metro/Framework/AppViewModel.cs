@@ -483,11 +483,6 @@ namespace RayCarrot.RCP.Metro
         #region Constant Fields
 
         /// <summary>
-        /// The base path for this application
-        /// </summary>
-        public const string ApplicationBasePath = "pack://application:,,,/RayCarrot.RCP.Metro;component/";
-
-        /// <summary>
         /// The name of the backup directory for this application
         /// </summary>
         public const string BackupFamily = "Rayman Game Backups";

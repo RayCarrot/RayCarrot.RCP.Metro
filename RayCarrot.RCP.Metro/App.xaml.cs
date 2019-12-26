@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Shell;
 using RayCarrot.RCP.Core;
+using RayCarrot.RCP.Core.UI;
 using RayCarrot.WPF.Metro;
 
 namespace RayCarrot.RCP.Metro
@@ -32,7 +33,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : BaseRCFApp
+    public partial class App : BaseRCPApp
     {
         #region Constructor
 
@@ -106,14 +107,14 @@ namespace RayCarrot.RCP.Metro
                 AddTransient<RCPFileManager>().
                 // Add a dialog manager
                 AddDialogBaseManager<RCPDialogBaseManager>().
-                // Add Rayman defaults
-                AddRaymanDefaults().
                 // Add App UI manager
                 AddTransient<AppUIManager>().
                 // Add backup manager
                 AddTransient<BackupManager>().
                 // Add RCP API
-                AddRCPAPI<RCPMetroAPIControllerManager>(new APIControllerSettings()).
+                AddRCPAPI<RCPMetroAPIControllerManager>(new APIControllerSettings().
+                    // Add UI settings
+                    SetUISettings(new RCPMetroAPIControllerUISettings())).
                 // Build the framework
                 Build(config, loadDefaultsFromDomain: false);
         }
@@ -586,7 +587,7 @@ namespace RayCarrot.RCP.Metro
                         break;
 
                     case nameof(AppUserData.LinkItemStyle):
-                        static string GetStyleSource(LinkItemStyles linkItemStye) => $"{AppViewModel.ApplicationBasePath}/Styles/LinkItemStyles - {linkItemStye}.xaml";
+                        static string GetStyleSource(LinkItemStyles linkItemStye) => $"{APIControllerUISettings.GetSettings().ApplicationBasePath}/Styles/LinkItemStyles - {linkItemStye}.xaml";
 
                         // Get previous source
                         var oldSource = GetStyleSource(PreviousLinkItemStyle);
