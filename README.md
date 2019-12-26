@@ -10,9 +10,9 @@ The Rayman Control Panel has been split up into a family of projects:
 
 ### Applications
 - RayCarrot.RCP.Metro (Rayman Control Panel)
--- RayCarrot.RCP.AdminWorker (deployable admin worker application)
--- RayCarrot.RCP.Metro.Updater (deployable updater application)
--- RayCarrot.RCP.Uninstaller (deployable uninstaller application)
+	- RayCarrot.RCP.AdminWorker (deployable admin worker application)
+	- RayCarrot.RCP.Metro.Updater (deployable updater application)
+	- RayCarrot.RCP.Uninstaller (deployable uninstaller application)
 - RayCarrot.RCP.Modding (Rayman Modding Panel)
 
 ## Dependencies
