@@ -256,7 +256,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Delete the game directory
-                RCFRCP.File.DeleteDirectory(Game.GetInstallDir(false));
+                RCFRCPA.File.DeleteDirectory(Game.GetInstallDir(false));
 
                 RCFCore.Logger?.LogInformationSource($"The game install directory was removed");
 
@@ -267,7 +267,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     // Delete additional directories
                     foreach (var dir in dirs)
-                        RCFRCP.File.DeleteDirectory(dir);
+                        RCFRCPA.File.DeleteDirectory(dir);
 
                     RCFCore.Logger?.LogInformationSource($"The game additional directories were removed");
                 }
@@ -279,7 +279,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     // Delete additional files
                     foreach (var file in files)
-                        RCFRCP.File.DeleteFile(file);
+                        RCFRCPA.File.DeleteFile(file);
 
                     RCFCore.Logger?.LogInformationSource($"The game additional files were removed");
                 }

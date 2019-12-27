@@ -6,7 +6,7 @@ The Rayman Control Panel has been split up into a family of projects:
 
 ### API
 - RayCarrot.RCP.Core (the core API library)
-- RayCarrot.RCP.Core.UI (the core API library for UI)
+- RayCarrot.RCP.UI (the core API library for UI)
 
 ### Applications
 - RayCarrot.RCP.Metro (Rayman Control Panel)

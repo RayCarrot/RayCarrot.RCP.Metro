@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.Core.UI;
+using RayCarrot.RCP.UI;
 
 namespace RayCarrot.RCP.Metro
 {

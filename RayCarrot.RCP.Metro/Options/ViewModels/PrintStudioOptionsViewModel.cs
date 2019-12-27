@@ -5,6 +5,7 @@ using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.RCP.Core;
+using RayCarrot.RCP.UI;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -176,19 +177,19 @@ namespace RayCarrot.RCP.Metro
                     var installDir = Games.PrintStudio.GetInstallDir();
 
                     // Move existing files to the calender data
-                    RCFRCP.File.MoveFiles(new IOSearchPattern(installDir + @"Pictures\Common\calendars", SearchOption.TopDirectoryOnly, "Picture*"), installDir + "CalendarData" + GetVersionTag(previousVersion) + "Common", true);
+                    RCFRCPA.File.MoveFiles(new IOSearchPattern(installDir + @"Pictures\Common\calendars", SearchOption.TopDirectoryOnly, "Picture*"), installDir + "CalendarData" + GetVersionTag(previousVersion) + "Common", true);
 
                     foreach (var lang in languages)
                     {
-                        RCFRCP.File.MoveFiles(new IOSearchPattern(installDir + "Pictures" + lang + "calendars"), installDir + "CalendarData" + GetVersionTag(previousVersion) + lang, true);
+                        RCFRCPA.File.MoveFiles(new IOSearchPattern(installDir + "Pictures" + lang + "calendars"), installDir + "CalendarData" + GetVersionTag(previousVersion) + lang, true);
                     }
 
                     // Move files from the calender data
-                    RCFRCP.File.MoveFiles(new IOSearchPattern(installDir + "CalendarData" + GetVersionTag(SelectedVersion) + "Common"), installDir + @"Pictures\Common\calendars", true);
+                    RCFRCPA.File.MoveFiles(new IOSearchPattern(installDir + "CalendarData" + GetVersionTag(SelectedVersion) + "Common"), installDir + @"Pictures\Common\calendars", true);
 
                     foreach (var lang in languages)
                     {
-                        RCFRCP.File.MoveFiles(new IOSearchPattern(installDir + "CalendarData" + GetVersionTag(SelectedVersion) + lang), installDir + "Pictures" + lang + "calendars", true);
+                        RCFRCPA.File.MoveFiles(new IOSearchPattern(installDir + "CalendarData" + GetVersionTag(SelectedVersion) + lang), installDir + "Pictures" + lang + "calendars", true);
                     }
 
                     RCFCore.Logger?.LogInformationSource($"The Print Studio version has been updated");

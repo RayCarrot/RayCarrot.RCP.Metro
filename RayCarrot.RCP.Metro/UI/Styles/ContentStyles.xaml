@@ -11,37 +11,6 @@
         <Setter Property="mah:TabControlHelper.Transition" Value="{Binding Source={x:Static local:RCFRCP.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}" />
     </Style>
 
-    <!-- Default RCP tab item -->
-
-    <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
-        <Setter Property="HeaderTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal"
-                                Margin="5 2"
-                                DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:RCPTabItem}}}">
-
-                        <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
-                                                    Margin="10 0"
-                                                    VerticalAlignment="Center"
-                                                    Visibility="{Binding Path=IconVisibility}" />
-
-                        <ContentControl ContentStringFormat="{Binding Path=HeaderStringFormat}" 
-                                        FontSize="{Binding Path=HeaderFontSize}"
-                                        Content="{Binding Path=Header}"/>
-
-                    </StackPanel>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <!-- Small Tab Item -->
-
-    <Style x:Key="SmallTabItem" TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource {x:Type local:RCPTabItem}}">
-        <Setter Property="HeaderFontSize" Value="16" />
-    </Style>
-
     <!-- Default Browse Box -->
 
     <Style TargetType="{x:Type rwpf:BrowseBox}" BasedOn="{StaticResource {x:Type rwpf:BrowseBox}}">

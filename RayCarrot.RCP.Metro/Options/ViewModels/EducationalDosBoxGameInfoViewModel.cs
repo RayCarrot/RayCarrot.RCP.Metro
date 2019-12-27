@@ -124,7 +124,7 @@ namespace RayCarrot.RCP.Metro
                 instDir += GameData.LaunchName;
 
             // Open the location
-            await RCFRCP.File.OpenExplorerLocationAsync(instDir);
+            await RCFRCPA.File.OpenExplorerLocationAsync(instDir);
 
             RCFCore.Logger?.LogTraceSource($"The educational game {GameData.Name} install location was opened");
         }

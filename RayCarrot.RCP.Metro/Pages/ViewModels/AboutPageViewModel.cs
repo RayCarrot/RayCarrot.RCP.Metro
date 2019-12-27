@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using RayCarrot.WPF;
 using System.Windows.Input;
 using RayCarrot.Extensions;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -78,7 +79,7 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Run the uninstaller
-            if (await RCFRCP.File.LaunchFileAsync(CommonPaths.UninstallFilePath, true, $"\"{Assembly.GetExecutingAssembly().Location}\"") == null)
+            if (await RCFRCPA.File.LaunchFileAsync(CommonPaths.UninstallFilePath, true, $"\"{Assembly.GetExecutingAssembly().Location}\"") == null)
             {
                 string[] appDataLocations = 
                 {

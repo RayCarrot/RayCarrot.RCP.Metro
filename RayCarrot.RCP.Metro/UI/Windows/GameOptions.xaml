@@ -7,7 +7,7 @@
                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
-               xmlns:ui="clr-namespace:RayCarrot.RCP.Core.UI;assembly=RayCarrot.RCP.Core.UI"
+               xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
                Title="{Binding Path=DisplayName}"
                Loaded="GameOptions_OnLoadedAsync"
                Closing="GameOptions_OnClosingAsync"

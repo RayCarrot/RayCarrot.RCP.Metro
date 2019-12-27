@@ -3,14 +3,93 @@
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-               xmlns:ui="clr-namespace:RayCarrot.RCP.Core.UI;assembly=RayCarrot.RCP.Core.UI"
+               xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
                xmlns:local="clr-namespace:RayCarrot.RCP.Modding"
+               xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+               xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+               xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                mc:Ignorable="d"
+               Language="{UICulture}"
+               ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                CloseWithEscape="False"
                Title="Rayman Modding Panel"
                Height="450" Width="800"
                DataContext="{x:Static local:RCFRCPM.App}">
+    <ui:BaseWindow.TitleTemplate>
+        <DataTemplate>
+            <Grid DataContext="{x:Static local:RCFRCPM.App}">
+                <Grid.Resources>
+                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                        <Setter Property="Margin" Value="8 -1 1 0" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="FontFamily" Value="{DynamicResource HeaderFontFamily}" />
+                        <Setter Property="FontSize" Value="{DynamicResource WindowTitleFontSize}" />
+                        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                    </Style>
+                </Grid.Resources>
+
+                <TextBlock Visibility="{Binding Path=IsRunningAsAdmin, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
+                           Text="{Resx ModdingAppName}" />
+
+                <TextBlock Visibility="{Binding Path=IsRunningAsAdmin, Converter={rwpf:BooleanToVisibilityConverter}}"
+                           Text="{Resx ModdingAppNameAdmin}" />
+            </Grid>
+        </DataTemplate>
+    </ui:BaseWindow.TitleTemplate>
     <Grid>
-        
+        <metro:MetroAnimatedTabControl x:Name="PageTabControl"
+                                       Padding="5">
+            <metro:MetroAnimatedTabControl.Resources>
+                <Style TargetType="{x:Type ui:RCPTabItem}" BasedOn="{StaticResource {x:Type ui:RCPTabItem}}">
+                    <Setter Property="HeaderFontSize" Value="24" />
+                </Style>
+            </metro:MetroAnimatedTabControl.Resources>
+
+            <!-- Utilities -->
+
+            <!-- TODO: Localize -->
+            <ui:RCPTabItem Header="Utilities"
+                           IconKind="BriefcaseOutline"
+                           IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Utilities}">
+                <Grid>
+                    <StackPanel>
+                        <b:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                        </b:Interaction.Behaviors>
+
+                        <TextBlock Text="Archive Explorer"
+                                   Style="{StaticResource LargeHeaderTextBlock}" />
+
+                        <ComboBox ItemsSource="{Binding Path=OpenSpaceGameModes}"
+                                  SelectedIndex="{Binding Path=SelectedOpenSpaceGameMode, Converter={rwpf:EnumToIntConverter}}"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox Grid.Column="0" 
+                                      ItemsSource="{Binding Path=SelectedArchiveExplorer, Converter={rwpf:EnumToListConverter}}"
+                                      SelectedIndex="{Binding Path=SelectedArchiveExplorer, Converter={rwpf:EnumToIntConverter}}"/>
+
+                            <Button Grid.Column="2" 
+                                    Content="Open"
+                                    Command="{Binding Path=OpenArchiveExplorerCommand}" />
+                        </Grid>
+
+                    </StackPanel>
+                </Grid>
+            </ui:RCPTabItem>
+
+        </metro:MetroAnimatedTabControl>
+
+        <metro:ProgressRing HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Margin="5"
+                            Visibility="{Binding Path=IsStartupRunning, Converter={rwpf:BooleanToVisibilityConverter}}" />
+
     </Grid>
+
 </ui:BaseWindow>

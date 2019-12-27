@@ -9,7 +9,7 @@
                xmlns:mah="http://metro.mahapps.com/winfx/xaml/shared"
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-               xmlns:ui="clr-namespace:RayCarrot.RCP.Core.UI;assembly=RayCarrot.RCP.Core.UI"
+               xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
                mc:Ignorable="d"
                Language="{UICulture}"
                ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
@@ -52,7 +52,7 @@
     </metro:MetroWindow.RightWindowCommands>
     <Grid>
         <tb:TaskbarIcon DataContext="{StaticResource TaskbarIconViewModel}"
-                        IconSource="pack://application:,,,/RayCarrot.RCP.Core.UI;component/Images/Rayman Control Panel Icon.ico"
+                        IconSource="pack://application:,,,/RayCarrot.RCP.UI;component/Images/Rayman Control Panel Icon.ico"
                         ToolTipText="{Resx AppName}"
                         LeftClickCommand="{Binding Path=OpenFromTaskbarCommand}"
                         Visibility="{Binding Path=IsIconVisible, Converter={rwpf:BooleanToVisibilityConverter}}">

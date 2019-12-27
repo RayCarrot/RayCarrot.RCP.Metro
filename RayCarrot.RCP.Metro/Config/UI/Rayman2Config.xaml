@@ -8,7 +8,7 @@
                     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-                    xmlns:ui="clr-namespace:RayCarrot.RCP.Core.UI;assembly=RayCarrot.RCP.Core.UI"
+                    xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
                     ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                     IsTabStop="False"
                     mc:Ignorable="d"

@@ -778,14 +778,6 @@ This is a growing project with more features planned on being added with future 
   <data name="ExceptionMessageInfo" xml:space="preserve">
     <value>An exception has occurred in the application. Below is the available debug information for the current user level in the Carrot Framework.</value>
   </data>
-  <data name="File_FileNotFound" xml:space="preserve">
-    <value>The specified file could not be found: {0}</value>
-    <comment>Arguments:
-filePath</comment>
-  </data>
-  <data name="File_FileNotFoundHeader" xml:space="preserve">
-    <value>File not found</value>
-  </data>
   <data name="File_ErrorLaunchingFile" xml:space="preserve">
     <value>An error occurred when attempting to run {0}</value>
     <comment>Arguments:
@@ -947,18 +939,6 @@ downloadSize</comment>
   <data name="Download_Error" xml:space="preserve">
     <value>The files could not be downloaded</value>
   </data>
-  <data name="Update_UnknownError" xml:space="preserve">
-    <value>Unknown error</value>
-  </data>
-  <data name="Update_WebError" xml:space="preserve">
-    <value>A connection could not be established to the server</value>
-  </data>
-  <data name="Update_FormatError" xml:space="preserve">
-    <value>The information from the server was not valid</value>
-  </data>
-  <data name="Update_GenericError" xml:space="preserve">
-    <value>An unknown error occurred while connecting to the server</value>
-  </data>
   <data name="Update_ErrorHeader" xml:space="preserve">
     <value>Update Check Failed</value>
   </data>
@@ -969,12 +949,6 @@ latestVersion</comment>
   </data>
   <data name="Update_LatestInstalledHeader" xml:space="preserve">
     <value>No new versions found</value>
-  </data>
-  <data name="Update_ManifestError" xml:space="preserve">
-    <value>The server manifest could not be read</value>
-  </data>
-  <data name="Update_NewsError" xml:space="preserve">
-    <value>Error getting news</value>
   </data>
   <data name="Update_UpdateAvailable" xml:space="preserve">
     <value>A new update is available to download. Download now?

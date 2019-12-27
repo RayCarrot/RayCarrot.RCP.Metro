@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Windows;
 using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
@@ -54,7 +53,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility requires administration privileges
         /// </summary>
-        public bool RequiresAdmin => !RCFRCP.File.CheckDirectoryWriteAccess(ViewModel.InstallDir);
+        public bool RequiresAdmin => !RCFRCPA.File.CheckDirectoryWriteAccess(ViewModel.InstallDir);
 
         /// <summary>
         /// Indicates if the utility is available to the user

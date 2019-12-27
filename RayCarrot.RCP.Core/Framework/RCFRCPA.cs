@@ -11,5 +11,15 @@ namespace RayCarrot.RCP.Core
         /// The API controller manager
         /// </summary>
         public static IAPIControllerManager API => RCF.GetService<IAPIControllerManager>();
+
+        /// <summary>
+        /// The update manager
+        /// </summary>
+        public static IUpdaterManager UpdaterManager => RCF.GetService<IUpdaterManager>();
+
+        /// <summary>
+        /// The file manager
+        /// </summary>
+        public static IFileManager File => RCF.GetService<IFileManager>();
     }
 }

@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using RayCarrot.Rayman;
+using RayCarrot.RCP.ArchiveExplorer;
 using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
@@ -368,11 +369,12 @@ namespace RayCarrot.RCP.Metro
 
                     case DebugDataOutputTypes.APIVersions:
 
+                        // TODO: Update
                         // Get the API libraries
                         var libraries = new string[]
                         {
                             "RayCarrot.RCP.Core",
-                            "RayCarrot.RCP.Core.UI",
+                            "RayCarrot.RCP.UI",
                             "RayCarrot.CarrotFramework",
                             "RayCarrot.CarrotFramework.Abstractions",
                             "RayCarrot.UI",
@@ -480,7 +482,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                await new ArchiveExplorer(new ArchiveExplorerDialogViewModel(new OpenSpaceCntArchiveDataManager(SelectedOpenSpaceGameMode.GetSettings()), fileResult.SelectedFiles)).ShowWindowAsync();
+                await new ArchiveExplorerUI(new ArchiveExplorerDialogViewModel(new OpenSpaceCntArchiveDataManager(SelectedOpenSpaceGameMode.GetSettings()), fileResult.SelectedFiles)).ShowWindowAsync();
             }
             catch (Exception ex)
             {

@@ -1,5 +1,6 @@
-﻿using System.IO;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
+using RayCarrot.RCP.Core;
+using System.IO;
 
 namespace RayCarrot.RCP.Metro
 {

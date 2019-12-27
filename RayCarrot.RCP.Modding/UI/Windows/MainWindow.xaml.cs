@@ -1,4 +1,4 @@
-﻿using RayCarrot.RCP.Core.UI;
+﻿using RayCarrot.RCP.UI;
 
 namespace RayCarrot.RCP.Modding
 {

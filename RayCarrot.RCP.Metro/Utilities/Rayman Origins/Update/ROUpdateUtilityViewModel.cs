@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.WindowsAPICodePack.Shell;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -51,7 +52,7 @@ namespace RayCarrot.RCP.Metro
                 }, true, KnownFolders.Downloads.Path);
 
                 if (succeeded)
-                    (await RCFRCP.File.LaunchFileAsync(Path.Combine(KnownFolders.Downloads.Path, "RaymanOriginspc_1.02.exe")))?.Dispose();
+                    (await RCFRCPA.File.LaunchFileAsync(Path.Combine(KnownFolders.Downloads.Path, "RaymanOriginspc_1.02.exe")))?.Dispose();
             }
             catch (Exception ex)
             {

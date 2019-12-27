@@ -231,7 +231,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Delete the existing file
-                RCFRCP.File.DeleteFile(batchFile);
+                RCFRCPA.File.DeleteFile(batchFile);
 
                 // Create the .bat file
                 File.WriteAllLines(batchFile, new string[]

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Windows;
 using RayCarrot.RCP.Core;
 using RayCarrot.Windows.Shell;
 

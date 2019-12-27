@@ -33,7 +33,7 @@ namespace RayCarrot.RCP.Metro
         {
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenGameJoltPage, PackIconMaterialKind.Earth, new AsyncRelayCommand(async () =>
             {
-                (await RCFRCP.File.LaunchFileAsync("https://gamejolt.com/games/Rayman_The_Dark_Magicians_Reign_of_terror/237701"))?.Dispose();
+                (await RCFRCPA.File.LaunchFileAsync("https://gamejolt.com/games/Rayman_The_Dark_Magicians_Reign_of_terror/237701"))?.Dispose();
                 RCFCore.Logger?.LogTraceSource($"The game {Game} GameJolt page was opened");
             })),
         };

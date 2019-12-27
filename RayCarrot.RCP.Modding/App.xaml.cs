@@ -3,15 +3,17 @@ using RayCarrot.CarrotFramework;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.Core.UI;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 using RayCarrot.WPF;
 using System.Collections.Generic;
 using System.Windows;
+using RayCarrot.RCP.UI;
 
 namespace RayCarrot.RCP.Modding
 {
+    // TODO: Generalize app startup more
+
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
@@ -62,9 +64,11 @@ namespace RayCarrot.RCP.Modding
                 AddRegistryBrowseUIManager<DefaultWPFRegistryBrowseUIManager>().
                 // Add the app view model
                 AddSingleton(new AppViewModel()).
-                // TODO: Add RCP file manager
                 // Add a file manager
-                //AddTransient<RCPFileManager>().
+                AddFileManager<RCPFileManager>().
+                // TODO: Add update manager
+                // Add updater manager
+                //AddUpdateManager<>().
                 // Add a dialog manager
                 AddDialogBaseManager<RCPDialogBaseManager>().
                 // Add RCP API

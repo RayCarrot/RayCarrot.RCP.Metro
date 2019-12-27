@@ -777,12 +777,6 @@
   <data name="ExceptionMessageInfo" xml:space="preserve">
     <value>Een exceptie heeft zich voorgedaan in de applicatie. Hieronder de beschikbare debug informatie, op basis van het huidige gebruikersniveau in het Carrot Framework.</value>
   </data>
-  <data name="File_FileNotFound" xml:space="preserve">
-    <value>Het gespecificeerde bestand kon niet gevonden worden: {0}</value>
-  </data>
-  <data name="File_FileNotFoundHeader" xml:space="preserve">
-    <value>Bestand niet gevonden</value>
-  </data>
   <data name="File_ErrorLaunchingFile" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens een startpoging {0}</value>
   </data>
@@ -918,18 +912,6 @@
   <data name="Download_Error" xml:space="preserve">
     <value>De bestanden konden niet worden gedownload</value>
   </data>
-  <data name="Update_UnknownError" xml:space="preserve">
-    <value>Onbekende fout</value>
-  </data>
-  <data name="Update_WebError" xml:space="preserve">
-    <value>Een verbinding met de server kon niet tot stand worden gebracht</value>
-  </data>
-  <data name="Update_FormatError" xml:space="preserve">
-    <value>De informatie van de server was niet geldig</value>
-  </data>
-  <data name="Update_GenericError" xml:space="preserve">
-    <value>Een onbekende fout heeft plaatsgevonden tijdens het verbinden met de server</value>
-  </data>
   <data name="Update_ErrorHeader" xml:space="preserve">
     <value>Updatecontrole Mislukt</value>
   </data>
@@ -938,12 +920,6 @@
   </data>
   <data name="Update_LatestInstalledHeader" xml:space="preserve">
     <value>Geen nieuwe versie gevonden</value>
-  </data>
-  <data name="Update_ManifestError" xml:space="preserve">
-    <value>Het server manifest kon niet gelezen worden</value>
-  </data>
-  <data name="Update_NewsError" xml:space="preserve">
-    <value>Fout bij het verkrijgen van nieuws</value>
   </data>
   <data name="Update_UpdateAvailable" xml:space="preserve">
     <value>Een nieuwe update is beschikbaar om te downloaden. Nu downloaden?

@@ -19,11 +19,6 @@ namespace RayCarrot.RCP.Metro
         public static AppViewModel App => RCF.GetService<AppViewModel>();
 
         /// <summary>
-        /// The file manager
-        /// </summary>
-        public static RCPFileManager File => RCF.GetService<RCPFileManager>();       
-
-        /// <summary>
         /// The App UI manager
         /// </summary>
         public static AppUIManager UI => RCF.GetService<AppUIManager>();

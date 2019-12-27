@@ -2,14 +2,34 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Costura.Fody" Version="4.1.0" />
+    <PackageReference Include="Nito.AsyncEx" Version="5.0.0" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.2.1" />
     <PackageReference Include="RayCarrot.CarrotFramework.Abstractions" Version="1.5.1" />
     <PackageReference Include="RayCarrot.Extensions" Version="1.2.4" />
     <PackageReference Include="RayCarrot.IO" Version="1.3.7" />
     <PackageReference Include="RayCarrot.UI" Version="1.2.1" />
+    <PackageReference Include="Resource.Embedder" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Localization\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Localization\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>RayCarrot.RCP.Core</CustomToolNamespace>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

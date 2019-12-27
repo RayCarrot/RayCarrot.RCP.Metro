@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
+using RayCarrot.RCP.UI;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -33,7 +35,7 @@ namespace RayCarrot.RCP.Metro
         public BackupManager()
         {
             // Get a new file manager
-            FileManager = RCFRCP.File;
+            FileManager = RCFRCPA.File;
         }
 
         #endregion
@@ -52,7 +54,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The file manager to use
         /// </summary>
-        private RCPFileManager FileManager { get; }
+        private IFileManager FileManager { get; }
 
         #endregion
 

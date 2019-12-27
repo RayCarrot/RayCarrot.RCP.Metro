@@ -4,7 +4,7 @@
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-               xmlns:ui="clr-namespace:RayCarrot.RCP.Core.UI;assembly=RayCarrot.RCP.Core.UI"
+               xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
                mc:Ignorable="d"
                ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
                Title="{Resx AppNews_Title}" 

@@ -118,6 +118,7 @@
     <Compile Include="Games\Manager\Other\RaymanActivityCenter_Win32.cs" />
     <Compile Include="Games\Manager\Other\RaymanRavingRabbidsActivityCenter_Win32.cs" />
     <Compile Include="Games\Manager\Rabbids\RabbidsCoding_Win32.cs" />
+    <Compile Include="API\RCPMetroUpdateManager.cs" />
     <Compile Include="Progression\Base\ProgressionIcons.cs" />
     <Compile Include="Progression\Base\ProgressionInfoItemViewModel.cs" />
     <Compile Include="Progression\Base\ProgressionSlotViewModel.cs" />
@@ -198,24 +199,9 @@
     <Compile Include="Games\Manager\Rayman\Rayman2_Steam.cs" />
     <Compile Include="Games\Manager\Base\RCPWin32Game.cs" />
     <Compile Include="Games\Manager\Rayman\Rayman1_DOSBox.cs" />
-    <Compile Include="IO\IOSearchPattern.cs" />
     <Compile Include="GameBackups\RCPBackup.cs" />
     <Compile Include="Progression\Base\BaseProgressionViewModel.cs" />
     <Compile Include="Progression\JungleRun\JungleRunProgressionViewModel.cs" />
-    <Compile Include="ArchiveExplorer\Base\ArchiveDirectory.cs" />
-    <Compile Include="ArchiveExplorer\Base\IArchiveFileData.cs" />
-    <Compile Include="ArchiveExplorer\Base\IArchiveImageFileData.cs" />
-    <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
-    <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
-    <Compile Include="ArchiveExplorer\Base\IArchiveDataManager.cs" />
-    <Compile Include="Helpers\Operation.cs" />
-    <Compile Include="ArchiveExplorer\ViewModels\ArchiveFileViewModel.cs" />
-    <Compile Include="ArchiveExplorer\ViewModels\ArchiveDirectoryViewModel.cs" />
-    <Compile Include="ArchiveExplorer\ArchiveExplorer.xaml.cs">
-      <DependentUpon>ArchiveExplorer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ArchiveExplorer\ArchiveExplorerDialogViewModel.cs" />
-    <Compile Include="ArchiveExplorer\ViewModels\ArchiveViewModel.cs" />
     <Compile Include="Utilities\Rayman 1\FixConfig\R1FixConfigUtility.cs" />
     <Compile Include="Utilities\Rayman 1\FixConfig\R1FixConfigUtilityUI.xaml.cs">
       <DependentUpon>R1FixConfigUtilityUI.xaml</DependentUpon>
@@ -266,7 +252,6 @@
     <Compile Include="DataModels\Enums\RRR2LaunchMode.cs" />
     <Compile Include="ViewModels\Dialogs\EducationalDosGameEditResult.cs" />
     <Compile Include="ViewModels\Dialogs\EducationalDosGameEditViewModel.cs" />
-    <Compile Include="UI\RCPTabItem.cs" />
     <Compile Include="Options\UI\EducationalDosOptions.xaml.cs">
       <DependentUpon>EducationalDosOptions.xaml</DependentUpon>
     </Compile>
@@ -397,10 +382,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ArchiveExplorer\ArchiveExplorer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Utilities\Rayman 1\FixConfig\R1FixConfigUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -430,14 +411,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Styles\LinkItemStyles - List.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Styles\TextStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Styles\UnifiedMargins.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -528,9 +501,6 @@
     </Compile>
     <Compile Include="DataModels\Enums\LinkItemStyles.cs" />
     <Compile Include="DataModels\Enums\CheatCodeItemsType.cs" />
-    <Compile Include="Temp\TempDirectory.cs" />
-    <Compile Include="Temp\TempFile.cs" />
-    <Compile Include="Temp\TempFileSystemEntry.cs" />
     <Compile Include="Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtility.cs" />
     <Compile Include="Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityUI.xaml.cs">
       <DependentUpon>R1CompleteSoundtrackUtilityUI.xaml</DependentUpon>
@@ -701,7 +671,6 @@
     <Compile Include="Extensions\MessageUIManagerExtensions.cs" />
     <Compile Include="Framework\Implementations\RCPMessageUIManager.cs" />
     <Compile Include="Framework\RCFRCP.cs" />
-    <Compile Include="IO\RCPFileManager.cs" />
     <Compile Include="Helpers\CommonPaths.cs" />
     <Compile Include="Img\Images.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -792,7 +761,7 @@
     <EmbeddedResource Include="Localization\Resources.pt-PT.resx" />
     <EmbeddedResource Include="Localization\Resources.resx">
       <SubType>Designer</SubType>
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
     </EmbeddedResource>
@@ -824,13 +793,17 @@
       <Project>{9b10dc81-cb32-45a1-b52b-fbb3e4d056a0}</Project>
       <Name>RayCarrot.WPF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RayCarrot.RCP.Core.UI\RayCarrot.RCP.Core.UI.csproj">
-      <Project>{7c723f2e-eea2-4b41-96e2-9359af141e17}</Project>
-      <Name>RayCarrot.RCP.Core.UI</Name>
+    <ProjectReference Include="..\RayCarrot.RCP.ArchiveExplorer\RayCarrot.RCP.ArchiveExplorer.csproj">
+      <Project>{227b7a8c-ab72-4afd-a44d-6c4bc7d9db88}</Project>
+      <Name>RayCarrot.RCP.ArchiveExplorer</Name>
     </ProjectReference>
     <ProjectReference Include="..\RayCarrot.RCP.Core\RayCarrot.RCP.Core.csproj">
       <Project>{c911478d-3f3f-4b26-84c6-bddac5ff7c1f}</Project>
       <Name>RayCarrot.RCP.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RayCarrot.RCP.UI\RayCarrot.RCP.UI.csproj">
+      <Project>{7c723f2e-eea2-4b41-96e2-9359af141e17}</Project>
+      <Name>RayCarrot.RCP.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

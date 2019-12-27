@@ -8,7 +8,6 @@ using RayCarrot.CarrotFramework;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
 using RayCarrot.UI;
 using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
@@ -25,7 +24,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Shell;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.Core.UI;
+using RayCarrot.RCP.UI;
 using RayCarrot.WPF.Metro;
 
 namespace RayCarrot.RCP.Metro
@@ -104,11 +103,13 @@ namespace RayCarrot.RCP.Metro
                 // Add the app view model
                 AddSingleton(new AppViewModel()).
                 // Add a file manager
-                AddTransient<RCPFileManager>().
+                AddFileManager<RCPFileManager>().
                 // Add a dialog manager
                 AddDialogBaseManager<RCPDialogBaseManager>().
                 // Add App UI manager
                 AddTransient<AppUIManager>().
+                // Add update manager
+                AddUpdateManager<RCPMetroUpdateManager>().
                 // Add backup manager
                 AddTransient<BackupManager>().
                 // Add RCP API
@@ -437,7 +438,7 @@ namespace RayCarrot.RCP.Metro
                         // Set the current edition
                         Data.FiestaRunVersion = isWin10 ? FiestaRunEdition.Win10 : FiestaRunEdition.Default;
 
-                        RCFRCP.File.MoveDirectory(fiestaBackupDir, RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetGameInfo().BackupName, true, true);
+                        RCFRCPA.File.MoveDirectory(fiestaBackupDir, RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetGameInfo().BackupName, true, true);
                     }
                     catch (Exception ex)
                     {
@@ -450,7 +451,7 @@ namespace RayCarrot.RCP.Metro
                 // Remove old temp dir
                 try
                 {
-                    RCFRCP.File.DeleteDirectory(Path.Combine(Path.GetTempPath(), "RCP_Metro"));
+                    RCFRCPA.File.DeleteDirectory(Path.Combine(Path.GetTempPath(), "RCP_Metro"));
                 }
                 catch (Exception ex)
                 {
@@ -672,7 +673,7 @@ namespace RayCarrot.RCP.Metro
                 int retryTime = 0;
 
                 // Wait until we can write to the file (i.e. it closing after an update)
-                while (!RCFRCP.File.CheckFileWriteAccess(CommonPaths.UpdaterFilePath))
+                while (!RCFRCPA.File.CheckFileWriteAccess(CommonPaths.UpdaterFilePath))
                 {
                     retryTime++;
 
@@ -701,7 +702,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Remove the updater
-                    RCFRCP.File.DeleteFile(CommonPaths.UpdaterFilePath);
+                    RCFRCPA.File.DeleteFile(CommonPaths.UpdaterFilePath);
 
                     RCFCore.Logger?.LogInformationSource($"The updater has been removed");
                 }

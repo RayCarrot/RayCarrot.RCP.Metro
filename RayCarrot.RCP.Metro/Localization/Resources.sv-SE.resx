@@ -778,12 +778,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="ExceptionMessageInfo" xml:space="preserve">
     <value>Ett fel har inträffat i programmet. Nedan finns den tillgängliga felsökningsinformationen för den aktuella användarnivån i Carrot Framework.</value>
   </data>
-  <data name="File_FileNotFound" xml:space="preserve">
-    <value>Den angivna filen kunde inte hittas: {0}</value>
-  </data>
-  <data name="File_FileNotFoundHeader" xml:space="preserve">
-    <value>Filen hittades inte</value>
-  </data>
   <data name="File_ErrorLaunchingFile" xml:space="preserve">
     <value>Ett fel uppstod vid försök att starta {0}</value>
   </data>
@@ -919,18 +913,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="Download_Error" xml:space="preserve">
     <value>Filerna kunde inte laddas ner</value>
   </data>
-  <data name="Update_UnknownError" xml:space="preserve">
-    <value>Okänt fel</value>
-  </data>
-  <data name="Update_WebError" xml:space="preserve">
-    <value>En anslutning kan inte upprättas till servern</value>
-  </data>
-  <data name="Update_FormatError" xml:space="preserve">
-    <value>Informationen från servern var inte giltig</value>
-  </data>
-  <data name="Update_GenericError" xml:space="preserve">
-    <value>Ett okänt fel uppstod vid anslutning till servern</value>
-  </data>
   <data name="Update_ErrorHeader" xml:space="preserve">
     <value>Fel vid sökande efter nya uppdateringar</value>
   </data>
@@ -939,12 +921,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   </data>
   <data name="Update_LatestInstalledHeader" xml:space="preserve">
     <value>Ingen ny version hittades</value>
-  </data>
-  <data name="Update_ManifestError" xml:space="preserve">
-    <value>Serverns manifest kunde inte läsas</value>
-  </data>
-  <data name="Update_NewsError" xml:space="preserve">
-    <value>Server fel</value>
   </data>
   <data name="Update_UpdateAvailable" xml:space="preserve">
     <value>En ny uppdatering finns tillgänglig att ladda ner. Ladda ner nu?
@@ -1335,6 +1311,45 @@ Starta om?</value>
   </data>
   <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
     <value>Ersätt fil</value>
+  </data>
+  <data name="RDU_CreateConfig_Success" xml:space="preserve">
+    <value>Filen har skapats</value>
+  </data>
+  <data name="RDU_CreateConfig_Error" xml:space="preserve">
+    <value>Filen kunde inte skapas</value>
+  </data>
+  <data name="R2U_Translations_IrishInfo" xml:space="preserve">
+    <value>Irländska (Gaeilge) - av PluMGMK</value>
+  </data>
+  <data name="R2U_Translations_SwedishInfo" xml:space="preserve">
+    <value>Svenska (Svenska) - av RayCarrot</value>
+  </data>
+  <data name="R2U_Translations_PortugueseInfo" xml:space="preserve">
+    <value>Portugisiska (Português) - av Haruka Tavares</value>
+  </data>
+  <data name="R2U_Translations_SlovakInfo" xml:space="preserve">
+    <value>Slovakiska (Slovenský) - av MixerX</value>
+  </data>
+  <data name="R2U_Translations_Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="R2U_Translations_Irish" xml:space="preserve">
+    <value>Irländska</value>
+  </data>
+  <data name="R2U_Translations_Swedish" xml:space="preserve">
+    <value>Svenska</value>
+  </data>
+  <data name="R2U_Translations_Portuguese" xml:space="preserve">
+    <value>Portugisiska</value>
+  </data>
+  <data name="R2U_Translations_Slovak" xml:space="preserve">
+    <value>Slovakiska</value>
+  </data>
+  <data name="R2U_Translations_FilesNotFound" xml:space="preserve">
+    <value>Filerna för verktyget kunde inte hittas</value>
+  </data>
+  <data name="R2U_Translations_RevertTextures" xml:space="preserve">
+    <value>Eftersom grafikfilen har ändrats av den tidigare översättningen rekommenderas det att den ersätts med den ursprungliga versionen.</value>
   </data>
   <data name="Download_OperationCanceling" xml:space="preserve">
     <value>Operationen håller redan på att avbrytas</value>
@@ -1738,44 +1753,5 @@ Starta om?</value>
   <data name="Links_Community_RaymanReanimated" xml:space="preserve">
     <value>Rayman Reanimated</value>
     <comment>Rayman Reanimated</comment>
-  </data>
-  <data name="RDU_CreateConfig_Success" xml:space="preserve">
-    <value>Filen har skapats</value>
-  </data>
-  <data name="RDU_CreateConfig_Error" xml:space="preserve">
-    <value>Filen kunde inte skapas</value>
-  </data>
-  <data name="R2U_Translations_IrishInfo" xml:space="preserve">
-    <value>Irländska (Gaeilge) - av PluMGMK</value>
-  </data>
-  <data name="R2U_Translations_SwedishInfo" xml:space="preserve">
-    <value>Svenska (Svenska) - av RayCarrot</value>
-  </data>
-  <data name="R2U_Translations_PortugueseInfo" xml:space="preserve">
-    <value>Portugisiska (Português) - av Haruka Tavares</value>
-  </data>
-  <data name="R2U_Translations_SlovakInfo" xml:space="preserve">
-    <value>Slovakiska (Slovenský) - av MixerX</value>
-  </data>
-  <data name="R2U_Translations_Original" xml:space="preserve">
-    <value>Original</value>
-  </data>
-  <data name="R2U_Translations_Irish" xml:space="preserve">
-    <value>Irländska</value>
-  </data>
-  <data name="R2U_Translations_Swedish" xml:space="preserve">
-    <value>Svenska</value>
-  </data>
-  <data name="R2U_Translations_Portuguese" xml:space="preserve">
-    <value>Portugisiska</value>
-  </data>
-  <data name="R2U_Translations_Slovak" xml:space="preserve">
-    <value>Slovakiska</value>
-  </data>
-  <data name="R2U_Translations_FilesNotFound" xml:space="preserve">
-    <value>Filerna för verktyget kunde inte hittas</value>
-  </data>
-  <data name="R2U_Translations_RevertTextures" xml:space="preserve">
-    <value>Eftersom grafikfilen har ändrats av den tidigare översättningen rekommenderas det att den ersätts med den ursprungliga versionen.</value>
   </data>
 </root>

@@ -167,7 +167,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Remove the config file
-                    RCFRCP.File.DeleteFile(DosBoxConfigFile);
+                    RCFRCPA.File.DeleteFile(DosBoxConfigFile);
                 }
                 catch (Exception ex)
                 {

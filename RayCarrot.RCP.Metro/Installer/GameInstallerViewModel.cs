@@ -5,7 +5,7 @@ using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.Core.UI;
+using RayCarrot.RCP.UI;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -241,7 +241,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Make sure write permission is granted to the selected directory
-            if (!RCFRCP.File.CheckDirectoryWriteAccess(InstallDir))
+            if (!RCFRCPA.File.CheckDirectoryWriteAccess(InstallDir))
             {
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_DirMissingWritePermission, Resources.Installer_DirMissingWritePermissionHeader, MessageType.Error);
                 return;

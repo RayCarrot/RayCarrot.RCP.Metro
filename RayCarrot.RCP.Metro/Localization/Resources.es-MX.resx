@@ -582,17 +582,8 @@
   <data name="Download_ConfirmHeader" xml:space="preserve">
     <value>Confirmar descarga</value>
   </data>
-  <data name="Update_UnknownError" xml:space="preserve">
-    <value>Error desconocido</value>
-  </data>
   <data name="Update_LatestInstalledHeader" xml:space="preserve">
     <value>Ninguna versión nueva fue encontrado</value>
-  </data>
-  <data name="Update_ManifestError" xml:space="preserve">
-    <value>El manifiesto del servidor no pudo ser leído</value>
-  </data>
-  <data name="Update_NewsError" xml:space="preserve">
-    <value>Error al recibir noticias</value>
   </data>
   <data name="Update_UpdateAvailable" xml:space="preserve">
     <value>Una nueva actualización está disponible para descargar. ¿Descargar ahora?

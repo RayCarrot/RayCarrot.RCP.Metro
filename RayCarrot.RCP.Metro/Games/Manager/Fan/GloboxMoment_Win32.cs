@@ -33,7 +33,7 @@ namespace RayCarrot.RCP.Metro
         {
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenGameJoltPage, PackIconMaterialKind.Earth, new AsyncRelayCommand(async () =>
             {
-                (await RCFRCP.File.LaunchFileAsync("https://gamejolt.com/games/globoxmoment/428585"))?.Dispose();
+                (await RCFRCPA.File.LaunchFileAsync("https://gamejolt.com/games/globoxmoment/428585"))?.Dispose();
                 RCFCore.Logger?.LogTraceSource($"The game {Game} GameJolt page was opened");
             })),
         };

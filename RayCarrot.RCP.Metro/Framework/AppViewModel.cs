@@ -1,6 +1,4 @@
 ﻿using ByteSizeLib;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
@@ -749,7 +747,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Check if we have write access
-                if (RCFRCP.File.CheckFileWriteAccess(CommonPaths.UbiIniPath1))
+                if (RCFRCPA.File.CheckFileWriteAccess(CommonPaths.UbiIniPath1))
                 {
                     RCFCore.Logger?.LogDebugSource("The ubi.ini file has write access");
                     return;
@@ -943,132 +941,41 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                RCFCore.Logger?.LogInformationSource($"Updates are being checked for");
-
                 CheckingForUpdates = true;
-                string errorMessage = Resources.Update_UnknownError;
-                Exception exception = null;
-                JObject manifest = null;
 
-                try
-                {
-                    using var wc = new WebClient();
-                    var result = await wc.DownloadStringTaskAsync(CommonUrls.UpdateManifestUrl);
-                    manifest = JObject.Parse(result);
-                }
-                catch (WebException ex)
-                {
-                    exception = ex;
-                    ex.HandleUnexpected("Getting server manifest");
-                    errorMessage = Resources.Update_WebError;
-                }
-                catch (JsonReaderException ex)
-                {
-                    exception = ex;
-                    ex.HandleError("Parsing server manifest");
-                    errorMessage = Resources.Update_FormatError;
-                }
-                catch (Exception ex)
-                {
-                    exception = ex;
-                    ex.HandleError("Getting server manifest");
-                    errorMessage = Resources.Update_GenericError;
-                }
+                // Check for updates
+                var result = await RCFRCPA.UpdaterManager.CheckAsync(RCFRCP.Data.ForceUpdate && isManualSearch, RCFRCP.Data.GetBetaUpdates || RCFRCP.App.IsBeta);
 
-                // Show error if manifest was not retrieved
-                if (manifest == null)
+                // Check if there is an error
+                if (result.ErrorMessage != null)
                 {
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(exception, errorMessage, Resources.Update_ErrorHeader);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(result.Exception, result.ErrorMessage, Resources.Update_ErrorHeader);
+
+                    Data.IsUpdateAvailable = false;
+
                     return;
                 }
 
-                // Flag indicating if the current update is a beta update
-                bool isBetaUpdate = false;
-
-                bool forceUpdates = RCFRCP.Data.ForceUpdate && isManualSearch;
-
-                RCFCore.Logger?.LogInformationSource($"The update manifest was retrieved");
-
-                try
+                // Check if no new updates were found
+                if (!result.IsNewUpdateAvailable)
                 {
-                    // Get the server version
-                    var av = manifest["LatestAssemblyVersion"];
-                    var serverVersion = new Version(av["Major"].Value<int>(), av["Minor"].Value<int>(), av["Build"].Value<int>(), av["Revision"].Value<int>());
+                    if (isManualSearch)
+                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, CurrentVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
 
-                    // Compare version
-                    if (RCFRCP.App.CurrentVersion >= serverVersion)
-                    {
-                        if (forceUpdates)
-                        {
-                            if (Data.GetBetaUpdates || IsBeta)
-                                isBetaUpdate = true;
-                        }
-                        else
-                        {
-                            // Flag indicating if no new update is available
-                            bool noUpdateAvailable = true;
+                    Data.IsUpdateAvailable = false;
 
-                            // Get the beta version if checking for beta updates
-                            if (Data.GetBetaUpdates || IsBeta)
-                            {
-                                // Get the beta version
-                                var bv = manifest["LatestBetaVersion"];
-                                var betaVersion = new Version(bv["Major"].Value<int>(), bv["Minor"].Value<int>(), bv["Build"].Value<int>(), bv["Revision"].Value<int>());
-
-                                // Compare version
-                                if (RCFRCP.App.CurrentVersion < betaVersion)
-                                {
-                                    isBetaUpdate = true;
-                                    noUpdateAvailable = false;
-                                }
-                            }
-
-                            if (noUpdateAvailable)
-                            {
-                                Data.IsUpdateAvailable = false;
-                                
-                                if (isManualSearch)
-                                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, serverVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
-
-                                RCFCore.Logger?.LogInformationSource($"The latest version is installed");
-
-                                return;
-                            }
-                        }
-                    }
-
-                    RCFCore.Logger?.LogInformationSource($"A new version ({serverVersion}) is available");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Getting assembly version from server manifest", manifest);
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.Update_ManifestError, Resources.Update_ErrorHeader, MessageType.Error);
                     return;
                 }
 
+                // Indicate that a new update is available
                 Data.IsUpdateAvailable = true;
-
-                string news = Resources.Update_NewsError;
-
-                if (!isBetaUpdate)
-                {
-                    try
-                    {
-                        // Get the update news
-                        news = manifest["DisplayNews"].Value<string>();
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.HandleError("Getting update news from server manifest", manifest);
-                    }
-                }
 
                 // Run as new task to mark this operation as finished
                 _ = Task.Run(async () =>
                 {
                     try
                     {
-                        if (await RCFUI.MessageUI.DisplayMessageAsync(!isBetaUpdate ? String.Format(Resources.Update_UpdateAvailable, news) : Resources.Update_BetaUpdateAvailable, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
+                        if (await RCFUI.MessageUI.DisplayMessageAsync(!result.IsBetaUpdate ? String.Format(Resources.Update_UpdateAvailable, result.DisplayNews) : Resources.Update_BetaUpdateAvailable, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
                         {
                             try
                             {
@@ -1084,7 +991,7 @@ namespace RayCarrot.RCP.Metro
                             }
 
                             // Launch the updater and run as admin is set to show under installed programs in under to update the Registry key
-                            if (await RCFRCP.File.LaunchFileAsync(CommonPaths.UpdaterFilePath, Data.ShowUnderInstalledPrograms, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.DarkMode} {RCFRCP.Data.UserLevel} {isBetaUpdate} \"{Data.CurrentCulture}\"") == null)
+                            if (await RCFRCPA.File.LaunchFileAsync(CommonPaths.UpdaterFilePath, Data.ShowUnderInstalledPrograms, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.DarkMode} {RCFRCP.Data.UserLevel} {result.IsBetaUpdate} \"{RCFCore.Data.CurrentCulture}\"") == null)
                             {
                                 await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, "raycarrot.ylemnova.com"), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
 
@@ -1145,7 +1052,7 @@ namespace RayCarrot.RCP.Metro
                         return;
                     }
 
-                    RCFRCP.File.MoveDirectory(oldLocation, newLocation, false, false);
+                    RCFRCPA.File.MoveDirectory(oldLocation, newLocation, false, false);
 
                     RCFCore.Logger?.LogInformationSource("Old backups have been moved");
 
@@ -1195,7 +1102,7 @@ namespace RayCarrot.RCP.Metro
         public async Task RunAdminWorkerAsync(AdminWorkerModes mode, params string[] args)
         {
             using (await AdminWorkerAsyncLock.LockAsync())
-                await RCFRCP.File.LaunchFileAsync(CommonPaths.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
+                await RCFRCPA.File.LaunchFileAsync(CommonPaths.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
         }
 
         /// <summary>

@@ -66,7 +66,7 @@ namespace RayCarrot.RCP.Metro
                 // Check if the directory exists
                 if (CommonPaths.TPLSDir.DirectoryExists)
                     // Delete the directory
-                    RCFRCP.File.DeleteDirectory(CommonPaths.TPLSDir);
+                    RCFRCPA.File.DeleteDirectory(CommonPaths.TPLSDir);
 
                 // Download the files
                 if (!await App.DownloadAsync(new Uri[]
@@ -75,7 +75,7 @@ namespace RayCarrot.RCP.Metro
                 }, true, CommonPaths.TPLSDir))
                 {
                     // If canceled, delete the directory
-                    RCFRCP.File.DeleteDirectory(CommonPaths.TPLSDir);
+                    RCFRCPA.File.DeleteDirectory(CommonPaths.TPLSDir);
                     return;
                 }
 
@@ -118,7 +118,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                RCFRCP.File.DeleteDirectory(RCFRCP.Data.TPLSData.InstallDir);
+                RCFRCPA.File.DeleteDirectory(RCFRCP.Data.TPLSData.InstallDir);
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSUninstallSuccess, Resources.R1U_TPLSUninstallSuccessHeader, MessageType.Success);
 
                 RCFRCP.Data.TPLSData = null;
