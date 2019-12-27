@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,11 +31,13 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -49,6 +52,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\RCPLocalizationManager.cs" />
+    <Compile Include="API\BaseRCPAppViewModel.cs" />
+    <Compile Include="API\RCPAPIControllerManager.cs" />
     <Compile Include="Controls\BaseRCPApp.cs" />
     <Compile Include="Controls\BaseWindow.cs" />
     <Compile Include="Controls\DuoGridItem.cs" />
@@ -63,7 +69,17 @@
     <Compile Include="Extensions\APIControllerSettingsExtensions.cs" />
     <Compile Include="API\APIControllerUISettings.cs" />
     <Compile Include="API\RCPFileManager.cs" />
-    <Compile Include="Framework\RCPDialogBaseManager.cs" />
+    <Compile Include="Framework\FrameworkConstructionExtensions.cs" />
+    <Compile Include="Framework\RCFRCPUI.cs" />
+    <Compile Include="Framework\Implementations\RCPDialogBaseManager.cs" />
+    <Compile Include="Framework\Implementations\RCPExceptionHandler.cs" />
+    <Compile Include="Framework\Implementations\RCPMessageUIManager.cs" />
+    <Compile Include="Framework\UserData\RCPAppUserData.cs" />
+    <Compile Include="Images\Images.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Images.resx</DependentUpon>
+    </Compile>
     <Compile Include="Localization\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -121,6 +137,9 @@
     <PackageReference Include="RayCarrot.UI">
       <Version>1.2.1</Version>
     </PackageReference>
+    <PackageReference Include="RayCarrot.UserData">
+      <Version>3.2.1</Version>
+    </PackageReference>
     <PackageReference Include="Resource.Embedder">
       <Version>2.0.1</Version>
     </PackageReference>
@@ -150,20 +169,41 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\MessageIcons\Error.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Rayman Control Panel Icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Images\Images.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>RayCarrot.RCP.UI</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Localization\Resources.es-MX.resx" />
     <EmbeddedResource Include="Localization\Resources.nl-NL.resx" />
+    <EmbeddedResource Include="Localization\Resources.pl-PL.resx" />
     <EmbeddedResource Include="Localization\Resources.pt-PT.resx" />
     <EmbeddedResource Include="Localization\Resources.resx">
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <CustomToolNamespace>RayCarrot.RCP.UI</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Resources.sr-Cyrl.resx" />
     <EmbeddedResource Include="Localization\Resources.sv-SE.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MessageIcons\Generic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MessageIcons\Happy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MessageIcons\Info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MessageIcons\Question.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -22,7 +22,7 @@ namespace RayCarrot.RCP.Core {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace RayCarrot.RCP.Core {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RayCarrot.RCP.Core.Localization.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace RayCarrot.RCP.Core {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -65,7 +65,7 @@ namespace RayCarrot.RCP.Core {
         ///
         ///Error message: {1}.
         /// </summary>
-        internal static string App_ExceptionMessage {
+        public static string App_ExceptionMessage {
             get {
                 return ResourceManager.GetString("App_ExceptionMessage", resourceCulture);
             }
@@ -74,7 +74,7 @@ namespace RayCarrot.RCP.Core {
         /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
-        internal static string App_ExceptionMessageDefaultHeader {
+        public static string App_ExceptionMessageDefaultHeader {
             get {
                 return ResourceManager.GetString("App_ExceptionMessageDefaultHeader", resourceCulture);
             }
@@ -83,7 +83,7 @@ namespace RayCarrot.RCP.Core {
         /// <summary>
         ///   Looks up a localized string similar to An error has occurred..
         /// </summary>
-        internal static string App_ExceptionMessageDefaultMessage {
+        public static string App_ExceptionMessageDefaultMessage {
             get {
                 return ResourceManager.GetString("App_ExceptionMessageDefaultMessage", resourceCulture);
             }
@@ -92,7 +92,7 @@ namespace RayCarrot.RCP.Core {
         /// <summary>
         ///   Looks up a localized string similar to The information from the server was not valid.
         /// </summary>
-        internal static string Update_FormatError {
+        public static string Update_FormatError {
             get {
                 return ResourceManager.GetString("Update_FormatError", resourceCulture);
             }
@@ -101,7 +101,7 @@ namespace RayCarrot.RCP.Core {
         /// <summary>
         ///   Looks up a localized string similar to An unknown error occurred while connecting to the server.
         /// </summary>
-        internal static string Update_GenericError {
+        public static string Update_GenericError {
             get {
                 return ResourceManager.GetString("Update_GenericError", resourceCulture);
             }
@@ -110,7 +110,7 @@ namespace RayCarrot.RCP.Core {
         /// <summary>
         ///   Looks up a localized string similar to The server manifest could not be read.
         /// </summary>
-        internal static string Update_ManifestError {
+        public static string Update_ManifestError {
             get {
                 return ResourceManager.GetString("Update_ManifestError", resourceCulture);
             }
@@ -119,7 +119,7 @@ namespace RayCarrot.RCP.Core {
         /// <summary>
         ///   Looks up a localized string similar to Error getting news.
         /// </summary>
-        internal static string Update_NewsError {
+        public static string Update_NewsError {
             get {
                 return ResourceManager.GetString("Update_NewsError", resourceCulture);
             }
@@ -128,7 +128,7 @@ namespace RayCarrot.RCP.Core {
         /// <summary>
         ///   Looks up a localized string similar to Unknown error.
         /// </summary>
-        internal static string Update_UnknownError {
+        public static string Update_UnknownError {
             get {
                 return ResourceManager.GetString("Update_UnknownError", resourceCulture);
             }
@@ -137,7 +137,7 @@ namespace RayCarrot.RCP.Core {
         /// <summary>
         ///   Looks up a localized string similar to A connection could not be established to the server.
         /// </summary>
-        internal static string Update_WebError {
+        public static string Update_WebError {
             get {
                 return ResourceManager.GetString("Update_WebError", resourceCulture);
             }

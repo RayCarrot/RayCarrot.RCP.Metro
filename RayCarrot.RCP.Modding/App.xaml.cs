@@ -8,6 +8,7 @@ using RayCarrot.Windows.Registry;
 using RayCarrot.WPF;
 using System.Collections.Generic;
 using System.Windows;
+using RayCarrot.RCP.Metro;
 using RayCarrot.RCP.UI;
 
 namespace RayCarrot.RCP.Modding
@@ -30,7 +31,14 @@ namespace RayCarrot.RCP.Modding
         /// <returns>The Window instance</returns>
         protected override Window GetMainWindow()
         {
-            return new MainWindow();
+            // Create the window
+            var window = new MainWindow();
+
+            // TODO: App user data
+            // Load previous state
+            //RCFRCP.Data.WindowState?.ApplyToWindow(window);
+
+            return window;
         }
 
         /// <summary>
@@ -46,16 +54,15 @@ namespace RayCarrot.RCP.Modding
                 // NOTE: Set to true?
                 false);
 
+            // TODO: Add user data manager
             new FrameworkConstruction().
                 // TODO: Add file logger
                 // Add loggers
                 AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, logLevel).
-                // TODO: Replace with RCP exception handler
                 // Add exception handler
-                AddExceptionHandler<DefaultExceptionHandler>().
-                // TODO: Replace with RCP message UI manager
+                AddExceptionHandler<RCPExceptionHandler>().
                 // Add message UI manager
-                AddMessageUIManager<DefaultWPFMessageUIManager>().
+                AddMessageUIManager<RCPMessageUIManager>().
                 // Add browse UI manager
                 AddBrowseUIManager<DefaultWPFBrowseUIManager>().
                 // Add registry manager
@@ -63,12 +70,17 @@ namespace RayCarrot.RCP.Modding
                 // Add registry browse UI manager
                 AddRegistryBrowseUIManager<DefaultWPFRegistryBrowseUIManager>().
                 // Add the app view model
-                AddSingleton(new AppViewModel()).
+                AddAppViewModel<AppViewModel>().
                 // Add a file manager
                 AddFileManager<RCPFileManager>().
                 // TODO: Add update manager
                 // Add updater manager
                 //AddUpdateManager<>().
+                // TODO: Add app paths
+                // Add application paths
+                //AddApplicationPaths<RCPMetroApplicationPaths>().
+                // Add localization manager
+                AddLocalizationManager<RCPModdingLocalizationManager>().
                 // Add a dialog manager
                 AddDialogBaseManager<RCPDialogBaseManager>().
                 // Add RCP API

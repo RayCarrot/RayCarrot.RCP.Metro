@@ -147,4 +147,34 @@
   <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
     <value>Fout bij het benaderen van de sleutel</value>
   </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Algemeen Bericht</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Informatiebericht</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Foutbericht</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Waarschuwingsbericht</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Succesbericht</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Vraag</value>
+  </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Exception</value>
+  </data>
+  <data name="ExceptionMessageInfo" xml:space="preserve">
+    <value>Een exceptie heeft zich voorgedaan in de applicatie. Hieronder de beschikbare debug informatie, op basis van het huidige gebruikersniveau in het Carrot Framework.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
 </root>

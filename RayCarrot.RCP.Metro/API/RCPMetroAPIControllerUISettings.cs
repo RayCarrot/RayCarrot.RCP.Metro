@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Infralution.Localization.Wpf;
+using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.RCP.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -20,6 +21,11 @@ namespace RayCarrot.RCP.Metro
         public override bool AreWindowTransitionsEnabled => RCFRCP.Data?.EnableAnimations ?? true;
 
         /// <summary>
+        /// The minimum exception level to display
+        /// </summary>
+        public override ExceptionLevel DisplayExceptionLevel => RCFRCP.Data?.DisplayExceptionLevel ?? ExceptionLevel.Error;
+
+        /// <summary>
         /// Optional method to run when setting up a Window
         /// </summary>
         /// <param name="window">The Window which is being set up</param>
@@ -29,7 +35,7 @@ namespace RayCarrot.RCP.Metro
             base.OnWindowSetup(window);
 
             // Set localization source
-            ResxExtension.SetDefaultResxName(window, AppLanguages.ResourcePath);
+            ResxExtension.SetDefaultResxName(window, AppViewModel.ResourcePath);
         }
     }
 }

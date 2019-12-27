@@ -73,11 +73,12 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Properties
 
+        // TODO: Add to app paths an make method for getting path
         /// <summary>
         /// Gets the DosBox configuration file path for the auto config file
         /// </summary>
         /// <returns>The file path</returns>
-        public FileSystemPath DosBoxConfigFile => CommonPaths.UserDataBaseDir + "DosBox" + (Game + ".ini");
+        public FileSystemPath DosBoxConfigFile => RCFRCP.Path.AppUserDataBaseDir + "DosBox" + (Game + ".ini");
 
         #endregion
 

@@ -3,6 +3,8 @@ using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
+using RayCarrot.RCP.UI;
 using RayCarrot.UI;
 using RayCarrot.UserData;
 using RayCarrot.Windows.Shell;
@@ -14,16 +16,14 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
-using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Handles common actions and events for this application
     /// </summary>
-    public class AppViewModel : BaseRCPViewModel
+    public class AppViewModel : BaseRCPAppViewModel<Pages>
     {
         #region Static Constructor
 
@@ -41,18 +41,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public AppViewModel()
         {
-            IsStartupRunning = true;
-
-            try
-            {
-                IsRunningAsAdmin = WindowsHelpers.RunningAsAdmin;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error");
-                IsRunningAsAdmin = false;
-            }
-
             SaveUserDataAsyncLock = new AsyncLock();
             MoveBackupsAsyncLock = new AsyncLock();
             AdminWorkerAsyncLock = new AsyncLock();
@@ -494,6 +482,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public static WindowsVersion WindowsVersion { get; }
 
+        /// <summary>
+        /// The path to the resource file
+        /// </summary>
+        public static string ResourcePath => "RayCarrot.RCP.Metro.Localization.Resources";
+
         #endregion
 
         #region Private Properties
@@ -523,9 +516,9 @@ namespace RayCarrot.RCP.Metro
         #region Public Properties
 
         /// <summary>
-        /// Indicates if the application startup operation is running
+        /// Shortcut to the app user data
         /// </summary>
-        public bool IsStartupRunning { get; set; }
+        public AppUserData Data => RCFRCP.Data;
 
         /// <summary>
         /// The available local utilities
@@ -541,11 +534,6 @@ namespace RayCarrot.RCP.Metro
         /// The available game infos
         /// </summary>
         public Dictionary<Games, Type> GameInfos { get; }
-
-        /// <summary>
-        /// The currently selected page
-        /// </summary>
-        public Pages SelectedPage { get; set; }
 
         /// <summary>
         /// A flag indicating if an update check is in progress
@@ -581,11 +569,6 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the game finder is currently running
         /// </summary>
         public bool IsGameFinderRunning { get; set; }
-
-        /// <summary>
-        /// Indicates if the program is running as admin
-        /// </summary>
-        public bool IsRunningAsAdmin { get; }
 
         #endregion
 
@@ -740,14 +723,14 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                if (!CommonPaths.UbiIniPath1.FileExists)
+                if (!RCFRCP.Path.UbiIniPath1.FileExists)
                 {
                     RCFCore.Logger?.LogInformationSource("The ubi.ini file was not found");
                     return;
                 }
 
                 // Check if we have write access
-                if (RCFRCPA.File.CheckFileWriteAccess(CommonPaths.UbiIniPath1))
+                if (RCFRCPA.File.CheckFileWriteAccess(RCFRCP.Path.UbiIniPath1))
                 {
                     RCFCore.Logger?.LogDebugSource("The ubi.ini file has write access");
                     return;
@@ -756,7 +739,7 @@ namespace RayCarrot.RCP.Metro
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
 
                 // Attempt to change the permission
-                await RunAdminWorkerAsync(AdminWorkerModes.GrantFullControl, CommonPaths.UbiIniPath1);
+                await RunAdminWorkerAsync(AdminWorkerModes.GrantFullControl, RCFRCP.Path.UbiIniPath1);
 
                 RCFCore.Logger?.LogInformationSource($"The ubi.ini file permission was changed");
             }
@@ -979,19 +962,19 @@ namespace RayCarrot.RCP.Metro
                         {
                             try
                             {
-                                Directory.CreateDirectory(CommonPaths.UpdaterFilePath.Parent);
-                                File.WriteAllBytes(CommonPaths.UpdaterFilePath, Files.Rayman_Control_Panel_Updater);
+                                Directory.CreateDirectory(RCFRCP.Path.UpdaterFile.Parent);
+                                File.WriteAllBytes(RCFRCP.Path.UpdaterFile, Files.Rayman_Control_Panel_Updater);
                                 RCFCore.Logger?.LogInformationSource($"The updater was created");
                             }
                             catch (Exception ex)
                             {
-                                ex.HandleError("Writing updater to temp path", CommonPaths.UpdaterFilePath);
+                                ex.HandleError("Writing updater to temp path", RCFRCP.Path.UpdaterFile);
                                 await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, "raycarrot.ylemnova.com"), Resources.Update_UpdaterErrorHeader);
                                 return;
                             }
 
                             // Launch the updater and run as admin is set to show under installed programs in under to update the Registry key
-                            if (await RCFRCPA.File.LaunchFileAsync(CommonPaths.UpdaterFilePath, Data.ShowUnderInstalledPrograms, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.DarkMode} {RCFRCP.Data.UserLevel} {result.IsBetaUpdate} \"{RCFCore.Data.CurrentCulture}\"") == null)
+                            if (await RCFRCPA.File.LaunchFileAsync(RCFRCP.Path.UpdaterFile, Data.ShowUnderInstalledPrograms, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.DarkMode} {RCFRCP.Data.UserLevel} {result.IsBetaUpdate} \"{RCFCore.Data.CurrentCulture}\"") == null)
                             {
                                 await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, "raycarrot.ylemnova.com"), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
 
@@ -999,7 +982,7 @@ namespace RayCarrot.RCP.Metro
                             }
 
                             // Shut down the app
-                            await Metro.App.Current.ShutdownRCFAppAsync(true);
+                            await App.Current.ShutdownRCFAppAsync(true);
                         }
                     }
                     catch (Exception ex)
@@ -1102,7 +1085,7 @@ namespace RayCarrot.RCP.Metro
         public async Task RunAdminWorkerAsync(AdminWorkerModes mode, params string[] args)
         {
             using (await AdminWorkerAsyncLock.LockAsync())
-                await RCFRCPA.File.LaunchFileAsync(CommonPaths.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
+                await RCFRCPA.File.LaunchFileAsync(RCFRCP.Path.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
         }
 
         /// <summary>
@@ -1114,17 +1097,17 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Deploy the uninstaller
-                if (overwrite || !CommonPaths.UninstallFilePath.FileExists)
+                if (overwrite || !RCFRCP.Path.UninstallFilePath.FileExists)
                 {
-                    Directory.CreateDirectory(CommonPaths.UninstallFilePath.Parent);
-                    File.WriteAllBytes(CommonPaths.UninstallFilePath, Files.Uninstaller);
+                    Directory.CreateDirectory(RCFRCP.Path.UninstallFilePath.Parent);
+                    File.WriteAllBytes(RCFRCP.Path.UninstallFilePath, Files.Uninstaller);
                 }
 
                 // Deploy the admin worker
-                if (overwrite || !CommonPaths.AdminWorkerPath.FileExists)
+                if (overwrite || !RCFRCP.Path.AdminWorkerPath.FileExists)
                 {
-                    Directory.CreateDirectory(CommonPaths.AdminWorkerPath.Parent);
-                    File.WriteAllBytes(CommonPaths.AdminWorkerPath, Files.AdminWorker);
+                    Directory.CreateDirectory(RCFRCP.Path.AdminWorkerPath.Parent);
+                    File.WriteAllBytes(RCFRCP.Path.AdminWorkerPath, Files.AdminWorker);
                 }
             }
             catch (Exception ex)

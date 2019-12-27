@@ -226,7 +226,7 @@ namespace RayCarrot.RCP.Metro
         private RegistryKey GetKey(bool writable)
         {
             // Get the key path
-            var keyPath = RCFWinReg.RegistryManager.CombinePaths(Game == Games.RaymanOrigins ? CommonPaths.RaymanOriginsRegistryKey : CommonPaths.RaymanLegendsRegistryKey, "Settings");
+            var keyPath = RCFWinReg.RegistryManager.CombinePaths(Game == Games.RaymanOrigins ? RCFRCP.Path.RaymanOriginsRegistryKey : RCFRCP.Path.RaymanLegendsRegistryKey, "Settings");
 
             // Create the key if it doesn't exist and should be written to
             if (!RCFWinReg.RegistryManager.KeyExists(keyPath) && writable)

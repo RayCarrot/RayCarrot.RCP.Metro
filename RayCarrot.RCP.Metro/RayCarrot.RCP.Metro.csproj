@@ -101,6 +101,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="API\RCPMetroLocalizationManager.cs" />
     <Compile Include="API\RCPMetroAPIControllerUISettings.cs" />
     <Compile Include="Config\UI\RaymanFiestaRunConfig.xaml.cs">
       <DependentUpon>RaymanFiestaRunConfig.xaml</DependentUpon>
@@ -562,7 +563,6 @@
     <Compile Include="UI\Converters\BooleanToFluidMoveDurationConverter.cs" />
     <Compile Include="DataModels\DosBoxAutoConfigData.cs" />
     <Compile Include="Helpers\DosBoxAutoConfigManager.cs" />
-    <Compile Include="Helpers\AppLanguages.cs" />
     <Compile Include="Localization\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -637,7 +637,6 @@
     <Compile Include="Installer\RayGameInstallItemStage.cs" />
     <Compile Include="ViewModels\HelpItemViewModel.cs" />
     <Compile Include="Pages\ViewModels\BackupPageViewModel.cs" />
-    <Compile Include="Framework\Implementations\RCPExceptionHandler.cs" />
     <Compile Include="ViewModels\Base\BaseRCPViewModel.cs" />
     <Compile Include="Config\ViewModels\Base\BaseDosBoxConfigViewModel.cs" />
     <Compile Include="Framework\Implementations\AppUIManager.cs" />
@@ -669,9 +668,8 @@
     <Compile Include="DataModels\GameFileLink.cs" />
     <Compile Include="Extensions\GamesExtensions.cs" />
     <Compile Include="Extensions\MessageUIManagerExtensions.cs" />
-    <Compile Include="Framework\Implementations\RCPMessageUIManager.cs" />
     <Compile Include="Framework\RCFRCP.cs" />
-    <Compile Include="Helpers\CommonPaths.cs" />
+    <Compile Include="API\RCPMetroApplicationPaths.cs" />
     <Compile Include="Img\Images.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -761,7 +759,7 @@
     <EmbeddedResource Include="Localization\Resources.pt-PT.resx" />
     <EmbeddedResource Include="Localization\Resources.resx">
       <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
     </EmbeddedResource>
@@ -844,21 +842,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Img\MessageIcons\Error.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Img\MessageIcons\Generic.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Img\MessageIcons\Happy.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Img\MessageIcons\Info.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Img\MessageIcons\Question.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\GameIcons\RabbidsCoding.png" />

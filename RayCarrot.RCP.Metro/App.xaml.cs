@@ -43,8 +43,6 @@ namespace RayCarrot.RCP.Metro
         {
             DataChangedHandlerAsyncLock = new AsyncLock();
             SplashScreenFadeout = TimeSpan.FromMilliseconds(200);
-
-            StartupEventsCompleted += App_StartupEventsCompleted;
         }
 
         #endregion
@@ -101,7 +99,7 @@ namespace RayCarrot.RCP.Metro
                 // Add registry browse UI manager
                 AddRegistryBrowseUIManager<DefaultWPFRegistryBrowseUIManager>().
                 // Add the app view model
-                AddSingleton(new AppViewModel()).
+                AddAppViewModel<AppViewModel>().
                 // Add a file manager
                 AddFileManager<RCPFileManager>().
                 // Add a dialog manager
@@ -110,6 +108,10 @@ namespace RayCarrot.RCP.Metro
                 AddTransient<AppUIManager>().
                 // Add update manager
                 AddUpdateManager<RCPMetroUpdateManager>().
+                // Add application paths
+                AddApplicationPaths<RCPMetroApplicationPaths>().
+                // Add localization manager
+                AddLocalizationManager<RCPMetroLocalizationManager>().
                 // Add backup manager
                 AddTransient<BackupManager>().
                 // Add RCP API
@@ -132,7 +134,8 @@ namespace RayCarrot.RCP.Metro
             // Load the user data
             try
             {
-                await RCFData.UserDataCollection.AddUserDataAsync<AppUserData>(CommonPaths.AppUserDataPath);
+                await RCFData.UserDataCollection.AddUserDataAsync<AppUserData>(RCFRCP.Path.GetUserDataFile(typeof(AppUserData)));
+
                 RCFCore.Logger?.LogInformationSource($"The app user data has been loaded");
             }
             catch (Exception ex)
@@ -160,8 +163,8 @@ namespace RayCarrot.RCP.Metro
             Data.PropertyChanged += Data_PropertyChangedAsync;
 
             // Apply the current culture if defaulted
-            if (Data.CurrentCulture == AppLanguages.DefaultCulture.Name)
-                Data.RefreshCulture(AppLanguages.DefaultCulture.Name);
+            if (Data.CurrentCulture == RCFRCPUI.Localization.DefaultCulture.Name)
+                RCFRCPUI.Localization.SetCulture(RCFRCPUI.Localization.DefaultCulture.Name);
 
             // Check if the program is shown under installed programs if the value is defaulted
             if (Data.ShowUnderInstalledPrograms == false)
@@ -243,17 +246,6 @@ namespace RayCarrot.RCP.Metro
             // Hard code the current directory
             Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? Directory.GetCurrentDirectory());
 
-            // Attempt to remove log file if over 2 Mb
-            try
-            {
-                if (CommonPaths.LogFile.FileExists && CommonPaths.LogFile.GetSize() > ByteSize.FromMegaBytes(2))
-                    File.Delete(CommonPaths.LogFile);
-            }
-            catch (Exception ex)
-            {
-                ex.HandleCritical("Removing log file due to size");
-            }
-
             return Task.FromResult(true);
         }
 
@@ -270,7 +262,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Get the license value, if one exists
-                int regValue = Registry.GetValue(CommonPaths.RegistryBaseKey, CommonPaths.RegistryLicenseValue, 0)?.CastTo<int>() ?? 0;
+                int regValue = Registry.GetValue(RCPMetroApplicationPaths.RegistryBaseKey, RCPMetroApplicationPaths.RegistryLicenseValue, 0)?.CastTo<int>() ?? 0;
 
                 // Check if it has been accepted
                 if (regValue == 1)
@@ -287,7 +279,7 @@ namespace RayCarrot.RCP.Metro
 
                 // Set Registry value if accepted
                 if (ld.Accepted)
-                    Registry.SetValue(CommonPaths.RegistryBaseKey, CommonPaths.RegistryLicenseValue, 1);
+                    Registry.SetValue(RCPMetroApplicationPaths.RegistryBaseKey, RCPMetroApplicationPaths.RegistryLicenseValue, 1);
 
                 // Return if it was accepted
                 return ld.Accepted;
@@ -429,7 +421,7 @@ namespace RayCarrot.RCP.Metro
                     try
                     {
                         // Read the app data file
-                        JObject appData = new StringReader(File.ReadAllText(CommonPaths.AppUserDataPath)).RunAndDispose(x =>
+                        JObject appData = new StringReader(File.ReadAllText(RCFRCP.Data.FilePath)).RunAndDispose(x =>
                             new JsonTextReader(x).RunAndDispose(y => JsonSerializer.Create().Deserialize(y))).CastTo<JObject>();
 
                         // Get the previous Fiesta Run version
@@ -584,7 +576,7 @@ namespace RayCarrot.RCP.Metro
                         break;
 
                     case nameof(AppUserData.ShowIncompleteTranslations):
-                        AppLanguages.RefreshLanguages(Data.ShowIncompleteTranslations);
+                        RCFRCPUI.Localization.RefreshLanguages(Data.ShowIncompleteTranslations);
                         break;
 
                     case nameof(AppUserData.LinkItemStyle):
@@ -668,12 +660,12 @@ namespace RayCarrot.RCP.Metro
 
         private static async Task App_StartupComplete_Updater_Async(object sender, EventArgs eventArgs)
         {
-            if (CommonPaths.UpdaterFilePath.FileExists)
+            if (RCFRCP.Path.UpdaterFile.FileExists)
             {
                 int retryTime = 0;
 
                 // Wait until we can write to the file (i.e. it closing after an update)
-                while (!RCFRCPA.File.CheckFileWriteAccess(CommonPaths.UpdaterFilePath))
+                while (!RCFRCPA.File.CheckFileWriteAccess(RCFRCP.Path.UpdaterFile))
                 {
                     retryTime++;
 
@@ -702,7 +694,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Remove the updater
-                    RCFRCPA.File.DeleteFile(CommonPaths.UpdaterFilePath);
+                    RCFRCPA.File.DeleteFile(RCFRCP.Path.UpdaterFile);
 
                     RCFCore.Logger?.LogInformationSource($"The updater has been removed");
                 }
@@ -715,11 +707,6 @@ namespace RayCarrot.RCP.Metro
             // Check for updates
             if (RCFRCP.Data.AutoUpdate)
                 await RCFRCP.App.CheckForUpdatesAsync(false);
-        }
-
-        private static void App_StartupEventsCompleted(object sender, EventArgs e)
-        {
-            RCFRCP.App.IsStartupRunning = false;
         }
 
         #endregion

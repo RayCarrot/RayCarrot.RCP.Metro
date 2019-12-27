@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.UI
@@ -22,6 +23,11 @@ namespace RayCarrot.RCP.UI
         /// Indicates if Window transitions are enabled
         /// </summary>
         public virtual bool AreWindowTransitionsEnabled => true;
+
+        /// <summary>
+        /// The minimum exception level to display
+        /// </summary>
+        public abstract ExceptionLevel DisplayExceptionLevel { get; }
 
         /// <summary>
         /// Optional method to run when setting up a Window

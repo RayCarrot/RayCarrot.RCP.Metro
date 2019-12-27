@@ -252,7 +252,7 @@ namespace RayCarrot.RCP.Metro
                         await App.SaveUserDataAsync();
 
                         // Display the file contents
-                        DataOutput = File.ReadAllText(CommonPaths.AppUserDataPath);
+                        DataOutput = File.ReadAllText(RCFRCP.Data.FilePath);
 
                         break;
 
@@ -375,6 +375,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             "RayCarrot.RCP.Core",
                             "RayCarrot.RCP.UI",
+                            "RayCarrot.RCP.ArchiveExplorer",
                             "RayCarrot.CarrotFramework",
                             "RayCarrot.CarrotFramework.Abstractions",
                             "RayCarrot.UI",

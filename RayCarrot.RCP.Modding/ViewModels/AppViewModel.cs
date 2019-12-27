@@ -4,13 +4,12 @@ using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.RCP.ArchiveExplorer;
 using RayCarrot.RCP.Core;
+using RayCarrot.RCP.UI;
 using RayCarrot.UI;
-using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace RayCarrot.RCP.Modding
@@ -19,7 +18,7 @@ namespace RayCarrot.RCP.Modding
     /// <summary>
     /// The main application view model
     /// </summary>
-    public class AppViewModel : BaseViewModel
+    public class AppViewModel : BaseRCPAppViewModel<Pages>
     {
         #region Constructor
 
@@ -28,16 +27,6 @@ namespace RayCarrot.RCP.Modding
         /// </summary>
         public AppViewModel()
         {
-            try
-            {
-                IsRunningAsAdmin = WindowsHelpers.RunningAsAdmin;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error");
-                IsRunningAsAdmin = false;
-            }
-
             // Create commands
             OpenArchiveExplorerCommand = new AsyncRelayCommand(OpenArchiveExplorerAsync);
         }
@@ -45,20 +34,6 @@ namespace RayCarrot.RCP.Modding
         #endregion
 
         #region Public Properties
-
-        /// <summary>
-        /// Indicates if the application is running as administrator
-        /// </summary>
-        public bool IsRunningAsAdmin { get; set; }
-
-        /// <summary>
-        /// The currently selected page
-        /// </summary>
-        public Pages SelectedPage { get; set; }
-
-        // TODO: Use
-        public bool IsStartupRunning { get; set; }
-
 
         /// <summary>
         /// The selected archive explorer

@@ -79,12 +79,12 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Run the uninstaller
-            if (await RCFRCPA.File.LaunchFileAsync(CommonPaths.UninstallFilePath, true, $"\"{Assembly.GetExecutingAssembly().Location}\"") == null)
+            if (await RCFRCPA.File.LaunchFileAsync(RCFRCP.Path.UninstallFilePath, true, $"\"{Assembly.GetExecutingAssembly().Location}\"") == null)
             {
                 string[] appDataLocations = 
                 {
-                    CommonPaths.UserDataBaseDir,
-                    CommonPaths.RegistryBaseKey
+                    RCFRCP.Path.AppUserDataBaseDir,
+                    RCPMetroApplicationPaths.RegistryBaseKey
                 };
 
                 await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.About_UninstallFailed, appDataLocations.JoinItems(Environment.NewLine)), MessageType.Error);

@@ -6,7 +6,7 @@
              xmlns:Interactions="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:wpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
              mc:Ignorable="d"
              d:DesignWidth="550" d:DataContext="{d:DesignInstance local:R2TranslationUtilityViewModel}">
     <StackPanel>

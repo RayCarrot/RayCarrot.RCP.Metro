@@ -12,7 +12,7 @@
                xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
                mc:Ignorable="d"
                Language="{UICulture}"
-               ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+               ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
                CloseWithEscape="False"
                Height="680"
                Width="950"
@@ -59,7 +59,7 @@
 
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu Padding="5"
-                             ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
+                             ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}">
                     <MenuItem Header="{Resx TaskBarIcon_Open}"
                               Command="{Binding Path=OpenFromTaskbarCommand}">
                         <MenuItem.Icon>
@@ -198,7 +198,7 @@
             </metro:MetroAnimatedTabControl.Style>
 
             <metro:MetroAnimatedTabControl.Resources>
-                <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource {x:Type local:RCPTabItem}}">
+                <Style TargetType="{x:Type ui:RCPTabItem}" BasedOn="{StaticResource {x:Type ui:RCPTabItem}}">
                     <Setter Property="HeaderFontSize" Value="24" />
                 </Style>
             </metro:MetroAnimatedTabControl.Resources>
@@ -312,54 +312,54 @@
 
             <!-- Backup/Restore -->
 
-            <local:RCPTabItem x:Name="BackupPageTab"
+            <ui:RCPTabItem x:Name="BackupPageTab"
                               Header="{Resx BackupPageHeader}"
                               IconKind="BackupRestore"
                               IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=BackupRestore}">
                 <local:BackupPage />
-            </local:RCPTabItem>
+            </ui:RCPTabItem>
 
             <!-- Links -->
 
-            <local:RCPTabItem Header="{Resx LinksPageHeader}"
+            <ui:RCPTabItem Header="{Resx LinksPageHeader}"
                               IconKind="Link"
                               IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Links}">
                 <local:LinksPage />
-            </local:RCPTabItem>
+            </ui:RCPTabItem>
 
             <!-- Settings -->
 
-            <local:RCPTabItem Header="{Resx SettingsPageHeader}"
+            <ui:RCPTabItem Header="{Resx SettingsPageHeader}"
                               IconKind="SettingsOutline"
                               IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Settings}">
                 <local:SettingsPage />
-            </local:RCPTabItem>
+            </ui:RCPTabItem>
 
             <!-- Help -->
 
-            <local:RCPTabItem Header="{Resx HelpPageHeader}"
+            <ui:RCPTabItem Header="{Resx HelpPageHeader}"
                               IconKind="HelpCircleOutline"
                               IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Help}">
                 <local:HelpPage />
 
-            </local:RCPTabItem>
+            </ui:RCPTabItem>
 
             <!-- About -->
 
-            <local:RCPTabItem Header="{Resx AboutPageHeader}"
+            <ui:RCPTabItem Header="{Resx AboutPageHeader}"
                               IconKind="InformationOutline"
                               IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=About}">
                 <local:AboutPage />
-            </local:RCPTabItem>
+            </ui:RCPTabItem>
 
             <!-- Debug -->
 
-            <local:RCPTabItem Header="{Resx DebugPageHeader}"
+            <ui:RCPTabItem Header="{Resx DebugPageHeader}"
                               IconKind="CodeBraces"
                               IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Debug}"
                               rwpf:UserLevelTag.MinUserLevel="Debug">
                 <local:DebugPage />
-            </local:RCPTabItem>
+            </ui:RCPTabItem>
 
         </metro:MetroAnimatedTabControl>
 

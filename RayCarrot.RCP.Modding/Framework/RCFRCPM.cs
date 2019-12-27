@@ -1,4 +1,6 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
+﻿using RayCarrot.Extensions;
+using RayCarrot.RCP.UI;
+using RayCarrot.UserData;
 
 namespace RayCarrot.RCP.Modding
 {
@@ -10,6 +12,11 @@ namespace RayCarrot.RCP.Modding
         /// <summary>
         /// The app view model
         /// </summary>
-        public static AppViewModel App => RCF.GetService<AppViewModel>();
+        public static AppViewModel App => RCFRCPUI.App.CastTo<AppViewModel>();
+
+        /// <summary>
+        /// The application user data
+        /// </summary>
+        public static AppUserData Data => RCFData.UserDataCollection.GetUserData<AppUserData>();
     }
 }

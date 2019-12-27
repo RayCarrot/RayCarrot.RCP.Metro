@@ -8,14 +8,14 @@
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
-                ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+                ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignHeight="450" d:DesignWidth="800"
                 d:DataContext="{d:DesignInstance local:DebugPageViewModel}">
 
     <local:IBasePage.OverflowMenu>
-        <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
+        <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}">
 
             <ui:MenuItemIcon Header="Show Applied Utilities"
                                 Command="{Binding Path=ShowInstalledUtilitiesCommand}"

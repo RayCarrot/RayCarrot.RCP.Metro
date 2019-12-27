@@ -7,7 +7,7 @@
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+                ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignHeight="450" d:DesignWidth="800"
@@ -148,7 +148,7 @@
                 <Image Grid.Column="1"
                        Grid.Row="0"
                        VerticalAlignment="Top"
-                       Source="../../../Img/MessageIcons/Info.png"
+                       Source="pack://application:,,,/RayCarrot.RCP.UI;component/Images/MessageIcons/Info.png"
                        Height="128"
                        Width="128"/>
 

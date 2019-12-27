@@ -152,7 +152,7 @@ namespace RayCarrot.RCP.Metro
         protected override Task<RAUbiIniHandler> LoadConfigAsync()
         {
             // Load the configuration data
-            return Task.FromResult(new RAUbiIniHandler(CommonPaths.UbiIniPath1));
+            return Task.FromResult(new RAUbiIniHandler(RCFRCP.Path.UbiIniPath1));
         }
 
         /// <summary>

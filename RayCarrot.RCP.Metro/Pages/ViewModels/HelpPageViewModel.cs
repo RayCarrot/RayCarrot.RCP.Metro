@@ -83,7 +83,7 @@ namespace RayCarrot.RCP.Metro
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_RCP_AppDataHeader,
-                            HelpText = String.Format(Resources.Help_RCP_AppData, CommonPaths.UserDataBaseDir, CommonPaths.RegistryBaseKey, RCFRegistryPaths.RCFBasePath),
+                            HelpText = String.Format(Resources.Help_RCP_AppData, RCFRCP.Path.AppUserDataBaseDir, RCPMetroApplicationPaths.RegistryBaseKey, RCFRegistryPaths.RCFBasePath),
                             RequiredUserLevel = UserLevel.Advanced
                         },
 
@@ -99,7 +99,7 @@ namespace RayCarrot.RCP.Metro
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_RCP_DebugHeader,
-                            HelpText = String.Format(Resources.Help_RCP_Debug, CommonPaths.LogFile),
+                            HelpText = String.Format(Resources.Help_RCP_Debug, RCFRCP.Path.LogFile),
                             RequiredUserLevel = UserLevel.Debug
                         },
                     }

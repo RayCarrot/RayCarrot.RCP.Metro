@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.UI
@@ -8,6 +9,8 @@ namespace RayCarrot.RCP.UI
     /// </summary>
     public abstract class BaseRCPApp : BaseRCFApp
     {
+        #region Constructor
+
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -16,7 +19,18 @@ namespace RayCarrot.RCP.UI
         /// <param name="splashScreenResourceName">The resource name for a splash screen if one is to be used</param>
         protected BaseRCPApp(bool useMutex, string splashScreenResourceName = null) : base(useMutex, splashScreenResourceName)
         {
-
+            StartupEventsCompleted += App_StartupEventsCompleted;
         }
+
+        #endregion
+
+        #region Event Handlers
+
+        private static void App_StartupEventsCompleted(object sender, EventArgs e)
+        {
+            RCFRCPUI.App.IsStartupRunning = false;
+        }
+
+        #endregion
     }
 }

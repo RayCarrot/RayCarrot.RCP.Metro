@@ -21,5 +21,10 @@ namespace RayCarrot.RCP.Core
         /// The file manager
         /// </summary>
         public static IFileManager File => RCF.GetService<IFileManager>();
+
+        /// <summary>
+        /// The application paths
+        /// </summary>
+        public static RCPApplicationPaths Path => RCF.GetService<RCPApplicationPaths>();
     }
 }

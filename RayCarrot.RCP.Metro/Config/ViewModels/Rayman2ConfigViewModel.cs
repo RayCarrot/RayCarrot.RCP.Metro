@@ -417,7 +417,7 @@ namespace RayCarrot.RCP.Metro
                 bool isGOG = (Games.Rayman2.GetInstallDir(false) + "goggame.sdb").FileExists;
 
                 // Get the new file path
-                var newFile = isGOG ? Games.Rayman2.GetInstallDir(false) + "ubi.ini" : CommonPaths.UbiIniPath1;
+                var newFile = isGOG ? Games.Rayman2.GetInstallDir(false) + "ubi.ini" : RCFRCP.Path.UbiIniPath1;
 
                 try
                 {
@@ -729,7 +729,7 @@ namespace RayCarrot.RCP.Metro
             if (path1.FileExists)
                 return path1;
 
-            var path2 = CommonPaths.UbiIniPath1;
+            var path2 = RCFRCP.Path.UbiIniPath1;
 
             if (path2.FileExists)
                 return path2;

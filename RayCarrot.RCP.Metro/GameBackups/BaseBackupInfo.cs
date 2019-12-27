@@ -33,7 +33,7 @@ namespace RayCarrot.RCP.Metro
             LatestAvailableBackupVersion = AllBackupDirectories.Select(x => x.Value.Select(y => y.BackupVersion)).SelectMany(x => x).Max();
 
             BackupLocation = RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + (BackupName + $"-{LatestAvailableBackupVersion.ToString().PadLeft(2, '0')}");
-            CompressedBackupLocation = BackupLocation.FullPath + CommonPaths.BackupCompressionExtension;
+            CompressedBackupLocation = BackupLocation.FullPath + RCFRCP.Path.BackupCompressionExtension;
             GameDisplayName = displayName;
         }
 

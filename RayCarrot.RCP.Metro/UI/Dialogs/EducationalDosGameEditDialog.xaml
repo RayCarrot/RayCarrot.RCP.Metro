@@ -7,7 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
-             ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:EducationalDosGameEditViewModel}"
              MinWidth="300"

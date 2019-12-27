@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:dd="urn:gong-wpf-dragdrop"
-             ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:JumpListEditViewModel}"
              Height="400"

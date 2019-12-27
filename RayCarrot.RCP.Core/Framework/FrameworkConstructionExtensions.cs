@@ -57,5 +57,21 @@ namespace RayCarrot.RCP.Core
             // Return the construction
             return construction;
         }
+
+        /// <summary>
+        /// Adds the application paths to the construction
+        /// </summary>
+        /// <typeparam name="P">The type of application paths to add</typeparam>
+        /// <param name="construction">The construction</param>
+        /// <returns>The construction</returns>
+        public static IFrameworkConstruction AddApplicationPaths<P>(this IFrameworkConstruction construction)
+            where P : RCPApplicationPaths, new()
+        {
+            // Add the manager
+            construction.AddTransient<RCPApplicationPaths, P>();
+
+            // Return the construction
+            return construction;
+        }
     }
 }

@@ -141,7 +141,7 @@ namespace RayCarrot.RCP.Metro
         {
             RCFCore.Logger?.LogInformationSource("Rayman Raving Rabbids config is being set up");
 
-            using (var key = RCFWinReg.RegistryManager.GetKeyFromFullPath(RCFWinReg.RegistryManager.CombinePaths(CommonPaths.RaymanRavingRabbidsRegistryKey, "Basic video"), RegistryView.Default))
+            using (var key = RCFWinReg.RegistryManager.GetKeyFromFullPath(RCFWinReg.RegistryManager.CombinePaths(RCFRCP.Path.RaymanRavingRabbidsRegistryKey, "Basic video"), RegistryView.Default))
             {
                 RCFCore.Logger?.LogInformationSource(key != null
                     ? $"The key {key.Name} has been opened"
@@ -176,7 +176,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Get the key path
-                    var keyPath = RCFWinReg.RegistryManager.CombinePaths(CommonPaths.RaymanRavingRabbidsRegistryKey, "Basic video");
+                    var keyPath = RCFWinReg.RegistryManager.CombinePaths(RCFRCP.Path.RaymanRavingRabbidsRegistryKey, "Basic video");
 
                     RegistryKey key;
 

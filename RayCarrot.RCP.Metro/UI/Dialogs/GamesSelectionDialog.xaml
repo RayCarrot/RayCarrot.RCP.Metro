@@ -4,7 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:GamesSelectionViewModel}">
     <Grid Margin="10">

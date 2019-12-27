@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows;
 using RayCarrot.Extensions;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.UI
 {
     /// <summary>
     /// The exception handler for the Rayman Control Panel
@@ -29,7 +29,7 @@ namespace RayCarrot.RCP.Metro
             
             try
             {
-                if (RCFRCP.Data?.DisplayExceptionLevel <= exceptionLevel)
+                if (APIControllerUISettings.GetSettings().DisplayExceptionLevel <= exceptionLevel)
                     MessageBox.Show(GetMessage(), Resources.ExceptionMessageHeader, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 #pragma warning disable 168
@@ -39,6 +39,7 @@ namespace RayCarrot.RCP.Metro
                 Debugger.Break();
             }
 
+            // Helper method for getting the message to display
             string GetMessage()
             {
                 var sb = new StringBuilder();

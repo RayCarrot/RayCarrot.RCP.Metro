@@ -1,4 +1,7 @@
 ﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
+using RayCarrot.RCP.Core;
+using RayCarrot.RCP.UI;
 using RayCarrot.UserData;
 
 namespace RayCarrot.RCP.Metro
@@ -14,9 +17,9 @@ namespace RayCarrot.RCP.Metro
         public static AppUserData Data => RCFData.UserDataCollection.GetUserData<AppUserData>();
 
         /// <summary>
-        /// The app handler
+        /// The app view model
         /// </summary>
-        public static AppViewModel App => RCF.GetService<AppViewModel>();
+        public static AppViewModel App => RCFRCPUI.App.CastTo<AppViewModel>();
 
         /// <summary>
         /// The App UI manager
@@ -27,5 +30,10 @@ namespace RayCarrot.RCP.Metro
         /// The backup manager
         /// </summary>
         public static BackupManager Backup => RCF.GetService<BackupManager>();
+
+        /// <summary>
+        /// The application paths
+        /// </summary>
+        public static RCPMetroApplicationPaths Path => RCFRCPA.Path.CastTo<RCPMetroApplicationPaths>();
     }
 }

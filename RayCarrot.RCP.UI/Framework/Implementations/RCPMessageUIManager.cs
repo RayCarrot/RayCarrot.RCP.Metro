@@ -8,7 +8,7 @@ using System.Windows;
 using RayCarrot.UI;
 using RayCarrot.Extensions;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.UI
 {
     /// <summary>
     /// The message UI manager for the Rayman Control Panel

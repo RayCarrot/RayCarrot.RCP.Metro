@@ -54,7 +54,7 @@
             <local:OverflowMenu Grid.Column="2"
                                 Margin="7">
                 <local:OverflowMenu.ContextMenu>
-                    <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
+                    <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}">
                         <ui:MenuItemIcon Header="{Resx GameOptions_CreateShortcut}"
                                             Command="{Binding Path=ShortcutCommand}"
                                             IconKind="Link"/>
@@ -76,12 +76,12 @@
 
             <metro:MetroAnimatedTabControl.Resources>
                 <Style TargetType="{x:Type TabPanel}" BasedOn="{StaticResource SmallTabPanel}" />
-                <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
+                <Style TargetType="{x:Type ui:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
             </metro:MetroAnimatedTabControl.Resources>
 
             <!-- Information -->
 
-            <local:RCPTabItem IconKind="InformationOutline"
+            <ui:RCPTabItem IconKind="InformationOutline"
                               Header="{Resx GameOptions_Info}">
 
                 <ScrollViewer Padding="5">
@@ -98,11 +98,11 @@
 
                     </ItemsControl>
                 </ScrollViewer>
-            </local:RCPTabItem>
+            </ui:RCPTabItem>
 
             <!-- Progression -->
 
-            <local:RCPTabItem x:Name="ProgressionTab"
+            <ui:RCPTabItem x:Name="ProgressionTab"
                               IconKind="TrophyVariantOutline"
                               Header="{Resx Progression_Header}"
                               Visibility="{Binding Path=HasProgressionContent, Converter={rwpf:BooleanToVisibilityConverter}}">
@@ -124,7 +124,7 @@
                                                             rwpf:UserLevelTag.MinUserLevel="Technical"
                                                             Margin="7">
                                             <local:OverflowMenu.ContextMenu>
-                                                <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}">
+                                                <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}">
                                                     <ui:MenuItemIcon Header="{Resx Progression_Export}"
                                                                         Command="{Binding Path=ExportCommand, Mode=OneTime}"
                                                                         IconKind="FileExportOutline"/>
@@ -170,11 +170,11 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
-            </local:RCPTabItem>
+            </ui:RCPTabItem>
 
             <!-- Options -->
 
-            <local:RCPTabItem IconKind="SettingsOutline"
+            <ui:RCPTabItem IconKind="SettingsOutline"
                               Header="{Resx GameOptions_Options}"
                               Visibility="{Binding Path=HasOptionsContent, Converter={rwpf:BooleanToVisibilityConverter}}">
 
@@ -229,19 +229,19 @@
 
                     </StackPanel>
                 </ScrollViewer>
-            </local:RCPTabItem>
+            </ui:RCPTabItem>
 
             <!-- Config -->
 
-            <local:RCPTabItem IconKind="WrenchOutline"
+            <ui:RCPTabItem IconKind="WrenchOutline"
                               Header="{Resx GameOptions_Config}"
                               Visibility="{Binding Path=HasConfigContent, Converter={rwpf:BooleanToVisibilityConverter}}">
                 <ContentPresenter Content="{Binding Path=ConfigContent}" />
-            </local:RCPTabItem>
+            </ui:RCPTabItem>
 
             <!-- Utilities -->
 
-            <local:RCPTabItem IconKind="BriefcaseOutline"
+            <ui:RCPTabItem IconKind="BriefcaseOutline"
                               Header="{Resx GameOptions_Utilities}"
                               Visibility="{Binding Path=HasUtilities, Converter={rwpf:BooleanToVisibilityConverter}}">
                 <ScrollViewer Padding="5">
@@ -252,7 +252,7 @@
                     <local:UtilitiesContainer Utilities="{Binding Path=Utilities, Mode=OneTime}"/>
 
                 </ScrollViewer>
-            </local:RCPTabItem>
+            </ui:RCPTabItem>
 
         </metro:MetroAnimatedTabControl>
 

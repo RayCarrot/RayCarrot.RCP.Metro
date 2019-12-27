@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
-             ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
              mc:Ignorable="d"
              d:DesignWidth="550" d:DataContext="{d:DesignInstance local:R1TPLSUtilityViewModel}">
     <StackPanel>

@@ -25,7 +25,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The app view model
         /// </summary>
-        public AppViewModel App => _app ??= (this is AppViewModel appVM) ? appVM : RCFRCP.App;
+        public AppViewModel App => _app ??= RCFRCP.App;
 
         #endregion
     }

@@ -2,9 +2,11 @@
 using System.Globalization;
 using System.IO;
 using System.Windows;
+using ByteSizeLib;
 using Microsoft.Extensions.Logging;
 using RayCarrot.CarrotFramework;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -36,13 +38,29 @@ namespace RayCarrot.RCP.Metro
 
             lock (Application.Current)
             {
+                if (!HasBeenSetUp)
+                {
+                    // Attempt to remove log file if over 2 Mb
+                    try
+                    {
+                        if (RCFRCP.Path.LogFile.FileExists && RCFRCP.Path.LogFile.GetSize() > ByteSize.FromMegaBytes(2))
+                            File.Delete(RCFRCP.Path.LogFile);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleCritical("Removing log file due to size");
+                    }
+
+                    HasBeenSetUp = true;
+                }
+
                 try
                 {
-                    if (!CommonPaths.LogFile.Parent.DirectoryExists)
-                        Directory.CreateDirectory(CommonPaths.LogFile.Parent);
+                    if (!RCFRCP.Path.LogFile.Parent.DirectoryExists)
+                        Directory.CreateDirectory(RCFRCP.Path.LogFile.Parent);
 
                     // Append the log to the log file, forcing the culture info to follow the Swedish standard
-                    File.AppendAllText(CommonPaths.LogFile, $"{DateTime.Now.ToString(new CultureInfo("sv-SE"))} [{logLevel}] {message}" + Environment.NewLine);
+                    File.AppendAllText(RCFRCP.Path.LogFile, $"{DateTime.Now.ToString(new CultureInfo("sv-SE"))} [{logLevel}] {message}" + Environment.NewLine);
                 }
                 catch (Exception ex)
                 {
@@ -55,7 +73,16 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Protected Static Properties
+        #region Private Static Properties
+
+        /// <summary>
+        /// Indicates if the logger has been set up
+        /// </summary>
+        private static bool HasBeenSetUp { get; set; }
+
+        #endregion
+
+        #region Public Static Properties
 
         /// <summary>
         /// Indicates the log level to log

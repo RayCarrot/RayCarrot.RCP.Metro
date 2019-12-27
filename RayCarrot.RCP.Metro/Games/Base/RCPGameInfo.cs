@@ -424,7 +424,7 @@ namespace RayCarrot.RCP.Metro
                 RCFCore.Logger?.LogTraceSource($"The game {Game} is being downloaded...");
 
                 // Get the game directory
-                var gameDir = CommonPaths.GamesBaseDir + Game.ToString();
+                var gameDir = RCFRCP.Path.GamesBaseDir + Game.ToString();
 
                 // Download the game
                 var downloaded = await RCFRCP.App.DownloadAsync(DownloadURLs, true, gameDir, true);

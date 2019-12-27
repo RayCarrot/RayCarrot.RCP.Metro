@@ -66,10 +66,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="API\RCPModdingLocalizationManager.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Framework\UserData\AppUserData.cs" />
     <Compile Include="Helpers\AppLanguages.cs" />
     <Compile Include="Framework\RCFRCPM.cs" />
     <Compile Include="API\RCPModdingAPIControllerManager.cs" />
@@ -126,6 +128,9 @@
     </PackageReference>
     <PackageReference Include="RayCarrot.UI">
       <Version>1.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="RayCarrot.UserData">
+      <Version>3.2.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Windows.Registry">
       <Version>3.2.1</Version>

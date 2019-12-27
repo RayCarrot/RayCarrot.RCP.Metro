@@ -354,34 +354,34 @@ namespace RayCarrot.RCP.Metro
             }
 
             // If the primary config file does not exist, create a new one
-            if (!CommonPaths.UbiIniPath1.FileExists)
+            if (!RCFRCP.Path.UbiIniPath1.FileExists)
             {
                 try
                 {
                     // Create the file
-                    RCFRCPA.File.CreateFile(CommonPaths.UbiIniPath1);
+                    RCFRCPA.File.CreateFile(RCFRCP.Path.UbiIniPath1);
 
-                    RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {CommonPaths.UbiIniPath1}");
+                    RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {RCFRCP.Path.UbiIniPath1}");
                 }
                 catch (Exception ex)
                 {
                     ex.HandleError("Creating ubi.ini file");
 
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_InvalidUbiIni, CommonPaths.UbiIniPath1.Parent));
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_InvalidUbiIni, RCFRCP.Path.UbiIniPath1.Parent));
 
                     throw;
                 }
             }
 
             // If the secondary config file does not exist, attempt to create a new one
-            if (!CommonPaths.UbiIniPath2.FileExists)
+            if (!RCFRCP.Path.UbiIniPath2.FileExists)
             {
                 try
                 {
                     // Create the file
-                    RCFRCPA.File.CreateFile(CommonPaths.UbiIniPath2);
+                    RCFRCPA.File.CreateFile(RCFRCP.Path.UbiIniPath2);
 
-                    RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {CommonPaths.UbiIniPath2}");
+                    RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {RCFRCP.Path.UbiIniPath2}");
                 }
                 catch (Exception ex)
                 {
@@ -397,7 +397,7 @@ namespace RayCarrot.RCP.Metro
         protected override Task OnSaveAsync()
         {
             // Attempt to copy data to secondary file
-            if (CommonPaths.UbiIniPath2.FileExists)
+            if (RCFRCP.Path.UbiIniPath2.FileExists)
             {
                 try
                 {
@@ -405,7 +405,7 @@ namespace RayCarrot.RCP.Metro
                     var sectionData = ConfigData.GetSectionData();
 
                     // Load the file data
-                    var secondaryDataHandler = new DuplicateSectionUbiIniHandler(CommonPaths.UbiIniPath2, ConfigData.SectionKey);
+                    var secondaryDataHandler = new DuplicateSectionUbiIniHandler(RCFRCP.Path.UbiIniPath2, ConfigData.SectionKey);
 
                     // Duplicate the data
                     secondaryDataHandler.Duplicate(sectionData);

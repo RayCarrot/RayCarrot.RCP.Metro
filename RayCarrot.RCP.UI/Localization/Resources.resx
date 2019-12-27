@@ -151,4 +151,34 @@ filePath</comment>
   <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
     <value>Error opening key</value>
   </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Generic Message</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Information Message</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Error Message</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Warning Message</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Success Message</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Question Message</value>
+  </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Exception</value>
+  </data>
+  <data name="ExceptionMessageInfo" xml:space="preserve">
+    <value>An exception has occurred in the application. Below is the available debug information for the current user level in the Carrot Framework.</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
 </root>

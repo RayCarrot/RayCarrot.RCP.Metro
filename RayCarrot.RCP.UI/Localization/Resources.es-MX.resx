@@ -138,4 +138,31 @@
   <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
     <value>Error al abriendo la llave</value>
   </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Mensaje Genérico</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Mensaje de información</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Mensaje de error</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Mensaje de aviso</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Mensaje de éxito</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Mensaje de pregunta</value>
+  </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Excepción</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
 </root>
