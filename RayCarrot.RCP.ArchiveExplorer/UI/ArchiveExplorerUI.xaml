@@ -8,8 +8,11 @@
              xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ArchiveExplorerDialogViewModel}"
+             Language="{UICulture}"
+             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              MinHeight="400"
              MinWidth="600">
     <Grid>
@@ -36,15 +39,13 @@
                     <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
                         <Setter Property="ContextMenu">
                             <Setter.Value>
-                                <ContextMenu>
+                                <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
 
-                                    <!-- TODO: Localize -->
-                                    <ui:MenuItemIcon Header="Export"
+                                    <ui:MenuItemIcon Header="{Resx Archive_Export}"
                                                      Command="{Binding Path=ExportCommand}"
                                                      IconKind="Export"/>
 
-                                    <!-- TODO: Localize -->
-                                    <ui:MenuItemIcon Header="Import"
+                                    <ui:MenuItemIcon Header="{Resx Archive_Import}"
                                                      Command="{Binding Path=ImportCommand}"
                                                      IconKind="Import"/>
 
@@ -96,15 +97,13 @@
                             <EventSetter Event="ToolTipOpening" Handler="EventSetter_OnHandler" />
                             <Setter Property="ContextMenu">
                                 <Setter.Value>
-                                    <ContextMenu>
+                                    <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
 
-                                        <!-- TODO: Localize -->
-                                        <ui:MenuItemIcon Header="Export"
+                                        <ui:MenuItemIcon Header="{Resx Archive_Export}"
                                                          Command="{Binding Path=ExportCommand}"
                                                          IconKind="FileExportOutline"/>
 
-                                        <!-- TODO: Localize -->
-                                        <ui:MenuItemIcon Header="Import"
+                                        <ui:MenuItemIcon Header="{Resx Archive_Import}"
                                                          Command="{Binding Path=ImportCommand}"
                                                          IconKind="FileImportOutline"/>
                                     </ContextMenu>

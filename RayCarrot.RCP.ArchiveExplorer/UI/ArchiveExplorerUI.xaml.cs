@@ -32,7 +32,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
         }
 
         #endregion
-
+        
         #region Public Properties
 
         /// <summary>

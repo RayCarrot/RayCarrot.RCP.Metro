@@ -49,37 +49,43 @@ namespace RayCarrot.RCP.UI
         /// <param name="includeIncomplete">Indicates if languages with incomplete translations should be included</param>
         public void RefreshLanguages(bool includeIncomplete)
         {
+            // Clear the collection
             Languages.Clear();
 
+            // Add complete languages
             Languages.AddRange(new CultureInfo[]
             {
                 DefaultCulture,
 
-                // Portuguese
+                // Portuguese (Portugal)
                 new CultureInfo("pt-PT"),
 
-                // Dutch
+                // Dutch (Netherlands)
                 new CultureInfo("nl-NL"),
             });
 
             if (includeIncomplete)
             {
+                // Add incomplete languages
                 Languages.AddRange(new CultureInfo[]
                 {
-                    // Swedish
+                    // Swedish (Sweden)
                     new CultureInfo("sv-SE"),
 
-                    // German
+                    // German (Germany)
                     new CultureInfo("de-DE"),
 
-                    // Polish
+                    // Polish (Poland)
                     new CultureInfo("pl-PL"),
 
-                    // Serbian
+                    // Serbian (Cyrillic)
                     new CultureInfo("sr-Cyrl"), 
 
-                    // Spanish
+                    // Spanish (Mexico)
                     new CultureInfo("es-MX"), 
+
+                    // Spanish (Spain)
+                    new CultureInfo("es-ES"), 
                 });
             }
         }

@@ -1,5 +1,4 @@
-﻿using ByteSizeLib;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -8,11 +7,14 @@ using RayCarrot.CarrotFramework;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
+using RayCarrot.RCP.UI;
 using RayCarrot.UI;
 using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
+using RayCarrot.WPF.Metro;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,16 +25,13 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Shell;
-using RayCarrot.RCP.Core;
-using RayCarrot.RCP.UI;
-using RayCarrot.WPF.Metro;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : BaseRCPApp
+    public partial class App : BaseRCPApp<MainWindow>
     {
         #region Constructor
 
@@ -48,21 +47,6 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Protected Overrides
-
-        /// <summary>
-        /// Gets the main <see cref="Window"/> to show
-        /// </summary>
-        /// <returns>The Window instance</returns>
-        protected override Window GetMainWindow()
-        {
-            // Create the window
-            var window = new MainWindow();
-
-            // Load previous state
-            RCFRCP.Data.WindowState?.ApplyToWindow(window);
-
-            return window;
-        }
 
         /// <summary>
         /// Sets up the framework with loggers and other services
@@ -200,22 +184,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// An optional method to override which runs when closing
-        /// </summary>
-        /// <param name="mainWindow">The main Window of the application</param>
-        /// <returns>The task</returns>
-        protected override async Task OnCloseAsync(Window mainWindow)
-        {
-            // Save window state
-            Data.WindowState = WindowSessionState.GetWindowState(mainWindow);
-
-            RCFCore.Logger?.LogInformationSource($"The application is exiting...");
-
-            // Save all user data
-            await RCFRCP.App.SaveUserDataAsync();
-        }
-
-        /// <summary>
         /// Override to run when another instance of the program is found running
         /// </summary>
         /// <param name="args">The launch arguments</param>
@@ -233,7 +201,7 @@ namespace RayCarrot.RCP.Metro
         protected override Task<bool> InitialSetupAsync(string[] args)
         {
             // Make sure we are on Windows Vista or higher for the Windows API Code Pack and Deployment Image Servicing and Management
-            if (AppViewModel.WindowsVersion < WindowsVersion.WinVista)
+            if (BaseRCPAppViewModel.WindowsVersion < WindowsVersion.WinVista)
             {
                 MessageBox.Show("Windows Vista or higher is required to run this application", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
                 return Task.FromResult(false);

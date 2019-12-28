@@ -83,17 +83,12 @@ namespace RayCarrot.RCP.ArchiveExplorer
         /// </summary>
         public bool IsTransparent { get; set; }
 
-        // TODO: Localize + limit to user level
         /// <summary>
         /// The info about the file to display
         /// </summary>
-        public string FileDisplayInfo => $"Directory = {Directory}{Environment.NewLine}" +
-                                         $"Size = {Width} x {Height}{Environment.NewLine}" +
-                                         $"File size = {new ByteSize(FileData.Size)}{Environment.NewLine}" +
-                                         $"Modified = {FileData.Unknown1 == 0}{Environment.NewLine}" +
-                                         $"Encrypted = {FileData.FileXORKey.Any(x => x != 0)}{Environment.NewLine}" +
-                                         $"Transparent = {IsTransparent}{Environment.NewLine}" +
-                                         $"Pointer = {FileData.Pointer}";
+        public string FileDisplayInfo => String.Format(
+            Resources.Archive_CNT_FileInfo, Directory, Width, Height, new ByteSize(FileData.Size), FileData.Unknown1 == 0,
+            FileData.FileXORKey.Any(x => x != 0), IsTransparent, FileData.Pointer);
 
         /// <summary>
         /// The name of the file format
@@ -220,9 +215,8 @@ namespace RayCarrot.RCP.ArchiveExplorer
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <param name="filePath">The path of the file to import</param>
         /// <returns>A value indicating if the file was successfully imported</returns>
-        public async Task<bool> ImportFileAsync(Stream archiveFileStream, FileSystemPath filePath)
+        public Task<bool> ImportFileAsync(Stream archiveFileStream, FileSystemPath filePath)
         {
-            // TODO: Make sure this is being disposed/removed
             // Get the temporary file to save to, without disposing it
             var tempFile = new TempFile(false);
 
@@ -277,7 +271,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
             // Set the pending path
             PendingImportTempPath = tempFile.TempPath;
 
-            return true;
+            return Task.FromResult(true);
         }
 
         #endregion

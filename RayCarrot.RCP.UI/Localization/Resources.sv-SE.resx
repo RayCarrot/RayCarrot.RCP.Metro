@@ -165,4 +165,7 @@
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Åtgärden lyckades</value>
+  </data>
 </root>

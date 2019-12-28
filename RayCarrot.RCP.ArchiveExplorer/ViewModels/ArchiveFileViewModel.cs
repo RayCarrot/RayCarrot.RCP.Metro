@@ -6,6 +6,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
+using RayCarrot.RCP.UI;
 using RayCarrot.UI;
 using RayCarrot.WPF;
     
@@ -14,7 +16,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
     /// <summary>
     /// View model for a file in an archive
     /// </summary>
-    public class ArchiveFileViewModel : BaseViewModel
+    public class ArchiveFileViewModel : BaseViewModel, IDisposable
     {
         #region Constructor
 
@@ -139,8 +141,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
                     // Get the output path
                     var result = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
                     {
-                        // TODO: Localize
-                        Title = "Select destination to export to",
+                        Title = Resources.Archive_ExportHeader,
                         DefaultName = FileName,
                         Extensions = GetFileFilterCollection().ToString()
                     });
@@ -148,16 +149,27 @@ namespace RayCarrot.RCP.ArchiveExplorer
                     if (result.CanceledByUser)
                         return;
 
-                    // TODO: Localize
-                    Archive.DisplayStatus = $"Exporting {FileName}";
+                    Archive.DisplayStatus = String.Format(Resources.Archive_ExportingFileStatus, FileName);
 
-                    // TODO: Try/catch
-                    // Export the file
-                    await FileData.ExportFileAsync(ArchiveFileStream, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
+                    try
+                    {
+                        // Export the file
+                        await FileData.ExportFileAsync(ArchiveFileStream, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleError("Exporting archive file", FileName);
 
-                    Archive.DisplayStatus = String.Empty;
+                        await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ExportError, FileName));
 
-                    // TODO: Success message
+                        return;
+                    }
+                    finally
+                    {
+                        Archive.DisplayStatus = String.Empty;
+                    }
+
+                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFileSuccess);
                 });
             }
         }
@@ -174,35 +186,52 @@ namespace RayCarrot.RCP.ArchiveExplorer
                 // Run as a task
                 await Task.Run(async () =>
                 {
-                    // TODO: Try/catch
-
                     // Get the file
                     var result = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                     {
-                        // TODO: Localize
-                        Title = "Select file to import",
-                        // TODO: Localize
-                        ExtensionFilter = GetFileFilterCollection().CombineAll("Supported files").ToString()
+                        Title = Resources.Archive_ImportFileHeader,
+                        ExtensionFilter = GetFileFilterCollection().CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
                     });
 
                     if (result.CanceledByUser)
                         return;
 
-                    // TODO: Localize
-                    Archive.DisplayStatus = $"Importing {FileName}";
+                    Archive.DisplayStatus = String.Format(Resources.Archive_ImportingFileStatus, FileName);
 
-                    // Import the file
-                    var succeeded = await FileData.ImportFileAsync(ArchiveFileStream, result.SelectedFile);
+                    try
+                    {
+                        // Import the file
+                        var succeeded = await FileData.ImportFileAsync(ArchiveFileStream, result.SelectedFile);
 
-                    if (!succeeded)
+                        // Make sure it succeeded
+                        if (!succeeded)
+                            return;
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleError("Importing archive file", FileName);
+
+                        await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ImportError, result.SelectedFile.Name));
+
                         return;
+                    }
+                    finally
+                    {
+                        Archive.DisplayStatus = String.Empty;
+                    }
 
                     // Update the archive
                     await Archive.UpdateArchiveAsync();
 
-                    Archive.DisplayStatus = String.Empty;
+                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ImportFileSuccess);
                 });
             }
+        }
+
+        public void Dispose()
+        {
+            // Delete temp file
+            RCFRCPA.File.DeleteFile(FileData.PendingImportTempPath);
         }
 
         #endregion

@@ -4,7 +4,7 @@ using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
-    // TODO: Add backup info
+    // IDEA: Add backup info
 
     /// <summary>
     /// The Rayman Raving Rabbids Activity Center game info

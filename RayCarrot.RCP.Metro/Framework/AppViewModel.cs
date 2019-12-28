@@ -25,15 +25,6 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class AppViewModel : BaseRCPAppViewModel<Pages>
     {
-        #region Static Constructor
-
-        static AppViewModel()
-        {
-            WindowsVersion = WindowsHelpers.GetCurrentWindowsVersion();
-        }
-
-        #endregion
-
         #region Constructor
 
         /// <summary>
@@ -41,7 +32,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public AppViewModel()
         {
-            SaveUserDataAsyncLock = new AsyncLock();
             MoveBackupsAsyncLock = new AsyncLock();
             AdminWorkerAsyncLock = new AsyncLock();
             OnRefreshRequiredAsyncLock = new AsyncLock();
@@ -477,11 +467,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Static Properties
 
-        /// <summary>
-        /// The Windows version the program is running on
-        /// </summary>
-        public static WindowsVersion WindowsVersion { get; }
-
+        // IDEA: Move to resource dictionary as static resource
         /// <summary>
         /// The path to the resource file
         /// </summary>
@@ -490,11 +476,6 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Private Properties
-
-        /// <summary>
-        /// An async lock for the <see cref="SaveUserDataAsync"/> method
-        /// </summary>
-        private AsyncLock SaveUserDataAsyncLock { get; }
 
         /// <summary>
         /// An async lock for the <see cref="MoveBackupsAsync"/> method
@@ -685,33 +666,6 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleCritical("Removing game");
                 throw;
-            }
-        }
-
-        /// <summary>
-        /// Saves all user data for the application
-        /// </summary>
-        public async Task SaveUserDataAsync()
-        {
-            // Lock the saving of user data
-            using (await SaveUserDataAsyncLock.LockAsync())
-            {
-                // Run it as a new task
-                await Task.Run(async () =>
-                {
-                    // Save all user data
-                    try
-                    {
-                        // Save all user data
-                        await RCFData.UserDataCollection.SaveAllAsync();
-
-                        RCFCore.Logger?.LogInformationSource($"The application user data was saved");
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.HandleCritical("Saving user data");
-                    }
-                });
             }
         }
 

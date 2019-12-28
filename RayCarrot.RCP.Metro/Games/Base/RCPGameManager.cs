@@ -224,7 +224,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Classes
 
-        // TODO: Finish game install size system
+        // IDEA: Finish game install size system
         ///// <summary>
         ///// The install size for a game
         ///// </summary>

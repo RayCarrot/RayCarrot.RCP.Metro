@@ -546,7 +546,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The dinput key code</returns>
         public static int GetKeyCode(Key key)
         {
-            // TODO: Update below conversion with complete list from GetKey method?
+            // IDEA: Update below conversion with complete list from GetKey method?
 
             // Handle numbers 1-9
             if ((int)key <= 43 && (int)key >= 35)

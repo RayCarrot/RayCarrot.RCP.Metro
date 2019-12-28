@@ -117,67 +117,103 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="File_FileNotFound" xml:space="preserve">
-    <value>O ficheiro especificado não pode ser encontrado: {0}</value>
+  <data name="Archive_ImportFileHeader" xml:space="preserve">
+    <value>Select file to import</value>
   </data>
-  <data name="File_FileNotFoundHeader" xml:space="preserve">
-    <value>Ficheiro não encontrado</value>
+  <data name="Archive_FileSelectionGroupName" xml:space="preserve">
+    <value>Supported files</value>
   </data>
-  <data name="File_ErrorLaunchingFile" xml:space="preserve">
-    <value>Ocorreu um erro quando se tentava executar o {0}</value>
+  <data name="Archive_ImportingFileStatus" xml:space="preserve">
+    <value>Importing {0}</value>
+    <comment>Arguments:
+fileName</comment>
   </data>
-  <data name="File_LocationNotFound" xml:space="preserve">
-    <value>A localização não pode ser aberta</value>
+  <data name="Archive_ExportHeader" xml:space="preserve">
+    <value>Select destination to export to</value>
   </data>
-  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
-    <value>Erro de directório</value>
+  <data name="Archive_ExportingFileStatus" xml:space="preserve">
+    <value>Exporting {0}</value>
+    <comment>Arguments:
+fileName</comment>
   </data>
-  <data name="File_OpenLocationError" xml:space="preserve">
-    <value>O directório não pode ser aberto</value>
+  <data name="Archive_Export" xml:space="preserve">
+    <value>Export</value>
   </data>
-  <data name="File_RegKeyNotFound" xml:space="preserve">
-    <value>A chave de registo não foi encontrada</value>
+  <data name="Archive_Import" xml:space="preserve">
+    <value>Import</value>
   </data>
-  <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
-    <value>Chave de registo não encontrada</value>
+  <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
+    <value>Select directory to import</value>
   </data>
-  <data name="File_OpenRegKeyError" xml:space="preserve">
-    <value>A chave não pode ser aberta</value>
+  <data name="Archive_ExportDirectoryConflict" xml:space="preserve">
+    <value>The selected directory already contains a directory with the same name as {0}</value>
   </data>
-  <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
-    <value>Erro ao abrir chave</value>
+  <data name="Archive_ImportNoFilesError" xml:space="preserve">
+    <value>No files were found to import</value>
   </data>
-  <data name="MessageHeader_Generic" xml:space="preserve">
-    <value>Mensagem Genérica</value>
+  <data name="Archive_ImportFailsError" xml:space="preserve">
+    <value>Some files failed to import</value>
   </data>
-  <data name="MessageHeader_Information" xml:space="preserve">
-    <value>Mensagem de informação</value>
+  <data name="Archive_ImportFilesSuccess" xml:space="preserve">
+    <value>The files have been imported</value>
   </data>
-  <data name="MessageHeader_Error" xml:space="preserve">
-    <value>Mensagem de erro</value>
+  <data name="Archive_ExportFilesSuccess" xml:space="preserve">
+    <value>The files have been exported</value>
   </data>
-  <data name="MessageHeader_Warning" xml:space="preserve">
-    <value>Mensagem de aviso</value>
+  <data name="Archive_ImportFileSuccess" xml:space="preserve">
+    <value>The file have been imported</value>
   </data>
-  <data name="MessageHeader_Success" xml:space="preserve">
-    <value>Mensagem de sucesso</value>
+  <data name="Archive_ExportFileSuccess" xml:space="preserve">
+    <value>The file have been exported</value>
   </data>
-  <data name="MessageHeader_Question" xml:space="preserve">
-    <value>Mensagem de pergunta</value>
+  <data name="Archive_ExportError" xml:space="preserve">
+    <value>{0} could not be exported</value>
+    <comment>Arguments:
+itemName</comment>
   </data>
-  <data name="ExceptionMessageHeader" xml:space="preserve">
-    <value>Excepção</value>
+  <data name="Archive_ImportError" xml:space="preserve">
+    <value>{0} could not be imported</value>
+    <comment>Arguments:
+itemName</comment>
   </data>
-  <data name="ExceptionMessageInfo" xml:space="preserve">
-    <value>Ocorreu uma excepção na aplicação. Abaixo está a informação de depuração disponível para o nível de utilizador actual no Carrot Framework.</value>
+  <data name="Archive_RepackingStatus" xml:space="preserve">
+    <value>Repacking archive {0}</value>
+    <comment>Arguments:
+archiveName</comment>
+  </data>
+  <data name="Archive_CNT_FileInfo" xml:space="preserve">
+    <value>Directory = {0}
+Size = {1} x {2}
+File size = {3}
+Modified = {4}
+Encrypted = {5}
+Transparent = {6}
+Pointer = {7}</value>
+    <comment>Arguments:
+dirPath
+imgWidth
+imgHeight
+fileSize
+isModified
+isEncrypted
+isTransparent
+pointer</comment>
+  </data>
+  <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
+    <value>File Extension Selection</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancelar</value>
+    <value>Cancel</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
-  <data name="ActionSucceeded" xml:space="preserve">
-    <value>Acção sucedida</value>
+  <data name="Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
+    <value>Select file extension to export as for {0} files</value>
+    <comment>Arguments:
+fileFormat</comment>
   </data>
 </root>

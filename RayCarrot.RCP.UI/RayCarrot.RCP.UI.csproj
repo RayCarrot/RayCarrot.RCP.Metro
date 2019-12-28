@@ -69,6 +69,7 @@
     <Compile Include="Extensions\APIControllerSettingsExtensions.cs" />
     <Compile Include="API\APIControllerUISettings.cs" />
     <Compile Include="API\RCPFileManager.cs" />
+    <Compile Include="Extensions\MessageUIManagerExtensions.cs" />
     <Compile Include="Framework\FrameworkConstructionExtensions.cs" />
     <Compile Include="Framework\RCFRCPUI.cs" />
     <Compile Include="Framework\Implementations\RCPDialogBaseManager.cs" />
@@ -129,7 +130,7 @@
       <Version>1.5.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Extensions">
-      <Version>1.2.4</Version>
+      <Version>1.2.5</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
       <Version>1.3.7</Version>

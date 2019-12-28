@@ -1,5 +1,6 @@
 ﻿-----   Version 8.0.0 - January ??, 2019   -----
 • 
+• Updated the credits & added Hakyra
 • The updater has been updated and unified between the Rayman Control Panel family
 • The Rayman Control Panel has been split into a family of libraries with an API for multiple projects
 • Fixed a minor memory issue when a Bitmap image was loaded

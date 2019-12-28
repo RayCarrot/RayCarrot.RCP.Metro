@@ -13,32 +13,14 @@ using RayCarrot.RCP.UI;
 
 namespace RayCarrot.RCP.Modding
 {
-    // TODO: Generalize app startup more
-
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : BaseRCPApp
+    public partial class App : BaseRCPApp<MainWindow>
     {
         public App() : base(false)
         {
 
-        }
-
-        /// <summary>
-        /// Gets the main <see cref="Window"/> to show
-        /// </summary>
-        /// <returns>The Window instance</returns>
-        protected override Window GetMainWindow()
-        {
-            // Create the window
-            var window = new MainWindow();
-
-            // TODO: App user data
-            // Load previous state
-            //RCFRCP.Data.WindowState?.ApplyToWindow(window);
-
-            return window;
         }
 
         /// <summary>

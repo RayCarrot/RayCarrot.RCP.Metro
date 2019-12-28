@@ -73,7 +73,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Properties
 
-        // TODO: Add to app paths an make method for getting path
+        // IDEA: Add to app paths an make method for getting path
         /// <summary>
         /// Gets the DosBox configuration file path for the auto config file
         /// </summary>

@@ -27,7 +27,7 @@ namespace RayCarrot.RCP.UI
         /// The name of the <see cref="IUserData"/>
         /// </summary>
         [JsonIgnore]
-        public string Name => GetType().Name;
+        public string Name => "AppUserData";
 
         /// <summary>
         /// Resets all values to their defaults

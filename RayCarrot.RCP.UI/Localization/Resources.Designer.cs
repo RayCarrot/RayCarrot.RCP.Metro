@@ -61,6 +61,15 @@ namespace RayCarrot.RCP.UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action succeeded.
+        /// </summary>
+        public static string ActionSucceeded {
+            get {
+                return ResourceManager.GetString("ActionSucceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {

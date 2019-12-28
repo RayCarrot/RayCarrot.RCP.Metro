@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.RCP.Core;
+using RayCarrot.RCP.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.ArchiveExplorer
 {
@@ -166,8 +170,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
                     // Get the output path
                     var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                     {
-                        // TODO: Localize
-                        Title = "Select destination to export to"
+                        Title = Resources.Archive_ExportHeader
                     });
 
                     if (result.CanceledByUser)
@@ -176,53 +179,71 @@ namespace RayCarrot.RCP.ArchiveExplorer
                     // Make sure the directory doesn't exist
                     if ((result.SelectedDirectory + DisplayName).DirectoryExists)
                     {
-                        // TODO: Error message
+                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Archive_ExportDirectoryConflict, DisplayName), MessageType.Error);
+
                         return;
                     }
 
-                    // TODO: Try/catch
-                    // TODO: Progress bar
-
                     // Save the selected the format for each collection
-                    Dictionary<string, int> selectedFormats = new Dictionary<string, int>();
+                    Dictionary<string, string> selectedFormats = new Dictionary<string, string>();
 
                     // Select the format for each distinct collection
                     foreach (var formatGroup in this.GetAllChildren(true).SelectMany(x => x.Files).GroupBy(x => x.FileData.FileFormatName))
                     {
+                        // Get the file data
                         var data = formatGroup.First().FileData;
 
-                        // TODO: Dialog for selecting file format for this file type
+                        // IDEA: Create UI manager
+                        // Have user select the format
+                        var extResult = await Application.Current.Dispatcher.Invoke(() => new FileExtensionSelectionDialog(new FileExtensionSelectionDialogViewModel(data.SupportedFileExtensions,
+                            String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, data.FileFormatName)))).ShowDialogAsync();
 
-                        selectedFormats.Add(data.FileFormatName, 1);
+                        if (extResult.CanceledByUser)
+                            return;
+
+                        // Add the selected format
+                        selectedFormats.Add(data.FileFormatName, extResult.SelectedFileFormat);
                     }
 
-                    // Handle each directory
-                    foreach (var item in this.GetAllChildren(true))
+                    try
                     {
-                        // Get the directory path
-                        var path = result.SelectedDirectory + DisplayName + item.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
-
-                        // Create the directory
-                        Directory.CreateDirectory(path);
-
-                        // Save each file
-                        foreach (var file in item.Files)
+                        // Handle each directory
+                        foreach (var item in this.GetAllChildren(true))
                         {
-                            // Get the selected format
-                            var format = file.FileData.SupportedFileExtensions[selectedFormats[file.FileData.FileFormatName]];
+                            // Get the directory path
+                            var path = result.SelectedDirectory + DisplayName + item.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
 
-                            // TODO: Localize
-                            Archive.DisplayStatus = $"Exporting {file.FileName}";
+                            // Create the directory
+                            Directory.CreateDirectory(path);
 
-                            // Save the file
-                            await file.FileData.ExportFileAsync(file.ArchiveFileStream,
-                                path + (new FileSystemPath(file.FileName).ChangeFileExtension(format)), format);
+                            // Save each file
+                            foreach (var file in item.Files)
+                            {
+                                // Get the selected format
+                                var format = selectedFormats[file.FileData.FileFormatName];
+
+                                Archive.DisplayStatus = String.Format(Resources.Archive_ExportingFileStatus, file.FileName);
+
+                                // Save the file
+                                await file.FileData.ExportFileAsync(file.ArchiveFileStream,
+                                    path + (new FileSystemPath(file.FileName).ChangeFileExtension(format)), format);
+                            }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        ex.HandleError("Exporting archive directory", DisplayName);
 
-                    Archive.DisplayStatus = String.Empty;
+                        await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ExportError, DisplayName));
 
-                    // TODO: Success message
+                        return;
+                    }
+                    finally
+                    {
+                        Archive.DisplayStatus = String.Empty;
+                    }
+
+                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFilesSuccess);
                 });
             }
         }
@@ -239,14 +260,10 @@ namespace RayCarrot.RCP.ArchiveExplorer
                 // Run as a task
                 await Task.Run(async () =>
                 {
-                    // TODO: Try/catch
-                    // TODO: Progress bar
-
                     // Get the directory
                     var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                     {
-                        // TODO: Localize
-                        Title = "Select directory to import",
+                        Title = Resources.Archive_ImportDirectoryHeader,
                     });
 
                     if (result.CanceledByUser)
@@ -258,61 +275,72 @@ namespace RayCarrot.RCP.ArchiveExplorer
                     // Keep track of if any files were not imported
                     var failes = false;
 
-                    // Enumerate each directory view model
-                    foreach (var dir in this.GetAllChildren(true))
+                    try
                     {
-                        // Enumerate each file
-                        foreach (var file in dir.Files)
+                        // Enumerate each directory view model
+                        foreach (var dir in this.GetAllChildren(true))
                         {
-                            // Get the file path, without an extension, relative to the selected directory
-                            FileSystemPath filePath = Path.Combine(result.SelectedDirectory, dir.FullPath.Remove(0, FullPath.Length), Path.GetFileNameWithoutExtension(file.FileName));
-
-                            // Attempt to find a file for each supported extension
-                            foreach (string ext in file.FileData.SupportedFileExtensions)
+                            // Enumerate each file
+                            foreach (var file in dir.Files)
                             {
-                                // Get the path
-                                var fullFilePath = filePath.ChangeFileExtension(ext);
+                                // Get the file path, without an extension, relative to the selected directory
+                                FileSystemPath filePath = Path.Combine(result.SelectedDirectory, dir.FullPath.Remove(0, FullPath.Length), Path.GetFileNameWithoutExtension(file.FileName) ?? file.FileName);
 
-                                // Make sure the file exists
-                                if (!fullFilePath.FileExists)
-                                    continue;
+                                // Attempt to find a file for each supported extension
+                                foreach (string ext in file.FileData.SupportedFileExtensions)
+                                {
+                                    // Get the path
+                                    var fullFilePath = filePath.ChangeFileExtension(ext);
 
-                                // TODO: Localize
-                                Archive.DisplayStatus = $"Importing {file.FileName}";
+                                    // Make sure the file exists
+                                    if (!fullFilePath.FileExists)
+                                        continue;
 
-                                // Import the file
-                                var succeeded = await file.FileData.ImportFileAsync(Archive.ArchiveFileStream, fullFilePath);
+                                    Archive.DisplayStatus = String.Format(Resources.Archive_ImportingFileStatus, file.FileName);
 
-                                if (!succeeded)
-                                    failes = true;
+                                    // Import the file
+                                    var succeeded = await file.FileData.ImportFileAsync(Archive.ArchiveFileStream, fullFilePath);
 
-                                imported++;
+                                    if (!succeeded)
+                                        failes = true;
 
-                                // Break the loop
-                                break;
+                                    imported++;
+
+                                    // Break the loop
+                                    break;
+                                }
                             }
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleError("Importing archive directory", DisplayName);
+
+                        await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ImportError, result.SelectedDirectory.Name));
+
+                        return;
+                    }
+                    finally
+                    {
+                        Archive.DisplayStatus = String.Empty;
                     }
 
                     // Make sure at least one file has been imported
                     if (imported == 0)
                     {
-                        // TODO: Error message
+                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.Archive_ImportNoFilesError, MessageType.Error);
 
                         return;
-                    }
-
-                    Archive.DisplayStatus = String.Empty;
-
-                    if (failes)
-                    {
-                        // TODO: Show warning message that some failed to import
                     }
 
                     // Update the archive
                     await Archive.UpdateArchiveAsync();
 
-                    // TODO: Success message
+                    // Check if any failed to import
+                    if (failes)
+                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.Archive_ImportFailsError, MessageType.Warning);
+
+                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ImportFilesSuccess);
                 });
             }
         }
@@ -322,6 +350,9 @@ namespace RayCarrot.RCP.ArchiveExplorer
             // Disable collection synchronization
             BindingOperations.DisableCollectionSynchronization(Files);
             BindingOperations.DisableCollectionSynchronization(this);
+
+            // Dispose files
+            Files.DisposeAll();
         }
 
         #endregion

@@ -34,6 +34,9 @@
     <LangVersion>8</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Infralution.Localization.Wpf">
+      <HintPath>..\References\Infralution.Localization.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -50,14 +53,22 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArchiveExplorerUI.xaml.cs">
+    <Compile Include="UI\ArchiveExplorerUI.xaml.cs">
       <DependentUpon>ArchiveExplorerUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ArchiveExplorerDialogViewModel.cs" />
+    <Compile Include="UI\FileExtensionSelectionDialog.xaml.cs">
+      <DependentUpon>FileExtensionSelectionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ArchiveExplorerDialogViewModel.cs" />
     <Compile Include="Base\ArchiveDirectory.cs" />
     <Compile Include="Base\IArchiveDataManager.cs" />
     <Compile Include="Base\IArchiveFileData.cs" />
     <Compile Include="Base\IArchiveImageFileData.cs" />
+    <Compile Include="Localization\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
     <Compile Include="OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -94,7 +105,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ArchiveExplorerUI.xaml">
+    <Page Include="UI\ArchiveExplorerUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Strings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\FileExtensionSelectionDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -116,7 +135,7 @@
       <Version>1.5.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Extensions">
-      <Version>1.2.4</Version>
+      <Version>1.2.5</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
       <Version>1.3.7</Version>
@@ -127,6 +146,20 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\Resources.es-MX.resx" />
+    <EmbeddedResource Include="Localization\Resources.nl-NL.resx" />
+    <EmbeddedResource Include="Localization\Resources.pl-PL.resx" />
+    <EmbeddedResource Include="Localization\Resources.pt-PT.resx" />
+    <EmbeddedResource Include="Localization\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>RayCarrot.RCP.ArchiveExplorer</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Resources.sr-Cyrl.resx" />
+    <EmbeddedResource Include="Localization\Resources.sv-SE.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

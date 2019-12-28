@@ -50,11 +50,13 @@
                 <ItemsControl HorizontalAlignment="Center"
                               Grid.IsSharedSizeScope="True">
 
+                    <!-- TODO: Add Hakyra to credits -->
+
+                    <ui:DuoGridItem Header="RayCarrot"
+                                    Text="{Resx About_Credits_RayCarrot}" />
+
                     <ui:DuoGridItem Header="432 Hz"
                                        Text="{Resx About_Credits_432Hz}" />
-
-                    <ui:DuoGridItem Header="Evelyn Chickentalk"
-                                       Text="{Resx About_Credits_EvelynChickentalk}" />
 
                     <ui:DuoGridItem Header="Haruka Tavares"
                                        Text="{Resx About_Credits_HarukaTavares}" />
@@ -82,9 +84,6 @@
 
                     <ui:DuoGridItem Header="RayActivity"
                                        Text="{Resx About_Credits_RayActivity}" />
-
-                    <ui:DuoGridItem Header="RayCarrot"
-                                       Text="{Resx About_Credits_RayCarrot}" />
 
                     <ui:DuoGridItem Header="RibShark"
                                        Text="{Resx About_Credits_RibShark}" />

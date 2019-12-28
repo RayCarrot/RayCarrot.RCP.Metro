@@ -2,7 +2,7 @@
 
 namespace RayCarrot.RCP.Metro
 {
-    // TODO: Add backup info
+    // IDEA: Add backup info
 
     /// <summary>
     /// The Rayman Activity Center game info

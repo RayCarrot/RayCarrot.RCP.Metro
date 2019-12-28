@@ -11,6 +11,8 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class AppUIManager
     {
+        // TODO: Make sure they run on UI thread
+
         #region UserInput
 
         public async Task<GamesSelectionResult> SelectGamesAsync(GamesSelectionViewModel gamesSelectionViewModel, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)

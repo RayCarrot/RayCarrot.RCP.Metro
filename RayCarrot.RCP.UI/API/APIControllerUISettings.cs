@@ -4,6 +4,8 @@ using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.UI
 {
+    // IDEA: Remove settings and instead have each project override the class with these abstract fields
+
     /// <summary>
     /// The UI settings for the API controller
     /// </summary>

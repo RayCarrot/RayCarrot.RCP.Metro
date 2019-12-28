@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.UI
 {
+    // TODO: Generalize app startup more
+
     /// <summary>
     /// The base WPF application for a Rayman Control Panel app
     /// </summary>
-    public abstract class BaseRCPApp : BaseRCFApp
+    /// <typeparam name="Win">The type of main window to create</typeparam>
+    public abstract class BaseRCPApp<Win> : BaseRCFApp
+        where Win : Window, new()
     {
         #region Constructor
 
@@ -20,6 +27,42 @@ namespace RayCarrot.RCP.UI
         protected BaseRCPApp(bool useMutex, string splashScreenResourceName = null) : base(useMutex, splashScreenResourceName)
         {
             StartupEventsCompleted += App_StartupEventsCompleted;
+        }
+
+        #endregion
+
+        #region Protected Override Methods
+
+        /// <summary>
+        /// Gets the main <see cref="Window"/> to show
+        /// </summary>
+        /// <returns>The Window instance</returns>
+        protected override Window GetMainWindow()
+        {
+            // Create the window
+            var window = new Win();
+
+            // Load previous state
+            RCFRCPUI.Data?.WindowState?.ApplyToWindow(window);
+
+            return window;
+        }
+
+        /// <summary>
+        /// An optional method to override which runs when closing
+        /// </summary>
+        /// <param name="mainWindow">The main Window of the application</param>
+        /// <returns>The task</returns>
+        protected override async Task OnCloseAsync(Window mainWindow)
+        {
+            // Save window state
+            if (RCFRCPUI.Data != null)
+                RCFRCPUI.Data.WindowState = WindowSessionState.GetWindowState(mainWindow);
+
+            RCFCore.Logger?.LogInformationSource($"The application is exiting...");
+
+            // Save all user data
+            await RCFRCPUI.App.SaveUserDataAsync();
         }
 
         #endregion

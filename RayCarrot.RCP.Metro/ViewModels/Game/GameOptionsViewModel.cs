@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using RayCarrot.IO;
 using RayCarrot.RCP.Core;
+using RayCarrot.RCP.UI;
 
 namespace RayCarrot.RCP.Metro
 {

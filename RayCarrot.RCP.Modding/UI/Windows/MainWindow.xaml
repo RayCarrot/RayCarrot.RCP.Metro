@@ -10,7 +10,7 @@
                xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                mc:Ignorable="d"
                Language="{UICulture}"
-               ResxExtension.DefaultResxName="{x:Static local:AppLanguages.ResourcePath}"
+               ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                CloseWithEscape="False"
                Title="Rayman Modding Panel"
                Height="450" Width="800"

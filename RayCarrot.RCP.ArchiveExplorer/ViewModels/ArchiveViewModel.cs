@@ -4,6 +4,7 @@ using RayCarrot.IO;
 using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -102,13 +103,15 @@ namespace RayCarrot.RCP.ArchiveExplorer
         /// </summary>
         protected void ClearAndDisposeItems()
         {
-            // Dispose every item
-            foreach (var item in this.GetAllChildren<ArchiveDirectoryViewModel>())
-                // Dispose the item
-                item?.Dispose();
+            // Dispose every directory
+            this.GetAllChildren<ArchiveDirectoryViewModel>().DisposeAll();
+
+            // Dispose the files
+            Files.DisposeAll();
 
             // Clear the items
             Clear();
+            Files.Clear();
         }
 
         #endregion
@@ -164,7 +167,6 @@ namespace RayCarrot.RCP.ArchiveExplorer
         public void LoadArchive()
         {
             // Clear existing items
-            Files.Clear();
             ClearAndDisposeItems();
 
             // Get the archive directories
@@ -202,10 +204,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
         /// </summary>
         public Task UpdateArchiveAsync()
         {
-            // TODO: Localize
-            DisplayStatus = $"Repacking archive {DisplayName}";
-
-            // TODO: Error handling
+            DisplayStatus = String.Format(Resources.Archive_RepackingStatus, DisplayName);
 
             // Find the selected item ID
             var selected = SelectedItem.FullID;

@@ -333,7 +333,7 @@ namespace RayCarrot.RCP.Metro
 
                     case DebugDataOutputTypes.GameSizes:
 
-                        // TODO: Update with new system when done
+                        // IDEA: Update with new system when done
 
                         var totalTime = 0L;
 
@@ -369,7 +369,6 @@ namespace RayCarrot.RCP.Metro
 
                     case DebugDataOutputTypes.APIVersions:
 
-                        // TODO: Update
                         // Get the API libraries
                         var libraries = new string[]
                         {

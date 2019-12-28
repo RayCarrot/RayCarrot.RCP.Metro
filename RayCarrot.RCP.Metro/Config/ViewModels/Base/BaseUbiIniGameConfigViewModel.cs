@@ -7,6 +7,7 @@ using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.RCP.Core;
+using RayCarrot.RCP.UI;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro

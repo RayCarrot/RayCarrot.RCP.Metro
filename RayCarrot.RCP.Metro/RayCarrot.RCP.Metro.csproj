@@ -667,7 +667,6 @@
     <Compile Include="DataModels\GamePurchaseLink.cs" />
     <Compile Include="DataModels\GameFileLink.cs" />
     <Compile Include="Extensions\GamesExtensions.cs" />
-    <Compile Include="Extensions\MessageUIManagerExtensions.cs" />
     <Compile Include="Framework\RCFRCP.cs" />
     <Compile Include="API\RCPMetroApplicationPaths.cs" />
     <Compile Include="Img\Images.Designer.cs">
@@ -966,7 +965,7 @@
       <Version>1.5.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Extensions">
-      <Version>1.2.4</Version>
+      <Version>1.2.5</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
       <Version>1.3.7</Version>

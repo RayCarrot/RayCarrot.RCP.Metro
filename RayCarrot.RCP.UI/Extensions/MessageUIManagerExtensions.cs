@@ -1,9 +1,10 @@
-﻿using System.Runtime.CompilerServices;
+﻿using RayCarrot.UI;
+using System;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.UI;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.UI
 {
     /// <summary>
     /// Extension methods for <see cref="IMessageUIManager"/>
@@ -22,7 +23,7 @@ namespace RayCarrot.RCP.Metro
         public static async Task DisplaySuccessfulActionMessageAsync(this IMessageUIManager messageUIManager, string message, string header = null, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
             // Make sure the setting to show success messages is on
-            if (!RCFRCP.Data.ShowActionComplete)
+            if (!RCFRCPUI.Data.ShowActionComplete)
             {
                 RCFCore.Logger?.LogTraceSource($"A message of type {MessageType.Success} was not displayed with the content of: '{message}'", origin: origin, filePath: filePath, lineNumber: lineNumber);
                 return;
