@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{001CD0CA-D3A9-446D-B93A-CB941D98C25C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>RayCarrot.RCP.Metro.Updater</RootNamespace>
-    <AssemblyName>RayCarrot.RCP.Metro.Updater</AssemblyName>
+    <RootNamespace>RayCarrot.RCP.Updater</RootNamespace>
+    <AssemblyName>RayCarrot.RCP.Updater</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -89,9 +89,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />

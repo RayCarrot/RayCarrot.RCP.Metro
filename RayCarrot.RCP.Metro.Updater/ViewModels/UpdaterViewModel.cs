@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace RayCarrot.RCP.Metro.Updater
+namespace RayCarrot.RCP.Updater
 {
     /// <summary>
     /// View model for the updater
@@ -51,66 +51,9 @@ namespace RayCarrot.RCP.Metro.Updater
 
             AddLog($"App path retrieved as {App.RCPFilePath}", UserLevel.Debug);
 
-            AddLog("Getting manifest");
-
-            App.Stage = UpdateStage.Manifest;
-
-            string errorMessage = "Unknown error";
-            Exception manifestException = null;
-            JObject manifest = null;
-
-            // Attempt to get the manifest
-            try
-            {
-                var result = await App.WC.DownloadStringTaskAsync(App.UpdateManifestUrl);
-                manifest = JObject.Parse(result);
-            }
-            catch (WebException ex)
-            {
-                errorMessage = $"A connection could not be established to the server";
-                manifestException = ex;
-            }
-            catch (JsonReaderException ex)
-            {
-                errorMessage = "The information from the server was not valid";
-                manifestException = ex;
-            }
-            catch (Exception ex)
-            {
-                errorMessage = "An unknown error occurred while connecting to the server";
-                manifestException = ex;
-            }
-
-            // Show error if manifest was not retrieved
-            if (manifest == null)
-            {
-                MessageBox.Show(errorMessage, "Manifest error", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                App.ShutdownApplication("Getting manifest", manifestException);
-                return;
-            }
-
-            AddLog("Manifest loaded");
-
-            if (cancellationToken.IsCancellationRequested)
-            {
-                App.ShutdownApplication("Canceled", manifestException);
-                return;
-            }
-
-            try
-            {
-                // Get the file URL
-                ServerFileURL = manifest[App.IsBetaUpdate ? "BetaURL" : "URL"].Value<string>();
-                AddLog($"Server file URL detected as {ServerFileURL}", UserLevel.Debug);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("The loaded manifest is in an incorrect format and can not be read", "Server error", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                App.ShutdownApplication("Reading manifest URL", ex);
-                return;
-            }
+            // Get the file URL
+            ServerFileURL = App.UpdateURL;
+            AddLog($"Server file URL detected as {ServerFileURL}", UserLevel.Debug);
 
             AddLog($"Temp download path generated as {App.ServerTempPath}", UserLevel.Debug);
 
@@ -136,7 +79,7 @@ namespace RayCarrot.RCP.Metro.Updater
             {
                 if (ex is WebException we && we.Status == WebExceptionStatus.RequestCanceled)
                 {
-                    App.ShutdownApplication("Canceled", manifestException);
+                    App.ShutdownApplication("Canceled", ex);
                     return;
                 }
 
@@ -150,7 +93,7 @@ namespace RayCarrot.RCP.Metro.Updater
 
             if (cancellationToken.IsCancellationRequested)
             {
-                App.ShutdownApplication("Canceled", manifestException);
+                App.ShutdownApplication("Canceled");
                 return;
             }
 

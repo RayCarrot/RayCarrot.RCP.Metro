@@ -148,7 +148,7 @@
                 <Image Grid.Column="1"
                        Grid.Row="0"
                        VerticalAlignment="Top"
-                       Source="pack://application:,,,/RayCarrot.RCP.UI;component/Images/MessageIcons/Info.png"
+                       Source="pack://application:,,,/RayCarrot.RCP.Core;component/Images/MessageIcons/Info.png"
                        Height="128"
                        Width="128"/>
 

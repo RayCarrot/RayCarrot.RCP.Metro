@@ -60,8 +60,7 @@
     </AllowedReferenceRelatedFileExtensions>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Rayman Control Panel Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Infralution.Localization.Wpf">
@@ -850,6 +849,7 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Rayman Control Panel Icon.ico" />
     <Resource Include="Img\GameIcons\RabbidsCoding.png" />
     <Resource Include="Img\GameIcons\RaymanActivityCenter.png" />
     <Resource Include="Img\GameIcons\RaymanRavingRabbidsActivityCenter.png" />
@@ -869,7 +869,6 @@
     <Resource Include="Img\GameIcons\EducationalDos.png" />
     <Resource Include="Files\Splash Screen.png" />
     <Content Include="Files\Programs\AdminWorker.exe" />
-    <Content Include="Files\Programs\Rayman Control Panel Updater.exe" />
     <Content Include="Files\Rayman2\GXSetup_GOG.exe" />
     <Content Include="Files\Rayman2\Rayman2_GOG.exe" />
     <Content Include="Files\Rayman3\dinput8_controller.dll" />

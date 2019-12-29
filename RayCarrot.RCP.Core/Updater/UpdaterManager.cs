@@ -3,10 +3,12 @@ using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Windows;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Core
 {
@@ -159,39 +161,50 @@ namespace RayCarrot.RCP.Core
         /// <returns>A value indicating if the operation succeeded</returns>
         public async Task<bool> UpdateAsync(UpdaterCheckResult result, bool asAdmin)
         {
-            throw new Exception();
-            //try
-            //{
-            //    // Create the parent directory for the update file
-            //    Directory.CreateDirectory(RCFRCPC.Path.UpdaterFile.Parent);
+            try
+            {
+                // Create the parent directory for the update file
+                Directory.CreateDirectory(RCFRCPC.Path.UpdaterFile.Parent);
 
-            //    // Deploy the updater
-            //    File.WriteAllBytes(RCFRCPC.Path.UpdaterFile, Files.Rayman_Control_Panel_Updater);
+                // Deploy the updater
+                File.WriteAllBytes(RCFRCPC.Path.UpdaterFile, Files.Rayman_Control_Panel_Updater);
 
-            //    RCFCore.Logger?.LogInformationSource($"The updater was created");
-            //}
-            //catch (Exception ex)
-            //{
-            //    ex.HandleError("Writing updater to temp path", RCFRCPC.Path.UpdaterFile);
+                RCFCore.Logger?.LogInformationSource($"The updater was created");
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Writing updater to temp path", RCFRCPC.Path.UpdaterFile);
 
-            //    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, UserFallbackURL), Resources.Update_UpdaterErrorHeader);
-                
-            //    return false;
-            //}
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, UserFallbackURL), Resources.Update_UpdaterErrorHeader);
 
-            //// Launch the updater and capture the process
-            //using var updateProcess = await RCFRCPC.File.LaunchFileAsync(RCFRCP.Path.UpdaterFile, asAdmin, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.DarkMode} {RCFRCP.Data.UserLevel} {result.IsBetaUpdate} \"{RCFCore.Data.CurrentCulture}\"");
+                return false;
+            }
 
-            //// Make sure we have a valid process
-            //if (updateProcess == null)
-            //{
-            //    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, UserFallbackURL), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
+            // Launch the updater and capture the process
+            using var updateProcess = await RCFRCPC.File.LaunchFileAsync(RCFRCPC.Path.UpdaterFile, asAdmin, 
+                // Arg 1: Program path
+                $"\"{Assembly.GetEntryAssembly()?.Location}\" " +
+                // Arg 2: Dark mode
+                $"{RCFRCPC.Data.DarkMode} " +
+                // Arg 3: User level
+                $"{RCFRCPC.Data.UserLevel} " +
+                // Arg 4: Update URL
+                $"\"{result.DownloadURL}\" " +
+                // Arg 5: Current culture
+                $"\"{RCFCore.Data.CurrentCulture}\"");
 
-            //    return false;
-            //}
+            // Make sure we have a valid process
+            if (updateProcess == null)
+            {
+                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, UserFallbackURL), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
 
-            //// Shut down the app
-            //await App.Current.ShutdownRCFAppAsync(true);
+                return false;
+            }
+
+            // Shut down the app
+            await BaseRCFApp.Current.ShutdownRCFAppAsync(true);
+
+            return true;
         }
 
         /// <summary>

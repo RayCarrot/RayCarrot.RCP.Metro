@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace RayCarrot.RCP.Metro.Updater
+namespace RayCarrot.RCP.Updater
 {
     /// <summary>
     /// A base window to inherit from
@@ -21,7 +21,7 @@ namespace RayCarrot.RCP.Metro.Updater
             ShowMaxRestoreButton = false;
 
             // Set icon style
-            Icon = new ImageSourceConverter().ConvertFromString("pack://application:,,,/RayCarrot.RCP.Metro.Updater;component/Img/Rayman Control Panel Icon.ico") as ImageSource;
+            Icon = new ImageSourceConverter().ConvertFromString("pack://application:,,,/RayCarrot.RCP.Updater;component/Img/Rayman Control Panel Icon.ico") as ImageSource;
             IconBitmapScalingMode = BitmapScalingMode.NearestNeighbor;
         }
     }

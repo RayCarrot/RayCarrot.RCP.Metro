@@ -17,7 +17,7 @@ namespace RayCarrot.RCP.Core
         public static APIControllerSettings SetUISettings(this APIControllerSettings controllerSettings, APIControllerUISettings settings)
         {
             // Set the settings
-            controllerSettings.CustomSettings["RayCarrot.RCP.UI"] = settings;
+            controllerSettings.CustomSettings["RayCarrot.RCP.Core"] = settings;
 
             // Return the controller settings
             return controllerSettings;
@@ -31,7 +31,7 @@ namespace RayCarrot.RCP.Core
         public static APIControllerUISettings GetUISettings(this APIControllerSettings controllerSettings)
         {
             // Get the UI settings or throw if not found
-            return controllerSettings.CustomSettings.TryGetValue("RayCarrot.RCP.UI") as APIControllerUISettings ?? throw new Exception("UI settings have not been set");
+            return controllerSettings.CustomSettings.TryGetValue("RayCarrot.RCP.Core") as APIControllerUISettings ?? throw new Exception("Core settings have not been set");
         }
     }
 }

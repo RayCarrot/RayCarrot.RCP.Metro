@@ -18,7 +18,7 @@ namespace RayCarrot.RCP.Core
         /// <summary>
         /// The path for the icon to use on Windows
         /// </summary>
-        public virtual string WindowIconPath => "pack://application:,,,/RayCarrot.RCP.UI;component/Images/Rayman Control Panel Icon.ico";
+        public virtual string WindowIconPath => "pack://application:,,,/RayCarrot.RCP.Core;component/Images/Rayman Control Panel Icon.ico";
 
         /// <summary>
         /// Indicates if Window transitions are enabled

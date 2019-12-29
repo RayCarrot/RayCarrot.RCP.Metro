@@ -6,11 +6,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Rayman Control Panel - Updater")]
-[assembly: AssemblyDescription("Updater for the Rayman Control Panel version 4.5.0 and above")]
+[assembly: AssemblyDescription("Updater for the Rayman Control Panel family of products")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RayCarrot")]
 [assembly: AssemblyProduct("Rayman Control Panel - Updater")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

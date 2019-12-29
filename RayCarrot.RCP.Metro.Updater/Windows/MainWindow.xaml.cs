@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows;
 
-namespace RayCarrot.RCP.Metro.Updater
+namespace RayCarrot.RCP.Updater
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

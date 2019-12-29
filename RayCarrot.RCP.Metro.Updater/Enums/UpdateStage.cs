@@ -1,4 +1,4 @@
-﻿namespace RayCarrot.RCP.Metro.Updater
+﻿namespace RayCarrot.RCP.Updater
 {
     /// <summary>
     /// The current stage of the update
@@ -14,11 +14,6 @@
         /// The initial stage
         /// </summary>
         Initial,
-
-        /// <summary>
-        /// The manifest is being read
-        /// </summary>
-        Manifest,
 
         /// <summary>
         /// The update is downloading

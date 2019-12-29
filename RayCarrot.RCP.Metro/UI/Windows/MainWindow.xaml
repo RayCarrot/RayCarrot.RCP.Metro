@@ -52,7 +52,7 @@
     </metro:MetroWindow.RightWindowCommands>
     <Grid>
         <tb:TaskbarIcon DataContext="{StaticResource TaskbarIconViewModel}"
-                        IconSource="pack://application:,,,/RayCarrot.RCP.UI;component/Images/Rayman Control Panel Icon.ico"
+                        IconSource="pack://application:,,,/RayCarrot.RCP.Core;component/Images/Rayman Control Panel Icon.ico"
                         ToolTipText="{Resx AppName}"
                         LeftClickCommand="{Binding Path=OpenFromTaskbarCommand}"
                         Visibility="{Binding Path=IsIconVisible, Converter={rwpf:BooleanToVisibilityConverter}}">

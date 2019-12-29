@@ -315,11 +315,47 @@ namespace RayCarrot.RCP.Core {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The updater could not be launched. To manually download the new version, go to {0} and download the latest version from there..
+        /// </summary>
+        public static string Update_RunningUpdaterError {
+            get {
+                return ResourceManager.GetString("Update_RunningUpdaterError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error running updater.
+        /// </summary>
+        public static string Update_RunningUpdaterErrorHeader {
+            get {
+                return ResourceManager.GetString("Update_RunningUpdaterErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown error.
         /// </summary>
         public static string Update_UnknownError {
             get {
                 return ResourceManager.GetString("Update_UnknownError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The updater could not be created. To manually download the new version, go to {0} and download the latest version from there..
+        /// </summary>
+        public static string Update_UpdaterError {
+            get {
+                return ResourceManager.GetString("Update_UpdaterError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error creating updater.
+        /// </summary>
+        public static string Update_UpdaterErrorHeader {
+            get {
+                return ResourceManager.GetString("Update_UpdaterErrorHeader", resourceCulture);
             }
         }
         

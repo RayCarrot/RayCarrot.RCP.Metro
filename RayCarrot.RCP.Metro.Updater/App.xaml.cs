@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Threading;
 using MahApps.Metro;
 
-namespace RayCarrot.RCP.Metro.Updater
+namespace RayCarrot.RCP.Updater
 {
     /// <summary>
     /// Interaction logic for App.xaml
@@ -35,7 +35,7 @@ namespace RayCarrot.RCP.Metro.Updater
             //  - RCP filePath (string)
             //  - Dark mode (bool)
             //  - User level (UserLevel)
-            //  - Is beta update (bool)
+            //  - Update URL (string)
             //  - Culture (string)
             //
 
@@ -68,8 +68,8 @@ namespace RayCarrot.RCP.Metro.Updater
             // Get the user level
             CurrentUserLevel = Enum.TryParse(args[2], out UserLevel ule) ? ule : UserLevel.Normal;
 
-            // Get the beta update flag
-            IsBetaUpdate = !Boolean.TryParse(args[3], out bool gbu) || gbu;
+            // Get the update URL
+            UpdateURL = args[3];
 
             try
             {
@@ -194,9 +194,9 @@ namespace RayCarrot.RCP.Metro.Updater
         public string LocalTempPath { get; }
 
         /// <summary>
-        /// Indicates if the update is a beta update
+        /// The update download URL
         /// </summary>
-        public bool IsBetaUpdate { get; set; }
+        public string UpdateURL { get; set; }
 
         /// <summary>
         /// The web client for downloading the update
@@ -216,12 +216,6 @@ namespace RayCarrot.RCP.Metro.Updater
         /// The current application
         /// </summary>
         public new static App Current => Application.Current as App;
-
-        #endregion
-
-        #region Public Constants
-
-        public const string UpdateManifestUrl = "http://raycarrot.ylemnova.com/RCP/RCP_Metro_Manifest.json";
 
         #endregion
     }

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows;
 
-namespace RayCarrot.RCP.Metro.Updater
+namespace RayCarrot.RCP.Updater
 {
     /// <summary>
     /// Interaction logic for ErrorWindow.xaml

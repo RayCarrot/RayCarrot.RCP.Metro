@@ -1,9 +1,9 @@
-﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.Updater.ErrorWindow"
+﻿<local:BaseWindow x:Class="RayCarrot.RCP.Updater.ErrorWindow"
                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro.Updater"
+                  xmlns:local="clr-namespace:RayCarrot.RCP.Updater"
                   xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                   mc:Ignorable="d"
                   Title="Update Failed"
@@ -16,6 +16,7 @@
                     Click="ErrorInfoButton_OnClick"/>
         </mah:WindowCommands>
     </local:BaseWindow.RightWindowCommands>
+
     <StackPanel Margin="10">
 
         <TextBlock TextWrapping="Wrap"

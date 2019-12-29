@@ -1,4 +1,4 @@
-﻿<Application x:Class="RayCarrot.RCP.Metro.Updater.App"
+﻿<Application x:Class="RayCarrot.RCP.Updater.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Startup="App_OnStartup"

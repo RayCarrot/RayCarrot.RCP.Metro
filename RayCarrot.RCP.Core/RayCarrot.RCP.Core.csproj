@@ -72,6 +72,11 @@
     <Compile Include="Converters\AppendSpacesToStringConverter.cs" />
     <Compile Include="Extensions\APIControllerSettingsExtensions.cs" />
     <Compile Include="API\APIControllerUISettings.cs" />
+    <Compile Include="Files\Files.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Files.resx</DependentUpon>
+    </Compile>
     <Compile Include="IO\RCPFileManager.cs" />
     <Compile Include="Extensions\GamesExtensions.cs" />
     <Compile Include="Extensions\MessageUIManagerExtensions.cs" />
@@ -193,6 +198,11 @@
     <Resource Include="Images\Rayman Control Panel Icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Files\Files.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Files.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>RayCarrot.RCP.Core</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Images\Images.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Images.Designer.cs</LastGenOutput>
@@ -222,6 +232,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\MessageIcons\Question.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Files\Rayman Control Panel Updater.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
