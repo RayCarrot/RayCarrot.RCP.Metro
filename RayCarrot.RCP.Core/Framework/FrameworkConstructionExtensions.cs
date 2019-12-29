@@ -8,19 +8,16 @@ namespace RayCarrot.RCP.Core
     public static class FrameworkConstructionExtensions
     {
         /// <summary>
-        /// Sets up and creates a new API controller instance during a framework construction. This can only be done.
+        /// Adds an API controller manager
         /// </summary>
+        /// <typeparam name="A">The type of API controller manager to add</typeparam>
         /// <param name="construction">The construction</param>
-        /// <param name="settings">The settings</param>
         /// <returns>The construction</returns>
-        public static IFrameworkConstruction AddRCPAPI<A>(this IFrameworkConstruction construction, APIControllerSettings settings)
+        public static IFrameworkConstruction AddAPIControllerManager<A>(this IFrameworkConstruction construction)
             where A : class, IAPIControllerManager, new()
         {
             // Add the manager
             construction.AddTransient<IAPIControllerManager, A>();
-
-            // Create the API
-            APIController.CreateAPI(settings);
 
             // Return the construction
             return construction;

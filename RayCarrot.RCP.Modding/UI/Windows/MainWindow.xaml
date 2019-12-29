@@ -40,7 +40,7 @@
         <metro:MetroAnimatedTabControl x:Name="PageTabControl"
                                        Padding="5">
             <metro:MetroAnimatedTabControl.Resources>
-                <Style TargetType="{x:Type ui:RCPTabItem}" BasedOn="{StaticResource {x:Type ui:RCPTabItem}}">
+                <Style TargetType="{x:Type core:RCPTabItem}" BasedOn="{StaticResource {x:Type core:RCPTabItem}}">
                     <Setter Property="HeaderFontSize" Value="24" />
                 </Style>
             </metro:MetroAnimatedTabControl.Resources>

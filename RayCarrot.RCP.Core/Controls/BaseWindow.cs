@@ -17,6 +17,8 @@ namespace RayCarrot.RCP.Core
         /// <summary>
         /// Default constructor
         /// </summary>
+        /// <param name="windowIconPath">The icon path to use for the Window icon</param>
+        /// <param name="areWindowTransitionsEnabled">Indicates if Window transitions are enabled</param>
         public BaseWindow()
         {
             RCFCore.Logger?.LogInformationSource($"A window is being created...");
@@ -32,11 +34,12 @@ namespace RayCarrot.RCP.Core
             TitleCharacterCasing = CharacterCasing.Normal;
 
             // Set icon style
-            Icon = new ImageSourceConverter().ConvertFromString(APIControllerUISettings.GetSettings().WindowIconPath) as ImageSource;
+            Icon = new ImageSourceConverter().ConvertFromString("pack://application:,,,/RayCarrot.RCP.Core;component/Images/Rayman Control Panel Icon.ico") as ImageSource;
             IconBitmapScalingMode = BitmapScalingMode.NearestNeighbor;
 
-            // Run custom set up
-            APIControllerUISettings.GetSettings().OnWindowSetup(this);
+            // TODO: Test so every window works without this
+            // Set localization source
+            //ResxExtension.SetDefaultResxName(window, AppViewModel.ResourcePath);
 
             // Set owner window
             Owner = Application.Current?.Windows.Cast<Window>().FindItem(x => x.IsActive);
@@ -53,7 +56,7 @@ namespace RayCarrot.RCP.Core
             if (RCF.IsBuilt)
             {
                 // Set transition
-                WindowTransitionsEnabled = APIControllerUISettings.GetSettings().AreWindowTransitionsEnabled;
+                WindowTransitionsEnabled = RCFRCPC.Data?.EnableAnimations ?? true;
 
                 RCFCore.Logger?.LogInformationSource($"The window {this} has been created");
             }

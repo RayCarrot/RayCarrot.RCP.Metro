@@ -494,6 +494,11 @@ namespace RayCarrot.RCP.Metro
         #region Public Properties
 
         /// <summary>
+        /// The application base path to use for WPF related operations
+        /// </summary>
+        public override string WPFApplicationBasePath => "pack://application:,,,/RayCarrot.RCP.Metro;component/";
+
+        /// <summary>
         /// Shortcut to the app user data
         /// </summary>
         public AppUserData Data => RCFRCP.Data;

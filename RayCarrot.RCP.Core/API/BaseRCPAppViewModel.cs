@@ -13,7 +13,7 @@ namespace RayCarrot.RCP.Core
     /// Base application view model
     /// </summary>
     /// <typeparam name="Page">The page enum type</typeparam>
-    public class BaseRCPAppViewModel<Page> : BaseRCPAppViewModel
+    public abstract class BaseRCPAppViewModel<Page> : BaseRCPAppViewModel
         where Page : Enum
     {
         #region Public Properties
@@ -29,7 +29,7 @@ namespace RayCarrot.RCP.Core
     /// <summary>
     /// Base application view model
     /// </summary>
-    public class BaseRCPAppViewModel : BaseViewModel
+    public abstract class BaseRCPAppViewModel : BaseViewModel
     {
         #region Static Constructor
 
@@ -45,7 +45,7 @@ namespace RayCarrot.RCP.Core
         /// <summary>
         /// Default constructor
         /// </summary>
-        public BaseRCPAppViewModel()
+        protected BaseRCPAppViewModel()
         {
             // Flag that the startup has begun
             IsStartupRunning = true;
@@ -87,6 +87,15 @@ namespace RayCarrot.RCP.Core
         /// Indicates if the application startup is running
         /// </summary>
         public bool IsStartupRunning { get; set; }
+
+        #endregion
+
+        #region Public Abstract Properties
+
+        /// <summary>
+        /// The application base path to use for WPF related operations
+        /// </summary>
+        public abstract string WPFApplicationBasePath { get; }
 
         #endregion
 

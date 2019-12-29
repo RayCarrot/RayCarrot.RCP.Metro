@@ -27,7 +27,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The icon as an image source
         /// </summary>
-        public ImageSource IconImageSource => new ImageSourceConverter().ConvertFrom($"{APIControllerUISettings.GetSettings().ApplicationBasePath}Img/ProgressionIcons/UbiArt/{Icon}.png") as ImageSource;
+        public ImageSource IconImageSource => new ImageSourceConverter().ConvertFrom($"{RCFRCP.App.WPFApplicationBasePath}Img/ProgressionIcons/UbiArt/{Icon}.png") as ImageSource;
 
         /// <summary>
         /// The content

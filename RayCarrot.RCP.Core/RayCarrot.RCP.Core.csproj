@@ -52,8 +52,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\APIController.cs" />
-    <Compile Include="API\APIControllerSettings.cs" />
     <Compile Include="API\IAPIControllerManager.cs" />
     <Compile Include="API\RCPApplicationPaths.cs" />
     <Compile Include="API\RCPLocalizationManager.cs" />
@@ -70,8 +68,6 @@
     </Compile>
     <Compile Include="Controls\RCPTabItem.cs" />
     <Compile Include="Converters\AppendSpacesToStringConverter.cs" />
-    <Compile Include="Extensions\APIControllerSettingsExtensions.cs" />
-    <Compile Include="API\APIControllerUISettings.cs" />
     <Compile Include="Files\Files.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

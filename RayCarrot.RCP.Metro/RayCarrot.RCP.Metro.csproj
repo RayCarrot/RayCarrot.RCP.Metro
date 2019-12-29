@@ -101,7 +101,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="API\RCPMetroLocalizationManager.cs" />
-    <Compile Include="API\RCPMetroAPIControllerUISettings.cs" />
     <Compile Include="Config\UI\RaymanFiestaRunConfig.xaml.cs">
       <DependentUpon>RaymanFiestaRunConfig.xaml</DependentUpon>
     </Compile>

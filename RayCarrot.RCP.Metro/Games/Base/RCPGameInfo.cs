@@ -32,7 +32,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The icon source for the game
         /// </summary>
-        public string IconSource => $"{APIControllerUISettings.GetSettings().ApplicationBasePath}Img/GameIcons/{Game}.png";
+        public string IconSource => $"{RCFRCP.App.WPFApplicationBasePath}Img/GameIcons/{Game}.png";
 
         /// <summary>
         /// Indicates if the game can be uninstalled

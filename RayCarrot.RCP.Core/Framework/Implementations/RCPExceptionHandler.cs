@@ -29,7 +29,7 @@ namespace RayCarrot.RCP.Core
             
             try
             {
-                if (APIControllerUISettings.GetSettings().DisplayExceptionLevel <= exceptionLevel)
+                if (RCFRCPC.Data.DisplayExceptionLevel <= exceptionLevel)
                     MessageBox.Show(GetMessage(), Resources.ExceptionMessageHeader, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 #pragma warning disable 168

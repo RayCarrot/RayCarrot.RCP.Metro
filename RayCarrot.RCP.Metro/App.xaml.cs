@@ -97,10 +97,8 @@ namespace RayCarrot.RCP.Metro
                 AddLocalizationManager<RCPMetroLocalizationManager>().
                 // Add backup manager
                 AddTransient<BackupManager>().
-                // Add RCP API
-                AddRCPAPI<RCPMetroAPIControllerManager>(new APIControllerSettings().
-                    // Add UI settings
-                    SetUISettings(new RCPMetroAPIControllerUISettings())).
+                // Add API controller manager
+                AddAPIControllerManager<RCPMetroAPIControllerManager>().
                 // Build the framework
                 Build(config, loadDefaultsFromDomain: false);
         }
@@ -547,7 +545,7 @@ namespace RayCarrot.RCP.Metro
                         break;
 
                     case nameof(AppUserData.LinkItemStyle):
-                        static string GetStyleSource(LinkItemStyles linkItemStye) => $"{APIControllerUISettings.GetSettings().ApplicationBasePath}/Styles/LinkItemStyles - {linkItemStye}.xaml";
+                        static string GetStyleSource(LinkItemStyles linkItemStye) => $"{RCFRCP.App.WPFApplicationBasePath}/Styles/LinkItemStyles - {linkItemStye}.xaml";
 
                         // Get previous source
                         var oldSource = GetStyleSource(PreviousLinkItemStyle);
