@@ -58,7 +58,7 @@ namespace RayCarrot.RCP.Metro
         {
             // Add custom configuration
             config.Add(RCFIO.AutoCorrectPathCasingKey,
-                // NOTE: Set to true?
+                // IDEA: Set to true?
                 false);
 
             // Set file log level

@@ -86,6 +86,9 @@ namespace RayCarrot.RCP.UI
 
                     // Spanish (Spain)
                     new CultureInfo("es-ES"), 
+
+                    // Catalan (Catalan)
+                    new CultureInfo("ca-ES"), 
                 });
             }
         }

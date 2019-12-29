@@ -1,7 +1,9 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
+﻿using System;
+using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.WPF;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows;
 using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
@@ -11,16 +13,17 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class AppUIManager
     {
-        // TODO: Make sure they run on UI thread
-
         #region UserInput
 
         public async Task<GamesSelectionResult> SelectGamesAsync(GamesSelectionViewModel gamesSelectionViewModel, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
         {
             RCFCore.Logger?.LogTraceSource($"A games selection dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
 
+            if (Application.Current.Dispatcher == null)
+                throw new Exception("The application does not have a valid dispatcher");
+
             // Create the dialog and get the result
-            var result = await new GamesSelectionDialog(gamesSelectionViewModel).ShowDialogAsync();
+            var result = await Application.Current.Dispatcher.Invoke(() => new GamesSelectionDialog(gamesSelectionViewModel)).ShowDialogAsync();
 
             if (result == null)
                 RCFCore.Logger?.LogTraceSource($"The games selection dialog returned null");
@@ -37,8 +40,11 @@ namespace RayCarrot.RCP.Metro
         {
             RCFCore.Logger?.LogTraceSource($"A game type selection dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
 
+            if (Application.Current.Dispatcher == null)
+                throw new Exception("The application does not have a valid dispatcher");
+
             // Create the dialog and get the result
-            var result = await new GameTypeSelectionDialog(gameTypeSelectionViewModel).ShowDialogAsync();
+            var result = await Application.Current.Dispatcher.Invoke(() => new GameTypeSelectionDialog(gameTypeSelectionViewModel)).ShowDialogAsync();
 
             if (result == null)
                 RCFCore.Logger?.LogTraceSource($"The game type selection dialog returned null");
@@ -55,8 +61,11 @@ namespace RayCarrot.RCP.Metro
         {
             RCFCore.Logger?.LogTraceSource($"An educational DOS game edit dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
 
+            if (Application.Current.Dispatcher == null)
+                throw new Exception("The application does not have a valid dispatcher");
+
             // Create the dialog and get the result
-            var result = await new EducationalDosGameEditDialog(viewModel).ShowDialogAsync();
+            var result = await Application.Current.Dispatcher.Invoke(() => new EducationalDosGameEditDialog(viewModel)).ShowDialogAsync();
 
             if (result == null)
                 RCFCore.Logger?.LogTraceSource($"The educational DOS game edit dialog returned null");
@@ -73,8 +82,11 @@ namespace RayCarrot.RCP.Metro
         {
             RCFCore.Logger?.LogTraceSource($"A jump list edit dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
 
+            if (Application.Current.Dispatcher == null)
+                throw new Exception("The application does not have a valid dispatcher");
+
             // Create the dialog and get the result
-            var result = await new JumpListEditDialog(viewModel).ShowDialogAsync();
+            var result = await Application.Current.Dispatcher.Invoke(() => new JumpListEditDialog(viewModel)).ShowDialogAsync();
 
             if (result == null)
                 RCFCore.Logger?.LogTraceSource($"The jump list edit dialog returned null");

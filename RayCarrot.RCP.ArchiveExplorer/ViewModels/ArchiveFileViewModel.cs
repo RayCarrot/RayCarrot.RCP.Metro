@@ -122,7 +122,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
             }
             else
             {
-                throw new NotImplementedException("A thumbnail can currently not be generated for non-image files in archives");
+                RCFCore.Logger?.LogWarningSource("A thumbnail can currently not be generated for non-image files in archives");
             }
         }
 

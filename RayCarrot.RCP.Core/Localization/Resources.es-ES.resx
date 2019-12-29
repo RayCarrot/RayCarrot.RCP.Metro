@@ -117,10 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Cancel" xml:space="preserve">
-    <value>Откажи</value>
-  </data>
-  <data name="Accept" xml:space="preserve">
-    <value>Прихвати</value>
+  <data name="Update_UnknownError" xml:space="preserve">
+    <value>Error desconocido</value>
+    <comment>Error desconocido</comment>
   </data>
 </root>

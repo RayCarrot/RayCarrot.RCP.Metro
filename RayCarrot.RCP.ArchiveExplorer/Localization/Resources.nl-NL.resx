@@ -120,9 +120,6 @@
   <data name="Cancel" xml:space="preserve">
     <value>Annuleren</value>
   </data>
-  <data name="Ok" xml:space="preserve">
-    <value>Ok</value>
-  </data>
   <data name="Accept" xml:space="preserve">
     <value>Accepteren</value>
   </data>

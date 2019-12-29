@@ -208,6 +208,11 @@
       <DependentUpon>R1FixConfigUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Rayman 1\FixConfig\R1FixConfigUtilityViewModel.cs" />
+    <Compile Include="Utilities\Rayman 2\CNTExplorer\R2CNTExplorerUtility.cs" />
+    <Compile Include="Utilities\Rayman 2\CNTExplorer\R2CNTExplorerUtilityUI.xaml.cs">
+      <DependentUpon>R2CNTExplorerUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Rayman 2\CNTExplorer\R2CNTExplorerUtilityViewModel.cs" />
     <Compile Include="Utilities\Rayman 2\DiscPatch\R2DiscPatchUtility.cs" />
     <Compile Include="Utilities\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml.cs">
       <DependentUpon>R2DiscPatchUtilityUI.xaml</DependentUpon>
@@ -384,6 +389,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Utilities\Rayman 1\FixConfig\R1FixConfigUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\Rayman 2\CNTExplorer\R2CNTExplorerUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -749,9 +758,11 @@
       <LastGenOutput>InstallerGames.Designer.cs</LastGenOutput>
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Resources.ca-ES.resx" />
     <EmbeddedResource Include="Localization\Resources.de-DE.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Resources.es-ES.resx" />
     <EmbeddedResource Include="Localization\Resources.es-MX.resx" />
     <EmbeddedResource Include="Localization\Resources.nl-NL.resx" />
     <EmbeddedResource Include="Localization\Resources.pl-PL.resx" />

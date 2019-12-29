@@ -205,9 +205,6 @@ pointer</comment>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="Ok" xml:space="preserve">
-    <value>Ok</value>
-  </data>
   <data name="Accept" xml:space="preserve">
     <value>Accept</value>
   </data>
@@ -215,5 +212,11 @@ pointer</comment>
     <value>Select file extension to export as for {0} files</value>
     <comment>Arguments:
 fileFormat</comment>
+  </data>
+  <data name="Archive_Title" xml:space="preserve">
+    <value>Archive Explorer</value>
+  </data>
+  <data name="Archive_CriticalError" xml:space="preserve">
+    <value>An error occurred in the Archive Explorer and it had to close</value>
   </data>
 </root>

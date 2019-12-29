@@ -117,23 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="File_FileNotFound" xml:space="preserve">
-    <value>Den angivna filen kunde inte hittas: {0}</value>
-  </data>
-  <data name="File_FileNotFoundHeader" xml:space="preserve">
-    <value>Filen hittades inte</value>
-  </data>
-  <data name="File_ErrorLaunchingFile" xml:space="preserve">
-    <value>Ett fel uppstod vid försök att starta {0}</value>
-  </data>
-  <data name="File_LocationNotFound" xml:space="preserve">
-    <value>Mappen kunde inte hittas</value>
-  </data>
-  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
-    <value>Sökväg-fel</value>
-  </data>
-  <data name="File_OpenLocationError" xml:space="preserve">
-    <value>Mappen kunde inte öppnas</value>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Åtgärden lyckades</value>
   </data>
   <data name="MessageHeader_Generic" xml:space="preserve">
     <value>Allmänt meddelande</value>
@@ -159,13 +144,28 @@
   <data name="ExceptionMessageInfo" xml:space="preserve">
     <value>Ett fel har inträffat i programmet. Nedan finns den tillgängliga felsökningsinformationen för den aktuella användarnivån i Carrot Framework.</value>
   </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>Den angivna filen kunde inte hittas: {0}</value>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>Filen hittades inte</value>
+  </data>
+  <data name="File_ErrorLaunchingFile" xml:space="preserve">
+    <value>Ett fel uppstod vid försök att starta {0}</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>Mappen kunde inte hittas</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>Sökväg-fel</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>Mappen kunde inte öppnas</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Avbryt</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
-  </data>
-  <data name="ActionSucceeded" xml:space="preserve">
-    <value>Åtgärden lyckades</value>
   </data>
 </root>

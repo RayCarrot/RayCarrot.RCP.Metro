@@ -50,50 +50,56 @@
                 <ItemsControl HorizontalAlignment="Center"
                               Grid.IsSharedSizeScope="True">
 
-                    <!-- TODO: Add Hakyra to credits -->
-
                     <ui:DuoGridItem Header="RayCarrot"
                                     Text="{Resx About_Credits_RayCarrot}" />
 
                     <ui:DuoGridItem Header="432 Hz"
-                                       Text="{Resx About_Credits_432Hz}" />
+                                    Text="{Resx About_Credits_432Hz}" />
+
+                    <ui:DuoGridItem Header="Droolie"
+                                    Text="{Resx About_Credits_Droolie}" />
+
+                    <ui:DuoGridItem Header="Hakyra"
+                                    Text="{Resx About_Credits_Hakyra}" />
 
                     <ui:DuoGridItem Header="Haruka Tavares"
-                                       Text="{Resx About_Credits_HarukaTavares}" />
+                                    Text="{Resx About_Credits_HarukaTavares}" />
 
                     <ui:DuoGridItem Header="ICUP321"
-                                       Text="{Resx About_Credits_ICUP321}" />
+                                    Text="{Resx About_Credits_ICUP321}" />
 
                     <ui:DuoGridItem Header="Juanmv94"
-                                       Text="{Resx About_Credits_Janmv94}"/>
+                                    Text="{Resx About_Credits_Janmv94}"/>
 
                     <ui:DuoGridItem Header="Noserdog"
-                                       Text="{Resx About_Credits_Noserdog}" />
+                                    Text="{Resx About_Credits_Noserdog}" />
 
                     <ui:DuoGridItem Header="OldClassicGamer"
-                                       Text="{Resx About_Credits_OldClassicGamer}" />
+                                    Text="{Resx About_Credits_OldClassicGamer}" />
 
                     <ui:DuoGridItem Header="Philipp Jeindl"
-                                       Text="{Resx About_Credits_PhilippJeindl}" />
+                                    Text="{Resx About_Credits_PhilippJeindl}" />
 
                     <ui:DuoGridItem Header="Pixelise"
-                                       Text="{Resx About_Credits_Pixelise}" />
+                                    Text="{Resx About_Credits_Pixelise}" />
 
                     <ui:DuoGridItem Header="PluMGMK"
-                                       Text="{Resx About_Credits_PluMGMK}" />
+                                    Text="{Resx About_Credits_PluMGMK}" />
 
                     <ui:DuoGridItem Header="RayActivity"
-                                       Text="{Resx About_Credits_RayActivity}" />
+                                    Text="{Resx About_Credits_RayActivity}" />
 
                     <ui:DuoGridItem Header="RibShark"
-                                       Text="{Resx About_Credits_RibShark}" />
+                                    Text="{Resx About_Credits_RibShark}" />
 
                     <ui:DuoGridItem Header="Snagglebee"
-                                       Text="{Resx About_Credits_Snagglebee}" />
+                                    Text="{Resx About_Credits_Snagglebee}" />
 
                 </ItemsControl>
 
-                <TextBlock Text="{Resx About_SpecialThanks}" 
+                <TextBlock Text="{Resx About_SpecialThanks}"
+                           MaxWidth="600"
+                           TextAlignment="Center"
                            TextWrapping="Wrap"
                            HorizontalAlignment="Center"/>
 

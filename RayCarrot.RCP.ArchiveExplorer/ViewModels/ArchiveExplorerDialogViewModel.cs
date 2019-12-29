@@ -1,10 +1,10 @@
 ﻿using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.ArchiveExplorer
 {
@@ -20,6 +20,9 @@ namespace RayCarrot.RCP.ArchiveExplorer
         /// <param name="filePaths">The archive file paths</param>
         public ArchiveExplorerDialogViewModel(IArchiveDataManager manager, IEnumerable<FileSystemPath> filePaths)
         {
+            // Set the default title
+            Title = Resources.Archive_Title;
+
             // Get the manager
             Manager = manager;
 

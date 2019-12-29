@@ -244,6 +244,9 @@ namespace RayCarrot.RCP.ArchiveExplorer
 
         public override void Dispose()
         {
+            // Cancel refreshing thumbnails
+            CancelRefreshingThumbnails = true;
+
             // Dispose base class
             base.Dispose();
 

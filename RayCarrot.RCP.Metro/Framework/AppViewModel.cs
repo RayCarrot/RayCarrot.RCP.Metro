@@ -62,6 +62,7 @@ namespace RayCarrot.RCP.Metro
                     Games.Rayman2,
                     new Type[]
                     {
+                        typeof(R2CNTExplorerUtility),
                         typeof(R2TranslationUtility),
                         typeof(R2DiscPatchUtility),
                     }
@@ -524,12 +525,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentVersion => new Version(7, 2, 0, 0);
+        public Version CurrentVersion => new Version(8, 0, 0, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
-        public bool IsBeta => false;
+        public bool IsBeta => true;
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>

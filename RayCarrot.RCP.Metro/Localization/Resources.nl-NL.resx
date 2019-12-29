@@ -750,45 +750,6 @@
   <data name="GameLink_R2nGlide" xml:space="preserve">
     <value>nGlide configuratie</value>
   </data>
-  <data name="ActionSucceeded" xml:space="preserve">
-    <value>Actie voltooid</value>
-  </data>
-  <data name="MessageHeader_Generic" xml:space="preserve">
-    <value>Algemeen Bericht</value>
-  </data>
-  <data name="MessageHeader_Information" xml:space="preserve">
-    <value>Informatiebericht</value>
-  </data>
-  <data name="MessageHeader_Error" xml:space="preserve">
-    <value>Foutbericht</value>
-  </data>
-  <data name="MessageHeader_Warning" xml:space="preserve">
-    <value>Waarschuwingsbericht</value>
-  </data>
-  <data name="MessageHeader_Success" xml:space="preserve">
-    <value>Succesbericht</value>
-  </data>
-  <data name="MessageHeader_Question" xml:space="preserve">
-    <value>Vraag</value>
-  </data>
-  <data name="ExceptionMessageHeader" xml:space="preserve">
-    <value>Exception</value>
-  </data>
-  <data name="ExceptionMessageInfo" xml:space="preserve">
-    <value>Een exceptie heeft zich voorgedaan in de applicatie. Hieronder de beschikbare debug informatie, op basis van het huidige gebruikersniveau in het Carrot Framework.</value>
-  </data>
-  <data name="File_ErrorLaunchingFile" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens een startpoging {0}</value>
-  </data>
-  <data name="File_LocationNotFound" xml:space="preserve">
-    <value>Locatie niet gevonden</value>
-  </data>
-  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
-    <value>Directory fout</value>
-  </data>
-  <data name="File_OpenLocationError" xml:space="preserve">
-    <value>De map kon niet geopend worden</value>
-  </data>
   <data name="LocateGame_BrowserHeader" xml:space="preserve">
     <value>Selecteer Installatiemap</value>
   </data>
@@ -1210,7 +1171,7 @@ Herstarten?</value>
     <value>Niet in staat het spel te vinden</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>In het bijzonder dank aan AuToMaNiAk005, Evelyn Chickentalk, MixerX, PokGOT4N, Ryemanni, Droolie, MilesTheCreator, Hakyra en alle andere Rayman fans!</value>
+    <value>In het bijzonder dank aan AuToMaNiAk005, Evelyn Chickentalk, MixerX, PokGOT4N, Ryemanni, MilesTheCreator en alle andere Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>User interface, Carrot Framework, Game Finder, Game Installer, hulpprogramma's, Rayman 2 vertalingen, Zweedse programmavertaling</value>
@@ -1229,9 +1190,6 @@ Herstarten?</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Rayman 2 vertalingen, Portugese programmavertaling</value>
-  </data>
-  <data name="About_Credits_EvelynChickentalk" xml:space="preserve">
-    <value>Bestandsstructuur voor de educatieve Rayman games</value>
   </data>
   <data name="ROU_HQVideosFailed" xml:space="preserve">
     <value>Vervangen video's mislukt</value>
@@ -1825,18 +1783,6 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
   </data>
   <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
     <value>Fout tijdens het uitvoeren van de Updater</value>
-  </data>
-  <data name="File_RegKeyNotFound" xml:space="preserve">
-    <value>De registersleutel kon niet gevonden worden</value>
-  </data>
-  <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
-    <value>Registersleutel niet gevonden</value>
-  </data>
-  <data name="File_OpenRegKeyError" xml:space="preserve">
-    <value>De sleutel kon niet benaderd worden</value>
-  </data>
-  <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
-    <value>Fout bij het benaderen van de sleutel</value>
   </data>
   <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
     <value>Primair ubi.ini bestand</value>
@@ -2534,17 +2480,6 @@ Houd L1 + R1 (of gelijkwaardige knoppen op de huidige controller) in het menu va
   </data>
   <data name="EducationalOptions_EditSuccess" xml:space="preserve">
     <value>Het spel is succesvol gewijzigd</value>
-  </data>
-  <data name="App_ExceptionMessage" xml:space="preserve">
-    <value>{0}
-
-Foutmelding: {1}</value>
-  </data>
-  <data name="App_ExceptionMessageDefaultHeader" xml:space="preserve">
-    <value>Fout</value>
-  </data>
-  <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden</value>
   </data>
   <data name="Lang_Dutch" xml:space="preserve">
     <value>Nederlands</value>

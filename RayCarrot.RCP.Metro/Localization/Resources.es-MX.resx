@@ -528,39 +528,6 @@
   <data name="GameLink_R2nGlide" xml:space="preserve">
     <value>Configuración nGlide</value>
   </data>
-  <data name="ActionSucceeded" xml:space="preserve">
-    <value>Acción exitosa</value>
-  </data>
-  <data name="MessageHeader_Generic" xml:space="preserve">
-    <value>Mensaje Genérico</value>
-  </data>
-  <data name="MessageHeader_Information" xml:space="preserve">
-    <value>Mensaje de información</value>
-  </data>
-  <data name="MessageHeader_Error" xml:space="preserve">
-    <value>Mensaje de error</value>
-  </data>
-  <data name="MessageHeader_Warning" xml:space="preserve">
-    <value>Mensaje de aviso</value>
-  </data>
-  <data name="MessageHeader_Success" xml:space="preserve">
-    <value>Mensaje de éxito</value>
-  </data>
-  <data name="MessageHeader_Question" xml:space="preserve">
-    <value>Mensaje de pregunta</value>
-  </data>
-  <data name="ExceptionMessageHeader" xml:space="preserve">
-    <value>Excepción</value>
-  </data>
-  <data name="File_LocationNotFound" xml:space="preserve">
-    <value>La localización no se pudo abrir</value>
-  </data>
-  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
-    <value>Error de directório</value>
-  </data>
-  <data name="File_OpenLocationError" xml:space="preserve">
-    <value>El directorio no se pudo abrir</value>
-  </data>
   <data name="LocateGame_BrowserHeader" xml:space="preserve">
     <value>Seleccionar directorio de instalación</value>
   </data>
@@ -724,7 +691,7 @@ Notícias:
     <value>No se pudo encontrar el juego</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>¡Un agradecimiento especial a AuToMaNiAk005, Evelyn Chickentalk, MixerX, PokGOT4N, Ryemanni, Droolie, MilesTheCreator, Hakyra y todos los demás fanáticos de Rayman!</value>
+    <value>¡Un agradecimiento especial a AuToMaNiAk005, Evelyn Chickentalk, MixerX, PokGOT4N, Ryemanni, MilesTheCreator y todos los demás fanáticos de Rayman!</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Parches de controlador</value>
@@ -1112,18 +1079,6 @@ Notícias:
   </data>
   <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
     <value>Error al ejecutar el actualizador</value>
-  </data>
-  <data name="File_RegKeyNotFound" xml:space="preserve">
-    <value>La llave de registro no fue encontrada</value>
-  </data>
-  <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
-    <value>Llave de registro no encontrada</value>
-  </data>
-  <data name="File_OpenRegKeyError" xml:space="preserve">
-    <value>La llave no pudo ser abierto</value>
-  </data>
-  <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
-    <value>Error al abriendo la llave</value>
   </data>
   <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
     <value>Archivo ubi.ini Primário</value>

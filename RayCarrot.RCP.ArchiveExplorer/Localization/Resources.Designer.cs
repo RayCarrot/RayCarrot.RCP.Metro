@@ -85,6 +85,15 @@ namespace RayCarrot.RCP.ArchiveExplorer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred in the Archive Explorer and it had to close.
+        /// </summary>
+        public static string Archive_CriticalError {
+            get {
+                return ResourceManager.GetString("Archive_CriticalError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
         public static string Archive_Export {
@@ -265,20 +274,20 @@ namespace RayCarrot.RCP.ArchiveExplorer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archive Explorer.
+        /// </summary>
+        public static string Archive_Title {
+            get {
+                return ResourceManager.GetString("Archive_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ok.
-        /// </summary>
-        public static string Ok {
-            get {
-                return ResourceManager.GetString("Ok", resourceCulture);
             }
         }
     }

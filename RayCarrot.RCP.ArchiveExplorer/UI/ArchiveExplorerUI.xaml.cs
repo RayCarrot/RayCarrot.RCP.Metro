@@ -2,8 +2,14 @@
 using RayCarrot.Extensions;
 using RayCarrot.WPF;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
+using RayCarrot.RCP.Core;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.ArchiveExplorer
 {
@@ -71,6 +77,36 @@ namespace RayCarrot.RCP.ArchiveExplorer
         {
             ViewModel?.Dispose();
         }
+
+        #endregion
+
+        #region Public Static Methods
+
+        // IDEA: Move to UI manager
+        /// <summary>
+        /// Shows a new instance of the archive explorer, catching any potential exceptions
+        /// </summary>
+        /// <param name="manager">The archive data manager</param>
+        /// <param name="filePaths">The archive file paths</param>
+        /// <returns>The task</returns>
+        public static async Task ShowAsync(IArchiveDataManager manager, IEnumerable<FileSystemPath> filePaths)
+        {
+            try
+            {
+                if (Application.Current.Dispatcher == null)
+                    throw new Exception("The application does not have a valid dispatcher");
+
+                // Run on UI thread
+                await Application.Current.Dispatcher.Invoke(() => new ArchiveExplorerUI(new ArchiveExplorerDialogViewModel(manager, filePaths))).ShowWindowAsync();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Archive explorer");
+
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, ArchiveExplorer.Resources.Archive_CriticalError);
+            }
+        }
+
 
         #endregion
 

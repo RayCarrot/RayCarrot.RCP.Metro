@@ -117,6 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Acção sucedida</value>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Mensagem Genérica</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Mensagem de informação</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Mensagem de erro</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Mensagem de aviso</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Mensagem de sucesso</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Mensagem de pergunta</value>
+  </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Excepção</value>
+  </data>
+  <data name="ExceptionMessageInfo" xml:space="preserve">
+    <value>Ocorreu uma excepção na aplicação. Abaixo está a informação de depuração disponível para o nível de utilizador actual no Carrot Framework.</value>
+  </data>
   <data name="File_FileNotFound" xml:space="preserve">
     <value>O ficheiro especificado não pode ser encontrado: {0}</value>
   </data>
@@ -147,37 +174,10 @@
   <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
     <value>Erro ao abrir chave</value>
   </data>
-  <data name="MessageHeader_Generic" xml:space="preserve">
-    <value>Mensagem Genérica</value>
-  </data>
-  <data name="MessageHeader_Information" xml:space="preserve">
-    <value>Mensagem de informação</value>
-  </data>
-  <data name="MessageHeader_Error" xml:space="preserve">
-    <value>Mensagem de erro</value>
-  </data>
-  <data name="MessageHeader_Warning" xml:space="preserve">
-    <value>Mensagem de aviso</value>
-  </data>
-  <data name="MessageHeader_Success" xml:space="preserve">
-    <value>Mensagem de sucesso</value>
-  </data>
-  <data name="MessageHeader_Question" xml:space="preserve">
-    <value>Mensagem de pergunta</value>
-  </data>
-  <data name="ExceptionMessageHeader" xml:space="preserve">
-    <value>Excepção</value>
-  </data>
-  <data name="ExceptionMessageInfo" xml:space="preserve">
-    <value>Ocorreu uma excepção na aplicação. Abaixo está a informação de depuração disponível para o nível de utilizador actual no Carrot Framework.</value>
-  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
-  </data>
-  <data name="ActionSucceeded" xml:space="preserve">
-    <value>Acção sucedida</value>
   </data>
 </root>

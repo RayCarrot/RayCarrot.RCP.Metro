@@ -97,7 +97,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dutch program translation, program testing.
+        ///   Looks up a localized string similar to Dutch (Netherlands) program translation, program testing.
         /// </summary>
         public static string About_Credits_432Hz {
             get {
@@ -106,16 +106,25 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File structure for the educational Rayman games.
+        ///   Looks up a localized string similar to Rayman reverse engineering.
         /// </summary>
-        public static string About_Credits_EvelynChickentalk {
+        public static string About_Credits_Droolie {
             get {
-                return ResourceManager.GetString("About_Credits_EvelynChickentalk", resourceCulture);
+                return ResourceManager.GetString("About_Credits_Droolie", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman 2 translations, Portuguese program translation.
+        ///   Looks up a localized string similar to Spanish (Spain) program translation, Catalan (Catalan) program translation.
+        /// </summary>
+        public static string About_Credits_Hakyra {
+            get {
+                return ResourceManager.GetString("About_Credits_Hakyra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 translations, Portuguese (Portugal) program translation.
         /// </summary>
         public static string About_Credits_HarukaTavares {
             get {
@@ -124,7 +133,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Spanish program translation.
+        ///   Looks up a localized string similar to Spanish (Mexico) program translation.
         /// </summary>
         public static string About_Credits_ICUP321 {
             get {
@@ -151,7 +160,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Serbian program translation.
+        ///   Looks up a localized string similar to Serbian (Cyrillic) program translation.
         /// </summary>
         public static string About_Credits_OldClassicGamer {
             get {
@@ -160,7 +169,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to German program translation.
+        ///   Looks up a localized string similar to German (Germany) program translation.
         /// </summary>
         public static string About_Credits_PhilippJeindl {
             get {
@@ -169,7 +178,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Polish program translation.
+        ///   Looks up a localized string similar to Polish (Poland) program translation.
         /// </summary>
         public static string About_Credits_Pixelise {
             get {
@@ -187,7 +196,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Graphics, program testing.
+        ///   Looks up a localized string similar to Games page icon, program testing.
         /// </summary>
         public static string About_Credits_RayActivity {
             get {
@@ -196,7 +205,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations, Swedish program translation.
+        ///   Looks up a localized string similar to User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations, Swedish (Sweden) program translation.
         /// </summary>
         public static string About_Credits_RayCarrot {
             get {
@@ -260,7 +269,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, Evelyn Chickentalk, MixerX, PokGOT4N, Ryemanni, Droolie, MilesTheCreator, Hakyra and all other Rayman fans!.
+        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, Evelyn Chickentalk, MixerX, PokGOT4N, Ryemanni, MilesTheCreator and all other Rayman fans!.
         /// </summary>
         public static string About_SpecialThanks {
             get {
@@ -352,15 +361,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Action succeeded.
-        /// </summary>
-        public static string ActionSucceeded {
-            get {
-                return ResourceManager.GetString("ActionSucceeded", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The game {0} has already been added.
         /// </summary>
         public static string AddGame_Duplicate {
@@ -375,35 +375,6 @@ namespace RayCarrot.RCP.Metro {
         public static string AddGame_DuplicateHeader {
             get {
                 return ResourceManager.GetString("AddGame_DuplicateHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0}
-        ///
-        ///Error message: {1}.
-        /// </summary>
-        public static string App_ExceptionMessage {
-            get {
-                return ResourceManager.GetString("App_ExceptionMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error.
-        /// </summary>
-        public static string App_ExceptionMessageDefaultHeader {
-            get {
-                return ResourceManager.GetString("App_ExceptionMessageDefaultHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error has occurred..
-        /// </summary>
-        public static string App_ExceptionMessageDefaultMessage {
-            get {
-                return ResourceManager.GetString("App_ExceptionMessageDefaultMessage", resourceCulture);
             }
         }
         
@@ -467,6 +438,15 @@ namespace RayCarrot.RCP.Metro {
         public static string AppNews_Title {
             get {
                 return ResourceManager.GetString("AppNews_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Archive Explorer.
+        /// </summary>
+        public static string ArchiveExplorer_Open {
+            get {
+                return ResourceManager.GetString("ArchiveExplorer_Open", resourceCulture);
             }
         }
         
@@ -3145,24 +3125,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exception.
-        /// </summary>
-        public static string ExceptionMessageHeader {
-            get {
-                return ResourceManager.GetString("ExceptionMessageHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An exception has occurred in the application. Below is the available debug information for the current user level in the Carrot Framework..
-        /// </summary>
-        public static string ExceptionMessageInfo {
-            get {
-                return ResourceManager.GetString("ExceptionMessageInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select a file destination to export to.
         /// </summary>
         public static string ExportDestinationSelectionHeader {
@@ -3195,78 +3157,6 @@ namespace RayCarrot.RCP.Metro {
         public static string FiestaRunVersion_Win10 {
             get {
                 return ResourceManager.GetString("FiestaRunVersion_Win10", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when attempting to run {0}.
-        /// </summary>
-        public static string File_ErrorLaunchingFile {
-            get {
-                return ResourceManager.GetString("File_ErrorLaunchingFile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Location not found.
-        /// </summary>
-        public static string File_LocationNotFound {
-            get {
-                return ResourceManager.GetString("File_LocationNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The directory could not be opened.
-        /// </summary>
-        public static string File_OpenLocationError {
-            get {
-                return ResourceManager.GetString("File_OpenLocationError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Directory error.
-        /// </summary>
-        public static string File_OpenLocationErrorHeader {
-            get {
-                return ResourceManager.GetString("File_OpenLocationErrorHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The key could not be opened.
-        /// </summary>
-        public static string File_OpenRegKeyError {
-            get {
-                return ResourceManager.GetString("File_OpenRegKeyError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error opening key.
-        /// </summary>
-        public static string File_OpenRegKeyErrorHeader {
-            get {
-                return ResourceManager.GetString("File_OpenRegKeyErrorHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The registry key was not found.
-        /// </summary>
-        public static string File_RegKeyNotFound {
-            get {
-                return ResourceManager.GetString("File_RegKeyNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Registry key not found.
-        /// </summary>
-        public static string File_RegKeyNotFoundHeader {
-            get {
-                return ResourceManager.GetString("File_RegKeyNotFoundHeader", resourceCulture);
             }
         }
         
@@ -5700,60 +5590,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error Message.
-        /// </summary>
-        public static string MessageHeader_Error {
-            get {
-                return ResourceManager.GetString("MessageHeader_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Generic Message.
-        /// </summary>
-        public static string MessageHeader_Generic {
-            get {
-                return ResourceManager.GetString("MessageHeader_Generic", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Information Message.
-        /// </summary>
-        public static string MessageHeader_Information {
-            get {
-                return ResourceManager.GetString("MessageHeader_Information", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Question Message.
-        /// </summary>
-        public static string MessageHeader_Question {
-            get {
-                return ResourceManager.GetString("MessageHeader_Question", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Success Message.
-        /// </summary>
-        public static string MessageHeader_Success {
-            get {
-                return ResourceManager.GetString("MessageHeader_Success", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Warning Message.
-        /// </summary>
-        public static string MessageHeader_Warning {
-            get {
-                return ResourceManager.GetString("MessageHeader_Warning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Drive.
         /// </summary>
         public static string MountOption_Drive {
@@ -6416,6 +6252,24 @@ namespace RayCarrot.RCP.Metro {
         public static string R2HotKeyValidation_ModifierKeysUsed {
             get {
                 return ResourceManager.GetString("R2HotKeyValidation_ModifierKeysUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archive Explorer (.cnt).
+        /// </summary>
+        public static string R2U_CNTExplorer_Header {
+            get {
+                return ResourceManager.GetString("R2U_CNTExplorer_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This tool allows you to view/edit the .cnt archive files, allowing importing/exporting of game textures.
+        /// </summary>
+        public static string R2U_CNTExplorer_Info {
+            get {
+                return ResourceManager.GetString("R2U_CNTExplorer_Info", resourceCulture);
             }
         }
         

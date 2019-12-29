@@ -751,47 +751,6 @@ This is a growing project with more features planned on being added with future 
   <data name="GameLink_R2nGlide" xml:space="preserve">
     <value>nGlide config</value>
   </data>
-  <data name="ActionSucceeded" xml:space="preserve">
-    <value>Action succeeded</value>
-  </data>
-  <data name="MessageHeader_Generic" xml:space="preserve">
-    <value>Generic Message</value>
-  </data>
-  <data name="MessageHeader_Information" xml:space="preserve">
-    <value>Information Message</value>
-  </data>
-  <data name="MessageHeader_Error" xml:space="preserve">
-    <value>Error Message</value>
-  </data>
-  <data name="MessageHeader_Warning" xml:space="preserve">
-    <value>Warning Message</value>
-  </data>
-  <data name="MessageHeader_Success" xml:space="preserve">
-    <value>Success Message</value>
-  </data>
-  <data name="MessageHeader_Question" xml:space="preserve">
-    <value>Question Message</value>
-  </data>
-  <data name="ExceptionMessageHeader" xml:space="preserve">
-    <value>Exception</value>
-  </data>
-  <data name="ExceptionMessageInfo" xml:space="preserve">
-    <value>An exception has occurred in the application. Below is the available debug information for the current user level in the Carrot Framework.</value>
-  </data>
-  <data name="File_ErrorLaunchingFile" xml:space="preserve">
-    <value>An error occurred when attempting to run {0}</value>
-    <comment>Arguments:
-filePath</comment>
-  </data>
-  <data name="File_LocationNotFound" xml:space="preserve">
-    <value>Location not found</value>
-  </data>
-  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
-    <value>Directory error</value>
-  </data>
-  <data name="File_OpenLocationError" xml:space="preserve">
-    <value>The directory could not be opened</value>
-  </data>
   <data name="LocateGame_BrowserHeader" xml:space="preserve">
     <value>Select Install Directory</value>
   </data>
@@ -1275,10 +1234,10 @@ gameDisplayName</comment>
     <value>Unable to find game</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Special thanks to AuToMaNiAk005, Evelyn Chickentalk, MixerX, PokGOT4N, Ryemanni, Droolie, MilesTheCreator, Hakyra and all other Rayman fans!</value>
+    <value>Special thanks to AuToMaNiAk005, Evelyn Chickentalk, MixerX, PokGOT4N, Ryemanni, MilesTheCreator and all other Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations, Swedish program translation</value>
+    <value>User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations, Swedish (Sweden) program translation</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -1293,10 +1252,7 @@ gameDisplayName</comment>
     <value>Rayman 2 translations</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>Rayman 2 translations, Portuguese program translation</value>
-  </data>
-  <data name="About_Credits_EvelynChickentalk" xml:space="preserve">
-    <value>File structure for the educational Rayman games</value>
+    <value>Rayman 2 translations, Portuguese (Portugal) program translation</value>
   </data>
   <data name="ROU_HQVideosFailed" xml:space="preserve">
     <value>Video replacement failed</value>
@@ -1776,19 +1732,19 @@ Running an application in compatibility mode is done by selecting the option und
     <value>Rayman PlayStation Soundtrack utility, Rayman M/Arena disc check removal</value>
   </data>
   <data name="About_Credits_ICUP321" xml:space="preserve">
-    <value>Spanish program translation</value>
+    <value>Spanish (Mexico) program translation</value>
   </data>
   <data name="About_Credits_OldClassicGamer" xml:space="preserve">
-    <value>Serbian program translation</value>
+    <value>Serbian (Cyrillic) program translation</value>
   </data>
   <data name="About_Credits_Pixelise" xml:space="preserve">
-    <value>Polish program translation</value>
+    <value>Polish (Poland) program translation</value>
   </data>
   <data name="About_Credits_PhilippJeindl" xml:space="preserve">
-    <value>German program translation</value>
+    <value>German (Germany) program translation</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
-    <value>Dutch program translation, program testing</value>
+    <value>Dutch (Netherlands) program translation, program testing</value>
   </data>
   <data name="BrowseBox_Browse" xml:space="preserve">
     <value>Browse</value>
@@ -1920,18 +1876,6 @@ downloadURL</comment>
   </data>
   <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
     <value>Error running updater</value>
-  </data>
-  <data name="File_RegKeyNotFound" xml:space="preserve">
-    <value>The registry key was not found</value>
-  </data>
-  <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
-    <value>Registry key not found</value>
-  </data>
-  <data name="File_OpenRegKeyError" xml:space="preserve">
-    <value>The key could not be opened</value>
-  </data>
-  <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
-    <value>Error opening key</value>
   </data>
   <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
     <value>Primary ubi.ini file</value>
@@ -2109,7 +2053,7 @@ appDataLocations</comment>
     <value>Due to the state of the program being changed it needs to update the information stored under installed programs. This requires the program to run as administrator. Until then the information shown under installed programs might not be accurate.</value>
   </data>
   <data name="About_Credits_RayActivity" xml:space="preserve">
-    <value>Graphics, program testing</value>
+    <value>Games page icon, program testing</value>
   </data>
   <data name="Backup_GOGSyncWarning" xml:space="preserve">
     <value>This game might have its save files synced through GOG Galaxy. If so the backup/restore utility might not effect this game even though the operation succeeds.</value>
@@ -2598,20 +2542,6 @@ Hold L1 + R1 in the menu (or equivalent on the currently used controller), then 
   <data name="EducationalOptions_EditSuccess" xml:space="preserve">
     <value>The game has been edited successfully</value>
   </data>
-  <data name="App_ExceptionMessage" xml:space="preserve">
-    <value>{0}
-
-Error message: {1}</value>
-    <comment>Arguments:
-message
-exceptionMessage</comment>
-  </data>
-  <data name="App_ExceptionMessageDefaultHeader" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
-    <value>An error has occurred.</value>
-  </data>
   <data name="Lang_Dutch" xml:space="preserve">
     <value>Dutch</value>
   </data>
@@ -2997,5 +2927,20 @@ gameDisplayName</comment>
   </data>
   <data name="GameDisplay_DownloadUplay" xml:space="preserve">
     <value>Download from Uplay</value>
+  </data>
+  <data name="R2U_CNTExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer (.cnt)</value>
+  </data>
+  <data name="R2U_CNTExplorer_Info" xml:space="preserve">
+    <value>This tool allows you to view/edit the .cnt archive files, allowing importing/exporting of game textures</value>
+  </data>
+  <data name="ArchiveExplorer_Open" xml:space="preserve">
+    <value>Open Archive Explorer</value>
+  </data>
+  <data name="About_Credits_Droolie" xml:space="preserve">
+    <value>Rayman reverse engineering</value>
+  </data>
+  <data name="About_Credits_Hakyra" xml:space="preserve">
+    <value>Spanish (Spain) program translation, Catalan (Catalan) program translation</value>
   </data>
 </root>

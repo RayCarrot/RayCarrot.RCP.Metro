@@ -59,6 +59,8 @@
     <Compile Include="UI\FileExtensionSelectionDialog.xaml.cs">
       <DependentUpon>FileExtensionSelectionDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Dialogs\FileExtensionSelectionDialogResult.cs" />
+    <Compile Include="ViewModels\Dialogs\FileExtensionSelectionDialogViewModel.cs" />
     <Compile Include="ViewModels\ArchiveExplorerDialogViewModel.cs" />
     <Compile Include="Base\ArchiveDirectory.cs" />
     <Compile Include="Base\IArchiveDataManager.cs" />
@@ -149,6 +151,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="Localization\Resources.es-ES.resx" />
     <EmbeddedResource Include="Localization\Resources.es-MX.resx" />
     <EmbeddedResource Include="Localization\Resources.nl-NL.resx" />
     <EmbeddedResource Include="Localization\Resources.pl-PL.resx" />

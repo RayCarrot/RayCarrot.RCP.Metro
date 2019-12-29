@@ -100,8 +100,8 @@ namespace RayCarrot.RCP.ArchiveExplorer
         /// </summary>
         public string[] SupportedFileExtensions => new string[]
         {
-            ".gf",
             ".bmp",
+            ".gf",
             ".png",
             ".jpeg",
             ".jpg"

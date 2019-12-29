@@ -1,8 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
+using RayCarrot.RCP.Core;
+using RayCarrot.UserData;
+using RayCarrot.Windows.Registry;
 using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.UI
