@@ -373,7 +373,6 @@ namespace RayCarrot.RCP.Metro
                         var libraries = new string[]
                         {
                             "RayCarrot.RCP.Core",
-                            "RayCarrot.RCP.UI",
                             "RayCarrot.RCP.ArchiveExplorer",
                             "RayCarrot.CarrotFramework",
                             "RayCarrot.CarrotFramework.Abstractions",

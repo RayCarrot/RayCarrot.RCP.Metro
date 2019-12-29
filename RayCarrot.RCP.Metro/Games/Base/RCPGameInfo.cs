@@ -7,7 +7,6 @@ using MahApps.Metro.IconPacks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.UI;
 using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
@@ -208,7 +207,7 @@ namespace RayCarrot.RCP.Metro
                             string path = x.Path;
 
                             // Create the command
-                            var command = new AsyncRelayCommand(async () => (await RCFRCPA.File.LaunchFileAsync(path))?.Dispose());
+                            var command = new AsyncRelayCommand(async () => (await RCFRCPC.File.LaunchFileAsync(path))?.Dispose());
 
                                 if (x.Icon != PackIconMaterialKind.None)
                                     return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
@@ -249,7 +248,7 @@ namespace RayCarrot.RCP.Metro
                             instDir += DefaultFileName;
 
                         // Open the location
-                        await RCFRCPA.File.OpenExplorerLocationAsync(instDir);
+                        await RCFRCPC.File.OpenExplorerLocationAsync(instDir);
 
                         RCFCore.Logger?.LogTraceSource($"The Game {Game} install location was opened");
                     }), UserLevel.Advanced));
@@ -297,7 +296,7 @@ namespace RayCarrot.RCP.Metro
                             string path = x.Path;
 
                             // Create the command
-                            var command = new AsyncRelayCommand(async () => (await RCFRCPA.File.LaunchFileAsync(path))?.Dispose());
+                            var command = new AsyncRelayCommand(async () => (await RCFRCPC.File.LaunchFileAsync(path))?.Dispose());
 
                             // Return the item
                             return new OverflowButtonItemViewModel(x.Header, x.Icon, command);

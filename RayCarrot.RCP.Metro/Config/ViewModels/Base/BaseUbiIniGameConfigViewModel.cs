@@ -7,7 +7,6 @@ using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.UI;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -35,7 +34,7 @@ namespace RayCarrot.RCP.Metro
 
             // Set properties
             Game = game;
-            CanModifyGame = RCFRCPA.File.CheckDirectoryWriteAccess(Game.GetInstallDir(false));
+            CanModifyGame = RCFRCPC.File.CheckDirectoryWriteAccess(Game.GetInstallDir(false));
 
             if (!CanModifyGame)
                 RCFCore.Logger?.LogInformationSource($"The game {Game} can't be modified");

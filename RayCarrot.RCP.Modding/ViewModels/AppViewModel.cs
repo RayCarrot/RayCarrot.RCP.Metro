@@ -4,7 +4,6 @@ using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.RCP.ArchiveExplorer;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.UI;
 using RayCarrot.UI;
 using RayCarrot.WPF;
 using System;

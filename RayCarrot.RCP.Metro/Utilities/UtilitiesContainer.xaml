@@ -7,7 +7,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
+             xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
              ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -28,14 +28,14 @@
                         <TextBlock Style="{StaticResource HeaderTextBlock}"
                                    Text="{Binding Path=DisplayHeader}" />
 
-                        <ui:InfoIcon Style="{StaticResource AdditionalFilesRequired}"
+                        <core:InfoIcon Style="{StaticResource AdditionalFilesRequired}"
                                         Text="{Resx Utility_AdditionalFilesRequired}"
                                         Visibility="{Binding Path=Utility.RequiresAdditionalFiles, Converter={rwpf:BooleanToVisibilityConverter}, Mode=OneTime}"/>
 
-                        <ui:InfoIcon Text="{Binding Path=InfoText}"
+                        <core:InfoIcon Text="{Binding Path=InfoText}"
                                         Visibility="{Binding Path=InfoText, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"/>
 
-                        <ui:InfoIcon IconKind="InformationOutline"
+                        <core:InfoIcon IconKind="InformationOutline"
                                         Foreground="Red"
                                         Text="{Binding Path=WarningText}"
                                         Visibility="{Binding Path=WarningText, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}" />

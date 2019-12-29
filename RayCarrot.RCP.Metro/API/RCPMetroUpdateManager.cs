@@ -55,6 +55,11 @@ namespace RayCarrot.RCP.Metro
         protected override Version CurrentVersion => RCFRCP.App.CurrentVersion;
 
         /// <summary>
+        /// The fallback URL to display to the user in case of an error
+        /// </summary>
+        protected override string UserFallbackURL => "raycarrot.ylemnova.com";
+
+        /// <summary>
         /// The manifest URL
         /// </summary>
         protected override string ManifestURL => CommonUrls.UpdateManifestUrl;

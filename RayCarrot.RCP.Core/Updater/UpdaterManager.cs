@@ -1,9 +1,12 @@
 ﻿using System;
+using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Core
 {
@@ -149,6 +152,49 @@ namespace RayCarrot.RCP.Core
         }
 
         /// <summary>
+        /// Updates the application
+        /// </summary>
+        /// <param name="result">The updater check result to use when updating</param>
+        /// <param name="asAdmin">Indicates if the updater should run as admin</param>
+        /// <returns>A value indicating if the operation succeeded</returns>
+        public async Task<bool> UpdateAsync(UpdaterCheckResult result, bool asAdmin)
+        {
+            throw new Exception();
+            //try
+            //{
+            //    // Create the parent directory for the update file
+            //    Directory.CreateDirectory(RCFRCPC.Path.UpdaterFile.Parent);
+
+            //    // Deploy the updater
+            //    File.WriteAllBytes(RCFRCPC.Path.UpdaterFile, Files.Rayman_Control_Panel_Updater);
+
+            //    RCFCore.Logger?.LogInformationSource($"The updater was created");
+            //}
+            //catch (Exception ex)
+            //{
+            //    ex.HandleError("Writing updater to temp path", RCFRCPC.Path.UpdaterFile);
+
+            //    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, UserFallbackURL), Resources.Update_UpdaterErrorHeader);
+                
+            //    return false;
+            //}
+
+            //// Launch the updater and capture the process
+            //using var updateProcess = await RCFRCPC.File.LaunchFileAsync(RCFRCP.Path.UpdaterFile, asAdmin, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.DarkMode} {RCFRCP.Data.UserLevel} {result.IsBetaUpdate} \"{RCFCore.Data.CurrentCulture}\"");
+
+            //// Make sure we have a valid process
+            //if (updateProcess == null)
+            //{
+            //    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, UserFallbackURL), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
+
+            //    return false;
+            //}
+
+            //// Shut down the app
+            //await App.Current.ShutdownRCFAppAsync(true);
+        }
+
+        /// <summary>
         /// Gets the latest version from the manifest
         /// </summary>
         /// <param name="manifest">The manifest to get the value from</param>
@@ -176,6 +222,11 @@ namespace RayCarrot.RCP.Core
         /// The current version of the application
         /// </summary>
         protected abstract Version CurrentVersion { get; }
+
+        /// <summary>
+        /// The fallback URL to display to the user in case of an error
+        /// </summary>
+        protected abstract string UserFallbackURL { get; }
 
         /// <summary>
         /// The manifest URL

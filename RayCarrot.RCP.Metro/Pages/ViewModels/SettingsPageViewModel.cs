@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.RCP.UI;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -26,7 +26,7 @@ namespace RayCarrot.RCP.Metro
             EditJumpListCommand = new AsyncRelayCommand(EditJumpListAsync);
 
             CanEditShowUnderInstalledPrograms = App.IsRunningAsAdmin;
-            RCFRCPUI.Localization.RefreshLanguages(Data.ShowIncompleteTranslations);
+            RCFRCPC.Localization.RefreshLanguages(Data.ShowIncompleteTranslations);
         }
 
         #endregion
@@ -47,7 +47,7 @@ namespace RayCarrot.RCP.Metro
         public CultureInfo CurrentCultureInfo
         {
             get => new CultureInfo(Data.CurrentCulture);
-            set => Data.CurrentCulture = value?.Name ?? RCFRCPUI.Localization.DefaultCulture.Name;
+            set => Data.CurrentCulture = value?.Name ?? RCFRCPC.Localization.DefaultCulture.Name;
         }
 
         /// <summary>

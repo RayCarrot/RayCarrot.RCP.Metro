@@ -8,7 +8,6 @@ using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.UI;
 using RayCarrot.UI;
 using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
@@ -147,8 +146,8 @@ namespace RayCarrot.RCP.Metro
             Data.PropertyChanged += Data_PropertyChangedAsync;
 
             // Apply the current culture if defaulted
-            if (Data.CurrentCulture == RCFRCPUI.Localization.DefaultCulture.Name)
-                RCFRCPUI.Localization.SetCulture(RCFRCPUI.Localization.DefaultCulture.Name);
+            if (Data.CurrentCulture == RCFRCPC.Localization.DefaultCulture.Name)
+                RCFRCPC.Localization.SetCulture(RCFRCPC.Localization.DefaultCulture.Name);
 
             // Check if the program is shown under installed programs if the value is defaulted
             if (Data.ShowUnderInstalledPrograms == false)
@@ -398,7 +397,7 @@ namespace RayCarrot.RCP.Metro
                         // Set the current edition
                         Data.FiestaRunVersion = isWin10 ? FiestaRunEdition.Win10 : FiestaRunEdition.Default;
 
-                        RCFRCPA.File.MoveDirectory(fiestaBackupDir, RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetGameInfo().BackupName, true, true);
+                        RCFRCPC.File.MoveDirectory(fiestaBackupDir, RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetGameInfo().BackupName, true, true);
                     }
                     catch (Exception ex)
                     {
@@ -411,7 +410,7 @@ namespace RayCarrot.RCP.Metro
                 // Remove old temp dir
                 try
                 {
-                    RCFRCPA.File.DeleteDirectory(Path.Combine(Path.GetTempPath(), "RCP_Metro"));
+                    RCFRCPC.File.DeleteDirectory(Path.Combine(Path.GetTempPath(), "RCP_Metro"));
                 }
                 catch (Exception ex)
                 {
@@ -544,7 +543,7 @@ namespace RayCarrot.RCP.Metro
                         break;
 
                     case nameof(AppUserData.ShowIncompleteTranslations):
-                        RCFRCPUI.Localization.RefreshLanguages(Data.ShowIncompleteTranslations);
+                        RCFRCPC.Localization.RefreshLanguages(Data.ShowIncompleteTranslations);
                         break;
 
                     case nameof(AppUserData.LinkItemStyle):
@@ -633,7 +632,7 @@ namespace RayCarrot.RCP.Metro
                 int retryTime = 0;
 
                 // Wait until we can write to the file (i.e. it closing after an update)
-                while (!RCFRCPA.File.CheckFileWriteAccess(RCFRCP.Path.UpdaterFile))
+                while (!RCFRCPC.File.CheckFileWriteAccess(RCFRCP.Path.UpdaterFile))
                 {
                     retryTime++;
 
@@ -662,7 +661,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Remove the updater
-                    RCFRCPA.File.DeleteFile(RCFRCP.Path.UpdaterFile);
+                    RCFRCPC.File.DeleteFile(RCFRCP.Path.UpdaterFile);
 
                     RCFCore.Logger?.LogInformationSource($"The updater has been removed");
                 }

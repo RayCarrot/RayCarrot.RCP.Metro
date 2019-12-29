@@ -48,7 +48,7 @@ namespace RayCarrot.RCP.Core
             try
             {
                 // Delete the temp directory
-                RCFRCPA.File.DeleteDirectory(TempPath);
+                RCFRCPC.File.DeleteDirectory(TempPath);
             }
             catch (Exception ex)
             {

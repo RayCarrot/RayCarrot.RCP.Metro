@@ -1,4 +1,4 @@
-﻿<ui:BaseWindow x:Class="RayCarrot.RCP.Metro.GameOptions"
+﻿<core:BaseWindow x:Class="RayCarrot.RCP.Metro.GameOptions"
                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
-               xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
+               xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
                Title="{Binding Path=DisplayName}"
                Loaded="GameOptions_OnLoadedAsync"
                Closing="GameOptions_OnClosingAsync"
@@ -55,13 +55,13 @@
                                 Margin="7">
                 <local:OverflowMenu.ContextMenu>
                     <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}">
-                        <ui:MenuItemIcon Header="{Resx GameOptions_CreateShortcut}"
+                        <core:MenuItemIcon Header="{Resx GameOptions_CreateShortcut}"
                                             Command="{Binding Path=ShortcutCommand}"
                                             IconKind="Link"/>
-                        <ui:MenuItemIcon Header="{Resx GameOptions_Remove}"
+                        <core:MenuItemIcon Header="{Resx GameOptions_Remove}"
                                             Command="{Binding Path=RemoveCommand}"
                                             IconKind="DeleteOutline"/>
-                        <ui:MenuItemIcon Header="{Resx GameOptions_Uninstall}"
+                        <core:MenuItemIcon Header="{Resx GameOptions_Uninstall}"
                                             Visibility="{Binding Path=CanUninstall, Converter={rwpf:BooleanToVisibilityConverter}}"
                                             Command="{Binding Path=UninstallCommand}"
                                             IconKind="DeleteForeverOutline"/>
@@ -76,12 +76,12 @@
 
             <metro:MetroAnimatedTabControl.Resources>
                 <Style TargetType="{x:Type TabPanel}" BasedOn="{StaticResource SmallTabPanel}" />
-                <Style TargetType="{x:Type ui:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
+                <Style TargetType="{x:Type core:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
             </metro:MetroAnimatedTabControl.Resources>
 
             <!-- Information -->
 
-            <ui:RCPTabItem IconKind="InformationOutline"
+            <core:RCPTabItem IconKind="InformationOutline"
                               Header="{Resx GameOptions_Info}">
 
                 <ScrollViewer Padding="5">
@@ -90,7 +90,7 @@
 
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <ui:DuoGridItem Text="{Binding Path=Text}"
+                                <core:DuoGridItem Text="{Binding Path=Text}"
                                                    Header="{Binding Path=Header}"
                                                    MinUserLevel="{Binding Path=MinUserLevel}" />
                             </DataTemplate>
@@ -98,11 +98,11 @@
 
                     </ItemsControl>
                 </ScrollViewer>
-            </ui:RCPTabItem>
+            </core:RCPTabItem>
 
             <!-- Progression -->
 
-            <ui:RCPTabItem x:Name="ProgressionTab"
+            <core:RCPTabItem x:Name="ProgressionTab"
                               IconKind="TrophyVariantOutline"
                               Header="{Resx Progression_Header}"
                               Visibility="{Binding Path=HasProgressionContent, Converter={rwpf:BooleanToVisibilityConverter}}">
@@ -125,10 +125,10 @@
                                                             Margin="7">
                                             <local:OverflowMenu.ContextMenu>
                                                 <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}">
-                                                    <ui:MenuItemIcon Header="{Resx Progression_Export}"
+                                                    <core:MenuItemIcon Header="{Resx Progression_Export}"
                                                                         Command="{Binding Path=ExportCommand, Mode=OneTime}"
                                                                         IconKind="FileExportOutline"/>
-                                                    <ui:MenuItemIcon Header="{Resx Progression_Import}"
+                                                    <core:MenuItemIcon Header="{Resx Progression_Import}"
                                                                         Command="{Binding Path=ImportCommand, Mode=OneTime}"
                                                                         IconKind="FileImportOutline"/>
                                                 </ContextMenu>
@@ -170,11 +170,11 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
-            </ui:RCPTabItem>
+            </core:RCPTabItem>
 
             <!-- Options -->
 
-            <ui:RCPTabItem IconKind="SettingsOutline"
+            <core:RCPTabItem IconKind="SettingsOutline"
                               Header="{Resx GameOptions_Options}"
                               Visibility="{Binding Path=HasOptionsContent, Converter={rwpf:BooleanToVisibilityConverter}}">
 
@@ -193,7 +193,7 @@
                             <TextBlock Style="{StaticResource HeaderTextBlock}"
                                        Text="{Resx GameOptions_LaunchMode}" />
 
-                            <ui:InfoIcon Text="{Resx GameOptions_LaunchModeInfo}" />
+                            <core:InfoIcon Text="{Resx GameOptions_LaunchModeInfo}" />
 
                         </StackPanel>
 
@@ -229,19 +229,19 @@
 
                     </StackPanel>
                 </ScrollViewer>
-            </ui:RCPTabItem>
+            </core:RCPTabItem>
 
             <!-- Config -->
 
-            <ui:RCPTabItem IconKind="WrenchOutline"
+            <core:RCPTabItem IconKind="WrenchOutline"
                               Header="{Resx GameOptions_Config}"
                               Visibility="{Binding Path=HasConfigContent, Converter={rwpf:BooleanToVisibilityConverter}}">
                 <ContentPresenter Content="{Binding Path=ConfigContent}" />
-            </ui:RCPTabItem>
+            </core:RCPTabItem>
 
             <!-- Utilities -->
 
-            <ui:RCPTabItem IconKind="BriefcaseOutline"
+            <core:RCPTabItem IconKind="BriefcaseOutline"
                               Header="{Resx GameOptions_Utilities}"
                               Visibility="{Binding Path=HasUtilities, Converter={rwpf:BooleanToVisibilityConverter}}">
                 <ScrollViewer Padding="5">
@@ -252,9 +252,9 @@
                     <local:UtilitiesContainer Utilities="{Binding Path=Utilities, Mode=OneTime}"/>
 
                 </ScrollViewer>
-            </ui:RCPTabItem>
+            </core:RCPTabItem>
 
         </metro:MetroAnimatedTabControl>
 
     </Grid>
-</ui:BaseWindow>
+</core:BaseWindow>

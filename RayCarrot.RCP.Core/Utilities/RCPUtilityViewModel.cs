@@ -30,7 +30,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility can not be run due to requiring the app to run as administrator
         /// </summary>
-        public bool RequiresAdmin => !RCFRCPA.API.IsRunningAsAdmin() && Utility.RequiresAdmin;
+        public bool RequiresAdmin => !RCFRCPC.App.IsRunningAsAdmin && Utility.RequiresAdmin;
 
         /// <summary>
         /// The utility header

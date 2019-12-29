@@ -7,7 +7,6 @@ using System.Windows.Media;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.UI;
 using RayCarrot.UI;
 using RayCarrot.WPF;
     
@@ -231,7 +230,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
         public void Dispose()
         {
             // Delete temp file
-            RCFRCPA.File.DeleteFile(FileData.PendingImportTempPath);
+            RCFRCPC.File.DeleteFile(FileData.PendingImportTempPath);
         }
 
         #endregion

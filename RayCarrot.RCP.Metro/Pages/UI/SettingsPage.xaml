@@ -8,7 +8,7 @@
                 xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
+                xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
                 ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"    
@@ -18,7 +18,7 @@
     <local:IBasePage.OverflowMenu>
         <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}">
 
-            <ui:MenuItemIcon Header="{Resx Settings_EditJumpList}"
+            <core:MenuItemIcon Header="{Resx Settings_EditJumpList}"
                              ToolTip="{Resx Settings_EditJumpListInfo}"
                              Command="{Binding Path=EditJumpListCommand}"
                              IconKind="PencilBoxOutline"/>
@@ -52,7 +52,7 @@
                     </i:Interaction.Behaviors>
 
                     <ComboBox SelectedItem="{Binding Path=CurrentCultureInfo}"
-                              ItemsSource="{Binding Source={x:Static ui:RCFRCPUI.Localization}, Path=Languages}">
+                              ItemsSource="{Binding Source={x:Static core:RCFRCPC.Localization}, Path=Languages}">
                         <ComboBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
                                 <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
@@ -91,7 +91,7 @@
                     <TextBlock Text="{Resx Settings_UserLevel}"
                                Style="{StaticResource LargeHeaderTextBlock}" />
 
-                    <ui:InfoIcon Text="{Resx Settings_UserLevelInfo}" />
+                    <core:InfoIcon Text="{Resx Settings_UserLevelInfo}" />
 
                 </StackPanel>
 
@@ -171,7 +171,7 @@
                                   IsChecked="{Binding Path=Data.ShowUnderInstalledPrograms}"
                                   IsEnabled="{Binding Path=CanEditShowUnderInstalledPrograms, Mode=OneTime}" />
 
-                        <ui:InfoIcon Text="{Resx Settings_ShowUnderInstalledProgramsInfo}" />
+                        <core:InfoIcon Text="{Resx Settings_ShowUnderInstalledProgramsInfo}" />
 
                     </StackPanel>
 

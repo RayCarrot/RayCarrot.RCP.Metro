@@ -4,15 +4,11 @@ using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.UI;
 using RayCarrot.UI;
-using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
-using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 

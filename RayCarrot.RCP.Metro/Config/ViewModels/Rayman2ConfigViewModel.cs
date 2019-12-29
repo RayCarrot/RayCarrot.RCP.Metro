@@ -422,7 +422,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Create the file
-                    RCFRCPA.File.CreateFile(newFile);
+                    RCFRCPC.File.CreateFile(newFile);
 
                     RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {newFile.FullPath}");
                 }

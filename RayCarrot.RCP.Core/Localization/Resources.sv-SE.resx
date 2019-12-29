@@ -117,6 +117,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Åtgärden lyckades</value>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Allmänt meddelande</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Informationsmeddelande</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Felmeddelande</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Varningsmeddelande</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Succesmeddelande</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Fråge-meddelande</value>
+  </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Fel</value>
+  </data>
+  <data name="ExceptionMessageInfo" xml:space="preserve">
+    <value>Ett fel har inträffat i programmet. Nedan finns den tillgängliga felsökningsinformationen för den aktuella användarnivån i Carrot Framework.</value>
+  </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>Den angivna filen kunde inte hittas: {0}</value>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>Filen hittades inte</value>
+  </data>
+  <data name="File_ErrorLaunchingFile" xml:space="preserve">
+    <value>Ett fel uppstod vid försök att starta {0}</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>Mappen kunde inte hittas</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>Sökväg-fel</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>Mappen kunde inte öppnas</value>
+  </data>
   <data name="Update_UnknownError" xml:space="preserve">
     <value>Okänt fel</value>
   </data>
@@ -134,5 +179,11 @@
   </data>
   <data name="Update_NewsError" xml:space="preserve">
     <value>Server fel</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
   </data>
 </root>

@@ -4,17 +4,13 @@ using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.UI;
 using RayCarrot.UI;
-using RayCarrot.UserData;
-using RayCarrot.Windows.Shell;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -685,7 +681,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Check if we have write access
-                if (RCFRCPA.File.CheckFileWriteAccess(RCFRCP.Path.UbiIniPath1))
+                if (RCFRCPC.File.CheckFileWriteAccess(RCFRCP.Path.UbiIniPath1))
                 {
                     RCFCore.Logger?.LogDebugSource("The ubi.ini file has write access");
                     return;
@@ -882,7 +878,7 @@ namespace RayCarrot.RCP.Metro
                 CheckingForUpdates = true;
 
                 // Check for updates
-                var result = await RCFRCPA.UpdaterManager.CheckAsync(RCFRCP.Data.ForceUpdate && isManualSearch, RCFRCP.Data.GetBetaUpdates || RCFRCP.App.IsBeta);
+                var result = await RCFRCPC.UpdaterManager.CheckAsync(RCFRCP.Data.ForceUpdate && isManualSearch, RCFRCP.Data.GetBetaUpdates || RCFRCP.App.IsBeta);
 
                 // Check if there is an error
                 if (result.ErrorMessage != null)
@@ -915,29 +911,8 @@ namespace RayCarrot.RCP.Metro
                     {
                         if (await RCFUI.MessageUI.DisplayMessageAsync(!result.IsBetaUpdate ? String.Format(Resources.Update_UpdateAvailable, result.DisplayNews) : Resources.Update_BetaUpdateAvailable, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
                         {
-                            try
-                            {
-                                Directory.CreateDirectory(RCFRCP.Path.UpdaterFile.Parent);
-                                File.WriteAllBytes(RCFRCP.Path.UpdaterFile, Files.Rayman_Control_Panel_Updater);
-                                RCFCore.Logger?.LogInformationSource($"The updater was created");
-                            }
-                            catch (Exception ex)
-                            {
-                                ex.HandleError("Writing updater to temp path", RCFRCP.Path.UpdaterFile);
-                                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, "raycarrot.ylemnova.com"), Resources.Update_UpdaterErrorHeader);
-                                return;
-                            }
-
-                            // Launch the updater and run as admin is set to show under installed programs in under to update the Registry key
-                            if (await RCFRCPA.File.LaunchFileAsync(RCFRCP.Path.UpdaterFile, Data.ShowUnderInstalledPrograms, $"\"{Assembly.GetExecutingAssembly().Location}\" {RCFRCP.Data.DarkMode} {RCFRCP.Data.UserLevel} {result.IsBetaUpdate} \"{RCFCore.Data.CurrentCulture}\"") == null)
-                            {
-                                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, "raycarrot.ylemnova.com"), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
-
-                                return;
-                            }
-
-                            // Shut down the app
-                            await App.Current.ShutdownRCFAppAsync(true);
+                            // Launch the updater and run as admin if set to show under installed programs in under to update the Registry key
+                            var succeeded = await RCFRCPC.UpdaterManager.UpdateAsync(result, Data.ShowUnderInstalledPrograms);
                         }
                     }
                     catch (Exception ex)
@@ -990,7 +965,7 @@ namespace RayCarrot.RCP.Metro
                         return;
                     }
 
-                    RCFRCPA.File.MoveDirectory(oldLocation, newLocation, false, false);
+                    RCFRCPC.File.MoveDirectory(oldLocation, newLocation, false, false);
 
                     RCFCore.Logger?.LogInformationSource("Old backups have been moved");
 
@@ -1040,7 +1015,7 @@ namespace RayCarrot.RCP.Metro
         public async Task RunAdminWorkerAsync(AdminWorkerModes mode, params string[] args)
         {
             using (await AdminWorkerAsyncLock.LockAsync())
-                await RCFRCPA.File.LaunchFileAsync(RCFRCP.Path.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
+                await RCFRCPC.File.LaunchFileAsync(RCFRCP.Path.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
         }
 
         /// <summary>

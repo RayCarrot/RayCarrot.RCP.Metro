@@ -7,7 +7,7 @@
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
+                xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
                 ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
@@ -17,27 +17,27 @@
     <local:IBasePage.OverflowMenu>
         <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}">
 
-            <ui:MenuItemIcon Header="Show Applied Utilities"
+            <core:MenuItemIcon Header="Show Applied Utilities"
                                 Command="{Binding Path=ShowInstalledUtilitiesCommand}"
                                 IconKind="BriefcaseOutline"/>
 
-            <ui:MenuItemIcon Header="Show Log"
+            <core:MenuItemIcon Header="Show Log"
                                 Command="{Binding Path=ShowLogCommand}"
                                 IconKind="Text"/>
 
-            <ui:MenuItemIcon Header="Restart as administrator"
+            <core:MenuItemIcon Header="Restart as administrator"
                                 Command="{Binding Path=App.RestartAsAdminCommand}"
                                 IconKind="Security"/>
 
-            <ui:MenuItemIcon Header="Refresh all"
+            <core:MenuItemIcon Header="Refresh all"
                                 Command="{Binding Path=RefreshAllCommand}"
                                 IconKind="Refresh"/>
 
-            <ui:MenuItemIcon Header="Refresh all async"
+            <core:MenuItemIcon Header="Refresh all async"
                                 Command="{Binding Path=RefreshAllAsyncCommand}"
                                 IconKind="Refresh"/>
 
-            <ui:MenuItemIcon Header="Shutdown app"
+            <core:MenuItemIcon Header="Shutdown app"
                                 Command="{Binding Path=ShutdownAppCommand}"
                                 IconKind="CloseOutline"/>
 
@@ -59,7 +59,7 @@
                     <TextBlock Text="Dialogs"
                                Style="{StaticResource LargeHeaderTextBlock}" />
 
-                    <ui:InfoIcon Text="Below is a list of the available dialogs in this application. Each dialog returns a dialog result, which in this debug panel is ignored." />
+                    <core:InfoIcon Text="Below is a list of the available dialogs in this application. Each dialog returns a dialog result, which in this debug panel is ignored." />
 
                 </StackPanel>
 
@@ -90,7 +90,7 @@
                     <TextBlock Text="Installer"
                                Style="{StaticResource LargeHeaderTextBlock}" />
 
-                    <ui:InfoIcon Text="Running the installer on a game which has already been added might crash the application when complete." />
+                    <core:InfoIcon Text="Running the installer on a game which has already been added might crash the application when complete." />
 
                 </StackPanel>
 

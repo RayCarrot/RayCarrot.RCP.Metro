@@ -17,7 +17,7 @@ namespace RayCarrot.RCP.Core
         public static FileSystemPath GetInstallDir(this Games game, bool throwIfNotFound = true)
         {
             // Get the game data
-            var data = RCFRCPA.API.GetGameData(game);
+            var data = RCFRCPC.API.GetGameData(game);
 
             // Make sure it's not null
             if (data == null)
@@ -43,7 +43,7 @@ namespace RayCarrot.RCP.Core
         public static GameType GetGameType(this Games game)
         {
             // Get the game data
-            var data = RCFRCPA.API.GetGameData(game);
+            var data = RCFRCPC.API.GetGameData(game);
 
             // Make sure it's not null
             if (data == null)
@@ -61,7 +61,7 @@ namespace RayCarrot.RCP.Core
         public static GameLaunchMode GetLaunchMode(this Games game)
         {
             // Get the game data
-            var data = RCFRCPA.API.GetGameData(game);
+            var data = RCFRCPC.API.GetGameData(game);
 
             // Make sure it's not null
             if (data == null)

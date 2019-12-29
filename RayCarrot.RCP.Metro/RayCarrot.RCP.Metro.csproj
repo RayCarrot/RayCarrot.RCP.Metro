@@ -806,12 +806,8 @@
       <Name>RayCarrot.RCP.ArchiveExplorer</Name>
     </ProjectReference>
     <ProjectReference Include="..\RayCarrot.RCP.Core\RayCarrot.RCP.Core.csproj">
-      <Project>{c911478d-3f3f-4b26-84c6-bddac5ff7c1f}</Project>
-      <Name>RayCarrot.RCP.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RayCarrot.RCP.UI\RayCarrot.RCP.UI.csproj">
       <Project>{7c723f2e-eea2-4b41-96e2-9359af141e17}</Project>
-      <Name>RayCarrot.RCP.UI</Name>
+      <Name>RayCarrot.RCP.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

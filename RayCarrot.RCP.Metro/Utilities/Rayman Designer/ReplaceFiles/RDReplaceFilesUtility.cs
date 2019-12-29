@@ -53,7 +53,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility requires administration privileges
         /// </summary>
-        public bool RequiresAdmin => !RCFRCPA.File.CheckDirectoryWriteAccess(Games.RaymanDesigner.GetInstallDir());
+        public bool RequiresAdmin => !RCFRCPC.File.CheckDirectoryWriteAccess(Games.RaymanDesigner.GetInstallDir());
 
         /// <summary>
         /// Indicates if the utility is available to the user

@@ -40,12 +40,12 @@ namespace RayCarrot.RCP.Metro
         {
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamStore, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
             {
-                (await RCFRCPA.File.LaunchFileAsync($"https://store.steampowered.com/app/" + SteamID))?.Dispose();
+                (await RCFRCPC.File.LaunchFileAsync($"https://store.steampowered.com/app/" + SteamID))?.Dispose();
                 RCFCore.Logger?.LogTraceSource($"The game {Game} Steam store page was opened");
             })),
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamCommunity, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
             {
-                (await RCFRCPA.File.LaunchFileAsync($"https://steamcommunity.com/app/" + SteamID))?.Dispose();
+                (await RCFRCPC.File.LaunchFileAsync($"https://steamcommunity.com/app/" + SteamID))?.Dispose();
                 RCFCore.Logger?.LogTraceSource($"The game {Game} Steam community page was opened");
             }))
         };
@@ -118,7 +118,7 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogTraceSource($"The game {Game} is launching with Steam ID {SteamID}");
 
             // Launch the game
-            var process = await RCFRCPA.File.LaunchFileAsync(LaunchURL);
+            var process = await RCFRCPC.File.LaunchFileAsync(LaunchURL);
 
             RCFCore.Logger?.LogInformationSource($"The game {Game} has been launched");
 
@@ -185,7 +185,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="destinationDirectory">The destination directory for the shortcut</param>
         public override void CreateGameShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory)
         {
-            RCFRCPA.File.CreateURLShortcut(shortcutName, destinationDirectory, LaunchURL);
+            RCFRCPC.File.CreateURLShortcut(shortcutName, destinationDirectory, LaunchURL);
 
             RCFCore.Logger?.LogTraceSource($"An URL shortcut was created for {Game} under {destinationDirectory}");
         }

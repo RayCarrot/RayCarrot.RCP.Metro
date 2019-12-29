@@ -8,7 +8,7 @@
                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-                xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
+                xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
                 ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
                 mc:Ignorable="d"
                 d:DesignHeight="450" d:DesignWidth="800"
@@ -45,7 +45,7 @@
 
             <Separator rwpf:UserLevelTag.MinUserLevel="Advanced"/>
 
-            <ui:MenuItemIcon Header="{Resx Page_Refresh}"
+            <core:MenuItemIcon Header="{Resx Page_Refresh}"
                                 IconKind="Refresh"
                                 Command="{Binding Path=RefreshCommand}"
                                 rwpf:UserLevelTag.MinUserLevel="Advanced"/>
@@ -64,44 +64,44 @@
 
             <mah:MetroAnimatedTabControl.Resources>
                 <Style TargetType="{x:Type TabPanel}" BasedOn="{StaticResource SmallTabPanel}" />
-                <Style TargetType="{x:Type ui:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
+                <Style TargetType="{x:Type core:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
             </mah:MetroAnimatedTabControl.Resources>
 
             <!-- Community -->
 
-            <ui:RCPTabItem IconKind="AccountMultipleOutline"
+            <core:RCPTabItem IconKind="AccountMultipleOutline"
                               Header="{Resx LinksPage_CommunityHeader}">
 
                 <ItemsControl Style="{DynamicResource LinkItemsDisplay}"
                               ItemsSource="{Binding Path=CommunityLinkItems, Mode=OneTime, IsAsync=True}" />
-            </ui:RCPTabItem>
+            </core:RCPTabItem>
 
             <!-- Forums -->
 
-            <ui:RCPTabItem IconKind="Forum"
+            <core:RCPTabItem IconKind="Forum"
                               Header="{Resx LinksPage_ForumsHeader}">
 
                 <ItemsControl Style="{DynamicResource LinkItemsDisplay}"
                               ItemsSource="{Binding Path=ForumLinkItems, Mode=OneTime, IsAsync=True}" />
-            </ui:RCPTabItem>
+            </core:RCPTabItem>
 
             <!-- Modifications/Tools -->
 
-            <ui:RCPTabItem IconKind="BriefcaseOutline"
+            <core:RCPTabItem IconKind="BriefcaseOutline"
                               Header="{Resx LinksPage_ToolsHeader}">
 
                 <ItemsControl Style="{DynamicResource LinkItemsDisplay}"
                               ItemsSource="{Binding Path=ToolsLinkItems, Mode=OneTime, IsAsync=True}" />
-            </ui:RCPTabItem>
+            </core:RCPTabItem>
 
             <!-- Local -->
 
-            <ui:RCPTabItem IconKind="FolderMultipleOutline"
+            <core:RCPTabItem IconKind="FolderMultipleOutline"
                               Header="{Resx LinksPage_LocalHeader}">
 
                 <ItemsControl Style="{DynamicResource LinkItemsDisplay}"
                               ItemsSource="{Binding Path=LocalLinkItems, Mode=OneTime, IsAsync=True}"/>
-            </ui:RCPTabItem>
+            </core:RCPTabItem>
 
         </mah:MetroAnimatedTabControl>
     </ScrollViewer>

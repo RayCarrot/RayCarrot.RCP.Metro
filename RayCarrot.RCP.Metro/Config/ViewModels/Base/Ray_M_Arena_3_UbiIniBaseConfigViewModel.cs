@@ -359,7 +359,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Create the file
-                    RCFRCPA.File.CreateFile(RCFRCP.Path.UbiIniPath1);
+                    RCFRCPC.File.CreateFile(RCFRCP.Path.UbiIniPath1);
 
                     RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {RCFRCP.Path.UbiIniPath1}");
                 }
@@ -379,7 +379,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Create the file
-                    RCFRCPA.File.CreateFile(RCFRCP.Path.UbiIniPath2);
+                    RCFRCPC.File.CreateFile(RCFRCP.Path.UbiIniPath2);
 
                     RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {RCFRCP.Path.UbiIniPath2}");
                 }
@@ -435,7 +435,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             if (dt != DinputType.None)
                                 // Attempt to delete existing dinput file
-                                RCFRCPA.File.DeleteFile(path);
+                                RCFRCPC.File.DeleteFile(path);
 
                             // Write controller patch
                             File.WriteAllBytes(path, Files.dinput8_controller);
@@ -444,7 +444,7 @@ namespace RayCarrot.RCP.Metro
                     else if (dt == DinputType.Controller)
                     {
                         // Attempt to delete existing dinput file
-                        RCFRCPA.File.DeleteFile(path);
+                        RCFRCPC.File.DeleteFile(path);
                     }
 
                 }
@@ -505,7 +505,7 @@ namespace RayCarrot.RCP.Metro
                 // as the Rayman 2 dinput file was accidentally used prior to version 4.1.2
                 if (size == new ByteSize(66560))
                 {
-                    RCFRCPA.File.DeleteFile(path);
+                    RCFRCPC.File.DeleteFile(path);
                     return DinputType.None;
                 }
 

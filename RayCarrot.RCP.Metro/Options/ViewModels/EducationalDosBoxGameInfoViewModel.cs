@@ -5,7 +5,6 @@ using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.UI;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -125,7 +124,7 @@ namespace RayCarrot.RCP.Metro
                 instDir += GameData.LaunchName;
 
             // Open the location
-            await RCFRCPA.File.OpenExplorerLocationAsync(instDir);
+            await RCFRCPC.File.OpenExplorerLocationAsync(instDir);
 
             RCFCore.Logger?.LogTraceSource($"The educational game {GameData.Name} install location was opened");
         }

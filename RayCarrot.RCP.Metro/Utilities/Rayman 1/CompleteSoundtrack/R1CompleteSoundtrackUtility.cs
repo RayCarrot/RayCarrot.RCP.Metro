@@ -53,7 +53,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility requires administration privileges
         /// </summary>
-        public bool RequiresAdmin => !RCFRCPA.File.CheckDirectoryWriteAccess(ViewModel.MusicDir);
+        public bool RequiresAdmin => !RCFRCPC.File.CheckDirectoryWriteAccess(ViewModel.MusicDir);
 
         /// <summary>
         /// Indicates if the utility is available to the user

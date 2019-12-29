@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using Infralution.Localization.Wpf;
 using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.RCP.UI;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {

@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.ArchiveExplorer"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
+             xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -41,11 +41,11 @@
                             <Setter.Value>
                                 <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
 
-                                    <ui:MenuItemIcon Header="{Resx Archive_Export}"
+                                    <core:MenuItemIcon Header="{Resx Archive_Export}"
                                                      Command="{Binding Path=ExportCommand}"
                                                      IconKind="Export"/>
 
-                                    <ui:MenuItemIcon Header="{Resx Archive_Import}"
+                                    <core:MenuItemIcon Header="{Resx Archive_Import}"
                                                      Command="{Binding Path=ImportCommand}"
                                                      IconKind="Import"/>
 
@@ -99,11 +99,11 @@
                                 <Setter.Value>
                                     <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
 
-                                        <ui:MenuItemIcon Header="{Resx Archive_Export}"
+                                        <core:MenuItemIcon Header="{Resx Archive_Export}"
                                                          Command="{Binding Path=ExportCommand}"
                                                          IconKind="FileExportOutline"/>
 
-                                        <ui:MenuItemIcon Header="{Resx Archive_Import}"
+                                        <core:MenuItemIcon Header="{Resx Archive_Import}"
                                                          Command="{Binding Path=ImportCommand}"
                                                          IconKind="FileImportOutline"/>
                                     </ContextMenu>

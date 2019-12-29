@@ -4,7 +4,6 @@ using Microsoft.Win32;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.UI;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 

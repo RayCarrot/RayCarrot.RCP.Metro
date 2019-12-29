@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.UI;
 
 namespace RayCarrot.RCP.ArchiveExplorer
 {
@@ -112,7 +111,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
                     files.Remove(fullPath);
 
                     // Move the file
-                    RCFRCPA.File.MoveFile(modifiedFile.PendingImportTempPath, tempFilePath, true);
+                    RCFRCPC.File.MoveFile(modifiedFile.PendingImportTempPath, tempFilePath, true);
 
                     // Set the file size
                     file.Size = (int)tempFilePath.GetSize().Bytes;

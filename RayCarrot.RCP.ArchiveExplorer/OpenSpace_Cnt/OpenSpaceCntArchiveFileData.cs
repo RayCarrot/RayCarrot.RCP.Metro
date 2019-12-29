@@ -8,7 +8,6 @@ using ByteSizeLib;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.UI;
 
 namespace RayCarrot.RCP.ArchiveExplorer
 {
@@ -224,7 +223,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
             if (filePath.FileExtension.Equals(".gf", StringComparison.InvariantCultureIgnoreCase))
             {
                 // Copy the file
-                RCFRCPA.File.CopyFile(filePath, tempFile.TempPath, true);
+                RCFRCPC.File.CopyFile(filePath, tempFile.TempPath, true);
             }
             // Import as bitmap
             else

@@ -286,7 +286,7 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
-                    RCFRCPA.File.DeleteFile(DebugCommandFilePath);
+                    RCFRCPC.File.DeleteFile(DebugCommandFilePath);
 
                     if (!IsDebugModeEnabled)
                     {

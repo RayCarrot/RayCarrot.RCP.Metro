@@ -168,7 +168,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task LaunchGameAsync()
         {
-            await RCFRCPA.File.LaunchFileAsync(GameFilePath, false, DebugCommands.Select(x => $"{x.Key}={x.Value}").JoinItems(";"));
+            await RCFRCPC.File.LaunchFileAsync(GameFilePath, false, DebugCommands.Select(x => $"{x.Key}={x.Value}").JoinItems(";"));
         }
 
         #endregion

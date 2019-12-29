@@ -8,7 +8,7 @@
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-                xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
+                xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
                 ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
@@ -50,49 +50,49 @@
                 <ItemsControl HorizontalAlignment="Center"
                               Grid.IsSharedSizeScope="True">
 
-                    <ui:DuoGridItem Header="RayCarrot"
+                    <core:DuoGridItem Header="RayCarrot"
                                     Text="{Resx About_Credits_RayCarrot}" />
 
-                    <ui:DuoGridItem Header="432 Hz"
+                    <core:DuoGridItem Header="432 Hz"
                                     Text="{Resx About_Credits_432Hz}" />
 
-                    <ui:DuoGridItem Header="Droolie"
+                    <core:DuoGridItem Header="Droolie"
                                     Text="{Resx About_Credits_Droolie}" />
 
-                    <ui:DuoGridItem Header="Hakyra"
+                    <core:DuoGridItem Header="Hakyra"
                                     Text="{Resx About_Credits_Hakyra}" />
 
-                    <ui:DuoGridItem Header="Haruka Tavares"
+                    <core:DuoGridItem Header="Haruka Tavares"
                                     Text="{Resx About_Credits_HarukaTavares}" />
 
-                    <ui:DuoGridItem Header="ICUP321"
+                    <core:DuoGridItem Header="ICUP321"
                                     Text="{Resx About_Credits_ICUP321}" />
 
-                    <ui:DuoGridItem Header="Juanmv94"
+                    <core:DuoGridItem Header="Juanmv94"
                                     Text="{Resx About_Credits_Janmv94}"/>
 
-                    <ui:DuoGridItem Header="Noserdog"
+                    <core:DuoGridItem Header="Noserdog"
                                     Text="{Resx About_Credits_Noserdog}" />
 
-                    <ui:DuoGridItem Header="OldClassicGamer"
+                    <core:DuoGridItem Header="OldClassicGamer"
                                     Text="{Resx About_Credits_OldClassicGamer}" />
 
-                    <ui:DuoGridItem Header="Philipp Jeindl"
+                    <core:DuoGridItem Header="Philipp Jeindl"
                                     Text="{Resx About_Credits_PhilippJeindl}" />
 
-                    <ui:DuoGridItem Header="Pixelise"
+                    <core:DuoGridItem Header="Pixelise"
                                     Text="{Resx About_Credits_Pixelise}" />
 
-                    <ui:DuoGridItem Header="PluMGMK"
+                    <core:DuoGridItem Header="PluMGMK"
                                     Text="{Resx About_Credits_PluMGMK}" />
 
-                    <ui:DuoGridItem Header="RayActivity"
+                    <core:DuoGridItem Header="RayActivity"
                                     Text="{Resx About_Credits_RayActivity}" />
 
-                    <ui:DuoGridItem Header="RibShark"
+                    <core:DuoGridItem Header="RibShark"
                                     Text="{Resx About_Credits_RibShark}" />
 
-                    <ui:DuoGridItem Header="Snagglebee"
+                    <core:DuoGridItem Header="Snagglebee"
                                     Text="{Resx About_Credits_Snagglebee}" />
 
                 </ItemsControl>

@@ -4,7 +4,6 @@ using RayCarrot.IO;
 using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;

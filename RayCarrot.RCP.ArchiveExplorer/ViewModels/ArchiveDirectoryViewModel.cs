@@ -12,7 +12,6 @@ using System.Windows.Data;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.RCP.Core;
-using RayCarrot.RCP.UI;
 using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.ArchiveExplorer

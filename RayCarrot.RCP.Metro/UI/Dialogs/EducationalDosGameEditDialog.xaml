@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
+             xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
              ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:EducationalDosGameEditViewModel}"
@@ -33,7 +33,7 @@
             <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="{Resx MountPathHeader}" />
 
-            <ui:InfoIcon Text="{Resx MountPathInfo}" />
+            <core:InfoIcon Text="{Resx MountPathInfo}" />
 
         </StackPanel>
 

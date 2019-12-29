@@ -7,9 +7,7 @@ using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 using RayCarrot.WPF;
 using System.Collections.Generic;
-using System.Windows;
 using RayCarrot.RCP.Metro;
-using RayCarrot.RCP.UI;
 
 namespace RayCarrot.RCP.Modding
 {

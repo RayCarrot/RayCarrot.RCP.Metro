@@ -9,7 +9,7 @@
                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-                xmlns:ui="clr-namespace:RayCarrot.RCP.UI;assembly=RayCarrot.RCP.UI"
+                xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
                 ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
@@ -31,12 +31,12 @@
 
             <Separator />
 
-            <ui:MenuItemIcon Header="{Resx GamesPage_FindGames}"
+            <core:MenuItemIcon Header="{Resx GamesPage_FindGames}"
                                 ToolTip="{Resx GamesPage_FindGamesInfo}"
                                 Command="{Binding Path=RunGameFinderCommand}"
                                 IconKind="CardSearchOutline"/>
 
-            <ui:MenuItemIcon Header="{Resx Page_Refresh}"
+            <core:MenuItemIcon Header="{Resx Page_Refresh}"
                                 Command="{Binding Path=RefreshGamesCommand}"
                                 rwpf:UserLevelTag.MinUserLevel="Debug"
                                 IconKind="Refresh"/>

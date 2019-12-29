@@ -14,5 +14,13 @@ namespace RayCarrot.RCP.Core
         /// <param name="includeBeta">Indicates if beta updates should be included in the check</param>
         /// <returns>The result</returns>
         Task<UpdaterCheckResult> CheckAsync(bool forceUpdate, bool includeBeta);
+
+        /// <summary>
+        /// Updates the application
+        /// </summary>
+        /// <param name="result">The updater check result to use when updating</param>
+        /// <param name="asAdmin">Indicates if the updater should run as admin</param>
+        /// <returns>A value indicating if the operation succeeded</returns>
+        Task<bool> UpdateAsync(UpdaterCheckResult result, bool asAdmin);
     }
 }
