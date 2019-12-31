@@ -498,7 +498,7 @@ namespace RayCarrot.RCP.Metro
             {
                 var size = path.GetSize();
 
-                if (size == new ByteSize(118272))
+                if (size == new ByteSize(156160))
                     return DinputType.Controller;
 
                 // If the size equals that of the Rayman 2 dinput file, delete it

@@ -81,6 +81,7 @@ namespace RayCarrot.RCP.Metro
                     Games.Rayman3,
                     new Type[]
                     {
+                        typeof(R3CNTExplorerUtility),
                         typeof(R3DirectPlayUtility),
                     }
                 },

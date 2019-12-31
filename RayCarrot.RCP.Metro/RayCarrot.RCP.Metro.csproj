@@ -124,6 +124,7 @@
     <Compile Include="Games\Progression\JungleRun\JungleRunProgressionSlotViewModel.cs" />
     <Compile Include="Games\Utilities\Rayman 2\CNTExplorer\R2CNTExplorerUtility.cs" />
     <Compile Include="Games\Utilities\Rayman Arena\CNTExplorer\RACNTExplorerUtility.cs" />
+    <Compile Include="Games\Utilities\Rayman 3\CNTExplorer\R3CNTExplorerUtility.cs" />
     <Compile Include="Games\Utilities\Rayman M\CNTExplorer\RMCNTExplorerUtility.cs" />
     <Compile Include="UI\AdminButton.xaml.cs">
       <DependentUpon>AdminButton.xaml</DependentUpon>
