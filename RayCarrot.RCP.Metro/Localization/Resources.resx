@@ -2924,4 +2924,10 @@ gameDisplayName</comment>
   <data name="About_Credits_Hakyra" xml:space="preserve">
     <value>Spanish (Spain) program translation, Catalan (Catalan) program translation</value>
   </data>
+  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer (.cnt)</value>
+  </data>
+  <data name="OSU_CNTExplorer_Info" xml:space="preserve">
+    <value>This tool allows you to view/edit the .cnt archive files, allowing importing/exporting of game textures</value>
+  </data>
 </root>

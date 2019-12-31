@@ -77,6 +77,11 @@ namespace RayCarrot.RCP.ArchiveExplorer
         public FileSystemPath FilePath { get; }
 
         /// <summary>
+        /// The description to display
+        /// </summary>
+        public override string DisplayDescription => FilePath.FullPath;
+
+        /// <summary>
         /// The name of the item to display
         /// </summary>
         public override string DisplayName => FilePath.Name;

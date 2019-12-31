@@ -10,26 +10,20 @@ using System.Windows.Input;
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// View model for the Rayman 2 CNT explorer utility
+    /// View model for a OpenSpace CNT explorer utility
     /// </summary>
-    public class R2CNTExplorerUtilityViewModel : BaseRCPViewModel
+    public class BaseOpenSpaceCNTExplorerUtilityViewModel : BaseRCPViewModel
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public R2CNTExplorerUtilityViewModel()
+        public BaseOpenSpaceCNTExplorerUtilityViewModel(OpenSpaceGameMode gameMode, FileSystemPath[] archiveFiles)
         {
-            // Get the game install directory
-            var installDir = Games.Rayman2.GetInstallDir();
-
             // Set properties
-            ArchiveFiles = new FileSystemPath[]
-            {
-                installDir + "Data" + "Textures.cnt",
-                installDir + "Data" + "Vignette.cnt",
-            };
+            GameMode = gameMode;
+            ArchiveFiles = archiveFiles;
 
             // Create commands
             OpenCommand = new AsyncRelayCommand(OpenAsync);
@@ -38,6 +32,11 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// The game mode
+        /// </summary>
+        public OpenSpaceGameMode GameMode { get; }
 
         /// <summary>
         /// The game install directory
@@ -61,7 +60,7 @@ namespace RayCarrot.RCP.Metro
         public async Task OpenAsync()
         {
             // Show the archive explorer
-            await ArchiveExplorerUI.ShowAsync(new OpenSpaceCntArchiveDataManager(OpenSpaceGameMode.Rayman2PC.GetSettings()), ArchiveFiles.Where(x => x.FileExists));
+            await ArchiveExplorerUI.ShowAsync(new OpenSpaceCntArchiveDataManager(GameMode.GetSettings()), ArchiveFiles.Where(x => x.FileExists));
         }
 
         #endregion

@@ -64,6 +64,20 @@ namespace RayCarrot.RCP.Metro
                     }
                 },
                 {
+                    Games.RaymanM,
+                    new Type[]
+                    {
+                        typeof(RMCNTExplorerUtility),
+                    }
+                },
+                {
+                    Games.RaymanArena,
+                    new Type[]
+                    {
+                        typeof(RACNTExplorerUtility),
+                    }
+                },
+                {
                     Games.Rayman3,
                     new Type[]
                     {

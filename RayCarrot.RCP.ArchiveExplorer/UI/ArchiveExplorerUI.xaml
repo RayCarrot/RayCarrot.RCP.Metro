@@ -52,6 +52,7 @@
                         </Setter>
                         <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
                         <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded}" />
+                        <Setter Property="ToolTip" Value="{Binding Path=DisplayDescription}" />
                     </Style>
                 </TreeView.ItemContainerStyle>
 
@@ -164,7 +165,8 @@
 
                 </ListBox>
 
-                <Separator Grid.Row="1"/>
+                <Separator Grid.Row="1"
+                           Visibility="{Binding Path=DisplayStatus, Converter={rwpf:StringEmptyToVisibilityConverter}}"/>
 
                 <TextBlock Grid.Row="2"
                            Text="{Binding Path=DisplayStatus}" />

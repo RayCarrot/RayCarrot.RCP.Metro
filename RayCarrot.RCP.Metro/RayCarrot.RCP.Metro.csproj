@@ -122,6 +122,9 @@
     <Compile Include="Games\Progression\Base\ProgressionInfoItemViewModel.cs" />
     <Compile Include="Games\Progression\Base\ProgressionSlotViewModel.cs" />
     <Compile Include="Games\Progression\JungleRun\JungleRunProgressionSlotViewModel.cs" />
+    <Compile Include="Games\Utilities\Rayman 2\CNTExplorer\R2CNTExplorerUtility.cs" />
+    <Compile Include="Games\Utilities\Rayman Arena\CNTExplorer\RACNTExplorerUtility.cs" />
+    <Compile Include="Games\Utilities\Rayman M\CNTExplorer\RMCNTExplorerUtility.cs" />
     <Compile Include="UI\AdminButton.xaml.cs">
       <DependentUpon>AdminButton.xaml</DependentUpon>
     </Compile>
@@ -149,8 +152,8 @@
     <Compile Include="GameFinder\FinderItems\GameFinderItem.cs" />
     <Compile Include="GameFinder\Results\GameFinderResult.cs" />
     <Compile Include="DataModels\Enums\GameCategory.cs" />
-    <Compile Include="Games\Base\RCPGameInfo.cs" />
-    <Compile Include="Games\Base\RCPGameManager.cs" />
+    <Compile Include="Games\Info\RCPGameInfo.cs" />
+    <Compile Include="Games\Manager\RCPGameManager.cs" />
     <Compile Include="Games\Info\Fan\TheDarkMagiciansReignofTerror_Info.cs" />
     <Compile Include="Games\Info\Other\EducationalDos_Info.cs" />
     <Compile Include="Games\Info\Other\PrintStudio_Info.cs" />
@@ -206,11 +209,11 @@
       <DependentUpon>R1FixConfigUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Games\Utilities\Rayman 1\FixConfig\R1FixConfigUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman 2\CNTExplorer\R2CNTExplorerUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman 2\CNTExplorer\R2CNTExplorerUtilityUI.xaml.cs">
-      <DependentUpon>R2CNTExplorerUtilityUI.xaml</DependentUpon>
+    <Compile Include="Games\Utilities\Common\OpenSpaceCNTExplorer\BaseOpenSpaceCNTExplorerUtility.cs" />
+    <Compile Include="Games\Utilities\Common\OpenSpaceCNTExplorer\BaseOpenSpaceCNTExplorerUtilityUI.xaml.cs">
+      <DependentUpon>BaseOpenSpaceCNTExplorerUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Rayman 2\CNTExplorer\R2CNTExplorerUtilityViewModel.cs" />
+    <Compile Include="Games\Utilities\Common\OpenSpaceCNTExplorer\BaseOpenSpaceCNTExplorerUtilityViewModel.cs" />
     <Compile Include="Games\Utilities\Rayman 2\DiscPatch\R2DiscPatchUtility.cs" />
     <Compile Include="Games\Utilities\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml.cs">
       <DependentUpon>R2DiscPatchUtilityUI.xaml</DependentUpon>
@@ -243,7 +246,7 @@
     <Compile Include="DataModels\RabbidsGoHomeLaunchData.cs" />
     <Compile Include="Games\Manager\Rayman\Rayman2_Win32.cs" />
     <Compile Include="Games\Manager\Base\RCPSteamGame.cs" />
-    <Compile Include="Games\Base\RCPGame.cs" />
+    <Compile Include="Games\RCPGame.cs" />
     <Compile Include="Games\Config\ViewModels\RabbidsGoHomeConfigViewModel.cs" />
     <Compile Include="Games\Options\UI\RavingRabbids2Options.xaml.cs">
       <DependentUpon>RavingRabbids2Options.xaml</DependentUpon>
@@ -390,7 +393,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Utilities\Rayman 2\CNTExplorer\R2CNTExplorerUtilityUI.xaml">
+    <Page Include="Games\Utilities\Common\OpenSpaceCNTExplorer\BaseOpenSpaceCNTExplorerUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -989,6 +992,8 @@
       <Version>1.2.2</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Games\Base\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

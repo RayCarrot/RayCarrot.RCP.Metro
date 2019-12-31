@@ -86,6 +86,11 @@ namespace RayCarrot.RCP.ArchiveExplorer
         public bool IsExpanded { get; set; }
 
         /// <summary>
+        /// The description to display
+        /// </summary>
+        public virtual string DisplayDescription => FullPath;
+
+        /// <summary>
         /// The name of the item to display
         /// </summary>
         public virtual string DisplayName => ID;

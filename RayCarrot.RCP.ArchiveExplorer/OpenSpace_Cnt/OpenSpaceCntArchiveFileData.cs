@@ -202,7 +202,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
             Height = file.Height;
             Width = file.Width;
             IsTransparent = file.IsTransparent;
-            Mipmaps = file.MipmapCount;
+            Mipmaps = file.RealMipmapCount;
 
             // Get the thumbnail with the specified size
             return file.GetBitmapThumbnail(width);
