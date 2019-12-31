@@ -161,10 +161,10 @@ fileName</comment>
     <value>The files have been exported</value>
   </data>
   <data name="Archive_ImportFileSuccess" xml:space="preserve">
-    <value>The file have been imported</value>
+    <value>The file has been imported</value>
   </data>
   <data name="Archive_ExportFileSuccess" xml:space="preserve">
-    <value>The file have been exported</value>
+    <value>The file has been exported</value>
   </data>
   <data name="Archive_ExportError" xml:space="preserve">
     <value>{0} could not be exported</value>
@@ -188,7 +188,8 @@ File size = {3}
 Modified = {4}
 Encrypted = {5}
 Transparent = {6}
-Pointer = {7}</value>
+Pointer = {7}
+Mipmaps = {8}</value>
     <comment>Arguments:
 dirPath
 imgWidth
@@ -197,7 +198,8 @@ fileSize
 isModified
 isEncrypted
 isTransparent
-pointer</comment>
+pointer
+mipmaps</comment>
   </data>
   <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
     <value>File Extension Selection</value>
@@ -218,5 +220,8 @@ fileFormat</comment>
   </data>
   <data name="Archive_CriticalError" xml:space="preserve">
     <value>An error occurred in the Archive Explorer and it had to close</value>
+  </data>
+  <data name="Archive_ExportMipmaps" xml:space="preserve">
+    <value>Export mipmaps</value>
   </data>
 </root>

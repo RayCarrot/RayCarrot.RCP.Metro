@@ -891,12 +891,6 @@ Nieuws:
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Nieuwe versie gevonden</value>
   </data>
-  <data name="Update_UpdaterError" xml:space="preserve">
-    <value>De updater kon niet gestart worden. Voor het handmatig downloaden van de nieuwste versie, ga je naar {0}.</value>
-  </data>
-  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
-    <value>Fout tijdens het starten van de updater</value>
-  </data>
   <data name="MoveBackups_Question" xml:space="preserve">
     <value>Wil je bestaande back-ups verplaatsen naar de nieuwe locatie?</value>
   </data>
@@ -1652,9 +1646,6 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
   <data name="About_Credits_Pixelise" xml:space="preserve">
     <value>Poolse programmavertaling</value>
   </data>
-  <data name="About_Credits_PhilippJeindl" xml:space="preserve">
-    <value>Duitse programmavertaling</value>
-  </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Nederlandse programmavertaling, programmatests</value>
   </data>
@@ -1777,12 +1768,6 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
   </data>
   <data name="Settings_ShowUnderInstalledPrograms_UpdateError" xml:space="preserve">
     <value>Het updaten van de programma-informatie onder Geïnstalleerde Programma's is mislukt. Probeer het opnieuw als administrator.</value>
-  </data>
-  <data name="Update_RunningUpdaterError" xml:space="preserve">
-    <value>De Updater kon niet gestart worden. Voor het handmatig downloaden van de laatste versie, ga je naar {0}.</value>
-  </data>
-  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
-    <value>Fout tijdens het uitvoeren van de Updater</value>
   </data>
   <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
     <value>Primair ubi.ini bestand</value>

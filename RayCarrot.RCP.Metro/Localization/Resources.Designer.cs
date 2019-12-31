@@ -169,15 +169,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to German (Germany) program translation.
-        /// </summary>
-        public static string About_Credits_PhilippJeindl {
-            get {
-                return ResourceManager.GetString("About_Credits_PhilippJeindl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Polish (Poland) program translation.
         /// </summary>
         public static string About_Credits_Pixelise {
@@ -8012,24 +8003,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The updater could not be launched. To manually download the new version, go to {0} and download the latest version from there..
-        /// </summary>
-        public static string Update_RunningUpdaterError {
-            get {
-                return ResourceManager.GetString("Update_RunningUpdaterError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error running updater.
-        /// </summary>
-        public static string Update_RunningUpdaterErrorHeader {
-            get {
-                return ResourceManager.GetString("Update_RunningUpdaterErrorHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A new update is available to download. Download now?
         ///
         ///News: 
@@ -8047,24 +8020,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Update_UpdateAvailableHeader {
             get {
                 return ResourceManager.GetString("Update_UpdateAvailableHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The updater could not be created. To manually download the new version, go to {0} and download the latest version from there..
-        /// </summary>
-        public static string Update_UpdaterError {
-            get {
-                return ResourceManager.GetString("Update_UpdaterError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error creating updater.
-        /// </summary>
-        public static string Update_UpdaterErrorHeader {
-            get {
-                return ResourceManager.GetString("Update_UpdaterErrorHeader", resourceCulture);
             }
         }
         

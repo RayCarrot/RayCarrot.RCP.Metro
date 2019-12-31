@@ -891,12 +891,6 @@ Notícias:
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Nova versão encontrada</value>
   </data>
-  <data name="Update_UpdaterError" xml:space="preserve">
-    <value>O actualizador não pode ser criado. Para descarregar manualmente a nova versão, vai ao {0} e descarrega a última versão de lá.</value>
-  </data>
-  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
-    <value>Erro ao criar o actualizador</value>
-  </data>
   <data name="MoveBackups_Question" xml:space="preserve">
     <value>Queres mover as cópias de segurança existentes para a nova localização?</value>
   </data>
@@ -1654,9 +1648,6 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   <data name="About_Credits_Pixelise" xml:space="preserve">
     <value>Programa de tradução Polaca</value>
   </data>
-  <data name="About_Credits_PhilippJeindl" xml:space="preserve">
-    <value>Programa de tradução Alemã</value>
-  </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Programa de tradução Holandesa, Teste de programa</value>
   </data>
@@ -1779,12 +1770,6 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   </data>
   <data name="Settings_ShowUnderInstalledPrograms_UpdateError" xml:space="preserve">
     <value>Falhou a actualização das informações do programa sob programas instalados. Tenta reiniciar como administrador para tentar novamente.</value>
-  </data>
-  <data name="Update_RunningUpdaterError" xml:space="preserve">
-    <value>O actualizador não pode arrancar. Para descarregar a nova versão manualmente, vai a {0} e descarrega a versão mais recente por lá.</value>
-  </data>
-  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
-    <value>Erro ao executar o actualizador</value>
   </data>
   <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
     <value>UbiIni Primário</value>

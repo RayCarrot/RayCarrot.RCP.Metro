@@ -76,7 +76,8 @@ namespace RayCarrot.RCP.ArchiveExplorer {
         ///Modified = {4}
         ///Encrypted = {5}
         ///Transparent = {6}
-        ///Pointer = {7}.
+        ///Pointer = {7}
+        ///Mipmaps = {8}.
         /// </summary>
         public static string Archive_CNT_FileInfo {
             get {
@@ -130,7 +131,7 @@ namespace RayCarrot.RCP.ArchiveExplorer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file have been exported.
+        ///   Looks up a localized string similar to The file has been exported.
         /// </summary>
         public static string Archive_ExportFileSuccess {
             get {
@@ -153,6 +154,15 @@ namespace RayCarrot.RCP.ArchiveExplorer {
         public static string Archive_ExportingFileStatus {
             get {
                 return ResourceManager.GetString("Archive_ExportingFileStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export mipmaps.
+        /// </summary>
+        public static string Archive_ExportMipmaps {
+            get {
+                return ResourceManager.GetString("Archive_ExportMipmaps", resourceCulture);
             }
         }
         
@@ -238,7 +248,7 @@ namespace RayCarrot.RCP.ArchiveExplorer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file have been imported.
+        ///   Looks up a localized string similar to The file has been imported.
         /// </summary>
         public static string Archive_ImportFileSuccess {
             get {

@@ -23,16 +23,14 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+            <!-- Directory Tree View -->
 
             <TreeView x:Name="DirTreeView"
                       Grid.Column="0"
-                      Grid.Row="0"
+                      Grid.Row="0" 
                       ItemsSource="{Binding Path=Archives, Mode=OneTime}"
+                      PreviewMouseRightButtonDown="DirTreeView_OnPreviewMouseRightButtonDown"
+                      SelectedItemChanged="DirTreeView_OnSelectedItemChangedAsync"
                       MinWidth="80">
 
                 <TreeView.ItemContainerStyle>
@@ -81,11 +79,24 @@
                 </TreeView.ItemTemplate>
             </TreeView>
 
+            <!-- Directory Content View -->
+
             <Grid Grid.Column="1"
                   Grid.Row="0">
 
-                <ListBox ItemsSource="{Binding ElementName=DirTreeView, Path=SelectedItem.(local:ArchiveDirectoryViewModel.Files)}"
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Files List -->
+
+                <ListBox Grid.Row="0"
                          Grid.IsSharedSizeScope="True"
+                         DataContext="{Binding ElementName=DirTreeView, Path=SelectedItem}"
+                         d:DataContext="{d:DesignInstance local:ArchiveDirectoryViewModel}"
+                         ItemsSource="{Binding Path=Files, Mode=OneTime}"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          Padding="5">
 
@@ -97,11 +108,17 @@
                             <EventSetter Event="ToolTipOpening" Handler="EventSetter_OnHandler" />
                             <Setter Property="ContextMenu">
                                 <Setter.Value>
-                                    <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
+                                    <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                                                 d:DataContext="{d:DesignInstance local:ArchiveFileViewModel}">
 
                                         <core:MenuItemIcon Header="{Resx Archive_Export}"
                                                          Command="{Binding Path=ExportCommand}"
                                                          IconKind="FileExportOutline"/>
+
+                                        <core:MenuItemIcon Header="{Resx Archive_ExportMipmaps}"
+                                                           Command="{Binding Path=ExportMipmapsCommand}"
+                                                           Visibility="{Binding Path=HasMipmaps, Converter={rwpf:BooleanToVisibilityConverter}}"
+                                                           IconKind="ImageMultiple"/>
 
                                         <core:MenuItemIcon Header="{Resx Archive_Import}"
                                                          Command="{Binding Path=ImportCommand}"
@@ -147,17 +164,12 @@
 
                 </ListBox>
 
+                <Separator Grid.Row="1"/>
+
+                <TextBlock Grid.Row="2"
+                           Text="{Binding Path=DisplayStatus}" />
+
             </Grid>
-
-            <Separator Grid.Row="1"
-                       Grid.Column="1"/>
-
-            <StatusBar Grid.Row="2"
-                       Grid.Column="1"
-                       Background="Transparent">
-                <TextBlock DataContext="{Binding ElementName=DirTreeView, Path=SelectedItem}" 
-                           Text="{Binding Path=(local:ArchiveDirectoryViewModel.DisplayStatus)}" />
-            </StatusBar>
 
         </Grid>
 

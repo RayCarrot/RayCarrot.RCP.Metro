@@ -34,12 +34,8 @@ namespace RayCarrot.RCP.Core
             TitleCharacterCasing = CharacterCasing.Normal;
 
             // Set icon style
-            Icon = new ImageSourceConverter().ConvertFromString("pack://application:,,,/RayCarrot.RCP.Core;component/Images/Rayman Control Panel Icon.ico") as ImageSource;
+            Icon = new ImageSourceConverter().ConvertFromString(RCFRCPC.API.GetWPFIconPath()) as ImageSource;
             IconBitmapScalingMode = BitmapScalingMode.NearestNeighbor;
-
-            // TODO: Test so every window works without this
-            // Set localization source
-            //ResxExtension.SetDefaultResxName(window, AppViewModel.ResourcePath);
 
             // Set owner window
             Owner = Application.Current?.Windows.Cast<Window>().FindItem(x => x.IsActive);

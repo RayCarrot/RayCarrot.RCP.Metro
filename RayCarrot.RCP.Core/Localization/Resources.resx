@@ -184,6 +184,22 @@ filePath</comment>
   <data name="Update_NewsError" xml:space="preserve">
     <value>Error getting news</value>
   </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>The updater could not be created. To manually download the new version, go to {0} and download the latest version from there.</value>
+    <comment>Arguments:
+downloadURL</comment>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Error creating updater</value>
+  </data>
+  <data name="Update_RunningUpdaterError" xml:space="preserve">
+    <value>The updater could not be launched. To manually download the new version, go to {0} and download the latest version from there.</value>
+    <comment>Arguments:
+downloadURL</comment>
+  </data>
+  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
+    <value>Error running updater</value>
+  </data>
   <data name="File_RegKeyNotFound" xml:space="preserve">
     <value>The registry key was not found</value>
   </data>
@@ -215,21 +231,5 @@ exceptionMessage</comment>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
-  </data>
-  <data name="Update_UpdaterError" xml:space="preserve">
-    <value>The updater could not be created. To manually download the new version, go to {0} and download the latest version from there.</value>
-    <comment>Arguments:
-downloadURL</comment>
-  </data>
-  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
-    <value>Error creating updater</value>
-  </data>
-  <data name="Update_RunningUpdaterError" xml:space="preserve">
-    <value>The updater could not be launched. To manually download the new version, go to {0} and download the latest version from there.</value>
-    <comment>Arguments:
-downloadURL</comment>
-  </data>
-  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
-    <value>Error running updater</value>
   </data>
 </root>

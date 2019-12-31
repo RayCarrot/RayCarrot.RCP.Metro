@@ -56,7 +56,6 @@
     <Compile Include="API\RCPApplicationPaths.cs" />
     <Compile Include="API\RCPLocalizationManager.cs" />
     <Compile Include="API\BaseRCPAppViewModel.cs" />
-    <Compile Include="API\RCPAPIControllerManager.cs" />
     <Compile Include="Controls\BaseRCPApp.cs" />
     <Compile Include="Controls\BaseWindow.cs" />
     <Compile Include="Controls\DuoGridItem.cs" />
@@ -189,9 +188,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\MessageIcons\Error.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Rayman Control Panel Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Files\Files.resx">

@@ -13,6 +13,7 @@
                Closing="GameOptions_OnClosingAsync"
                WindowStartupLocation="CenterOwner"
                Width="600"
+               ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
                mc:Ignorable="d"
                d:DataContext="{d:DesignInstance local:GameOptionsViewModel}">
     <Grid Margin="10">

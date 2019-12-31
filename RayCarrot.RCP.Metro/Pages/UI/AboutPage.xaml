@@ -38,7 +38,7 @@
 
                     <Image Grid.Column="1"
                            Margin="10"
-                           Source="pack://application:,,,/RayCarrot.RCP.Core;component/Images/Rayman Control Panel Icon.ico"
+                           Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/RCP_Metro.ico"
                            Height="128" Width="128"/>
 
                 </Grid>

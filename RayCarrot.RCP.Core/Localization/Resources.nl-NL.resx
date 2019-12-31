@@ -180,6 +180,18 @@
   <data name="Update_NewsError" xml:space="preserve">
     <value>Fout bij het verkrijgen van nieuws</value>
   </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>De updater kon niet gestart worden. Voor het handmatig downloaden van de nieuwste versie, ga je naar {0}.</value>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Fout tijdens het starten van de updater</value>
+  </data>
+  <data name="Update_RunningUpdaterError" xml:space="preserve">
+    <value>De Updater kon niet gestart worden. Voor het handmatig downloaden van de laatste versie, ga je naar {0}.</value>
+  </data>
+  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
+    <value>Fout tijdens het uitvoeren van de Updater</value>
+  </data>
   <data name="File_RegKeyNotFound" xml:space="preserve">
     <value>De registersleutel kon niet gevonden worden</value>
   </data>
@@ -208,17 +220,5 @@ Foutmelding: {1}</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
-  </data>
-  <data name="Update_UpdaterError" xml:space="preserve">
-    <value>De updater kon niet gestart worden. Voor het handmatig downloaden van de nieuwste versie, ga je naar {0}.</value>
-  </data>
-  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
-    <value>Fout tijdens het starten van de updater</value>
-  </data>
-  <data name="Update_RunningUpdaterError" xml:space="preserve">
-    <value>De Updater kon niet gestart worden. Voor het handmatig downloaden van de laatste versie, ga je naar {0}.</value>
-  </data>
-  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
-    <value>Fout tijdens het uitvoeren van de Updater</value>
   </data>
 </root>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -32,7 +33,8 @@ namespace RayCarrot.RCP.ArchiveExplorer
             FileName = FileData.FileName;
 
             // Create commands
-            ExportCommand = new AsyncRelayCommand(ExportFileAsync);
+            ExportCommand = new AsyncRelayCommand(async () => await ExportFileAsync(false));
+            ExportMipmapsCommand = new AsyncRelayCommand(async () => await ExportFileAsync(true));
             ImportCommand = new AsyncRelayCommand(ImportFileAsync);
         }
 
@@ -41,6 +43,8 @@ namespace RayCarrot.RCP.ArchiveExplorer
         #region Commands
 
         public ICommand ExportCommand { get; }
+
+        public ICommand ExportMipmapsCommand { get; }
 
         public ICommand ImportCommand { get; }
 
@@ -78,6 +82,11 @@ namespace RayCarrot.RCP.ArchiveExplorer
         /// </summary>
         public string FileDisplayInfo => FileData.FileDisplayInfo;
 
+        /// <summary>
+        /// Indicates if the file is an image with mipmaps
+        /// </summary>
+        public bool HasMipmaps { get; set; }
+
         #endregion
 
         #region Protected Methods
@@ -96,6 +105,9 @@ namespace RayCarrot.RCP.ArchiveExplorer
         /// </summary>
         public void LoadThumbnail()
         {
+            // Default to not having mipmaps
+            HasMipmaps = false;
+
             // Get the bitmap if the item is an image
             if (FileData is IArchiveImageFileData imgData)
             {
@@ -107,7 +119,10 @@ namespace RayCarrot.RCP.ArchiveExplorer
                         GetBitmap(ArchiveFileStream, 64).
                         // Get an image source from the bitmap
                         ToImageSource();
-                    
+
+                    // Get if the image has mipmaps
+                    HasMipmaps = imgData.HasMipmaps;
+
                     // Freeze the image to avoid thread errors
                     img.Freeze();
 
@@ -116,7 +131,11 @@ namespace RayCarrot.RCP.ArchiveExplorer
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Getting archive file thumbnail");
+                    // If the stream has closed it's not an error
+                    if (ArchiveFileStream.CanRead)
+                        ex.HandleExpected("Getting archive file thumbnail");
+                    else
+                        ex.HandleError("Getting archive file thumbnail");
                 }
             }
             else
@@ -128,48 +147,57 @@ namespace RayCarrot.RCP.ArchiveExplorer
         /// <summary>
         /// Exports the file
         /// </summary>
+        /// <param name="includeMipmap">Indicates if available mipmaps should be included</param>
         /// <returns>The task</returns>
-        public async Task ExportFileAsync()
+        public async Task ExportFileAsync(bool includeMipmap)
         {
             // Run as a load operation
             using (Archive.LoadOperation.Run())
             {
-                // Run as a task
-                await Task.Run(async () =>
+                // Lock the access to the archive
+                using (await Archive.ArchiveLock.LockAsync())
                 {
-                    // Get the output path
-                    var result = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
+                    // Run as a task
+                    await Task.Run(async () =>
                     {
-                        Title = Resources.Archive_ExportHeader,
-                        DefaultName = FileName,
-                        Extensions = GetFileFilterCollection().ToString()
+                        // Get the output path
+                        var result = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
+                        {
+                            Title = Resources.Archive_ExportHeader,
+                            DefaultName = new FileSystemPath(FileName).ChangeFileExtension(FileData.SupportedFileExtensions.First()),
+                            Extensions = GetFileFilterCollection().ToString()
+                        });
+
+                        if (result.CanceledByUser)
+                            return;
+
+                        Archive.SetDisplayStatus(String.Format(Resources.Archive_ExportingFileStatus, FileName));
+
+                        try
+                        {
+                            if (!includeMipmap)
+                                // Export the file
+                                await FileData.ExportFileAsync(ArchiveFileStream, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
+                            else
+                                // Export the mipmaps
+                                await ((IArchiveImageFileData)FileData).ExportMipmapsAsync(ArchiveFileStream, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
+                        }
+                        catch (Exception ex)
+                        {
+                            ex.HandleError("Exporting archive file", FileName);
+
+                            await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ExportError, FileName));
+
+                            return;
+                        }
+                        finally
+                        {
+                            Archive.SetDisplayStatus(String.Empty);
+                        }
+
+                        await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFileSuccess);
                     });
-
-                    if (result.CanceledByUser)
-                        return;
-
-                    Archive.DisplayStatus = String.Format(Resources.Archive_ExportingFileStatus, FileName);
-
-                    try
-                    {
-                        // Export the file
-                        await FileData.ExportFileAsync(ArchiveFileStream, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.HandleError("Exporting archive file", FileName);
-
-                        await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ExportError, FileName));
-
-                        return;
-                    }
-                    finally
-                    {
-                        Archive.DisplayStatus = String.Empty;
-                    }
-
-                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFileSuccess);
-                });
+                };
             }
         }
 
@@ -182,48 +210,52 @@ namespace RayCarrot.RCP.ArchiveExplorer
             // Run as a load operation
             using (Archive.LoadOperation.Run())
             {
-                // Run as a task
-                await Task.Run(async () =>
+                // Lock the access to the archive
+                using (await Archive.ArchiveLock.LockAsync())
                 {
-                    // Get the file
-                    var result = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+                    // Run as a task
+                    await Task.Run(async () =>
                     {
-                        Title = Resources.Archive_ImportFileHeader,
-                        ExtensionFilter = GetFileFilterCollection().CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
-                    });
+                        // Get the file
+                        var result = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+                        {
+                            Title = Resources.Archive_ImportFileHeader,
+                            ExtensionFilter = GetFileFilterCollection().CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
+                        });
 
-                    if (result.CanceledByUser)
-                        return;
-
-                    Archive.DisplayStatus = String.Format(Resources.Archive_ImportingFileStatus, FileName);
-
-                    try
-                    {
-                        // Import the file
-                        var succeeded = await FileData.ImportFileAsync(ArchiveFileStream, result.SelectedFile);
-
-                        // Make sure it succeeded
-                        if (!succeeded)
+                        if (result.CanceledByUser)
                             return;
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.HandleError("Importing archive file", FileName);
 
-                        await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ImportError, result.SelectedFile.Name));
+                        Archive.SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, FileName));
 
-                        return;
-                    }
-                    finally
-                    {
-                        Archive.DisplayStatus = String.Empty;
-                    }
+                        try
+                        {
+                            // Import the file
+                            var succeeded = await FileData.ImportFileAsync(ArchiveFileStream, result.SelectedFile);
 
-                    // Update the archive
-                    await Archive.UpdateArchiveAsync();
+                            // Make sure it succeeded
+                            if (!succeeded)
+                                return;
+                        }
+                        catch (Exception ex)
+                        {
+                            ex.HandleError("Importing archive file", FileName);
 
-                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ImportFileSuccess);
-                });
+                            await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ImportError, result.SelectedFile.Name));
+
+                            return;
+                        }
+                        finally
+                        {
+                            Archive.SetDisplayStatus(String.Empty);
+                        }
+
+                        // Update the archive
+                        await Archive.UpdateArchiveAsync();
+
+                        await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ImportFileSuccess);
+                    });
+                }
             }
         }
 

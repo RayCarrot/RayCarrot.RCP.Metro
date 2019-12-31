@@ -7,7 +7,9 @@ using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 using RayCarrot.WPF;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using RayCarrot.RCP.Metro;
+using RayCarrot.UserData;
 
 namespace RayCarrot.RCP.Modding
 {
@@ -16,7 +18,7 @@ namespace RayCarrot.RCP.Modding
     /// </summary>
     public partial class App : BaseRCPApp<MainWindow>
     {
-        public App() : base(false)
+        public App() : base(true, "Img/Splash Screen.png")
         {
 
         }
@@ -41,6 +43,11 @@ namespace RayCarrot.RCP.Modding
                 AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, logLevel).
                 // Add exception handler
                 AddExceptionHandler<RCPExceptionHandler>().
+                // Add user data manager
+                AddUserDataManager(() => new JsonBaseSerializer()
+                {
+                    Formatting = Formatting.Indented
+                }).
                 // Add message UI manager
                 AddMessageUIManager<RCPMessageUIManager>().
                 // Add browse UI manager
@@ -53,6 +60,8 @@ namespace RayCarrot.RCP.Modding
                 AddAppViewModel<AppViewModel>().
                 // Add a file manager
                 AddFileManager<RCPFileManager>().
+                // Add a dialog manager
+                AddDialogBaseManager<RCPDialogBaseManager>().
                 // TODO: Add update manager
                 // Add updater manager
                 //AddUpdateManager<>().
@@ -61,12 +70,8 @@ namespace RayCarrot.RCP.Modding
                 //AddApplicationPaths<RCPMetroApplicationPaths>().
                 // Add localization manager
                 AddLocalizationManager<RCPModdingLocalizationManager>().
-                // Add a dialog manager
-                AddDialogBaseManager<RCPDialogBaseManager>().
-                // Add RCP API
-                AddRCPAPI<RCPModdingAPIControllerManager>(new APIControllerSettings().
-                    // Add UI settings
-                    SetUISettings(new RCPModdingAPIControllerUISettings())).
+                // Add API controller manager
+                AddAPIControllerManager<RCPModdingAPIControllerManager>().
                 // Build the framework
                 Build(config, loadDefaultsFromDomain: false);
         }

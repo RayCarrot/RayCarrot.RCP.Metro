@@ -72,9 +72,6 @@ namespace RayCarrot.RCP.Core
                     // Swedish (Sweden)
                     new CultureInfo("sv-SE"),
 
-                    // German (Germany)
-                    new CultureInfo("de-DE"),
-
                     // Polish (Poland)
                     new CultureInfo("pl-PL"),
 

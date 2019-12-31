@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>8</LangVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Img\RCP_Modding.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Infralution.Localization.Wpf">
       <HintPath>..\References\Infralution.Localization.Wpf.dll</HintPath>
@@ -78,7 +81,6 @@
     <Compile Include="Framework\UserData\AppUserData.cs" />
     <Compile Include="Framework\RCFRCPM.cs" />
     <Compile Include="API\RCPModdingAPIControllerManager.cs" />
-    <Compile Include="API\RCPModdingAPIControllerUISettings.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="UI\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -168,6 +170,14 @@
       <Name>RayCarrot.RCP.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Img\Splash Screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\RCP_Metro.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Img\RCP_Modding.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

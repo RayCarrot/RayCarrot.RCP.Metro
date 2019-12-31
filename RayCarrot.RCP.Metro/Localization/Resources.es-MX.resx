@@ -561,12 +561,6 @@ Notícias:
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Nueva versión encontrada</value>
   </data>
-  <data name="Update_UpdaterError" xml:space="preserve">
-    <value>El actualizador no pudo ser creado. Para descargar manualmente a la nueva versión, ve a {0} y descarga la última versión de ahí.</value>
-  </data>
-  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
-    <value>Error al crear el actualizador</value>
-  </data>
   <data name="MoveBackups_Question" xml:space="preserve">
     <value>¿Quieres mover las cópias de seguridad existentes para la nueva localización?</value>
   </data>
@@ -948,9 +942,6 @@ Notícias:
   <data name="About_Credits_Pixelise" xml:space="preserve">
     <value>Programa de traducción al Polaco</value>
   </data>
-  <data name="About_Credits_PhilippJeindl" xml:space="preserve">
-    <value>Programa de traducción al Alemán</value>
-  </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Programa de traducción al Holandés, prueba del programa</value>
   </data>
@@ -1073,12 +1064,6 @@ Notícias:
   </data>
   <data name="Settings_ShowUnderInstalledPrograms_UpdateError" xml:space="preserve">
     <value>Fallo a actualizar las informaciones del programa bajo programas instalados. Intenta reiniciar como administrador para intentarlo de nuevo.</value>
-  </data>
-  <data name="Update_RunningUpdaterError" xml:space="preserve">
-    <value>El actualizador no pudo arrancar. Para descargar la nueva versión manualmente, ve a {0} y descarga la versión más reciente por ahí.</value>
-  </data>
-  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
-    <value>Error al ejecutar el actualizador</value>
   </data>
   <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
     <value>Archivo ubi.ini Primário</value>

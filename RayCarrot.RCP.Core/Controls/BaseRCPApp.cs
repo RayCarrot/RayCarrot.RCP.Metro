@@ -7,7 +7,7 @@ using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Core
 {
-    // TODO: Generalize app startup more
+    // IDEA: Generalize app startup more
 
     /// <summary>
     /// The base WPF application for a Rayman Control Panel app

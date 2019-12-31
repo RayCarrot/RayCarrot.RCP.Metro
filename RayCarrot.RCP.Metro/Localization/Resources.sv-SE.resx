@@ -892,12 +892,6 @@ Nyheter:
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Ny version hittades</value>
   </data>
-  <data name="Update_UpdaterError" xml:space="preserve">
-    <value>Uppdateraren kunde inte skapas. För att hämta den nya versionen manuellt, gå till {0} och ladda ner den senaste versionen därifrån.</value>
-  </data>
-  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
-    <value>Det gick inte att skapa uppdateraren</value>
-  </data>
   <data name="MoveBackups_Question" xml:space="preserve">
     <value>Vill du flytta tidigare säkerhetskopior till den nya mappen?</value>
   </data>

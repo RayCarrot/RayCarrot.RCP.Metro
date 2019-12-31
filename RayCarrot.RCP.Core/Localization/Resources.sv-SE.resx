@@ -180,16 +180,16 @@
   <data name="Update_NewsError" xml:space="preserve">
     <value>Server fel</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Avbryt</value>
-  </data>
-  <data name="Ok" xml:space="preserve">
-    <value>Ok</value>
-  </data>
   <data name="Update_UpdaterError" xml:space="preserve">
     <value>Uppdateraren kunde inte skapas. För att hämta den nya versionen manuellt, gå till {0} och ladda ner den senaste versionen därifrån.</value>
   </data>
   <data name="Update_UpdaterErrorHeader" xml:space="preserve">
     <value>Det gick inte att skapa uppdateraren</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
   </data>
 </root>

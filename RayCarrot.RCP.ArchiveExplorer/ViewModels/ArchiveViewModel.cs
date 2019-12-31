@@ -4,9 +4,11 @@ using RayCarrot.IO;
 using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using RayCarrot.CarrotFramework.Abstractions;
 
 namespace RayCarrot.RCP.ArchiveExplorer
 {
@@ -23,31 +25,27 @@ namespace RayCarrot.RCP.ArchiveExplorer
         /// <param name="filePath">The file path for the archive</param>
         /// <param name="manager">The archive data manager</param>
         /// <param name="loadOperation">The operation to use when running an async operation which needs to load</param>
-        public ArchiveViewModel(FileSystemPath filePath, IArchiveDataManager manager, Operation loadOperation) : base(filePath.Name)
+        /// <param name="explorerDialogViewModel">The explorer dialog view model</param>
+        public ArchiveViewModel(FileSystemPath filePath, IArchiveDataManager manager, Operation loadOperation, ArchiveExplorerDialogViewModel explorerDialogViewModel) : base(filePath.Name)
         {
             // Set properties
             FilePath = filePath;
             Manager = manager;
             LoadOperation = loadOperation;
-            AsyncLock = new AsyncLock();
-
+            ExplorerDialogViewModel = explorerDialogViewModel;
+            
             // Create the file stream
             ArchiveFileStream = new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
         }
 
         #endregion
 
-        #region Private Properties
+        #region Protected Properties
 
         /// <summary>
-        /// Indicates if thumbnails are being refreshed
+        /// The explorer dialog view model
         /// </summary>
-        private bool IsRefreshingThumbnails { get; set; }
-
-        /// <summary>
-        /// Indicates if refreshing the thumbnails should be canceled
-        /// </summary>
-        private bool CancelRefreshingThumbnails { get; set; }
+        protected ArchiveExplorerDialogViewModel ExplorerDialogViewModel { get; }
 
         #endregion
 
@@ -69,6 +67,11 @@ namespace RayCarrot.RCP.ArchiveExplorer
         public FileStream ArchiveFileStream { get; }
 
         /// <summary>
+        /// The lock to use when accessing the archive stream
+        /// </summary>
+        public AsyncLock ArchiveLock => ExplorerDialogViewModel.ArchiveLock;
+
+        /// <summary>
         /// The file path for the archive
         /// </summary>
         public FileSystemPath FilePath { get; }
@@ -82,11 +85,6 @@ namespace RayCarrot.RCP.ArchiveExplorer
         /// The archive data manager
         /// </summary>
         public IArchiveDataManager Manager { get; }
-
-        /// <summary>
-        /// The async lock to use for refreshing the thumbnails
-        /// </summary>
-        public AsyncLock AsyncLock { get; }
 
         /// <summary>
         /// Gets the currently selected item
@@ -118,46 +116,12 @@ namespace RayCarrot.RCP.ArchiveExplorer
         #region Public Methods
 
         /// <summary>
-        /// Updates the loaded directory thumbnails
+        /// Sets the display status
         /// </summary>
-        /// <returns>The task</returns>
-        public async Task ChangeLoadedDirAsync(ArchiveDirectoryViewModel previousDir, ArchiveDirectoryViewModel newDir)
+        /// <param name="status">The status to display</param>
+        public void SetDisplayStatus(string status)
         {
-            if (IsRefreshingThumbnails)
-                CancelRefreshingThumbnails = true;
-
-            // Lock to avoid it running multiple times at once
-            using (await AsyncLock.LockAsync())
-            {
-                try
-                {
-                    // Indicate that we are refreshing the thumbnails
-                    IsRefreshingThumbnails = true;
-
-                    // Remove all thumbnail image sources from memory
-                    previousDir?.Files.ForEach(x => x.ThumbnailSource = null);
-
-                    // Load the thumbnail image sources for the new directory
-                    await Task.Run(() =>
-                    {
-                        // Load the thumbnail for each file
-                        foreach (var x in newDir.Files)
-                        {
-                            // Load the thumbnail
-                            x.LoadThumbnail();
-
-                            // Check if the operation should be canceled
-                            if (CancelRefreshingThumbnails)
-                                return;
-                        }
-                    });
-                }
-                finally
-                {
-                    IsRefreshingThumbnails = false;
-                    CancelRefreshingThumbnails = false;
-                }
-            }
+            ExplorerDialogViewModel.DisplayStatus = status;
         }
 
         /// <summary>
@@ -203,7 +167,11 @@ namespace RayCarrot.RCP.ArchiveExplorer
         /// </summary>
         public Task UpdateArchiveAsync()
         {
-            DisplayStatus = String.Format(Resources.Archive_RepackingStatus, DisplayName);
+            // Stop refreshing thumbnails
+            if (ExplorerDialogViewModel.IsRefreshingThumbnails)
+                ExplorerDialogViewModel.CancelRefreshingThumbnails = true;
+
+            Archive.SetDisplayStatus(String.Format(Resources.Archive_RepackingStatus, DisplayName));
 
             // Find the selected item ID
             var selected = SelectedItem.FullID;
@@ -236,7 +204,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
             // Select the previously selected item
             previouslySelectedItem.IsSelected = true;
 
-            DisplayStatus = String.Empty;
+            Archive.SetDisplayStatus(String.Empty);
 
             return Task.CompletedTask;
         }
@@ -244,7 +212,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
         public override void Dispose()
         {
             // Cancel refreshing thumbnails
-            CancelRefreshingThumbnails = true;
+            ExplorerDialogViewModel.CancelRefreshingThumbnails = true;
 
             // Dispose base class
             base.Dispose();

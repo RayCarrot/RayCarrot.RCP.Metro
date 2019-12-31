@@ -13,7 +13,6 @@ using System.Windows.Input;
 
 namespace RayCarrot.RCP.Modding
 {
-    // TODO: Generalize app view model (selected page with generic, is running as admin etc.)
     /// <summary>
     /// The main application view model
     /// </summary>
@@ -48,6 +47,11 @@ namespace RayCarrot.RCP.Modding
         /// The available OpenSpace game modes
         /// </summary>
         public string[] OpenSpaceGameModes => OpenSpaceGameMode.DinosaurPC.GetValues().Select(x => x.GetDisplayName()).ToArray();
+
+        /// <summary>
+        /// The application base path to use for WPF related operations
+        /// </summary>
+        public override string WPFApplicationBasePath => "pack://application:,,,/RayCarrot.RCP.Modding;component/";
 
         #endregion
 
@@ -118,7 +122,6 @@ namespace RayCarrot.RCP.Modding
         }
 
         #endregion
-
     }
 
     /// <summary>

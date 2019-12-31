@@ -180,6 +180,18 @@
   <data name="Update_NewsError" xml:space="preserve">
     <value>Erro ao obter notícias</value>
   </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>O actualizador não pode ser criado. Para descarregar manualmente a nova versão, vai ao {0} e descarrega a última versão de lá.</value>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Erro ao criar o actualizador</value>
+  </data>
+  <data name="Update_RunningUpdaterError" xml:space="preserve">
+    <value>O actualizador não pode arrancar. Para descarregar a nova versão manualmente, vai a {0} e descarrega a versão mais recente por lá.</value>
+  </data>
+  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
+    <value>Erro ao executar o actualizador</value>
+  </data>
   <data name="File_RegKeyNotFound" xml:space="preserve">
     <value>A chave de registo não foi encontrada</value>
   </data>
@@ -208,17 +220,5 @@ Error message: {1}</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
-  </data>
-  <data name="Update_UpdaterError" xml:space="preserve">
-    <value>O actualizador não pode ser criado. Para descarregar manualmente a nova versão, vai ao {0} e descarrega a última versão de lá.</value>
-  </data>
-  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
-    <value>Erro ao criar o actualizador</value>
-  </data>
-  <data name="Update_RunningUpdaterError" xml:space="preserve">
-    <value>O actualizador não pode arrancar. Para descarregar a nova versão manualmente, vai a {0} e descarrega a versão mais recente por lá.</value>
-  </data>
-  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
-    <value>Erro ao executar o actualizador</value>
   </data>
 </root>

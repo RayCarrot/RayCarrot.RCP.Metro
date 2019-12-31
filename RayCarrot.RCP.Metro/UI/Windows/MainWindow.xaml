@@ -43,6 +43,9 @@
     </core:BaseWindow.TitleTemplate>
     <metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands>
+            <!--<Button ToolTip="Rayman Modding Panel">
+                <iconPacks:PackIconMaterial Kind="WrenchOutline" />
+            </Button>-->
             <Button DataContext="{StaticResource TaskbarIconViewModel}"
                     Command="{Binding Path=MinimizeToTaskbarCommand}"
                     ToolTip="{Resx Window_MinimizeToTray}">
@@ -52,7 +55,7 @@
     </metro:MetroWindow.RightWindowCommands>
     <Grid>
         <tb:TaskbarIcon DataContext="{StaticResource TaskbarIconViewModel}"
-                        IconSource="pack://application:,,,/RayCarrot.RCP.Core;component/Images/Rayman Control Panel Icon.ico"
+                        IconSource="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/RCP_Metro.ico"
                         ToolTipText="{Resx AppName}"
                         LeftClickCommand="{Binding Path=OpenFromTaskbarCommand}"
                         Visibility="{Binding Path=IsIconVisible, Converter={rwpf:BooleanToVisibilityConverter}}">

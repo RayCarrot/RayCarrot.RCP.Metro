@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.RCP.Core;
@@ -112,6 +113,20 @@ namespace RayCarrot.RCP.ArchiveExplorer
 
         #region Event Handlers
 
+        private async void DirTreeView_OnSelectedItemChangedAsync(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (e.NewValue is ArchiveDirectoryViewModel newValue)
+                await ViewModel.ChangeLoadedDirAsync(e.OldValue as ArchiveDirectoryViewModel, newValue);
+        }
+
+        private void DirTreeView_OnPreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Select the tree view item on right click
+            (e.OriginalSource as DependencyObject)?.FindParent<TreeViewItem>()?.Focus();
+
+            e.Handled = true;
+        }
+
         private void ArchiveExplorer_Loaded(object sender, RoutedEventArgs e)
         {
             // Make sure this won't get called again
@@ -128,7 +143,11 @@ namespace RayCarrot.RCP.ArchiveExplorer
                     ee.Cancel = true;
             };
 
-            ParentWindow.Closed += (ss, ee) => ViewModel?.Dispose();
+            ParentWindow.Closed += (ss, ee) =>
+            {
+                DataContext = null;
+                ViewModel?.Dispose();
+            };
 
             ViewModel.PropertyChanged += (ss, ee) =>
             {

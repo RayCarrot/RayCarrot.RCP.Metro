@@ -920,14 +920,6 @@ versionNews</comment>
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>New version found</value>
   </data>
-  <data name="Update_UpdaterError" xml:space="preserve">
-    <value>The updater could not be created. To manually download the new version, go to {0} and download the latest version from there.</value>
-    <comment>Arguments:
-downloadURL</comment>
-  </data>
-  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
-    <value>Error creating updater</value>
-  </data>
   <data name="MoveBackups_Question" xml:space="preserve">
     <value>Do you want to move existing backups to the new location?</value>
   </data>
@@ -1740,9 +1732,6 @@ Running an application in compatibility mode is done by selecting the option und
   <data name="About_Credits_Pixelise" xml:space="preserve">
     <value>Polish (Poland) program translation</value>
   </data>
-  <data name="About_Credits_PhilippJeindl" xml:space="preserve">
-    <value>German (Germany) program translation</value>
-  </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
     <value>Dutch (Netherlands) program translation, program testing</value>
   </data>
@@ -1868,14 +1857,6 @@ totalGames</comment>
   </data>
   <data name="Settings_ShowUnderInstalledPrograms_UpdateError" xml:space="preserve">
     <value>Updating the program information under installed programs failed. Try restarting as administrator to try again.</value>
-  </data>
-  <data name="Update_RunningUpdaterError" xml:space="preserve">
-    <value>The updater could not be launched. To manually download the new version, go to {0} and download the latest version from there.</value>
-    <comment>Arguments:
-downloadURL</comment>
-  </data>
-  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
-    <value>Error running updater</value>
   </data>
   <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
     <value>Primary ubi.ini file</value>

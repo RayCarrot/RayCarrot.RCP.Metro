@@ -29,7 +29,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <returns>The contents of the file</returns>
-        byte[] GetFileContent(Stream archiveFileStream);
+        byte[] GetFileBytes(Stream archiveFileStream);
 
         /// <summary>
         /// The name of the file format
