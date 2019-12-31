@@ -6,6 +6,7 @@
                xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
                mc:Ignorable="d"
+               ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
                Title="{Resx FirstLaunchInfo_Title}"
                Height="450" Width="800">
     <Grid Margin="5">
@@ -57,7 +58,7 @@
             </Grid>
 
             <Image Grid.Column="1"
-                   Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/MessageIcons/Info.png"
+                   Source="pack://application:,,,/RayCarrot.RCP.Core;component/Images/MessageIcons/Info.png"
                    Height="256"
                    Width="256" 
                    RenderOptions.BitmapScalingMode="NearestNeighbor"/>

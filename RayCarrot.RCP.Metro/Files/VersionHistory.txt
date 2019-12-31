@@ -11,6 +11,7 @@ Other changes:
 • Removed incomplete translation for German (Germany)
 • Fixed a minor memory issue when a Bitmap image was loaded
 • Fixed a bug where the configuration for games with a ubi.ini file would create a duplicate section if the section key didn't match case-sensitive
+• Fixed a bug where the configuration for games with a ubi.ini file would crash if the file didn't already exist
 • Bug fixes
 
 

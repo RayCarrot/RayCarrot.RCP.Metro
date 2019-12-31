@@ -31,7 +31,7 @@ namespace RayCarrot.RCP.Metro
             // Set default properties
             IsHorizontalWidescreen = true;
 
-            // NOTE: Not localized
+            // IDEA: Localize
             KeyItems = new ObservableCollection<R2KeyItemViewModel>()
             {
                 new R2KeyItemViewModel("Up", Key.Up, this),

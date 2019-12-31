@@ -9,6 +9,7 @@
                Title="{Resx Download_Title}"
                ResizeMode="NoResize"
                SizeToContent="WidthAndHeight"
+               ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
                MinWidth="300" MinHeight="150"
                Loaded="Downloader_OnLoadedAsync"
                Closing="Downloader_OnClosingAsync"

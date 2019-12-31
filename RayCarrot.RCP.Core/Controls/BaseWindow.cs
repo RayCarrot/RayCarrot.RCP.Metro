@@ -34,7 +34,8 @@ namespace RayCarrot.RCP.Core
             TitleCharacterCasing = CharacterCasing.Normal;
 
             // Set icon style
-            Icon = new ImageSourceConverter().ConvertFromString(RCFRCPC.API.GetWPFIconPath()) as ImageSource;
+            if (RCF.IsBuilt)
+                Icon = new ImageSourceConverter().ConvertFromString(RCFRCPC.API.GetWPFIconPath()) as ImageSource;
             IconBitmapScalingMode = BitmapScalingMode.NearestNeighbor;
 
             // Set owner window

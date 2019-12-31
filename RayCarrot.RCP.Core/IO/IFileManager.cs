@@ -51,7 +51,7 @@ namespace RayCarrot.RCP.Core
         void DeleteDirectory(FileSystemPath dirPath);
 
         /// <summary>
-        /// Creates a new empty file
+        /// Creates an new empty file
         /// </summary>
         /// <param name="filePath">The file path</param>
         /// <param name="overwrite">Indicates if an existing file with the same name should be overwritten or else ignored</param>
