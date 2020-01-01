@@ -170,7 +170,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
         /// <summary>
         /// Updates the archive with the pending imports
         /// </summary>
-        public Task UpdateArchiveAsync()
+        public async Task UpdateArchiveAsync()
         {
             // Stop refreshing thumbnails
             if (ExplorerDialogViewModel.IsRefreshingThumbnails)
@@ -187,6 +187,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
             // Update the archive
             Manager.UpdateArchive(ArchiveFileStream, files);
 
+            // IDEA: We probably don't need to reload the archive since we currently don't support modifying the directory/file structure - it might however be good in case an error occurs when repacking and the archive gets corrupt?
             // Reload the archive
             LoadArchive();
 
@@ -202,16 +203,14 @@ namespace RayCarrot.RCP.ArchiveExplorer
                 parent = parent.Parent;
             }
 
-            // Deselect if already selected
+            // If the item is selected, simply reload the thumbnails, but without awaiting it
             if (previouslySelectedItem.IsSelected)
-                previouslySelectedItem.IsSelected = false;
-
-            // Select the previously selected item
-            previouslySelectedItem.IsSelected = true;
+                _ = ExplorerDialogViewModel.ChangeLoadedDirAsync(null, previouslySelectedItem);
+            // Otherwise select the item and let the thumbnails get automatically reloaded
+            else
+                previouslySelectedItem.IsSelected = true;
 
             Archive.SetDisplayStatus(String.Empty);
-
-            return Task.CompletedTask;
         }
 
         public override void Dispose()
