@@ -117,10 +117,89 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Archive_ImportFileHeader" xml:space="preserve">
+    <value>Selecteer bestand voor import</value>
+  </data>
+  <data name="Archive_FileSelectionGroupName" xml:space="preserve">
+    <value>Ondersteunde bestanden</value>
+  </data>
+  <data name="Archive_ImportingFileStatus" xml:space="preserve">
+    <value>Importeren {0}</value>
+  </data>
+  <data name="Archive_ExportHeader" xml:space="preserve">
+    <value>Selecteer locatie voor export</value>
+  </data>
+  <data name="Archive_ExportingFileStatus" xml:space="preserve">
+    <value>Exporteren {0}</value>
+  </data>
+  <data name="Archive_Export" xml:space="preserve">
+    <value>Exporteren</value>
+  </data>
+  <data name="Archive_Import" xml:space="preserve">
+    <value>Importeren</value>
+  </data>
+  <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
+    <value>Selecteer map voor import</value>
+  </data>
+  <data name="Archive_ExportDirectoryConflict" xml:space="preserve">
+    <value>De geselecteerde map bevat al een map met dezelfde naam als {0} </value>
+  </data>
+  <data name="Archive_ImportNoFilesError" xml:space="preserve">
+    <value>Geen bestanden gevonden om te importeren</value>
+  </data>
+  <data name="Archive_ImportFailsError" xml:space="preserve">
+    <value>Sommige bestanden konden niet geïmporteerd worden</value>
+  </data>
+  <data name="Archive_ImportFilesSuccess" xml:space="preserve">
+    <value>De bestanden zijn geïmporteerd</value>
+  </data>
+  <data name="Archive_ExportFilesSuccess" xml:space="preserve">
+    <value>De bestanden zijn geëxporteerd</value>
+  </data>
+  <data name="Archive_ImportFileSuccess" xml:space="preserve">
+    <value>Het bestand is geïmporteerd</value>
+  </data>
+  <data name="Archive_ExportFileSuccess" xml:space="preserve">
+    <value>Het bestand is geëxporteerd</value>
+  </data>
+  <data name="Archive_ExportError" xml:space="preserve">
+    <value>{0} kon niet geëxporteerd worden</value>
+  </data>
+  <data name="Archive_ImportError" xml:space="preserve">
+    <value>{0} kon niet geïmporteerd worden</value>
+  </data>
+  <data name="Archive_RepackingStatus" xml:space="preserve">
+    <value>Ompakken archief {0}</value>
+  </data>
+  <data name="Archive_CNT_FileInfo" xml:space="preserve">
+    <value>Map = {0}
+Grootte = {1} x {2}
+Bestandsgrootte = {3}
+Gewijzigd = {4}
+Versleuteld = {5}
+Transparant = {6}
+Pointer = {7}
+Mipmaps = {8}</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
+    <value>Bestandsextensie Selectie</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annuleren</value>
   </data>
   <data name="Accept" xml:space="preserve">
     <value>Accepteren</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
+    <value>Selecteer bestandsextensie om te exporteren als voor {0} bestanden</value>
+  </data>
+  <data name="Archive_Title" xml:space="preserve">
+    <value>Archief Explorer</value>
+  </data>
+  <data name="Archive_CriticalError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden in de Archief Explorer en deze moest afgesloten worden</value>
+  </data>
+  <data name="Archive_ExportMipmaps" xml:space="preserve">
+    <value>Exporteren mipmaps</value>
   </data>
 </root>

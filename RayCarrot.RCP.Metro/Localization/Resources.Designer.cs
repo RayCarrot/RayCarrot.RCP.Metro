@@ -6265,24 +6265,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Archive Explorer (.cnt).
-        /// </summary>
-        public static string R2U_CNTExplorer_Header {
-            get {
-                return ResourceManager.GetString("R2U_CNTExplorer_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This tool allows you to view/edit the .cnt archive files, allowing importing/exporting of game textures.
-        /// </summary>
-        public static string R2U_CNTExplorer_Info {
-            get {
-                return ResourceManager.GetString("R2U_CNTExplorer_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The game was successfully patched.
         /// </summary>
         public static string R2U_DiscPatchApplied {

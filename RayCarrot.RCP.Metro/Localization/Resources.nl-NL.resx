@@ -1168,7 +1168,7 @@ Herstarten?</value>
     <value>In het bijzonder dank aan AuToMaNiAk005, Evelyn Chickentalk, MixerX, PokGOT4N, Ryemanni, MilesTheCreator en alle andere Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>User interface, Carrot Framework, Game Finder, Game Installer, hulpprogramma's, Rayman 2 vertalingen, Zweedse programmavertaling</value>
+    <value>User interface, Carrot Framework, Game Finder, Game Installer, hulpprogramma's, Rayman 2 vertalingen, Zweedse (Zweden) programmavertaling</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -1183,7 +1183,7 @@ Herstarten?</value>
     <value>Rayman 2 vertalingen</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>Rayman 2 vertalingen, Portugese programmavertaling</value>
+    <value>Rayman 2 vertalingen, Portugese (Portugal) programmavertaling</value>
   </data>
   <data name="ROU_HQVideosFailed" xml:space="preserve">
     <value>Vervangen video's mislukt</value>
@@ -1638,16 +1638,16 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
     <value>Rayman PlayStation Soundtrack hulpprogramma, Rayman M/Arena schijfcontrole eliminatie</value>
   </data>
   <data name="About_Credits_ICUP321" xml:space="preserve">
-    <value>Spaanse programmavertaling</value>
+    <value>Spaanse (Mexico) programmavertaling</value>
   </data>
   <data name="About_Credits_OldClassicGamer" xml:space="preserve">
-    <value>Servische programmavertaling</value>
+    <value>Servische (Cyrillisch) programmavertaling</value>
   </data>
   <data name="About_Credits_Pixelise" xml:space="preserve">
-    <value>Poolse programmavertaling</value>
+    <value>Poolse (Polen) programmavertaling</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
-    <value>Nederlandse programmavertaling, programmatests</value>
+    <value>Nederlandse (Nederland) programmavertaling, programmatests</value>
   </data>
   <data name="BrowseBox_Browse" xml:space="preserve">
     <value>Browsen</value>
@@ -1943,7 +1943,7 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
     <value>Vanwege het feit dat de staat van het programma wordt gewijzigd, moet het de programma-informatie updaten onder Geïnstalleerde Programma's. Dit vereist dat het programma wordt uitgevoerd als administrator. Wordt dit niet gedaan, dan zou de informatie onder Geïnstalleerde Programma's wel eens onnauwkeurig kunnen zijn.</value>
   </data>
   <data name="About_Credits_RayActivity" xml:space="preserve">
-    <value>Graphics, programmatests</value>
+    <value>Pictogram spellenpagina, programmatests</value>
   </data>
   <data name="Backup_GOGSyncWarning" xml:space="preserve">
     <value>Het is mogelijk dat het spel zijn save files gesynchroniseerd heeft via GOG Galaxy. Als dat het geval is, raakt het hulpprogramma voor back-ups en herstel de betreffende game niet, ook al lijkt dat zo, doordat de bewerking wel wordt voltooid.</value>
@@ -2827,5 +2827,20 @@ Houd L1 + R1 (of gelijkwaardige knoppen op de huidige controller) in het menu va
   </data>
   <data name="GameDisplay_DownloadUplay" xml:space="preserve">
     <value>Downloaden via Uplay</value>
+  </data>
+  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
+    <value>Archief Explorer (.cnt)</value>
+  </data>
+  <data name="OSU_CNTExplorer_Info" xml:space="preserve">
+    <value>Deze tool stelt je in staat om de .cnt archiefbestanden in te zien/wijzigen, waarbij het importeren/exporteren van speltexturen mogelijk wordt gemaakt</value>
+  </data>
+  <data name="ArchiveExplorer_Open" xml:space="preserve">
+    <value>Open Archief Explorer</value>
+  </data>
+  <data name="About_Credits_Droolie" xml:space="preserve">
+    <value>Rayman reverse engineering</value>
+  </data>
+  <data name="About_Credits_Hakyra" xml:space="preserve">
+    <value>Spaanse (Spanje) programmavertaling, Catalaanse (Catalonië) programmavertaling</value>
   </data>
 </root>

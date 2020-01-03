@@ -1168,7 +1168,7 @@ Reiniciar?</value>
     <value>Agradecimentos especiais ao AuToMaNiAk005, Evelyn Chickentalk, MixerX, PokGOT4N, Ryemanni, MilesTheCreator e a todos os outros fãs de Rayman!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Interface de utilizador, Carrot Framework, Localizador de jogo, Utilitários, Traduções do Rayman 2, Programa de tradução Sueca</value>
+    <value>Interface de utilizador, Carrot Framework, Localizador de jogo, Utilitários, Traduções do Rayman 2, Programa de tradução Sueca (Suécia)</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Patches de comandos</value>
@@ -1183,7 +1183,7 @@ Reiniciar?</value>
     <value>Traduções do Rayman 2</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
-    <value>Traduções do Rayman 2, Programa de tradução Portuguesa</value>
+    <value>Traduções do Rayman 2, Programa de tradução Portuguesa (Portugal)</value>
   </data>
   <data name="ROU_HQVideosFailed" xml:space="preserve">
     <value>A substituição de vídeos falhou</value>
@@ -1640,16 +1640,16 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <value>Utilitário da banda sonora Rayman PlayStation, Remoção de verificação do disco Rayman M/Arena</value>
   </data>
   <data name="About_Credits_ICUP321" xml:space="preserve">
-    <value>Programa de tradução Espanhola</value>
+    <value>Programa de tradução Espanhola (México)</value>
   </data>
   <data name="About_Credits_OldClassicGamer" xml:space="preserve">
-    <value>Programa de tradução Sérvia</value>
+    <value>Programa de tradução Sérvia (Cirílico)</value>
   </data>
   <data name="About_Credits_Pixelise" xml:space="preserve">
-    <value>Programa de tradução Polaca</value>
+    <value>Programa de tradução Polaca (Polónia)</value>
   </data>
   <data name="About_Credits_432Hz" xml:space="preserve">
-    <value>Programa de tradução Holandesa, Teste de programa</value>
+    <value>Programa de tradução Holandesa (Países Baixos), Teste de programa</value>
   </data>
   <data name="BrowseBox_Browse" xml:space="preserve">
     <value>Navegar</value>
@@ -1943,7 +1943,7 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <value>Devido ao estado do programa ter sido alterado necessita de actualizar a informação armazenada nos programas instalados. Isto requer que o programa execute como administrador. Até lá a informação exibida dos programas instalados poderá não ser precisa.</value>
   </data>
   <data name="About_Credits_RayActivity" xml:space="preserve">
-    <value>Gráficos, Teste de programa</value>
+    <value>Página de ícones de jogo, Teste de programa</value>
   </data>
   <data name="Backup_GOGSyncWarning" xml:space="preserve">
     <value>Este jogo poderá ter os seus ficheiros de progressão sincronizados através do GOG Galaxy. Se for o caso, o utilitário de cópia de segurança e restauro poderá não afectar este jogo mesmo que a operação seja sucedida.</value>
@@ -2836,5 +2836,24 @@ Mantém premido L1 + R1 no menu (ou equivalente no comando a ser utilizado corre
   </data>
   <data name="GameDisplay_DownloadUplay" xml:space="preserve">
     <value>Descarregar pela Uplay</value>
+  </data>
+  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
+    <value>Explorador de arquivos (.cnt)
+</value>
+  </data>
+  <data name="OSU_CNTExplorer_Info" xml:space="preserve">
+    <value>Esta ferramenta permite que vejas/edites os ficheiros de arquivo .cnt, permitindo a importação/exportação das texturas de jogo</value>
+  </data>
+  <data name="ArchiveExplorer_Open" xml:space="preserve">
+    <value>Abrir Explorador de arquivos</value>
+  </data>
+  <data name="About_Credits_Droolie" xml:space="preserve">
+    <value>Engenharia Reversa do Rayman
+</value>
+  </data>
+  <data name="About_Credits_Hakyra" xml:space="preserve">
+    <value>Programa de tradução Espanhola (Espanha),
+Programa de tradução Catalã (Catalunha)
+</value>
   </data>
 </root>

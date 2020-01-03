@@ -117,6 +117,59 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Acción exitosa</value>
+    <comment>Acción exitosa</comment>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Mensaje Genérico</value>
+    <comment>Mensaje Genérico</comment>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Mensaje de información</value>
+    <comment>Mensaje de información</comment>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Mensaje de error</value>
+    <comment>Mensaje de error</comment>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Mensaje de aviso</value>
+    <comment>Mensaje de aviso</comment>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Mensaje de éxito</value>
+    <comment>Mensaje de éxito</comment>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Mensaje de pregunta</value>
+    <comment>Mensaje de pregunta</comment>
+  </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Excepción</value>
+    <comment>Excepción</comment>
+  </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>El archivo especificado no ha sido encontrado</value>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>Archivo no encontrado</value>
+  </data>
+  <data name="File_ErrorLaunchingFile" xml:space="preserve">
+    <value>Ha ocurrido un error en la ejecucción</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>La ubicación de archivos no se ha podido abrir
+</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>
+</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>
+</value>
+  </data>
   <data name="Update_UnknownError" xml:space="preserve">
     <value>Error desconocido</value>
     <comment>Error desconocido</comment>

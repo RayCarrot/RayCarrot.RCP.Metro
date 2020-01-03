@@ -117,10 +117,95 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Archive_ImportFileHeader" xml:space="preserve">
+    <value>Seleccionar ficheiro para importar</value>
+  </data>
+  <data name="Archive_FileSelectionGroupName" xml:space="preserve">
+    <value>Ficheiros suportados</value>
+  </data>
+  <data name="Archive_ImportingFileStatus" xml:space="preserve">
+    <value>A importar {0}
+</value>
+  </data>
+  <data name="Archive_ExportHeader" xml:space="preserve">
+    <value>Selecciona o destino a exportar</value>
+  </data>
+  <data name="Archive_ExportingFileStatus" xml:space="preserve">
+    <value>A exportar {0}</value>
+  </data>
+  <data name="Archive_Export" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="Archive_Import" xml:space="preserve">
+    <value>Importar</value>
+  </data>
+  <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
+    <value>Selecciona o directório a importar</value>
+  </data>
+  <data name="Archive_ExportDirectoryConflict" xml:space="preserve">
+    <value>O directório seleccionado já contém um directório com o mesmo nome que {0}</value>
+  </data>
+  <data name="Archive_ImportNoFilesError" xml:space="preserve">
+    <value>Não foi encontrado nenhum ficheiro para importar</value>
+  </data>
+  <data name="Archive_ImportFailsError" xml:space="preserve">
+    <value>Falhou a importação de alguns ficheiros
+</value>
+  </data>
+  <data name="Archive_ImportFilesSuccess" xml:space="preserve">
+    <value>Foram importados os ficheiros
+</value>
+  </data>
+  <data name="Archive_ExportFilesSuccess" xml:space="preserve">
+    <value>Foram exportados os ficheiros</value>
+  </data>
+  <data name="Archive_ImportFileSuccess" xml:space="preserve">
+    <value>Foi importado o ficheiro
+</value>
+  </data>
+  <data name="Archive_ExportFileSuccess" xml:space="preserve">
+    <value>Foi exportado o ficheiro</value>
+  </data>
+  <data name="Archive_ExportError" xml:space="preserve">
+    <value>Não pode ser exportado o {0}
+</value>
+  </data>
+  <data name="Archive_ImportError" xml:space="preserve">
+    <value>Não pode ser importado o {0}</value>
+  </data>
+  <data name="Archive_RepackingStatus" xml:space="preserve">
+    <value>A reacondicionar o arquivo {0}
+</value>
+  </data>
+  <data name="Archive_CNT_FileInfo" xml:space="preserve">
+    <value>Directório = {0}
+Tamanho = {1} x {2}
+Tamanho de ficheiro = {3}
+Modificado = {4}
+Encriptado = {5}
+Transparente = {6}
+Offset = {7}
+Mipmaps = {8}</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
+    <value>Selecção de ficheiro de extensão</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
   <data name="Accept" xml:space="preserve">
     <value>Aceitar</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
+    <value>Selecciona a extensão de ficheiro para exportar como para os ficheiros {0}</value>
+  </data>
+  <data name="Archive_Title" xml:space="preserve">
+    <value>Explorador de arquivos</value>
+  </data>
+  <data name="Archive_CriticalError" xml:space="preserve">
+    <value>Ocorreu um erro no Explorador de arquivos e teve de fechar</value>
+  </data>
+  <data name="Archive_ExportMipmaps" xml:space="preserve">
+    <value>Exportar mipmaps</value>
   </data>
 </root>

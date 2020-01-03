@@ -403,6 +403,42 @@ hacer mas grande/mejorar los modos de baja resolución</value>
   <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
     <value>Haz que la pantalla se expanda verticalmente</value>
   </data>
+  <data name="Config_LanguageR2Info" xml:space="preserve">
+    <value>Esta opción lanza el juego en el idioma seleccionado. El idioma se puede cambiar desde el menu principal del juego</value>
+  </data>
+  <data name="Config_ControllerR2Info" xml:space="preserve">
+    <value>Si el juego no reconoze tu mando, puedes habilitar el soporte para mandos aqui. Eso eliminará cualquier customización hecha en los botones.</value>
+  </data>
+  <data name="Config_ButtonMapping" xml:space="preserve">
+    <value>
+Configuración de las teclas del teclado</value>
+  </data>
+  <data name="Config_ButtonMappingInfo" xml:space="preserve">
+    <value>Como que el juego no permite cambiar los botones por defecto, esta opción te permite cambiarlos. No funciona con mandos.</value>
+  </data>
+  <data name="Config_ButtonMappingActionHeader" xml:space="preserve">
+    <value>Acción</value>
+    <comment>Acción</comment>
+  </data>
+  <data name="Config_ButtonMappingKeyHeader" xml:space="preserve">
+    <value>Tecla</value>
+    <comment>Tecla</comment>
+  </data>
+  <data name="Config_ButtonMappingReset" xml:space="preserve">
+    <value>Reiniciar</value>
+    <comment>Reiniciar</comment>
+  </data>
+  <data name="Config_ResolutionRRRInfo" xml:space="preserve">
+    <value>Seleccionando una resolución distinta a una que tenga una relación de Aspecto a 4:3 mostrará una imagen destorisionada.
+Incluso si la opción interna de pantalla ancha esta activada.</value>
+  </data>
+  <data name="Config_RRRScreenMode" xml:space="preserve">
+    <value>Modo de pantalla</value>
+    <comment>Modo de pantalla</comment>
+  </data>
+  <data name="About_ProgramInfo" xml:space="preserve">
+    <value>Rayman Control Panel es una aplicación de Código Abierto creada por RayCarrot. Es un simple archivo .EXE con la intención de modificar, alterar y aplicar parches creados por fans a los juegos de Rayman en windows. Este proyecto se va actualizando ofreciendo nuevas funcionalidades. Muchas de estas utilidades han sido creadas con la ayuda de varios miembros de la comunidad de Rayman. Se ha dado credito a todas las personas que han ayudado a crear dichos parches.</value>
+  </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Créditos</value>
     <comment>Créditos</comment>
@@ -480,7 +516,225 @@ hacer mas grande/mejorar los modos de baja resolución</value>
   <data name="Settings_Language" xml:space="preserve">
     <value>Idioma</value>
   </data>
+  <data name="Settings_LanguageContribute" xml:space="preserve">
+    <value>Contribuir con traducciones</value>
+    <comment>Contribuir con traducciones</comment>
+  </data>
+  <data name="Settings_DesignHeader" xml:space="preserve">
+    <value>Diseño</value>
+    <comment>Diseño</comment>
+  </data>
+  <data name="Settings_DesignLight" xml:space="preserve">
+    <value>Claro</value>
+    <comment>Luz</comment>
+  </data>
+  <data name="Settings_DesignDark" xml:space="preserve">
+    <value>Oscuro</value>
+    <comment>Oscuro</comment>
+  </data>
+  <data name="Settings_DesignAnimations" xml:space="preserve">
+    <value>Activar animaciones</value>
+    <comment>Activar animaciones</comment>
+  </data>
+  <data name="Settings_DesignSuccessMessages" xml:space="preserve">
+    <value>Mostrar mensajes de éxito</value>
+    <comment>Mostrar mensajes de éxito</comment>
+  </data>
+  <data name="Settings_DesignSuccessMessagesInfo" xml:space="preserve">
+    <value>Mostrar un mensaje cuando una operación haya sido exitosa.</value>
+  </data>
+  <data name="Settings_DesignShowAllGames" xml:space="preserve">
+    <value>Mostrar juegos no instalados.</value>
+  </data>
+  <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
+    <value>Muestra todos los juegos en esta pagina, incluso si no han sido instalados</value>
+  </data>
+  <data name="Settings_DosBoxHeader" xml:space="preserve">
+    <value>DOSBox</value>
+    <comment>DOSBox</comment>
+  </data>
+  <data name="Settings_BackupLocation" xml:space="preserve">
+    <value>Localización de Copia de Seguridad</value>
+    <comment>Localización de Copia de Seguridad</comment>
+  </data>
+  <data name="Settings_StartupHeader" xml:space="preserve">
+    <value>Inicio</value>
+    <comment>Inicio</comment>
+  </data>
+  <data name="Settings_StartupGameFinder" xml:space="preserve">
+    <value>Buscar juegos instalados</value>
+    <comment>Buscar juegos instalados</comment>
+  </data>
+  <data name="Settings_StartupUpdateCheck" xml:space="preserve">
+    <value>Buscar actualizaciones del programa</value>
+    <comment>Buscar actualizaciones del programa</comment>
+  </data>
+  <data name="Settings_GeneralHeader" xml:space="preserve">
+    <value>General</value>
+    <comment>General</comment>
+  </data>
+  <data name="R1U_TPLSInstall" xml:space="preserve">
+    <value>Instalar</value>
+    <comment>Instalar</comment>
+  </data>
+  <data name="R1U_TPLSUninstall" xml:space="preserve">
+    <value>Desinstalar</value>
+    <comment>Desinstalar</comment>
+  </data>
+  <data name="SettingEnabled" xml:space="preserve">
+    <value>Activado</value>
+    <comment>Activado</comment>
+  </data>
+  <data name="SettingDisabled" xml:space="preserve">
+    <value>Desactivado</value>
+    <comment>Desactivado</comment>
+  </data>
+  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
+    <value>Versión de Rayman</value>
+    <comment>Versión de Rayman</comment>
+  </data>
+  <data name="R1U_TPLSDosBoxVersion" xml:space="preserve">
+    <value>Versión de DOSBox</value>
+    <comment>Versión de DOSBox</comment>
+  </data>
+  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
+    <value>Banda sonora completa</value>
+    <comment>Banda sonora completa</comment>
+  </data>
+  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
+    <value>Reemplazar con la banda sonora completa</value>
+    <comment>Reemplazar con la banda sonora completa</comment>
+  </data>
+  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
+    <value>Revertir de vuelta para la banda sonora incompleta</value>
+    <comment>Revertir de vuelta para la banda sonora incompleta</comment>
+  </data>
+  <data name="R2U_TranslationsHeader" xml:space="preserve">
+    <value>Traducciones no oficiales</value>
+    <comment>Traducciones no-oficiales</comment>
+  </data>
+  <data name="Utility_Apply" xml:space="preserve">
+    <value>Aplicar</value>
+    <comment>Aplicar</comment>
+  </data>
+  <data name="R3U_DirectPlayHeader" xml:space="preserve">
+    <value>DirectPlay</value>
+    <comment>DirectPlay</comment>
+  </data>
+  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
+    <value>Reemplazar archivos infectados</value>
+    <comment>Reemplazar archivos infectados</comment>
+  </data>
+  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
+    <value>Idioma</value>
+    <comment>Idioma</comment>
+  </data>
+  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
+    <value>Reemplazar</value>
+    <comment>Reemplazar</comment>
+  </data>
+  <data name="ROU_HQVideosHeader" xml:space="preserve">
+    <value>Videos de Alta Calidad</value>
+  </data>
+  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
+    <value>Comandos de depurar</value>
+  </data>
+  <data name="ROU_DebugCommandsMap" xml:space="preserve">
+    <value>Mapa</value>
+    <comment>Mapa</comment>
+  </data>
+  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
+    <value>Esto va a permitir un mapa específico a ser cargado en vez del menú principal al iniciar el juego.</value>
+    <comment>Esto va a permitir un mapa específico a ser cargado en vez del menú principal al iniciar el juego.</comment>
+  </data>
+  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
+    <value>Idioma</value>
+    <comment>Idioma</comment>
+  </data>
+  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
+    <value>Esto va a cambiar el idioma del juego</value>
+  </data>
+  <data name="ROU_UpdateHeader" xml:space="preserve">
+    <value>Actualizar a 1.02 (Versión de disco)</value>
+    <comment>Actualizar a 1.02 (Versión de disco)</comment>
+  </data>
+  <data name="ROU_UpdateUpdate" xml:space="preserve">
+    <value>Actualizar</value>
+    <comment>Actualizar</comment>
+  </data>
+  <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
+    <value>Abrir página de la tienda</value>
+    <comment>Abrir página de la tienda</comment>
+  </data>
+  <data name="GameDisplay_OpenSteamCommunity" xml:space="preserve">
+    <value>Abrir página de la comunidad</value>
+    <comment>Abrir página de la comunidad</comment>
+  </data>
+  <data name="GameDisplay_OpenLocation" xml:space="preserve">
+    <value>Abrir ubicación del juego</value>
+    <comment>Abrir localización</comment>
+  </data>
+  <data name="GameDisplay_Options" xml:space="preserve">
+    <value>Opciones</value>
+    <comment>Opciones</comment>
+  </data>
+  <data name="GameDisplay_Launch" xml:space="preserve">
+    <value>Iniciar</value>
+    <comment>Iniciar</comment>
+  </data>
+  <data name="GameDisplay_DiscInstall" xml:space="preserve">
+    <value>Instalar por el disco</value>
+    <comment>Instalar por el disco</comment>
+  </data>
+  <data name="GameDisplay_Locate" xml:space="preserve">
+    <value>Localizar</value>
+    <comment>Localizar</comment>
+  </data>
+  <data name="GameDisplay_PurchaseGOG" xml:space="preserve">
+    <value>Comprar en GOG</value>
+    <comment>Comprar por GOG</comment>
+  </data>
+  <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
+    <value>Comprar en Uplay</value>
+    <comment>Comprar por Uplay</comment>
+  </data>
+  <data name="GameDisplay_Steam" xml:space="preserve">
+    <value>Comprar en Steam</value>
+    <comment>Comprar por Steam</comment>
+  </data>
+  <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
+    <value>Comprar en Microsoft Store</value>
+    <comment>Comprar por Microsoft Store</comment>
+  </data>
+  <data name="GameLink_RDMapper" xml:space="preserve">
+    <value>Mappeador</value>
+    <comment>Mapper</comment>
+  </data>
+  <data name="GameLink_Setup" xml:space="preserve">
+    <value>Setup</value>
+    <comment>Setup</comment>
+  </data>
+  <data name="GameLink_R2nGlide" xml:space="preserve">
+    <value>Configuración nGlide</value>
+    <comment>Configuración nGlide</comment>
+  </data>
+  <data name="LocateGame_InvalidSteamGameHeader" xml:space="preserve">
+    <value>No se ha encontrado el juego</value>
+  </data>
+  <data name="LocateGame_InvalidWinStoreGame" xml:space="preserve">
+    <value>
+</value>
+  </data>
+  <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
+    <value>No se ha encontrado el juego</value>
+  </data>
+  <data name="LocateGame_ErrorHeader" xml:space="preserve">
+    <value>Ha ocurrido un error localizando el juego</value>
+  </data>
   <data name="Download_ConfirmHeader" xml:space="preserve">
     <value>Confirmar la Descarga</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Se ha encontrado una nueva versión</value>
   </data>
 </root>

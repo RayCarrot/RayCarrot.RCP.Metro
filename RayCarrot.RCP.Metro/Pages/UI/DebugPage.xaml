@@ -173,6 +173,22 @@
 
             </StackPanel>
 
+            <StackPanel>
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                </i:Interaction.Behaviors>
+
+                <TextBlock Text="Rayman 1 Level Exporter"
+                           Style="{StaticResource LargeHeaderTextBlock}" />
+
+                <Button Content="Export Level Map"
+                        Command="{Binding Path=ExportRayman1LevelCommand}" />
+
+                <Button Content="Export Level Map Properties"
+                        Command="{Binding Path=ExportRayman1LevelPropertiesCommand}" />
+
+            </StackPanel>
+
         </StackPanel>
     </ScrollViewer>
 </local:BasePage>

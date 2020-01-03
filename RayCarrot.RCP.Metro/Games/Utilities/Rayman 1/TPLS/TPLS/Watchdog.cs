@@ -176,7 +176,12 @@ namespace RayCarrot.RCP.Metro
                     // Get the process handle using P/Invoke
                     ProcessHandle = OpenProcess(PROCESS_WM_READ, false, Process.Id);
                     
-                    if (!ReadProcessMemory((int)ProcessHandle, DOSBoxVersion == TPLSDOSBoxVersion.DOSBox_0_74 ? 0x74B6B0 : DOSBoxVersion == TPLSDOSBoxVersion.DOSBox_SVN_Daum ? 0x8B5B84 : throw new IndexOutOfRangeException(), baseBuffer, 4, ref bytesRead))
+                    if (!ReadProcessMemory((int)ProcessHandle, DOSBoxVersion switch
+                    {
+                        TPLSDOSBoxVersion.DOSBox_0_74 => 0x74B6B0,
+                        TPLSDOSBoxVersion.DOSBox_SVN_Daum => 0x8B5B84,
+                        _ => throw new IndexOutOfRangeException()
+                    }, baseBuffer, 4, ref bytesRead))
                         throw new Win32Exception();
 
                     // Convert the buffer to an integer
@@ -375,7 +380,18 @@ namespace RayCarrot.RCP.Metro
                         RCFCore.Logger?.LogInformationSource($"TPLS: BossEvent has changed to {BossEvent}");
                     }
 
-                    var appVolume = VolumeMixer.GetApplicationVolume(Process.Id);
+                    float? appVolume;
+
+                    try
+                    {
+                        appVolume = VolumeMixer.GetApplicationVolume(Process.Id);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleError("TPLS: Getting application volume");
+
+                        appVolume = null;
+                    }
 
                     // NOTE: A better solution should be handled here as comparing two floats is not precise
                     // ReSharper disable once CompareOfFloatsByEqualityOperator

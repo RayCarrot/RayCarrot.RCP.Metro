@@ -7,6 +7,7 @@ using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -43,6 +44,8 @@ namespace RayCarrot.RCP.Metro
             RunInstallerCommand = new RelayCommand(RunInstaller);
             ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownRCFAppAsync(false)));
             OpenArchiveExplorerCommand = new AsyncRelayCommand(OpenArchiveExplorerAsync);
+            ExportRayman1LevelCommand = new AsyncRelayCommand(ExportRayman1LevelAsync);
+            ExportRayman1LevelPropertiesCommand = new AsyncRelayCommand(ExportRayman1LevelPropertiesAsync);
 
             // Get properties
             AvailableInstallers = App.GetGames.Where(x => x.GetGameInfo().CanBeInstalledFromDisc).ToArray();
@@ -491,6 +494,72 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// Allows a Rayman 1 map to be exported
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task ExportRayman1LevelAsync()
+        {
+            var result = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+            {
+                Title = "Select level files",
+                DefaultDirectory = Games.Rayman1.GetInstallDir(false),
+                ExtensionFilter = new FileFilterItem("*.lev", "Level").ToString(),
+                MultiSelection = true
+            });
+
+            if (result.CanceledByUser)
+                return;
+
+            var outputResult = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+            {
+                Title = "Select destination directory"
+            });
+
+            if (outputResult.CanceledByUser)
+                return;
+
+            foreach (var file in result.SelectedFiles)
+            {
+                using var bmp = new Rayman1LevSerializer().Deserialize(file).GetBitmap();
+
+                bmp.Save(outputResult.SelectedDirectory + file.ChangeFileExtension(".png").Name, ImageFormat.Png);
+            }
+        }
+
+        /// <summary>
+        /// Allows a Rayman 1 map properties to be exported
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task ExportRayman1LevelPropertiesAsync()
+        {
+            var result = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+            {
+                Title = "Select level files",
+                DefaultDirectory = Games.Rayman1.GetInstallDir(false),
+                ExtensionFilter = new FileFilterItem("*.lev", "Level").ToString(),
+                MultiSelection = true
+            });
+
+            if (result.CanceledByUser)
+                return;
+
+            var outputResult = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+            {
+                Title = "Select destination directory"
+            });
+
+            if (outputResult.CanceledByUser)
+                return;
+
+            foreach (var file in result.SelectedFiles)
+            {
+                using var bmp = new Rayman1LevSerializer().Deserialize(file).GetTypeBitmap();
+
+                bmp.Save(outputResult.SelectedDirectory + file.ChangeFileExtension(".png").Name, ImageFormat.Png);
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -512,6 +581,10 @@ namespace RayCarrot.RCP.Metro
         public ICommand ShutdownAppCommand { get; }
 
         public ICommand OpenArchiveExplorerCommand { get; }
+
+        public ICommand ExportRayman1LevelCommand { get; }
+
+        public ICommand ExportRayman1LevelPropertiesCommand { get; }
 
         #endregion
 

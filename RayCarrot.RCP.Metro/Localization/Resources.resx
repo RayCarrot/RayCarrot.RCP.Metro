@@ -2909,10 +2909,10 @@ gameDisplayName</comment>
   <data name="GameDisplay_DownloadUplay" xml:space="preserve">
     <value>Download from Uplay</value>
   </data>
-  <data name="R2U_CNTExplorer_Header" xml:space="preserve">
+  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
     <value>Archive Explorer (.cnt)</value>
   </data>
-  <data name="R2U_CNTExplorer_Info" xml:space="preserve">
+  <data name="OSU_CNTExplorer_Info" xml:space="preserve">
     <value>This tool allows you to view/edit the .cnt archive files, allowing importing/exporting of game textures</value>
   </data>
   <data name="ArchiveExplorer_Open" xml:space="preserve">
@@ -2923,11 +2923,5 @@ gameDisplayName</comment>
   </data>
   <data name="About_Credits_Hakyra" xml:space="preserve">
     <value>Spanish (Spain) program translation, Catalan (Catalan) program translation</value>
-  </data>
-  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer (.cnt)</value>
-  </data>
-  <data name="OSU_CNTExplorer_Info" xml:space="preserve">
-    <value>This tool allows you to view/edit the .cnt archive files, allowing importing/exporting of game textures</value>
   </data>
 </root>
