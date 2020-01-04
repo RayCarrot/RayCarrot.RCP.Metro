@@ -4,13 +4,14 @@ Rayman Control Panel (Metro) is the WPF redesign of the Rayman Control Panel. Th
 ## Projects
 The Rayman Control Panel has been split up into a family of projects:
 
-### API
+### Core
 - RayCarrot.RCP.Core (the core API library)
+	- RayCarrot.RCP.Metro.Updater (deployable updater application)
+- RayCarrot.RCP.ArchiveExplorer (the archive explorer)
 
 ### Applications
 - RayCarrot.RCP.Metro (Rayman Control Panel)
 	- RayCarrot.RCP.AdminWorker (deployable admin worker application)
-	- RayCarrot.RCP.Metro.Updater (deployable updater application)
 	- RayCarrot.RCP.Uninstaller (deployable uninstaller application)
 - RayCarrot.RCP.Modding (Rayman Modding Panel)
 

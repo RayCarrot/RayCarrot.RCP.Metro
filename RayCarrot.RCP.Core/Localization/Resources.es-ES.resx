@@ -174,4 +174,7 @@
     <value>Error desconocido</value>
     <comment>Error desconocido</comment>
   </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Se ha encontrado una nueva versión</value>
+  </data>
 </root>

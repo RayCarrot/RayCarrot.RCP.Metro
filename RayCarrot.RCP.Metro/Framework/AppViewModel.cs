@@ -477,16 +477,6 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Static Properties
-
-        // IDEA: Move to resource dictionary as static resource
-        /// <summary>
-        /// The path to the resource file
-        /// </summary>
-        public static string ResourcePath => "RayCarrot.RCP.Metro.Localization.Resources";
-
-        #endregion
-
         #region Private Properties
 
         /// <summary>
@@ -534,21 +524,6 @@ namespace RayCarrot.RCP.Metro
         public Dictionary<Games, Type> GameInfos { get; }
 
         /// <summary>
-        /// A flag indicating if an update check is in progress
-        /// </summary>
-        public bool CheckingForUpdates { get; set; }
-
-        /// <summary>
-        /// The current app version
-        /// </summary>
-        public Version CurrentVersion => new Version(8, 0, 0, 3);
-
-        /// <summary>
-        /// Indicates if the current version is a beta version
-        /// </summary>
-        public bool IsBeta => true;
-
-        /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
         /// </summary>
         public IEnumerable<Games> GetGames => Enum.GetValues(typeof(Games)).Cast<Games>();
@@ -567,6 +542,16 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the game finder is currently running
         /// </summary>
         public bool IsGameFinderRunning { get; set; }
+
+        /// <summary>
+        /// The current app version
+        /// </summary>
+        public override Version CurrentAppVersion => new Version(8, 1, 0, 0);
+
+        /// <summary>
+        /// Indicates if the current version is a beta version
+        /// </summary>
+        public override bool IsBeta => false;
 
         #endregion
 
@@ -880,71 +865,6 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError($"Downloading files");
                 await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Download_Error);
                 return false;
-            }
-        }
-
-        /// <summary>
-        /// Checks for application updates
-        /// </summary>
-        /// <param name="isManualSearch">Indicates if this is a manual check, in which cause a message should be shown if no update is found</param>
-        /// <returns>The task</returns>
-        public async Task CheckForUpdatesAsync(bool isManualSearch)
-        {
-            if (CheckingForUpdates)
-                return;
-
-            try
-            {
-                CheckingForUpdates = true;
-
-                // Check for updates
-                var result = await RCFRCPC.UpdaterManager.CheckAsync(RCFRCP.Data.ForceUpdate && isManualSearch, RCFRCP.Data.GetBetaUpdates || RCFRCP.App.IsBeta);
-
-                // Check if there is an error
-                if (result.ErrorMessage != null)
-                {
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(result.Exception, result.ErrorMessage, Resources.Update_ErrorHeader);
-
-                    Data.IsUpdateAvailable = false;
-
-                    return;
-                }
-
-                // Check if no new updates were found
-                if (!result.IsNewUpdateAvailable)
-                {
-                    if (isManualSearch)
-                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, CurrentVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
-
-                    Data.IsUpdateAvailable = false;
-
-                    return;
-                }
-
-                // Indicate that a new update is available
-                Data.IsUpdateAvailable = true;
-
-                // Run as new task to mark this operation as finished
-                _ = Task.Run(async () =>
-                {
-                    try
-                    {
-                        if (await RCFUI.MessageUI.DisplayMessageAsync(!result.IsBetaUpdate ? String.Format(Resources.Update_UpdateAvailable, result.DisplayNews) : Resources.Update_BetaUpdateAvailable, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
-                        {
-                            // Launch the updater and run as admin if set to show under installed programs in under to update the Registry key
-                            var succeeded = await RCFRCPC.UpdaterManager.UpdateAsync(result, Data.ShowUnderInstalledPrograms);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.HandleError("Updating RCP");
-                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.Update_Error, Resources.Update_ErrorHeader, MessageType.Error);
-                    }
-                });
-            }
-            finally
-            {
-                CheckingForUpdates = false;
             }
         }
 

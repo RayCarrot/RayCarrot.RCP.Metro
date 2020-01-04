@@ -1,7 +1,5 @@
 ﻿using RayCarrot.IO;
 using RayCarrot.RCP.Core;
-using System;
-using RayCarrot.Windows.Registry;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -10,16 +8,6 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class RCPMetroApplicationPaths : RCPApplicationPaths
     {
-        /// <summary>
-        /// The code name for this application to use for the application paths
-        /// </summary>
-        public override string AppName => "RCP_Metro";
-
-        /// <summary>
-        /// The base utilities directory
-        /// </summary>
-        public FileSystemPath UtilitiesBaseDir => AppUserDataBaseDir + "Utilities";
-
         /// <summary>
         /// The base games directory
         /// </summary>
@@ -39,21 +27,6 @@ namespace RayCarrot.RCP.Metro
         /// The admin worker file path
         /// </summary>
         public FileSystemPath AdminWorkerPath => TempDir + "AdditionalFiles\\Rayman Control Panel - Admin Worker.exe";
-
-        /// <summary>
-        /// The common path to the ubi.ini file
-        /// </summary>
-        public FileSystemPath UbiIniPath1 => @"C:\Windows\Ubisoft\ubi.ini";
-
-        /// <summary>
-        /// The second common path to the ubi.ini file
-        /// </summary>
-        public FileSystemPath UbiIniPath2 => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "VirtualStore\\Windows\\Ubisoft\\Ubi.ini";
-
-        /// <summary>
-        /// The Registry uninstall key name
-        /// </summary>
-        public string RegistryUninstallKeyName => RCFRCP.Path.AppName;
 
         /// <summary>
         /// The Rayman Raving Rabbids registry key path
@@ -79,20 +52,5 @@ namespace RayCarrot.RCP.Metro
         /// The file extension for compressed backups
         /// </summary>
         public string BackupCompressionExtension => ".rcpb";
-
-        #region Public Constant Values
-            
-        /// <summary>
-        /// The Registry base key
-        /// </summary>
-        public const string RegistryBaseKey = RCFRegistryPaths.BasePath + "\\RCP_Metro";
-
-        /// <summary>
-        /// The license accepted value name
-        /// </summary>
-        public const string RegistryLicenseValue = "LicenseAccepted";
-
-        #endregion
     }
-
 }

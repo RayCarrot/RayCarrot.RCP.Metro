@@ -13,7 +13,7 @@
                Closing="GameOptions_OnClosingAsync"
                WindowStartupLocation="CenterOwner"
                Width="600"
-               ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
+               ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                mc:Ignorable="d"
                d:DataContext="{d:DesignInstance local:GameOptionsViewModel}">
     <Grid Margin="10">
@@ -55,7 +55,7 @@
             <local:OverflowMenu Grid.Column="2"
                                 Margin="7">
                 <local:OverflowMenu.ContextMenu>
-                    <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}">
+                    <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
                         <core:MenuItemIcon Header="{Resx GameOptions_CreateShortcut}"
                                             Command="{Binding Path=ShortcutCommand}"
                                             IconKind="Link"/>
@@ -125,7 +125,7 @@
                                                             rwpf:UserLevelTag.MinUserLevel="Technical"
                                                             Margin="7">
                                             <local:OverflowMenu.ContextMenu>
-                                                <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}">
+                                                <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
                                                     <core:MenuItemIcon Header="{Resx Progression_Export}"
                                                                         Command="{Binding Path=ExportCommand, Mode=OneTime}"
                                                                         IconKind="FileExportOutline"/>

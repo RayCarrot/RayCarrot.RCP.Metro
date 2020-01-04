@@ -202,7 +202,7 @@ namespace RayCarrot.RCP.Metro
                             UserLevel.Debug),
                         new LinkItemViewModel(RCFRCP.Path.UtilitiesBaseDir, Resources.Links_Local_Utilities,
                             UserLevel.Debug),
-                        new LinkItemViewModel(RCPMetroApplicationPaths.RegistryBaseKey, Resources.Links_Local_RegAppData,
+                        new LinkItemViewModel(RCFRCPC.API.RegistryBaseKey, Resources.Links_Local_RegAppData,
                             UserLevel.Technical)
                     });
 

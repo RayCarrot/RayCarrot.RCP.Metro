@@ -49,6 +49,16 @@ namespace RayCarrot.RCP.Modding
         public string[] OpenSpaceGameModes => OpenSpaceGameMode.DinosaurPC.GetValues().Select(x => x.GetDisplayName()).ToArray();
 
         /// <summary>
+        /// The current app version
+        /// </summary>
+        public override Version CurrentAppVersion => new Version(1, 0, 0, 0);
+
+        /// <summary>
+        /// Indicates if the current version is a beta version
+        /// </summary>
+        public override bool IsBeta => true;
+
+        /// <summary>
         /// The application base path to use for WPF related operations
         /// </summary>
         public override string WPFApplicationBasePath => "pack://application:,,,/RayCarrot.RCP.Modding;component/";
@@ -129,7 +139,9 @@ namespace RayCarrot.RCP.Modding
     /// </summary>
     public enum Pages
     {
-        Utilities
+        Utilities,
+        Settings,
+        About
     }
 
     /// <summary>

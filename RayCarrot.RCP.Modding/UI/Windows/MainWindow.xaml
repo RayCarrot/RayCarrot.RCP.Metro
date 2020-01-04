@@ -1,20 +1,20 @@
 ﻿<core:BaseWindow x:Class="RayCarrot.RCP.Modding.MainWindow"
-               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-               xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
-               xmlns:local="clr-namespace:RayCarrot.RCP.Modding"
-               xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
-               xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-               xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
-               mc:Ignorable="d"
-               Language="{UICulture}"
-               ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
-               CloseWithEscape="False"
-               Title="Rayman Modding Panel"
-               Height="450" Width="800"
-               DataContext="{x:Static local:RCFRCPM.App}">
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
+                 xmlns:local="clr-namespace:RayCarrot.RCP.Modding"
+                 xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                 xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                 mc:Ignorable="d"
+                 Language="{UICulture}"
+                 ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                 CloseWithEscape="False"
+                 Title="Rayman Modding Panel"
+                 Height="450" Width="800"
+                 DataContext="{x:Static local:RCFRCPM.App}">
     <core:BaseWindow.TitleTemplate>
         <DataTemplate>
             <Grid DataContext="{x:Static local:RCFRCPM.App}">
@@ -78,6 +78,38 @@
                                     Content="Open"
                                     Command="{Binding Path=OpenArchiveExplorerCommand}" />
                         </Grid>
+
+                    </StackPanel>
+                </Grid>
+            </core:RCPTabItem>
+
+            <!-- TODO: Localize -->
+            <core:RCPTabItem Header="Settings"
+                             IconKind="SettingsOutline"
+                             IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Settings}">
+                <Grid>
+                    <StackPanel>
+                        <b:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                        </b:Interaction.Behaviors>
+
+
+
+                    </StackPanel>
+                </Grid>
+            </core:RCPTabItem>
+
+            <!-- TODO: Localize -->
+            <core:RCPTabItem Header="About"
+                             IconKind="InformationOutline"
+                             IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=About}">
+                <Grid>
+                    <StackPanel>
+                        <b:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                        </b:Interaction.Behaviors>
+
+
 
                     </StackPanel>
                 </Grid>

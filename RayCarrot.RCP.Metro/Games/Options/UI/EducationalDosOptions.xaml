@@ -10,7 +10,7 @@
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     xmlns:dd="urn:gong-wpf-dragdrop"
                     xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
-                    ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
+                    ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                     mc:Ignorable="d"
                     d:DataContext="{d:DesignInstance local:EducationalDosOptionsViewModel}">
     <StackPanel>

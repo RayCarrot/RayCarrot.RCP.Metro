@@ -108,7 +108,6 @@ namespace RayCarrot.RCP.ArchiveExplorer
             }
         }
 
-
         #endregion
 
         #region Event Handlers

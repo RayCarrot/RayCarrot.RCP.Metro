@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 // ReSharper disable StringLiteralTypo
@@ -83,7 +84,7 @@ namespace RayCarrot.RCP.Metro
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_RCP_AppDataHeader,
-                            HelpText = String.Format(Resources.Help_RCP_AppData, RCFRCP.Path.AppUserDataBaseDir, RCPMetroApplicationPaths.RegistryBaseKey, RCFRegistryPaths.RCFBasePath),
+                            HelpText = String.Format(Resources.Help_RCP_AppData, RCFRCP.Path.AppUserDataBaseDir, RCFRCPC.API.RegistryBaseKey, RCFRegistryPaths.RCFBasePath),
                             RequiredUserLevel = UserLevel.Advanced
                         },
 

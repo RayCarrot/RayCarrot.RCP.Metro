@@ -44,7 +44,7 @@ namespace RayCarrot.RCP.Core
             EnableAnimations = true;
             CurrentCulture = RCFRCPC.Localization.DefaultCulture.Name;
             ShowIncompleteTranslations = false;
-            ApplicationPath = Assembly.GetExecutingAssembly().Location;
+            ApplicationPath = Assembly.GetEntryAssembly()?.Location;
             ForceUpdate = false;
             GetBetaUpdates = false;
             DisableDowngradeWarning = false;

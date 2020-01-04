@@ -12,7 +12,7 @@
                xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
                mc:Ignorable="d"
                Language="{UICulture}"
-               ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
+               ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                CloseWithEscape="False"
                Height="680"
                Width="950"
@@ -62,7 +62,7 @@
 
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu Padding="5"
-                             ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}">
+                             ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
                     <MenuItem Header="{Resx TaskBarIcon_Open}"
                               Command="{Binding Path=OpenFromTaskbarCommand}">
                         <MenuItem.Icon>

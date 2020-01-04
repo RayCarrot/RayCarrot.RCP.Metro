@@ -1,5 +1,19 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
+﻿using RayCarrot.CarrotFramework;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.RCP.Core;
+using RayCarrot.UI;
 using RayCarrot.UserData;
+using RayCarrot.Windows.Registry;
+using RayCarrot.WPF;
+
+[assembly: RCFDefaultService(typeof(IExceptionHandler), typeof(RCPExceptionHandler), true)]
+[assembly: RCFDefaultService(typeof(IMessageUIManager), typeof(RCPMessageUIManager), true)]
+[assembly: RCFDefaultService(typeof(IBrowseUIManager), typeof(DefaultWPFBrowseUIManager), true)]
+[assembly: RCFDefaultService(typeof(IRegistryManager), typeof(DefaultRegistryManager), true)]
+[assembly: RCFDefaultService(typeof(IFileManager), typeof(RCPFileManager), true)]
+[assembly: RCFDefaultService(typeof(IDialogBaseManager), typeof(RCPDialogBaseManager), true)]
+[assembly: RCFDefaultService(typeof(IUpdaterManager), typeof(RCPUpdateManager), true)]
+[assembly: RCFDefaultService(typeof(RCPApplicationPaths), typeof(RCPApplicationPaths), true)]
 
 namespace RayCarrot.RCP.Core
 {
@@ -26,7 +40,7 @@ namespace RayCarrot.RCP.Core
         /// <summary>
         /// The API controller manager
         /// </summary>
-        public static IAPIControllerManager API => RCF.GetService<IAPIControllerManager>();
+        public static BaseAPIControllerManager API => RCF.GetService<BaseAPIControllerManager>();
 
         /// <summary>
         /// The update manager

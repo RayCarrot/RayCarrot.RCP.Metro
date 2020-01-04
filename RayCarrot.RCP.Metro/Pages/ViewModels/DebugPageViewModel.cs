@@ -217,7 +217,7 @@ namespace RayCarrot.RCP.Metro
                 switch (SelectedDataOutputType)
                 {
                     case DebugDataOutputTypes.ReferencedAssemblies:
-                        foreach (AssemblyName assemblyName in Assembly.GetExecutingAssembly().GetReferencedAssemblies())
+                        foreach (AssemblyName assemblyName in Assembly.GetEntryAssembly()?.GetReferencedAssemblies())
                         {
                             Assembly assembly = null;
 
@@ -263,7 +263,7 @@ namespace RayCarrot.RCP.Metro
 
                         // Download the manifest as a string and display it
                         using (WebClient wc = new WebClient())
-                            DataOutput = await wc.DownloadStringTaskAsync(CommonUrls.UpdateManifestUrl);
+                            DataOutput = await wc.DownloadStringTaskAsync(RCFRCPC.Path.UpdateManifestUrl);
 
                         break;
 
@@ -521,7 +521,7 @@ namespace RayCarrot.RCP.Metro
 
             foreach (var file in result.SelectedFiles)
             {
-                using var bmp = new Rayman1LevSerializer().Deserialize(file).GetBitmap();
+                using var bmp = new Rayman1LevSerializer(new Rayman1Settings(Rayman1GameMode.Rayman1PC)).Deserialize(file).GetBitmap();
 
                 bmp.Save(outputResult.SelectedDirectory + file.ChangeFileExtension(".png").Name, ImageFormat.Png);
             }
@@ -554,7 +554,7 @@ namespace RayCarrot.RCP.Metro
 
             foreach (var file in result.SelectedFiles)
             {
-                using var bmp = new Rayman1LevSerializer().Deserialize(file).GetTypeBitmap();
+                using var bmp = new Rayman1LevSerializer(new Rayman1Settings(Rayman1GameMode.Rayman1PC)).Deserialize(file).GetTypeBitmap();
 
                 bmp.Save(outputResult.SelectedDirectory + file.ChangeFileExtension(".png").Name, ImageFormat.Png);
             }

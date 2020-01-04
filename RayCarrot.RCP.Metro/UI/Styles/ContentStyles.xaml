@@ -20,7 +20,7 @@
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}">
+                            ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
 
                         <Grid>
                             <Grid.ColumnDefinitions>

@@ -108,6 +108,24 @@ namespace RayCarrot.RCP.Core {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are using an older version of the program ({0}) compared to the version of the current app data ({1}). This is not recommended and may cause compatibility issues. These may be fixed by resetting the app data for this program..
+        /// </summary>
+        public static string DowngradeWarning {
+            get {
+                return ResourceManager.GetString("DowngradeWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downgrade detected.
+        /// </summary>
+        public static string DowngradeWarningHeader {
+            get {
+                return ResourceManager.GetString("DowngradeWarningHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exception.
         /// </summary>
         public static string ExceptionMessageHeader {
@@ -279,6 +297,33 @@ namespace RayCarrot.RCP.Core {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A new beta update is available to download. Download now?.
+        /// </summary>
+        public static string Update_BetaUpdateAvailable {
+            get {
+                return ResourceManager.GetString("Update_BetaUpdateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when updating the application.
+        /// </summary>
+        public static string Update_Error {
+            get {
+                return ResourceManager.GetString("Update_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Check Failed.
+        /// </summary>
+        public static string Update_ErrorHeader {
+            get {
+                return ResourceManager.GetString("Update_ErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The information from the server was not valid.
         /// </summary>
         public static string Update_FormatError {
@@ -293,6 +338,24 @@ namespace RayCarrot.RCP.Core {
         public static string Update_GenericError {
             get {
                 return ResourceManager.GetString("Update_GenericError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The latest version ({0}) is already installed.
+        /// </summary>
+        public static string Update_LatestInstalled {
+            get {
+                return ResourceManager.GetString("Update_LatestInstalled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No new versions found.
+        /// </summary>
+        public static string Update_LatestInstalledHeader {
+            get {
+                return ResourceManager.GetString("Update_LatestInstalledHeader", resourceCulture);
             }
         }
         
@@ -338,6 +401,27 @@ namespace RayCarrot.RCP.Core {
         public static string Update_UnknownError {
             get {
                 return ResourceManager.GetString("Update_UnknownError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new update is available to download. Download now?
+        ///
+        ///News: 
+        ///{0}.
+        /// </summary>
+        public static string Update_UpdateAvailable {
+            get {
+                return ResourceManager.GetString("Update_UpdateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New version found.
+        /// </summary>
+        public static string Update_UpdateAvailableHeader {
+            get {
+                return ResourceManager.GetString("Update_UpdateAvailableHeader", resourceCulture);
             }
         }
         

@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿using RayCarrot.RCP.Core;
+
+namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Commons URLs used in the Rayman Control Panel
@@ -10,7 +12,7 @@
         /// <summary>
         /// The base URL
         /// </summary>
-        public const string BaseUrl = "http://raycarrot.ylemnova.com/RCP/";
+        public const string BaseUrl = RCPApplicationPaths.BaseUrl;
 
         /// <summary>
         /// The base resource URL
@@ -26,11 +28,6 @@
         /// The base URL for downloading games
         /// </summary>
         public const string GamesBaseUrl = BaseResourceUrl + "Games/";
-
-        /// <summary>
-        /// The update manifest URL
-        /// </summary>
-        public const string UpdateManifestUrl = BaseUrl + "RCP_Metro_Manifest.json";
 
         #endregion
 

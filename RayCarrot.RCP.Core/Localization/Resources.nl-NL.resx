@@ -221,4 +221,34 @@ Foutmelding: {1}</value>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>Updatecontrole Mislukt</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>De laatste versie ({0}) is reeds geïnstalleerd</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Geen nieuwe versie gevonden</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>Een nieuwe update is beschikbaar om te downloaden. Nu downloaden?
+
+Nieuws: 
+{0}</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Nieuwe versie gevonden</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>Een nieuwe bèta-update is beschikbaar om te downloaden. Nu downloaden?</value>
+  </data>
+  <data name="Update_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het updaten van de applicatie</value>
+  </data>
+  <data name="DowngradeWarning" xml:space="preserve">
+    <value>Je gebruikt een oudere versie van het programma ({0}) in relatie tot de versie van de huidige app data ({1}). Dit is niet aanbevolen en kan compatibiliteitsproblemen veroorzaken. Deze kunnen verholpen worden door de app data van het programma te resetten.</value>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Downgrade gedetecteerd</value>
+  </data>
 </root>

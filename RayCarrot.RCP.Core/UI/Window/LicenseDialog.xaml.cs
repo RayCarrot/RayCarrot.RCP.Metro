@@ -1,7 +1,6 @@
 ﻿using System.Windows;
-using RayCarrot.RCP.Core;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Core
 {
     /// <summary>
     /// Interaction logic for LicenseDialog.xaml

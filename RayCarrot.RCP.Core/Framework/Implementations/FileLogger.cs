@@ -7,8 +7,9 @@ using Microsoft.Extensions.Logging;
 using RayCarrot.CarrotFramework;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.RCP.Core;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Core
 {
     /// <summary>
     /// A file logger to log to a file
@@ -43,8 +44,8 @@ namespace RayCarrot.RCP.Metro
                     // Attempt to remove log file if over 2 Mb
                     try
                     {
-                        if (RCFRCP.Path.LogFile.FileExists && RCFRCP.Path.LogFile.GetSize() > ByteSize.FromMegaBytes(2))
-                            File.Delete(RCFRCP.Path.LogFile);
+                        if (RCFRCPC.Path.LogFile.FileExists && RCFRCPC.Path.LogFile.GetSize() > ByteSize.FromMegaBytes(2))
+                            File.Delete(RCFRCPC.Path.LogFile);
                     }
                     catch (Exception ex)
                     {
@@ -56,11 +57,11 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
-                    if (!RCFRCP.Path.LogFile.Parent.DirectoryExists)
-                        Directory.CreateDirectory(RCFRCP.Path.LogFile.Parent);
+                    if (!RCFRCPC.Path.LogFile.Parent.DirectoryExists)
+                        Directory.CreateDirectory(RCFRCPC.Path.LogFile.Parent);
 
                     // Append the log to the log file, forcing the culture info to follow the Swedish standard
-                    File.AppendAllText(RCFRCP.Path.LogFile, $"{DateTime.Now.ToString(new CultureInfo("sv-SE"))} [{logLevel}] {message}" + Environment.NewLine);
+                    File.AppendAllText(RCFRCPC.Path.LogFile, $@"{DateTime.Now.ToString(new CultureInfo("sv-SE"))} [{logLevel}] {message}" + Environment.NewLine);
                 }
                 catch (Exception ex)
                 {

@@ -232,4 +232,41 @@ exceptionMessage</comment>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>Update Check Failed</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>The latest version ({0}) is already installed</value>
+    <comment>Arguments:
+latestVersion</comment>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>No new versions found</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>A new update is available to download. Download now?
+
+News: 
+{0}</value>
+    <comment>Arguments:
+versionNews</comment>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>New version found</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>A new beta update is available to download. Download now?</value>
+  </data>
+  <data name="Update_Error" xml:space="preserve">
+    <value>An error occurred when updating the application</value>
+  </data>
+  <data name="DowngradeWarning" xml:space="preserve">
+    <value>You are using an older version of the program ({0}) compared to the version of the current app data ({1}). This is not recommended and may cause compatibility issues. These may be fixed by resetting the app data for this program.</value>
+    <comment>Arguments:
+currentVersion
+lastVersion</comment>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Downgrade detected</value>
+  </data>
 </root>

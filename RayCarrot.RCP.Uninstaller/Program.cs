@@ -53,7 +53,7 @@ namespace RayCarrot.RCP.Uninstaller
             }
 
             // Get the user paths
-            string uninstallerFile = Assembly.GetExecutingAssembly().Location;
+            string uninstallerFile = Assembly.GetEntryAssembly()?.Location;
             string rcpUserDataBaseDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Rayman Control Panel");
             string rcpUserDataDir = Path.Combine(rcpUserDataBaseDir, "RCP_Metro");
 

@@ -189,4 +189,22 @@
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Ninguna versión nueva fue encontrado</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>Una nueva actualización está disponible para descargar. ¿Descargar ahora?
+
+Notícias:
+{0}</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Nueva versión encontrada</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>Está disponible una nueva actualización beta para descargar. ¿Descargar ahora?</value>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Downgrade detectado</value>
+  </data>
 </root>

@@ -9,14 +9,14 @@
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
-                ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
+                ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"    
                 d:DesignWidth="800"
                 d:DataContext="{d:DesignInstance local:SettingsPageViewModel}">
 
     <local:IBasePage.OverflowMenu>
-        <ContextMenu ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}">
+        <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
 
             <core:MenuItemIcon Header="{Resx Settings_EditJumpList}"
                              ToolTip="{Resx Settings_EditJumpListInfo}"
@@ -161,19 +161,6 @@
                     <CheckBox Content="{Resx Settings_GeneralCloseOnSave}"
                               DataContext="{Binding Path=Data}"
                               IsChecked="{Binding Path=CloseConfigOnSave}" />
-
-                    <StackPanel Orientation="Horizontal">
-
-                        <local:AdminButton Visibility="{Binding Path=CanEditShowUnderInstalledPrograms, Converter={rwpf:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
-                                           Margin="0 0 5 0" />
-
-                        <CheckBox Content="{Resx Settings_ShowUnderInstalledPrograms}"
-                                  IsChecked="{Binding Path=Data.ShowUnderInstalledPrograms}"
-                                  IsEnabled="{Binding Path=CanEditShowUnderInstalledPrograms, Mode=OneTime}" />
-
-                        <core:InfoIcon Text="{Resx Settings_ShowUnderInstalledProgramsInfo}" />
-
-                    </StackPanel>
 
                 </StackPanel>
 

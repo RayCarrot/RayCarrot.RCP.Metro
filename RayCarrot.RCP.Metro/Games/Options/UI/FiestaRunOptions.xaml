@@ -8,7 +8,7 @@
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                     xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
-                    ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
+                    ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                     mc:Ignorable="d"
                     d:DataContext="{d:DesignInstance local:FiestaRunOptionsViewModel}">
     <StackPanel>

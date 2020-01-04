@@ -117,7 +117,6 @@
     <Compile Include="Games\Manager\Other\RaymanActivityCenter_Win32.cs" />
     <Compile Include="Games\Manager\Other\RaymanRavingRabbidsActivityCenter_Win32.cs" />
     <Compile Include="Games\Manager\Rabbids\RabbidsCoding_Win32.cs" />
-    <Compile Include="API\RCPMetroUpdateManager.cs" />
     <Compile Include="Games\Progression\Base\ProgressionIcons.cs" />
     <Compile Include="Games\Progression\Base\ProgressionInfoItemViewModel.cs" />
     <Compile Include="Games\Progression\Base\ProgressionSlotViewModel.cs" />
@@ -466,6 +465,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Styles\Strings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UI\Windows\AppNewsDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -479,10 +482,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Windows\GameOptions.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Windows\LicenseDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -651,7 +650,6 @@
     <Compile Include="ViewModels\Base\BaseRCPViewModel.cs" />
     <Compile Include="Games\Config\ViewModels\Base\BaseDosBoxConfigViewModel.cs" />
     <Compile Include="Framework\Implementations\AppUIManager.cs" />
-    <Compile Include="Framework\Implementations\FileLogger.cs" />
     <Compile Include="DataModels\KeyMappingItem.cs" />
     <Compile Include="Helpers\R2ButtonMappingManager.cs" />
     <Compile Include="DataModels\DosBoxOptions.cs" />
@@ -719,9 +717,6 @@
     </Compile>
     <Compile Include="ViewModels\Game\GameOptionsViewModel.cs" />
     <Compile Include="DataModels\Enums\GameOptionsPage.cs" />
-    <Compile Include="UI\Windows\LicenseDialog.xaml.cs">
-      <DependentUpon>LicenseDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

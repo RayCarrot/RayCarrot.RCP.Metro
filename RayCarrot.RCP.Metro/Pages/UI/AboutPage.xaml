@@ -9,7 +9,7 @@
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                 xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
-                ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
+                ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignWidth="800" d:DataContext="{d:DesignInstance local:AboutPageViewModel}">
@@ -130,7 +130,7 @@
             <StackPanel Grid.Row="1"
                         VerticalAlignment="Bottom">
 
-                <TextBlock Text="{Binding Path=App.CurrentVersion, Mode=OneTime, FallbackValue=UnknownVersion}"
+                <TextBlock Text="{Binding Path=App.CurrentAppVersion, Mode=OneTime, FallbackValue=UnknownVersion}"
                            HorizontalAlignment="Center"/>
 
                 <TextBlock Text="{Resx About_BetaTag}"

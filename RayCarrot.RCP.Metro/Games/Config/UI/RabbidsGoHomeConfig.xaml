@@ -9,7 +9,7 @@
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
-                    ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
+                    ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                     IsTabStop="False"
                     mc:Ignorable="d"
                     d:DesignHeight="450" d:DesignWidth="800"

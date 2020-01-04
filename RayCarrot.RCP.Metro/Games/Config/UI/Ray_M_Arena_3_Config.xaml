@@ -9,7 +9,7 @@
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:ray="clr-namespace:RayCarrot.Rayman;assembly=RayCarrot.Rayman"
              xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
-             ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
+             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
              d:DesignWidth="800"

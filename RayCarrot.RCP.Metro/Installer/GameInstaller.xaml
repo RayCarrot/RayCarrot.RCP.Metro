@@ -11,7 +11,7 @@
                Closing="GameInstaller_OnClosingAsync"
                ResizeMode="NoResize"
                SizeToContent="WidthAndHeight"
-               ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
+               ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                mc:Ignorable="d"
                d:DataContext="{d:DesignInstance local:GameInstallerViewModel}">
     <StackPanel Margin="20">

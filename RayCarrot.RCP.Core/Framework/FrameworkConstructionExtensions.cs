@@ -14,10 +14,10 @@ namespace RayCarrot.RCP.Core
         /// <param name="construction">The construction</param>
         /// <returns>The construction</returns>
         public static IFrameworkConstruction AddAPIControllerManager<A>(this IFrameworkConstruction construction)
-            where A : class, IAPIControllerManager, new()
+            where A : BaseAPIControllerManager, new()
         {
             // Add the manager
-            construction.AddTransient<IAPIControllerManager, A>();
+            construction.AddTransient<BaseAPIControllerManager, A>();
 
             // Return the construction
             return construction;

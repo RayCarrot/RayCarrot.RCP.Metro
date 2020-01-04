@@ -1,13 +1,12 @@
-﻿using System;
-using Newtonsoft.Json.Linq;
-using RayCarrot.RCP.Core;
+﻿using Newtonsoft.Json.Linq;
+using System;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Core
 {
     /// <summary>
-    /// The update manager for Rayman Control Panel Metro
+    /// The update manager for Rayman Control Panel
     /// </summary>
-    public class RCPMetroUpdateManager : UpdaterManager
+    public class RCPUpdateManager : UpdaterManager
     {
         /// <summary>
         /// Gets the latest version from the manifest
@@ -52,7 +51,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current version of the application
         /// </summary>
-        protected override Version CurrentVersion => RCFRCP.App.CurrentVersion;
+        protected override Version CurrentVersion => RCFRCPC.App.CurrentAppVersion;
 
         /// <summary>
         /// The fallback URL to display to the user in case of an error
@@ -62,6 +61,6 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The manifest URL
         /// </summary>
-        protected override string ManifestURL => CommonUrls.UpdateManifestUrl;
+        protected override string ManifestURL => RCFRCPC.Path.UpdateManifestUrl;
     }
 }

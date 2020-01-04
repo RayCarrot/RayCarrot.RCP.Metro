@@ -17,8 +17,6 @@ namespace RayCarrot.RCP.Core
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="windowIconPath">The icon path to use for the Window icon</param>
-        /// <param name="areWindowTransitionsEnabled">Indicates if Window transitions are enabled</param>
         public BaseWindow()
         {
             RCFCore.Logger?.LogInformationSource($"A window is being created...");
@@ -35,7 +33,7 @@ namespace RayCarrot.RCP.Core
 
             // Set icon style
             if (RCF.IsBuilt)
-                Icon = new ImageSourceConverter().ConvertFromString(RCFRCPC.API.GetWPFIconPath()) as ImageSource;
+                Icon = new ImageSourceConverter().ConvertFromString(RCFRCPC.API.GetWPFIconPath) as ImageSource;
             IconBitmapScalingMode = BitmapScalingMode.NearestNeighbor;
 
             // Set owner window

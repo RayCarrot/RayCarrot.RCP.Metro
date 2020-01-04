@@ -221,4 +221,34 @@ Error message: {1}</value>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>A verificação por actualizações falhou</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>A última versão ({0}) já está instalada</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Nenhuma versão nova foi encontrada</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>Está disponível uma nova actualização para descarga. Descarregar agora?
+
+Notícias:
+{0}</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Nova versão encontrada</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>Está disponível uma nova actualização beta para descarga. Descarregar agora?</value>
+  </data>
+  <data name="Update_Error" xml:space="preserve">
+    <value>Ocorreu um erro quando se actualizava a aplicação</value>
+  </data>
+  <data name="DowngradeWarning" xml:space="preserve">
+    <value>Estás a utilizar uma versão mais antiga do programa ({0}) comparado com a versão dos actuais dados da aplicação ({1}). Isto não é recomendado e poderá causar problemas de compactibilidade. Estes poderão ser corrigidos ao reiniciar os dados de aplicação para este programa.</value>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Downgrade detectado</value>
+  </data>
 </root>

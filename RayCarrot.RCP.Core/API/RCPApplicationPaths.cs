@@ -6,12 +6,12 @@ namespace RayCarrot.RCP.Core
     /// <summary>
     /// The base class for Rayman Control Panel application paths
     /// </summary>
-    public abstract class RCPApplicationPaths
+    public class RCPApplicationPaths
     {
         /// <summary>
         /// The code name for this application to use for the application paths
         /// </summary>
-        public abstract string AppName { get; }
+        protected string AppName => RCFRCPC.API.AppCodeName;
 
         /// <summary>
         /// The base user data directory for the Rayman Control Panel
@@ -44,10 +44,35 @@ namespace RayCarrot.RCP.Core
         public FileSystemPath UpdaterFile => TempInstallationDir + "Updater.exe";
 
         /// <summary>
+        /// The base utilities directory
+        /// </summary>
+        public FileSystemPath UtilitiesBaseDir => AppUserDataBaseDir + "Utilities";
+
+        /// <summary>
+        /// The common path to the ubi.ini file
+        /// </summary>
+        public FileSystemPath UbiIniPath1 => Environment.SpecialFolder.Windows.GetFolderPath() + @"Ubisoft\ubi.ini";
+
+        /// <summary>
+        /// The second common path to the ubi.ini file
+        /// </summary>
+        public FileSystemPath UbiIniPath2 => Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "VirtualStore\\Windows\\Ubisoft\\Ubi.ini";
+
+        /// <summary>
         /// Gets the user data file
         /// </summary>
         /// <param name="userDataType">The type of user data to get the file for</param>
         /// <returns>The file path</returns>
         public FileSystemPath GetUserDataFile(Type userDataType) => AppUserDataBaseDir + $"{userDataType.Name.ToLower()}.json";
+
+        /// <summary>
+        /// The update manifest URL
+        /// </summary>
+        public string UpdateManifestUrl => BaseUrl + $"{AppName}_Manifest.json";
+
+        /// <summary>
+        /// The base URL
+        /// </summary>
+        public const string BaseUrl = "http://raycarrot.ylemnova.com/RCP/";
     }
 }

@@ -6,7 +6,7 @@
                xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
                mc:Ignorable="d"
-               ResxExtension.DefaultResxName="{x:Static local:AppViewModel.ResourcePath}"
+               ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                Title="{Resx AppNews_Title}" 
                Height="450" Width="800">
     <Grid Margin="10">

@@ -1,5 +1,5 @@
 ﻿<core:BaseRCPApp x:Class="RayCarrot.RCP.Modding.App"
-               x:TypeArguments="local:MainWindow"
+               x:TypeArguments="local:MainWindow, local:AppUserData, local:RCPModdingAPIControllerManager"
                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
@@ -24,9 +24,9 @@
 
                 <!-- Core -->
 
-                <ResourceDictionary Source="pack://application:,,,/RayCarrot.RCP.Core;component/Styles/UnifiedMargins.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/RayCarrot.RCP.Core;component/Styles/TextStyles.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/RayCarrot.RCP.Core;component/Styles/ContentStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/RayCarrot.RCP.Core;component/UI/Styles/UnifiedMargins.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/RayCarrot.RCP.Core;component/UI/Styles/TextStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/RayCarrot.RCP.Core;component/UI/Styles/ContentStyles.xaml" />
 
                 <!-- Archive Explorer -->
 
@@ -34,7 +34,7 @@
 
                 <!-- Local -->
 
-                <ResourceDictionary Source="Styles/Strings.xaml" />
+                <ResourceDictionary Source="UI/Styles/Strings.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 
