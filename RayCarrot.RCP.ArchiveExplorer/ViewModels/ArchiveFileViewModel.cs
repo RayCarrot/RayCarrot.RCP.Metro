@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -197,7 +196,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
 
                         await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFileSuccess);
                     });
-                };
+                }
             }
         }
 

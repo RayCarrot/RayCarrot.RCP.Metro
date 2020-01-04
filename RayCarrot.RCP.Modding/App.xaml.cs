@@ -1,14 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using RayCarrot.CarrotFramework;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.RCP.Core;
 using RayCarrot.RCP.Metro;
-using RayCarrot.UI;
 using RayCarrot.UserData;
-using RayCarrot.Windows.Registry;
-using RayCarrot.WPF;
 using System.Collections.Generic;
 using System.Windows;
 

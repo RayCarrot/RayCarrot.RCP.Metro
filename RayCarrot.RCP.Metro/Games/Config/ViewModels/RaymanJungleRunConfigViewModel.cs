@@ -24,8 +24,6 @@ namespace RayCarrot.RCP.Metro
 
         private const string SelectedSlotFileName = "ROselectedSlot";
 
-        private const string SelectedVolumeFileName = "ROvolume";
-
         #endregion
 
         #region Private Fields

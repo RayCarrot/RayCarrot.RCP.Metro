@@ -1,7 +1,6 @@
 ﻿using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.RCP.ArchiveExplorer;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using System.Linq;
 using System.Threading.Tasks;

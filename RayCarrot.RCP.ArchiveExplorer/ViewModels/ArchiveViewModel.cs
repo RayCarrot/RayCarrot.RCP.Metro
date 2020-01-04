@@ -4,11 +4,9 @@ using RayCarrot.IO;
 using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using System;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework.Abstractions;
 
 namespace RayCarrot.RCP.ArchiveExplorer
 {
@@ -170,7 +168,7 @@ namespace RayCarrot.RCP.ArchiveExplorer
         /// <summary>
         /// Updates the archive with the pending imports
         /// </summary>
-        public async Task UpdateArchiveAsync()
+        public Task UpdateArchiveAsync()
         {
             // Stop refreshing thumbnails
             if (ExplorerDialogViewModel.IsRefreshingThumbnails)
@@ -187,7 +185,6 @@ namespace RayCarrot.RCP.ArchiveExplorer
             // Update the archive
             Manager.UpdateArchive(ArchiveFileStream, files);
 
-            // IDEA: We probably don't need to reload the archive since we currently don't support modifying the directory/file structure - it might however be good in case an error occurs when repacking and the archive gets corrupt?
             // Reload the archive
             LoadArchive();
 
@@ -211,6 +208,8 @@ namespace RayCarrot.RCP.ArchiveExplorer
                 previouslySelectedItem.IsSelected = true;
 
             Archive.SetDisplayStatus(String.Empty);
+
+            return Task.CompletedTask;
         }
 
         public override void Dispose()

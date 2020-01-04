@@ -9,7 +9,6 @@ using ByteSizeLib;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.RCP.Core;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.ArchiveExplorer
 {

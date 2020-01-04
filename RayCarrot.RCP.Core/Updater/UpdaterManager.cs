@@ -3,7 +3,6 @@ using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
-using System.Windows;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RayCarrot.CarrotFramework.Abstractions;

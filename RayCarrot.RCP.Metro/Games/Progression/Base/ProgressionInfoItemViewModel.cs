@@ -1,5 +1,4 @@
 ﻿using System.Windows.Media;
-using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {

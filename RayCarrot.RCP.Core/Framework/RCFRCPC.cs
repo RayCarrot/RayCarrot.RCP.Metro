@@ -1,5 +1,4 @@
-﻿using RayCarrot.CarrotFramework;
-using RayCarrot.CarrotFramework.Abstractions;
+﻿using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using RayCarrot.UserData;

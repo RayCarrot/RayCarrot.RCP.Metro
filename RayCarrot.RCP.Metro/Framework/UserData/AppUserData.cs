@@ -1,17 +1,8 @@
-﻿using Microsoft.Win32;
-using Newtonsoft.Json;
-using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using RayCarrot.RCP.Core;
-using RayCarrot.UI;
-using RayCarrot.Windows.Registry;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
 using System.Windows;
-using Windows.Foundation.Metadata;
 
 namespace RayCarrot.RCP.Metro
 {

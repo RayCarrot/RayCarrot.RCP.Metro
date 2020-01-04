@@ -117,7 +117,7 @@ namespace RayCarrot.RCP.Core
                 SetLocalCulture(ci);
 
                 // Set the resource culture
-                Core.Resources.Culture = ci;
+                Resources.Culture = ci;
                 Resources.Culture = ci;
 
                 // Update the current thread cultures

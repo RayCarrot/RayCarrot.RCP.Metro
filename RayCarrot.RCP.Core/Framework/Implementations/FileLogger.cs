@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using RayCarrot.CarrotFramework;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
-using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Core
 {

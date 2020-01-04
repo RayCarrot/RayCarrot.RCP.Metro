@@ -15,7 +15,6 @@ using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.UI;
 using RayCarrot.UserData;
-using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
 using RayCarrot.WPF.Metro;
