@@ -52,9 +52,9 @@
 
             <!-- Overflow menu -->
 
-            <local:OverflowMenu Grid.Column="2"
+            <core:OverflowMenu Grid.Column="2"
                                 Margin="7">
-                <local:OverflowMenu.ContextMenu>
+                <core:OverflowMenu.ContextMenu>
                     <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
                         <core:MenuItemIcon Header="{Resx GameOptions_CreateShortcut}"
                                             Command="{Binding Path=ShortcutCommand}"
@@ -67,8 +67,8 @@
                                             Command="{Binding Path=UninstallCommand}"
                                             IconKind="DeleteForeverOutline"/>
                     </ContextMenu>
-                </local:OverflowMenu.ContextMenu>
-            </local:OverflowMenu>
+                </core:OverflowMenu.ContextMenu>
+            </core:OverflowMenu>
 
         </Grid>
 
@@ -121,10 +121,10 @@
                                                    Style="{StaticResource HeaderTextBlock}"
                                                    Margin="{StaticResource SmallVerticalStackMargin}"/>
 
-                                        <local:OverflowMenu HorizontalAlignment="Right" 
+                                        <core:OverflowMenu HorizontalAlignment="Right" 
                                                             rwpf:UserLevelTag.MinUserLevel="Technical"
                                                             Margin="7">
-                                            <local:OverflowMenu.ContextMenu>
+                                            <core:OverflowMenu.ContextMenu>
                                                 <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
                                                     <core:MenuItemIcon Header="{Resx Progression_Export}"
                                                                         Command="{Binding Path=ExportCommand, Mode=OneTime}"
@@ -133,8 +133,8 @@
                                                                         Command="{Binding Path=ImportCommand, Mode=OneTime}"
                                                                         IconKind="FileImportOutline"/>
                                                 </ContextMenu>
-                                            </local:OverflowMenu.ContextMenu>
-                                        </local:OverflowMenu>
+                                            </core:OverflowMenu.ContextMenu>
+                                        </core:OverflowMenu>
 
                                     </Grid>
 

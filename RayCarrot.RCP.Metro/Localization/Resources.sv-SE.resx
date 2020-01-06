@@ -874,24 +874,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="Download_Error" xml:space="preserve">
     <value>Filerna kunde inte laddas ner</value>
   </data>
-  <data name="Update_ErrorHeader" xml:space="preserve">
-    <value>Fel vid sökande efter nya uppdateringar</value>
-  </data>
-  <data name="Update_LatestInstalled" xml:space="preserve">
-    <value>Den senaste versionen ({0}) är redan installerad</value>
-  </data>
-  <data name="Update_LatestInstalledHeader" xml:space="preserve">
-    <value>Ingen ny version hittades</value>
-  </data>
-  <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>En ny uppdatering finns tillgänglig att ladda ner. Ladda ner nu?
-
-Nyheter:
-{0}</value>
-  </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>Ny version hittades</value>
-  </data>
   <data name="MoveBackups_Question" xml:space="preserve">
     <value>Vill du flytta tidigare säkerhetskopior till den nya mappen?</value>
   </data>
@@ -1497,9 +1479,6 @@ Starta om?</value>
   </data>
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Länkar</value>
-  </data>
-  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>En ny beta uppdatering finns tillgänglig att ladda ner. Ladda ner nu?</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Avinstallera</value>

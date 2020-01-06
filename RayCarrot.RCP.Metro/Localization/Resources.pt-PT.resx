@@ -873,24 +873,6 @@
   <data name="Download_Error" xml:space="preserve">
     <value>Os ficheiros não poderam ser descarregados</value>
   </data>
-  <data name="Update_ErrorHeader" xml:space="preserve">
-    <value>A verificação por actualizações falhou</value>
-  </data>
-  <data name="Update_LatestInstalled" xml:space="preserve">
-    <value>A última versão ({0}) já está instalada</value>
-  </data>
-  <data name="Update_LatestInstalledHeader" xml:space="preserve">
-    <value>Nenhuma versão nova foi encontrada</value>
-  </data>
-  <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>Está disponível uma nova actualização para descarga. Descarregar agora?
-
-Notícias:
-{0}</value>
-  </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>Nova versão encontrada</value>
-  </data>
   <data name="MoveBackups_Question" xml:space="preserve">
     <value>Queres mover as cópias de segurança existentes para a nova localização?</value>
   </data>
@@ -1412,12 +1394,6 @@ Para começar, marca abaixo as caixas que queres e pressiona 'Continuar' para ir
   <data name="GameOptions_Remove" xml:space="preserve">
     <value>Remover de programa</value>
   </data>
-  <data name="DowngradeWarning" xml:space="preserve">
-    <value>Estás a utilizar uma versão mais antiga do programa ({0}) comparado com a versão dos actuais dados da aplicação ({1}). Isto não é recomendado e poderá causar problemas de compactibilidade. Estes poderão ser corrigidos ao reiniciar os dados de aplicação para este programa.</value>
-  </data>
-  <data name="DowngradeWarningHeader" xml:space="preserve">
-    <value>Downgrade detectado</value>
-  </data>
   <data name="JumpListItemDescription" xml:space="preserve">
     <value>Arrancar {0}</value>
   </data>
@@ -1759,17 +1735,8 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   <data name="Settings_AdminInfo" xml:space="preserve">
     <value>Esta funcionalidade requer que o programa execute como administrador</value>
   </data>
-  <data name="Settings_ShowUnderInstalledPrograms" xml:space="preserve">
-    <value>Mostrar os programas instalados por baixo</value>
-  </data>
-  <data name="Settings_ShowUnderInstalledProgramsInfo" xml:space="preserve">
-    <value>Se isto estiver activo o programa irá mostrar sob a lista de programas instalados neste computador, normalmente encontrado sob o Desinstalar Programa no Painel de Controlo do Windows. Se isto estiver activo o programa poderá requerer privilégios de administrador durante uma actualização de forma a actualizar a informação do programa.</value>
-  </data>
   <data name="Settings_ForceUpdates" xml:space="preserve">
     <value>Forçar actualizações manuais</value>
-  </data>
-  <data name="Settings_ShowUnderInstalledPrograms_UpdateError" xml:space="preserve">
-    <value>Falhou a actualização das informações do programa sob programas instalados. Tenta reiniciar como administrador para tentar novamente.</value>
   </data>
   <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
     <value>UbiIni Primário</value>
@@ -1921,9 +1888,6 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Ligações</value>
   </data>
-  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>Está disponível uma nova actualização beta para descarga. Descarregar agora?</value>
-  </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Desinstalar</value>
   </data>
@@ -1938,9 +1902,6 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   </data>
   <data name="Settings_GetBetaUpdates" xml:space="preserve">
     <value>Obter actualizações beta</value>
-  </data>
-  <data name="UninstallRegKeyRequiresRefresh" xml:space="preserve">
-    <value>Devido ao estado do programa ter sido alterado necessita de actualizar a informação armazenada nos programas instalados. Isto requer que o programa execute como administrador. Até lá a informação exibida dos programas instalados poderá não ser precisa.</value>
   </data>
   <data name="About_Credits_RayActivity" xml:space="preserve">
     <value>Página de ícones de jogo, Teste de programa</value>
@@ -2808,9 +2769,6 @@ Mantém premido L1 + R1 no menu (ou equivalente no comando a ser utilizado corre
   </data>
   <data name="Config_SoundVolumeHeader" xml:space="preserve">
     <value>Volume de Som</value>
-  </data>
-  <data name="Update_Error" xml:space="preserve">
-    <value>Ocorreu um erro quando se actualizava a aplicação</value>
   </data>
   <data name="CategorizeGames" xml:space="preserve">
     <value>Categorizar jogos</value>

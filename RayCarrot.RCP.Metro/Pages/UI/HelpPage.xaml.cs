@@ -1,6 +1,7 @@
 ﻿using RayCarrot.CarrotFramework.Abstractions;
 using System.Windows.Controls;
 using System.Windows.Input;
+using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {

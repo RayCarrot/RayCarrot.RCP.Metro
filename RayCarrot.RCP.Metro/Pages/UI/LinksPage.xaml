@@ -1,4 +1,4 @@
-﻿<local:BasePage x:Class="RayCarrot.RCP.Metro.LinksPage"
+﻿<core:BasePage x:Class="RayCarrot.RCP.Metro.LinksPage"
                 x:TypeArguments="local:LinksPageViewModel"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -15,7 +15,7 @@
                 d:DataContext="{d:DesignInstance local:LinksPageViewModel}"
                 PreviewKeyDown="UIElement_OnPreviewKeyDown">
 
-    <local:IBasePage.OverflowMenu>
+    <core:IBasePage.OverflowMenu>
         <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
 
             <MenuItem Header="{Resx LinksPage_LinkStyleHeader}">
@@ -51,7 +51,7 @@
                                 rwpf:UserLevelTag.MinUserLevel="Advanced"/>
 
         </ContextMenu>
-    </local:IBasePage.OverflowMenu>
+    </core:IBasePage.OverflowMenu>
 
     <ScrollViewer>
         <mah:MetroAnimatedTabControl x:Name="LinksTabControl"
@@ -106,4 +106,4 @@
         </mah:MetroAnimatedTabControl>
     </ScrollViewer>
 
-</local:BasePage>
+</core:BasePage>

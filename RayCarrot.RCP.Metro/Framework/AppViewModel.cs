@@ -922,22 +922,6 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Opens the specified URL
-        /// </summary>
-        /// <param name="url">The URL to open</param>
-        public void OpenUrl(string url)
-        {
-            try
-            {
-                Process.Start(url)?.Dispose();
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError($"Opening URL {url}");
-            }
-        }
-
-        /// <summary>
         /// Restarts the Rayman Control Panel as administrator
         /// </summary>
         /// <returns>The task</returns>

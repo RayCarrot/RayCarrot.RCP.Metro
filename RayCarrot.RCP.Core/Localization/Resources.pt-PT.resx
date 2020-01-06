@@ -174,17 +174,41 @@
   <data name="Update_GenericError" xml:space="preserve">
     <value>Um erro desconhecido ocorreu enquanto se conectava ao servidor</value>
   </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>A verificação por actualizações falhou</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>A última versão ({0}) já está instalada</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Nenhuma versão nova foi encontrada</value>
+  </data>
   <data name="Update_ManifestError" xml:space="preserve">
     <value>O manifesto do servidor não pode ser lida</value>
   </data>
   <data name="Update_NewsError" xml:space="preserve">
     <value>Erro ao obter notícias</value>
   </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>Está disponível uma nova actualização para descarga. Descarregar agora?
+
+Notícias:
+{0}</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Nova versão encontrada</value>
+  </data>
   <data name="Update_UpdaterError" xml:space="preserve">
     <value>O actualizador não pode ser criado. Para descarregar manualmente a nova versão, vai ao {0} e descarrega a última versão de lá.</value>
   </data>
   <data name="Update_UpdaterErrorHeader" xml:space="preserve">
     <value>Erro ao criar o actualizador</value>
+  </data>
+  <data name="DowngradeWarning" xml:space="preserve">
+    <value>Estás a utilizar uma versão mais antiga do programa ({0}) comparado com a versão dos actuais dados da aplicação ({1}). Isto não é recomendado e poderá causar problemas de compactibilidade. Estes poderão ser corrigidos ao reiniciar os dados de aplicação para este programa.</value>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Downgrade detectado</value>
   </data>
   <data name="Update_RunningUpdaterError" xml:space="preserve">
     <value>O actualizador não pode arrancar. Para descarregar a nova versão manualmente, vai a {0} e descarrega a versão mais recente por lá.</value>
@@ -204,6 +228,9 @@
   <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
     <value>Erro ao abrir chave</value>
   </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>Está disponível uma nova actualização beta para descarga. Descarregar agora?</value>
+  </data>
   <data name="App_ExceptionMessage" xml:space="preserve">
     <value>{0}
 
@@ -215,40 +242,13 @@ Error message: {1}</value>
   <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
     <value>Ocorreu um erro.</value>
   </data>
+  <data name="Update_Error" xml:space="preserve">
+    <value>Ocorreu um erro quando se actualizava a aplicação</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
-  </data>
-  <data name="Update_ErrorHeader" xml:space="preserve">
-    <value>A verificação por actualizações falhou</value>
-  </data>
-  <data name="Update_LatestInstalled" xml:space="preserve">
-    <value>A última versão ({0}) já está instalada</value>
-  </data>
-  <data name="Update_LatestInstalledHeader" xml:space="preserve">
-    <value>Nenhuma versão nova foi encontrada</value>
-  </data>
-  <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>Está disponível uma nova actualização para descarga. Descarregar agora?
-
-Notícias:
-{0}</value>
-  </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>Nova versão encontrada</value>
-  </data>
-  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>Está disponível uma nova actualização beta para descarga. Descarregar agora?</value>
-  </data>
-  <data name="Update_Error" xml:space="preserve">
-    <value>Ocorreu um erro quando se actualizava a aplicação</value>
-  </data>
-  <data name="DowngradeWarning" xml:space="preserve">
-    <value>Estás a utilizar uma versão mais antiga do programa ({0}) comparado com a versão dos actuais dados da aplicação ({1}). Isto não é recomendado e poderá causar problemas de compactibilidade. Estes poderão ser corrigidos ao reiniciar os dados de aplicação para este programa.</value>
-  </data>
-  <data name="DowngradeWarningHeader" xml:space="preserve">
-    <value>Downgrade detectado</value>
   </data>
 </root>

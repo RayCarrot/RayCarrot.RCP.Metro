@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 // ReSharper disable PossibleNullReferenceException
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Core
 {
     /// <summary>
     /// Interaction logic for OverflowMenu.xaml

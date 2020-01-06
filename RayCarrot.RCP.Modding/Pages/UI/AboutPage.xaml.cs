@@ -1,6 +1,6 @@
 ﻿using RayCarrot.RCP.Core;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Modding
 {
     /// <summary>
     /// Interaction logic for SettingsPage.xaml

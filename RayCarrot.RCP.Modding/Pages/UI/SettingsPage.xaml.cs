@@ -1,13 +1,13 @@
 ﻿using RayCarrot.RCP.Core;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Modding
 {
     /// <summary>
     /// Interaction logic for SettingsPage.xaml
     /// </summary>
-    public partial class AboutPage : BasePage<AboutPageViewModel>
+    public partial class SettingsPage : BasePage<SettingsPageViewModel>
     {
-        public AboutPage()
+        public SettingsPage()
         {
             InitializeComponent();
         }

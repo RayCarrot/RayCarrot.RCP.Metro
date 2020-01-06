@@ -174,24 +174,6 @@
   <data name="Update_GenericError" xml:space="preserve">
     <value>Ett okänt fel uppstod vid anslutning till servern</value>
   </data>
-  <data name="Update_ManifestError" xml:space="preserve">
-    <value>Serverns manifest kunde inte läsas</value>
-  </data>
-  <data name="Update_NewsError" xml:space="preserve">
-    <value>Server fel</value>
-  </data>
-  <data name="Update_UpdaterError" xml:space="preserve">
-    <value>Uppdateraren kunde inte skapas. För att hämta den nya versionen manuellt, gå till {0} och ladda ner den senaste versionen därifrån.</value>
-  </data>
-  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
-    <value>Det gick inte att skapa uppdateraren</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Avbryt</value>
-  </data>
-  <data name="Ok" xml:space="preserve">
-    <value>Ok</value>
-  </data>
   <data name="Update_ErrorHeader" xml:space="preserve">
     <value>Fel vid sökande efter nya uppdateringar</value>
   </data>
@@ -200,6 +182,12 @@
   </data>
   <data name="Update_LatestInstalledHeader" xml:space="preserve">
     <value>Ingen ny version hittades</value>
+  </data>
+  <data name="Update_ManifestError" xml:space="preserve">
+    <value>Serverns manifest kunde inte läsas</value>
+  </data>
+  <data name="Update_NewsError" xml:space="preserve">
+    <value>Server fel</value>
   </data>
   <data name="Update_UpdateAvailable" xml:space="preserve">
     <value>En ny uppdatering finns tillgänglig att ladda ner. Ladda ner nu?
@@ -210,7 +198,19 @@ Nyheter:
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Ny version hittades</value>
   </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>Uppdateraren kunde inte skapas. För att hämta den nya versionen manuellt, gå till {0} och ladda ner den senaste versionen därifrån.</value>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Det gick inte att skapa uppdateraren</value>
+  </data>
   <data name="Update_BetaUpdateAvailable" xml:space="preserve">
     <value>En ny beta uppdatering finns tillgänglig att ladda ner. Ladda ner nu?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
   </data>
 </root>

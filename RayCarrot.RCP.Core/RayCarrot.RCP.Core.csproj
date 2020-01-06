@@ -57,6 +57,15 @@
     <Compile Include="API\RCPLocalizationManager.cs" />
     <Compile Include="API\BaseRCPAppViewModel.cs" />
     <Compile Include="UI\BaseRCPApp.cs" />
+    <Compile Include="UI\Controls\MainRCPTabControl.xaml.cs">
+      <DependentUpon>MainRCPTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\OverflowMenu.xaml.cs">
+      <DependentUpon>OverflowMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Converters\BooleanToTransitionTypeConverter.cs" />
+    <Compile Include="UI\Page\BasePage.cs" />
+    <Compile Include="UI\Page\IBasePage.cs" />
     <Compile Include="UI\Window\BaseWindow.cs" />
     <Compile Include="UI\Controls\DuoGridItem.cs" />
     <Compile Include="UI\Controls\InfoIcon.xaml.cs">
@@ -66,7 +75,7 @@
       <DependentUpon>MenuItemIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\RCPTabItem.cs" />
-    <Compile Include="Converters\AppendSpacesToStringConverter.cs" />
+    <Compile Include="UI\Converters\AppendSpacesToStringConverter.cs" />
     <Compile Include="Files\Files.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -181,7 +190,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="UI\Controls\MainRCPTabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Controls\MenuItemIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\OverflowMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

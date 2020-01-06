@@ -3,7 +3,7 @@ using RayCarrot.WPF;
 using System;
 using System.Globalization;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Core
 {
     /// <summary>
     /// Converts a <see cref="Boolean"/> to a <see cref="TransitionType"/>

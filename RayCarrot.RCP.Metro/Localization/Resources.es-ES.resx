@@ -734,7 +734,4 @@ Incluso si la opción interna de pantalla ancha esta activada.</value>
   <data name="Download_ConfirmHeader" xml:space="preserve">
     <value>Confirmar la Descarga</value>
   </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>Se ha encontrado una nueva versión</value>
-  </data>
 </root>

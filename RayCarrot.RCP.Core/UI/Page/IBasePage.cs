@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Core
 {
     /// <summary>
     /// Used to define the properties of a base page

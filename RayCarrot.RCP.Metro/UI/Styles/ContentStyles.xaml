@@ -5,12 +5,6 @@
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
-    <!-- Default Animated Tab Control -->
-
-    <Style TargetType="{x:Type mah:MetroAnimatedTabControl}" BasedOn="{StaticResource {x:Type mah:MetroAnimatedTabControl}}">
-        <Setter Property="mah:TabControlHelper.Transition" Value="{Binding Source={x:Static local:RCFRCP.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}" />
-    </Style>
-
     <!-- Default Browse Box -->
 
     <Style TargetType="{x:Type rwpf:BrowseBox}" BasedOn="{StaticResource {x:Type rwpf:BrowseBox}}">

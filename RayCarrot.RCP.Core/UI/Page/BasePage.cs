@@ -1,14 +1,15 @@
 ﻿using System.Windows.Controls;
+using RayCarrot.UI;
 using RayCarrot.WPF;
 
-namespace RayCarrot.RCP.Metro
+namespace RayCarrot.RCP.Core
 {
     /// <summary>
     /// The base for a page control
     /// </summary>
     /// <typeparam name="VM">The view model type</typeparam>
     public class BasePage<VM> : VMUserControl<VM>, IBasePage
-        where VM : BaseRCPViewModel, new()
+        where VM : BaseViewModel, new()
     {
         /// <summary>
         /// Default constructor

@@ -36,14 +36,10 @@
             </Grid>
         </DataTemplate>
     </core:BaseWindow.TitleTemplate>
+
     <Grid>
-        <metro:MetroAnimatedTabControl x:Name="PageTabControl"
-                                       Padding="5">
-            <metro:MetroAnimatedTabControl.Resources>
-                <Style TargetType="{x:Type core:RCPTabItem}" BasedOn="{StaticResource {x:Type core:RCPTabItem}}">
-                    <Setter Property="HeaderFontSize" Value="24" />
-                </Style>
-            </metro:MetroAnimatedTabControl.Resources>
+        <core:MainRCPTabControl x:Name="PageTabControl"
+                                Padding="5">
 
             <!-- Utilities -->
 
@@ -83,39 +79,25 @@
                 </Grid>
             </core:RCPTabItem>
 
+            <!-- Settings -->
+
             <!-- TODO: Localize -->
             <core:RCPTabItem Header="Settings"
                              IconKind="SettingsOutline"
                              IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Settings}">
-                <Grid>
-                    <StackPanel>
-                        <b:Interaction.Behaviors>
-                            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-                        </b:Interaction.Behaviors>
-
-
-
-                    </StackPanel>
-                </Grid>
+                <local:SettingsPage />
             </core:RCPTabItem>
+
+            <!-- About -->
 
             <!-- TODO: Localize -->
             <core:RCPTabItem Header="About"
                              IconKind="InformationOutline"
                              IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=About}">
-                <Grid>
-                    <StackPanel>
-                        <b:Interaction.Behaviors>
-                            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-                        </b:Interaction.Behaviors>
-
-
-
-                    </StackPanel>
-                </Grid>
+                <local:AboutPage />
             </core:RCPTabItem>
 
-        </metro:MetroAnimatedTabControl>
+        </core:MainRCPTabControl>
 
         <metro:ProgressRing HorizontalAlignment="Right"
                             VerticalAlignment="Bottom"

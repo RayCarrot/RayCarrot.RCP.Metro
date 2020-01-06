@@ -134,14 +134,9 @@
     <Compile Include="UI\Dialogs\JumpListEditDialog.xaml.cs">
       <DependentUpon>JumpListEditDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OverflowMenu.xaml.cs">
-      <DependentUpon>OverflowMenu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Games\Options\UI\PrintStudioOptions.xaml.cs">
       <DependentUpon>PrintStudioOptions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UI\Base\BasePage.cs" />
-    <Compile Include="Pages\UI\Base\IBasePage.cs" />
     <Compile Include="GameFinder\FinderItems\BaseFinderItem.cs" />
     <Compile Include="GameFinder\FinderItems\FoundActionResult.cs" />
     <Compile Include="GameFinder\Results\BaseFinderResult.cs" />
@@ -365,10 +360,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OverflowMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\UI\HelpPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -569,7 +560,6 @@
     <Compile Include="ViewModels\LinkItemViewModel.cs" />
     <Compile Include="Pages\ViewModels\LinksPageViewModel.cs" />
     <Compile Include="ViewModels\Cheats\Rayman1CheatCodeItemViewModel.cs" />
-    <Compile Include="UI\Converters\BooleanToTransitionTypeConverter.cs" />
     <Compile Include="UI\Converters\BooleanToFluidMoveDurationConverter.cs" />
     <Compile Include="DataModels\DosBoxAutoConfigData.cs" />
     <Compile Include="Helpers\DosBoxAutoConfigManager.cs" />

@@ -29,6 +29,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Private Properties
+
+        private UIElement BackupPageTab { get; set; }
+
+        #endregion
+
         #region Private Methods
 
         /// <summary>
@@ -36,6 +42,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         private void RefreshBackupPageEnabled() => Dispatcher?.Invoke(() =>
         {
+            if (BackupPageTab == null)
+                return;
+
             try
             {
                 BackupPageTab.IsEnabled = RCFRCP.Data.Games?.Any() ?? false;
@@ -79,6 +88,11 @@ namespace RayCarrot.RCP.Metro
                 // Set the data context
                 page.OverflowMenu.DataContext = (page as FrameworkElement)?.DataContext;
             }
+        }
+
+        private void BackupPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            BackupPageTab = sender as UIElement;
         }
 
         #endregion

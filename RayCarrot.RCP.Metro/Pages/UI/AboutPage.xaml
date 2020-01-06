@@ -1,4 +1,4 @@
-﻿<local:BasePage x:Class="RayCarrot.RCP.Metro.AboutPage"
+﻿<core:BasePage x:Class="RayCarrot.RCP.Metro.AboutPage"
                 x:TypeArguments="local:AboutPageViewModel"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -183,4 +183,4 @@
 
         </Grid>
     </ScrollViewer>
-</local:BasePage>
+</core:BasePage>

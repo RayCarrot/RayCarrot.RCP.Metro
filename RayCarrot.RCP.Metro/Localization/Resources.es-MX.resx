@@ -549,18 +549,6 @@
   <data name="Download_ConfirmHeader" xml:space="preserve">
     <value>Confirmar descarga</value>
   </data>
-  <data name="Update_LatestInstalledHeader" xml:space="preserve">
-    <value>Ninguna versión nueva fue encontrado</value>
-  </data>
-  <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>Una nueva actualización está disponible para descargar. ¿Descargar ahora?
-
-Notícias:
-{0}</value>
-  </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>Nueva versión encontrada</value>
-  </data>
   <data name="MoveBackups_Question" xml:space="preserve">
     <value>¿Quieres mover las cópias de seguridad existentes para la nueva localización?</value>
   </data>
@@ -791,9 +779,6 @@ Notícias:
   </data>
   <data name="GameOptions_Remove" xml:space="preserve">
     <value>Remover de programa</value>
-  </data>
-  <data name="DowngradeWarningHeader" xml:space="preserve">
-    <value>Downgrade detectado</value>
   </data>
   <data name="JumpListItemDescription" xml:space="preserve">
     <value>Iniciar {0}</value>
@@ -1053,17 +1038,8 @@ Notícias:
   <data name="Settings_AdminInfo" xml:space="preserve">
     <value>Esta característica requiere que el programa sea ejecutado como administrador.</value>
   </data>
-  <data name="Settings_ShowUnderInstalledPrograms" xml:space="preserve">
-    <value>Mostrar bajo los programas instalados</value>
-  </data>
-  <data name="Settings_ShowUnderInstalledProgramsInfo" xml:space="preserve">
-    <value>Si esto es activado, el programa se mostrará en la lista de programas instalados en esta computadora, comúnmente encontrado en Desinstalar programa en el Panel de control de Windows. Si está activado, el programa puede requerir privilegios de administración durante una actualización para actualizar la información del programa.</value>
-  </data>
   <data name="Settings_ForceUpdates" xml:space="preserve">
     <value>Forzar actualizaciones manuales</value>
-  </data>
-  <data name="Settings_ShowUnderInstalledPrograms_UpdateError" xml:space="preserve">
-    <value>Fallo a actualizar las informaciones del programa bajo programas instalados. Intenta reiniciar como administrador para intentarlo de nuevo.</value>
   </data>
   <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
     <value>Archivo ubi.ini Primário</value>
@@ -1214,9 +1190,6 @@ Notícias:
   </data>
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Hipervínculos de encabezado de página</value>
-  </data>
-  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>Está disponible una nueva actualización beta para descargar. ¿Descargar ahora?</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Desinstalar</value>

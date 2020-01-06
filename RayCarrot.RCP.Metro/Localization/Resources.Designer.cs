@@ -2810,24 +2810,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You are using an older version of the program ({0}) compared to the version of the current app data ({1}). This is not recommended and may cause compatibility issues. These may be fixed by resetting the app data for this program..
-        /// </summary>
-        public static string DowngradeWarning {
-            get {
-                return ResourceManager.GetString("DowngradeWarning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Downgrade detected.
-        /// </summary>
-        public static string DowngradeWarningHeader {
-            get {
-                return ResourceManager.GetString("DowngradeWarningHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Do you wish to cancel the download?.
         /// </summary>
         public static string Download_Cancel {
@@ -7561,33 +7543,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show under installed programs.
-        /// </summary>
-        public static string Settings_ShowUnderInstalledPrograms {
-            get {
-                return ResourceManager.GetString("Settings_ShowUnderInstalledPrograms", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Updating the program information under installed programs failed. Try restarting as administrator to try again..
-        /// </summary>
-        public static string Settings_ShowUnderInstalledPrograms_UpdateError {
-            get {
-                return ResourceManager.GetString("Settings_ShowUnderInstalledPrograms_UpdateError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If this is enabled the program will be shown in the list of installed programs on this computer, most commonly found under Uninstall Program in the Windows Control Panel. If this is enabled the program may require administration privileges during an update in order to update the program information..
-        /// </summary>
-        public static string Settings_ShowUnderInstalledProgramsInfo {
-            get {
-                return ResourceManager.GetString("Settings_ShowUnderInstalledProgramsInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Search for installed games.
         /// </summary>
         public static string Settings_StartupGameFinder {
@@ -7945,81 +7900,6 @@ namespace RayCarrot.RCP.Metro {
         public static string UninstallGameSuccessHeader {
             get {
                 return ResourceManager.GetString("UninstallGameSuccessHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Due to the state of the program being changed it needs to update the information stored under installed programs. This requires the program to run as administrator. Until then the information shown under installed programs might not be accurate..
-        /// </summary>
-        public static string UninstallRegKeyRequiresRefresh {
-            get {
-                return ResourceManager.GetString("UninstallRegKeyRequiresRefresh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A new beta update is available to download. Download now?.
-        /// </summary>
-        public static string Update_BetaUpdateAvailable {
-            get {
-                return ResourceManager.GetString("Update_BetaUpdateAvailable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when updating the application.
-        /// </summary>
-        public static string Update_Error {
-            get {
-                return ResourceManager.GetString("Update_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update Check Failed.
-        /// </summary>
-        public static string Update_ErrorHeader {
-            get {
-                return ResourceManager.GetString("Update_ErrorHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The latest version ({0}) is already installed.
-        /// </summary>
-        public static string Update_LatestInstalled {
-            get {
-                return ResourceManager.GetString("Update_LatestInstalled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No new versions found.
-        /// </summary>
-        public static string Update_LatestInstalledHeader {
-            get {
-                return ResourceManager.GetString("Update_LatestInstalledHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A new update is available to download. Download now?
-        ///
-        ///News: 
-        ///{0}.
-        /// </summary>
-        public static string Update_UpdateAvailable {
-            get {
-                return ResourceManager.GetString("Update_UpdateAvailable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New version found.
-        /// </summary>
-        public static string Update_UpdateAvailableHeader {
-            get {
-                return ResourceManager.GetString("Update_UpdateAvailableHeader", resourceCulture);
             }
         }
         

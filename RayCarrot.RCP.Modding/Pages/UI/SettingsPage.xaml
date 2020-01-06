@@ -1,10 +1,10 @@
-﻿<core:BasePage x:Class="RayCarrot.RCP.Metro.SettingsPage"
+﻿<core:BasePage x:Class="RayCarrot.RCP.Modding.SettingsPage"
                 x:TypeArguments="local:SettingsPageViewModel"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                xmlns:local="clr-namespace:RayCarrot.RCP.Modding"
                 xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
@@ -14,17 +14,6 @@
                 mc:Ignorable="d"    
                 d:DesignWidth="800"
                 d:DataContext="{d:DesignInstance local:SettingsPageViewModel}">
-
-    <core:IBasePage.OverflowMenu>
-        <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
-
-            <core:MenuItemIcon Header="{Resx Settings_EditJumpList}"
-                             ToolTip="{Resx Settings_EditJumpListInfo}"
-                             Command="{Binding Path=EditJumpListCommand}"
-                             IconKind="PencilBoxOutline"/>
-
-        </ContextMenu>
-    </core:IBasePage.OverflowMenu>
 
     <ScrollViewer Padding="15">
         <i:Interaction.Behaviors>
@@ -139,33 +128,6 @@
 
             </StackPanel>
 
-            <!-- General -->
-
-            <StackPanel>
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
-                </i:Interaction.Behaviors>
-
-                <TextBlock Text="{Resx Settings_GeneralHeader}"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
-
-                <StackPanel>
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-                    </i:Interaction.Behaviors>
-
-                    <CheckBox Content="{Resx Settings_GeneralCloseOnLaunch}"
-                              DataContext="{Binding Path=Data}"
-                              IsChecked="{Binding Path=CloseAppOnGameLaunch}"/>
-
-                    <CheckBox Content="{Resx Settings_GeneralCloseOnSave}"
-                              DataContext="{Binding Path=Data}"
-                              IsChecked="{Binding Path=CloseConfigOnSave}" />
-
-                </StackPanel>
-
-            </StackPanel>
-
             <!-- Design -->
 
             <StackPanel DataContext="{Binding Path=Data}">
@@ -197,82 +159,6 @@
                     <CheckBox Content="{Resx Settings_DesignShowTaskBarProgress}"
                               ToolTip="{Resx Settings_DesignShowTaskBarProgressInfo}"
                               IsChecked="{Binding Path=ShowProgressOnTaskBar}" />
-
-                </StackPanel>
-
-            </StackPanel>
-
-            <!-- Startup -->
-
-            <StackPanel DataContext="{Binding Path=Data}">
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
-                </i:Interaction.Behaviors>
-
-                <TextBlock Text="{Resx Settings_StartupHeader}"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
-
-                <StackPanel>
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-                    </i:Interaction.Behaviors>
-
-                    <CheckBox Content="{Resx Settings_StartupGameFinder}"
-                              IsChecked="{Binding Path=AutoLocateGames}" />
-
-                    <CheckBox Content="{Resx Settings_StartupUpdateCheck}"
-                              IsChecked="{Binding Path=AutoUpdate}" />
-
-                </StackPanel>
-
-            </StackPanel>
-
-            <!-- DosBox -->
-
-            <StackPanel DataContext="{Binding Path=Data}">
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
-                </i:Interaction.Behaviors>
-
-                <TextBlock Text="{Resx Settings_DosBoxHeader}"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
-
-                <StackPanel>
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-                    </i:Interaction.Behaviors>
-
-                    <StackPanel>
-
-                        <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="{Resx Settings_DosBoxPath}"
-                                   Margin="0 0 0 8" />
-
-                        <!-- NOTE: Not localized -->
-
-                        <rwpf:BrowseBox FileFilter="Exe Files (.exe)|*.exe|All Files (*.*)|*.*"
-                                        SelectedPath="{Binding Path=DosBoxPath}"
-                                        ToolTip="{Resx Settings_DosBoxPathInfo}"
-                                        BrowseType="File"
-                                        PathValidation="FileExists" />
-
-                    </StackPanel>
-
-                    <StackPanel rwpf:UserLevelTag.MinUserLevel="Advanced">
-
-                        <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="{Resx Settings_OptionalDosBoxConfigPath}"
-                                   Margin="0 0 0 8" />
-
-                        <!-- NOTE: Not localized -->
-
-                        <rwpf:BrowseBox FileFilter="Exe Files (.exe)|*.exe|All Files (*.*)|*.*"
-                                        SelectedPath="{Binding Path=DosBoxConfig}"
-                                        ToolTip="{Resx Settings_OptionalDosBoxConfigPathInfo}"
-                                        BrowseType="File"
-                                        PathValidation="FileExists" />
-
-                    </StackPanel>
 
                 </StackPanel>
 

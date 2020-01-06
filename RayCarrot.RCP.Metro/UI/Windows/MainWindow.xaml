@@ -79,133 +79,8 @@
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>
 
-        <metro:MetroAnimatedTabControl x:Name="PageTabControl"
-                                       Padding="5">
-            <metro:MetroAnimatedTabControl.Style>
-                <!-- ReSharper disable once Xaml.StaticResourceNotResolved -->
-                <Style TargetType="{x:Type metro:MetroAnimatedTabControl}" BasedOn="{StaticResource {x:Type metro:MetroAnimatedTabControl}}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type metro:MetroAnimatedTabControl}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition x:Name="ColumnDefinition0" />
-                                        <ColumnDefinition x:Name="ColumnDefinition1" Width="0" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition x:Name="RowDefinition0" Height="Auto" />
-                                        <RowDefinition x:Name="RowDefinition1" Height="*" />
-                                    </Grid.RowDefinitions>
-
-                                    <Grid x:Name="HeaderPanelGrid"
-                                          Grid.Row="0"
-                                          Grid.Column="0"
-                                          Margin="{TemplateBinding TabStripMargin}"
-                                          Panel.ZIndex="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <metro:Underline x:Name="Underline"
-                                                         Grid.Column="0"
-                                                         Background="Transparent"
-                                                         BorderBrush="{TemplateBinding metro:TabControlHelper.UnderlineBrush}"
-                                                         LineThickness="1"
-                                                         Placement="Bottom"
-                                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                         Visibility="Collapsed" />
-
-                                        <TabPanel x:Name="HeaderPanel"
-                                                  Grid.Column="0"
-                                                  IsItemsHost="true"
-                                                  KeyboardNavigation.TabIndex="1" />
-
-                                        <local:OverflowMenu Grid.Column="2"
-                                                            InheritDataContext="False"
-                                                            DataContext="{Binding ElementName=PageTabControl, Path=SelectedItem.(ContentControl.Content).(local:IBasePage.OverflowMenu)}"
-                                                            Visibility="{Binding Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
-                                                            ContextMenu="{Binding}"
-                                                            Margin="10"/>
-
-                                    </Grid>
-
-                                    <Border x:Name="ContentPanel"
-                                            Grid.Row="1"
-                                            Grid.Column="0"
-                                            Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            ClipToBounds="{TemplateBinding ClipToBounds}"
-                                            KeyboardNavigation.DirectionalNavigation="Contained"
-                                            KeyboardNavigation.TabIndex="2"
-                                            KeyboardNavigation.TabNavigation="Local"
-                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                                        <metro:TransitioningContentControl mah:ReloadBehavior.OnSelectedTabChanged="True"
-                                                                           RestartTransitionOnContentChange="True"
-                                                                           Transition="{TemplateBinding metro:TabControlHelper.Transition}"
-                                                                           UseLayoutRounding="True">
-                                            <ContentPresenter x:Name="PART_SelectedContentHost"
-                                                              Margin="{TemplateBinding Padding}"
-                                                              ContentSource="SelectedContent"
-                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                              UseLayoutRounding="False" />
-                                        </metro:TransitioningContentControl>
-                                    </Border>
-                                </Grid>
-
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="metro:TabControlHelper.Underlined" Value="TabPanel">
-                                        <Setter TargetName="Underline" Property="Visibility" Value="Visible" />
-                                    </Trigger>
-                                    <Trigger Property="TabStripPlacement" Value="Bottom">
-                                        <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
-                                        <Setter TargetName="HeaderPanelGrid" Property="Grid.Row" Value="1" />
-                                        <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
-                                        <Setter TargetName="RowDefinition1" Property="Height" Value="Auto" />
-                                        <Setter TargetName="Underline" Property="Placement" Value="Top" />
-                                    </Trigger>
-                                    <Trigger Property="TabStripPlacement" Value="Left">
-                                        <Setter TargetName="ColumnDefinition0" Property="Width" Value="Auto" />
-                                        <Setter TargetName="ColumnDefinition1" Property="Width" Value="*" />
-                                        <Setter TargetName="ContentPanel" Property="Grid.Column" Value="1" />
-                                        <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
-                                        <Setter TargetName="HeaderPanelGrid" Property="Grid.Column" Value="0" />
-                                        <Setter TargetName="HeaderPanelGrid" Property="Grid.Row" Value="0" />
-                                        <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
-                                        <Setter TargetName="RowDefinition1" Property="Height" Value="0" />
-                                        <Setter TargetName="Underline" Property="Placement" Value="Right" />
-                                    </Trigger>
-                                    <Trigger Property="TabStripPlacement" Value="Right">
-                                        <Setter TargetName="ColumnDefinition0" Property="Width" Value="*" />
-                                        <Setter TargetName="ColumnDefinition1" Property="Width" Value="Auto" />
-                                        <Setter TargetName="ContentPanel" Property="Grid.Column" Value="0" />
-                                        <Setter TargetName="ContentPanel" Property="Grid.Row" Value="0" />
-                                        <Setter TargetName="HeaderPanelGrid" Property="Grid.Column" Value="1" />
-                                        <Setter TargetName="HeaderPanelGrid" Property="Grid.Row" Value="0" />
-                                        <Setter TargetName="RowDefinition0" Property="Height" Value="*" />
-                                        <Setter TargetName="RowDefinition1" Property="Height" Value="0" />
-                                        <Setter TargetName="Underline" Property="Placement" Value="Left" />
-                                    </Trigger>
-                                    <Trigger Property="IsEnabled" Value="False">
-                                        <Setter Property="Foreground"
-                                                Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </metro:MetroAnimatedTabControl.Style>
-
-            <metro:MetroAnimatedTabControl.Resources>
-                <Style TargetType="{x:Type core:RCPTabItem}" BasedOn="{StaticResource {x:Type core:RCPTabItem}}">
-                    <Setter Property="HeaderFontSize" Value="24" />
-                </Style>
-            </metro:MetroAnimatedTabControl.Resources>
-
+        <core:MainRCPTabControl x:Name="PageTabControl"
+                                Padding="5">
             <!-- Games -->
 
             <TabItem IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Games}">
@@ -310,23 +185,23 @@
                         </StackPanel>
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
-                <local:GamesPage x:Name="GamesPage" />
+                <local:GamesPage />
             </TabItem>
 
             <!-- Backup/Restore -->
 
-            <core:RCPTabItem x:Name="BackupPageTab"
-                              Header="{Resx BackupPageHeader}"
-                              IconKind="BackupRestore"
-                              IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=BackupRestore}">
+            <core:RCPTabItem Header="{Resx BackupPageHeader}"
+                             Loaded="BackupPage_Loaded"
+                             IconKind="BackupRestore"
+                             IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=BackupRestore}">
                 <local:BackupPage />
             </core:RCPTabItem>
 
             <!-- Links -->
 
             <core:RCPTabItem Header="{Resx LinksPageHeader}"
-                              IconKind="Link"
-                              IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Links}">
+                             IconKind="Link"
+                             IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Links}">
                 <local:LinksPage />
             </core:RCPTabItem>
 
@@ -364,7 +239,7 @@
                 <local:DebugPage />
             </core:RCPTabItem>
 
-        </metro:MetroAnimatedTabControl>
+        </core:MainRCPTabControl>
 
         <metro:ProgressRing HorizontalAlignment="Right"
                             VerticalAlignment="Bottom"

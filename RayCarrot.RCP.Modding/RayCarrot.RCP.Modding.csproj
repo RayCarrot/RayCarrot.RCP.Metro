@@ -65,6 +65,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\UI\AboutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\UI\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UI\Styles\Strings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -82,6 +90,14 @@
     <Compile Include="Framework\RCFRCPM.cs" />
     <Compile Include="API\RCPModdingAPIControllerManager.cs" />
     <Compile Include="Helpers\CommonUrls.cs" />
+    <Compile Include="Pages\UI\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UI\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ViewModels\AboutPageViewModel.cs" />
+    <Compile Include="Pages\ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="UI\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -183,8 +199,6 @@
   <ItemGroup>
     <Resource Include="Img\RCP_Modding.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\Pages\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

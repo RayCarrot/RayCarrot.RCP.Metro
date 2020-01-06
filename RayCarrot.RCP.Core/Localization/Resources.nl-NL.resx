@@ -174,17 +174,41 @@
   <data name="Update_GenericError" xml:space="preserve">
     <value>Een onbekende fout heeft plaatsgevonden tijdens het verbinden met de server</value>
   </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>Updatecontrole Mislukt</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>De laatste versie ({0}) is reeds geïnstalleerd</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Geen nieuwe versie gevonden</value>
+  </data>
   <data name="Update_ManifestError" xml:space="preserve">
     <value>Het server manifest kon niet gelezen worden</value>
   </data>
   <data name="Update_NewsError" xml:space="preserve">
     <value>Fout bij het verkrijgen van nieuws</value>
   </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>Een nieuwe update is beschikbaar om te downloaden. Nu downloaden?
+
+Nieuws: 
+{0}</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Nieuwe versie gevonden</value>
+  </data>
   <data name="Update_UpdaterError" xml:space="preserve">
     <value>De updater kon niet gestart worden. Voor het handmatig downloaden van de nieuwste versie, ga je naar {0}.</value>
   </data>
   <data name="Update_UpdaterErrorHeader" xml:space="preserve">
     <value>Fout tijdens het starten van de updater</value>
+  </data>
+  <data name="DowngradeWarning" xml:space="preserve">
+    <value>Je gebruikt een oudere versie van het programma ({0}) in relatie tot de versie van de huidige app data ({1}). Dit is niet aanbevolen en kan compatibiliteitsproblemen veroorzaken. Deze kunnen verholpen worden door de app data van het programma te resetten.</value>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Downgrade gedetecteerd</value>
   </data>
   <data name="Update_RunningUpdaterError" xml:space="preserve">
     <value>De Updater kon niet gestart worden. Voor het handmatig downloaden van de laatste versie, ga je naar {0}.</value>
@@ -204,6 +228,9 @@
   <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
     <value>Fout bij het benaderen van de sleutel</value>
   </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>Een nieuwe bèta-update is beschikbaar om te downloaden. Nu downloaden?</value>
+  </data>
   <data name="App_ExceptionMessage" xml:space="preserve">
     <value>{0}
 
@@ -215,40 +242,13 @@ Foutmelding: {1}</value>
   <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden</value>
   </data>
+  <data name="Update_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het updaten van de applicatie</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annuleren</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
-  </data>
-  <data name="Update_ErrorHeader" xml:space="preserve">
-    <value>Updatecontrole Mislukt</value>
-  </data>
-  <data name="Update_LatestInstalled" xml:space="preserve">
-    <value>De laatste versie ({0}) is reeds geïnstalleerd</value>
-  </data>
-  <data name="Update_LatestInstalledHeader" xml:space="preserve">
-    <value>Geen nieuwe versie gevonden</value>
-  </data>
-  <data name="Update_UpdateAvailable" xml:space="preserve">
-    <value>Een nieuwe update is beschikbaar om te downloaden. Nu downloaden?
-
-Nieuws: 
-{0}</value>
-  </data>
-  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
-    <value>Nieuwe versie gevonden</value>
-  </data>
-  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
-    <value>Een nieuwe bèta-update is beschikbaar om te downloaden. Nu downloaden?</value>
-  </data>
-  <data name="Update_Error" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het updaten van de applicatie</value>
-  </data>
-  <data name="DowngradeWarning" xml:space="preserve">
-    <value>Je gebruikt een oudere versie van het programma ({0}) in relatie tot de versie van de huidige app data ({1}). Dit is niet aanbevolen en kan compatibiliteitsproblemen veroorzaken. Deze kunnen verholpen worden door de app data van het programma te resetten.</value>
-  </data>
-  <data name="DowngradeWarningHeader" xml:space="preserve">
-    <value>Downgrade gedetecteerd</value>
   </data>
 </root>

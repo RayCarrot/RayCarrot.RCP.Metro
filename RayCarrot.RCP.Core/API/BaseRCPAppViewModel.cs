@@ -4,6 +4,7 @@ using RayCarrot.UI;
 using RayCarrot.UserData;
 using RayCarrot.Windows.Shell;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -129,6 +130,22 @@ namespace RayCarrot.RCP.Core
         #endregion
 
         #region Public Methods
+
+        /// <summary>
+        /// Opens the specified URL
+        /// </summary>
+        /// <param name="url">The URL to open</param>
+        public void OpenUrl(string url)
+        {
+            try
+            {
+                Process.Start(url)?.Dispose();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError($"Opening URL {url}");
+            }
+        }
 
         /// <summary>
         /// Saves all user data for the application
