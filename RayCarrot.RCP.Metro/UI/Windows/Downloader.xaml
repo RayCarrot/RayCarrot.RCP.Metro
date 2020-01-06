@@ -4,15 +4,15 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                  mc:Ignorable="d"             
-               Title="{Resx Download_Title}"
-               ResizeMode="NoResize"
-               SizeToContent="WidthAndHeight"
-               ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
-               MinWidth="300" MinHeight="150"
-               Loaded="Downloader_OnLoadedAsync"
-               Closing="Downloader_OnClosingAsync"
-               d:DataContext="{d:DesignInstance local:DownloaderViewModel}">
+                  mc:Ignorable="d"
+                  Title="{Resx Download_Title}"
+                  ResizeMode="NoResize"
+                  SizeToContent="WidthAndHeight"
+                  ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                  MinWidth="300" MinHeight="150"
+                  Loaded="Downloader_OnLoadedAsync"
+                  Closing="Downloader_OnClosingAsync"
+                  d:DataContext="{d:DesignInstance local:DownloaderViewModel}">
     <StackPanel Margin="10">
 
         <TextBlock Text="{Resx Download_TotalProgress}"

@@ -204,6 +204,11 @@
         /// </summary>
         public const string SteamUrl = "https://steamcommunity.com/groups/RaymanControlPanel";
 
+        /// <summary>
+        /// The translation contribution URL
+        /// </summary>
+        public const string TranslationUrl = "https://steamcommunity.com/groups/RaymanControlPanel/discussions/0/1812044473314212117/";
+
         #endregion
     }
 }

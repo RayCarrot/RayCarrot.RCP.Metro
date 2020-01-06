@@ -5,9 +5,9 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   mc:Ignorable="d"
-               ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
-               Title="{Resx AppNews_Title}" 
-               Height="450" Width="800">
+                  ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                  Title="{Resx AppNews_Title}" 
+                  Height="450" Width="800">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

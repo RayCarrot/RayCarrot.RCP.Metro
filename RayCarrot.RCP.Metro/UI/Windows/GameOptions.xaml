@@ -7,14 +7,14 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-                  Title="{Binding Path=DisplayName}"
-               Loaded="GameOptions_OnLoadedAsync"
-               Closing="GameOptions_OnClosingAsync"
-               WindowStartupLocation="CenterOwner"
-               Width="600"
-               ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
-               mc:Ignorable="d"
-               d:DataContext="{d:DesignInstance local:GameOptionsViewModel}">
+                  Title="{Binding Path=DisplayName, Mode=OneTime}"
+                  Loaded="GameOptions_OnLoadedAsync"
+                  Closing="GameOptions_OnClosingAsync"
+                  WindowStartupLocation="CenterOwner"
+                  Width="600"
+                  ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                  mc:Ignorable="d"
+                  d:DataContext="{d:DesignInstance local:GameOptionsViewModel}">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

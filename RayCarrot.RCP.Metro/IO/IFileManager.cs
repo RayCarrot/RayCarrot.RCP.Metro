@@ -4,7 +4,7 @@ using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
-    // TODO: Move out of RCP
+    // IDEA: Move out of RCP
     /// <summary>
     /// Defines a generic file manager
     /// </summary>

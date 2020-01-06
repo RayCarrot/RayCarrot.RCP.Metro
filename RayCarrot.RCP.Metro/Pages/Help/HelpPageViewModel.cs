@@ -5,7 +5,6 @@ using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
-// ReSharper disable StringLiteralTypo
 
 namespace RayCarrot.RCP.Metro
 {
@@ -354,14 +353,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void OpenDiscord()
         {
-            try
-            {
-                Process.Start(CommonUrls.DiscordUrl)?.Dispose();
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError($"Opening Discord URL");
-            }
+            App.OpenUrl(CommonUrls.DiscordUrl);
         }
 
         #endregion

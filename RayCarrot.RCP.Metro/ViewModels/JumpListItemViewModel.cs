@@ -85,6 +85,5 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the item is included in the jump list
         /// </summary>
         public bool IsIncluded => Data.JumpListItemIDCollection.Contains(ID);
-
     }
 }

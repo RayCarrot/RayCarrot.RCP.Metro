@@ -32,67 +32,64 @@
 
                     <TextBlock Grid.Column="0"
                                FontSize="14"
-                               Text="{Resx About_ProgramInfo}" 
+                               Text="{Resx About_ProgramInfo}"
                                TextWrapping="WrapWithOverflow" />
 
                     <Image Grid.Column="1"
                            Margin="10"
-                           Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/RCP_Metro.ico"
-                           Height="128" Width="128"/>
+                           Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/Splash Screen.png"
+                           Height="128" Width="128" />
 
                 </Grid>
 
                 <TextBlock Text="{Resx About_Credits}"
                            Style="{StaticResource LargeHeaderTextBlock}"
-                           HorizontalAlignment="Center"/>
+                           HorizontalAlignment="Center" />
 
                 <ItemsControl HorizontalAlignment="Center"
                               Grid.IsSharedSizeScope="True">
 
                     <local:DuoGridItem Header="RayCarrot"
-                                    Text="{Resx About_Credits_RayCarrot}" />
+                                       Text="{Resx About_Credits_RayCarrot}" />
 
                     <local:DuoGridItem Header="432 Hz"
-                                    Text="{Resx About_Credits_432Hz}" />
+                                       Text="{Resx About_Credits_432Hz}" />
 
                     <local:DuoGridItem Header="Droolie"
-                                    Text="{Resx About_Credits_Droolie}" />
+                                       Text="{Resx About_Credits_Droolie}" />
 
                     <local:DuoGridItem Header="Hakyra"
-                                    Text="{Resx About_Credits_Hakyra}" />
+                                       Text="{Resx About_Credits_Hakyra}" />
 
                     <local:DuoGridItem Header="Haruka Tavares"
-                                    Text="{Resx About_Credits_HarukaTavares}" />
+                                       Text="{Resx About_Credits_HarukaTavares}" />
 
                     <local:DuoGridItem Header="ICUP321"
-                                    Text="{Resx About_Credits_ICUP321}" />
+                                       Text="{Resx About_Credits_ICUP321}" />
 
                     <local:DuoGridItem Header="Juanmv94"
-                                    Text="{Resx About_Credits_Janmv94}"/>
+                                       Text="{Resx About_Credits_Janmv94}" />
 
                     <local:DuoGridItem Header="Noserdog"
-                                    Text="{Resx About_Credits_Noserdog}" />
+                                       Text="{Resx About_Credits_Noserdog}" />
 
                     <local:DuoGridItem Header="OldClassicGamer"
-                                    Text="{Resx About_Credits_OldClassicGamer}" />
-
-                    <local:DuoGridItem Header="Philipp Jeindl"
-                                    Text="{Resx About_Credits_PhilippJeindl}" />
+                                       Text="{Resx About_Credits_OldClassicGamer}" />
 
                     <local:DuoGridItem Header="Pixelise"
-                                    Text="{Resx About_Credits_Pixelise}" />
+                                       Text="{Resx About_Credits_Pixelise}" />
 
                     <local:DuoGridItem Header="PluMGMK"
-                                    Text="{Resx About_Credits_PluMGMK}" />
+                                       Text="{Resx About_Credits_PluMGMK}" />
 
                     <local:DuoGridItem Header="RayActivity"
-                                    Text="{Resx About_Credits_RayActivity}" />
+                                       Text="{Resx About_Credits_RayActivity}" />
 
                     <local:DuoGridItem Header="RibShark"
-                                    Text="{Resx About_Credits_RibShark}" />
+                                       Text="{Resx About_Credits_RibShark}" />
 
                     <local:DuoGridItem Header="Snagglebee"
-                                    Text="{Resx About_Credits_Snagglebee}" />
+                                       Text="{Resx About_Credits_Snagglebee}" />
 
                 </ItemsControl>
 
@@ -100,7 +97,7 @@
                            MaxWidth="600"
                            TextAlignment="Center"
                            TextWrapping="Wrap"
-                           HorizontalAlignment="Center"/>
+                           HorizontalAlignment="Center" />
 
             </StackPanel>
 
@@ -112,17 +109,17 @@
 
                 <local:IconButton IconKind="TooltipTextOutline"
                                   ToolTip="{Resx About_UpdateHistory}"
-                                  Command="{Binding Path=ShowVersionHistoryCommand}"/>
+                                  Command="{Binding Path=ShowVersionHistoryCommand}" />
 
                 <mah:Badged Badge="{Binding Path=UpdateBadge}" Padding="-5" Margin="5">
                     <local:IconButton IconKind="Update"
                                       ToolTip="{Resx About_UpdateCheck}"
-                                      Command="{Binding Path=CheckForUpdatesCommand}"/>
+                                      Command="{Binding Path=CheckForUpdatesCommand}" />
                 </mah:Badged>
 
                 <local:IconButton IconKind="DeleteForeverOutline"
                                   ToolTip="{Resx About_Uninstall}"
-                                  Command="{Binding Path=UninstallCommand}"/>
+                                  Command="{Binding Path=UninstallCommand}" />
 
             </StackPanel>
 
@@ -130,11 +127,11 @@
                         VerticalAlignment="Bottom">
 
                 <TextBlock Text="{Binding Path=App.CurrentAppVersion, Mode=OneTime, FallbackValue=UnknownVersion}"
-                           HorizontalAlignment="Center"/>
+                           HorizontalAlignment="Center" />
 
                 <TextBlock Text="{Resx About_BetaTag}"
                            Visibility="{Binding Path=App.IsBeta, Converter={rwpf:BooleanToVisibilityConverter}}"
-                           HorizontalAlignment="Center"/>
+                           HorizontalAlignment="Center" />
 
             </StackPanel>
 
@@ -143,40 +140,40 @@
                         Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom">
-                
+
                 <local:IconButton IconKind="GithubCircle"
                                   ToolTip="{Resx About_GitHub}"
                                   Command="{Binding Path=OpenUrlCommand}"
-                                  CommandParameter="{x:Static local:CommonUrls.GitHubUrl}"/>
+                                  CommandParameter="{x:Static local:CommonUrls.GitHubUrl}" />
 
                 <local:IconButton IconKind="Discord"
                                   ToolTip="{Resx About_Discord}"
                                   Foreground="#7289DA"
                                   Command="{Binding Path=OpenUrlCommand}"
-                                  CommandParameter="{x:Static local:CommonUrls.DiscordUrl}"/>
+                                  CommandParameter="{x:Static local:CommonUrls.DiscordUrl}" />
 
                 <local:IconButton IconKind="Steam"
                                   ToolTip="{Resx About_Steam}"
                                   Command="{Binding Path=OpenUrlCommand}"
-                                  CommandParameter="{x:Static local:CommonUrls.SteamUrl}"/>
+                                  CommandParameter="{x:Static local:CommonUrls.SteamUrl}" />
 
                 <local:IconButton IconKind="Youtube"
                                   ToolTip="{Resx About_YouTube}"
                                   Foreground="Red"
                                   Command="{Binding Path=OpenUrlCommand}"
-                                  CommandParameter="{x:Static local:CommonUrls.YouTubeUrl}"/>
-                
+                                  CommandParameter="{x:Static local:CommonUrls.YouTubeUrl}" />
+
                 <local:IconButton IconKind="Twitter"
                                   ToolTip="{Resx About_Twitter}"
                                   Foreground="#38A1F3"
                                   Command="{Binding Path=OpenUrlCommand}"
-                                  CommandParameter="{x:Static local:CommonUrls.TwitterUrl}"/>
-                
+                                  CommandParameter="{x:Static local:CommonUrls.TwitterUrl}" />
+
                 <local:IconButton IconKind="EmailOutline"
                                   ToolTip="{Resx About_Email}"
                                   Foreground="Purple"
                                   Command="{Binding Path=OpenUrlCommand}"
-                                  CommandParameter="{x:Static local:CommonUrls.EmailUrl}"/>
+                                  CommandParameter="{x:Static local:CommonUrls.EmailUrl}" />
 
             </StackPanel>
 

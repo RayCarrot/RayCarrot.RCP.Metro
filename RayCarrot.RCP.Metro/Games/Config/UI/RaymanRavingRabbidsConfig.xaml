@@ -10,7 +10,6 @@
                     ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                     IsTabStop="False"
                     mc:Ignorable="d"
-                    d:DesignHeight="450" d:DesignWidth="800"
                     d:DataContext="{d:DesignInstance local:RaymanRavingRabbidsConfigViewModel}">
     <Grid>
         <Grid.RowDefinitions>
@@ -26,17 +25,8 @@
                     <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                 </i:Interaction.Behaviors>
 
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource HeaderTextBlock}"
-                               Text="{Resx Config_Resolution}" />
-
-                    <!--<local:InfoIcon Text="{Resx Config_ResolutionRRRInfo}" />-->
-
-                </StackPanel>
-
-                <!--<ComboBox ItemsSource="{Binding Path=AvailableResolutionValues, Mode=OneTime}"
-                          SelectedIndex="{Binding Path=ResolutionIndex}"
-                          HorizontalAlignment="Left" />-->
+                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                           Text="{Resx Config_Resolution}" />
 
                 <CheckBox Content="{Resx Config_Fullscreen}"
                           ToolTip="{Resx Config_FullscreenInfo}"

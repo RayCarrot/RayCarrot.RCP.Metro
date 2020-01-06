@@ -38,8 +38,10 @@ namespace RayCarrot.RCP.Metro
             BindingOperations.EnableCollectionSynchronization(ForumLinkItems, this);
             BindingOperations.EnableCollectionSynchronization(ToolsLinkItems, this);
 
-            // Create properties
+            // Create commands
             RefreshCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await RefreshAsync()));
+            
+            // Create properties
             AsyncLock = new AsyncLock();
 
             // Refresh on startup

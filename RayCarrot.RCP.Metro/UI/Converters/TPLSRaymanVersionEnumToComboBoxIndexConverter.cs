@@ -11,74 +11,36 @@ namespace RayCarrot.RCP.Metro
     {
         public override int ConvertValue(TPLSRaymanVersion value, Type targetType, object parameter, CultureInfo culture)
         {
-            switch (value)
+            return value switch
             {
-                case TPLSRaymanVersion.Auto:
-                    return 0;
-
-                case TPLSRaymanVersion.Ray_1_00:
-                    return 1;
-
-                case TPLSRaymanVersion.Ray_1_10:
-                    return 2;
-
-                case TPLSRaymanVersion.Ray_1_12_0:
-                    return 3;
-
-                case TPLSRaymanVersion.Ray_1_12_1:
-                    return 4;
-
-                case TPLSRaymanVersion.Ray_1_12_2:
-                    return 5;
-
-                case TPLSRaymanVersion.Ray_1_20:
-                    return 6;
-
-                case TPLSRaymanVersion.Ray_1_21:
-                    return 7;
-
-                case TPLSRaymanVersion.Ray_1_21_Chinese:
-                    return 8;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(value), value, null);
-            }
+                TPLSRaymanVersion.Auto => 0,
+                TPLSRaymanVersion.Ray_1_00 => 1,
+                TPLSRaymanVersion.Ray_1_10 => 2,
+                TPLSRaymanVersion.Ray_1_12_0 => 3,
+                TPLSRaymanVersion.Ray_1_12_1 => 4,
+                TPLSRaymanVersion.Ray_1_12_2 => 5,
+                TPLSRaymanVersion.Ray_1_20 => 6,
+                TPLSRaymanVersion.Ray_1_21 => 7,
+                TPLSRaymanVersion.Ray_1_21_Chinese => 8,
+                _ => throw new ArgumentOutOfRangeException(nameof(value), value, null)
+            };
         }
 
         public override TPLSRaymanVersion ConvertValueBack(int value, Type targetType, object parameter, CultureInfo culture)
         {
-            switch (value)
+            return value switch
             {
-                case 0:
-                    return TPLSRaymanVersion.Auto;
-
-                case 1:
-                    return TPLSRaymanVersion.Ray_1_00;
-
-                case 2:
-                    return TPLSRaymanVersion.Ray_1_10;
-
-                case 3:
-                    return TPLSRaymanVersion.Ray_1_12_0;
-
-                case 4:
-                    return TPLSRaymanVersion.Ray_1_12_1;
-
-                case 5:
-                    return TPLSRaymanVersion.Ray_1_12_2;
-
-                case 6:
-                    return TPLSRaymanVersion.Ray_1_20;
-
-                case 7:
-                    return TPLSRaymanVersion.Ray_1_21;
-
-                case 8:
-                    return TPLSRaymanVersion.Ray_1_21_Chinese;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(value), value, null);
-            }
+                0 => TPLSRaymanVersion.Auto,
+                1 => TPLSRaymanVersion.Ray_1_00,
+                2 => TPLSRaymanVersion.Ray_1_10,
+                3 => TPLSRaymanVersion.Ray_1_12_0,
+                4 => TPLSRaymanVersion.Ray_1_12_1,
+                5 => TPLSRaymanVersion.Ray_1_12_2,
+                6 => TPLSRaymanVersion.Ray_1_20,
+                7 => TPLSRaymanVersion.Ray_1_21,
+                8 => TPLSRaymanVersion.Ray_1_21_Chinese,
+                _ => throw new ArgumentOutOfRangeException(nameof(value), value, null)
+            };
         }
     }
 }

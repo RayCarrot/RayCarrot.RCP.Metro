@@ -172,20 +172,20 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RefreshAsync()
         {
-            try
+            using (await AsyncLock.LockAsync())
             {
-                RefreshingGames = true;
-
-                // Cache the game view models
-                var displayVMCache = new Dictionary<Games, GameDisplayViewModel>();
-
-                // Refresh all categories
-                foreach (var category in GameCategories)
+                try
                 {
-                    RCFCore.Logger?.LogInformationSource($"The displayed games in {category.DisplayName} are being refreshed...");
+                    RefreshingGames = true;
 
-                    using (await AsyncLock.LockAsync())
+                    // Cache the game view models
+                    var displayVMCache = new Dictionary<Games, GameDisplayViewModel>();
+
+                    // Refresh all categories
+                    foreach (var category in GameCategories)
                     {
+                        RCFCore.Logger?.LogInformationSource($"The displayed games in {category.DisplayName} are being refreshed...");
+
                         try
                         {
                             // Clear collections
@@ -225,23 +225,23 @@ namespace RayCarrot.RCP.Metro
                             ex.HandleCritical($"Refreshing games in {category.DisplayName}");
                             throw;
                         }
+
+                        RCFCore.Logger?.LogInformationSource($"The displayed games in {category.DisplayName} have been refreshed");
                     }
 
-                    RCFCore.Logger?.LogInformationSource($"The displayed games in {category.DisplayName} have been refreshed");
+                    // Allow game finder to run only if there are games which have not been found
+                    // ReSharper disable once PossibleNullReferenceException
+                    await Application.Current.Dispatcher.InvokeAsync(() => RunGameFinderCommand.CanExecuteCommand = GameCategories.Any(x => x.AnyNotInstalledGames));
                 }
-
-                // Allow game finder to run only if there are games which have not been found
-                // ReSharper disable once PossibleNullReferenceException
-                await Application.Current.Dispatcher.InvokeAsync(() => RunGameFinderCommand.CanExecuteCommand = GameCategories.Any(x => x.AnyNotInstalledGames));
-            }
-            catch (Exception ex)
-            {
-                ex.HandleCritical("Refreshing games");
-                throw;
-            }
-            finally
-            {
-                RefreshingGames = false;
+                catch (Exception ex)
+                {
+                    ex.HandleCritical("Refreshing games");
+                    throw;
+                }
+                finally
+                {
+                    RefreshingGames = false;
+                }
             }
         }
 

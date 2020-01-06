@@ -1,11 +1,8 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using System;
-using System.Diagnostics;
+﻿using RayCarrot.UI;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -63,14 +60,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void ContributeLocalization()
         {
-            try
-            {
-                Process.Start("https://steamcommunity.com/groups/RaymanControlPanel/discussions/0/1812044473314212117/")?.Dispose();
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError($"Opening localization contribute url");
-            }
+            App.OpenUrl(CommonUrls.TranslationUrl);
         }
 
         /// <summary>

@@ -14,10 +14,5 @@ namespace RayCarrot.RCP.Metro
         {
             return value ? TransitionType.Left : TransitionType.Normal;
         }
-
-        public override bool ConvertValueBack(TransitionType value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new InvalidOperationException();
-        }
     }
 }

@@ -130,20 +130,14 @@ namespace RayCarrot.RCP.Metro
             {
                 // Open the file
                 using var stream = File.OpenRead(configFile);
-                switch (stream.ReadByte())
+
+                return stream.ReadByte() switch
                 {
-                    case 0:
-                        return R1Languages.English;
-
-                    case 1:
-                        return R1Languages.French;
-
-                    case 2:
-                        return R1Languages.German;
-
-                    default:
-                        return null;
-                }
+                    0 => R1Languages.English,
+                    1 => R1Languages.French,
+                    2 => R1Languages.German,
+                    _ => (null as R1Languages?)
+                };
             }
             catch (Exception ex)
             {
@@ -163,6 +157,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 using var stream = File.OpenWrite(configFile);
+
                 stream.WriteByte((byte)language);
             }
             catch (Exception ex)

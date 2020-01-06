@@ -174,6 +174,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task LocateAddGameAsync()
         {
+            // Locate the game and get the path
             var path = await LocateAsync();
 
             if (path == null)

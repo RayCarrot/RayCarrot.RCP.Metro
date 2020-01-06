@@ -164,9 +164,6 @@
     <Compile Include="UI\Controls\InfoIcon.xaml.cs">
       <DependentUpon>InfoIcon.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Controls\MainRCPTabControl.xaml.cs">
-      <DependentUpon>MainRCPTabControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\Controls\MenuItemIcon.xaml.cs">
       <DependentUpon>MenuItemIcon.xaml</DependentUpon>
     </Compile>
@@ -334,13 +331,13 @@
     <Compile Include="DataModels\EducationalGameCollectionDropHandler.cs" />
     <Compile Include="Games\Options\ViewModels\PrintStudioOptionsViewModel.cs" />
     <Compile Include="Games\Options\ViewModels\FiestaRunOptionsViewModel.cs" />
-    <Compile Include="Pages\UI\LinksPage.xaml.cs">
+    <Compile Include="Pages\Links\LinksPage.xaml.cs">
       <DependentUpon>LinksPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Converters\TPLSRaymanVersionEnumToComboBoxIndexConverter.cs" />
     <Compile Include="AppUserData\DataModels\FiestaRunEdition.cs" />
     <Compile Include="DataModels\Enums\Pages.cs" />
-    <Compile Include="ViewModels\Game\GameCategoryViewModel.cs" />
+    <Compile Include="Pages\Games\GameCategoryViewModel.cs" />
     <Compile Include="ViewModels\TaskbarIconViewModel.cs" />
     <Page Include="ArchiveExplorer\UI\ArchiveExplorerUI.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -359,10 +356,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Controls\InfoIcon.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UI\Controls\MainRCPTabControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -458,23 +451,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\UI\HelpPage.xaml">
+    <Page Include="Pages\Help\HelpPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\UI\DebugPage.xaml">
+    <Page Include="Pages\Debug\DebugPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\UI\BackupPage.xaml">
+    <Page Include="Pages\Backup\BackupPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\UI\AboutPage.xaml">
+    <Page Include="Pages\About\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\UI\LinksPage.xaml">
+    <Page Include="Pages\Links\LinksPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -596,7 +589,7 @@
     <Compile Include="UI\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UI\AboutPage.xaml.cs">
+    <Compile Include="Pages\About\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppUserData\DataModels\LinkItemStyles.cs" />
@@ -652,11 +645,11 @@
     <Compile Include="Games\Utilities\UtilitiesContainer.xaml.cs">
       <DependentUpon>UtilitiesContainer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Cheats\Base\BaseCheatCodeItemViewModel.cs" />
-    <Compile Include="ViewModels\Cheats\GenericCheatCodeItemViewModel.cs" />
-    <Compile Include="ViewModels\LinkItemViewModel.cs" />
-    <Compile Include="Pages\ViewModels\LinksPageViewModel.cs" />
-    <Compile Include="ViewModels\Cheats\Rayman1CheatCodeItemViewModel.cs" />
+    <Compile Include="Pages\Help\Cheats\Base\BaseCheatCodeItemViewModel.cs" />
+    <Compile Include="Pages\Help\Cheats\GenericCheatCodeItemViewModel.cs" />
+    <Compile Include="Pages\Links\LinkItemViewModel.cs" />
+    <Compile Include="Pages\Links\LinksPageViewModel.cs" />
+    <Compile Include="Pages\Help\Cheats\Rayman1CheatCodeItemViewModel.cs" />
     <Compile Include="UI\Converters\BooleanToFluidMoveDurationConverter.cs" />
     <Compile Include="DataModels\DosBoxAutoConfigData.cs" />
     <Compile Include="Helpers\DosBoxAutoConfigManager.cs" />
@@ -665,7 +658,7 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Pages\ViewModels\AboutPageViewModel.cs" />
+    <Compile Include="Pages\About\AboutPageViewModel.cs" />
     <Compile Include="Games\Utilities\Rayman 2\Translations\R2TranslationUtilityViewModel.cs" />
     <Compile Include="Helpers\CommonUrls.cs" />
     <Compile Include="Games\Utilities\Rayman 1\TPLS\TPLS\Enums\TPLSDOSBoxVersion.cs" />
@@ -706,14 +699,14 @@
     <Compile Include="Games\Config\ViewModels\Rayman3ConfigViewModel.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanArenaConfigViewModel.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanMConfigViewModel.cs" />
-    <Compile Include="Pages\UI\HelpPage.xaml.cs">
+    <Compile Include="Pages\Help\HelpPage.xaml.cs">
       <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UI\BackupPage.xaml.cs">
+    <Compile Include="Pages\Backup\BackupPage.xaml.cs">
       <DependentUpon>BackupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Games\Config\ViewModels\Base\Ray_M_Arena_3_UbiIniBaseConfigViewModel.cs" />
-    <Compile Include="Pages\ViewModels\HelpPageViewModel.cs" />
+    <Compile Include="Pages\Help\HelpPageViewModel.cs" />
     <Compile Include="GameBackups\BackupDir.cs" />
     <Compile Include="GameBackups\BackupManager.cs" />
     <Compile Include="Installer\GameInstaller.xaml.cs">
@@ -731,8 +724,8 @@
     <Compile Include="Installer\RayGameInstallerResult.cs" />
     <Compile Include="Installer\RayGameInstallItem.cs" />
     <Compile Include="Installer\RayGameInstallItemStage.cs" />
-    <Compile Include="ViewModels\HelpItemViewModel.cs" />
-    <Compile Include="Pages\ViewModels\BackupPageViewModel.cs" />
+    <Compile Include="Pages\Help\HelpItemViewModel.cs" />
+    <Compile Include="Pages\Backup\BackupPageViewModel.cs" />
     <Compile Include="ViewModels\Base\BaseRCPViewModel.cs" />
     <Compile Include="Games\Config\ViewModels\Base\BaseDosBoxConfigViewModel.cs" />
     <Compile Include="Framework\Implementations\AppUIManager.cs" />
@@ -741,7 +734,7 @@
     <Compile Include="AppUserData\DataModels\DosBoxOptions.cs" />
     <Compile Include="UI\ValidationRules\DosBoxCyclesValidationRule.cs" />
     <Compile Include="UI\ValidationRules\DosBoxResolutionValidationRule.cs" />
-    <Compile Include="ViewModels\GameBackupItemViewModel.cs" />
+    <Compile Include="Pages\Backup\GameBackupItemViewModel.cs" />
     <Compile Include="ViewModels\R2KeyItemViewModel.cs" />
     <Compile Include="Games\Config\UI\Rayman2Config.xaml.cs">
       <DependentUpon>Rayman2Config.xaml</DependentUpon>
@@ -768,23 +761,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Images.resx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UI\GamesPage.xaml.cs">
+    <Compile Include="Pages\Games\GamesPage.xaml.cs">
       <DependentUpon>GamesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UI\DebugPage.xaml.cs">
+    <Compile Include="Pages\Debug\DebugPage.xaml.cs">
       <DependentUpon>DebugPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\UI\SettingsPage.xaml.cs">
+    <Compile Include="Pages\Settings\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppUserData\AppUserData.cs" />
     <Compile Include="ViewModels\ActionItemViewModel.cs" />
     <Compile Include="Framework\AppViewModel.cs" />
-    <Compile Include="Pages\ViewModels\DebugPageViewModel.cs" />
-    <Compile Include="Pages\ViewModels\SettingsPageViewModel.cs" />
-    <Compile Include="Pages\ViewModels\GamesPageViewModel.cs" />
+    <Compile Include="Pages\Debug\DebugPageViewModel.cs" />
+    <Compile Include="Pages\Settings\SettingsPageViewModel.cs" />
+    <Compile Include="Pages\Games\GamesPageViewModel.cs" />
     <Compile Include="ViewModels\Controls\OverflowButtonItemViewModel.cs" />
-    <Compile Include="ViewModels\Game\GameDisplayViewModel.cs" />
+    <Compile Include="Pages\Games\GameDisplayViewModel.cs" />
     <Compile Include="Games\Config\ViewModels\Base\GameConfigViewModel.cs" />
     <Compile Include="UI\Windows\AppNewsDialog.xaml.cs">
       <DependentUpon>AppNewsDialog.xaml</DependentUpon>
@@ -799,16 +792,16 @@
     <Compile Include="UI\Windows\GameOptions.xaml.cs">
       <DependentUpon>GameOptions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Game\GameOptionsViewModel.cs" />
+    <Compile Include="ViewModels\GameOptionsViewModel.cs" />
     <Compile Include="UI\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\UI\GamesPage.xaml">
+    <Page Include="Pages\Games\GamesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\UI\SettingsPage.xaml">
+    <Page Include="Pages\Settings\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

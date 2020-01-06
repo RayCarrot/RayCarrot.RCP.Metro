@@ -1,11 +1,13 @@
-﻿-----   Version 8.1.0 - January ??, 2019   -----
+﻿-----   Version 9.0.0 - January ??, 2019   -----
 • 
 • Removed the option to show the program under installed programs
 
 Other changes:
-• Removed the Rayman Control Panel API while keeping parts of the new modular structure for future projects & did major code cleanup
+• Code cleanup
+• Removed the Rayman Control Panel API while keeping parts of the new modular structure for future projects
 • The primary ubi.ini path is no longer hard-coded
 • Fixed a minor bug where the application path would sometimes not be retrieved correctly
+• Bug fixes
 
 
 -----   Version 8.0.0 - January 3, 2019   -----

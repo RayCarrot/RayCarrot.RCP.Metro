@@ -31,8 +31,6 @@ namespace RayCarrot.RCP.Metro
 
         #region Private Fields
 
-        //private int _resolutionIndex;
-
         private bool _fullscreenMode;
 
         private bool _useController;
@@ -42,8 +40,6 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Private Constants
-
-        //private const string ResolutionKey = "Mode";
 
         private const string WindowedModeKey = "WindowedMode";
 
@@ -63,24 +59,6 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Properties
-
-        ///// <summary>
-        ///// The available resolution values
-        ///// </summary>
-        //public string[] AvailableResolutionValues { get; }
-
-        ///// <summary>
-        ///// The selected resolution index
-        ///// </summary>
-        //public int ResolutionIndex
-        //{
-        //    get => _resolutionIndex;
-        //    set
-        //    {
-        //        _resolutionIndex = value;
-        //        UnsavedChanges = true;
-        //    }
-        //}
 
         /// <summary>
         /// True if the game should run in fullscreen,
@@ -146,7 +124,6 @@ namespace RayCarrot.RCP.Metro
                     ? $"The key {key.Name} has been opened"
                     : $"The key for {Games.RaymanRavingRabbids} does not exist. Default values will be used.");
 
-                //ResolutionIndex = GetInt(ResolutionKey, 0);
                 FullscreenMode = GetInt(WindowedModeKey, 0) != 1;
                 UseController = GetInt(DefaultControllerKey, 0) == 1;
                 ScreenModeIndex = GetInt(ScreenModeKey, 1) - 1;
@@ -198,7 +175,6 @@ namespace RayCarrot.RCP.Metro
 
                         RCFCore.Logger?.LogInformationSource($"The key {key.Name} has been opened");
 
-                        //key.SetValue(ResolutionKey, ResolutionIndex);
                         key.SetValue(WindowedModeKey, FullscreenMode ? 0 : 1);
                         key.SetValue(DefaultControllerKey, UseController ? 1 : 0);
                         key.SetValue(ScreenModeKey, ScreenModeIndex + 1);

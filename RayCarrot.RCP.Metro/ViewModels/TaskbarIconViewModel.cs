@@ -48,6 +48,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void MinimizeToTaskbar()
         {
+            // Hide each window
             foreach (Window window in Application.Current.Windows)
                 window.Hide();
 
@@ -61,6 +62,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void OpenFromTaskbar()
         {
+            // Show each window
             foreach (Window window in Application.Current.Windows)
                 window.Show();
 

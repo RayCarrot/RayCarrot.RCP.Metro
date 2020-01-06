@@ -28,12 +28,6 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Private Properties
-
-        private UIElement BackupPageTab { get; set; }
-
-        #endregion
-
         #region Private Methods
 
         /// <summary>
@@ -87,11 +81,6 @@ namespace RayCarrot.RCP.Metro
                 // Set the data context
                 page.OverflowMenu.DataContext = (page as FrameworkElement)?.DataContext;
             }
-        }
-
-        private void BackupPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            BackupPageTab = sender as UIElement;
         }
 
         #endregion

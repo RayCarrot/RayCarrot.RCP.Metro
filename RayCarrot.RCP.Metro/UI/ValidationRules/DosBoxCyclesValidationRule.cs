@@ -1,6 +1,7 @@
 ﻿using RayCarrot.Extensions;
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Controls;
 
 namespace RayCarrot.RCP.Metro
@@ -20,11 +21,8 @@ namespace RayCarrot.RCP.Metro
                 s.Equals("max", StringComparison.CurrentCultureIgnoreCase))
                 return ValidationResult.ValidResult;
 
-            foreach (char c in s)
-            {
-                if (!Char.IsDigit(c))
-                    return new ValidationResult(false, Resources.DosBoxCyclesValidation_NonDigit);
-            }
+            if (s.Any(c => !Char.IsDigit(c)))
+                return new ValidationResult(false, Resources.DosBoxCyclesValidation_NonDigit);
 
             return ValidationResult.ValidResult;
         }
