@@ -1,30 +1,29 @@
-﻿<core:BasePage x:Class="RayCarrot.RCP.Metro.SettingsPage"
+﻿<local:BasePage x:Class="RayCarrot.RCP.Metro.SettingsPage"
                 x:TypeArguments="local:SettingsPageViewModel"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                 xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
-                xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"    
                 d:DesignWidth="800"
                 d:DataContext="{d:DesignInstance local:SettingsPageViewModel}">
 
-    <core:IBasePage.OverflowMenu>
+    <local:IBasePage.OverflowMenu>
         <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
 
-            <core:MenuItemIcon Header="{Resx Settings_EditJumpList}"
+            <local:MenuItemIcon Header="{Resx Settings_EditJumpList}"
                              ToolTip="{Resx Settings_EditJumpListInfo}"
                              Command="{Binding Path=EditJumpListCommand}"
                              IconKind="PencilBoxOutline"/>
 
         </ContextMenu>
-    </core:IBasePage.OverflowMenu>
+    </local:IBasePage.OverflowMenu>
 
     <ScrollViewer Padding="15">
         <i:Interaction.Behaviors>
@@ -52,7 +51,7 @@
                     </i:Interaction.Behaviors>
 
                     <ComboBox SelectedItem="{Binding Path=CurrentCultureInfo}"
-                              ItemsSource="{Binding Source={x:Static core:RCFRCPC.Localization}, Path=Languages}">
+                              ItemsSource="{Binding Source={x:Static local:LocalizationManager.Languages}}">
                         <ComboBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
                                 <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
@@ -91,7 +90,7 @@
                     <TextBlock Text="{Resx Settings_UserLevel}"
                                Style="{StaticResource LargeHeaderTextBlock}" />
 
-                    <core:InfoIcon Text="{Resx Settings_UserLevelInfo}" />
+                    <local:InfoIcon Text="{Resx Settings_UserLevelInfo}" />
 
                 </StackPanel>
 
@@ -321,4 +320,4 @@
 
         </StackPanel>
     </ScrollViewer>
-</core:BasePage>
+</local:BasePage>

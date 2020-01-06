@@ -1,5 +1,8 @@
 ﻿using Microsoft.Win32;
+using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
+using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 using System;
 using System.Collections.ObjectModel;
@@ -8,10 +11,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
-using Nito.AsyncEx;
-using RayCarrot.IO;
-using RayCarrot.RCP.Core;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -108,8 +107,8 @@ namespace RayCarrot.RCP.Metro
                     // Config files
                     LocalLinkItems.Add(new LinkItemViewModel[]
                     {
-                        new LinkItemViewModel(RCFRCP.Path.UbiIniPath1, Resources.Links_Local_PrimaryUbiIni),
-                        new LinkItemViewModel(RCFRCP.Path.UbiIniPath2, Resources.Links_Local_SecondaryUbiIni,
+                        new LinkItemViewModel(CommonPaths.UbiIniPath1, Resources.Links_Local_PrimaryUbiIni),
+                        new LinkItemViewModel(CommonPaths.UbiIniPath2, Resources.Links_Local_SecondaryUbiIni,
                             UserLevel.Advanced),
                         new LinkItemViewModel(Games.Rayman2.IsAdded()
                             ? Games.Rayman2.GetInstallDir() + "ubi.ini"
@@ -179,13 +178,13 @@ namespace RayCarrot.RCP.Metro
                     // Registry paths
                     LocalLinkItems.Add(new LinkItemViewModel[]
                     {
-                        new LinkItemViewModel(RCFRCP.Path.RaymanRavingRabbidsRegistryKey,
+                        new LinkItemViewModel(CommonPaths.RaymanRavingRabbidsRegistryKey,
                             Resources.Links_Local_RRRRegSettings, UserLevel.Technical),
-                        new LinkItemViewModel(RCFRCP.Path.RaymanRavingRabbids2RegistryKey,
+                        new LinkItemViewModel(CommonPaths.RaymanRavingRabbids2RegistryKey,
                             Resources.Links_Local_RRR2RegSettings, UserLevel.Technical),
-                        new LinkItemViewModel(RCFRCP.Path.RaymanOriginsRegistryKey,
+                        new LinkItemViewModel(CommonPaths.RaymanOriginsRegistryKey,
                             Resources.Links_Local_RORegSettings, UserLevel.Technical),
-                        new LinkItemViewModel(RCFRCP.Path.RaymanLegendsRegistryKey,
+                        new LinkItemViewModel(CommonPaths.RaymanLegendsRegistryKey,
                             Resources.Links_Local_RLRegSettings, UserLevel.Technical),
                         new LinkItemViewModel(@"HKEY_CURRENT_USER\Software\Zeus Software\nGlide",
                             Resources.Links_Local_nGlideRegSettings, UserLevel.Technical),
@@ -196,13 +195,13 @@ namespace RayCarrot.RCP.Metro
                     // Debug paths
                     LocalLinkItems.Add(new LinkItemViewModel[]
                     {
-                        new LinkItemViewModel(RCFRCP.Path.AppUserDataBaseDir, Resources.Links_Local_AppData,
+                        new LinkItemViewModel(CommonPaths.UserDataBaseDir, Resources.Links_Local_AppData,
                             UserLevel.Technical),
-                        new LinkItemViewModel(RCFRCP.Path.LogFile, Resources.Links_Local_LogFile,
+                        new LinkItemViewModel(CommonPaths.LogFile, Resources.Links_Local_LogFile,
                             UserLevel.Debug),
-                        new LinkItemViewModel(RCFRCP.Path.UtilitiesBaseDir, Resources.Links_Local_Utilities,
+                        new LinkItemViewModel(CommonPaths.UtilitiesBaseDir, Resources.Links_Local_Utilities,
                             UserLevel.Debug),
-                        new LinkItemViewModel(RCFRCPC.API.RegistryBaseKey, Resources.Links_Local_RegAppData,
+                        new LinkItemViewModel(CommonPaths.RegistryBaseKey, Resources.Links_Local_RegAppData,
                             UserLevel.Technical)
                     });
 

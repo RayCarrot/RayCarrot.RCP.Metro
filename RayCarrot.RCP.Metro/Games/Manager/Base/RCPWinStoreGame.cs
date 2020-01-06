@@ -11,7 +11,6 @@ using MahApps.Metro.IconPacks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
 
@@ -53,7 +52,7 @@ namespace RayCarrot.RCP.Metro
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenInWinStore, PackIconMaterialKind.Windows, new AsyncRelayCommand(async () =>
             {
                 // NOTE: We could use Launcher.LaunchURI here, but since we're targeting Windows 7 it is good to use as few of the WinRT APIs as possible to avoid any runtime errors. Launching a file as a process will work with URLs as well, although less information will be given in case of error (such as if no application is installed to handle the URI).
-                (await RCFRCPC.File.LaunchFileAsync(GetStorePageURI()))?.Dispose();
+                (await RCFRCP.File.LaunchFileAsync(GetStorePageURI()))?.Dispose();
             })),
         };
 
@@ -131,7 +130,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if Microsoft Store apps are supported on the current system
         /// </summary>
-        public bool SupportsWinStoreApps => BaseRCPAppViewModel.WindowsVersion >= WindowsVersion.Win8;
+        public bool SupportsWinStoreApps => AppViewModel.WindowsVersion >= WindowsVersion.Win8;
 
         #endregion
 
@@ -256,7 +255,7 @@ namespace RayCarrot.RCP.Metro
         public override void CreateGameShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory)
         {
             // Create the shortcut
-            RCFRCPC.File.CreateFileShortcut(shortcutName, destinationDirectory, LegacyLaunchPath);
+            RCFRCP.File.CreateFileShortcut(shortcutName, destinationDirectory, LegacyLaunchPath);
 
             RCFCore.Logger?.LogTraceSource($"A shortcut was created for {Game} under {destinationDirectory}");
         }

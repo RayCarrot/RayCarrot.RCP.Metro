@@ -9,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
-using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -286,7 +285,7 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
-                    RCFRCPC.File.DeleteFile(DebugCommandFilePath);
+                    RCFRCP.File.DeleteFile(DebugCommandFilePath);
 
                     if (!IsDebugModeEnabled)
                     {

@@ -1,6 +1,4 @@
-﻿using RayCarrot.RCP.Core;
-
-namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro
 {
     // IDEA: Add backup info
 

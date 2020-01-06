@@ -11,7 +11,6 @@ using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -417,12 +416,12 @@ namespace RayCarrot.RCP.Metro
                 bool isGOG = (Games.Rayman2.GetInstallDir(false) + "goggame.sdb").FileExists;
 
                 // Get the new file path
-                var newFile = isGOG ? Games.Rayman2.GetInstallDir(false) + "ubi.ini" : RCFRCP.Path.UbiIniPath1;
+                var newFile = isGOG ? Games.Rayman2.GetInstallDir(false) + "ubi.ini" : CommonPaths.UbiIniPath1;
 
                 try
                 {
                     // Create the file
-                    RCFRCPC.File.CreateFile(newFile);
+                    RCFRCP.File.CreateFile(newFile);
 
                     RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {newFile.FullPath}");
                 }
@@ -729,7 +728,7 @@ namespace RayCarrot.RCP.Metro
             if (path1.FileExists)
                 return path1;
 
-            var path2 = RCFRCP.Path.UbiIniPath1;
+            var path2 = CommonPaths.UbiIniPath1;
 
             if (path2.FileExists)
                 return path2;

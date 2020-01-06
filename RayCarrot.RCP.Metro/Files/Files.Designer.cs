@@ -123,6 +123,16 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] Rayman_Control_Panel_Updater {
+            get {
+                object obj = ResourceManager.GetObject("Rayman_Control_Panel_Updater", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] Rayman2_GOG {
             get {
                 object obj = ResourceManager.GetObject("Rayman2_GOG", resourceCulture);
@@ -193,13 +203,18 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 8.0.0 - January ??, 2019   -----
-        ///• Added a utility for viewing/editing the .cnt files in Rayman 2, allowing importing/exporting of textures (Rayman M, Arena and 3 will follow)
-        ///• Updated the credits &amp; added Hakyra
-        ///• The updater has been updated and unified between the Rayman Control Panel family
-        ///• The Rayman Control Panel has been split into a family of libraries with an API for multiple projects
-        ///• Added languages Spanish (Spain) and Catalan (Catalan) as incomplete translations
-        ///• Fixed  [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to -----   Version 8.1.0 - January ??, 2019   -----
+        ///• 
+        ///• Removed the option to show the program under installed programs
+        ///
+        ///Other changes:
+        ///• The primary ubi.ini path is no longer hard-coded
+        ///• Removed the Rayman Control Panel API while keeping parts of the new modular structure
+        ///• Fixed a minor bug where the application path would sometimes not be retrieved correctly
+        ///
+        ///
+        ///-----   Version 8.0.0 - January 3, 2019   -----
+        ///• Added a utility for viewing/editing the .cnt files in Rayman 2, Rayman M/Arena and Ray [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

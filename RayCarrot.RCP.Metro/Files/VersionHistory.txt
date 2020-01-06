@@ -3,9 +3,8 @@
 • Removed the option to show the program under installed programs
 
 Other changes:
+• Removed the Rayman Control Panel API while keeping parts of the new modular structure for future projects
 • The primary ubi.ini path is no longer hard-coded
-• Updated the API to 1.1.0
-• Certain legacy support has been removed (such as updating from a version lower than 4.5.0)
 • Fixed a minor bug where the application path would sometimes not be retrieved correctly
 
 

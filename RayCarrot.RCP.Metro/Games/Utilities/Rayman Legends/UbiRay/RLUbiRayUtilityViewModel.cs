@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {

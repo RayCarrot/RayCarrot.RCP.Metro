@@ -1,6 +1,5 @@
 ﻿using RayCarrot.UI;
 using System.Linq;
-using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {

@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              mc:Ignorable="d">
     <StackPanel>
@@ -19,7 +18,7 @@
             <TextBlock Style="{StaticResource HeaderTextBlock}"
                        Text="{Resx RR2Options_GameModeHeader}" />
 
-            <core:InfoIcon Text="{Resx RR2Options_GameModeInfo}" />
+            <local:InfoIcon Text="{Resx RR2Options_GameModeInfo}" />
 
         </StackPanel>
 

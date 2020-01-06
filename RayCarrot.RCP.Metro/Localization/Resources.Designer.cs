@@ -352,6 +352,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action succeeded.
+        /// </summary>
+        public static string ActionSucceeded {
+            get {
+                return ResourceManager.GetString("ActionSucceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The game {0} has already been added.
         /// </summary>
         public static string AddGame_Duplicate {
@@ -366,6 +375,35 @@ namespace RayCarrot.RCP.Metro {
         public static string AddGame_DuplicateHeader {
             get {
                 return ResourceManager.GetString("AddGame_DuplicateHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}
+        ///
+        ///Error message: {1}.
+        /// </summary>
+        public static string App_ExceptionMessage {
+            get {
+                return ResourceManager.GetString("App_ExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string App_ExceptionMessageDefaultHeader {
+            get {
+                return ResourceManager.GetString("App_ExceptionMessageDefaultHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error has occurred..
+        /// </summary>
+        public static string App_ExceptionMessageDefaultMessage {
+            get {
+                return ResourceManager.GetString("App_ExceptionMessageDefaultMessage", resourceCulture);
             }
         }
         
@@ -429,6 +467,229 @@ namespace RayCarrot.RCP.Metro {
         public static string AppNews_Title {
             get {
                 return ResourceManager.GetString("AppNews_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directory = {0}
+        ///Size = {1} x {2}
+        ///File size = {3}
+        ///Modified = {4}
+        ///Encrypted = {5}
+        ///Transparent = {6}
+        ///Pointer = {7}
+        ///Mipmaps = {8}.
+        /// </summary>
+        public static string Archive_CNT_FileInfo {
+            get {
+                return ResourceManager.GetString("Archive_CNT_FileInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred in the Archive Explorer and it had to close.
+        /// </summary>
+        public static string Archive_CriticalError {
+            get {
+                return ResourceManager.GetString("Archive_CriticalError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string Archive_Export {
+            get {
+                return ResourceManager.GetString("Archive_Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The selected directory already contains a directory with the same name as {0}.
+        /// </summary>
+        public static string Archive_ExportDirectoryConflict {
+            get {
+                return ResourceManager.GetString("Archive_ExportDirectoryConflict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} could not be exported.
+        /// </summary>
+        public static string Archive_ExportError {
+            get {
+                return ResourceManager.GetString("Archive_ExportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The files have been exported.
+        /// </summary>
+        public static string Archive_ExportFilesSuccess {
+            get {
+                return ResourceManager.GetString("Archive_ExportFilesSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file has been exported.
+        /// </summary>
+        public static string Archive_ExportFileSuccess {
+            get {
+                return ResourceManager.GetString("Archive_ExportFileSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select destination to export to.
+        /// </summary>
+        public static string Archive_ExportHeader {
+            get {
+                return ResourceManager.GetString("Archive_ExportHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exporting {0}.
+        /// </summary>
+        public static string Archive_ExportingFileStatus {
+            get {
+                return ResourceManager.GetString("Archive_ExportingFileStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export mipmaps.
+        /// </summary>
+        public static string Archive_ExportMipmaps {
+            get {
+                return ResourceManager.GetString("Archive_ExportMipmaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Extension Selection.
+        /// </summary>
+        public static string Archive_FileExtensionSelectionHeader {
+            get {
+                return ResourceManager.GetString("Archive_FileExtensionSelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select file extension to export as for {0} files.
+        /// </summary>
+        public static string Archive_FileExtensionSelectionInfoHeader {
+            get {
+                return ResourceManager.GetString("Archive_FileExtensionSelectionInfoHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported files.
+        /// </summary>
+        public static string Archive_FileSelectionGroupName {
+            get {
+                return ResourceManager.GetString("Archive_FileSelectionGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        public static string Archive_Import {
+            get {
+                return ResourceManager.GetString("Archive_Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select directory to import.
+        /// </summary>
+        public static string Archive_ImportDirectoryHeader {
+            get {
+                return ResourceManager.GetString("Archive_ImportDirectoryHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} could not be imported.
+        /// </summary>
+        public static string Archive_ImportError {
+            get {
+                return ResourceManager.GetString("Archive_ImportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some files failed to import.
+        /// </summary>
+        public static string Archive_ImportFailsError {
+            get {
+                return ResourceManager.GetString("Archive_ImportFailsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select file to import.
+        /// </summary>
+        public static string Archive_ImportFileHeader {
+            get {
+                return ResourceManager.GetString("Archive_ImportFileHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The files have been imported.
+        /// </summary>
+        public static string Archive_ImportFilesSuccess {
+            get {
+                return ResourceManager.GetString("Archive_ImportFilesSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file has been imported.
+        /// </summary>
+        public static string Archive_ImportFileSuccess {
+            get {
+                return ResourceManager.GetString("Archive_ImportFileSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importing {0}.
+        /// </summary>
+        public static string Archive_ImportingFileStatus {
+            get {
+                return ResourceManager.GetString("Archive_ImportingFileStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No files were found to import.
+        /// </summary>
+        public static string Archive_ImportNoFilesError {
+            get {
+                return ResourceManager.GetString("Archive_ImportNoFilesError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repacking archive {0}.
+        /// </summary>
+        public static string Archive_RepackingStatus {
+            get {
+                return ResourceManager.GetString("Archive_RepackingStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archive Explorer.
+        /// </summary>
+        public static string Archive_Title {
+            get {
+                return ResourceManager.GetString("Archive_Title", resourceCulture);
             }
         }
         
@@ -2810,6 +3071,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are using an older version of the program ({0}) compared to the version of the current app data ({1}). This is not recommended and may cause compatibility issues. These may be fixed by resetting the app data for this program..
+        /// </summary>
+        public static string DowngradeWarning {
+            get {
+                return ResourceManager.GetString("DowngradeWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downgrade detected.
+        /// </summary>
+        public static string DowngradeWarningHeader {
+            get {
+                return ResourceManager.GetString("DowngradeWarningHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you wish to cancel the download?.
         /// </summary>
         public static string Download_Cancel {
@@ -3098,6 +3377,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exception.
+        /// </summary>
+        public static string ExceptionMessageHeader {
+            get {
+                return ResourceManager.GetString("ExceptionMessageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An exception has occurred in the application. Below is the available debug information for the current user level in the Carrot Framework..
+        /// </summary>
+        public static string ExceptionMessageInfo {
+            get {
+                return ResourceManager.GetString("ExceptionMessageInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a file destination to export to.
         /// </summary>
         public static string ExportDestinationSelectionHeader {
@@ -3130,6 +3427,96 @@ namespace RayCarrot.RCP.Metro {
         public static string FiestaRunVersion_Win10 {
             get {
                 return ResourceManager.GetString("FiestaRunVersion_Win10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when attempting to run {0}.
+        /// </summary>
+        public static string File_ErrorLaunchingFile {
+            get {
+                return ResourceManager.GetString("File_ErrorLaunchingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified file could not be found: {0}.
+        /// </summary>
+        public static string File_FileNotFound {
+            get {
+                return ResourceManager.GetString("File_FileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File not found.
+        /// </summary>
+        public static string File_FileNotFoundHeader {
+            get {
+                return ResourceManager.GetString("File_FileNotFoundHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location not found.
+        /// </summary>
+        public static string File_LocationNotFound {
+            get {
+                return ResourceManager.GetString("File_LocationNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The directory could not be opened.
+        /// </summary>
+        public static string File_OpenLocationError {
+            get {
+                return ResourceManager.GetString("File_OpenLocationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directory error.
+        /// </summary>
+        public static string File_OpenLocationErrorHeader {
+            get {
+                return ResourceManager.GetString("File_OpenLocationErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The key could not be opened.
+        /// </summary>
+        public static string File_OpenRegKeyError {
+            get {
+                return ResourceManager.GetString("File_OpenRegKeyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error opening key.
+        /// </summary>
+        public static string File_OpenRegKeyErrorHeader {
+            get {
+                return ResourceManager.GetString("File_OpenRegKeyErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The registry key was not found.
+        /// </summary>
+        public static string File_RegKeyNotFound {
+            get {
+                return ResourceManager.GetString("File_RegKeyNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registry key not found.
+        /// </summary>
+        public static string File_RegKeyNotFoundHeader {
+            get {
+                return ResourceManager.GetString("File_RegKeyNotFoundHeader", resourceCulture);
             }
         }
         
@@ -5563,6 +5950,60 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error Message.
+        /// </summary>
+        public static string MessageHeader_Error {
+            get {
+                return ResourceManager.GetString("MessageHeader_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generic Message.
+        /// </summary>
+        public static string MessageHeader_Generic {
+            get {
+                return ResourceManager.GetString("MessageHeader_Generic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information Message.
+        /// </summary>
+        public static string MessageHeader_Information {
+            get {
+                return ResourceManager.GetString("MessageHeader_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Question Message.
+        /// </summary>
+        public static string MessageHeader_Question {
+            get {
+                return ResourceManager.GetString("MessageHeader_Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Success Message.
+        /// </summary>
+        public static string MessageHeader_Success {
+            get {
+                return ResourceManager.GetString("MessageHeader_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning Message.
+        /// </summary>
+        public static string MessageHeader_Warning {
+            get {
+                return ResourceManager.GetString("MessageHeader_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drive.
         /// </summary>
         public static string MountOption_Drive {
@@ -7900,6 +8341,162 @@ namespace RayCarrot.RCP.Metro {
         public static string UninstallGameSuccessHeader {
             get {
                 return ResourceManager.GetString("UninstallGameSuccessHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new beta update is available to download. Download now?.
+        /// </summary>
+        public static string Update_BetaUpdateAvailable {
+            get {
+                return ResourceManager.GetString("Update_BetaUpdateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when updating the application.
+        /// </summary>
+        public static string Update_Error {
+            get {
+                return ResourceManager.GetString("Update_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Check Failed.
+        /// </summary>
+        public static string Update_ErrorHeader {
+            get {
+                return ResourceManager.GetString("Update_ErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The information from the server was not valid.
+        /// </summary>
+        public static string Update_FormatError {
+            get {
+                return ResourceManager.GetString("Update_FormatError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unknown error occurred while connecting to the server.
+        /// </summary>
+        public static string Update_GenericError {
+            get {
+                return ResourceManager.GetString("Update_GenericError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The latest version ({0}) is already installed.
+        /// </summary>
+        public static string Update_LatestInstalled {
+            get {
+                return ResourceManager.GetString("Update_LatestInstalled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No new versions found.
+        /// </summary>
+        public static string Update_LatestInstalledHeader {
+            get {
+                return ResourceManager.GetString("Update_LatestInstalledHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The server manifest could not be read.
+        /// </summary>
+        public static string Update_ManifestError {
+            get {
+                return ResourceManager.GetString("Update_ManifestError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error getting news.
+        /// </summary>
+        public static string Update_NewsError {
+            get {
+                return ResourceManager.GetString("Update_NewsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The updater could not be launched. To manually download the new version, go to {0} and download the latest version from there..
+        /// </summary>
+        public static string Update_RunningUpdaterError {
+            get {
+                return ResourceManager.GetString("Update_RunningUpdaterError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error running updater.
+        /// </summary>
+        public static string Update_RunningUpdaterErrorHeader {
+            get {
+                return ResourceManager.GetString("Update_RunningUpdaterErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown error.
+        /// </summary>
+        public static string Update_UnknownError {
+            get {
+                return ResourceManager.GetString("Update_UnknownError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new update is available to download. Download now?
+        ///
+        ///News: 
+        ///{0}.
+        /// </summary>
+        public static string Update_UpdateAvailable {
+            get {
+                return ResourceManager.GetString("Update_UpdateAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New version found.
+        /// </summary>
+        public static string Update_UpdateAvailableHeader {
+            get {
+                return ResourceManager.GetString("Update_UpdateAvailableHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The updater could not be created. To manually download the new version, go to {0} and download the latest version from there..
+        /// </summary>
+        public static string Update_UpdaterError {
+            get {
+                return ResourceManager.GetString("Update_UpdaterError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error creating updater.
+        /// </summary>
+        public static string Update_UpdaterErrorHeader {
+            get {
+                return ResourceManager.GetString("Update_UpdaterErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A connection could not be established to the server.
+        /// </summary>
+        public static string Update_WebError {
+            get {
+                return ResourceManager.GetString("Update_WebError", resourceCulture);
             }
         }
         

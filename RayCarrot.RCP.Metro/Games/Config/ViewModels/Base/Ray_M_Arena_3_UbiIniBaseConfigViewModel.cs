@@ -6,7 +6,6 @@ using ByteSizeLib;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -354,34 +353,34 @@ namespace RayCarrot.RCP.Metro
             }
 
             // If the primary config file does not exist, create a new one
-            if (!RCFRCP.Path.UbiIniPath1.FileExists)
+            if (!CommonPaths.UbiIniPath1.FileExists)
             {
                 try
                 {
                     // Create the file
-                    RCFRCPC.File.CreateFile(RCFRCP.Path.UbiIniPath1);
+                    RCFRCP.File.CreateFile(CommonPaths.UbiIniPath1);
 
-                    RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {RCFRCP.Path.UbiIniPath1}");
+                    RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {CommonPaths.UbiIniPath1}");
                 }
                 catch (Exception ex)
                 {
                     ex.HandleError("Creating ubi.ini file");
 
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_InvalidUbiIni, RCFRCP.Path.UbiIniPath1.Parent));
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_InvalidUbiIni, CommonPaths.UbiIniPath1.Parent));
 
                     throw;
                 }
             }
 
             // If the secondary config file does not exist, attempt to create a new one
-            if (!RCFRCP.Path.UbiIniPath2.FileExists)
+            if (!CommonPaths.UbiIniPath2.FileExists)
             {
                 try
                 {
                     // Create the file
-                    RCFRCPC.File.CreateFile(RCFRCP.Path.UbiIniPath2);
+                    RCFRCP.File.CreateFile(CommonPaths.UbiIniPath2);
 
-                    RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {RCFRCP.Path.UbiIniPath2}");
+                    RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {CommonPaths.UbiIniPath2}");
                 }
                 catch (Exception ex)
                 {
@@ -397,7 +396,7 @@ namespace RayCarrot.RCP.Metro
         protected override Task OnSaveAsync()
         {
             // Attempt to copy data to secondary file
-            if (RCFRCP.Path.UbiIniPath2.FileExists)
+            if (CommonPaths.UbiIniPath2.FileExists)
             {
                 try
                 {
@@ -405,7 +404,7 @@ namespace RayCarrot.RCP.Metro
                     var sectionData = ConfigData.GetSectionData();
 
                     // Load the file data
-                    var secondaryDataHandler = new DuplicateSectionUbiIniHandler(RCFRCP.Path.UbiIniPath2, ConfigData.SectionKey);
+                    var secondaryDataHandler = new DuplicateSectionUbiIniHandler(CommonPaths.UbiIniPath2, ConfigData.SectionKey);
 
                     // Duplicate the data
                     secondaryDataHandler.Duplicate(sectionData);
@@ -435,7 +434,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             if (dt != DinputType.None)
                                 // Attempt to delete existing dinput file
-                                RCFRCPC.File.DeleteFile(path);
+                                RCFRCP.File.DeleteFile(path);
 
                             // Write controller patch
                             File.WriteAllBytes(path, Files.dinput8_controller);
@@ -444,7 +443,7 @@ namespace RayCarrot.RCP.Metro
                     else if (dt == DinputType.Controller)
                     {
                         // Attempt to delete existing dinput file
-                        RCFRCPC.File.DeleteFile(path);
+                        RCFRCP.File.DeleteFile(path);
                     }
 
                 }
@@ -505,7 +504,7 @@ namespace RayCarrot.RCP.Metro
                 // as the Rayman 2 dinput file was accidentally used prior to version 4.1.2
                 if (size == new ByteSize(66560))
                 {
-                    RCFRCPC.File.DeleteFile(path);
+                    RCFRCP.File.DeleteFile(path);
                     return DinputType.None;
                 }
 

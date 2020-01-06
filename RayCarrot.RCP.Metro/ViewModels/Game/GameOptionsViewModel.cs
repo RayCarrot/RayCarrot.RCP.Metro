@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using RayCarrot.IO;
-using RayCarrot.RCP.Core;
+using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -77,7 +77,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game data
         /// </summary>
-        public GameData GameData => RCFRCPC.API.GetGameData(Game);
+        public GameData GameData => RCFRCP.Data.Games.TryGetValue(Game);
 
         /// <summary>
         /// The game info items
@@ -256,7 +256,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Delete the game directory
-                RCFRCPC.File.DeleteDirectory(Game.GetInstallDir(false));
+                RCFRCP.File.DeleteDirectory(Game.GetInstallDir(false));
 
                 RCFCore.Logger?.LogInformationSource($"The game install directory was removed");
 
@@ -267,7 +267,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     // Delete additional directories
                     foreach (var dir in dirs)
-                        RCFRCPC.File.DeleteDirectory(dir);
+                        RCFRCP.File.DeleteDirectory(dir);
 
                     RCFCore.Logger?.LogInformationSource($"The game additional directories were removed");
                 }
@@ -279,7 +279,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     // Delete additional files
                     foreach (var file in files)
-                        RCFRCPC.File.DeleteFile(file);
+                        RCFRCP.File.DeleteFile(file);
 
                     RCFCore.Logger?.LogInformationSource($"The game additional files were removed");
                 }

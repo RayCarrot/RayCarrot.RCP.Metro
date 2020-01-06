@@ -1,12 +1,11 @@
 ﻿<UserControl x:Class="RayCarrot.RCP.Metro.EducationalDosGameEditDialog"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
+             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:EducationalDosGameEditViewModel}"
@@ -33,7 +32,7 @@
             <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="{Resx MountPathHeader}" />
 
-            <core:InfoIcon Text="{Resx MountPathInfo}" />
+            <local:InfoIcon Text="{Resx MountPathInfo}" />
 
         </StackPanel>
 

@@ -751,6 +751,55 @@ This is a growing project with more features planned on being added with future 
   <data name="GameLink_R2nGlide" xml:space="preserve">
     <value>nGlide config</value>
   </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Action succeeded</value>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Generic Message</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Information Message</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Error Message</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Warning Message</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Success Message</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Question Message</value>
+  </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Exception</value>
+  </data>
+  <data name="ExceptionMessageInfo" xml:space="preserve">
+    <value>An exception has occurred in the application. Below is the available debug information for the current user level in the Carrot Framework.</value>
+  </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>The specified file could not be found: {0}</value>
+    <comment>Arguments:
+filePath</comment>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>File not found</value>
+  </data>
+  <data name="File_ErrorLaunchingFile" xml:space="preserve">
+    <value>An error occurred when attempting to run {0}</value>
+    <comment>Arguments:
+filePath</comment>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>Location not found</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>Directory error</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>The directory could not be opened</value>
+  </data>
   <data name="LocateGame_BrowserHeader" xml:space="preserve">
     <value>Select Install Directory</value>
   </data>
@@ -897,6 +946,54 @@ downloadSize</comment>
   </data>
   <data name="Download_Error" xml:space="preserve">
     <value>The files could not be downloaded</value>
+  </data>
+  <data name="Update_UnknownError" xml:space="preserve">
+    <value>Unknown error</value>
+  </data>
+  <data name="Update_WebError" xml:space="preserve">
+    <value>A connection could not be established to the server</value>
+  </data>
+  <data name="Update_FormatError" xml:space="preserve">
+    <value>The information from the server was not valid</value>
+  </data>
+  <data name="Update_GenericError" xml:space="preserve">
+    <value>An unknown error occurred while connecting to the server</value>
+  </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>Update Check Failed</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>The latest version ({0}) is already installed</value>
+    <comment>Arguments:
+latestVersion</comment>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>No new versions found</value>
+  </data>
+  <data name="Update_ManifestError" xml:space="preserve">
+    <value>The server manifest could not be read</value>
+  </data>
+  <data name="Update_NewsError" xml:space="preserve">
+    <value>Error getting news</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>A new update is available to download. Download now?
+
+News: 
+{0}</value>
+    <comment>Arguments:
+versionNews</comment>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>New version found</value>
+  </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>The updater could not be created. To manually download the new version, go to {0} and download the latest version from there.</value>
+    <comment>Arguments:
+downloadURL</comment>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Error creating updater</value>
   </data>
   <data name="MoveBackups_Question" xml:space="preserve">
     <value>Do you want to move existing backups to the new location?</value>
@@ -1459,6 +1556,15 @@ To get started, check the boxes you want below and press 'Continue' to get to th
   <data name="GameOptions_Remove" xml:space="preserve">
     <value>Remove from program</value>
   </data>
+  <data name="DowngradeWarning" xml:space="preserve">
+    <value>You are using an older version of the program ({0}) compared to the version of the current app data ({1}). This is not recommended and may cause compatibility issues. These may be fixed by resetting the app data for this program.</value>
+    <comment>Arguments:
+currentVersion
+lastVersion</comment>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Downgrade detected</value>
+  </data>
   <data name="JumpListItemDescription" xml:space="preserve">
     <value>Launch {0}</value>
     <comment>Arguments:
@@ -1818,6 +1924,26 @@ totalGames</comment>
   <data name="Settings_ForceUpdates" xml:space="preserve">
     <value>Force manual updates</value>
   </data>
+  <data name="Update_RunningUpdaterError" xml:space="preserve">
+    <value>The updater could not be launched. To manually download the new version, go to {0} and download the latest version from there.</value>
+    <comment>Arguments:
+downloadURL</comment>
+  </data>
+  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
+    <value>Error running updater</value>
+  </data>
+  <data name="File_RegKeyNotFound" xml:space="preserve">
+    <value>The registry key was not found</value>
+  </data>
+  <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
+    <value>Registry key not found</value>
+  </data>
+  <data name="File_OpenRegKeyError" xml:space="preserve">
+    <value>The key could not be opened</value>
+  </data>
+  <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
+    <value>Error opening key</value>
+  </data>
   <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
     <value>Primary ubi.ini file</value>
   </data>
@@ -1967,6 +2093,9 @@ totalGames</comment>
   </data>
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Links</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>A new beta update is available to download. Download now?</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Uninstall</value>
@@ -2477,6 +2606,20 @@ Hold L1 + R1 in the menu (or equivalent on the currently used controller), then 
   <data name="EducationalOptions_EditSuccess" xml:space="preserve">
     <value>The game has been edited successfully</value>
   </data>
+  <data name="App_ExceptionMessage" xml:space="preserve">
+    <value>{0}
+
+Error message: {1}</value>
+    <comment>Arguments:
+message
+exceptionMessage</comment>
+  </data>
+  <data name="App_ExceptionMessageDefaultHeader" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
+    <value>An error has occurred.</value>
+  </data>
   <data name="Lang_Dutch" xml:space="preserve">
     <value>Dutch</value>
   </data>
@@ -2836,6 +2979,9 @@ gameDisplayName</comment>
   <data name="Config_SoundVolumeHeader" xml:space="preserve">
     <value>Sound Volume</value>
   </data>
+  <data name="Update_Error" xml:space="preserve">
+    <value>An error occurred when updating the application</value>
+  </data>
   <data name="CategorizeGames" xml:space="preserve">
     <value>Categorize games</value>
   </data>
@@ -2874,5 +3020,106 @@ gameDisplayName</comment>
   </data>
   <data name="About_Credits_Hakyra" xml:space="preserve">
     <value>Spanish (Spain) program translation, Catalan (Catalan) program translation</value>
+  </data>
+  <data name="Archive_ImportFileHeader" xml:space="preserve">
+    <value>Select file to import</value>
+  </data>
+  <data name="Archive_FileSelectionGroupName" xml:space="preserve">
+    <value>Supported files</value>
+  </data>
+  <data name="Archive_ImportingFileStatus" xml:space="preserve">
+    <value>Importing {0}</value>
+    <comment>Arguments:
+fileName</comment>
+  </data>
+  <data name="Archive_ExportHeader" xml:space="preserve">
+    <value>Select destination to export to</value>
+  </data>
+  <data name="Archive_ExportingFileStatus" xml:space="preserve">
+    <value>Exporting {0}</value>
+    <comment>Arguments:
+fileName</comment>
+  </data>
+  <data name="Archive_Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Archive_Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
+    <value>Select directory to import</value>
+  </data>
+  <data name="Archive_ExportDirectoryConflict" xml:space="preserve">
+    <value>The selected directory already contains a directory with the same name as {0}</value>
+  </data>
+  <data name="Archive_ImportNoFilesError" xml:space="preserve">
+    <value>No files were found to import</value>
+  </data>
+  <data name="Archive_ImportFailsError" xml:space="preserve">
+    <value>Some files failed to import</value>
+  </data>
+  <data name="Archive_ImportFilesSuccess" xml:space="preserve">
+    <value>The files have been imported</value>
+  </data>
+  <data name="Archive_ExportFilesSuccess" xml:space="preserve">
+    <value>The files have been exported</value>
+  </data>
+  <data name="Archive_ImportFileSuccess" xml:space="preserve">
+    <value>The file has been imported</value>
+  </data>
+  <data name="Archive_ExportFileSuccess" xml:space="preserve">
+    <value>The file has been exported</value>
+  </data>
+  <data name="Archive_ExportError" xml:space="preserve">
+    <value>{0} could not be exported</value>
+    <comment>Arguments:
+itemName</comment>
+  </data>
+  <data name="Archive_ImportError" xml:space="preserve">
+    <value>{0} could not be imported</value>
+    <comment>Arguments:
+itemName</comment>
+  </data>
+  <data name="Archive_RepackingStatus" xml:space="preserve">
+    <value>Repacking archive {0}</value>
+    <comment>Arguments:
+archiveName</comment>
+  </data>
+  <data name="Archive_CNT_FileInfo" xml:space="preserve">
+    <value>Directory = {0}
+Size = {1} x {2}
+File size = {3}
+Modified = {4}
+Encrypted = {5}
+Transparent = {6}
+Pointer = {7}
+Mipmaps = {8}</value>
+    <comment>Arguments:
+dirPath
+imgWidth
+imgHeight
+fileSize
+isModified
+isEncrypted
+isTransparent
+pointer
+mipmaps</comment>
+  </data>
+  <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
+    <value>File Extension Selection</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
+    <value>Select file extension to export as for {0} files</value>
+    <comment>Arguments:
+fileFormat</comment>
+  </data>
+  <data name="Archive_Title" xml:space="preserve">
+    <value>Archive Explorer</value>
+  </data>
+  <data name="Archive_CriticalError" xml:space="preserve">
+    <value>An error occurred in the Archive Explorer and it had to close</value>
+  </data>
+  <data name="Archive_ExportMipmaps" xml:space="preserve">
+    <value>Export mipmaps</value>
   </data>
 </root>

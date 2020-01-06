@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
-using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {

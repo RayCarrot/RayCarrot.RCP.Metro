@@ -100,7 +100,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="API\RCPMetroLocalizationManager.cs" />
+    <Compile Include="ArchiveExplorer\Base\ArchiveDirectory.cs" />
+    <Compile Include="ArchiveExplorer\Base\IArchiveDataManager.cs" />
+    <Compile Include="ArchiveExplorer\Base\IArchiveFileData.cs" />
+    <Compile Include="ArchiveExplorer\Base\IArchiveImageFileData.cs" />
+    <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
+    <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
+    <Compile Include="ArchiveExplorer\UI\ArchiveExplorerUI.xaml.cs">
+      <DependentUpon>ArchiveExplorerUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ArchiveExplorer\UI\FileExtensionSelectionDialog.xaml.cs">
+      <DependentUpon>FileExtensionSelectionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ArchiveExplorer\ViewModels\ArchiveDirectoryViewModel.cs" />
+    <Compile Include="ArchiveExplorer\ViewModels\ArchiveExplorerDialogViewModel.cs" />
+    <Compile Include="ArchiveExplorer\ViewModels\ArchiveFileViewModel.cs" />
+    <Compile Include="ArchiveExplorer\ViewModels\ArchiveViewModel.cs" />
+    <Compile Include="ArchiveExplorer\ViewModels\Dialogs\FileExtensionSelectionDialogResult.cs" />
+    <Compile Include="ArchiveExplorer\ViewModels\Dialogs\FileExtensionSelectionDialogViewModel.cs" />
     <Compile Include="Games\Config\UI\RaymanFiestaRunConfig.xaml.cs">
       <DependentUpon>RaymanFiestaRunConfig.xaml</DependentUpon>
     </Compile>
@@ -110,7 +127,6 @@
     <Compile Include="Games\Config\ViewModels\Base\BaseRayRunConfigViewModel.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanFiestaRunConfigViewModel.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanJungleRunConfigViewModel.cs" />
-    <Compile Include="API\RCPMetroAPIControllerManager.cs" />
     <Compile Include="Games\Info\Other\RaymanRavingRabbidsActivityCenter_Info.cs" />
     <Compile Include="Games\Info\Other\RaymanActivityCenter_Info.cs" />
     <Compile Include="Games\Info\Rabbids\RabbidsCoding_Info.cs" />
@@ -125,6 +141,53 @@
     <Compile Include="Games\Utilities\Rayman Arena\CNTExplorer\RACNTExplorerUtility.cs" />
     <Compile Include="Games\Utilities\Rayman 3\CNTExplorer\R3CNTExplorerUtility.cs" />
     <Compile Include="Games\Utilities\Rayman M\CNTExplorer\RMCNTExplorerUtility.cs" />
+    <Compile Include="Helpers\CommonPaths.cs" />
+    <Compile Include="Localization\LocalizationManager.cs" />
+    <Compile Include="Extensions\MessageUIManagerExtensions.cs" />
+    <Compile Include="Framework\FrameworkConstructionExtensions.cs" />
+    <Compile Include="Framework\Implementations\FileLogger.cs" />
+    <Compile Include="Framework\Implementations\RCPDialogBaseManager.cs" />
+    <Compile Include="Framework\Implementations\RCPExceptionHandler.cs" />
+    <Compile Include="Framework\Implementations\RCPMessageUIManager.cs" />
+    <Compile Include="Games\GameData.cs" />
+    <Compile Include="Games\GameLaunchMode.cs" />
+    <Compile Include="Games\Games.cs" />
+    <Compile Include="Games\GameType.cs" />
+    <Compile Include="Helpers\Operation.cs" />
+    <Compile Include="IO\IFileManager.cs" />
+    <Compile Include="IO\IOSearchPattern.cs" />
+    <Compile Include="IO\RCPFileManager.cs" />
+    <Compile Include="IO\Temp\TempDirectory.cs" />
+    <Compile Include="IO\Temp\TempFile.cs" />
+    <Compile Include="IO\Temp\TempFileSystemEntry.cs" />
+    <Compile Include="UI\Controls\DuoGridItem.cs" />
+    <Compile Include="UI\Controls\InfoIcon.xaml.cs">
+      <DependentUpon>InfoIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\MainRCPTabControl.xaml.cs">
+      <DependentUpon>MainRCPTabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\MenuItemIcon.xaml.cs">
+      <DependentUpon>MenuItemIcon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\OverflowMenu.xaml.cs">
+      <DependentUpon>OverflowMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\RCPTabItem.cs" />
+    <Compile Include="UI\Converters\AppendSpacesToStringConverter.cs" />
+    <Compile Include="UI\Converters\BooleanToTransitionTypeConverter.cs" />
+    <Compile Include="Pages\BasePage.cs" />
+    <Compile Include="Pages\IBasePage.cs" />
+    <Compile Include="UI\Windows\BaseWindow.cs" />
+    <Compile Include="UI\Windows\LicenseDialog.xaml.cs">
+      <DependentUpon>LicenseDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Updater\IUpdaterManager.cs" />
+    <Compile Include="Updater\RCPUpdateManager.cs" />
+    <Compile Include="Updater\UpdaterCheckResult.cs" />
+    <Compile Include="Updater\UpdaterManager.cs" />
+    <Compile Include="Games\Utilities\IRCPUtility.cs" />
+    <Compile Include="Games\Utilities\RCPUtilityViewModel.cs" />
     <Compile Include="UI\AdminButton.xaml.cs">
       <DependentUpon>AdminButton.xaml</DependentUpon>
     </Compile>
@@ -280,11 +343,47 @@
     <Compile Include="DataModels\Enums\Pages.cs" />
     <Compile Include="ViewModels\Game\GameCategoryViewModel.cs" />
     <Compile Include="ViewModels\TaskbarIconViewModel.cs" />
+    <Page Include="ArchiveExplorer\UI\ArchiveExplorerUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ArchiveExplorer\UI\FileExtensionSelectionDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Games\Config\UI\RaymanFiestaRunConfig.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Games\Config\UI\RaymanJungleRunConfig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\InfoIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\MainRCPTabControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\MenuItemIcon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Controls\OverflowMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Styles\TextStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Styles\UnifiedMargins.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Windows\LicenseDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -667,7 +766,6 @@
     <Compile Include="DataModels\GameFileLink.cs" />
     <Compile Include="Extensions\GamesExtensions.cs" />
     <Compile Include="Framework\RCFRCP.cs" />
-    <Compile Include="API\RCPMetroApplicationPaths.cs" />
     <Compile Include="Img\Images.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -785,14 +883,6 @@
       <Project>{9b10dc81-cb32-45a1-b52b-fbb3e4d056a0}</Project>
       <Name>RayCarrot.WPF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RayCarrot.RCP.ArchiveExplorer\RayCarrot.RCP.ArchiveExplorer.csproj">
-      <Project>{227b7a8c-ab72-4afd-a44d-6c4bc7d9db88}</Project>
-      <Name>RayCarrot.RCP.ArchiveExplorer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RayCarrot.RCP.Core\RayCarrot.RCP.Core.csproj">
-      <Project>{7c723f2e-eea2-4b41-96e2-9359af141e17}</Project>
-      <Name>RayCarrot.RCP.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\GameIcons\Rayman2.png" />
@@ -834,7 +924,12 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Img\RCP_Modding.ico" />
+    <Content Include="Files\Programs\Rayman Control Panel Updater.exe" />
+    <Resource Include="Img\MessageIcons\Question.png" />
+    <Resource Include="Img\MessageIcons\Info.png" />
+    <Resource Include="Img\MessageIcons\Happy.png" />
+    <Resource Include="Img\MessageIcons\Generic.png" />
+    <Resource Include="Img\MessageIcons\Error.png" />
     <Resource Include="Img\RCP_Metro.ico" />
     <Resource Include="Img\GameIcons\RabbidsCoding.png" />
     <Resource Include="Img\GameIcons\RaymanActivityCenter.png" />

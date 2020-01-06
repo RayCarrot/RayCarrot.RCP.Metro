@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -32,7 +31,7 @@ namespace RayCarrot.RCP.Metro
             OutputDirectory = outputDirectory;
             IsCompressed = isCompressed;
             ProcessedPaths = new List<FileSystemPath>();
-            FileManager = RCFRCPC.File;
+            FileManager = RCFRCP.File;
 
             // Set properties
             DownloadState = DownloadState.Paused;

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -85,7 +84,7 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogTraceSource($"The game {Game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
 
             // Launch the game
-            var process = await RCFRCPC.File.LaunchFileAsync(launchInfo.Path, forceRunAsAdmin || Game.GetLaunchMode() == GameLaunchMode.AsAdmin, launchInfo.Args);
+            var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, forceRunAsAdmin || Game.GetLaunchMode() == GameLaunchMode.AsAdmin, launchInfo.Args);
 
             RCFCore.Logger?.LogInformationSource($"The game {Game} has been launched");
 
@@ -165,7 +164,7 @@ namespace RayCarrot.RCP.Metro
             var launchInfo = GetLaunchInfo();
 
             // Create the shortcut
-            RCFRCPC.File.CreateFileShortcut(shortcutName, destinationDirectory, launchInfo.Path, launchInfo.Args);
+            RCFRCP.File.CreateFileShortcut(shortcutName, destinationDirectory, launchInfo.Path, launchInfo.Args);
 
             RCFCore.Logger?.LogTraceSource($"A shortcut was created for {Game} under {destinationDirectory}");
         }

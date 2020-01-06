@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using RayCarrot.Rayman;
-using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -152,7 +151,7 @@ namespace RayCarrot.RCP.Metro
         protected override Task<RAUbiIniHandler> LoadConfigAsync()
         {
             // Load the configuration data
-            return Task.FromResult(new RAUbiIniHandler(RCFRCP.Path.UbiIniPath1));
+            return Task.FromResult(new RAUbiIniHandler(CommonPaths.UbiIniPath1));
         }
 
         /// <summary>

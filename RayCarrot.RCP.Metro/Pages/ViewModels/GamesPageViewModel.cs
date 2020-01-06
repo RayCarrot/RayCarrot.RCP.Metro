@@ -8,7 +8,6 @@ using MahApps.Metro.IconPacks;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro

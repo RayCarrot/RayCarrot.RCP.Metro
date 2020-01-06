@@ -7,7 +7,6 @@
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                    xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
                     ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                     mc:Ignorable="d"
                     d:DataContext="{d:DesignInstance local:PrintStudioOptionsViewModel}">
@@ -21,7 +20,7 @@
             <TextBlock Style="{StaticResource HeaderTextBlock}"
                        Text="{Resx PrintStudioOptions_VersionHeader}" />
 
-            <core:InfoIcon Text="{Resx PrintStudioOptions_VersionInfo}" />
+            <local:InfoIcon Text="{Resx PrintStudioOptions_VersionInfo}" />
 
         </StackPanel>
 

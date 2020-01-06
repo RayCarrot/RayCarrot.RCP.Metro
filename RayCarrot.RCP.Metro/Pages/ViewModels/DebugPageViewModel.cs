@@ -17,8 +17,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using RayCarrot.Rayman;
-using RayCarrot.RCP.ArchiveExplorer;
-using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -263,7 +261,7 @@ namespace RayCarrot.RCP.Metro
 
                         // Download the manifest as a string and display it
                         using (WebClient wc = new WebClient())
-                            DataOutput = await wc.DownloadStringTaskAsync(RCFRCPC.Path.UpdateManifestUrl);
+                            DataOutput = await wc.DownloadStringTaskAsync(CommonUrls.UpdateManifestUrl);
 
                         break;
 
@@ -375,8 +373,6 @@ namespace RayCarrot.RCP.Metro
                         // Get the API libraries
                         var libraries = new string[]
                         {
-                            "RayCarrot.RCP.Core",
-                            "RayCarrot.RCP.ArchiveExplorer",
                             "RayCarrot.CarrotFramework",
                             "RayCarrot.CarrotFramework.Abstractions",
                             "RayCarrot.UI",

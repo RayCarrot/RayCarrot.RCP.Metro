@@ -1,13 +1,12 @@
-﻿<core:BasePage x:Class="RayCarrot.RCP.Metro.HelpPage"
+﻿<local:BasePage x:Class="RayCarrot.RCP.Metro.HelpPage"
                 x:TypeArguments="local:HelpPageViewModel"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
                 ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
@@ -149,7 +148,7 @@
                 <Image Grid.Column="1"
                        Grid.Row="0"
                        VerticalAlignment="Top"
-                       Source="pack://application:,,,/RayCarrot.RCP.Core;component/Images/MessageIcons/Info.png"
+                       Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/MessageIcons/Info.png"
                        Height="128"
                        Width="128"/>
 
@@ -165,4 +164,4 @@
             </Grid>
         </ScrollViewer>
     </Grid>
-</core:BasePage>
+</local:BasePage>

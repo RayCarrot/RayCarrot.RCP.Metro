@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using RayCarrot.RCP.Core;
 using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
@@ -59,7 +58,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility is available to the user
         /// </summary>
-        public bool IsAvailable => BaseRCPAppViewModel.WindowsVersion >= WindowsVersion.Win8;
+        public bool IsAvailable => AppViewModel.WindowsVersion >= WindowsVersion.Win8;
 
         /// <summary>
         /// Retrieves a list of applied utilities from this utility

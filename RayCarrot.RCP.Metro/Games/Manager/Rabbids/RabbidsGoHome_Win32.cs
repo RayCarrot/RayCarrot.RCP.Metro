@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {

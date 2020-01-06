@@ -1,11 +1,10 @@
-﻿<core:BaseWindow x:Class="RayCarrot.RCP.Metro.FirstLaunchInfoDialog"
-               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-               xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-               xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
-               mc:Ignorable="d"
+﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.FirstLaunchInfoDialog"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                  mc:Ignorable="d"
                ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                Title="{Resx FirstLaunchInfo_Title}"
                Height="450" Width="800">
@@ -58,7 +57,7 @@
             </Grid>
 
             <Image Grid.Column="1"
-                   Source="pack://application:,,,/RayCarrot.RCP.Core;component/Images/MessageIcons/Info.png"
+                   Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/MessageIcons/Info.png"
                    Height="256"
                    Width="256" 
                    RenderOptions.BitmapScalingMode="NearestNeighbor"/>
@@ -74,4 +73,4 @@
                 Click="ButtonBase_OnClick"/>
 
     </Grid>
-</core:BaseWindow>
+</local:BaseWindow>

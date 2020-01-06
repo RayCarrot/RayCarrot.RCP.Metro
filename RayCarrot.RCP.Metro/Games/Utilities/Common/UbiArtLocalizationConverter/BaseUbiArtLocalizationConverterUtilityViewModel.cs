@@ -5,7 +5,6 @@ using System.Windows.Input;
 using Newtonsoft.Json;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro

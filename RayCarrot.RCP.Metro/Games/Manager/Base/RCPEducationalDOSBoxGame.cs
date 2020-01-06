@@ -7,7 +7,6 @@ using System.Windows.Media.Imaging;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -50,7 +49,7 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogTraceSource($"The educational game {x.Name} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
 
             // Launch the game
-            var process = await RCFRCPC.File.LaunchFileAsync(launchInfo.Path, Game.GetLaunchMode() == GameLaunchMode.AsAdmin, launchInfo.Args);
+            var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, Game.GetLaunchMode() == GameLaunchMode.AsAdmin, launchInfo.Args);
 
             RCFCore.Logger?.LogInformationSource($"The educational game {x.Name} has been launched");
 

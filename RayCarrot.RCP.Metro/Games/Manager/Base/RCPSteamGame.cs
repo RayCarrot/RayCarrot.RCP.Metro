@@ -5,7 +5,6 @@ using MahApps.Metro.IconPacks;
 using Microsoft.Win32;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 
@@ -40,12 +39,12 @@ namespace RayCarrot.RCP.Metro
         {
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamStore, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
             {
-                (await RCFRCPC.File.LaunchFileAsync($"https://store.steampowered.com/app/" + SteamID))?.Dispose();
+                (await RCFRCP.File.LaunchFileAsync($"https://store.steampowered.com/app/" + SteamID))?.Dispose();
                 RCFCore.Logger?.LogTraceSource($"The game {Game} Steam store page was opened");
             })),
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenSteamCommunity, PackIconMaterialKind.Steam, new AsyncRelayCommand(async () =>
             {
-                (await RCFRCPC.File.LaunchFileAsync($"https://steamcommunity.com/app/" + SteamID))?.Dispose();
+                (await RCFRCP.File.LaunchFileAsync($"https://steamcommunity.com/app/" + SteamID))?.Dispose();
                 RCFCore.Logger?.LogTraceSource($"The game {Game} Steam community page was opened");
             }))
         };
@@ -118,7 +117,7 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogTraceSource($"The game {Game} is launching with Steam ID {SteamID}");
 
             // Launch the game
-            var process = await RCFRCPC.File.LaunchFileAsync(LaunchURL);
+            var process = await RCFRCP.File.LaunchFileAsync(LaunchURL);
 
             RCFCore.Logger?.LogInformationSource($"The game {Game} has been launched");
 
@@ -185,7 +184,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="destinationDirectory">The destination directory for the shortcut</param>
         public override void CreateGameShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory)
         {
-            RCFRCPC.File.CreateURLShortcut(shortcutName, destinationDirectory, LaunchURL);
+            RCFRCP.File.CreateURLShortcut(shortcutName, destinationDirectory, LaunchURL);
 
             RCFCore.Logger?.LogTraceSource($"An URL shortcut was created for {Game} under {destinationDirectory}");
         }

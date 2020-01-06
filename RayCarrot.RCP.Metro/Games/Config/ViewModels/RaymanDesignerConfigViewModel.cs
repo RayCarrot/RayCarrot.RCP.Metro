@@ -3,7 +3,6 @@ using System.IO;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -231,7 +230,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Delete the existing file
-                RCFRCPC.File.DeleteFile(batchFile);
+                RCFRCP.File.DeleteFile(batchFile);
 
                 // Create the .bat file
                 File.WriteAllLines(batchFile, new string[]

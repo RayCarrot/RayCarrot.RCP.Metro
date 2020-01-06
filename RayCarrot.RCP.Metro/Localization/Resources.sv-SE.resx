@@ -751,6 +751,51 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="GameLink_R2nGlide" xml:space="preserve">
     <value>nGlide konfiguration</value>
   </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Åtgärden lyckades</value>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Allmänt meddelande</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Informationsmeddelande</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Felmeddelande</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Varningsmeddelande</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Succesmeddelande</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Fråge-meddelande</value>
+  </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Fel</value>
+  </data>
+  <data name="ExceptionMessageInfo" xml:space="preserve">
+    <value>Ett fel har inträffat i programmet. Nedan finns den tillgängliga felsökningsinformationen för den aktuella användarnivån i Carrot Framework.</value>
+  </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>Den angivna filen kunde inte hittas: {0}</value>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>Filen hittades inte</value>
+  </data>
+  <data name="File_ErrorLaunchingFile" xml:space="preserve">
+    <value>Ett fel uppstod vid försök att starta {0}</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>Mappen kunde inte hittas</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>Sökväg-fel</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>Mappen kunde inte öppnas</value>
+  </data>
   <data name="LocateGame_BrowserHeader" xml:space="preserve">
     <value>Välj spelinstallationen</value>
   </data>
@@ -873,6 +918,48 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   </data>
   <data name="Download_Error" xml:space="preserve">
     <value>Filerna kunde inte laddas ner</value>
+  </data>
+  <data name="Update_UnknownError" xml:space="preserve">
+    <value>Okänt fel</value>
+  </data>
+  <data name="Update_WebError" xml:space="preserve">
+    <value>En anslutning kan inte upprättas till servern</value>
+  </data>
+  <data name="Update_FormatError" xml:space="preserve">
+    <value>Informationen från servern var inte giltig</value>
+  </data>
+  <data name="Update_GenericError" xml:space="preserve">
+    <value>Ett okänt fel uppstod vid anslutning till servern</value>
+  </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>Fel vid sökande efter nya uppdateringar</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>Den senaste versionen ({0}) är redan installerad</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Ingen ny version hittades</value>
+  </data>
+  <data name="Update_ManifestError" xml:space="preserve">
+    <value>Serverns manifest kunde inte läsas</value>
+  </data>
+  <data name="Update_NewsError" xml:space="preserve">
+    <value>Server fel</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>En ny uppdatering finns tillgänglig att ladda ner. Ladda ner nu?
+
+Nyheter:
+{0}</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Ny version hittades</value>
+  </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>Uppdateraren kunde inte skapas. För att hämta den nya versionen manuellt, gå till {0} och ladda ner den senaste versionen därifrån.</value>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Det gick inte att skapa uppdateraren</value>
   </data>
   <data name="MoveBackups_Question" xml:space="preserve">
     <value>Vill du flytta tidigare säkerhetskopior till den nya mappen?</value>
@@ -1479,6 +1566,9 @@ Starta om?</value>
   </data>
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Länkar</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>En ny beta uppdatering finns tillgänglig att ladda ner. Ladda ner nu?</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Avinstallera</value>

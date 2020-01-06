@@ -1,4 +1,4 @@
-﻿<core:BasePage x:Class="RayCarrot.RCP.Metro.BackupPage"
+﻿<local:BasePage x:Class="RayCarrot.RCP.Metro.BackupPage"
                 x:TypeArguments="local:BackupPageViewModel"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,13 +8,12 @@
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
                 ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignWidth="800"
                 d:DataContext="{d:DesignInstance local:BackupPageViewModel}">
-    <core:IBasePage.OverflowMenu>
+    <local:IBasePage.OverflowMenu>
         <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
 
             <MenuItem Header="{Resx Backup_Compress}"
@@ -24,17 +23,17 @@
 
             <Separator />
 
-            <core:MenuItemIcon Header="{Resx Backup_BackupAll}"
+            <local:MenuItemIcon Header="{Resx Backup_BackupAll}"
                                 IconKind="FolderUploadOutline"
                                 Command="{Binding Path=BackupAllCommand}" />
 
-            <core:MenuItemIcon Header="{Resx Page_Refresh}"
+            <local:MenuItemIcon Header="{Resx Page_Refresh}"
                                 IconKind="Refresh"
                                 Command="{Binding Path=RefreshCommand}"
                                 rwpf:UserLevelTag.MinUserLevel="Advanced"/>
 
         </ContextMenu>
-    </core:IBasePage.OverflowMenu>
+    </local:IBasePage.OverflowMenu>
 
     <ScrollViewer x:Name="BackupPageScrollViewer"
                   Padding="15" 
@@ -221,4 +220,4 @@
 
         </StackPanel>
     </ScrollViewer>
-</core:BasePage>
+</local:BasePage>

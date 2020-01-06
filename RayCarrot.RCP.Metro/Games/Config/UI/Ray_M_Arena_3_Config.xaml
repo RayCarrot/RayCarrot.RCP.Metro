@@ -8,7 +8,6 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:ray="clr-namespace:RayCarrot.Rayman;assembly=RayCarrot.Rayman"
-             xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
@@ -172,7 +171,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="{Resx Config_Controller}" />
 
-                    <core:InfoIcon Text="{Resx Config_ControllerInfo}" />
+                    <local:InfoIcon Text="{Resx Config_ControllerInfo}" />
 
                 </StackPanel>
 
@@ -229,7 +228,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="{Resx Config_DiscCheck}"/>
 
-                    <core:InfoIcon Text="{Resx Config_DiscCheckInfo}" />
+                    <local:InfoIcon Text="{Resx Config_DiscCheckInfo}" />
 
                 </StackPanel>
 

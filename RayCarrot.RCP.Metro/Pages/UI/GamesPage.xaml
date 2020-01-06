@@ -1,15 +1,14 @@
-﻿<core:BasePage x:Class="RayCarrot.RCP.Metro.GamesPage"
+﻿<local:BasePage x:Class="RayCarrot.RCP.Metro.GamesPage"
                 x:TypeArguments="local:GamesPageViewModel"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-                xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-                xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
                 ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
@@ -17,7 +16,7 @@
                 d:DataContext="{d:DesignInstance local:GamesPageViewModel}"
                 PreviewKeyDown="UIElement_OnPreviewKeyDown">
 
-    <core:IBasePage.OverflowMenu>
+    <local:IBasePage.OverflowMenu>
         <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
 
             <MenuItem Header="{Resx CategorizeGames}"
@@ -31,17 +30,17 @@
 
             <Separator />
 
-            <core:MenuItemIcon Header="{Resx GamesPage_FindGames}"
+            <local:MenuItemIcon Header="{Resx GamesPage_FindGames}"
                                 ToolTip="{Resx GamesPage_FindGamesInfo}"
                                 Command="{Binding Path=RunGameFinderCommand}"
                                 IconKind="CardSearchOutline"/>
 
-            <core:MenuItemIcon Header="{Resx Page_Refresh}"
+            <local:MenuItemIcon Header="{Resx Page_Refresh}"
                                 Command="{Binding Path=RefreshGamesCommand}"
                                 rwpf:UserLevelTag.MinUserLevel="Debug"
                                 IconKind="Refresh"/>
         </ContextMenu>
-    </core:IBasePage.OverflowMenu>
+    </local:IBasePage.OverflowMenu>
 
     <Grid Visibility="{Binding Path=RefreshingGames, Converter={rwpf:InvertedBooleanToVisibilityConverter}}">
         <Grid>
@@ -152,4 +151,4 @@
 
     </Grid>
 
-</core:BasePage>
+</local:BasePage>

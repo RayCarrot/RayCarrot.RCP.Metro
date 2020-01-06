@@ -9,7 +9,6 @@ using System.Windows.Media.Imaging;
 using MahApps.Metro.IconPacks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
@@ -238,13 +237,13 @@ namespace RayCarrot.RCP.Metro
             if (IsLocal)
             {
                 if (IsRegistryPath)
-                    await RCFRCPC.File.OpenRegistryKeyAsync(RegistryLinkPath);
+                    await RCFRCP.File.OpenRegistryKeyAsync(RegistryLinkPath);
 
                 else if (LocalLinkPath.FileExists)
-                    await RCFRCPC.File.LaunchFileAsync(LocalLinkPath);
+                    await RCFRCP.File.LaunchFileAsync(LocalLinkPath);
 
                 else if (LocalLinkPath.DirectoryExists)
-                    await RCFRCPC.File.OpenExplorerLocationAsync(LocalLinkPath);
+                    await RCFRCP.File.OpenExplorerLocationAsync(LocalLinkPath);
 
                 else
                     await RCFUI.MessageUI.DisplayMessageAsync(Resources.Links_OpenErrorNotFound, Resources.Links_OpenErrorNotFoundHeader, MessageType.Error);

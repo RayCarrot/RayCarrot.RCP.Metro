@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -168,7 +167,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task LaunchGameAsync()
         {
-            await RCFRCPC.File.LaunchFileAsync(GameFilePath, false, DebugCommands.Select(x => $"{x.Key}={x.Value}").JoinItems(";"));
+            await RCFRCP.File.LaunchFileAsync(GameFilePath, false, DebugCommands.Select(x => $"{x.Key}={x.Value}").JoinItems(";"));
         }
 
         #endregion

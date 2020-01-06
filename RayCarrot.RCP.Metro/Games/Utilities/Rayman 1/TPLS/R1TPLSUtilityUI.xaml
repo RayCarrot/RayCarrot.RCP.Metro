@@ -7,7 +7,6 @@
              xmlns:wpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              mc:Ignorable="d"
              d:DesignWidth="550" d:DataContext="{d:DesignInstance local:R1TPLSUtilityViewModel}">
@@ -115,31 +114,31 @@
                           Grid.IsSharedSizeScope="True"
                           Margin="0 8">
 
-                <core:DuoGridItem Header="World"
+                <local:DuoGridItem Header="World"
                                    Text="{Binding Path=World}" />
 
-                <core:DuoGridItem Header="Level"
+                <local:DuoGridItem Header="Level"
                                    Text="{Binding Path=Level}" />
 
-                <core:DuoGridItem Header="BossEvent"
+                <local:DuoGridItem Header="BossEvent"
                                    Text="{Binding Path=BossEvent}" />
 
-                <core:DuoGridItem Header="InLevel"
+                <local:DuoGridItem Header="InLevel"
                                    Text="{Binding Path=InLevel}" />
 
-                <core:DuoGridItem Header="Music"
+                <local:DuoGridItem Header="Music"
                                    Text="{Binding Path=Music}" />
 
-                <core:DuoGridItem Header="OptionsOff"
+                <local:DuoGridItem Header="OptionsOff"
                                    Text="{Binding Path=OptionsOff}" />
 
-                <core:DuoGridItem Header="OptionsOn"
+                <local:DuoGridItem Header="OptionsOn"
                                    Text="{Binding Path=OptionsOn}" />
 
-                <core:DuoGridItem Header="XAxis"
+                <local:DuoGridItem Header="XAxis"
                                    Text="{Binding Path=XAxis}" />
 
-                <core:DuoGridItem Header="YAxis"
+                <local:DuoGridItem Header="YAxis"
                                    Text="{Binding Path=YAxis}" />
 
             </ItemsControl>

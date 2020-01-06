@@ -9,7 +9,6 @@ using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
-using RayCarrot.RCP.Core;
 using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
 
@@ -76,7 +75,7 @@ namespace RayCarrot.RCP.Metro
                     try
                     {
                         // Make sure the file exists
-                        if (RCFRCP.Path.UbiIniPath1.FileExists)
+                        if (CommonPaths.UbiIniPath1.FileExists)
                         {
                             // Get the sections and the directory for each one
                             iniLocations = GetUbiIniData();
@@ -395,7 +394,7 @@ namespace RayCarrot.RCP.Metro
             // Create the ini data parser
             return new FileIniDataParser(new UbiIniDataParser()).
                 // Read the primary ubi.ini file
-                ReadFile(RCFRCP.Path.UbiIniPath1).
+                ReadFile(CommonPaths.UbiIniPath1).
                 // Get the sections
                 Sections.
                 // Create a dictionary

@@ -5,6 +5,182 @@
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
+    <!-- List Box with Radio Buttons -->
+
+    <Style x:Key="ListBoxWithRadioButtons" TargetType="{x:Type ListBox}" BasedOn="{StaticResource {x:Type ListBox}}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBox">
+                    <Border x:Name="Border"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            CornerRadius="2">
+                        <ScrollViewer Margin="0" Focusable="false">
+                            <StackPanel Margin="2" IsItemsHost="True" />
+                        </ScrollViewer>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="Border" Property="Background" Value="Transparent" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                        <Trigger Property="IsGrouping" Value="true">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type ListBoxItem}" >
+                    <Setter Property="Margin" Value="2" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                <Border Background="Transparent">
+                                    <RadioButton Focusable="False" IsHitTestVisible="False" IsChecked="{TemplateBinding IsSelected}">
+                                        <ContentPresenter />
+                                    </RadioButton>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Default Animated Tab Control -->
+
+    <Style TargetType="{x:Type mah:MetroAnimatedTabControl}" BasedOn="{StaticResource {x:Type mah:MetroAnimatedTabControl}}">
+        <Setter Property="mah:TabControlHelper.Transition" Value="{Binding Source={x:Static local:RCFRCP.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}" />
+    </Style>
+
+    <!-- Default RCP tab item -->
+
+    <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="5 2"
+                                DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:RCPTabItem}}}">
+
+                        <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
+                                                    Margin="10 0"
+                                                    VerticalAlignment="Center"
+                                                    Visibility="{Binding Path=IconVisibility}" />
+
+                        <ContentControl ContentStringFormat="{Binding Path=HeaderStringFormat}" 
+                                        FontSize="{Binding Path=HeaderFontSize}"
+                                        Content="{Binding Path=Header}"/>
+
+                    </StackPanel>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Small Tab Item -->
+
+    <Style x:Key="SmallTabItem" TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource {x:Type local:RCPTabItem}}">
+        <Setter Property="HeaderFontSize" Value="16" />
+    </Style>
+
+    <!-- Default Menu Item Icon -->
+
+    <Style TargetType="{x:Type local:MenuItemIcon}" BasedOn="{StaticResource {x:Type MenuItem}}" />
+
+    <!-- Default Button -->
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="mah:ControlsHelper.ContentCharacterCasing" Value="Normal" />
+    </Style>
+
+    <!-- Flat Button -->
+
+    <Style x:Key="FlatButton" TargetType="{x:Type Button}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource GrayHoverBrush}" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource HighlightBrush}" />
+            </MultiTrigger>
+        </Style.Triggers>
+
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource GrayNormalBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ContentControl Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                    Content="{TemplateBinding Content}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Small Tab Panel -->
+
+    <Style x:Key="SmallTabPanel" TargetType="{x:Type TabPanel}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0 5 0 10" />
+    </Style>
+
+    <!-- Default NumericUpDown -->
+
+    <Style TargetType="{x:Type mah:NumericUpDown}" BasedOn="{StaticResource {x:Type mah:NumericUpDown}}">
+        <Setter Property="HideUpDownButtons" Value="True" />
+        <Setter Property="TextAlignment" Value="Left" />
+        <Setter Property="MinWidth" Value="50" />
+        <Setter Property="NumericInputMode" Value="Numbers" />
+    </Style>
+
+    <!-- Utility Download Info Icon -->
+
+    <Style x:Key="AdditionalFilesRequired" TargetType="{x:Type local:InfoIcon}">
+        <Setter Property="IconKind" Value="CloudDownload" />
+    </Style>
+
+    <!-- Default duo grid item -->
+
+    <Style TargetType="{x:Type local:DuoGridItem}">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DuoGridItem}">
+                    <Grid rwpf:UserLevelTag.MinUserLevel="{TemplateBinding Property=MinUserLevel}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"
+                                              SharedSizeGroup="A" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Text="{TemplateBinding Property=Header, Converter={local:AppendSpacesToStringConverter}}"
+                                   FontWeight="Bold" />
+
+                        <TextBlock Grid.Column="1"
+                                   Text="{TemplateBinding Property=Text}"
+                                   TextWrapping="Wrap" />
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- Default Browse Box -->
 
     <Style TargetType="{x:Type rwpf:BrowseBox}" BasedOn="{StaticResource {x:Type rwpf:BrowseBox}}">

@@ -2,16 +2,21 @@
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Nito.AsyncEx;
 using RayCarrot.CarrotFramework;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
+using RayCarrot.Windows.Shell;
+using RayCarrot.WPF;
+using RayCarrot.WPF.Metro;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -24,7 +29,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : BaseRCPApp<MainWindow, AppUserData, RCPMetroAPIControllerManager>
+    public partial class App : BaseRCFApp
     {
         #region Constructor
 
@@ -33,6 +38,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public App() : base(true, "Files/Splash Screen.png")
         {
+            DataChangedHandlerAsyncLock = new AsyncLock();
+
+            StartupEventsCompleted += App_StartupEventsCompleted;
+
             SplashScreenFadeout = TimeSpan.FromMilliseconds(200);
         }
 
@@ -56,7 +65,7 @@ namespace RayCarrot.RCP.Metro
             // Set file log level
             FileLogger.FileLoggerLogLevel = logLevel;
 
-            new FrameworkConstruction().
+        new FrameworkConstruction().
                 // Add loggers
                 AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, logLevel, builder => builder.AddProvider(new BaseLogProvider<FileLogger>())).
                 // Add user data manager
@@ -64,86 +73,208 @@ namespace RayCarrot.RCP.Metro
                 {
                     Formatting = Formatting.Indented
                 }).
+                // Add exception handler
+                AddExceptionHandler<RCPExceptionHandler>().
+                // Add message UI manager
+                AddMessageUIManager<RCPMessageUIManager>().
+                // Add browse UI manager
+                AddBrowseUIManager<DefaultWPFBrowseUIManager>().
+                // Add Registry manager
+                AddRegistryManager<DefaultRegistryManager>().
+                // Add file manager
+                AddFileManager<RCPFileManager>().
+                // Add dialog base manager
+                AddDialogBaseManager<RCPDialogBaseManager>().
+                // Add update manager
+                AddUpdateManager<RCPUpdateManager>().
                 // Add the app view model
-                AddAppViewModel<AppViewModel>().
+                AddSingleton(new AppViewModel()).
                 // Add App UI manager
                 AddTransient<AppUIManager>().
-                // Add application paths
-                AddApplicationPaths<RCPMetroApplicationPaths>().
-                // Add localization manager
-                AddLocalizationManager<RCPMetroLocalizationManager>().
                 // Add backup manager
                 AddTransient<BackupManager>().
-                // Add API controller manager
-                AddAPIControllerManager<RCPMetroAPIControllerManager>().
                 // Build the framework
                 Build(config);
         }
 
         /// <summary>
-        /// Handles a change in the app user data
+        /// An optional custom setup to override
         /// </summary>
-        /// <param name="propertyName">The name of the property which changed</param>
+        /// <param name="args">The launch arguments</param>
         /// <returns>The task</returns>
-        protected override async Task AppUserDataChanged(string propertyName)
+        protected override async Task OnSetupAsync(string[] args)
         {
-            await base.AppUserDataChanged(propertyName);
+            LogStartupTime("Setup is starting");
 
-            switch (propertyName)
+            // Load the user data
+            try
             {
-                case nameof(AppUserData.BackupLocation):
+                await RCFData.UserDataCollection.AddUserDataAsync<AppUserData>(CommonPaths.AppUserDataPath);
 
-                    await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, true, false));
+                RCFCore.Logger?.LogInformationSource($"The app user data has been loaded");
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError($"Loading app user data");
 
-                    if (!PreviousBackupLocation.DirectoryExists)
-                    {
-                        RCFCore.Logger?.LogInformationSource("The backup location has been changed, but the previous directory does not exist");
-                        return;
-                    }
+                // NOTE: This is not localized due to the current culture not having been set at this point
+                MessageBox.Show($"An error occurred reading saved app data. Some settings have been reset to their default values.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
-                    RCFCore.Logger?.LogInformationSource("The backup location has been changed and old backups are being moved...");
+                // Recreate the user data and reset it
+                RCFData.UserDataCollection.Add(new AppUserData());
+                RCFRCP.Data.Reset();
+            }
 
-                    await RCFRCP.App.MoveBackupsAsync(PreviousBackupLocation, AppData.BackupLocation);
+            Data = RCFRCP.Data;
 
-                    PreviousBackupLocation = AppData.BackupLocation;
+            LogStartupTime("User data has been loaded");
 
-                    break;
+            // Set the theme
+            this.SetTheme(Data.DarkMode);
 
-                case nameof(AppUserData.LinkItemStyle):
-                    static string GetStyleSource(LinkItemStyles linkItemStye) => $"{RCFRCP.App.WPFApplicationBasePath}/Styles/LinkItemStyles - {linkItemStye}.xaml";
+            // Apply the current culture if defaulted
+            if (Data.CurrentCulture == LocalizationManager.DefaultCulture.Name)
+                LocalizationManager.SetCulture(LocalizationManager.DefaultCulture.Name);
 
-                    // Get previous source
-                    var oldSource = GetStyleSource(PreviousLinkItemStyle);
+            // Listen to data binding logs
+            WPFTraceListener.Setup(LogLevel.Warning);
 
-                    // Remove old source
-                    foreach (ResourceDictionary resourceDictionary in Resources.MergedDictionaries)
-                    {
-                        if (!String.Equals(resourceDictionary.Source?.ToString(), oldSource,
-                            StringComparison.OrdinalIgnoreCase))
-                            continue;
+            StartupComplete += BaseApp_StartupComplete_Miscellaneous_Async;
+            StartupComplete += App_StartupComplete_Updater_Async;
+            Data.PropertyChanged += Data_PropertyChangedAsync;
 
-                        Resources.MergedDictionaries.Remove(resourceDictionary);
-                        break;
-                    }
+            // Run basic startup
+            await BasicStartupAsync();
 
-                    // Add new source
-                    Resources.MergedDictionaries.Add(new ResourceDictionary
-                    {
-                        Source = new Uri(GetStyleSource(AppData.LinkItemStyle))
-                    });
+            RCFCore.Logger?.LogInformationSource($"Current version is {RCFRCP.App.CurrentAppVersion}");
 
-                    PreviousLinkItemStyle = AppData.LinkItemStyle;
+            // Check if it's a new version
+            if (Data.LastVersion < RCFRCP.App.CurrentAppVersion)
+            {
+                // Run post-update code
+                await PostUpdateAsync();
 
-                    break;
+                LogStartupTime("Post update has run");
 
-                case nameof(AppUserData.RRR2LaunchMode):
-                    await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, false, false, false, true));
-                    break;
+                // Update the last version
+                Data.LastVersion = RCFRCP.App.CurrentAppVersion;
+            }
+            // Check if it's a lower version than previously recorded
+            else if (Data.LastVersion > RCFRCP.App.CurrentAppVersion)
+            {
+                RCFCore.Logger?.LogWarningSource($"A newer version ({Data.LastVersion}) has been recorded in the application data");
 
-                case nameof(AppUserData.DosBoxPath):
-                case nameof(AppUserData.DosBoxConfig):
-                    await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, false, true));
-                    break;
+                if (!Data.DisableDowngradeWarning)
+                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, RCFRCP.App.CurrentAppVersion,
+                        Data.LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
+            }
+        }
+
+        /// <summary>
+        /// Gets the main <see cref="Window"/> to show
+        /// </summary>
+        /// <returns>The Window instance</returns>
+        protected override Window GetMainWindow()
+        {
+            // Create the window
+            var window = new MainWindow();
+
+            // Load previous state
+            RCFRCP.Data?.WindowState?.ApplyToWindow(window);
+
+            return window;
+        }
+
+        /// <summary>
+        /// An optional method to override which runs when closing
+        /// </summary>
+        /// <param name="mainWindow">The main Window of the application</param>
+        /// <returns>The task</returns>
+        protected override async Task OnCloseAsync(Window mainWindow)
+        {
+            // Save window state
+            if (RCFRCP.Data != null)
+                RCFRCP.Data.WindowState = WindowSessionState.GetWindowState(mainWindow);
+
+            RCFCore.Logger?.LogInformationSource($"The application is exiting...");
+
+            // Save all user data
+            await RCFRCP.App.SaveUserDataAsync();
+        }
+
+        /// <summary>
+        /// Override to run when another instance of the program is found running
+        /// </summary>
+        /// <param name="args">The launch arguments</param>
+        protected override void OnOtherInstanceFound(string[] args)
+        {
+            MessageBox.Show($"An instance of the Rayman Control Panel is already running", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        /// <summary>
+        /// Optional initial setup to run. Can be used to check if the environment is valid
+        /// for the application to run or for the user to accept the license.
+        /// </summary>
+        /// <param name="args">The launch arguments</param>
+        /// <returns>True if the setup finished successfully or false if the application has to shut down</returns>
+        protected override Task<bool> InitialSetupAsync(string[] args)
+        {
+            // Make sure we are on Windows Vista or higher for the Windows API Code Pack and Deployment Image Servicing and Management
+            if (AppViewModel.WindowsVersion < WindowsVersion.WinVista)
+            {
+                MessageBox.Show("Windows Vista or higher is required to run this application", "Error starting", MessageBoxButton.OK, MessageBoxImage.Error);
+                return Task.FromResult(false);
+            }
+
+            // Make sure the license has been accepted
+            if (!ShowLicense())
+                return Task.FromResult(false);
+
+            // Hard code the current directory
+            Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) ?? Directory.GetCurrentDirectory());
+
+            return Task.FromResult(true);
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        /// <summary>
+        /// Shows the application license message and returns a value indicating if it was accepted
+        /// </summary>
+        /// <returns>True if it was accepted, false if not</returns>
+        private bool ShowLicense()
+        {
+            try
+            {
+                // Get the license value, if one exists
+                int regValue = Registry.GetValue(CommonPaths.RegistryBaseKey, CommonPaths.RegistryLicenseValue, 0)?.CastTo<int>() ?? 0;
+
+                // Check if it has been accepted
+                if (regValue == 1)
+                    return true;
+
+                // Create license popup dialog
+                var ld = new LicenseDialog();
+
+                // Close the splash screen
+                CloseSplashScreen();
+
+                // Show the dialog
+                ld.ShowDialog();
+
+                // Set Registry value if accepted
+                if (ld.Accepted)
+                    Registry.SetValue(CommonPaths.RegistryBaseKey, CommonPaths.RegistryLicenseValue, 1);
+
+                // Return if it was accepted
+                return ld.Accepted;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"The license verification failed with the message of: {ex.Message}", "License error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
             }
         }
 
@@ -151,11 +282,11 @@ namespace RayCarrot.RCP.Metro
         /// Runs the basic startup, such as handling launch arguments
         /// </summary>
         /// <returns>The task</returns>
-        protected override async Task BasicStartupAsync()
+        private async Task BasicStartupAsync()
         {
             // Track changes to the user data
-            PreviousLinkItemStyle = AppData.LinkItemStyle;
-            PreviousBackupLocation = AppData.BackupLocation;
+            PreviousLinkItemStyle = Data.LinkItemStyle;
+            PreviousBackupLocation = Data.BackupLocation;
 
             // Subscribe to when to refresh the jump list
             RCFRCP.App.RefreshRequired += (s, e) =>
@@ -171,19 +302,63 @@ namespace RayCarrot.RCP.Metro
             StartupComplete += App_StartupComplete_GameFinder_Async;
             StartupComplete += App_StartupComplete_Miscellaneous_Async;
 
-            // Run base
-            await base.BasicStartupAsync();
+            // Check for reset argument
+            if (RCFCore.Data.Arguments.Contains("-reset"))
+                RCFRCP.Data.Reset();
+
+            // Check for user level argument
+            if (RCFCore.Data.Arguments.Contains("-ul"))
+            {
+                try
+                {
+                    string ul = RCFCore.Data.Arguments[RCFCore.Data.Arguments.FindItemIndex(x => x == "-ul") + 1];
+                    Data.UserLevel = Enum.Parse(typeof(UserLevel), ul, true).CastTo<UserLevel>();
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Setting user level from args");
+                }
+            }
+
+            // NOTE: Starting with the updater 3.0.0 (available from 4.5.0) this is no longer used. It must however be maintained for legacy support (i.e. updating to version 4.5.0+ using an updater below 3.0.0)
+            // Check for updater install argument
+            if (RCFCore.Data.Arguments.Contains("-install"))
+            {
+                try
+                {
+                    FileSystemPath updateFile = RCFCore.Data.Arguments[RCFCore.Data.Arguments.FindItemIndex(x => x == "-install") + 1];
+                    if (updateFile.FileExists)
+                    {
+                        updateFile.GetFileInfo().Delete();
+                        RCFCore.Logger?.LogInformationSource($"The updater was deleted");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Deleting updater");
+                }
+            }
+
+            // Update the application path
+            FileSystemPath appPath = Assembly.GetEntryAssembly()?.Location;
+
+            if (appPath != Data.ApplicationPath)
+            {
+                Data.ApplicationPath = appPath;
+
+                RCFCore.Logger?.LogInformationSource("The application path has been updated");
+            }
 
             await RCFRCP.App.DeployFilesAsync(false);
 
             // Show first launch info
-            if (AppData.IsFirstLaunch)
+            if (Data.IsFirstLaunch)
             {
                 // Close the splash screen
                 CloseSplashScreen();
 
                 new FirstLaunchInfoDialog().ShowDialog();
-                AppData.IsFirstLaunch = false;
+                Data.IsFirstLaunch = false;
             }
 
             LogStartupTime("Validating games");
@@ -196,35 +371,32 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Runs the post-update code
         /// </summary>
-        protected override async Task PostUpdateAsync()
+        private async Task PostUpdateAsync()
         {
-            // Run base
-            await base.PostUpdateAsync();
+            if (Data.LastVersion < new Version(4, 0, 0, 6))
+                Data.EnableAnimations = true;
 
-            if (AppData.LastVersion < new Version(4, 0, 0, 6))
-                AppData.EnableAnimations = true;
-
-            if (AppData.LastVersion < new Version(4, 1, 1, 0))
-                AppData.ShowIncompleteTranslations = false;
+            if (Data.LastVersion < new Version(4, 1, 1, 0))
+                Data.ShowIncompleteTranslations = false;
 
             if (RCFRCP.Data.LastVersion < new Version(4, 5, 0, 0))
             {
-                AppData.LinkItemStyle = LinkItemStyles.List;
-                AppData.ApplicationPath = Assembly.GetEntryAssembly()?.Location;
-                AppData.ForceUpdate = false;
-                AppData.GetBetaUpdates = false;
+                Data.LinkItemStyle = LinkItemStyles.List;
+                Data.ApplicationPath = Assembly.GetEntryAssembly()?.Location;
+                Data.ForceUpdate = false;
+                Data.GetBetaUpdates = false;
             }
 
-            if (AppData.LastVersion < new Version(4, 6, 0, 0))
-                AppData.LinkListHorizontalAlignment = HorizontalAlignment.Left;
+            if (Data.LastVersion < new Version(4, 6, 0, 0))
+                Data.LinkListHorizontalAlignment = HorizontalAlignment.Left;
 
-            if (AppData.LastVersion < new Version(5, 0, 0, 0))
+            if (Data.LastVersion < new Version(5, 0, 0, 0))
             {
-                AppData.CompressBackups = true;
-                AppData.FiestaRunVersion = FiestaRunEdition.Default;
+                Data.CompressBackups = true;
+                Data.FiestaRunVersion = FiestaRunEdition.Default;
 
                 // Due to the fiesta run version system being changed the game has to be removed and then re-added
-                AppData.Games.Remove(Games.RaymanFiestaRun);
+                Data.Games.Remove(Games.RaymanFiestaRun);
 
                 // If a Fiesta Run backup exists the name needs to change to the new standard
                 var fiestaBackupDir = RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + "Rayman Fiesta Run";
@@ -241,9 +413,9 @@ namespace RayCarrot.RCP.Metro
                         var isWin10 = appData["IsFiestaRunWin10Edition"].Value<bool>();
 
                         // Set the current edition
-                        AppData.FiestaRunVersion = isWin10 ? FiestaRunEdition.Win10 : FiestaRunEdition.Default;
+                        Data.FiestaRunVersion = isWin10 ? FiestaRunEdition.Win10 : FiestaRunEdition.Default;
 
-                        RCFRCPC.File.MoveDirectory(fiestaBackupDir, RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetGameInfo().BackupName, true, true);
+                        RCFRCP.File.MoveDirectory(fiestaBackupDir, RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetGameInfo().BackupName, true, true);
                     }
                     catch (Exception ex)
                     {
@@ -256,54 +428,54 @@ namespace RayCarrot.RCP.Metro
                 // Remove old temp dir
                 try
                 {
-                    RCFRCPC.File.DeleteDirectory(Path.Combine(Path.GetTempPath(), "RCP_Metro"));
+                    RCFRCP.File.DeleteDirectory(Path.Combine(Path.GetTempPath(), "RCP_Metro"));
                 }
                 catch (Exception ex)
                 {
                     ex.HandleError("Cleaning pre-5.0.0 temp");
                 }
 
-                AppData.DisableDowngradeWarning = false;
+                Data.DisableDowngradeWarning = false;
             }
 
-            if (AppData.LastVersion < new Version(6, 0, 0, 0))
+            if (Data.LastVersion < new Version(6, 0, 0, 0))
             {
-                AppData.EducationalDosBoxGames = null;
-                AppData.RRR2LaunchMode = RRR2LaunchMode.AllGames;
-                AppData.RabbidsGoHomeLaunchData = null;
+                Data.EducationalDosBoxGames = null;
+                Data.RRR2LaunchMode = RRR2LaunchMode.AllGames;
+                Data.RabbidsGoHomeLaunchData = null;
             }
 
-            if (AppData.LastVersion < new Version(6, 0, 0, 2))
+            if (Data.LastVersion < new Version(6, 0, 0, 2))
             {
                 // By default, add all games to the jump list collection
-                AppData.JumpListItemIDCollection = RCFRCP.App.GetGames.
+                Data.JumpListItemIDCollection = RCFRCP.App.GetGames.
                     Where(x => x.IsAdded()).
                     Select(x => x.GetManager().GetJumpListItems().Select(y => y.ID)).
                     SelectMany(x => x).
                     ToList();
             }
 
-            if (AppData.LastVersion < new Version(7, 0, 0, 0))
+            if (Data.LastVersion < new Version(7, 0, 0, 0))
             {
-                AppData.IsUpdateAvailable = false;
+                Data.IsUpdateAvailable = false;
 
-                if (AppData.UserLevel == UserLevel.Normal)
-                    AppData.UserLevel = UserLevel.Advanced;
+                if (Data.UserLevel == UserLevel.Normal)
+                    Data.UserLevel = UserLevel.Advanced;
             }
 
-            if (AppData.LastVersion < new Version(7, 1, 0, 0))
-                AppData.InstalledGames = new HashSet<Games>();
+            if (Data.LastVersion < new Version(7, 1, 0, 0))
+                Data.InstalledGames = new HashSet<Games>();
 
-            if (AppData.LastVersion < new Version(7, 1, 1, 0))
-                AppData.CategorizeGames = true;
+            if (Data.LastVersion < new Version(7, 1, 1, 0))
+                Data.CategorizeGames = true;
 
-            if (AppData.LastVersion < new Version(7, 2, 0, 0))
-                AppData.ShownRabbidsActivityCenterLaunchMessage = false;
+            if (Data.LastVersion < new Version(7, 2, 0, 0))
+                Data.ShownRabbidsActivityCenterLaunchMessage = false;
 
-            if (AppData.LastVersion < new Version(8, 1, 0, 0))
+            if (Data.LastVersion < new Version(8, 1, 0, 0))
             {
                 // Since support has been removed for showing the program under installed programs we now have to remove the key
-                var keyPath = RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, RCFRCPC.API.AppCodeName);
+                var keyPath = RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, CommonPaths.RegistryUninstallKeyName);
 
                 if (RCFWinReg.RegistryManager.KeyExists(keyPath))
                 {
@@ -313,7 +485,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             using var parentKey = RCFWinReg.RegistryManager.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms, RegistryView.Default, true);
 
-                            parentKey.DeleteSubKey(RCFRCPC.API.AppCodeName);
+                            parentKey.DeleteSubKey(CommonPaths.RegistryUninstallKeyName);
 
                             RCFCore.Logger?.LogInformationSource("The program Registry key has been deleted");
                         }
@@ -343,10 +515,6 @@ namespace RayCarrot.RCP.Metro
             // Show app news
             new AppNewsDialog().ShowDialog();
         }
-
-        #endregion
-
-        #region Private Methods
 
         /// <summary>
         /// Validates the added games
@@ -408,6 +576,154 @@ namespace RayCarrot.RCP.Metro
                 await RCFRCP.App.RunGameFinderAsync();
         }
 
+        private static void App_StartupEventsCompleted(object sender, EventArgs e)
+        {
+            RCFRCP.App.IsStartupRunning = false;
+        }
+
+        private static async Task App_StartupComplete_Updater_Async(object sender, EventArgs eventArgs)
+        {
+            if (CommonPaths.UpdaterFilePath.FileExists)
+            {
+                int retryTime = 0;
+
+                // Wait until we can write to the file (i.e. it closing after an update)
+                while (!RCFRCP.File.CheckFileWriteAccess(CommonPaths.UpdaterFilePath))
+                {
+                    retryTime++;
+
+                    // Try for 2 seconds first
+                    if (retryTime < 20)
+                    {
+                        RCFCore.Logger?.LogDebugSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
+
+                        await Task.Delay(100);
+                    }
+                    // Now it's taking a long time... Try for 10 more seconds
+                    else if (retryTime < 70)
+                    {
+                        RCFCore.Logger?.LogWarningSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
+
+                        await Task.Delay(200);
+                    }
+                    // Give up and let the deleting of the file give an error message
+                    else
+                    {
+                        RCFCore.Logger?.LogCriticalSource($"The updater can not be removed due to not having write access");
+                        break;
+                    }
+                }
+
+                try
+                {
+                    // Remove the updater
+                    RCFRCP.File.DeleteFile(CommonPaths.UpdaterFilePath);
+
+                    RCFCore.Logger?.LogInformationSource($"The updater has been removed");
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleCritical("Removing updater");
+                }
+            }
+
+            // Check for updates
+            if (RCFRCP.Data.AutoUpdate)
+                await RCFRCP.App.CheckForUpdatesAsync(false);
+        }
+
+        private async Task BaseApp_StartupComplete_Miscellaneous_Async(object sender, EventArgs eventArgs)
+        {
+            if (Dispatcher == null)
+                throw new Exception("Dispatcher is null");
+
+            // Run on UI thread
+            await Dispatcher.Invoke(async () =>
+            {
+                // Show log viewer if a debugger is attached
+                if (Debugger.IsAttached)
+                {
+                    var logViewer = new LogViewer();
+                    var win = await logViewer.ShowWindowAsync();
+
+                    // NOTE: This is a temporary solution to avoid the log viewer blocking the main window
+                    win.Owner = null;
+                    MainWindow?.Focus();
+                }
+            });
+        }
+
+        private async void Data_PropertyChangedAsync(object sender, PropertyChangedEventArgs e)
+        {
+            using (await DataChangedHandlerAsyncLock.LockAsync())
+            {
+                switch (e.PropertyName)
+                {
+                    case nameof(AppUserData.DarkMode):
+                        this.SetTheme(Data.DarkMode);
+                        break;
+
+                    case nameof(AppUserData.ShowIncompleteTranslations):
+                        LocalizationManager.RefreshLanguages(Data.ShowIncompleteTranslations);
+                        break;
+
+                    case nameof(AppUserData.BackupLocation):
+
+                        await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, true, false));
+
+                        if (!PreviousBackupLocation.DirectoryExists)
+                        {
+                            RCFCore.Logger?.LogInformationSource("The backup location has been changed, but the previous directory does not exist");
+                            return;
+                        }
+
+                        RCFCore.Logger?.LogInformationSource("The backup location has been changed and old backups are being moved...");
+
+                        await RCFRCP.App.MoveBackupsAsync(PreviousBackupLocation, Data.BackupLocation);
+
+                        PreviousBackupLocation = Data.BackupLocation;
+
+                        break;
+
+                    case nameof(AppUserData.LinkItemStyle):
+                        static string GetStyleSource(LinkItemStyles linkItemStye) => $"{RCFRCP.App.WPFApplicationBasePath}/Styles/LinkItemStyles - {linkItemStye}.xaml";
+
+                        // Get previous source
+                        var oldSource = GetStyleSource(PreviousLinkItemStyle);
+
+                        // Remove old source
+                        foreach (ResourceDictionary resourceDictionary in Resources.MergedDictionaries)
+                        {
+                            if (!String.Equals(resourceDictionary.Source?.ToString(), oldSource,
+                                StringComparison.OrdinalIgnoreCase))
+                                continue;
+
+                            Resources.MergedDictionaries.Remove(resourceDictionary);
+                            break;
+                        }
+
+                        // Add new source
+                        Resources.MergedDictionaries.Add(new ResourceDictionary
+                        {
+                            Source = new Uri(GetStyleSource(Data.LinkItemStyle))
+                        });
+
+                        PreviousLinkItemStyle = Data.LinkItemStyle;
+
+                        break;
+
+                    case nameof(AppUserData.RRR2LaunchMode):
+                        await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, false, false, false, true));
+                        break;
+
+                    case nameof(AppUserData.DosBoxPath):
+                    case nameof(AppUserData.DosBoxConfig):
+                        await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, false, true));
+                        break;
+                }
+            }
+        }
+
         #endregion
 
         #region Public Methods
@@ -465,6 +781,16 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Private Properties
+
+        /// <summary>
+        /// The app user data
+        /// </summary>
+        private AppUserData Data { get; set; }
+
+        /// <summary>
+        /// The async lock for <see cref="Data_PropertyChangedAsync"/>
+        /// </summary>
+        private AsyncLock DataChangedHandlerAsyncLock { get; }
 
         /// <summary>
         /// The saved previous backup location

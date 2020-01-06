@@ -1,16 +1,14 @@
-﻿<core:BaseWindow x:Class="RayCarrot.RCP.Metro.MainWindow"
-               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-               xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
-               xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-               xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-               xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-               xmlns:tb="http://www.hardcodet.net/taskbar"
-               xmlns:mah="http://metro.mahapps.com/winfx/xaml/shared"
-               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-               xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
-               mc:Ignorable="d"
+﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.MainWindow"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:tb="http://www.hardcodet.net/taskbar"
+                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                  xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                  mc:Ignorable="d"
                Language="{UICulture}"
                ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                CloseWithEscape="False"
@@ -20,7 +18,7 @@
     <Window.Resources>
         <local:TaskbarIconViewModel x:Key="TaskbarIconViewModel" />
     </Window.Resources>
-    <core:BaseWindow.TitleTemplate>
+    <local:BaseWindow.TitleTemplate>
         <DataTemplate>
             <Grid DataContext="{x:Static local:RCFRCP.App}">
                 <Grid.Resources>
@@ -40,12 +38,9 @@
                            Text="{Resx AppNameAdmin}" />
             </Grid>
         </DataTemplate>
-    </core:BaseWindow.TitleTemplate>
+    </local:BaseWindow.TitleTemplate>
     <metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands>
-            <!--<Button ToolTip="Rayman Modding Panel">
-                <iconPacks:PackIconMaterial Kind="WrenchOutline" />
-            </Button>-->
             <Button DataContext="{StaticResource TaskbarIconViewModel}"
                     Command="{Binding Path=MinimizeToTaskbarCommand}"
                     ToolTip="{Resx Window_MinimizeToTray}">
@@ -79,7 +74,7 @@
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>
 
-        <core:MainRCPTabControl x:Name="PageTabControl"
+        <local:MainRCPTabControl x:Name="PageTabControl"
                                 Padding="5">
             <!-- Games -->
 
@@ -190,56 +185,56 @@
 
             <!-- Backup/Restore -->
 
-            <core:RCPTabItem Header="{Resx BackupPageHeader}"
+            <local:RCPTabItem Header="{Resx BackupPageHeader}"
                              Loaded="BackupPage_Loaded"
                              IconKind="BackupRestore"
                              IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=BackupRestore}">
                 <local:BackupPage />
-            </core:RCPTabItem>
+            </local:RCPTabItem>
 
             <!-- Links -->
 
-            <core:RCPTabItem Header="{Resx LinksPageHeader}"
+            <local:RCPTabItem Header="{Resx LinksPageHeader}"
                              IconKind="Link"
                              IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Links}">
                 <local:LinksPage />
-            </core:RCPTabItem>
+            </local:RCPTabItem>
 
             <!-- Settings -->
 
-            <core:RCPTabItem Header="{Resx SettingsPageHeader}"
+            <local:RCPTabItem Header="{Resx SettingsPageHeader}"
                               IconKind="SettingsOutline"
                               IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Settings}">
                 <local:SettingsPage />
-            </core:RCPTabItem>
+            </local:RCPTabItem>
 
             <!-- Help -->
 
-            <core:RCPTabItem Header="{Resx HelpPageHeader}"
+            <local:RCPTabItem Header="{Resx HelpPageHeader}"
                               IconKind="HelpCircleOutline"
                               IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Help}">
                 <local:HelpPage />
 
-            </core:RCPTabItem>
+            </local:RCPTabItem>
 
             <!-- About -->
 
-            <core:RCPTabItem Header="{Resx AboutPageHeader}"
+            <local:RCPTabItem Header="{Resx AboutPageHeader}"
                               IconKind="InformationOutline"
                               IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=About}">
                 <local:AboutPage />
-            </core:RCPTabItem>
+            </local:RCPTabItem>
 
             <!-- Debug -->
 
-            <core:RCPTabItem Header="{Resx DebugPageHeader}"
+            <local:RCPTabItem Header="{Resx DebugPageHeader}"
                               IconKind="CodeBraces"
                               IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Debug}"
                               rwpf:UserLevelTag.MinUserLevel="Debug">
                 <local:DebugPage />
-            </core:RCPTabItem>
+            </local:RCPTabItem>
 
-        </core:MainRCPTabControl>
+        </local:MainRCPTabControl>
 
         <metro:ProgressRing HorizontalAlignment="Right"
                             VerticalAlignment="Bottom"
@@ -247,4 +242,4 @@
                             Visibility="{Binding Path=IsStartupRunning, Converter={rwpf:BooleanToVisibilityConverter}}" />
 
     </Grid>
-</core:BaseWindow>
+</local:BaseWindow>

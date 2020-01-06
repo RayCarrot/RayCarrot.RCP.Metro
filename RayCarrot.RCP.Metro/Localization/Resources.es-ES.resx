@@ -718,6 +718,59 @@ Incluso si la opción interna de pantalla ancha esta activada.</value>
     <value>Configuración nGlide</value>
     <comment>Configuración nGlide</comment>
   </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Acción exitosa</value>
+    <comment>Acción exitosa</comment>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Mensaje Genérico</value>
+    <comment>Mensaje Genérico</comment>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Mensaje de información</value>
+    <comment>Mensaje de información</comment>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Mensaje de error</value>
+    <comment>Mensaje de error</comment>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Mensaje de aviso</value>
+    <comment>Mensaje de aviso</comment>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Mensaje de éxito</value>
+    <comment>Mensaje de éxito</comment>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Mensaje de pregunta</value>
+    <comment>Mensaje de pregunta</comment>
+  </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Excepción</value>
+    <comment>Excepción</comment>
+  </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>El archivo especificado no ha sido encontrado</value>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>Archivo no encontrado</value>
+  </data>
+  <data name="File_ErrorLaunchingFile" xml:space="preserve">
+    <value>Ha ocurrido un error en la ejecucción</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>La ubicación de archivos no se ha podido abrir
+</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>
+</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>
+</value>
+  </data>
   <data name="LocateGame_InvalidSteamGameHeader" xml:space="preserve">
     <value>No se ha encontrado el juego</value>
   </data>
@@ -733,5 +786,45 @@ Incluso si la opción interna de pantalla ancha esta activada.</value>
   </data>
   <data name="Download_ConfirmHeader" xml:space="preserve">
     <value>Confirmar la Descarga</value>
+  </data>
+  <data name="Update_UnknownError" xml:space="preserve">
+    <value>Error desconocido</value>
+    <comment>Error desconocido</comment>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Se ha encontrado una nueva versión</value>
+  </data>
+  <data name="Archive_ImportNoFilesError" xml:space="preserve">
+    <value>No se han encontrado archivos de importación.
+</value>
+  </data>
+  <data name="Archive_ImportFailsError" xml:space="preserve">
+    <value>Algunos archivos han fallado en la importación</value>
+  </data>
+  <data name="Archive_ImportFilesSuccess" xml:space="preserve">
+    <value>Los archivos han sido importados</value>
+  </data>
+  <data name="Archive_ExportFilesSuccess" xml:space="preserve">
+    <value>Los archivos han sido exportados</value>
+  </data>
+  <data name="Archive_ImportFileSuccess" xml:space="preserve">
+    <value>El archivo se ha importado
+</value>
+  </data>
+  <data name="Archive_ExportFileSuccess" xml:space="preserve">
+    <value>El archivo se ha exportado</value>
+  </data>
+  <data name="Archive_ExportError" xml:space="preserve">
+    <value>{0} no se ha podido exportar</value>
+  </data>
+  <data name="Archive_ImportError" xml:space="preserve">
+    <value>{0} no se ha podido importar</value>
+  </data>
+  <data name="Archive_RepackingStatus" xml:space="preserve">
+    <value>Reempaquetando archivo</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
+    <value>
+</value>
   </data>
 </root>

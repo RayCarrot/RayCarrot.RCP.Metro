@@ -7,7 +7,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using RayCarrot.RCP.Core;
 
 namespace RayCarrot.RCP.Metro
 {

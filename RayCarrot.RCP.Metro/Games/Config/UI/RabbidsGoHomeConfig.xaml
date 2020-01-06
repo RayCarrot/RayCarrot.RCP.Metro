@@ -8,7 +8,6 @@
                     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
-                    xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
                     ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                     IsTabStop="False"
                     mc:Ignorable="d"
@@ -32,7 +31,7 @@
                     <TextBlock Style="{StaticResource HeaderTextBlock}"
                                Text="{Resx GoHomeConfig_CustomLaunchHeader}" />
 
-                    <core:InfoIcon Text="{Resx GoHomeConfig_CustomLaunchInfo}" />
+                    <local:InfoIcon Text="{Resx GoHomeConfig_CustomLaunchInfo}" />
 
                 </StackPanel>
 

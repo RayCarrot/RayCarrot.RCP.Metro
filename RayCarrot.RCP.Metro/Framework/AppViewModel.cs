@@ -3,8 +3,9 @@ using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
+using RayCarrot.UserData;
+using RayCarrot.Windows.Shell;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
@@ -19,8 +21,17 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Handles common actions and events for this application
     /// </summary>
-    public class AppViewModel : BaseRCPAppViewModel<Pages>
+    public class AppViewModel : BaseViewModel
     {
+        #region Static Constructor
+
+        static AppViewModel()
+        {
+            WindowsVersion = WindowsHelpers.GetCurrentWindowsVersion();
+        }
+
+        #endregion
+
         #region Constructor
 
         /// <summary>
@@ -28,10 +39,27 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public AppViewModel()
         {
+            // Flag that the startup has begun
+            IsStartupRunning = true;
+
+            // Check if the application is running as administrator
+            try
+            {
+                IsRunningAsAdmin = WindowsHelpers.RunningAsAdmin;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                IsRunningAsAdmin = false;
+            }
+
+            // Create properties
+            SaveUserDataAsyncLock = new AsyncLock();
             MoveBackupsAsyncLock = new AsyncLock();
             AdminWorkerAsyncLock = new AsyncLock();
             OnRefreshRequiredAsyncLock = new AsyncLock();
 
+            // Create commands
             RestartAsAdminCommand = new AsyncRelayCommand(RestartAsAdminAsync);
             RequestRestartAsAdminCommand = new AsyncRelayCommand(RequestRestartAsAdminAsync);
 
@@ -480,6 +508,11 @@ namespace RayCarrot.RCP.Metro
         #region Private Properties
 
         /// <summary>
+        /// An async lock for the <see cref="SaveUserDataAsync"/> method
+        /// </summary>
+        private AsyncLock SaveUserDataAsyncLock { get; }
+
+        /// <summary>
         /// An async lock for the <see cref="MoveBackupsAsync"/> method
         /// </summary>
         private AsyncLock MoveBackupsAsyncLock { get; }
@@ -501,7 +534,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The application base path to use for WPF related operations
         /// </summary>
-        public override string WPFApplicationBasePath => "pack://application:,,,/RayCarrot.RCP.Metro;component/";
+        public string WPFApplicationBasePath => "pack://application:,,,/RayCarrot.RCP.Metro;component/";
 
         /// <summary>
         /// Shortcut to the app user data
@@ -546,12 +579,41 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public override Version CurrentAppVersion => new Version(8, 1, 0, 0);
+        public Version CurrentAppVersion => new Version(8, 1, 0, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
-        public override bool IsBeta => false;
+        public bool IsBeta => false;
+
+        /// <summary>
+        /// The currently selected page
+        /// </summary>
+        public Pages SelectedPage { get; set; }
+
+        /// <summary>
+        /// A flag indicating if an update check is in progress
+        /// </summary>
+        public bool CheckingForUpdates { get; set; }
+
+        /// <summary>
+        /// Indicates if the application is running as administrator
+        /// </summary>
+        public bool IsRunningAsAdmin { get; }
+
+        /// <summary>
+        /// Indicates if the application startup is running
+        /// </summary>
+        public bool IsStartupRunning { get; set; }
+
+        #endregion
+
+        #region Public Static Properties
+
+        /// <summary>
+        /// The Windows version the program is running on
+        /// </summary>
+        public static WindowsVersion WindowsVersion { get; }
 
         #endregion
 
@@ -679,14 +741,14 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                if (!RCFRCP.Path.UbiIniPath1.FileExists)
+                if (!CommonPaths.UbiIniPath1.FileExists)
                 {
                     RCFCore.Logger?.LogInformationSource("The ubi.ini file was not found");
                     return;
                 }
 
                 // Check if we have write access
-                if (RCFRCPC.File.CheckFileWriteAccess(RCFRCP.Path.UbiIniPath1))
+                if (RCFRCP.File.CheckFileWriteAccess(CommonPaths.UbiIniPath1))
                 {
                     RCFCore.Logger?.LogDebugSource("The ubi.ini file has write access");
                     return;
@@ -695,7 +757,7 @@ namespace RayCarrot.RCP.Metro
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
 
                 // Attempt to change the permission
-                await RunAdminWorkerAsync(AdminWorkerModes.GrantFullControl, RCFRCP.Path.UbiIniPath1);
+                await RunAdminWorkerAsync(AdminWorkerModes.GrantFullControl, CommonPaths.UbiIniPath1);
 
                 RCFCore.Logger?.LogInformationSource($"The ubi.ini file permission was changed");
             }
@@ -905,7 +967,7 @@ namespace RayCarrot.RCP.Metro
                         return;
                     }
 
-                    RCFRCPC.File.MoveDirectory(oldLocation, newLocation, false, false);
+                    RCFRCP.File.MoveDirectory(oldLocation, newLocation, false, false);
 
                     RCFCore.Logger?.LogInformationSource("Old backups have been moved");
 
@@ -939,7 +1001,7 @@ namespace RayCarrot.RCP.Metro
         public async Task RunAdminWorkerAsync(AdminWorkerModes mode, params string[] args)
         {
             using (await AdminWorkerAsyncLock.LockAsync())
-                await RCFRCPC.File.LaunchFileAsync(RCFRCP.Path.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
+                await RCFRCP.File.LaunchFileAsync(CommonPaths.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
         }
 
         /// <summary>
@@ -951,17 +1013,17 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Deploy the uninstaller
-                if (overwrite || !RCFRCP.Path.UninstallFilePath.FileExists)
+                if (overwrite || !CommonPaths.UninstallFilePath.FileExists)
                 {
-                    Directory.CreateDirectory(RCFRCP.Path.UninstallFilePath.Parent);
-                    File.WriteAllBytes(RCFRCP.Path.UninstallFilePath, Files.Uninstaller);
+                    Directory.CreateDirectory(CommonPaths.UninstallFilePath.Parent);
+                    File.WriteAllBytes(CommonPaths.UninstallFilePath, Files.Uninstaller);
                 }
 
                 // Deploy the admin worker
-                if (overwrite || !RCFRCP.Path.AdminWorkerPath.FileExists)
+                if (overwrite || !CommonPaths.AdminWorkerPath.FileExists)
                 {
-                    Directory.CreateDirectory(RCFRCP.Path.AdminWorkerPath.Parent);
-                    File.WriteAllBytes(RCFRCP.Path.AdminWorkerPath, Files.AdminWorker);
+                    Directory.CreateDirectory(CommonPaths.AdminWorkerPath.Parent);
+                    File.WriteAllBytes(CommonPaths.AdminWorkerPath, Files.AdminWorker);
                 }
             }
             catch (Exception ex)
@@ -979,6 +1041,114 @@ namespace RayCarrot.RCP.Metro
         {
             if (await RCFUI.MessageUI.DisplayMessageAsync(Resources.App_RequiresAdminQuestion, Resources.App_RestartAsAdmin, MessageType.Warning, true))
                 await RestartAsAdminAsync();
+        }
+
+        /// <summary>
+        /// Opens the specified URL
+        /// </summary>
+        /// <param name="url">The URL to open</param>
+        public void OpenUrl(string url)
+        {
+            try
+            {
+                Process.Start(url)?.Dispose();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError($"Opening URL {url}");
+            }
+        }
+
+        /// <summary>
+        /// Checks for application updates
+        /// </summary>
+        /// <param name="isManualSearch">Indicates if this is a manual check, in which cause a message should be shown if no update is found</param>
+        /// <returns>The task</returns>
+        public async Task CheckForUpdatesAsync(bool isManualSearch)
+        {
+            if (CheckingForUpdates)
+                return;
+
+            try
+            {
+                CheckingForUpdates = true;
+
+                // Check for updates
+                var result = await RCFRCP.UpdaterManager.CheckAsync(RCFRCP.Data.ForceUpdate && isManualSearch, RCFRCP.Data.GetBetaUpdates || IsBeta);
+
+                // Check if there is an error
+                if (result.ErrorMessage != null)
+                {
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(result.Exception, result.ErrorMessage, Resources.Update_ErrorHeader);
+
+                    RCFRCP.Data.IsUpdateAvailable = false;
+
+                    return;
+                }
+
+                // Check if no new updates were found
+                if (!result.IsNewUpdateAvailable)
+                {
+                    if (isManualSearch)
+                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, CurrentAppVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
+
+                    RCFRCP.Data.IsUpdateAvailable = false;
+
+                    return;
+                }
+
+                // Indicate that a new update is available
+                RCFRCP.Data.IsUpdateAvailable = true;
+
+                // Run as new task to mark this operation as finished
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        if (await RCFUI.MessageUI.DisplayMessageAsync(!result.IsBetaUpdate ? String.Format(Resources.Update_UpdateAvailable, result.DisplayNews) : Resources.Update_BetaUpdateAvailable, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
+                        {
+                            // Launch the updater and run as admin if set to show under installed programs in under to update the Registry key
+                            var succeeded = await RCFRCP.UpdaterManager.UpdateAsync(result, false);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleError("Updating RCP");
+                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.Update_Error, Resources.Update_ErrorHeader, MessageType.Error);
+                    }
+                });
+            }
+            finally
+            {
+                CheckingForUpdates = false;
+            }
+        }
+
+        /// <summary>
+        /// Saves all user data for the application
+        /// </summary>
+        public virtual async Task SaveUserDataAsync()
+        {
+            // Lock the saving of user data
+            using (await SaveUserDataAsyncLock.LockAsync())
+            {
+                // Run it as a new task
+                await Task.Run(async () =>
+                {
+                    // Save all user data
+                    try
+                    {
+                        // Save all user data
+                        await RCFData.UserDataCollection.SaveAllAsync();
+
+                        RCFCore.Logger?.LogInformationSource($"The application user data was saved");
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleCritical("Saving user data");
+                    }
+                });
+            }
         }
 
         #endregion

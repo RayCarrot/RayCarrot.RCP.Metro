@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.WPF;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using RayCarrot.Extensions;
+using RayCarrot.IO;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -95,6 +98,40 @@ namespace RayCarrot.RCP.Metro
 
             // Return the result
             return result;
+        }
+
+        #endregion
+
+        #region Windows
+
+        /// <summary>
+        /// Shows a new instance of the Archive Explorer, while handling any potential exceptions
+        /// </summary>
+        /// <param name="manager">The archive data manager</param>
+        /// <param name="filePaths">The archive file paths</param>
+        /// <param name="origin">The callers member/function name</param>
+        /// <param name="filePath">The source code file path</param>
+        /// <param name="lineNumber">The line number in the code file of the caller</param>
+        /// <returns>The task</returns>
+        public async Task ShowArchiveExplorerAsync(IArchiveDataManager manager, IEnumerable<FileSystemPath> filePaths, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
+        {
+            try
+            {
+                if (Application.Current.Dispatcher == null)
+                    throw new Exception("The application does not have a valid dispatcher");
+
+                RCFCore.Logger?.LogTraceSource($"An Archive Explorer window was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+
+                // Run on UI thread
+                await Application.Current.Dispatcher.Invoke(() => 
+                    new ArchiveExplorerUI(new ArchiveExplorerDialogViewModel(manager, filePaths))).ShowWindowAsync();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Archive explorer");
+
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
+            }
         }
 
         #endregion

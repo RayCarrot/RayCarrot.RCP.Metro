@@ -7,7 +7,6 @@ using System.Linq;
 using System.Net;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -27,7 +26,7 @@ namespace RayCarrot.RCP.Metro
         {
             WebClient = new WebClient();
             InstallData = installerData;
-            FileManager = RCFRCPC.File;
+            FileManager = RCFRCP.File;
         }
 
         #endregion

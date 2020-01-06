@@ -750,6 +750,51 @@
   <data name="GameLink_R2nGlide" xml:space="preserve">
     <value>Configuração nGlide</value>
   </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Acção sucedida</value>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Mensagem Genérica</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Mensagem de informação</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Mensagem de erro</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Mensagem de aviso</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Mensagem de sucesso</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Mensagem de pergunta</value>
+  </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Excepção</value>
+  </data>
+  <data name="ExceptionMessageInfo" xml:space="preserve">
+    <value>Ocorreu uma excepção na aplicação. Abaixo está a informação de depuração disponível para o nível de utilizador actual no Carrot Framework.</value>
+  </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>O ficheiro especificado não pode ser encontrado: {0}</value>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>Ficheiro não encontrado</value>
+  </data>
+  <data name="File_ErrorLaunchingFile" xml:space="preserve">
+    <value>Ocorreu um erro quando se tentava executar o {0}</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>A localização não pode ser aberta</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>Erro de directório</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>O directório não pode ser aberto</value>
+  </data>
   <data name="LocateGame_BrowserHeader" xml:space="preserve">
     <value>Seleccionar directório de instalação</value>
   </data>
@@ -872,6 +917,48 @@
   </data>
   <data name="Download_Error" xml:space="preserve">
     <value>Os ficheiros não poderam ser descarregados</value>
+  </data>
+  <data name="Update_UnknownError" xml:space="preserve">
+    <value>Erro desconhecido</value>
+  </data>
+  <data name="Update_WebError" xml:space="preserve">
+    <value>A conecção não pode ser estabelecida com o servidor</value>
+  </data>
+  <data name="Update_FormatError" xml:space="preserve">
+    <value>A informação do servidor não foi válida</value>
+  </data>
+  <data name="Update_GenericError" xml:space="preserve">
+    <value>Um erro desconhecido ocorreu enquanto se conectava ao servidor</value>
+  </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>A verificação por actualizações falhou</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>A última versão ({0}) já está instalada</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Nenhuma versão nova foi encontrada</value>
+  </data>
+  <data name="Update_ManifestError" xml:space="preserve">
+    <value>O manifesto do servidor não pode ser lida</value>
+  </data>
+  <data name="Update_NewsError" xml:space="preserve">
+    <value>Erro ao obter notícias</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>Está disponível uma nova actualização para descarga. Descarregar agora?
+
+Notícias:
+{0}</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Nova versão encontrada</value>
+  </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>O actualizador não pode ser criado. Para descarregar manualmente a nova versão, vai ao {0} e descarrega a última versão de lá.</value>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Erro ao criar o actualizador</value>
   </data>
   <data name="MoveBackups_Question" xml:space="preserve">
     <value>Queres mover as cópias de segurança existentes para a nova localização?</value>
@@ -1394,6 +1481,12 @@ Para começar, marca abaixo as caixas que queres e pressiona 'Continuar' para ir
   <data name="GameOptions_Remove" xml:space="preserve">
     <value>Remover de programa</value>
   </data>
+  <data name="DowngradeWarning" xml:space="preserve">
+    <value>Estás a utilizar uma versão mais antiga do programa ({0}) comparado com a versão dos actuais dados da aplicação ({1}). Isto não é recomendado e poderá causar problemas de compactibilidade. Estes poderão ser corrigidos ao reiniciar os dados de aplicação para este programa.</value>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Downgrade detectado</value>
+  </data>
   <data name="JumpListItemDescription" xml:space="preserve">
     <value>Arrancar {0}</value>
   </data>
@@ -1738,6 +1831,24 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   <data name="Settings_ForceUpdates" xml:space="preserve">
     <value>Forçar actualizações manuais</value>
   </data>
+  <data name="Update_RunningUpdaterError" xml:space="preserve">
+    <value>O actualizador não pode arrancar. Para descarregar a nova versão manualmente, vai a {0} e descarrega a versão mais recente por lá.</value>
+  </data>
+  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
+    <value>Erro ao executar o actualizador</value>
+  </data>
+  <data name="File_RegKeyNotFound" xml:space="preserve">
+    <value>A chave de registo não foi encontrada</value>
+  </data>
+  <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
+    <value>Chave de registo não encontrada</value>
+  </data>
+  <data name="File_OpenRegKeyError" xml:space="preserve">
+    <value>A chave não pode ser aberta</value>
+  </data>
+  <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
+    <value>Erro ao abrir chave</value>
+  </data>
   <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
     <value>UbiIni Primário</value>
   </data>
@@ -1887,6 +1998,9 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   </data>
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Ligações</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>Está disponível uma nova actualização beta para descarga. Descarregar agora?</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Desinstalar</value>
@@ -2428,6 +2542,17 @@ Mantém premido L1 + R1 no menu (ou equivalente no comando a ser utilizado corre
   <data name="EducationalOptions_EditSuccess" xml:space="preserve">
     <value>O jogo foi editado com sucesso</value>
   </data>
+  <data name="App_ExceptionMessage" xml:space="preserve">
+    <value>{0}
+
+Error message: {1}</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultHeader" xml:space="preserve">
+    <value>Erro</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
+    <value>Ocorreu um erro.</value>
+  </data>
   <data name="Lang_Dutch" xml:space="preserve">
     <value>Holandês</value>
   </data>
@@ -2770,6 +2895,9 @@ Mantém premido L1 + R1 no menu (ou equivalente no comando a ser utilizado corre
   <data name="Config_SoundVolumeHeader" xml:space="preserve">
     <value>Volume de Som</value>
   </data>
+  <data name="Update_Error" xml:space="preserve">
+    <value>Ocorreu um erro quando se actualizava a aplicação</value>
+  </data>
   <data name="CategorizeGames" xml:space="preserve">
     <value>Categorizar jogos</value>
   </data>
@@ -2813,5 +2941,90 @@ Mantém premido L1 + R1 no menu (ou equivalente no comando a ser utilizado corre
     <value>Programa de tradução Espanhola (Espanha),
 Programa de tradução Catalã (Catalunha)
 </value>
+  </data>
+  <data name="Archive_ImportFileHeader" xml:space="preserve">
+    <value>Seleccionar ficheiro para importar</value>
+  </data>
+  <data name="Archive_FileSelectionGroupName" xml:space="preserve">
+    <value>Ficheiros suportados</value>
+  </data>
+  <data name="Archive_ImportingFileStatus" xml:space="preserve">
+    <value>A importar {0}
+</value>
+  </data>
+  <data name="Archive_ExportHeader" xml:space="preserve">
+    <value>Selecciona o destino a exportar</value>
+  </data>
+  <data name="Archive_ExportingFileStatus" xml:space="preserve">
+    <value>A exportar {0}</value>
+  </data>
+  <data name="Archive_Export" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="Archive_Import" xml:space="preserve">
+    <value>Importar</value>
+  </data>
+  <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
+    <value>Selecciona o directório a importar</value>
+  </data>
+  <data name="Archive_ExportDirectoryConflict" xml:space="preserve">
+    <value>O directório seleccionado já contém um directório com o mesmo nome que {0}</value>
+  </data>
+  <data name="Archive_ImportNoFilesError" xml:space="preserve">
+    <value>Não foi encontrado nenhum ficheiro para importar</value>
+  </data>
+  <data name="Archive_ImportFailsError" xml:space="preserve">
+    <value>Falhou a importação de alguns ficheiros
+</value>
+  </data>
+  <data name="Archive_ImportFilesSuccess" xml:space="preserve">
+    <value>Foram importados os ficheiros
+</value>
+  </data>
+  <data name="Archive_ExportFilesSuccess" xml:space="preserve">
+    <value>Foram exportados os ficheiros</value>
+  </data>
+  <data name="Archive_ImportFileSuccess" xml:space="preserve">
+    <value>Foi importado o ficheiro
+</value>
+  </data>
+  <data name="Archive_ExportFileSuccess" xml:space="preserve">
+    <value>Foi exportado o ficheiro</value>
+  </data>
+  <data name="Archive_ExportError" xml:space="preserve">
+    <value>Não pode ser exportado o {0}
+</value>
+  </data>
+  <data name="Archive_ImportError" xml:space="preserve">
+    <value>Não pode ser importado o {0}</value>
+  </data>
+  <data name="Archive_RepackingStatus" xml:space="preserve">
+    <value>A reacondicionar o arquivo {0}
+</value>
+  </data>
+  <data name="Archive_CNT_FileInfo" xml:space="preserve">
+    <value>Directório = {0}
+Tamanho = {1} x {2}
+Tamanho de ficheiro = {3}
+Modificado = {4}
+Encriptado = {5}
+Transparente = {6}
+Offset = {7}
+Mipmaps = {8}</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
+    <value>Selecção de ficheiro de extensão</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
+    <value>Selecciona a extensão de ficheiro para exportar como para os ficheiros {0}</value>
+  </data>
+  <data name="Archive_Title" xml:space="preserve">
+    <value>Explorador de arquivos</value>
+  </data>
+  <data name="Archive_CriticalError" xml:space="preserve">
+    <value>Ocorreu um erro no Explorador de arquivos e teve de fechar</value>
+  </data>
+  <data name="Archive_ExportMipmaps" xml:space="preserve">
+    <value>Exportar mipmaps</value>
   </data>
 </root>

@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -78,7 +77,7 @@ namespace RayCarrot.RCP.Metro
         /// Gets the DosBox configuration file path for the auto config file
         /// </summary>
         /// <returns>The file path</returns>
-        public FileSystemPath DosBoxConfigFile => RCFRCP.Path.AppUserDataBaseDir + "DosBox" + (Game + ".ini");
+        public FileSystemPath DosBoxConfigFile => CommonPaths.UserDataBaseDir + "DosBox" + (Game + ".ini");
 
         #endregion
 
@@ -168,7 +167,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Remove the config file
-                    RCFRCPC.File.DeleteFile(DosBoxConfigFile);
+                    RCFRCP.File.DeleteFile(DosBoxConfigFile);
                 }
                 catch (Exception ex)
                 {

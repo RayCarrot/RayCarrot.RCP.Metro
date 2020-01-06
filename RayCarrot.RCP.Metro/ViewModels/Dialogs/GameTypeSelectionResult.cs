@@ -1,5 +1,4 @@
-﻿using RayCarrot.RCP.Core;
-using RayCarrot.UI;
+﻿using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {

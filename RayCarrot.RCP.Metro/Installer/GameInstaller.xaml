@@ -1,4 +1,4 @@
-﻿<core:BaseWindow x:Class="RayCarrot.RCP.Metro.GameInstaller"
+﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.GameInstaller"
                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,6 @@
                xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
-               xmlns:core="clr-namespace:RayCarrot.RCP.Core;assembly=RayCarrot.RCP.Core"
                Closing="GameInstaller_OnClosingAsync"
                ResizeMode="NoResize"
                SizeToContent="WidthAndHeight"
@@ -94,4 +93,4 @@
                 IsEnabled="{Binding Path=InstallerRunning}" />
 
     </StackPanel>
-</core:BaseWindow>
+</local:BaseWindow>

@@ -4,7 +4,6 @@ using System.Windows;
 using Microsoft.Win32;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.RCP.Core;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 
@@ -226,7 +225,7 @@ namespace RayCarrot.RCP.Metro
         private RegistryKey GetKey(bool writable)
         {
             // Get the key path
-            var keyPath = RCFWinReg.RegistryManager.CombinePaths(Game == Games.RaymanOrigins ? RCFRCP.Path.RaymanOriginsRegistryKey : RCFRCP.Path.RaymanLegendsRegistryKey, "Settings");
+            var keyPath = RCFWinReg.RegistryManager.CombinePaths(Game == Games.RaymanOrigins ? CommonPaths.RaymanOriginsRegistryKey : CommonPaths.RaymanLegendsRegistryKey, "Settings");
 
             // Create the key if it doesn't exist and should be written to
             if (!RCFWinReg.RegistryManager.KeyExists(keyPath) && writable)

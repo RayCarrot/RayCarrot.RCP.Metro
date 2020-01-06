@@ -528,6 +528,39 @@
   <data name="GameLink_R2nGlide" xml:space="preserve">
     <value>Configuración nGlide</value>
   </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Acción exitosa</value>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Mensaje Genérico</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Mensaje de información</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Mensaje de error</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Mensaje de aviso</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Mensaje de éxito</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Mensaje de pregunta</value>
+  </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Excepción</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>La localización no se pudo abrir</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>Error de directório</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>El directorio no se pudo abrir</value>
+  </data>
   <data name="LocateGame_BrowserHeader" xml:space="preserve">
     <value>Seleccionar directorio de instalación</value>
   </data>
@@ -548,6 +581,33 @@
   </data>
   <data name="Download_ConfirmHeader" xml:space="preserve">
     <value>Confirmar descarga</value>
+  </data>
+  <data name="Update_UnknownError" xml:space="preserve">
+    <value>Error desconocido</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Ninguna versión nueva fue encontrado</value>
+  </data>
+  <data name="Update_ManifestError" xml:space="preserve">
+    <value>El manifiesto del servidor no pudo ser leído</value>
+  </data>
+  <data name="Update_NewsError" xml:space="preserve">
+    <value>Error al recibir noticias</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>Una nueva actualización está disponible para descargar. ¿Descargar ahora?
+
+Notícias:
+{0}</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Nueva versión encontrada</value>
+  </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>El actualizador no pudo ser creado. Para descargar manualmente a la nueva versión, ve a {0} y descarga la última versión de ahí.</value>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Error al crear el actualizador</value>
   </data>
   <data name="MoveBackups_Question" xml:space="preserve">
     <value>¿Quieres mover las cópias de seguridad existentes para la nueva localización?</value>
@@ -779,6 +839,9 @@
   </data>
   <data name="GameOptions_Remove" xml:space="preserve">
     <value>Remover de programa</value>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Downgrade detectado</value>
   </data>
   <data name="JumpListItemDescription" xml:space="preserve">
     <value>Iniciar {0}</value>
@@ -1041,6 +1104,24 @@
   <data name="Settings_ForceUpdates" xml:space="preserve">
     <value>Forzar actualizaciones manuales</value>
   </data>
+  <data name="Update_RunningUpdaterError" xml:space="preserve">
+    <value>El actualizador no pudo arrancar. Para descargar la nueva versión manualmente, ve a {0} y descarga la versión más reciente por ahí.</value>
+  </data>
+  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
+    <value>Error al ejecutar el actualizador</value>
+  </data>
+  <data name="File_RegKeyNotFound" xml:space="preserve">
+    <value>La llave de registro no fue encontrada</value>
+  </data>
+  <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
+    <value>Llave de registro no encontrada</value>
+  </data>
+  <data name="File_OpenRegKeyError" xml:space="preserve">
+    <value>La llave no pudo ser abierto</value>
+  </data>
+  <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
+    <value>Error al abriendo la llave</value>
+  </data>
   <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
     <value>Archivo ubi.ini Primário</value>
   </data>
@@ -1190,6 +1271,9 @@
   </data>
   <data name="LinksPageHeader" xml:space="preserve">
     <value>Hipervínculos de encabezado de página</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>Está disponible una nueva actualización beta para descargar. ¿Descargar ahora?</value>
   </data>
   <data name="About_Uninstall" xml:space="preserve">
     <value>Desinstalar</value>
