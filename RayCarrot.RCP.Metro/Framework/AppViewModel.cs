@@ -27,6 +27,7 @@ namespace RayCarrot.RCP.Metro
 
         static AppViewModel()
         {
+            // Get the current Window version
             WindowsVersion = WindowsHelpers.GetCurrentWindowsVersion();
         }
 
@@ -53,7 +54,7 @@ namespace RayCarrot.RCP.Metro
                 IsRunningAsAdmin = false;
             }
 
-            // Create properties
+            // Create locks
             SaveUserDataAsyncLock = new AsyncLock();
             MoveBackupsAsyncLock = new AsyncLock();
             AdminWorkerAsyncLock = new AsyncLock();
@@ -63,6 +64,7 @@ namespace RayCarrot.RCP.Metro
             RestartAsAdminCommand = new AsyncRelayCommand(RestartAsAdminAsync);
             RequestRestartAsAdminCommand = new AsyncRelayCommand(RequestRestartAsAdminAsync);
 
+            // Create type generators
             LocalUtilities = new Dictionary<Games, Type[]>()
             {
                 {
@@ -532,6 +534,16 @@ namespace RayCarrot.RCP.Metro
         #region Public Properties
 
         /// <summary>
+        /// The current app version
+        /// </summary>
+        public Version CurrentAppVersion => new Version(8, 1, 0, 0);
+
+        /// <summary>
+        /// Indicates if the current version is a beta version
+        /// </summary>
+        public bool IsBeta => true;
+
+        /// <summary>
         /// The application base path to use for WPF related operations
         /// </summary>
         public string WPFApplicationBasePath => "pack://application:,,,/RayCarrot.RCP.Metro;component/";
@@ -575,16 +587,6 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the game finder is currently running
         /// </summary>
         public bool IsGameFinderRunning { get; set; }
-
-        /// <summary>
-        /// The current app version
-        /// </summary>
-        public Version CurrentAppVersion => new Version(8, 1, 0, 0);
-
-        /// <summary>
-        /// Indicates if the current version is a beta version
-        /// </summary>
-        public bool IsBeta => false;
 
         /// <summary>
         /// The currently selected page
@@ -644,10 +646,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task OnRefreshRequiredAsync(RefreshRequiredEventArgs eventArgs)
         {
+            // Lock the refresh
             using (await OnRefreshRequiredAsyncLock.LockAsync())
             {
                 RCFCore.Logger?.LogDebugSource("A refresh is being requested");
 
+                // Await the refresh event
                 await (RefreshRequired?.RaiseAsync(this, eventArgs) ?? Task.CompletedTask);
             }
         }
@@ -704,11 +708,10 @@ namespace RayCarrot.RCP.Metro
                 if (!forceRemove)
                 {
                     // Get applied utilities
-                    var utilities = await game.GetGameInfo().GetAppliedUtilitiesAsync();
+                    var appliedUtilities = await game.GetGameInfo().GetAppliedUtilitiesAsync();
 
-                    // Warn about utilities
-                    if (utilities.Any() && !await RCFUI.MessageUI.DisplayMessageAsync(
-                            $"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}{utilities.JoinItems(Environment.NewLine)}", Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
+                    // Warn about applied utilities, if any
+                    if (appliedUtilities.Any() && !await RCFUI.MessageUI.DisplayMessageAsync($"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}{appliedUtilities.JoinItems(Environment.NewLine)}", Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
                         return;
                 }
 
@@ -920,7 +923,7 @@ namespace RayCarrot.RCP.Metro
                 RCFCore.Logger?.LogInformationSource($"The download finished with the result of {dialog.ViewModel.DownloadState}");
 
                 // Return the result
-                return dialog.ViewModel.DownloadState == DownloadState.Succeeded;
+                return dialog.ViewModel.DownloadState == DownloaderViewModel.DownloadStates.Succeeded;
             }
             catch (Exception ex)
             {
@@ -938,6 +941,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task MoveBackupsAsync(FileSystemPath oldPath, FileSystemPath newPath)
         {
+            // Lock moving the backups
             using (await MoveBackupsAsyncLock.LockAsync())
             {
                 if (!await RCFUI.MessageUI.DisplayMessageAsync(Resources.MoveBackups_Question, Resources.MoveBackups_QuestionHeader, MessageType.Question, true))
@@ -948,17 +952,21 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
+                    // Get the complete paths
                     var oldLocation = oldPath + BackupFamily;
                     var newLocation = newPath + BackupFamily;
 
+                    // Make sure the old location has backups
                     if (!oldLocation.DirectoryExists || !Directory.GetFileSystemEntries(oldLocation).Any())
                     {
                         RCFCore.Logger?.LogInformationSource("Old backups could not be moved due to not being found");
 
                         await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.MoveBackups_NoBackupsFound, oldLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
+
                         return;
                     }
 
+                    // Make sure the new location doesn't already exist
                     if (newLocation.DirectoryExists)
                     {
                         RCFCore.Logger?.LogInformationSource("Old backups could not be moved due to the new location already existing");
@@ -967,10 +975,12 @@ namespace RayCarrot.RCP.Metro
                         return;
                     }
 
+                    // Move the directory
                     RCFRCP.File.MoveDirectory(oldLocation, newLocation, false, false);
 
                     RCFCore.Logger?.LogInformationSource("Old backups have been moved");
 
+                    // Refresh backups
                     await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, true, false));
 
                     await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.MoveBackups_Success);
@@ -989,6 +999,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RestartAsAdminAsync()
         {
+            // Run the admin worker, setting it to restart this process as admin
             await RunAdminWorkerAsync(AdminWorkerModes.RestartAsAdmin, Process.GetCurrentProcess().Id.ToString());
         }
 
@@ -1000,7 +1011,9 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RunAdminWorkerAsync(AdminWorkerModes mode, params string[] args)
         {
+            // Lock
             using (await AdminWorkerAsyncLock.LockAsync())
+                // Launch the admin worker with the specified launch arguments
                 await RCFRCP.File.LaunchFileAsync(CommonPaths.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
         }
 
@@ -1039,7 +1052,9 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RequestRestartAsAdminAsync()
         {
+            // Request restarting the application as admin
             if (await RCFUI.MessageUI.DisplayMessageAsync(Resources.App_RequiresAdminQuestion, Resources.App_RestartAsAdmin, MessageType.Warning, true))
+                // Restart as admin
                 await RestartAsAdminAsync();
         }
 
@@ -1051,6 +1066,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
+                // Open the URL in default browser
                 Process.Start(url)?.Dispose();
             }
             catch (Exception ex)
@@ -1109,6 +1125,9 @@ namespace RayCarrot.RCP.Metro
                         {
                             // Launch the updater and run as admin if set to show under installed programs in under to update the Registry key
                             var succeeded = await RCFRCP.UpdaterManager.UpdateAsync(result, false);
+
+                            if (!succeeded)
+                                RCFCore.Logger?.LogWarningSource("The updater failed to update the program");
                         }
                     }
                     catch (Exception ex)

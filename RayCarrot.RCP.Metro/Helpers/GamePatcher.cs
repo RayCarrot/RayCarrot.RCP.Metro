@@ -119,14 +119,13 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Open the file as a stream
-                using (Stream stream = File.Open(GameFile, FileMode.Open, FileAccess.Write))
-                {
-                    // Set the position
-                    stream.Position = Offset;
+                using Stream stream = File.Open(GameFile, FileMode.Open, FileAccess.Write);
 
-                    // Write the bytes
-                    stream.Write(useOriginalBytes ? OriginalBytes : PatchedBytes, 0, OriginalBytes.Length);
-                }
+                // Set the position
+                stream.Position = Offset;
+
+                // Write the bytes
+                stream.Write(useOriginalBytes ? OriginalBytes : PatchedBytes, 0, OriginalBytes.Length);
 
                 RCFCore.Logger?.LogInformationSource("Game file was patched");
             }

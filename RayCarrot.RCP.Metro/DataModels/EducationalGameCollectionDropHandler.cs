@@ -15,10 +15,12 @@ namespace RayCarrot.RCP.Metro
 
         public override async void Drop(IDropInfo dropInfo)
         {
+            // Call base drop handler
             base.Drop(dropInfo);
             
             RCFCore.Logger?.LogDebugSource("The educational games have been reordered");
 
+            // Save the new order
             await ViewModel.SaveAsync();
         }
     }

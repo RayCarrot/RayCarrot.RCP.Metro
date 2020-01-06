@@ -17,11 +17,11 @@ namespace RayCarrot.RCP.Metro
         /// <param name="id">The game ID</param>
         public EducationalDosBoxGameData(FileSystemPath installDir, string launchName, string id = null)
         {
-            //ID = id ?? Games.EducationalDos.GetGameManager<EducationalDosBoxGameManager>().GetGameID(installDir, launchName);
-
             InstallDir = installDir;
             LaunchName = launchName;
-            ID = id ?? Regex.Replace(Convert.ToBase64String(Guid.NewGuid().ToByteArray()), "[/+=]", "");
+            ID = id ?? 
+                 // Create a new ID if we don't have one
+                 Regex.Replace(Convert.ToBase64String(Guid.NewGuid().ToByteArray()), "[/+=]", "");
             Name = String.Empty;
             MountPath = FileSystemPath.EmptyPath;
         }

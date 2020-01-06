@@ -14,6 +14,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The window instance</returns>
         public override Window GetWindow()
         {
+            // Return a base window for this application
             return new BaseWindow();
         }
     }

@@ -10,6 +10,8 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class HelpItemViewModel : BaseViewModel
     {
+        #region Public Properties
+
         /// <summary>
         /// The display header
         /// </summary>
@@ -28,22 +30,22 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The cheat code item type
         /// </summary>
-        public CheatCodeItemsType CheatCodeItemsType
+        public CheatCodeItemsTypes CheatCodeItemsType
         {
             get
             {
                 if (CheatCodeItems?.Any() != true)
-                    return CheatCodeItemsType.None;
+                    return CheatCodeItemsTypes.None;
 
                 var item = CheatCodeItems.First();
 
                 if (item is Rayman1CheatCodeItemViewModel)
-                    return CheatCodeItemsType.Rayman1;
+                    return CheatCodeItemsTypes.Rayman1;
 
                 if (item is GenericCheatCodeItemViewModel)
-                    return CheatCodeItemsType.Generic;
+                    return CheatCodeItemsTypes.Generic;
 
-                return CheatCodeItemsType.None;
+                return CheatCodeItemsTypes.None;
             }
         }
 
@@ -61,5 +63,32 @@ namespace RayCarrot.RCP.Metro
         /// The required <see cref="UserLevel"/>
         /// </summary>
         public UserLevel RequiredUserLevel { get; set; } = UserLevel.Normal;
+
+        #endregion
+
+        #region Enums
+
+        /// <summary>
+        /// The available cheat code item types
+        /// </summary>
+        public enum CheatCodeItemsTypes
+        {
+            /// <summary>
+            /// None
+            /// </summary>
+            None,
+
+            /// <summary>
+            /// Rayman 1
+            /// </summary>
+            Rayman1,
+
+            /// <summary>
+            /// Generic item with single input
+            /// </summary>
+            Generic
+        }
+
+        #endregion
     }
 }

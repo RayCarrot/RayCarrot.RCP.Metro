@@ -17,8 +17,12 @@ namespace RayCarrot.RCP.Metro
     {
         #region Constructor
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public FileLogger()
         {
+            // Set the log level
             LoggerLogLevel = FileLoggerLogLevel;
         }
 
@@ -33,11 +37,14 @@ namespace RayCarrot.RCP.Metro
         /// <param name="message">The message to write</param>
         public override void Log(LogLevel logLevel, string message)
         {
+            // Make sure the application is running
             if (Application.Current == null)
                 return;
 
+            // Lock to the current application
             lock (Application.Current)
             {
+                // First time the file logger gets used we check if the file should be reset
                 if (!HasBeenSetUp)
                 {
                     // Attempt to remove log file if over 2 Mb
@@ -51,11 +58,13 @@ namespace RayCarrot.RCP.Metro
                         ex.HandleCritical("Removing log file due to size");
                     }
 
+                    // Indicate that the file logger has been set up
                     HasBeenSetUp = true;
                 }
 
                 try
                 {
+                    // Create the parent directory if it doesn't exist
                     if (!CommonPaths.LogFile.Parent.DirectoryExists)
                         Directory.CreateDirectory(CommonPaths.LogFile.Parent);
 
@@ -64,8 +73,10 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
+                    // If the file logger crashes, do not attempt to log with it any more
                     FileLoggerLogLevel = LogLevel.None;
                     LoggerLogLevel = FileLoggerLogLevel;
+
                     ex.HandleCritical("File logger");
                 }
             }

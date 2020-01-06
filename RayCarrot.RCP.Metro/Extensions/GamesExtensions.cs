@@ -12,8 +12,6 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public static class GamesExtensions
     {
-        #region Helpers
-
         /// <summary>
         /// Determines if the specified game has been added to the program
         /// </summary>
@@ -35,28 +33,31 @@ namespace RayCarrot.RCP.Metro
             // Create the result
             var result = new List<RayGameInstallItem>();
 
-            // Attempt to get the text file
+            // Attempt to get the text file containing the items
             if (!(InstallerGames.ResourceManager.GetObject($"{game}") is string file))
                 throw new Exception("Installer item not found");
 
-            using (StringReader reader = new StringReader(file))
+            // Create a string reader
+            using StringReader reader = new StringReader(file);
+
+            // Keep track of the current line
+            string line;
+
+            // Enumerate each line
+            while ((line = reader.ReadLine()) != null)
             {
-                string line;
+                // Check if the item is optional, in which case it has a blank space before the path
+                bool optional = line.StartsWith(" ");
 
-                while ((line = reader.ReadLine()) != null)
-                {
-                    // Check if the item is optional, in which case
-                    // it has a blank space before the path
-                    bool optional = line.StartsWith(" ");
+                // Remove the blank space if optional
+                if (optional)
+                    line = line.Substring(1);
 
-                    // Remove the blank space if optional
-                    if (optional)
-                        line = line.Substring(1);
-
-                    result.Add(new RayGameInstallItem(line, outputPath + line, optional));
-                }
+                // Add the item
+                result.Add(new RayGameInstallItem(line, outputPath + line, optional));
             }
 
+            // Return the items
             return result;
         }
 
@@ -122,10 +123,6 @@ namespace RayCarrot.RCP.Metro
             // Return the type
             return data.LaunchMode;
         }
-
-        #endregion
-
-        #region Data
 
         /// <summary>
         /// Gets the game manager for the specified game with the current type
@@ -212,7 +209,5 @@ namespace RayCarrot.RCP.Metro
         {
             return RCFRCP.App.GameInfos[game].CreateInstance<T>();
         }
-
-        #endregion
     }
 }

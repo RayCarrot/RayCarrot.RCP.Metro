@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -21,22 +22,15 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The new string with the first digits</returns>
         public static string KeepFirstDigitsOnly(this string input)
         {
-            // Remove invalid characters
-            if (input.Contains(Convert.ToChar(0x0).ToString()))
-                input = input.Substring(0, input.IndexOf(Convert.ToChar(0x0).ToString(), StringComparison.Ordinal));
+            // Get the null termination strings
+            var nullString = Convert.ToChar(0x0).ToString();
 
-            string output = String.Empty;
+            // Remove invalid characters
+            if (input.Contains(nullString))
+                input = input.Substring(0, input.IndexOf(nullString, StringComparison.Ordinal));
 
             // Keep only first digits
-            foreach (var c in input)
-            {
-                if (!Char.IsDigit(c))
-                    break;
-
-                output = output + c;
-            }
-
-            return output;
+            return input.TakeWhile(Char.IsDigit).Aggregate(String.Empty, (current, c) => current + c);
         }
     }
 }

@@ -26,6 +26,7 @@ namespace RayCarrot.RCP.Metro
             if (!RCFRCP.Data.ShowActionComplete)
             {
                 RCFCore.Logger?.LogTraceSource($"A message of type {MessageType.Success} was not displayed with the content of: '{message}'", origin: origin, filePath: filePath, lineNumber: lineNumber);
+
                 return;
             }
 

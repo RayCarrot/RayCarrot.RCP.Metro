@@ -149,10 +149,10 @@
     <Compile Include="Framework\Implementations\RCPDialogBaseManager.cs" />
     <Compile Include="Framework\Implementations\RCPExceptionHandler.cs" />
     <Compile Include="Framework\Implementations\RCPMessageUIManager.cs" />
-    <Compile Include="Games\GameData.cs" />
-    <Compile Include="Games\GameLaunchMode.cs" />
-    <Compile Include="Games\Games.cs" />
-    <Compile Include="Games\GameType.cs" />
+    <Compile Include="Games\Base\GameData.cs" />
+    <Compile Include="Games\Base\GameLaunchMode.cs" />
+    <Compile Include="Games\Base\Games.cs" />
+    <Compile Include="Games\Base\GameType.cs" />
     <Compile Include="Helpers\Operation.cs" />
     <Compile Include="IO\IFileManager.cs" />
     <Compile Include="IO\IOSearchPattern.cs" />
@@ -205,11 +205,11 @@
     <Compile Include="GameFinder\Results\BaseFinderResult.cs" />
     <Compile Include="GameFinder\FinderItems\FinderItem.cs" />
     <Compile Include="GameFinder\Results\FinderResult.cs" />
-    <Compile Include="GamePatcher\GamePatcher.cs" />
+    <Compile Include="Helpers\GamePatcher.cs" />
     <Compile Include="GameFinder\GameFinder.cs" />
     <Compile Include="GameFinder\FinderItems\GameFinderItem.cs" />
     <Compile Include="GameFinder\Results\GameFinderResult.cs" />
-    <Compile Include="DataModels\Enums\GameCategory.cs" />
+    <Compile Include="Games\Base\GameCategory.cs" />
     <Compile Include="Games\Info\RCPGameInfo.cs" />
     <Compile Include="Games\Manager\RCPGameManager.cs" />
     <Compile Include="Games\Info\Fan\TheDarkMagiciansReignofTerror_Info.cs" />
@@ -301,10 +301,10 @@
     <Compile Include="Games\Config\UI\RabbidsGoHomeConfig.xaml.cs">
       <DependentUpon>RabbidsGoHomeConfig.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\RabbidsGoHomeLaunchData.cs" />
+    <Compile Include="AppUserData\DataModels\RabbidsGoHomeLaunchData.cs" />
     <Compile Include="Games\Manager\Rayman\Rayman2_Win32.cs" />
     <Compile Include="Games\Manager\Base\RCPSteamGame.cs" />
-    <Compile Include="Games\RCPGame.cs" />
+    <Compile Include="Games\Base\RCPGame.cs" />
     <Compile Include="Games\Config\ViewModels\RabbidsGoHomeConfigViewModel.cs" />
     <Compile Include="Games\Options\UI\RavingRabbids2Options.xaml.cs">
       <DependentUpon>RavingRabbids2Options.xaml</DependentUpon>
@@ -314,7 +314,7 @@
     <Compile Include="UI\Dialogs\EducationalDosGameEditDialog.xaml.cs">
       <DependentUpon>EducationalDosGameEditDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\Enums\RRR2LaunchMode.cs" />
+    <Compile Include="AppUserData\DataModels\RRR2LaunchMode.cs" />
     <Compile Include="ViewModels\Dialogs\EducationalDosGameEditResult.cs" />
     <Compile Include="ViewModels\Dialogs\EducationalDosGameEditViewModel.cs" />
     <Compile Include="Games\Options\UI\EducationalDosOptions.xaml.cs">
@@ -323,7 +323,7 @@
     <Compile Include="Games\Options\UI\FiestaRunOptions.xaml.cs">
       <DependentUpon>FiestaRunOptions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\EducationalDosBoxGameData.cs" />
+    <Compile Include="AppUserData\DataModels\EducationalDosBoxGameData.cs" />
     <Compile Include="DataModels\Enums\R1Languages.cs" />
     <Compile Include="Games\Config\ViewModels\EducationalDosBoxGameConfigViewModel.cs" />
     <Compile Include="Games\Config\ViewModels\Rayman1ConfigViewModel.cs" />
@@ -338,8 +338,7 @@
       <DependentUpon>LinksPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Converters\TPLSRaymanVersionEnumToComboBoxIndexConverter.cs" />
-    <Compile Include="DataModels\Enums\FiestaRunEdition.cs" />
-    <Compile Include="DataModels\Enums\PopupPromptResult.cs" />
+    <Compile Include="AppUserData\DataModels\FiestaRunEdition.cs" />
     <Compile Include="DataModels\Enums\Pages.cs" />
     <Compile Include="ViewModels\Game\GameCategoryViewModel.cs" />
     <Compile Include="ViewModels\TaskbarIconViewModel.cs" />
@@ -600,8 +599,7 @@
     <Compile Include="Pages\UI\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\Enums\LinkItemStyles.cs" />
-    <Compile Include="DataModels\Enums\CheatCodeItemsType.cs" />
+    <Compile Include="AppUserData\DataModels\LinkItemStyles.cs" />
     <Compile Include="Games\Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtility.cs" />
     <Compile Include="Games\Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityUI.xaml.cs">
       <DependentUpon>R1CompleteSoundtrackUtilityUI.xaml</DependentUpon>
@@ -684,12 +682,11 @@
     <Compile Include="Games\Utilities\Rayman 1\TPLS\TPLS\SoundtrackPlayer\PositionedBGM.cs" />
     <Compile Include="Games\Utilities\Rayman 1\TPLS\TPLS\SoundtrackPlayer\SoundtrackPlayer.cs" />
     <Compile Include="Games\Utilities\Rayman 1\TPLS\TPLS\TPLS.cs" />
-    <Compile Include="DataModels\Enums\DownloadState.cs" />
     <Compile Include="Games\Utilities\Rayman 1\TPLS\TPLS\Extensions\TPLSRaymanVersionExtensions.cs" />
     <Compile Include="ViewModels\TPLSDataViewModel.cs" />
     <Compile Include="Games\Utilities\Rayman 1\TPLS\TPLS\Watchdog.cs" />
     <Compile Include="DataModels\EventArgs\ValueEventArgs.cs" />
-    <Compile Include="DataModels\TPLSData.cs" />
+    <Compile Include="AppUserData\DataModels\TPLSData.cs" />
     <Compile Include="Games\Config\ViewModels\Ray_Origins_Legends_ConfigViewModel.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanRavingRabbidsConfigViewModel.cs" />
@@ -717,7 +714,7 @@
     </Compile>
     <Compile Include="Games\Config\ViewModels\Base\Ray_M_Arena_3_UbiIniBaseConfigViewModel.cs" />
     <Compile Include="Pages\ViewModels\HelpPageViewModel.cs" />
-    <Compile Include="DataModels\BackupDir.cs" />
+    <Compile Include="GameBackups\BackupDir.cs" />
     <Compile Include="GameBackups\BackupManager.cs" />
     <Compile Include="Installer\GameInstaller.xaml.cs">
       <DependentUpon>GameInstaller.xaml</DependentUpon>
@@ -741,7 +738,7 @@
     <Compile Include="Framework\Implementations\AppUIManager.cs" />
     <Compile Include="DataModels\KeyMappingItem.cs" />
     <Compile Include="Helpers\R2ButtonMappingManager.cs" />
-    <Compile Include="DataModels\DosBoxOptions.cs" />
+    <Compile Include="AppUserData\DataModels\DosBoxOptions.cs" />
     <Compile Include="UI\ValidationRules\DosBoxCyclesValidationRule.cs" />
     <Compile Include="UI\ValidationRules\DosBoxResolutionValidationRule.cs" />
     <Compile Include="ViewModels\GameBackupItemViewModel.cs" />
@@ -780,10 +777,9 @@
     <Compile Include="Pages\UI\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Framework\UserData\AppUserData.cs" />
+    <Compile Include="AppUserData\AppUserData.cs" />
     <Compile Include="ViewModels\ActionItemViewModel.cs" />
     <Compile Include="Framework\AppViewModel.cs" />
-    <Compile Include="DataModels\Enums\DebugDialogTypes.cs" />
     <Compile Include="Pages\ViewModels\DebugPageViewModel.cs" />
     <Compile Include="Pages\ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="Pages\ViewModels\GamesPageViewModel.cs" />
@@ -804,7 +800,6 @@
       <DependentUpon>GameOptions.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Game\GameOptionsViewModel.cs" />
-    <Compile Include="DataModels\Enums\GameOptionsPage.cs" />
     <Compile Include="UI\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

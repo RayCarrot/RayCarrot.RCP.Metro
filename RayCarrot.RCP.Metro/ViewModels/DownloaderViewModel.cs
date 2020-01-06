@@ -34,7 +34,7 @@ namespace RayCarrot.RCP.Metro
             FileManager = RCFRCP.File;
 
             // Set properties
-            DownloadState = DownloadState.Paused;
+            DownloadState = DownloadStates.Paused;
             TotalMaxProgress = InputSources.Count * 100;
 
             if (IsCompressed)
@@ -320,7 +320,7 @@ namespace RayCarrot.RCP.Metro
             if (OperationRunning)
                 throw new InvalidOperationException("The downloader can not start while running");
 
-            DownloadState = DownloadState.Running;
+            DownloadState = DownloadStates.Running;
 
             // Flag the operation as running
             OperationRunning = true;
@@ -368,7 +368,7 @@ namespace RayCarrot.RCP.Metro
 
                         // Flag that the operation is no longer running
                         OperationRunning = false;
-                        DownloadState = CancellationRequested ? DownloadState.Canceled : DownloadState.Failed;
+                        DownloadState = CancellationRequested ? DownloadStates.Canceled : DownloadStates.Failed;
                         OnDownloadComplete();
                         return;
                     }
@@ -383,7 +383,7 @@ namespace RayCarrot.RCP.Metro
             // Flag the operation as complete
             OperationRunning = false;
 
-            DownloadState = DownloadState.Succeeded;
+            DownloadState = DownloadStates.Succeeded;
 
             RCFCore.Logger?.LogInformationSource($"The download operation has completed");
 
@@ -476,7 +476,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current state of the download
         /// </summary>
-        public DownloadState DownloadState { get; private set; }
+        public DownloadStates DownloadState { get; private set; }
 
         /// <summary>
         /// Indicates if the operation is running
@@ -492,6 +492,41 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the download is compressed
         /// </summary>
         public bool IsCompressed { get; }
+
+        #endregion
+
+        #region Enums
+
+        /// <summary>
+        /// The state of a download
+        /// </summary>
+        public enum DownloadStates
+        {
+            /// <summary>
+            /// The download is paused or has not started
+            /// </summary>
+            Paused,
+
+            /// <summary>
+            /// The download is currently running
+            /// </summary>
+            Running,
+
+            /// <summary>
+            /// The download failed
+            /// </summary>
+            Failed,
+
+            /// <summary>
+            /// The download was canceled
+            /// </summary>
+            Canceled,
+
+            /// <summary>
+            /// The download succeeded
+            /// </summary>
+            Succeeded
+        }
 
         #endregion
     }

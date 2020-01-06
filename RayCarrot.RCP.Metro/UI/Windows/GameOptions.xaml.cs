@@ -201,5 +201,40 @@ namespace RayCarrot.RCP.Metro
             _ = Task.Run(() => Dispatcher?.Invoke(Close));
         }
         #endregion
+
+        #region Enums
+
+        /// <summary>
+        /// The available game options pages
+        /// </summary>
+        public enum GameOptionsPage
+        {
+            /// <summary>
+            /// The game information
+            /// </summary>
+            Information,
+
+            /// <summary>
+            /// The game progress information
+            /// </summary>
+            Progression,
+
+            /// <summary>
+            /// The primary game options
+            /// </summary>
+            Options,
+
+            /// <summary>
+            /// The game configuration
+            /// </summary>
+            Config,
+
+            /// <summary>
+            /// The game utilities
+            /// </summary>
+            Utilities
+        }
+
+        #endregion
     }
 }
