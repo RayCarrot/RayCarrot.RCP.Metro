@@ -319,6 +319,15 @@
                 <local:BackupPage />
             </local:RCPTabItem>
 
+            <!-- Utilities -->
+
+            <!-- TODO: Localize -->
+            <local:RCPTabItem Header="Utilities"
+                              IconKind="BriefcaseOutline"
+                              IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Utilities}">
+                <local:UtilitiesPage />
+            </local:RCPTabItem>
+
             <!-- Links -->
 
             <local:RCPTabItem Header="{Resx LinksPageHeader}"

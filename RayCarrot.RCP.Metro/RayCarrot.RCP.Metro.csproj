@@ -160,6 +160,11 @@
     <Compile Include="IO\Temp\TempDirectory.cs" />
     <Compile Include="IO\Temp\TempFile.cs" />
     <Compile Include="IO\Temp\TempFileSystemEntry.cs" />
+    <Compile Include="Pages\Links\LinksPage.xaml.cs">
+      <DependentUpon>LinksPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Links\LinksPageViewModel.cs" />
+    <Compile Include="UI\Behaviors\ChildRCPTabControlBehavior.cs" />
     <Compile Include="UI\Controls\DuoGridItem.cs" />
     <Compile Include="UI\Controls\InfoIcon.xaml.cs">
       <DependentUpon>InfoIcon.xaml</DependentUpon>
@@ -171,6 +176,7 @@
       <DependentUpon>OverflowMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\RCPTabItem.cs" />
+    <Compile Include="UI\Converters\OpenSpaceGameModeToDisplayNameConverter.cs" />
     <Compile Include="UI\Converters\AppendSpacesToStringConverter.cs" />
     <Compile Include="UI\Converters\BooleanToTransitionTypeConverter.cs" />
     <Compile Include="Pages\BasePage.cs" />
@@ -331,8 +337,8 @@
     <Compile Include="DataModels\EducationalGameCollectionDropHandler.cs" />
     <Compile Include="Games\Options\ViewModels\PrintStudioOptionsViewModel.cs" />
     <Compile Include="Games\Options\ViewModels\FiestaRunOptionsViewModel.cs" />
-    <Compile Include="Pages\Links\LinksPage.xaml.cs">
-      <DependentUpon>LinksPage.xaml</DependentUpon>
+    <Compile Include="Pages\Utilities\UtilitiesPage.xaml.cs">
+      <DependentUpon>UtilitiesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Converters\TPLSRaymanVersionEnumToComboBoxIndexConverter.cs" />
     <Compile Include="AppUserData\DataModels\FiestaRunEdition.cs" />
@@ -352,6 +358,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Games\Config\UI\RaymanJungleRunConfig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Links\LinksPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -467,7 +477,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\Links\LinksPage.xaml">
+    <Page Include="Pages\Utilities\UtilitiesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -648,7 +658,7 @@
     <Compile Include="Pages\Help\Cheats\Base\BaseCheatCodeItemViewModel.cs" />
     <Compile Include="Pages\Help\Cheats\GenericCheatCodeItemViewModel.cs" />
     <Compile Include="Pages\Links\LinkItemViewModel.cs" />
-    <Compile Include="Pages\Links\LinksPageViewModel.cs" />
+    <Compile Include="Pages\Utilities\UtilitiesPageViewModel.cs" />
     <Compile Include="Pages\Help\Cheats\Rayman1CheatCodeItemViewModel.cs" />
     <Compile Include="UI\Converters\BooleanToFluidMoveDurationConverter.cs" />
     <Compile Include="DataModels\DosBoxAutoConfigData.cs" />

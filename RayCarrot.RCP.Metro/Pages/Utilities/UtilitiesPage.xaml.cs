@@ -3,11 +3,11 @@
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// Interaction logic for GamesPage.xaml
+    /// Interaction logic for UtilitiesPage.xaml
     /// </summary>
-    public partial class GamesPage : BasePage<GamesPageViewModel>
+    public partial class UtilitiesPage : BasePage<UtilitiesPageViewModel>
     {
-        public GamesPage()
+        public UtilitiesPage()
         {
             InitializeComponent();
         }

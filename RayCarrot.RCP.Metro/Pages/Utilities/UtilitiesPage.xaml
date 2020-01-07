@@ -1,0 +1,156 @@
+﻿<local:BasePage x:Class="RayCarrot.RCP.Metro.UtilitiesPage"
+                x:TypeArguments="local:UtilitiesPageViewModel"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                mc:Ignorable="d"
+                d:DesignHeight="450" d:DesignWidth="800"
+                d:DataContext="{d:DesignInstance local:UtilitiesPageViewModel}">
+
+    <ScrollViewer>
+        <mah:MetroAnimatedTabControl x:Name="UtilitiesTabControl"
+                                     Margin="15"
+                                     FocusVisualStyle="{x:Null}">
+
+            <i:Interaction.Behaviors>
+                <rwpf:FocusElementOnLoad />
+            </i:Interaction.Behaviors>
+
+            <mah:MetroAnimatedTabControl.Resources>
+                <Style TargetType="{x:Type TabPanel}" BasedOn="{StaticResource SmallTabPanel}" />
+                <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
+            </mah:MetroAnimatedTabControl.Resources>
+
+            <!-- Archive Explorer -->
+
+            <!-- TODO: Localize -->
+            <local:RCPTabItem IconKind="FileMultipleOutline"
+                              Header="Archive Explorer">
+
+                <StackPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                    </i:Interaction.Behaviors>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                   Text="{Resx OSU_CNTExplorer_Header}" />
+
+                        <local:InfoIcon Text="{Resx OSU_CNTExplorer_Info}"/>
+
+                    </StackPanel>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <ComboBox Grid.Column="0"
+                                  ItemsSource="{Binding Path=AvailableCNTGameModes, Mode=OneTime}"
+                                  SelectedItem="{Binding Path=SelectedCNTGameMode}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={local:OpenSpaceGameModeToDisplayNameConverter}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <!-- TODO: Localize -->
+                        <Button Grid.Column="2"
+                                Content="Open"
+                                Command="{Binding Path=OpenCNTArchiveExplorerCommand, Mode=OneTime}" />
+
+                    </Grid>
+                </StackPanel>
+
+            </local:RCPTabItem>
+
+            <!-- Converters -->
+
+            <!-- TODO: Localize -->
+            <local:RCPTabItem IconKind="FileExportOutline"
+                              Header="Converters">
+
+                <StackPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                    </i:Interaction.Behaviors>
+
+                    <StackPanel Orientation="Horizontal">
+                        <!-- TODO: Localize -->
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                   Text="GF Converter" />
+
+                        <!--<local:InfoIcon Text="{Resx OSU_CNTExplorer_Info}"/>-->
+
+                    </StackPanel>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <ComboBox Grid.Column="0"
+                                  ItemsSource="{Binding Path=AvailableGFGameModes, Mode=OneTime}"
+                                  SelectedItem="{Binding Path=SelectedGFGameMode}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={local:OpenSpaceGameModeToDisplayNameConverter}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <!-- TODO: Localize -->
+                        <Button Grid.Column="2"
+                                Content="Convert from .gf"
+                                Command="{Binding Path=ConvertFromGFCommand, Mode=OneTime}" />
+
+                        <!-- TODO: Localize -->
+                        <Button Grid.Column="4"
+                                Content="Convert to .gf"
+                                Command="{Binding Path=ConvertToGFCommand, Mode=OneTime}" />
+
+                    </Grid>
+                </StackPanel>
+
+            </local:RCPTabItem>
+
+            <!-- Other -->
+
+            <!-- TODO: Localize -->
+            <local:RCPTabItem IconKind="Buffer"
+                              Header="Other">
+
+
+            </local:RCPTabItem>
+
+            <!-- Work in Process -->
+
+            <!-- TODO: Localize -->
+            <local:RCPTabItem IconKind="CodeBraces"
+                              Header="Work in Process"
+                              rwpf:UserLevelTag.MinUserLevel="Technical">
+
+
+            </local:RCPTabItem>
+
+        </mah:MetroAnimatedTabControl>
+    </ScrollViewer>
+
+    <i:Interaction.Behaviors>
+        <local:ChildRCPTabControlBehavior ChildTabControl="{Binding ElementName=UtilitiesTabControl}" />
+    </i:Interaction.Behaviors>
+
+</local:BasePage>

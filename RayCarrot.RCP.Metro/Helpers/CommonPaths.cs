@@ -79,12 +79,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public const string RegistryLicenseValue = "LicenseAccepted";
 
-        [Obsolete]
-        /// <summary>
-        /// The Registry uninstall key name
-        /// </summary>
-        public const string RegistryUninstallKeyName = "RCP_Metro";
-
         /// <summary>
         /// The Rayman Raving Rabbids registry key path
         /// </summary>

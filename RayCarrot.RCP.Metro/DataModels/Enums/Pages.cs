@@ -16,6 +16,11 @@
         BackupRestore,
 
         /// <summary>
+        /// The utilities page
+        /// </summary>
+        Utilities,
+
+        /// <summary>
         /// The links page
         /// </summary>
         Links,
