@@ -1,4 +1,5 @@
-﻿using RayCarrot.Extensions;
+﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
@@ -10,8 +11,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -168,10 +167,8 @@ namespace RayCarrot.RCP.Metro
                             // Get the file data
                             var data = formatGroup.First().FileData;
 
-                            // IDEA: Create UI manager
                             // Have user select the format
-                            var extResult = await Application.Current.Dispatcher.Invoke(() => new FileExtensionSelectionDialog(new FileExtensionSelectionDialogViewModel(data.SupportedFileExtensions,
-                                String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, data.FileFormatName)))).ShowDialogAsync();
+                            FileExtensionSelectionDialogResult extResult = await RCFRCP.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(data.SupportedExportImportFileExtensions, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, data.FileFormatName)));
 
                             if (extResult.CanceledByUser)
                                 return;
@@ -201,7 +198,7 @@ namespace RayCarrot.RCP.Metro
 
                                     // Save the file
                                     await file.FileData.ExportFileAsync(file.ArchiveFileStream,
-                                        path + (new FileSystemPath(file.FileName).ChangeFileExtension(format)), format);
+                                        path + (new FileSystemPath(file.FileName).ChangeFileExtension(format, true)), format);
                                 }
                             }
                         }
@@ -266,7 +263,7 @@ namespace RayCarrot.RCP.Metro
                                     FileSystemPath filePath = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar) + (Path.GetFileNameWithoutExtension(file.FileName) ?? file.FileName);
 
                                     // Attempt to find a file for each supported extension
-                                    foreach (string ext in file.FileData.SupportedFileExtensions)
+                                    foreach (string ext in file.FileData.SupportedImportFileExtensions)
                                     {
                                         // Get the path
                                         var fullFilePath = filePath.ChangeFileExtension(ext);
@@ -313,7 +310,10 @@ namespace RayCarrot.RCP.Metro
                         }
 
                         // Update the archive
-                        await Archive.UpdateArchiveAsync();
+                        var repackSucceeded = await Archive.UpdateArchiveAsync();
+
+                        if (!repackSucceeded)
+                            return;
 
                         // Check if any failed to import
                         if (failes)

@@ -79,6 +79,15 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Public Abstract Properties
+
+        /// <summary>
+        /// Indicates if the slot can be exported/imported
+        /// </summary>
+        public abstract bool CanModify { get; }
+
+        #endregion
+
         #region Event Handlers
 
         private void Data_CultureChanged(object sender, PropertyChangedEventArgs<CultureInfo> e)

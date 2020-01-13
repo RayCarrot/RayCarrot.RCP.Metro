@@ -236,7 +236,7 @@
     <value>Escala la ventana a su tamaño si la salida de video soporta escalado por hardware</value>
   </data>
   <data name="DosBoxOptions_Scaler" xml:space="preserve">
-    <value>Escañador</value>
+    <value>Escalador</value>
   </data>
   <data name="DosBoxOptions_ScalerInfo" xml:space="preserve">
     <value>Escalador usado para 
@@ -437,7 +437,7 @@ Incluso si la opción interna de pantalla ancha esta activada.</value>
     <comment>Modo de pantalla</comment>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>Rayman Control Panel es una aplicación de Código Abierto creada por RayCarrot. Es un simple archivo .EXE con la intención de modificar, alterar y aplicar parches creados por fans a los juegos de Rayman en windows. Este proyecto se va actualizando ofreciendo nuevas funcionalidades. Muchas de estas utilidades han sido creadas con la ayuda de varios miembros de la comunidad de Rayman. Se ha dado credito a todas las personas que han ayudado a crear dichos parches.</value>
+    <value>Rayman Control Panel es una aplicación de Código Abierto creada por RayCarrot. Es un simple archivo .EXE con la intención de modificar, alterar y aplicar parches creados por fans a los juegos de Rayman en windows. Este proyecto se va actualizando y ofreciendo nuevas funcionalidades. Muchas de estas utilidades han sido creadas con la ayuda de varios miembros de la comunidad de Rayman. Se ha dado credito a todas las personas que han ayudado a crear dichos parches.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Créditos</value>
@@ -517,7 +517,7 @@ Incluso si la opción interna de pantalla ancha esta activada.</value>
     <value>Idioma</value>
   </data>
   <data name="Settings_LanguageContribute" xml:space="preserve">
-    <value>Contribuir con traducciones</value>
+    <value>Contribuir en las traducciones</value>
     <comment>Contribuir con traducciones</comment>
   </data>
   <data name="Settings_DesignHeader" xml:space="preserve">
@@ -782,7 +782,8 @@ Incluso si la opción interna de pantalla ancha esta activada.</value>
     <value>No se ha encontrado el juego</value>
   </data>
   <data name="LocateGame_ErrorHeader" xml:space="preserve">
-    <value>Ha ocurrido un error localizando el juego</value>
+    <value>Error localizando el juego
+</value>
   </data>
   <data name="Download_ConfirmHeader" xml:space="preserve">
     <value>Confirmar la Descarga</value>
@@ -826,5 +827,106 @@ Incluso si la opción interna de pantalla ancha esta activada.</value>
   <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
     <value>
 </value>
+  </data>
+  <data name="Config_RRRScreenModeInfo" xml:space="preserve">
+    <value> 
+Dependiendo de la resolución seleccionada, puede que la imagen termine distorisionada o puede crashear en ciertas resoluciones no soportadas. Seleccionando la opción 4:3 hara que el juego mantenga su relación de aspecto correcta.</value>
+  </data>
+  <data name="Settings_UserLevelInfo" xml:space="preserve">
+    <value>El Nivel de usuario determina que opciones y información estan disponibles dentro de la aplicación. Como más alto sea el nivel de usuario, más avanzadas serán las opciones y más información será mostrada hacia el usuario</value>
+  </data>
+  <data name="Settings_UserLevelNormalInfo" xml:space="preserve">
+    <value>Usuario Normal - Opción recomendada para la mayoría de usuarios. Ofrece todas las opciones por defecto. Sin detalles técnicos ni opciones mas avanzadas.</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
+    <value>Muestra la barra de progreso en la icona de la barraa de tareas</value>
+  </data>
+  <data name="Settings_DosBoxPath" xml:space="preserve">
+    <value>Ruta del archivo de DOSBox </value>
+  </data>
+  <data name="Settings_DosBoxPathInfo" xml:space="preserve">
+    <value>
+</value>
+  </data>
+  <data name="ROU_UpdateInfo" xml:space="preserve">
+    <value>En el caso que Rayman Origins no este actualizado a la versión 1.0.2 (La última) utiliza esta herramienta para actualizar el juego</value>
+  </data>
+  <data name="LocateGame_Error" xml:space="preserve">
+    <value>Ha ocurrido un error al localizar el juego</value>
+  </data>
+  <data name="Help_RCP_CompatibilityHeader" xml:space="preserve">
+    <value>Compatibilidad</value>
+    <comment>Compatibilidad</comment>
+  </data>
+  <data name="Help_RCP_Compatibility" xml:space="preserve">
+    <value>Se necesita Windows Vista como minimo para ejecutar el programa, se recomienda Windows 7 o superior.
+</value>
+  </data>
+  <data name="Help_RCP_GameInstallerHeader" xml:space="preserve">
+    <value>Instalador del juego</value>
+    <comment>Instalador de juego</comment>
+  </data>
+  <data name="Help_Games_R1" xml:space="preserve">
+    <value>Rayman 3</value>
+    <comment>Rayman 2</comment>
+  </data>
+  <data name="Help_Games_R1_EmulatorHeader" xml:space="preserve">
+    <value>Emulador de MS-DOS</value>
+  </data>
+  <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
+    <value>La Instalación ha fallado</value>
+  </data>
+  <data name="Help_Games_R2_Fps" xml:space="preserve">
+    <value>Algunas partes del juego no funcionan correctamente a 60fps. Las mas notables ocurren en los bonus, donde es mucho mas dificil subir el medidor de velocidad, haciendo muy difícil de ganar el minijuego. Otro error puede hacer que sea imposible de saltar de la cabeza de Umber en el santuario de piedra y fuego.</value>
+  </data>
+  <data name="Help_Games_R2_NoDiscHeader" xml:space="preserve">
+    <value>"No Disc" Error</value>
+  </data>
+  <data name="Help_Games_RMA" xml:space="preserve">
+    <value>Rayman M/Arena</value>
+    <comment>Rayman M/Arena</comment>
+  </data>
+  <data name="Help_Games_RMA_MissingTexturesHeader" xml:space="preserve">
+    <value>Faltan Texturas
+</value>
+  </data>
+  <data name="Help_Games_R3" xml:space="preserve">
+    <value>Rayman 5</value>
+    <comment>Rayman 4</comment>
+  </data>
+  <data name="Help_Games_RRR" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+    <comment>Rayman Raving Rabbids</comment>
+  </data>
+  <data name="Help_Games_RRR_EngineErrorHeader" xml:space="preserve">
+    <value>Error jade_enr.exe</value>
+    <comment>Error jade_enr.exe</comment>
+  </data>
+  <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3Borders" xml:space="preserve">
+    <value>4:3 Letterbox (Con bordes)</value>
+  </data>
+  <data name="Config_RRRScreenMode_16_9" xml:space="preserve">
+    <value>16:9</value>
+    <comment>16:10</comment>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Rayman Control Panel
+</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdminOption" xml:space="preserve">
+    <value>Ejecutar como administrador (Opcional)</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdmin" xml:space="preserve">
+    <value>Ejecutar como administrador</value>
+  </data>
+  <data name="GameOptions_Config" xml:space="preserve">
+    <value>Configuración</value>
+    <comment>Configuración</comment>
+  </data>
+  <data name="Archive_ExportMipmaps" xml:space="preserve">
+    <value>Exportar mipmaps</value>
   </data>
 </root>

@@ -70,8 +70,9 @@ namespace RayCarrot.RCP.Metro
         /// Updates the archive with the modified files
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
-        /// <param name="modifiedFiles">The modified files to update in the archive</param>
-        public void UpdateArchive(Stream archiveFileStream, IEnumerable<IArchiveFileData> modifiedFiles)
+        /// <param name="outputFileStream">The file stream for the updated archive</param>
+        /// <param name="files">The files of the archive. Modified files have the <see cref="IArchiveFileData.PendingImportTempPath"/> property set to an existing path.</param>
+        public void UpdateArchive(Stream archiveFileStream, Stream outputFileStream, IEnumerable<IArchiveFileData> files)
         {
             // Set the stream position to 0
             archiveFileStream.Position = 0;
@@ -79,14 +80,14 @@ namespace RayCarrot.RCP.Metro
             // Load the current file
             var data = new OpenSpaceCntSerializer(Settings).Deserialize(archiveFileStream);
 
-            // Get the modified files
-            var files = modifiedFiles.ToDictionary(x => Path.Combine(x.Directory, x.FileName));
+            // Order files by path
+            var allFiles = files.Cast<OpenSpaceCntArchiveFileData>().ToDictionary(x => Path.Combine(x.Directory, x.FileName));
 
             // Create a temporary directory to load the current files into 
             using var tempDir = new TempDirectory(true);
 
             // Create the file generator
-            data.FileGenerator = new Dictionary<string, Func<byte[]>>();
+            data.FileGenerator = new ArchiveFileGenerator();
 
             // The current pointer position
             var pointer = data.GetHeaderSize();
@@ -95,22 +96,22 @@ namespace RayCarrot.RCP.Metro
             foreach (var file in data.Files)
             {
                 // Get the full path
-                var fullPath = Path.Combine(file.DirectoryIndex == -1 ? String.Empty : data.Directories[file.DirectoryIndex], file.FileName);
+                var fullPath = file.GetFullPath(data.Directories);
 
-                // Attempt to get the modified version of the file
-                var modifiedFile = files.TryGetValue(fullPath);
-
-                // Get the temporary file path
-                FileSystemPath tempFilePath = tempDir.TempPath + $"{file.DirectoryIndex.ToString().PadLeft(3, '0')}{file.FileName}";
+                // Get the file
+                var existingFile = allFiles.TryGetValue(fullPath);
 
                 // Check if the file is one of the modified files
-                if (modifiedFile != null)
+                if (existingFile.PendingImportTempPath.FileExists)
                 {
+                    // Get the temporary file path without disposing it as it gets removed from the directory
+                    var tempFilePath = (tempDir.TempPath + file.FileName).GetNonExistingFileName();
+
                     // Remove the file from the dictionary
-                    files.Remove(fullPath);
+                    allFiles.Remove(fullPath);
 
                     // Move the file
-                    RCFRCP.File.MoveFile(modifiedFile.PendingImportTempPath, tempFilePath, true);
+                    RCFRCP.File.MoveFile(existingFile.PendingImportTempPath, tempFilePath, true);
 
                     // Set the file size
                     file.Size = (int)tempFilePath.GetSize().Bytes;
@@ -127,15 +128,16 @@ namespace RayCarrot.RCP.Metro
                             0, 0, 0, 0
                         };
                     }
+
+                    // Add to the generator
+                    data.FileGenerator.Add(fullPath, () => File.ReadAllBytes(tempFilePath));
                 }
                 // Use the original file without decrypting it
                 else
                 {
-                    File.WriteAllBytes(tempFilePath, file.GetFileBytes(archiveFileStream, false));
+                    // Add to the generator
+                    data.FileGenerator.Add(fullPath, () => existingFile.FileData.GetFileBytes(archiveFileStream, false));
                 }
-
-                // Add to the generator
-                data.FileGenerator.Add(fullPath, () => File.ReadAllBytes(tempFilePath));
 
                 // Set the pointer
                 file.Pointer = pointer;
@@ -144,11 +146,11 @@ namespace RayCarrot.RCP.Metro
                 pointer += file.Size;
             }
 
-            // Set the stream position to 0
-            archiveFileStream.Position = 0;
-
             // Serialize the data
-            new OpenSpaceCntSerializer(Settings).Serialize(archiveFileStream, data);
+            new OpenSpaceCntSerializer(Settings).Serialize(outputFileStream, data);
+
+            // Clear the generator
+            data.FileGenerator.Clear();
         }
 
         #endregion

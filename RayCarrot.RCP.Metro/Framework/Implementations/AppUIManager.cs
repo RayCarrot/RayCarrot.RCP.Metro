@@ -100,6 +100,25 @@ namespace RayCarrot.RCP.Metro
             return result;
         }
 
+        public async Task<FileExtensionSelectionDialogResult> SelectFileExtensionAsync(FileExtensionSelectionDialogViewModel viewModel, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
+        {
+            RCFCore.Logger?.LogTraceSource($"A file extension selection dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+
+            if (Application.Current.Dispatcher == null)
+                throw new Exception("The application does not have a valid dispatcher");
+
+            // Create the dialog and get the result
+            var result = await Application.Current.Dispatcher.Invoke(() => new FileExtensionSelectionDialog(viewModel)).ShowDialogAsync();
+
+            if (result == null)
+                RCFCore.Logger?.LogTraceSource($"The file extension selection dialog returned null");
+            else if (result.CanceledByUser)
+                RCFCore.Logger?.LogTraceSource($"The file extension selection dialog was canceled by the user");
+
+            // Return the result
+            return result;
+        }
+
         #endregion
 
         #region Windows

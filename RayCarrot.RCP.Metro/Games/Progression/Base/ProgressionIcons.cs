@@ -10,6 +10,9 @@
         Lum,
         Medal, 
         RedTooth,
-        Trophy
+        Trophy,
+
+        R3_Cage,
+        R3_Score,
     }
 }

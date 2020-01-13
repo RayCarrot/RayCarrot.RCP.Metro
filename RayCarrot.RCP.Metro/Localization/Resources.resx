@@ -3122,4 +3122,56 @@ fileFormat</comment>
   <data name="Archive_ExportMipmaps" xml:space="preserve">
     <value>Export mipmaps</value>
   </data>
+  <data name="Archive_IPK_FileInfo" xml:space="preserve">
+    <value>Directory = {0}
+Compressed = {1}
+File size = {2}
+Compressed file size = {3}
+Pointer = {4}</value>
+    <comment>Arguments:
+dirPath
+isCompressed
+fileSize
+compressedFileSize
+pointer</comment>
+  </data>
+  <data name="Archive_IPK_ImageFileInfo" xml:space="preserve">
+    <value>Directory = {0}
+Size = {1} x {2}
+Texture version = {3}
+Compressed = {4}
+File size = {5}
+Compressed file size = {6}
+Pointer = {7}</value>
+    <comment>Arguments:
+dirPath
+imgWidth
+imgHeight
+textureVersion
+isCompressed
+fileSize
+compressedFileSize
+pointer</comment>
+  </data>
+  <data name="UtilitiesPageHeader" xml:space="preserve">
+    <value>Utilities</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
+    <value>OpenSpace Archives (.cnt)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
+    <value>UbiArt Archives (.ipk)</value>
+  </data>
+  <data name="Utilities_Converter_GFHeader" xml:space="preserve">
+    <value>Texture Files (.gf)</value>
+  </data>
+  <data name="Utilities_Converter_Convert" xml:space="preserve">
+    <value>Convert</value>
+  </data>
+  <data name="Utilities_Converter_ConvertBack" xml:space="preserve">
+    <value>Convert back</value>
+  </data>
+  <data name="Utilities_Converter_LOCHeader" xml:space="preserve">
+    <value>Localization Files (.loc/.loc8)</value>
+  </data>
 </root>

@@ -24,6 +24,11 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
+        /// Indicates if the slot can be exported/imported
+        /// </summary>
+        public override bool CanModify => true;
+
+        /// <summary>
         /// Exports the save slot from the specified path
         /// </summary>
         /// <param name="outputFilePath">The output file path</param>

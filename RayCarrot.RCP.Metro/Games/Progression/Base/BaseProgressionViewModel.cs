@@ -49,15 +49,6 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Abstract Properties
-
-        /// <summary>
-        /// Indicates if the progression data is available
-        /// </summary>
-        public abstract bool IsAvailable { get; }
-
-        #endregion
-
         #region Public Abstract Methods
 
         /// <summary>

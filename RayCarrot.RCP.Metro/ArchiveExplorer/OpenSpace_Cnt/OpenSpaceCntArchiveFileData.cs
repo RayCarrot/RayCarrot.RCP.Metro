@@ -107,15 +107,38 @@ namespace RayCarrot.RCP.Metro
         public string FileFormatName => "GF";
 
         /// <summary>
-        /// The supported file formats to import/export from
+        /// The supported file formats to import from
         /// </summary>
-        public string[] SupportedFileExtensions => new string[]
+        public string[] SupportedImportFileExtensions => new string[]
         {
             ".png",
             ".jpg",
             ".jpeg",
             ".bmp",
             ".gf",
+        };
+
+        /// <summary>
+        /// The supported file formats to export to
+        /// </summary>
+        public string[] SupportedExportImportFileExtensions => new string[]
+        {
+            ".png",
+            ".jpg",
+            ".jpeg",
+            ".bmp",
+            ".gf",
+        };
+
+        /// <summary>
+        /// The supported file formats for exporting mipmaps
+        /// </summary>
+        public string[] SupportedMipmapExportFileExtensions => new[]
+        {
+            ".png",
+            ".jpg",
+            ".jpeg",
+            ".bmp",
         };
 
         /// <summary>
@@ -259,49 +282,34 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public Task ExportMipmapsAsync(Stream archiveFileStream, FileSystemPath filePath, string fileFormat)
         {
-            // Check if the file should be saved as its native format, in which case we only export a single file since the mipmaps are included
-            if (fileFormat == ".gf")
+            int index = 0;
+
+            // Save each mipmap
+            foreach (var bmp in GetBitmaps(archiveFileStream))
             {
+                // Get the file path
+                var mipmapFile = filePath;
+
+                if (index > 0)
+                    mipmapFile = mipmapFile.RemoveFileExtension().FullPath + $" ({index}){fileFormat}";
+
                 // Open the file
-                using var file = File.Open(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
+                using var file = File.Open(mipmapFile, FileMode.Create, FileAccess.Write, FileShare.None);
 
-                // Get the file bytes
-                var bytes = GetFileBytes(archiveFileStream);
-
-                // Write to the stream
-                file.Write(bytes, 0, bytes.Length);
-            }
-            else
-            {
-                int index = 0;
-
-                // Save each mipmap
-                foreach (var bmp in GetBitmaps(archiveFileStream))
+                // Get the format
+                var format = fileFormat switch
                 {
-                    // Get the file path
-                    var mipmapFile = filePath;
+                    ".bmp" => ImageFormat.Bmp,
+                    ".png" => ImageFormat.Png,
+                    ".jpeg" => ImageFormat.Jpeg,
+                    ".jpg" => ImageFormat.Jpeg,
+                    _ => throw new Exception($"The specified file format {fileFormat} is not supported")
+                };
 
-                    if (index > 0)
-                        mipmapFile = mipmapFile.RemoveFileExtension().FullPath + $" ({index}){fileFormat}";
+                // Save the file
+                bmp.Save(file, format);
 
-                    // Open the file
-                    using var file = File.Open(mipmapFile, FileMode.Create, FileAccess.Write, FileShare.None);
-
-                    // Get the format
-                    var format = fileFormat switch
-                    {
-                        ".bmp" => ImageFormat.Bmp,
-                        ".png" => ImageFormat.Png,
-                        ".jpeg" => ImageFormat.Jpeg,
-                        ".jpg" => ImageFormat.Jpeg,
-                        _ => throw new Exception($"The specified file format {fileFormat} is not supported")
-                    };
-
-                    // Save the file
-                    bmp.Save(file, format);
-
-                    index++;
-                }
+                index++;
             }
 
             return Task.CompletedTask;

@@ -11,7 +11,6 @@
                   Loaded="GameOptions_OnLoadedAsync"
                   Closing="GameOptions_OnClosingAsync"
                   WindowStartupLocation="CenterOwner"
-                  Width="600"
                   ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                   mc:Ignorable="d"
                   d:DataContext="{d:DesignInstance local:GameOptionsViewModel}">
@@ -120,20 +119,22 @@
                                                    Style="{StaticResource HeaderTextBlock}"
                                                    Margin="{StaticResource SmallVerticalStackMargin}"/>
 
-                                        <local:OverflowMenu HorizontalAlignment="Right" 
-                                                            rwpf:UserLevelTag.MinUserLevel="Technical"
-                                                            Margin="7">
-                                            <local:OverflowMenu.ContextMenu>
-                                                <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
-                                                    <local:MenuItemIcon Header="{Resx Progression_Export}"
-                                                                        Command="{Binding Path=ExportCommand, Mode=OneTime}"
-                                                                        IconKind="FileExportOutline"/>
-                                                    <local:MenuItemIcon Header="{Resx Progression_Import}"
-                                                                        Command="{Binding Path=ImportCommand, Mode=OneTime}"
-                                                                        IconKind="FileImportOutline"/>
-                                                </ContextMenu>
-                                            </local:OverflowMenu.ContextMenu>
-                                        </local:OverflowMenu>
+                                        <Grid HorizontalAlignment="Right"
+                                              Visibility="{Binding Path=CanModify, Converter={rwpf:BooleanToVisibilityConverter}, Mode=OneTime}">
+                                            <local:OverflowMenu rwpf:UserLevelTag.MinUserLevel="Technical"
+                                                                Margin="7">
+                                                <local:OverflowMenu.ContextMenu>
+                                                    <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
+                                                        <local:MenuItemIcon Header="{Resx Progression_Export}"
+                                                                            Command="{Binding Path=ExportCommand, Mode=OneTime}"
+                                                                            IconKind="FileExportOutline"/>
+                                                        <local:MenuItemIcon Header="{Resx Progression_Import}"
+                                                                            Command="{Binding Path=ImportCommand, Mode=OneTime}"
+                                                                            IconKind="FileImportOutline"/>
+                                                    </ContextMenu>
+                                                </local:OverflowMenu.ContextMenu>
+                                            </local:OverflowMenu>
+                                        </Grid>
 
                                     </Grid>
 

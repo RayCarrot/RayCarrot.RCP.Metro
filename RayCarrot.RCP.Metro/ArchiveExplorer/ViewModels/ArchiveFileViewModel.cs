@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
+using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -90,12 +91,13 @@ namespace RayCarrot.RCP.Metro
         #region Protected Methods
 
         /// <summary>
-        /// Gets the collection of file filter items for the file
+        /// Gets the collection of file filter items from a collection of file extensions
         /// </summary>
+        /// <param name="fileExtensions">The file extensions</param>
         /// <returns>The file filter item collection</returns>
-        protected FileFilterItemCollection GetFileFilterCollection()
+        protected FileFilterItemCollection GetFileFilterCollection(string[] fileExtensions)
         {
-            return new FileFilterItemCollection(FileData.SupportedFileExtensions.
+            return new FileFilterItemCollection(fileExtensions.
                 // Create a filter item for each extension
                 Select(x => new FileFilterItem(
                     // Set the filter to the extension
@@ -148,7 +150,7 @@ namespace RayCarrot.RCP.Metro
             }
             else
             {
-                RCFCore.Logger?.LogWarningSource("A thumbnail can currently not be generated for non-image files in archives");
+                RCFCore.Logger?.LogDebugSource("A thumbnail can currently not be generated for non-image files in archives");
             }
         }
 
@@ -168,12 +170,15 @@ namespace RayCarrot.RCP.Metro
                     // Run as a task
                     await Task.Run(async () =>
                     {
+                        // Get the file extensions
+                        var ext = (includeMipmap ? FileData.CastTo<IArchiveImageFileData>().SupportedMipmapExportFileExtensions : FileData.SupportedExportImportFileExtensions);
+
                         // Get the output path
                         var result = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
                         {
                             Title = Resources.Archive_ExportHeader,
-                            DefaultName = new FileSystemPath(FileName).ChangeFileExtension(FileData.SupportedFileExtensions.First()),
-                            Extensions = GetFileFilterCollection().ToString()
+                            DefaultName = new FileSystemPath(FileName).ChangeFileExtension(ext.First(), true),
+                            Extensions = GetFileFilterCollection(ext).ToString()
                         });
 
                         if (result.CanceledByUser)
@@ -228,7 +233,7 @@ namespace RayCarrot.RCP.Metro
                         var result = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                         {
                             Title = Resources.Archive_ImportFileHeader,
-                            ExtensionFilter = GetFileFilterCollection().CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
+                            ExtensionFilter = GetFileFilterCollection(FileData.SupportedExportImportFileExtensions).CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
                         });
 
                         if (result.CanceledByUser)
@@ -259,7 +264,10 @@ namespace RayCarrot.RCP.Metro
                         }
 
                         // Update the archive
-                        await Archive.UpdateArchiveAsync();
+                        var repackSucceeded = await Archive.UpdateArchiveAsync();
+
+                        if (!repackSucceeded)
+                            return;
 
                         await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ImportFileSuccess);
                     });

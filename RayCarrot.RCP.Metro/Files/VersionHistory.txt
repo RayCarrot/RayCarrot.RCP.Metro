@@ -1,12 +1,18 @@
 ﻿-----   Version 9.0.0 - January ??, 2019   -----
 • Added the utilities page for non-game specific utilities
 • Added a utility for viewing/editing the .cnt archive of supported OpenSpace games
+• Added the progression tab for Rayman 3 (currently does not allow importing/exporting)
 • Removed the option to show the program under installed programs
 
 Other changes:
 • Code cleanup
 • Removed the Rayman Control Panel API while keeping parts of the new modular structure for future projects
+• Updated the icon in the updater
+• Minor changes to the Archive Explorer, such as exporting mipmaps of an image only showing the supported file extensions for that operation
 • The primary ubi.ini path is no longer hard-coded
+• THe performance when repacking an archive has been vastly improved
+• If repacking an archive file fails it will now restore the original file
+• Fixed a bug where repacking an archive file to a smaller size would keep some old data, maintaining the file size
 • Fixed a minor bug where the application path would sometimes not be retrieved correctly
 • Bug fixes
 

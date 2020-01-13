@@ -106,6 +106,9 @@
     <Compile Include="ArchiveExplorer\Base\IArchiveImageFileData.cs" />
     <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
     <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
+    <Compile Include="ArchiveExplorer\UbiArt_Ipk\UbiArtIPKArchiveDataManager.cs" />
+    <Compile Include="ArchiveExplorer\UbiArt_Ipk\UbiArtIPKArchiveFileData.cs" />
+    <Compile Include="ArchiveExplorer\UbiArt_Ipk\UbiArtIPKArchiveImageFileData.cs" />
     <Compile Include="ArchiveExplorer\UI\ArchiveExplorerUI.xaml.cs">
       <DependentUpon>ArchiveExplorerUI.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,8 @@
     <Compile Include="Games\Progression\Base\ProgressionInfoItemViewModel.cs" />
     <Compile Include="Games\Progression\Base\ProgressionSlotViewModel.cs" />
     <Compile Include="Games\Progression\JungleRun\JungleRunProgressionSlotViewModel.cs" />
+    <Compile Include="Games\Progression\Rayman3\Rayman3ProgressionSlotViewModel.cs" />
+    <Compile Include="Games\Progression\Rayman3\Rayman3ProgressionViewModel.cs" />
     <Compile Include="Games\Utilities\Rayman 2\CNTExplorer\R2CNTExplorerUtility.cs" />
     <Compile Include="Games\Utilities\Rayman Arena\CNTExplorer\RACNTExplorerUtility.cs" />
     <Compile Include="Games\Utilities\Rayman 3\CNTExplorer\R3CNTExplorerUtility.cs" />
@@ -164,6 +169,7 @@
       <DependentUpon>LinksPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Links\LinksPageViewModel.cs" />
+    <Compile Include="Pages\Utilities\EnumSelectionViewModel.cs" />
     <Compile Include="UI\Behaviors\ChildRCPTabControlBehavior.cs" />
     <Compile Include="UI\Controls\DuoGridItem.cs" />
     <Compile Include="UI\Controls\InfoIcon.xaml.cs">
@@ -176,7 +182,7 @@
       <DependentUpon>OverflowMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\RCPTabItem.cs" />
-    <Compile Include="UI\Converters\OpenSpaceGameModeToDisplayNameConverter.cs" />
+    <Compile Include="UI\Converters\GameModeToDisplayNameConverter.cs" />
     <Compile Include="UI\Converters\AppendSpacesToStringConverter.cs" />
     <Compile Include="UI\Converters\BooleanToTransitionTypeConverter.cs" />
     <Compile Include="Pages\BasePage.cs" />
@@ -923,6 +929,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Files\Programs\Rayman Control Panel Updater.exe" />
+    <Resource Include="Img\ProgressionIcons\R3_Cage.png" />
+    <Resource Include="Img\ProgressionIcons\R3_Score.png" />
     <Resource Include="Img\MessageIcons\Question.png" />
     <Resource Include="Img\MessageIcons\Info.png" />
     <Resource Include="Img\MessageIcons\Happy.png" />
@@ -932,12 +940,12 @@
     <Resource Include="Img\GameIcons\RabbidsCoding.png" />
     <Resource Include="Img\GameIcons\RaymanActivityCenter.png" />
     <Resource Include="Img\GameIcons\RaymanRavingRabbidsActivityCenter.png" />
-    <Resource Include="Img\ProgressionIcons\UbiArt\Clock.png" />
-    <Resource Include="Img\ProgressionIcons\UbiArt\Electoon.png" />
-    <Resource Include="Img\ProgressionIcons\UbiArt\Lum.png" />
-    <Resource Include="Img\ProgressionIcons\UbiArt\Medal.png" />
-    <Resource Include="Img\ProgressionIcons\UbiArt\RedTooth.png" />
-    <Resource Include="Img\ProgressionIcons\UbiArt\Trophy.png" />
+    <Resource Include="Img\ProgressionIcons\Clock.png" />
+    <Resource Include="Img\ProgressionIcons\Electoon.png" />
+    <Resource Include="Img\ProgressionIcons\Lum.png" />
+    <Resource Include="Img\ProgressionIcons\Medal.png" />
+    <Resource Include="Img\ProgressionIcons\RedTooth.png" />
+    <Resource Include="Img\ProgressionIcons\Trophy.png" />
     <Resource Include="Img\GameIcons\TheDarkMagiciansReignofTerror.png" />
     <Resource Include="Img\GameIcons\PrintStudio.png" />
     <Resource Include="Img\GameIcons\GloboxMoment.png" />
@@ -996,8 +1004,11 @@
     <PackageReference Include="Costura.Fody">
       <Version>4.1.0</Version>
     </PackageReference>
+    <PackageReference Include="DotNetZip">
+      <Version>1.13.5</Version>
+    </PackageReference>
     <PackageReference Include="Fody">
-      <Version>6.0.5</Version>
+      <Version>6.0.6</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -1014,7 +1025,7 @@
       <Version>1.6.5</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro.IconPacks.Material">
-      <Version>3.0.1</Version>
+      <Version>3.1.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft-WindowsAPICodePack-Shell">
       <Version>1.1.3.3</Version>
@@ -1040,8 +1051,11 @@
     <PackageReference Include="NVorbis">
       <Version>0.9.0</Version>
     </PackageReference>
+    <PackageReference Include="Pfim">
+      <Version>0.9.1</Version>
+    </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.2.1</Version>
+      <Version>3.2.3</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.CarrotFramework">
       <Version>3.4.0</Version>
@@ -1050,10 +1064,10 @@
       <Version>1.5.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Extensions">
-      <Version>1.2.5</Version>
+      <Version>1.2.7</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
-      <Version>1.3.7</Version>
+      <Version>1.4.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.UI">
       <Version>1.2.1</Version>

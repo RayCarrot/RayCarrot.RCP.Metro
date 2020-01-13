@@ -28,15 +28,6 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Override Properties
-
-        /// <summary>
-        /// Indicates if the progression data is available
-        /// </summary>
-        public override bool IsAvailable => Directory.EnumerateFiles(SaveDir).Any(x => new FileSystemPath(x).FileExtension == ".dat");
-
-        #endregion
-
         #region Protected Methods
 
         /// <summary>

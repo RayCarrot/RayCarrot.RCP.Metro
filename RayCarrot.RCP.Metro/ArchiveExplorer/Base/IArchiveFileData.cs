@@ -37,9 +37,14 @@ namespace RayCarrot.RCP.Metro
         string FileFormatName { get; }
 
         /// <summary>
-        /// The supported file formats to import/export from
+        /// The supported file formats to import from
         /// </summary>
-        string[] SupportedFileExtensions { get; }
+        string[] SupportedImportFileExtensions { get; }
+
+        /// <summary>
+        /// The supported file formats to export to
+        /// </summary>
+        string[] SupportedExportImportFileExtensions { get; }
 
         /// <summary>
         /// The path to the temporary file containing the data to be imported

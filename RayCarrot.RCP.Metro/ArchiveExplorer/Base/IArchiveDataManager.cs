@@ -19,7 +19,8 @@ namespace RayCarrot.RCP.Metro
         /// Updates the archive with the modified files
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
-        /// <param name="modifiedFiles">The modified files to update in the archive</param>
-        void UpdateArchive(Stream archiveFileStream, IEnumerable<IArchiveFileData> modifiedFiles);
+        /// <param name="outputFileStream">The file stream for the updated archive</param>
+        /// <param name="files">The files of the archive. Modified files have the <see cref="IArchiveFileData.PendingImportTempPath"/> property set to an existing path.</param>
+        void UpdateArchive(Stream archiveFileStream, Stream outputFileStream, IEnumerable<IArchiveFileData> files);
     }
 }

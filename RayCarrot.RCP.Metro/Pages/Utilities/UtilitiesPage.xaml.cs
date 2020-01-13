@@ -1,6 +1,4 @@
-﻿using System.Windows.Input;
-
-namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Interaction logic for UtilitiesPage.xaml

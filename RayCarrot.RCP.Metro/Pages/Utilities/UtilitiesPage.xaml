@@ -29,120 +29,250 @@
 
             <!-- Archive Explorer -->
 
-            <!-- TODO: Localize -->
-            <local:RCPTabItem IconKind="FileMultipleOutline"
-                              Header="Archive Explorer">
+            <local:RCPTabItem IconKind="FolderMultipleOutline"
+                              Header="{Resx Utilities_ArchiveExplorer_Header}">
 
                 <StackPanel>
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="{Resx OSU_CNTExplorer_Header}" />
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                        </i:Interaction.Behaviors>
 
-                        <local:InfoIcon Text="{Resx OSU_CNTExplorer_Info}"/>
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                   Text="{Resx Utilities_ArchiveExplorer_CNTHeader}" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox Grid.Column="0"
+                                      ItemsSource="{Binding Path=CntGameModeSelection.AvailableValues, Mode=OneTime}"
+                                      SelectedItem="{Binding Path=CntGameModeSelection.SelectedValue}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={local:GameModeToDisplayNameConverter}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <Button Grid.Column="2"
+                                    Content="{Resx Utilities_ArchiveExplorer_Open}"
+                                    Command="{Binding Path=OpenCNTArchiveExplorerCommand, Mode=OneTime}" />
+
+                        </Grid>
 
                     </StackPanel>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="20" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                        </i:Interaction.Behaviors>
 
-                        <ComboBox Grid.Column="0"
-                                  ItemsSource="{Binding Path=AvailableCNTGameModes, Mode=OneTime}"
-                                  SelectedItem="{Binding Path=SelectedCNTGameMode}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={local:OpenSpaceGameModeToDisplayNameConverter}}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                   Text="{Resx Utilities_ArchiveExplorer_IPKHeader}" />
 
-                        <!-- TODO: Localize -->
-                        <Button Grid.Column="2"
-                                Content="Open"
-                                Command="{Binding Path=OpenCNTArchiveExplorerCommand, Mode=OneTime}" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                    </Grid>
+                            <ComboBox Grid.Column="0"
+                                      ItemsSource="{Binding Path=IpkGameModeSelection.AvailableValues, Mode=OneTime}"
+                                      SelectedItem="{Binding Path=IpkGameModeSelection.SelectedValue}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={local:GameModeToDisplayNameConverter}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <Button Grid.Column="2"
+                                    Content="{Resx Utilities_ArchiveExplorer_Open}"
+                                    Command="{Binding Path=OpenIPKArchiveExplorerCommand, Mode=OneTime}" />
+
+                        </Grid>
+
+                    </StackPanel>
+
                 </StackPanel>
 
             </local:RCPTabItem>
 
             <!-- Converters -->
 
-            <!-- TODO: Localize -->
             <local:RCPTabItem IconKind="FileExportOutline"
-                              Header="Converters">
+                              Header="{Resx Utilities_Converter_Header}">
 
                 <StackPanel>
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
-                    <StackPanel Orientation="Horizontal">
-                        <!-- TODO: Localize -->
-                        <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="GF Converter" />
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                        </i:Interaction.Behaviors>
 
-                        <!--<local:InfoIcon Text="{Resx OSU_CNTExplorer_Info}"/>-->
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                   Text="{Resx Utilities_Converter_GFHeader}" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox Grid.Column="0"
+                                      ItemsSource="{Binding Path=GfGameModeSelection.AvailableValues, Mode=OneTime}"
+                                      SelectedItem="{Binding Path=GfGameModeSelection.SelectedValue}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={local:GameModeToDisplayNameConverter}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <Button Grid.Column="2"
+                                    Content="{Resx Utilities_Converter_Convert}"
+                                    Command="{Binding Path=ConvertFromGFCommand, Mode=OneTime}" />
+
+                            <Button Grid.Column="4"
+                                    Content="{Resx Utilities_Converter_ConvertBack}"
+                                    Command="{Binding Path=ConvertToGFCommand, Mode=OneTime}" />
+
+                        </Grid>
+
+                        <CheckBox Content="{Resx Utilities_Converter_IncludeMipmaps}"
+                                  IsChecked="{Binding Path=GfIncludeMipmaps}"/>
 
                     </StackPanel>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*" />
-                            <ColumnDefinition Width="20" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="10" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                        </i:Interaction.Behaviors>
 
-                        <ComboBox Grid.Column="0"
-                                  ItemsSource="{Binding Path=AvailableGFGameModes, Mode=OneTime}"
-                                  SelectedItem="{Binding Path=SelectedGFGameMode}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={local:OpenSpaceGameModeToDisplayNameConverter}}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                   Text="{Resx Utilities_Converter_LOCHeader}" />
 
-                        <!-- TODO: Localize -->
-                        <Button Grid.Column="2"
-                                Content="Convert from .gf"
-                                Command="{Binding Path=ConvertFromGFCommand, Mode=OneTime}" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                        <!-- TODO: Localize -->
-                        <Button Grid.Column="4"
-                                Content="Convert to .gf"
-                                Command="{Binding Path=ConvertToGFCommand, Mode=OneTime}" />
+                            <ComboBox Grid.Column="0"
+                                      ItemsSource="{Binding Path=LocGameModeSelection.AvailableValues, Mode=OneTime}"
+                                      SelectedItem="{Binding Path=LocGameModeSelection.SelectedValue}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={local:GameModeToDisplayNameConverter}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
 
-                    </Grid>
+                            <Button Grid.Column="2"
+                                    Content="{Resx Utilities_Converter_Convert}"
+                                    Command="{Binding Path=ConvertFromLOCCommand, Mode=OneTime}" />
+
+                            <Button Grid.Column="4"
+                                    Content="{Resx Utilities_Converter_ConvertBack}"
+                                    Command="{Binding Path=ConvertToLOCCommand, Mode=OneTime}" />
+
+                        </Grid>
+
+                    </StackPanel>
+
                 </StackPanel>
-
-            </local:RCPTabItem>
-
-            <!-- Other -->
-
-            <!-- TODO: Localize -->
-            <local:RCPTabItem IconKind="Buffer"
-                              Header="Other">
-
 
             </local:RCPTabItem>
 
             <!-- Work in Process -->
 
-            <!-- TODO: Localize -->
             <local:RCPTabItem IconKind="CodeBraces"
-                              Header="Work in Process"
+                              Header="{Resx Utilities_WIP_Header}"
                               rwpf:UserLevelTag.MinUserLevel="Technical">
 
+                <StackPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                    </i:Interaction.Behaviors>
+
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                        </i:Interaction.Behaviors>
+
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                               Text="Rayman 1 Level Viewer" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox Grid.Column="0"
+                                  ItemsSource="{Binding Path=LevGameModeSelection.AvailableValues, Mode=OneTime}"
+                                  SelectedItem="{Binding Path=LevGameModeSelection.SelectedValue}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={local:GameModeToDisplayNameConverter}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <Button Grid.Column="2"
+                                Content="Load"
+                                Command="{Binding Path=LoadR1LevelCommand, Mode=OneTime}" />
+
+                        </Grid>
+
+                        <Image Source="{Binding Path=LevGraphicsImageSource}" />
+
+                        <Image Source="{Binding Path=LevTypesImageSource}" />
+
+                        <ItemsControl DataContext="{Binding Path=LevData}"
+                                  Visibility="{Binding Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
+                                  Grid.IsSharedSizeScope="True"
+                                  Margin="0 8">
+
+                            <local:DuoGridItem Header="Width"
+                                           Text="{Binding Path=MapWidth}" />
+
+                            <local:DuoGridItem Header="Height"
+                                           Text="{Binding Path=MapHeight}" />
+
+                            <local:DuoGridItem Header="Events"
+                                           Text="{Binding Path=EventCount}" />
+
+                            <local:DuoGridItem Header="Textures"
+                                           Text="{Binding Path=TexturesCount}" />
+
+                            <local:DuoGridItem Header="Background"
+                                           Text="{Binding Path=BackgroundIndex}" />
+
+                        </ItemsControl>
+
+                    </StackPanel>
+
+                </StackPanel>
 
             </local:RCPTabItem>
 

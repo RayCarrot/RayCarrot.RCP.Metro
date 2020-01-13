@@ -321,8 +321,7 @@
 
             <!-- Utilities -->
 
-            <!-- TODO: Localize -->
-            <local:RCPTabItem Header="Utilities"
+            <local:RCPTabItem Header="{Resx UtilitiesPageHeader}"
                               IconKind="BriefcaseOutline"
                               IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Utilities}">
                 <local:UtilitiesPage />

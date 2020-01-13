@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using RayCarrot.CarrotFramework.Abstractions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -61,7 +62,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The archive file stream
         /// </summary>
-        public FileStream ArchiveFileStream { get; }
+        public FileStream ArchiveFileStream { get; protected set; }
 
         /// <summary>
         /// The lock to use when accessing the archive stream
@@ -152,8 +153,15 @@ namespace RayCarrot.RCP.Metro
                 // Keep track of the previous item
                 ArchiveDirectoryViewModel prevItem = this;
 
+                // IDEA: Have this configurable in manager?
+                var separatorChars = new char[]
+                {
+                    '\\', 
+                    '/'
+                };
+
                 // Enumerate each sub directory
-                foreach (string subDir in dir.DirectoryName.Split('\\'))
+                foreach (string subDir in dir.DirectoryName.Trim(separatorChars).Split(separatorChars))
                 {
                     // Set the previous item and create the item if it doesn't already exist
                     prevItem = prevItem.FindItem(x => x.ID == subDir) ?? prevItem.Add(subDir);
@@ -167,7 +175,8 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Updates the archive with the pending imports
         /// </summary>
-        public Task UpdateArchiveAsync()
+        /// <returns>A value indicating if the updating succeeded</returns>
+        public async Task<bool> UpdateArchiveAsync()
         {
             // Stop refreshing thumbnails
             if (ExplorerDialogViewModel.IsRefreshingThumbnails)
@@ -178,11 +187,48 @@ namespace RayCarrot.RCP.Metro
             // Find the selected item ID
             var selected = SelectedItem.FullID;
 
-            // Get the modified files
-            var files = this.GetAllChildren<ArchiveDirectoryViewModel>(true).SelectMany(x => x.Files).Select(x => x.FileData).Where(x => x.PendingImportTempPath.FileExists);
+            // Flag for if the update succeeded
+            var succeeded = false;
 
-            // Update the archive
-            Manager.UpdateArchive(ArchiveFileStream, files);
+            try
+            {
+                // Get a temporary file path to write to
+                using var tempOutputFile = new TempFile(false);
+
+                // Create the file and get the stream
+                using (var outputStream = File.Create(tempOutputFile.TempPath))
+                {
+                    // Get the files
+                    var files = this.GetAllChildren<ArchiveDirectoryViewModel>(true).SelectMany(x => x.Files).Select(x => x.FileData);
+
+                    // Update the archive
+                    Manager.UpdateArchive(ArchiveFileStream, outputStream, files);
+                }
+
+                // Dispose the archive file stream
+                ArchiveFileStream.Dispose();
+
+                ArchiveFileStream = null;
+
+                // If the operation succeeded, replace the archive file with the temporary output
+                RCFRCP.File.MoveFile(tempOutputFile.TempPath, FilePath, true);
+
+                // Re-open the file stream
+                ArchiveFileStream = new FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
+
+                succeeded = true;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Repacking archive", DisplayName);
+
+                // TODO: Localize
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred repacking the archive");
+
+                // Re-open the file stream if closed
+                if (ArchiveFileStream == null)
+                    ArchiveFileStream = new FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
+            }
 
             // Reload the archive
             LoadArchive();
@@ -209,7 +255,7 @@ namespace RayCarrot.RCP.Metro
 
             Archive.SetDisplayStatus(String.Empty);
 
-            return Task.CompletedTask;
+            return succeeded;
         }
 
         public override void Dispose()

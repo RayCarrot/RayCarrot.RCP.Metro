@@ -18,11 +18,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Shell;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -59,9 +61,7 @@ namespace RayCarrot.RCP.Metro
         protected override void SetupFramework(IDictionary<string, object> config, LogLevel logLevel, string[] args)
         {
             // Add custom configuration
-            config.Add(RCFIO.AutoCorrectPathCasingKey,
-                // IDEA: Set to true?
-                false);
+            config.Add(RCFIO.AutoCorrectPathCasingKey, false);
 
             // Set file log level
             FileLogger.FileLoggerLogLevel = logLevel;

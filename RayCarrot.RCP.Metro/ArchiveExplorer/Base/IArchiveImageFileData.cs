@@ -38,5 +38,10 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the image has mipmaps
         /// </summary>
         bool HasMipmaps { get; }
+
+        /// <summary>
+        /// The supported file formats for exporting mipmaps
+        /// </summary>
+        string[] SupportedMipmapExportFileExtensions { get; }
     }
 }

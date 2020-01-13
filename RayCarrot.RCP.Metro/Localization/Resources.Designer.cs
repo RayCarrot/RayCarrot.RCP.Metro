@@ -676,6 +676,34 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Directory = {0}
+        ///Compressed = {1}
+        ///File size = {2}
+        ///Compressed file size = {3}
+        ///Pointer = {4}.
+        /// </summary>
+        public static string Archive_IPK_FileInfo {
+            get {
+                return ResourceManager.GetString("Archive_IPK_FileInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directory = {0}
+        ///Size = {1} x {2}
+        ///Texture version = {3}
+        ///Compressed = {4}
+        ///File size = {5}
+        ///Compressed file size = {6}
+        ///Pointer = {7}.
+        /// </summary>
+        public static string Archive_IPK_ImageFileInfo {
+            get {
+                return ResourceManager.GetString("Archive_IPK_ImageFileInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Repacking archive {0}.
         /// </summary>
         public static string Archive_RepackingStatus {
@@ -8501,11 +8529,74 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to OpenSpace Archives (.cnt).
+        /// </summary>
+        public static string Utilities_ArchiveExplorer_CNTHeader {
+            get {
+                return ResourceManager.GetString("Utilities_ArchiveExplorer_CNTHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UbiArt Archives (.ipk).
+        /// </summary>
+        public static string Utilities_ArchiveExplorer_IPKHeader {
+            get {
+                return ResourceManager.GetString("Utilities_ArchiveExplorer_IPKHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert.
+        /// </summary>
+        public static string Utilities_Converter_Convert {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_Convert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert back.
+        /// </summary>
+        public static string Utilities_Converter_ConvertBack {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_ConvertBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Texture Files (.gf).
+        /// </summary>
+        public static string Utilities_Converter_GFHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_GFHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Localization Files (.loc/.loc8).
+        /// </summary>
+        public static string Utilities_Converter_LOCHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_LOCHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This utility requires the application to run as administrator.
         /// </summary>
         public static string Utilities_RequiresAdmin {
             get {
                 return ResourceManager.GetString("Utilities_RequiresAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utilities.
+        /// </summary>
+        public static string UtilitiesPageHeader {
+            get {
+                return ResourceManager.GetString("UtilitiesPageHeader", resourceCulture);
             }
         }
         

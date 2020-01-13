@@ -39,6 +39,12 @@ namespace RayCarrot.RCP.Metro
                 Height = 700;
             else
                 SizeToContent = SizeToContent.Height;
+
+            // Set default width
+            if (ViewModel.HasUtilities && ViewModel.HasConfigContent && ViewModel.HasOptionsContent && ViewModel.HasProgressionContent)
+                Width = 650;
+            else
+                Width = 600;
         }
 
         #endregion

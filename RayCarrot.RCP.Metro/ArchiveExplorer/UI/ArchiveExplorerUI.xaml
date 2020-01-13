@@ -150,6 +150,13 @@
                                        Width="64"
                                        Height="64" />
 
+                                <iconPacks:PackIconMaterial Grid.Row="0"
+                                                            Kind="FileOutline"
+                                                            Visibility="{Binding Path=ThumbnailSource, Converter={rwpf:ObjectNullToVisibilityConverter}}"
+                                                            HorizontalAlignment="Center"
+                                                            Width="48"
+                                                            Height="48" />
+
                                 <TextBlock Grid.Row="2"
                                            Width="70"
                                            HorizontalAlignment="Center"
