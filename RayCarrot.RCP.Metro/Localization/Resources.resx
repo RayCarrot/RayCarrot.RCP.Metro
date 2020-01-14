@@ -3138,11 +3138,10 @@ pointer</comment>
   <data name="Archive_IPK_ImageFileInfo" xml:space="preserve">
     <value>Directory = {0}
 Size = {1} x {2}
-Texture version = {3}
-Compressed = {4}
-File size = {5}
-Compressed file size = {6}
-Pointer = {7}</value>
+Compressed = {3}
+File size = {4}
+Compressed file size = {5}
+Pointer = {6}</value>
     <comment>Arguments:
 dirPath
 imgWidth
@@ -3173,5 +3172,20 @@ pointer</comment>
   </data>
   <data name="Utilities_Converter_LOCHeader" xml:space="preserve">
     <value>Localization Files (.loc/.loc8)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer</value>
+  </data>
+  <data name="Utilities_Converter_Header" xml:space="preserve">
+    <value>Converters</value>
+  </data>
+  <data name="Utilities_WIP_Header" xml:space="preserve">
+    <value>Work in Process</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="Utilities_Converter_IncludeMipmaps" xml:space="preserve">
+    <value>Include mipmaps</value>
   </data>
 </root>

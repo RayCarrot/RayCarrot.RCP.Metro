@@ -9,6 +9,11 @@ namespace RayCarrot.RCP.Metro
     public interface IArchiveDataManager
     {
         /// <summary>
+        /// The path separator character to use. This is usually \ or /.
+        /// </summary>
+        char PathSeparatorCharacter { get; }
+
+        /// <summary>
         /// Gets the available directories from the archive along with their contents
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>

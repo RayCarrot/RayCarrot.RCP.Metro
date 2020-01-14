@@ -22,36 +22,46 @@ namespace RayCarrot.RCP.Metro
         /// <param name="filePaths">The archive file paths</param>
         public ArchiveExplorerDialogViewModel(IArchiveDataManager manager, IEnumerable<FileSystemPath> filePaths)
         {
-            // Set the default title
-            Title = Resources.Archive_Title;
-
-            // Get the manager
-            Manager = manager;
-
-            // Create the load action
-            var load = new Operation(() => IsLoading = true, () => IsLoading = false, true);
-
-            // Get the archives
-            Archives = filePaths.Select(x => new ArchiveViewModel(x, manager, load, this)).ToArray();
-
-            // Set the archive lock
-            ArchiveLock = new AsyncLock();
-
-            // Make sure we got an archive
-            if (!Archives.Any())
-                throw new ArgumentException("At least one archive path needs to be available");
-
-            // Lock when accessing the archive
-            using (ArchiveLock.Lock())
+            try
             {
-                // Load each archive
-                foreach (var archive in Archives)
-                    archive.LoadArchive();
-            }
+                // Set the default title
+                Title = Resources.Archive_Title;
 
-            // Select and expand the first item
-            Archives.First().IsSelected = true;
-            Archives.First().IsExpanded = true;
+                // Get the manager
+                Manager = manager;
+
+                // Create the load action
+                var load = new Operation(() => IsLoading = true, () => IsLoading = false, true);
+
+                // Get the archives
+                Archives = filePaths.Select(x => new ArchiveViewModel(x, manager, load, this)).ToArray();
+
+                // Set the archive lock
+                ArchiveLock = new AsyncLock();
+
+                // Make sure we got an archive
+                if (!Archives.Any())
+                    throw new ArgumentException("At least one archive path needs to be available");
+
+                // Lock when accessing the archive
+                using (ArchiveLock.Lock())
+                {
+                    // Load each archive
+                    foreach (var archive in Archives)
+                        archive.LoadArchive();
+                }
+
+                // Select and expand the first item
+                Archives.First().IsSelected = true;
+                Archives.First().IsExpanded = true;
+            }
+            catch
+            {
+                // Make sure the view model gets disposed
+                Dispose();
+
+                throw;
+            }
         }
 
         /// <summary>
@@ -120,7 +130,11 @@ namespace RayCarrot.RCP.Metro
                     RCFCore.Logger?.LogDebugSource($"Refreshing thumbnails for archive dir {newDir.DisplayName}");
 
                     // Remove all thumbnail image sources from memory
-                    previousDir?.Files.ForEach(x => x.ThumbnailSource = null);
+                    previousDir?.Files.ForEach(x =>
+                    {
+                        x.HasLoadedThumbnail = false;
+                        x.ThumbnailSource = null;
+                    });
 
                     // Load the thumbnail image sources for the new directory
                     await Task.Run(() =>
@@ -140,6 +154,9 @@ namespace RayCarrot.RCP.Metro
 
                             // Load the thumbnail
                             x.LoadThumbnail();
+
+                            // Indicate that the thumbnail has been loaded
+                            x.HasLoadedThumbnail = true;
                         }
                     });
 

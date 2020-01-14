@@ -8,6 +8,7 @@ using System.Drawing.Imaging;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
+using RayCarrot.CarrotFramework.Abstractions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -51,15 +52,18 @@ namespace RayCarrot.RCP.Metro
                 UbiArtGameMode.RaymanAdventuresAndroid,
                 UbiArtGameMode.RaymanMiniMac,
                 UbiArtGameMode.JustDance2017WiiU,
+                UbiArtGameMode.ChildOfLightPC,
+                UbiArtGameMode.ValiantHeartsAndroid,
             });
 
-            // TODO: Support more games + Fiesta Run
             LocGameModeSelection = new EnumSelectionViewModel<UbiArtGameMode>(UbiArtGameMode.RaymanOriginsPC, new []
             {
                 UbiArtGameMode.RaymanOriginsPC,
+                UbiArtGameMode.RaymanFiestaRunAndroid,
                 UbiArtGameMode.RaymanLegendsPC,
                 UbiArtGameMode.RaymanAdventuresAndroid,
                 UbiArtGameMode.RaymanMiniMac,
+                UbiArtGameMode.ValiantHeartsAndroid,
             });
 
             GfGameModeSelection = new EnumSelectionViewModel<OpenSpaceGameMode>(OpenSpaceGameMode.Rayman2PC, OpenSpaceGameMode.Rayman2PC.GetValues());
@@ -192,7 +196,7 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Methods
+        #region Public Methods (Archive Explorer)
 
         /// <summary>
         /// Opens a OpenSpace .cnt file in the Archive Explorer
@@ -202,7 +206,7 @@ namespace RayCarrot.RCP.Metro
         {
             // Open the Archive Explorer with the .cnt manager
             await OpenArchiveExplorerAsync(
-                new OpenSpaceCntArchiveDataManager(CntGameModeSelection.SelectedValue.GetSettings()), 
+                new OpenSpaceCntArchiveDataManager(CntGameModeSelection.SelectedValue.GetSettings()),
                 new FileFilterItem("*.cnt", "CNT").ToString(),
                 GetGame(CntGameModeSelection.SelectedValue));
         }
@@ -215,10 +219,40 @@ namespace RayCarrot.RCP.Metro
         {
             // Open the Archive Explorer with the .ipk manager
             await OpenArchiveExplorerAsync(
-                new UbiArtIPKArchiveDataManager(IpkGameModeSelection.SelectedValue.GetSettings()), 
-                new FileFilterItem("*.ipk", "IPK").ToString(), 
+                new UbiArtIPKArchiveDataManager(IpkGameModeSelection.SelectedValue.GetSettings()),
+                new FileFilterItem("*.ipk", "IPK").ToString(),
                 GetGame(IpkGameModeSelection.SelectedValue));
         }
+
+        /// <summary>
+        /// Opens the Archive Explorer with the specified manager
+        /// </summary>
+        /// <param name="manager">The manager to use</param>
+        /// <param name="fileFilter">The file filter when selecting the files to open</param>
+        /// <param name="game">The game to open, if available</param>
+        /// <returns>The task</returns>
+        public async Task OpenArchiveExplorerAsync(IArchiveDataManager manager, string fileFilter, Games? game)
+        {
+            // Allow the user to select the files
+            var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+            {
+                // TODO: Localize
+                Title = "Select archive files",
+                DefaultDirectory = game?.GetInstallDir(false).FullPath,
+                ExtensionFilter = fileFilter,
+                MultiSelection = true
+            });
+
+            if (fileResult.CanceledByUser)
+                return;
+
+            // Show the Archive Explorer
+            await RCFRCP.UI.ShowArchiveExplorerAsync(manager, fileResult.SelectedFiles);
+        }
+
+        #endregion
+
+        #region Public Methods (Converters)
 
         /// <summary>
         /// Converts .gf files to image files
@@ -247,46 +281,15 @@ namespace RayCarrot.RCP.Metro
             }, new FileFilterItem("*.gf", "GF").ToString(), GetGame(GfGameModeSelection.SelectedValue));
         }
 
-        public async Task LoadR1LevelAsync()
-        {
-            // Allow the user to select the level file
-            var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
-            {
-                // TODO: Localize
-                Title = "Select level file",
-                DefaultDirectory = GetGame(LevGameModeSelection.SelectedValue)?.GetInstallDir(false).FullPath,
-                // TODO: Localize
-                ExtensionFilter = new FileFilterItem("*.lev", "Level").ToString(),
-                MultiSelection = true
-            });
-
-            if (fileResult.CanceledByUser)
-                return;
-
-            LevData = new Rayman1LevSerializer(new Rayman1Settings(LevGameModeSelection.SelectedValue)).Deserialize(fileResult.SelectedFile);
-
-            LevGraphicsImageSource = LevData.GetBitmap().ToImageSource();
-            LevTypesImageSource = LevData.GetTypeBitmap().ToImageSource();
-        }
-
-        public async Task OpenArchiveExplorerAsync(IArchiveDataManager manager, string fileFilter, Games? game)
-        {
-            // Allow the user to select the files
-            var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
-            {
-                // TODO: Localize
-                Title = "Select archive files",
-                DefaultDirectory = game?.GetInstallDir(false).FullPath,
-                ExtensionFilter = fileFilter,
-                MultiSelection = true
-            });
-
-            if (fileResult.CanceledByUser)
-                return;
-
-            await RCFRCP.UI.ShowArchiveExplorerAsync(manager, fileResult.SelectedFiles);
-        }
-
+        /// <summary>
+        /// Converts files using the specified serializer and convert action
+        /// </summary>
+        /// <typeparam name="T">The type of data to convert</typeparam>
+        /// <param name="serializer">The serializer to use</param>
+        /// <param name="convertAction">The convert action, converting the data to the specified file path</param>
+        /// <param name="fileFilter">The file filter when selecting files to convert</param>
+        /// <param name="game">The game, if available</param>
+        /// <returns>The task</returns>
         public async Task ConvertFilesAsync<T>(BinaryDataSerializer<T> serializer, Action<T, FileSystemPath> convertAction, string fileFilter, Games? game)
         {
             // Allow the user to select the files
@@ -312,17 +315,65 @@ namespace RayCarrot.RCP.Metro
             if (destinationResult.CanceledByUser)
                 return;
 
-            // TODO: Try/catch
-
-            foreach (var file in fileResult.SelectedFiles)
+            try
             {
-                var data = serializer.Deserialize(file);
+                // Convert every file
+                foreach (var file in fileResult.SelectedFiles)
+                {
+                    // Read the file data
+                    var data = serializer.Deserialize(file);
 
-                var destinationFile = destinationResult.SelectedDirectory + file.Name;
+                    // Get the destination file
+                    var destinationFile = destinationResult.SelectedDirectory + file.Name;
 
-                destinationFile = destinationFile.GetNonExistingFileName();
+                    // Get a non-existing file name
+                    destinationFile = destinationFile.GetNonExistingFileName();
 
-                convertAction(data, destinationFile);
+                    // Convert the file
+                    convertAction(data, destinationFile);
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Converting files");
+
+                // TODO: Error message
+            }
+        }
+
+        #endregion
+
+        #region Public Methods (WIP)
+
+        public async Task LoadR1LevelAsync()
+        {
+            // Allow the user to select the level file
+            var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+            {
+                // TODO: Localize
+                Title = "Select level file",
+                DefaultDirectory = GetGame(LevGameModeSelection.SelectedValue)?.GetInstallDir(false).FullPath,
+                // TODO: Localize
+                ExtensionFilter = new FileFilterItem("*.lev", "Level").ToString(),
+                MultiSelection = true
+            });
+
+            if (fileResult.CanceledByUser)
+                return;
+
+            try
+            {
+                // Get the level data
+                LevData = new Rayman1LevSerializer(new Rayman1Settings(LevGameModeSelection.SelectedValue)).Deserialize(fileResult.SelectedFile);
+
+                LevGraphicsImageSource = LevData.GetBitmap().ToImageSource();
+                LevTypesImageSource = LevData.GetTypeBitmap().ToImageSource();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Loading R1 level map");
+
+                // TODO: Error message
             }
         }
 

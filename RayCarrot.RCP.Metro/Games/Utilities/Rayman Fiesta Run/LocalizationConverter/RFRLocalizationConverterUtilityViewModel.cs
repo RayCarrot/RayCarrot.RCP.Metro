@@ -25,7 +25,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The data</returns>
         protected override BinarySerializableDictionary<int, BinarySerializableDictionary<int, BinarySerializablePair<string, string>>> Deserialize(FileSystemPath file)
         {
-            return new FiestaRunLocalizationSerializer().Deserialize(file).Data;
+            return new FiestaRunLocalizationSerializer().Deserialize(file).Strings;
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace RayCarrot.RCP.Metro
             var currentData = serializer.Deserialize(file);
 
             // Replace the string data
-            currentData.Data = data;
+            currentData.Strings = data;
 
             // Serialize the data
             serializer.Serialize(file, currentData);

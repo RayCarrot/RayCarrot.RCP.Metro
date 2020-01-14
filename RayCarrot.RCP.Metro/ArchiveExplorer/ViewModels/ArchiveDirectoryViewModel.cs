@@ -168,7 +168,7 @@ namespace RayCarrot.RCP.Metro
                             var data = formatGroup.First().FileData;
 
                             // Have user select the format
-                            FileExtensionSelectionDialogResult extResult = await RCFRCP.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(data.SupportedExportImportFileExtensions, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, data.FileFormatName)));
+                            FileExtensionSelectionDialogResult extResult = await RCFRCP.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(data.SupportedExportFileExtensions, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, data.FileFormatName)));
 
                             if (extResult.CanceledByUser)
                                 return;

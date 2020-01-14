@@ -1,5 +1,4 @@
 ﻿using RayCarrot.Rayman;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +6,7 @@ using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Extensions;
 using Ionic.Zlib;
+using SevenZip.Compression.LZMA;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -34,6 +34,15 @@ namespace RayCarrot.RCP.Metro
         /// The settings when serializing the data
         /// </summary>
         protected UbiArtSettings Settings { get; }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// The path separator character to use. This is usually \ or /.
+        /// </summary>
+        public char PathSeparatorCharacter => '/';
 
         #endregion
 
@@ -123,8 +132,21 @@ namespace RayCarrot.RCP.Metro
                         // Get the file bytes
                         var bytes = File.ReadAllBytes(tempFilePath);
 
-                        // Compress the bytes
-                        var compressedBytes = ZlibStream.CompressBuffer(bytes);
+                        byte[] compressedBytes;
+
+                        // Use LZMA
+                        if (Settings.IPKVersion >= 8)
+                        {
+                            // TODO: Test so this works in-game
+                            // Compress the bytes
+                            compressedBytes = SevenZipHelper.Compress(bytes);
+                        }
+                        // Use ZLib
+                        else
+                        {
+                            // Compress the bytes
+                            compressedBytes = ZlibStream.CompressBuffer(bytes);
+                        }
 
                         // Delete the file
                         RCFRCP.File.DeleteFile(tempFilePath);

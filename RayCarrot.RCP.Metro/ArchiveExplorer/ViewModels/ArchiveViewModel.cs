@@ -153,15 +153,8 @@ namespace RayCarrot.RCP.Metro
                 // Keep track of the previous item
                 ArchiveDirectoryViewModel prevItem = this;
 
-                // IDEA: Have this configurable in manager?
-                var separatorChars = new char[]
-                {
-                    '\\', 
-                    '/'
-                };
-
                 // Enumerate each sub directory
-                foreach (string subDir in dir.DirectoryName.Trim(separatorChars).Split(separatorChars))
+                foreach (string subDir in dir.DirectoryName.Trim(Manager.PathSeparatorCharacter).Split(Manager.PathSeparatorCharacter))
                 {
                     // Set the previous item and create the item if it doesn't already exist
                     prevItem = prevItem.FindItem(x => x.ID == subDir) ?? prevItem.Add(subDir);

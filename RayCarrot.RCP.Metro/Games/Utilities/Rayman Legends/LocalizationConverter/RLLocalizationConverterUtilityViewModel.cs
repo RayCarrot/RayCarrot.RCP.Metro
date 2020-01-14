@@ -25,7 +25,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The data</returns>
         protected override BinarySerializableDictionary<int, BinarySerializableDictionary<int, string>> Deserialize(FileSystemPath file)
         {
-            return new LegendsLocalizationSerializer().Deserialize(file).Data;
+            return new UbiArtLocalizationSerializer(UbiArtGameMode.RaymanLegendsPC.GetSettings()).Deserialize(file).Strings;
         }
 
         /// <summary>
@@ -36,13 +36,13 @@ namespace RayCarrot.RCP.Metro
         protected override void Serialize(FileSystemPath file, BinarySerializableDictionary<int, BinarySerializableDictionary<int, string>> data)
         {
             // Get the serializer
-            var serializer = new LegendsLocalizationSerializer();
+            var serializer = new UbiArtLocalizationSerializer(UbiArtGameMode.RaymanLegendsPC.GetSettings());
 
             // Read the current data to get the remaining bytes
             var currentData = serializer.Deserialize(file);
 
             // Replace the string data
-            currentData.Data = data;
+            currentData.Strings = data;
 
             // Serialize the data
             serializer.Serialize(file, currentData);

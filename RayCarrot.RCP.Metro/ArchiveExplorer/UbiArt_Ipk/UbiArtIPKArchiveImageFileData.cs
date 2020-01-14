@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
@@ -26,7 +27,70 @@ namespace RayCarrot.RCP.Metro
         /// <param name="settings">The settings when serializing the data</param>
         /// <param name="baseOffset">The base offset to use when reading the files</param>
         public UbiArtIPKArchiveImageFileData(UbiArtIPKFile fileData, UbiArtSettings settings, int baseOffset) : base(fileData, settings, baseOffset)
-        { }
+        {
+            // NOTE: For now we're using that only DDS files are cooked
+
+            ImageFileFormat = fileData.GetFileExtensions().Contains(UbiArtIPKFile.CookedExtension) ? IPKImageFormat.DDS : IPKImageFormat.PNG;
+
+            if (ImageFileFormat == IPKImageFormat.DDS)
+            {
+                // DDS files have mipmaps
+                HasMipmaps = true;
+
+                // Set the supported mipmap export extensions
+                SupportedMipmapExportFileExtensions = new[]
+                {
+                    ".png",
+                    ".jpg",
+                    ".jpeg",
+                    ".bmp",
+                };
+
+                // Set supported import file extensions
+                SupportedImportFileExtensions = new string[]
+                {
+                    ".dds",
+                    UbiArtIPKFile.CookedExtension
+                };
+
+                // Set supported export file extensions
+                SupportedExportFileExtensions = new string[]
+                {
+                    ".dds",
+                    ".png",
+                    UbiArtIPKFile.CookedExtension,
+                    ".jpg",
+                    ".jpeg",
+                    ".bmp",
+                };
+            }
+            else if (ImageFileFormat == IPKImageFormat.PNG)
+            {
+                HasMipmaps = false;
+
+                // Set supported import file extensions
+                SupportedImportFileExtensions = new string[]
+                {
+                    ".png",
+                    ".jpg",
+                    ".jpeg",
+                    ".bmp",
+                };
+
+                // Set supported export file extensions
+                SupportedExportFileExtensions = new string[]
+                {
+                    ".png",
+                    ".jpg",
+                    ".jpeg",
+                    ".bmp",
+                };
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(ImageFileFormat));
+            }
+        }
 
         #endregion
 
@@ -69,25 +133,46 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The image as a bitmap</returns>
         public Bitmap GetBitmap(Stream archiveFileStream)
         {
-            // Get the texture
-            var texture = GetTexture(archiveFileStream);
+            if (ImageFileFormat == IPKImageFormat.DDS)
+            {
+                // Get the texture
+                var texture = GetTexture(archiveFileStream);
 
-            // Read the texture data into a stream
-            using var dataStream = new MemoryStream(texture.TextureData);
+                // Read the texture data into a stream
+                using var dataStream = new MemoryStream(texture.TextureData);
 
-            // Read the texture as a DDS file
-            using var dds = Pfim.Pfim.FromStream(dataStream);
+                // Read the texture as a DDS file
+                using var dds = Pfim.Pfim.FromStream(dataStream);
 
-            // Set the properties
-            Width = dds.Width;
-            Height = dds.Height;
-            TextureVersion = texture.Version;
+                // Set the properties
+                Width = dds.Width;
+                Height = dds.Height;
 
-            // Get a pointer to the DDS data
-            IntPtr dataPointer = Marshal.UnsafeAddrOfPinnedArrayElement(dds.Data, 0);
+                // Get a pointer to the DDS data
+                IntPtr dataPointer = Marshal.UnsafeAddrOfPinnedArrayElement(dds.Data, 0);
 
-            // Create and return a bitmap from the data
-            return new Bitmap(dds.Width, dds.Height, dds.Stride, GetPixelFormat(dds.Format), dataPointer);
+                // Create and return a bitmap from the data
+                return new Bitmap(dds.Width, dds.Height, dds.Stride, GetPixelFormat(dds.Format), dataPointer);
+            }
+            else if (ImageFileFormat == IPKImageFormat.PNG)
+            {
+                // Load the bytes into a memory stream
+                using var bytesMemory = new MemoryStream(FileData.GetFileBytes(archiveFileStream, BaseOffset));
+
+                // Get the bitmap
+                var bmp = new Bitmap(bytesMemory);
+
+                // Set the properties
+                Width = bmp.Width;
+                Height = bmp.Height;
+
+                // Return the bitmap
+                return bmp;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(ImageFileFormat));
+            }
         }
 
         /// <summary>
@@ -97,6 +182,9 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The images as a bitmaps</returns>
         public IEnumerable<Bitmap> GetBitmaps(Stream archiveFileStream)
         {
+            if (ImageFileFormat != IPKImageFormat.DDS)
+                throw new Exception("Only DDS files support mipmaps");
+
             // Get the texture
             var texture = GetTexture(archiveFileStream);
 
@@ -144,12 +232,13 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override Task ExportFileAsync(Stream archiveFileStream, FileSystemPath filePath, string fileFormat)
         {
-            // Check if the file should be saved as its native format
-            if (fileFormat == FileExtension)
+            // Check if the file should be saved as a cooked file
+            if (fileFormat == UbiArtIPKFile.CookedExtension)
             {
+                // Export the file as its native format
                 return base.ExportFileAsync(archiveFileStream, filePath, fileFormat);
             }
-            // Check if the file should be saved as DDS, the native format
+            // Check if the file should be saved as DDS
             else if (fileFormat == ".dds")
             {
                 // Open the file
@@ -240,8 +329,8 @@ namespace RayCarrot.RCP.Metro
             // Get the temporary file to save to, without disposing it
             var tempFile = new TempFile(false);
 
-            // Check if the file is in the native format
-            if (filePath.FileExtension.Equals(FileExtension, StringComparison.InvariantCultureIgnoreCase))
+            // Check if the file is in the cooked format
+            if (filePath.FileExtension.Equals(UbiArtIPKFile.CookedExtension, StringComparison.InvariantCultureIgnoreCase))
             {
                 // Copy the file
                 RCFRCP.File.CopyFile(filePath, tempFile.TempPath, true);
@@ -250,7 +339,7 @@ namespace RayCarrot.RCP.Metro
             else if (filePath.FileExtension.Equals(".dds", StringComparison.InvariantCultureIgnoreCase))
             {
                 // Get the file bytes
-                var fileStream = File.OpenRead(filePath);
+                using var fileStream = File.OpenRead(filePath);
 
                 // Get the current texture
                 var texture = FileData.GetTexture(archiveFileStream, BaseOffset);
@@ -276,9 +365,17 @@ namespace RayCarrot.RCP.Metro
                 // Write the texture to the temp file
                 new UbiArtTextureSerializer(Settings).Serialize(tempFile.TempPath, texture);
             }
+            // Import as standard image format
             else
             {
-                throw new Exception("Invalid file extension");
+                if (ImageFileFormat != IPKImageFormat.PNG)
+                    throw new Exception("Only PNG files support importing from standard image format");
+
+                // Read the file into a bitmap
+                using var bmp = new Bitmap(filePath);
+
+                // Save the bitmap to the temp path as PNG
+                bmp.Save(tempFile.TempPath, ImageFormat.Png);
             }
 
             // Set the pending path
@@ -286,6 +383,15 @@ namespace RayCarrot.RCP.Metro
 
             return Task.FromResult(true);
         }
+
+        #endregion
+
+        #region Protected Properties
+
+        /// <summary>
+        /// The image format
+        /// </summary>
+        protected IPKImageFormat ImageFileFormat { get; }
 
         #endregion
 
@@ -298,7 +404,6 @@ namespace RayCarrot.RCP.Metro
             Resources.Archive_IPK_ImageFileInfo,
             Directory,
             Width, Height,
-            TextureVersion,
             FileData.IsCompressed,
             new ByteSize(FileData.Size),
             new ByteSize(FileData.CompressedSize),
@@ -307,40 +412,22 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The supported file formats to import from
         /// </summary>
-        public override string[] SupportedImportFileExtensions => new string[]
-        {
-            ".dds",
-            FileExtension
-        };
+        public override string[] SupportedImportFileExtensions { get; }
 
         /// <summary>
         /// The supported file formats to export to
         /// </summary>
-        public override string[] SupportedExportImportFileExtensions => new string[]
-        {
-            ".dds",
-            ".png",
-            FileExtension,
-            ".jpg",
-            ".jpeg",
-            ".bmp",
-        };
+        public override string[] SupportedExportFileExtensions { get; }
 
         /// <summary>
         /// The supported file formats for exporting mipmaps
         /// </summary>
-        public string[] SupportedMipmapExportFileExtensions => new[]
-        {
-            ".png",
-            ".jpg",
-            ".jpeg",
-            ".bmp",
-        };
+        public string[] SupportedMipmapExportFileExtensions { get; }
 
         /// <summary>
         /// Indicates if the image has mipmaps
         /// </summary>
-        public bool HasMipmaps => true;
+        public bool HasMipmaps { get; }
 
         /// <summary>
         /// The image height
@@ -352,10 +439,25 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public int Width { get; set; }
 
+        #endregion
+
+        #region Enums
+
         /// <summary>
-        /// The texture version
+        /// The supported IPK image formats
         /// </summary>
-        public uint TextureVersion { get; set; }
+        protected enum IPKImageFormat
+        {
+            /// <summary>
+            /// A raw PNG file
+            /// </summary>
+            PNG,
+
+            /// <summary>
+            /// A cooked DDS file
+            /// </summary>
+            DDS
+        }
 
         #endregion
     }

@@ -93,7 +93,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The supported file formats to export to
         /// </summary>
-        public virtual string[] SupportedExportImportFileExtensions => new string[]
+        public virtual string[] SupportedExportFileExtensions => new string[]
         {
             FileExtension
         };

@@ -67,6 +67,11 @@ namespace RayCarrot.RCP.Metro
         public ImageSource ThumbnailSource { get; set; }
 
         /// <summary>
+        /// Indicates if the thumbnail has been loaded
+        /// </summary>
+        public bool HasLoadedThumbnail { get; set; }
+
+        /// <summary>
         /// The archive file stream
         /// </summary>
         public FileStream ArchiveFileStream => Archive.ArchiveFileStream;
@@ -171,7 +176,7 @@ namespace RayCarrot.RCP.Metro
                     await Task.Run(async () =>
                     {
                         // Get the file extensions
-                        var ext = (includeMipmap ? FileData.CastTo<IArchiveImageFileData>().SupportedMipmapExportFileExtensions : FileData.SupportedExportImportFileExtensions);
+                        var ext = (includeMipmap ? FileData.CastTo<IArchiveImageFileData>().SupportedMipmapExportFileExtensions : FileData.SupportedExportFileExtensions);
 
                         // Get the output path
                         var result = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
@@ -233,7 +238,7 @@ namespace RayCarrot.RCP.Metro
                         var result = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                         {
                             Title = Resources.Archive_ImportFileHeader,
-                            ExtensionFilter = GetFileFilterCollection(FileData.SupportedExportImportFileExtensions).CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
+                            ExtensionFilter = GetFileFilterCollection(FileData.SupportedExportFileExtensions).CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
                         });
 
                         if (result.CanceledByUser)

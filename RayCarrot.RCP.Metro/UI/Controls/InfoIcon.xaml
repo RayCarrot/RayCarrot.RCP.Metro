@@ -16,6 +16,7 @@
                                 Kind="{Binding Path=IconKind}"
                                 VerticalAlignment="Center"
                                 Background="Transparent" 
-                                ToolTipService.ShowDuration="{x:Static Member=System:Int32.MaxValue}" />
+                                ToolTipService.ShowDuration="1000000" />
+    <!-- NOTE: We can't set the duration to Int32 max value as that crashes on Wine on Mac -->
 
 </UserControl>

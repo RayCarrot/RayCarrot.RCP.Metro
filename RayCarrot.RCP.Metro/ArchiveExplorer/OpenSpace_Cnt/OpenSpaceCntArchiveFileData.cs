@@ -121,7 +121,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The supported file formats to export to
         /// </summary>
-        public string[] SupportedExportImportFileExtensions => new string[]
+        public string[] SupportedExportFileExtensions => new string[]
         {
             ".png",
             ".jpg",

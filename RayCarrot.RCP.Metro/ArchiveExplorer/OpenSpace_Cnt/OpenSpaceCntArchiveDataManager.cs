@@ -40,6 +40,15 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Public Properties
+
+        /// <summary>
+        /// The path separator character to use. This is usually \ or /.
+        /// </summary>
+        public char PathSeparatorCharacter => '\\';
+
+        #endregion
+
         #region Public Methods
 
         /// <summary>

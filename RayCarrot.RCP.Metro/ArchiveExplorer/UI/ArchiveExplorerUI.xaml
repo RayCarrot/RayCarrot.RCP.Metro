@@ -144,18 +144,25 @@
                                     <RowDefinition Height="*" SharedSizeGroup="FileName" />
                                 </Grid.RowDefinitions>
 
-                                <Image Grid.Row="0"
-                                       Source="{Binding Path=ThumbnailSource}"
-                                       HorizontalAlignment="Center"
-                                       Width="64"
-                                       Height="64" />
+                                <Grid Grid.Row="0"
+                                      Width="64"
+                                      Height="64">
 
-                                <iconPacks:PackIconMaterial Grid.Row="0"
-                                                            Kind="FileOutline"
-                                                            Visibility="{Binding Path=ThumbnailSource, Converter={rwpf:ObjectNullToVisibilityConverter}}"
-                                                            HorizontalAlignment="Center"
-                                                            Width="48"
-                                                            Height="48" />
+                                    <Grid Visibility="{Binding Path=HasLoadedThumbnail, Converter={rwpf:BooleanToVisibilityConverter}}">
+
+                                        <Image Source="{Binding Path=ThumbnailSource}"
+                                               HorizontalAlignment="Center"
+                                               Width="64"
+                                               Height="64" />
+
+                                        <iconPacks:PackIconMaterial Kind="FileOutline"
+                                                                    HorizontalAlignment="Center"
+                                                                    Visibility="{Binding Path=ThumbnailSource, Converter={rwpf:ObjectNullToVisibilityConverter}}"
+                                                                    Width="48"
+                                                                    Height="48" />
+
+                                    </Grid>
+                                </Grid>
 
                                 <TextBlock Grid.Row="2"
                                            Width="70"

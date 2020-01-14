@@ -691,11 +691,10 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to Directory = {0}
         ///Size = {1} x {2}
-        ///Texture version = {3}
-        ///Compressed = {4}
-        ///File size = {5}
-        ///Compressed file size = {6}
-        ///Pointer = {7}.
+        ///Compressed = {3}
+        ///File size = {4}
+        ///Compressed file size = {5}
+        ///Pointer = {6}.
         /// </summary>
         public static string Archive_IPK_ImageFileInfo {
             get {
@@ -8538,11 +8537,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archive Explorer.
+        /// </summary>
+        public static string Utilities_ArchiveExplorer_Header {
+            get {
+                return ResourceManager.GetString("Utilities_ArchiveExplorer_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to UbiArt Archives (.ipk).
         /// </summary>
         public static string Utilities_ArchiveExplorer_IPKHeader {
             get {
                 return ResourceManager.GetString("Utilities_ArchiveExplorer_IPKHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string Utilities_ArchiveExplorer_Open {
+            get {
+                return ResourceManager.GetString("Utilities_ArchiveExplorer_Open", resourceCulture);
             }
         }
         
@@ -8574,6 +8591,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Converters.
+        /// </summary>
+        public static string Utilities_Converter_Header {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include mipmaps.
+        /// </summary>
+        public static string Utilities_Converter_IncludeMipmaps {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_IncludeMipmaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Localization Files (.loc/.loc8).
         /// </summary>
         public static string Utilities_Converter_LOCHeader {
@@ -8588,6 +8623,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_RequiresAdmin {
             get {
                 return ResourceManager.GetString("Utilities_RequiresAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work in Process.
+        /// </summary>
+        public static string Utilities_WIP_Header {
+            get {
+                return ResourceManager.GetString("Utilities_WIP_Header", resourceCulture);
             }
         }
         
