@@ -26,71 +26,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="fileData">The file data</param>
         /// <param name="settings">The settings when serializing the data</param>
         /// <param name="baseOffset">The base offset to use when reading the files</param>
-        public UbiArtIPKArchiveImageFileData(UbiArtIPKFile fileData, UbiArtSettings settings, int baseOffset) : base(fileData, settings, baseOffset)
-        {
-            // NOTE: For now we're using that only DDS files are cooked
-
-            ImageFileFormat = fileData.GetFileExtensions().Contains(UbiArtIPKFile.CookedExtension) ? IPKImageFormat.DDS : IPKImageFormat.PNG;
-
-            if (ImageFileFormat == IPKImageFormat.DDS)
-            {
-                // DDS files have mipmaps
-                HasMipmaps = true;
-
-                // Set the supported mipmap export extensions
-                SupportedMipmapExportFileExtensions = new[]
-                {
-                    ".png",
-                    ".jpg",
-                    ".jpeg",
-                    ".bmp",
-                };
-
-                // Set supported import file extensions
-                SupportedImportFileExtensions = new string[]
-                {
-                    ".dds",
-                    UbiArtIPKFile.CookedExtension
-                };
-
-                // Set supported export file extensions
-                SupportedExportFileExtensions = new string[]
-                {
-                    ".dds",
-                    ".png",
-                    UbiArtIPKFile.CookedExtension,
-                    ".jpg",
-                    ".jpeg",
-                    ".bmp",
-                };
-            }
-            else if (ImageFileFormat == IPKImageFormat.PNG)
-            {
-                HasMipmaps = false;
-
-                // Set supported import file extensions
-                SupportedImportFileExtensions = new string[]
-                {
-                    ".png",
-                    ".jpg",
-                    ".jpeg",
-                    ".bmp",
-                };
-
-                // Set supported export file extensions
-                SupportedExportFileExtensions = new string[]
-                {
-                    ".png",
-                    ".jpg",
-                    ".jpeg",
-                    ".bmp",
-                };
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException(nameof(ImageFileFormat));
-            }
-        }
+        public UbiArtIPKArchiveImageFileData(UbiArtIPKFile fileData, UbiArtSettings settings, uint baseOffset) : base(fileData, settings, baseOffset)
+        { }
 
         #endregion
 
@@ -115,16 +52,189 @@ namespace RayCarrot.RCP.Metro
             };
         }
 
+        /// <summary>
+        /// Indicates if the file extension is the same as the file's native format
+        /// </summary>
+        /// <param name="fileExtension">The file extension to check</param>
+        /// <returns>True if it's the same</returns>
+        protected bool IsNativeFormat(string fileExtension) => fileExtension.Equals(FileExtension, StringComparison.InvariantCultureIgnoreCase);
+
+        /// <summary>
+        /// Gets the texture data from the stream
+        /// </summary>
+        /// <param name="bytes">The file bytes</param>
+        /// <returns>The texture data</returns>
+        protected byte[] GetTextureData(byte[] bytes)
+        {
+            if (UsesTexWrapper)
+            {
+                // Create a memory stream
+                using var memoryStream = new MemoryStream(bytes);
+
+                // Get the texture
+                var texture = FileData.GetTEXFile(memoryStream);
+
+                // Return the texture data
+                return texture.TextureData;
+            }
+            else
+            {
+                // Return the bytes
+                return bytes;
+            }
+        }
+
+        /// <summary>
+        /// Initializes the data for the file
+        /// </summary>
+        /// <param name="fileBytes">The file bytes</param>
+        protected void InitializeData(byte[] fileBytes)
+        {
+            static uint GetUInt32(IEnumerable<byte> buffer, int startIndex)
+            {
+                // Convert the first 4 bytes, reversed, to an unsigned Int32 and return
+                return BitConverter.ToUInt32(buffer.Skip(startIndex).Take(4).Reverse().ToArray(), 0);
+            }
+
+            // Check if the file is wrapped in a TEX file
+            UsesTexWrapper = GetUInt32(fileBytes, 4) == 0x54455800;
+
+            // Get the magic header
+            uint magic;
+
+            // Get the texture format
+            if (UsesTexWrapper)
+            {
+                // Get the bytes and load them into a memory stream
+                using var memoryStream = new MemoryStream(fileBytes);
+
+                // Get the texture
+                var tex = FileData.GetTEXFile(memoryStream);
+
+                // Get the format
+                magic = GetUInt32(tex.TextureData, 0);
+            }
+            else
+            {
+                // Get the format
+                magic = GetUInt32(fileBytes, 0);
+            }
+
+            // Find the format which matches the magic header
+            TextureFormat = UbiArtTextureFormat.Unknown.GetValues().
+                FindItem(x => x.GetAttribute<TextureFormatInfoAttribute>().MagicHeader == magic);
+
+            // Set the file extension
+            FileExtension = TextureFormat.GetAttribute<TextureFormatInfoAttribute>().FileExtension;
+
+            // Set the supported file extensions
+            var supportedMipmapExportFileExtensions = new List<string>();
+            var supportedImportFileExtensions = new List<string>();
+            var supportedExportFileExtensions = new List<string>();
+
+            switch (TextureFormat)
+            {
+                case UbiArtTextureFormat.DDS:
+
+                    // DDS files have mipmaps
+                    HasMipmaps = true;
+
+                    supportedMipmapExportFileExtensions.AddRange(new[]
+                    {
+                        ".png",
+                        ".jpg",
+                        ".jpeg",
+                        ".bmp",
+                    });
+
+                    supportedImportFileExtensions.AddRange(new[]
+                    {
+                        ".dds",
+                    });
+
+                    supportedExportFileExtensions.AddRange(new[]
+                    {
+                        ".dds",
+                        ".png",
+                        ".jpg",
+                        ".jpeg",
+                        ".bmp",
+                    });
+                    break;
+
+                case UbiArtTextureFormat.PNG:
+
+                    HasMipmaps = false;
+
+                    supportedImportFileExtensions.AddRange(new[]
+                    {
+                        ".png",
+                        ".jpg",
+                        ".jpeg",
+                        ".bmp",
+                    });
+
+                    supportedExportFileExtensions.AddRange(new[]
+                    {
+                        ".png",
+                        ".jpg",
+                        ".jpeg",
+                        ".bmp",
+                    });
+
+                    break;
+
+                case UbiArtTextureFormat.GXT:
+                case UbiArtTextureFormat.GFX2:
+                case UbiArtTextureFormat.Unknown:
+
+                    HasMipmaps = false;
+
+                    supportedImportFileExtensions.AddRange(new[]
+                    {
+                        FileExtension
+                    });
+
+                    supportedExportFileExtensions.AddRange(new[]
+                    {
+                        FileExtension
+                    });
+
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(TextureFormat));
+            }
+
+            if (UsesTexWrapper)
+                supportedImportFileExtensions.Add(TEXFileExtension);
+
+            if (UsesTexWrapper)
+                supportedExportFileExtensions.Add(TEXFileExtension);
+
+            // Set the supported extensions
+            SupportedMipmapExportFileExtensions = supportedMipmapExportFileExtensions.ToArray();
+            SupportedImportFileExtensions = supportedImportFileExtensions.ToArray();
+            SupportedExportFileExtensions = supportedExportFileExtensions.ToArray();
+        }
+
         #endregion
 
         #region Public Methods
 
         /// <summary>
-        /// Gets the texture from the stream
+        /// Initializes the data for the file
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
-        /// <returns>The texture</returns>
-        public UbiArtTexture GetTexture(Stream archiveFileStream) => FileData.GetTexture(archiveFileStream, BaseOffset);
+        public override void InitializeData(Stream archiveFileStream)
+        {
+            if (HasInitializedData)
+                return;
+
+            InitializeData(GetFileBytes(archiveFileStream));
+
+            HasInitializedData = true;
+        }
 
         /// <summary>
         /// Gets the image as a bitmap
@@ -133,13 +243,33 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The image as a bitmap</returns>
         public Bitmap GetBitmap(Stream archiveFileStream)
         {
-            if (ImageFileFormat == IPKImageFormat.DDS)
-            {
-                // Get the texture
-                var texture = GetTexture(archiveFileStream);
+            // Get the file bytes
+            var bytes = GetFileBytes(archiveFileStream);
 
+            // Initialize the data
+            InitializeData(bytes);
+
+            // Get the bytes from the TEX wrapper if available
+            if (UsesTexWrapper)
+            {
+                // Create a memory stream
+                using var memoryStream = new MemoryStream(bytes);
+
+                // Get the texture
+                var texture = FileData.GetTEXFile(memoryStream);
+
+                // Get the size in case it can't be read from the file
+                Width = texture.Width;
+                Height = texture.Height;
+
+                // Set the texture data
+                bytes = texture.TextureData;
+            }
+
+            if (TextureFormat == UbiArtTextureFormat.DDS)
+            {
                 // Read the texture data into a stream
-                using var dataStream = new MemoryStream(texture.TextureData);
+                using var dataStream = new MemoryStream(bytes);
 
                 // Read the texture as a DDS file
                 using var dds = Pfim.Pfim.FromStream(dataStream);
@@ -154,10 +284,10 @@ namespace RayCarrot.RCP.Metro
                 // Create and return a bitmap from the data
                 return new Bitmap(dds.Width, dds.Height, dds.Stride, GetPixelFormat(dds.Format), dataPointer);
             }
-            else if (ImageFileFormat == IPKImageFormat.PNG)
+            else if (TextureFormat == UbiArtTextureFormat.PNG)
             {
                 // Load the bytes into a memory stream
-                using var bytesMemory = new MemoryStream(FileData.GetFileBytes(archiveFileStream, BaseOffset));
+                using var bytesMemory = new MemoryStream(bytes);
 
                 // Get the bitmap
                 var bmp = new Bitmap(bytesMemory);
@@ -171,7 +301,7 @@ namespace RayCarrot.RCP.Metro
             }
             else
             {
-                throw new ArgumentOutOfRangeException(nameof(ImageFileFormat));
+                return null;
             }
         }
 
@@ -182,14 +312,14 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The images as a bitmaps</returns>
         public IEnumerable<Bitmap> GetBitmaps(Stream archiveFileStream)
         {
-            if (ImageFileFormat != IPKImageFormat.DDS)
+            if (TextureFormat != UbiArtTextureFormat.DDS)
                 throw new Exception("Only DDS files support mipmaps");
 
-            // Get the texture
-            var texture = GetTexture(archiveFileStream);
+            // Get the texture data
+            var textureData = GetTextureData(GetFileBytes(archiveFileStream));
 
             // Read the texture data into a stream
-            using var dataStream = new MemoryStream(texture.TextureData);
+            using var dataStream = new MemoryStream(textureData);
 
             // Read the texture as a DDS file
             using var dds = Pfim.Pfim.FromStream(dataStream);
@@ -217,10 +347,13 @@ namespace RayCarrot.RCP.Metro
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <param name="width">The width</param>
         /// <returns>The image as a bitmap</returns>
-        public Bitmap GetBitmap(Stream archiveFileStream, int width)
+        public Bitmap GetThumbnail(Stream archiveFileStream, int width)
         {
+            if (Height == null || Width == null)
+                return null;
+
             // Return and resize the bitmap
-            return GetBitmap(archiveFileStream).ResizeImage(width, (int)(Height / ((double)Width / width)));
+            return GetBitmap(archiveFileStream)?.ResizeImage(width, (int)(Height / ((double)Width / width)));
         }
 
         /// <summary>
@@ -232,23 +365,23 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override Task ExportFileAsync(Stream archiveFileStream, FileSystemPath filePath, string fileFormat)
         {
-            // Check if the file should be saved as a cooked file
-            if (fileFormat == UbiArtIPKFile.CookedExtension)
+            // Check if the file should be saved as a TEX file, in which case use the native, unmodified file
+            if (fileFormat == TEXFileExtension)
             {
                 // Export the file as its native format
                 return base.ExportFileAsync(archiveFileStream, filePath, fileFormat);
             }
-            // Check if the file should be saved as DDS
-            else if (fileFormat == ".dds")
+            // Check if the file should be saved as the native format
+            else if (IsNativeFormat(fileFormat))
             {
                 // Open the file
                 using var file = File.Open(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
 
-                // Get the texture
-                var texture = GetTexture(archiveFileStream);
+                // Get the texture data
+                var textureData = GetTextureData(GetFileBytes(archiveFileStream));
 
                 // Save the texture data
-                file.Write(texture.TextureData, 0, (int)texture.TextureSize);
+                file.Write(textureData, 0, textureData.Length);
             }
             // Convert the file and save
             else
@@ -329,27 +462,55 @@ namespace RayCarrot.RCP.Metro
             // Get the temporary file to save to, without disposing it
             var tempFile = new TempFile(false);
 
-            // Check if the file is in the cooked format
-            if (filePath.FileExtension.Equals(UbiArtIPKFile.CookedExtension, StringComparison.InvariantCultureIgnoreCase))
+            // Check if the file is in the TEX format
+            if (filePath.FileExtension.Equals(TEXFileExtension, StringComparison.InvariantCultureIgnoreCase))
             {
                 // Copy the file
                 RCFRCP.File.CopyFile(filePath, tempFile.TempPath, true);
             }
-            // Import as DDS
-            else if (filePath.FileExtension.Equals(".dds", StringComparison.InvariantCultureIgnoreCase))
+            // Check if the file is in the native format
+            else if (IsNativeFormat(filePath.FileExtension))
             {
                 // Get the file bytes
                 using var fileStream = File.OpenRead(filePath);
 
                 // Get the current texture
-                var texture = FileData.GetTexture(archiveFileStream, BaseOffset);
+                var texture = FileData.GetTEXFile(archiveFileStream, BaseOffset);
 
-                // Load the DDS file
-                using (var ddsFile = Pfim.Pfim.FromStream(fileStream))
+                switch (TextureFormat)
                 {
-                    // Update texture fields
-                    texture.Height = (ushort)ddsFile.Height;
-                    texture.Width = (ushort)ddsFile.Width;
+                    case UbiArtTextureFormat.DDS:
+
+                        // Load the DDS file
+                        using (var ddsFile = Pfim.Pfim.FromStream(fileStream))
+                        {
+                            // Update texture fields
+                            texture.Height = (ushort)ddsFile.Height;
+                            texture.Width = (ushort)ddsFile.Width;
+                        }
+
+                        break;
+
+                    case UbiArtTextureFormat.PNG:
+
+                        // Load the PNG file
+                        using (var bmp = new Bitmap(fileStream))
+                        {
+                            // Update texture fields
+                            texture.Height = (ushort)bmp.Height;
+                            texture.Width = (ushort)bmp.Width;
+                        }
+
+                        break;
+
+                    case UbiArtTextureFormat.GXT:
+                    case UbiArtTextureFormat.GFX2:
+                    case UbiArtTextureFormat.PVR:
+                    case UbiArtTextureFormat.GNF:
+                    case UbiArtTextureFormat.Unknown:
+                    default:
+                        // Do nothing
+                        break;
                 }
 
                 // Reset stream position
@@ -358,6 +519,7 @@ namespace RayCarrot.RCP.Metro
                 // Read the bytes from the stream
                 texture.TextureData = fileStream.ReadRemainingBytes();
 
+                // TODO: The size doesn't match for one of the platforms - why? Wii U? On Vita it's 0. Always?
                 // Set the size
                 texture.TextureSize = (uint)texture.TextureData.Length;
                 texture.TextureSize2 = (uint)texture.TextureData.Length;
@@ -368,14 +530,28 @@ namespace RayCarrot.RCP.Metro
             // Import as standard image format
             else
             {
-                if (ImageFileFormat != IPKImageFormat.PNG)
-                    throw new Exception("Only PNG files support importing from standard image format");
+                switch (TextureFormat)
+                {
+                    case UbiArtTextureFormat.PNG:
 
-                // Read the file into a bitmap
-                using var bmp = new Bitmap(filePath);
+                        // Read the file into a bitmap
+                        using (var bmp = new Bitmap(filePath))
+                        {
+                            // Save the bitmap to the temp path as PNG
+                            bmp.Save(tempFile.TempPath, ImageFormat.Png);
+                        }
 
-                // Save the bitmap to the temp path as PNG
-                bmp.Save(tempFile.TempPath, ImageFormat.Png);
+                        break;
+
+                    case UbiArtTextureFormat.DDS:
+                    case UbiArtTextureFormat.GXT:
+                    case UbiArtTextureFormat.GFX2:
+                    case UbiArtTextureFormat.PVR:
+                    case UbiArtTextureFormat.GNF:
+                    case UbiArtTextureFormat.Unknown:
+                    default:
+                        throw new Exception("The specified format does not support importing from standard image formats");
+                }
             }
 
             // Set the pending path
@@ -386,12 +562,21 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Protected Constants
+
+        /// <summary>
+        /// The file extension to use for TEX files
+        /// </summary>
+        protected const string TEXFileExtension = ".tex";
+
+        #endregion
+
         #region Protected Properties
 
         /// <summary>
-        /// The image format
+        /// Indicates if the data has been initialized
         /// </summary>
-        protected IPKImageFormat ImageFileFormat { get; }
+        public bool HasInitializedData { get; set; }
 
         #endregion
 
@@ -403,7 +588,9 @@ namespace RayCarrot.RCP.Metro
         public override string FileDisplayInfo => String.Format(
             Resources.Archive_IPK_ImageFileInfo,
             Directory,
-            Width, Height,
+            Width?.ToString() ?? "N/A", Height?.ToString() ?? "N/A",
+            UsesTexWrapper,
+            FileExtension,
             FileData.IsCompressed,
             new ByteSize(FileData.Size),
             new ByteSize(FileData.CompressedSize),
@@ -412,51 +599,121 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The supported file formats to import from
         /// </summary>
-        public override string[] SupportedImportFileExtensions { get; }
+        public override string[] SupportedImportFileExtensions { get; set; }
 
         /// <summary>
         /// The supported file formats to export to
         /// </summary>
-        public override string[] SupportedExportFileExtensions { get; }
+        public override string[] SupportedExportFileExtensions { get; set; }
 
         /// <summary>
         /// The supported file formats for exporting mipmaps
         /// </summary>
-        public string[] SupportedMipmapExportFileExtensions { get; }
+        public string[] SupportedMipmapExportFileExtensions { get; set; }
 
         /// <summary>
         /// Indicates if the image has mipmaps
         /// </summary>
-        public bool HasMipmaps { get; }
+        public bool HasMipmaps { get; set; }
 
         /// <summary>
         /// The image height
         /// </summary>
-        public int Height { get; set; }
+        public int? Height { get; set; }
 
         /// <summary>
         /// The image width
         /// </summary>
-        public int Width { get; set; }
+        public int? Width { get; set; }
+
+        /// <summary>
+        /// The texture format for the image file
+        /// </summary>
+        public UbiArtTextureFormat TextureFormat { get; set; }
+
+        /// <summary>
+        /// Indicates if the texture is wrapped in a TEX file
+        /// </summary>
+        public bool UsesTexWrapper { get; set; }
 
         #endregion
 
         #region Enums
 
         /// <summary>
-        /// The supported IPK image formats
+        /// The supported UbiArt texture formats
         /// </summary>
-        protected enum IPKImageFormat
+        public enum UbiArtTextureFormat
         {
             /// <summary>
-            /// A raw PNG file
+            /// Unknown
             /// </summary>
-            PNG,
+            [TextureFormatInfo(".unk", 0x00000000)]
+            Unknown,
 
             /// <summary>
-            /// A cooked DDS file
+            /// DDS (default)
             /// </summary>
-            DDS
+            [TextureFormatInfo(".dds", 0x44445320)]
+            DDS,
+
+            /// <summary>
+            /// GXT (used on PlayStation Vita)
+            /// </summary>
+            [TextureFormatInfo(".gxt", 0x47585400)]
+            GXT,
+
+            /// <summary>
+            /// GFX2 (used on Wii U)
+            /// </summary>
+            [TextureFormatInfo(".gtx", 0x47667832)]
+            GFX2,
+
+            /// <summary>
+            /// PVR (used on iOS)
+            /// </summary>
+            [TextureFormatInfo(".pvr", 0x50565203)]
+            PVR,
+
+            /// <summary>
+            /// GNF (used on PS4)
+            /// </summary>
+            [TextureFormatInfo(".gnf", 0x474E4620)]
+            GNF,
+
+            /// <summary>
+            /// PNG
+            /// </summary>
+            [TextureFormatInfo(".png", 0x89504E47)]
+            PNG,
+        }
+
+        /// <summary>
+        /// Specifies information for a <see cref="UbiArtTextureFormat"/>
+        /// </summary>
+        [AttributeUsage(AttributeTargets.Field)]
+        public sealed class TextureFormatInfoAttribute : Attribute
+        {
+            /// <summary>
+            /// Default constructor
+            /// </summary>
+            /// <param name="fileExtension">The file extension</param>
+            /// <param name="magicHeader">The magic header</param>
+            public TextureFormatInfoAttribute(string fileExtension, uint magicHeader)
+            {
+                FileExtension = fileExtension;
+                MagicHeader = magicHeader;
+            }
+
+            /// <summary>
+            /// The file extension
+            /// </summary>
+            public string FileExtension { get; }
+
+            /// <summary>
+            /// The magic header
+            /// </summary>
+            public uint MagicHeader { get; }
         }
 
         #endregion

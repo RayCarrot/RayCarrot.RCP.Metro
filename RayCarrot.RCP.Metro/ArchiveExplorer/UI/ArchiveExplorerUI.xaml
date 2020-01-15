@@ -109,6 +109,7 @@
                             <Setter Property="ContextMenu">
                                 <Setter.Value>
                                     <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                                                 IsEnabled="{Binding Path=IsInitialized}"
                                                  d:DataContext="{d:DesignInstance local:ArchiveFileViewModel}">
 
                                         <local:MenuItemIcon Header="{Resx Archive_Export}"
@@ -148,14 +149,14 @@
                                       Width="64"
                                       Height="64">
 
-                                    <Grid Visibility="{Binding Path=HasLoadedThumbnail, Converter={rwpf:BooleanToVisibilityConverter}}">
+                                    <Grid Visibility="{Binding Path=IsInitialized, Converter={rwpf:BooleanToVisibilityConverter}}">
 
                                         <Image Source="{Binding Path=ThumbnailSource}"
                                                HorizontalAlignment="Center"
                                                Width="64"
                                                Height="64" />
 
-                                        <iconPacks:PackIconMaterial Kind="FileOutline"
+                                        <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind, Mode=OneTime}"
                                                                     HorizontalAlignment="Center"
                                                                     Visibility="{Binding Path=ThumbnailSource, Converter={rwpf:ObjectNullToVisibilityConverter}}"
                                                                     Width="48"

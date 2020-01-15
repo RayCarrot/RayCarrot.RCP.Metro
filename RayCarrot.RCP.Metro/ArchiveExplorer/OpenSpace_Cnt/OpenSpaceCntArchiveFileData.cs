@@ -156,6 +156,12 @@ namespace RayCarrot.RCP.Metro
         #region Public Methods
 
         /// <summary>
+        /// Initializes the data for the file
+        /// </summary>
+        /// <param name="archiveFileStream">The file stream for the archive</param>
+        public void InitializeData(Stream archiveFileStream) { }
+
+        /// <summary>
         /// Gets the contents of the file from the stream
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
@@ -214,7 +220,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <param name="width">The width</param>
         /// <returns>The image as a bitmap</returns>
-        public Bitmap GetBitmap(Stream archiveFileStream, int width)
+        public Bitmap GetThumbnail(Stream archiveFileStream, int width)
         {
             // Load the file
             var file = GetFileContent(archiveFileStream, false);

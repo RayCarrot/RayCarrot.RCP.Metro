@@ -52,6 +52,12 @@ namespace RayCarrot.RCP.Metro
         FileSystemPath PendingImportTempPath { get; set; }
 
         /// <summary>
+        /// Initializes the data for the file
+        /// </summary>
+        /// <param name="archiveFileStream">The file stream for the archive</param>
+        void InitializeData(Stream archiveFileStream);
+
+        /// <summary>
         /// Exports the file to the specified path
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>

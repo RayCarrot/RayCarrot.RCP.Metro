@@ -132,7 +132,7 @@ namespace RayCarrot.RCP.Metro
                     // Remove all thumbnail image sources from memory
                     previousDir?.Files.ForEach(x =>
                     {
-                        x.HasLoadedThumbnail = false;
+                        x.IsInitialized = false;
                         x.ThumbnailSource = null;
                     });
 
@@ -156,7 +156,7 @@ namespace RayCarrot.RCP.Metro
                             x.LoadThumbnail();
 
                             // Indicate that the thumbnail has been loaded
-                            x.HasLoadedThumbnail = true;
+                            x.IsInitialized = true;
                         }
                     });
 

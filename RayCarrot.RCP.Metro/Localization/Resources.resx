@@ -3138,15 +3138,18 @@ pointer</comment>
   <data name="Archive_IPK_ImageFileInfo" xml:space="preserve">
     <value>Directory = {0}
 Size = {1} x {2}
-Compressed = {3}
-File size = {4}
-Compressed file size = {5}
-Pointer = {6}</value>
+Uses TEX = {3}
+Image format = {4}
+Compressed = {5}
+File size = {6}
+Compressed file size = {7}
+Pointer = {8}</value>
     <comment>Arguments:
 dirPath
 imgWidth
 imgHeight
-textureVersion
+usesTexWrapper
+fileExtension
 isCompressed
 fileSize
 compressedFileSize
@@ -3162,7 +3165,7 @@ pointer</comment>
     <value>UbiArt Archives (.ipk)</value>
   </data>
   <data name="Utilities_Converter_GFHeader" xml:space="preserve">
-    <value>Texture Files (.gf)</value>
+    <value>OpenSpace Texture Files (.gf)</value>
   </data>
   <data name="Utilities_Converter_Convert" xml:space="preserve">
     <value>Convert</value>
@@ -3171,7 +3174,7 @@ pointer</comment>
     <value>Convert back</value>
   </data>
   <data name="Utilities_Converter_LOCHeader" xml:space="preserve">
-    <value>Localization Files (.loc/.loc8)</value>
+    <value>UbiArt Localization Files (.loc/.loc8)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
     <value>Archive Explorer</value>
@@ -3187,5 +3190,23 @@ pointer</comment>
   </data>
   <data name="Utilities_Converter_IncludeMipmaps" xml:space="preserve">
     <value>Include mipmaps</value>
+  </data>
+  <data name="Utilities_Converter_R3SaveHeader" xml:space="preserve">
+    <value>Rayman 3 Save Files (.sav)</value>
+  </data>
+  <data name="Utilities_Converter_RJRSaveHeader" xml:space="preserve">
+    <value>Rayman Jungle Run Save Files (.dat)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_FileSelectionHeader" xml:space="preserve">
+    <value>Select archive files</value>
+  </data>
+  <data name="Utilities_Converter_FileSelectionHeader" xml:space="preserve">
+    <value>Select files to convert</value>
+  </data>
+  <data name="Utilities_Converter_DestinationHeader" xml:space="preserve">
+    <value>Select destination</value>
+  </data>
+  <data name="Utilities_Converter_Error" xml:space="preserve">
+    <value>The file(s) could not be converted</value>
   </data>
 </root>

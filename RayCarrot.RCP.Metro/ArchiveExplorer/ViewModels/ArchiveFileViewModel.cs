@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
+using MahApps.Metro.IconPacks;
 using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
@@ -67,9 +68,9 @@ namespace RayCarrot.RCP.Metro
         public ImageSource ThumbnailSource { get; set; }
 
         /// <summary>
-        /// Indicates if the thumbnail has been loaded
+        /// Indicates if the thumbnail has been loaded and data has been initialized
         /// </summary>
-        public bool HasLoadedThumbnail { get; set; }
+        public bool IsInitialized { get; set; }
 
         /// <summary>
         /// The archive file stream
@@ -90,6 +91,16 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the file is an image with mipmaps
         /// </summary>
         public bool HasMipmaps { get; set; }
+
+        /// <summary>
+        /// Indicates if the file is an image
+        /// </summary>
+        public bool IsImage => FileData is IArchiveImageFileData;
+
+        /// <summary>
+        /// The icon kind to use for the file
+        /// </summary>
+        public PackIconMaterialKind IconKind => IsImage ? PackIconMaterialKind.FileImageOutline : PackIconMaterialKind.FileOutline;
 
         #endregion
 
@@ -131,18 +142,21 @@ namespace RayCarrot.RCP.Metro
                     // Get the thumbnail
                     var img = imgData.
                         // Get the bitmap image
-                        GetBitmap(ArchiveFileStream, 64).
+                        GetThumbnail(ArchiveFileStream, 64)?.
                         // Get an image source from the bitmap
                         ToImageSource();
 
-                    // Get if the image has mipmaps
-                    HasMipmaps = imgData.HasMipmaps;
-
                     // Freeze the image to avoid thread errors
-                    img.Freeze();
+                    img?.Freeze();
 
                     // Set the image source
                     ThumbnailSource = img;
+
+                    // Initialize the data
+                    FileData.InitializeData(ArchiveFileStream);
+
+                    // Get if the image has mipmaps
+                    HasMipmaps = imgData.HasMipmaps;
                 }
                 catch (Exception ex)
                 {
@@ -155,6 +169,9 @@ namespace RayCarrot.RCP.Metro
             }
             else
             {
+                // Initialize the data
+                FileData.InitializeData(ArchiveFileStream);
+
                 RCFCore.Logger?.LogDebugSource("A thumbnail can currently not be generated for non-image files in archives");
             }
         }

@@ -170,6 +170,10 @@
     </Compile>
     <Compile Include="Pages\Links\LinksPageViewModel.cs" />
     <Compile Include="Pages\Utilities\EnumSelectionViewModel.cs" />
+    <Compile Include="Extensions\GameModeExtensions.cs" />
+    <Compile Include="Pages\Utilities\UtilitiesArchiveExplorerViewModel.cs" />
+    <Compile Include="Pages\Utilities\UtilitiesConverterViewModel.cs" />
+    <Compile Include="Pages\Utilities\UtilitiesWIPViewModel.cs" />
     <Compile Include="UI\Behaviors\ChildRCPTabControlBehavior.cs" />
     <Compile Include="UI\Controls\DuoGridItem.cs" />
     <Compile Include="UI\Controls\InfoIcon.xaml.cs">

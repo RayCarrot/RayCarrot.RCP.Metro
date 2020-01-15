@@ -691,10 +691,12 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to Directory = {0}
         ///Size = {1} x {2}
-        ///Compressed = {3}
-        ///File size = {4}
-        ///Compressed file size = {5}
-        ///Pointer = {6}.
+        ///Uses TEX = {3}
+        ///Image format = {4}
+        ///Compressed = {5}
+        ///File size = {6}
+        ///Compressed file size = {7}
+        ///Pointer = {8}.
         /// </summary>
         public static string Archive_IPK_ImageFileInfo {
             get {
@@ -8537,6 +8539,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select archive files.
+        /// </summary>
+        public static string Utilities_ArchiveExplorer_FileSelectionHeader {
+            get {
+                return ResourceManager.GetString("Utilities_ArchiveExplorer_FileSelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Archive Explorer.
         /// </summary>
         public static string Utilities_ArchiveExplorer_Header {
@@ -8582,7 +8593,34 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Texture Files (.gf).
+        ///   Looks up a localized string similar to Select destination.
+        /// </summary>
+        public static string Utilities_Converter_DestinationHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_DestinationHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file(s) could not be converted.
+        /// </summary>
+        public static string Utilities_Converter_Error {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select files to convert.
+        /// </summary>
+        public static string Utilities_Converter_FileSelectionHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_FileSelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OpenSpace Texture Files (.gf).
         /// </summary>
         public static string Utilities_Converter_GFHeader {
             get {
@@ -8609,11 +8647,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Localization Files (.loc/.loc8).
+        ///   Looks up a localized string similar to UbiArt Localization Files (.loc/.loc8).
         /// </summary>
         public static string Utilities_Converter_LOCHeader {
             get {
                 return ResourceManager.GetString("Utilities_Converter_LOCHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 Save Files (.sav).
+        /// </summary>
+        public static string Utilities_Converter_R3SaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_R3SaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Jungle Run Save Files (.dat).
+        /// </summary>
+        public static string Utilities_Converter_RJRSaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_RJRSaveHeader", resourceCulture);
             }
         }
         

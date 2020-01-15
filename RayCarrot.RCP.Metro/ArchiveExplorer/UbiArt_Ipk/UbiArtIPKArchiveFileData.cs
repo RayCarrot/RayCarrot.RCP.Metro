@@ -21,13 +21,12 @@ namespace RayCarrot.RCP.Metro
         /// <param name="fileData">The file data</param>
         /// <param name="settings">The settings when serializing the data</param>
         /// <param name="baseOffset">The base offset to use when reading the files</param>
-        public UbiArtIPKArchiveFileData(UbiArtIPKFile fileData, UbiArtSettings settings, int baseOffset)
+        public UbiArtIPKArchiveFileData(UbiArtIPKFile fileData, UbiArtSettings settings, uint baseOffset)
         {
             // Get the file properties
             Directory = fileData.DirectoryPath;
             FileExtension = fileData.GetFileExtensions().Last();
             FileName = fileData.FileName;
-            FileFormatName = fileData.GetFileExtensions().First().Substring(1).ToUpper();
             FileData = fileData;
             BaseOffset = baseOffset;
             Settings = settings;
@@ -45,7 +44,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The base offset to use when reading the files
         /// </summary>
-        protected int BaseOffset { get; }
+        protected uint BaseOffset { get; }
 
         #endregion
 
@@ -80,28 +79,36 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The name of the file format
         /// </summary>
-        public string FileFormatName { get; }
+        public string FileFormatName => FileExtension.Substring(1).ToUpper();
 
         /// <summary>
         /// The supported file formats to import from
         /// </summary>
-        public virtual string[] SupportedImportFileExtensions => new string[]
+        public virtual string[] SupportedImportFileExtensions
         {
-            FileExtension
-        };
+            get => new string[]
+            {
+                FileExtension
+            };
+            set => throw new NotImplementedException();
+        }
 
         /// <summary>
         /// The supported file formats to export to
         /// </summary>
-        public virtual string[] SupportedExportFileExtensions => new string[]
+        public virtual string[] SupportedExportFileExtensions
         {
-            FileExtension
-        };
+            get => new string[]
+            {
+                FileExtension
+            };
+            set => throw new NotImplementedException();
+        }
 
         /// <summary>
         /// The file extension
         /// </summary>
-        public string FileExtension { get; }
+        public string FileExtension { get; set; }
 
         /// <summary>
         /// The path to the temporary file containing the data to be imported
@@ -118,6 +125,12 @@ namespace RayCarrot.RCP.Metro
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <returns>The contents of the file</returns>
         public byte[] GetFileBytes(Stream archiveFileStream) => FileData.GetFileBytes(archiveFileStream, BaseOffset);
+
+        /// <summary>
+        /// Initializes the data for the file
+        /// </summary>
+        /// <param name="archiveFileStream">The file stream for the archive</param>
+        public virtual void InitializeData(Stream archiveFileStream) { }
 
         /// <summary>
         /// Exports the file to the specified path

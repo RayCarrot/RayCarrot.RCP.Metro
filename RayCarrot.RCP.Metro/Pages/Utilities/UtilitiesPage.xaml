@@ -30,12 +30,15 @@
             <!-- Archive Explorer -->
 
             <local:RCPTabItem IconKind="FolderMultipleOutline"
-                              Header="{Resx Utilities_ArchiveExplorer_Header}">
+                              Header="{Resx Utilities_ArchiveExplorer_Header}"
+                              DataContext="{Binding Path=ArchiveExplorerViewModel, Mode=OneTime}">
 
                 <StackPanel>
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
+
+                    <!-- OpenSpace Archives (.cnt) -->
 
                     <StackPanel>
                         <i:Interaction.Behaviors>
@@ -69,6 +72,8 @@
                         </Grid>
 
                     </StackPanel>
+
+                    <!-- UbiArt Archives (.ipk) -->
 
                     <StackPanel>
                         <i:Interaction.Behaviors>
@@ -110,12 +115,15 @@
             <!-- Converters -->
 
             <local:RCPTabItem IconKind="FileExportOutline"
-                              Header="{Resx Utilities_Converter_Header}">
+                              Header="{Resx Utilities_Converter_Header}"
+                              DataContext="{Binding Path=ConverterViewModel, Mode=OneTime}">
 
                 <StackPanel>
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
+
+                    <!-- OpenSpace Texture Files (.gf) -->
 
                     <StackPanel>
                         <i:Interaction.Behaviors>
@@ -159,6 +167,44 @@
 
                     </StackPanel>
 
+                    <!-- Rayman 3 Save Files (.sav) -->
+
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                        </i:Interaction.Behaviors>
+
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                   Text="{Resx Utilities_Converter_R3SaveHeader}" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox Grid.Column="0"
+                                      ItemsSource="{Binding Path=R3SaveGameModeSelection.AvailableValues, Mode=OneTime}"
+                                      SelectedItem="{Binding Path=R3SaveGameModeSelection.SelectedValue}" />
+
+                            <Button Grid.Column="2"
+                                    Content="{Resx Utilities_Converter_Convert}"
+                                    Command="{Binding Path=ConvertFromR3SaveCommand, Mode=OneTime}" />
+
+                            <Button Grid.Column="4"
+                                    IsEnabled="False"
+                                    Content="{Resx Utilities_Converter_ConvertBack}"
+                                    Command="{Binding Path=ConvertToR3SaveCommand, Mode=OneTime}" />
+
+                        </Grid>
+
+                    </StackPanel>
+
+                    <!-- UbiArt Localization Files (.loc/.loc8) -->
+
                     <StackPanel>
                         <i:Interaction.Behaviors>
                             <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
@@ -198,6 +244,40 @@
 
                     </StackPanel>
 
+                    <!-- Rayman Jungle Run Save Files (.dat) -->
+
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                        </i:Interaction.Behaviors>
+
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                   Text="{Resx Utilities_Converter_RJRSaveHeader}" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox Grid.Column="0"
+                                      ItemsSource="{Binding Path=RJRSaveGameModeSelection.AvailableValues, Mode=OneTime}"
+                                      SelectedItem="{Binding Path=RJRSaveGameModeSelection.SelectedValue}" />
+
+                            <Button Grid.Column="2"
+                                    Content="{Resx Utilities_Converter_Convert}"
+                                    Command="{Binding Path=ConvertFromRJRSaveCommand, Mode=OneTime}" />
+
+                            <Button Grid.Column="4"
+                                    Content="{Resx Utilities_Converter_ConvertBack}"
+                                    Command="{Binding Path=ConvertToRJRSaveCommand, Mode=OneTime}" />
+
+                        </Grid>
+
+                    </StackPanel>
                 </StackPanel>
 
             </local:RCPTabItem>
@@ -206,12 +286,15 @@
 
             <local:RCPTabItem IconKind="CodeBraces"
                               Header="{Resx Utilities_WIP_Header}"
+                              DataContext="{Binding Path=WIPViewModel, Mode=OneTime}"
                               rwpf:UserLevelTag.MinUserLevel="Technical">
 
                 <StackPanel>
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
+
+                    <!-- Rayman 1 Level Viewer -->
 
                     <StackPanel>
                         <i:Interaction.Behaviors>

@@ -161,6 +161,10 @@ namespace RayCarrot.RCP.Metro
                         // Save the selected the format for each collection
                         Dictionary<string, string> selectedFormats = new Dictionary<string, string>();
 
+                        // Initialize every file
+                        foreach (var file in this.GetAllChildren(true).SelectMany(x => x.Files))
+                            file.FileData.InitializeData(Archive.ArchiveFileStream);
+
                         // Select the format for each distinct collection
                         foreach (var formatGroup in this.GetAllChildren(true).SelectMany(x => x.Files).GroupBy(x => x.FileData.FileFormatName))
                         {
@@ -259,6 +263,9 @@ namespace RayCarrot.RCP.Metro
                                 // Enumerate each file
                                 foreach (var file in dir.Files)
                                 {
+                                    // Initialize the file
+                                    file.FileData.InitializeData(Archive.ArchiveFileStream);
+
                                     // Get the file path, without an extension, relative to the selected directory
                                     FileSystemPath filePath = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar) + (Path.GetFileNameWithoutExtension(file.FileName) ?? file.FileName);
 

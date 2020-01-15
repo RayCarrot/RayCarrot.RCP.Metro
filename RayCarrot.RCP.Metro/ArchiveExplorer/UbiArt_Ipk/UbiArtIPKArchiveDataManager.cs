@@ -66,7 +66,7 @@ namespace RayCarrot.RCP.Metro
             // Helper method for getting the archive file data
             IArchiveFileData GetFileData(UbiArtIPKFile file)
             {
-                if (file.IsTexture)
+                if (file.GetFileExtensions().Any(x => x == ".png" || x == ".tga"))
                     return new UbiArtIPKArchiveImageFileData(file, Settings, data.BaseOffset);
                 else
                     return new UbiArtIPKArchiveFileData(file, Settings, data.BaseOffset);
