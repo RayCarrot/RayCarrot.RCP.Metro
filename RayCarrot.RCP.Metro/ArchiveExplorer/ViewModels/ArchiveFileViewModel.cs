@@ -134,6 +134,9 @@ namespace RayCarrot.RCP.Metro
             // Default to not having mipmaps
             HasMipmaps = false;
 
+            // Get the file bytes
+            var bytes = FileData.GetFileBytes(ArchiveFileStream);
+
             // Get the bitmap if the item is an image
             if (FileData is IArchiveImageFileData imgData)
             {
@@ -141,19 +144,14 @@ namespace RayCarrot.RCP.Metro
                 {
                     // Get the thumbnail
                     var img = imgData.
-                        // Get the bitmap image
-                        GetThumbnail(ArchiveFileStream, 64)?.
-                        // Get an image source from the bitmap
-                        ToImageSource();
+                        // Get the image source
+                        GetThumbnail(bytes, 64);
 
                     // Freeze the image to avoid thread errors
                     img?.Freeze();
 
                     // Set the image source
                     ThumbnailSource = img;
-
-                    // Initialize the data
-                    FileData.InitializeData(ArchiveFileStream);
 
                     // Get if the image has mipmaps
                     HasMipmaps = imgData.HasMipmaps;
@@ -169,9 +167,6 @@ namespace RayCarrot.RCP.Metro
             }
             else
             {
-                // Initialize the data
-                FileData.InitializeData(ArchiveFileStream);
-
                 RCFCore.Logger?.LogDebugSource("A thumbnail can currently not be generated for non-image files in archives");
             }
         }
@@ -210,12 +205,15 @@ namespace RayCarrot.RCP.Metro
 
                         try
                         {
+                            // Get the file bytes
+                            var bytes = FileData.GetFileBytes(ArchiveFileStream);
+
                             if (!includeMipmap)
                                 // Export the file
-                                await FileData.ExportFileAsync(ArchiveFileStream, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
+                                await FileData.ExportFileAsync(bytes, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
                             else
                                 // Export the mipmaps
-                                await ((IArchiveImageFileData)FileData).ExportMipmapsAsync(ArchiveFileStream, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
+                                await ((IArchiveImageFileData)FileData).ExportMipmapsAsync(bytes, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
                         }
                         catch (Exception ex)
                         {
@@ -265,8 +263,11 @@ namespace RayCarrot.RCP.Metro
 
                         try
                         {
+                            // Get the file bytes
+                            var bytes = FileData.GetFileBytes(ArchiveFileStream);
+
                             // Import the file
-                            var succeeded = await FileData.ImportFileAsync(ArchiveFileStream, result.SelectedFile);
+                            var succeeded = await FileData.ImportFileAsync(bytes, result.SelectedFile);
 
                             // Make sure it succeeded
                             if (!succeeded)

@@ -161,26 +161,6 @@ namespace RayCarrot.RCP.Metro
                         // Save the selected the format for each collection
                         Dictionary<string, string> selectedFormats = new Dictionary<string, string>();
 
-                        // Initialize every file
-                        foreach (var file in this.GetAllChildren(true).SelectMany(x => x.Files))
-                            file.FileData.InitializeData(Archive.ArchiveFileStream);
-
-                        // Select the format for each distinct collection
-                        foreach (var formatGroup in this.GetAllChildren(true).SelectMany(x => x.Files).GroupBy(x => x.FileData.FileFormatName))
-                        {
-                            // Get the file data
-                            var data = formatGroup.First().FileData;
-
-                            // Have user select the format
-                            FileExtensionSelectionDialogResult extResult = await RCFRCP.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(data.SupportedExportFileExtensions, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, data.FileFormatName)));
-
-                            if (extResult.CanceledByUser)
-                                return;
-
-                            // Add the selected format
-                            selectedFormats.Add(data.FileFormatName, extResult.SelectedFileFormat);
-                        }
-
                         try
                         {
                             // Handle each directory
@@ -195,14 +175,33 @@ namespace RayCarrot.RCP.Metro
                                 // Save each file
                                 foreach (var file in item.Files)
                                 {
+                                    // Get the file data
+                                    var data = file.FileData;
+
+                                    // Get the file bytes
+                                    var bytes = data.GetFileBytes(file.ArchiveFileStream);
+
+                                    // Check if the format has not been selected
+                                    if (!selectedFormats.ContainsKey(file.FileData.FileFormatName))
+                                    {
+                                        // Have user select the format
+                                        FileExtensionSelectionDialogResult extResult = await RCFRCP.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(data.SupportedExportFileExtensions, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, data.FileFormatName)));
+
+                                        // Since this operation can't be canceled we get the first format
+                                        if (extResult.CanceledByUser)
+                                            extResult.SelectedFileFormat = data.SupportedExportFileExtensions.First();
+
+                                        // Add the selected format
+                                        selectedFormats.Add(data.FileFormatName, extResult.SelectedFileFormat);
+                                    }
+
                                     // Get the selected format
                                     var format = selectedFormats[file.FileData.FileFormatName];
 
                                     Archive.SetDisplayStatus(String.Format(Resources.Archive_ExportingFileStatus, file.FileName));
 
                                     // Save the file
-                                    await file.FileData.ExportFileAsync(file.ArchiveFileStream,
-                                        path + (new FileSystemPath(file.FileName).ChangeFileExtension(format, true)), format);
+                                    await file.FileData.ExportFileAsync(bytes, path + (new FileSystemPath(file.FileName).ChangeFileExtension(format, true)), format);
                                 }
                             }
                         }
@@ -263,11 +262,18 @@ namespace RayCarrot.RCP.Metro
                                 // Enumerate each file
                                 foreach (var file in dir.Files)
                                 {
-                                    // Initialize the file
-                                    file.FileData.InitializeData(Archive.ArchiveFileStream);
+                                    // Get the file directory, relative to the selected directory
+                                    FileSystemPath fileDir = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
 
-                                    // Get the file path, without an extension, relative to the selected directory
-                                    FileSystemPath filePath = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar) + (Path.GetFileNameWithoutExtension(file.FileName) ?? file.FileName);
+                                    // Get the file path, without an extension
+                                    FileSystemPath filePath = fileDir + (Path.GetFileNameWithoutExtension(file.FileName) ?? file.FileName);
+
+                                    // Make sure there are potential file matches
+                                    if (!Directory.GetFiles(fileDir, $"{filePath.Name}*", SearchOption.TopDirectoryOnly).Any())
+                                        continue;
+
+                                    // Get the file bytes
+                                    var bytes = file.FileData.GetFileBytes(Archive.ArchiveFileStream);
 
                                     // Attempt to find a file for each supported extension
                                     foreach (string ext in file.FileData.SupportedImportFileExtensions)
@@ -282,7 +288,7 @@ namespace RayCarrot.RCP.Metro
                                         Archive.SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, file.FileName));
 
                                         // Import the file
-                                        var succeeded = await file.FileData.ImportFileAsync(Archive.ArchiveFileStream, fullFilePath);
+                                        var succeeded = await file.FileData.ImportFileAsync(bytes, fullFilePath);
 
                                         if (!succeeded)
                                             failes = true;

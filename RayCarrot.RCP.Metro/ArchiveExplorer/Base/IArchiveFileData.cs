@@ -52,26 +52,20 @@ namespace RayCarrot.RCP.Metro
         FileSystemPath PendingImportTempPath { get; set; }
 
         /// <summary>
-        /// Initializes the data for the file
-        /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
-        void InitializeData(Stream archiveFileStream);
-
-        /// <summary>
         /// Exports the file to the specified path
         /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="fileBytes">The file bytes</param>
         /// <param name="filePath">The path to export the file to</param>
         /// <param name="fileFormat">The file extension to use</param>
         /// <returns>The task</returns>
-        Task ExportFileAsync(Stream archiveFileStream, FileSystemPath filePath, string fileFormat);
+        Task ExportFileAsync(byte[] fileBytes, FileSystemPath filePath, string fileFormat);
 
         /// <summary>
         /// Imports the file from the specified path to the <see cref="PendingImportTempPath"/> path
         /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="fileBytes">The file bytes</param>
         /// <param name="filePath">The path of the file to import</param>
         /// <returns>A value indicating if the file was successfully imported</returns>
-        Task<bool> ImportFileAsync(Stream archiveFileStream, FileSystemPath filePath);
+        Task<bool> ImportFileAsync(byte[] fileBytes, FileSystemPath filePath);
     }
 }

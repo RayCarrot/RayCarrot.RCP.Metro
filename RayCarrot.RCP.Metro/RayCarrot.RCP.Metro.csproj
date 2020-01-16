@@ -106,21 +106,22 @@
     <Compile Include="ArchiveExplorer\Base\IArchiveImageFileData.cs" />
     <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
     <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
+    <Compile Include="Helpers\ImageHelpers.cs" />
     <Compile Include="ArchiveExplorer\UbiArt_Ipk\UbiArtIPKArchiveDataManager.cs" />
     <Compile Include="ArchiveExplorer\UbiArt_Ipk\UbiArtIPKArchiveFileData.cs" />
     <Compile Include="ArchiveExplorer\UbiArt_Ipk\UbiArtIPKArchiveImageFileData.cs" />
-    <Compile Include="ArchiveExplorer\UI\ArchiveExplorerUI.xaml.cs">
+    <Compile Include="ArchiveExplorer\ArchiveExplorerUI.xaml.cs">
       <DependentUpon>ArchiveExplorerUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ArchiveExplorer\UI\FileExtensionSelectionDialog.xaml.cs">
+    <Compile Include="UI\Dialogs\FileExtensionSelectionDialog.xaml.cs">
       <DependentUpon>FileExtensionSelectionDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="ArchiveExplorer\ViewModels\ArchiveDirectoryViewModel.cs" />
     <Compile Include="ArchiveExplorer\ViewModels\ArchiveExplorerDialogViewModel.cs" />
     <Compile Include="ArchiveExplorer\ViewModels\ArchiveFileViewModel.cs" />
     <Compile Include="ArchiveExplorer\ViewModels\ArchiveViewModel.cs" />
-    <Compile Include="ArchiveExplorer\ViewModels\Dialogs\FileExtensionSelectionDialogResult.cs" />
-    <Compile Include="ArchiveExplorer\ViewModels\Dialogs\FileExtensionSelectionDialogViewModel.cs" />
+    <Compile Include="ViewModels\Dialogs\FileExtensionSelectionDialogResult.cs" />
+    <Compile Include="ViewModels\Dialogs\FileExtensionSelectionDialogViewModel.cs" />
     <Compile Include="Games\Config\UI\RaymanFiestaRunConfig.xaml.cs">
       <DependentUpon>RaymanFiestaRunConfig.xaml</DependentUpon>
     </Compile>
@@ -355,11 +356,11 @@
     <Compile Include="DataModels\Enums\Pages.cs" />
     <Compile Include="Pages\Games\GameCategoryViewModel.cs" />
     <Compile Include="ViewModels\TaskbarIconViewModel.cs" />
-    <Page Include="ArchiveExplorer\UI\ArchiveExplorerUI.xaml">
+    <Page Include="ArchiveExplorer\ArchiveExplorerUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ArchiveExplorer\UI\FileExtensionSelectionDialog.xaml">
+    <Page Include="UI\Dialogs\FileExtensionSelectionDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -932,6 +933,7 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="costura32\Magick.Native-Q8-x86.dll" />
     <Content Include="Files\Programs\Rayman Control Panel Updater.exe" />
     <Resource Include="Img\ProgressionIcons\R3_Cage.png" />
     <Resource Include="Img\ProgressionIcons\R3_Score.png" />
@@ -1025,6 +1027,9 @@
     <PackageReference Include="ini-parser">
       <Version>2.5.2</Version>
     </PackageReference>
+    <PackageReference Include="Magick.NET-Q8-x86">
+      <Version>7.15.0</Version>
+    </PackageReference>
     <PackageReference Include="MahApps.Metro">
       <Version>1.6.5</Version>
     </PackageReference>
@@ -1054,9 +1059,6 @@
     </PackageReference>
     <PackageReference Include="NVorbis">
       <Version>0.9.0</Version>
-    </PackageReference>
-    <PackageReference Include="Pfim">
-      <Version>0.9.1</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
       <Version>3.2.3</Version>
@@ -1089,6 +1091,8 @@
       <Version>1.2.2</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ArchiveExplorer\ViewModels\Dialogs\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

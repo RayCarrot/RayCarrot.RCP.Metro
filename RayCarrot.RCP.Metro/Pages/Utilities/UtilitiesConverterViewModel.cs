@@ -120,12 +120,10 @@ namespace RayCarrot.RCP.Metro
                     // Get a bitmap from the image data
                     using var bmp = data.GetBitmap();
 
-                    // TODO: Allow multiple file formats - use same dialog as Archive Explorer
-
                     // Save the image
-                    bmp.Save(filePath.ChangeFileExtension(".png"), ImageFormat.Png);
+                    bmp.Save(filePath, ImageHelpers.GetImageFormat(filePath.FileExtension));
                 }
-            }, new FileFilterItem("*.gf", "GF").ToString(), GfGameModeSelection.SelectedValue.GetGame());
+            }, new FileFilterItem("*.gf", "GF").ToString(), GfGameModeSelection.SelectedValue.GetGame(), ImageHelpers.GetSupportedBitmapExtensions());
         }
 
         /// <summary>
@@ -136,8 +134,9 @@ namespace RayCarrot.RCP.Metro
         /// <param name="convertAction">The convert action, converting the data to the specified file path</param>
         /// <param name="fileFilter">The file filter when selecting files to convert</param>
         /// <param name="game">The game, if available</param>
+        /// <param name="supportedFileExtensions">The supported file extensions to export as</param>
         /// <returns>The task</returns>
-        public async Task ConvertFilesAsync<T>(BinaryDataSerializer<T> serializer, Action<T, FileSystemPath> convertAction, string fileFilter, Games? game)
+        public async Task ConvertFilesAsync<T>(BinaryDataSerializer<T> serializer, Action<T, FileSystemPath> convertAction, string fileFilter, Games? game, string[] supportedFileExtensions)
         {
             // Allow the user to select the files
             var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
@@ -160,6 +159,13 @@ namespace RayCarrot.RCP.Metro
             if (destinationResult.CanceledByUser)
                 return;
 
+            // TODO: Localize
+            // Allow the user to select the file extension to export as
+            var extResult = await RCFRCP.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(supportedFileExtensions, "Select file extension to export as"));
+
+            if (extResult.CanceledByUser)
+                return;
+
             try
             {
                 // Convert every file
@@ -170,6 +176,9 @@ namespace RayCarrot.RCP.Metro
 
                     // Get the destination file
                     var destinationFile = destinationResult.SelectedDirectory + file.Name;
+
+                    // Set the file extension
+                    destinationFile = destinationFile.ChangeFileExtension(extResult.SelectedFileFormat);
 
                     // Get a non-existing file name
                     destinationFile = destinationFile.GetNonExistingFileName();

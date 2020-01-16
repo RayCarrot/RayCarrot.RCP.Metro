@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.WPF;
 using System.Runtime.CompilerServices;
@@ -103,6 +104,16 @@ namespace RayCarrot.RCP.Metro
         public async Task<FileExtensionSelectionDialogResult> SelectFileExtensionAsync(FileExtensionSelectionDialogViewModel viewModel, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
         {
             RCFCore.Logger?.LogTraceSource($"A file extension selection dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+
+            // If only one item is available, return it
+            if (viewModel.FileFormats.Length == 1)
+            {
+                return new FileExtensionSelectionDialogResult()
+                {
+                    CanceledByUser = false,
+                    SelectedFileFormat = viewModel.FileFormats.First()
+                };
+            }
 
             if (Application.Current.Dispatcher == null)
                 throw new Exception("The application does not have a valid dispatcher");

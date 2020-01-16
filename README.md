@@ -24,7 +24,7 @@ The Rayman Control Panel uses these main dependencies:
 - [Hardcodet.NotifyIcon.Wpf](http://www.hardcodet.net/wpf-notifyicon)
 - [gong-wpf-dragdrop](https://github.com/punker76/gong-wpf-dragdrop)
 - [DotNetZip](https://github.com/haf/DotNetZip.Semverd)
-- [Pfim](https://github.com/nickbabcock/Pfim)
+- [Magick.NET](https://github.com/dlemstra/Magick.NET)
 
 ## Localization
 Starting with version 4.1.0 the Rayman Control Panel will support localization.

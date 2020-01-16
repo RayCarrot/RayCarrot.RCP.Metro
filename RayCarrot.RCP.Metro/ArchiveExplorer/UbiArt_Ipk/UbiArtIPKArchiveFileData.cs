@@ -124,31 +124,38 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <returns>The contents of the file</returns>
-        public byte[] GetFileBytes(Stream archiveFileStream) => FileData.GetFileBytes(archiveFileStream, BaseOffset);
+        public byte[] GetFileBytes(Stream archiveFileStream)
+        {
+            // Get the bytes
+            var bytes = FileData.GetFileBytes(archiveFileStream, BaseOffset);
+
+            // Initialize the data
+            InitializeData(bytes);
+
+            // Return the bytes
+            return bytes;
+        }
 
         /// <summary>
         /// Initializes the data for the file
         /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
-        public virtual void InitializeData(Stream archiveFileStream) { }
+        /// <param name="fileBytes">The file bytes</param>
+        public virtual void InitializeData(byte[] fileBytes) { }
 
         /// <summary>
         /// Exports the file to the specified path
         /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="fileBytes">The file bytes</param>
         /// <param name="filePath">The path to export the file to</param>
         /// <param name="fileFormat">The file extension to use</param>
         /// <returns>The task</returns>
-        public virtual Task ExportFileAsync(Stream archiveFileStream, FileSystemPath filePath, string fileFormat)
+        public virtual Task ExportFileAsync(byte[] fileBytes, FileSystemPath filePath, string fileFormat)
         {
             // Open the file
             using var file = File.Open(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
 
-            // Get the file bytes
-            var bytes = GetFileBytes(archiveFileStream);
-
             // Write to the stream
-            file.Write(bytes, 0, bytes.Length);
+            file.Write(fileBytes, 0, fileBytes.Length);
 
             return Task.CompletedTask;
         }
@@ -156,10 +163,10 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Imports the file from the specified path to the <see cref="PendingImportTempPath"/> path
         /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="fileBytes">The file bytes</param>
         /// <param name="filePath">The path of the file to import</param>
         /// <returns>A value indicating if the file was successfully imported</returns>
-        public virtual Task<bool> ImportFileAsync(Stream archiveFileStream, FileSystemPath filePath)
+        public virtual Task<bool> ImportFileAsync(byte[] fileBytes, FileSystemPath filePath)
         {
             // Get the temporary file to save to, without disposing it
             var tempFile = new TempFile(false);

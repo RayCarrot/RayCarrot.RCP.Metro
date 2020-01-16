@@ -1,13 +1,15 @@
 ﻿using ByteSizeLib;
+using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
+using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -109,37 +111,17 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The supported file formats to import from
         /// </summary>
-        public string[] SupportedImportFileExtensions => new string[]
-        {
-            ".png",
-            ".jpg",
-            ".jpeg",
-            ".bmp",
-            ".gf",
-        };
+        public string[] SupportedImportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions().Append(".gf");
 
         /// <summary>
         /// The supported file formats to export to
         /// </summary>
-        public string[] SupportedExportFileExtensions => new string[]
-        {
-            ".png",
-            ".jpg",
-            ".jpeg",
-            ".bmp",
-            ".gf",
-        };
+        public string[] SupportedExportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions().Append(".gf");
 
         /// <summary>
         /// The supported file formats for exporting mipmaps
         /// </summary>
-        public string[] SupportedMipmapExportFileExtensions => new[]
-        {
-            ".png",
-            ".jpg",
-            ".jpeg",
-            ".bmp",
-        };
+        public string[] SupportedMipmapExportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions();
 
         /// <summary>
         /// The path to the temporary file containing the data to be imported
@@ -156,12 +138,6 @@ namespace RayCarrot.RCP.Metro
         #region Public Methods
 
         /// <summary>
-        /// Initializes the data for the file
-        /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
-        public void InitializeData(Stream archiveFileStream) { }
-
-        /// <summary>
         /// Gets the contents of the file from the stream
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
@@ -174,27 +150,33 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the contents of the file with an option to deserialize mipmaps
         /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="fileBytes">The file bytes</param>
         /// <param name="deserializeMipmap">Indicates if mipmaps should be deserialized if available</param>
         /// <returns>The deserialized file</returns>
-        public OpenSpaceGFFile GetFileContent(Stream archiveFileStream, bool deserializeMipmap)
+        public OpenSpaceGFFile GetFileContent(byte[] fileBytes, bool deserializeMipmap)
         {
             // Set if mipmaps should be deserialized
             Settings.DeserializeMipmaps = deserializeMipmap;
 
-            // Return the file
-            return FileData.GetFileContent(archiveFileStream, Settings);
+            // Load the bytes into a memory stream
+            using var stream = new MemoryStream(fileBytes);
+
+            // Serialize the data
+            var data = new OpenSpaceGfSerializer(Settings).Deserialize(stream);
+
+            // Return the data
+            return data;
         }
 
         /// <summary>
         /// Gets the image as a bitmap
         /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="fileBytes">The file bytes</param>
         /// <returns>The image as a bitmap</returns>
-        public Bitmap GetBitmap(Stream archiveFileStream)
+        public Bitmap GetBitmap(byte[] fileBytes)
         {
             // Load the file
-            var file = GetFileContent(archiveFileStream, false);
+            var file = GetFileContent(fileBytes, false);
 
             // Get the bitmap
             return file.GetBitmap();
@@ -203,27 +185,27 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets all images, including mipmaps, as bitmaps
         /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="fileBytes">The file bytes</param>
         /// <returns>The images as a bitmaps</returns>
-        public IEnumerable<Bitmap> GetBitmaps(Stream archiveFileStream)
+        public IEnumerable<Bitmap> GetBitmaps(byte[] fileBytes)
         {
             // Load the file
-            var file = GetFileContent(archiveFileStream, true);
+            var file = GetFileContent(fileBytes, true);
 
             // Get the bitmaps
             return file.GetBitmaps(true);
         }
 
         /// <summary>
-        /// Gets the image as a bitmap with a specified width, while maintaining the aspect ratio
+        /// Gets the image as an image source with a specified width, while maintaining the aspect ratio
         /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="fileBytes">The file bytes</param>
         /// <param name="width">The width</param>
-        /// <returns>The image as a bitmap</returns>
-        public Bitmap GetThumbnail(Stream archiveFileStream, int width)
+        /// <returns>The image as an image source</returns>
+        public ImageSource GetThumbnail(byte[] fileBytes, int width)
         {
             // Load the file
-            var file = GetFileContent(archiveFileStream, false);
+            var file = GetFileContent(fileBytes, false);
 
             // Set properties
             Height = file.Height;
@@ -232,17 +214,17 @@ namespace RayCarrot.RCP.Metro
             Mipmaps = file.RealMipmapCount;
 
             // Get the thumbnail with the specified size
-            return file.GetBitmapThumbnail(width);
+            return file.GetBitmapThumbnail(width)?.ToImageSource();
         }
 
         /// <summary>
         /// Exports the file to the specified path
         /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="fileBytes">The file bytes</param>
         /// <param name="filePath">The path to export the file to</param>
         /// <param name="fileFormat">The file extension to use</param>
         /// <returns>The task</returns>
-        public Task ExportFileAsync(Stream archiveFileStream, FileSystemPath filePath, string fileFormat)
+        public Task ExportFileAsync(byte[] fileBytes, FileSystemPath filePath, string fileFormat)
         {
             // Open the file
             using var file = File.Open(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
@@ -250,27 +232,17 @@ namespace RayCarrot.RCP.Metro
             // Check if the file should be saved as its native format
             if (fileFormat == ".gf")
             {
-                // Get the file bytes
-                var bytes = GetFileBytes(archiveFileStream);
-
                 // Write to the stream
-                file.Write(bytes, 0, bytes.Length);
+                file.Write(fileBytes, 0, fileBytes.Length);
             }
             // Convert the file and save
             else
             {
                 // Get the bitmap
-                using var bmp = GetBitmap(archiveFileStream);
+                using var bmp = GetBitmap(fileBytes);
 
                 // Get the format
-                var format = fileFormat switch
-                {
-                    ".bmp" => ImageFormat.Bmp,
-                    ".png" => ImageFormat.Png,
-                    ".jpeg" => ImageFormat.Jpeg,
-                    ".jpg" => ImageFormat.Jpeg,
-                    _ => throw new Exception($"The specified file format {fileFormat} is not supported")
-                };
+                var format = ImageHelpers.GetImageFormat(fileFormat);
 
                 // Save the file
                 bmp.Save(file, format);
@@ -282,16 +254,16 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Exports the mipmaps from the file to the specified path
         /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="fileBytes">The file bytes</param>
         /// <param name="filePath">The path to export the file to</param>
         /// <param name="fileFormat">The file extension to use</param>
         /// <returns>The task</returns>
-        public Task ExportMipmapsAsync(Stream archiveFileStream, FileSystemPath filePath, string fileFormat)
+        public Task ExportMipmapsAsync(byte[] fileBytes, FileSystemPath filePath, string fileFormat)
         {
             int index = 0;
 
             // Save each mipmap
-            foreach (var bmp in GetBitmaps(archiveFileStream))
+            foreach (var bmp in GetBitmaps(fileBytes))
             {
                 // Get the file path
                 var mipmapFile = filePath;
@@ -303,14 +275,7 @@ namespace RayCarrot.RCP.Metro
                 using var file = File.Open(mipmapFile, FileMode.Create, FileAccess.Write, FileShare.None);
 
                 // Get the format
-                var format = fileFormat switch
-                {
-                    ".bmp" => ImageFormat.Bmp,
-                    ".png" => ImageFormat.Png,
-                    ".jpeg" => ImageFormat.Jpeg,
-                    ".jpg" => ImageFormat.Jpeg,
-                    _ => throw new Exception($"The specified file format {fileFormat} is not supported")
-                };
+                var format = ImageHelpers.GetImageFormat(fileFormat);
 
                 // Save the file
                 bmp.Save(file, format);
@@ -324,10 +289,10 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Imports the file from the specified path to the <see cref="PendingImportTempPath"/> path
         /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="fileBytes">The file bytes</param>
         /// <param name="filePath">The path of the file to import</param>
         /// <returns>A value indicating if the file was successfully imported</returns>
-        public Task<bool> ImportFileAsync(Stream archiveFileStream, FileSystemPath filePath)
+        public Task<bool> ImportFileAsync(byte[] fileBytes, FileSystemPath filePath)
         {
             // Get the temporary file to save to, without disposing it
             var tempFile = new TempFile(false);
@@ -345,7 +310,7 @@ namespace RayCarrot.RCP.Metro
                 using var bmp = new Bitmap(filePath);
 
                 // Load the current file
-                var file = GetFileContent(archiveFileStream, true);
+                var file = GetFileContent(fileBytes, true);
 
                 // Import the bitmap
                 file.ImportFromBitmap(bmp);
