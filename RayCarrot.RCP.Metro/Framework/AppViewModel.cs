@@ -119,6 +119,7 @@ namespace RayCarrot.RCP.Metro
                     Games.RaymanOrigins,
                     new Type[]
                     {
+                        typeof(ROIPKExplorerUtility),
                         typeof(ROHQVideosUtility),
                         typeof(ROLocalizationConverterUtility),
                         typeof(RODebugCommandsUtility),
@@ -129,6 +130,7 @@ namespace RayCarrot.RCP.Metro
                     Games.RaymanLegends,
                     new Type[]
                     {
+                        typeof(RLIPKExplorerUtility),
                         typeof(RLUbiRayUtility),
                         typeof(RLLocalizationConverterUtility),
                         typeof(RLDebugCommandsUtility),

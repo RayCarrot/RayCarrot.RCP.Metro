@@ -3209,4 +3209,10 @@ pointer</comment>
   <data name="Utilities_Converter_Error" xml:space="preserve">
     <value>The file(s) could not be converted</value>
   </data>
+  <data name="UAU_IPKExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer (.ipk)</value>
+  </data>
+  <data name="UAU_IPKExplorer_Info" xml:space="preserve">
+    <value>This tool allows you to view/edit the .ipk archive files, allowing importing/exporting of game files and textures</value>
+  </data>
 </root>

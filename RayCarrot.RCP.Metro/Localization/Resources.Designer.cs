@@ -8212,6 +8212,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archive Explorer (.ipk).
+        /// </summary>
+        public static string UAU_IPKExplorer_Header {
+            get {
+                return ResourceManager.GetString("UAU_IPKExplorer_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This tool allows you to view/edit the .ipk archive files, allowing importing/exporting of game files and textures.
+        /// </summary>
+        public static string UAU_IPKExplorer_Info {
+            get {
+                return ResourceManager.GetString("UAU_IPKExplorer_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export to JSON.
         /// </summary>
         public static string UbiArtU_LocalizationConverterExport {

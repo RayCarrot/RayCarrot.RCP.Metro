@@ -33,7 +33,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The utility UI content
         /// </summary>
-        public object UIContent => new BaseOpenSpaceCNTExplorerUtilityUI()
+        public object UIContent => new BaseArchiveExplorerUtilityUI()
         {
             DataContext = ViewModel
         };

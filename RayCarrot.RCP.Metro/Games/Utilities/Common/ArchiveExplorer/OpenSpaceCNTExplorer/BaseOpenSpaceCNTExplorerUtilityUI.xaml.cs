@@ -5,9 +5,9 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Interaction logic for BaseOpenSpaceCNTExplorerUtilityUI.xaml
     /// </summary>
-    public partial class BaseOpenSpaceCNTExplorerUtilityUI : UserControl
+    public partial class BaseArchiveExplorerUtilityUI : UserControl
     {
-        public BaseOpenSpaceCNTExplorerUtilityUI()
+        public BaseArchiveExplorerUtilityUI()
         {
             InitializeComponent();
         }
