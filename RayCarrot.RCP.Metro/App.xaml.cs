@@ -477,7 +477,7 @@ namespace RayCarrot.RCP.Metro
             if (Data.LastVersion < new Version(7, 2, 0, 0))
                 Data.ShownRabbidsActivityCenterLaunchMessage = false;
 
-            if (Data.LastVersion < new Version(8, 1, 0, 0))
+            if (Data.LastVersion < new Version(9, 0, 0, 0))
             {
                 const string regUninstallKeyName = "RCP_Metro";
 
@@ -511,6 +511,12 @@ namespace RayCarrot.RCP.Metro
                     {
                         await RCFUI.MessageUI.DisplayMessageAsync($"The Registry key {keyPath} could not be removed", MessageType.Error);
                     }
+                }
+
+                if (Data.TPLSData != null)
+                {
+                    Data.TPLSData.IsEnabled = false;
+                    await RCFUI.MessageUI.DisplayMessageAsync(Metro.Resources.PostUpdate_TPLSUpdatePrompt);
                 }
             }
 

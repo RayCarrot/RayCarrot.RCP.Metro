@@ -34,7 +34,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The utility warning text (optional). This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string WarningText => Resources.R1U_TPLSInfo2;
+        public string WarningText => null;
 
         /// <summary>
         /// Indicates if the utility requires additional files to be downloaded remotely

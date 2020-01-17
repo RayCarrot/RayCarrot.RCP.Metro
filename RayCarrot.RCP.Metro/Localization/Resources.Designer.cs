@@ -178,7 +178,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman 2 translations.
+        ///   Looks up a localized string similar to Rayman PlayStation Soundtrack utility, Rayman 2 translations.
         /// </summary>
         public static string About_Credits_PluMGMK {
             get {
@@ -6213,6 +6213,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The PlayStation soundtrack utility has been updated. Go to the Rayman 1 utilities and reinstall it in order to keep using it..
+        /// </summary>
+        public static string PostUpdate_TPLSUpdatePrompt {
+            get {
+                return ResourceManager.GetString("PostUpdate_TPLSUpdatePrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 2003 Version.
         /// </summary>
         public static string PrintStudioOptions_Version03 {
@@ -6645,7 +6654,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By default the PC version of Rayman features fewer tracks than the PlayStation version and does not have specific tracks for each part of the levels. By enabling this utility the game will run with the PlayStation soundtrack added on top instead..
+        ///   Looks up a localized string similar to By default the PC version of Rayman features fewer tracks than the PlayStation version and does not have specific tracks for each part of the levels. By enabling this utility the game will run with the PlayStation soundtrack instead..
         /// </summary>
         public static string R1U_TPLSInfo {
             get {
@@ -8307,6 +8316,15 @@ namespace RayCarrot.RCP.Metro {
         public static string TPLS_PlaybackErrorHeader {
             get {
                 return ResourceManager.GetString("TPLS_PlaybackErrorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Rayman version could not be updated.
+        /// </summary>
+        public static string TPLS_UpdateVersionError {
+            get {
+                return ResourceManager.GetString("TPLS_UpdateVersionError", resourceCulture);
             }
         }
         

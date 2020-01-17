@@ -15,7 +15,6 @@ The Rayman Control Panel uses these main dependencies:
 - [PropertyChanged.Fody](https://github.com/Fody/PropertyChanged)
 - [ini-parser](https://github.com/rickyah/ini-parser)
 - [MahApps.Metro](https://github.com/MahApps/MahApps.Metro)
-- [NAudio.Vorbis](https://github.com/NAudio/Vorbis/)
 - [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
 - [Nito.AsyncEx](https://github.com/StephenCleary/AsyncEx)
 - [XamlAnimatedGif](https://github.com/XamlAnimatedGif/XamlAnimatedGif)

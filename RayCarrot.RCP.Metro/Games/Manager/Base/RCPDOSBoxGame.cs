@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
@@ -19,7 +21,7 @@ namespace RayCarrot.RCP.Metro
         /// Gets the icon resource path for the game based on its launch information
         /// </summary>
         /// <returns>The icon resource path</returns>
-        protected override FileSystemPath IconResourcePath => RCFRCP.Data.DosBoxPath;
+        protected override FileSystemPath IconResourcePath => DOSBoxFilePath;
 
         #endregion
 
@@ -59,6 +61,16 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public virtual string RaymanForeverFolderName => null;
 
+        /// <summary>
+        /// The DOSBox file path
+        /// </summary>
+        public virtual FileSystemPath DOSBoxFilePath => RCFRCP.Data.DosBoxPath;
+
+        /// <summary>
+        /// Optional additional config files
+        /// </summary>
+        public virtual IEnumerable<FileSystemPath> AdditionalConfigFiles => new FileSystemPath[0];
+
         #endregion
 
         #region Public Abstract Properties
@@ -89,7 +101,7 @@ namespace RayCarrot.RCP.Metro
         public override GameLaunchInfo GetLaunchInfo()
         {
             var options = RCFRCP.Data.DosBoxGames[Game];
-            return new GameLaunchInfo(RCFRCP.Data.DosBoxPath, GetDosBoxArguments(options.MountPath, Game.GetGameInfo().DefaultFileName));
+            return new GameLaunchInfo(DOSBoxFilePath, GetDosBoxArguments(options.MountPath, Game.GetGameInfo().DefaultFileName));
         }
 
         /// <summary>
@@ -231,7 +243,7 @@ namespace RayCarrot.RCP.Metro
         public override async Task<bool> VerifyCanLaunchAsync()
         {
             // Make sure the DosBox executable exists
-            if (!File.Exists(RCFRCP.Data.DosBoxPath))
+            if (!File.Exists(DOSBoxFilePath))
             {
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.LaunchGame_DosBoxNotFound, MessageType.Error);
                 return false;
@@ -262,6 +274,7 @@ namespace RayCarrot.RCP.Metro
         {
             return $"{(File.Exists(RCFRCP.Data.DosBoxConfig) ? $"-conf \"{RCFRCP.Data.DosBoxConfig} \"" : String.Empty)} " +
                    $"-conf \"{DosBoxConfigFile.FullPath}\" " +
+                   $"{AdditionalConfigFiles.Select(x => $"-conf \"{x.FullPath}\" ").JoinItems("")}" +
                    // The mounting differs if it's a physical disc vs. a disc image
                    $"{(mountPath.IsDirectoryRoot ? $"-c \"mount d {mountPath.FullPath} -t cdrom\"" : $"-c \"imgmount d '{mountPath.FullPath}' -t iso -fs iso\"")} " +
                    $"-c \"MOUNT C '{installDir ?? Game.GetInstallDir().FullPath}'\" " +

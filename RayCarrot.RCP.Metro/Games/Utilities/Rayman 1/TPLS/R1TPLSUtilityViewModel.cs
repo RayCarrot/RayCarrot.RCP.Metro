@@ -1,10 +1,8 @@
-﻿using System;
-using System.IO;
+﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.UI;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.IO;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -22,8 +20,6 @@ namespace RayCarrot.RCP.Metro
         {
             // Create the commands
             InstallTPLSCommand = new AsyncRelayCommand(InstallTPLSAsync);
-            StartTPLSCommand = new RelayCommand(StartTPLS);
-            StopTPLSCommand = new RelayCommand(StopTPLS);
             UninstallTPLSCommand = new AsyncRelayCommand(UninstallTPLSAsync);
 
             // Check if TPLS is installed under the default location
@@ -31,6 +27,8 @@ namespace RayCarrot.RCP.Metro
                 Data.TPLSData = null;
             else if (Data.TPLSData == null)
                 Data.TPLSData = new TPLSData(CommonPaths.TPLSDir);
+
+            VerifyTPLS();
         }
 
         #endregion
@@ -39,25 +37,79 @@ namespace RayCarrot.RCP.Metro
 
         public ICommand InstallTPLSCommand { get; }
 
-        public ICommand StartTPLSCommand { get; }
-
-        public ICommand StopTPLSCommand { get; }
-
         public ICommand UninstallTPLSCommand { get; }
+
+        #endregion
+
+        #region Private Fields
+
+        private TPLSRaymanVersion _selectedRaymanVersion;
+
+        private bool _isEnabled;
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Indicates if TPLS can be enabled
+        /// </summary>
+        public bool CanEnableTPLS { get; set; }
+
+        /// <summary>
+        /// The selected Rayman version
+        /// </summary>
+        public TPLSRaymanVersion SelectedRaymanVersion
+        {
+            get => _selectedRaymanVersion;
+            set
+            {
+                _selectedRaymanVersion = value;
+
+                if (Data.TPLSData != null)
+                {
+                    Data.TPLSData.RaymanVersion = value;
+                    _ = Task.Run(Data.TPLSData.UpdateConfigAsync);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Indicates if the utility is enabled
+        /// </summary>
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set
+            {
+                _isEnabled = value;
+                Data.TPLSData.IsEnabled = value;
+
+                _ = Task.Run(async () => await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.Rayman1, false, false, false, true)));
+            }
+        }
 
         #endregion
 
         #region Public Methods
 
         /// <summary>
+        /// Verifies if TPLS can be enabled
+        /// </summary>
+        public void VerifyTPLS()
+        {
+            if (Data.TPLSData == null)
+                return;
+
+            // Check if TPLS can be enabled (i.e. if the pre-9 version is still installed)
+            CanEnableTPLS = Data.TPLSData.DOSBoxFilePath.FileExists;
+        }
+
+        /// <summary>
         /// Installs TPLS
         /// </summary>
         public async Task InstallTPLSAsync()
         {
-            // Verify the install directory
-            if (!await VerifyInstallDirAsync(Games.Rayman1.GetInstallDir(false)))
-                return;
-
             try
             {
                 RCFCore.Logger?.LogInformationSource($"The TPLS utility is downloading...");
@@ -81,6 +133,9 @@ namespace RayCarrot.RCP.Metro
                 // Save
                 RCFRCP.Data.TPLSData = new TPLSData(CommonPaths.TPLSDir);
 
+                // Update the version
+                await Data.TPLSData.UpdateConfigAsync();
+
                 RCFCore.Logger?.LogInformationSource($"The TPLS utility has been downloaded");
             }
             catch (Exception ex)
@@ -88,22 +143,10 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Installing TPLS");
                 await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_TPLSInstallationFailed, Resources.R1U_TPLSInstallationFailedHeader);
             }
-        }
-
-        /// <summary>
-        /// Starts the TPLS service
-        /// </summary>
-        public void StartTPLS()
-        {
-            new TPLS().Start(null);
-        }
-
-        /// <summary>
-        /// Stops a running TPLS service
-        /// </summary>
-        public void StopTPLS()
-        {
-            TPLS.StopCurrent();
+            finally
+            {
+                VerifyTPLS();
+            }
         }
 
         /// <summary>
@@ -118,6 +161,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 RCFRCP.File.DeleteDirectory(RCFRCP.Data.TPLSData.InstallDir);
+
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSUninstallSuccess, Resources.R1U_TPLSUninstallSuccessHeader, MessageType.Success);
 
                 RCFRCP.Data.TPLSData = null;
@@ -129,32 +173,6 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Uninstalling TPLS");
                 await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_TPLSUninstallError, Resources.R1U_TPLSUninstallErrorHeader);
             }
-        }
-
-        #endregion
-
-        #region Private Static Methods
-
-        /// <summary>
-        /// Verifies the specified install directory for a valid Rayman installation
-        /// </summary>
-        /// <param name="dir">The directory</param>
-        /// <returns>True if it is valid, false if not</returns>
-        private static async Task<bool> VerifyInstallDirAsync(FileSystemPath dir)
-        {
-            var files = new FileSystemPath[]
-            {
-                dir + "RAYMAN.EXE",
-                dir + "VIGNET.DAT",
-            };
-
-            if (!files.FilesExist() || !Directory.Exists(dir + "PCMAP"))
-            {
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSInvalidDirectory, Resources.R1U_TPLSInvalidDirectoryHeader, MessageType.Error);
-                return false;
-            }
-
-            return true;
         }
 
         #endregion

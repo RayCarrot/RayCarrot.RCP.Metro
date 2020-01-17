@@ -20,7 +20,7 @@
         /// <summary>
         /// The base resource URL
         /// </summary>
-        public const string BaseResourceUrl = BaseUrl + "Resources/7.0.0/";
+        public const string BaseResourceUrl = BaseUrl + "Resources/9.0.0/";
 
         /// <summary>
         /// The base URL for downloading utilities

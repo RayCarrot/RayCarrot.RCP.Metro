@@ -563,7 +563,7 @@ This is a growing project with more features planned on being added with future 
     <value>PlayStation Soundtrack</value>
   </data>
   <data name="R1U_TPLSInfo" xml:space="preserve">
-    <value>By default the PC version of Rayman features fewer tracks than the PlayStation version and does not have specific tracks for each part of the levels. By enabling this utility the game will run with the PlayStation soundtrack added on top instead.</value>
+    <value>By default the PC version of Rayman features fewer tracks than the PlayStation version and does not have specific tracks for each part of the levels. By enabling this utility the game will run with the PlayStation soundtrack instead.</value>
   </data>
   <data name="R1U_TPLSInfo2" xml:space="preserve">
     <value>NOTE: This utility may not work on DOSBox versions 0.74-2 or higher. Version 0.74 will still work.</value>
@@ -1316,7 +1316,7 @@ gameDisplayName</comment>
     <value>Cheat code list, general help with the utilities</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Rayman 2 translations</value>
+    <value>Rayman PlayStation Soundtrack utility, Rayman 2 translations</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Rayman 2 translations, Portuguese (Portugal) program translation</value>
@@ -3258,5 +3258,11 @@ filePath</comment>
   </data>
   <data name="Progression_R3_Level9Header" xml:space="preserve">
     <value>The Tower of the Leptys</value>
+  </data>
+  <data name="PostUpdate_TPLSUpdatePrompt" xml:space="preserve">
+    <value>The PlayStation soundtrack utility has been updated. Go to the Rayman 1 utilities and reinstall it in order to keep using it.</value>
+  </data>
+  <data name="TPLS_UpdateVersionError" xml:space="preserve">
+    <value>The Rayman version could not be updated</value>
   </data>
 </root>

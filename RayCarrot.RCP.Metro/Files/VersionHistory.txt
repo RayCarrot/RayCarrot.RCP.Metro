@@ -2,6 +2,7 @@
 • Added a utility for viewing/editing the .ipk files in Rayman Origins and Rayman Legends, allowing importing/exporting of textures and game files for UbiArt games
 • Added the utilities page for general utilities, such as viewing .cnt/.ipk archives and converting certain game files
 • Added the progression tab for Rayman 3
+• Remade the Rayman 1 PlayStation soundtrack utility using a new implementation by PluMGMK
 
 Other changes:
 • Removed the Rayman Control Panel API while keeping parts of the new modular structure for future projects

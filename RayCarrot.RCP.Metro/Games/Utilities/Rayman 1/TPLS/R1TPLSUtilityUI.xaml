@@ -25,7 +25,8 @@
                 HorizontalAlignment="Left"
                 Visibility="{Binding Path=Data.TPLSData, Converter={wpf:InvertedObjectNullToVisibilityConverter}}" />
 
-        <mah:ToggleSwitch IsChecked="{Binding Path=Data.TPLSData.IsEnabled}"
+        <mah:ToggleSwitch IsChecked="{Binding Path=IsEnabled}"
+                          IsEnabled="{Binding Path=CanEnableTPLS}"
                           Visibility="{Binding Path=Data.TPLSData, Converter={wpf:InvertedObjectNullToVisibilityConverter}}"
                           HorizontalAlignment="Left"
                           OnLabel="{Resx SettingEnabled}"
@@ -37,31 +38,13 @@
                 <ColumnDefinition Width="Auto" MinWidth="110" />
             </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-
-            <Grid.Resources>
-                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
-                    <Setter Property="VerticalAlignment" Value="Center" />
-                    <Setter Property="Padding" Value="0 0 10 0" />
-                </Style>
-            </Grid.Resources>
-
-            <Interactions:Interaction.Behaviors>
-                <wpf:UnifiedMarginBehavior Margin="0 8" />
-            </Interactions:Interaction.Behaviors>
-
             <TextBlock Grid.Column="0"
-                       Grid.Row="0"
+                       Margin="0 0 10 0"
+                       VerticalAlignment="Center"
                        Text="{Resx R1U_TPLSRaymanVersion}" />
 
             <ComboBox Grid.Column="1"
-                      Grid.Row="0"
-                      SelectedIndex="{Binding Path=Data.TPLSData.RaymanVersion, Converter={local:TPLSRaymanVersionEnumToComboBoxIndexConverter}}">
+                      SelectedIndex="{Binding Path=SelectedRaymanVersion, Converter={local:TPLSRaymanVersionEnumToComboBoxIndexConverter}}">
 
                 <TextBlock Text="{Resx R1U_TPLS_RayVersions_Auto}" />
                 <TextBlock Text="{Resx R1U_TPLS_RayVersions_1_00}" />
@@ -75,73 +58,6 @@
 
             </ComboBox>
 
-            <TextBlock Grid.Column="0"
-                       Grid.Row="1"
-                       Text="{Resx R1U_TPLSDosBoxVersion}" />
-
-            <ComboBox Grid.Column="1"
-                      Grid.Row="1"
-                      SelectedIndex="{Binding Path=Data.TPLSData.DosBoxVersion, Converter={wpf:EnumToIntConverter}}">
-                <TextBlock Text="{Resx R1U_TPLS_DosBoxVersions_0_74}" />
-                <TextBlock Text="{Resx R1U_TPLS_DosBoxVersions_SVN_Daum}" />
-            </ComboBox>
-
-            <Button Grid.Row="2"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    wpf:UserLevelTag.MinUserLevel="Debug"
-                    Command="{Binding Path=StartTPLSCommand}"
-                    IsEnabled="{Binding Source={x:Static local:TPLS.Data}, Path=IsRunning, Converter={wpf:InvertedBooleanConverter}}"
-                    Content="Start independently"
-                    ToolTip="This starts the utility independently of the game, searching for any currently running games"
-                    HorizontalAlignment="Left" />
-
-            <Button Grid.Row="3"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    wpf:UserLevelTag.MinUserLevel="Debug"
-                    Command="{Binding Path=StopTPLSCommand}"
-                    IsEnabled="{Binding Source={x:Static local:TPLS.Data}, Path=IsRunning}"
-                    Content="Stop TPLS"
-                    HorizontalAlignment="Left" />
-
-        </Grid>
-
-        <Grid wpf:UnifiedMargin.Ignored="True"
-              wpf:UserLevelTag.MinUserLevel="Debug">
-            <ItemsControl DataContext="{x:Static local:TPLS.Data}"
-                          Visibility="{Binding Path=IsRunning, Converter={wpf:BooleanToVisibilityConverter}}"
-                          Grid.IsSharedSizeScope="True"
-                          Margin="0 8">
-
-                <local:DuoGridItem Header="World"
-                                   Text="{Binding Path=World}" />
-
-                <local:DuoGridItem Header="Level"
-                                   Text="{Binding Path=Level}" />
-
-                <local:DuoGridItem Header="BossEvent"
-                                   Text="{Binding Path=BossEvent}" />
-
-                <local:DuoGridItem Header="InLevel"
-                                   Text="{Binding Path=InLevel}" />
-
-                <local:DuoGridItem Header="Music"
-                                   Text="{Binding Path=Music}" />
-
-                <local:DuoGridItem Header="OptionsOff"
-                                   Text="{Binding Path=OptionsOff}" />
-
-                <local:DuoGridItem Header="OptionsOn"
-                                   Text="{Binding Path=OptionsOn}" />
-
-                <local:DuoGridItem Header="XAxis"
-                                   Text="{Binding Path=XAxis}" />
-
-                <local:DuoGridItem Header="YAxis"
-                                   Text="{Binding Path=YAxis}" />
-
-            </ItemsControl>
         </Grid>
 
     </StackPanel>

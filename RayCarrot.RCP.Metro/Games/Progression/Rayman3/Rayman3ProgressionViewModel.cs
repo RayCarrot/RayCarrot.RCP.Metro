@@ -78,7 +78,7 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogInformationSource($"General progress info has been set");
 
             // Return the data with the collection
-            return new Rayman3ProgressionSlotViewModel(() => $"{filePath.RemoveFileExtension().Name}", progressItems, filePath, this);
+            return new Rayman3ProgressionSlotViewModel(new LocalizedString(() => $"{filePath.RemoveFileExtension().Name}"), progressItems, filePath, this);
         }
 
         #endregion
