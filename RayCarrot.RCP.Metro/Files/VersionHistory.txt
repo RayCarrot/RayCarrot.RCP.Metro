@@ -1,16 +1,18 @@
 ﻿-----   Version 9.0.0 - January ??, 2019   -----
-• Added a utility for viewing/editing the .ipk files in Rayman Origins and Rayman Legends, allowing importing/exporting of textures and game files
+• Added a utility for viewing/editing the .ipk files in Rayman Origins and Rayman Legends, allowing importing/exporting of textures and game files for UbiArt games
 • Added the utilities page for general utilities, such as viewing .cnt/.ipk archives and converting certain game files
-• Added the progression tab for Rayman 3 (currently does not allow importing/exporting)
-• Removed the option to show the program under installed programs
+• Added the progression tab for Rayman 3
 
 Other changes:
 • Removed the Rayman Control Panel API while keeping parts of the new modular structure for future projects
+• Removed the option to show the program under installed programs
 • Updated the icon in the updater
 • The primary ubi.ini path is no longer hard-coded
 • The performance when repacking an archive and when loading thumbnails has been vastly improved
 • When exporting mipmaps of an image in the Archive Explorer it now only shows the supported file extensions for that operation
 • If repacking an archive file fails it will now restore the original file
+• Rayman Control Panel is now displayed as Rayman Control Panel™
+• Localization guidelines have been updated to not localize product names, such as Rayman Control Panel™
 • Fixed a bug where repacking an archive file to a smaller size would keep some old data, maintaining the file size
 • Fixed a bug where certain tool tips would crash if the application ran through Wine on Mac
 • Fixed a minor bug where the application path would sometimes not be retrieved correctly

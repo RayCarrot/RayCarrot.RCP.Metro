@@ -847,7 +847,7 @@ Notícias:
     <value>Iniciar {0}</value>
   </data>
   <data name="Help_RCP" xml:space="preserve">
-    <value>Panel de Control de Rayman</value>
+    <value>Rayman Control Panel™</value>
   </data>
   <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
     <value>Actualizaciones</value>
@@ -976,7 +976,8 @@ Notícias:
     <value>16:9</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Panel de control de Rayman</value>
+    <value>Rayman Control Panel™</value>
+    <comment>Rayman Control Panel™</comment>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Utilidad de banda sonora Rayman PlayStation, Eliminación de verificación de disco Rayman M/Arena</value>
@@ -1303,7 +1304,7 @@ Notícias:
     <value>(BETA)</value>
   </data>
   <data name="AppNameAdmin" xml:space="preserve">
-    <value>Panel de control de Rayman (Administrador)</value>
+    <value>Rayman Control Panel™ (Administrador)</value>
   </data>
   <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
     <value>trj8p</value>
@@ -1478,5 +1479,21 @@ Notícias:
   <data name="Links_Community_RaymanReanimated" xml:space="preserve">
     <value>Rayman Reanimated</value>
     <comment>Rayman Reanimated</comment>
+  </data>
+  <data name="Archive_Title" xml:space="preserve">
+    <value>Archive Explorer™</value>
+    <comment>Archive Explorer™</comment>
+  </data>
+  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™ (.cnt)</value>
+    <comment>Archive Explorer™ (.cnt)</comment>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™</value>
+    <comment>Archive Explorer™</comment>
+  </data>
+  <data name="UAU_IPKExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™ (.ipk)</value>
+    <comment>Archive Explorer™ (.ipk)</comment>
   </data>
 </root>

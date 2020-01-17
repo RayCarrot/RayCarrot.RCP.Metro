@@ -59,21 +59,20 @@ namespace RayCarrot.RCP.Metro
                 NumberDecimalDigits = 0
             };
 
-            // TODO: Finish & localize (need to create generators for the names)
             // Create the collection with items for each time trial level + general information
             var progressItems = new ProgressionInfoItemViewModel[]
             {
-                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Cage, $"{saveData.TotalCages}/60"),
-                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, $"Total: {saveData.TotalScore.ToString("n", formatInfo)}"),
-                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, $"The Fairy Council: {saveData.Levels[0].Score.ToString("n", formatInfo)}"),
-                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, $"Clearleaf Forest: {saveData.Levels[1].Score.ToString("n", formatInfo)}"),
-                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, $"The Bog of Murk: {saveData.Levels[2].Score.ToString("n", formatInfo)}"),
-                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, $"The Land of the Livid Dead: {saveData.Levels[3].Score.ToString("n", formatInfo)}"),
-                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, $"The Desert of the Knaaren: {saveData.Levels[4].Score.ToString("n", formatInfo)}"),
-                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, $"The Longest Shortcut: {saveData.Levels[5].Score.ToString("n", formatInfo)}"),
-                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, $"The Summit Beyond the Clouds: {saveData.Levels[6].Score.ToString("n", formatInfo)}"),
-                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, $"Hoodlum Headquarters: {saveData.Levels[7].Score.ToString("n", formatInfo)}"),
-                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, $"The Tower of the Leptys: {saveData.Levels[8].Score.ToString("n", formatInfo)}")
+                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Cage, new LocalizedString(() => $"{saveData.TotalCages}/60")),
+                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_TotalHeader}: {saveData.TotalScore.ToString("n", formatInfo)}")),
+                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level1Header}: {saveData.Levels[0].Score.ToString("n", formatInfo)}")),
+                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level2Header}: {saveData.Levels[1].Score.ToString("n", formatInfo)}")),
+                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level3Header}: {saveData.Levels[2].Score.ToString("n", formatInfo)}")),
+                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level4Header}: {saveData.Levels[3].Score.ToString("n", formatInfo)}")),
+                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level5Header}: {saveData.Levels[4].Score.ToString("n", formatInfo)}")),
+                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level6Header}: {saveData.Levels[5].Score.ToString("n", formatInfo)}")),
+                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level7Header}: {saveData.Levels[6].Score.ToString("n", formatInfo)}")),
+                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level8Header}: {saveData.Levels[7].Score.ToString("n", formatInfo)}")),
+                new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level9Header}: {saveData.Levels[8].Score.ToString("n", formatInfo)}"))
             };
 
             RCFCore.Logger?.LogInformationSource($"General progress info has been set");

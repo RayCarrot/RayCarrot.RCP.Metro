@@ -26,6 +26,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="explorerDialogViewModel">The explorer dialog view model</param>
         public ArchiveViewModel(FileSystemPath filePath, IArchiveDataManager manager, Operation loadOperation, ArchiveExplorerDialogViewModel explorerDialogViewModel) : base(filePath.Name)
         {
+            RCFCore.Logger?.LogInformationSource($"An archive view model is being created for {filePath.Name}");
+
             // Set properties
             FilePath = filePath;
             Manager = manager;
@@ -103,6 +105,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected void ClearAndDisposeItems()
         {
+            RCFCore.Logger?.LogInformationSource($"The archive items have been cleared and disposed");
+
             // Dispose every directory
             this.GetAllChildren<ArchiveDirectoryViewModel>().DisposeAll();
 
@@ -132,6 +136,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void LoadArchive()
         {
+            RCFCore.Logger?.LogInformationSource($"The archive {DisplayName} is being loaded");
+
             // Clear existing items
             ClearAndDisposeItems();
 
@@ -171,6 +177,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>A value indicating if the updating succeeded</returns>
         public async Task<bool> UpdateArchiveAsync()
         {
+            RCFCore.Logger?.LogInformationSource($"The archive {DisplayName} is being updated");
+
             // Stop refreshing thumbnails
             if (ExplorerDialogViewModel.IsRefreshingThumbnails)
                 ExplorerDialogViewModel.CancelRefreshingThumbnails = true;
@@ -215,8 +223,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Repacking archive", DisplayName);
 
-                // TODO: Localize
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred repacking the archive");
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RepackError);
 
                 // Re-open the file stream if closed
                 if (ArchiveFileStream == null)
@@ -264,6 +271,8 @@ namespace RayCarrot.RCP.Metro
 
             // Dispose every directory
             ClearAndDisposeItems();
+
+            RCFCore.Logger?.LogInformationSource($"The archive {DisplayName} has been disposed");
         }
 
         #endregion

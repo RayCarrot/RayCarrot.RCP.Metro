@@ -73,7 +73,7 @@
                                                             VerticalAlignment="Center" />
 
                                 <ContentControl FontSize="16"
-                                                Content="{Binding Path=DisplayName}" />
+                                                Content="{Binding Path=DisplayName.Value}" />
 
                             </StackPanel>
                         </DataTemplate>

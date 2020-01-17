@@ -70,7 +70,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to uninstall the Rayman Control Panel? This will remove the executable file and all of the program&apos;s app data. This will NOT remove any installed games, save files or backups. Some applied utilities may still be available..
+        ///   Looks up a localized string similar to Are you sure you want to uninstall the Rayman Control Panel™? This will remove the executable file and all of the program&apos;s app data. This will NOT remove any installed games, save files or backups. Some applied utilities may still be available..
         /// </summary>
         public static string About_ConfirmUninstall {
             get {
@@ -250,7 +250,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Control Panel is an open source community project created by RayCarrot. This software is a single free to use executable file with the intent to easily access settings and fixes for the various Rayman titles released for Windows.
+        ///   Looks up a localized string similar to Rayman Control Panel™ is an open source community project created by RayCarrot. This software is a single free to use executable file with the intent to easily access settings and fixes for the various Rayman titles released for Windows.
         ///This is a growing project with more features planned on being added with future updates. The utilities and various configuration tools have been created with help from various members of the Rayman community, all credited below..
         /// </summary>
         public static string About_ProgramInfo {
@@ -435,7 +435,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Control Panel.
+        ///   Looks up a localized string similar to Rayman Control Panel™.
         /// </summary>
         public static string AppName {
             get {
@@ -444,7 +444,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Control Panel (Administrator).
+        ///   Looks up a localized string similar to Rayman Control Panel™ (Administrator).
         /// </summary>
         public static string AppNameAdmin {
             get {
@@ -487,7 +487,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred in the Archive Explorer and it had to close.
+        ///   Looks up a localized string similar to An error occurred in the Archive Explorer™ and it had to close.
         /// </summary>
         public static string Archive_CriticalError {
             get {
@@ -705,6 +705,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred repacking the archive.
+        /// </summary>
+        public static string Archive_RepackError {
+            get {
+                return ResourceManager.GetString("Archive_RepackError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Repacking archive {0}.
         /// </summary>
         public static string Archive_RepackingStatus {
@@ -714,7 +723,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Archive Explorer.
+        ///   Looks up a localized string similar to Archive Explorer™.
         /// </summary>
         public static string Archive_Title {
             get {
@@ -723,7 +732,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open Archive Explorer.
+        ///   Looks up a localized string similar to Open Archive Explorer™.
         /// </summary>
         public static string ArchiveExplorer_Open {
             get {
@@ -3559,7 +3568,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to the Rayman Control Panel.
+        ///   Looks up a localized string similar to Welcome to the Rayman Control Panel™.
         /// </summary>
         public static string FirstLaunchInfo_Header {
             get {
@@ -3579,7 +3588,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to the Rayman Control Panel.
+        ///   Looks up a localized string similar to Welcome to the Rayman Control Panel™.
         /// </summary>
         public static string FirstLaunchInfo_Title {
             get {
@@ -4047,7 +4056,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Always runs the game with the same permissions as the Rayman Control Panel was launched with.
+        ///   Looks up a localized string similar to Always runs the game with the same permissions as the Rayman Control Panel™ was launched with.
         /// </summary>
         public static string GameOptions_LaunchMode_AsInvokerInfo {
             get {
@@ -4335,7 +4344,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If enabled, the below settings will be used when launching the game from the Rayman Control Panel.
+        ///   Looks up a localized string similar to If enabled, the below settings will be used when launching the game from the Rayman Control Panel™.
         /// </summary>
         public static string GoHomeConfig_CustomLaunchInfo {
             get {
@@ -4476,7 +4485,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman 1, and most of its PC spin-offs (including Rayman Designer, Rayman by his Fans and Rayman 60 Levels) are MS-DOS programs and are not compatible with modern versions of Windows. Running them requires a DOS emulator, such as DOSBox. Currently DOSBox is the only supported emulator by the Rayman Control Panel..
+        ///   Looks up a localized string similar to Rayman 1, and most of its PC spin-offs (including Rayman Designer, Rayman by his Fans and Rayman 60 Levels) are MS-DOS programs and are not compatible with modern versions of Windows. Running them requires a DOS emulator, such as DOSBox. Currently DOSBox is the only supported emulator by the Rayman Control Panel™..
         /// </summary>
         public static string Help_Games_R1_Emulator {
             get {
@@ -4701,7 +4710,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Control Panel.
+        ///   Looks up a localized string similar to Rayman Control Panel™.
         /// </summary>
         public static string Help_RCP {
             get {
@@ -4809,11 +4818,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Rayman Control Panel supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the available launch arguments. The &apos;-&apos; character should always be included. The &apos;{}&apos; characters show that a custom variable can be used, in which case the &apos;{}&apos; should not be included.
+        ///   Looks up a localized string similar to The Rayman Control Panel™ supports several launch arguments, mainly meant for debugging the application. Below is a complete list of the available launch arguments. The &apos;-&apos; character should always be included. The &apos;{}&apos; characters show that a custom variable can be used, in which case the &apos;{}&apos; should not be included.
         ///
         ///-reset (Resets all app data before launch)
         ///-install {filePath} (Removes the installer from the specified path - no longer used as of version 4.5.0)
-        ///-ul {userLevel} (Sets the user level once  [rest of string was truncated]&quot;;.
+        ///-ul {userLevel} (Sets the user level once [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Help_RCP_LaunchArgs {
             get {
@@ -6159,7 +6168,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Archive Explorer (.cnt).
+        ///   Looks up a localized string similar to Archive Explorer™ (.cnt).
         /// </summary>
         public static string OSU_CNTExplorer_Header {
             get {
@@ -6317,6 +6326,96 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_ImportSuccess {
             get {
                 return ResourceManager.GetString("Progression_ImportSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Fairy Council.
+        /// </summary>
+        public static string Progression_R3_Level1Header {
+            get {
+                return ResourceManager.GetString("Progression_R3_Level1Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clearleaf Forest.
+        /// </summary>
+        public static string Progression_R3_Level2Header {
+            get {
+                return ResourceManager.GetString("Progression_R3_Level2Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Bog of Murk.
+        /// </summary>
+        public static string Progression_R3_Level3Header {
+            get {
+                return ResourceManager.GetString("Progression_R3_Level3Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Land of the Livid Dead.
+        /// </summary>
+        public static string Progression_R3_Level4Header {
+            get {
+                return ResourceManager.GetString("Progression_R3_Level4Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Desert of the Knaaren.
+        /// </summary>
+        public static string Progression_R3_Level5Header {
+            get {
+                return ResourceManager.GetString("Progression_R3_Level5Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Longest Shortcut.
+        /// </summary>
+        public static string Progression_R3_Level6Header {
+            get {
+                return ResourceManager.GetString("Progression_R3_Level6Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Summit Beyond the Clouds.
+        /// </summary>
+        public static string Progression_R3_Level7Header {
+            get {
+                return ResourceManager.GetString("Progression_R3_Level7Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hoodlum Headquarters.
+        /// </summary>
+        public static string Progression_R3_Level8Header {
+            get {
+                return ResourceManager.GetString("Progression_R3_Level8Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Tower of the Leptys.
+        /// </summary>
+        public static string Progression_R3_Level9Header {
+            get {
+                return ResourceManager.GetString("Progression_R3_Level9Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string Progression_R3_TotalHeader {
+            get {
+                return ResourceManager.GetString("Progression_R3_TotalHeader", resourceCulture);
             }
         }
         
@@ -7122,7 +7221,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to remove {0} from the Rayman Control Panel? This will not remove the game from your computer or any of its files, including the backups created using this program..
+        ///   Looks up a localized string similar to Are you sure you want to remove {0} from the Rayman Control Panel™? This will not remove the game from your computer or any of its files, including the backups created using this program..
         /// </summary>
         public static string RemoveGameQuestion {
             get {
@@ -7140,7 +7239,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} was originally installed using the Rayman Control Panel. Removing the game from the program will not remove the game from your computer or any of its files, including the backups created using this program. It is instead recommended to uninstall the game..
+        ///   Looks up a localized string similar to {0} was originally installed using the Rayman Control Panel™. Removing the game from the program will not remove the game from your computer or any of its files, including the backups created using this program. It is instead recommended to uninstall the game..
         /// </summary>
         public static string RemoveInstalledGameQuestion {
             get {
@@ -8212,7 +8311,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Archive Explorer (.ipk).
+        ///   Looks up a localized string similar to Archive Explorer™ (.ipk).
         /// </summary>
         public static string UAU_IPKExplorer_Header {
             get {
@@ -8566,7 +8665,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Archive Explorer.
+        ///   Looks up a localized string similar to Archive Explorer™.
         /// </summary>
         public static string Utilities_ArchiveExplorer_Header {
             get {
@@ -8629,6 +8728,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select file extension to export as.
+        /// </summary>
+        public static string Utilities_Converter_ExportExtensionHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_ExportExtensionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select files to convert.
         /// </summary>
         public static string Utilities_Converter_FileSelectionHeader {
@@ -8674,6 +8782,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file {0} can&apos;t be converted because it&apos;s missing a configuration file.
+        /// </summary>
+        public static string Utilities_Converter_MissingConfig {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_MissingConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman 3 Save Files (.sav).
         /// </summary>
         public static string Utilities_Converter_R3SaveHeader {
@@ -8688,6 +8805,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_Converter_RJRSaveHeader {
             get {
                 return ResourceManager.GetString("Utilities_Converter_RJRSaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file(s) were successfully converted.
+        /// </summary>
+        public static string Utilities_Converter_Success {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_Success", resourceCulture);
             }
         }
         

@@ -1,9 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -15,11 +14,11 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="slotNameGenerator">The function to get the slot name</param>
+        /// <param name="slotName">The slot name</param>
         /// <param name="items">The progression info items</param>
         /// <param name="saveSlotFilePath">The file path for the save slot</param>
         /// <param name="progressionViewModel">The progression view model containing this slot</param>
-        public JungleRunProgressionSlotViewModel(Func<string> slotNameGenerator, ProgressionInfoItemViewModel[] items, FileSystemPath saveSlotFilePath, BaseProgressionViewModel progressionViewModel) : base(slotNameGenerator, items, saveSlotFilePath, progressionViewModel)
+        public JungleRunProgressionSlotViewModel(LocalizedString slotName, ProgressionInfoItemViewModel[] items, FileSystemPath saveSlotFilePath, BaseProgressionViewModel progressionViewModel) : base(slotName, items, saveSlotFilePath, progressionViewModel)
         {
         }
 

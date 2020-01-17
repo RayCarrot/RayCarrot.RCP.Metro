@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using RayCarrot.CarrotFramework.Abstractions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -58,11 +59,15 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The directories</returns>
         public IEnumerable<ArchiveDirectory> GetDirectories(Stream archiveFileStream)
         {
+            RCFCore.Logger?.LogInformationSource("The directories are being retrieved for a CNT archive");
+
             // Set the stream position to 0
             archiveFileStream.Position = 0;
 
             // Read the file data
             var data = new OpenSpaceCntSerializer(Settings).Deserialize(archiveFileStream);
+
+            RCFCore.Logger?.LogInformationSource($"Read CNT file ({data.VersionID}) with {data.Files.Length} files and {data.Directories.Length} directories");
 
             // Add the directories to the collection
             for (var i = -1; i < data.Directories.Length; i++)
@@ -83,6 +88,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="files">The files of the archive. Modified files have the <see cref="IArchiveFileData.PendingImportTempPath"/> property set to an existing path.</param>
         public void UpdateArchive(Stream archiveFileStream, Stream outputFileStream, IEnumerable<IArchiveFileData> files)
         {
+            RCFCore.Logger?.LogInformationSource($"A CNT archive is being repacked...");
+
             // Set the stream position to 0
             archiveFileStream.Position = 0;
 
@@ -113,6 +120,8 @@ namespace RayCarrot.RCP.Metro
                 // Check if the file is one of the modified files
                 if (existingFile.PendingImportTempPath.FileExists)
                 {
+                    RCFCore.Logger?.LogTraceSource($"{existingFile.FileName} as been modified");
+
                     // Get the temporary file path without disposing it as it gets removed from the directory
                     var tempFilePath = (tempDir.TempPath + file.FileName).GetNonExistingFileName();
 
@@ -136,6 +145,8 @@ namespace RayCarrot.RCP.Metro
                         {
                             0, 0, 0, 0
                         };
+
+                        RCFCore.Logger?.LogTraceSource($"The encryption has been removed for {existingFile.FileName}");
                     }
 
                     // Add to the generator
@@ -160,6 +171,8 @@ namespace RayCarrot.RCP.Metro
 
             // Clear the generator
             data.FileGenerator.Clear();
+
+            RCFCore.Logger?.LogInformationSource($"The CNT archive has been repacked");
         }
 
         #endregion

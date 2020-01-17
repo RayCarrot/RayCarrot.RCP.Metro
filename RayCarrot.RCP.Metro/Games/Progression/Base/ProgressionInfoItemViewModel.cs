@@ -1,18 +1,19 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// View model for a progression info item
     /// </summary>
-    public class ProgressionInfoItemViewModel : BaseRCPViewModel
+    public class ProgressionInfoItemViewModel : BaseRCPViewModel, IDisposable
     {
         /// <summary>
         /// Default constructor
         /// </summary>
         /// <param name="icon">The icon</param>
         /// <param name="content">The content</param>
-        public ProgressionInfoItemViewModel(ProgressionIcons icon, string content)
+        public ProgressionInfoItemViewModel(ProgressionIcons icon, LocalizedString content)
         {
             Icon = icon;
             Content = content;
@@ -31,6 +32,11 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The content
         /// </summary>
-        public string Content { get; }
+        public LocalizedString Content { get; }
+
+        public void Dispose()
+        {
+            Content?.Dispose();
+        }
     }
 }

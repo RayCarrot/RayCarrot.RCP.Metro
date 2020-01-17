@@ -1,10 +1,10 @@
-﻿using System;
-using System.Globalization;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using RayCarrot.CarrotFramework.Abstractions;
+﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.UI;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -18,22 +18,19 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="slotNameGenerator">The function to get the slot name</param>
+        /// <param name="slotName">The slot name</param>
         /// <param name="items">The progression info items</param>
         /// <param name="saveSlotFilePath">The file path for the save slot</param>
         /// <param name="progressionViewModel">The progression view model containing this slot</param>
-        protected ProgressionSlotViewModel(Func<string> slotNameGenerator, ProgressionInfoItemViewModel[] items, FileSystemPath saveSlotFilePath, BaseProgressionViewModel progressionViewModel)
+        protected ProgressionSlotViewModel(LocalizedString slotName, ProgressionInfoItemViewModel[] items, FileSystemPath saveSlotFilePath, BaseProgressionViewModel progressionViewModel)
         {
-            SlotNameGenerator = slotNameGenerator;
+            SlotName = slotName;
             Items = items;
             SaveSlotFilePath = saveSlotFilePath;
             ProgressionViewModel = progressionViewModel;
-            SlotName = SlotNameGenerator();
 
             ExportCommand = new AsyncRelayCommand(ExportAsync);
             ImportCommand = new AsyncRelayCommand(ImportAsync);
-
-            RCFCore.Data.CultureChanged += Data_CultureChanged;
         }
 
         #endregion
@@ -46,21 +43,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Protected Properties
-
-        /// <summary>
-        /// The function to get the slot name
-        /// </summary>
-        protected Func<string> SlotNameGenerator { get; }
-
-        #endregion
-
         #region Public Properties
 
         /// <summary>
         /// The slot name
         /// </summary>
-        public string SlotName { get; set; }
+        public LocalizedString SlotName { get; }
 
         /// <summary>
         /// The file path for the save slot
@@ -85,15 +73,6 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the slot can be exported/imported
         /// </summary>
         public abstract bool CanModify { get; }
-
-        #endregion
-
-        #region Event Handlers
-
-        private void Data_CultureChanged(object sender, PropertyChangedEventArgs<CultureInfo> e)
-        {
-            SlotName = SlotNameGenerator();
-        }
 
         #endregion
 
@@ -203,7 +182,8 @@ namespace RayCarrot.RCP.Metro
 
         public void Dispose()
         {
-            RCFCore.Data.CultureChanged -= Data_CultureChanged;
+            SlotName?.Dispose();
+            Items?.DisposeAll();
         }
 
         #endregion

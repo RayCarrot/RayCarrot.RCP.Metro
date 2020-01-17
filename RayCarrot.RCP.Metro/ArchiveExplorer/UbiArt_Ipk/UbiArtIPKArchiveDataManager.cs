@@ -55,6 +55,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The directories</returns>
         public IEnumerable<ArchiveDirectory> GetDirectories(Stream archiveFileStream)
         {
+            RCFCore.Logger?.LogInformationSource("The directories are being retrieved for an IPK archive");
+
             // Set the stream position to 0
             archiveFileStream.Position = 0;
 
@@ -88,6 +90,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="files">The files of the archive. Modified files have the <see cref="IArchiveFileData.PendingImportTempPath"/> property set to an existing path.</param>
         public void UpdateArchive(Stream archiveFileStream, Stream outputFileStream, IEnumerable<IArchiveFileData> files)
         {
+            RCFCore.Logger?.LogInformationSource($"An IPK archive is being repacked...");
+
             // Set the stream position to 0
             archiveFileStream.Position = 0;
 
@@ -117,6 +121,8 @@ namespace RayCarrot.RCP.Metro
                 // Check if the file is one of the modified files
                 if (existingFile.PendingImportTempPath.FileExists)
                 {
+                    RCFCore.Logger?.LogTraceSource($"{existingFile.FileName} as been modified");
+
                     // Get the temporary file path without disposing it as it gets removed from the directory
                     var tempFilePath = (tempDir.TempPath + file.FileName).GetNonExistingFileName();
 
@@ -137,7 +143,7 @@ namespace RayCarrot.RCP.Metro
                         // Use LZMA
                         if (Settings.IPKVersion >= 8)
                         {
-                            // TODO: Test so this works in-game
+                            // TODO-UPDATE: Test so this works in-game
                             // Compress the bytes
                             compressedBytes = SevenZipHelper.Compress(bytes);
                         }
@@ -147,6 +153,8 @@ namespace RayCarrot.RCP.Metro
                             // Compress the bytes
                             compressedBytes = ZlibStream.CompressBuffer(bytes);
                         }
+
+                        RCFCore.Logger?.LogTraceSource($"The file {existingFile.FileName} has been compressed");
 
                         // Delete the file
                         RCFRCP.File.DeleteFile(tempFilePath);
@@ -188,6 +196,8 @@ namespace RayCarrot.RCP.Metro
 
             // Clear the generator
             data.FileGenerator.Clear();
+
+            RCFCore.Logger?.LogInformationSource($"The IPK archive has been repacked");
         }
 
         #endregion

@@ -1491,7 +1491,7 @@ Para começar, marca abaixo as caixas que queres e pressiona 'Continuar' para ir
     <value>Arrancar {0}</value>
   </data>
   <data name="Help_RCP" xml:space="preserve">
-    <value>Painel de Controlo Rayman</value>
+    <value>Rayman Control Panel™</value>
   </data>
   <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
     <value>Actualizações</value>
@@ -1703,7 +1703,8 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <value>16:9</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Painel de Controlo Rayman</value>
+    <value>Rayman Control Panel™</value>
+    <comment>Rayman Control Panel™</comment>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Utilitário da banda sonora Rayman PlayStation, Remoção de verificação do disco Rayman M/Arena</value>
@@ -2030,7 +2031,7 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <value>(BETA)</value>
   </data>
   <data name="AppNameAdmin" xml:space="preserve">
-    <value>Painel de Controlo Rayman (Administrador)</value>
+    <value>Rayman Control Panel™ (Administrador)</value>
   </data>
   <data name="Cheats_Location_Level" xml:space="preserve">
     <value>Nível</value>
@@ -2924,14 +2925,14 @@ Error message: {1}</value>
     <value>Descarregar pela Uplay</value>
   </data>
   <data name="OSU_CNTExplorer_Header" xml:space="preserve">
-    <value>Explorador de arquivos (.cnt)
-</value>
+    <value>Archive Explorer™ (.cnt)</value>
+    <comment>Archive Explorer™ (.cnt)</comment>
   </data>
   <data name="OSU_CNTExplorer_Info" xml:space="preserve">
     <value>Esta ferramenta permite que vejas/edites os ficheiros de arquivo .cnt, permitindo a importação/exportação das texturas de jogo</value>
   </data>
   <data name="ArchiveExplorer_Open" xml:space="preserve">
-    <value>Abrir Explorador de arquivos</value>
+    <value>Abrir Archive Explorer™</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>Engenharia Reversa do Rayman
@@ -3019,12 +3020,21 @@ Mipmaps = {8}</value>
     <value>Selecciona a extensão de ficheiro para exportar como para os ficheiros {0}</value>
   </data>
   <data name="Archive_Title" xml:space="preserve">
-    <value>Explorador de arquivos</value>
+    <value>Archive Explorer™</value>
+    <comment>Archive Explorer™</comment>
   </data>
   <data name="Archive_CriticalError" xml:space="preserve">
     <value>Ocorreu um erro no Explorador de arquivos e teve de fechar</value>
   </data>
   <data name="Archive_ExportMipmaps" xml:space="preserve">
     <value>Exportar mipmaps</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™</value>
+    <comment>Archive Explorer™</comment>
+  </data>
+  <data name="UAU_IPKExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™ (.ipk)</value>
+    <comment>Archive Explorer™ (.ipk)</comment>
   </data>
 </root>

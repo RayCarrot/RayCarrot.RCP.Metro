@@ -1,7 +1,6 @@
 ﻿using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.UI;
-using RayCarrot.WPF;
 using System;
 using System.IO;
 using System.Linq;
@@ -143,9 +142,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Get the thumbnail
-                    var img = imgData.
-                        // Get the image source
-                        GetThumbnail(bytes, 64);
+                    var img = imgData.GetThumbnail(bytes, 64);
 
                     // Freeze the image to avoid thread errors
                     img?.Freeze();
@@ -178,6 +175,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ExportFileAsync(bool includeMipmap)
         {
+            RCFCore.Logger?.LogTraceSource($"The archive file {FileName} is being exported...");
+
             // Run as a load operation
             using (Archive.LoadOperation.Run())
             {
@@ -228,6 +227,8 @@ namespace RayCarrot.RCP.Metro
                             Archive.SetDisplayStatus(String.Empty);
                         }
 
+                        RCFCore.Logger?.LogTraceSource($"The archive file has been exported");
+
                         await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFileSuccess);
                     });
                 }
@@ -240,6 +241,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ImportFileAsync()
         {
+            RCFCore.Logger?.LogTraceSource($"The archive file {FileName} is being imported...");
+
             // Run as a load operation
             using (Archive.LoadOperation.Run())
             {
@@ -291,6 +294,8 @@ namespace RayCarrot.RCP.Metro
 
                         if (!repackSucceeded)
                             return;
+
+                        RCFCore.Logger?.LogTraceSource($"The archive file has been imported");
 
                         await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ImportFileSuccess);
                     });

@@ -437,7 +437,7 @@ Incluso si la opción interna de pantalla ancha esta activada.</value>
     <comment>Modo de pantalla</comment>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>Rayman Control Panel es una aplicación de Código Abierto creada por RayCarrot. Es un simple archivo .EXE con la intención de modificar, alterar y aplicar parches creados por fans a los juegos de Rayman en windows. Este proyecto se va actualizando y ofreciendo nuevas funcionalidades. Muchas de estas utilidades han sido creadas con la ayuda de varios miembros de la comunidad de Rayman. Se ha dado credito a todas las personas que han ayudado a crear dichos parches.</value>
+    <value>Rayman Control Panel™ es una aplicación de Código Abierto creada por RayCarrot. Es un simple archivo .EXE con la intención de modificar, alterar y aplicar parches creados por fans a los juegos de Rayman en windows. Este proyecto se va actualizando y ofreciendo nuevas funcionalidades. Muchas de estas utilidades han sido creadas con la ayuda de varios miembros de la comunidad de Rayman. Se ha dado credito a todas las personas que han ayudado a crear dichos parches.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Créditos</value>
@@ -913,8 +913,8 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
     <comment>16:10</comment>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Rayman Control Panel
-</value>
+    <value>Rayman Control Panel™</value>
+    <comment>Rayman Control Panel™</comment>
   </data>
   <data name="GameOptions_LaunchMode_AsAdminOption" xml:space="preserve">
     <value>Ejecutar como administrador (Opcional)</value>
@@ -928,5 +928,24 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Archive_ExportMipmaps" xml:space="preserve">
     <value>Exportar mipmaps</value>
+  </data>
+  <data name="Help_RCP" xml:space="preserve">
+    <value>Rayman Control Panel™</value>
+  </data>
+  <data name="Archive_Title" xml:space="preserve">
+    <value>Archive Explorer™</value>
+    <comment>Archive Explorer™</comment>
+  </data>
+  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™ (.cnt)</value>
+    <comment>Archive Explorer™ (.cnt)</comment>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™</value>
+    <comment>Archive Explorer™</comment>
+  </data>
+  <data name="UAU_IPKExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™ (.ipk)</value>
+    <comment>Archive Explorer™ (.ipk)</comment>
   </data>
 </root>

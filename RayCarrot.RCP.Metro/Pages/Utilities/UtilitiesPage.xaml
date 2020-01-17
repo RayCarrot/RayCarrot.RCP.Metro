@@ -162,9 +162,6 @@
 
                         </Grid>
 
-                        <CheckBox Content="{Resx Utilities_Converter_IncludeMipmaps}"
-                                  IsChecked="{Binding Path=GfIncludeMipmaps}"/>
-
                     </StackPanel>
 
                     <!-- Rayman 3 Save Files (.sav) -->

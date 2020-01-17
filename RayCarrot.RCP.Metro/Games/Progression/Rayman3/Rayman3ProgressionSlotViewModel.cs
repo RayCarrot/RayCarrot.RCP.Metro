@@ -12,11 +12,11 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="slotNameGenerator">The function to get the slot name</param>
+        /// <param name="slotName">The slot name</param>
         /// <param name="items">The progression info items</param>
         /// <param name="saveSlotFilePath">The file path for the save slot</param>
         /// <param name="progressionViewModel">The progression view model containing this slot</param>
-        public Rayman3ProgressionSlotViewModel(Func<string> slotNameGenerator, ProgressionInfoItemViewModel[] items, FileSystemPath saveSlotFilePath, BaseProgressionViewModel progressionViewModel) : base(slotNameGenerator, items, saveSlotFilePath, progressionViewModel)
+        public Rayman3ProgressionSlotViewModel(LocalizedString slotName, ProgressionInfoItemViewModel[] items, FileSystemPath saveSlotFilePath, BaseProgressionViewModel progressionViewModel) : base(slotName, items, saveSlotFilePath, progressionViewModel)
         {
 
         }
@@ -33,7 +33,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override Task ExportSaveDataAsync(FileSystemPath outputFilePath)
         {
-            throw new NotImplementedException();
+            throw new InvalidOperationException();
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override Task ImportSaveDataAsync(FileSystemPath inputFilePath)
         {
-            throw new NotImplementedException();
+            throw new InvalidOperationException();
         }
     }
 }

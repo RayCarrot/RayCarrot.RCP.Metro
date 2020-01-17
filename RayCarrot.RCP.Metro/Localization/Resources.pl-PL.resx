@@ -445,7 +445,8 @@
     <value>16:9</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Panel Kontrolny Raymana</value>
+    <value>Rayman Control Panel™</value>
+    <comment>Rayman Control Panel™</comment>
   </data>
   <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
     <value>1.00</value>
@@ -660,5 +661,24 @@
   <data name="Links_Community_RaymanReanimated" xml:space="preserve">
     <value>Rayman Reanimated</value>
     <comment>Rayman Reanimated</comment>
+  </data>
+  <data name="Help_RCP" xml:space="preserve">
+    <value>Rayman Control Panel™</value>
+  </data>
+  <data name="Archive_Title" xml:space="preserve">
+    <value>Archive Explorer™</value>
+    <comment>Archive Explorer™</comment>
+  </data>
+  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™ (.cnt)</value>
+    <comment>Archive Explorer™ (.cnt)</comment>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™</value>
+    <comment>Archive Explorer™</comment>
+  </data>
+  <data name="UAU_IPKExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™ (.ipk)</value>
+    <comment>Archive Explorer™ (.ipk)</comment>
   </data>
 </root>

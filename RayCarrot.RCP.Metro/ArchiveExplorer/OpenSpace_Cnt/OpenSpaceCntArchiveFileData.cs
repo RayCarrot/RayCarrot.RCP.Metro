@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using RayCarrot.CarrotFramework.Abstractions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -144,6 +145,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The contents of the file</returns>
         public byte[] GetFileBytes(Stream archiveFileStream)
         {
+            RCFCore.Logger?.LogTraceSource("The file bytes are being retrieved for an archive file");
+
             return FileData.GetFileBytes(archiveFileStream);
         }
 
@@ -226,6 +229,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public Task ExportFileAsync(byte[] fileBytes, FileSystemPath filePath, string fileFormat)
         {
+            RCFCore.Logger?.LogInformationSource($"A CNT archive file is being exported as {fileFormat}");
+
             // Open the file
             using var file = File.Open(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
 
@@ -294,6 +299,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>A value indicating if the file was successfully imported</returns>
         public Task<bool> ImportFileAsync(byte[] fileBytes, FileSystemPath filePath)
         {
+            RCFCore.Logger?.LogInformationSource($"A CNT archive file is being imported as {filePath.FileExtension}");
+
             // Get the temporary file to save to, without disposing it
             var tempFile = new TempFile(false);
 

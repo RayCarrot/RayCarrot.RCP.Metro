@@ -116,14 +116,14 @@ namespace RayCarrot.RCP.Metro
                     worldNum = (Int32.Parse(worldNum) - 1).ToString();
                     lvlNum = "10";
                 }
-
+                
                 // Create the view model
-                progressItems[i + 2] = new ProgressionInfoItemViewModel(ProgressionIcons.Clock, $"{worldNum}-{lvlNum}: {levelData.RecordTime:mm\\:ss\\:fff}");
+                progressItems[i + 2] = new ProgressionInfoItemViewModel(ProgressionIcons.Clock, new LocalizedString(() => $"{worldNum}-{lvlNum}: {levelData.RecordTime:mm\\:ss\\:fff}"));
             }
 
             // Set general progress info
-            progressItems[0] = new ProgressionInfoItemViewModel(ProgressionIcons.Lum, $"{collectedLums}/{availableLums}");
-            progressItems[1] = new ProgressionInfoItemViewModel(ProgressionIcons.RedTooth, $"{collectedTeeth}/{availableTeeth}");
+            progressItems[0] = new ProgressionInfoItemViewModel(ProgressionIcons.Lum, new LocalizedString(() => $"{collectedLums}/{availableLums}"));
+            progressItems[1] = new ProgressionInfoItemViewModel(ProgressionIcons.RedTooth, new LocalizedString(() => $"{collectedTeeth}/{availableTeeth}"));
 
             RCFCore.Logger?.LogInformationSource($"General progress info has been set");
 
@@ -133,7 +133,7 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogInformationSource($"Slot percentage is {percentage}%");
 
             // Return the data with the collection
-            return new JungleRunProgressionSlotViewModel(() => $"{slotNamegenerator()} ({percentage}%)", progressItems, filePath, this);
+            return new JungleRunProgressionSlotViewModel(new LocalizedString(() => $"{slotNamegenerator()} ({percentage}%)"), progressItems, filePath, this);
         }
 
         #endregion

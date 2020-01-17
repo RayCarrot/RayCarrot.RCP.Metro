@@ -1,9 +1,7 @@
 ﻿using MahApps.Metro.IconPacks;
-using RayCarrot.CarrotFramework.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
@@ -21,14 +19,13 @@ namespace RayCarrot.RCP.Metro
         /// Constructor for a category which is visible
         /// </summary>
         /// <param name="games">The games in this category</param>
-        /// <param name="displayNameGenerator">The generator for getting the display name</param>
+        /// <param name="displayName">The display name</param>
         /// <param name="iconKind">The category icon</param>
-        public GameCategoryViewModel(IEnumerable<Games> games, Func<string> displayNameGenerator, PackIconMaterialKind iconKind)
+        public GameCategoryViewModel(IEnumerable<Games> games, LocalizedString displayName, PackIconMaterialKind iconKind)
         {
             // Set properties
             Games = games.ToArray();
-            DisplayNameGenerator = displayNameGenerator;
-            DisplayName = displayNameGenerator();
+            DisplayName = displayName;
             IconKind = iconKind;
             IsMaster = false;
             
@@ -39,9 +36,6 @@ namespace RayCarrot.RCP.Metro
             // Enable collection synchronization
             BindingOperations.EnableCollectionSynchronization(InstalledGames, Application.Current);
             BindingOperations.EnableCollectionSynchronization(NotInstalledGames, Application.Current);
-
-            // Subscribe to events
-            RCFCore.Data.CultureChanged += Data_CultureChanged;
         }
 
         /// <summary>
@@ -65,15 +59,6 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Protected Properties
-
-        /// <summary>
-        /// The generator for getting the display name
-        /// </summary>
-        protected Func<string> DisplayNameGenerator { get; }
-
-        #endregion
-
         #region Public Properties
 
         /// <summary>
@@ -94,7 +79,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The category display name
         /// </summary>
-        public string DisplayName { get; set; }
+        public LocalizedString DisplayName { get; }
 
         /// <summary>
         /// The category icon
@@ -123,20 +108,11 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Event Handlers
-
-        private void Data_CultureChanged(object sender, PropertyChangedEventArgs<CultureInfo> e)
-        {
-            DisplayName = DisplayNameGenerator?.Invoke();
-        }
-
-        #endregion
-
         #region Public Methods
 
         public void Dispose()
         {
-            RCFCore.Data.CultureChanged -= Data_CultureChanged;
+            DisplayName?.Dispose();
 
             BindingOperations.DisableCollectionSynchronization(InstalledGames);
             BindingOperations.DisableCollectionSynchronization(NotInstalledGames);

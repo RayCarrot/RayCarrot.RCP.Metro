@@ -39,6 +39,8 @@ namespace RayCarrot.RCP.Metro
                 // Set the archive lock
                 ArchiveLock = new AsyncLock();
 
+                RCFCore.Logger?.LogInformationSource($"The Archive Explorer is loading with {Archives.Length} archives");
+
                 // Make sure we got an archive
                 if (!Archives.Any())
                     throw new ArgumentException("At least one archive path needs to be available");
@@ -105,6 +107,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ChangeLoadedDirAsync(ArchiveDirectoryViewModel previousDir, ArchiveDirectoryViewModel newDir)
         {
+            RCFCore.Logger?.LogDebugSource($"The loaded archive directory is changing from {previousDir?.DisplayName ?? "NULL"} to {newDir?.DisplayName ?? "NULL"}");
+
             // Stop refreshing thumbnails
             if (IsRefreshingThumbnails)
                 CancelRefreshingThumbnails = true;

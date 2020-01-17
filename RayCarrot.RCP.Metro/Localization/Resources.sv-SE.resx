@@ -403,7 +403,7 @@
     <value>Skärmlägena fungerar olika beroende på den valda upplösningen. Oftast får 4:3 läget spelet att inte sträcka ut bilden på olika bildförhållanden.</value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>Rayman Kontrollpanelen är ett open source projekt skapat av RayCarrot. Det här programmet är en enda fri att använda körbar fil med avsikt att enkelt komma åt inställningar och korrigeringar för de olika Rayman-spelen som släppts för Windows.
+    <value>Rayman Control Panel™ är ett open source projekt skapat av RayCarrot. Det här programmet är en enda fri att använda körbar fil med avsikt att enkelt komma åt inställningar och korrigeringar för de olika Rayman-spelen som släppts för Windows.
 Det här är ett växande projekt med fler funktioner planerade att läggas till med framtida uppdateringar. Verktygen och olika konfigurationsverktyg har skapats med hjälp av olika medlemmar av Rayman-gemenskapen, alla krediteras nedan.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
@@ -1430,7 +1430,8 @@ Starta om?</value>
     <value>16:9</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Rayman Kontrollpanelen</value>
+    <value>Rayman Control Panel™</value>
+    <comment>Rayman Control Panel™</comment>
   </data>
   <data name="BrowseBox_Browse" xml:space="preserve">
     <value>Bläddra</value>
@@ -1774,5 +1775,24 @@ Starta om?</value>
   <data name="Links_Community_RaymanReanimated" xml:space="preserve">
     <value>Rayman Reanimated</value>
     <comment>Rayman Reanimated</comment>
+  </data>
+  <data name="Help_RCP" xml:space="preserve">
+    <value>Rayman Control Panel™</value>
+  </data>
+  <data name="Archive_Title" xml:space="preserve">
+    <value>Archive Explorer™</value>
+    <comment>Archive Explorer™</comment>
+  </data>
+  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™ (.cnt)</value>
+    <comment>Archive Explorer™ (.cnt)</comment>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™</value>
+    <comment>Archive Explorer™</comment>
+  </data>
+  <data name="UAU_IPKExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™ (.ipk)</value>
+    <comment>Archive Explorer™ (.ipk)</comment>
   </data>
 </root>

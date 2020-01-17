@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using RayCarrot.CarrotFramework.Abstractions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -162,6 +163,8 @@ namespace RayCarrot.RCP.Metro
             SupportedImportFileExtensions = supportedImportFileExtensions.ToArray();
             SupportedExportFileExtensions = supportedExportFileExtensions.ToArray();
 
+            RCFCore.Logger?.LogTraceSource($"{FileName} has been initialized");
+
             HasInitializedData = true;
         }
 
@@ -255,6 +258,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override Task ExportFileAsync(byte[] fileBytes, FileSystemPath filePath, string fileFormat)
         {
+            RCFCore.Logger?.LogInformationSource($"An IPK archive file is being exported as {fileFormat}");
+
             // Check if the file should be saved as a TEX file, in which case use the native, unmodified file
             if (IsTEXFormat(fileFormat))
             {
@@ -309,6 +314,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>A value indicating if the file was successfully imported</returns>
         public override Task<bool> ImportFileAsync(byte[] fileBytes, FileSystemPath filePath)
         {
+            RCFCore.Logger?.LogInformationSource($"An IPK archive file is being imported as {filePath.FileExtension}");
+
             // Get the temporary file to save to, without disposing it
             var tempFile = new TempFile(false);
 
@@ -342,7 +349,7 @@ namespace RayCarrot.RCP.Metro
                     // If it's not in the native format, convert it
                     if (!isNative)
                     {
-                        // TODO: Make sure mipmaps get generated for DDS
+                        // TODO-UPDATE: Make sure mipmaps get generated for DDS
                         // Set the format
                         img.Format = ImageHelpers.GetMagickFormat(TextureFormat.GetAttribute<TextureFormatInfoAttribute>().FileExtension);
 
@@ -358,10 +365,14 @@ namespace RayCarrot.RCP.Metro
                 // Set the bytes
                 texture.TextureData = bytes;
 
-                // TODO: The size doesn't match for one of the platforms - why? Wii U? On Vita it's 0. Always?
-                // Set the length
-                texture.TextureSize = (uint)texture.TextureData.Length;
-                texture.TextureSize2 = (uint)texture.TextureData.Length;
+                // TODO: Figure out what the values are on Wii U where they don't match the actual size
+                // On PS Vita the values are always 0, so keep them that way
+                if (Settings.Platform != UbiArtPlatform.PSVita)
+                {
+                    // Set the length
+                    texture.TextureSize = (uint)texture.TextureData.Length;
+                    texture.TextureSize2 = (uint)texture.TextureData.Length;
+                }
 
                 // Write the texture to the temp file
                 new UbiArtTextureSerializer(Settings).Serialize(tempFile.TempPath, texture);
