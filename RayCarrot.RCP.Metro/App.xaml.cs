@@ -703,7 +703,7 @@ namespace RayCarrot.RCP.Metro
                         break;
 
                     case nameof(AppUserData.LinkItemStyle):
-                        static string GetStyleSource(LinkItemStyles linkItemStye) => $"{RCFRCP.App.WPFApplicationBasePath}/Styles/LinkItemStyles - {linkItemStye}.xaml";
+                        static string GetStyleSource(LinkItemStyles linkItemStye) => $"{AppViewModel.WPFApplicationBasePath}/Styles/LinkItemStyles - {linkItemStye}.xaml";
 
                         // Get previous source
                         var oldSource = GetStyleSource(PreviousLinkItemStyle);

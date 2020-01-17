@@ -81,7 +81,7 @@ namespace RayCarrot.RCP.Metro
         {
             get
             {
-                var basePath = $"{RCFRCP.App.WPFApplicationBasePath}Installer/InstallerGifs/";
+                var basePath = $"{AppViewModel.WPFApplicationBasePath}Installer/InstallerGifs/";
 
                 return new string[]
                 {

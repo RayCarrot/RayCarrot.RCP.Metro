@@ -32,7 +32,7 @@ namespace RayCarrot.RCP.Metro
             TitleCharacterCasing = CharacterCasing.Normal;
 
             // Set icon style
-            Icon = new ImageSourceConverter().ConvertFromString(RCFRCP.App.WPFApplicationBasePath + "Img/RCP_Metro.ico") as ImageSource;
+            Icon = new ImageSourceConverter().ConvertFromString(AppViewModel.WPFApplicationBasePath + "Img/RCP_Metro.ico") as ImageSource;
             IconBitmapScalingMode = BitmapScalingMode.NearestNeighbor;
 
             // Set owner window

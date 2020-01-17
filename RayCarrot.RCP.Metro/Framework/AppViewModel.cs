@@ -503,6 +503,11 @@ namespace RayCarrot.RCP.Metro
         #region Constant Fields
 
         /// <summary>
+        /// The application base path to use for WPF related operations
+        /// </summary>
+        public const string WPFApplicationBasePath = "pack://application:,,,/RayCarrot.RCP.Metro;component/";
+
+        /// <summary>
         /// The name of the backup directory for this application
         /// </summary>
         public const string BackupFamily = "Rayman Game Backups";
@@ -538,17 +543,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentAppVersion => new Version(9, 0, 0, 0);
+        public Version CurrentAppVersion => new Version(9, 0, 0, 1);
 
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
         public bool IsBeta => true;
-
-        /// <summary>
-        /// The application base path to use for WPF related operations
-        /// </summary>
-        public string WPFApplicationBasePath => "pack://application:,,,/RayCarrot.RCP.Metro;component/";
 
         /// <summary>
         /// Shortcut to the app user data

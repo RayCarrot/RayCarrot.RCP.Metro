@@ -34,7 +34,7 @@ namespace RayCarrot.RCP.Metro
             CancellationTokenSource = new CancellationTokenSource();
 
             // Get images
-            GameLogoSource = $"{RCFRCP.App.WPFApplicationBasePath}Img/GameLogos/{game}_Logo.png";
+            GameLogoSource = $"{AppViewModel.WPFApplicationBasePath}Img/GameLogos/{game}_Logo.png";
             Gifs = game.GetGameInfo().InstallerGifs;
 
             // Default the install directory

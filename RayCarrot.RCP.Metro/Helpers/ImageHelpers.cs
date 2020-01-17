@@ -67,6 +67,7 @@ namespace RayCarrot.RCP.Metro
             // Get the format
             return fileExtension switch
             {
+                ".dds" => MagickFormat.Dds,
                 ".png" => MagickFormat.Png,
                 ".jpeg" => MagickFormat.Jpeg,
                 ".jpg" => MagickFormat.Jpeg,
