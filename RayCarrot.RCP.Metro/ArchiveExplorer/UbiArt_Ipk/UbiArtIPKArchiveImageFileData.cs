@@ -319,13 +319,37 @@ namespace RayCarrot.RCP.Metro
             // Get the temporary file to save to, without disposing it
             var tempFile = new TempFile(false);
 
-            // Check if the file is in the TEX format or doesn't use a TEX wrapper, thus not needing to be converted
-            if (IsTEXFormat(filePath.FileExtension) || !UsesTexWrapper)
+            // Check if the file is in the TEX format, thus not needing to be converted
+            if (IsTEXFormat(filePath.FileExtension))
             {
                 // Copy the file
                 RCFRCP.File.CopyFile(filePath, tempFile.TempPath, true);
             }
             // Import as a standard image format
+            else if (!UsesTexWrapper)
+            {
+                // Read the file bytes
+                var bytes = File.ReadAllBytes(filePath);
+
+                // If it's not in the native format and supported, convert it
+                if (IsFormatSupported && !IsNativeFormat(filePath.FileExtension))
+                {
+                    // Load the file
+                    using var img = new MagickImage(bytes)
+                    {
+                        // Set the format
+                        Format = ImageHelpers.GetMagickFormat(TextureFormat.GetAttribute<TextureFormatInfoAttribute>()
+                            .FileExtension)
+                    };
+
+                    // Update the bytes
+                    bytes = img.ToByteArray();
+                }
+
+                // Write the bytes
+                File.WriteAllBytes(tempFile.TempPath, bytes);
+            }
+            // Import as a standard image format in a TEX wrapper
             else
             {
                 // Read the file bytes
@@ -349,7 +373,6 @@ namespace RayCarrot.RCP.Metro
                     // If it's not in the native format, convert it
                     if (!isNative)
                     {
-                        // TODO-UPDATE: Make sure mipmaps get generated for DDS
                         // Set the format
                         img.Format = ImageHelpers.GetMagickFormat(TextureFormat.GetAttribute<TextureFormatInfoAttribute>().FileExtension);
 
