@@ -1,4 +1,4 @@
-﻿-----   Version 9.0.0 - January ??, 2019   -----
+﻿-----   Version 9.0.0 - January ??, 2020   -----
 • Added a utility for viewing/editing the .ipk files in Rayman Origins and Rayman Legends, allowing importing/exporting of textures and game files for UbiArt games
 • Added the utilities page for general utilities, such as viewing .cnt/.ipk archives and converting certain game files
 • Added the progression tab for Rayman 3
@@ -20,7 +20,7 @@ Other changes:
 • Bug fixes
 
 
------   Version 8.0.0 - January 3, 2019   -----
+-----   Version 8.0.0 - January 3, 2020   -----
 • Added a utility for viewing/editing the .cnt files in Rayman 2, Rayman M/Arena and Rayman 3, allowing importing/exporting of textures
 • Updated the application icon
 • Updated the controller patch for Rayman M/Arena and Rayman 3 (it needs to be applied again to update)
