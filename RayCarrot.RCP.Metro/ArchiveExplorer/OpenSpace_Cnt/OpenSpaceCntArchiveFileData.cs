@@ -1,5 +1,5 @@
 ﻿using ByteSizeLib;
-using RayCarrot.Extensions;
+using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.WPF;
@@ -10,7 +10,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
-using RayCarrot.CarrotFramework.Abstractions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -107,22 +106,22 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The name of the file format
         /// </summary>
-        public string FileFormatName => "GF";
+        public string FileFormatName => ".GF";
 
         /// <summary>
         /// The supported file formats to import from
         /// </summary>
-        public string[] SupportedImportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions().Append(".gf");
+        public ArchiveFileExtension[] SupportedImportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions().Select(x => new ArchiveFileExtension(x)).Append(new ArchiveFileExtension(".gf")).ToArray();
 
         /// <summary>
         /// The supported file formats to export to
         /// </summary>
-        public string[] SupportedExportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions().Append(".gf");
+        public ArchiveFileExtension[] SupportedExportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions().Select(x => new ArchiveFileExtension(x)).Append(new ArchiveFileExtension(".gf")).ToArray();
 
         /// <summary>
         /// The supported file formats for exporting mipmaps
         /// </summary>
-        public string[] SupportedMipmapExportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions();
+        public ArchiveFileExtension[] SupportedMipmapExportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions().Select(x => new ArchiveFileExtension(x)).ToArray();
 
         /// <summary>
         /// The path to the temporary file containing the data to be imported

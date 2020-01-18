@@ -1,11 +1,10 @@
 ﻿using ByteSizeLib;
+using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework.Abstractions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -26,7 +25,7 @@ namespace RayCarrot.RCP.Metro
         {
             // Get the file properties
             Directory = fileData.DirectoryPath;
-            FileExtension = fileData.GetFileExtensions().Last();
+            FileExtension = new ArchiveFileExtension(fileData.GetFileExtensions());
             FileName = fileData.FileName;
             FileData = fileData;
             BaseOffset = baseOffset;
@@ -80,14 +79,14 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The name of the file format
         /// </summary>
-        public string FileFormatName => FileExtension.Substring(1).ToUpper();
+        public string FileFormatName => FileExtension.DisplayName;
 
         /// <summary>
         /// The supported file formats to import from
         /// </summary>
-        public virtual string[] SupportedImportFileExtensions
+        public virtual ArchiveFileExtension[] SupportedImportFileExtensions
         {
-            get => new string[]
+            get => new ArchiveFileExtension[]
             {
                 FileExtension
             };
@@ -97,9 +96,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The supported file formats to export to
         /// </summary>
-        public virtual string[] SupportedExportFileExtensions
+        public virtual ArchiveFileExtension[] SupportedExportFileExtensions
         {
-            get => new string[]
+            get => new ArchiveFileExtension[]
             {
                 FileExtension
             };
@@ -109,7 +108,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The file extension
         /// </summary>
-        public string FileExtension { get; set; }
+        public ArchiveFileExtension FileExtension { get; set; }
 
         /// <summary>
         /// The path to the temporary file containing the data to be imported

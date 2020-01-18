@@ -39,6 +39,15 @@ namespace RayCarrot.RCP.Metro
             Value = Generator();
         }
 
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            return Value;
+        }
+
         public void Dispose()
         {
             RCFCore.Data.CultureChanged -= Data_CultureChanged;

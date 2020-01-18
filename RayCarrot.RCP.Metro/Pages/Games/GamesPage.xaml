@@ -99,9 +99,8 @@
                                                 <ItemsPanelTemplate>
                                                     <WrapPanel>
                                                         <i:Interaction.Behaviors>
-                                                            <i:FluidMoveBehavior
-                                                                Duration="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToFluidMoveDurationConverter}}"
-                                                                AppliesTo="Children" />
+                                                            <i:FluidMoveBehavior Duration="{Binding Path=Data.EnableAnimations, Converter={local:BooleanToFluidMoveDurationConverter}}"
+                                                                                 AppliesTo="Children" />
                                                         </i:Interaction.Behaviors>
                                                     </WrapPanel>
                                                 </ItemsPanelTemplate>

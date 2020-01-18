@@ -403,7 +403,7 @@
     <value>As opções do modo de ecrã irão comportar-se de forma diferente dependendo da resolução seleccionada. Normalmente mantendo o modo 4:3 activo irá permitir que o jogo não seja esticado para outras proporções de aspecto diferentes.</value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
-    <value>O Painel de Controlo Rayman é um projecto de comunidade open source criado por RayCarrot. Este software é um executável de utilização única livre com o intuito de aceder fácilmente a definições e correcções para os vários títulos do Rayman lançados para o Windows. Isto é um projecto crescente com mais funcionalidades planeadas para actualizações futuras. Os utilitários e as várias ferramentas de configuração foram criados com a ajuda de vários membros da comunidade Rayman, todos creditados abaixo.</value>
+    <value>O Rayman Control Panel™ (Painel de Controlo Rayman) é um projecto comunitário open source criado por RayCarrot. Este software é um executável de utilização única livre com o intuito de aceder fácilmente a definições e correcções para os vários títulos do Rayman lançados para o Windows. Isto é um projecto crescente com mais funcionalidades planeadas para actualizações futuras. Os utilitários e as várias ferramentas de configuração foram criados com a ajuda de vários membros da comunidade Rayman, todos creditados abaixo.</value>
   </data>
   <data name="About_Credits" xml:space="preserve">
     <value>Créditos</value>
@@ -1207,7 +1207,7 @@ Reiniciar?</value>
     <value>Instalado</value>
   </data>
   <data name="RemoveGameQuestion" xml:space="preserve">
-    <value>Tens a certeza que queres remover o {0} do Painel de Controlo Rayman? Isto não irá remover o jogo do teu computador ou quaisquer dos seus ficheiros, incluíndo as cópias de segurança criadas utilizando este programa.</value>
+    <value>Tens a certeza que queres remover o {0} do Rayman Control Panel™? Isto não irá remover o jogo do teu computador ou quaisquer dos seus ficheiros, incluíndo as cópias de segurança criadas utilizando este programa.</value>
   </data>
   <data name="RemoveGameQuestionHeader" xml:space="preserve">
     <value>Confirmar remoção</value>
@@ -1453,10 +1453,10 @@ Reiniciar?</value>
     <value>Progresso de ficheiro actual</value>
   </data>
   <data name="FirstLaunchInfo_Title" xml:space="preserve">
-    <value>Bem-vindo(a) ao Painel de Controlo Rayman</value>
+    <value>Bem-vindo(a) ao Rayman Control Panel™</value>
   </data>
   <data name="FirstLaunchInfo_Header" xml:space="preserve">
-    <value>Bem-vindo(a) ao Painel de Controlo Rayman</value>
+    <value>Bem-vindo(a) ao Rayman Control Panel™</value>
   </data>
   <data name="FirstLaunchInfo_Text" xml:space="preserve">
     <value>Este programa permite um acesso rápido e fácil a todos os teus jogos do Rayman instalados no teu computador. A partir daqui poderás executá-los e os seus programas de configuração, configurá-los directamente a partir deste programa com opções adicionadas (tais como remapeamento de botões. suporte widescreen e mais) e fazer uma cópia de segurança/restaurar cada ficheiro de progressão dos jogos. 
@@ -1538,7 +1538,7 @@ As cópias de segurança em si são sempre arquivados no sub-directório '{0}'. 
     <value>Argumentos de execução</value>
   </data>
   <data name="Help_RCP_LaunchArgs" xml:space="preserve">
-    <value>O Painel de Controlo Rayman suporta vários argumentos de execução, principalmente direccionados para a depuração da aplicação. Abaixo é a lista completa dos argumentos de execução disponíveis. O caracter '-' deverá ser sempre incluído. Os caracteres '{}' mostram que uma variável personalizada pode ser utilizada, no caso que o '{}' dnão deverá ser incluído.
+    <value>O Rayman Control Panel™ suporta vários argumentos de execução, principalmente direccionados para a depuração da aplicação. Abaixo é a lista completa dos argumentos de execução disponíveis. O caracter '-' deverá ser sempre incluído. Os caracteres '{}' mostram que uma variável personalizada pode ser utilizada, no caso que o '{}' dnão deverá ser incluído.
   
 -reset (Reinicia todos os dados de aplicação antes da execução)
 -install {EndereçoDeFicheiro} (Remove o instalador do endereço especificado)
@@ -1577,7 +1577,7 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <value>Emulador MS-DOS</value>
   </data>
   <data name="Help_Games_R1_Emulator" xml:space="preserve">
-    <value>Rayman 1, e a maior parte dos spin-offs para PC (incluíndo o Rayman Designer, Rayman by his Fans e Rayman 60 Levels) são programas MS-DOS e não são compactíveis com as versões modernas do Windows. Requer um emulador DOS para executá-los, tais como o DOSBox. Actualmente, o DOSBox é o único emulador suportado pelo Painel de Controlo Rayman.</value>
+    <value>Rayman 1, e a maior parte dos spin-offs para PC (incluíndo o Rayman Designer, Rayman by his Fans e Rayman 60 Levels) são programas MS-DOS e não são compactíveis com as versões modernas do Windows. Requer um emulador DOS para executá-los, tais como o DOSBox. Actualmente, o DOSBox é o único emulador suportado pelo Rayman Control Panel™.</value>
   </data>
   <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
     <value>A instalação falhou</value>
@@ -1776,7 +1776,7 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <value>As animações incluem transições de página e animações redimensionadas para a página de Jogos</value>
   </data>
   <data name="GameOptions_LaunchMode_AsInvokerInfo" xml:space="preserve">
-    <value>Executa sempre o jogo com as mesmas permissões com que o Painel de Controlo Rayman foi executado</value>
+    <value>Executa sempre o jogo com as mesmas permissões com que o Rayman Control Panel™ foi executado</value>
   </data>
   <data name="GameOptions_LaunchMode_AsAdminOptionInfo" xml:space="preserve">
     <value>O mesmo que o Padrão, mas com a opção de executar o jogo como administrador</value>
@@ -2007,7 +2007,7 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <value>Desinstalar</value>
   </data>
   <data name="About_ConfirmUninstall" xml:space="preserve">
-    <value>Tens a certeza que queres desinstalar o Painel de Controlo Rayman? Isto irá remover o ficheiro executável e todos os dados de aplicação do programa. Isto NÃO irá remover quaisquer jogos instalados, ficheiros de progresso ou cópias de segurança. Alguns utilitários aplicados poderão ainda estar disponíveis.</value>
+    <value>Tens a certeza que queres desinstalar o Rayman Control Panel™? Isto irá remover o ficheiro executável e todos os dados de aplicação do programa. Isto NÃO irá remover quaisquer jogos instalados, ficheiros de progresso ou cópias de segurança. Alguns utilitários aplicados poderão ainda estar disponíveis.</value>
   </data>
   <data name="About_ConfirmUninstallHeader" xml:space="preserve">
     <value>Confirmar desinstalação</value>
@@ -2561,7 +2561,7 @@ Error message: {1}</value>
     <value>Definições de arranque personalizadas</value>
   </data>
   <data name="GoHomeConfig_CustomLaunchInfo" xml:space="preserve">
-    <value>Se activo, as definições abaixo serão utilizadas ao executar o jogo pelo Painel de Controlo Rayman</value>
+    <value>Se activo, as definições abaixo serão utilizadas ao executar o jogo pelo Rayman Control Panel™.</value>
   </data>
   <data name="Config_VSync" xml:space="preserve">
     <value>V-Sync</value>
@@ -2713,7 +2713,7 @@ Error message: {1}</value>
     <value>Desinstalar</value>
   </data>
   <data name="RemoveInstalledGameQuestion" xml:space="preserve">
-    <value>O {0} foi instalado originalmente utilizando o Painel de Controlo Rayman. Remover o jogo do programa não irá remover o jogo do teu computador ou nenhum dos seus ficheiros, incluíndo as cópias de segurança criadas utilizando este programa. É recomendado no entanto desinstalar-se o jogo.</value>
+    <value>O {0} foi instalado originalmente utilizando o Rayman Control Panel™. Remover o jogo do programa não irá remover o jogo do teu computador ou nenhum dos seus ficheiros, incluíndo as cópias de segurança criadas utilizando este programa. É recomendado no entanto desinstalar-se o jogo.</value>
   </data>
   <data name="UninstallGameQuestion" xml:space="preserve">
     <value>Tens a certeza que queres desinstalar o {0}? Isto irá remover o jogo do teu computador, incluíndo os dados de progressão. As cópias de segurança não serão removidas.</value>
@@ -3024,7 +3024,7 @@ Mipmaps = {8}</value>
     <comment>Archive Explorer™</comment>
   </data>
   <data name="Archive_CriticalError" xml:space="preserve">
-    <value>Ocorreu um erro no Explorador de arquivos e teve de fechar</value>
+    <value>Ocorreu um erro no Archive Explorer™ (Explorador de Arquivos) e teve de fechar</value>
   </data>
   <data name="Archive_ExportMipmaps" xml:space="preserve">
     <value>Exportar mipmaps</value>
@@ -3036,5 +3036,128 @@ Mipmaps = {8}</value>
   <data name="UAU_IPKExplorer_Header" xml:space="preserve">
     <value>Archive Explorer™ (.ipk)</value>
     <comment>Archive Explorer™ (.ipk)</comment>
+  </data>
+  <data name="Archive_IPK_FileInfo" xml:space="preserve">
+    <value>Directório = {0}
+Comprimido = {1}
+Tamanho de ficheiro = {2}
+Tamanho de ficheiro comprimido = {3}
+Pointer = {4}</value>
+  </data>
+  <data name="Archive_IPK_ImageFileInfo" xml:space="preserve">
+    <value>Directório = {0}
+Tamanho = {1} x {2}
+Utiliza TEX = {3}
+Formato de imagem = {4}
+Comprimido = {5}
+Tamanho de ficheiro = {6}
+Tamanho de ficheiro comprimido = {7}
+Pointer = {8}
+
+</value>
+  </data>
+  <data name="UtilitiesPageHeader" xml:space="preserve">
+    <value>Size = {1} x {2}</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
+    <value>Uses TEX = {3}</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
+    <value>Image format = {4}</value>
+  </data>
+  <data name="Utilities_Converter_GFHeader" xml:space="preserve">
+    <value>Compressed = {5}</value>
+  </data>
+  <data name="Utilities_Converter_Convert" xml:space="preserve">
+    <value>File size = {6}</value>
+  </data>
+  <data name="Utilities_Converter_ConvertBack" xml:space="preserve">
+    <value>Compressed file size = {7}</value>
+  </data>
+  <data name="Utilities_Converter_LOCHeader" xml:space="preserve">
+    <value>Pointer = {8}</value>
+  </data>
+  <data name="Utilities_Converter_Header" xml:space="preserve">
+    <value>Conversores</value>
+  </data>
+  <data name="Utilities_WIP_Header" xml:space="preserve">
+    <value>Trabalho em processo
+</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Open" xml:space="preserve">
+    <value>Abrir</value>
+  </data>
+  <data name="Utilities_Converter_IncludeMipmaps" xml:space="preserve">
+    <value>Incluir mipmaps</value>
+  </data>
+  <data name="Utilities_Converter_R3SaveHeader" xml:space="preserve">
+    <value>Ficheiros de Progresso Rayman 3 (.sav)</value>
+  </data>
+  <data name="Utilities_Converter_RJRSaveHeader" xml:space="preserve">
+    <value>Ficheiros de Progresso Rayman Jungle Run (.dat)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_FileSelectionHeader" xml:space="preserve">
+    <value>Seleccionar ficheiros de arquivo</value>
+  </data>
+  <data name="Utilities_Converter_FileSelectionHeader" xml:space="preserve">
+    <value>Seleccionar ficheiros a converter</value>
+  </data>
+  <data name="Utilities_Converter_DestinationHeader" xml:space="preserve">
+    <value>Seleccionar destino</value>
+  </data>
+  <data name="Utilities_Converter_Error" xml:space="preserve">
+    <value>O(s) ficheiro(s) não pode/puderam ser convertido(s)</value>
+  </data>
+  <data name="UAU_IPKExplorer_Info" xml:space="preserve">
+    <value>Esta ferramenta permite-te ver/editar o arquivo de ficheiros .ipk, permitindo a importação/exportação de texturas e ficheiros de jogo</value>
+  </data>
+  <data name="Utilities_Converter_ExportExtensionHeader" xml:space="preserve">
+    <value>Seleccionar extensão de ficheiro a exportar como</value>
+  </data>
+  <data name="Utilities_Converter_Success" xml:space="preserve">
+    <value>O(s) ficheiro(s) foi/foram convertido(s) com sucesso</value>
+  </data>
+  <data name="Utilities_Converter_MissingConfig" xml:space="preserve">
+    <value>O ficheiro {0} não pode ser covnertido porque falta um ficheiro de configuração</value>
+  </data>
+  <data name="Archive_RepackError" xml:space="preserve">
+    <value>Ocorreu um erro ao reacondicionar o arquivo</value>
+  </data>
+  <data name="Progression_R3_TotalHeader" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Progression_R3_Level1Header" xml:space="preserve">
+    <value>O Concílio das Fadas</value>
+  </data>
+  <data name="Progression_R3_Level2Header" xml:space="preserve">
+    <value>Floresta da Folha-Clara</value>
+  </data>
+  <data name="Progression_R3_Level3Header" xml:space="preserve">
+    <value>O Lodaçal Sombrio</value>
+  </data>
+  <data name="Progression_R3_Level4Header" xml:space="preserve">
+    <value>A Terra dos Mortos Vivos</value>
+  </data>
+  <data name="Progression_R3_Level5Header" xml:space="preserve">
+    <value>O Deserto dos Knaaren</value>
+  </data>
+  <data name="Progression_R3_Level6Header" xml:space="preserve">
+    <value>O Maior Atalho</value>
+  </data>
+  <data name="Progression_R3_Level7Header" xml:space="preserve">
+    <value>O Cume para Além das Nuvens</value>
+  </data>
+  <data name="Progression_R3_Level8Header" xml:space="preserve">
+    <value>Sede Hoodlum</value>
+  </data>
+  <data name="Progression_R3_Level9Header" xml:space="preserve">
+    <value>A Torre de Leptys</value>
+  </data>
+  <data name="PostUpdate_TPLSUpdatePrompt" xml:space="preserve">
+    <value>Foi actualizado o utilitário da banda sonora PlayStation. Vai aos utilitários Rayman 1 e reinstala-o de forma a continuar a utilizá-lo.</value>
+  </data>
+  <data name="TPLS_UpdateVersionError" xml:space="preserve">
+    <value>Não pode ser actualizada a versão Rayman
+</value>
   </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿using ByteSizeLib;
 using ImageMagick;
+using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
@@ -9,7 +10,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
-using RayCarrot.CarrotFramework.Abstractions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -38,7 +38,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="fileExtension">The file extension to check</param>
         /// <returns>True if it's the same</returns>
-        protected bool IsNativeFormat(string fileExtension) => fileExtension.Equals(FileExtension, StringComparison.InvariantCultureIgnoreCase);
+        protected bool IsNativeFormat(string fileExtension) => fileExtension.Equals(FileExtension.PrimaryFileExtension, StringComparison.InvariantCultureIgnoreCase);
         
         /// <summary>
         /// Indicates if the file extension is the same as the TEX extension
@@ -116,15 +116,15 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Find the format which matches the magic header
-            TextureFormat = UbiArtTextureFormat.Unknown.GetValues().
-                FindItem(x => x.GetAttribute<TextureFormatInfoAttribute>().MagicHeader == magic);
+            TextureFormat = UbiArtTextureFormat.Unknown.GetValues().FindItem(x => x.GetAttribute<TextureFormatInfoAttribute>().MagicHeader == magic);
 
             // Set the file extension
-            FileExtension = TextureFormat.GetAttribute<TextureFormatInfoAttribute>().FileExtension;
+            if (TextureFormat != UbiArtTextureFormat.Unknown)
+                FileExtension = new ArchiveFileExtension(TextureFormat.GetAttribute<TextureFormatInfoAttribute>().FileExtension);
 
             // Set the supported file extensions
-            var supportedImportFileExtensions = new List<string>();
-            var supportedExportFileExtensions = new List<string>();
+            var supportedImportFileExtensions = new List<ArchiveFileExtension>();
+            var supportedExportFileExtensions = new List<ArchiveFileExtension>();
 
             // Handle supported formats
             if (IsFormatSupported)
@@ -132,19 +132,16 @@ namespace RayCarrot.RCP.Metro
                 // Get the extensions
                 var extensions = ImageHelpers.GetSupportedMagickExtensions();
 
-                // Get the current extension
-                var currentExtension = TextureFormat.GetAttribute<TextureFormatInfoAttribute>().FileExtension;
-
                 // If the current one is not included, add it
-                if (!extensions.Any(x => x.Equals(currentExtension, StringComparison.InvariantCultureIgnoreCase)))
+                if (!extensions.Any(x => x.Equals(FileExtension.PrimaryFileExtension, StringComparison.InvariantCultureIgnoreCase)))
                 {
-                    supportedImportFileExtensions.Add(currentExtension);
-                    supportedExportFileExtensions.Add(currentExtension);
+                    supportedImportFileExtensions.Add(FileExtension);
+                    supportedExportFileExtensions.Add(FileExtension);
                 }
 
                 // Add common extensions
-                supportedImportFileExtensions.AddRange(extensions);
-                supportedExportFileExtensions.AddRange(extensions);
+                supportedImportFileExtensions.AddRange(extensions.Select(x => new ArchiveFileExtension(x)));
+                supportedExportFileExtensions.AddRange(extensions.Select(x => new ArchiveFileExtension(x)));
             }
             // Handle unsupported formats
             else
@@ -154,10 +151,10 @@ namespace RayCarrot.RCP.Metro
             }
 
             if (UsesTexWrapper)
-                supportedImportFileExtensions.Add(TEXFileExtension);
-
-            if (UsesTexWrapper)
-                supportedExportFileExtensions.Add(TEXFileExtension);
+            {
+                supportedImportFileExtensions.Add(new ArchiveFileExtension(TEXFileExtension));
+                supportedExportFileExtensions.Add(new ArchiveFileExtension(TEXFileExtension));
+            }
 
             // Set the supported extensions
             SupportedImportFileExtensions = supportedImportFileExtensions.ToArray();
@@ -341,7 +338,7 @@ namespace RayCarrot.RCP.Metro
                         Format = ImageHelpers.GetMagickFormat(TextureFormat.GetAttribute<TextureFormatInfoAttribute>()
                             .FileExtension)
                     };
-
+                    
                     // Update the bytes
                     bytes = img.ToByteArray();
                 }
@@ -437,7 +434,7 @@ namespace RayCarrot.RCP.Metro
             Directory,
             Width?.ToString() ?? "N/A", Height?.ToString() ?? "N/A",
             UsesTexWrapper,
-            FileExtension,
+            FileExtension.FileExtensions,
             FileData.IsCompressed,
             new ByteSize(FileData.Size),
             new ByteSize(FileData.CompressedSize),
@@ -446,17 +443,17 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The supported file formats to import from
         /// </summary>
-        public override string[] SupportedImportFileExtensions { get; set; }
+        public override ArchiveFileExtension[] SupportedImportFileExtensions { get; set; }
 
         /// <summary>
         /// The supported file formats to export to
         /// </summary>
-        public override string[] SupportedExportFileExtensions { get; set; }
+        public override ArchiveFileExtension[] SupportedExportFileExtensions { get; set; }
 
         /// <summary>
         /// The supported file formats for exporting mipmaps
         /// </summary>
-        public string[] SupportedMipmapExportFileExtensions => null;
+        public ArchiveFileExtension[] SupportedMipmapExportFileExtensions => null;
 
         /// <summary>
         /// Indicates if the image has mipmaps
@@ -578,5 +575,31 @@ namespace RayCarrot.RCP.Metro
         }
 
         #endregion
+    }
+
+    /// <summary>
+    /// A file extension
+    /// </summary>
+    public class ArchiveFileExtension
+    {
+        public ArchiveFileExtension(string fileExtensions)
+        {
+            AllFileExtensions = fileExtensions.Split('.').Skip(1).Select(x => $".{x}").ToArray();
+        }
+
+        public ArchiveFileExtension(IEnumerable<string> fileExtensions)
+        {
+            AllFileExtensions = fileExtensions.ToArray();
+        }
+
+        protected string[] AllFileExtensions { get; }
+
+        public string FileExtensions => AllFileExtensions.JoinItems(String.Empty);
+
+        public string PrimaryFileExtension => AllFileExtensions.Last();
+
+        public string DisplayName => FileExtensions.ToUpperInvariant();
+
+        public FileFilterItem GetFileFilterItem => new FileFilterItem($"*{PrimaryFileExtension}", PrimaryFileExtension.Substring(1).ToUpperInvariant());
     }
 }

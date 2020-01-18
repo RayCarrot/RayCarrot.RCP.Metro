@@ -46,8 +46,9 @@ namespace RayCarrot.RCP.Metro
         {
             // Set properties
             Games = games.ToArray();
+            DisplayName = new LocalizedString(() => "(master)");
             IsMaster = true;
-            
+
             // Create properties
             InstalledGames = new ObservableCollection<GameDisplayViewModel>();
             NotInstalledGames = new ObservableCollection<GameDisplayViewModel>();

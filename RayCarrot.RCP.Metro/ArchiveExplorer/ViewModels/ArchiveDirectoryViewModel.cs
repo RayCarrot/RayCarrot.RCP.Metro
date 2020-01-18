@@ -184,12 +184,15 @@ namespace RayCarrot.RCP.Metro
                                     // Check if the format has not been selected
                                     if (!selectedFormats.ContainsKey(file.FileData.FileFormatName))
                                     {
+                                        // Get the available extensions
+                                        var ext = data.SupportedExportFileExtensions.Select(x => x.FileExtensions).ToArray();
+
                                         // Have user select the format
-                                        FileExtensionSelectionDialogResult extResult = await RCFRCP.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(data.SupportedExportFileExtensions, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, data.FileFormatName)));
+                                        FileExtensionSelectionDialogResult extResult = await RCFRCP.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(ext, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, data.FileFormatName)));
 
                                         // Since this operation can't be canceled we get the first format
                                         if (extResult.CanceledByUser)
-                                            extResult.SelectedFileFormat = data.SupportedExportFileExtensions.First();
+                                            extResult.SelectedFileFormat = ext.First();
 
                                         // Add the selected format
                                         selectedFormats.Add(data.FileFormatName, extResult.SelectedFileFormat);
@@ -266,7 +269,7 @@ namespace RayCarrot.RCP.Metro
                                     FileSystemPath fileDir = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
 
                                     // Get the file path, without an extension
-                                    FileSystemPath filePath = fileDir + (Path.GetFileNameWithoutExtension(file.FileName) ?? file.FileName);
+                                    FileSystemPath filePath = fileDir + new FileSystemPath(file.FileName).RemoveFileExtension(true);
 
                                     // Make sure there are potential file matches
                                     if (!Directory.GetFiles(fileDir, $"{filePath.Name}*", SearchOption.TopDirectoryOnly).Any())
@@ -276,10 +279,10 @@ namespace RayCarrot.RCP.Metro
                                     var bytes = file.FileData.GetFileBytes(Archive.ArchiveFileStream);
 
                                     // Attempt to find a file for each supported extension
-                                    foreach (string ext in file.FileData.SupportedImportFileExtensions)
+                                    foreach (var ext in file.FileData.SupportedImportFileExtensions)
                                     {
                                         // Get the path
-                                        var fullFilePath = filePath.ChangeFileExtension(ext);
+                                        var fullFilePath = filePath.ChangeFileExtension(ext.FileExtensions);
 
                                         // Make sure the file exists
                                         if (!fullFilePath.FileExists)

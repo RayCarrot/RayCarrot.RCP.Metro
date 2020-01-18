@@ -110,15 +110,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="fileExtensions">The file extensions</param>
         /// <returns>The file filter item collection</returns>
-        protected FileFilterItemCollection GetFileFilterCollection(string[] fileExtensions)
+        protected FileFilterItemCollection GetFileFilterCollection(ArchiveFileExtension[] fileExtensions)
         {
-            return new FileFilterItemCollection(fileExtensions.
-                // Create a filter item for each extension
-                Select(x => new FileFilterItem(
-                    // Set the filter to the extension
-                    $"*{x}", 
-                    // Set the name to the extension, without the period, and in upper case
-                    x.Substring(1).ToUpper())));
+            return new FileFilterItemCollection(fileExtensions.Select(x => x.GetFileFilterItem));
         }
 
         #endregion
@@ -193,7 +187,7 @@ namespace RayCarrot.RCP.Metro
                         var result = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
                         {
                             Title = Resources.Archive_ExportHeader,
-                            DefaultName = new FileSystemPath(FileName).ChangeFileExtension(ext.First(), true),
+                            DefaultName = new FileSystemPath(FileName).ChangeFileExtension(ext.First().PrimaryFileExtension, true),
                             Extensions = GetFileFilterCollection(ext).ToString()
                         });
 

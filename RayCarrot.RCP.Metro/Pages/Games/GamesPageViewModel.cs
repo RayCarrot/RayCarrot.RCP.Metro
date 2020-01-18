@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using MahApps.Metro.IconPacks;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
@@ -60,7 +61,7 @@ namespace RayCarrot.RCP.Metro
             };
 
             // Refresh category visibility
-            RefreshCategorizedVisibility();
+            _ = Task.Run(async () => await RefreshCategorizedVisibilityAsync());
 
             // Refresh on culture changed
             RCFCore.Data.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
@@ -69,7 +70,7 @@ namespace RayCarrot.RCP.Metro
             Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();
 
             // Refresh visibility on setting change
-            Data.PropertyChanged += Data_PropertyChanged;
+            Data.PropertyChanged += Data_PropertyChangedAsync;
         }
 
         #endregion
@@ -181,10 +182,12 @@ namespace RayCarrot.RCP.Metro
                     // Cache the game view models
                     var displayVMCache = new Dictionary<Games, GameDisplayViewModel>();
 
+                    RCFCore.Logger?.LogInformationSource($"All displayed games are being refreshed...");
+
                     // Refresh all categories
                     foreach (var category in GameCategories)
                     {
-                        RCFCore.Logger?.LogInformationSource($"The displayed games in {category.DisplayName} are being refreshed...");
+                        RCFCore.Logger?.LogInformationSource($"The displayed games in {category.DisplayName.Value} are being refreshed...");
 
                         try
                         {
@@ -226,12 +229,22 @@ namespace RayCarrot.RCP.Metro
                             throw;
                         }
 
-                        RCFCore.Logger?.LogInformationSource($"The displayed games in {category.DisplayName} have been refreshed");
+                        RCFCore.Logger?.LogInformationSource($"The displayed games in {category.DisplayName} have been refreshed with {category.InstalledGames.Count} installed and {category.NotInstalledGames.Count} not installed games");
                     }
 
                     // Allow game finder to run only if there are games which have not been found
                     // ReSharper disable once PossibleNullReferenceException
-                    await Application.Current.Dispatcher.InvokeAsync(() => RunGameFinderCommand.CanExecuteCommand = GameCategories.Any(x => x.AnyNotInstalledGames));
+                    await Application.Current.Dispatcher.InvokeAsync(() =>
+                    {
+                        RunGameFinderCommand.CanExecuteCommand = GameCategories.Any(x => x.AnyNotInstalledGames);
+
+                        // NOTE: This is a hacky solution to a weird WPF issue where an item can get duplicated in the view
+                        foreach (var c in GameCategories)
+                        {
+                            CollectionViewSource.GetDefaultView(c.InstalledGames).Refresh();
+                            CollectionViewSource.GetDefaultView(c.NotInstalledGames).Refresh();
+                        }
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -248,19 +261,32 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Refreshes the visibility of the categories based on if the games should be categorized
         /// </summary>
-        public void RefreshCategorizedVisibility()
+        /// <returns>The task</returns>
+        public async Task RefreshCategorizedVisibilityAsync()
         {
-            // Get the master category
-            var master = GameCategories.FindItem(x => x.IsMaster);
+            using (await AsyncLock.LockAsync())
+            {
+                try
+                {
+                    // Get the master category
+                    var master = GameCategories.FindItem(x => x.IsMaster);
 
-            // Set the master category visibility
-            master.IsVisible = false;
+                    // Set the master category visibility
+                    master.IsVisible = false;
 
-            // Set the categories visibility
-            GameCategories.Where(x => !x.IsMaster).ForEach(x => x.IsVisible = Data.CategorizeGames);
+                    // Set the categories visibility
+                    GameCategories.Where(x => !x.IsMaster).ForEach(x => x.IsVisible = Data.CategorizeGames);
 
-            // Set the selected index
-            SelectedCategoryIndex = Data.CategorizeGames ? GameCategories.FindItemIndex(x => !x.IsMaster) : GameCategories.FindItemIndex(x => x == master);
+                    // Set the selected index
+                    SelectedCategoryIndex = Data.CategorizeGames ? GameCategories.FindItemIndex(x => !x.IsMaster) : GameCategories.FindItemIndex(x => x == master);
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Refreshing game category visibility");
+
+                    throw;
+                }
+            }
         }
 
         /// <summary>
@@ -290,12 +316,12 @@ namespace RayCarrot.RCP.Metro
 
         #region Event Handlers
 
-        private void Data_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private async void Data_PropertyChangedAsync(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName != nameof(Data.CategorizeGames))
                 return;
 
-            RefreshCategorizedVisibility();
+            await RefreshCategorizedVisibilityAsync();
         }
 
         #endregion
