@@ -11,24 +11,19 @@
         Auto,
 
         /// <summary>
-        /// Version 1.12 - 0
-        /// </summary>
-        Ray_1_12_0,
-
-        /// <summary>
-        /// Version 1.20
-        /// </summary>
-        Ray_1_20,
-
-        /// <summary>
-        /// Version 1.21
-        /// </summary>
-        Ray_1_21,
-
-        /// <summary>
         /// Version 1.00
         /// </summary>
         Ray_1_00,
+
+        /// <summary>
+        /// Version 1.10
+        /// </summary>
+        Ray_1_10,
+
+        /// <summary>
+        /// Version 1.12 - 0
+        /// </summary>
+        Ray_1_12_0,
 
         /// <summary>
         /// Version 1.12 - 1
@@ -41,9 +36,14 @@
         Ray_1_12_2,
 
         /// <summary>
-        /// Version 1.10
+        /// Version 1.20
         /// </summary>
-        Ray_1_10,
+        Ray_1_20,
+
+        /// <summary>
+        /// Version 1.21
+        /// </summary>
+        Ray_1_21,
 
         /// <summary>
         /// Version 1.21 Chinese

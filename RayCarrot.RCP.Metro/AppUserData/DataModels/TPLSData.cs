@@ -10,7 +10,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// TPLS data for the Rayman 1 utility
     /// </summary>
-    public class TPLSData : BaseViewModel
+    public class TPLSData
     {
         #region Constructor
 

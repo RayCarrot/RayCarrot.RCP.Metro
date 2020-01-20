@@ -143,7 +143,6 @@ namespace RayCarrot.RCP.Metro
                         // Use LZMA
                         if (Settings.IPKVersion >= 8)
                         {
-                            // TODO-UPDATE: Test so this works in-game
                             // Compress the bytes
                             compressedBytes = SevenZipHelper.Compress(bytes);
                         }

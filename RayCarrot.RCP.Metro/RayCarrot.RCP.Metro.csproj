@@ -358,7 +358,6 @@
     <Compile Include="Pages\Utilities\UtilitiesPage.xaml.cs">
       <DependentUpon>UtilitiesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Converters\TPLSRaymanVersionEnumToComboBoxIndexConverter.cs" />
     <Compile Include="AppUserData\DataModels\FiestaRunEdition.cs" />
     <Compile Include="DataModels\Enums\Pages.cs" />
     <Compile Include="Pages\Games\GameCategoryViewModel.cs" />
@@ -689,7 +688,6 @@
     <Compile Include="Pages\About\AboutPageViewModel.cs" />
     <Compile Include="Games\Utilities\Rayman 2\Translations\R2TranslationUtilityViewModel.cs" />
     <Compile Include="Helpers\CommonUrls.cs" />
-    <Compile Include="ViewModels\TPLSDataViewModel.cs" />
     <Compile Include="DataModels\EventArgs\ValueEventArgs.cs" />
     <Compile Include="AppUserData\DataModels\TPLSData.cs" />
     <Compile Include="Games\Config\ViewModels\Ray_Origins_Legends_ConfigViewModel.cs" />

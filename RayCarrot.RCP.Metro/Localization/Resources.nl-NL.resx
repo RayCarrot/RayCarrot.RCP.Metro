@@ -393,9 +393,6 @@
   <data name="Config_ButtonMappingReset" xml:space="preserve">
     <value>Beginwaarden</value>
   </data>
-  <data name="Config_ResolutionRRRInfo" xml:space="preserve">
-    <value>Het kiezen van een resolutie met een aspect ratio anders dan 4:3, zal resulteren in een opgerekt beeld, zelfs wanneer de interne breedbeeldoptie ingeschakeld is</value>
-  </data>
   <data name="Config_RRRScreenMode" xml:space="preserve">
     <value>Schermmodus</value>
   </data>
@@ -564,9 +561,6 @@
   <data name="R1U_TPLSInfo" xml:space="preserve">
     <value>Standaard biedt de PC-versie van Rayman minder tracks dan de PlaySation versie en biedt eerstgenoemde geen specifieke songs voor elk gedeelte van een level. Door dit hulpprogramma te gebruiken, zal het spel gestart worden mét de PlayStation soundtrack, als toevoeging op de standaard.</value>
   </data>
-  <data name="R1U_TPLSInfo2" xml:space="preserve">
-    <value>NB Dit hulpprogramma werkt wellicht niet in versie 0.74-2 (of hoger) van DOSBox. In versie 0.74 zal het wel gewoon werken.</value>
-  </data>
   <data name="R1U_TPLSInstall" xml:space="preserve">
     <value>Installeren</value>
   </data>
@@ -581,9 +575,6 @@
   </data>
   <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
     <value>Rayman versie</value>
-  </data>
-  <data name="R1U_TPLSDosBoxVersion" xml:space="preserve">
-    <value>DOSBox versie</value>
   </data>
   <data name="R1U_CompleteOSTHeader" xml:space="preserve">
     <value>Volledige Soundtrack</value>
@@ -1070,25 +1061,6 @@ Opnieuw proberen?</value>
   <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
     <value>Dit hulpprogramma vereist dat er extra bestanden worden gedownload</value>
   </data>
-  <data name="TPLS_Error" xml:space="preserve">
-    <value>Het hulpprogramma voor de PlayStation soundtrack is gecrasht; de volgende foutmelding werd verkregen: {0}
-Herstarten?</value>
-  </data>
-  <data name="TPLS_ErrorHeader" xml:space="preserve">
-    <value>TPLS Fout</value>
-  </data>
-  <data name="TPLS_PlaybackError_FileNotFound" xml:space="preserve">
-    <value>De soundtrack ontbreekt</value>
-  </data>
-  <data name="TPLS_PlaybackErrorHeader" xml:space="preserve">
-    <value>Afspeelfout</value>
-  </data>
-  <data name="TPLS_PlaybackError_InvalidData" xml:space="preserve">
-    <value>Het soundtrack bestand heeft een verkeerde bestandsindeling</value>
-  </data>
-  <data name="TPLS_PlaybackError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het afspelen van de soundtrack</value>
-  </data>
   <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
     <value>Ongeldige bestandsindeling</value>
   </data>
@@ -1278,12 +1250,6 @@ Herstarten?</value>
   <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
     <value>1.21</value>
   </data>
-  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
-    <value>0.74</value>
-  </data>
-  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
-    <value>SVN Daum</value>
-  </data>
   <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
     <value>Installatie mislukt.</value>
   </data>
@@ -1310,12 +1276,6 @@ Herstarten?</value>
   </data>
   <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
     <value>Vervangen soundtrack mislukt.</value>
-  </data>
-  <data name="R1U_TPLSInvalidDirectory" xml:space="preserve">
-    <value>De installatiemap van het spel bevat geen geldige installatie</value>
-  </data>
-  <data name="R1U_TPLSInvalidDirectoryHeader" xml:space="preserve">
-    <value>Ongeldige Map</value>
   </data>
   <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
     <value>{0}/{1} bestanden zijn gevonden voor vervanging. Dit kan verscheidene downloads vereisen, afhankelijk van de locaties.</value>
@@ -2914,21 +2874,6 @@ Foutmelding: {1}</value>
   <data name="GameDisplay_DownloadUplay" xml:space="preserve">
     <value>Downloaden via Uplay</value>
   </data>
-  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™ (.cnt)</value>
-  </data>
-  <data name="OSU_CNTExplorer_Info" xml:space="preserve">
-    <value>Deze tool stelt je in staat om de .cnt archiefbestanden in te zien/wijzigen, waarbij het importeren/exporteren van speltexturen mogelijk wordt gemaakt</value>
-  </data>
-  <data name="ArchiveExplorer_Open" xml:space="preserve">
-    <value>Open Archive Explorer™</value>
-  </data>
-  <data name="About_Credits_Droolie" xml:space="preserve">
-    <value>Rayman reverse engineering</value>
-  </data>
-  <data name="About_Credits_Hakyra" xml:space="preserve">
-    <value>Spaanse (Spanje) programmavertaling, Catalaanse (Catalonië) programmavertaling</value>
-  </data>
   <data name="Archive_ImportFileHeader" xml:space="preserve">
     <value>Selecteer bestand voor import</value>
   </data>
@@ -3005,6 +2950,21 @@ Mipmaps = {8}</value>
   </data>
   <data name="Archive_CriticalError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden in de Archive Explorer™ en deze moest afgesloten worden</value>
+  </data>
+  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™ (.cnt)</value>
+  </data>
+  <data name="OSU_CNTExplorer_Info" xml:space="preserve">
+    <value>Deze tool stelt je in staat om de .cnt archiefbestanden in te zien/wijzigen, waarbij het importeren/exporteren van speltexturen mogelijk wordt gemaakt</value>
+  </data>
+  <data name="ArchiveExplorer_Open" xml:space="preserve">
+    <value>Open Archive Explorer™</value>
+  </data>
+  <data name="About_Credits_Droolie" xml:space="preserve">
+    <value>Rayman reverse engineering</value>
+  </data>
+  <data name="About_Credits_Hakyra" xml:space="preserve">
+    <value>Spaanse (Spanje) programmavertaling, Catalaanse (Catalonië) programmavertaling</value>
   </data>
   <data name="Archive_ExportMipmaps" xml:space="preserve">
     <value>Exporteren mipmaps</value>

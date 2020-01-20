@@ -2362,15 +2362,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Setting the resolution to an aspect ratio other than 4:3 will stretch the game, even with the internal widescreen option turned on.
-        /// </summary>
-        public static string Config_ResolutionRRRInfo {
-            get {
-                return ResourceManager.GetString("Config_ResolutionRRRInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The vertical screen resolution.
         /// </summary>
         public static string Config_ResolutionVerticalInfo {
@@ -6519,24 +6510,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.74.
-        /// </summary>
-        public static string R1U_TPLS_DosBoxVersions_0_74 {
-            get {
-                return ResourceManager.GetString("R1U_TPLS_DosBoxVersions_0_74", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to SVN Daum.
-        /// </summary>
-        public static string R1U_TPLS_DosBoxVersions_SVN_Daum {
-            get {
-                return ResourceManager.GetString("R1U_TPLS_DosBoxVersions_SVN_Daum", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 1.00.
         /// </summary>
         public static string R1U_TPLS_RayVersions_1_00 {
@@ -6636,15 +6609,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DOSBox version.
-        /// </summary>
-        public static string R1U_TPLSDosBoxVersion {
-            get {
-                return ResourceManager.GetString("R1U_TPLSDosBoxVersion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to PlayStation Soundtrack.
         /// </summary>
         public static string R1U_TPLSHeader {
@@ -6659,15 +6623,6 @@ namespace RayCarrot.RCP.Metro {
         public static string R1U_TPLSInfo {
             get {
                 return ResourceManager.GetString("R1U_TPLSInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to NOTE: This utility may not work on DOSBox versions 0.74-2 or higher. Version 0.74 will still work..
-        /// </summary>
-        public static string R1U_TPLSInfo2 {
-            get {
-                return ResourceManager.GetString("R1U_TPLSInfo2", resourceCulture);
             }
         }
         
@@ -6695,24 +6650,6 @@ namespace RayCarrot.RCP.Metro {
         public static string R1U_TPLSInstallationFailedHeader {
             get {
                 return ResourceManager.GetString("R1U_TPLSInstallationFailedHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The game install directory does not contain a valid installation.
-        /// </summary>
-        public static string R1U_TPLSInvalidDirectory {
-            get {
-                return ResourceManager.GetString("R1U_TPLSInvalidDirectory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid Directory.
-        /// </summary>
-        public static string R1U_TPLSInvalidDirectoryHeader {
-            get {
-                return ResourceManager.GetString("R1U_TPLSInvalidDirectoryHeader", resourceCulture);
             }
         }
         
@@ -6933,7 +6870,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It is additionally recommended to also replace the game&apos;s textures file with a modified version to get the full font and characters required by this translation..
+        ///   Looks up a localized string similar to It is additionally recommended to replace the game&apos;s textures file with a modified version to get the full font and characters required by this translation..
         /// </summary>
         public static string R2U_Translations_ReplaceTextures {
             get {
@@ -8265,61 +8202,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The PlayStation soundtrack utility crashed with the error message of: {0}
-        ///Restart?.
-        /// </summary>
-        public static string TPLS_Error {
-            get {
-                return ResourceManager.GetString("TPLS_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TPLS Error.
-        /// </summary>
-        public static string TPLS_ErrorHeader {
-            get {
-                return ResourceManager.GetString("TPLS_ErrorHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred playing the soundtrack.
-        /// </summary>
-        public static string TPLS_PlaybackError {
-            get {
-                return ResourceManager.GetString("TPLS_PlaybackError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The soundtrack file is missing.
-        /// </summary>
-        public static string TPLS_PlaybackError_FileNotFound {
-            get {
-                return ResourceManager.GetString("TPLS_PlaybackError_FileNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The soundtrack file is in an incorrect format.
-        /// </summary>
-        public static string TPLS_PlaybackError_InvalidData {
-            get {
-                return ResourceManager.GetString("TPLS_PlaybackError_InvalidData", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Playback Error.
-        /// </summary>
-        public static string TPLS_PlaybackErrorHeader {
-            get {
-                return ResourceManager.GetString("TPLS_PlaybackErrorHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The Rayman version could not be updated.
         /// </summary>
         public static string TPLS_UpdateVersionError {
@@ -8778,15 +8660,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_Converter_Header {
             get {
                 return ResourceManager.GetString("Utilities_Converter_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Include mipmaps.
-        /// </summary>
-        public static string Utilities_Converter_IncludeMipmaps {
-            get {
-                return ResourceManager.GetString("Utilities_Converter_IncludeMipmaps", resourceCulture);
             }
         }
         

@@ -428,13 +428,13 @@ Configuración de las teclas del teclado</value>
     <value>Reiniciar</value>
     <comment>Reiniciar</comment>
   </data>
-  <data name="Config_ResolutionRRRInfo" xml:space="preserve">
-    <value>Seleccionando una resolución distinta a una que tenga una relación de Aspecto a 4:3 mostrará una imagen destorisionada.
-Incluso si la opción interna de pantalla ancha esta activada.</value>
-  </data>
   <data name="Config_RRRScreenMode" xml:space="preserve">
     <value>Modo de pantalla</value>
     <comment>Modo de pantalla</comment>
+  </data>
+  <data name="Config_RRRScreenModeInfo" xml:space="preserve">
+    <value> 
+Dependiendo de la resolución seleccionada, puede que la imagen termine distorisionada o puede crashear en ciertas resoluciones no soportadas. Seleccionando la opción 4:3 hara que el juego mantenga su relación de aspecto correcta.</value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
     <value>Rayman Control Panel™ es una aplicación de Código Abierto creada por RayCarrot. Es un simple archivo .EXE con la intención de modificar, alterar y aplicar parches creados por fans a los juegos de Rayman en windows. Este proyecto se va actualizando y ofreciendo nuevas funcionalidades. Muchas de estas utilidades han sido creadas con la ayuda de varios miembros de la comunidad de Rayman. Se ha dado credito a todas las personas que han ayudado a crear dichos parches.</value>
@@ -498,9 +498,15 @@ Incluso si la opción interna de pantalla ancha esta activada.</value>
     <value>Nível de usuario</value>
     <comment>Nível de usuario</comment>
   </data>
+  <data name="Settings_UserLevelInfo" xml:space="preserve">
+    <value>El Nivel de usuario determina que opciones y información estan disponibles dentro de la aplicación. Como más alto sea el nivel de usuario, más avanzadas serán las opciones y más información será mostrada hacia el usuario</value>
+  </data>
   <data name="Settings_UserLevelNormal" xml:space="preserve">
     <value>Normal</value>
     <comment>Normal</comment>
+  </data>
+  <data name="Settings_UserLevelNormalInfo" xml:space="preserve">
+    <value>Usuario Normal - Opción recomendada para la mayoría de usuarios. Ofrece todas las opciones por defecto. Sin detalles técnicos ni opciones mas avanzadas.</value>
   </data>
   <data name="Settings_UserLevelAdvanced" xml:space="preserve">
     <value>Avanzado</value>
@@ -549,9 +555,19 @@ Incluso si la opción interna de pantalla ancha esta activada.</value>
   <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
     <value>Muestra todos los juegos en esta pagina, incluso si no han sido instalados</value>
   </data>
+  <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
+    <value>Muestra la barra de progreso en la icona de la barraa de tareas</value>
+  </data>
   <data name="Settings_DosBoxHeader" xml:space="preserve">
     <value>DOSBox</value>
     <comment>DOSBox</comment>
+  </data>
+  <data name="Settings_DosBoxPath" xml:space="preserve">
+    <value>Ruta del archivo de DOSBox </value>
+  </data>
+  <data name="Settings_DosBoxPathInfo" xml:space="preserve">
+    <value>
+</value>
   </data>
   <data name="Settings_BackupLocation" xml:space="preserve">
     <value>Localización de Copia de Seguridad</value>
@@ -592,10 +608,6 @@ Incluso si la opción interna de pantalla ancha esta activada.</value>
   <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
     <value>Versión de Rayman</value>
     <comment>Versión de Rayman</comment>
-  </data>
-  <data name="R1U_TPLSDosBoxVersion" xml:space="preserve">
-    <value>Versión de DOSBox</value>
-    <comment>Versión de DOSBox</comment>
   </data>
   <data name="R1U_CompleteOSTHeader" xml:space="preserve">
     <value>Banda sonora completa</value>
@@ -657,6 +669,9 @@ Incluso si la opción interna de pantalla ancha esta activada.</value>
   <data name="ROU_UpdateHeader" xml:space="preserve">
     <value>Actualizar a 1.02 (Versión de disco)</value>
     <comment>Actualizar a 1.02 (Versión de disco)</comment>
+  </data>
+  <data name="ROU_UpdateInfo" xml:space="preserve">
+    <value>En el caso que Rayman Origins no este actualizado a la versión 1.0.2 (La última) utiliza esta herramienta para actualizar el juego</value>
   </data>
   <data name="ROU_UpdateUpdate" xml:space="preserve">
     <value>Actualizar</value>
@@ -781,6 +796,9 @@ Incluso si la opción interna de pantalla ancha esta activada.</value>
   <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
     <value>No se ha encontrado el juego</value>
   </data>
+  <data name="LocateGame_Error" xml:space="preserve">
+    <value>Ha ocurrido un error al localizar el juego</value>
+  </data>
   <data name="LocateGame_ErrorHeader" xml:space="preserve">
     <value>Error localizando el juego
 </value>
@@ -795,64 +813,8 @@ Incluso si la opción interna de pantalla ancha esta activada.</value>
   <data name="Update_UpdateAvailableHeader" xml:space="preserve">
     <value>Se ha encontrado una nueva versión</value>
   </data>
-  <data name="Archive_ImportNoFilesError" xml:space="preserve">
-    <value>No se han encontrado archivos de importación.
-</value>
-  </data>
-  <data name="Archive_ImportFailsError" xml:space="preserve">
-    <value>Algunos archivos han fallado en la importación</value>
-  </data>
-  <data name="Archive_ImportFilesSuccess" xml:space="preserve">
-    <value>Los archivos han sido importados</value>
-  </data>
-  <data name="Archive_ExportFilesSuccess" xml:space="preserve">
-    <value>Los archivos han sido exportados</value>
-  </data>
-  <data name="Archive_ImportFileSuccess" xml:space="preserve">
-    <value>El archivo se ha importado
-</value>
-  </data>
-  <data name="Archive_ExportFileSuccess" xml:space="preserve">
-    <value>El archivo se ha exportado</value>
-  </data>
-  <data name="Archive_ExportError" xml:space="preserve">
-    <value>{0} no se ha podido exportar</value>
-  </data>
-  <data name="Archive_ImportError" xml:space="preserve">
-    <value>{0} no se ha podido importar</value>
-  </data>
-  <data name="Archive_RepackingStatus" xml:space="preserve">
-    <value>Reempaquetando archivo</value>
-  </data>
-  <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
-    <value>
-</value>
-  </data>
-  <data name="Config_RRRScreenModeInfo" xml:space="preserve">
-    <value> 
-Dependiendo de la resolución seleccionada, puede que la imagen termine distorisionada o puede crashear en ciertas resoluciones no soportadas. Seleccionando la opción 4:3 hara que el juego mantenga su relación de aspecto correcta.</value>
-  </data>
-  <data name="Settings_UserLevelInfo" xml:space="preserve">
-    <value>El Nivel de usuario determina que opciones y información estan disponibles dentro de la aplicación. Como más alto sea el nivel de usuario, más avanzadas serán las opciones y más información será mostrada hacia el usuario</value>
-  </data>
-  <data name="Settings_UserLevelNormalInfo" xml:space="preserve">
-    <value>Usuario Normal - Opción recomendada para la mayoría de usuarios. Ofrece todas las opciones por defecto. Sin detalles técnicos ni opciones mas avanzadas.</value>
-  </data>
-  <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
-    <value>Muestra la barra de progreso en la icona de la barraa de tareas</value>
-  </data>
-  <data name="Settings_DosBoxPath" xml:space="preserve">
-    <value>Ruta del archivo de DOSBox </value>
-  </data>
-  <data name="Settings_DosBoxPathInfo" xml:space="preserve">
-    <value>
-</value>
-  </data>
-  <data name="ROU_UpdateInfo" xml:space="preserve">
-    <value>En el caso que Rayman Origins no este actualizado a la versión 1.0.2 (La última) utiliza esta herramienta para actualizar el juego</value>
-  </data>
-  <data name="LocateGame_Error" xml:space="preserve">
-    <value>Ha ocurrido un error al localizar el juego</value>
+  <data name="Help_RCP" xml:space="preserve">
+    <value>Rayman Control Panel™</value>
   </data>
   <data name="Help_RCP_CompatibilityHeader" xml:space="preserve">
     <value>Compatibilidad</value>
@@ -926,11 +888,163 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
     <value>Configuración</value>
     <comment>Configuración</comment>
   </data>
-  <data name="Archive_ExportMipmaps" xml:space="preserve">
-    <value>Exportar mipmaps</value>
+  <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
+    <value>trj8p</value>
   </data>
-  <data name="Help_RCP" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
+  <data name="Cheats_R1_99LivesInput2" xml:space="preserve">
+    <value>raylives</value>
+  </data>
+  <data name="Cheats_R1_FistPowerInput1" xml:space="preserve">
+    <value>2x2rmfmf</value>
+  </data>
+  <data name="Cheats_R1_FistPowerInput2" xml:space="preserve">
+    <value>goldfist</value>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput1" xml:space="preserve">
+    <value>en5gol2g</value>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput2" xml:space="preserve">
+    <value>power</value>
+  </data>
+  <data name="Cheats_R1_FullHealthInput1" xml:space="preserve">
+    <value>kom0ogdk</value>
+  </data>
+  <data name="Cheats_R1_FullHealthInput2" xml:space="preserve">
+    <value>raypoint</value>
+  </data>
+  <data name="Cheats_R1_10TingsInput1" xml:space="preserve">
+    <value>86e40g91</value>
+  </data>
+  <data name="Cheats_R1_10TingsInput2" xml:space="preserve">
+    <value>raywiz</value>
+  </data>
+  <data name="Cheats_R1_SkipLevelInput1" xml:space="preserve">
+    <value>o8feh</value>
+  </data>
+  <data name="Cheats_R1_SkipLevelInput2" xml:space="preserve">
+    <value>winmap</value>
+  </data>
+  <data name="Cheats_R1_100RefreshRateInput2" xml:space="preserve">
+    <value>freq10</value>
+  </data>
+  <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
+    <value>freq80</value>
+  </data>
+  <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
+    <value>lens</value>
+    <comment>lens</comment>
+  </data>
+  <data name="Cheats_R1_AllLevelsInput1" xml:space="preserve">
+    <value>4ctrepfj</value>
+    <comment>4ctrepfj</comment>
+  </data>
+  <data name="Cheats_R1_AllLevelsInput2" xml:space="preserve">
+    <value>alworld</value>
+    <comment>alworld</comment>
+  </data>
+  <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
+    <value>b76b7081</value>
+    <comment>b76b7082</comment>
+  </data>
+  <data name="Cheats_R1_BreakoutInput2" xml:space="preserve">
+    <value>cbray</value>
+    <comment>cbray</comment>
+  </data>
+  <data name="Cheats_R2_FistUpgradeInput" xml:space="preserve">
+    <value>glowfist</value>
+    <comment>glowfist</comment>
+  </data>
+  <data name="Cheats_R2_RestoreHealthInput" xml:space="preserve">
+    <value>gimmelife</value>
+    <comment>gimmelife</comment>
+  </data>
+  <data name="Cheats_R2_5LumsInput" xml:space="preserve">
+    <value>gimmelumz</value>
+    <comment>gimmelumz</comment>
+  </data>
+  <data name="Cheats_R2_LevelSelectionInput" xml:space="preserve">
+    <value>gothere</value>
+    <comment>gothere</comment>
+  </data>
+  <data name="Cheats_R2_GrappleInput" xml:space="preserve">
+    <value>hangon</value>
+    <comment>hangon</comment>
+  </data>
+  <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
+    <value>NOMOVIES</value>
+    <comment>NOMOVIES</comment>
+  </data>
+  <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
+    <value>allvign</value>
+    <comment>allvign</comment>
+  </data>
+  <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
+    <value>nomoremurfy</value>
+    <comment>nomoremurfy</comment>
+  </data>
+  <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
+    <value>playjeff</value>
+    <comment>playjeff</comment>
+  </data>
+  <data name="Cheats_R2_MenezisInput" xml:space="preserve">
+    <value>shootemup</value>
+    <comment>shootemup</comment>
+  </data>
+  <data name="FiestaRunVersion_Preload" xml:space="preserve">
+    <value>Preload Edition</value>
+    <comment>Preload Edition</comment>
+  </data>
+  <data name="FiestaRunVersion_Win10" xml:space="preserve">
+    <value>Windows 10 Edition</value>
+    <comment>Windows 10 Edition</comment>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
+    <value>1.10</value>
+  </data>
+  <data name="GoHomeConfig_BigFile" xml:space="preserve">
+    <value>Big file</value>
+    <comment>Big file</comment>
+  </data>
+  <data name="GamesPage_Category_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+    <comment>Rayman</comment>
+  </data>
+  <data name="Links_Community_RaymanReanimated" xml:space="preserve">
+    <value>Rayman Reanimated</value>
+    <comment>Rayman Reanimated</comment>
+  </data>
+  <data name="Archive_ImportNoFilesError" xml:space="preserve">
+    <value>No se han encontrado archivos de importación.
+</value>
+  </data>
+  <data name="Archive_ImportFailsError" xml:space="preserve">
+    <value>Algunos archivos han fallado en la importación</value>
+  </data>
+  <data name="Archive_ImportFilesSuccess" xml:space="preserve">
+    <value>Los archivos han sido importados</value>
+  </data>
+  <data name="Archive_ExportFilesSuccess" xml:space="preserve">
+    <value>Los archivos han sido exportados</value>
+  </data>
+  <data name="Archive_ImportFileSuccess" xml:space="preserve">
+    <value>El archivo se ha importado
+</value>
+  </data>
+  <data name="Archive_ExportFileSuccess" xml:space="preserve">
+    <value>El archivo se ha exportado</value>
+  </data>
+  <data name="Archive_ExportError" xml:space="preserve">
+    <value>{0} no se ha podido exportar</value>
+  </data>
+  <data name="Archive_ImportError" xml:space="preserve">
+    <value>{0} no se ha podido importar</value>
+  </data>
+  <data name="Archive_RepackingStatus" xml:space="preserve">
+    <value>Reempaquetando archivo</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
+    <value>
+</value>
   </data>
   <data name="Archive_Title" xml:space="preserve">
     <value>Archive Explorer™</value>
@@ -939,6 +1053,9 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="OSU_CNTExplorer_Header" xml:space="preserve">
     <value>Archive Explorer™ (.cnt)</value>
     <comment>Archive Explorer™ (.cnt)</comment>
+  </data>
+  <data name="Archive_ExportMipmaps" xml:space="preserve">
+    <value>Exportar mipmaps</value>
   </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
     <value>Archive Explorer™</value>

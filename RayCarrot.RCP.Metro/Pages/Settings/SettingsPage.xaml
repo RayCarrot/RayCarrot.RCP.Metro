@@ -247,9 +247,7 @@
                                    Text="{Resx Settings_DosBoxPath}"
                                    Margin="0 0 0 8" />
 
-                        <!-- IDEA: Localize -->
-
-                        <rwpf:BrowseBox FileFilter="Exe Files (.exe)|*.exe|All Files (*.*)|*.*"
+                        <rwpf:BrowseBox FileFilter="Exe (*.exe)|*.exe"
                                         SelectedPath="{Binding Path=DosBoxPath}"
                                         ToolTip="{Resx Settings_DosBoxPathInfo}"
                                         BrowseType="File"
@@ -265,7 +263,7 @@
 
                         <!-- IDEA: Localize -->
 
-                        <rwpf:BrowseBox FileFilter="Exe Files (.exe)|*.exe|All Files (*.*)|*.*"
+                        <rwpf:BrowseBox FileFilter="Conf (*.conf)|*.conf"
                                         SelectedPath="{Binding Path=DosBoxConfig}"
                                         ToolTip="{Resx Settings_OptionalDosBoxConfigPathInfo}"
                                         BrowseType="File"

@@ -423,9 +423,6 @@
   <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
     <value>Versión de Rayman</value>
   </data>
-  <data name="R1U_TPLSDosBoxVersion" xml:space="preserve">
-    <value>Versión de DOSBox</value>
-  </data>
   <data name="R1U_CompleteOSTHeader" xml:space="preserve">
     <value>Banda sonora completa</value>
   </data>
@@ -660,15 +657,6 @@ Notícias:
   <data name="Installer_Canceled" xml:space="preserve">
     <value>Instalación cancelada</value>
   </data>
-  <data name="TPLS_ErrorHeader" xml:space="preserve">
-    <value>Error TPLS</value>
-  </data>
-  <data name="TPLS_PlaybackError_FileNotFound" xml:space="preserve">
-    <value>Falta el archivo de la banda sonora</value>
-  </data>
-  <data name="TPLS_PlaybackErrorHeader" xml:space="preserve">
-    <value>Error de playback</value>
-  </data>
   <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
     <value>Formato es inválido</value>
   </data>
@@ -750,12 +738,6 @@ Notícias:
   <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
     <value>1.21</value>
   </data>
-  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
-    <value>0.74</value>
-  </data>
-  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
-    <value>SVN Daum</value>
-  </data>
   <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
     <value>Instalación fallida</value>
   </data>
@@ -767,9 +749,6 @@ Notícias:
   </data>
   <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
     <value>Desinstalación completa</value>
-  </data>
-  <data name="R1U_TPLSInvalidDirectoryHeader" xml:space="preserve">
-    <value>Directório inválido</value>
   </data>
   <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
     <value>Reemplazar archivo</value>

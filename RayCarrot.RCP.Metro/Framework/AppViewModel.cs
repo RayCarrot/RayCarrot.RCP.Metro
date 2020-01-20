@@ -543,7 +543,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentAppVersion => new Version(9, 0, 0, 3);
+        public Version CurrentAppVersion => new Version(9, 0, 0, 4);
 
         /// <summary>
         /// Indicates if the current version is a beta version

@@ -387,9 +387,6 @@
   <data name="Config_ButtonMappingReset" xml:space="preserve">
     <value>Reset</value>
   </data>
-  <data name="Config_ResolutionRRRInfo" xml:space="preserve">
-    <value>Ustawienie rozdzielczości w aspekcie obrazu innym niż 4:3 rozciągnie gre, nawet z wbudowaną opcją szerokiego ekranu włączoną.</value>
-  </data>
   <data name="Config_RRRScreenMode" xml:space="preserve">
     <value>Tryb ekranu</value>
   </data>
@@ -402,11 +399,8 @@
   <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
     <value>1.21</value>
   </data>
-  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
-    <value>0.74</value>
-  </data>
-  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
-    <value>SVN Daum</value>
+  <data name="Help_RCP" xml:space="preserve">
+    <value>Rayman Control Panel™</value>
   </data>
   <data name="Lang_English" xml:space="preserve">
     <value>Angielski</value>
@@ -661,9 +655,6 @@
   <data name="Links_Community_RaymanReanimated" xml:space="preserve">
     <value>Rayman Reanimated</value>
     <comment>Rayman Reanimated</comment>
-  </data>
-  <data name="Help_RCP" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
   </data>
   <data name="Archive_Title" xml:space="preserve">
     <value>Archive Explorer™</value>

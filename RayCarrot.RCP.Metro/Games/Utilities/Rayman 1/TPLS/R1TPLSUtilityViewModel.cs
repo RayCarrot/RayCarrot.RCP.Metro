@@ -28,6 +28,12 @@ namespace RayCarrot.RCP.Metro
             else if (Data.TPLSData == null)
                 Data.TPLSData = new TPLSData(CommonPaths.TPLSDir);
 
+            if (Data.TPLSData != null)
+            {
+                _selectedRaymanVersion = Data.TPLSData.RaymanVersion;
+                _isEnabled = Data.TPLSData.IsEnabled;
+            }
+
             VerifyTPLS();
         }
 

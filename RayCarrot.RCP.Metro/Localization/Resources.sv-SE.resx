@@ -393,9 +393,6 @@
   <data name="Config_ButtonMappingReset" xml:space="preserve">
     <value>Återställ</value>
   </data>
-  <data name="Config_ResolutionRRRInfo" xml:space="preserve">
-    <value>Om den valda upplösningen har ett bildförhållande annat än 4:3 kommer bilden att sträckas ut, även om bredbild är på i spelets inställningar</value>
-  </data>
   <data name="Config_RRRScreenMode" xml:space="preserve">
     <value>Skärmläge</value>
   </data>
@@ -565,9 +562,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="R1U_TPLSInfo" xml:space="preserve">
     <value>Som standard har PC-versionen av Rayman färre spår än PlayStation-versionen och har inga specifika spår för varje del av nivåerna. Genom att aktivera det här verktyget körs spelet med PlayStation-musiken istället.</value>
   </data>
-  <data name="R1U_TPLSInfo2" xml:space="preserve">
-    <value>OBS: Det här verktyget fungerar eventuellt inte på DOSBox versioner 0.74-2 eller högre. Version 0.74 fungerar fortfarande.</value>
-  </data>
   <data name="R1U_TPLSInstall" xml:space="preserve">
     <value>Installera</value>
   </data>
@@ -582,9 +576,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   </data>
   <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
     <value>Rayman versionen</value>
-  </data>
-  <data name="R1U_TPLSDosBoxVersion" xml:space="preserve">
-    <value>DOSBox versionen</value>
   </data>
   <data name="R1U_CompleteOSTHeader" xml:space="preserve">
     <value>Komplett musik</value>
@@ -1071,25 +1062,6 @@ Försök igen?"</value>
   <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
     <value>Det här verktyget kräver att ytterligare filer laddas ner</value>
   </data>
-  <data name="TPLS_Error" xml:space="preserve">
-    <value>PlayStation-musik verktyget kraschade med följande meddelande: {0}
-Starta om?</value>
-  </data>
-  <data name="TPLS_ErrorHeader" xml:space="preserve">
-    <value>TPLS error</value>
-  </data>
-  <data name="TPLS_PlaybackError_FileNotFound" xml:space="preserve">
-    <value>Musikfilen saknas</value>
-  </data>
-  <data name="TPLS_PlaybackErrorHeader" xml:space="preserve">
-    <value>Uppspelningsfel</value>
-  </data>
-  <data name="TPLS_PlaybackError_InvalidData" xml:space="preserve">
-    <value>Musikfilen är i fel format</value>
-  </data>
-  <data name="TPLS_PlaybackError" xml:space="preserve">
-    <value>Ett fel inträffade när musiken skulle spelas</value>
-  </data>
   <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
     <value>Ogiltigt format</value>
   </data>
@@ -1279,12 +1251,6 @@ Starta om?</value>
   <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
     <value>1.21</value>
   </data>
-  <data name="R1U_TPLS_DosBoxVersions_0_74" xml:space="preserve">
-    <value>0.74</value>
-  </data>
-  <data name="R1U_TPLS_DosBoxVersions_SVN_Daum" xml:space="preserve">
-    <value>SVN Daum</value>
-  </data>
   <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
     <value>Installationen misslyckades</value>
   </data>
@@ -1311,12 +1277,6 @@ Starta om?</value>
   </data>
   <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
     <value>Installationen av PlayStation musik-verktyget misslyckades</value>
-  </data>
-  <data name="R1U_TPLSInvalidDirectory" xml:space="preserve">
-    <value>Spelinstallationen är inte giltig</value>
-  </data>
-  <data name="R1U_TPLSInvalidDirectoryHeader" xml:space="preserve">
-    <value>Ogiltig installation</value>
   </data>
   <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
     <value>{0}/{1} hittades att ersätta. Det kan kräva flera nedladdningar, beroende på filernas platser.</value>
@@ -1372,6 +1332,15 @@ Starta om?</value>
   <data name="R2U_Translations_RevertTextures" xml:space="preserve">
     <value>Eftersom grafikfilen har ändrats av den tidigare översättningen rekommenderas det att den ersätts med den ursprungliga versionen.</value>
   </data>
+  <data name="R2U_Translations_ReplaceTextures" xml:space="preserve">
+    <value>Det är rekommenderat att ersätta grafikfilen med en modifierad version så att texten i spelet visas korrekt.</value>
+  </data>
+  <data name="R2U_Translations_ReplaceTexturesHeader" xml:space="preserve">
+    <value>Bekräfta grafikfil-ersättningen</value>
+  </data>
+  <data name="R2U_Translations_Success" xml:space="preserve">
+    <value>Filerna har ersatts</value>
+  </data>
   <data name="Download_OperationCanceling" xml:space="preserve">
     <value>Operationen håller redan på att avbrytas</value>
   </data>
@@ -1392,6 +1361,9 @@ Starta om?</value>
   </data>
   <data name="Download_Title" xml:space="preserve">
     <value>Ladda ner</value>
+  </data>
+  <data name="Help_RCP" xml:space="preserve">
+    <value>Rayman Control Panel™</value>
   </data>
   <data name="Lang_English" xml:space="preserve">
     <value>Engelska</value>
@@ -1775,9 +1747,6 @@ Starta om?</value>
   <data name="Links_Community_RaymanReanimated" xml:space="preserve">
     <value>Rayman Reanimated</value>
     <comment>Rayman Reanimated</comment>
-  </data>
-  <data name="Help_RCP" xml:space="preserve">
-    <value>Rayman Control Panel™</value>
   </data>
   <data name="Archive_Title" xml:space="preserve">
     <value>Archive Explorer™</value>
