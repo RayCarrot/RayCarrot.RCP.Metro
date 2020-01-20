@@ -2951,7 +2951,7 @@ Tamanho de ficheiro = {3}
 Modificado = {4}
 Encriptado = {5}
 Transparente = {6}
-Offset = {7}
+Pointer = {7}
 Mipmaps = {8}</value>
   </data>
   <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
@@ -3009,25 +3009,25 @@ Pointer = {8}
 </value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
-    <value>Size = {1} x {2}</value>
+    <value>Utilitários</value>
   </data>
   <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
-    <value>Uses TEX = {3}</value>
+    <value>Arquivos OpenSpace (.cnt)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
-    <value>Image format = {4}</value>
+    <value>Arquivos UbiArt (.ipk)</value>
   </data>
   <data name="Utilities_Converter_GFHeader" xml:space="preserve">
-    <value>Compressed = {5}</value>
+    <value>Ficheiros de Textura OpenSpace (.gf)</value>
   </data>
   <data name="Utilities_Converter_Convert" xml:space="preserve">
-    <value>File size = {6}</value>
+    <value>Converter</value>
   </data>
   <data name="Utilities_Converter_ConvertBack" xml:space="preserve">
-    <value>Compressed file size = {7}</value>
+    <value>Converter de volta</value>
   </data>
   <data name="Utilities_Converter_LOCHeader" xml:space="preserve">
-    <value>Pointer = {8}</value>
+    <value>Ficheiros de Localização UbiArt (.loc/loc8)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
     <value>Archive Explorer™</value>
@@ -3084,31 +3084,31 @@ Pointer = {8}
     <value>Total</value>
   </data>
   <data name="Progression_R3_Level1Header" xml:space="preserve">
-    <value>O Concílio das Fadas</value>
+    <value>The Fairy Council</value>
   </data>
   <data name="Progression_R3_Level2Header" xml:space="preserve">
-    <value>Floresta da Folha-Clara</value>
+    <value>Clearleaf Forest</value>
   </data>
   <data name="Progression_R3_Level3Header" xml:space="preserve">
-    <value>O Lodaçal Sombrio</value>
+    <value>The Bog of Murk</value>
   </data>
   <data name="Progression_R3_Level4Header" xml:space="preserve">
-    <value>A Terra dos Mortos Vivos</value>
+    <value>The Land of the Livid Dead</value>
   </data>
   <data name="Progression_R3_Level5Header" xml:space="preserve">
-    <value>O Deserto dos Knaaren</value>
+    <value>The Desert of the Knaaren</value>
   </data>
   <data name="Progression_R3_Level6Header" xml:space="preserve">
-    <value>O Maior Atalho</value>
+    <value>The Longest Shortcut</value>
   </data>
   <data name="Progression_R3_Level7Header" xml:space="preserve">
-    <value>O Cume para Além das Nuvens</value>
+    <value>The Summit Beyond the Clouds</value>
   </data>
   <data name="Progression_R3_Level8Header" xml:space="preserve">
-    <value>Sede Hoodlum</value>
+    <value>Hoodlum Headquarters</value>
   </data>
   <data name="Progression_R3_Level9Header" xml:space="preserve">
-    <value>A Torre de Leptys</value>
+    <value>The Tower of the Leptys</value>
   </data>
   <data name="PostUpdate_TPLSUpdatePrompt" xml:space="preserve">
     <value>Foi actualizado o utilitário da banda sonora PlayStation. Vai aos utilitários Rayman 1 e reinstala-o de forma a continuar a utilizá-lo.</value>

@@ -3174,7 +3174,7 @@ pointer</comment>
     <value>Select file extension to export as</value>
   </data>
   <data name="Utilities_Converter_Success" xml:space="preserve">
-    <value>The file(s) were successfully converted</value>
+    <value>The files were successfully converted</value>
   </data>
   <data name="Utilities_Converter_MissingConfig" xml:space="preserve">
     <value>The file {0} can't be converted because it's missing a configuration file</value>
@@ -3182,7 +3182,7 @@ pointer</comment>
 filePath</comment>
   </data>
   <data name="Archive_RepackError" xml:space="preserve">
-    <value>An error occurred repacking the archive</value>
+    <value>An error occurred when repacking the archive</value>
   </data>
   <data name="Progression_R3_TotalHeader" xml:space="preserve">
     <value>Total</value>

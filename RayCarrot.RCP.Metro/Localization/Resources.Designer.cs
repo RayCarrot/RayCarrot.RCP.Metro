@@ -705,7 +705,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred repacking the archive.
+        ///   Looks up a localized string similar to An error occurred when repacking the archive.
         /// </summary>
         public static string Archive_RepackError {
             get {
@@ -8700,7 +8700,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file(s) were successfully converted.
+        ///   Looks up a localized string similar to The files were successfully converted.
         /// </summary>
         public static string Utilities_Converter_Success {
             get {

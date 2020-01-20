@@ -2969,12 +2969,128 @@ Mipmaps = {8}</value>
   <data name="Archive_ExportMipmaps" xml:space="preserve">
     <value>Exporteren mipmaps</value>
   </data>
+  <data name="Archive_IPK_FileInfo" xml:space="preserve">
+    <value>Map = {0}
+Gecomprimeerd = {1}
+Bestandsgrootte = {2}
+Gecomprimeerde bestandsgrootte = {3}
+Pointer = {4}</value>
+  </data>
+  <data name="Archive_IPK_ImageFileInfo" xml:space="preserve">
+    <value>Map = {0}
+Grootte = {1} x {2}
+Gebruikt TEX = {3}
+Bestandsindeling = {4}
+Gecomprimeerd = {5}
+Bestandsgrootte = {6}
+Gecomprimeerde bestandsgrootte = {7}
+Pointer = {8}</value>
+  </data>
+  <data name="UtilitiesPageHeader" xml:space="preserve">
+    <value>Hulpprogramma's</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
+    <value>OpenSpace archieven (.cnt)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
+    <value>UbiArt archieven (.ipk)</value>
+  </data>
+  <data name="Utilities_Converter_GFHeader" xml:space="preserve">
+    <value>OpenSpace texturen (.gf)</value>
+  </data>
+  <data name="Utilities_Converter_Convert" xml:space="preserve">
+    <value>Converteren</value>
+  </data>
+  <data name="Utilities_Converter_ConvertBack" xml:space="preserve">
+    <value>Terug converteren</value>
+  </data>
+  <data name="Utilities_Converter_LOCHeader" xml:space="preserve">
+    <value>UbiArt lokalisatiebestanden (.loc/.loc8)</value>
+  </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
     <value>Archive Explorer™</value>
     <comment>Archive Explorer™</comment>
   </data>
+  <data name="Utilities_Converter_Header" xml:space="preserve">
+    <value>Converters</value>
+  </data>
+  <data name="Utilities_WIP_Header" xml:space="preserve">
+    <value>Werk in uitvoering</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Open" xml:space="preserve">
+    <value>Openen</value>
+  </data>
+  <data name="Utilities_Converter_R3SaveHeader" xml:space="preserve">
+    <value>Rayman 3 save files (.sav)</value>
+  </data>
+  <data name="Utilities_Converter_RJRSaveHeader" xml:space="preserve">
+    <value>Rayman Jungle Run save files (.dat)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_FileSelectionHeader" xml:space="preserve">
+    <value>Selecteer archiefbestanden</value>
+  </data>
+  <data name="Utilities_Converter_FileSelectionHeader" xml:space="preserve">
+    <value>Selecteer bestanden voor conversie</value>
+  </data>
+  <data name="Utilities_Converter_DestinationHeader" xml:space="preserve">
+    <value>Selecteer locatie</value>
+  </data>
+  <data name="Utilities_Converter_Error" xml:space="preserve">
+    <value>De bestanden konden niet geconverteerd worden</value>
+  </data>
   <data name="UAU_IPKExplorer_Header" xml:space="preserve">
     <value>Archive Explorer™ (.ipk)</value>
     <comment>Archive Explorer™ (.ipk)</comment>
+  </data>
+  <data name="UAU_IPKExplorer_Info" xml:space="preserve">
+    <value>Dit hulpprogramma stelt je in staat om .ipk archiefbestanden te bekijken/wijzigen, waardoor het tevens mogelijk is spelbestanden en texturen te importeren/exporteren</value>
+  </data>
+  <data name="Utilities_Converter_ExportExtensionHeader" xml:space="preserve">
+    <value>Selecteer bestandsextensie voor export</value>
+  </data>
+  <data name="Utilities_Converter_Success" xml:space="preserve">
+    <value>De bestanden zijn succesvol geconverteerd</value>
+  </data>
+  <data name="Utilities_Converter_MissingConfig" xml:space="preserve">
+    <value>Het bestand {0} kan niet geconverteerd worden, omdat het een configuratiebestand mist</value>
+  </data>
+  <data name="Archive_RepackError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het ompakken van het archief </value>
+  </data>
+  <data name="Progression_R3_TotalHeader" xml:space="preserve">
+    <value>Totaal</value>
+  </data>
+  <data name="Progression_R3_Level1Header" xml:space="preserve">
+    <value>The Fairy Council</value>
+  </data>
+  <data name="Progression_R3_Level2Header" xml:space="preserve">
+    <value>Clearleaf Forest</value>
+  </data>
+  <data name="Progression_R3_Level3Header" xml:space="preserve">
+    <value>The Bog of Murk</value>
+  </data>
+  <data name="Progression_R3_Level4Header" xml:space="preserve">
+    <value>The Land of the Livid Dead</value>
+  </data>
+  <data name="Progression_R3_Level5Header" xml:space="preserve">
+    <value>The Desert of the Knaaren</value>
+  </data>
+  <data name="Progression_R3_Level6Header" xml:space="preserve">
+    <value>The Longest Shortcut</value>
+  </data>
+  <data name="Progression_R3_Level7Header" xml:space="preserve">
+    <value>The Summit Beyond the Clouds</value>
+  </data>
+  <data name="Progression_R3_Level8Header" xml:space="preserve">
+    <value>Hoodlum Headquarters</value>
+  </data>
+  <data name="Progression_R3_Level9Header" xml:space="preserve">
+    <value>The Tower of the Leptys</value>
+  </data>
+  <data name="PostUpdate_TPLSUpdatePrompt" xml:space="preserve">
+    <value>Het hulpprogramma voor de PlayStation soundtrack is geüpdatet. Ga naar de Rayman 1 hulpprogramma's en herinstalleer het om het te kunnen blijven gebruiken. </value>
+  </data>
+  <data name="TPLS_UpdateVersionError" xml:space="preserve">
+    <value>De Rayman versie kon niet geüpdatet worden</value>
   </data>
 </root>
