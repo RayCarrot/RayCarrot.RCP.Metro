@@ -1,148 +1,148 @@
 {
   "LocalUtilities": {
     "Rayman1": [
-      "RayCarrot.RCP.Metro.R1TPLSUtility",
-      "RayCarrot.RCP.Metro.R1CompleteSoundtrackUtility",
-      "RayCarrot.RCP.Metro.R1FixConfigUtility"
+      "R1TPLSUtility",
+      "R1CompleteSoundtrackUtility",
+      "R1FixConfigUtility"
     ],
     "RaymanDesigner": [
-      "RayCarrot.RCP.Metro.RDReplaceFilesUtility",
-      "RayCarrot.RCP.Metro.RDCreateConfigUtility"
+      "RDReplaceFilesUtility",
+      "RDCreateConfigUtility"
     ],
     "Rayman2": [
-      "RayCarrot.RCP.Metro.R2CNTExplorerUtility",
-      "RayCarrot.RCP.Metro.R2TranslationUtility",
-      "RayCarrot.RCP.Metro.R2DiscPatchUtility"
+      "R2CNTExplorerUtility",
+      "R2TranslationUtility",
+      "R2DiscPatchUtility"
     ],
     "RaymanM": [
-      "RayCarrot.RCP.Metro.RMCNTExplorerUtility"
+      "RMCNTExplorerUtility"
     ],
     "RaymanArena": [
-      "RayCarrot.RCP.Metro.RACNTExplorerUtility"
+      "RACNTExplorerUtility"
     ],
     "Rayman3": [
-      "RayCarrot.RCP.Metro.R3CNTExplorerUtility",
-      "RayCarrot.RCP.Metro.R3DirectPlayUtility"
+      "R3CNTExplorerUtility",
+      "R3DirectPlayUtility"
     ],
     "RaymanOrigins": [
-      "RayCarrot.RCP.Metro.ROIPKExplorerUtility",
-      "RayCarrot.RCP.Metro.ROHQVideosUtility",
-      "RayCarrot.RCP.Metro.ROLocalizationConverterUtility",
-      "RayCarrot.RCP.Metro.RODebugCommandsUtility",
-      "RayCarrot.RCP.Metro.ROUpdateUtility"
+      "ROIPKExplorerUtility",
+      "ROHQVideosUtility",
+      "ROLocalizationConverterUtility",
+      "RODebugCommandsUtility",
+      "ROUpdateUtility"
     ],
     "RaymanLegends": [
-      "RayCarrot.RCP.Metro.RLIPKExplorerUtility",
-      "RayCarrot.RCP.Metro.RLUbiRayUtility",
-      "RayCarrot.RCP.Metro.RLLocalizationConverterUtility",
-      "RayCarrot.RCP.Metro.RLDebugCommandsUtility"
+      "RLIPKExplorerUtility",
+      "RLUbiRayUtility",
+      "RLLocalizationConverterUtility",
+      "RLDebugCommandsUtility"
     ],
     "RaymanFiestaRun": [
-      "RayCarrot.RCP.Metro.RFRLocalizationConverterUtility"
+      "RFRLocalizationConverterUtility"
     ]
   },
   "GameManagers": {
     "Rayman1": {
-      "DosBox": "RayCarrot.RCP.Metro.Rayman1_DOSBox"
+      "DosBox": "Rayman1_DOSBox"
     },
     "RaymanDesigner": {
-      "DosBox": "RayCarrot.RCP.Metro.RaymanDesigner_DOSBox"
+      "DosBox": "RaymanDesigner_DOSBox"
     },
     "RaymanByHisFans": {
-      "DosBox": "RayCarrot.RCP.Metro.RaymanByHisFans_DOSBox"
+      "DosBox": "RaymanByHisFans_DOSBox"
     },
     "Rayman60Levels": {
-      "DosBox": "RayCarrot.RCP.Metro.Rayman60Levels_DOSBox"
+      "DosBox": "Rayman60Levels_DOSBox"
     },
     "Rayman2": {
-      "Win32": "RayCarrot.RCP.Metro.Rayman2_Win32",
-      "Steam": "RayCarrot.RCP.Metro.Rayman2_Steam"
+      "Win32": "Rayman2_Win32",
+      "Steam": "Rayman2_Steam"
     },
     "RaymanM": {
-      "Win32": "RayCarrot.RCP.Metro.RaymanM_Win32"
+      "Win32": "RaymanM_Win32"
     },
     "RaymanArena": {
-      "Win32": "RayCarrot.RCP.Metro.RaymanArena_Win32"
+      "Win32": "RaymanArena_Win32"
     },
     "Rayman3": {
-      "Win32": "RayCarrot.RCP.Metro.Rayman3_Win32"
+      "Win32": "Rayman3_Win32"
     },
     "RaymanRavingRabbids": {
-      "Win32": "RayCarrot.RCP.Metro.RaymanRavingRabbids_Win32",
-      "Steam": "RayCarrot.RCP.Metro.RaymanRavingRabbids_Steam"
+      "Win32": "RaymanRavingRabbids_Win32",
+      "Steam": "RaymanRavingRabbids_Steam"
     },
     "RaymanRavingRabbids2": {
-      "Win32": "RayCarrot.RCP.Metro.RaymanRavingRabbids2_Win32"
+      "Win32": "RaymanRavingRabbids2_Win32"
     },
     "RabbidsGoHome": {
-      "Win32": "RayCarrot.RCP.Metro.RabbidsGoHome_Win32"
+      "Win32": "RabbidsGoHome_Win32"
     },
     "RaymanOrigins": {
-      "Win32": "RayCarrot.RCP.Metro.RaymanOrigins_Win32",
-      "Steam": "RayCarrot.RCP.Metro.RaymanOrigins_Steam"
+      "Win32": "RaymanOrigins_Win32",
+      "Steam": "RaymanOrigins_Steam"
     },
     "RaymanLegends": {
-      "Win32": "RayCarrot.RCP.Metro.RaymanLegends_Win32",
-      "Steam": "RayCarrot.RCP.Metro.RaymanLegends_Steam"
+      "Win32": "RaymanLegends_Win32",
+      "Steam": "RaymanLegends_Steam"
     },
     "RaymanJungleRun": {
-      "WinStore": "RayCarrot.RCP.Metro.RaymanJungleRun_WinStore"
+      "WinStore": "RaymanJungleRun_WinStore"
     },
     "RaymanFiestaRun": {
-      "WinStore": "RayCarrot.RCP.Metro.RaymanFiestaRun_WinStore"
+      "WinStore": "RaymanFiestaRun_WinStore"
     },
     "RabbidsBigBang": {
-      "WinStore": "RayCarrot.RCP.Metro.RabbidsBigBang_WinStore"
+      "WinStore": "RabbidsBigBang_WinStore"
     },
     "EducationalDos": {
-      "EducationalDosBox": "RayCarrot.RCP.Metro.EducationalDos_EducationalDOSBox"
+      "EducationalDosBox": "EducationalDos_EducationalDOSBox"
     },
     "PrintStudio": {
-      "Win32": "RayCarrot.RCP.Metro.PrintStudio_Win32"
+      "Win32": "PrintStudio_Win32"
     },
     "RaymanActivityCenter": {
-      "Win32": "RayCarrot.RCP.Metro.RaymanActivityCenter_Win32"
+      "Win32": "RaymanActivityCenter_Win32"
     },
     "RaymanRavingRabbidsActivityCenter": {
-      "Win32": "RayCarrot.RCP.Metro.RaymanRavingRabbidsActivityCenter_Win32"
+      "Win32": "RaymanRavingRabbidsActivityCenter_Win32"
     },
     "GloboxMoment": {
-      "Win32": "RayCarrot.RCP.Metro.GloboxMoment_Win32"
+      "Win32": "GloboxMoment_Win32"
     },
     "TheDarkMagiciansReignofTerror": {
-      "Win32": "RayCarrot.RCP.Metro.TheDarkMagiciansReignofTerror_Win32"
+      "Win32": "TheDarkMagiciansReignofTerror_Win32"
     },
     "RabbidsCoding": {
-      "Win32": "RayCarrot.RCP.Metro.RabbidsCoding_Win32"
+      "Win32": "RabbidsCoding_Win32"
     },
     "Demo_Rayman3_0": {
-      "Win32": "RayCarrot.RCP.Metro.Demo_Rayman3_0_Win32"
+      "Win32": "Demo_Rayman3_0_Win32"
     }
   },
   "GameInfos": {
-    "Rayman1": "RayCarrot.RCP.Metro.Rayman1_Info",
-    "RaymanDesigner": "RayCarrot.RCP.Metro.RaymanDesigner_Info",
-    "RaymanByHisFans": "RayCarrot.RCP.Metro.RaymanByHisFans_Info",
-    "Rayman60Levels": "RayCarrot.RCP.Metro.Rayman60Levels_Info",
-    "Rayman2": "RayCarrot.RCP.Metro.Rayman2_Info",
-    "RaymanM": "RayCarrot.RCP.Metro.RaymanM_Info",
-    "RaymanArena": "RayCarrot.RCP.Metro.RaymanArena_Info",
-    "Rayman3": "RayCarrot.RCP.Metro.Rayman3_Info",
-    "RaymanRavingRabbids": "RayCarrot.RCP.Metro.RaymanRavingRabbids_Info",
-    "RaymanRavingRabbids2": "RayCarrot.RCP.Metro.RaymanRavingRabbids2_Info",
-    "RabbidsGoHome": "RayCarrot.RCP.Metro.RabbidsGoHome_Info",
-    "RaymanOrigins": "RayCarrot.RCP.Metro.RaymanOrigins_Info",
-    "RaymanLegends": "RayCarrot.RCP.Metro.RaymanLegends_Info",
-    "RaymanJungleRun": "RayCarrot.RCP.Metro.RaymanJungleRun_Info",
-    "RaymanFiestaRun": "RayCarrot.RCP.Metro.RaymanFiestaRun_Info",
-    "RabbidsBigBang": "RayCarrot.RCP.Metro.RabbidsBigBang_Info",
-    "EducationalDos": "RayCarrot.RCP.Metro.EducationalDos_Info",
-    "PrintStudio": "RayCarrot.RCP.Metro.PrintStudio_Info",
-    "RaymanActivityCenter": "RayCarrot.RCP.Metro.RaymanActivityCenter_Info",
-    "RaymanRavingRabbidsActivityCenter": "RayCarrot.RCP.Metro.RaymanRavingRabbidsActivityCenter_Info",
-    "GloboxMoment": "RayCarrot.RCP.Metro.GloboxMoment_Info",
-    "TheDarkMagiciansReignofTerror": "RayCarrot.RCP.Metro.TheDarkMagiciansReignofTerror_Info",
-    "RabbidsCoding": "RayCarrot.RCP.Metro.RabbidsCoding_Info",
-    "Demo_Rayman3_0": "RayCarrot.RCP.Metro.Demo_Rayman3_0_Info"
+    "Rayman1": "Rayman1_Info",
+    "RaymanDesigner": "RaymanDesigner_Info",
+    "RaymanByHisFans": "RaymanByHisFans_Info",
+    "Rayman60Levels": "Rayman60Levels_Info",
+    "Rayman2": "Rayman2_Info",
+    "RaymanM": "RaymanM_Info",
+    "RaymanArena": "RaymanArena_Info",
+    "Rayman3": "Rayman3_Info",
+    "RaymanRavingRabbids": "RaymanRavingRabbids_Info",
+    "RaymanRavingRabbids2": "RaymanRavingRabbids2_Info",
+    "RabbidsGoHome": "RabbidsGoHome_Info",
+    "RaymanOrigins": "RaymanOrigins_Info",
+    "RaymanLegends": "RaymanLegends_Info",
+    "RaymanJungleRun": "RaymanJungleRun_Info",
+    "RaymanFiestaRun": "RaymanFiestaRun_Info",
+    "RabbidsBigBang": "RabbidsBigBang_Info",
+    "EducationalDos": "EducationalDos_Info",
+    "PrintStudio": "PrintStudio_Info",
+    "RaymanActivityCenter": "RaymanActivityCenter_Info",
+    "RaymanRavingRabbidsActivityCenter": "RaymanRavingRabbidsActivityCenter_Info",
+    "GloboxMoment": "GloboxMoment_Info",
+    "TheDarkMagiciansReignofTerror": "TheDarkMagiciansReignofTerror_Info",
+    "RabbidsCoding": "RabbidsCoding_Info",
+    "Demo_Rayman3_0": "Demo_Rayman3_0_Info"
   }
 }

@@ -37,7 +37,7 @@ namespace RayCarrot.RCP.Metro
             var value = reader.Value.ToString();
 
             // Get the type from the entry assembly
-            return Assembly.GetEntryAssembly()?.GetType(value);
+            return Assembly.GetEntryAssembly()?.GetType($"RayCarrot.RCP.Metro.{value}");
         }
 
         /// <summary>
