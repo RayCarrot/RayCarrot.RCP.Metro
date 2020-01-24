@@ -32,6 +32,11 @@
         /// </summary>
         public const string GamesBaseUrl = BaseResourceUrl + "Games/";
 
+        /// <summary>
+        /// The base URL for downloading demos
+        /// </summary>
+        public const string DemosBaseUrl = BaseResourceUrl + "Demos/";
+
         #endregion
 
         #region Games
@@ -61,6 +66,15 @@
         /// </summary>
         public const string Games_RavingRabbidsActivityCenter_Url = GamesBaseUrl + "RavingRabbidsActivityCenter.zip";
 
+        #endregion
+
+        #region Demos
+
+        /// <summary>
+        /// The Rayman 3 Demo 1 download URL
+        /// </summary>
+        public const string Games_R3Demo1_Url = DemosBaseUrl + "R3_Demo_1.zip";
+        
         #endregion
 
         #region Utilities

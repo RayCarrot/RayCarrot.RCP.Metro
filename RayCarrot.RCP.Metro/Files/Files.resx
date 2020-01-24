@@ -157,4 +157,7 @@
   <data name="Rayman_Control_Panel_Updater" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>programs\rayman control panel updater.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Games" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>games.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

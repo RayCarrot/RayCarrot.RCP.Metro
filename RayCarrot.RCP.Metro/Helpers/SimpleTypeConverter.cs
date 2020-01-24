@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Globalization;
-using System.Linq;
+using System.Reflection;
 using Newtonsoft.Json;
-using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// Serializes a byte array as a hex string
+    /// Serializes a Type to a simple string
     /// </summary>
-    public class ByteArrayHexConverter : JsonConverter<byte[]>
+    public class SimpleTypeConverter : JsonConverter<Type>
     {
         /// <summary>
         /// Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter" /> can read JSON.
@@ -32,10 +30,14 @@ namespace RayCarrot.RCP.Metro
         /// <param name="hasExistingValue">The existing value has a value.</param>
         /// <param name="serializer">The calling serializer.</param>
         /// <returns>The object value.</returns>
-        public override byte[] ReadJson(JsonReader reader, Type objectType, byte[] existingValue, bool hasExistingValue,
+        public override Type ReadJson(JsonReader reader, Type objectType, Type existingValue, bool hasExistingValue,
             JsonSerializer serializer)
         {
-            return reader.Value.ToString().Split(' ').Select(x => Byte.Parse(x, NumberStyles.HexNumber)).ToArray();
+            // Read the value as a string
+            var value = reader.Value.ToString();
+
+            // Get the type from the entry assembly
+            return Assembly.GetEntryAssembly()?.GetType(value);
         }
 
         /// <summary>
@@ -44,9 +46,9 @@ namespace RayCarrot.RCP.Metro
         /// <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="value">The value.</param>
         /// <param name="serializer">The calling serializer.</param>
-        public override void WriteJson(JsonWriter writer, byte[] value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, Type value, JsonSerializer serializer)
         {
-            writer.WriteValue(value.Select(p => p.ToString("X2")).JoinItems(" "));
+            writer.WriteValue(value.FullName);
         }
     }
 }

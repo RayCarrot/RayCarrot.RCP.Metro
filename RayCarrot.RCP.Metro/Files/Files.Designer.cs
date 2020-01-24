@@ -101,6 +101,30 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;LocalUtilities&quot;: {
+        ///    &quot;Rayman1&quot;: [
+        ///      &quot;RayCarrot.RCP.Metro.R1TPLSUtility&quot;,
+        ///      &quot;RayCarrot.RCP.Metro.R1CompleteSoundtrackUtility&quot;,
+        ///      &quot;RayCarrot.RCP.Metro.R1FixConfigUtility&quot;
+        ///    ],
+        ///    &quot;RaymanDesigner&quot;: [
+        ///      &quot;RayCarrot.RCP.Metro.RDReplaceFilesUtility&quot;,
+        ///      &quot;RayCarrot.RCP.Metro.RDCreateConfigUtility&quot;
+        ///    ],
+        ///    &quot;Rayman2&quot;: [
+        ///      &quot;RayCarrot.RCP.Metro.R2CNTExplorerUtility&quot;,
+        ///      &quot;RayCarrot.RCP.Metro.R2TranslationUtility&quot;,
+        ///      &quot;RayCarrot.RCP.Metro.R2DiscPatchUtility&quot;
+        ///    ], [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Games {
+            get {
+                return ResourceManager.GetString("Games", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         public static byte[] GXSetup_GOG {
@@ -203,18 +227,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 8.1.0 - January ??, 2019   -----
+        ///   Looks up a localized string similar to -----   Version 9.1.0 - February ??, 2020   -----
         ///• 
-        ///• Removed the option to show the program under installed programs
-        ///
-        ///Other changes:
-        ///• The primary ubi.ini path is no longer hard-coded
-        ///• Removed the Rayman Control Panel API while keeping parts of the new modular structure
-        ///• Fixed a minor bug where the application path would sometimes not be retrieved correctly
         ///
         ///
-        ///-----   Version 8.0.0 - January 3, 2019   -----
-        ///• Added a utility for viewing/editing the .cnt files in Rayman 2, Rayman M/Arena and Ray [rest of string was truncated]&quot;;.
+        ///-----   Version 9.0.0 - January 20, 2020   -----
+        ///• Added a utility for viewing/editing the .ipk files in Rayman Origins and Rayman Legends, allowing importing/exporting of textures and game files for UbiArt games
+        ///• Added the utilities page for general utilities, such as viewing .cnt/.ipk archives and converting certain game files
+        ///• Added the progression tab for Rayman 3
+        ///• Remade the Rayman 1 PlayStation soundtrack utility using a new implementat [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

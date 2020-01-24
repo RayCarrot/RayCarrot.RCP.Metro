@@ -104,16 +104,21 @@ namespace RayCarrot.RCP.Metro
 
         #region Demo
 
-        //Rayman1_0,
-        //Rayman1_1,
-        //RaymanGold,
-        //Rayman2_0,
-        //Rayman2_1,
-        //Rayman3_0,
-        //Rayman3_1,
-        //Rayman3_2,
-        //Rayman3_3,
-        //Rayman3_4,
+        //Demo_Rayman1_0,
+        //Demo_Rayman1_1,
+
+        //Demo_RaymanGold,
+
+        //Demo_Rayman2_0,
+        //Demo_Rayman2_1,
+
+        Demo_Rayman3_0,
+        //Demo_Rayman3_1,
+        //Demo_Rayman3_2,
+        //Demo_Rayman3_3,
+        //Demo_Rayman3_4,
+
+        //Demo_RaymanM,
 
         #endregion
 

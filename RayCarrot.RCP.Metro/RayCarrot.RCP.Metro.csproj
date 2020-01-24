@@ -106,6 +106,9 @@
     <Compile Include="ArchiveExplorer\Base\IArchiveImageFileData.cs" />
     <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
     <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
+    <Compile Include="Helpers\SimpleTypeConverter.cs" />
+    <Compile Include="Games\Info\Demo\Demo_Rayman3_0_Info.cs" />
+    <Compile Include="Games\Manager\Demo\Rayman3_Win32.cs" />
     <Compile Include="Games\Utilities\Rayman 1\TPLS\TPLSRaymanVersion.cs" />
     <Compile Include="Helpers\LocalizedString.cs" />
     <Compile Include="Games\Utilities\Common\ArchiveExplorer\UbiArtIPKExplorer\UbiArtIPKExplorerUtility.cs" />
@@ -855,6 +858,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\Resources.sr-Cyrl.resx" />
     <EmbeddedResource Include="Localization\Resources.sv-SE.resx" />
+    <None Include="Files\Games.json" />
     <None Include="Files\Rayman1\RAYMAN.CFG" />
     <None Include="Files\Rayman2\ubi.ini" />
   </ItemGroup>
@@ -922,6 +926,7 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\GameIcons\Demo_Rayman3_0.png" />
     <EmbeddedResource Include="costura32\Magick.Native-Q8-x86.dll" />
     <Content Include="Files\Programs\Rayman Control Panel Updater.exe" />
     <Resource Include="Img\ProgressionIcons\R3_Cage.png" />

@@ -1,4 +1,5 @@
 ﻿using ByteSizeLib;
+using Newtonsoft.Json;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
@@ -15,6 +16,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Type = System.Type;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -64,430 +66,11 @@ namespace RayCarrot.RCP.Metro
             RestartAsAdminCommand = new AsyncRelayCommand(RestartAsAdminAsync);
             RequestRestartAsAdminCommand = new AsyncRelayCommand(RequestRestartAsAdminAsync);
 
-            // Create type generators
-            LocalUtilities = new Dictionary<Games, Type[]>()
-            {
-                {
-                    Games.Rayman1,
-                    new Type[]
-                    {
-                        typeof(R1TPLSUtility),
-                        typeof(R1CompleteSoundtrackUtility),
-                        typeof(R1FixConfigUtility),
-                    }
-                },
-                {
-                    Games.RaymanDesigner,
-                    new Type[]
-                    {
-                        typeof(RDReplaceFilesUtility),
-                        typeof(RDCreateConfigUtility),
-                    }
-                },
-                {
-                    Games.Rayman2,
-                    new Type[]
-                    {
-                        typeof(R2CNTExplorerUtility),
-                        typeof(R2TranslationUtility),
-                        typeof(R2DiscPatchUtility),
-                    }
-                },
-                {
-                    Games.RaymanM,
-                    new Type[]
-                    {
-                        typeof(RMCNTExplorerUtility),
-                    }
-                },
-                {
-                    Games.RaymanArena,
-                    new Type[]
-                    {
-                        typeof(RACNTExplorerUtility),
-                    }
-                },
-                {
-                    Games.Rayman3,
-                    new Type[]
-                    {
-                        typeof(R3CNTExplorerUtility),
-                        typeof(R3DirectPlayUtility),
-                    }
-                },
-                {
-                    Games.RaymanOrigins,
-                    new Type[]
-                    {
-                        typeof(ROIPKExplorerUtility),
-                        typeof(ROHQVideosUtility),
-                        typeof(ROLocalizationConverterUtility),
-                        typeof(RODebugCommandsUtility),
-                        typeof(ROUpdateUtility),
-                    }
-                },
-                {
-                    Games.RaymanLegends,
-                    new Type[]
-                    {
-                        typeof(RLIPKExplorerUtility),
-                        typeof(RLUbiRayUtility),
-                        typeof(RLLocalizationConverterUtility),
-                        typeof(RLDebugCommandsUtility),
-                    }
-                },
-                {
-                    Games.RaymanFiestaRun,
-                    new Type[]
-                    {
-                        typeof(RFRLocalizationConverterUtility),
-                    }
-                },
-            };
-            GameManagers = new Dictionary<Games, Dictionary<GameType, Type>>()
-            {
-                {
-                    Games.Rayman1,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.DosBox,
-                            typeof(Rayman1_DOSBox)
-                        },
-                    }
-                },
-                {
-                    Games.RaymanDesigner,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.DosBox,
-                            typeof(RaymanDesigner_DOSBox)
-                        },
-                    }
-                },
-                {
-                    Games.RaymanByHisFans,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.DosBox,
-                            typeof(RaymanByHisFans_DOSBox)
-                        },
-                    }
-                },
-                {
-                    Games.Rayman60Levels,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.DosBox,
-                            typeof(Rayman60Levels_DOSBox)
-                        },
-                    }
-                },
-                {
-                    Games.Rayman2,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.Win32,
-                            typeof(Rayman2_Win32)
-                        },
-                        {
-                            GameType.Steam,
-                            typeof(Rayman2_Steam)
-                        },
-                    }
-                },
-                {
-                    Games.RaymanM,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.Win32,
-                            typeof(RaymanM_Win32)
-                        },
-                    }
-                },
-                {
-                    Games.RaymanArena,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.Win32,
-                            typeof(RaymanArena_Win32)
-                        },
-                    }
-                },
-                {
-                    Games.Rayman3,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.Win32,
-                            typeof(Rayman3_Win32)
-                        },
-                    }
-                },
-                {
-                    Games.RaymanRavingRabbids,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.Win32,
-                            typeof(RaymanRavingRabbids_Win32)
-                        },
-                        {
-                            GameType.Steam,
-                            typeof(RaymanRavingRabbids_Steam)
-                        },
-                    }
-                },
-                {
-                    Games.RaymanRavingRabbids2,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.Win32,
-                            typeof(RaymanRavingRabbids2_Win32)
-                        },
-                    }
-                },
-                {
-                    Games.RabbidsGoHome,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.Win32,
-                            typeof(RabbidsGoHome_Win32)
-                        },
-                    }
-                },
-                {
-                    Games.RaymanOrigins,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.Win32,
-                            typeof(RaymanOrigins_Win32)
-                        },
-                        {
-                            GameType.Steam,
-                            typeof(RaymanOrigins_Steam)
-                        },
-                    }
-                },
-                {
-                    Games.RaymanLegends,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.Win32,
-                            typeof(RaymanLegends_Win32)
-                        },
-                        {
-                            GameType.Steam,
-                            typeof(RaymanLegends_Steam)
-                        },
-                    }
-                },
-                {
-                    Games.RaymanJungleRun,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.WinStore,
-                            typeof(RaymanJungleRun_WinStore)
-                        },
-                    }
-                },
-                {
-                    Games.RaymanFiestaRun,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.WinStore,
-                            typeof(RaymanFiestaRun_WinStore)
-                        },
-                    }
-                },
-                {
-                    Games.RabbidsBigBang,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.WinStore,
-                            typeof(RabbidsBigBang_WinStore)
-                        },
-                    }
-                },
-                {
-                    Games.EducationalDos,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.EducationalDosBox,
-                            typeof(EducationalDos_EducationalDOSBox)
-                        },
-                    }
-                },
-                {
-                    Games.PrintStudio,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.Win32,
-                            typeof(PrintStudio_Win32)
-                        },
-                    }
-                },
-                {
-                    Games.RaymanActivityCenter,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.Win32,
-                            typeof(RaymanActivityCenter_Win32)
-                        },
-                    }
-                },
-                {
-                    Games.RaymanRavingRabbidsActivityCenter,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.Win32,
-                            typeof(RaymanRavingRabbidsActivityCenter_Win32)
-                        },
-                    }
-                },
-                {
-                    Games.GloboxMoment,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.Win32,
-                            typeof(GloboxMoment_Win32)
-                        },
-                    }
-                },
-                {
-                    Games.TheDarkMagiciansReignofTerror,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.Win32,
-                            typeof(TheDarkMagiciansReignofTerror_Win32)
-                        },
-                    }
-                },
-                {
-                    Games.RabbidsCoding,
-                    new Dictionary<GameType, Type>()
-                    {
-                        {
-                            GameType.Win32,
-                            typeof(RabbidsCoding_Win32)
-                        },
-                    }
-                },
-            };
-            GameInfos = new Dictionary<Games, Type>()
-            {
-                {
-                    Games.Rayman1,
-                    typeof(Rayman1_Info)
-                },
-                {
-                    Games.RaymanDesigner,
-                    typeof(RaymanDesigner_Info)
-                },
-                {
-                    Games.RaymanByHisFans,
-                    typeof(RaymanByHisFans_Info)
-                },
-                {
-                    Games.Rayman60Levels,
-                    typeof(Rayman60Levels_Info)
-                },
-                {
-                    Games.Rayman2,
-                    typeof(Rayman2_Info)
-                },
-                {
-                    Games.RaymanM,
-                    typeof(RaymanM_Info)
-                },
-                {
-                    Games.RaymanArena,
-                    typeof(RaymanArena_Info)
-                },
-                {
-                    Games.Rayman3,
-                    typeof(Rayman3_Info)
-                },
-                {
-                    Games.RaymanRavingRabbids,
-                    typeof(RaymanRavingRabbids_Info)
-                },
-                {
-                    Games.RaymanRavingRabbids2,
-                    typeof(RaymanRavingRabbids2_Info)
-                },
-                {
-                    Games.RabbidsGoHome,
-                    typeof(RabbidsGoHome_Info)
-                },
-                {
-                    Games.RaymanOrigins,
-                    typeof(RaymanOrigins_Info)
-                },
-                {
-                    Games.RaymanLegends,
-                    typeof(RaymanLegends_Info)
-                },
-                {
-                    Games.RaymanJungleRun,
-                    typeof(RaymanJungleRun_Info)
-                },
-                {
-                    Games.RaymanFiestaRun,
-                    typeof(RaymanFiestaRun_Info)
-                },
-                {
-                    Games.RabbidsBigBang,
-                    typeof(RabbidsBigBang_Info)
-                },
-                {
-                    Games.EducationalDos,
-                    typeof(EducationalDos_Info)
-                },
-                {
-                    Games.PrintStudio,
-                    typeof(PrintStudio_Info)
-                },
-                {
-                    Games.RaymanActivityCenter,
-                    typeof(RaymanActivityCenter_Info)
-                },
-                {
-                    Games.RaymanRavingRabbidsActivityCenter,
-                    typeof(RaymanRavingRabbidsActivityCenter_Info)
-                },
-                {
-                    Games.GloboxMoment,
-                    typeof(GloboxMoment_Info)
-                },
-                {
-                    Games.TheDarkMagiciansReignofTerror,
-                    typeof(TheDarkMagiciansReignofTerror_Info)
-                },
-                {
-                    Games.RabbidsCoding,
-                    typeof(RabbidsCoding_Info)
-                },
-            };
+            // Read the game manager configuration
+            var gameConfig = Files.Games;
+
+            // Set up the games manager
+            AppGamesManager = JsonConvert.DeserializeObject<AppGamesManager>(gameConfig, new SimpleTypeConverter());
         }
 
         #endregion
@@ -556,19 +139,9 @@ namespace RayCarrot.RCP.Metro
         public AppUserData Data => RCFRCP.Data;
 
         /// <summary>
-        /// The available local utilities
+        /// The application games manager
         /// </summary>
-        public Dictionary<Games, Type[]> LocalUtilities { get; }
-
-        /// <summary>
-        /// The available game managers
-        /// </summary>
-        public Dictionary<Games, Dictionary<GameType, Type>> GameManagers { get; }
-
-        /// <summary>
-        /// The available game infos
-        /// </summary>
-        public Dictionary<Games, Type> GameInfos { get; }
+        public AppGamesManager AppGamesManager { get; }
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -630,7 +203,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The utilities instances</returns>
         public IEnumerable<IRCPUtility> GetUtilities(Games game)
         {
-            var utilities = LocalUtilities.TryGetValue(game);
+            var utilities = AppGamesManager.LocalUtilities.TryGetValue(game);
 
             if (utilities == null)
                 return new IRCPUtility[0]; 
@@ -1182,5 +755,39 @@ namespace RayCarrot.RCP.Metro
         public event AsyncEventHandler<RefreshRequiredEventArgs> RefreshRequired;
 
         #endregion
+    }
+
+    /// <summary>
+    /// The application game manager
+    /// </summary>
+    public class AppGamesManager
+    {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="localUtilities">The available local utilities</param>
+        /// <param name="gameManagers">The available game managers</param>
+        /// <param name="gameInfos">The available game infos</param>
+        public AppGamesManager(Dictionary<Games, Type[]> localUtilities, Dictionary<Games, Dictionary<GameType, Type>> gameManagers, Dictionary<Games, Type> gameInfos)
+        {
+            LocalUtilities = localUtilities;
+            GameManagers = gameManagers;
+            GameInfos = gameInfos;
+        }
+
+        /// <summary>
+        /// The available local utilities
+        /// </summary>
+        public Dictionary<Games, Type[]> LocalUtilities { get; }
+
+        /// <summary>
+        /// The available game managers
+        /// </summary>
+        public Dictionary<Games, Dictionary<GameType, Type>> GameManagers { get; }
+
+        /// <summary>
+        /// The available game infos
+        /// </summary>
+        public Dictionary<Games, Type> GameInfos { get; }
     }
 }

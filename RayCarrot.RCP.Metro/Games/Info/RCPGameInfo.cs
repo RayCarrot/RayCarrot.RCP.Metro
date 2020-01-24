@@ -176,6 +176,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>A new display view model</returns>
         public GameDisplayViewModel GetDisplayViewModel()
         {
+            // TODO: No separator after install if no more options
             try
             {
                 if (IsAdded)
@@ -335,7 +336,7 @@ namespace RayCarrot.RCP.Metro
         public async Task<GameTypeSelectionResult> GetGameTypeAsync()
         {
             // Get the available types
-            var types = RCFRCP.App.GameManagers[Game].Keys.ToArray();
+            var types = RCFRCP.App.AppGamesManager.GameManagers[Game].Keys.ToArray();
 
             // If only one type, return that
             if (types.Length == 1)
