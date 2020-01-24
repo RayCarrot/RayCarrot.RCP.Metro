@@ -107,23 +107,29 @@
     <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
     <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanMDemoConfigViewModel.cs" />
+    <Compile Include="Games\Info\Demo\Demo_Rayman1_2_Info.cs" />
+    <Compile Include="Games\Info\Demo\Demo_Rayman1_1_Info.cs" />
+    <Compile Include="Games\Info\Demo\Demo_RaymanGold_Info.cs" />
+    <Compile Include="Games\Info\Demo\Demo_Rayman2_2_Info.cs" />
+    <Compile Include="Games\Info\Demo\Demo_Rayman2_1_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_RaymanM_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman3_2_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman3_3_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman3_4_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman3_5_Info.cs" />
-    <Compile Include="Games\Manager\Demo\Demo_Rayman3_2_Win32.cs" />
-    <Compile Include="Games\Manager\Demo\Demo_Rayman3_3_Win32.cs" />
-    <Compile Include="Games\Manager\Demo\Demo_Rayman3_4_Win32.cs" />
+    <Compile Include="Games\Manager\Demo\Demo_Rayman2_Win32.cs" />
+    <Compile Include="Games\Manager\Demo\Demo_Rayman1_DOSBox.cs" />
+    <Compile Include="Games\Manager\Demo\Demo_Rayman3_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_RaymanM_Win32.cs" />
-    <Compile Include="Games\Manager\Demo\Demo_Rayman3_5_Win32.cs" />
+    <Compile Include="Games\Manager\Demo\Demo_RaymanGold_DOSBox.cs" />
+    <Compile Include="Games\Utilities\Rayman 2\CNTExplorer\R2BaseCNTExplorerUtility.cs" />
+    <Compile Include="Games\Utilities\Rayman 2\CNTExplorer\R2DemoCNTExplorerUtility.cs" />
     <Compile Include="Games\Utilities\Rayman 3\CNTExplorer\R3BaseCNTExplorerUtility.cs" />
     <Compile Include="Games\Utilities\Rayman 3\CNTExplorer\R3DemoCNTExplorerUtility.cs" />
     <Compile Include="Games\Utilities\Rayman M\CNTExplorer\RMBaseCNTExplorerUtility.cs" />
     <Compile Include="Games\Utilities\Rayman M\CNTExplorer\RMDemoCNTExplorerUtility.cs" />
     <Compile Include="Helpers\SimpleTypeConverter.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman3_1_Info.cs" />
-    <Compile Include="Games\Manager\Demo\Demo_Rayman3_1_Win32.cs" />
     <Compile Include="Games\Utilities\Rayman 1\TPLS\TPLSRaymanVersion.cs" />
     <Compile Include="Helpers\LocalizedString.cs" />
     <Compile Include="Games\Utilities\Common\ArchiveExplorer\UbiArtIPKExplorer\UbiArtIPKExplorerUtility.cs" />
@@ -941,6 +947,9 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\GameIcons\Demo_Rayman1_1.png" />
+    <Resource Include="Img\GameIcons\Demo_Rayman1_2.png" />
+    <Resource Include="Img\GameIcons\Demo_RaymanGold.png" />
     <Resource Include="Img\GameIcons\Demo_Rayman2_1.png" />
     <Resource Include="Img\GameIcons\Demo_Rayman2_2.png" />
     <Resource Include="Img\GameIcons\Demo_RaymanM.png" />

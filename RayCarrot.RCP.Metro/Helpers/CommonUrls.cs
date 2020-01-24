@@ -99,6 +99,31 @@
         /// The Rayman M Demo download URL
         /// </summary>
         public const string Games_RMDemo_Url = DemosBaseUrl + "Rayman_M_Demo.zip";
+
+        /// <summary>
+        /// The Rayman 2 Demo 1 download URL
+        /// </summary>
+        public const string Games_R2Demo1_Url = DemosBaseUrl + "Rayman_2_Demo_1.zip";
+        
+        /// <summary>
+        /// The Rayman 2 Demo 2 download URL
+        /// </summary>
+        public const string Games_R2Demo2_Url = DemosBaseUrl + "Rayman_2_Demo_2.zip";
+        
+        /// <summary>
+        /// The Rayman Gold Demo download URL
+        /// </summary>
+        public const string Games_RGoldDemo_Url = DemosBaseUrl + "Rayman_Gold_Demo.zip";
+        
+        /// <summary>
+        /// The Rayman 1 Demo 1 download URL
+        /// </summary>
+        public const string Games_R1Demo1_Url = DemosBaseUrl + "Rayman_1_Demo_1.zip";
+        
+        /// <summary>
+        /// The Rayman 1 Demo 2 download URL
+        /// </summary>
+        public const string Games_R1Demo2_Url = DemosBaseUrl + "Rayman_1_Demo_2.zip";
         
         #endregion
 

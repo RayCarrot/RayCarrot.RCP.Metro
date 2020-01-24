@@ -134,6 +134,11 @@ namespace RayCarrot.RCP.Metro
         public virtual IList<Uri> DownloadURLs => null;
 
         /// <summary>
+        /// The type of game if it can be downloaded
+        /// </summary>
+        public virtual GameType DownloadType => GameType.Win32;
+
+        /// <summary>
         /// Indicates if the game can be installed from a disc in this program
         /// </summary>
         public virtual bool CanBeInstalledFromDisc => false;
@@ -434,9 +439,8 @@ namespace RayCarrot.RCP.Metro
                 if (!downloaded)
                     return;
 
-                // NOTE: Downloaded games can currently only be of type Win32
                 // Add the game
-                await RCFRCP.App.AddNewGameAsync(Game, GameType.Win32, gameDir);
+                await RCFRCP.App.AddNewGameAsync(Game, DownloadType, gameDir);
 
                 // Add game to installed games
                 RCFRCP.Data.InstalledGames.Add(Game);

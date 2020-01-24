@@ -14,6 +14,12 @@
       "R2TranslationUtility",
       "R2DiscPatchUtility"
     ],
+    "Demo_Rayman2_1": [
+      "R2Demo1CNTExplorerUtility"
+    ],
+    "Demo_Rayman2_2": [
+      "R2Demo2CNTExplorerUtility"
+    ],
     "RaymanM": [
       "RMCNTExplorerUtility"
     ],
@@ -150,6 +156,21 @@
     },
     "Demo_RaymanM": {
       "Win32": "Demo_RaymanM_Win32"
+    },
+    "Demo_Rayman2_1": {
+      "Win32": "Demo_Rayman2_1_Win32"
+    },
+    "Demo_Rayman2_2": {
+      "Win32": "Demo_Rayman2_2_Win32"
+    },
+    "Demo_RaymanGold": {
+      "DOSBox": "Demo_RaymanGold_DOSBox"
+    },
+    "Demo_Rayman1_1": {
+      "DOSBox": "Demo_Rayman1_1_DOSBox"
+    },
+    "Demo_Rayman1_2": {
+      "DOSBox": "Demo_Rayman1_2_DOSBox"
     }
   },
   "GameInfos": {
@@ -181,6 +202,11 @@
     "Demo_Rayman3_3": "Demo_Rayman3_3_Info",
     "Demo_Rayman3_4": "Demo_Rayman3_4_Info",
     "Demo_Rayman3_5": "Demo_Rayman3_5_Info",
-    "Demo_RaymanM": "Demo_RaymanM_Info"
+    "Demo_RaymanM": "Demo_RaymanM_Info",
+    "Demo_Rayman2_1": "Demo_Rayman2_1_Info",
+    "Demo_Rayman2_2": "Demo_Rayman2_2_Info",
+    "Demo_RaymanGold": "Demo_RaymanGold_Info",
+    "Demo_Rayman1_1": "Demo_Rayman1_1_Info",
+    "Demo_Rayman1_2": "Demo_Rayman1_2_Info"
   }
 }
