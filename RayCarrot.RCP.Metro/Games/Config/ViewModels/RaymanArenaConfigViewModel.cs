@@ -14,16 +14,7 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         public RaymanArenaConfigViewModel() : base(Games.RaymanArena)
-        {
-            ModemQualityOptions = new string[]
-            {
-                "Unknown",
-                "Modem 56k",
-                "RNIS",
-                "xDSL or cable",
-                "Local Area Network"
-            };
-        }
+        { }
 
         #endregion
 
@@ -114,31 +105,22 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Private Fields
-
-        private int _modemQualityIndex;
-
-        #endregion
-
-        #region Public Properties
+        #region Public Override Properties
 
         /// <summary>
-        /// The available modem quality options
+        /// Indicates if <see cref="Ray_M_Arena_3_UbiIniBaseConfigViewModel{Handler,Language}.DynamicShadows"/> and <see cref="Ray_M_Arena_3_UbiIniBaseConfigViewModel{Handler,Language}.StaticShadows"/> are available
         /// </summary>
-        public string[] ModemQualityOptions { get; }
+        public override bool HasShadowConfig => false;
 
         /// <summary>
-        /// The current modem quality index
+        /// Indicates if <see cref="Ray_M_Arena_3_UbiIniBaseConfigViewModel{Handler,Language}.HorizontalAxis"/> and <see cref="Ray_M_Arena_3_UbiIniBaseConfigViewModel{Handler,Language}.VerticalAxis"/> are available
         /// </summary>
-        public int ModemQualityIndex
-        {
-            get => _modemQualityIndex;
-            set
-            {
-                _modemQualityIndex = value;
-                UnsavedChanges = true;
-            }
-        }
+        public override bool HasControllerConfig => false;
+
+        /// <summary>
+        /// Indicates if <see cref="Ray_M_Arena_3_UbiIniBaseConfigViewModel{Handler,Language}.ModemQualityIndex"/> is available
+        /// </summary>
+        public override bool HasNetworkConfig => true;
 
         #endregion
 

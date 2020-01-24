@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// The Rayman 3 Demo 1 game info
+    /// The Rayman 3 Demo 3 game info
     /// </summary>
-    public sealed class Demo_Rayman3_0_Info : RCPGameInfo
+    public sealed class Demo_Rayman3_3_Info : RCPGameInfo
     {
         #region Public Override Properties
 
         /// <summary>
         /// The game
         /// </summary>
-        public override Games Game => Games.Demo_Rayman3_0;
+        public override Games Game => Games.Demo_Rayman3_3;
 
         /// <summary>
         /// The category for the game
@@ -23,12 +24,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game display name
         /// </summary>
-        public override string DisplayName => "Rayman 3 Demo 1";
+        public override string DisplayName => "Rayman 3 Demo 3";
 
         /// <summary>
         /// The game backup name
         /// </summary>
-        public override string BackupName => "Rayman 3 Demo 1";
+        public override string BackupName => "Rayman 3 Demo 3";
 
         /// <summary>
         /// Gets the launch name for the game
@@ -45,30 +46,29 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override IList<Uri> DownloadURLs => new Uri[]
         {
-            new Uri(CommonUrls.Games_R3Demo1_Url),
+            new Uri(CommonUrls.Games_R3Demo3_Url),
         };
 
-        // TODO: Add this? Does it conflict with normal?
-        ///// <summary>
-        ///// The config UI, if any is available
-        ///// </summary>
-        //public override FrameworkElement ConfigUI => new Ray_M_Arena_3_Config(Game);
+        /// <summary>
+        /// The config UI, if any is available
+        /// </summary>
+        public override FrameworkElement ConfigUI => new Ray_M_Arena_3_Config(new Rayman3ConfigViewModel(Game));
 
         /// <summary>
         /// Gets the file links for the game
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]
         {
-            new GameFileLink(Resources.GameLink_Setup, Game.GetInstallDir() + "R3_Setup_DX8D.exe")
+            new GameFileLink(Resources.GameLink_Setup, Game.GetInstallDir() + "R3_Setup_DX8.exe")
         };
 
-        ///// <summary>
-        ///// The group names to use for the options, config and utility dialog
-        ///// </summary>
-        //public override IEnumerable<string> DialogGroupNames => new string[]
-        //{
-        //    UbiIniFileGroupName
-        //};
+        /// <summary>
+        /// The group names to use for the options, config and utility dialog
+        /// </summary>
+        public override IEnumerable<string> DialogGroupNames => new string[]
+        {
+            UbiIniFileGroupName
+        };
 
         #endregion
     }

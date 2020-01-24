@@ -13,7 +13,8 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        public RaymanMConfigViewModel() : base(Games.RaymanM)
+        /// <param name="game">The game</param>
+        public RaymanMConfigViewModel(Games game = Games.RaymanM) : base(game)
         {
 
         }
@@ -104,6 +105,25 @@ namespace RayCarrot.RCP.Metro
             0xC8,
             0xFF
         };
+
+        #endregion
+
+        #region Public Override Properties
+
+        /// <summary>
+        /// Indicates if <see cref="Ray_M_Arena_3_UbiIniBaseConfigViewModel{Handler,Language}.DynamicShadows"/> and <see cref="Ray_M_Arena_3_UbiIniBaseConfigViewModel{Handler,Language}.StaticShadows"/> are available
+        /// </summary>
+        public override bool HasShadowConfig => false;
+
+        /// <summary>
+        /// Indicates if <see cref="Ray_M_Arena_3_UbiIniBaseConfigViewModel{Handler,Language}.HorizontalAxis"/> and <see cref="Ray_M_Arena_3_UbiIniBaseConfigViewModel{Handler,Language}.VerticalAxis"/> are available
+        /// </summary>
+        public override bool HasControllerConfig => false;
+
+        /// <summary>
+        /// Indicates if <see cref="Ray_M_Arena_3_UbiIniBaseConfigViewModel{Handler,Language}.ModemQualityIndex"/> is available
+        /// </summary>
+        public override bool HasNetworkConfig => false;
 
         #endregion
 

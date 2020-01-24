@@ -176,7 +176,6 @@ namespace RayCarrot.RCP.Metro
         /// <returns>A new display view model</returns>
         public GameDisplayViewModel GetDisplayViewModel()
         {
-            // TODO: No separator after install if no more options
             try
             {
                 if (IsAdded)
@@ -314,6 +313,10 @@ namespace RayCarrot.RCP.Metro
                             // NOTE: This is a blocking dialog
                             new GameInstaller(Game).ShowDialog())));
                     }
+
+                    // If the last option is a separator, remove it
+                    if (actions.Last().IsSeparator)
+                        actions.RemoveAt(actions.Count - 1);
 
                     // Return the view model
                     return new GameDisplayViewModel(Game, DisplayName, IconSource, 

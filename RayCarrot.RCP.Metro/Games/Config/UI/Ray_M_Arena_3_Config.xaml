@@ -11,7 +11,8 @@
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance local:RaymanMConfigViewModel}">
+             d:DataContext="{d:DesignInstance local:Rayman3ConfigViewModel}">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -67,19 +68,17 @@
 
                 <Grid rwpf:UserLevelTag.MinUserLevel="Advanced"
                       rwpf:UnifiedMargin.Ignored="True">
-                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                     <CheckBox Content="{Resx Config_DynamicShadows}"
                               IsChecked="{Binding Path=DynamicShadows}"
-                              Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"
+                              Visibility="{Binding Path=HasShadowConfig, Converter={rwpf:BooleanToVisibilityConverter}}"
                               Margin="0 8"/>
                 </Grid>
 
                 <Grid rwpf:UserLevelTag.MinUserLevel="Advanced"
                       rwpf:UnifiedMargin.Ignored="True">
-                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                     <CheckBox Content="{Resx Config_StaticShadows}"
                               IsChecked="{Binding Path=StaticShadows}" 
-                              Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"
+                              Visibility="{Binding Path=HasShadowConfig, Converter={rwpf:BooleanToVisibilityConverter}}"
                               Margin="0 8"/>
                 </Grid>
 
@@ -185,10 +184,9 @@
 
                 </StackPanel>
 
-                <TextBlock Text="{Resx Config_ControllerVertical}" 
-                           Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"/>
+                <TextBlock Text="{Resx Config_ControllerVertical}"
+                           Visibility="{Binding Path=HasControllerConfig, Converter={rwpf:BooleanToVisibilityConverter}}"/>
 
-                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                 <Slider Minimum="2"
                         Maximum="7"
                         Value="{Binding Path=VerticalAxis}"
@@ -196,12 +194,11 @@
                         IsSnapToTickEnabled="True"
                         Width="200"
                         HorizontalAlignment="Left"
-                        Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"/>
+                        Visibility="{Binding Path=HasControllerConfig, Converter={rwpf:BooleanToVisibilityConverter}}"/>
 
                 <TextBlock Text="{Resx Config_ControllerHorizontal}"
-                           Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}" />
+                           Visibility="{Binding Path=HasControllerConfig, Converter={rwpf:BooleanToVisibilityConverter}}" />
 
-                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                 <Slider Minimum="2"
                         Maximum="7"
                         Value="{Binding Path=HorizontalAxis}"
@@ -209,17 +206,16 @@
                         IsSnapToTickEnabled="True"
                         Width="200"
                         HorizontalAlignment="Left"
-                        Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman3}"/>
+                        Visibility="{Binding Path=HasControllerConfig, Converter={rwpf:BooleanToVisibilityConverter}}"/>
 
                 <TextBlock Style="{StaticResource HeaderTextBlock}"
                            Text="{Resx Config_Network}"
-                           Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanArena}"/>
+                           Visibility="{Binding Path=HasNetworkConfig, Converter={rwpf:BooleanToVisibilityConverter}}"/>
 
-                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                 <ComboBox ItemsSource="{Binding Path=ModemQualityOptions, Mode=OneTime}"
                           SelectedIndex="{Binding Path=ModemQualityIndex}"
                           HorizontalAlignment="Left"
-                          Visibility="{Binding Path=Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=RaymanArena}" />
+                          Visibility="{Binding Path=HasNetworkConfig, Converter={rwpf:BooleanToVisibilityConverter}}" />
 
                 <StackPanel Orientation="Horizontal"
                             Visibility="{Binding Path=CanRemoveDiscCheck, Converter={rwpf:BooleanToVisibilityConverter}}">

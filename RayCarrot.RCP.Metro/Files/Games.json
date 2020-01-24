@@ -17,12 +17,30 @@
     "RaymanM": [
       "RMCNTExplorerUtility"
     ],
+    "Demo_RaymanM": [
+      "RMDemoCNTExplorerUtility"
+    ],
     "RaymanArena": [
       "RACNTExplorerUtility"
     ],
     "Rayman3": [
       "R3CNTExplorerUtility",
       "R3DirectPlayUtility"
+    ],
+    "Demo_Rayman3_1": [
+      "R3Demo1CNTExplorerUtility"
+    ],
+    "Demo_Rayman3_2": [
+      "R3Demo2CNTExplorerUtility"
+    ],
+    "Demo_Rayman3_3": [
+      "R3Demo3CNTExplorerUtility"
+    ],
+    "Demo_Rayman3_4": [
+      "R3Demo4CNTExplorerUtility"
+    ],
+    "Demo_Rayman3_5": [
+      "R3Demo5CNTExplorerUtility"
     ],
     "RaymanOrigins": [
       "ROIPKExplorerUtility",
@@ -115,8 +133,23 @@
     "RabbidsCoding": {
       "Win32": "RabbidsCoding_Win32"
     },
-    "Demo_Rayman3_0": {
-      "Win32": "Demo_Rayman3_0_Win32"
+    "Demo_Rayman3_1": {
+      "Win32": "Demo_Rayman3_1_Win32"
+    },
+    "Demo_Rayman3_2": {
+      "Win32": "Demo_Rayman3_2_Win32"
+    },
+    "Demo_Rayman3_3": {
+      "Win32": "Demo_Rayman3_3_Win32"
+    },
+    "Demo_Rayman3_4": {
+      "Win32": "Demo_Rayman3_4_Win32"
+    },
+    "Demo_Rayman3_5": {
+      "Win32": "Demo_Rayman3_5_Win32"
+    },
+    "Demo_RaymanM": {
+      "Win32": "Demo_RaymanM_Win32"
     }
   },
   "GameInfos": {
@@ -143,6 +176,11 @@
     "GloboxMoment": "GloboxMoment_Info",
     "TheDarkMagiciansReignofTerror": "TheDarkMagiciansReignofTerror_Info",
     "RabbidsCoding": "RabbidsCoding_Info",
-    "Demo_Rayman3_0": "Demo_Rayman3_0_Info"
+    "Demo_Rayman3_1": "Demo_Rayman3_1_Info",
+    "Demo_Rayman3_2": "Demo_Rayman3_2_Info",
+    "Demo_Rayman3_3": "Demo_Rayman3_3_Info",
+    "Demo_Rayman3_4": "Demo_Rayman3_4_Info",
+    "Demo_Rayman3_5": "Demo_Rayman3_5_Info",
+    "Demo_RaymanM": "Demo_RaymanM_Info"
   }
 }

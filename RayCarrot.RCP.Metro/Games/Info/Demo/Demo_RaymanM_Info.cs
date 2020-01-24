@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// The Rayman M game info
+    /// The Rayman M Demo game info
     /// </summary>
-    public sealed class RaymanM_Info : RCPGameInfo
+    public sealed class Demo_RaymanM_Info : RCPGameInfo
     {
         #region Protected Override Properties
 
@@ -26,22 +27,22 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game
         /// </summary>
-        public override Games Game => Games.RaymanM;
+        public override Games Game => Games.Demo_RaymanM;
 
         /// <summary>
         /// The category for the game
         /// </summary>
-        public override GameCategory Category => GameCategory.Rayman;
+        public override GameCategory Category => GameCategory.Demo;
 
         /// <summary>
         /// The game display name
         /// </summary>
-        public override string DisplayName => "Rayman M";
+        public override string DisplayName => "Rayman M Demo";
 
         /// <summary>
         /// The game backup name
         /// </summary>
-        public override string BackupName => "Rayman M";
+        public override string BackupName => "Rayman M Demo";
 
         /// <summary>
         /// Gets the launch name for the game
@@ -49,9 +50,22 @@ namespace RayCarrot.RCP.Metro
         public override string DefaultFileName => "RaymanM.exe";
 
         /// <summary>
+        /// Indicates if the game can be downloaded
+        /// </summary>
+        public override bool CanBeDownloaded => true;
+
+        /// <summary>
+        /// The download URLs for the game if it can be downloaded. All sources must be compressed.
+        /// </summary>
+        public override IList<Uri> DownloadURLs => new Uri[]
+        {
+            new Uri(CommonUrls.Games_RMDemo_Url),
+        };
+
+        /// <summary>
         /// The config UI, if any is available
         /// </summary>
-        public override FrameworkElement ConfigUI => new Ray_M_Arena_3_Config(new RaymanMConfigViewModel());
+        public override FrameworkElement ConfigUI => new Ray_M_Arena_3_Config(new RaymanMDemoConfigViewModel());
 
         /// <summary>
         /// Gets the file links for the game
@@ -68,30 +82,6 @@ namespace RayCarrot.RCP.Metro
         {
             UbiIniFileGroupName
         };
-
-        /// <summary>
-        /// Indicates if the game can be installed from a disc in this program
-        /// </summary>
-        public override bool CanBeInstalledFromDisc => true;
-
-        /// <summary>
-        /// The .gif files to use during the game installation if installing from a disc
-        /// </summary>
-        public override string[] InstallerGifs
-        {
-            get
-            {
-                var basePath = $"{AppViewModel.WPFApplicationBasePath}Installer/InstallerGifs/";
-
-                return new string[]
-                {
-                    basePath + "BAST.gif",
-                    basePath + "CHASE.gif",
-                    basePath + "GLOB.gif",
-                    basePath + "RAY.gif"
-                };
-            }
-        }
 
         #endregion
     }

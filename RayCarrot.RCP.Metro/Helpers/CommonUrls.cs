@@ -74,6 +74,31 @@
         /// The Rayman 3 Demo 1 download URL
         /// </summary>
         public const string Games_R3Demo1_Url = DemosBaseUrl + "R3_Demo_1.zip";
+
+        /// <summary>
+        /// The Rayman 3 Demo 2 download URL
+        /// </summary>
+        public const string Games_R3Demo2_Url = DemosBaseUrl + "R3_Demo_2.zip";
+
+        /// <summary>
+        /// The Rayman 3 Demo 3 download URL
+        /// </summary>
+        public const string Games_R3Demo3_Url = DemosBaseUrl + "R3_Demo_3.zip";
+
+        /// <summary>
+        /// The Rayman 3 Demo 4 download URL
+        /// </summary>
+        public const string Games_R3Demo4_Url = DemosBaseUrl + "R3_Demo_4.zip";
+
+        /// <summary>
+        /// The Rayman 3 Demo 5 download URL
+        /// </summary>
+        public const string Games_R3Demo5_Url = DemosBaseUrl + "R3_Demo_5.zip";
+        
+        /// <summary>
+        /// The Rayman M Demo download URL
+        /// </summary>
+        public const string Games_RMDemo_Url = DemosBaseUrl + "Rayman_M_Demo.zip";
         
         #endregion
 

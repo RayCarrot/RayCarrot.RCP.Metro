@@ -13,21 +13,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        public Rayman3ConfigViewModel() : base(Games.Rayman3)
-        {
-        }
-
-        #endregion
-
-        #region Private Fields
-
-        private bool _dynamicShadows;
-
-        private bool _staticShadows;
-
-        private int _verticalAxis;
-
-        private int _horizontalAxis;
+        /// <param name="game">The game</param>
+        public Rayman3ConfigViewModel(Games game = Games.Rayman3) : base(game)
+        { }
 
         #endregion
 
@@ -50,59 +38,22 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Properties
+        #region Public Override Properties
 
         /// <summary>
-        /// Indicates if dynamic shadows are enabled
+        /// Indicates if <see cref="Ray_M_Arena_3_UbiIniBaseConfigViewModel{Handler,Language}.DynamicShadows"/> and <see cref="Ray_M_Arena_3_UbiIniBaseConfigViewModel{Handler,Language}.StaticShadows"/> are available
         /// </summary>
-        public bool DynamicShadows
-        {
-            get => _dynamicShadows;
-            set
-            {
-                _dynamicShadows = value;
-                UnsavedChanges = true;
-            }
-        }
+        public override bool HasShadowConfig => true;
 
         /// <summary>
-        /// Indicates if static shadows are enabled
+        /// Indicates if <see cref="Ray_M_Arena_3_UbiIniBaseConfigViewModel{Handler,Language}.HorizontalAxis"/> and <see cref="Ray_M_Arena_3_UbiIniBaseConfigViewModel{Handler,Language}.VerticalAxis"/> are available
         /// </summary>
-        public bool StaticShadows
-        {
-            get => _staticShadows;
-            set
-            {
-                _staticShadows = value;
-                UnsavedChanges = true;
-            }
-        }
+        public override bool HasControllerConfig => true;
 
         /// <summary>
-        /// The vertical controller axis value
+        /// Indicates if <see cref="Ray_M_Arena_3_UbiIniBaseConfigViewModel{Handler,Language}.ModemQualityIndex"/> is available
         /// </summary>
-        public int VerticalAxis
-        {
-            get => _verticalAxis;
-            set
-            {
-                _verticalAxis = value;
-                UnsavedChanges = true;
-            }
-        }
-
-        /// <summary>
-        /// The horizontal controller axis value
-        /// </summary>
-        public int HorizontalAxis
-        {
-            get => _horizontalAxis;
-            set
-            {
-                _horizontalAxis = value;
-                UnsavedChanges = true;
-            }
-        }
+        public override bool HasNetworkConfig => false;
 
         #endregion
 

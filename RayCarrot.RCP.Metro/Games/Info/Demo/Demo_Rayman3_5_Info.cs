@@ -1,62 +1,58 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// The Rayman 3 game info
+    /// The Rayman 3 Demo 5 game info
     /// </summary>
-    public sealed class Rayman3_Info : RCPGameInfo
+    public sealed class Demo_Rayman3_5_Info : RCPGameInfo
     {
-        #region Protected Override Properties
-
-        /// <summary>
-        /// Gets the backup directories for the game
-        /// </summary>
-        protected override IList<BackupDir> GetBackupDirectories => new List<BackupDir>()
-        {
-            new BackupDir(Game.GetInstallDir() + "GAMEDATA" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
-        };
-
-        #endregion
-
         #region Public Override Properties
 
         /// <summary>
         /// The game
         /// </summary>
-        public override Games Game => Games.Rayman3;
+        public override Games Game => Games.Demo_Rayman3_5;
 
         /// <summary>
         /// The category for the game
         /// </summary>
-        public override GameCategory Category => GameCategory.Rayman;
+        public override GameCategory Category => GameCategory.Demo;
 
         /// <summary>
         /// The game display name
         /// </summary>
-        public override string DisplayName => "Rayman 3";
+        public override string DisplayName => "Rayman 3 Demo 5";
 
         /// <summary>
         /// The game backup name
         /// </summary>
-        public override string BackupName => "Rayman 3";
+        public override string BackupName => "Rayman 3 Demo 5";
 
         /// <summary>
         /// Gets the launch name for the game
         /// </summary>
-        public override string DefaultFileName => "Rayman3.exe";
+        public override string DefaultFileName => "MainP5Pvf.exe";
+
+        /// <summary>
+        /// Indicates if the game can be downloaded
+        /// </summary>
+        public override bool CanBeDownloaded => true;
+
+        /// <summary>
+        /// The download URLs for the game if it can be downloaded. All sources must be compressed.
+        /// </summary>
+        public override IList<Uri> DownloadURLs => new Uri[]
+        {
+            new Uri(CommonUrls.Games_R3Demo5_Url),
+        };
 
         /// <summary>
         /// The config UI, if any is available
         /// </summary>
-        public override FrameworkElement ConfigUI => new Ray_M_Arena_3_Config(new Rayman3ConfigViewModel());
-
-        /// <summary>
-        /// The progression view model, if any is available
-        /// </summary>
-        public override BaseProgressionViewModel ProgressionViewModel => new Rayman3ProgressionViewModel();
+        public override FrameworkElement ConfigUI => new Ray_M_Arena_3_Config(new Rayman3ConfigViewModel(Game));
 
         /// <summary>
         /// Gets the file links for the game

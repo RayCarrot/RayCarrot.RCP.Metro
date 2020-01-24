@@ -1,12 +1,12 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-using System.Windows;
-using ByteSizeLib;
+﻿using ByteSizeLib;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.UI;
+using System;
+using System.IO;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -25,10 +25,15 @@ namespace RayCarrot.RCP.Metro
         /// <param name="game">The game</param>
         protected Ray_M_Arena_3_UbiIniBaseConfigViewModel(Games game) : base(game)
         {
-            if (game != Games.Rayman3 &&
-                game != Games.RaymanArena &&
-                game != Games.RaymanM)
-                throw new ArgumentOutOfRangeException(nameof(game), "The game for the base config VM has to be Rayman M, Arena or 3");
+            // Set the available modem quality options
+            ModemQualityOptions = new string[]
+            {
+                "Unknown",
+                "Modem 56k",
+                "RNIS",
+                "xDSL or cable",
+                "Local Area Network"
+            };
         }
 
         #endregion
@@ -63,6 +68,16 @@ namespace RayCarrot.RCP.Metro
 
         private bool _isDiscCheckRemoved;
 
+        private bool _dynamicShadows;
+
+        private bool _staticShadows;
+
+        private int _verticalAxis;
+
+        private int _horizontalAxis;
+
+        private int _modemQualityIndex;
+
         #endregion
 
         #region Protected Abstract Properties
@@ -90,6 +105,25 @@ namespace RayCarrot.RCP.Metro
         /// The game patcher to use for patching the disc check
         /// </summary>
         protected GamePatcher Patcher { get; set; }
+
+        #endregion
+
+        #region Public Abstract Properties
+
+        /// <summary>
+        /// Indicates if <see cref="DynamicShadows"/> and <see cref="StaticShadows"/> are available
+        /// </summary>
+        public abstract bool HasShadowConfig { get; }
+
+        /// <summary>
+        /// Indicates if <see cref="HorizontalAxis"/> and <see cref="VerticalAxis"/> are available
+        /// </summary>
+        public abstract bool HasControllerConfig { get; }
+
+        /// <summary>
+        /// Indicates if <see cref="ModemQualityIndex"/> is available
+        /// </summary>
+        public abstract bool HasNetworkConfig { get; }
 
         #endregion
 
@@ -283,6 +317,76 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 _isDiscCheckRemoved = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
+        /// Indicates if dynamic shadows are enabled
+        /// </summary>
+        public bool DynamicShadows
+        {
+            get => _dynamicShadows;
+            set
+            {
+                _dynamicShadows = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
+        /// Indicates if static shadows are enabled
+        /// </summary>
+        public bool StaticShadows
+        {
+            get => _staticShadows;
+            set
+            {
+                _staticShadows = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
+        /// The vertical controller axis value
+        /// </summary>
+        public int VerticalAxis
+        {
+            get => _verticalAxis;
+            set
+            {
+                _verticalAxis = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
+        /// The horizontal controller axis value
+        /// </summary>
+        public int HorizontalAxis
+        {
+            get => _horizontalAxis;
+            set
+            {
+                _horizontalAxis = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        /// <summary>
+        /// The available modem quality options
+        /// </summary>
+        public string[] ModemQualityOptions { get; }
+
+        /// <summary>
+        /// The current modem quality index
+        /// </summary>
+        public int ModemQualityIndex
+        {
+            get => _modemQualityIndex;
+            set
+            {
+                _modemQualityIndex = value;
                 UnsavedChanges = true;
             }
         }

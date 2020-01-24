@@ -51,7 +51,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The config UI, if any is available
         /// </summary>
-        public override FrameworkElement ConfigUI => new Ray_M_Arena_3_Config(Game);
+        public override FrameworkElement ConfigUI => new Ray_M_Arena_3_Config(new RaymanArenaConfigViewModel());
 
         /// <summary>
         /// Gets the file links for the game
