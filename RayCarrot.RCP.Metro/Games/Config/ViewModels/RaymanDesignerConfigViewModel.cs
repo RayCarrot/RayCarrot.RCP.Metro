@@ -17,7 +17,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Constructor for using the default game, <see cref="Games.RaymanDesigner"/>
         /// </summary>
-        public RaymanDesignerConfigViewModel() : this(Games.RaymanDesigner)
+        public RaymanDesignerConfigViewModel() : this(Games.RaymanDesigner, true)
         {
             
         }
@@ -25,10 +25,11 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Constructor for specifying a game
         /// </summary>
-        /// <paramref name="game">The game</paramref>
-        public RaymanDesignerConfigViewModel(Games game) : base(game, GameType.DosBox)
+        /// <param name="game">The game</param>
+        /// <param name="isMountLocationAvailable">Indicates if changing the game mount location is available</param>
+        public RaymanDesignerConfigViewModel(Games game, bool isMountLocationAvailable) : base(game, GameType.DosBox)
         {
-            IsMountLocationAvailable = true;
+            IsMountLocationAvailable = isMountLocationAvailable;
         }
 
         #endregion
@@ -209,25 +210,13 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                string lang;
-
-                switch (language)
+                var lang = language switch
                 {
-                    case R1Languages.English:
-                        lang = "usa";
-                        break;
-
-                    case R1Languages.French:
-                        lang = "fr";
-                        break;
-
-                    case R1Languages.German:
-                        lang = "al";
-                        break;
-
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(language), language, null);
-                }
+                    R1Languages.English => "usa",
+                    R1Languages.French => "fr",
+                    R1Languages.German => "al",
+                    _ => throw new ArgumentOutOfRangeException(nameof(language), language, null)
+                };
 
                 // Delete the existing file
                 RCFRCP.File.DeleteFile(batchFile);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
@@ -70,6 +71,11 @@ namespace RayCarrot.RCP.Metro
         /// Optional additional config files
         /// </summary>
         public virtual IEnumerable<FileSystemPath> AdditionalConfigFiles => new FileSystemPath[0];
+
+        /// <summary>
+        /// Indicates if the game requires a disc to be mounted in order to play
+        /// </summary>
+        public virtual bool RequiresMounting => true;
 
         #endregion
 
@@ -250,7 +256,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Make sure the mount path exists
-            if (!RCFRCP.Data.DosBoxGames[Game].MountPath.Exists)
+            if (RequiresMounting && !RCFRCP.Data.DosBoxGames[Game].MountPath.Exists)
             {
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.LaunchGame_MountPathNotFound, MessageType.Error);
                 return false;
@@ -272,16 +278,53 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The launch arguments</returns>
         protected string GetDosBoxArguments(FileSystemPath mountPath, string launchName, FileSystemPath? installDir = null)
         {
-            return $"{(File.Exists(RCFRCP.Data.DosBoxConfig) ? $"-conf \"{RCFRCP.Data.DosBoxConfig} \"" : String.Empty)} " +
-                   $"-conf \"{DosBoxConfigFile.FullPath}\" " +
-                   $"{AdditionalConfigFiles.Select(x => $"-conf \"{x.FullPath}\" ").JoinItems("")}" +
-                   // The mounting differs if it's a physical disc vs. a disc image
-                   $"{(mountPath.IsDirectoryRoot ? $"-c \"mount d {mountPath.FullPath} -t cdrom\"" : $"-c \"imgmount d '{mountPath.FullPath}' -t iso -fs iso\"")} " +
-                   $"-c \"MOUNT C '{installDir ?? Game.GetInstallDir().FullPath}'\" " +
-                   $"-c C: " +
-                   $"-c \"{launchName}\" " +
-                   $"-noconsole " +
-                   $"-c exit";
+            // Create a string builder for the argument
+            var str = new StringBuilder();
+
+            // Helper method for adding an argument
+            void AddArg(string arg)
+            {
+                str.Append($"{arg} ");
+            }
+
+            // Helper method for adding a config file to the argument
+            void AddConfig(FileSystemPath configFile)
+            {
+                if (configFile.FileExists)
+                    AddArg($"-conf \"{configFile.FullPath}\"");
+            }
+
+            // Add the primary config file
+            AddConfig(RCFRCP.Data.DosBoxConfig);
+
+            // Add the RCP config file
+            AddConfig(DosBoxConfigFile.FullPath);
+
+            // Add additional config files
+            foreach (var config in AdditionalConfigFiles)
+                AddConfig(config);
+
+            // Mount the disc if required
+            if (RequiresMounting)
+            {
+                // The mounting differs if it's a physical disc vs. a disc image
+                if (mountPath.IsDirectoryRoot)
+                    AddArg($"-c \"mount d {mountPath.FullPath} -t cdrom\"");
+                else
+                    AddArg($"-c \"imgmount d '{mountPath.FullPath}' -t iso -fs iso\"");
+            }
+
+            // Mount the game install directory as the C drive
+            AddArg($"-c \"MOUNT C '{installDir ?? Game.GetInstallDir().FullPath}'\"");
+
+            // Add commands to launch the game
+            AddArg("-c C:");
+            AddArg($"-c \"{launchName}\"");
+            AddArg("-noconsole");
+            AddArg("-c exit");
+
+            // Return the argument
+            return str.ToString().Trim();
         }
 
         #endregion

@@ -54,11 +54,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override GameType DownloadType => GameType.DosBox;
 
-        // TODO: Implement + set that this does not need mounting
         /// <summary>
         /// The config UI, if any is available
         /// </summary>
-        //public override FrameworkElement ConfigUI => new DosBoxConfig(Game);
+        public override FrameworkElement ConfigUI => new DosBoxConfig(new Rayman1ConfigViewModel(Game, true));
 
         #endregion
     }

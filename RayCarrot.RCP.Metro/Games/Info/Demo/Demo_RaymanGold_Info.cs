@@ -34,7 +34,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the launch name for the game
         /// </summary>
-        public override string DefaultFileName => "RAYKIT.bat";
+        public override string DefaultFileName => "Rayman.bat";
 
         /// <summary>
         /// Indicates if the game can be downloaded
@@ -54,11 +54,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override GameType DownloadType => GameType.DosBox;
 
-        // TODO: Implement + set that this does not need mounting
         /// <summary>
         /// The config UI, if any is available
         /// </summary>
-        //public override FrameworkElement ConfigUI => new DosBoxConfig(Game);
+        public override FrameworkElement ConfigUI => new DosBoxConfig(new RaymanDesignerConfigViewModel(Game, false));
 
         #endregion
     }

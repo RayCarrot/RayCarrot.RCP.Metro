@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace RayCarrot.RCP.Metro
@@ -14,22 +13,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="game">The DosBox game</param>
-        public DosBoxConfig(Games game)
+        /// <param name="viewModel">The view model</param>
+        public DosBoxConfig(BaseDosBoxConfigViewModel viewModel)
         {
             InitializeComponent();
 
-            if (game == Games.Rayman1)
-                DataContext = new Rayman1ConfigViewModel();
-
-            else if (game == Games.RaymanDesigner | game == Games.RaymanByHisFans || game == Games.Rayman60Levels)
-                DataContext = new RaymanDesignerConfigViewModel(game);
-
-            else if (game == Games.EducationalDos)
-                DataContext = new EducationalDosBoxGameConfigViewModel();
-
-            else
-                throw new ArgumentOutOfRangeException(nameof(game), game, $"{nameof(DosBoxConfig)} only supports Rayman 1, Rayman Designer, Rayman by his Fans, Rayman 60 Levels and Educational DOS Games");
+            DataContext = viewModel;
         }
 
         #endregion

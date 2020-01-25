@@ -42,7 +42,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The config UI, if any is available
         /// </summary>
-        public override FrameworkElement ConfigUI => new DosBoxConfig(Games.EducationalDos);
+        public override FrameworkElement ConfigUI => new DosBoxConfig(new EducationalDosBoxGameConfigViewModel());
 
         /// <summary>
         /// The options UI, if any is available

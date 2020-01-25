@@ -17,6 +17,11 @@
         /// </summary>
         public override string ExecutableName => "RAYKIT.EXE";
 
+        /// <summary>
+        /// Indicates if the game requires a disc to be mounted in order to play
+        /// </summary>
+        public override bool RequiresMounting => false;
+
         #endregion
     }
 }
