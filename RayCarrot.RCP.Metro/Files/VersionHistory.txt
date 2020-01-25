@@ -1,4 +1,8 @@
-﻿-----   Version 9.1.0 - January 25, 2020   -----
+﻿-----   Version 9.1.1 - January 25, 2020   -----
+• Fixed a bug where loading the games would crash if certain games had not been added
+
+
+-----   Version 9.1.0 - January 25, 2020   -----
 • Added support for Rayman demos with the option to download them
 • Fixed a bug where converting back from certain formats would fail
 

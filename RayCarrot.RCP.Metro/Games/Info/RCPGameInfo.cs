@@ -320,7 +320,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // If the last option is a separator, remove it
-                    if (actions.Last().IsSeparator)
+                    if (actions.LastOrDefault()?.IsSeparator == true)
                         actions.RemoveAt(actions.Count - 1);
 
                     // Return the view model

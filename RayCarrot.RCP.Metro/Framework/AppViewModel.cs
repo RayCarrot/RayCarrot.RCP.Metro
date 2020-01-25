@@ -126,7 +126,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentAppVersion => new Version(9, 1, 0, 0);
+        public Version CurrentAppVersion => new Version(9, 1, 1, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
