@@ -323,11 +323,13 @@ namespace RayCarrot.RCP.Metro
                     if (actions.LastOrDefault()?.IsSeparator == true)
                         actions.RemoveAt(actions.Count - 1);
 
+                    // Create the main action
+                    var mainAction = CanBeLocated
+                        ? new ActionItemViewModel(Resources.GameDisplay_Locate, PackIconMaterialKind.FolderOutline, new AsyncRelayCommand(async () => await LocateGameAsync()))
+                        : downloadItem;
+
                     // Return the view model
-                    return new GameDisplayViewModel(Game, DisplayName, IconSource, 
-                        CanBeLocated 
-                            ? new ActionItemViewModel(Resources.GameDisplay_Locate, PackIconMaterialKind.FolderOutline, new AsyncRelayCommand(async () => await LocateGameAsync()))
-                            : downloadItem, actions);
+                    return new GameDisplayViewModel(Game, DisplayName, IconSource, mainAction, actions);
                 }
             }
             catch (Exception ex)
@@ -344,7 +346,7 @@ namespace RayCarrot.RCP.Metro
         public async Task<GameTypeSelectionResult> GetGameTypeAsync()
         {
             // Get the available types
-            var types = RCFRCP.App.AppGamesManager.GameManagers[Game].Keys.ToArray();
+            var types = RCFRCP.App.GamesManager.GameManagers[Game].Keys.ToArray();
 
             // If only one type, return that
             if (types.Length == 1)
@@ -363,31 +365,18 @@ namespace RayCarrot.RCP.Metro
             // Enumerate the available types
             foreach (var type in types)
             {
-                switch (type)
-                {
-                    case GameType.Win32:
-                        vm.AllowWin32 = true;
-                        break;
-
-                    case GameType.Steam:
-                        vm.AllowSteam = true;
-                        break;
-
-                    case GameType.WinStore:
-                        vm.AllowWinStore = true;
-                        break;
-
-                    case GameType.DosBox:
-                        vm.AllowDosBox = true;
-                        break;
-
-                    case GameType.EducationalDosBox:
-                        vm.AllowEducationalDosBox = true;
-                        break;
-
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(type), type, null);
-                }
+                if (type == GameType.Win32)
+                    vm.AllowWin32 = true;
+                else if (type == GameType.Steam)
+                    vm.AllowSteam = true;
+                else if (type == GameType.WinStore)
+                    vm.AllowWinStore = true;
+                else if (type == GameType.DosBox)
+                    vm.AllowDosBox = true;
+                else if (type == GameType.EducationalDosBox)
+                    vm.AllowEducationalDosBox = true;
+                else
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
 
             // Create and show the dialog and return the result

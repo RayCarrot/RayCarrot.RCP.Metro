@@ -3220,4 +3220,85 @@ filePath</comment>
   <data name="TPLS_UpdateVersionError" xml:space="preserve">
     <value>The Rayman version could not be updated</value>
   </data>
+  <data name="Utility_Revert" xml:space="preserve">
+    <value>Revert</value>
+  </data>
+  <data name="R2U_RemoveDRM_Success" xml:space="preserve">
+    <value>The DRM has been removed</value>
+  </data>
+  <data name="R2U_RemoveDRM_Error" xml:space="preserve">
+    <value>An error occurred when removing the DRM</value>
+  </data>
+  <data name="R2U_RemoveDRM_RevertSuccess" xml:space="preserve">
+    <value>The DRM removal patch has been reverted</value>
+  </data>
+  <data name="R2U_RemoveDRM_RevertError" xml:space="preserve">
+    <value>An error occurred when reverting the DRM removal patch</value>
+  </data>
+  <data name="R2U_RemoveDRM_Header" xml:space="preserve">
+    <value>Remove Pirate Head DRM</value>
+  </data>
+  <data name="R2U_RemoveDRM_Info" xml:space="preserve">
+    <value>This utility patches the .sna files to remove the DRM causing the pirate head to appear in levels</value>
+  </data>
+  <data name="R2U_RemoveDRM_Warning" xml:space="preserve">
+    <value>This utility may not work on all releases. It has been verified to work on the GOG version.</value>
+  </data>
+  <data name="Utility_WIP" xml:space="preserve">
+    <value>This utility is currently work in process and might be unstable or missing features</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_SelectDirHeader" xml:space="preserve">
+    <value>Select game data directory</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
+    <value>{0}/{1} texture infos have been synchronized</value>
+    <comment>Arguments:
+editedTextures
+totalTextures</comment>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Error" xml:space="preserve">
+    <value>An error occurred when synchronizing the texture infos</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Sync" xml:space="preserve">
+    <value>Synchronize</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Header" xml:space="preserve">
+    <value>Synchronize Texture Info</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
+    <value>Syncing the texture info will edit the game files to have the textures displayed at the same resolution as specified in the .cnt files</value>
+  </data>
+  <data name="Utilities_R1MapViewer_SelectLevel" xml:space="preserve">
+    <value>Select level file</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Error" xml:space="preserve">
+    <value>An error occurred when loading the level</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Header" xml:space="preserve">
+    <value>Rayman 1 Level Viewer</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Load" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Width" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Height" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Events" xml:space="preserve">
+    <value>Events</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Textures" xml:space="preserve">
+    <value>Textures</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Background" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="Utilities_Other_Header" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="NotImplemented" xml:space="preserve">
+    <value>This feature has not been implemented yet</value>
+  </data>
 </root>

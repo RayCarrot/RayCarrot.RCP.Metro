@@ -13,9 +13,23 @@
         public UtilitiesPageViewModel()
         {
             // Create view models
-            ArchiveExplorerViewModel = new UtilitiesArchiveExplorerViewModel();
-            ConverterViewModel = new UtilitiesConverterViewModel();
-            WIPViewModel = new UtilitiesWIPViewModel();
+            ArchiveExplorerViewModels = new UtilityViewModel[]
+            {
+                new UtilityViewModel(new IPKArchiveExplorerUtility()),
+                new UtilityViewModel(new CNTArchiveExplorerUtility()),
+            };
+            ConverterViewModels = new UtilityViewModel[]
+            {
+                new UtilityViewModel(new GFConverterUtility()),
+                new UtilityViewModel(new R3SaveConverterUtility()),
+                new UtilityViewModel(new LOCConverterUtility()),
+                new UtilityViewModel(new RJRSaveConverterUtility()),
+            };
+            OtherViewModels = new UtilityViewModel[]
+            {
+                new UtilityViewModel(new R1MapViewerUtility()),
+                new UtilityViewModel(new SyncTextureInfoUtility()),
+            };
         }
 
         #endregion
@@ -23,19 +37,19 @@
         #region Public Properties
 
         /// <summary>
-        /// View model for the Archive Explorer utilities
+        /// View models for the Archive Explorer utilities
         /// </summary>
-        public UtilitiesArchiveExplorerViewModel ArchiveExplorerViewModel { get; }
+        public UtilityViewModel[] ArchiveExplorerViewModels { get; }
 
         /// <summary>
-        /// View model for the converter utilities
+        /// View models for the converter utilities
         /// </summary>
-        public UtilitiesConverterViewModel ConverterViewModel { get; }
+        public UtilityViewModel[] ConverterViewModels { get; }
 
         /// <summary>
-        /// View model for the work in process utilities
+        /// View models for the other utilities
         /// </summary>
-        public UtilitiesWIPViewModel WIPViewModel { get; }
+        public UtilityViewModel[] OtherViewModels { get; }
 
         #endregion
     }

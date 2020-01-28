@@ -131,7 +131,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The manager</returns>
         public static RCPGameManager GetManager(this Games game)
         {
-            return RCFRCP.App.AppGamesManager.GameManagers[game][game.GetGameType()].CreateInstance<RCPGameManager>();
+            return RCFRCP.App.GamesManager.GameManagers[game][game.GetGameType()].CreateInstance<RCPGameManager>();
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The managers</returns>
         public static IEnumerable<RCPGameManager> GetManagers(this Games game)
         {
-            return RCFRCP.App.AppGamesManager.GameManagers[game].Values.Select(managerType => managerType.CreateInstance<RCPGameManager>());
+            return RCFRCP.App.GamesManager.GameManagers[game].Values.Select(managerType => managerType.CreateInstance<RCPGameManager>());
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The manager</returns>
         public static RCPGameManager GetManager(this Games game, GameType type)
         {
-            return RCFRCP.App.AppGamesManager.GameManagers[game][type].CreateInstance<RCPGameManager>();
+            return RCFRCP.App.GamesManager.GameManagers[game][type].CreateInstance<RCPGameManager>();
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace RayCarrot.RCP.Metro
                     throw new Exception("The provided game manager type is not valid");
             }
 
-            return RCFRCP.App.AppGamesManager.GameManagers[game][type.Value].CreateInstance<T>();
+            return RCFRCP.App.GamesManager.GameManagers[game][type.Value].CreateInstance<T>();
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The info</returns>
         public static RCPGameInfo GetGameInfo(this Games game)
         {
-            return RCFRCP.App.AppGamesManager.GameInfos[game].CreateInstance<RCPGameInfo>();
+            return RCFRCP.App.GamesManager.GameInfos[game].CreateInstance<RCPGameInfo>();
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace RayCarrot.RCP.Metro
         public static T GetGameInfo<T>(this Games game)
             where T : RCPGameInfo
         {
-            return RCFRCP.App.AppGamesManager.GameInfos[game].CreateInstance<T>();
+            return RCFRCP.App.GamesManager.GameInfos[game].CreateInstance<T>();
         }
     }
 }

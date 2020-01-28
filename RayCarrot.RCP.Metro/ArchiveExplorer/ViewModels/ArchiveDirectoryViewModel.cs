@@ -270,6 +270,9 @@ namespace RayCarrot.RCP.Metro
 
                                     // Get the file path, without an extension
                                     FileSystemPath filePath = fileDir + new FileSystemPath(file.FileName).RemoveFileExtension(true);
+                                    
+                                    if (!fileDir.DirectoryExists)
+                                        continue;
 
                                     // Make sure there are potential file matches
                                     if (!Directory.GetFiles(fileDir, $"{filePath.Name}*", SearchOption.TopDirectoryOnly).Any())

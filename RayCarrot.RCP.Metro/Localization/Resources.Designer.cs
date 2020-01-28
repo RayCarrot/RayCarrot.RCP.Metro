@@ -6150,6 +6150,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This feature has not been implemented yet.
+        /// </summary>
+        public static string NotImplemented {
+            get {
+                return ResourceManager.GetString("NotImplemented", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         public static string Ok {
@@ -6803,6 +6812,69 @@ namespace RayCarrot.RCP.Metro {
         public static string R2U_DiscPatchNotRequired {
             get {
                 return ResourceManager.GetString("R2U_DiscPatchNotRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when removing the DRM.
+        /// </summary>
+        public static string R2U_RemoveDRM_Error {
+            get {
+                return ResourceManager.GetString("R2U_RemoveDRM_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Pirate Head DRM.
+        /// </summary>
+        public static string R2U_RemoveDRM_Header {
+            get {
+                return ResourceManager.GetString("R2U_RemoveDRM_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This utility patches the .sna files to remove the DRM causing the pirate head to appear in levels.
+        /// </summary>
+        public static string R2U_RemoveDRM_Info {
+            get {
+                return ResourceManager.GetString("R2U_RemoveDRM_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when reverting the DRM removal patch.
+        /// </summary>
+        public static string R2U_RemoveDRM_RevertError {
+            get {
+                return ResourceManager.GetString("R2U_RemoveDRM_RevertError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The DRM removal patch has been reverted.
+        /// </summary>
+        public static string R2U_RemoveDRM_RevertSuccess {
+            get {
+                return ResourceManager.GetString("R2U_RemoveDRM_RevertSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The DRM has been removed.
+        /// </summary>
+        public static string R2U_RemoveDRM_Success {
+            get {
+                return ResourceManager.GetString("R2U_RemoveDRM_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This utility may not work on all releases. It has been verified to work on the GOG version..
+        /// </summary>
+        public static string R2U_RemoveDRM_Warning {
+            get {
+                return ResourceManager.GetString("R2U_RemoveDRM_Warning", resourceCulture);
             }
         }
         
@@ -8709,11 +8781,155 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other.
+        /// </summary>
+        public static string Utilities_Other_Header {
+            get {
+                return ResourceManager.GetString("Utilities_Other_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Background.
+        /// </summary>
+        public static string Utilities_R1MapViewer_Background {
+            get {
+                return ResourceManager.GetString("Utilities_R1MapViewer_Background", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when loading the level.
+        /// </summary>
+        public static string Utilities_R1MapViewer_Error {
+            get {
+                return ResourceManager.GetString("Utilities_R1MapViewer_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Events.
+        /// </summary>
+        public static string Utilities_R1MapViewer_Events {
+            get {
+                return ResourceManager.GetString("Utilities_R1MapViewer_Events", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 1 Level Viewer.
+        /// </summary>
+        public static string Utilities_R1MapViewer_Header {
+            get {
+                return ResourceManager.GetString("Utilities_R1MapViewer_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height.
+        /// </summary>
+        public static string Utilities_R1MapViewer_Height {
+            get {
+                return ResourceManager.GetString("Utilities_R1MapViewer_Height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load.
+        /// </summary>
+        public static string Utilities_R1MapViewer_Load {
+            get {
+                return ResourceManager.GetString("Utilities_R1MapViewer_Load", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select level file.
+        /// </summary>
+        public static string Utilities_R1MapViewer_SelectLevel {
+            get {
+                return ResourceManager.GetString("Utilities_R1MapViewer_SelectLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Textures.
+        /// </summary>
+        public static string Utilities_R1MapViewer_Textures {
+            get {
+                return ResourceManager.GetString("Utilities_R1MapViewer_Textures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width.
+        /// </summary>
+        public static string Utilities_R1MapViewer_Width {
+            get {
+                return ResourceManager.GetString("Utilities_R1MapViewer_Width", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This utility requires the application to run as administrator.
         /// </summary>
         public static string Utilities_RequiresAdmin {
             get {
                 return ResourceManager.GetString("Utilities_RequiresAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when synchronizing the texture infos.
+        /// </summary>
+        public static string Utilities_SyncTextureInfo_Error {
+            get {
+                return ResourceManager.GetString("Utilities_SyncTextureInfo_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Synchronize Texture Info.
+        /// </summary>
+        public static string Utilities_SyncTextureInfo_Header {
+            get {
+                return ResourceManager.GetString("Utilities_SyncTextureInfo_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Syncing the texture info will edit the game files to have the textures displayed at the same resolution as specified in the .cnt files.
+        /// </summary>
+        public static string Utilities_SyncTextureInfo_Info {
+            get {
+                return ResourceManager.GetString("Utilities_SyncTextureInfo_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select game data directory.
+        /// </summary>
+        public static string Utilities_SyncTextureInfo_SelectDirHeader {
+            get {
+                return ResourceManager.GetString("Utilities_SyncTextureInfo_SelectDirHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}/{1} texture infos have been synchronized.
+        /// </summary>
+        public static string Utilities_SyncTextureInfo_Success {
+            get {
+                return ResourceManager.GetString("Utilities_SyncTextureInfo_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Synchronize.
+        /// </summary>
+        public static string Utilities_SyncTextureInfo_Sync {
+            get {
+                return ResourceManager.GetString("Utilities_SyncTextureInfo_Sync", resourceCulture);
             }
         }
         
@@ -8750,6 +8966,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Utility_Apply {
             get {
                 return ResourceManager.GetString("Utility_Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revert.
+        /// </summary>
+        public static string Utility_Revert {
+            get {
+                return ResourceManager.GetString("Utility_Revert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This utility is currently work in process and might be unstable or missing features.
+        /// </summary>
+        public static string Utility_WIP {
+            get {
+                return ResourceManager.GetString("Utility_WIP", resourceCulture);
             }
         }
         

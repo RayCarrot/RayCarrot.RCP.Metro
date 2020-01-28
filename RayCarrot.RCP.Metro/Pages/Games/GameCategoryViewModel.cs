@@ -32,10 +32,6 @@ namespace RayCarrot.RCP.Metro
             // Create properties
             InstalledGames = new ObservableCollection<GameDisplayViewModel>();
             NotInstalledGames = new ObservableCollection<GameDisplayViewModel>();
-
-            // Enable collection synchronization
-            BindingOperations.EnableCollectionSynchronization(InstalledGames, Application.Current);
-            BindingOperations.EnableCollectionSynchronization(NotInstalledGames, Application.Current);
         }
 
         /// <summary>
@@ -52,10 +48,6 @@ namespace RayCarrot.RCP.Metro
             // Create properties
             InstalledGames = new ObservableCollection<GameDisplayViewModel>();
             NotInstalledGames = new ObservableCollection<GameDisplayViewModel>();
-
-            // Enable collection synchronization
-            BindingOperations.EnableCollectionSynchronization(InstalledGames, Application.Current);
-            BindingOperations.EnableCollectionSynchronization(NotInstalledGames, Application.Current);
         }
 
         #endregion
@@ -114,9 +106,6 @@ namespace RayCarrot.RCP.Metro
         public void Dispose()
         {
             DisplayName?.Dispose();
-
-            BindingOperations.DisableCollectionSynchronization(InstalledGames);
-            BindingOperations.DisableCollectionSynchronization(NotInstalledGames);
         }
 
         #endregion

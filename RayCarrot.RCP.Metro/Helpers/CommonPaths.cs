@@ -25,9 +25,14 @@ namespace RayCarrot.RCP.Metro
         public static FileSystemPath GamesBaseDir => UserDataBaseDir + "Games";
 
         /// <summary>
-        /// The TPLS directory
+        /// The Rayman 1 TPLS directory
         /// </summary>
-        public static FileSystemPath TPLSDir => UtilitiesBaseDir + "TPLS";
+        public static FileSystemPath R1TPLSDir => UtilitiesBaseDir + "TPLS";
+
+        /// <summary>
+        /// The Rayman 2 DRM removal directory
+        /// </summary>
+        public static FileSystemPath R2RemoveDRMDir => UtilitiesBaseDir + "RemoveDRM";
 
         /// <summary>
         /// The <see cref="AppUserData"/> file path

@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.R1MapViewerUtilityUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:wpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             mc:Ignorable="d"
+             d:DesignWidth="550" d:DataContext="{d:DesignInstance local:R1MapViewerUtilityViewModel}">
+
+    <StackPanel>
+        <b:Interaction.Behaviors>
+            <wpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+        </b:Interaction.Behaviors>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ComboBox Grid.Column="0"
+                      ItemsSource="{Binding Path=GameModeSelection.AvailableValues, Mode=OneTime}"
+                      SelectedItem="{Binding Path=GameModeSelection.SelectedValue}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={local:GameModeToDisplayNameConverter}}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Button Grid.Column="2"
+                    Content="{Resx Utilities_R1MapViewer_Load}"
+                    Command="{Binding Path=LoadR1LevelCommand, Mode=OneTime}" />
+
+        </Grid>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Disabled"
+                      Visibility="{Binding Path=LevData, Converter={wpf:InvertedObjectNullToVisibilityConverter}}">
+            <StackPanel>
+                <b:Interaction.Behaviors>
+                    <wpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                </b:Interaction.Behaviors>
+
+                <Image Source="{Binding Path=LevGraphicsImageSource}" Stretch="None" />
+                <Image Source="{Binding Path=LevTypesImageSource}" Stretch="None" />
+            </StackPanel>
+        </ScrollViewer>
+
+        <ItemsControl DataContext="{Binding Path=LevData}"
+                      Visibility="{Binding Converter={wpf:InvertedObjectNullToVisibilityConverter}}"
+                      Grid.IsSharedSizeScope="True">
+
+            <local:DuoGridItem Header="{Resx Utilities_R1MapViewer_Width}"
+                               Text="{Binding Path=MapWidth}" />
+
+            <local:DuoGridItem Header="{Resx Utilities_R1MapViewer_Height}"
+                               Text="{Binding Path=MapHeight}" />
+
+            <local:DuoGridItem Header="{Resx Utilities_R1MapViewer_Events}"
+                               Text="{Binding Path=EventCount}" />
+
+            <local:DuoGridItem Header="{Resx Utilities_R1MapViewer_Textures}"
+                               Text="{Binding Path=TexturesCount}" />
+
+            <local:DuoGridItem Header="{Resx Utilities_R1MapViewer_Background}"
+                               Text="{Binding Path=BackgroundIndex}" />
+
+        </ItemsControl>
+
+    </StackPanel>
+
+</UserControl>

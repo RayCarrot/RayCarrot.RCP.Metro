@@ -122,20 +122,25 @@
     <Compile Include="Games\Manager\Demo\Demo_Rayman3_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_RaymanM_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_RaymanGold_DOSBox.cs" />
-    <Compile Include="Games\Utilities\Rayman 2\CNTExplorer\R2BaseCNTExplorerUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman 2\CNTExplorer\R2DemoCNTExplorerUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman 3\CNTExplorer\R3BaseCNTExplorerUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman 3\CNTExplorer\R3DemoCNTExplorerUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman M\CNTExplorer\RMBaseCNTExplorerUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman M\CNTExplorer\RMDemoCNTExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman 2\CNTExplorer\R2BaseCNTExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman 2\CNTExplorer\R2DemoCNTExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman 2\RemoveDRM\R2RemoveDRMUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman 2\RemoveDRM\R2RemoveDRMUtilityUI.xaml.cs">
+      <DependentUpon>R2RemoveDRMUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Games\Rayman 2\RemoveDRM\R2RemoveDRMUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman 3\CNTExplorer\R3BaseCNTExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman 3\CNTExplorer\R3DemoCNTExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman M\CNTExplorer\RMBaseCNTExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman M\CNTExplorer\RMDemoCNTExplorerUtility.cs" />
     <Compile Include="Helpers\SimpleTypeConverter.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman3_1_Info.cs" />
-    <Compile Include="Games\Utilities\Rayman 1\TPLS\TPLSRaymanVersion.cs" />
+    <Compile Include="Utilities\Games\Rayman 1\TPLS\TPLSRaymanVersion.cs" />
     <Compile Include="Helpers\LocalizedString.cs" />
-    <Compile Include="Games\Utilities\Common\ArchiveExplorer\UbiArtIPKExplorer\UbiArtIPKExplorerUtility.cs" />
-    <Compile Include="Games\Utilities\Common\ArchiveExplorer\UbiArtIPKExplorer\BaseUbiArtIPKExplorerUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman Legends\IPKExplorer\RLIPKExplorerUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman Origins\IPKExplorer\ROIPKExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Common\ArchiveExplorer\UbiArtIPKExplorer\UbiArtIPKExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Common\ArchiveExplorer\UbiArtIPKExplorer\BaseUbiArtIPKExplorerUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman Legends\IPKExplorer\RLIPKExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman Origins\IPKExplorer\ROIPKExplorerUtility.cs" />
     <Compile Include="Helpers\ImageHelpers.cs" />
     <Compile Include="ArchiveExplorer\UbiArt_Ipk\UbiArtIPKArchiveDataManager.cs" />
     <Compile Include="ArchiveExplorer\UbiArt_Ipk\UbiArtIPKArchiveFileData.cs" />
@@ -151,6 +156,36 @@
     <Compile Include="ArchiveExplorer\ViewModels\ArchiveExplorerDialogViewModel.cs" />
     <Compile Include="ArchiveExplorer\ViewModels\ArchiveFileViewModel.cs" />
     <Compile Include="ArchiveExplorer\ViewModels\ArchiveViewModel.cs" />
+    <Compile Include="Utilities\General\ArchiveExplorer\BaseArchiveExplorerUtilityUI.xaml.cs">
+      <DependentUpon>BaseArchiveExplorerUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\General\ArchiveExplorer\CNT\CNTArchiveExplorerUtility.cs" />
+    <Compile Include="Utilities\General\ArchiveExplorer\CNT\CNTArchiveExplorerUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\ArchiveExplorer\IPK\IPKArchiveExplorerUtility.cs" />
+    <Compile Include="Utilities\General\ArchiveExplorer\IPK\IPKArchiveExplorerUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\Converter\BaseConverterUtilityUI.xaml.cs">
+      <DependentUpon>BaseConverterUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\General\Converter\BaseConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\Converter\GF\GFConverterUtility.cs" />
+    <Compile Include="Utilities\General\Converter\GF\GFConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\Converter\LOC\LOCConverterUtility.cs" />
+    <Compile Include="Utilities\General\Converter\LOC\LOCConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\Converter\R3Save\R3SaveConverterUtility.cs" />
+    <Compile Include="Utilities\General\Converter\R3Save\R3SaveConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\Converter\RJRSave\RJRSaveConverterUtility.cs" />
+    <Compile Include="Utilities\General\Converter\RJRSave\RJRSaveConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\Other\SyncTextureInfo\SyncTextureInfoUtility.cs" />
+    <Compile Include="Utilities\General\Other\SyncTextureInfo\SyncTextureInfoUtilityUI.xaml.cs">
+      <DependentUpon>SyncTextureInfoUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\General\Other\SyncTextureInfo\SyncTextureInfoUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\Other\R1MapViewer\R1MapViewerUtilityUI.xaml.cs">
+      <DependentUpon>R1MapViewerUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\General\Other\R1MapViewer\R1MapViewerUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\Other\R1MapViewer\R1MapViewerUtility.cs" />
+    <Compile Include="Utilities\General\UtilityPlatforms.cs" />
     <Compile Include="ViewModels\Dialogs\FileExtensionSelectionDialogResult.cs" />
     <Compile Include="ViewModels\Dialogs\FileExtensionSelectionDialogViewModel.cs" />
     <Compile Include="Games\Config\UI\RaymanFiestaRunConfig.xaml.cs">
@@ -174,10 +209,10 @@
     <Compile Include="Games\Progression\JungleRun\JungleRunProgressionSlotViewModel.cs" />
     <Compile Include="Games\Progression\Rayman3\Rayman3ProgressionSlotViewModel.cs" />
     <Compile Include="Games\Progression\Rayman3\Rayman3ProgressionViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman 2\CNTExplorer\R2CNTExplorerUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman Arena\CNTExplorer\RACNTExplorerUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman 3\CNTExplorer\R3CNTExplorerUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman M\CNTExplorer\RMCNTExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman 2\CNTExplorer\R2CNTExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman Arena\CNTExplorer\RACNTExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman 3\CNTExplorer\R3CNTExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman M\CNTExplorer\RMCNTExplorerUtility.cs" />
     <Compile Include="Helpers\CommonPaths.cs" />
     <Compile Include="Localization\LocalizationManager.cs" />
     <Compile Include="Extensions\MessageUIManagerExtensions.cs" />
@@ -201,11 +236,9 @@
       <DependentUpon>LinksPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Links\LinksPageViewModel.cs" />
-    <Compile Include="Pages\Utilities\EnumSelectionViewModel.cs" />
+    <Compile Include="Utilities\General\EnumSelectionViewModel.cs" />
     <Compile Include="Extensions\GameModeExtensions.cs" />
-    <Compile Include="Pages\Utilities\UtilitiesArchiveExplorerViewModel.cs" />
-    <Compile Include="Pages\Utilities\UtilitiesConverterViewModel.cs" />
-    <Compile Include="Pages\Utilities\UtilitiesWIPViewModel.cs" />
+    <Compile Include="Utilities\General\ArchiveExplorer\BaseArchiveExplorerUtilityViewModel.cs" />
     <Compile Include="UI\Behaviors\ChildRCPTabControlBehavior.cs" />
     <Compile Include="UI\Controls\DuoGridItem.cs" />
     <Compile Include="UI\Controls\InfoIcon.xaml.cs">
@@ -231,8 +264,8 @@
     <Compile Include="Updater\RCPUpdateManager.cs" />
     <Compile Include="Updater\UpdaterCheckResult.cs" />
     <Compile Include="Updater\UpdaterManager.cs" />
-    <Compile Include="Games\Utilities\IRCPUtility.cs" />
-    <Compile Include="Games\Utilities\RCPUtilityViewModel.cs" />
+    <Compile Include="Utilities\IUtility.cs" />
+    <Compile Include="Utilities\UtilityViewModel.cs" />
     <Compile Include="UI\AdminButton.xaml.cs">
       <DependentUpon>AdminButton.xaml</DependentUpon>
     </Compile>
@@ -307,37 +340,37 @@
     <Compile Include="GameBackups\RCPBackup.cs" />
     <Compile Include="Games\Progression\Base\BaseProgressionViewModel.cs" />
     <Compile Include="Games\Progression\JungleRun\JungleRunProgressionViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman 1\FixConfig\R1FixConfigUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman 1\FixConfig\R1FixConfigUtilityUI.xaml.cs">
+    <Compile Include="Utilities\Games\Rayman 1\FixConfig\R1FixConfigUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman 1\FixConfig\R1FixConfigUtilityUI.xaml.cs">
       <DependentUpon>R1FixConfigUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Rayman 1\FixConfig\R1FixConfigUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Common\ArchiveExplorer\OpenSpaceCNTExplorer\BaseOpenSpaceCNTExplorerUtility.cs" />
-    <Compile Include="Games\Utilities\Common\ArchiveExplorer\OpenSpaceCNTExplorer\BaseArchiveExplorerUtilityUI.xaml.cs">
-      <DependentUpon>BaseArchiveExplorerUtilityUI.xaml</DependentUpon>
+    <Compile Include="Utilities\Games\Rayman 1\FixConfig\R1FixConfigUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Common\ArchiveExplorer\OpenSpaceCNTExplorer\BaseOpenSpaceCNTExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Common\ArchiveExplorer\BaseArchiveExplorerGameUtilityUI.xaml.cs">
+      <DependentUpon>BaseArchiveExplorerGameUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Common\ArchiveExplorer\OpenSpaceCNTExplorer\BaseOpenSpaceCNTExplorerUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman 2\DiscPatch\R2DiscPatchUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml.cs">
+    <Compile Include="Utilities\Games\Common\ArchiveExplorer\OpenSpaceCNTExplorer\BaseOpenSpaceCNTExplorerUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman 2\DiscPatch\R2DiscPatchUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml.cs">
       <DependentUpon>R2DiscPatchUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Rayman 2\DiscPatch\R2DiscPatchUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman Fiesta Run\LocalizationConverter\RFRLocalizationConverterUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman Fiesta Run\LocalizationConverter\RFRLocalizationConverterUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman Legends\DebugCommands\RLDebugCommandsUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman Legends\DebugCommands\RLDebugCommandsUtilityUI.xaml.cs">
+    <Compile Include="Utilities\Games\Rayman 2\DiscPatch\R2DiscPatchUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman Fiesta Run\LocalizationConverter\RFRLocalizationConverterUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman Fiesta Run\LocalizationConverter\RFRLocalizationConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman Legends\DebugCommands\RLDebugCommandsUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman Legends\DebugCommands\RLDebugCommandsUtilityUI.xaml.cs">
       <DependentUpon>RLDebugCommandsUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Rayman Legends\DebugCommands\RLDebugCommandsUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman Legends\LocalizationConverter\RLLocalizationConverterUtility.cs" />
-    <Compile Include="Games\Utilities\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtilityUI.xaml.cs">
+    <Compile Include="Utilities\Games\Rayman Legends\DebugCommands\RLDebugCommandsUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman Legends\LocalizationConverter\RLLocalizationConverterUtility.cs" />
+    <Compile Include="Utilities\Games\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtilityUI.xaml.cs">
       <DependentUpon>BaseUbiArtLocalizationConverterUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Rayman Legends\LocalizationConverter\RLLocalizationConverterUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman Origins\LocalizationConverter\ROLocalizationConverterUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman Origins\LocalizationConverter\ROLocalizationConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman Legends\LocalizationConverter\RLLocalizationConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman Origins\LocalizationConverter\ROLocalizationConverterUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman Origins\LocalizationConverter\ROLocalizationConverterUtilityViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\GamesSelectionResult.cs" />
     <Compile Include="ViewModels\Dialogs\GamesSelectionViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\JumpListEditResult.cs" />
@@ -417,6 +450,10 @@
     <Page Include="UI\Controls\OverflowMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Styles\InfoIconStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Styles\TextStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -522,23 +559,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Games\Utilities\Rayman 1\FixConfig\R1FixConfigUtilityUI.xaml">
+    <Page Include="Utilities\Games\Rayman 1\FixConfig\R1FixConfigUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Utilities\Common\ArchiveExplorer\OpenSpaceCNTExplorer\BaseArchiveExplorerUtilityUI.xaml">
+    <Page Include="Utilities\Games\Common\ArchiveExplorer\BaseArchiveExplorerGameUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Utilities\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml">
+    <Page Include="Utilities\Games\Rayman 2\RemoveDRM\R2RemoveDRMUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Utilities\Rayman 3\DirectPlay\R3DirectPlayUtilityUI.xaml">
+    <Page Include="Utilities\Games\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Utilities\Rayman Designer\CreateConfig\RDCreateConfigUtilityUI.xaml">
+    <Page Include="Utilities\Games\Rayman 3\DirectPlay\R3DirectPlayUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\Games\Rayman Designer\CreateConfig\RDCreateConfigUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -546,7 +587,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Games\Utilities\Rayman Legends\DebugCommands\RLDebugCommandsUtilityUI.xaml">
+    <Page Include="Utilities\Games\Rayman Legends\DebugCommands\RLDebugCommandsUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -558,43 +599,59 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Games\Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityUI.xaml">
+    <Page Include="Utilities\Games\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Utilities\Rayman 1\TPLS\R1TPLSUtilityUI.xaml">
+    <Page Include="Utilities\Games\Rayman 1\TPLS\R1TPLSUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Utilities\Rayman 2\Translations\R2TranslationUtilityUI.xaml">
+    <Page Include="Utilities\Games\Rayman 2\Translations\R2TranslationUtilityUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Games\Utilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityUI.xaml">
+    <Page Include="Utilities\Games\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Utilities\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtilityUI.xaml">
+    <Page Include="Utilities\Games\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Utilities\Rayman Legends\UbiRay\RLUbiRayUtilityUI.xaml">
+    <Page Include="Utilities\Games\Rayman Legends\UbiRay\RLUbiRayUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Utilities\Rayman Origins\DebugCommands\RODebugCommandsUtilityUI.xaml">
+    <Page Include="Utilities\Games\Rayman Origins\DebugCommands\RODebugCommandsUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Utilities\Rayman Origins\HQVideos\ROHQVideosUtilityUI.xaml">
+    <Page Include="Utilities\Games\Rayman Origins\HQVideos\ROHQVideosUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Utilities\Rayman Origins\Update\ROUpdateUtilityUI.xaml">
+    <Page Include="Utilities\Games\Rayman Origins\Update\ROUpdateUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Utilities\UtilitiesContainer.xaml">
+    <Page Include="Utilities\General\ArchiveExplorer\BaseArchiveExplorerUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\General\Converter\BaseConverterUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\General\Other\SyncTextureInfo\SyncTextureInfoUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\General\Other\R1MapViewer\R1MapViewerUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\UtilitiesContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -644,56 +701,56 @@
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppUserData\DataModels\LinkItemStyles.cs" />
-    <Compile Include="Games\Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityUI.xaml.cs">
+    <Compile Include="Utilities\Games\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityUI.xaml.cs">
       <DependentUpon>R1CompleteSoundtrackUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman 1\TPLS\R1TPLSUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman 1\TPLS\R1TPLSUtilityUI.xaml.cs">
+    <Compile Include="Utilities\Games\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman 1\TPLS\R1TPLSUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman 1\TPLS\R1TPLSUtilityUI.xaml.cs">
       <DependentUpon>R1TPLSUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Rayman 1\TPLS\R1TPLSUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman 2\Translations\R2TranslationUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman 2\Translations\R2TranslationUtilityUI.xaml.cs">
+    <Compile Include="Utilities\Games\Rayman 1\TPLS\R1TPLSUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman 2\Translations\R2TranslationUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman 2\Translations\R2TranslationUtilityUI.xaml.cs">
       <DependentUpon>R2TranslationUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Rayman 3\DirectPlay\R3DirectPlayUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman 3\DirectPlay\R3DirectPlayUtilityUI.xaml.cs">
+    <Compile Include="Utilities\Games\Rayman 3\DirectPlay\R3DirectPlayUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman 3\DirectPlay\R3DirectPlayUtilityUI.xaml.cs">
       <DependentUpon>R3DirectPlayUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Rayman 3\DirectPlay\R3DirectPlayUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman Designer\CreateConfig\RDCreateConfigUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman Designer\CreateConfig\RDCreateConfigUtilityUI.xaml.cs">
+    <Compile Include="Utilities\Games\Rayman 3\DirectPlay\R3DirectPlayUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman Designer\CreateConfig\RDCreateConfigUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman Designer\CreateConfig\RDCreateConfigUtilityUI.xaml.cs">
       <DependentUpon>RDCreateConfigUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Rayman Designer\CreateConfig\RDCreateConfigUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityUI.xaml.cs">
+    <Compile Include="Utilities\Games\Rayman Designer\CreateConfig\RDCreateConfigUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman Designer\ReplaceFiles\RDReplaceFilesUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityUI.xaml.cs">
       <DependentUpon>RDReplaceFilesUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman Legends\UbiRay\RLUbiRayUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman Legends\UbiRay\RLUbiRayUtilityUI.xaml.cs">
+    <Compile Include="Utilities\Games\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman Legends\UbiRay\RLUbiRayUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman Legends\UbiRay\RLUbiRayUtilityUI.xaml.cs">
       <DependentUpon>RLUbiRayUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Rayman Legends\UbiRay\RLUbiRayUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman Origins\DebugCommands\RODebugCommandsUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman Origins\DebugCommands\RODebugCommandsUtilityUI.xaml.cs">
+    <Compile Include="Utilities\Games\Rayman Legends\UbiRay\RLUbiRayUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman Origins\DebugCommands\RODebugCommandsUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman Origins\DebugCommands\RODebugCommandsUtilityUI.xaml.cs">
       <DependentUpon>RODebugCommandsUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Rayman Origins\DebugCommands\RODebugCommandsUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman Origins\HQVideos\ROHQVideosUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman Origins\HQVideos\ROHQVideosUtilityUI.xaml.cs">
+    <Compile Include="Utilities\Games\Rayman Origins\DebugCommands\RODebugCommandsUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman Origins\HQVideos\ROHQVideosUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman Origins\HQVideos\ROHQVideosUtilityUI.xaml.cs">
       <DependentUpon>ROHQVideosUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Rayman Origins\HQVideos\ROHQVideosUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman Origins\Update\ROUpdateUtility.cs" />
-    <Compile Include="Games\Utilities\Rayman Origins\Update\ROUpdateUtilityUI.xaml.cs">
+    <Compile Include="Utilities\Games\Rayman Origins\HQVideos\ROHQVideosUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman Origins\Update\ROUpdateUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman Origins\Update\ROUpdateUtilityUI.xaml.cs">
       <DependentUpon>ROUpdateUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Utilities\Rayman Origins\Update\ROUpdateUtilityViewModel.cs" />
-    <Compile Include="Games\Utilities\UtilitiesContainer.xaml.cs">
+    <Compile Include="Utilities\Games\Rayman Origins\Update\ROUpdateUtilityViewModel.cs" />
+    <Compile Include="Utilities\UtilitiesContainer.xaml.cs">
       <DependentUpon>UtilitiesContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Help\Cheats\Base\BaseCheatCodeItemViewModel.cs" />
@@ -710,7 +767,7 @@
       <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Pages\About\AboutPageViewModel.cs" />
-    <Compile Include="Games\Utilities\Rayman 2\Translations\R2TranslationUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman 2\Translations\R2TranslationUtilityViewModel.cs" />
     <Compile Include="Helpers\CommonUrls.cs" />
     <Compile Include="DataModels\EventArgs\ValueEventArgs.cs" />
     <Compile Include="AppUserData\DataModels\TPLSData.cs" />
@@ -881,6 +938,7 @@
     <EmbeddedResource Include="Localization\Resources.sv-SE.resx" />
     <None Include="Files\Games.json" />
     <None Include="Files\Rayman1\RAYMAN.CFG" />
+    <None Include="Files\Rayman2\R2_Sna_Drm_Offsets.json" />
     <None Include="Files\Rayman2\ubi.ini" />
   </ItemGroup>
   <ItemGroup>
@@ -1039,7 +1097,7 @@
       <Version>1.13.5</Version>
     </PackageReference>
     <PackageReference Include="Fody">
-      <Version>6.0.6</Version>
+      <Version>6.0.8</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -1059,7 +1117,7 @@
       <Version>1.6.5</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro.IconPacks.Material">
-      <Version>3.1.0</Version>
+      <Version>3.2.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft-WindowsAPICodePack-Shell">
       <Version>1.1.3.3</Version>
@@ -1089,7 +1147,7 @@
       <Version>1.5.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Extensions">
-      <Version>1.2.7</Version>
+      <Version>1.2.8</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
       <Version>1.4.5</Version>

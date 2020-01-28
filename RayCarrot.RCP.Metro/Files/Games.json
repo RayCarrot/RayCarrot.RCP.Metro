@@ -11,8 +11,9 @@
     ],
     "Rayman2": [
       "R2CNTExplorerUtility",
-      "R2TranslationUtility",
-      "R2DiscPatchUtility"
+      "R2RemoveDRMUtility",
+      "R2DiscPatchUtility",
+      "R2TranslationUtility"
     ],
     "Demo_Rayman2_1": [
       "R2Demo1CNTExplorerUtility"

@@ -104,19 +104,27 @@ namespace RayCarrot.RCP.Metro {
         ///   Looks up a localized string similar to {
         ///  &quot;LocalUtilities&quot;: {
         ///    &quot;Rayman1&quot;: [
-        ///      &quot;RayCarrot.RCP.Metro.R1TPLSUtility&quot;,
-        ///      &quot;RayCarrot.RCP.Metro.R1CompleteSoundtrackUtility&quot;,
-        ///      &quot;RayCarrot.RCP.Metro.R1FixConfigUtility&quot;
+        ///      &quot;R1TPLSUtility&quot;,
+        ///      &quot;R1CompleteSoundtrackUtility&quot;,
+        ///      &quot;R1FixConfigUtility&quot;
         ///    ],
         ///    &quot;RaymanDesigner&quot;: [
-        ///      &quot;RayCarrot.RCP.Metro.RDReplaceFilesUtility&quot;,
-        ///      &quot;RayCarrot.RCP.Metro.RDCreateConfigUtility&quot;
+        ///      &quot;RDReplaceFilesUtility&quot;,
+        ///      &quot;RDCreateConfigUtility&quot;
         ///    ],
         ///    &quot;Rayman2&quot;: [
-        ///      &quot;RayCarrot.RCP.Metro.R2CNTExplorerUtility&quot;,
-        ///      &quot;RayCarrot.RCP.Metro.R2TranslationUtility&quot;,
-        ///      &quot;RayCarrot.RCP.Metro.R2DiscPatchUtility&quot;
-        ///    ], [rest of string was truncated]&quot;;.
+        ///      &quot;R2CNTExplorerUtility&quot;,
+        ///      &quot;R2TranslationUtility&quot;,
+        ///      &quot;R2DiscPatchUtility&quot;
+        ///    ],
+        ///    &quot;Demo_Rayman2_1&quot;: [
+        ///      &quot;R2Demo1CNTExplorerUtility&quot;
+        ///    ],
+        ///    &quot;Demo_Rayman2_2&quot;: [
+        ///      &quot;R2Demo2CNTExplorerUtility&quot;
+        ///    ],
+        ///    &quot;RaymanM&quot;: [
+        ///     [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Games {
             get {
@@ -131,6 +139,57 @@ namespace RayCarrot.RCP.Metro {
             get {
                 object obj = ResourceManager.GetObject("GXSetup_GOG", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;Bast_10.sna&quot;: [
+        ///    11293,
+        ///    11997
+        ///  ],
+        ///  &quot;Bast_20.sna&quot;: [
+        ///    16893,
+        ///    17597
+        ///  ],
+        ///  &quot;Boat02.sna&quot;: [
+        ///    8813,
+        ///    9505
+        ///  ],
+        ///  &quot;Cask_10.sna&quot;: [
+        ///    7477,
+        ///    8181
+        ///  ],
+        ///  &quot;Chase_10.sna&quot;: [
+        ///    28537,
+        ///    29241
+        ///  ],
+        ///  &quot;Earth_10.sna&quot;: [
+        ///    14081
+        ///  ],
+        ///  &quot;Earth_20.sna&quot;: [
+        ///    12181
+        ///  ],
+        ///  &quot;Earth_30.sna&quot;: [
+        ///    13593
+        ///  ],
+        ///  &quot;GLob_10.sna&quot;: [
+        ///    18373,
+        ///    19077
+        ///  ],
+        ///  &quot;GLob_20.sna&quot;: [
+        ///    27225,
+        ///    27929
+        ///  ],
+        ///  &quot;GLob_30.sna&quot;: [
+        ///    4065,
+        ///    4769
+        ///  ],
+        ///  &quot;Helic_ [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string R2_Sna_Drm_Offsets {
+            get {
+                return ResourceManager.GetString("R2_Sna_Drm_Offsets", resourceCulture);
             }
         }
         
@@ -227,15 +286,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 9.1.0 - February ??, 2020   -----
-        ///• 
+        ///   Looks up a localized string similar to -----   Version 9.2.0 - January ??, 2020   -----
+        ///• Added a utility for synchronizing the OpenSpace texture resolution
         ///
-        ///
-        ///-----   Version 9.0.0 - January 20, 2020   -----
-        ///• Added a utility for viewing/editing the .ipk files in Rayman Origins and Rayman Legends, allowing importing/exporting of textures and game files for UbiArt games
-        ///• Added the utilities page for general utilities, such as viewing .cnt/.ipk archives and converting certain game files
-        ///• Added the progression tab for Rayman 3
-        ///• Remade the Rayman 1 PlayStation soundtrack utility using a new implementat [rest of string was truncated]&quot;;.
+        ///Other changes:
+        ///• Created the new &quot;other category&quot; for utilities
+        ///• Replaced the &quot;work in process&quot; utilities category with info icons
+        ///• Reworked the general utilities system to use the same utility base as the games
+        ///• Fixed a bug where importing a directory in the Archive Explorer would crash if certain sub-directories didn&apos;t exist
+        ///• Fixed some bugs related to refreshing the games pag [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

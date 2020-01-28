@@ -4,6 +4,7 @@ using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.Rayman;
 using RayCarrot.UI;
 using RayCarrot.UserData;
 using RayCarrot.Windows.Shell;
@@ -13,6 +14,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -70,7 +72,7 @@ namespace RayCarrot.RCP.Metro
             var gameConfig = Files.Games;
 
             // Set up the games manager
-            AppGamesManager = JsonConvert.DeserializeObject<AppGamesManager>(gameConfig, new SimpleTypeConverter());
+            GamesManager = JsonConvert.DeserializeObject<AppGamesManager>(gameConfig, new SimpleTypeConverter());
         }
 
         #endregion
@@ -126,12 +128,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentAppVersion => new Version(9, 1, 1, 0);
+        public Version CurrentAppVersion => new Version(9, 2, 0, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
-        public bool IsBeta => false;
+        public bool IsBeta => true;
 
         /// <summary>
         /// Shortcut to the app user data
@@ -141,7 +143,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The application games manager
         /// </summary>
-        public AppGamesManager AppGamesManager { get; }
+        public AppGamesManager GamesManager { get; }
 
         /// <summary>
         /// Gets a collection of the available <see cref="Games"/>
@@ -201,16 +203,16 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="game">The game to get the utilities for</param>
         /// <returns>The utilities instances</returns>
-        public IEnumerable<IRCPUtility> GetUtilities(Games game)
+        public IEnumerable<IUtility> GetUtilities(Games game)
         {
-            var utilities = AppGamesManager.LocalUtilities.TryGetValue(game);
+            var utilities = GamesManager.LocalUtilities.TryGetValue(game);
 
             if (utilities == null)
-                return new IRCPUtility[0]; 
+                return new IUtility[0]; 
 
             return utilities.
                 // Create a new instance of each utility
-                Select(x => x.CreateInstance<IRCPUtility>()).
+                Select(x => x.CreateInstance<IUtility>()).
                 // Make sure it's available
                 Where(x => x.IsAvailable);
         }
@@ -755,39 +757,43 @@ namespace RayCarrot.RCP.Metro
         public event AsyncEventHandler<RefreshRequiredEventArgs> RefreshRequired;
 
         #endregion
-    }
 
-    /// <summary>
-    /// The application game manager
-    /// </summary>
-    public class AppGamesManager
-    {
+        #region Classes
+
         /// <summary>
-        /// Default constructor
+        /// The application game manager
         /// </summary>
-        /// <param name="localUtilities">The available local utilities</param>
-        /// <param name="gameManagers">The available game managers</param>
-        /// <param name="gameInfos">The available game infos</param>
-        public AppGamesManager(Dictionary<Games, Type[]> localUtilities, Dictionary<Games, Dictionary<GameType, Type>> gameManagers, Dictionary<Games, Type> gameInfos)
+        public class AppGamesManager
         {
-            LocalUtilities = localUtilities;
-            GameManagers = gameManagers;
-            GameInfos = gameInfos;
+            /// <summary>
+            /// Default constructor
+            /// </summary>
+            /// <param name="localUtilities">The available local utilities</param>
+            /// <param name="gameManagers">The available game managers</param>
+            /// <param name="gameInfos">The available game infos</param>
+            public AppGamesManager(Dictionary<Games, Type[]> localUtilities, Dictionary<Games, Dictionary<GameType, Type>> gameManagers, Dictionary<Games, Type> gameInfos)
+            {
+                LocalUtilities = localUtilities;
+                GameManagers = gameManagers;
+                GameInfos = gameInfos;
+            }
+
+            /// <summary>
+            /// The available local utilities
+            /// </summary>
+            public Dictionary<Games, Type[]> LocalUtilities { get; }
+
+            /// <summary>
+            /// The available game managers
+            /// </summary>
+            public Dictionary<Games, Dictionary<GameType, Type>> GameManagers { get; }
+
+            /// <summary>
+            /// The available game infos
+            /// </summary>
+            public Dictionary<Games, Type> GameInfos { get; }
         }
 
-        /// <summary>
-        /// The available local utilities
-        /// </summary>
-        public Dictionary<Games, Type[]> LocalUtilities { get; }
-
-        /// <summary>
-        /// The available game managers
-        /// </summary>
-        public Dictionary<Games, Dictionary<GameType, Type>> GameManagers { get; }
-
-        /// <summary>
-        /// The available game infos
-        /// </summary>
-        public Dictionary<Games, Type> GameInfos { get; }
+        #endregion
     }
 }

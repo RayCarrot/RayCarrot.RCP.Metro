@@ -3117,4 +3117,8 @@ Pointer = {8}
     <value>Não pode ser actualizada a versão Rayman
 </value>
   </data>
+  <data name="Utilities_R1MapViewer_Events" xml:space="preserve">
+    <value>Events</value>
+    <comment>Events</comment>
+  </data>
 </root>

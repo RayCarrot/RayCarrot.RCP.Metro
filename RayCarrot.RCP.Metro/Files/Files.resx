@@ -160,4 +160,7 @@
   <data name="Games" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>games.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="R2_Sna_Drm_Offsets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>rayman2\r2_sna_drm_offsets.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

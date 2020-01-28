@@ -55,7 +55,7 @@ namespace RayCarrot.RCP.Metro
             CanChangeLaunchMode = Game.GetManager().SupportsGameLaunchMode;
 
             // Get the utilities view models
-            Utilities = App.GetUtilities(Game).Select(x => new RCPUtilityViewModel(x)).ToArray();
+            Utilities = App.GetUtilities(Game).Select(x => new UtilityViewModel(x)).ToArray();
 
             // Get the UI content, if available
             ConfigContent = gameInfo.ConfigUI;
@@ -125,7 +125,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The utilities for the game
         /// </summary>
-        public RCPUtilityViewModel[] Utilities { get; }
+        public UtilityViewModel[] Utilities { get; }
 
         /// <summary>
         /// Indicates if the game has utilities content

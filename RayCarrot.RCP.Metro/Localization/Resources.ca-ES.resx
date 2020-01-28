@@ -321,4 +321,8 @@
     <value>Archive Explorer™ (.ipk)</value>
     <comment>Archive Explorer™ (.ipk)</comment>
   </data>
+  <data name="Utilities_R1MapViewer_Events" xml:space="preserve">
+    <value>Events</value>
+    <comment>Events</comment>
+  </data>
 </root>

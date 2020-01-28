@@ -147,12 +147,6 @@
         <Setter Property="NumericInputMode" Value="Numbers" />
     </Style>
 
-    <!-- Utility Download Info Icon -->
-
-    <Style x:Key="AdditionalFilesRequired" TargetType="{x:Type local:InfoIcon}">
-        <Setter Property="IconKind" Value="CloudDownload" />
-    </Style>
-
     <!-- Default duo grid item -->
 
     <Style TargetType="{x:Type local:DuoGridItem}">

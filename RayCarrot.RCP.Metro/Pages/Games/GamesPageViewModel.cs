@@ -1,15 +1,14 @@
-﻿using System;
+﻿using MahApps.Metro.IconPacks;
+using Nito.AsyncEx;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
+using RayCarrot.UI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Data;
-using MahApps.Metro.IconPacks;
-using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -40,7 +39,7 @@ namespace RayCarrot.RCP.Metro
                 // Create the categories
                 new GameCategoryViewModel(games[GameCategory.Rayman], new LocalizedString(() => Resources.GamesPage_Category_Rayman), PackIconMaterialKind.GamepadVariantOutline), 
                 new GameCategoryViewModel(games[GameCategory.Rabbids], new LocalizedString(() => Resources.GamesPage_Category_Rabbids), PackIconMaterialKind.GamepadVariantOutline), 
-                new GameCategoryViewModel(games[GameCategory.Demo], new LocalizedString(() => Resources.GamesPage_Category_Demos), PackIconMaterialKind.ShoppingMusic), 
+                new GameCategoryViewModel(games[GameCategory.Demo], new LocalizedString(() => Resources.GamesPage_Category_Demos), PackIconMaterialKind.ShoppingMusic),
                 new GameCategoryViewModel(games[GameCategory.Other], new LocalizedString(() => Resources.GamesPage_Category_Other), PackIconMaterialKind.Buffer), 
                 new GameCategoryViewModel(games[GameCategory.Fan], new LocalizedString(() => Resources.GamesPage_Category_Fan), PackIconMaterialKind.Earth),
             };
@@ -129,6 +128,9 @@ namespace RayCarrot.RCP.Metro
                     if (!game.IsAdded())
                         throw new Exception("Only added games can be refreshed individually");
 
+                    if (Application.Current.Dispatcher == null)
+                        throw new Exception("Dispatcher can not be NULL");
+
                     // Get the display view model
                     var displayVM = game.GetGameInfo().GetDisplayViewModel();
 
@@ -152,7 +154,7 @@ namespace RayCarrot.RCP.Metro
                         }
 
                         // Refresh the game
-                        collection[index] = displayVM;
+                        Application.Current.Dispatcher.Invoke(() => collection[index] = displayVM);
 
                         RCFCore.Logger?.LogTraceSource($"The displayed game {game} in {category.DisplayName} has been refreshed");
                     }
@@ -179,6 +181,9 @@ namespace RayCarrot.RCP.Metro
                 {
                     RefreshingGames = true;
 
+                    if (Application.Current.Dispatcher == null)
+                        throw new Exception("Dispatcher can not be NULL");
+
                     // Cache the game view models
                     var displayVMCache = new Dictionary<Games, GameDisplayViewModel>();
 
@@ -192,9 +197,9 @@ namespace RayCarrot.RCP.Metro
                         try
                         {
                             // Clear collections
-                            category.InstalledGames.Clear();
-                            category.NotInstalledGames.Clear();
-
+                            Application.Current.Dispatcher.Invoke(() => category.InstalledGames.Clear());
+                            Application.Current.Dispatcher.Invoke(() => category.NotInstalledGames.Clear());
+                            
                             category.AnyInstalledGames = false;
                             category.AnyNotInstalledGames = false;
 
@@ -213,12 +218,12 @@ namespace RayCarrot.RCP.Metro
                                 if (info.IsAdded)
                                 {
                                     // Add the game to the collection
-                                    category.InstalledGames.Add(displayVM);
+                                    Application.Current.Dispatcher.Invoke(() => category.InstalledGames.Add(displayVM));
                                     category.AnyInstalledGames = true;
                                 }
                                 else
                                 {
-                                    category.NotInstalledGames.Add(displayVM);
+                                    Application.Current.Dispatcher.Invoke(() => category.NotInstalledGames.Add(displayVM));
                                     category.AnyNotInstalledGames = true;
                                 }
                             }
@@ -238,12 +243,12 @@ namespace RayCarrot.RCP.Metro
                     {
                         RunGameFinderCommand.CanExecuteCommand = GameCategories.Any(x => x.AnyNotInstalledGames);
 
-                        // NOTE: This is a hacky solution to a weird WPF issue where an item can get duplicated in the view
-                        foreach (var c in GameCategories)
-                        {
-                            CollectionViewSource.GetDefaultView(c.InstalledGames).Refresh();
-                            CollectionViewSource.GetDefaultView(c.NotInstalledGames).Refresh();
-                        }
+                        //// NOTE: This is a hacky solution to a weird WPF issue where an item can get duplicated in the view
+                        //foreach (var c in GameCategories)
+                        //{
+                        //    CollectionViewSource.GetDefaultView(c.InstalledGames).Refresh();
+                        //    CollectionViewSource.GetDefaultView(c.NotInstalledGames).Refresh();
+                        //}
                     });
                 }
                 catch (Exception ex)
