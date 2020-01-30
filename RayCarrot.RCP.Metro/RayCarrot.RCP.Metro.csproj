@@ -1138,7 +1138,7 @@
       <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.2.4</Version>
+      <Version>3.2.5</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.CarrotFramework">
       <Version>3.4.0</Version>

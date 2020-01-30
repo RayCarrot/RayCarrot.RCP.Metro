@@ -93,7 +93,7 @@ namespace RayCarrot.RCP.Metro
                 IsLoadingDirectPlay = false;
                 return;
             }
-
+            
             try
             {
                 var result = PowerShell.Create().RunAndDispose(x =>

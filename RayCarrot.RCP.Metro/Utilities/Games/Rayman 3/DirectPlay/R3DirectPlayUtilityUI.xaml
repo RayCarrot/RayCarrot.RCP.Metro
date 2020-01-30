@@ -7,6 +7,7 @@
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:rwpfmetro="clr-namespace:RayCarrot.WPF.Metro;assembly=RayCarrot.WPF.Metro"
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              mc:Ignorable="d"
              d:DesignWidth="550" d:DataContext="{d:DesignInstance local:R3DirectPlayUtilityViewModel}">
@@ -15,17 +16,14 @@
             <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
         </Interactions:Interaction.Behaviors>
 
-        <Grid>
-
-            <metro:ProgressRing Visibility="{Binding Path=IsLoadingDirectPlay, Converter={rwpf:BooleanToVisibilityConverter}}" />
+        <rwpfmetro:LoaderContentControl IsLoading="{Binding Path=IsLoadingDirectPlay}">
 
             <metro:ToggleSwitch IsChecked="{Binding Path=IsDirectPlayEnabled}"
-                                IsEnabled="{Binding Path=IsLoadingDirectPlay, Converter={rwpf:InvertedBooleanConverter}}"
                                 HorizontalAlignment="Left"
                                 OnLabel="{Resx SettingEnabled}"
                                 OffLabel="{Resx SettingDisabled}" />
 
-        </Grid>
+        </rwpfmetro:LoaderContentControl>
 
     </StackPanel>
 </UserControl>

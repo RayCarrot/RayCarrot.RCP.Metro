@@ -9,10 +9,10 @@ Other changes:
 • Created the new "other" utilities category
 • Replaced the "work in process" utilities category with info icons
 • Reworked the general utilities system to use the same utility base as the games
-• Utilities now show a loading indicator when loading instead of freezing the application
+• Utilities now show a loading indicator when loading
 • Minor changes to the credits
 • Fixed a bug where importing a directory in the Archive Explorer would crash if certain sub-directories didn't exist
-• Fixed a threading bug related to refreshing the games page
+• Fixed a threading bug when refreshing the games page
 • Bug fixes
 
 

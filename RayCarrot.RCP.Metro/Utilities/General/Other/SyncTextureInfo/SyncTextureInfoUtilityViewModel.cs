@@ -101,7 +101,7 @@ namespace RayCarrot.RCP.Metro
                     return new GFFileSizeData(x.GetFullPath(cntData.Directories), (ushort)height, (ushort)width);
                 }));
             }
-
+            
             // Make sure we have any .gf files
             if (!gfFiles.Any())
                 return new TextureInfoEditResult(0, 0);
@@ -218,6 +218,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public EnumSelectionViewModel<OpenSpaceGameMode> GameModeSelection { get; }
 
+        /// <summary>
+        /// Indicates if the utility is loading
+        /// </summary>
+        public bool IsLoading { get; set; }
+
         #endregion
 
         #region Public Methods
@@ -239,28 +244,33 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                var gameSettings = GameModeSelection.SelectedValue.GetSettings();
+                IsLoading = true;
 
-                // Get the file extension for the level data files
-                var fileExt = gameSettings.Game switch
+                var syncResult = await Task.Run(() =>
                 {
-                    OpenSpaceGame.Rayman2 => ".sna",
+                    var gameSettings = GameModeSelection.SelectedValue.GetSettings();
 
-                    OpenSpaceGame.RaymanM => ".lvl",
-                    OpenSpaceGame.RaymanArena => ".lvl",
-                    OpenSpaceGame.Rayman3 => ".lvl",
+                    // Get the file extension for the level data files
+                    var fileExt = gameSettings.Game switch
+                    {
+                        OpenSpaceGame.Rayman2 => ".sna",
 
-                    _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.Game), gameSettings.Game, null)
-                };
+                        OpenSpaceGame.RaymanM => ".lvl",
+                        OpenSpaceGame.RaymanArena => ".lvl",
+                        OpenSpaceGame.Rayman3 => ".lvl",
 
-                // Get the level data files
-                var dataFiles = Directory.GetFiles(result.SelectedDirectory, $"*{fileExt}", SearchOption.AllDirectories).Select(x => new FileSystemPath(x));
+                        _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.Game), gameSettings.Game, null)
+                    };
 
-                // Get the .cnt files
-                var cntFiles = Directory.GetFiles(result.SelectedDirectory, "*.cnt", SearchOption.TopDirectoryOnly).Select(x => new FileSystemPath(x));
+                    // Get the level data files
+                    var dataFiles = Directory.GetFiles(result.SelectedDirectory, $"*{fileExt}", SearchOption.AllDirectories).Select(x => new FileSystemPath(x));
 
-                // Sync the texture info
-                var syncResult = EditTextureInfo(gameSettings, dataFiles, cntFiles);
+                    // Get the .cnt files
+                    var cntFiles = Directory.GetFiles(result.SelectedDirectory, "*.cnt", SearchOption.TopDirectoryOnly).Select(x => new FileSystemPath(x));
+
+                    // Sync the texture info
+                    return EditTextureInfo(gameSettings, dataFiles, cntFiles);
+                });
 
                 await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Utilities_SyncTextureInfo_Success, syncResult.EditedTextures, syncResult.TotalTextures));
             }
@@ -269,6 +279,10 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Syncing texture info");
 
                 await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_SyncTextureInfo_Error);
+            }
+            finally
+            {
+                IsLoading = false;
             }
         }
 

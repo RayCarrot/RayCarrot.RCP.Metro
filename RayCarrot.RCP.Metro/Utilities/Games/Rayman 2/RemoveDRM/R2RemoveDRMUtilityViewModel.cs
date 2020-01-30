@@ -68,6 +68,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool HasBeenApplied { get; set; }
 
+        /// <summary>
+        /// Indicates if the utility is loading
+        /// </summary>
+        public bool IsLoading { get; set; }
+
         #endregion
 
         #region Commands
@@ -88,31 +93,36 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                // Edit every .sna file
-                foreach (var sna in SnaOffsets)
+                IsLoading = true;
+
+                await Task.Run(() =>
                 {
-                    // Backup the file
-                    RCFRCP.File.CopyFile(sna.Key, CommonPaths.R2RemoveDRMDir + (sna.Key - BaseDirectory), true);
-
-                    // Create the encoder
-                    var encoder = new Rayman2SNADataEncoder();
-
-                    // Read the file bytes and decode it
-                    var bytes = encoder.Decode(File.ReadAllBytes(sna.Key));
-
-                    // Blank each offset
-                    foreach (var offset in sna.Value)
+                    // Edit every .sna file
+                    foreach (var sna in SnaOffsets)
                     {
-                        // Blank the value
-                        bytes[offset] = 0;
-                        bytes[offset + 1] = 0;
-                        bytes[offset + 2] = 0;
-                        bytes[offset + 3] = 0;
-                    }
+                        // Backup the file
+                        RCFRCP.File.CopyFile(sna.Key, CommonPaths.R2RemoveDRMDir + (sna.Key - BaseDirectory), true);
 
-                    // Encode and write the bytes
-                    File.WriteAllBytes(sna.Key, encoder.Encode(bytes));
-                }
+                        // Create the encoder
+                        var encoder = new Rayman2SNADataEncoder();
+
+                        // Read the file bytes and decode it
+                        var bytes = encoder.Decode(File.ReadAllBytes(sna.Key));
+
+                        // Blank each offset
+                        foreach (var offset in sna.Value)
+                        {
+                            // Blank the value
+                            bytes[offset] = 0;
+                            bytes[offset + 1] = 0;
+                            bytes[offset + 2] = 0;
+                            bytes[offset + 3] = 0;
+                        }
+
+                        // Encode and write the bytes
+                        File.WriteAllBytes(sna.Key, encoder.Encode(bytes));
+                    }
+                });
 
                 HasBeenApplied = true;
 
@@ -124,6 +134,10 @@ namespace RayCarrot.RCP.Metro
 
                 await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_RemoveDRM_Error);
             }
+            finally
+            {
+                IsLoading = false;
+            }
         }
 
         /// <summary>
@@ -134,11 +148,16 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                // Move back the files
-                RCFRCP.File.MoveFiles(new IOSearchPattern(CommonPaths.R2RemoveDRMDir), BaseDirectory, true);
+                IsLoading = true;
 
-                // Delete the backup directory
-                RCFRCP.File.DeleteDirectory(CommonPaths.R2RemoveDRMDir);
+                await Task.Run(() =>
+                {
+                    // Move back the files
+                    RCFRCP.File.MoveFiles(new IOSearchPattern(CommonPaths.R2RemoveDRMDir), BaseDirectory, true);
+
+                    // Delete the backup directory
+                    RCFRCP.File.DeleteDirectory(CommonPaths.R2RemoveDRMDir);
+                });
 
                 HasBeenApplied = false;
 
@@ -149,6 +168,10 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Reverting R2 DRM patch");
 
                 await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_RemoveDRM_RevertError);
+            }
+            finally
+            {
+                IsLoading = false;
             }
         }
 

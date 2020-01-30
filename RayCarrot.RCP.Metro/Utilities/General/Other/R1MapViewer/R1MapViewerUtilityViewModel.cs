@@ -54,6 +54,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public Rayman1LevData LevData { get; set; }
 
+        /// <summary>
+        /// Indicates if the utility is loading
+        /// </summary>
+        public bool IsLoading { get; set; }
+
         #endregion
 
         #region Public Methods
@@ -78,17 +83,26 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                // Get the level data
-                LevData = new Rayman1LevSerializer(GameModeSelection.SelectedValue.GetSettings()).Deserialize(fileResult.SelectedFile);
+                IsLoading = true;
 
-                LevGraphicsImageSource = LevData.GetBitmap().ToImageSource();
-                LevTypesImageSource = LevData.GetTypeBitmap().ToImageSource();
+                LevGraphicsImageSource = null;
+                LevTypesImageSource = null;
+
+                // Get the level data
+                LevData = await Task.Run(() => new Rayman1LevSerializer(GameModeSelection.SelectedValue.GetSettings()).Deserialize(fileResult.SelectedFile));
+
+                LevGraphicsImageSource = (await Task.Run(() => LevData.GetBitmap())).ToImageSource();
+                LevTypesImageSource = (await Task.Run(() => LevData.GetTypeBitmap())).ToImageSource();
             }
             catch (Exception ex)
             {
                 ex.HandleError("Loading R1 level map");
 
                 await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_R1MapViewer_Error);
+            }
+            finally
+            {
+                IsLoading = false;
             }
         }
 

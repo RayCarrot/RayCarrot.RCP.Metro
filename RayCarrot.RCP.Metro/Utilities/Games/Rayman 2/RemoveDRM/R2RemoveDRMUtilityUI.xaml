@@ -6,20 +6,26 @@
              xmlns:Interactions="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:rwpfmetro="clr-namespace:RayCarrot.WPF.Metro;assembly=RayCarrot.WPF.Metro"
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              mc:Ignorable="d"
              d:DesignWidth="550" d:DataContext="{d:DesignInstance local:R2RemoveDRMUtilityViewModel}">
-    <Grid>
+    <rwpfmetro:LoaderContentControl IsLoading="{Binding Path=IsLoading}">
 
-        <Button Content="{Resx Utility_Apply}"
-                HorizontalAlignment="Left"
-                Command="{Binding Path=ApplyPatchCommand}"
-                Visibility="{Binding Path=HasBeenApplied, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"/>
+        <Grid>
 
-        <Button Content="{Resx Utility_Revert}"
-                HorizontalAlignment="Left"
-                Command="{Binding Path=RevertPatchCommand}"
-                Visibility="{Binding Path=HasBeenApplied, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+            <Button Content="{Resx Utility_Apply}"
+                    HorizontalAlignment="Left"
+                    Command="{Binding Path=ApplyPatchCommand}"
+                    Visibility="{Binding Path=HasBeenApplied, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"/>
 
-    </Grid>
+            <Button Content="{Resx Utility_Revert}"
+                    HorizontalAlignment="Left"
+                    Command="{Binding Path=RevertPatchCommand}"
+                    Visibility="{Binding Path=HasBeenApplied, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+
+        </Grid>
+
+    </rwpfmetro:LoaderContentControl>
+
 </UserControl>
