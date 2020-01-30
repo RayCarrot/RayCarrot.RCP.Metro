@@ -1207,7 +1207,7 @@ Försök igen?"</value>
     <value>Kunde inte hitta spel</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Ett särskilt tack till AuToMaNiAk005, Evelyn Chickentalk, MixerX, PokGOT4N, Ryemanni, MilesTheCreator och alla andra Rayman fans!</value>
+    <value>Ett särskilt tack till AuToMaNiAk005, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski och alla andra Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
     <value>Användargränssnitt, Carrot Framework, spelsökaren, spelinstalleraren, verktyg, Rayman 2 översättningar, svensk (Sverige) programöversättning</value>
@@ -1276,7 +1276,7 @@ Försök igen?"</value>
     <value>Avinstallationen misslyckades</value>
   </data>
   <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
-    <value>Installationen av PlayStation musik-verktyget misslyckades</value>
+    <value>Ersättningen misslyckades</value>
   </data>
   <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
     <value>{0}/{1} hittades att ersätta. Det kan kräva flera nedladdningar, beroende på filernas platser.</value>

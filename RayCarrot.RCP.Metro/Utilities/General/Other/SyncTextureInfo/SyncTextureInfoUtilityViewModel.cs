@@ -113,7 +113,7 @@ namespace RayCarrot.RCP.Metro
             int total = 0;
             int edited = 0;
 
-            // Get a Rayman 2 encoder
+            // Create a Rayman 2 encoder
             var r2Encoder = new Rayman2SNADataEncoder();
 
             // Enumerate each file
@@ -148,7 +148,7 @@ namespace RayCarrot.RCP.Metro
                     // Ignore if not found
                     if (gf == null)
                     {
-                        RCFCore.Logger?.LogWarningSource($"A matching texture was not found for {longestName}");
+                        RCFCore.Logger?.LogWarningSource($"A matching texture was not found for {longestName.Trim('\0')}");
                         continue;
                     }
 
@@ -178,6 +178,12 @@ namespace RayCarrot.RCP.Metro
                     // Get the bytes for the sizes
                     var heightBytes = BitConverter.GetBytes(gfHeight);
                     var widthBytes = BitConverter.GetBytes(gfWidth);
+
+                    // NOTE: I'm not sure we need to set these sizes too... The game seems to work without them as well. Confirm?
+                    data[i - pathLength - sizeOffset - 4] = heightBytes[0];
+                    data[i - pathLength - sizeOffset - 3] = heightBytes[1];
+                    data[i - pathLength - sizeOffset - 2] = widthBytes[0];
+                    data[i - pathLength - sizeOffset - 1] = widthBytes[1];
 
                     // Set the new sizes
                     data[i - pathLength - sizeOffset] = heightBytes[0];

@@ -557,10 +557,10 @@ This is a growing project with more features planned on being added with future 
     <value>Close configuration dialog when saving</value>
   </data>
   <data name="R1U_TPLSHeader" xml:space="preserve">
-    <value>PlayStation Soundtrack</value>
+    <value>Per-Level Soundtrack</value>
   </data>
   <data name="R1U_TPLSInfo" xml:space="preserve">
-    <value>By default the PC version of Rayman features fewer tracks than the PlayStation version and does not have specific tracks for each part of the levels. By enabling this utility the game will run with the PlayStation soundtrack instead.</value>
+    <value>By default the PC version only has a single music track for each world. This patch makes each level have its own track, similarily to on PlayStation.</value>
   </data>
   <data name="R1U_TPLSInstall" xml:space="preserve">
     <value>Install</value>
@@ -1271,10 +1271,10 @@ gameDisplayName</comment>
     <value>Unable to find game</value>
   </data>
   <data name="About_SpecialThanks" xml:space="preserve">
-    <value>Special thanks to AuToMaNiAk005, Evelyn Chickentalk, MixerX, PokGOT4N, Ryemanni, MilesTheCreator and all other Rayman fans!</value>
+    <value>Special thanks to AuToMaNiAk005, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski and all other Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations, Swedish (Sweden) program translation</value>
+    <value>Rayman Control Panel™, Carrot Framework, utilities, per-level soundtrack, Archive Explorer, Rayman 2 translations, Swedish (Sweden) program translation</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -1286,7 +1286,7 @@ gameDisplayName</comment>
     <value>Cheat code list, general help with the utilities</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Rayman PlayStation Soundtrack utility, Rayman 2 translations</value>
+    <value>Per-level soundtrack utility, Rayman 2 translations</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Rayman 2 translations, Portuguese (Portugal) program translation</value>
@@ -1322,7 +1322,7 @@ gameDisplayName</comment>
     <value>Installation Failed</value>
   </data>
   <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
-    <value>Are you sure you want to uninstall the PlayStation Soundtrack utility?</value>
+    <value>Are you sure you want to uninstall the Per-Level Soundtrack utility?</value>
   </data>
   <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
     <value>Confirm Uninstall</value>
@@ -1754,7 +1754,7 @@ Running an application in compatibility mode is done by selecting the option und
     <value>Rayman Control Panel™</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Rayman PlayStation Soundtrack utility, Rayman M/Arena disc check removal</value>
+    <value>Per-level soundtrack utility, Rayman M/Arena disc check removal</value>
   </data>
   <data name="About_Credits_ICUP321" xml:space="preserve">
     <value>Spanish (Mexico) program translation</value>
@@ -3215,7 +3215,7 @@ filePath</comment>
     <value>The Tower of the Leptys</value>
   </data>
   <data name="PostUpdate_TPLSUpdatePrompt" xml:space="preserve">
-    <value>The PlayStation soundtrack utility has been updated. Go to the Rayman 1 utilities and reinstall it in order to keep using it.</value>
+    <value>The Per-Level Soundtrack utility has been updated. Go to the Rayman 1 utilities and reinstall it in order to keep using it.</value>
   </data>
   <data name="TPLS_UpdateVersionError" xml:space="preserve">
     <value>The Rayman version could not be updated</value>
@@ -3300,5 +3300,8 @@ totalTextures</comment>
   </data>
   <data name="NotImplemented" xml:space="preserve">
     <value>This feature has not been implemented yet</value>
+  </data>
+  <data name="About_Credits_Robin" xml:space="preserve">
+    <value>Rayman 2 DRM removal</value>
   </data>
 </root>

@@ -178,7 +178,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman PlayStation Soundtrack utility, Rayman 2 translations.
+        ///   Looks up a localized string similar to Per-level soundtrack utility, Rayman 2 translations.
         /// </summary>
         public static string About_Credits_PluMGMK {
             get {
@@ -196,7 +196,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User interface, Carrot Framework, game finder, game installer, utilities, Rayman 2 translations, Swedish (Sweden) program translation.
+        ///   Looks up a localized string similar to Rayman Control Panel™, Carrot Framework, utilities, per-level soundtrack, Archive Explorer, Rayman 2 translations, Swedish (Sweden) program translation.
         /// </summary>
         public static string About_Credits_RayCarrot {
             get {
@@ -214,7 +214,16 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman PlayStation Soundtrack utility, Rayman M/Arena disc check removal.
+        ///   Looks up a localized string similar to Rayman 2 DRM removal.
+        /// </summary>
+        public static string About_Credits_Robin {
+            get {
+                return ResourceManager.GetString("About_Credits_Robin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per-level soundtrack utility, Rayman M/Arena disc check removal.
         /// </summary>
         public static string About_Credits_Snagglebee {
             get {
@@ -260,7 +269,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, Evelyn Chickentalk, MixerX, PokGOT4N, Ryemanni, MilesTheCreator and all other Rayman fans!.
+        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski and all other Rayman fans!.
         /// </summary>
         public static string About_SpecialThanks {
             get {
@@ -6213,7 +6222,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The PlayStation soundtrack utility has been updated. Go to the Rayman 1 utilities and reinstall it in order to keep using it..
+        ///   Looks up a localized string similar to The Per-Level Soundtrack utility has been updated. Go to the Rayman 1 utilities and reinstall it in order to keep using it..
         /// </summary>
         public static string PostUpdate_TPLSUpdatePrompt {
             get {
@@ -6600,7 +6609,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to uninstall the PlayStation Soundtrack utility?.
+        ///   Looks up a localized string similar to Are you sure you want to uninstall the Per-Level Soundtrack utility?.
         /// </summary>
         public static string R1U_TPLSConfirmUninstall {
             get {
@@ -6618,7 +6627,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PlayStation Soundtrack.
+        ///   Looks up a localized string similar to Per-Level Soundtrack.
         /// </summary>
         public static string R1U_TPLSHeader {
             get {
@@ -6627,7 +6636,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By default the PC version of Rayman features fewer tracks than the PlayStation version and does not have specific tracks for each part of the levels. By enabling this utility the game will run with the PlayStation soundtrack instead..
+        ///   Looks up a localized string similar to By default the PC version only has a single music track for each world. This patch makes each level have its own track, similarily to on PlayStation..
         /// </summary>
         public static string R1U_TPLSInfo {
             get {

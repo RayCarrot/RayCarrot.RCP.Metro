@@ -88,6 +88,9 @@
                     <local:DuoGridItem Header="RibShark"
                                        Text="{Resx About_Credits_RibShark}" />
 
+                    <local:DuoGridItem Header="Robin"
+                                       Text="{Resx About_Credits_Robin}" />
+
                     <local:DuoGridItem Header="Snagglebee"
                                        Text="{Resx About_Credits_Snagglebee}" />
 
