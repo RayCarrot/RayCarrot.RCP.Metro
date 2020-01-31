@@ -52,22 +52,14 @@ namespace RayCarrot.RCP.Metro
         protected TextureInfoEditResult EditTextureInfo(OpenSpaceSettings gameSettings, IEnumerable<FileSystemPath> files, IEnumerable<FileSystemPath> cntFiles)
         {
             // The offset for the size from the name
-            var sizeOffset = gameSettings.Game switch
+            var sizeOffset = gameSettings.EngineVersion switch
             {
-                // Rayman 2 offset is 42
-                OpenSpaceGame.Rayman2 => 42,
+                OpenSpaceEngineVersion.Rayman2 => 42,
 
-                // Rayman M offset is 42
-                OpenSpaceGame.RaymanM => 42,
-
-                // Rayman Arena offset is 42
-                OpenSpaceGame.RaymanArena => 42,
-
-                // Rayman 3 has an extra 32-bit value we need to skip
-                OpenSpaceGame.Rayman3 => 46,
+                OpenSpaceEngineVersion.Rayman3 => 46,
 
                 // Other versions are not yet supported...
-                _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.Game), gameSettings.Game, null)
+                _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.EngineVersion), gameSettings.EngineVersion, null)
             };
 
             // Create a list of .gf files to read into
@@ -97,8 +89,19 @@ namespace RayCarrot.RCP.Metro
                     var width = reader.ReadInt32();
                     var height = reader.ReadInt32();
 
+                    uint mipmaps = 0;
+
+                    if (gameSettings.EngineVersion == OpenSpaceEngineVersion.Rayman3)
+                    {
+                        // Skip the channel count...
+                        reader.ReadByte();
+
+                        // Read mipmap count
+                        mipmaps = reader.ReadByte();
+                    }
+
                     // Get the .gf data
-                    return new GFFileSizeData(x.GetFullPath(cntData.Directories), (ushort)height, (ushort)width);
+                    return new GFFileSizeData(x.GetFullPath(cntData.Directories), (ushort)height, (ushort)width, mipmaps);
                 }));
             }
             
@@ -190,6 +193,22 @@ namespace RayCarrot.RCP.Metro
                     data[i - pathLength - sizeOffset + 1] = heightBytes[1];
                     data[i - pathLength - sizeOffset + 2] = widthBytes[0];
                     data[i - pathLength - sizeOffset + 3] = widthBytes[1];
+
+                    // Set mipmaps if available
+                    if (gameSettings.EngineVersion == OpenSpaceEngineVersion.Rayman3)
+                    {
+                        // Get the mipmap bytes
+                        var mipmapBytes = BitConverter.GetBytes(gf.MipmapCount);
+
+                        // The base offset
+                        const int mipmapOffset = 22;
+
+                        // Set the mipmap count
+                        data[i - pathLength - mipmapOffset + 0] = mipmapBytes[0];
+                        data[i - pathLength - mipmapOffset + 1] = mipmapBytes[1];
+                        data[i - pathLength - mipmapOffset + 2] = mipmapBytes[2];
+                        data[i - pathLength - mipmapOffset + 3] = mipmapBytes[3];
+                    }
 
                     foundCount++;
                     edited++;
@@ -308,11 +327,13 @@ namespace RayCarrot.RCP.Metro
             /// <param name="fullPath">The full .gf file path</param>
             /// <param name="height">The image height</param>
             /// <param name="width">The image width</param>
-            public GFFileSizeData(string fullPath, ushort height, ushort width)
+            /// <param name="mipmapCount">The available mipmaps</param>
+            public GFFileSizeData(string fullPath, ushort height, ushort width, uint mipmapCount)
             {
                 FullPathWithoutExtension = fullPath.Remove(fullPath.Length - 3);
                 Height = height;
                 Width = width;
+                MipmapCount = mipmapCount;
             }
 
             /// <summary>
@@ -329,6 +350,11 @@ namespace RayCarrot.RCP.Metro
             /// The image width
             /// </summary>
             public ushort Width { get; }
+
+            /// <summary>
+            /// The available mipmaps
+            /// </summary>
+            public uint MipmapCount { get; }
         }
 
         /// <summary>

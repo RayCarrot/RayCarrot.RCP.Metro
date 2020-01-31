@@ -1,4 +1,9 @@
-﻿-----   Version 9.2.0 - January 31, 2020   -----
+﻿-----   Version 9.2.1 - January 31, 2020   -----
+• The mipmap count is now included when synchronizing textures for Rayman M/Arena and 3
+• Fixed a bug where synchronizing textures for Rayman M/Arena
+
+
+-----   Version 9.2.0 - January 31, 2020   -----
 • Added a general utility for synchronizing the OpenSpace texture resolution, allowing higher resolution textures to be used
 • Added a utility for removing the Rayman 2 pirate head DRM
 

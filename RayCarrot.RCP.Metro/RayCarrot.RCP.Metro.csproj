@@ -1141,25 +1141,25 @@
       <Version>3.2.5</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.CarrotFramework">
-      <Version>3.4.0</Version>
+      <Version>3.4.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.CarrotFramework.Abstractions">
-      <Version>1.5.1</Version>
+      <Version>1.5.2</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Extensions">
-      <Version>1.2.8</Version>
+      <Version>1.2.9</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
-      <Version>1.4.5</Version>
+      <Version>1.4.7</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.UI">
-      <Version>1.2.1</Version>
+      <Version>1.2.2</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.UserData">
-      <Version>3.2.1</Version>
+      <Version>3.2.2</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Windows.Registry">
-      <Version>3.2.1</Version>
+      <Version>3.2.2</Version>
     </PackageReference>
     <PackageReference Include="Resource.Embedder">
       <Version>2.0.1</Version>
