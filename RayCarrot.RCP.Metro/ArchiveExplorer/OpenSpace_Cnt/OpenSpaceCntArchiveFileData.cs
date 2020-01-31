@@ -5,6 +5,7 @@ using RayCarrot.Rayman;
 using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -144,8 +145,6 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The contents of the file</returns>
         public byte[] GetFileBytes(Stream archiveFileStream)
         {
-            RCFCore.Logger?.LogTraceSource("The file bytes are being retrieved for an archive file");
-
             return FileData.GetFileBytes(archiveFileStream);
         }
 

@@ -1,4 +1,8 @@
-﻿-----   Version 9.2.1 - January 31, 2020   -----
+﻿-----   Version 9.2.2 - January 31, 2020   -----
+• Fixed a bug where certain textures from Rayman M/Arena and 3 were read incorrectly for certain aspect ratios
+
+
+-----   Version 9.2.1 - January 31, 2020   -----
 • The mipmap count is now included when synchronizing textures for Rayman M/Arena and 3
 • Fixed a bug where synchronizing textures for Rayman M/Arena
 

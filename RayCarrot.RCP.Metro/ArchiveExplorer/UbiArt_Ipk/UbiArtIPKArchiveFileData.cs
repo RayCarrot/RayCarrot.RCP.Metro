@@ -126,8 +126,6 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The contents of the file</returns>
         public byte[] GetFileBytes(Stream archiveFileStream)
         {
-            RCFCore.Logger?.LogTraceSource("The file bytes are being retrieved for an archive file");
-
             // Get the bytes
             var bytes = FileData.GetFileBytes(archiveFileStream, BaseOffset);
 
