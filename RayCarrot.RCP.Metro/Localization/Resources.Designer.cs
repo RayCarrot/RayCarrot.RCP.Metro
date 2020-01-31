@@ -8943,15 +8943,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Work in Process.
-        /// </summary>
-        public static string Utilities_WIP_Header {
-            get {
-                return ResourceManager.GetString("Utilities_WIP_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Utilities.
         /// </summary>
         public static string UtilitiesPageHeader {

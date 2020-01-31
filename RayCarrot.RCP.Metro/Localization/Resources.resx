@@ -3140,9 +3140,6 @@ pointer</comment>
   <data name="Utilities_Converter_Header" xml:space="preserve">
     <value>Converters</value>
   </data>
-  <data name="Utilities_WIP_Header" xml:space="preserve">
-    <value>Work in Process</value>
-  </data>
   <data name="Utilities_ArchiveExplorer_Open" xml:space="preserve">
     <value>Open</value>
   </data>

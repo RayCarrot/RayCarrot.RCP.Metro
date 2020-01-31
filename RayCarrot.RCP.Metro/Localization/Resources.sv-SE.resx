@@ -1210,7 +1210,7 @@ Försök igen?"</value>
     <value>Ett särskilt tack till AuToMaNiAk005, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski och alla andra Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Användargränssnitt, Carrot Framework, spelsökaren, spelinstalleraren, verktyg, Rayman 2 översättningar, svensk (Sverige) programöversättning</value>
+    <value>Rayman Control Panel™, Carrot Framework, verktyg, per-nivå musik, Archive Explorer, Rayman 2 översättningar, svensk (Sverige) programöversättning</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Fix för handkontroller</value>
@@ -1222,7 +1222,7 @@ Försök igen?"</value>
     <value>Hemliga spelkoder, allmän hjälp med verktygen</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Rayman 1 PlayStation musik verktyg, Rayman 2 översättningar</value>
+    <value>Per-nivå musik verktyg, Rayman 2 översättningar</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Rayman 2 översättningar, Portuguese (Portugal) programöversättning</value>
@@ -1258,7 +1258,7 @@ Försök igen?"</value>
     <value>Installationen misslyckades</value>
   </data>
   <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
-    <value>Är du säker på att du vill avinstallera PlayStation musik-verktyget?</value>
+    <value>Är du säker på att du vill avinstallera per-nivå musik-verktyget?</value>
   </data>
   <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
     <value>Bekräfta avinstallation</value>

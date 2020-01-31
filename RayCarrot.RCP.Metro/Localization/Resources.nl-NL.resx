@@ -556,10 +556,10 @@
     <value>Sluit het dialoogvenster voor configuratie tijdens het opslaan</value>
   </data>
   <data name="R1U_TPLSHeader" xml:space="preserve">
-    <value>PlaySation Soundtrack</value>
+    <value>Per-Level soundtrack</value>
   </data>
   <data name="R1U_TPLSInfo" xml:space="preserve">
-    <value>Standaard biedt de PC-versie van Rayman minder tracks dan de PlaySation versie en biedt eerstgenoemde geen specifieke songs voor elk gedeelte van een level. Door dit hulpprogramma te gebruiken, zal het spel gestart worden mét de PlayStation soundtrack, als toevoeging op de standaard.</value>
+    <value>Standaard biedt de PC-versie van Rayman maar één track per wereld. Deze patch zal ervoor zorgen dat elk level zijn eigen muziek heeft, vergelijkbaar met de PlayStation versie.</value>
   </data>
   <data name="R1U_TPLSInstall" xml:space="preserve">
     <value>Installeren</value>
@@ -1209,7 +1209,7 @@ Opnieuw proberen?</value>
     <value>In het bijzonder dank aan AuToMaNiAk005, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski en alle andere Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>User interface, Carrot Framework, Game Finder, Game Installer, hulpprogramma's, Rayman 2 vertalingen, Zweedse (Zweden) programmavertaling</value>
+    <value>Rayman Control Panel™, Carrot Framework, hulpprogramma's, Per-Level soundtrack hulpprogramma, Archive Explorer, Rayman 2 vertalingen, Zweedse (Zweden) programmavertaling</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -1221,7 +1221,7 @@ Opnieuw proberen?</value>
     <value>Lijst met cheat codes, algemene ondersteuning bij de hulpprogramma's</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Rayman PlayStation Soundtrack hulpprogramma, Rayman 2 vertalingen</value>
+    <value>Per-Level soundtrack hulpprogramma, Rayman 2 vertalingen</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Rayman 2 vertalingen, Portugese (Portugal) programmavertaling</value>
@@ -1257,7 +1257,7 @@ Opnieuw proberen?</value>
     <value>Installatie Mislukt</value>
   </data>
   <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
-    <value>Weet je zeker dat je het hulpprogramma voor de PlaySation Soundtrack wilt verwijderen?</value>
+    <value>Weet je zeker dat je het Per-Level soundtrack hulpprogramma wilt verwijderen?</value>
   </data>
   <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
     <value>Bevestig Deïnstallatie</value>
@@ -1664,7 +1664,7 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
     <value>Rayman Control Panel™</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Rayman PlayStation Soundtrack hulpprogramma, Rayman M/Arena schijfcontrole eliminatie</value>
+    <value>Per-Level soundtrack hulpprogramma, Rayman M/Arena schijfcontrole eliminatie</value>
   </data>
   <data name="About_Credits_ICUP321" xml:space="preserve">
     <value>Spaanse (Mexico) programmavertaling</value>
@@ -3014,9 +3014,6 @@ Pointer = {8}</value>
   <data name="Utilities_Converter_Header" xml:space="preserve">
     <value>Converters</value>
   </data>
-  <data name="Utilities_WIP_Header" xml:space="preserve">
-    <value>Werk in uitvoering</value>
-  </data>
   <data name="Utilities_ArchiveExplorer_Open" xml:space="preserve">
     <value>Openen</value>
   </data>
@@ -3088,12 +3085,90 @@ Pointer = {8}</value>
     <value>The Tower of the Leptys</value>
   </data>
   <data name="PostUpdate_TPLSUpdatePrompt" xml:space="preserve">
-    <value>Het hulpprogramma voor de PlayStation soundtrack is geüpdatet. Ga naar de Rayman 1 hulpprogramma's en herinstalleer het om het te kunnen blijven gebruiken. </value>
+    <value>Het Per-Level soundtrack hulpprogramma is geüpdatet. Ga naar de Rayman 1 hulpprogramma's en herinstalleer het om het te kunnen blijven gebruiken. </value>
   </data>
   <data name="TPLS_UpdateVersionError" xml:space="preserve">
     <value>De Rayman versie kon niet geüpdatet worden</value>
   </data>
+  <data name="Utility_Revert" xml:space="preserve">
+    <value>Terugkeren</value>
+  </data>
+  <data name="R2U_RemoveDRM_Success" xml:space="preserve">
+    <value>De DRM is verwijderd</value>
+  </data>
+  <data name="R2U_RemoveDRM_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het verwijderen van de DRM</value>
+  </data>
+  <data name="R2U_RemoveDRM_RevertSuccess" xml:space="preserve">
+    <value>De patch voor DRM verwijdering wordt niet meer toegepast</value>
+  </data>
+  <data name="R2U_RemoveDRM_RevertError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het ongedaan maken van de patch voor DRM verwijdering</value>
+  </data>
+  <data name="R2U_RemoveDRM_Header" xml:space="preserve">
+    <value>Verwijder Pirate Head DRM</value>
+  </data>
+  <data name="R2U_RemoveDRM_Info" xml:space="preserve">
+    <value>Dit hulpprogramma patcht de .sna bestanden voor het verwijderen van de DRM die ervoor zorgt dat er piratenhoofden verschijnen in de levels</value>
+  </data>
+  <data name="R2U_RemoveDRM_Warning" xml:space="preserve">
+    <value>Dit hulpprogramma werkt wellicht niet bij alle versies. Er is vastgesteld dat het in ieder geval effectief is in het geval van de GOG-versie.</value>
+  </data>
+  <data name="Utility_WIP" xml:space="preserve">
+    <value>Aan dit hulpprogramma wordt momenteel gewerkt; het werkt misschien niet naar behoren en er ontbreken bepaalde features</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_SelectDirHeader" xml:space="preserve">
+    <value>Selecteer map voor spelgegevens</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
+    <value>{0}/{1} texturen gesynchroniseerd</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het synchroniseren van de textuurinformatie</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Sync" xml:space="preserve">
+    <value>Synchroniseren</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Header" xml:space="preserve">
+    <value>Synchroniseren Textuurinformatie</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
+    <value>Als de textuurinformatie wordt gesynchroniseerd, zullen de spelbestanden zodanig worden gewijzigd dat de texturen worden weergegeven in dezelfde resolutie als gespecificeerd in de .cnt bestanden</value>
+  </data>
+  <data name="Utilities_R1MapViewer_SelectLevel" xml:space="preserve">
+    <value>Selecteer levelbestand</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het laden van het level</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Header" xml:space="preserve">
+    <value>Rayman 1 Level Viewer</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Load" xml:space="preserve">
+    <value>Laden</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Width" xml:space="preserve">
+    <value>Breedte</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Height" xml:space="preserve">
+    <value>Hoogte</value>
+  </data>
   <data name="Utilities_R1MapViewer_Events" xml:space="preserve">
     <value>Events</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Textures" xml:space="preserve">
+    <value>Texturen</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Background" xml:space="preserve">
+    <value>Achtergrond</value>
+  </data>
+  <data name="Utilities_Other_Header" xml:space="preserve">
+    <value>Overige</value>
+  </data>
+  <data name="NotImplemented" xml:space="preserve">
+    <value>Deze feature is nog niet geïmplementeerd</value>
+  </data>
+  <data name="About_Credits_Robin" xml:space="preserve">
+    <value>Rayman 2 DRM verwijdering</value>
   </data>
 </root>

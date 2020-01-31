@@ -556,10 +556,10 @@
     <value>Fechar diálogo de configuração ao guardar</value>
   </data>
   <data name="R1U_TPLSHeader" xml:space="preserve">
-    <value>Banda sonora PlayStation</value>
+    <value>Banda sonora-por nível</value>
   </data>
   <data name="R1U_TPLSInfo" xml:space="preserve">
-    <value>Por defeito, a versão de PC do Rayman contém menos faixas do que a versão da PlayStation e não tem faixas específicas para cada parte dos níveis. Ao activar este utilitário o jogo irá executar com a banda sonora da PlayStation em alternativa.</value>
+    <value>A versão de PC só tem uma única faixa de música para cada mundo por defeito. Este patch faz com que cada nível tenha a sua própria faixa, similarmente à PlayStation.</value>
   </data>
   <data name="R1U_TPLSInstall" xml:space="preserve">
     <value>Instalar</value>
@@ -1209,7 +1209,7 @@ Tentar novamente?</value>
     <value>Agradecimentos especiais ao AuToMaNiAk005, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski e a todos os outros fãs de Rayman!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Interface de utilizador, Carrot Framework, Localizador de jogo, Utilitários, Traduções do Rayman 2, Programa de tradução Sueca (Suécia)</value>
+    <value>Rayman Control Panel™, Carrot Framework, Utilitários, Banda sonora-por nível, Explorador de Arquivos, Traduções do Rayman 2, Programa de tradução Sueca (Suécia)</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Patches de comandos</value>
@@ -1221,7 +1221,7 @@ Tentar novamente?</value>
     <value>Lista de códigos de batota, Ajuda geral com os utilitários</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Utilitário da banda sonora Rayman PlayStation, Traduções do Rayman 2</value>
+    <value>Utilitário da banda sonora-por nível, Traduções do Rayman 2</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Traduções do Rayman 2, Programa de tradução Portuguesa (Portugal)</value>
@@ -1257,7 +1257,7 @@ Tentar novamente?</value>
     <value>A instalação falhou</value>
   </data>
   <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
-    <value>Tens a certeza que queres desinstalar o utilitário da banda sonora PlayStation?</value>
+    <value>Tens a certeza que queres desinstalar o utilitário da banda sonora-por nível?</value>
   </data>
   <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
     <value>Confirmar desinstalação</value>
@@ -1667,7 +1667,7 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
     <comment>Rayman Control Panel™</comment>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
-    <value>Utilitário da banda sonora Rayman PlayStation, Remoção de verificação do disco Rayman M/Arena</value>
+    <value>Utilitário da banda sonora-por nível, Remoção de verificação do disco Rayman M/Arena</value>
   </data>
   <data name="About_Credits_ICUP321" xml:space="preserve">
     <value>Programa de tradução Espanhola (México)</value>
@@ -3036,10 +3036,6 @@ Pointer = {8}
   <data name="Utilities_Converter_Header" xml:space="preserve">
     <value>Conversores</value>
   </data>
-  <data name="Utilities_WIP_Header" xml:space="preserve">
-    <value>Trabalho em processo
-</value>
-  </data>
   <data name="Utilities_ArchiveExplorer_Open" xml:space="preserve">
     <value>Abrir</value>
   </data>
@@ -3111,14 +3107,97 @@ Pointer = {8}
     <value>The Tower of the Leptys</value>
   </data>
   <data name="PostUpdate_TPLSUpdatePrompt" xml:space="preserve">
-    <value>Foi actualizado o utilitário da banda sonora PlayStation. Vai aos utilitários Rayman 1 e reinstala-o de forma a continuar a utilizá-lo.</value>
+    <value>Foi actualizado o utilitário da banda sonora-por nível. Vai aos utilitários Rayman 1 e reinstala-o de forma a continuar a utilizá-lo.</value>
   </data>
   <data name="TPLS_UpdateVersionError" xml:space="preserve">
     <value>Não pode ser actualizada a versão Rayman
 </value>
   </data>
+  <data name="Utility_Revert" xml:space="preserve">
+    <value>Reverter</value>
+  </data>
+  <data name="R2U_RemoveDRM_Success" xml:space="preserve">
+    <value>Foi removido o DRM</value>
+  </data>
+  <data name="R2U_RemoveDRM_Error" xml:space="preserve">
+    <value>Ocorreu um erro ao remover o DRM</value>
+  </data>
+  <data name="R2U_RemoveDRM_RevertSuccess" xml:space="preserve">
+    <value>Foi revertido o patch de remoção de DRM 
+</value>
+  </data>
+  <data name="R2U_RemoveDRM_RevertError" xml:space="preserve">
+    <value>Ocorreu um erro ao reverter o patch de remoção de DRM
+</value>
+  </data>
+  <data name="R2U_RemoveDRM_Header" xml:space="preserve">
+    <value>Remover DRM Cabeça de Pirata</value>
+  </data>
+  <data name="R2U_RemoveDRM_Info" xml:space="preserve">
+    <value>Este utilitário actualiza os ficheiros .sna para remover o DRM que causa o aparecimento da cabeça de pirata nos níveis</value>
+  </data>
+  <data name="R2U_RemoveDRM_Warning" xml:space="preserve">
+    <value>Este utilitário poderá não funcionar em todos os lançamentos. Foi verificado o seu funcionamento na versão GOG.</value>
+  </data>
+  <data name="Utility_WIP" xml:space="preserve">
+    <value>Este utilitário está em desenvolvimento de momento e poderá ser instável ou a faltar características</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_SelectDirHeader" xml:space="preserve">
+    <value>Seleccionar directório de dados de jogo</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
+    <value>Foram sincronizadas as informações de textura  {0}/{1}
+</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Error" xml:space="preserve">
+    <value>Ocorreu um erro ao sincronizar as inforrmações de textura</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Sync" xml:space="preserve">
+    <value>Sincronizar</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Header" xml:space="preserve">
+    <value>Informação de Sincronização de Textura</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
+    <value>Sincronizar a informação de textura irá editar os ficheiros de jogo para ter as texturas exibidas à mesma resolução tal como especificadas nos ficheiros .cnt</value>
+  </data>
+  <data name="Utilities_R1MapViewer_SelectLevel" xml:space="preserve">
+    <value>Seleccionar ficheiro de nível</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Error" xml:space="preserve">
+    <value>Ocorreu um erro ao carregar o nível</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Header" xml:space="preserve">
+    <value>Visualizador de Níveis Rayman 1</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Load" xml:space="preserve">
+    <value>Carregar</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Width" xml:space="preserve">
+    <value>Largura</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Height" xml:space="preserve">
+    <value>Altura</value>
+  </data>
   <data name="Utilities_R1MapViewer_Events" xml:space="preserve">
     <value>Events</value>
     <comment>Events</comment>
+  </data>
+  <data name="Utilities_R1MapViewer_Textures" xml:space="preserve">
+    <value>Texturas</value>
+  </data>
+  <data name="Utilities_R1MapViewer_Background" xml:space="preserve">
+    <value>Fundo</value>
+  </data>
+  <data name="Utilities_Other_Header" xml:space="preserve">
+    <value>Outro</value>
+  </data>
+  <data name="NotImplemented" xml:space="preserve">
+    <value>Ainda não foi implementada esta característica
+</value>
+  </data>
+  <data name="About_Credits_Robin" xml:space="preserve">
+    <value>Remoção de DRM Rayman 2
+</value>
   </data>
 </root>
