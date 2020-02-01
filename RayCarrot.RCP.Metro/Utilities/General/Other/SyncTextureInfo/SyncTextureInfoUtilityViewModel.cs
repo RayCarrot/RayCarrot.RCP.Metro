@@ -270,22 +270,45 @@ namespace RayCarrot.RCP.Metro
                     var gameSettings = GameModeSelection.SelectedValue.GetSettings();
 
                     // Get the file extension for the level data files
-                    var fileExt = gameSettings.Game switch
+                    var fileExt = gameSettings.EngineVersion switch
                     {
-                        OpenSpaceGame.Rayman2 => ".sna",
-
-                        OpenSpaceGame.RaymanM => ".lvl",
-                        OpenSpaceGame.RaymanArena => ".lvl",
-                        OpenSpaceGame.Rayman3 => ".lvl",
-
-                        _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.Game), gameSettings.Game, null)
+                        OpenSpaceEngineVersion.Rayman2 => ".sna",
+                        OpenSpaceEngineVersion.Rayman3 => ".lvl",
+                        _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.EngineVersion), gameSettings.EngineVersion, null)
                     };
 
                     // Get the level data files
                     var dataFiles = Directory.GetFiles(result.SelectedDirectory, $"*{fileExt}", SearchOption.AllDirectories).Select(x => new FileSystemPath(x));
 
-                    // Get the .cnt files
-                    var cntFiles = Directory.GetFiles(result.SelectedDirectory, "*.cnt", SearchOption.TopDirectoryOnly).Select(x => new FileSystemPath(x));
+                    // Get the .cnt file names
+                    IEnumerable<FileSystemPath> cntFiles = gameSettings.Game switch
+                    {
+                        OpenSpaceGame.Rayman2 => new FileSystemPath[]
+                        {
+                            "Textures.cnt",
+                            "Vignette.cnt",
+                        },
+                        OpenSpaceGame.RaymanM => new FileSystemPath[]
+                        {
+                            "tex32.cnt",
+                            "vignette.cnt",
+                        },
+                        OpenSpaceGame.RaymanArena => new FileSystemPath[]
+                        {
+                            "tex32.cnt",
+                            "vignette.cnt",
+                        },
+                        OpenSpaceGame.Rayman3 => new FileSystemPath[]
+                        {
+                            "tex32_1.cnt",
+                            "tex32_2.cnt",
+                            "vignette.cnt",
+                        },
+                        _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.Game), gameSettings.Game, null)
+                    };
+
+                    // Get the full paths and only keep the ones which exist
+                    cntFiles = cntFiles.Select(x => result.SelectedDirectory + x).Where(x => x.FileExists);
 
                     // Sync the texture info
                     return EditTextureInfo(gameSettings, dataFiles, cntFiles);

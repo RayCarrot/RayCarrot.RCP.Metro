@@ -1,4 +1,8 @@
-﻿-----   Version 9.2.2 - January 31, 2020   -----
+﻿-----   Version 9.2.3 - February 1, 2020   -----
+• Fixed a texture conflict when synchronizing textures for Rayman M/Arena and 3
+
+
+-----   Version 9.2.2 - January 31, 2020   -----
 • Fixed a bug where certain textures from Rayman M/Arena and 3 were read incorrectly for certain aspect ratios
 
 
