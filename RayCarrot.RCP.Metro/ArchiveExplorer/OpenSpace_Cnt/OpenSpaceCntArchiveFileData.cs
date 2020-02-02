@@ -159,14 +159,8 @@ namespace RayCarrot.RCP.Metro
             // Set if mipmaps should be deserialized
             Settings.DeserializeMipmaps = deserializeMipmap;
 
-            // Load the bytes into a memory stream
-            using var stream = new MemoryStream(fileBytes);
-
-            // Serialize the data
-            var data = new OpenSpaceGfSerializer(Settings).Deserialize(stream);
-
-            // Return the data
-            return data;
+            // Get the content
+            return FileData.GetFileContent(fileBytes, Settings);
         }
 
         /// <summary>

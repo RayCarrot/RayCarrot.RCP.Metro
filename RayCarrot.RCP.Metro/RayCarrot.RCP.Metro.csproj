@@ -122,6 +122,10 @@
     <Compile Include="Games\Manager\Demo\Demo_Rayman3_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_RaymanM_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_RaymanGold_DOSBox.cs" />
+    <Compile Include="Utilities\Games\Common\SyncTextureInfo\BaseGameSyncTextureInfoUtilityUI.xaml.cs">
+      <DependentUpon>BaseGameSyncTextureInfoUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Games\Common\SyncTextureInfo\BaseGameSyncTextureInfoUtility.cs" />
     <Compile Include="Utilities\Games\Rayman 2\CNTExplorer\R2BaseCNTExplorerUtility.cs" />
     <Compile Include="Utilities\Games\Rayman 2\CNTExplorer\R2DemoCNTExplorerUtility.cs" />
     <Compile Include="Utilities\Games\Rayman 2\RemoveDRM\R2RemoveDRMUtility.cs" />
@@ -129,8 +133,11 @@
       <DependentUpon>R2RemoveDRMUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Games\Rayman 2\RemoveDRM\R2RemoveDRMUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Rayman 2\SyncTextureInfo\R2GameSyncTextureInfoUtility.cs" />
     <Compile Include="Utilities\Games\Rayman 3\CNTExplorer\R3BaseCNTExplorerUtility.cs" />
     <Compile Include="Utilities\Games\Rayman 3\CNTExplorer\R3DemoCNTExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman 3\SyncTextureInfo\R3GameSyncTextureInfoUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman Arena\SyncTextureInfo\RAGameSyncTextureInfoUtility.cs" />
     <Compile Include="Utilities\Games\Rayman M\CNTExplorer\RMBaseCNTExplorerUtility.cs" />
     <Compile Include="Utilities\Games\Rayman M\CNTExplorer\RMDemoCNTExplorerUtility.cs" />
     <Compile Include="Helpers\SimpleTypeConverter.cs" />
@@ -140,6 +147,7 @@
     <Compile Include="Utilities\Games\Common\ArchiveExplorer\UbiArtIPKExplorer\UbiArtIPKExplorerUtility.cs" />
     <Compile Include="Utilities\Games\Common\ArchiveExplorer\UbiArtIPKExplorer\BaseUbiArtIPKExplorerUtilityViewModel.cs" />
     <Compile Include="Utilities\Games\Rayman Legends\IPKExplorer\RLIPKExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman M\SyncTextureInfo\RMGameSyncTextureInfoUtility.cs" />
     <Compile Include="Utilities\Games\Rayman Origins\IPKExplorer\ROIPKExplorerUtility.cs" />
     <Compile Include="Helpers\ImageHelpers.cs" />
     <Compile Include="ArchiveExplorer\UbiArt_Ipk\UbiArtIPKArchiveDataManager.cs" />
@@ -175,11 +183,13 @@
     <Compile Include="Utilities\General\Converter\R3Save\R3SaveConverterUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Converter\RJRSave\RJRSaveConverterUtility.cs" />
     <Compile Include="Utilities\General\Converter\RJRSave\RJRSaveConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\Games\Common\SyncTextureInfo\BaseGameSyncTextureInfoUtilityViewModel.cs" />
+    <Compile Include="Utilities\Common\BaseSyncTextureInfoUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Other\SyncTextureInfo\SyncTextureInfoUtility.cs" />
     <Compile Include="Utilities\General\Other\SyncTextureInfo\SyncTextureInfoUtilityUI.xaml.cs">
       <DependentUpon>SyncTextureInfoUtilityUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\General\Other\SyncTextureInfo\SyncTextureInfoUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\Other\SyncTextureInfo\GeneralSyncTextureInfoUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Other\R1MapViewer\R1MapViewerUtilityUI.xaml.cs">
       <DependentUpon>R1MapViewerUtilityUI.xaml</DependentUpon>
     </Compile>
@@ -558,6 +568,10 @@
     <Page Include="Pages\Utilities\UtilitiesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Utilities\Games\Common\SyncTextureInfo\BaseGameSyncTextureInfoUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Utilities\Games\Rayman 1\FixConfig\R1FixConfigUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>

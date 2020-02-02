@@ -8889,7 +8889,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred when synchronizing the texture infos.
+        ///   Looks up a localized string similar to An error occurred when synchronizing the texture info.
         /// </summary>
         public static string Utilities_SyncTextureInfo_Error {
             get {

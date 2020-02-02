@@ -1,4 +1,9 @@
-﻿-----   Version 9.2.3 - February 1, 2020   -----
+﻿-----   Version 9.2.4 - February 2, 2020   -----
+• Added the utility for synchronizing the OpenSpace texture resolution to the game specific utilities sections
+• Changed the order of the Archive Explorer utilities
+
+
+-----   Version 9.2.3 - February 1, 2020   -----
 • Fixed a texture conflict when synchronizing textures for Rayman M/Arena and 3
 
 

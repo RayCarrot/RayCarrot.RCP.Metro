@@ -11,6 +11,7 @@
     ],
     "Rayman2": [
       "R2CNTExplorerUtility",
+      "R2GameSyncTextureInfoUtility",
       "R2RemoveDRMUtility",
       "R2DiscPatchUtility",
       "R2TranslationUtility"
@@ -22,16 +23,19 @@
       "R2Demo2CNTExplorerUtility"
     ],
     "RaymanM": [
-      "RMCNTExplorerUtility"
+      "RMCNTExplorerUtility",
+      "RMGameSyncTextureInfoUtility"
     ],
     "Demo_RaymanM": [
       "RMDemoCNTExplorerUtility"
     ],
     "RaymanArena": [
-      "RACNTExplorerUtility"
+      "RACNTExplorerUtility",
+      "RAGameSyncTextureInfoUtility"
     ],
     "Rayman3": [
       "R3CNTExplorerUtility",
+      "R3GameSyncTextureInfoUtility",
       "R3DirectPlayUtility"
     ],
     "Demo_Rayman3_1": [

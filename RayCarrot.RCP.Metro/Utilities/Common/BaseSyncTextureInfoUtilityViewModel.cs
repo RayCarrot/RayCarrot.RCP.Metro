@@ -1,46 +1,70 @@
 ﻿using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
-using RayCarrot.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// View model for synchronizing texture info
+    /// Base view model for synchronizing texture info
     /// </summary>
-    public class SyncTextureInfoUtilityViewModel : BaseRCPViewModel
+    public abstract class BaseSyncTextureInfoUtilityViewModel : BaseRCPViewModel
     {
-        #region Constructor
+        #region Protected Methods
 
         /// <summary>
-        /// Default constructor
+        /// Gets the file extension for the level data files
         /// </summary>
-        public SyncTextureInfoUtilityViewModel()
+        /// <param name="gameSettings">The settings</param>
+        /// <returns>The file extension</returns>
+        protected string GetLevelFileExtension(OpenSpaceSettings gameSettings)
         {
-            // Create commands
-            CorrectTextureInfoCommand = new AsyncRelayCommand(SyncTextureInfoAsync);
-
-            // Set up selection
-            GameModeSelection = new EnumSelectionViewModel<OpenSpaceGameMode>(OpenSpaceGameMode.Rayman2PC, new OpenSpaceGameMode[]
+            return gameSettings.EngineVersion switch
             {
-                OpenSpaceGameMode.Rayman2PC,
-                OpenSpaceGameMode.RaymanMPC,
-                OpenSpaceGameMode.RaymanArenaPC,
-                OpenSpaceGameMode.Rayman3PC,
-            });
+                OpenSpaceEngineVersion.Rayman2 => ".sna",
+                OpenSpaceEngineVersion.Rayman3 => ".lvl",
+                _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.EngineVersion), gameSettings.EngineVersion, null)
+            };
         }
 
-        #endregion
-
-        #region Protected Methods
+        /// <summary>
+        /// Gets the file names for the .cnt files. If a game has more than one version, such as 16-bit and 32-bit textures, the highest quality ones are chosen.
+        /// </summary>
+        /// <param name="gameSettings">The settings</param>
+        /// <returns>The file names</returns>
+        protected string[] GetCntFileNames(OpenSpaceSettings gameSettings)
+        {
+            return gameSettings.Game switch
+            {
+                OpenSpaceGame.Rayman2 => new string[]
+                {
+                    "Textures.cnt",
+                    "Vignette.cnt",
+                },
+                OpenSpaceGame.RaymanM => new string[]
+                {
+                    "tex32.cnt",
+                    "vignette.cnt",
+                },
+                OpenSpaceGame.RaymanArena => new string[]
+                {
+                    "tex32.cnt",
+                    "vignette.cnt",
+                },
+                OpenSpaceGame.Rayman3 => new string[]
+                {
+                    "tex32_1.cnt",
+                    "tex32_2.cnt",
+                    "vignette.cnt",
+                },
+                _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.Game), gameSettings.Game, null)
+            };
+        }
 
         /// <summary>
         /// Edits all found texture info objects in an OpenSpace data files (.sna, .lvl etc.) to have their resolution match the .gf textures
@@ -182,7 +206,7 @@ namespace RayCarrot.RCP.Metro
                     var heightBytes = BitConverter.GetBytes(gfHeight);
                     var widthBytes = BitConverter.GetBytes(gfWidth);
 
-                    // NOTE: I'm not sure we need to set these sizes too... The game seems to work without them as well. Confirm?
+                    // NOTE: I'm not sure we need to set these sizes too. The game seems to work without them as well. Confirm?
                     data[i - pathLength - sizeOffset - 4] = heightBytes[0];
                     data[i - pathLength - sizeOffset - 3] = heightBytes[1];
                     data[i - pathLength - sizeOffset - 2] = widthBytes[0];
@@ -230,113 +254,7 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Properties
-
-        /// <summary>
-        /// The game mode selection
-        /// </summary>
-        public EnumSelectionViewModel<OpenSpaceGameMode> GameModeSelection { get; }
-
-        /// <summary>
-        /// Indicates if the utility is loading
-        /// </summary>
-        public bool IsLoading { get; set; }
-
-        #endregion
-
-        #region Public Methods
-
-        /// <summary>
-        /// Synchronizes the texture info for the selected game data directory
-        /// </summary>
-        /// <returns>The task</returns>
-        public async Task SyncTextureInfoAsync()
-        {
-            var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
-            {
-                Title = Resources.Utilities_SyncTextureInfo_SelectDirHeader,
-                DefaultDirectory = GameModeSelection.SelectedValue.GetGame()?.GetInstallDir(false) ?? FileSystemPath.EmptyPath
-            });
-
-            if (result.CanceledByUser)
-                return;
-
-            try
-            {
-                IsLoading = true;
-
-                var syncResult = await Task.Run(() =>
-                {
-                    var gameSettings = GameModeSelection.SelectedValue.GetSettings();
-
-                    // Get the file extension for the level data files
-                    var fileExt = gameSettings.EngineVersion switch
-                    {
-                        OpenSpaceEngineVersion.Rayman2 => ".sna",
-                        OpenSpaceEngineVersion.Rayman3 => ".lvl",
-                        _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.EngineVersion), gameSettings.EngineVersion, null)
-                    };
-
-                    // Get the level data files
-                    var dataFiles = Directory.GetFiles(result.SelectedDirectory, $"*{fileExt}", SearchOption.AllDirectories).Select(x => new FileSystemPath(x));
-
-                    // Get the .cnt file names
-                    IEnumerable<FileSystemPath> cntFiles = gameSettings.Game switch
-                    {
-                        OpenSpaceGame.Rayman2 => new FileSystemPath[]
-                        {
-                            "Textures.cnt",
-                            "Vignette.cnt",
-                        },
-                        OpenSpaceGame.RaymanM => new FileSystemPath[]
-                        {
-                            "tex32.cnt",
-                            "vignette.cnt",
-                        },
-                        OpenSpaceGame.RaymanArena => new FileSystemPath[]
-                        {
-                            "tex32.cnt",
-                            "vignette.cnt",
-                        },
-                        OpenSpaceGame.Rayman3 => new FileSystemPath[]
-                        {
-                            "tex32_1.cnt",
-                            "tex32_2.cnt",
-                            "vignette.cnt",
-                        },
-                        _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.Game), gameSettings.Game, null)
-                    };
-
-                    // Get the full paths and only keep the ones which exist
-                    cntFiles = cntFiles.Select(x => result.SelectedDirectory + x).Where(x => x.FileExists);
-
-                    // Sync the texture info
-                    return EditTextureInfo(gameSettings, dataFiles, cntFiles);
-                });
-
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Utilities_SyncTextureInfo_Success, syncResult.EditedTextures, syncResult.TotalTextures));
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Syncing texture info");
-
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_SyncTextureInfo_Error);
-            }
-            finally
-            {
-                IsLoading = false;
-            }
-        }
-
-        #endregion
-
-        #region Commands
-
-        public ICommand CorrectTextureInfoCommand { get; }
-
-        #endregion
-
-        #region Classes
+        #region Protected Classes
 
         /// <summary>
         /// Data for a .gf file, containing its size and path

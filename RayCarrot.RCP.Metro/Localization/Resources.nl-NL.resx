@@ -286,7 +286,7 @@
     <value>TriLinear</value>
   </data>
   <data name="Config_TnL" xml:space="preserve">
-    <value>Transform &amp; Lightning</value>
+    <value>Transform &amp; Lighting</value>
   </data>
   <data name="Config_TnLInfo" xml:space="preserve">
     <value>Deselecteer deze optie als er sprake is van grafische glitches in de game</value>
@@ -298,7 +298,7 @@
     <value>Static Shadows</value>
   </data>
   <data name="Config_Textures" xml:space="preserve">
-    <value>Textures</value>
+    <value>Texturen</value>
   </data>
   <data name="Config_Textures16" xml:space="preserve">
     <value>16-bit</value>
@@ -556,7 +556,7 @@
     <value>Sluit het dialoogvenster voor configuratie tijdens het opslaan</value>
   </data>
   <data name="R1U_TPLSHeader" xml:space="preserve">
-    <value>Per-Level soundtrack</value>
+    <value>Per-Level Soundtrack</value>
   </data>
   <data name="R1U_TPLSInfo" xml:space="preserve">
     <value>Standaard biedt de PC-versie van Rayman maar één track per wereld. Deze patch zal ervoor zorgen dat elk level zijn eigen muziek heeft, vergelijkbaar met de PlayStation versie.</value>
@@ -1209,7 +1209,7 @@ Opnieuw proberen?</value>
     <value>In het bijzonder dank aan AuToMaNiAk005, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski en alle andere Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel™, Carrot Framework, hulpprogramma's, Per-Level soundtrack hulpprogramma, Archive Explorer, Rayman 2 vertalingen, Zweedse (Zweden) programmavertaling</value>
+    <value>Rayman Control Panel™, Carrot Framework, hulpprogramma's, per-level soundtrack hulpprogramma, Archive Explorer, Rayman 2 vertalingen, Zweedse (Zweden) programmavertaling</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -1221,7 +1221,7 @@ Opnieuw proberen?</value>
     <value>Lijst met cheat codes, algemene ondersteuning bij de hulpprogramma's</value>
   </data>
   <data name="About_Credits_PluMGMK" xml:space="preserve">
-    <value>Per-Level soundtrack hulpprogramma, Rayman 2 vertalingen</value>
+    <value>Per-level soundtrack hulpprogramma, Rayman 2 vertalingen</value>
   </data>
   <data name="About_Credits_HarukaTavares" xml:space="preserve">
     <value>Rayman 2 vertalingen, Portugese (Portugal) programmavertaling</value>
@@ -1257,7 +1257,7 @@ Opnieuw proberen?</value>
     <value>Installatie Mislukt</value>
   </data>
   <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
-    <value>Weet je zeker dat je het Per-Level soundtrack hulpprogramma wilt verwijderen?</value>
+    <value>Weet je zeker dat je het Per-Level Soundtrack hulpprogramma wilt verwijderen?</value>
   </data>
   <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
     <value>Bevestig Deïnstallatie</value>
@@ -3085,7 +3085,7 @@ Pointer = {8}</value>
     <value>The Tower of the Leptys</value>
   </data>
   <data name="PostUpdate_TPLSUpdatePrompt" xml:space="preserve">
-    <value>Het Per-Level soundtrack hulpprogramma is geüpdatet. Ga naar de Rayman 1 hulpprogramma's en herinstalleer het om het te kunnen blijven gebruiken. </value>
+    <value>Het Per-Level Soundtrack hulpprogramma is geüpdatet. Ga naar de Rayman 1 hulpprogramma's en herinstalleer het om het te kunnen blijven gebruiken. </value>
   </data>
   <data name="TPLS_UpdateVersionError" xml:space="preserve">
     <value>De Rayman versie kon niet geüpdatet worden</value>
@@ -3121,7 +3121,7 @@ Pointer = {8}</value>
     <value>Selecteer map voor spelgegevens</value>
   </data>
   <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
-    <value>{0}/{1} texturen gesynchroniseerd</value>
+    <value>{0}/{1} textuurinformatie gesynchroniseerd</value>
   </data>
   <data name="Utilities_SyncTextureInfo_Error" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het synchroniseren van de textuurinformatie</value>

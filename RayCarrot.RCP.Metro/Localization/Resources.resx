@@ -3254,7 +3254,7 @@ editedTextures
 totalTextures</comment>
   </data>
   <data name="Utilities_SyncTextureInfo_Error" xml:space="preserve">
-    <value>An error occurred when synchronizing the texture infos</value>
+    <value>An error occurred when synchronizing the texture info</value>
   </data>
   <data name="Utilities_SyncTextureInfo_Sync" xml:space="preserve">
     <value>Synchronize</value>

@@ -3,18 +3,19 @@
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// The sync texture info utility
+    /// The base game sync texture info utility
     /// </summary>
-    public class SyncTextureInfoUtility : IUtility
+    public abstract class BaseGameSyncTextureInfoUtility : IUtility
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public SyncTextureInfoUtility()
+        /// <param name="viewModel">The view model</param>
+        protected BaseGameSyncTextureInfoUtility(BaseGameSyncTextureInfoUtilityViewModel viewModel)
         {
-            ViewModel = new GeneralSyncTextureInfoUtilityViewModel();
+            ViewModel = viewModel;
         }
 
         #endregion
@@ -49,7 +50,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The utility UI content
         /// </summary>
-        public object UIContent => new SyncTextureInfoUtilityUI()
+        public object UIContent => new BaseGameSyncTextureInfoUtilityUI()
         {
             DataContext = ViewModel
         };
@@ -77,7 +78,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The view model
         /// </summary>
-        public GeneralSyncTextureInfoUtilityViewModel ViewModel { get; }
+        public BaseGameSyncTextureInfoUtilityViewModel ViewModel { get; }
 
         #endregion
     }
