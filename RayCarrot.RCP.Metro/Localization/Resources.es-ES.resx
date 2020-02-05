@@ -298,7 +298,7 @@ hacer mas grande/mejorar los modos de baja resolución</value>
     <comment>TriLinear</comment>
   </data>
   <data name="Config_TnL" xml:space="preserve">
-    <value>Transform y Lightning</value>
+    <value>Transform y Lighting</value>
     <comment>Transform y Lightning</comment>
   </data>
   <data name="Config_TnLInfo" xml:space="preserve">
@@ -1004,6 +1004,9 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="GoHomeConfig_BigFile" xml:space="preserve">
     <value>Big file</value>
     <comment>Big file</comment>
+  </data>
+  <data name="R2Config_Graphics_nGlide" xml:space="preserve">
+    <value>Glide</value>
   </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>

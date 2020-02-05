@@ -114,17 +114,15 @@ namespace RayCarrot.RCP.Metro {
         ///    ],
         ///    &quot;Rayman2&quot;: [
         ///      &quot;R2CNTExplorerUtility&quot;,
-        ///      &quot;R2TranslationUtility&quot;,
-        ///      &quot;R2DiscPatchUtility&quot;
+        ///      &quot;R2GameSyncTextureInfoUtility&quot;,
+        ///      &quot;R2RemoveDRMUtility&quot;,
+        ///      &quot;R2DiscPatchUtility&quot;,
+        ///      &quot;R2TranslationUtility&quot;
         ///    ],
         ///    &quot;Demo_Rayman2_1&quot;: [
         ///      &quot;R2Demo1CNTExplorerUtility&quot;
         ///    ],
-        ///    &quot;Demo_Rayman2_2&quot;: [
-        ///      &quot;R2Demo2CNTExplorerUtility&quot;
-        ///    ],
-        ///    &quot;RaymanM&quot;: [
-        ///     [rest of string was truncated]&quot;;.
+        ///    &quot;Demo_Rayman2_2&quot;:  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Games {
             get {
@@ -145,47 +143,44 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;Bast_10.sna&quot;: [
-        ///    11293,
-        ///    11997
+        ///    1228515,
+        ///    1233843
         ///  ],
         ///  &quot;Bast_20.sna&quot;: [
-        ///    16893,
-        ///    17597
+        ///    1025823,
+        ///    1031151
         ///  ],
         ///  &quot;Boat02.sna&quot;: [
-        ///    8813,
-        ///    9505
+        ///    742395,
+        ///    746115
         ///  ],
         ///  &quot;Cask_10.sna&quot;: [
-        ///    7477,
-        ///    8181
+        ///    725591,
+        ///    730919
         ///  ],
         ///  &quot;Chase_10.sna&quot;: [
-        ///    28537,
-        ///    29241
+        ///    963751,
+        ///    969079
         ///  ],
         ///  &quot;Earth_10.sna&quot;: [
-        ///    14081
+        ///    942267
         ///  ],
         ///  &quot;Earth_20.sna&quot;: [
-        ///    12181
+        ///    553827
         ///  ],
         ///  &quot;Earth_30.sna&quot;: [
-        ///    13593
+        ///    592195
         ///  ],
         ///  &quot;GLob_10.sna&quot;: [
-        ///    18373,
-        ///    19077
+        ///    915843,
+        ///    921171
         ///  ],
         ///  &quot;GLob_20.sna&quot;: [
-        ///    27225,
-        ///    27929
+        ///    880327,
+        ///    885655
         ///  ],
         ///  &quot;GLob_30.sna&quot;: [
-        ///    4065,
-        ///    4769
-        ///  ],
-        ///  &quot;Helic_ [rest of string was truncated]&quot;;.
+        ///    302315, [rest of string was truncated]&quot;;.
         /// </summary>
         public static string R2_Sna_Drm_Offsets {
             get {
@@ -286,15 +281,19 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 9.2.0 - January ??, 2020   -----
-        ///• Added a utility for synchronizing the OpenSpace texture resolution
+        ///   Looks up a localized string similar to -----   Version 9.3.0 - February ??, 2020   -----
+        ///• Added the decoder utilities category
+        ///• The Rayman 2 DRM removal patch can now be applied again if already applied without first reverting it
+        ///• Updated libraries
+        ///• Changed the icon for the convert utilities tab
         ///
-        ///Other changes:
-        ///• Created the new &quot;other category&quot; for utilities
-        ///• Replaced the &quot;work in process&quot; utilities category with info icons
-        ///• Reworked the general utilities system to use the same utility base as the games
-        ///• Fixed a bug where importing a directory in the Archive Explorer would crash if certain sub-directories didn&apos;t exist
-        ///• Fixed some bugs related to refreshing the games pag [rest of string was truncated]&quot;;.
+        ///
+        ///-----   Version 9.2.4 - February 2, 2020   -----
+        ///• Added the utility for synchronizing the OpenSpace texture resolution to the game specific utilities sections
+        ///• Changed the order of the Archive Explorer utilities
+        ///
+        ///
+        ///-----   Version 9.2. [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

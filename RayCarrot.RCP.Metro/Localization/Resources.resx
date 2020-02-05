@@ -286,7 +286,7 @@
     <value>TriLinear</value>
   </data>
   <data name="Config_TnL" xml:space="preserve">
-    <value>Transform and Lightning</value>
+    <value>Transform and Lighting</value>
   </data>
   <data name="Config_TnLInfo" xml:space="preserve">
     <value>Uncheck this if there are graphical glitches in the game</value>
@@ -2603,7 +2603,7 @@ exceptionMessage</comment>
     <value>DirectX</value>
   </data>
   <data name="R2Config_Graphics_nGlide" xml:space="preserve">
-    <value>nGlide</value>
+    <value>Glide</value>
   </data>
   <data name="R2Config_Graphics_Custom" xml:space="preserve">
     <value>Custom</value>
@@ -3155,7 +3155,7 @@ pointer</comment>
   <data name="Utilities_Converter_FileSelectionHeader" xml:space="preserve">
     <value>Select files to convert</value>
   </data>
-  <data name="Utilities_Converter_DestinationHeader" xml:space="preserve">
+  <data name="Browse_DestinationHeader" xml:space="preserve">
     <value>Select destination</value>
   </data>
   <data name="Utilities_Converter_Error" xml:space="preserve">
@@ -3300,5 +3300,35 @@ totalTextures</comment>
   </data>
   <data name="About_Credits_Robin" xml:space="preserve">
     <value>Rayman 2 DRM removal</value>
+  </data>
+  <data name="Utilities_Decoder_Header" xml:space="preserve">
+    <value>Decoders</value>
+  </data>
+  <data name="Utilities_Decoder_Decode" xml:space="preserve">
+    <value>Decode</value>
+  </data>
+  <data name="Utilities_Decoder_Encode" xml:space="preserve">
+    <value>Encode</value>
+  </data>
+  <data name="Utilities_Decoder_R2SnaHeader" xml:space="preserve">
+    <value>Rayman 2 Encoded Files (.sna, .dsb)</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeFileSelectionHeader" xml:space="preserve">
+    <value>Select files to decode</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeFileSelectionHeader" xml:space="preserve">
+    <value>Select files to encode</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeSuccess" xml:space="preserve">
+    <value>The files were successfully decoded</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeSuccess" xml:space="preserve">
+    <value>The files were successfully encoded</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeError" xml:space="preserve">
+    <value>An error occurred when decoding the files</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeError" xml:space="preserve">
+    <value>An error occurred when encoding the files</value>
   </data>
 </root>

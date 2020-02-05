@@ -1,4 +1,16 @@
-﻿-----   Version 9.2.4 - February 2, 2020   -----
+﻿-----   Version 9.3.0 - February ??, 2020   -----
+• Added the decoder utilities category
+• Added a utility for decoding/encoding Rayman 2 .sna and .dsb files
+• Updated the Rayman 2 DRM removal utility. The patch needs to be applied again for the new changes to take effect. If it was previously crashing it's recommended to revert the previous patch before applying.
+
+Other changes:
+• The Rayman 2 DRM removal utility can now be applied again if already applied without first reverting it
+• Changed the icon for the convert utilities tab
+• nGlide has been renamed to Glide since it can be used with other wrappers as well
+• Updated libraries
+
+
+-----   Version 9.2.4 - February 2, 2020   -----
 • Added the utility for synchronizing the OpenSpace texture resolution to the game specific utilities sections
 • Changed the order of the Archive Explorer utilities
 

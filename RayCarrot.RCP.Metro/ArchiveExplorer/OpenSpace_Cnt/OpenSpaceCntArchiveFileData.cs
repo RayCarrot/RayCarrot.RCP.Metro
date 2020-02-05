@@ -97,7 +97,7 @@ namespace RayCarrot.RCP.Metro
             Resources.Archive_CNT_FileInfo, 
             Directory, 
             Width, Height, 
-            new ByteSize(FileData.Size), 
+            ByteSize.FromBytes(FileData.Size), 
             FileData.Unknown1 == 0,
             FileData.FileXORKey.Any(x => x != 0), 
             IsTransparent, 

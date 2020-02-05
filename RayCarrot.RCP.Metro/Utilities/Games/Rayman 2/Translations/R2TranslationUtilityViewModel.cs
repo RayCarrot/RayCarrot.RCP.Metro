@@ -219,16 +219,16 @@ namespace RayCarrot.RCP.Metro
             {
                 var size = path.GetSize();
 
-                if (size == new ByteSize(29271236))
+                if (size == ByteSize.FromBytes(29271236))
                     return Rayman2Translation.Original;
 
-                if (size == new ByteSize(29276103))
+                if (size == ByteSize.FromBytes(29276103))
                     return Rayman2Translation.Swedish;
 
-                if (size == new ByteSize(29274254))
+                if (size == ByteSize.FromBytes(29274254))
                     return Rayman2Translation.Portuguese;
 
-                if (size == new ByteSize(29116088))
+                if (size == ByteSize.FromBytes(29116088))
                     return Rayman2Translation.Slovak;
 
                 return null;

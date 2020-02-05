@@ -69,7 +69,7 @@ namespace RayCarrot.RCP.Metro
             // Allow the user to select the destination directory
             var destinationResult = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
             {
-                Title = Resources.Utilities_Converter_DestinationHeader,
+                Title = Resources.Browse_DestinationHeader,
             });
 
             if (destinationResult.CanceledByUser)
@@ -138,7 +138,7 @@ namespace RayCarrot.RCP.Metro
             // Allow the user to select the destination directory
             var destinationResult = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
             {
-                Title = Resources.Utilities_Converter_DestinationHeader,
+                Title = Resources.Browse_DestinationHeader,
             });
 
             if (destinationResult.CanceledByUser)

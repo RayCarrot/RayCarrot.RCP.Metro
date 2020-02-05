@@ -286,7 +286,7 @@
     <value>TriLinear</value>
   </data>
   <data name="Config_TnL" xml:space="preserve">
-    <value>Transform e Lightning</value>
+    <value>Transform e Lighting</value>
   </data>
   <data name="Config_TnLInfo" xml:space="preserve">
     <value>Desmarcar isto se houver falhas gráficas no jogo</value>
@@ -2540,7 +2540,7 @@ Error message: {1}</value>
     <value>DirectX</value>
   </data>
   <data name="R2Config_Graphics_nGlide" xml:space="preserve">
-    <value>nGlide</value>
+    <value>Glide</value>
   </data>
   <data name="R2Config_Graphics_Custom" xml:space="preserve">
     <value>Personalizado</value>
@@ -3051,7 +3051,7 @@ Pointer = {8}
   <data name="Utilities_Converter_FileSelectionHeader" xml:space="preserve">
     <value>Seleccionar ficheiros a converter</value>
   </data>
-  <data name="Utilities_Converter_DestinationHeader" xml:space="preserve">
+  <data name="Browse_DestinationHeader" xml:space="preserve">
     <value>Seleccionar destino</value>
   </data>
   <data name="Utilities_Converter_Error" xml:space="preserve">

@@ -25,6 +25,10 @@
                 new UtilityViewModel(new LOCConverterUtility()),
                 new UtilityViewModel(new RJRSaveConverterUtility()),
             };
+            DecoderViewModels = new UtilityViewModel[]
+            {
+                new UtilityViewModel(new R2SnaDsbDecoderUtility()),
+            };
             OtherViewModels = new UtilityViewModel[]
             {
                 new UtilityViewModel(new R1MapViewerUtility()),
@@ -45,6 +49,11 @@
         /// View models for the converter utilities
         /// </summary>
         public UtilityViewModel[] ConverterViewModels { get; }
+
+        /// <summary>
+        /// View models for the decoder utilities
+        /// </summary>
+        public UtilityViewModel[] DecoderViewModels { get; }
 
         /// <summary>
         /// View models for the other utilities

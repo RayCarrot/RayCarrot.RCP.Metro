@@ -72,8 +72,8 @@ namespace RayCarrot.RCP.Metro
             Resources.Archive_IPK_FileInfo,
             Directory,
             FileData.IsCompressed,
-            new ByteSize(FileData.Size),
-            new ByteSize(FileData.CompressedSize),
+            ByteSize.FromBytes(FileData.Size),
+            ByteSize.FromBytes(FileData.CompressedSize),
             FileData.Offset + BaseOffset);
 
         /// <summary>

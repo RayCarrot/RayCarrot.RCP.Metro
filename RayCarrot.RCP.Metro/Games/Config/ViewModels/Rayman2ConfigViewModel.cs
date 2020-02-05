@@ -66,9 +66,9 @@ namespace RayCarrot.RCP.Metro
 
         private const string GLI_Device_DirectX = "Direct3D HAL";
 
-        private const string GLI_DllFile_nGlide = "GliVd1";
+        private const string GLI_DllFile_Glide = "GliVd1";
 
-        private const string GLI_Dll_nGlide = "Glide2";
+        private const string GLI_Dll_Glide = "Glide2";
 
         #endregion
 
@@ -221,10 +221,10 @@ namespace RayCarrot.RCP.Metro
                     GLI_Driver = GLI_Driver_DirectX;
                     GLI_Device = GLI_Device_DirectX;
                 }
-                else if (SelectedGraphicsMode == R2GraphicsMode.nGlide)
+                else if (SelectedGraphicsMode == R2GraphicsMode.Glide)
                 {
-                    GLI_DllFile = GLI_DllFile_nGlide;
-                    GLI_Dll = GLI_Dll_nGlide;
+                    GLI_DllFile = GLI_DllFile_Glide;
+                    GLI_Dll = GLI_Dll_Glide;
                     GLI_Driver = String.Empty;
                     GLI_Device = String.Empty;
                 }
@@ -650,12 +650,12 @@ namespace RayCarrot.RCP.Metro
             {
                 _selectedGraphicsMode = R2GraphicsMode.DirectX;
             }
-            else if (GLI_DllFile?.Equals(GLI_DllFile_nGlide, StringComparison.InvariantCultureIgnoreCase) == true &&
-                     GLI_Dll?.Equals(GLI_Dll_nGlide, StringComparison.InvariantCultureIgnoreCase) == true &&
+            else if (GLI_DllFile?.Equals(GLI_DllFile_Glide, StringComparison.InvariantCultureIgnoreCase) == true &&
+                     GLI_Dll?.Equals(GLI_Dll_Glide, StringComparison.InvariantCultureIgnoreCase) == true &&
                      GLI_Driver.IsNullOrEmpty() &&
                      GLI_Device.IsNullOrEmpty())
             {
-                _selectedGraphicsMode = R2GraphicsMode.nGlide;
+                _selectedGraphicsMode = R2GraphicsMode.Glide;
             }
             else
             {
@@ -755,10 +755,10 @@ namespace RayCarrot.RCP.Metro
             {
                 var size = path.GetSize();
 
-                if (size == new ByteSize(136704))
+                if (size == ByteSize.FromBytes(136704))
                     return R2Dinput.Mapping;
 
-                if (size == new ByteSize(66560))
+                if (size == ByteSize.FromBytes(66560))
                     return R2Dinput.Controller;
 
                 return R2Dinput.Unknown;
@@ -860,9 +860,9 @@ namespace RayCarrot.RCP.Metro
             DirectX,
 
             /// <summary>
-            /// nGlide
+            /// Glide
             /// </summary>
-            nGlide,
+            Glide,
             
             /// <summary>
             /// Custom

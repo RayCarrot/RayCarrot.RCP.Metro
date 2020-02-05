@@ -957,6 +957,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select destination.
+        /// </summary>
+        public static string Browse_DestinationHeader {
+            get {
+                return ResourceManager.GetString("Browse_DestinationHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Browse.
         /// </summary>
         public static string BrowseBox_Browse {
@@ -2578,7 +2587,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Transform and Lightning.
+        ///   Looks up a localized string similar to Transform and Lighting.
         /// </summary>
         public static string Config_TnL {
             get {
@@ -6744,7 +6753,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to nGlide.
+        ///   Looks up a localized string similar to Glide.
         /// </summary>
         public static string R2Config_Graphics_nGlide {
             get {
@@ -8691,15 +8700,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select destination.
-        /// </summary>
-        public static string Utilities_Converter_DestinationHeader {
-            get {
-                return ResourceManager.GetString("Utilities_Converter_DestinationHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The file(s) could not be converted.
         /// </summary>
         public static string Utilities_Converter_Error {
@@ -8786,6 +8786,96 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_Converter_Success {
             get {
                 return ResourceManager.GetString("Utilities_Converter_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decode.
+        /// </summary>
+        public static string Utilities_Decoder_Decode {
+            get {
+                return ResourceManager.GetString("Utilities_Decoder_Decode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when decoding the files.
+        /// </summary>
+        public static string Utilities_Decoder_DecodeError {
+            get {
+                return ResourceManager.GetString("Utilities_Decoder_DecodeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select files to decode.
+        /// </summary>
+        public static string Utilities_Decoder_DecodeFileSelectionHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Decoder_DecodeFileSelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The files were successfully decoded.
+        /// </summary>
+        public static string Utilities_Decoder_DecodeSuccess {
+            get {
+                return ResourceManager.GetString("Utilities_Decoder_DecodeSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encode.
+        /// </summary>
+        public static string Utilities_Decoder_Encode {
+            get {
+                return ResourceManager.GetString("Utilities_Decoder_Encode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when encoding the files.
+        /// </summary>
+        public static string Utilities_Decoder_EncodeError {
+            get {
+                return ResourceManager.GetString("Utilities_Decoder_EncodeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select files to encode.
+        /// </summary>
+        public static string Utilities_Decoder_EncodeFileSelectionHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Decoder_EncodeFileSelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The files were successfully encoded.
+        /// </summary>
+        public static string Utilities_Decoder_EncodeSuccess {
+            get {
+                return ResourceManager.GetString("Utilities_Decoder_EncodeSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decoders.
+        /// </summary>
+        public static string Utilities_Decoder_Header {
+            get {
+                return ResourceManager.GetString("Utilities_Decoder_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 Encoded Files (.sna, .dsb).
+        /// </summary>
+        public static string Utilities_Decoder_R2SnaHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Decoder_R2SnaHeader", resourceCulture);
             }
         }
         

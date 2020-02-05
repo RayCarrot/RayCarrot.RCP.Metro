@@ -138,7 +138,7 @@
                                               IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=DirectX}"/>
 
                     <rwpf:RadioButtonExtended Content="{Resx R2Config_Graphics_nGlide}"
-                                              IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=nGlide}" />
+                                              IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Glide}" />
 
                     <rwpf:RadioButtonExtended Content="{Resx R2Config_Graphics_Custom}"
                                               IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Custom}" />

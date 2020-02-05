@@ -297,6 +297,9 @@
     <value>Big file</value>
     <comment>Big file</comment>
   </data>
+  <data name="R2Config_Graphics_nGlide" xml:space="preserve">
+    <value>Glide</value>
+  </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>
     <comment>Rayman</comment>

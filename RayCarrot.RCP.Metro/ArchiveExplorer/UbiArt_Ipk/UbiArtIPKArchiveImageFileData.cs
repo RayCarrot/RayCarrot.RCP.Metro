@@ -436,8 +436,8 @@ namespace RayCarrot.RCP.Metro
             UsesTexWrapper,
             FileExtension.FileExtensions,
             FileData.IsCompressed,
-            new ByteSize(FileData.Size),
-            new ByteSize(FileData.CompressedSize),
+            ByteSize.FromBytes(FileData.Size),
+            ByteSize.FromBytes(FileData.CompressedSize),
             FileData.Offset + BaseOffset);
 
         /// <summary>

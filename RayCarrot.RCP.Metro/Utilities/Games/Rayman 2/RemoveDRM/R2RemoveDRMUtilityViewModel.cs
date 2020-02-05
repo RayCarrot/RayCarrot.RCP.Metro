@@ -95,13 +95,17 @@ namespace RayCarrot.RCP.Metro
             {
                 IsLoading = true;
 
+                // Only create a new backup if one doesn't already exist
+                var createBackup = !CommonPaths.R2RemoveDRMDir.DirectoryExists;
+
                 await Task.Run(() =>
                 {
                     // Edit every .sna file
                     foreach (var sna in SnaOffsets)
                     {
-                        // Backup the file
-                        RCFRCP.File.CopyFile(sna.Key, CommonPaths.R2RemoveDRMDir + (sna.Key - BaseDirectory), true);
+                        if (createBackup)
+                            // Backup the file
+                            RCFRCP.File.CopyFile(sna.Key, CommonPaths.R2RemoveDRMDir + (sna.Key - BaseDirectory), true);
 
                         // Create the encoder
                         var encoder = new Rayman2SNADataEncoder();
@@ -109,14 +113,14 @@ namespace RayCarrot.RCP.Metro
                         // Read the file bytes and decode it
                         var bytes = encoder.Decode(File.ReadAllBytes(sna.Key));
 
-                        // Blank each offset
+                        // Modify each offset
                         foreach (var offset in sna.Value)
                         {
-                            // Blank the value
-                            bytes[offset] = 0;
-                            bytes[offset + 1] = 0;
-                            bytes[offset + 2] = 0;
-                            bytes[offset + 3] = 0;
+                            // Modify the value
+                            bytes[offset] = 0x00;
+                            bytes[offset + 1] = 0x01;
+                            bytes[offset + 2] = 0x00;
+                            bytes[offset + 3] = 0x00;
                         }
 
                         // Encode and write the bytes

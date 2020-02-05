@@ -286,7 +286,7 @@
     <value>TriLinear</value>
   </data>
   <data name="Config_TnL" xml:space="preserve">
-    <value>Transform och lightning</value>
+    <value>Transform och lighting</value>
   </data>
   <data name="Config_TnLInfo" xml:space="preserve">
     <value>Kryssa inte i om det är grafikproblem i spelet</value>
@@ -1724,6 +1724,9 @@ Försök igen?"</value>
   <data name="GoHomeConfig_BigFile" xml:space="preserve">
     <value>Big file</value>
     <comment>Big file</comment>
+  </data>
+  <data name="R2Config_Graphics_nGlide" xml:space="preserve">
+    <value>Glide</value>
   </data>
   <data name="RR2Options_GameMode_All" xml:space="preserve">
     <value>Alla spel</value>

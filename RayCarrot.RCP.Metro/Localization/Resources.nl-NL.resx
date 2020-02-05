@@ -2537,7 +2537,7 @@ Foutmelding: {1}</value>
     <value>DirectX</value>
   </data>
   <data name="R2Config_Graphics_nGlide" xml:space="preserve">
-    <value>nGlide</value>
+    <value>Glide</value>
   </data>
   <data name="R2Config_Graphics_Custom" xml:space="preserve">
     <value>Aangepast</value>
@@ -3029,7 +3029,7 @@ Pointer = {8}</value>
   <data name="Utilities_Converter_FileSelectionHeader" xml:space="preserve">
     <value>Selecteer bestanden voor conversie</value>
   </data>
-  <data name="Utilities_Converter_DestinationHeader" xml:space="preserve">
+  <data name="Browse_DestinationHeader" xml:space="preserve">
     <value>Selecteer locatie</value>
   </data>
   <data name="Utilities_Converter_Error" xml:space="preserve">

@@ -393,14 +393,221 @@
   <data name="Config_RRRScreenModeInfo" xml:space="preserve">
     <value>Opcja trybu ekranu będzie zachowywała się inaczej w zależności od wybranej rozdzielczości. Zazwyczaj trzymanie trybu 4:3 włączonego sprawi że gra się nie rozciągnie w innych aspektach obrazu.</value>
   </data>
+  <data name="RDU_CreateConfigCreate" xml:space="preserve">
+    <value>Twórz</value>
+  </data>
+  <data name="RLU_UbiRayHeader" xml:space="preserve">
+    <value>Postać UbiRay</value>
+  </data>
+  <data name="RLU_UbiRayInfo" xml:space="preserve">
+    <value>UbiRay jest postacią nie dostępną do grania w grze, lecz wciąż jest w jej plikach. To narzędzie pozwala zmodyfikować twój plik zapisu tak by UbiRay był wybraną postacią, pozwalając ci grać jako on.</value>
+  </data>
+  <data name="RLU_UbiRayWarning" xml:space="preserve">
+    <value>OSTRZEŻENIE: To narzędzie jest eksperymentalne i może zepsuć twój plik zapisu. Zawsze twórz kopie zapasową przed jego użyciem.</value>
+  </data>
+  <data name="ROU_HQVideosHeader" xml:space="preserve">
+    <value>Filmy w wyższej jakości</value>
+  </data>
+  <data name="ROU_HQVideosInfo" xml:space="preserve">
+    <value>Przerywniki filmowe w wersji PC są zkompresowane i w niższej jakości niż te w wersji konsolowej. To narzędzie zastąpi te filmy z tymi w wyższej jakości z wersji konsolowej.</value>
+  </data>
+  <data name="ROU_HQVideosReplace" xml:space="preserve">
+    <value>Zastąp filmami w wysokiej jakości</value>
+  </data>
+  <data name="ROU_HQVideosRevert" xml:space="preserve">
+    <value>Przywróć oryginalne filmy</value>
+  </data>
+  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
+    <value>Komendy Debugowe</value>
+  </data>
+  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
+    <value>Użycie jakichkolwiek z poniższych debugowych komend pozwala grze na uruchomienie w debugowym środowisku, z komendami zmieniającymi jak gra działa.</value>
+  </data>
+  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
+    <value>OSTRZEŻENIE: Używanie debugowych komend może zepsuć twój plik zapisu. Zawsze twórz kopie zapasową przed ich użyciem.</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
+    <value>Nieśmiertelność</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
+    <value>To pozwoli graczowi na nie umieranie przy dostawaniu obrażeń</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
+    <value>Ukryj kursor myszy</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
+    <value>To ukryje kursor myszy w menu gry</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
+    <value>Maksymalne oddalenie kamery</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
+    <value>To zmaksymalizuje oddalenie kamery</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
+    <value>Częstotliwość odświeżania obrazu</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
+    <value>To ustawi częstotliwość odświeżania obrazu gry</value>
+  </data>
+  <data name="ROU_DebugCommandsMap" xml:space="preserve">
+    <value>Mapa</value>
+  </data>
+  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
+    <value>To pozwoli na załadowanie wybranej mapy zamiast menu głównego po starcie gry.</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
+    <value>Język</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
+    <value>To zmieni język gry</value>
+  </data>
+  <data name="ROU_UpdateHeader" xml:space="preserve">
+    <value>Zaktualizuj do 1.02 (Wersja z płyty)</value>
+  </data>
+  <data name="ROU_UpdateInfo" xml:space="preserve">
+    <value>Jeżeli Rayman Origins nie został automatycznie zaktualizowany do najnowszej wersji, 1.02, to narzędzie je zaktualizuje.</value>
+  </data>
+  <data name="ROU_UpdateUpdate" xml:space="preserve">
+    <value>Zaktualizuj</value>
+  </data>
+  <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
+    <value>Otwórz stronę sklepu</value>
+  </data>
+  <data name="GameDisplay_OpenSteamCommunity" xml:space="preserve">
+    <value>Otwórz stronę społeczności</value>
+  </data>
+  <data name="GameDisplay_OpenLocation" xml:space="preserve">
+    <value>Otwórz folder zawierający</value>
+  </data>
+  <data name="GameDisplay_Options" xml:space="preserve">
+    <value>Opcje</value>
+  </data>
+  <data name="GameDisplay_Launch" xml:space="preserve">
+    <value>Uruchom</value>
+  </data>
+  <data name="GameDisplay_DiscInstall" xml:space="preserve">
+    <value>Zainstaluj z płyty</value>
+  </data>
+  <data name="GameDisplay_Locate" xml:space="preserve">
+    <value>Zlokalizuj</value>
+  </data>
+  <data name="GameDisplay_PurchaseGOG" xml:space="preserve">
+    <value>Kup z GOG</value>
+  </data>
+  <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
+    <value>Kup z Uplay</value>
+  </data>
+  <data name="GameDisplay_Steam" xml:space="preserve">
+    <value>Kup z Steam</value>
+  </data>
+  <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
+    <value>Kup z Microsoft Store</value>
+  </data>
+  <data name="GameLink_RDMapper" xml:space="preserve">
+    <value>Mapper</value>
+  </data>
+  <data name="GameLink_Setup" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="GameLink_R2nGlide" xml:space="preserve">
+    <value>Konfiguracja nGlide</value>
+  </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Akcja się powiodła</value>
+  </data>
   <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
     <value>1.20</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
     <value>1.21</value>
   </data>
+  <data name="JumpListItemDescription" xml:space="preserve">
+    <value>Uruchom {0}</value>
+  </data>
   <data name="Help_RCP" xml:space="preserve">
     <value>Rayman Control Panel™</value>
+  </data>
+  <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
+    <value>Aktualizacje</value>
+  </data>
+  <data name="Help_RCP_CompatibilityHeader" xml:space="preserve">
+    <value>Kompatybilność</value>
+  </data>
+  <data name="Help_RCP_GameInstallerHeader" xml:space="preserve">
+    <value>Instalator gry</value>
+  </data>
+  <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
+    <value>Kopia zapasowa/ Przywróć</value>
+  </data>
+  <data name="Help_Games" xml:space="preserve">
+    <value>Gry</value>
+  </data>
+  <data name="Help_Games_General_GameNotLaunchingHeader" xml:space="preserve">
+    <value>Gra się nie włącza</value>
+  </data>
+  <data name="Help_Games_R1" xml:space="preserve">
+    <value>Rayman 1</value>
+  </data>
+  <data name="Help_Games_R1_EmulatorHeader" xml:space="preserve">
+    <value>Emulator MS-DOS</value>
+  </data>
+  <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
+    <value>Instalacja nie powiodła się</value>
+  </data>
+  <data name="Help_Games_R1_MapperHeader" xml:space="preserve">
+    <value>Edytor Rayman Designer</value>
+  </data>
+  <data name="Help_Games_R1_ImportMapsHeader" xml:space="preserve">
+    <value>Importowanie Map</value>
+  </data>
+  <data name="Help_Games_R2" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="Help_Games_R2_GameSpeedHeader" xml:space="preserve">
+    <value>Gra działa zbyt szybko</value>
+  </data>
+  <data name="Help_Games_R2_FpsHeader" xml:space="preserve">
+    <value>60 kontra 30 FPS</value>
+  </data>
+  <data name="Help_Games_RMA" xml:space="preserve">
+    <value>Rayman M/Arena</value>
+  </data>
+  <data name="Help_Games_RMA_MissingTexturesHeader" xml:space="preserve">
+    <value>Brakujące tekstury</value>
+  </data>
+  <data name="Help_Games_R3" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="Help_Games_RRR" xml:space="preserve">
+    <value>Rayman Szalone Kórliki</value>
+  </data>
+  <data name="Help_Games_RRR_EngineErrorHeader" xml:space="preserve">
+    <value>Błąd jade_enr.exe</value>
+  </data>
+  <data name="Help_Games_RL" xml:space="preserve">
+    <value>Rayman Legends</value>
+  </data>
+  <data name="Help_Games_RL_LoadErrorHeader" xml:space="preserve">
+    <value>Błąd podczas ładowania</value>
+  </data>
+  <data name="Help_Cheats" xml:space="preserve">
+    <value>Kody</value>
+  </data>
+  <data name="Help_Cheats_R1Header" xml:space="preserve">
+    <value>Rayman 1</value>
+  </data>
+  <data name="Help_Cheats_RDHeader" xml:space="preserve">
+    <value>Rayman Designer + Spin-Offy</value>
+  </data>
+  <data name="Help_Cheats_R2Header" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="Help_Cheats_RMAHeader" xml:space="preserve">
+    <value>Rayman M/Arena</value>
+  </data>
+  <data name="Help_Cheats_R3Header" xml:space="preserve">
+    <value>Rayman 3</value>
   </data>
   <data name="Lang_English" xml:space="preserve">
     <value>Angielski</value>
@@ -442,8 +649,104 @@
     <value>Rayman Control Panel™</value>
     <comment>Rayman Control Panel™</comment>
   </data>
+  <data name="About_Credits_ICUP321" xml:space="preserve">
+    <value>Tłumaczenie Hiszpańskie (Meksyk) programu</value>
+  </data>
+  <data name="About_Credits_OldClassicGamer" xml:space="preserve">
+    <value>Tłumaczenie Serbskie (Cyrylica) programu</value>
+  </data>
+  <data name="About_Credits_Pixelise" xml:space="preserve">
+    <value>Tłumaczenie Polskie (Polska) programu</value>
+  </data>
+  <data name="About_Credits_432Hz" xml:space="preserve">
+    <value>Tłumaczenie Holdenderskie (Holandia) programu</value>
+  </data>
+  <data name="About_Discord" xml:space="preserve">
+    <value>Discord</value>
+  </data>
+  <data name="Help_AdditionalHelp" xml:space="preserve">
+    <value>Dla dodatkowej pomocy, wejdź na serwer Discord</value>
+  </data>
+  <data name="Settings_IncompleteTranslations" xml:space="preserve">
+    <value>Pokaż języki z niekompletnym tłumaczeniem</value>
+  </data>
+  <data name="GameDisplay_RunAsAdmin" xml:space="preserve">
+    <value>Uruchom jako Administrator</value>
+  </data>
+  <data name="GameOptions_LaunchMode" xml:space="preserve">
+    <value>Tryb uruchomienia</value>
+  </data>
   <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
     <value>1.00</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
+    <value>1.12 (Edycja 2)</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
+    <value>1.12 (Edycja 3)</value>
+  </data>
+  <data name="LinksPage_LinkStyleHeader" xml:space="preserve">
+    <value>Styl linku</value>
+  </data>
+  <data name="LinksPage_LinkStyle_List" xml:space="preserve">
+    <value>Lista</value>
+  </data>
+  <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
+    <value>Grupa</value>
+  </data>
+  <data name="Page_Refresh" xml:space="preserve">
+    <value>Odśwież</value>
+  </data>
+  <data name="LinksPage_CommunityHeader" xml:space="preserve">
+    <value>Społeczność</value>
+  </data>
+  <data name="LinksPage_ForumsHeader" xml:space="preserve">
+    <value>Forum</value>
+  </data>
+  <data name="LinksPage_ToolsHeader" xml:space="preserve">
+    <value>Modyfikacje/Narzędzia</value>
+  </data>
+  <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
+    <value>Główny plik ubi.ini</value>
+  </data>
+  <data name="Links_Local_SecondaryUbiIni" xml:space="preserve">
+    <value>Drugorzędny plik ubi.ini</value>
+  </data>
+  <data name="Links_Local_R2UbiIni" xml:space="preserve">
+    <value>Plik ubi.ini Raymana 2</value>
+  </data>
+  <data name="Links_Local_DOSBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="Links_Local_DOSBoxConfig" xml:space="preserve">
+    <value>Plik konfiguracyjny DOSBox</value>
+  </data>
+  <data name="Links_Local_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="Links_Local_SteamGames" xml:space="preserve">
+    <value>Gry Steam</value>
+  </data>
+  <data name="Links_Local_GOGClient" xml:space="preserve">
+    <value>GOG Galaxy</value>
+  </data>
+  <data name="Links_Local_GOGGames" xml:space="preserve">
+    <value>Gry GOG Galaxy</value>
+  </data>
+  <data name="Links_Local_RRRRegSettings" xml:space="preserve">
+    <value>Ustawienia Rayman Szalone Kórliki</value>
+  </data>
+  <data name="Links_Local_RORegSettings" xml:space="preserve">
+    <value>Ustawienia Rayman Origins</value>
+  </data>
+  <data name="Links_Local_RLRegSettings" xml:space="preserve">
+    <value>Ustawienia Rayman Legends</value>
+  </data>
+  <data name="Links_Local_nGlideRegSettings" xml:space="preserve">
+    <value>Ustawienia nGlide</value>
+  </data>
+  <data name="Links_Local_nGlide2RegSettings" xml:space="preserve">
+    <value>Ustawienia nGlide 2.0</value>
   </data>
   <data name="Links_Community_RPC" xml:space="preserve">
     <value>Rayman Pirate-Community</value>
@@ -491,7 +794,7 @@
     <value>Steam - Rayman 2</value>
   </data>
   <data name="Links_Forums_Steam_RRR" xml:space="preserve">
-    <value>Steam - Rayman Raving Rabbids</value>
+    <value>Steam - Rayman Szalone Kórliki</value>
   </data>
   <data name="Links_Forums_Steam_RO" xml:space="preserve">
     <value>Steam - Rayman Origins</value>
@@ -648,6 +951,9 @@
     <value>Big file</value>
     <comment>Big file</comment>
   </data>
+  <data name="R2Config_Graphics_nGlide" xml:space="preserve">
+    <value>Glide</value>
+  </data>
   <data name="GamesPage_Category_Rayman" xml:space="preserve">
     <value>Rayman</value>
     <comment>Rayman</comment>
@@ -655,6 +961,12 @@
   <data name="Links_Community_RaymanReanimated" xml:space="preserve">
     <value>Rayman Reanimated</value>
     <comment>Rayman Reanimated</comment>
+  </data>
+  <data name="Config_RJRHeroes_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Config_RJRHeroes_Globox" xml:space="preserve">
+    <value>Globox</value>
   </data>
   <data name="Archive_Title" xml:space="preserve">
     <value>Archive Explorer™</value>

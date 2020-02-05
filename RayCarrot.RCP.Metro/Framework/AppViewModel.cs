@@ -128,12 +128,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentAppVersion => new Version(9, 2, 4, 0);
+        public Version CurrentAppVersion => new Version(9, 3, 0, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
-        public bool IsBeta => false;
+        public bool IsBeta => true;
 
         /// <summary>
         /// Shortcut to the app user data
@@ -469,14 +469,14 @@ namespace RayCarrot.RCP.Metro
                 // Allow user to confirm
                 try
                 {
-                    ByteSize size = new ByteSize(0);
+                    ByteSize size = ByteSize.FromBytes(0);
                     foreach (var item in inputSources)
                     {
                         var webRequest = WebRequest.Create(item);
                         webRequest.Method = "HEAD";
 
                         using var webResponse = webRequest.GetResponse();
-                        size = size.Add(new ByteSize(Convert.ToDouble(webResponse.Headers.Get("Content-Length"))));
+                        size = size.Add(ByteSize.FromBytes(Convert.ToDouble(webResponse.Headers.Get("Content-Length"))));
                     }
 
                     RCFCore.Logger?.LogDebugSource($"The size of the download has been retrieved as {size}");

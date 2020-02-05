@@ -38,10 +38,19 @@
 
             <!-- Converters -->
 
-            <local:RCPTabItem IconKind="FileExportOutline"
+            <local:RCPTabItem IconKind="SwapVertical"
                               Header="{Resx Utilities_Converter_Header}">
 
                 <local:UtilitiesContainer Utilities="{Binding Path=ConverterViewModels, Mode=OneTime}" />
+
+            </local:RCPTabItem>
+
+            <!-- Decoders -->
+
+            <local:RCPTabItem IconKind="LockOpenOutline"
+                              Header="{Resx Utilities_Decoder_Header}">
+
+                <local:UtilitiesContainer Utilities="{Binding Path=DecoderViewModels, Mode=OneTime}" />
 
             </local:RCPTabItem>
 

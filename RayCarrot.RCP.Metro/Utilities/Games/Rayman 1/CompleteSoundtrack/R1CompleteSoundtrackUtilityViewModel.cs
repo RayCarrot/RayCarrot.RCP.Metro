@@ -106,7 +106,7 @@ namespace RayCarrot.RCP.Metro
 
                 var size = file.GetSize();
 
-                return size == new ByteSize(1805221);
+                return size == ByteSize.FromBytes(1805221);
             }
             catch (Exception ex)
             {
