@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -105,6 +106,11 @@ namespace RayCarrot.RCP.Metro
             Mipmaps);
 
         /// <summary>
+        /// The default icon to use for this file
+        /// </summary>
+        public PackIconMaterialKind IconKind => PackIconMaterialKind.FileImageOutline;
+
+        /// <summary>
         /// The name of the file format
         /// </summary>
         public string FileFormatName => ".GF";
@@ -112,17 +118,17 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The supported file formats to import from
         /// </summary>
-        public ArchiveFileExtension[] SupportedImportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions().Select(x => new ArchiveFileExtension(x)).Append(new ArchiveFileExtension(".gf")).ToArray();
+        public FileExtension[] SupportedImportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions().Select(x => new FileExtension(x)).Append(new FileExtension(".gf")).ToArray();
 
         /// <summary>
         /// The supported file formats to export to
         /// </summary>
-        public ArchiveFileExtension[] SupportedExportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions().Select(x => new ArchiveFileExtension(x)).Append(new ArchiveFileExtension(".gf")).ToArray();
+        public FileExtension[] SupportedExportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions().Select(x => new FileExtension(x)).Append(new FileExtension(".gf")).ToArray();
 
         /// <summary>
         /// The supported file formats for exporting mipmaps
         /// </summary>
-        public ArchiveFileExtension[] SupportedMipmapExportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions().Select(x => new ArchiveFileExtension(x)).ToArray();
+        public FileExtension[] SupportedMipmapExportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions().Select(x => new FileExtension(x)).ToArray();
 
         /// <summary>
         /// The path to the temporary file containing the data to be imported

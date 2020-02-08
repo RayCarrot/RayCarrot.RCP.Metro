@@ -23,6 +23,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Shell;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {

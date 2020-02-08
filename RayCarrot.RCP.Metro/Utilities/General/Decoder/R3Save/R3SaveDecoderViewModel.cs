@@ -4,20 +4,20 @@ using RayCarrot.Rayman;
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// Utility view model for decoding Rayman 2 .sna/.dsb files
+    /// Utility view model for decoding Rayman 3 .sav files
     /// </summary>
-    public class R2SnaDsbDecoderViewModel : BaseDecoderUtilityViewModel<OpenSpaceGameMode>
+    public class R3SaveDecoderViewModel : BaseDecoderUtilityViewModel<UtilityPlatforms>
     {
         #region Constructor
 
         /// <summary>
         /// Default constructor
         /// </summary>
-        public R2SnaDsbDecoderViewModel()
+        public R3SaveDecoderViewModel()
         {
-            GameModeSelection = new EnumSelectionViewModel<OpenSpaceGameMode>(OpenSpaceGameMode.Rayman2PC, new OpenSpaceGameMode[]
+            GameModeSelection = new EnumSelectionViewModel<UtilityPlatforms>(UtilityPlatforms.PC, new UtilityPlatforms[]
             {
-                OpenSpaceGameMode.Rayman2PC
+                UtilityPlatforms.PC
             });
         }
 
@@ -28,16 +28,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the file filter to use
         /// </summary>
-        protected override string GetFileFilter => new FileFilterItemCollection()
-        {
-            new FileFilterItem("*.sna", "SNA"),
-            new FileFilterItem("*.dsb", "DSB"),
-        }.CombineAll("Rayman 2").ToString();
+        protected override string GetFileFilter => new FileFilterItem("*.sav", "SAV").ToString();
 
         /// <summary>
         /// Gets the game for the current selection
         /// </summary>
-        protected override Games? GetGame => Games.Rayman2;
+        protected override Games? GetGame => Games.Rayman3;
 
         #endregion
 
@@ -46,7 +42,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game mode selection
         /// </summary>
-        public override EnumSelectionViewModel<OpenSpaceGameMode> GameModeSelection { get; }
+        public override EnumSelectionViewModel<UtilityPlatforms> GameModeSelection { get; }
 
         #endregion
 
@@ -57,7 +53,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected override IDataEncoder GetEncoder()
         {
-            return new Rayman2SNADataEncoder();
+            return new Rayman3SaveDataEncoder();
         }
 
         #endregion

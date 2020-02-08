@@ -54,7 +54,7 @@ namespace RayCarrot.RCP.Metro
             var data = new JungleRunSaveDataSerializer().Deserialize(SaveSlotFilePath);
 
             // Deserialize the input data
-            var inputData = JsonConvert.DeserializeObject<JungleRunSaveDataLevelCollection>(File.ReadAllText(inputFilePath));
+            var inputData = JsonConvert.DeserializeObject<JungleRunPCSaveDataLevelCollection>(File.ReadAllText(inputFilePath));
 
             // Update the data
             data.Levels = inputData;

@@ -5,6 +5,7 @@ using RayCarrot.Rayman;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -25,7 +26,7 @@ namespace RayCarrot.RCP.Metro
         {
             // Get the file properties
             Directory = fileData.DirectoryPath;
-            FileExtension = new ArchiveFileExtension(fileData.GetFileExtensions());
+            FileExtension = new FileExtension(fileData.GetFileExtensions());
             FileName = fileData.FileName;
             FileData = fileData;
             BaseOffset = baseOffset;
@@ -77,6 +78,11 @@ namespace RayCarrot.RCP.Metro
             FileData.Offset + BaseOffset);
 
         /// <summary>
+        /// The default icon to use for this file
+        /// </summary>
+        public virtual PackIconMaterialKind IconKind => PackIconMaterialKind.FileOutline;
+
+        /// <summary>
         /// The name of the file format
         /// </summary>
         public string FileFormatName => FileExtension.DisplayName;
@@ -84,9 +90,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The supported file formats to import from
         /// </summary>
-        public virtual ArchiveFileExtension[] SupportedImportFileExtensions
+        public virtual FileExtension[] SupportedImportFileExtensions
         {
-            get => new ArchiveFileExtension[]
+            get => new FileExtension[]
             {
                 FileExtension
             };
@@ -96,9 +102,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The supported file formats to export to
         /// </summary>
-        public virtual ArchiveFileExtension[] SupportedExportFileExtensions
+        public virtual FileExtension[] SupportedExportFileExtensions
         {
-            get => new ArchiveFileExtension[]
+            get => new FileExtension[]
             {
                 FileExtension
             };
@@ -108,7 +114,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The file extension
         /// </summary>
-        public ArchiveFileExtension FileExtension { get; set; }
+        public FileExtension FileExtension { get; set; }
 
         /// <summary>
         /// The path to the temporary file containing the data to be imported

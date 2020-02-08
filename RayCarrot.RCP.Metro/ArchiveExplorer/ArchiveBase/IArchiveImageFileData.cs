@@ -34,6 +34,6 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The supported file formats for exporting mipmaps
         /// </summary>
-        ArchiveFileExtension[] SupportedMipmapExportFileExtensions { get; }
+        FileExtension[] SupportedMipmapExportFileExtensions { get; }
     }
 }

@@ -27,7 +27,9 @@
             };
             DecoderViewModels = new UtilityViewModel[]
             {
+                new UtilityViewModel(new R1LngDecoderUtility()),
                 new UtilityViewModel(new R2SnaDsbDecoderUtility()),
+                new UtilityViewModel(new R3SaveDecoderUtility()),
             };
             OtherViewModels = new UtilityViewModel[]
             {

@@ -63,7 +63,7 @@ namespace RayCarrot.RCP.Metro
                 var manager = Game.GetManager<RaymanFiestaRun_WinStore>(GameType.WinStore);
 
                 // Get every installed version
-                var versions = FiestaRunEdition.Preload.GetValues().Where(x => manager.GetGamePackage(manager.GetFiestaRunPackageName(x)) != null);
+                var versions = EnumHelpers.GetValues<FiestaRunEdition>().Where(x => manager.GetGamePackage(manager.GetFiestaRunPackageName(x)) != null);
 
                 // Return a backup info for each version
                 return versions.Select(x =>

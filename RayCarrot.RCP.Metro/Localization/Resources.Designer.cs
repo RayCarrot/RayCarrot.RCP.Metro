@@ -8871,11 +8871,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman 2 Encoded Files (.sna, .dsb).
+        ///   Looks up a localized string similar to Rayman 1 Language Files (.lng).
+        /// </summary>
+        public static string Utilities_Decoder_R1LngHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Decoder_R1LngHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 Encoded Files (.sna/.dsb).
         /// </summary>
         public static string Utilities_Decoder_R2SnaHeader {
             get {
                 return ResourceManager.GetString("Utilities_Decoder_R2SnaHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 3 Save Files (.sav).
+        /// </summary>
+        public static string Utilities_Decoder_R3SaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Decoder_R3SaveHeader", resourceCulture);
             }
         }
         

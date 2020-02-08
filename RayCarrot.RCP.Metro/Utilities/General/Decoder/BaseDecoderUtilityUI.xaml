@@ -6,44 +6,49 @@
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:metro="clr-namespace:RayCarrot.WPF.Metro;assembly=RayCarrot.WPF.Metro"
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              mc:Ignorable="d"
-             d:DesignWidth="550">
+             d:DesignWidth="550" d:DataContext="{d:DesignInstance local:R2SnaDsbDecoderViewModel}">
 
-    <StackPanel>
-        <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-        </i:Interaction.Behaviors>
+    <metro:LoaderContentControl IsLoading="{Binding Path=IsLoading}">
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="20" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <StackPanel>
+            <i:Interaction.Behaviors>
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+            </i:Interaction.Behaviors>
 
-            <ComboBox Grid.Column="0"
-                      ItemsSource="{Binding Path=GameModeSelection.AvailableValues, Mode=OneTime}"
-                      SelectedItem="{Binding Path=GameModeSelection.SelectedValue}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={local:GameModeToDisplayNameConverter}}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="2"
-                    Content="{Resx Utilities_Decoder_Decode}"
-                    Command="{Binding Path=DecodeCommand, Mode=OneTime}" />
+                <ComboBox Grid.Column="0"
+                          ItemsSource="{Binding Path=GameModeSelection.AvailableValues, Mode=OneTime}"
+                          SelectedItem="{Binding Path=GameModeSelection.SelectedValue}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={local:GameModeToDisplayNameConverter}}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
 
-            <Button Grid.Column="4"
-                    Content="{Resx Utilities_Decoder_Encode}"
-                    Command="{Binding Path=EncodeCommand, Mode=OneTime}" />
+                <Button Grid.Column="2"
+                        Content="{Resx Utilities_Decoder_Decode}"
+                        Command="{Binding Path=DecodeCommand, Mode=OneTime}" />
 
-        </Grid>
+                <Button Grid.Column="4"
+                        Content="{Resx Utilities_Decoder_Encode}"
+                        Command="{Binding Path=EncodeCommand, Mode=OneTime}" />
 
-    </StackPanel>
+            </Grid>
+
+        </StackPanel>
+
+    </metro:LoaderContentControl>
 
 </UserControl>

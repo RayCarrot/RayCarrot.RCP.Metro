@@ -38,6 +38,20 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected abstract string GetFileFilter { get; }
 
+        /// <summary>
+        /// Gets the game for the current selection
+        /// </summary>
+        protected abstract Games? GetGame { get; }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Indicates if an operation is loading
+        /// </summary>
+        public bool IsLoading { get; set; }
+
         #endregion
 
         #region Public Abstract Properties
@@ -68,27 +82,39 @@ namespace RayCarrot.RCP.Metro
         /// <param name="shouldDecode">True if the files should be decoded, or false to encode them</param>
         protected void ProcessFile(IEnumerable<FileSystemPath> inputFiles, FileSystemPath outputDir, bool shouldDecode)
         {
-            // Get the encoder
-            var encoder = GetEncoder();
+            if (IsLoading)
+                return;
 
-            // Decode every file
-            foreach (var file in inputFiles)
+            try
             {
-                // Open the file
-                using var fileStream = File.OpenRead(file);
+                IsLoading = true;
 
-                // Process the file data
-                var data = shouldDecode ? encoder.Decode(fileStream) : encoder.Encode(fileStream);
+                // Get the encoder
+                var encoder = GetEncoder();
 
-                // Get the destination file
-                var destinationFile = (outputDir + file.Name).GetNonExistingFileName();
+                // Decode every file
+                foreach (var file in inputFiles)
+                {
+                    // Open the file
+                    using var fileStream = File.OpenRead(file);
 
-                // Open and create the file
-                using var outputFileStream = File.OpenWrite(destinationFile);
+                    // Process the file data
+                    var data = shouldDecode ? encoder.Decode(fileStream) : encoder.Encode(fileStream);
 
-                // Write to the file
-                foreach (var b in data)
-                    outputFileStream.WriteByte(b);
+                    // Get the destination file
+                    var destinationFile = (outputDir + file.Name).GetNonExistingFileName();
+
+                    // Open and create the file
+                    using var outputFileStream = File.OpenWrite(destinationFile);
+
+                    // Write to the file
+                    foreach (var b in data)
+                        outputFileStream.WriteByte(b);
+                }
+            }
+            finally
+            {
+                IsLoading = false;
             }
         }
 
@@ -102,14 +128,11 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task DecodeFileAsync()
         {
-            // Get the game
-            var game = GameModeSelection.SelectedValue.GetGame();
-
             // Allow the user to select the files
             var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
                 Title = Resources.Utilities_Decoder_DecodeFileSelectionHeader,
-                DefaultDirectory = game?.GetInstallDir(false).FullPath,
+                DefaultDirectory = GetGame?.GetInstallDir(false).FullPath,
                 ExtensionFilter = GetFileFilter,
                 MultiSelection = true
             });
@@ -129,9 +152,15 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Process the files
-                ProcessFile(fileResult.SelectedFiles, destinationResult.SelectedDirectory, true);
+                await Task.Run(() => ProcessFile(fileResult.SelectedFiles, destinationResult.SelectedDirectory, true));
 
                 await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Decoder_DecodeSuccess);
+            }
+            catch (NotImplementedException ex)
+            {
+                ex.HandleExpected("Decoding files");
+
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.NotImplemented, MessageType.Error);
             }
             catch (Exception ex)
             {
@@ -147,14 +176,11 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task EncodeFileAsync()
         {
-            // Get the game
-            var game = GameModeSelection.SelectedValue.GetGame();
-
             // Allow the user to select the files
             var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
                 Title = Resources.Utilities_Decoder_EncodeFileSelectionHeader,
-                DefaultDirectory = game?.GetInstallDir(false).FullPath,
+                DefaultDirectory = GetGame?.GetInstallDir(false).FullPath,
                 ExtensionFilter = GetFileFilter,
                 MultiSelection = true
             });
@@ -174,9 +200,15 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Process the files
-                ProcessFile(fileResult.SelectedFiles, destinationResult.SelectedDirectory, false);
+                await Task.Run(() => ProcessFile(fileResult.SelectedFiles, destinationResult.SelectedDirectory, false));
 
                 await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Decoder_EncodeSuccess);
+            }
+            catch (NotImplementedException ex)
+            {
+                ex.HandleExpected("Encoding files");
+
+                await RCFUI.MessageUI.DisplayMessageAsync(Resources.NotImplemented, MessageType.Error);
             }
             catch (Exception ex)
             {

@@ -31,6 +31,15 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Public Properties
+
+        /// <summary>
+        /// Indicates if a conversion is being processed
+        /// </summary>
+        public bool IsLoading { get; set; }
+
+        #endregion
+
         #region Public Abstract Properties
 
         /// <summary>
@@ -54,61 +63,76 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected async Task ConvertFromAsync<T>(BinaryDataSerializer<T> serializer, Action<T, FileSystemPath, FileSystemPath> convertAction, string fileFilter, string[] supportedFileExtensions, Games? game)
         {
-            // Allow the user to select the files
-            var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
-            {
-                Title = Resources.Utilities_Converter_FileSelectionHeader,
-                DefaultDirectory = game?.GetInstallDir(false).FullPath,
-                ExtensionFilter = fileFilter,
-                MultiSelection = true
-            });
-
-            if (fileResult.CanceledByUser)
-                return;
-
-            // Allow the user to select the destination directory
-            var destinationResult = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
-            {
-                Title = Resources.Browse_DestinationHeader,
-            });
-
-            if (destinationResult.CanceledByUser)
-                return;
-
-            // Allow the user to select the file extension to export as
-            var extResult = await RCFRCP.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(supportedFileExtensions, Resources.Utilities_Converter_ExportExtensionHeader));
-
-            if (extResult.CanceledByUser)
+            if (IsLoading)
                 return;
 
             try
             {
-                // Convert every file
-                foreach (var file in fileResult.SelectedFiles)
+                IsLoading = true;
+
+                // Allow the user to select the files
+                var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                 {
-                    // Read the file data
-                    var data = serializer.Deserialize(file);
+                    Title = Resources.Utilities_Converter_FileSelectionHeader,
+                    DefaultDirectory = game?.GetInstallDir(false).FullPath,
+                    ExtensionFilter = fileFilter,
+                    MultiSelection = true
+                });
 
-                    // Get the destination file
-                    var destinationFile = destinationResult.SelectedDirectory + file.Name;
+                if (fileResult.CanceledByUser)
+                    return;
 
-                    // Set the file extension
-                    destinationFile = destinationFile.ChangeFileExtension(extResult.SelectedFileFormat).GetNonExistingFileName();
+                // Allow the user to select the destination directory
+                var destinationResult = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                {
+                    Title = Resources.Browse_DestinationHeader,
+                });
 
-                    // Get the optional configuration path
-                    var configFile = destinationFile.ChangeFileExtension(".json").GetNonExistingFileName();
+                if (destinationResult.CanceledByUser)
+                    return;
 
-                    // Convert the file
-                    convertAction(data, destinationFile, configFile);
+                // Allow the user to select the file extension to export as
+                var extResult = await RCFRCP.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(supportedFileExtensions, Resources.Utilities_Converter_ExportExtensionHeader));
+
+                if (extResult.CanceledByUser)
+                    return;
+
+                try
+                {
+                    await Task.Run(() =>
+                    {
+                        // Convert every file
+                        foreach (var file in fileResult.SelectedFiles)
+                        {
+                            // Read the file data
+                            var data = serializer.Deserialize(file);
+
+                            // Get the destination file
+                            var destinationFile = destinationResult.SelectedDirectory + file.Name;
+
+                            // Set the file extension
+                            destinationFile = destinationFile.ChangeFileExtension(extResult.SelectedFileFormat).GetNonExistingFileName();
+
+                            // Get the optional configuration path
+                            var configFile = destinationFile.ChangeFileExtension(".json").GetNonExistingFileName();
+
+                            // Convert the file
+                            convertAction(data, destinationFile, configFile);
+                        }
+                    });
+
+                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Converter_Success);
                 }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Converting files");
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Converter_Success);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Converter_Error);
+                }
             }
-            catch (Exception ex)
+            finally
             {
-                ex.HandleError("Converting files");
-
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Converter_Error);
+                IsLoading = false;
             }
         }
 
@@ -124,64 +148,79 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected async Task ConvertToAsync<T>(BinaryDataSerializer<T> serializer, Func<FileSystemPath, FileSystemPath, T> convertAction, string fileFilter, string fileExtension, bool requiresConfig)
         {
-            // Allow the user to select the files
-            var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
-            {
-                Title = Resources.Utilities_Converter_FileSelectionHeader,
-                ExtensionFilter = fileFilter,
-                MultiSelection = true
-            });
-
-            if (fileResult.CanceledByUser)
-                return;
-
-            // Allow the user to select the destination directory
-            var destinationResult = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
-            {
-                Title = Resources.Browse_DestinationHeader,
-            });
-
-            if (destinationResult.CanceledByUser)
+            if (IsLoading)
                 return;
 
             try
             {
-                // Convert every file
-                foreach (var file in fileResult.SelectedFiles)
+                IsLoading = true;
+
+                // Allow the user to select the files
+                var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                 {
-                    // Get the destination file
-                    var destinationFile = destinationResult.SelectedDirectory + file.Name;
+                    Title = Resources.Utilities_Converter_FileSelectionHeader,
+                    ExtensionFilter = fileFilter,
+                    MultiSelection = true
+                });
 
-                    // Set the file extension
-                    destinationFile = destinationFile.ChangeFileExtension(fileExtension).GetNonExistingFileName();
+                if (fileResult.CanceledByUser)
+                    return;
 
-                    // Get the optional configuration path
-                    var configFile = file.ChangeFileExtension(".json");
+                // Allow the user to select the destination directory
+                var destinationResult = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                {
+                    Title = Resources.Browse_DestinationHeader,
+                });
 
-                    if (requiresConfig && !configFile.FileExists)
+                if (destinationResult.CanceledByUser)
+                    return;
+
+                try
+                {
+                    await Task.Run(async () =>
                     {
-                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Utilities_Converter_MissingConfig, file), MessageType.Error);
+                        // Convert every file
+                        foreach (var file in fileResult.SelectedFiles)
+                        {
+                            // Get the destination file
+                            var destinationFile = destinationResult.SelectedDirectory + file.Name;
 
-                        continue;
-                    }
+                            // Set the file extension
+                            destinationFile = destinationFile.ChangeFileExtension(fileExtension).GetNonExistingFileName();
 
-                    // Convert the file
-                    var data = convertAction(file, configFile);
+                            // Get the optional configuration path
+                            var configFile = file.ChangeFileExtension(".json");
 
-                    // Create the destination file
-                    using var destinationFileStream = File.Open(destinationFile, FileMode.Create, FileAccess.Write);
+                            if (requiresConfig && !configFile.FileExists)
+                            {
+                                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Utilities_Converter_MissingConfig, file), MessageType.Error);
 
-                    // Save the converted data
-                    serializer.Serialize(destinationFileStream, data);
+                                continue;
+                            }
+
+                            // Convert the file
+                            var data = convertAction(file, configFile);
+
+                            // Create the destination file
+                            using var destinationFileStream = File.Open(destinationFile, FileMode.Create, FileAccess.Write);
+
+                            // Save the converted data
+                            serializer.Serialize(destinationFileStream, data);
+                        }
+                    });
+
+                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Converter_Success);
                 }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Converting files");
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Converter_Success);
+                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Converter_Error);
+                }
             }
-            catch (Exception ex)
+            finally
             {
-                ex.HandleError("Converting files");
-
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Converter_Error);
+                IsLoading = false;
             }
         }
 

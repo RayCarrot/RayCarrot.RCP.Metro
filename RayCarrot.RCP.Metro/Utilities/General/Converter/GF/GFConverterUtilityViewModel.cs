@@ -19,7 +19,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public GFConverterUtilityViewModel()
         {
-            GameModeSelection = new EnumSelectionViewModel<OpenSpaceGameMode>(OpenSpaceGameMode.Rayman2PC, OpenSpaceGameMode.Rayman2PC.GetValues());
+            GameModeSelection = new EnumSelectionViewModel<OpenSpaceGameMode>(OpenSpaceGameMode.Rayman2PC, 
+                // TODO: Don't do all game modes
+                EnumHelpers.GetValues<OpenSpaceGameMode>());
         }
 
         #endregion

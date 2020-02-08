@@ -52,7 +52,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The currently loaded .lev data
         /// </summary>
-        public Rayman1LevData LevData { get; set; }
+        public Rayman1PCLevData PcLevData { get; set; }
 
         /// <summary>
         /// Indicates if the utility is loading
@@ -89,10 +89,10 @@ namespace RayCarrot.RCP.Metro
                 LevTypesImageSource = null;
 
                 // Get the level data
-                LevData = await Task.Run(() => new Rayman1LevSerializer(GameModeSelection.SelectedValue.GetSettings()).Deserialize(fileResult.SelectedFile));
+                PcLevData = await Task.Run(() => new Rayman1LevSerializer(GameModeSelection.SelectedValue.GetSettings()).Deserialize(fileResult.SelectedFile));
 
-                LevGraphicsImageSource = (await Task.Run(() => LevData.GetBitmap())).ToImageSource();
-                LevTypesImageSource = (await Task.Run(() => LevData.GetTypeBitmap())).ToImageSource();
+                LevGraphicsImageSource = (await Task.Run(() => PcLevData.GetBitmap())).ToImageSource();
+                LevTypesImageSource = (await Task.Run(() => PcLevData.GetTypeBitmap())).ToImageSource();
             }
             catch (Exception ex)
             {

@@ -3311,7 +3311,7 @@ totalTextures</comment>
     <value>Encode</value>
   </data>
   <data name="Utilities_Decoder_R2SnaHeader" xml:space="preserve">
-    <value>Rayman 2 Encoded Files (.sna, .dsb)</value>
+    <value>Rayman 2 Encoded Files (.sna/.dsb)</value>
   </data>
   <data name="Utilities_Decoder_DecodeFileSelectionHeader" xml:space="preserve">
     <value>Select files to decode</value>
@@ -3330,5 +3330,11 @@ totalTextures</comment>
   </data>
   <data name="Utilities_Decoder_EncodeError" xml:space="preserve">
     <value>An error occurred when encoding the files</value>
+  </data>
+  <data name="Utilities_Decoder_R1LngHeader" xml:space="preserve">
+    <value>Rayman 1 Language Files (.lng)</value>
+  </data>
+  <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
+    <value>Rayman 3 Save Files (.sav)</value>
   </data>
 </root>

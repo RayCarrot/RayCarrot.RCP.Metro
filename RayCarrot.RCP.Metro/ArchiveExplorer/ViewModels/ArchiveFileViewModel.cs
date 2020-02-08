@@ -99,7 +99,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The icon kind to use for the file
         /// </summary>
-        public PackIconMaterialKind IconKind => IsImage ? PackIconMaterialKind.FileImageOutline : PackIconMaterialKind.FileOutline;
+        public PackIconMaterialKind IconKind => FileData.IconKind;
 
         #endregion
 
@@ -110,7 +110,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="fileExtensions">The file extensions</param>
         /// <returns>The file filter item collection</returns>
-        protected FileFilterItemCollection GetFileFilterCollection(ArchiveFileExtension[] fileExtensions)
+        protected FileFilterItemCollection GetFileFilterCollection(FileExtension[] fileExtensions)
         {
             return new FileFilterItemCollection(fileExtensions.Select(x => x.GetFileFilterItem));
         }

@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -116,15 +117,15 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Find the format which matches the magic header
-            TextureFormat = UbiArtTextureFormat.Unknown.GetValues().FindItem(x => x.GetAttribute<TextureFormatInfoAttribute>().MagicHeader == magic);
+            TextureFormat = EnumHelpers.GetValues<UbiArtTextureFormat>().FindItem(x => x.GetAttribute<FileFormatInfoAttribute>().MagicHeader == magic);
 
             // Set the file extension
             if (TextureFormat != UbiArtTextureFormat.Unknown)
-                FileExtension = new ArchiveFileExtension(TextureFormat.GetAttribute<TextureFormatInfoAttribute>().FileExtension);
+                FileExtension = new FileExtension(TextureFormat.GetAttribute<FileFormatInfoAttribute>().FileExtension);
 
             // Set the supported file extensions
-            var supportedImportFileExtensions = new List<ArchiveFileExtension>();
-            var supportedExportFileExtensions = new List<ArchiveFileExtension>();
+            var supportedImportFileExtensions = new List<FileExtension>();
+            var supportedExportFileExtensions = new List<FileExtension>();
 
             // Handle supported formats
             if (IsFormatSupported)
@@ -140,8 +141,8 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Add common extensions
-                supportedImportFileExtensions.AddRange(extensions.Select(x => new ArchiveFileExtension(x)));
-                supportedExportFileExtensions.AddRange(extensions.Select(x => new ArchiveFileExtension(x)));
+                supportedImportFileExtensions.AddRange(extensions.Select(x => new FileExtension(x)));
+                supportedExportFileExtensions.AddRange(extensions.Select(x => new FileExtension(x)));
             }
             // Handle unsupported formats
             else
@@ -152,8 +153,8 @@ namespace RayCarrot.RCP.Metro
 
             if (UsesTexWrapper)
             {
-                supportedImportFileExtensions.Add(new ArchiveFileExtension(TEXFileExtension));
-                supportedExportFileExtensions.Add(new ArchiveFileExtension(TEXFileExtension));
+                supportedImportFileExtensions.Add(new FileExtension(TEXFileExtension));
+                supportedExportFileExtensions.Add(new FileExtension(TEXFileExtension));
             }
 
             // Set the supported extensions
@@ -335,7 +336,7 @@ namespace RayCarrot.RCP.Metro
                     using var img = new MagickImage(bytes)
                     {
                         // Set the format
-                        Format = ImageHelpers.GetMagickFormat(TextureFormat.GetAttribute<TextureFormatInfoAttribute>()
+                        Format = ImageHelpers.GetMagickFormat(TextureFormat.GetAttribute<FileFormatInfoAttribute>()
                             .FileExtension)
                     };
                     
@@ -371,7 +372,7 @@ namespace RayCarrot.RCP.Metro
                     if (!isNative)
                     {
                         // Set the format
-                        img.Format = ImageHelpers.GetMagickFormat(TextureFormat.GetAttribute<TextureFormatInfoAttribute>().FileExtension);
+                        img.Format = ImageHelpers.GetMagickFormat(TextureFormat.GetAttribute<FileFormatInfoAttribute>().FileExtension);
 
                         // Update the bytes
                         bytes = img.ToByteArray();
@@ -420,7 +421,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the data has been initialized
         /// </summary>
-        public bool HasInitializedData { get; set; }
+        protected bool HasInitializedData { get; set; }
 
         #endregion
 
@@ -441,19 +442,24 @@ namespace RayCarrot.RCP.Metro
             FileData.Offset + BaseOffset);
 
         /// <summary>
+        /// The default icon to use for this file
+        /// </summary>
+        public override PackIconMaterialKind IconKind => PackIconMaterialKind.FileImageOutline;
+
+        /// <summary>
         /// The supported file formats to import from
         /// </summary>
-        public override ArchiveFileExtension[] SupportedImportFileExtensions { get; set; }
+        public override FileExtension[] SupportedImportFileExtensions { get; set; }
 
         /// <summary>
         /// The supported file formats to export to
         /// </summary>
-        public override ArchiveFileExtension[] SupportedExportFileExtensions { get; set; }
+        public override FileExtension[] SupportedExportFileExtensions { get; set; }
 
         /// <summary>
         /// The supported file formats for exporting mipmaps
         /// </summary>
-        public ArchiveFileExtension[] SupportedMipmapExportFileExtensions => null;
+        public FileExtension[] SupportedMipmapExportFileExtensions => null;
 
         /// <summary>
         /// Indicates if the image has mipmaps
@@ -506,100 +512,46 @@ namespace RayCarrot.RCP.Metro
             /// <summary>
             /// Unknown
             /// </summary>
-            [TextureFormatInfo(".unk", 0x00000000)]
+            [FileFormatInfo(".unk", 0x00000000)]
             Unknown,
 
             /// <summary>
             /// DDS (default)
             /// </summary>
-            [TextureFormatInfo(".dds", 0x44445320)]
+            [FileFormatInfo(".dds", 0x44445320)]
             DDS,
 
             /// <summary>
             /// GXT (used on PlayStation Vita)
             /// </summary>
-            [TextureFormatInfo(".gxt", 0x47585400)]
+            [FileFormatInfo(".gxt", 0x47585400)]
             GXT,
 
             /// <summary>
             /// GFX2 (used on Wii U)
             /// </summary>
-            [TextureFormatInfo(".gtx", 0x47667832)]
+            [FileFormatInfo(".gtx", 0x47667832)]
             GFX2,
 
             /// <summary>
             /// PVR (used on iOS)
             /// </summary>
-            [TextureFormatInfo(".pvr", 0x50565203)]
+            [FileFormatInfo(".pvr", 0x50565203)]
             PVR,
 
             /// <summary>
             /// GNF (used on PS4)
             /// </summary>
-            [TextureFormatInfo(".gnf", 0x474E4620)]
+            [FileFormatInfo(".gnf", 0x474E4620)]
             GNF,
 
             /// <summary>
             /// PNG
             /// </summary>
-            [TextureFormatInfo(".png", 0x89504E47)]
+            [FileFormatInfo(".png", 0x89504E47)]
             PNG,
         }
 
-        /// <summary>
-        /// Specifies information for a <see cref="UbiArtTextureFormat"/>
-        /// </summary>
-        [AttributeUsage(AttributeTargets.Field)]
-        public sealed class TextureFormatInfoAttribute : Attribute
-        {
-            /// <summary>
-            /// Default constructor
-            /// </summary>
-            /// <param name="fileExtension">The file extension</param>
-            /// <param name="magicHeader">The magic header</param>
-            public TextureFormatInfoAttribute(string fileExtension, uint magicHeader)
-            {
-                FileExtension = fileExtension;
-                MagicHeader = magicHeader;
-            }
-
-            /// <summary>
-            /// The file extension
-            /// </summary>
-            public string FileExtension { get; }
-
-            /// <summary>
-            /// The magic header
-            /// </summary>
-            public uint MagicHeader { get; }
-        }
-
         #endregion
-    }
-
-    /// <summary>
-    /// A file extension
-    /// </summary>
-    public class ArchiveFileExtension
-    {
-        public ArchiveFileExtension(string fileExtensions)
-        {
-            AllFileExtensions = fileExtensions.Split('.').Skip(1).Select(x => $".{x}").ToArray();
-        }
-
-        public ArchiveFileExtension(IEnumerable<string> fileExtensions)
-        {
-            AllFileExtensions = fileExtensions.ToArray();
-        }
-
-        protected string[] AllFileExtensions { get; }
-
-        public string FileExtensions => AllFileExtensions.JoinItems(String.Empty);
-
-        public string PrimaryFileExtension => AllFileExtensions.Last();
-
-        public string DisplayName => FileExtensions.ToUpperInvariant();
-
-        public FileFilterItem GetFileFilterItem => new FileFilterItem($"*{PrimaryFileExtension}", PrimaryFileExtension.Substring(1).ToUpperInvariant());
     }
 }

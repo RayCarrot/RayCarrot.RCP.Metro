@@ -60,7 +60,7 @@ namespace RayCarrot.RCP.Metro
             await ConvertToAsync(new JungleRunSaveDataSerializer(), (filePath, configPath) =>
             {
                 // Read the data
-                return DeserializeJSON<JungleRunSaveData>(filePath);
+                return DeserializeJSON<JungleRunPCSaveData>(filePath);
             }, new FileFilterItem("*.json", "JSON").ToString(), ".dat", false);
         }
 

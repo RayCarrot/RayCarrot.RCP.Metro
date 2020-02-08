@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
+using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
@@ -32,6 +33,11 @@ namespace RayCarrot.RCP.Metro
         byte[] GetFileBytes(Stream archiveFileStream);
 
         /// <summary>
+        /// The default icon to use for this file
+        /// </summary>
+        PackIconMaterialKind IconKind { get; }
+
+        /// <summary>
         /// The name of the file format
         /// </summary>
         string FileFormatName { get; }
@@ -39,12 +45,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The supported file formats to import from
         /// </summary>
-        ArchiveFileExtension[] SupportedImportFileExtensions { get; }
+        FileExtension[] SupportedImportFileExtensions { get; }
 
         /// <summary>
         /// The supported file formats to export to
         /// </summary>
-        ArchiveFileExtension[] SupportedExportFileExtensions { get; }
+        FileExtension[] SupportedExportFileExtensions { get; }
 
         /// <summary>
         /// The path to the temporary file containing the data to be imported

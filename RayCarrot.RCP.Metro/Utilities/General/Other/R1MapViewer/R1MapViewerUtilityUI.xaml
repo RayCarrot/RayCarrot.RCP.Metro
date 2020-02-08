@@ -43,7 +43,7 @@
 
             <ScrollViewer HorizontalScrollBarVisibility="Auto"
                       VerticalScrollBarVisibility="Disabled"
-                      Visibility="{Binding Path=LevData, Converter={wpf:InvertedObjectNullToVisibilityConverter}}">
+                      Visibility="{Binding Path=PcLevData, Converter={wpf:InvertedObjectNullToVisibilityConverter}}">
                 <StackPanel>
                     <b:Interaction.Behaviors>
                         <wpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
@@ -54,7 +54,7 @@
                 </StackPanel>
             </ScrollViewer>
 
-            <ItemsControl DataContext="{Binding Path=LevData}"
+            <ItemsControl DataContext="{Binding Path=PcLevData}"
                       Visibility="{Binding Converter={wpf:InvertedObjectNullToVisibilityConverter}}"
                       Grid.IsSharedSizeScope="True">
 
