@@ -49,7 +49,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Deserialize and return the data
-            var saveData = new Rayman3SaveDataSerializer().Deserialize(filePath);
+            var saveData = Rayman3PCSaveData.GetSerializer().Deserialize(filePath);
 
             RCFCore.Logger?.LogInformationSource($"Slot has been deserialized");
 

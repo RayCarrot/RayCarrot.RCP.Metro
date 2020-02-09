@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for the Rayman Legends localization converter utility
     /// </summary>
-    public class RLLocalizationConverterUtilityViewModel : BaseUbiArtLocalizationConverterUtilityViewModel<BinarySerializableDictionary<int, BinarySerializableDictionary<int, string>>>
+    public class RLLocalizationConverterUtilityViewModel : BaseUbiArtLocalizationConverterUtilityViewModel<UbiArtSerializableDictionary<int, UbiArtSerializableDictionary<int, string>>>
     {
         /// <summary>
         /// The default localization directory for the game, if available
@@ -23,9 +23,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="file">The localization file</param>
         /// <returns>The data</returns>
-        protected override BinarySerializableDictionary<int, BinarySerializableDictionary<int, string>> Deserialize(FileSystemPath file)
+        protected override UbiArtSerializableDictionary<int, UbiArtSerializableDictionary<int, string>> Deserialize(FileSystemPath file)
         {
-            return new UbiArtLocalizationSerializer(UbiArtGameMode.RaymanLegendsPC.GetSettings()).Deserialize(file).Strings;
+            return UbiArtLocalizationData.GetSerializer(UbiArtGameMode.RaymanLegendsPC.GetSettings()).Deserialize(file).Strings;
         }
 
         /// <summary>
@@ -33,10 +33,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="file">The localization file</param>
         /// <param name="data">The data</param>
-        protected override void Serialize(FileSystemPath file, BinarySerializableDictionary<int, BinarySerializableDictionary<int, string>> data)
+        protected override void Serialize(FileSystemPath file, UbiArtSerializableDictionary<int, UbiArtSerializableDictionary<int, string>> data)
         {
             // Get the serializer
-            var serializer = new UbiArtLocalizationSerializer(UbiArtGameMode.RaymanLegendsPC.GetSettings());
+            var serializer = UbiArtLocalizationData.GetSerializer(UbiArtGameMode.RaymanLegendsPC.GetSettings());
 
             // Read the current data to get the remaining bytes
             var currentData = serializer.Deserialize(file);

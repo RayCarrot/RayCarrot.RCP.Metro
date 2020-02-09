@@ -133,7 +133,7 @@ namespace RayCarrot.RCP.Metro
         public byte[] GetFileBytes(Stream archiveFileStream)
         {
             // Get the bytes
-            var bytes = FileData.GetFileBytes(archiveFileStream, BaseOffset);
+            var bytes = FileData.GetFileBytes(archiveFileStream, BaseOffset, Settings);
 
             // Initialize the data
             InitializeData(bytes);

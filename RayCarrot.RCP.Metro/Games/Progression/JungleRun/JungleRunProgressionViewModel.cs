@@ -50,7 +50,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Deserialize and return the data
-            var saveData = new JungleRunSaveDataSerializer().Deserialize(filePath);
+            var saveData = JungleRunPCSaveData.GetSerializer().Deserialize(filePath);
 
             RCFCore.Logger?.LogInformationSource($"Slot has been deserialized");
 

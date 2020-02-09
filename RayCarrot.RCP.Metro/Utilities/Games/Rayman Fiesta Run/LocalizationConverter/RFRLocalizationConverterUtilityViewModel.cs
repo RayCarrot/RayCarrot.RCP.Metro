@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for the Rayman Fiesta Run localization converter utility
     /// </summary>
-    public class RFRLocalizationConverterUtilityViewModel : BaseUbiArtLocalizationConverterUtilityViewModel<BinarySerializableDictionary<int, BinarySerializableDictionary<int, BinarySerializablePair<string, string>>>>
+    public class RFRLocalizationConverterUtilityViewModel : BaseUbiArtLocalizationConverterUtilityViewModel<UbiArtSerializableDictionary<int, UbiArtSerializableDictionary<int, UbiArtSerializablePair<string, string>>>>
     {
         /// <summary>
         /// The default localization directory for the game, if available
@@ -23,9 +23,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="file">The localization file</param>
         /// <returns>The data</returns>
-        protected override BinarySerializableDictionary<int, BinarySerializableDictionary<int, BinarySerializablePair<string, string>>> Deserialize(FileSystemPath file)
+        protected override UbiArtSerializableDictionary<int, UbiArtSerializableDictionary<int, UbiArtSerializablePair<string, string>>> Deserialize(FileSystemPath file)
         {
-            return new FiestaRunLocalizationSerializer().Deserialize(file).Strings;
+            return FiestaRunLocalizationData.GetSerializer().Deserialize(file).Strings;
         }
 
         /// <summary>
@@ -33,10 +33,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="file">The localization file</param>
         /// <param name="data">The data</param>
-        protected override void Serialize(FileSystemPath file, BinarySerializableDictionary<int, BinarySerializableDictionary<int, BinarySerializablePair<string, string>>> data)
+        protected override void Serialize(FileSystemPath file, UbiArtSerializableDictionary<int, UbiArtSerializableDictionary<int, UbiArtSerializablePair<string, string>>> data)
         {
             // Get the serializer
-            var serializer = new FiestaRunLocalizationSerializer();
+            var serializer = FiestaRunLocalizationData.GetSerializer();
 
             // Read the current data to get the remaining bytes
             var currentData = serializer.Deserialize(file);

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Text;
+using System.Threading.Tasks;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 
@@ -19,6 +20,7 @@ namespace RayCarrot.RCP.Metro
             GameModeSelection = new EnumSelectionViewModel<UbiArtGameMode>(UbiArtGameMode.RaymanOriginsPC, new[]
             {
                 UbiArtGameMode.RaymanOriginsPC,
+                UbiArtGameMode.RaymanFiestaRunPC,
                 UbiArtGameMode.RaymanFiestaRunAndroid,
                 UbiArtGameMode.RaymanLegendsPC,
                 UbiArtGameMode.RaymanAdventuresAndroid,
@@ -48,7 +50,7 @@ namespace RayCarrot.RCP.Metro
         {
             if (GameModeSelection.SelectedValue == UbiArtGameMode.RaymanFiestaRunPC)
             {
-                await ConvertFromAsync(new FiestaRunLocalizationSerializer(), (data, filePath, configPath) =>
+                await ConvertFromAsync(FiestaRunLocalizationData.GetSerializer(), (data, filePath, configPath) =>
                 {
                     // Save the data
                     SerializeJSON(data, filePath);
@@ -61,9 +63,9 @@ namespace RayCarrot.RCP.Metro
             {
                 var settings = GameModeSelection.SelectedValue.GetSettings();
 
-                var fileExtension = settings.TextEncoding == TextEncoding.UTF8 ? new FileFilterItem("*.loc8", "LOC8") : new FileFilterItem("*.loc", "LOC");
+                var fileExtension = Equals(settings.Encoding, Encoding.UTF8) ? new FileFilterItem("*.loc8", "LOC8") : new FileFilterItem("*.loc", "LOC");
 
-                await ConvertFromAsync(new UbiArtLocalizationSerializer(settings), (data, filePath, configPath) =>
+                await ConvertFromAsync(UbiArtLocalizationData.GetSerializer(settings), (data, filePath, configPath) =>
                 {
                     // Save the data
                     SerializeJSON(data, filePath);
@@ -82,7 +84,7 @@ namespace RayCarrot.RCP.Metro
         {
             if (GameModeSelection.SelectedValue == UbiArtGameMode.RaymanFiestaRunPC)
             {
-                await ConvertToAsync(new FiestaRunLocalizationSerializer(), (filePath, configPath) =>
+                await ConvertToAsync(FiestaRunLocalizationData.GetSerializer(), (filePath, configPath) =>
                 {
                     // Read the data
                     return DeserializeJSON<FiestaRunLocalizationData>(filePath);
@@ -92,9 +94,9 @@ namespace RayCarrot.RCP.Metro
             {
                 var settings = GameModeSelection.SelectedValue.GetSettings();
 
-                var fileExtension = settings.TextEncoding == TextEncoding.UTF8 ? ".loc8" : ".loc";
+                var fileExtension = Equals(settings.Encoding, Encoding.UTF8) ? ".loc8" : ".loc";
 
-                await ConvertToAsync(new UbiArtLocalizationSerializer(settings), (filePath, configPath) =>
+                await ConvertToAsync(UbiArtLocalizationData.GetSerializer(settings), (filePath, configPath) =>
                 {
                     // Read the data
                     return DeserializeJSON<UbiArtLocalizationData>(filePath);

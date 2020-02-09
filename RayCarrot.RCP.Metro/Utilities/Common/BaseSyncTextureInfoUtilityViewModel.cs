@@ -1,5 +1,4 @@
 ﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using System;
@@ -97,15 +96,15 @@ namespace RayCarrot.RCP.Metro
                 using var cntFileStream = File.OpenRead(cntFile);
 
                 // Read the .cnt data
-                var cntData = new OpenSpaceCntSerializer(gameSettings).Deserialize(cntFileStream);
+                var cntData = OpenSpaceCntData.GetSerializer(gameSettings).Deserialize(cntFileStream);
 
                 // Read the size from every .gf file
                 gfFiles.AddRange(cntData.Files.Select(x =>
                 {
                     using var gfMemoryStream = new MemoryStream(x.GetFileBytes(cntFileStream));
-
+                    
                     // Get a reader
-                    using var reader = new StandardBinaryReader(gfMemoryStream, ByteOrder.LittleEndian);
+                    using var reader = new StandardBinaryReader(gfMemoryStream, gameSettings, false);
 
                     // Set the position to where the .gf file is, skipping the format value
                     gfMemoryStream.Position = 4;

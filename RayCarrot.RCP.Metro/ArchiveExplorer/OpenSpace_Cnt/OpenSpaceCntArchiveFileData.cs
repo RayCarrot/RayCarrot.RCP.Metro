@@ -1,17 +1,16 @@
 ﻿using ByteSizeLib;
+using MahApps.Metro.IconPacks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
-using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -324,7 +323,7 @@ namespace RayCarrot.RCP.Metro
                 using var stream = File.Open(tempFile.TempPath, FileMode.Create, FileAccess.ReadWrite, FileShare.None);
                 
                 // Serialize the data to get the bytes
-                new OpenSpaceGfSerializer(Settings).Serialize(stream, file);
+                OpenSpaceGFFile.GetSerializer(Settings).Serialize(stream, file);
             }
 
             // Encrypt the file if set to do so

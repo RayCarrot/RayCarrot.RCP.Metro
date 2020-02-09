@@ -61,7 +61,7 @@ namespace RayCarrot.RCP.Metro
             archiveFileStream.Position = 0;
 
             // Read the file data
-            UbiArtIpkData data = new UbiArtIpkSerializer(Settings).Deserialize(archiveFileStream);
+            UbiArtIpkData data = UbiArtIpkData.GetSerializer(Settings).Deserialize(archiveFileStream);
 
             RCFCore.Logger?.LogInformationSource($"Read IPK file ({data.Version}) with {data.FilesCount} files");
 
@@ -96,7 +96,7 @@ namespace RayCarrot.RCP.Metro
             archiveFileStream.Position = 0;
 
             // Load the current file
-            var data = new UbiArtIpkSerializer(Settings).Deserialize(archiveFileStream);
+            var data = UbiArtIpkData.GetSerializer(Settings).Deserialize(archiveFileStream);
 
             // Order files by path
             var allFiles = files.Cast<UbiArtIPKArchiveFileData>().ToDictionary(x => x.FileData.FullPath);
@@ -180,7 +180,7 @@ namespace RayCarrot.RCP.Metro
                 else
                 {
                     // Add to the generator
-                    data.FileGenerator.Add(file.FullPath, () => existingFile.FileData.GetFileBytes(archiveFileStream, data.BaseOffset, false));
+                    data.FileGenerator.Add(file.FullPath, () => existingFile.FileData.GetFileBytes(archiveFileStream, data.BaseOffset, Settings, false));
                 }
 
                 // Set the pointer
@@ -191,7 +191,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Serialize the data
-            new UbiArtIpkSerializer(Settings).Serialize(outputFileStream, data);
+            UbiArtIpkData.GetSerializer(Settings).Serialize(outputFileStream, data);
 
             // Clear the generator
             data.FileGenerator.Clear();

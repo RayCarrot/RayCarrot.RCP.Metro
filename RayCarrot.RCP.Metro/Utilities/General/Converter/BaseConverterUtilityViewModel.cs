@@ -55,13 +55,16 @@ namespace RayCarrot.RCP.Metro
         /// Converts files using the specified serializer and convert action
         /// </summary>
         /// <typeparam name="T">The type of data to convert</typeparam>
+        /// <typeparam name="Settings">The type of serializer settings</typeparam>
         /// <param name="serializer">The serializer to use</param>
         /// <param name="convertAction">The convert action, converting the data to the specified file path with an optional configuration path</param>
         /// <param name="fileFilter">The file filter when selecting files to convert</param>
         /// <param name="supportedFileExtensions">The supported file extensions to export as</param>
         /// <param name="game">The game, if available</param>
         /// <returns>The task</returns>
-        protected async Task ConvertFromAsync<T>(BinaryDataSerializer<T> serializer, Action<T, FileSystemPath, FileSystemPath> convertAction, string fileFilter, string[] supportedFileExtensions, Games? game)
+        protected async Task ConvertFromAsync<T, Settings>(BinaryDataSerializer<T, Settings> serializer, Action<T, FileSystemPath, FileSystemPath> convertAction, string fileFilter, string[] supportedFileExtensions, Games? game)
+            where T : IBinarySerializable<Settings>
+            where Settings : BinarySerializerSettings
         {
             if (IsLoading)
                 return;
@@ -140,13 +143,16 @@ namespace RayCarrot.RCP.Metro
         /// Converts files using the specified serializer and convert action
         /// </summary>
         /// <typeparam name="T">The type of data to convert</typeparam>
+        /// <typeparam name="Settings">The type of serializer settings</typeparam>
         /// <param name="serializer">The serializer to use</param>
         /// <param name="convertAction">The convert action, converting the data from the specified file path with an optional configuration path</param>
         /// <param name="fileFilter">The file filter when selecting files to convert</param>
         /// <param name="fileExtension">The file extension to export as</param>
         /// <param name="requiresConfig">Indicates if the config file is required</param>
         /// <returns>The task</returns>
-        protected async Task ConvertToAsync<T>(BinaryDataSerializer<T> serializer, Func<FileSystemPath, FileSystemPath, T> convertAction, string fileFilter, string fileExtension, bool requiresConfig)
+        protected async Task ConvertToAsync<T, Settings>(BinaryDataSerializer<T, Settings> serializer, Func<FileSystemPath, FileSystemPath, T> convertAction, string fileFilter, string fileExtension, bool requiresConfig)
+            where T : IBinarySerializable<Settings>
+            where Settings : BinarySerializerSettings
         {
             if (IsLoading)
                 return;

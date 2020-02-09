@@ -43,7 +43,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertFromAsync()
         {
-            await ConvertFromAsync(new OpenSpaceGfSerializer(GameModeSelection.SelectedValue.GetSettings()), (data, filePath, configPath) =>
+            await ConvertFromAsync(OpenSpaceGFFile.GetSerializer(GameModeSelection.SelectedValue.GetSettings()), (data, filePath, configPath) =>
             {
                 // Get a bitmap from the image data
                 using var bmp = data.GetBitmap();
@@ -67,13 +67,13 @@ namespace RayCarrot.RCP.Metro
         {
             var settings = GameModeSelection.SelectedValue.GetSettings();
 
-            await ConvertToAsync(new OpenSpaceGfSerializer(settings), (filePath, configPath) =>
+            await ConvertToAsync(OpenSpaceGFFile.GetSerializer(settings), (filePath, configPath) =>
             {
                 // Read the config file
                 var config = DeserializeJSON<GFConfigData>(configPath);
 
                 // Create the GF data
-                var data = new OpenSpaceGFFile(settings)
+                var data = new OpenSpaceGFFile()
                 {
                     Channels = config.Channels,
                     Format = config.Format,

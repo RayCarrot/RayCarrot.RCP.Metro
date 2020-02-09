@@ -65,7 +65,7 @@ namespace RayCarrot.RCP.Metro
             archiveFileStream.Position = 0;
 
             // Read the file data
-            var data = new OpenSpaceCntSerializer(Settings).Deserialize(archiveFileStream);
+            var data = OpenSpaceCntData.GetSerializer(Settings).Deserialize(archiveFileStream);
 
             RCFCore.Logger?.LogInformationSource($"Read CNT file ({data.VersionID}) with {data.Files.Length} files and {data.Directories.Length} directories");
 
@@ -94,7 +94,7 @@ namespace RayCarrot.RCP.Metro
             archiveFileStream.Position = 0;
 
             // Load the current file
-            var data = new OpenSpaceCntSerializer(Settings).Deserialize(archiveFileStream);
+            var data = OpenSpaceCntData.GetSerializer(Settings).Deserialize(archiveFileStream);
 
             // Order files by path
             var allFiles = files.Cast<OpenSpaceCntArchiveFileData>().ToDictionary(x => Path.Combine(x.Directory, x.FileName));
@@ -106,7 +106,7 @@ namespace RayCarrot.RCP.Metro
             data.FileGenerator = new ArchiveFileGenerator();
 
             // The current pointer position
-            var pointer = data.GetHeaderSize();
+            var pointer = data.GetHeaderSize(Settings);
 
             // Load each file data into temporary files as we're changing the archive structure by modifying the pointers
             foreach (var file in data.Files)
@@ -167,7 +167,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Serialize the data
-            new OpenSpaceCntSerializer(Settings).Serialize(outputFileStream, data);
+            OpenSpaceCntData.GetSerializer(Settings).Serialize(outputFileStream, data);
 
             // Clear the generator
             data.FileGenerator.Clear();

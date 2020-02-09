@@ -35,7 +35,7 @@ namespace RayCarrot.RCP.Metro
         protected override Task ExportSaveDataAsync(FileSystemPath outputFilePath)
         {
             // Get the serialized level data
-            var data = JsonConvert.SerializeObject(new JungleRunSaveDataSerializer().Deserialize(SaveSlotFilePath).Levels, Formatting.Indented);
+            var data = JsonConvert.SerializeObject(JungleRunPCSaveData.GetSerializer().Deserialize(SaveSlotFilePath).Levels, Formatting.Indented);
 
             // Export the data
             File.WriteAllText(outputFilePath, data);
@@ -51,16 +51,16 @@ namespace RayCarrot.RCP.Metro
         protected override Task ImportSaveDataAsync(FileSystemPath inputFilePath)
         {
             // Get the serialized data
-            var data = new JungleRunSaveDataSerializer().Deserialize(SaveSlotFilePath);
+            var data = JungleRunPCSaveData.GetSerializer().Deserialize(SaveSlotFilePath);
+
+            // Clear the level data
+            data.Levels.Clear();
 
             // Deserialize the input data
-            var inputData = JsonConvert.DeserializeObject<JungleRunPCSaveDataLevelCollection>(File.ReadAllText(inputFilePath));
-
-            // Update the data
-            data.Levels = inputData;
+            JsonConvert.PopulateObject(File.ReadAllText(inputFilePath), data.Levels);
 
             // Import the data
-            new JungleRunSaveDataSerializer().Serialize(SaveSlotFilePath, data);
+            JungleRunPCSaveData.GetSerializer().Serialize(SaveSlotFilePath, data);
 
             return Task.CompletedTask;
         }

@@ -61,7 +61,7 @@ namespace RayCarrot.RCP.Metro
                 using var memoryStream = new MemoryStream(bytes);
 
                 // Get the texture
-                var texture = FileData.GetTEXFile(memoryStream);
+                var texture = FileData.GetTEXFile(memoryStream, Settings);
 
                 // Return the texture data
                 return texture.TextureData;
@@ -105,7 +105,7 @@ namespace RayCarrot.RCP.Metro
                 using var memoryStream = new MemoryStream(fileBytes);
 
                 // Get the texture
-                var tex = FileData.GetTEXFile(memoryStream);
+                var tex = FileData.GetTEXFile(memoryStream, Settings);
 
                 // Get the format
                 magic = GetUInt32(tex.TextureData, 0);
@@ -184,7 +184,7 @@ namespace RayCarrot.RCP.Metro
                 using var memoryStream = new MemoryStream(fileBytes);
 
                 // Get the texture
-                var texture = FileData.GetTEXFile(memoryStream);
+                var texture = FileData.GetTEXFile(memoryStream, Settings);
 
                 // Get the size in case it can't be read from the file
                 Width = texture.Width;
@@ -357,7 +357,7 @@ namespace RayCarrot.RCP.Metro
                 using var memoryStream = new MemoryStream(fileBytes);
 
                 // Get the current texture
-                var texture = FileData.GetTEXFile(memoryStream);
+                var texture = FileData.GetTEXFile(memoryStream, Settings);
 
                 // Update fields if the format is supported
                 if (IsFormatSupported)
@@ -396,7 +396,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Write the texture to the temp file
-                new UbiArtTextureSerializer(Settings).Serialize(tempFile.TempPath, texture);
+                UbiArtTEXFile.GetSerializer(Settings).Serialize(tempFile.TempPath, texture);
             }
 
             // Set the pending path

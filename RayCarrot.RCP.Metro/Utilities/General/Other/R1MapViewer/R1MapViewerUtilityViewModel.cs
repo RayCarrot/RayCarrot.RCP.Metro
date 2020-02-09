@@ -89,7 +89,7 @@ namespace RayCarrot.RCP.Metro
                 LevTypesImageSource = null;
 
                 // Get the level data
-                PcLevData = await Task.Run(() => new Rayman1LevSerializer(GameModeSelection.SelectedValue.GetSettings()).Deserialize(fileResult.SelectedFile));
+                PcLevData = await Task.Run(() => Rayman1PCLevData.GetSerializer().Deserialize(fileResult.SelectedFile));
 
                 LevGraphicsImageSource = (await Task.Run(() => PcLevData.GetBitmap())).ToImageSource();
                 LevTypesImageSource = (await Task.Run(() => PcLevData.GetTypeBitmap())).ToImageSource();

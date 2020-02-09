@@ -5,6 +5,8 @@
 
 Other changes:
 • The Rayman 2 DRM removal utility can now be applied again if already applied without first reverting it
+• Added Rayman Fiesta Run (PC) to available game modes for the UbiArt localization converter utility
+• Major serializing refactoring
 • Changed the icon for the convert utilities tab
 • Added a loading indicator to the converter utilities
 • nGlide has been renamed to Glide since it can be used with other wrappers as well

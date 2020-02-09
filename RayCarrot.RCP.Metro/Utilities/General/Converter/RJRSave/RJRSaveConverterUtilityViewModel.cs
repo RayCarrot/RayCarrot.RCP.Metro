@@ -41,7 +41,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertFromAsync()
         {
-            await ConvertFromAsync(new JungleRunSaveDataSerializer(), (data, filePath, configPath) =>
+            await ConvertFromAsync(JungleRunPCSaveData.GetSerializer(), (data, filePath, configPath) =>
             {
                 // Save the data
                 SerializeJSON(data, filePath);
@@ -57,7 +57,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertToAsync()
         {
-            await ConvertToAsync(new JungleRunSaveDataSerializer(), (filePath, configPath) =>
+            await ConvertToAsync(JungleRunPCSaveData.GetSerializer(), (filePath, configPath) =>
             {
                 // Read the data
                 return DeserializeJSON<JungleRunPCSaveData>(filePath);
