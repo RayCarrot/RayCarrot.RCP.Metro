@@ -1,11 +1,10 @@
 ﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.Rayman;
 using RayCarrot.UI;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -23,21 +22,32 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public RLUbiRayUtilityViewModel()
         {
-            ApplyUbiRayCommand = new AsyncRelayCommand(ApplyUbiRayAsync);
+            // Create commands
+            ApplyCommand = new AsyncRelayCommand(ApplyAsync);
+            RevertCommand = new AsyncRelayCommand(RevertAsync);
+
+            // Set properties
+            IPKFilePath = Games.RaymanLegends.GetInstallDir() + "Bundle_PC.ipk";
 
             try
             {
-                var path = Environment.SpecialFolder.MyDocuments.GetFolderPath() + "Rayman Legends";
+                // Get the offset
+                var offset = GetByteOffset();
 
-                if (path.DirectoryExists)
-                    AvailableSaveFiles = Directory.GetDirectories(path).
-                        Select(x => new FileSystemPath(x)).
-                        Where(x => (x + "RaymanSave_0").FileExists).
-                        ToArray();
+                // Open the IPK file
+                using var fileStream = File.OpenRead(IPKFilePath);
+
+                // Set the position
+                fileStream.Position = offset;
+
+                // Get the byte from that position to see if the patch has been applied
+                IsApplied = fileStream.ReadByte() == 0;
             }
             catch (Exception ex)
             {
-                ex.HandleError("Getting RL save files");
+                ex.HandleError("Getting if UbiRay patch has been applied");
+
+                IPKFilePath = FileSystemPath.EmptyPath;
             }
         }
 
@@ -46,118 +56,120 @@ namespace RayCarrot.RCP.Metro
         #region Public Properties
 
         /// <summary>
-        /// The available save file paths
+        /// The IPK file path
         /// </summary>
-        public FileSystemPath[] AvailableSaveFiles { get; }
+        public FileSystemPath IPKFilePath { get; set; }
 
         /// <summary>
-        /// The selected save file path
+        /// Indicates if the utility has been applied
         /// </summary>
-        public FileSystemPath SelectedPath { get; set; }
+        public bool IsApplied { get; set; }
 
         #endregion
 
         #region Commands
 
-        public ICommand ApplyUbiRayCommand { get; }
+        public ICommand ApplyCommand { get; }
+
+        public ICommand RevertCommand { get; }
+
+        #endregion
+
+        #region Protected Methods
+
+        /// <summary>
+        /// Gets the byte offset for where the patch should be applied
+        /// </summary>
+        /// <returns>The offset</returns>
+        protected long GetByteOffset()
+        {
+            // Deserialize the IPK file
+            var ipk = UbiArtIpkData.GetSerializer(UbiArtGameMode.RaymanLegendsPC.GetSettings()).Deserialize(IPKFilePath);
+
+            // Get the file
+            var file = ipk.Files.FindItem(x => x.FileName == "sgscontainer.ckd");
+
+            // Make sure we found the file
+            if (file == null)
+                throw new Exception("Configuration file not found");
+
+            // Make sure it's not compressed
+            if (file.IsCompressed)
+                throw new Exception("The configuration file is compressed and can not be edited");
+
+            // Get the offset of the byte in the file to change
+            return ipk.BaseOffset + file.Offset + 17841;
+        }
+
+        /// <summary>
+        /// Patches the IPK file
+        /// </summary>
+        /// <param name="value">The value to patch</param>
+        protected void PatchFile(byte value)
+        {
+            // Get the offset
+            var offset = GetByteOffset();
+
+            // Open the file for writing
+            using var fileStream = File.OpenWrite(IPKFilePath);
+
+            // Set the position
+            fileStream.Position = offset;
+
+            // Modify the byte
+            fileStream.WriteByte(value);
+        }
 
         #endregion
 
         #region Public Methods
 
         /// <summary>
-        /// Applies the UbiRay modification
+        /// Applies the patch
         /// </summary>
         /// <returns>The task</returns>
-        public async Task ApplyUbiRayAsync()
+        public async Task ApplyAsync()
         {
             try
             {
-                RCFCore.Logger?.LogInformationSource($"The Rayman Legends UbiRay utility is being applied...");
-
-                if (!SelectedPath.DirectoryExists)
-                {
-                    RCFCore.Logger?.LogInformationSource($"The Rayman Legends UbiRay utility could not be applied due to the selected directory not existing");
-
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.RLU_UbiRay_InvalidSaveDir, MessageType.Error);
-                    return;
-                }
-
-                if (!await RCFUI.MessageUI.DisplayMessageAsync(Resources.RLU_UbiRay_Warning, "Important Information", MessageType.Warning, true))
-                    return;
-
-                FileSystemPath saveFilePath = SelectedPath + "RaymanSave_0";
-
-                List<int> locations = new List<int>();
-
-                var hex = File.ReadAllBytes(saveFilePath).Select(item => item.ToString("X2")).ToList();
-
-                string[] username = BitConverter.ToString(Encoding.Default.GetBytes(SelectedPath.Name)).Split('-');
-
-                int usernameLocation = 0;
-
-                // Find the username location in the file since the bytes to change are always after that
-                for (int i = 0; i < hex.Count - username.Length; i++)
-                {
-                    if (hex.GetRange(i, username.Length).ToArray().SequenceEqual(username))
-                        usernameLocation = i;
-                }
-
-                if (usernameLocation == 0)
-                {
-                    RCFCore.Logger?.LogInformationSource($"The Rayman Legends UbiRay utility could not be applied due to the username location not being found");
-
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.RLU_UbiRay_CouldNotReadFile, MessageType.Error);
-                    return;
-                }
-
-                // Find all occurrences
-                for (int i = usernameLocation; i < hex.Count - 3; i++)
-                {
-                    if (hex[i] == "B2" && hex[i + 1] == "23" && hex[i + 2] == "CC" && hex[i + 3] == "E9")
-                        locations.Add(i);
-                }
-
-                if (locations.Count < 2)
-                {
-                    RCFCore.Logger?.LogInformationSource($"The Rayman Legends UbiRay utility could not be applied due to the costume location not being found");
-
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.RLU_UbiRay_RaymanSkinNotFound, "Error", MessageType.Error);
-                    return;
-                }
-
-                const string ubiRayValue = "18E0894D";
-                byte[] input = Enumerable.Range(0, ubiRayValue.Length)
-                    .Where(x => x % 2 == 0)
-                    .Select(x => Convert.ToByte(ubiRayValue.Substring(x, 2), 16))
-                    .ToArray();
-
-                try
-                {
-                    File.Copy(saveFilePath, saveFilePath.FullPath + ".backup");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Backing up RL save file");
-                }
-
-                // There are two locations in the save which need to be edited, the first and last
-                using (Stream stream = File.Open(saveFilePath, FileMode.Open))
-                {
-                    stream.Position = locations[0];
-                    stream.Write(input, 0, input.Length);
-
-                    stream.Position = locations.Last();
-                    stream.Write(input, 0, input.Length);
-                }
+                // Apply the patch
+                PatchFile(0);
 
                 RCFCore.Logger?.LogInformationSource($"The Rayman Legends UbiRay utility has been applied");
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RLU_UbiRay_Success);
+                IsApplied = true;
+
+                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RLU_UbiRay_ApplySuccess);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Applying RL UbiRay patch");
+
+                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex);
+            }
+        }
+
+        /// <summary>
+        /// Reverts the patch
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task RevertAsync()
+        {
+            try
+            {
+                // Apply the patch
+                PatchFile(1);
+
+                RCFCore.Logger?.LogInformationSource($"The Rayman Legends UbiRay utility has been reverted");
+
+                IsApplied = false;
+
+                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RLU_UbiRay_RevertSuccess);
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Reverting RL UbiRay patch");
+
                 await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex);
             }
         }

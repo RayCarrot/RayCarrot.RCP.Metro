@@ -133,7 +133,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
-        public bool IsBeta => false;
+        public bool IsBeta => true;
 
         /// <summary>
         /// Shortcut to the app user data

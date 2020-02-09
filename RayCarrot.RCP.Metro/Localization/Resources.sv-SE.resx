@@ -631,9 +631,6 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
   <data name="RLU_UbiRayInfo" xml:space="preserve">
     <value>UbiRay är en karaktär som inte är tillgängligt i spelet att spela som, men fortfarande finns i spelfilerna. Det här verktyget ändrar din spelfil så att UbiRay är den valda karaktären så att du kan spela som honom.</value>
   </data>
-  <data name="RLU_UbiRayWarning" xml:space="preserve">
-    <value>VARNING: Det här verktyget är experimentellt och kan korrumpera din spelfil. Gör alltid en säkerhetskopia innan du använder verktyget.</value>
-  </data>
   <data name="ROU_HQVideosHeader" xml:space="preserve">
     <value>Högre kvalitet videor</value>
   </data>

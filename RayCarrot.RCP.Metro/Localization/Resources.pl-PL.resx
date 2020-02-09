@@ -396,15 +396,6 @@
   <data name="RDU_CreateConfigCreate" xml:space="preserve">
     <value>Twórz</value>
   </data>
-  <data name="RLU_UbiRayHeader" xml:space="preserve">
-    <value>Postać UbiRay</value>
-  </data>
-  <data name="RLU_UbiRayInfo" xml:space="preserve">
-    <value>UbiRay jest postacią nie dostępną do grania w grze, lecz wciąż jest w jej plikach. To narzędzie pozwala zmodyfikować twój plik zapisu tak by UbiRay był wybraną postacią, pozwalając ci grać jako on.</value>
-  </data>
-  <data name="RLU_UbiRayWarning" xml:space="preserve">
-    <value>OSTRZEŻENIE: To narzędzie jest eksperymentalne i może zepsuć twój plik zapisu. Zawsze twórz kopie zapasową przed jego użyciem.</value>
-  </data>
   <data name="ROU_HQVideosHeader" xml:space="preserve">
     <value>Filmy w wyższej jakości</value>
   </data>

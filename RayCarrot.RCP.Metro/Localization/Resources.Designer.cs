@@ -7365,52 +7365,25 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not read save file.
+        ///   Looks up a localized string similar to The UbiRay patch has been successfully applied.
         /// </summary>
-        public static string RLU_UbiRay_CouldNotReadFile {
+        public static string RLU_UbiRay_ApplySuccess {
             get {
-                return ResourceManager.GetString("RLU_UbiRay_CouldNotReadFile", resourceCulture);
+                return ResourceManager.GetString("RLU_UbiRay_ApplySuccess", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select a valid save directory.
+        ///   Looks up a localized string similar to The UbiRay patch has been reverted.
         /// </summary>
-        public static string RLU_UbiRay_InvalidSaveDir {
+        public static string RLU_UbiRay_RevertSuccess {
             get {
-                return ResourceManager.GetString("RLU_UbiRay_InvalidSaveDir", resourceCulture);
+                return ResourceManager.GetString("RLU_UbiRay_RevertSuccess", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Make sure the normal Rayman skin is selected and try again.
-        /// </summary>
-        public static string RLU_UbiRay_RaymanSkinNotFound {
-            get {
-                return ResourceManager.GetString("RLU_UbiRay_RaymanSkinNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your save file was successfully edited with Ubi-Ray.
-        /// </summary>
-        public static string RLU_UbiRay_Success {
-            get {
-                return ResourceManager.GetString("RLU_UbiRay_Success", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to IMPORTANT: For this utility to work you need to have the default Rayman costume selected as the current costume. Only continue if you are sure you have it selected..
-        /// </summary>
-        public static string RLU_UbiRay_Warning {
-            get {
-                return ResourceManager.GetString("RLU_UbiRay_Warning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to UbiRay Character.
+        ///   Looks up a localized string similar to Enable UbiRay.
         /// </summary>
         public static string RLU_UbiRayHeader {
             get {
@@ -7419,20 +7392,11 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UbiRay is a character not available in the game to play as, but still in the game files. This utility will modify your save file so that UbiRay is the selected character, thus allowing you to play as him..
+        ///   Looks up a localized string similar to This utility modifies the game configuration to make UbiRay appear as a normal costume in the Heroes Gallery.
         /// </summary>
         public static string RLU_UbiRayInfo {
             get {
                 return ResourceManager.GetString("RLU_UbiRayInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to WARNING: This utility is experimental and might corrupt your save file. Always make a backup before using it..
-        /// </summary>
-        public static string RLU_UbiRayWarning {
-            get {
-                return ResourceManager.GetString("RLU_UbiRayWarning", resourceCulture);
             }
         }
         

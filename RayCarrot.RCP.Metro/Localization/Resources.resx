@@ -626,13 +626,10 @@ This is a growing project with more features planned on being added with future 
     <value>Create</value>
   </data>
   <data name="RLU_UbiRayHeader" xml:space="preserve">
-    <value>UbiRay Character</value>
+    <value>Enable UbiRay</value>
   </data>
   <data name="RLU_UbiRayInfo" xml:space="preserve">
-    <value>UbiRay is a character not available in the game to play as, but still in the game files. This utility will modify your save file so that UbiRay is the selected character, thus allowing you to play as him.</value>
-  </data>
-  <data name="RLU_UbiRayWarning" xml:space="preserve">
-    <value>WARNING: This utility is experimental and might corrupt your save file. Always make a backup before using it.</value>
+    <value>This utility modifies the game configuration to make UbiRay appear as a normal costume in the Heroes Gallery</value>
   </data>
   <data name="ROU_HQVideosHeader" xml:space="preserve">
     <value>Higher Quality Videos</value>
@@ -1410,21 +1407,6 @@ totalFiles</comment>
   </data>
   <data name="R2U_Translations_Error" xml:space="preserve">
     <value>An error occurred when applying the Rayman 2 translation utility</value>
-  </data>
-  <data name="RLU_UbiRay_InvalidSaveDir" xml:space="preserve">
-    <value>Please select a valid save directory</value>
-  </data>
-  <data name="RLU_UbiRay_Warning" xml:space="preserve">
-    <value>IMPORTANT: For this utility to work you need to have the default Rayman costume selected as the current costume. Only continue if you are sure you have it selected.</value>
-  </data>
-  <data name="RLU_UbiRay_CouldNotReadFile" xml:space="preserve">
-    <value>Could not read save file</value>
-  </data>
-  <data name="RLU_UbiRay_RaymanSkinNotFound" xml:space="preserve">
-    <value>Make sure the normal Rayman skin is selected and try again</value>
-  </data>
-  <data name="RLU_UbiRay_Success" xml:space="preserve">
-    <value>Your save file was successfully edited with Ubi-Ray</value>
   </data>
   <data name="ReadingBackupError" xml:space="preserve">
     <value>An error occurred reading the backup for {0}</value>
@@ -3336,5 +3318,11 @@ totalTextures</comment>
   </data>
   <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
     <value>Rayman 3 Save Files (.sav)</value>
+  </data>
+  <data name="RLU_UbiRay_ApplySuccess" xml:space="preserve">
+    <value>The UbiRay patch has been successfully applied</value>
+  </data>
+  <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
+    <value>The UbiRay patch has been reverted</value>
   </data>
 </root>

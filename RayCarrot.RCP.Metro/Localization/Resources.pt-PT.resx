@@ -630,9 +630,6 @@
   <data name="RLU_UbiRayInfo" xml:space="preserve">
     <value>O UbiRay é uma personagem não disponível no jogo para se jogar com ele, mas ainda assim está disponível nos ficheiros do jogo. Este utilitário irá modificar o teu ficheiro de progresso para que o UbiRayman seja a personagem seleccionada, permitindo-te assim jogar com ele.</value>
   </data>
-  <data name="RLU_UbiRayWarning" xml:space="preserve">
-    <value>AVISO: Este utilitário é experimental e poderá corromper o teu ficheiro de progresso. Faz sempre uma cópia de segurança antes de o utilizar.</value>
-  </data>
   <data name="ROU_HQVideosHeader" xml:space="preserve">
     <value>Vídeos de maior qualidade</value>
   </data>
@@ -1342,21 +1339,6 @@ Tentar novamente?</value>
   </data>
   <data name="R2U_Translations_Error" xml:space="preserve">
     <value>Ocorreu um erro quando se aplicava o utilitário de tradução do Rayman 2</value>
-  </data>
-  <data name="RLU_UbiRay_InvalidSaveDir" xml:space="preserve">
-    <value>Por favor insere um directório de ficheiro de progresso válido</value>
-  </data>
-  <data name="RLU_UbiRay_Warning" xml:space="preserve">
-    <value>IMPORTANTE: Para este utilitário funcionar necessitarás de ter seleccionado o fato padrão do Rayman como o fato actual. Continua somente se tiveres a certeza de que o seleccionaste.</value>
-  </data>
-  <data name="RLU_UbiRay_CouldNotReadFile" xml:space="preserve">
-    <value>Não foi possível ler o ficheiro de progresso</value>
-  </data>
-  <data name="RLU_UbiRay_RaymanSkinNotFound" xml:space="preserve">
-    <value>Certifica-te que a pele normal do Rayman está seleccionada e tenta novamente</value>
-  </data>
-  <data name="RLU_UbiRay_Success" xml:space="preserve">
-    <value>O teu ficheiro de progresso foi editado com o Ubi-Ray com sucesso</value>
   </data>
   <data name="ReadingBackupError" xml:space="preserve">
     <value>Ocorreu um erro quando se lia a cópia de segurança para o {0}</value>
@@ -3199,5 +3181,41 @@ Pointer = {8}
   <data name="About_Credits_Robin" xml:space="preserve">
     <value>Remoção de DRM Rayman 2
 </value>
+  </data>
+  <data name="Utilities_Decoder_Header" xml:space="preserve">
+    <value>Descodificadores</value>
+  </data>
+  <data name="Utilities_Decoder_Decode" xml:space="preserve">
+    <value>Descodificar</value>
+  </data>
+  <data name="Utilities_Decoder_Encode" xml:space="preserve">
+    <value>Codificar</value>
+  </data>
+  <data name="Utilities_Decoder_R2SnaHeader" xml:space="preserve">
+    <value>Ficheiros Codificados Rayman 2 (.sna/.dsb)</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeFileSelectionHeader" xml:space="preserve">
+    <value>Selecciona os ficheiros a descodificar</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeFileSelectionHeader" xml:space="preserve">
+    <value>Selecciona os ficheiros a codificar</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeSuccess" xml:space="preserve">
+    <value>Foram descodificados os ficheiros com sucesso</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeSuccess" xml:space="preserve">
+    <value>Foram codificados os ficheiros com sucesso</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeError" xml:space="preserve">
+    <value>Ocorreu um erro ao descodificar os ficheiros</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeError" xml:space="preserve">
+    <value>Ocorreu um erro ao codificar os ficheiros</value>
+  </data>
+  <data name="Utilities_Decoder_R1LngHeader" xml:space="preserve">
+    <value>Ficheiros de Idioma Rayman 1 (.lng)</value>
+  </data>
+  <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
+    <value>Ficheiros de Progresso Rayman 3 (.sav)</value>
   </data>
 </root>

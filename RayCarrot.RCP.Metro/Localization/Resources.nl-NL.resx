@@ -630,9 +630,6 @@
   <data name="RLU_UbiRayInfo" xml:space="preserve">
     <value>UbiRay is een personage dat niet in-game gekozen kan worden, maar wel via de gamebestanden. Dit hulpprogramma zal je save file wijzigen, zodat UbiRay het geselecteerde personage wordt, waarna je via een omweg dus wel als hem kunt spelen.</value>
   </data>
-  <data name="RLU_UbiRayWarning" xml:space="preserve">
-    <value>WAARSCHUWING: dit hulpprogramma is experimenteel en zou je save file corrupt kunnen maken. Maak daarom altijd eerst een back-up alvorens hier gebruik van te maken!</value>
-  </data>
   <data name="ROU_HQVideosHeader" xml:space="preserve">
     <value>Hogere Kwaliteit Video's</value>
   </data>
@@ -1342,21 +1339,6 @@ Opnieuw proberen?</value>
   </data>
   <data name="R2U_Translations_Error" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het toepassen van het Rayman 2 hulpprogramma voor vertaling</value>
-  </data>
-  <data name="RLU_UbiRay_InvalidSaveDir" xml:space="preserve">
-    <value>Gelieve een geldige map voor opslaan selecteren</value>
-  </data>
-  <data name="RLU_UbiRay_Warning" xml:space="preserve">
-    <value>BELANGRIJK: Om dit hulpprogramma effectief te doorlopen, dien je het standaard Rayman kostuum geselecteerd te hebben als het huidige kostuum. Ga alleen verder als je zeker bent dat voorgaande geselecteerd is!</value>
-  </data>
-  <data name="RLU_UbiRay_CouldNotReadFile" xml:space="preserve">
-    <value>Kon save file niet lezen</value>
-  </data>
-  <data name="RLU_UbiRay_RaymanSkinNotFound" xml:space="preserve">
-    <value>Wees er zeker van dat het standaard Rayman kostuum is geselecteerd en probeer het nog eens!</value>
-  </data>
-  <data name="RLU_UbiRay_Success" xml:space="preserve">
-    <value>Je save file is succesvol gewijzigd door 'Ubi-Ray'</value>
   </data>
   <data name="ReadingBackupError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het lezen van de back-up voor {0}</value>
@@ -3170,5 +3152,8 @@ Pointer = {8}</value>
   </data>
   <data name="About_Credits_Robin" xml:space="preserve">
     <value>Rayman 2 DRM verwijdering</value>
+  </data>
+  <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
+    <value>Rayman 3 save files (.sav)</value>
   </data>
 </root>

@@ -453,9 +453,6 @@
   <data name="RDU_CreateConfigCreate" xml:space="preserve">
     <value>Crear</value>
   </data>
-  <data name="RLU_UbiRayHeader" xml:space="preserve">
-    <value>Personaje UbiRay</value>
-  </data>
   <data name="ROU_HQVideosHeader" xml:space="preserve">
     <value>Vídeos de mejor calidad</value>
   </data>

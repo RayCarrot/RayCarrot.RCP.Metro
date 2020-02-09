@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -35,7 +34,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The utility warning text (optional). This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string WarningText => Resources.RLU_UbiRayWarning;
+        public string WarningText => null;
 
         /// <summary>
         /// Indicates if the utility requires additional files to be downloaded remotely
@@ -58,12 +57,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility requires administration privileges
         /// </summary>
-        public bool RequiresAdmin => false;
+        public bool RequiresAdmin => !RCFRCP.File.CheckFileWriteAccess(ViewModel.IPKFilePath);
 
         /// <summary>
         /// Indicates if the utility is available to the user
         /// </summary>
-        public bool IsAvailable => ViewModel.AvailableSaveFiles?.Any() == true;
+        public bool IsAvailable => ViewModel.IPKFilePath.FileExists;
 
         /// <summary>
         /// Retrieves a list of applied utilities from this utility
@@ -71,8 +70,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The applied utilities</returns>
         public IEnumerable<string> GetAppliedUtilities()
         {
-            // Due to the changes not being able to be reverted this is not considered an applied utility
-            return new string[0];
+            if (ViewModel.IsApplied)
+                yield return Resources.RLU_UbiRayHeader;
         }
 
         #endregion
