@@ -193,6 +193,7 @@ namespace RayCarrot.RCP.Metro
             ConfigData.FormattedVideo_AutoAdjustQuality = AutoVideoQuality;
             ConfigData.Video_BPP = IsVideo32Bpp ? "32" : "16";
             ConfigData.Language = CurrentLanguage.ToString();
+            ConfigData.TexturesFile = $"Tex{(IsTextures32Bit ? 32 : 16)}.cnt";
 
             return Task.CompletedTask;
         }

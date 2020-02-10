@@ -7,9 +7,11 @@ Other changes:
 • The Rayman 2 DRM removal utility can now be applied again if already applied without first reverting it
 • Added Rayman Fiesta Run (PC) to available game modes for the UbiArt localization converter utility
 • Major serializing refactoring
+• The .gf file converter only includes the supported game modes now (games on PC and iOS)
 • Changed the icon for the convert utilities tab
 • Added a loading indicator to the converter utilities
 • nGlide has been renamed to Glide since it can be used with other wrappers as well
+• Fixed a bug where changing the texture quality in Rayman M/Arena or 3 wouldn't always update correctly
 
 
 -----   Version 9.2.4 - February 2, 2020   -----

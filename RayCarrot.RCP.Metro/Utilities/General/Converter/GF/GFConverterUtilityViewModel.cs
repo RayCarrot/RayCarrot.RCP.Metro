@@ -19,9 +19,24 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public GFConverterUtilityViewModel()
         {
-            GameModeSelection = new EnumSelectionViewModel<OpenSpaceGameMode>(OpenSpaceGameMode.Rayman2PC, 
-                // TODO: Don't do all game modes
-                EnumHelpers.GetValues<OpenSpaceGameMode>());
+            GameModeSelection = new EnumSelectionViewModel<OpenSpaceGameMode>(OpenSpaceGameMode.Rayman2PC, new OpenSpaceGameMode[]
+            {
+                OpenSpaceGameMode.Rayman2PC,
+                OpenSpaceGameMode.Rayman2IOS,
+                OpenSpaceGameMode.Rayman2PCDemo1,
+                OpenSpaceGameMode.Rayman2PCDemo2,
+                OpenSpaceGameMode.RaymanMPC,
+                OpenSpaceGameMode.RaymanArenaPC,
+                OpenSpaceGameMode.Rayman3PC,
+                OpenSpaceGameMode.TonicTroublePC,
+                OpenSpaceGameMode.TonicTroubleSEPC,
+                OpenSpaceGameMode.DonaldDuckPC,
+                OpenSpaceGameMode.PlaymobilHypePC,
+                OpenSpaceGameMode.PlaymobilLauraPC,
+                OpenSpaceGameMode.PlaymobilAlexPC,
+                OpenSpaceGameMode.DinosaurPC,
+                OpenSpaceGameMode.LargoWinchPC
+            });
         }
 
         #endregion

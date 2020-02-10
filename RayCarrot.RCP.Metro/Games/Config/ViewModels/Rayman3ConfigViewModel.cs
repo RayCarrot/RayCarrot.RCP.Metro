@@ -131,6 +131,7 @@ namespace RayCarrot.RCP.Metro
             ConfigData.FormattedStaticShadows = StaticShadows;
             ConfigData.Camera_VerticalAxis = VerticalAxis.ToString();
             ConfigData.Camera_HorizontalAxis = HorizontalAxis.ToString();
+            ConfigData.TexturesFile = $"Tex{(IsTextures32Bit ? 32 : 16)}.cnt";
 
             return Task.CompletedTask;
         }
