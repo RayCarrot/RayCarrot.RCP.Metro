@@ -625,10 +625,10 @@
     <value>Aanmaken</value>
   </data>
   <data name="RLU_UbiRayHeader" xml:space="preserve">
-    <value>UbiRay Personage</value>
+    <value>Inschakelen UbiRay</value>
   </data>
   <data name="RLU_UbiRayInfo" xml:space="preserve">
-    <value>UbiRay is een personage dat niet in-game gekozen kan worden, maar wel via de gamebestanden. Dit hulpprogramma zal je save file wijzigen, zodat UbiRay het geselecteerde personage wordt, waarna je via een omweg dus wel als hem kunt spelen.</value>
+    <value>Dit hulpprogramma wijzigt de spelconfiguratie, zodat UbiRay verschijnt als een normaal kostuum via de Heldengalerij</value>
   </data>
   <data name="ROU_HQVideosHeader" xml:space="preserve">
     <value>Hogere Kwaliteit Video's</value>
@@ -3153,7 +3153,46 @@ Pointer = {8}</value>
   <data name="About_Credits_Robin" xml:space="preserve">
     <value>Rayman 2 DRM verwijdering</value>
   </data>
+  <data name="Utilities_Decoder_Header" xml:space="preserve">
+    <value>Decoders</value>
+  </data>
+  <data name="Utilities_Decoder_Decode" xml:space="preserve">
+    <value>Decoderen</value>
+  </data>
+  <data name="Utilities_Decoder_Encode" xml:space="preserve">
+    <value>Encoderen</value>
+  </data>
+  <data name="Utilities_Decoder_R2SnaHeader" xml:space="preserve">
+    <value>Rayman 2 Geëncodeerde Bestanden (.sna/.dsb)</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeFileSelectionHeader" xml:space="preserve">
+    <value>Selecteer bestanden om te decoderen</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeFileSelectionHeader" xml:space="preserve">
+    <value>Selecteer bestanden om te encoderen</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeSuccess" xml:space="preserve">
+    <value>De bestanden zijn succesvol gedecodeerd</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeSuccess" xml:space="preserve">
+    <value>De bestanden zijn succesvol geëncodeerd</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het decoderen van de bestanden</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het encoderen van de bestanden</value>
+  </data>
+  <data name="Utilities_Decoder_R1LngHeader" xml:space="preserve">
+    <value>Rayman 1 Taalbestanden (.Ing)</value>
+  </data>
   <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
     <value>Rayman 3 save files (.sav)</value>
+  </data>
+  <data name="RLU_UbiRay_ApplySuccess" xml:space="preserve">
+    <value>De UbiRay patch is met succes toegepast</value>
+  </data>
+  <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
+    <value>De UbiRay patch is ongedaan gemaakt</value>
   </data>
 </root>

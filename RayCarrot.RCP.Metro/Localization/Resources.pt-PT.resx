@@ -625,10 +625,10 @@
     <value>Criar</value>
   </data>
   <data name="RLU_UbiRayHeader" xml:space="preserve">
-    <value>Personagem UbiRay</value>
+    <value>Activar UbiRay</value>
   </data>
   <data name="RLU_UbiRayInfo" xml:space="preserve">
-    <value>O UbiRay é uma personagem não disponível no jogo para se jogar com ele, mas ainda assim está disponível nos ficheiros do jogo. Este utilitário irá modificar o teu ficheiro de progresso para que o UbiRayman seja a personagem seleccionada, permitindo-te assim jogar com ele.</value>
+    <value>Este utilitário modifica a configuração de jogo para fazer com que o UbiRayman apareça como um fato normal na Galeria de Heróis</value>
   </data>
   <data name="ROU_HQVideosHeader" xml:space="preserve">
     <value>Vídeos de maior qualidade</value>
@@ -3217,5 +3217,13 @@ Pointer = {8}
   </data>
   <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
     <value>Ficheiros de Progresso Rayman 3 (.sav)</value>
+  </data>
+  <data name="RLU_UbiRay_ApplySuccess" xml:space="preserve">
+    <value>Foi aplicado com sucesso o patch UbiRay
+</value>
+  </data>
+  <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
+    <value>Foi revertido o patch UbiRay
+</value>
   </data>
 </root>
