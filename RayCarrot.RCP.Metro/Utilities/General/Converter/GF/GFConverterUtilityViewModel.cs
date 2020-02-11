@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 
@@ -71,7 +70,7 @@ namespace RayCarrot.RCP.Metro
 
                 // Save the config file
                 SerializeJSON(config, configPath);
-            }, new FileFilterItem("*.gf", "GF").ToString(), ImageHelpers.GetSupportedBitmapExtensions(), GameModeSelection.SelectedValue.GetGame());
+            }, new FileFilterItem("*.gf", "GF").ToString(), ImageHelpers.GetSupportedBitmapExtensions(), null);
         }
 
         /// <summary>

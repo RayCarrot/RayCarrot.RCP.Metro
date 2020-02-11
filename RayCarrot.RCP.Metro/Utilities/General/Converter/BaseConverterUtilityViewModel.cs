@@ -60,9 +60,9 @@ namespace RayCarrot.RCP.Metro
         /// <param name="convertAction">The convert action, converting the data to the specified file path with an optional configuration path</param>
         /// <param name="fileFilter">The file filter when selecting files to convert</param>
         /// <param name="supportedFileExtensions">The supported file extensions to export as</param>
-        /// <param name="game">The game, if available</param>
+        /// <param name="defaultDir">The default directory</param>
         /// <returns>The task</returns>
-        protected async Task ConvertFromAsync<T, Settings>(BinaryDataSerializer<T, Settings> serializer, Action<T, FileSystemPath, FileSystemPath> convertAction, string fileFilter, string[] supportedFileExtensions, Games? game)
+        protected async Task ConvertFromAsync<T, Settings>(BinaryDataSerializer<T, Settings> serializer, Action<T, FileSystemPath, FileSystemPath> convertAction, string fileFilter, string[] supportedFileExtensions, FileSystemPath? defaultDir)
             where T : IBinarySerializable<Settings>
             where Settings : BinarySerializerSettings
         {
@@ -73,11 +73,15 @@ namespace RayCarrot.RCP.Metro
             {
                 IsLoading = true;
 
+                // Make sure the directory exists
+                if (defaultDir?.DirectoryExists != true)
+                    defaultDir = null;
+
                 // Allow the user to select the files
                 var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                 {
                     Title = Resources.Utilities_Converter_FileSelectionHeader,
-                    DefaultDirectory = game?.GetInstallDir(false).FullPath,
+                    DefaultDirectory = defaultDir?.FullPath,
                     ExtensionFilter = fileFilter,
                     MultiSelection = true
                 });

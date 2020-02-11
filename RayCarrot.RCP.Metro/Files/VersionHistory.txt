@@ -1,4 +1,13 @@
-﻿-----   Version 9.3.0 - February 10, 2020   -----
+﻿-----   Version 9.4.0 - February ??, 2020   -----
+• Added the progression tab for Rayman Legends
+• Added a utility for converting Rayman Legends save files
+
+Other changes:
+• Replaced the game installer logos
+• When selecting files for converter utilities it now defaults to the most relevant directory rather than the game install directory
+
+
+-----   Version 9.3.0 - February 10, 2020   -----
 • Added the decoder utilities category with utilities for decoding/encoding Rayman 1 .lng files, Rayman 2 .sna and .dsb files and Rayman 3 .sav files (currently only supports decoding)
 • The Rayman Legends UbiRay utility has been reworked. Rather than editing the save file, it now modifies the game to have UbiRay be available in the Heroes Gallery.
 • Updated the Rayman 2 DRM removal utility. The patch needs to be applied again for the new changes to take effect. If it was previously crashing it's recommended to revert the previous patch before applying.

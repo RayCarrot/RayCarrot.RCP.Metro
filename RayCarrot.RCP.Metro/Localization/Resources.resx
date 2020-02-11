@@ -3325,4 +3325,7 @@ totalTextures</comment>
   <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
     <value>The UbiRay patch has been reverted</value>
   </data>
+  <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
+    <value>Rayman Legends Save Files</value>
+  </data>
 </root>

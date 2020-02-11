@@ -57,7 +57,7 @@ namespace RayCarrot.RCP.Metro
                 }, new FileFilterItem("*.loc", "LOC").ToString(), new[]
                 {
                     ".json"
-                }, Games.RaymanFiestaRun);
+                }, Games.RaymanFiestaRun.GetInstallDir(false));
             }
             else
             {
@@ -72,7 +72,7 @@ namespace RayCarrot.RCP.Metro
                 }, fileExtension.ToString(), new[]
                 {
                     ".json"
-                }, GameModeSelection.SelectedValue.GetGame());
+                }, GameModeSelection.SelectedValue.GetGame()?.GetInstallDir(false));
             }
         }
 

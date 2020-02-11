@@ -139,9 +139,15 @@
                                     </Grid>
 
                                     <ItemsControl ItemsSource="{Binding Path=Items, Mode=OneTime}">
+                                        <ItemsControl.ItemContainerStyle>
+                                            <Style>
+                                                <Setter Property="Control.ToolTip" Value="{Binding Path=Description.Value}" />
+                                            </Style>
+                                        </ItemsControl.ItemContainerStyle>
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <Grid TextBlock.FontSize="16">
+                                                <Grid TextBlock.FontSize="16"
+                                                      Margin="0 0 0 4">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="Auto" />
                                                         <ColumnDefinition Width="*" />

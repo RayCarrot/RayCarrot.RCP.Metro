@@ -118,12 +118,12 @@ namespace RayCarrot.RCP.Metro
                 }
                 
                 // Create the view model
-                progressItems[i + 2] = new ProgressionInfoItemViewModel(ProgressionIcons.Clock, new LocalizedString(() => $"{worldNum}-{lvlNum}: {levelData.RecordTime:mm\\:ss\\:fff}"));
+                progressItems[i + 2] = new ProgressionInfoItemViewModel(ProgressionIcons.RO_Clock, new LocalizedString(() => $"{worldNum}-{lvlNum}: {levelData.RecordTime:mm\\:ss\\:fff}"));
             }
 
             // Set general progress info
-            progressItems[0] = new ProgressionInfoItemViewModel(ProgressionIcons.Lum, new LocalizedString(() => $"{collectedLums}/{availableLums}"));
-            progressItems[1] = new ProgressionInfoItemViewModel(ProgressionIcons.RedTooth, new LocalizedString(() => $"{collectedTeeth}/{availableTeeth}"));
+            progressItems[0] = new ProgressionInfoItemViewModel(ProgressionIcons.RO_Lum, new LocalizedString(() => $"{collectedLums}/{availableLums}"));
+            progressItems[1] = new ProgressionInfoItemViewModel(ProgressionIcons.RO_RedTooth, new LocalizedString(() => $"{collectedTeeth}/{availableTeeth}"));
 
             RCFCore.Logger?.LogInformationSource($"General progress info has been set");
 
@@ -154,7 +154,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Dispose existing slot view models
-                    ProgressionSlots.ForEach(x => x.Dispose());
+                    ProgressionSlots.DisposeAll();
 
                     RCFCore.Logger?.LogDebugSource($"Existing slots have been disposed");
                     

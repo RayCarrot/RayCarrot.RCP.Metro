@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 
@@ -48,7 +49,7 @@ namespace RayCarrot.RCP.Metro
             }, new FileFilterItem("*.dat", "DAT").ToString(), new[]
             {
                 ".json"
-            }, Games.RaymanJungleRun);
+            }, Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + Games.RaymanJungleRun.GetManager<RCPWinStoreGame>().FullPackageName + "LocalState");
         }
 
         /// <summary>

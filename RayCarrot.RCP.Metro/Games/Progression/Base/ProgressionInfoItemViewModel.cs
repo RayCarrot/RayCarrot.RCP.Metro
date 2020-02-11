@@ -13,10 +13,12 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="icon">The icon</param>
         /// <param name="content">The content</param>
-        public ProgressionInfoItemViewModel(ProgressionIcons icon, LocalizedString content)
+        /// <param name="description">Optional additional description</param>
+        public ProgressionInfoItemViewModel(ProgressionIcons icon, LocalizedString content, LocalizedString description = null)
         {
             Icon = icon;
             Content = content;
+            Description = description ?? new LocalizedString(() => null);
         }
 
         /// <summary>
@@ -33,6 +35,11 @@ namespace RayCarrot.RCP.Metro
         /// The content
         /// </summary>
         public LocalizedString Content { get; }
+
+        /// <summary>
+        /// Optional additional description
+        /// </summary>
+        public LocalizedString Description { get; }
 
         public void Dispose()
         {

@@ -99,7 +99,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Dispose existing slot view models
-                    ProgressionSlots.ForEach(x => x.Dispose());
+                    ProgressionSlots.DisposeAll();
 
                     RCFCore.Logger?.LogDebugSource($"Existing slots have been disposed");
                     

@@ -8745,6 +8745,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman Legends Save Files.
+        /// </summary>
+        public static string Utilities_Converter_RLSaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_RLSaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The files were successfully converted.
         /// </summary>
         public static string Utilities_Converter_Success {
