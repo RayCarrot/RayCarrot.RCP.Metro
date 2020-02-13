@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using MahApps.Metro.IconPacks;
+using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
 {

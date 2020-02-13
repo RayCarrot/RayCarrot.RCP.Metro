@@ -1,10 +1,12 @@
 ﻿using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
+using RayCarrot.Rayman.UbiArt;
 using RayCarrot.UI;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -31,17 +33,17 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                // Get the offset
-                var offset = GetByteOffset();
-
                 // Open the IPK file
                 using var fileStream = File.OpenRead(IPKFilePath);
 
+                // Get the first patch info
+                var patchInfo = GetPatchInfos(fileStream).First();
+
                 // Set the position
-                fileStream.Position = offset;
+                fileStream.Position = patchInfo.Offset;
 
                 // Get the byte from that position to see if the patch has been applied
-                IsApplied = fileStream.ReadByte() == 0;
+                IsApplied = !fileStream.Read(patchInfo.Patch.OriginalBytes.Length).SequenceEqual(patchInfo.Patch.OriginalBytes);
             }
             catch (Exception ex)
             {
@@ -50,6 +52,31 @@ namespace RayCarrot.RCP.Metro
                 IPKFilePath = FileSystemPath.EmptyPath;
             }
         }
+
+        #endregion
+
+        #region Protected Properties
+
+        /// <summary>
+        /// Gets the patches
+        /// </summary>
+        protected Patch[] GetPatches => new Patch[]
+        {
+            // This makes UbiRay be treated as a normal costume (type 0)
+            new Patch("sgscontainer.ckd", 17841, new byte[]
+            {
+                0
+            }, new byte[]
+            {
+                1
+            }), 
+
+            // This fixes the character description
+            new Patch("costumerayman_ubi.act.ckd", 414, GetBytes(6426), GetBytes(5095)), 
+
+            // This fixes the character name
+            new Patch("costumerayman_ubi.act.ckd", 418, GetBytes(6425), GetBytes(4876)), 
+        };
 
         #endregion
 
@@ -78,46 +105,63 @@ namespace RayCarrot.RCP.Metro
         #region Protected Methods
 
         /// <summary>
-        /// Gets the byte offset for where the patch should be applied
+        /// Gets the bytes from a 32-bit integer using big endian
         /// </summary>
-        /// <returns>The offset</returns>
-        protected long GetByteOffset()
+        /// <param name="value">The value</param>
+        /// <returns>The bytes</returns>
+        protected byte[] GetBytes(int value) => BitConverter.GetBytes(value).Reverse().ToArray();
+
+        /// <summary>
+        /// Gets the patch infos for each <see cref="Patch"/>
+        /// </summary>
+        /// <param name="ipkStream">The IPK file stream</param>
+        /// <returns>The patch infos</returns>
+        protected IEnumerable<PatchInfo> GetPatchInfos(Stream ipkStream)
         {
             // Deserialize the IPK file
-            var ipk = UbiArtIpkData.GetSerializer(UbiArtGameMode.RaymanLegendsPC.GetSettings()).Deserialize(IPKFilePath);
+            var ipk = UbiArtIpkData.GetSerializer(UbiArtGameMode.RaymanLegendsPC.GetSettings()).Deserialize(ipkStream);
 
-            // Get the file
-            var file = ipk.Files.FindItem(x => x.FileName == "sgscontainer.ckd");
+            // Enumerate every patch
+            foreach (var patchGroup in GetPatches.GroupBy(x => x.FileName))
+            {
+                // Get the file
+                var file = ipk.Files.FindItem(x => x.FileName == patchGroup.Key);
 
-            // Make sure we found the file
-            if (file == null)
-                throw new Exception("Configuration file not found");
+                // Make sure we found the file
+                if (file == null)
+                    throw new Exception("Patch file not found");
 
-            // Make sure it's not compressed
-            if (file.IsCompressed)
-                throw new Exception("The configuration file is compressed and can not be edited");
+                // Make sure it's not compressed
+                if (file.IsCompressed)
+                    throw new Exception("The configuration file is compressed and can not be edited");
 
-            // Get the offset of the byte in the file to change
-            return ipk.BaseOffset + file.Offset + 17841;
+                // Get the offsets
+                foreach (Patch patch in patchGroup)
+                {
+                    // Get the offset of the byte in the file to change
+                    yield return new PatchInfo(patch, ipk.BaseOffset + file.Offset + patch.FileOffset);
+                }
+            }
         }
 
         /// <summary>
         /// Patches the IPK file
         /// </summary>
-        /// <param name="value">The value to patch</param>
-        protected void PatchFile(byte value)
+        /// <param name="usePatchedBytes">Indicates if the patched bytes should be used or if else the original ones should be used</param>
+        protected void PatchFile(bool usePatchedBytes)
         {
-            // Get the offset
-            var offset = GetByteOffset();
+            // Open the file
+            using var fileStream = File.Open(IPKFilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
 
-            // Open the file for writing
-            using var fileStream = File.OpenWrite(IPKFilePath);
+            // Enumerate each patch info
+            foreach (PatchInfo patchInfo in GetPatchInfos(fileStream))
+            {
+                // Set the position
+                fileStream.Position = patchInfo.Offset;
 
-            // Set the position
-            fileStream.Position = offset;
-
-            // Modify the byte
-            fileStream.WriteByte(value);
+                // Modify the bytes
+                fileStream.Write(usePatchedBytes ? patchInfo.Patch.PatchedBytes : patchInfo.Patch.OriginalBytes);
+            }
         }
 
         #endregion
@@ -133,7 +177,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Apply the patch
-                PatchFile(0);
+                PatchFile(true);
 
                 RCFCore.Logger?.LogInformationSource($"The Rayman Legends UbiRay utility has been applied");
 
@@ -158,7 +202,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Apply the patch
-                PatchFile(1);
+                PatchFile(false);
 
                 RCFCore.Logger?.LogInformationSource($"The Rayman Legends UbiRay utility has been reverted");
 
@@ -172,6 +216,43 @@ namespace RayCarrot.RCP.Metro
 
                 await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex);
             }
+        }
+
+        #endregion
+
+
+        #region Classes
+
+        protected class Patch
+        {
+            public Patch(string fileName, int fileOffset, byte[] patchedBytes, byte[] originalBytes)
+            {
+                FileName = fileName;
+                FileOffset = fileOffset;
+                PatchedBytes = patchedBytes;
+                OriginalBytes = originalBytes;
+            }
+
+            public string FileName { get; }
+
+            public int FileOffset { get; }
+
+            public byte[] PatchedBytes { get; }
+
+            public byte[] OriginalBytes { get; }
+        }
+
+        protected class PatchInfo
+        {
+            public PatchInfo(Patch patch, long offset)
+            {
+                Patch = patch;
+                Offset = offset;
+            }
+
+            public Patch Patch { get; }
+
+            public long Offset { get; }
         }
 
         #endregion

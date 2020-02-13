@@ -3,6 +3,7 @@ using RayCarrot.IO;
 using RayCarrot.Rayman;
 using System.IO;
 using System.Threading.Tasks;
+using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
 {

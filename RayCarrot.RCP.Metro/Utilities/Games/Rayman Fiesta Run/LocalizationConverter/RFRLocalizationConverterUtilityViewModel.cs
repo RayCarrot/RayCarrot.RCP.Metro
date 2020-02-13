@@ -1,12 +1,13 @@
 ﻿using RayCarrot.IO;
 using RayCarrot.Rayman;
+using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// View model for the Rayman Fiesta Run localization converter utility
     /// </summary>
-    public class RFRLocalizationConverterUtilityViewModel : BaseUbiArtLocalizationConverterUtilityViewModel<UbiArtSerializableDictionary<int, UbiArtSerializableDictionary<int, UbiArtSerializablePair<string, string>>>>
+    public class RFRLocalizationConverterUtilityViewModel : BaseUbiArtLocalizationConverterUtilityViewModel<SerializableDictionary<int, SerializableDictionary<int, SerializablePair<string, string>>>>
     {
         /// <summary>
         /// The default localization directory for the game, if available
@@ -23,7 +24,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="file">The localization file</param>
         /// <returns>The data</returns>
-        protected override UbiArtSerializableDictionary<int, UbiArtSerializableDictionary<int, UbiArtSerializablePair<string, string>>> Deserialize(FileSystemPath file)
+        protected override SerializableDictionary<int, SerializableDictionary<int, SerializablePair<string, string>>> Deserialize(FileSystemPath file)
         {
             return FiestaRunLocalizationData.GetSerializer().Deserialize(file).Strings;
         }
@@ -33,7 +34,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="file">The localization file</param>
         /// <param name="data">The data</param>
-        protected override void Serialize(FileSystemPath file, UbiArtSerializableDictionary<int, UbiArtSerializableDictionary<int, UbiArtSerializablePair<string, string>>> data)
+        protected override void Serialize(FileSystemPath file, SerializableDictionary<int, SerializableDictionary<int, SerializablePair<string, string>>> data)
         {
             // Get the serializer
             var serializer = FiestaRunLocalizationData.GetSerializer();

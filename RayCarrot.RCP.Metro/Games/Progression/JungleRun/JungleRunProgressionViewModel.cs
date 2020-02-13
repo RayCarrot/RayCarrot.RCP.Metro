@@ -1,10 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+﻿using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
+using RayCarrot.Rayman.UbiArt;
 using RayCarrot.UI;
+using System;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -138,49 +136,19 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Override Methods
+        #region Protected Override Methods
 
         /// <summary>
         /// Loads the current save data if available
         /// </summary>
-        /// <returns>The task</returns>
-        public override async Task LoadDataAsync()
+        protected override void LoadData()
         {
-            RCFCore.Logger?.LogInformationSource($"Progression data for Jungle Run is being loaded...");
-
-            // Run on a new thread
-            await Task.Run(() =>
+            // Read and set slot data
+            ProgressionSlots.AddRange(new ProgressionSlotViewModel[]
             {
-                try
-                {
-                    // Dispose existing slot view models
-                    ProgressionSlots.DisposeAll();
-
-                    RCFCore.Logger?.LogDebugSource($"Existing slots have been disposed");
-                    
-                    // Clear the collection
-                    ProgressionSlots.Clear();
-
-                    // Read and set slot data
-                    ProgressionSlots.AddRange(new ProgressionSlotViewModel[]
-                    {
-                        GetProgressionSlotViewModel("slot1.dat", () => String.Format(Resources.Progression_GenericSlot, "1")),
-                        GetProgressionSlotViewModel("slot2.dat", () => String.Format(Resources.Progression_GenericSlot, "2")),
-                        GetProgressionSlotViewModel("slot3.dat", () => String.Format(Resources.Progression_GenericSlot, "3"))
-                    });
-
-                    RCFCore.Logger?.LogInformationSource($"Slots have been loaded");
-
-                    // Remove empty slots
-                    ProgressionSlots.RemoveWhere(x => x == null);
-
-                    RCFCore.Logger?.LogDebugSource($"Empty slots have been removed");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Reading Jungle Run save data");
-                    throw;
-                }
+                GetProgressionSlotViewModel("slot1.dat", () => String.Format(Resources.Progression_GenericSlot, "1")),
+                GetProgressionSlotViewModel("slot2.dat", () => String.Format(Resources.Progression_GenericSlot, "2")),
+                GetProgressionSlotViewModel("slot3.dat", () => String.Format(Resources.Progression_GenericSlot, "3"))
             });
         }
 

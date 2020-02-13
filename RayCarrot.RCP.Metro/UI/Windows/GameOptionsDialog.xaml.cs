@@ -13,7 +13,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Interaction logic for GameOptions.xaml
     /// </summary>
-    public partial class GameOptions : BaseWindow
+    public partial class GameOptionsDialog : BaseWindow
     {
         #region Constructor
 
@@ -21,7 +21,7 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         /// <param name="game">The game to show the options for</param>
-        public GameOptions(Games game)
+        public GameOptionsDialog(Games game)
         {
             // Set up UI
             InitializeComponent();
@@ -117,7 +117,7 @@ namespace RayCarrot.RCP.Metro
             // Add game specific group names
             groupNames.AddRange(game.GetGameInfo().DialogGroupNames);
 
-            WindowHelpers.ShowWindow(() => new GameOptions(game), WindowHelpers.ShowWindowFlags.DuplicatesAllowed, groupNames.ToArray());
+            WindowHelpers.ShowWindow(() => new GameOptionsDialog(game), WindowHelpers.ShowWindowFlags.DuplicatesAllowed, groupNames.ToArray());
         }
 
         #endregion

@@ -8,6 +8,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:ray="clr-namespace:RayCarrot.Rayman;assembly=RayCarrot.Rayman"
+             xmlns:ubiIni="clr-namespace:RayCarrot.Rayman.UbiIni;assembly=RayCarrot.Rayman"
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
@@ -156,12 +157,12 @@
                     <TextBlock Text="{Resx Lang_English}" />
                     <TextBlock Text="{Resx Lang_French}" />
                     <TextBlock Text="{Resx Lang_Spanish}" />
-                    <TextBlock Text="{Resx Lang_German}" Visibility="{Binding Path=CurrentLanguage, Converter={rwpf:IsNotTypeToVisibilityConverter}, ConverterParameter={x:Type ray:RALanguages}}" />
-                    <TextBlock Text="{Resx Lang_Italian}" Visibility="{Binding Path=CurrentLanguage, Converter={rwpf:IsNotTypeToVisibilityConverter}, ConverterParameter={x:Type ray:RALanguages}}" />
-                    <TextBlock Text="{Resx Lang_Danish}" Visibility="{Binding Path=CurrentLanguage, Converter={rwpf:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ray:RMLanguages}}" />
-                    <TextBlock Text="{Resx Lang_Finnish}" Visibility="{Binding Path=CurrentLanguage, Converter={rwpf:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ray:RMLanguages}}" />
-                    <TextBlock Text="{Resx Lang_Norwegian}" Visibility="{Binding Path=CurrentLanguage, Converter={rwpf:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ray:RMLanguages}}" />
-                    <TextBlock Text="{Resx Lang_Swedish}" Visibility="{Binding Path=CurrentLanguage, Converter={rwpf:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ray:RMLanguages}}" />
+                    <TextBlock Text="{Resx Lang_German}" Visibility="{Binding Path=CurrentLanguage, Converter={rwpf:IsNotTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RALanguages}}" />
+                    <TextBlock Text="{Resx Lang_Italian}" Visibility="{Binding Path=CurrentLanguage, Converter={rwpf:IsNotTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RALanguages}}" />
+                    <TextBlock Text="{Resx Lang_Danish}" Visibility="{Binding Path=CurrentLanguage, Converter={rwpf:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
+                    <TextBlock Text="{Resx Lang_Finnish}" Visibility="{Binding Path=CurrentLanguage, Converter={rwpf:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
+                    <TextBlock Text="{Resx Lang_Norwegian}" Visibility="{Binding Path=CurrentLanguage, Converter={rwpf:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
+                    <TextBlock Text="{Resx Lang_Swedish}" Visibility="{Binding Path=CurrentLanguage, Converter={rwpf:IsTypeToVisibilityConverter}, ConverterParameter={x:Type ubiIni:RMLanguages}}" />
                 </ComboBox>
 
                 <StackPanel Orientation="Horizontal">

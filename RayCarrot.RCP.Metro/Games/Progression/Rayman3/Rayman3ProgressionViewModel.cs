@@ -7,6 +7,7 @@ using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
+using RayCarrot.Rayman.OpenSpace;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -83,45 +84,15 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Override Methods
+        #region Protected Override Methods
 
         /// <summary>
         /// Loads the current save data if available
         /// </summary>
-        /// <returns>The task</returns>
-        public override async Task LoadDataAsync()
+        protected override void LoadData()
         {
-            RCFCore.Logger?.LogInformationSource($"Progression data for Rayman 3 is being loaded...");
-
-            // Run on a new thread
-            await Task.Run(() =>
-            {
-                try
-                {
-                    // Dispose existing slot view models
-                    ProgressionSlots.DisposeAll();
-
-                    RCFCore.Logger?.LogDebugSource($"Existing slots have been disposed");
-                    
-                    // Clear the collection
-                    ProgressionSlots.Clear();
-
-                    // Read and set slot data
-                    ProgressionSlots.AddRange(Directory.GetFiles(SaveDir, "*.sav", SearchOption.TopDirectoryOnly).Select(x => GetProgressionSlotViewModel(x)));
-
-                    RCFCore.Logger?.LogInformationSource($"Slots have been loaded");
-
-                    // Remove empty slots
-                    ProgressionSlots.RemoveWhere(x => x == null);
-
-                    RCFCore.Logger?.LogDebugSource($"Empty slots have been removed");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Reading Rayman 3 save data");
-                    throw;
-                }
-            });
+            // Read and set slot data
+            ProgressionSlots.AddRange(Directory.GetFiles(SaveDir, "*.sav", SearchOption.TopDirectoryOnly).Select(x => GetProgressionSlotViewModel(x)));
         }
 
         #endregion

@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.ProgressionUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:wpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:metro="clr-namespace:RayCarrot.RCP.Metro"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignInstance metro:BaseProgressionViewModel}">
+    <ItemsControl ItemsSource="{Binding Path=ProgressionSlots, Mode=OneTime}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <StackPanel>
+                    <Separator x:Name="ItemSeparator"
+                               Margin="0 7" />
+
+                    <Grid>
+                        <TextBlock Text="{Binding Path=SlotName.Value}"
+                                   Style="{StaticResource HeaderTextBlock}"
+                                   Margin="{StaticResource SmallVerticalStackMargin}" />
+
+                        <Grid HorizontalAlignment="Right"
+                              Visibility="{Binding Path=CanModify, Converter={wpf:BooleanToVisibilityConverter}, Mode=OneTime}">
+                            <metro:OverflowMenu wpf:UserLevelTag.MinUserLevel="Technical"
+                                                Margin="7">
+                                <metro:OverflowMenu.ContextMenu>
+                                    <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
+                                        <metro:MenuItemIcon Header="{Resx Progression_Export}"
+                                                            Command="{Binding Path=ExportCommand, Mode=OneTime}"
+                                                            IconKind="FileExportOutline" />
+                                        <metro:MenuItemIcon Header="{Resx Progression_Import}"
+                                                            Command="{Binding Path=ImportCommand, Mode=OneTime}"
+                                                            IconKind="FileImportOutline" />
+                                    </ContextMenu>
+                                </metro:OverflowMenu.ContextMenu>
+                            </metro:OverflowMenu>
+                        </Grid>
+
+                    </Grid>
+
+                    <ItemsControl ItemsSource="{Binding Path=Items, Mode=OneTime}">
+                        <ItemsControl.ItemContainerStyle>
+                            <Style>
+                                <Setter Property="Control.ToolTip" Value="{Binding Path=Description.Value}" />
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid TextBlock.FontSize="16"
+                                      Margin="0 0 0 4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="0"
+                                           Source="{Binding Path=IconImageSource, Mode=OneTime}"
+                                           Margin="0 0 8 0" />
+
+                                    <ContentPresenter Grid.Column="1"
+                                                      Content="{Binding Path=Content.Value}"
+                                                      VerticalAlignment="Center" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">
+                        <Setter Property="Visibility" TargetName="ItemSeparator" Value="Collapsed" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</UserControl>

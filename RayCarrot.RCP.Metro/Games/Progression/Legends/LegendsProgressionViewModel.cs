@@ -1,7 +1,7 @@
 ﻿using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
+using RayCarrot.Rayman.UbiArt;
 using RayCarrot.UI;
 using System;
 using System.Collections.Generic;
@@ -36,7 +36,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the level ID's for each level
         /// </summary>
-        public Dictionary<uint, LegendsInvasion> GetLevelIDs => new Dictionary<uint, LegendsInvasion>()
+        protected Dictionary<uint, LegendsInvasion> GetLevelIDs => new Dictionary<uint, LegendsInvasion>()
         {
             {
                 4068998406,
@@ -233,45 +233,15 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Override Methods
+        #region Protected Override Methods
 
         /// <summary>
         /// Loads the current save data if available
         /// </summary>
-        /// <returns>The task</returns>
-        public override async Task LoadDataAsync()
+        protected override void LoadData()
         {
-            RCFCore.Logger?.LogInformationSource($"Progression data for Legends is being loaded...");
-
-            // Run on a new thread
-            await Task.Run(() =>
-            {
-                try
-                {
-                    // Dispose existing slot view models
-                    ProgressionSlots.DisposeAll();
-
-                    RCFCore.Logger?.LogDebugSource($"Existing slots have been disposed");
-                    
-                    // Clear the collection
-                    ProgressionSlots.Clear();
-
-                    // Read and set slot data
-                    ProgressionSlots.AddRange(Directory.GetDirectories(SaveDir).Select(x => new FileSystemPath(x) + "RaymanSave_0").Select(GetProgressionSlotViewModel));
-
-                    RCFCore.Logger?.LogInformationSource($"Slots have been loaded");
-
-                    // Remove empty slots
-                    ProgressionSlots.RemoveWhere(x => x == null);
-
-                    RCFCore.Logger?.LogDebugSource($"Empty slots have been removed");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Reading Legends save data");
-                    throw;
-                }
-            });
+            // Read and set slot data
+            ProgressionSlots.AddRange(Directory.GetDirectories(SaveDir).Select(x => new FileSystemPath(x) + "RaymanSave_0").Select(GetProgressionSlotViewModel));
         }
 
         #endregion
@@ -281,7 +251,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// A Rayman Legends invasion
         /// </summary>
-        public class LegendsInvasion
+        protected class LegendsInvasion
         {
             /// <summary>
             /// Default constructor

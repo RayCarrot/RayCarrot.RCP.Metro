@@ -4,6 +4,7 @@ using RayCarrot.UI;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
 {

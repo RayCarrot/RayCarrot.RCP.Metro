@@ -660,6 +660,7 @@ namespace RayCarrot.RCP.Metro
 
                     // NOTE: This is a temporary solution to avoid the log viewer blocking the main window
                     win.Owner = null;
+                    win.ShowInTaskbar = true;
                     MainWindow?.Focus();
                 }
             });

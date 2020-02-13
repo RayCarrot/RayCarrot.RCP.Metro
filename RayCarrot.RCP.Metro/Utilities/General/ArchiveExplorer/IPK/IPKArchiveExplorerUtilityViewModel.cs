@@ -1,4 +1,5 @@
 ﻿using RayCarrot.Rayman;
+using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
 {

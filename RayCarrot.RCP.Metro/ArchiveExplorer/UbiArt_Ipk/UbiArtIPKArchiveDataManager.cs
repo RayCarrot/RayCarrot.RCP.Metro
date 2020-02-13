@@ -6,6 +6,7 @@ using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Extensions;
 using Ionic.Zlib;
+using RayCarrot.Rayman.UbiArt;
 using SevenZip.Compression.LZMA;
 
 namespace RayCarrot.RCP.Metro

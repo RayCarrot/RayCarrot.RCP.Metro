@@ -1,0 +1,155 @@
+﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.GameOptionsDialog"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                  xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                  Title="{Binding Path=DisplayName, Mode=OneTime}"
+                  Loaded="GameOptions_OnLoadedAsync"
+                  Closing="GameOptions_OnClosingAsync"
+                  WindowStartupLocation="CenterOwner"
+                  ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                  mc:Ignorable="d"
+                  d:DataContext="{d:DesignInstance local:GameOptionsViewModel}">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <i:Interaction.Behaviors>
+            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+        </i:Interaction.Behaviors>
+
+        <!-- Header -->
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Image -->
+
+            <Image Grid.Column="0"
+                   Source="{Binding Path=IconSource, Mode=OneTime}"
+                   Height="64" Width="64" />
+
+            <!-- Title -->
+
+            <TextBlock Grid.Column="1"
+                       Style="{StaticResource LargeHeaderTextBlock}"
+                       Text="{Binding Path=DisplayName, Mode=OneTime}"
+                       VerticalAlignment="Center"
+                       TextTrimming="WordEllipsis"
+                       Margin="20 0 0 0" />
+
+            <!-- Overflow menu -->
+
+            <local:OverflowMenu Grid.Column="2"
+                                Margin="7">
+                <local:OverflowMenu.ContextMenu>
+                    <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
+                        <local:MenuItemIcon Header="{Resx GameOptions_CreateShortcut}"
+                                            Command="{Binding Path=ShortcutCommand}"
+                                            IconKind="Link"/>
+                        <local:MenuItemIcon Header="{Resx GameOptions_Remove}"
+                                            Command="{Binding Path=RemoveCommand}"
+                                            IconKind="DeleteOutline"/>
+                        <local:MenuItemIcon Header="{Resx GameOptions_Uninstall}"
+                                            Visibility="{Binding Path=CanUninstall, Converter={rwpf:BooleanToVisibilityConverter}}"
+                                            Command="{Binding Path=UninstallCommand}"
+                                            IconKind="DeleteForeverOutline"/>
+                    </ContextMenu>
+                </local:OverflowMenu.ContextMenu>
+            </local:OverflowMenu>
+
+        </Grid>
+
+        <metro:MetroAnimatedTabControl x:Name="ContentTabControl"
+                                       Grid.Row="1">
+
+            <metro:MetroAnimatedTabControl.Resources>
+                <Style TargetType="{x:Type TabPanel}" BasedOn="{StaticResource SmallTabPanel}" />
+                <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
+            </metro:MetroAnimatedTabControl.Resources>
+
+            <!-- Information -->
+
+            <local:RCPTabItem IconKind="InformationOutline"
+                              Header="{Resx GameOptions_Info}">
+
+                <ScrollViewer Padding="5">
+                    <ItemsControl ItemsSource="{Binding Path=GameInfoItems, Mode=OneTime}"
+                                  Grid.IsSharedSizeScope="True">
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:DuoGridItem Text="{Binding Path=Text}"
+                                                   Header="{Binding Path=Header}"
+                                                   MinUserLevel="{Binding Path=MinUserLevel}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+
+                    </ItemsControl>
+                </ScrollViewer>
+            </local:RCPTabItem>
+
+            <!-- Progression -->
+
+            <local:RCPTabItem x:Name="ProgressionTab"
+                              IconKind="TrophyVariantOutline"
+                              Header="{Resx Progression_Header}"
+                              Visibility="{Binding Path=HasProgressionContent, Converter={rwpf:BooleanToVisibilityConverter}}">
+                <ScrollViewer Padding="5">
+                    <local:ProgressionUI DataContext="{Binding Path=ProgressionViewModel, Mode=OneTime}"/>
+                </ScrollViewer>
+            </local:RCPTabItem>
+
+            <!-- Options -->
+
+            <local:RCPTabItem IconKind="SettingsOutline"
+                              Header="{Resx GameOptions_Options}"
+                              Visibility="{Binding Path=HasOptionsContent, Converter={rwpf:BooleanToVisibilityConverter}}">
+
+                <ScrollViewer Padding="5">
+                    <i:Interaction.Behaviors>
+                        <rwpf:FocusScrollViewerOnLoad />
+                    </i:Interaction.Behaviors>
+
+                    <local:GameOptionsUI />
+
+                </ScrollViewer>
+            </local:RCPTabItem>
+
+            <!-- Config -->
+
+            <local:RCPTabItem IconKind="WrenchOutline"
+                              Header="{Resx GameOptions_Config}"
+                              Visibility="{Binding Path=HasConfigContent, Converter={rwpf:BooleanToVisibilityConverter}}">
+                <ContentPresenter Content="{Binding Path=ConfigContent}" />
+            </local:RCPTabItem>
+
+            <!-- Utilities -->
+
+            <local:RCPTabItem IconKind="BriefcaseOutline"
+                              Header="{Resx GameOptions_Utilities}"
+                              Visibility="{Binding Path=HasUtilities, Converter={rwpf:BooleanToVisibilityConverter}}">
+                <ScrollViewer Padding="5">
+                    <i:Interaction.Behaviors>
+                        <rwpf:FocusScrollViewerOnLoad />
+                    </i:Interaction.Behaviors>
+
+                    <local:UtilitiesContainer Utilities="{Binding Path=Utilities, Mode=OneTime}"/>
+
+                </ScrollViewer>
+            </local:RCPTabItem>
+
+        </metro:MetroAnimatedTabControl>
+
+    </Grid>
+</local:BaseWindow>

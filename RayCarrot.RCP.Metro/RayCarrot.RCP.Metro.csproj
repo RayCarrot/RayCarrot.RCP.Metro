@@ -124,8 +124,16 @@
     <Compile Include="Games\Manager\Demo\Demo_Rayman3_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_RaymanM_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_RaymanGold_DOSBox.cs" />
+    <Compile Include="Games\Options\UI\GameOptionsUI.xaml.cs">
+      <DependentUpon>GameOptionsUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Games\Progression\Origins\OriginsProgressionSlotViewModel.cs" />
+    <Compile Include="Games\Progression\Origins\OriginsProgressionViewModel.cs" />
     <Compile Include="Games\Progression\Legends\LegendsProgressionSlotViewModel.cs" />
     <Compile Include="Games\Progression\Legends\LegendsProgressionViewModel.cs" />
+    <Compile Include="Games\Progression\UI\ProgressionUI.xaml.cs">
+      <DependentUpon>ProgressionUI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\Games\Common\SyncTextureInfo\BaseGameSyncTextureInfoUtilityUI.xaml.cs">
       <DependentUpon>BaseGameSyncTextureInfoUtilityUI.xaml</DependentUpon>
     </Compile>
@@ -449,6 +457,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Games\Options\UI\GameOptionsUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Games\Progression\UI\ProgressionUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Dialogs\FileExtensionSelectionDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -705,7 +721,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Windows\GameOptions.xaml">
+    <Page Include="UI\Windows\GameOptionsDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -914,8 +930,8 @@
     <Compile Include="UI\Windows\FirstLaunchInfoDialog.xaml.cs">
       <DependentUpon>FirstLaunchInfoDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Windows\GameOptions.xaml.cs">
-      <DependentUpon>GameOptions.xaml</DependentUpon>
+    <Compile Include="UI\Windows\GameOptionsDialog.xaml.cs">
+      <DependentUpon>GameOptionsDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\GameOptionsViewModel.cs" />
     <Compile Include="UI\Windows\MainWindow.xaml.cs">
@@ -1225,7 +1241,7 @@
       <Version>1.5.2</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.Extensions">
-      <Version>1.2.10</Version>
+      <Version>1.2.11</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
       <Version>1.5.1</Version>

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
 
@@ -49,13 +50,55 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Abstract Methods
+        #region Protected Abstract Methods
+
+        /// <summary>
+        /// Loads the current save data if available
+        /// </summary>
+        protected abstract void LoadData();
+
+        #endregion
+
+        #region Public Methods
 
         /// <summary>
         /// Loads the current save data if available
         /// </summary>
         /// <returns>The task</returns>
-        public abstract Task LoadDataAsync();
+        public async Task LoadDataAsync()
+        {
+            RCFCore.Logger?.LogInformationSource($"Progression data for {Game} is being loaded...");
+
+            // Run on a new thread
+            await Task.Run(() =>
+            {
+                try
+                {
+                    // Dispose existing slot view models
+                    ProgressionSlots.DisposeAll();
+
+                    RCFCore.Logger?.LogDebugSource($"Existing slots have been disposed");
+
+                    // Clear the collection
+                    ProgressionSlots.Clear();
+
+                    // Load the data
+                    LoadData();
+
+                    RCFCore.Logger?.LogInformationSource($"Slots have been loaded");
+
+                    // Remove empty slots
+                    ProgressionSlots.RemoveWhere(x => x == null);
+
+                    RCFCore.Logger?.LogDebugSource($"Empty slots have been removed");
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError($"Reading {Game} save data");
+                    throw;
+                }
+            });
+        }
 
         #endregion
 

@@ -1,12 +1,13 @@
 ﻿using RayCarrot.IO;
 using RayCarrot.Rayman;
+using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// View model for the Rayman Legends localization converter utility
     /// </summary>
-    public class RLLocalizationConverterUtilityViewModel : BaseUbiArtLocalizationConverterUtilityViewModel<UbiArtSerializableDictionary<int, UbiArtSerializableDictionary<int, string>>>
+    public class RLLocalizationConverterUtilityViewModel : BaseUbiArtLocalizationConverterUtilityViewModel<SerializableDictionary<int, SerializableDictionary<int, string>>>
     {
         /// <summary>
         /// The default localization directory for the game, if available
@@ -23,7 +24,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="file">The localization file</param>
         /// <returns>The data</returns>
-        protected override UbiArtSerializableDictionary<int, UbiArtSerializableDictionary<int, string>> Deserialize(FileSystemPath file)
+        protected override SerializableDictionary<int, SerializableDictionary<int, string>> Deserialize(FileSystemPath file)
         {
             return UbiArtLocalizationData.GetSerializer(UbiArtGameMode.RaymanLegendsPC.GetSettings()).Deserialize(file).Strings;
         }
@@ -33,7 +34,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="file">The localization file</param>
         /// <param name="data">The data</param>
-        protected override void Serialize(FileSystemPath file, UbiArtSerializableDictionary<int, UbiArtSerializableDictionary<int, string>> data)
+        protected override void Serialize(FileSystemPath file, SerializableDictionary<int, SerializableDictionary<int, string>> data)
         {
             // Get the serializer
             var serializer = UbiArtLocalizationData.GetSerializer(UbiArtGameMode.RaymanLegendsPC.GetSettings());

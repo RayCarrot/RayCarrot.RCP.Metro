@@ -1,16 +1,15 @@
 ﻿using Newtonsoft.Json;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
+using RayCarrot.Rayman.UbiArt;
 using System.IO;
 using System.Threading.Tasks;
-using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// View model for a Legends progression slot item
+    /// View model for a Origins progression slot item
     /// </summary>
-    public class LegendsProgressionSlotViewModel : ProgressionSlotViewModel
+    public class OriginsProgressionSlotViewModel : ProgressionSlotViewModel
     {
         /// <summary>
         /// Default constructor
@@ -19,7 +18,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="items">The progression info items</param>
         /// <param name="saveSlotFilePath">The file path for the save slot</param>
         /// <param name="progressionViewModel">The progression view model containing this slot</param>
-        public LegendsProgressionSlotViewModel(LocalizedString slotName, ProgressionInfoItemViewModel[] items, FileSystemPath saveSlotFilePath, BaseProgressionViewModel progressionViewModel) : base(slotName, items, saveSlotFilePath, progressionViewModel)
+        public OriginsProgressionSlotViewModel(LocalizedString slotName, ProgressionInfoItemViewModel[] items, FileSystemPath saveSlotFilePath, BaseProgressionViewModel progressionViewModel) : base(slotName, items, saveSlotFilePath, progressionViewModel)
         {
         }
 
@@ -36,7 +35,7 @@ namespace RayCarrot.RCP.Metro
         protected override Task ExportSaveDataAsync(FileSystemPath outputFilePath)
         {
             // Get the serialized level data
-            var data = JsonConvert.SerializeObject(LegendsPCSaveData.GetSerializer().Deserialize(SaveSlotFilePath).SaveData, Formatting.Indented);
+            var data = JsonConvert.SerializeObject(OriginsPCSaveData.GetSerializer().Deserialize(SaveSlotFilePath).SaveData, Formatting.Indented);
 
             // Export the data
             File.WriteAllText(outputFilePath, data);
@@ -52,13 +51,13 @@ namespace RayCarrot.RCP.Metro
         protected override Task ImportSaveDataAsync(FileSystemPath inputFilePath)
         {
             // Get the serialized data
-            var data = LegendsPCSaveData.GetSerializer().Deserialize(SaveSlotFilePath);
+            var data = OriginsPCSaveData.GetSerializer().Deserialize(SaveSlotFilePath);
 
             // Deserialize the input data
-            data.SaveData = JsonConvert.DeserializeObject<LegendsPCSaveData.PersistentGameData_Universe>(File.ReadAllText(inputFilePath));
+            data.SaveData = JsonConvert.DeserializeObject<OriginsPCSaveData.PersistentGameData_Universe>(File.ReadAllText(inputFilePath));
 
             // Import the data
-            LegendsPCSaveData.GetSerializer().Serialize(SaveSlotFilePath, data);
+            OriginsPCSaveData.GetSerializer().Serialize(SaveSlotFilePath, data);
 
             return Task.CompletedTask;
         }

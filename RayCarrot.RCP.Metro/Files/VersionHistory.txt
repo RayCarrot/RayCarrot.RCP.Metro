@@ -1,9 +1,11 @@
 ﻿-----   Version 9.4.0 - February ??, 2020   -----
-• Added the progression tab for Rayman Legends
+• Added the progression tab for Rayman Origins and Legends
 • Added a utility for converting Rayman Legends save files
+• Updated the UbiRay utility to patch the displayed character name and description (the patch needs to be re-applied for this to update)
 
 Other changes:
-• Replaced the game installer logos
+• Dialog windows will no longer show in the task bar or application switcher as separate windows
+• Replaced the game installer logos with higher quality images, downscaled to the displayed size
 • When selecting files for converter utilities it now defaults to the most relevant directory rather than the game install directory
 
 

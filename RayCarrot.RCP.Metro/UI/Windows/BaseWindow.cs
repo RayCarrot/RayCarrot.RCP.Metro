@@ -40,6 +40,10 @@ namespace RayCarrot.RCP.Metro
 
             RCFCore.Logger?.LogInformationSource($"The owner window has been set to {Owner?.ToString() ?? "null"}");
 
+            // Do not show in the task bar if the window has a owner, is not the main window and a main window has been created
+            if (Owner != null && Application.Current?.MainWindow != null && this != Application.Current.MainWindow)
+                ShowInTaskbar = false;
+
             // Due to a WPF glitch the main window needs to be focused upon closing
             Closed += (s, e) =>
             {

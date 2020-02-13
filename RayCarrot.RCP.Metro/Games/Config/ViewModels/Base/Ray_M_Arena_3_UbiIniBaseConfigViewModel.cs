@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
+using RayCarrot.Rayman.UbiIni;
 
 namespace RayCarrot.RCP.Metro
 {
