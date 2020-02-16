@@ -104,7 +104,7 @@ namespace RayCarrot.RCP.Metro
             using var tempDir = new TempDirectory(true);
 
             // Create the file generator
-            data.FileGenerator = new ArchiveFileGenerator();
+            var fileGenerator = new ArchiveFileGenerator();
 
             // The current pointer position
             var pointer = data.GetHeaderSize(Settings);
@@ -151,13 +151,13 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Add to the generator
-                    data.FileGenerator.Add(fullPath, () => File.ReadAllBytes(tempFilePath));
+                    fileGenerator.Add(fullPath, () => File.ReadAllBytes(tempFilePath));
                 }
                 // Use the original file without decrypting it
                 else
                 {
                     // Add to the generator
-                    data.FileGenerator.Add(fullPath, () => existingFile.FileData.GetFileBytes(archiveFileStream, false));
+                    fileGenerator.Add(fullPath, () => existingFile.FileEntry.GetFileBytes(archiveFileStream, false));
                 }
 
                 // Set the pointer
@@ -170,8 +170,8 @@ namespace RayCarrot.RCP.Metro
             // Serialize the data
             OpenSpaceCntData.GetSerializer(Settings).Serialize(outputFileStream, data);
 
-            // Clear the generator
-            data.FileGenerator.Clear();
+            // Write the files
+            data.WriteArchiveContent(outputFileStream, fileGenerator);
 
             RCFCore.Logger?.LogInformationSource($"The CNT archive has been repacked");
         }

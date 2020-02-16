@@ -1,17 +1,16 @@
 ﻿using ByteSizeLib;
 using ImageMagick;
+using MahApps.Metro.IconPacks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
+using RayCarrot.Rayman.UbiArt;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
-using MahApps.Metro.IconPacks;
-using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -25,10 +24,10 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="fileData">The file data</param>
+        /// <param name="fileEntry">The file data</param>
         /// <param name="settings">The settings when serializing the data</param>
         /// <param name="baseOffset">The base offset to use when reading the files</param>
-        public UbiArtIPKArchiveImageFileData(UbiArtIPKFile fileData, UbiArtSettings settings, uint baseOffset) : base(fileData, settings, baseOffset)
+        public UbiArtIPKArchiveImageFileData(UbiArtIPKFileEntry fileEntry, UbiArtSettings settings, uint baseOffset) : base(fileEntry, settings, baseOffset)
         { }
 
         #endregion
@@ -50,6 +49,19 @@ namespace RayCarrot.RCP.Metro
         protected bool IsTEXFormat(string fileExtension) => fileExtension.Equals(TEXFileExtension, StringComparison.InvariantCultureIgnoreCase);
 
         /// <summary>
+        /// Gets the .tex file data
+        /// </summary>
+        /// <param name="bytes">The bytes to get the data from</param>
+        /// <returns>The .tex file data</returns>
+        protected UbiArtTEXFile GetTexFile(byte[] bytes)
+        {
+            // Create a memory stream
+            using var memoryStream = new MemoryStream(bytes);
+
+            return UbiArtTEXFile.GetSerializer(Settings).Deserialize(memoryStream);
+        }
+
+        /// <summary>
         /// Gets the texture data from the stream
         /// </summary>
         /// <param name="bytes">The file bytes</param>
@@ -58,11 +70,8 @@ namespace RayCarrot.RCP.Metro
         {
             if (UsesTexWrapper)
             {
-                // Create a memory stream
-                using var memoryStream = new MemoryStream(bytes);
-
                 // Get the texture
-                var texture = FileData.GetTEXFile(memoryStream, Settings);
+                var texture = GetTexFile(bytes);
 
                 // Return the texture data
                 return texture.TextureData;
@@ -101,12 +110,9 @@ namespace RayCarrot.RCP.Metro
 
             // Get the texture format
             if (UsesTexWrapper)
-            {
-                // Get the bytes and load them into a memory stream
-                using var memoryStream = new MemoryStream(fileBytes);
-
+            { 
                 // Get the texture
-                var tex = FileData.GetTEXFile(memoryStream, Settings);
+                var tex = GetTexFile(fileBytes);
 
                 // Get the format
                 magic = GetUInt32(tex.TextureData, 0);
@@ -181,11 +187,8 @@ namespace RayCarrot.RCP.Metro
             // Get the bytes from the TEX wrapper if available
             if (UsesTexWrapper)
             {
-                // Create a memory stream
-                using var memoryStream = new MemoryStream(fileBytes);
-
                 // Get the texture
-                var texture = FileData.GetTEXFile(memoryStream, Settings);
+                var texture = GetTexFile(fileBytes);
 
                 // Get the size in case it can't be read from the file
                 Width = texture.Width;
@@ -318,8 +321,8 @@ namespace RayCarrot.RCP.Metro
             // Get the temporary file to save to, without disposing it
             var tempFile = new TempFile(false);
 
-            // Check if the file is in the TEX format, thus not needing to be converted
-            if (IsTEXFormat(filePath.FileExtension))
+            // Check if the file is in the TEX format or in the native format, thus not needing to be converted
+            if (IsTEXFormat(filePath.FileExtension) || filePath.FileExtensions.JoinItems(String.Empty) == new FileExtension(FileName).FileExtensions)
             {
                 // Copy the file
                 RCFRCP.File.CopyFile(filePath, tempFile.TempPath, true);
@@ -354,11 +357,8 @@ namespace RayCarrot.RCP.Metro
                 // Read the file bytes
                 var bytes = File.ReadAllBytes(filePath);
 
-                // Create a memory stream for the bytes
-                using var memoryStream = new MemoryStream(fileBytes);
-
                 // Get the current texture
-                var texture = FileData.GetTEXFile(memoryStream, Settings);
+                var texture = GetTexFile(fileBytes);
 
                 // Update fields if the format is supported
                 if (IsFormatSupported)
@@ -437,10 +437,10 @@ namespace RayCarrot.RCP.Metro
             Width?.ToString() ?? "N/A", Height?.ToString() ?? "N/A",
             UsesTexWrapper,
             FileExtension.FileExtensions,
-            FileData.IsCompressed,
-            ByteSize.FromBytes(FileData.Size),
-            ByteSize.FromBytes(FileData.CompressedSize),
-            FileData.Offset + BaseOffset);
+            FileEntry.IsCompressed,
+            ByteSize.FromBytes(FileEntry.Size),
+            ByteSize.FromBytes(FileEntry.CompressedSize),
+            FileEntry.Offsets.First() + BaseOffset);
 
         /// <summary>
         /// The default icon to use for this file

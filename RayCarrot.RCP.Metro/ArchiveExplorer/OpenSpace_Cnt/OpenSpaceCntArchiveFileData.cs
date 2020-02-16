@@ -25,16 +25,16 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="fileData">The file data</param>
+        /// <param name="fileEntry">The file data</param>
         /// <param name="settings">The settings when serializing the data</param>
         /// <param name="directory">The directory the file is located under</param>
         /// <param name="encryptFiles">Indicates if the files should be encrypted when imported</param>
-        public OpenSpaceCntArchiveFileData(OpenSpaceCntFile fileData, OpenSpaceSettings settings, string directory, bool encryptFiles)
+        public OpenSpaceCntArchiveFileData(OpenSpaceCntFileEntry fileEntry, OpenSpaceSettings settings, string directory, bool encryptFiles)
         {
             Directory = directory;
             EncryptFiles = encryptFiles;
-            FileData = fileData;
-            FileName = FileData.FileName;
+            FileEntry = fileEntry;
+            FileName = FileEntry.FileName;
             Settings = settings;
         }
 
@@ -64,7 +64,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The file data
         /// </summary>
-        public OpenSpaceCntFile FileData { get; }
+        public OpenSpaceCntFileEntry FileEntry { get; }
 
         /// <summary>
         /// The file name
@@ -98,11 +98,11 @@ namespace RayCarrot.RCP.Metro
             Resources.Archive_CNT_FileInfo, 
             Directory, 
             Width, Height, 
-            ByteSize.FromBytes(FileData.Size), 
-            FileData.Unknown1 == 0,
-            FileData.FileXORKey.Any(x => x != 0), 
+            ByteSize.FromBytes(FileEntry.Size), 
+            FileEntry.Unknown1 == 0,
+            FileEntry.FileXORKey.Any(x => x != 0), 
             IsTransparent, 
-            FileData.Pointer, 
+            FileEntry.Pointer, 
             Mipmaps);
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The contents of the file</returns>
         public byte[] GetFileBytes(Stream archiveFileStream)
         {
-            return FileData.GetFileBytes(archiveFileStream);
+            return FileEntry.GetFileBytes(archiveFileStream);
         }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace RayCarrot.RCP.Metro
             Settings.DeserializeMipmaps = deserializeMipmap;
 
             // Get the content
-            return FileData.GetFileContent(fileBytes, Settings);
+            return FileEntry.GetFileContent(fileBytes, Settings);
         }
 
         /// <summary>
@@ -346,7 +346,7 @@ namespace RayCarrot.RCP.Metro
                     fileSteam.Position--;
 
                     // Overwrite the byte with the encrypted version
-                    fileSteam.WriteByte((byte)(b ^ FileData.FileXORKey[i % 4]));
+                    fileSteam.WriteByte((byte)(b ^ FileEntry.FileXORKey[i % 4]));
                 }
             }
 

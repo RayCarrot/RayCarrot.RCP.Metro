@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+// ReSharper disable StringLiteralTypo
 
 namespace RayCarrot.RCP.Metro
 {
@@ -125,7 +126,7 @@ namespace RayCarrot.RCP.Metro
             foreach (var patchGroup in GetPatches.GroupBy(x => x.FileName))
             {
                 // Get the file
-                var file = ipk.Files.FindItem(x => x.FileName == patchGroup.Key);
+                var file = ipk.Files.FindItem(x => x.Path.FileName == patchGroup.Key);
 
                 // Make sure we found the file
                 if (file == null)
@@ -139,7 +140,7 @@ namespace RayCarrot.RCP.Metro
                 foreach (Patch patch in patchGroup)
                 {
                     // Get the offset of the byte in the file to change
-                    yield return new PatchInfo(patch, ipk.BaseOffset + file.Offset + patch.FileOffset);
+                    yield return new PatchInfo(patch, (long)(ipk.BaseOffset + file.Offsets.First() + (uint)patch.FileOffset));
                 }
             }
         }

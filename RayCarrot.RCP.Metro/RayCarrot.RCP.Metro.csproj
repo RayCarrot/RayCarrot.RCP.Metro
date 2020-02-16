@@ -990,6 +990,7 @@
     <None Include="Files\Rayman1\RAYMAN.CFG" />
     <None Include="Files\Rayman2\R2_Sna_Drm_Offsets.json" />
     <None Include="Files\Rayman2\ubi.ini" />
+    <None Include="Files\RaymanOrigins\RO_LevelConfig.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -1131,7 +1132,7 @@
     <Resource Include="Img\GameIcons\RabbidsCoding.png" />
     <Resource Include="Img\GameIcons\RaymanActivityCenter.png" />
     <Resource Include="Img\GameIcons\RaymanRavingRabbidsActivityCenter.png" />
-    <Resource Include="Img\ProgressionIcons\Trophy.png" />
+    <Resource Include="Img\ProgressionIcons\RO_Trophy.png" />
     <Resource Include="Img\GameIcons\TheDarkMagiciansReignofTerror.png" />
     <Resource Include="Img\GameIcons\PrintStudio.png" />
     <Resource Include="Img\GameIcons\GloboxMoment.png" />

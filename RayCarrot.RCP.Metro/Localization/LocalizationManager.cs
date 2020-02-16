@@ -111,8 +111,8 @@ namespace RayCarrot.RCP.Metro
                 Resources.Culture = ci;
 
                 // Update the current thread cultures
-                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture = ci;
-
+                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = ci;
+                
                 // Set the framework culture
                 RCFCore.Data.CurrentCulture = ci;
 

@@ -4,9 +4,13 @@
 • Updated the UbiRay utility to patch the displayed character name and description (the patch needs to be re-applied for this to update)
 
 Other changes:
+• Fixes and cleanup for reading IPK archive files. Files with multiple offsets are now supported.
+• IPK files with a compressed memory block can no longer be opened in the Archive Explorer (support will be added for these in a coming update)
+• Batch importing in the Archive Explorer will now recognize file names with their original file extensions (such as .tga.ckd)
 • Dialog windows will no longer show in the task bar or application switcher as separate windows
 • Replaced the game installer logos with higher quality images, downscaled to the displayed size
 • When selecting files for converter utilities it now defaults to the most relevant directory rather than the game install directory
+• Minor localization fixes and cleanup
 
 
 -----   Version 9.3.0 - February 10, 2020   -----

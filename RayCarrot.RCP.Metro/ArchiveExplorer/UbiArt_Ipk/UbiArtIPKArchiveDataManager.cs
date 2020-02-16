@@ -67,16 +67,16 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogInformationSource($"Read IPK file ({data.Version}) with {data.FilesCount} files");
 
             // Helper method for getting the archive file data
-            IArchiveFileData GetFileData(UbiArtIPKFile file)
+            IArchiveFileData GetFileData(UbiArtIPKFileEntry file)
             {
-                if (file.GetFileExtensions().Any(x => x == ".png" || x == ".tga"))
+                if (file.Path.GetFileExtensions().Any(x => x == ".png" || x == ".tga"))
                     return new UbiArtIPKArchiveImageFileData(file, Settings, data.BaseOffset);
                 else
                     return new UbiArtIPKArchiveFileData(file, Settings, data.BaseOffset);
             }
 
             // Add the directories to the collection
-            foreach (var file in data.Files.GroupBy(x => x.DirectoryPath))
+            foreach (var file in data.Files.GroupBy(x => x.Path.DirectoryPath))
             {
                 // Return each directory with the available files, including the root directory
                 yield return new ArchiveDirectory(file.Key, file.Select(GetFileData).ToArray());
@@ -100,16 +100,16 @@ namespace RayCarrot.RCP.Metro
             var data = UbiArtIpkData.GetSerializer(Settings).Deserialize(archiveFileStream);
 
             // Order files by path
-            var allFiles = files.Cast<UbiArtIPKArchiveFileData>().ToDictionary(x => x.FileData.FullPath);
+            var allFiles = files.Cast<UbiArtIPKArchiveFileData>().ToDictionary(x => x.FileEntry.Path.FullPath);
 
             // Create a temporary directory to load the modified files into
             using var tempDir = new TempDirectory(true);
 
             // Create the file generator
-            data.FileGenerator = new ArchiveFileGenerator();
+            var fileGenerator = new ArchiveFileGenerator();
 
             // The current pointer position
-            long currentOffset = 0;
+            ulong currentOffset = 0;
 
             // Handle each file
             foreach (var file in data.Files)
@@ -117,7 +117,7 @@ namespace RayCarrot.RCP.Metro
                 // NOTE: The order which the files get placed is different from how the IPK was originally packed. This is easily fixed looping the files ordered by their offset value. This is however not needed as the game reads them fine still.
 
                 // Get the file
-                var existingFile = allFiles.TryGetValue(file.FullPath);
+                var existingFile = allFiles.TryGetValue(file.Path.FullPath);
 
                 // Check if the file is one of the modified files
                 if (existingFile.PendingImportTempPath.FileExists)
@@ -125,10 +125,10 @@ namespace RayCarrot.RCP.Metro
                     RCFCore.Logger?.LogTraceSource($"{existingFile.FileName} as been modified");
 
                     // Get the temporary file path without disposing it as it gets removed from the directory
-                    var tempFilePath = (tempDir.TempPath + file.FileName).GetNonExistingFileName();
+                    var tempFilePath = (tempDir.TempPath + file.Path.FileName).GetNonExistingFileName();
 
                     // Remove the file from the dictionary
-                    allFiles.Remove(file.FullPath);
+                    allFiles.Remove(file.Path.FullPath);
 
                     // Move the file
                     RCFRCP.File.MoveFile(existingFile.PendingImportTempPath, tempFilePath, true);
@@ -163,39 +163,49 @@ namespace RayCarrot.RCP.Metro
                         File.WriteAllBytes(tempFilePath, compressedBytes);
 
                         // Set the file size
-                        file.Size = bytes.Length;
+                        file.Size = (uint)bytes.Length;
 
                         // Set the compressed file size
-                        file.CompressedSize = compressedBytes.Length;
+                        file.CompressedSize = (uint)compressedBytes.Length;
                     }
                     else
                     {
                         // Set the file size
-                        file.Size = (int)tempFilePath.GetSize().Bytes;
+                        file.Size = (uint)tempFilePath.GetSize().Bytes;
                     }
 
                     // Add to the generator
-                    data.FileGenerator.Add(file.FullPath, () => File.ReadAllBytes(tempFilePath));
+                    fileGenerator.Add(file.Path.FullPath, () => File.ReadAllBytes(tempFilePath));
                 }
                 // Use the original file without decompressing it
                 else
                 {
                     // Add to the generator
-                    data.FileGenerator.Add(file.FullPath, () => existingFile.FileData.GetFileBytes(archiveFileStream, data.BaseOffset, Settings, false));
+                    fileGenerator.Add(file.Path.FullPath, () => existingFile.FileEntry.GetFileBytes(archiveFileStream, data.BaseOffset, Settings, false));
                 }
 
-                // Set the pointer
-                file.Offset = currentOffset;
+                // Reset the offset array to always contain 1 item
+                file.Offsets = new ulong[]
+                {
+                    // Set the offset
+                    currentOffset
+                };
+
+                // Set the count
+                file.OffsetCount = 1;
 
                 // Increase by the file size
                 currentOffset += file.ArchiveSize;
             }
 
+            // Set the base offset
+            data.BaseOffset = data.GetHeaderSize(Settings);
+
             // Serialize the data
             UbiArtIpkData.GetSerializer(Settings).Serialize(outputFileStream, data);
 
-            // Clear the generator
-            data.FileGenerator.Clear();
+            // Write the files
+            data.WriteArchiveContent(outputFileStream, fileGenerator);
 
             RCFCore.Logger?.LogInformationSource($"The IPK archive has been repacked");
         }

@@ -143,44 +143,47 @@ namespace RayCarrot.RCP.Metro {
         /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;Bast_10.sna&quot;: [
-        ///    1228515,
-        ///    1233843
+        ///    11665,
+        ///    12369
         ///  ],
         ///  &quot;Bast_20.sna&quot;: [
-        ///    1025823,
-        ///    1031151
+        ///    17265,
+        ///    17969
         ///  ],
         ///  &quot;Boat02.sna&quot;: [
-        ///    742395,
-        ///    746115
+        ///    9185,
+        ///    9877
         ///  ],
         ///  &quot;Cask_10.sna&quot;: [
-        ///    725591,
-        ///    730919
+        ///    7849,
+        ///    8553
         ///  ],
         ///  &quot;Chase_10.sna&quot;: [
-        ///    963751,
-        ///    969079
+        ///    28909,
+        ///    29613
         ///  ],
         ///  &quot;Earth_10.sna&quot;: [
-        ///    942267
+        ///    14453
         ///  ],
         ///  &quot;Earth_20.sna&quot;: [
-        ///    553827
+        ///    12553
         ///  ],
         ///  &quot;Earth_30.sna&quot;: [
-        ///    592195
+        ///    13965
         ///  ],
         ///  &quot;GLob_10.sna&quot;: [
-        ///    915843,
-        ///    921171
+        ///    18745,
+        ///    19449
         ///  ],
         ///  &quot;GLob_20.sna&quot;: [
-        ///    880327,
-        ///    885655
+        ///    27597,
+        ///    28301
         ///  ],
         ///  &quot;GLob_30.sna&quot;: [
-        ///    302315, [rest of string was truncated]&quot;;.
+        ///    4437,
+        ///    5141
+        ///  ],
+        ///  &quot;Helic_ [rest of string was truncated]&quot;;.
         /// </summary>
         public static string R2_Sna_Drm_Offsets {
             get {
@@ -235,6 +238,44 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;Levels&quot;: [
+        ///    {
+        ///      &quot;Time1&quot;: -1,
+        ///      &quot;Time2&quot;: -1,
+        ///      &quot;Tag&quot;: 611478250,
+        ///      &quot;Type&quot;: 2085021599
+        ///    },
+        ///    {
+        ///      &quot;Time1&quot;: -1,
+        ///      &quot;Time2&quot;: -1,
+        ///      &quot;Tag&quot;: 823271787,
+        ///      &quot;Type&quot;: 2085021599
+        ///    },
+        ///    {
+        ///      &quot;Time1&quot;: -1,
+        ///      &quot;Time2&quot;: -1,
+        ///      &quot;Tag&quot;: 1734041925,
+        ///      &quot;Type&quot;: 2085021599
+        ///    },
+        ///    {
+        ///      &quot;Time1&quot;: -1,
+        ///      &quot;Time2&quot;: -1,
+        ///      &quot;Tag&quot;: 3706178635,
+        ///      &quot;Type&quot;: 2085021599
+        ///    },
+        ///    {
+        ///      &quot;Time1&quot;: -1,
+        ///      &quot;Time2&quot;: -1,
+        ///      &quot;Tag&quot;: 39791941 [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string RO_LevelConfig {
+            get {
+                return ResourceManager.GetString("RO_LevelConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to cinematic\boss\foodworld\sampledemo_bossfo.isc
         ///cinematic\faery\faeryfree\background.isc
         ///cinematic\faery\faeryfree\fo_faeryfreescene.isc
@@ -281,19 +322,14 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 9.3.0 - February ??, 2020   -----
-        ///• Added the decoder utilities category
-        ///• The Rayman 2 DRM removal patch can now be applied again if already applied without first reverting it
-        ///• Updated libraries
-        ///• Changed the icon for the convert utilities tab
+        ///   Looks up a localized string similar to -----   Version 9.4.0 - February ??, 2020   -----
+        ///• Added the progression tab for Rayman Origins and Legends
+        ///• Added a utility for converting Rayman Legends save files
+        ///• Updated the UbiRay utility to patch the displayed character name and description (the patch needs to be re-applied for this to update)
         ///
-        ///
-        ///-----   Version 9.2.4 - February 2, 2020   -----
-        ///• Added the utility for synchronizing the OpenSpace texture resolution to the game specific utilities sections
-        ///• Changed the order of the Archive Explorer utilities
-        ///
-        ///
-        ///-----   Version 9.2. [rest of string was truncated]&quot;;.
+        ///Other changes:
+        ///• Dialog windows will no longer show in the task bar or application switcher as separate windows
+        ///• Batch importing in the Archive Explorer will now recognize file names with their orig [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

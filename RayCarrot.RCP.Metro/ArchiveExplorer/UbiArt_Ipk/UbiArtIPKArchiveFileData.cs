@@ -1,12 +1,12 @@
 ﻿using ByteSizeLib;
+using MahApps.Metro.IconPacks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
+using RayCarrot.Rayman.UbiArt;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
-using MahApps.Metro.IconPacks;
-using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -20,16 +20,16 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="fileData">The file data</param>
+        /// <param name="fileEntry">The file data</param>
         /// <param name="settings">The settings when serializing the data</param>
         /// <param name="baseOffset">The base offset to use when reading the files</param>
-        public UbiArtIPKArchiveFileData(UbiArtIPKFile fileData, UbiArtSettings settings, uint baseOffset)
+        public UbiArtIPKArchiveFileData(UbiArtIPKFileEntry fileEntry, UbiArtSettings settings, uint baseOffset)
         {
             // Get the file properties
-            Directory = fileData.DirectoryPath;
-            FileExtension = new FileExtension(fileData.GetFileExtensions());
-            FileName = fileData.FileName;
-            FileData = fileData;
+            Directory = fileEntry.Path.DirectoryPath;
+            FileExtension = new FileExtension(fileEntry.Path.GetFileExtensions());
+            FileName = fileEntry.Path.FileName;
+            FileEntry = fileEntry;
             BaseOffset = baseOffset;
             Settings = settings;
         }
@@ -60,7 +60,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The file data
         /// </summary>
-        public UbiArtIPKFile FileData { get; }
+        public UbiArtIPKFileEntry FileEntry { get; }
 
         /// <summary>
         /// The file name
@@ -73,10 +73,10 @@ namespace RayCarrot.RCP.Metro
         public virtual string FileDisplayInfo => String.Format(
             Resources.Archive_IPK_FileInfo,
             Directory,
-            FileData.IsCompressed,
-            ByteSize.FromBytes(FileData.Size),
-            ByteSize.FromBytes(FileData.CompressedSize),
-            FileData.Offset + BaseOffset);
+            FileEntry.IsCompressed,
+            ByteSize.FromBytes(FileEntry.Size),
+            ByteSize.FromBytes(FileEntry.CompressedSize),
+            FileEntry.Offsets.First() + BaseOffset);
 
         /// <summary>
         /// The default icon to use for this file
@@ -134,7 +134,7 @@ namespace RayCarrot.RCP.Metro
         public byte[] GetFileBytes(Stream archiveFileStream)
         {
             // Get the bytes
-            var bytes = FileData.GetFileBytes(archiveFileStream, BaseOffset, Settings);
+            var bytes = FileEntry.GetFileBytes(archiveFileStream, BaseOffset, Settings);
 
             // Initialize the data
             InitializeData(bytes);

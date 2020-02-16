@@ -5,6 +5,7 @@ using RayCarrot.UI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -265,11 +266,19 @@ namespace RayCarrot.RCP.Metro
                                 // Enumerate each file
                                 foreach (var file in dir.Files)
                                 {
+                                    if (file.FileName.Contains("duck_pack_globox_red_001_0"))
+                                    {
+                                        //Debugger.Break();
+                                    }
+
                                     // Get the file directory, relative to the selected directory
                                     FileSystemPath fileDir = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
 
+                                    // Get the base file path
+                                    var baseFilePath = fileDir + new FileSystemPath(file.FileName);
+
                                     // Get the file path, without an extension
-                                    FileSystemPath filePath = fileDir + new FileSystemPath(file.FileName).RemoveFileExtension(true);
+                                    FileSystemPath filePath = baseFilePath.RemoveFileExtension(true);
                                     
                                     if (!fileDir.DirectoryExists)
                                         continue;
@@ -281,6 +290,15 @@ namespace RayCarrot.RCP.Metro
                                     // Get the file bytes
                                     var bytes = file.FileData.GetFileBytes(Archive.ArchiveFileStream);
 
+                                    // Check if the base file exists without changing the extensions
+                                    if (baseFilePath.FileExists)
+                                    {
+                                        // Import the file
+                                        await ImportFile(baseFilePath);
+
+                                        continue;
+                                    }
+
                                     // Attempt to find a file for each supported extension
                                     foreach (var ext in file.FileData.SupportedImportFileExtensions)
                                     {
@@ -291,6 +309,16 @@ namespace RayCarrot.RCP.Metro
                                         if (!fullFilePath.FileExists)
                                             continue;
 
+                                        // Import the file
+                                        await ImportFile(fullFilePath);
+
+                                        // Break the loop
+                                        break;
+                                    }
+
+                                    // Helper method for importing a file
+                                    async Task ImportFile(FileSystemPath fullFilePath)
+                                    {
                                         Archive.SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, file.FileName));
 
                                         // Import the file
@@ -300,9 +328,6 @@ namespace RayCarrot.RCP.Metro
                                             failes = true;
 
                                         imported++;
-
-                                        // Break the loop
-                                        break;
                                     }
                                 }
                             }
