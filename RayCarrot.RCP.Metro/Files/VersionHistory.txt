@@ -1,6 +1,6 @@
 ﻿-----   Version 9.4.0 - February ??, 2020   -----
 • Added the progression tab for Rayman Origins and Legends
-• Added a utility for converting Rayman Legends save files
+• Added utilities for converting Rayman Origins and Legends save files
 • Updated the UbiRay utility to patch the displayed character name and description (the patch needs to be re-applied for this to update)
 • IPK files with multiple offsets and compressed a compressed memory block are now supported
 

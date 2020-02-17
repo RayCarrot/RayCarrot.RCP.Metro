@@ -3328,4 +3328,7 @@ totalTextures</comment>
   <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
     <value>Rayman Legends Save Files</value>
   </data>
+  <data name="Utilities_Converter_ROSaveHeader" xml:space="preserve">
+    <value>Rayman Origins Save Files</value>
+  </data>
 </root>

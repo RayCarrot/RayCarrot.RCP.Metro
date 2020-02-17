@@ -194,6 +194,8 @@
     <Compile Include="Utilities\General\Converter\LOC\LOCConverterUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Converter\R3Save\R3SaveConverterUtility.cs" />
     <Compile Include="Utilities\General\Converter\R3Save\R3SaveConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\Converter\ROSave\ROSaveConverterUtility.cs" />
+    <Compile Include="Utilities\General\Converter\ROSave\ROSaveConverterUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Converter\RLSave\RLSaveConverterUtility.cs" />
     <Compile Include="Utilities\General\Converter\RLSave\RLSaveConverterUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Converter\RJRSave\RJRSaveConverterUtility.cs" />
