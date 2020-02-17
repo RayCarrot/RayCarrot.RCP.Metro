@@ -237,37 +237,22 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Exports the file to the specified path
+        /// Exports the file to the stream in the specified format
         /// </summary>
         /// <param name="fileBytes">The file bytes</param>
-        /// <param name="filePath">The path to export the file to</param>
-        /// <param name="fileFormat">The file extension to use</param>
+        /// <param name="outputStream">The stream to export to</param>
+        /// <param name="format">The file format to use</param>
         /// <returns>The task</returns>
-        public Task ExportFileAsync(byte[] fileBytes, FileSystemPath filePath, string fileFormat)
+        public Task ExportFileAsync(byte[] fileBytes, Stream outputStream, FileExtension format)
         {
-            RCFCore.Logger?.LogInformationSource($"A CNT archive file is being exported as {fileFormat}");
+            // Get the bitmap
+            using var bmp = GetBitmap(fileBytes);
 
-            // Open the file
-            using var file = File.Open(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
+            // Get the format
+            var imgFormat = ImageHelpers.GetImageFormat(format.FileExtensions);
 
-            // Check if the file should be saved as its native format
-            if (fileFormat == ".gf")
-            {
-                // Write to the stream
-                file.Write(fileBytes, 0, fileBytes.Length);
-            }
-            // Convert the file and save
-            else
-            {
-                // Get the bitmap
-                using var bmp = GetBitmap(fileBytes);
-
-                // Get the format
-                var format = ImageHelpers.GetImageFormat(fileFormat);
-
-                // Save the file
-                bmp.Save(file, format);
-            }
+            // Save the file
+            bmp.Save(outputStream, imgFormat);
 
             return Task.CompletedTask;
         }
@@ -308,70 +293,28 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Imports the file from the specified path to the <see cref="PendingImportTempPath"/> path
+        /// Imports the file from the stream to the output
         /// </summary>
         /// <param name="fileBytes">The file bytes</param>
-        /// <param name="filePath">The path of the file to import</param>
-        /// <returns>A value indicating if the file was successfully imported</returns>
-        public Task<bool> ImportFileAsync(byte[] fileBytes, FileSystemPath filePath)
+        /// <param name="inputStream">The input stream to import from</param>
+        /// <param name="outputStream">The destination stream</param>
+        /// <param name="format">The file format to use</param>
+        /// <returns>The task</returns>
+        public Task ImportFileAsync(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format)
         {
-            RCFCore.Logger?.LogInformationSource($"A CNT archive file is being imported as {filePath.FileExtension}");
+            // Load the bitmap
+            using var bmp = new Bitmap(inputStream);
 
-            // Get the temporary file to save to, without disposing it
-            var tempFile = new TempFile(false);
+            // Load the current file
+            var file = GetFileContent(fileBytes, true);
 
-            // Check if the file is in the native format
-            if (filePath.FileExtension.Equals(".gf", StringComparison.InvariantCultureIgnoreCase))
-            {
-                // Copy the file
-                RCFRCP.File.CopyFile(filePath, tempFile.TempPath, true);
-            }
-            // Import as bitmap
-            else
-            {
-                // Load the bitmap
-                using var bmp = new Bitmap(filePath);
+            // Import the bitmap
+            file.ImportFromBitmap(bmp);
 
-                // Load the current file
-                var file = GetFileContent(fileBytes, true);
+            // Serialize the data to get the bytes
+            OpenSpaceGFFile.GetSerializer(Settings).Serialize(outputStream, file);
 
-                // Import the bitmap
-                file.ImportFromBitmap(bmp);
-
-                // Serialize to the file
-                using var stream = File.Open(tempFile.TempPath, FileMode.Create, FileAccess.ReadWrite, FileShare.None);
-                
-                // Serialize the data to get the bytes
-                OpenSpaceGFFile.GetSerializer(Settings).Serialize(stream, file);
-            }
-
-            // Encrypt the file if set to do so
-            if (EncryptFiles)
-            {
-                // Open the file with read/write access
-                using var fileSteam = File.Open(tempFile.TempPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-
-                // Encrypt each byte
-                for (int i = 0; i < fileSteam.Length; i++)
-                {
-                    if ((fileSteam.Length % 4) + i >= fileSteam.Length) 
-                        continue;
-
-                    // Read the byte
-                    var b = fileSteam.ReadByte();
-
-                    // Go back to the same byte as reading advances it forward
-                    fileSteam.Position--;
-
-                    // Overwrite the byte with the encrypted version
-                    fileSteam.WriteByte((byte)(b ^ FileEntry.FileXORKey[i % 4]));
-                }
-            }
-
-            // Set the pending path
-            PendingImportTempPath = tempFile.TempPath;
-
-            return Task.FromResult(true);
+            return Task.CompletedTask;
         }
 
         #endregion

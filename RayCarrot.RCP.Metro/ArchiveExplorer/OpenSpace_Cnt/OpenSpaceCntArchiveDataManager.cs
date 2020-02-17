@@ -157,6 +157,11 @@ namespace RayCarrot.RCP.Metro
 
                         RCFCore.Logger?.LogTraceSource($"The encryption has been removed for {existingFile.FileName}");
                     }
+                    // Otherwise encrypt the file
+                    else
+                    {
+                        throw new NotImplementedException("Encrypting .gf files is currently not supported");
+                    }
 
                     // Add to the generator
                     fileGenerator.Add(file, () => File.ReadAllBytes(tempFilePath));

@@ -31,7 +31,8 @@ namespace RayCarrot.RCP.Metro
             Files = new ObservableCollection<ArchiveFileViewModel>();
 
             // Create commands
-            ExportCommand = new AsyncRelayCommand(ExportAsync);
+            ExportCommand = new AsyncRelayCommand(async () => await ExportAsync(false));
+            ExtractCommand = new AsyncRelayCommand(async () => await ExportAsync(true));
             ImportCommand = new AsyncRelayCommand(ImportAsync);
 
             // Enable collection synchronization
@@ -54,7 +55,8 @@ namespace RayCarrot.RCP.Metro
             Files = new ObservableCollection<ArchiveFileViewModel>();
 
             // Create commands
-            ExportCommand = new AsyncRelayCommand(ExportAsync);
+            ExportCommand = new AsyncRelayCommand(async () => await ExportAsync(false));
+            ExtractCommand = new AsyncRelayCommand(async () => await ExportAsync(true));
             ImportCommand = new AsyncRelayCommand(ImportAsync);
         }
 
@@ -103,6 +105,8 @@ namespace RayCarrot.RCP.Metro
 
         public ICommand ExportCommand { get; }
 
+        public ICommand ExtractCommand { get; }
+
         public ICommand ImportCommand { get; }
 
         #endregion
@@ -129,8 +133,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Exports the directory
         /// </summary>
+        /// <param name="forceNativeFormat">Indicates if the native format should be forced</param>
         /// <returns>The task</returns>
-        public async Task ExportAsync()
+        public async Task ExportAsync(bool forceNativeFormat)
         {
             // Run as a load operation
             using (Archive.LoadOperation.Run())
@@ -151,7 +156,7 @@ namespace RayCarrot.RCP.Metro
                             return;
 
                         // Make sure the directory doesn't exist
-                        if ((result.SelectedDirectory + DisplayName).DirectoryExists)
+                        if ((result.SelectedDirectory + DisplayName).Exists)
                         {
                             await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Archive_ExportDirectoryConflict, DisplayName), MessageType.Error);
 
@@ -159,7 +164,7 @@ namespace RayCarrot.RCP.Metro
                         }
 
                         // Save the selected the format for each collection
-                        Dictionary<string, string> selectedFormats = new Dictionary<string, string>();
+                        Dictionary<string, FileExtension> selectedFormats = new Dictionary<string, FileExtension>();
 
                         try
                         {
@@ -182,7 +187,7 @@ namespace RayCarrot.RCP.Metro
                                     var bytes = data.GetFileBytes(file.ArchiveFileStream, Archive.ArchiveFileGenerator);
 
                                     // Check if the format has not been selected
-                                    if (!selectedFormats.ContainsKey(file.FileData.FileFormatName))
+                                    if (!forceNativeFormat && !selectedFormats.ContainsKey(data.FileFormatName))
                                     {
                                         // Get the available extensions
                                         var ext = data.SupportedExportFileExtensions.Select(x => x.FileExtensions).ToArray();
@@ -195,16 +200,19 @@ namespace RayCarrot.RCP.Metro
                                             extResult.SelectedFileFormat = ext.First();
 
                                         // Add the selected format
-                                        selectedFormats.Add(data.FileFormatName, extResult.SelectedFileFormat);
+                                        selectedFormats.Add(data.FileFormatName, new FileExtension(extResult.SelectedFileFormat));
                                     }
 
                                     // Get the selected format
-                                    var format = selectedFormats[file.FileData.FileFormatName];
+                                    var format = forceNativeFormat ? file.NativeFileExtension : selectedFormats[data.FileFormatName];
+
+                                    // Get the final file name to use when exporting
+                                    FileSystemPath exportFileName = forceNativeFormat ? new FileSystemPath(file.FileName) : new FileSystemPath(file.FileName).ChangeFileExtension(format.FileExtensions, true);
 
                                     Archive.SetDisplayStatus(String.Format(Resources.Archive_ExportingFileStatus, file.FileName));
 
                                     // Save the file
-                                    await file.FileData.ExportFileAsync(bytes, path + (new FileSystemPath(file.FileName).ChangeFileExtension(format, true)), format);
+                                    await file.ExportFileAsync(path + exportFileName, bytes, format);
                                 }
                             }
                         }
@@ -254,9 +262,6 @@ namespace RayCarrot.RCP.Metro
                         // Keep track of the number of files getting imported
                         var imported = 0;
 
-                        // Keep track of if any files were not imported
-                        var failes = false;
-
                         try
                         {
                             // Enumerate each directory view model
@@ -265,11 +270,6 @@ namespace RayCarrot.RCP.Metro
                                 // Enumerate each file
                                 foreach (var file in dir.Files)
                                 {
-                                    if (file.FileName.Contains("duck_pack_globox_red_001_0"))
-                                    {
-                                        //Debugger.Break();
-                                    }
-
                                     // Get the file directory, relative to the selected directory
                                     FileSystemPath fileDir = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
 
@@ -321,10 +321,7 @@ namespace RayCarrot.RCP.Metro
                                         Archive.SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, file.FileName));
 
                                         // Import the file
-                                        var succeeded = await file.FileData.ImportFileAsync(bytes, fullFilePath);
-
-                                        if (!succeeded)
-                                            failes = true;
+                                        await file.ImportFileAsync(fullFilePath, bytes);
 
                                         imported++;
                                     }
@@ -357,10 +354,6 @@ namespace RayCarrot.RCP.Metro
 
                         if (!repackSucceeded)
                             return;
-
-                        // Check if any failed to import
-                        if (failes)
-                            await RCFUI.MessageUI.DisplayMessageAsync(Resources.Archive_ImportFailsError, MessageType.Warning);
 
                         await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ImportFilesSuccess);
                     });

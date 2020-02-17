@@ -7356,6 +7356,258 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Once upon a Time.
+        /// </summary>
+        public static string RL_LevelName_1_1 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_1_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creepy Castle.
+        /// </summary>
+        public static string RL_LevelName_1_2 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_1_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enchanted Forest.
+        /// </summary>
+        public static string RL_LevelName_1_3 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_1_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ropes Course.
+        /// </summary>
+        public static string RL_LevelName_1_4 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_1_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quick Sand.
+        /// </summary>
+        public static string RL_LevelName_1_5 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_1_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How to Shoot your Dragon.
+        /// </summary>
+        public static string RL_LevelName_1_6 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_1_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ray and the Beanstalk.
+        /// </summary>
+        public static string RL_LevelName_2_1 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_2_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Winds of Strange.
+        /// </summary>
+        public static string RL_LevelName_2_2 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_2_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Castle in the Clouds.
+        /// </summary>
+        public static string RL_LevelName_2_3 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_2_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Altitude Quickness.
+        /// </summary>
+        public static string RL_LevelName_2_4 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_2_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When Toads Fly.
+        /// </summary>
+        public static string RL_LevelName_2_5 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_2_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What the Duck?.
+        /// </summary>
+        public static string RL_LevelName_3_1 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_3_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spoiled Rotten.
+        /// </summary>
+        public static string RL_LevelName_3_2 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_3_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I&apos;ve Got a Filling.
+        /// </summary>
+        public static string RL_LevelName_3_3 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_3_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snakes on a Cake.
+        /// </summary>
+        public static string RL_LevelName_3_4 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_3_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lucha Libre Get Away.
+        /// </summary>
+        public static string RL_LevelName_3_5 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_3_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Mysterious Inflatable Island.
+        /// </summary>
+        public static string RL_LevelName_4_1 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_4_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Deadly Lights.
+        /// </summary>
+        public static string RL_LevelName_4_2 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_4_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mansion of the Deep.
+        /// </summary>
+        public static string RL_LevelName_4_3 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_4_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Infiltration Station.
+        /// </summary>
+        public static string RL_LevelName_4_4 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_4_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elevator Ambush.
+        /// </summary>
+        public static string RL_LevelName_4_5 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_4_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There&apos;s Always a Bigger Fish.
+        /// </summary>
+        public static string RL_LevelName_4_6 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_4_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shields Up... and Down.
+        /// </summary>
+        public static string RL_LevelName_5_1 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_5_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Dark Creatures Rise.
+        /// </summary>
+        public static string RL_LevelName_5_2 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_5_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Amazing Maze.
+        /// </summary>
+        public static string RL_LevelName_5_3 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_5_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Great Lava Pursuit.
+        /// </summary>
+        public static string RL_LevelName_5_4 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_5_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swarmed and Dangerous.
+        /// </summary>
+        public static string RL_LevelName_5_5 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_5_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hell Breaks Loose.
+        /// </summary>
+        public static string RL_LevelName_5_6 {
+            get {
+                return ResourceManager.GetString("RL_LevelName_5_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This utility can convert a localization file of type .loc8 which is used in Rayman Legends, Rayman Adventures and Rayman Mini. Converting to a .JSON file will allow the files to be edited freely. When converting back you need to select an existing .loc8 file to import the changes into..
         /// </summary>
         public static string RLU_LocalizationConverterHeaderInfo {

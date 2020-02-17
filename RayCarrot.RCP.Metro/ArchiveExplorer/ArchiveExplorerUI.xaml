@@ -46,6 +46,12 @@
                                                         Command="{Binding Path=ImportCommand}"
                                                         IconKind="Import" />
 
+                                    <Separator />
+
+                                    <local:MenuItemIcon Header="{Resx Archive_Extract}"
+                                                        Command="{Binding Path=ExtractCommand}"
+                                                        IconKind="ApplicationExport" />
+
                                 </ContextMenu>
                             </Setter.Value>
                         </Setter>

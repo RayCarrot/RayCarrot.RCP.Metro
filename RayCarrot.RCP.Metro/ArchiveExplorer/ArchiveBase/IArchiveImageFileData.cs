@@ -17,6 +17,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The image as an image source</returns>
         ImageSource GetThumbnail(byte[] fileBytes, int width);
 
+        // TODO: Update this to new system with streams etc.
         /// <summary>
         /// Exports the mipmaps from the file to the specified path
         /// </summary>

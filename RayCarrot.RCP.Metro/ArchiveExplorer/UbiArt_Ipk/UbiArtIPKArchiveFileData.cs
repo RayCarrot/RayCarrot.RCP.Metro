@@ -157,43 +157,32 @@ namespace RayCarrot.RCP.Metro
         public virtual void InitializeData(byte[] fileBytes) { }
 
         /// <summary>
-        /// Exports the file to the specified path
+        /// Exports the file to the stream in the specified format
         /// </summary>
         /// <param name="fileBytes">The file bytes</param>
-        /// <param name="filePath">The path to export the file to</param>
-        /// <param name="fileFormat">The file extension to use</param>
+        /// <param name="outputStream">The stream to export to</param>
+        /// <param name="format">The file format to use</param>
         /// <returns>The task</returns>
-        public virtual Task ExportFileAsync(byte[] fileBytes, FileSystemPath filePath, string fileFormat)
+        public virtual Task ExportFileAsync(byte[] fileBytes, Stream outputStream, FileExtension format)
         {
-            RCFCore.Logger?.LogInformationSource($"An IPK archive file is being exported as {fileFormat}");
-
-            // Open the file
-            using var file = File.Open(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
-
             // Write to the stream
-            file.Write(fileBytes, 0, fileBytes.Length);
+            outputStream.Write(fileBytes);
 
             return Task.CompletedTask;
         }
 
         /// <summary>
-        /// Imports the file from the specified path to the <see cref="PendingImportTempPath"/> path
+        /// Imports the file from the stream to the output
         /// </summary>
         /// <param name="fileBytes">The file bytes</param>
-        /// <param name="filePath">The path of the file to import</param>
-        /// <returns>A value indicating if the file was successfully imported</returns>
-        public virtual Task<bool> ImportFileAsync(byte[] fileBytes, FileSystemPath filePath)
+        /// <param name="inputStream">The input stream to import from</param>
+        /// <param name="outputStream">The destination stream</param>
+        /// <param name="format">The file format to use</param>
+        /// <returns>The task</returns>
+        public virtual Task ImportFileAsync(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format)
         {
-            RCFCore.Logger?.LogInformationSource($"An IPK archive file is being imported as {filePath.FileExtension}");
-
-            // Get the temporary file to save to, without disposing it
-            var tempFile = new TempFile(false);
-
             // Copy the file
-            RCFRCP.File.CopyFile(filePath, tempFile.TempPath, true);
-
-            // Set the pending path
-            PendingImportTempPath = tempFile.TempPath;
+            inputStream.CopyTo(outputStream);
 
             return Task.FromResult(true);
         }

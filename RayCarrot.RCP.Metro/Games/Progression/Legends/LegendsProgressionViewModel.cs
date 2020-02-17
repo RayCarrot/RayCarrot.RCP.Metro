@@ -31,123 +31,122 @@ namespace RayCarrot.RCP.Metro
 
         #region Protected Properties
 
-        // TODO: Localize level names
         /// <summary>
         /// Gets the level ID's for each level
         /// </summary>
-        protected Dictionary<uint, LegendsInvasion> GetLevelIDs => new Dictionary<uint, LegendsInvasion>()
+        protected Dictionary<uint, string> GetLevelIDs => new Dictionary<uint, string>()
         {
             {
                 4068998406,
-                new LegendsInvasion("1-1", new LocalizedString(() => "Once upon a Time"))
+                "1-1"
             },
             {
                 962968486,
-                new LegendsInvasion("1-2", new LocalizedString(() => "Creepy Castle"))
+                "1-2"
             },
             {
                 2917370473,
-                new LegendsInvasion("1-3", new LocalizedString(() => "Enchanted Forest"))
+                "1-3"
             },
             {
                 2930639107,
-                new LegendsInvasion("1-4", new LocalizedString(() => "Ropes Course"))
+                "1-4"
             },
             {
                 1761301024,
-                new LegendsInvasion("1-5", new LocalizedString(() => "Quick Sand"))
+                "1-5"
             },
             {
                 3890960063,
-                new LegendsInvasion("1-6", new LocalizedString(() => "How to Shoot your Dragon"))
+                "1-6"
             },
             {
                 1461226270,
-                new LegendsInvasion("2-1", new LocalizedString(() => "Ray and the Beanstalk"))
+                "2-1"
             },
             {
                 60047882,
-                new LegendsInvasion("2-2", new LocalizedString(() => "The Winds of Strange"))
+                "2-2"
             },
             {
                 1069670671,
-                new LegendsInvasion("2-3", new LocalizedString(() => "Castle in the Clouds"))
+                "2-3"
             },
             {
                 4107829653,
-                new LegendsInvasion("2-4", new LocalizedString(() => "Altitude Quickness"))
+                "2-4"
             },
             {
                 1997164622,
-                new LegendsInvasion("2-5", new LocalizedString(() => "When Toads Fly"))
+                "2-5"
             },
             {
                 2720538894,
-                new LegendsInvasion("3-1", new LocalizedString(() => "What the Duck?"))
+                "3-1"
             },
             {
                 1753149557,
-                new LegendsInvasion("3-2", new LocalizedString(() => "Spoiled Rotten"))
+                "3-2"
             },
             {
                 3767660219,
-                new LegendsInvasion("3-3", new LocalizedString(() => "I've Got a Filling"))
+                "3-3"
             },
             {
                 1403748227,
-                new LegendsInvasion("3-4", new LocalizedString(() => "Snakes on a Cake"))
+                "3-4"
             },
             {
                 3610402831,
-                new LegendsInvasion("3-5", new LocalizedString(() => "Lucha Libre Get Away"))
+                "3-5"
             },
             {
                 3244269653,
-                new LegendsInvasion("4-1", new LocalizedString(() => "The Mysterious Inflatable Island"))
+                "4-1"
             },
             {
                 2523282745,
-                new LegendsInvasion("4-2", new LocalizedString(() => "The Deadly Lights"))
+                "4-2"
             },
             {
                 193580080,
-                new LegendsInvasion("4-3", new LocalizedString(() => "Mansion of the Deep"))
+                "4-3"
             },
             {
                 80857532,
-                new LegendsInvasion("4-4", new LocalizedString(() => "Infiltration Station"))
+                "4-4"
             },
             {
                 532378801,
-                new LegendsInvasion("4-5", new LocalizedString(() => "Elevator Ambush"))
+                "4-5"
             },
             {
                 304308657,
-                new LegendsInvasion("4-6", new LocalizedString(() => "There's Always a Bigger Fish"))
+                "4-6"
             },
             {
                 3703754575,
-                new LegendsInvasion("5-1", new LocalizedString(() => "Shields Up... and Down"))
+                "5-1"
             },
             {
                 576210007,
-                new LegendsInvasion("5-2", new LocalizedString(() => "The Dark Creatures Rise"))
+                "5-2"
             },
             {
                 897150152,
-                new LegendsInvasion("5-3", new LocalizedString(() => "The Amazing Maze"))
+                "5-3"
             },
             {
                 2207233233,
-                new LegendsInvasion("5-4", new LocalizedString(() => "The Great Lava Pursuit"))
+                "5-4"
             },
             {
                 941235443,
-                new LegendsInvasion("5-5", new LocalizedString(() => "Swarmed and Dangerous"))
+                "5-5"
             },
             {
                 3600674311,
-                new LegendsInvasion("5-6", new LocalizedString(() => "Hell Breaks Loose"))
+                "5-6"
             },
         };
 
@@ -214,9 +213,9 @@ namespace RayCarrot.RCP.Metro
                 Where(x => x.BestTime > 0).
                 Select(x => (lvlIds[x.Id.ID], x.BestTime)).
                 Select(x => new ProgressionInfoItemViewModel(
-                    Enum.Parse(typeof(ProgressionIcons), $"RL_Inv_{x.Item1.ShortName.Replace("-", "_")}").CastTo<ProgressionIcons>(), 
-                    new LocalizedString(() => $"{x.Item1.ShortName}: {x.BestTime:0.000}"), 
-                    x.Item1.LongName)).
+                    Enum.Parse(typeof(ProgressionIcons), $"RL_Inv_{x.Item1.Replace("-", "_")}").CastTo<ProgressionIcons>(), 
+                    new LocalizedString(() => $"{x.Item1}: {x.BestTime:0.000}"), 
+                    new LocalizedString(() => Resources.ResourceManager.GetString($"RL_LevelName_{x.Item1.Replace("-", "_")}")))).
                 OrderBy(x => x.Content.Value));
 
             RCFCore.Logger?.LogInformationSource($"Invasion progress info has been set");
@@ -241,37 +240,6 @@ namespace RayCarrot.RCP.Metro
         {
             // Read and set slot data
             ProgressionSlots.AddRange(Directory.GetDirectories(SaveDir).Select(x => new FileSystemPath(x) + "RaymanSave_0").Select(GetProgressionSlotViewModel));
-        }
-
-        #endregion
-
-        #region Classes
-
-        /// <summary>
-        /// A Rayman Legends invasion
-        /// </summary>
-        protected class LegendsInvasion
-        {
-            /// <summary>
-            /// Default constructor
-            /// </summary>
-            /// <param name="shortName">The short level name</param>
-            /// <param name="longName">The long, localized, level name</param>
-            public LegendsInvasion(string shortName, LocalizedString longName)
-            {
-                ShortName = shortName;
-                LongName = longName;
-            }
-
-            /// <summary>
-            /// The short level name
-            /// </summary>
-            public string ShortName { get; }
-
-            /// <summary>
-            /// The long, localized, level name
-            /// </summary>
-            public LocalizedString LongName { get; }
         }
 
         #endregion

@@ -2,6 +2,7 @@
 • Added the progression tab for Rayman Origins and Legends
 • Added utilities for converting Rayman Origins and Legends save files
 • Updated the UbiRay utility to patch the displayed character name and description (the patch needs to be re-applied for this to update)
+• Added the option to extract folders from the Archive Explorer (this exports the contents without modifying the files)
 • IPK files with multiple offsets and compressed a compressed memory block are now supported
 
 Other changes:
@@ -9,7 +10,6 @@ Other changes:
 • Dialog windows will no longer show in the task bar or application switcher as separate windows
 • Replaced the game installer logos with higher quality images, downscaled to the displayed size
 • When selecting files for converter utilities it now defaults to the most relevant directory rather than the game install directory
-• Minor localization fixes and cleanup
 
 
 -----   Version 9.3.0 - February 10, 2020   -----

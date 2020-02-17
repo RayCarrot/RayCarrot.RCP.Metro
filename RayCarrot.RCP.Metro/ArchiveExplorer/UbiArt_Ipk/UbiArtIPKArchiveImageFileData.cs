@@ -39,14 +39,14 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="fileExtension">The file extension to check</param>
         /// <returns>True if it's the same</returns>
-        protected bool IsNativeFormat(string fileExtension) => fileExtension.Equals(FileExtension.PrimaryFileExtension, StringComparison.InvariantCultureIgnoreCase);
+        protected bool IsNativeFormat(FileExtension fileExtension) => fileExtension == FileExtension;
         
         /// <summary>
         /// Indicates if the file extension is the same as the TEX extension
         /// </summary>
         /// <param name="fileExtension">The file extension to check</param>
         /// <returns>True if it's the same</returns>
-        protected bool IsTEXFormat(string fileExtension) => fileExtension.Equals(TEXFileExtension, StringComparison.InvariantCultureIgnoreCase);
+        protected bool IsTEXFormat(FileExtension fileExtension) => fileExtension == TEXFileExtension;
 
         /// <summary>
         /// Gets the .tex file data
@@ -160,8 +160,8 @@ namespace RayCarrot.RCP.Metro
 
             if (UsesTexWrapper)
             {
-                supportedImportFileExtensions.Add(new FileExtension(TEXFileExtension));
-                supportedExportFileExtensions.Add(new FileExtension(TEXFileExtension));
+                supportedImportFileExtensions.Add(TEXFileExtension);
+                supportedExportFileExtensions.Add(TEXFileExtension);
             }
 
             // Set the supported extensions
@@ -252,48 +252,40 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Exports the file to the specified path
+        /// Exports the file to the stream in the specified format
         /// </summary>
         /// <param name="fileBytes">The file bytes</param>
-        /// <param name="filePath">The path to export the file to</param>
-        /// <param name="fileFormat">The file extension to use</param>
+        /// <param name="outputStream">The stream to export to</param>
+        /// <param name="format">The file format to use</param>
         /// <returns>The task</returns>
-        public override Task ExportFileAsync(byte[] fileBytes, FileSystemPath filePath, string fileFormat)
+        public override Task ExportFileAsync(byte[] fileBytes, Stream outputStream, FileExtension format)
         {
-            RCFCore.Logger?.LogInformationSource($"An IPK archive file is being exported as {fileFormat}");
-
             // Check if the file should be saved as a TEX file, in which case use the native, unmodified file
-            if (IsTEXFormat(fileFormat))
+            if (IsTEXFormat(format))
             {
                 // Export the file as its native format
-                return base.ExportFileAsync(fileBytes, filePath, fileFormat);
+                return base.ExportFileAsync(fileBytes, outputStream, format);
             }
             // Check if the file should be saved as the native format
-            else if (IsNativeFormat(fileFormat))
+            else if (IsNativeFormat(format))
             {
-                // Open the file
-                using var file = File.Open(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
-
                 // Get the texture data
                 var textureData = GetTextureData(fileBytes);
 
                 // Save the texture data
-                file.Write(textureData, 0, textureData.Length);
+                outputStream.Write(textureData, 0, textureData.Length);
             }
             // Convert the file and save
             else
             {
-                // Open the file
-                using var file = File.Open(filePath, FileMode.Create, FileAccess.Write, FileShare.None);
-
                 // Get the image
                 using var img = GetImage(fileBytes);
 
                 // Set the format
-                img.Format = ImageHelpers.GetMagickFormat(fileFormat);
+                img.Format = ImageHelpers.GetMagickFormat(format.FileExtensions);
 
                 // Save the file
-                img.Write(file);
+                img.Write(outputStream);
             }
 
             return Task.CompletedTask;
@@ -309,32 +301,29 @@ namespace RayCarrot.RCP.Metro
         public Task ExportMipmapsAsync(byte[] fileBytes, FileSystemPath filePath, string fileFormat) => throw new Exception("IPK files do not support mipmaps");
 
         /// <summary>
-        /// Imports the file from the specified path to the <see cref="UbiArtIPKArchiveFileData.PendingImportTempPath"/> path
+        /// Imports the file from the stream to the output
         /// </summary>
         /// <param name="fileBytes">The file bytes</param>
-        /// <param name="filePath">The path of the file to import</param>
-        /// <returns>A value indicating if the file was successfully imported</returns>
-        public override Task<bool> ImportFileAsync(byte[] fileBytes, FileSystemPath filePath)
+        /// <param name="inputStream">The input stream to import from</param>
+        /// <param name="outputStream">The destination stream</param>
+        /// <param name="format">The file format to use</param>
+        /// <returns>The task</returns>
+        public override Task ImportFileAsync(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format)
         {
-            RCFCore.Logger?.LogInformationSource($"An IPK archive file is being imported as {filePath.FileExtension}");
-
-            // Get the temporary file to save to, without disposing it
-            var tempFile = new TempFile(false);
-
             // Check if the file is in the TEX format or in the native format, thus not needing to be converted
-            if (IsTEXFormat(filePath.FileExtension) || filePath.FileExtensions.JoinItems(String.Empty) == new FileExtension(FileName).FileExtensions)
+            if (IsTEXFormat(format) || format == new FileExtension(FileName))
             {
                 // Copy the file
-                RCFRCP.File.CopyFile(filePath, tempFile.TempPath, true);
+                return base.ImportFileAsync(fileBytes, inputStream, outputStream, format);
             }
             // Import as a standard image format
             else if (!UsesTexWrapper)
             {
                 // Read the file bytes
-                var bytes = File.ReadAllBytes(filePath);
+                var bytes = inputStream.ReadRemainingBytes();
 
                 // If it's not in the native format and supported, convert it
-                if (IsFormatSupported && !IsNativeFormat(filePath.FileExtension))
+                if (IsFormatSupported && !IsNativeFormat(format))
                 {
                     // Load the file
                     using var img = new MagickImage(bytes)
@@ -349,13 +338,13 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Write the bytes
-                File.WriteAllBytes(tempFile.TempPath, bytes);
+                outputStream.Write(bytes);
             }
             // Import as a standard image format in a TEX wrapper
             else
             {
                 // Read the file bytes
-                var bytes = File.ReadAllBytes(filePath);
+                var bytes = inputStream.ReadRemainingBytes();
 
                 // Get the current texture
                 var texture = GetTexFile(fileBytes);
@@ -367,7 +356,7 @@ namespace RayCarrot.RCP.Metro
                     using var img = new MagickImage(bytes);
 
                     // Check if the file is in the native format
-                    var isNative = IsNativeFormat(filePath.FileExtension);
+                    var isNative = IsNativeFormat(format);
 
                     // If it's not in the native format, convert it
                     if (!isNative)
@@ -397,27 +386,20 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Write the texture to the temp file
-                UbiArtTEXFile.GetSerializer(Settings).Serialize(tempFile.TempPath, texture);
+                UbiArtTEXFile.GetSerializer(Settings).Serialize(outputStream, texture);
             }
-
-            // Set the pending path
-            PendingImportTempPath = tempFile.TempPath;
 
             return Task.FromResult(true);
         }
 
         #endregion
 
-        #region Protected Constants
+        #region Protected Properties
 
         /// <summary>
         /// The file extension to use for TEX files
         /// </summary>
-        protected const string TEXFileExtension = ".tex";
-
-        #endregion
-
-        #region Protected Properties
+        protected FileExtension TEXFileExtension = new FileExtension(".tex");
 
         /// <summary>
         /// Indicates if the data has been initialized

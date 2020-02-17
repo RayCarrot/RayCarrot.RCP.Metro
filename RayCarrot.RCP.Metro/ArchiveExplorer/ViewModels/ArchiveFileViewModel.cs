@@ -82,6 +82,11 @@ namespace RayCarrot.RCP.Metro
         public string FileName { get; }
 
         /// <summary>
+        /// The native file extension
+        /// </summary>
+        public FileExtension NativeFileExtension => new FileExtension(FileName);
+
+        /// <summary>
         /// The info about the file to display
         /// </summary>
         public string FileDisplayInfo => FileData.FileDisplayInfo;
@@ -203,7 +208,7 @@ namespace RayCarrot.RCP.Metro
 
                             if (!includeMipmap)
                                 // Export the file
-                                await FileData.ExportFileAsync(bytes, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
+                                await ExportFileAsync(result.SelectedFileLocation, bytes, new FileExtension(result.SelectedFileLocation.FileExtension));
                             else
                                 // Export the mipmaps
                                 await ((IArchiveImageFileData)FileData).ExportMipmapsAsync(bytes, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
@@ -227,6 +232,28 @@ namespace RayCarrot.RCP.Metro
                     });
                 }
             }
+        }
+
+        /// <summary>
+        /// Exports the specified file
+        /// </summary>
+        /// <param name="filePath">The file path to export to</param>
+        /// <param name="fileBytes">The file bytes for the file to export</param>
+        /// <param name="format">The format to export as</param>
+        /// <returns>The task</returns>
+        public async Task ExportFileAsync(FileSystemPath filePath, byte[] fileBytes, FileExtension format)
+        {
+            RCFCore.Logger?.LogTraceSource($"An archive file is being exported as {format}");
+
+            // Create the file and open it
+            using var fileStream = File.Open(filePath, FileMode.Create, FileAccess.Write);
+
+            // Write the bytes directly to the stream if the specified format is the native one
+            if (format == NativeFileExtension)
+                fileStream.Write(fileBytes);
+            // Convert the file if the format is not the native one
+            else
+                await FileData.ExportFileAsync(fileBytes, fileStream, format);
         }
 
         /// <summary>
@@ -264,11 +291,7 @@ namespace RayCarrot.RCP.Metro
                             var bytes = FileData.GetFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator);
 
                             // Import the file
-                            var succeeded = await FileData.ImportFileAsync(bytes, result.SelectedFile);
-
-                            // Make sure it succeeded
-                            if (!succeeded)
-                                return;
+                            await ImportFileAsync(result.SelectedFile, bytes);
                         }
                         catch (Exception ex)
                         {
@@ -295,6 +318,44 @@ namespace RayCarrot.RCP.Metro
                     });
                 }
             }
+        }
+
+        /// <summary>
+        /// Imports the specified file
+        /// </summary>
+        /// <param name="filePath">The file path to import from</param>
+        /// <param name="fileBytes">The file bytes for the file to import</param>
+        /// <returns>The task</returns>
+        public async Task ImportFileAsync(FileSystemPath filePath, byte[] fileBytes)
+        {
+            RCFCore.Logger?.LogTraceSource($"An archive file is being imported as {filePath.FileExtension}");
+
+            // Get the temporary file to save to, without disposing it
+            var tempFile = new TempFile(false);
+
+            // Get the file format
+            var format = new FileExtension(filePath.Name);
+
+            // Copy the file as is if the specified format is the native one
+            if (format == NativeFileExtension)
+            {
+                RCFRCP.File.CopyFile(filePath, tempFile.TempPath, true);
+            }
+            // Import the file if the format is not the native one
+            else
+            {
+                // Open the file to import
+                using var fileStream = File.OpenRead(filePath);
+
+                // Open the temp file
+                using var tempFileStream = File.Open(tempFile.TempPath, FileMode.Create, FileAccess.Write);
+
+                // Import the file
+                await FileData.ImportFileAsync(fileBytes, fileStream, tempFileStream, format);
+            }
+
+            // Set the pending path
+            FileData.PendingImportTempPath = tempFile.TempPath;
         }
 
         public void Dispose()

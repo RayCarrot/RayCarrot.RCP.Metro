@@ -604,4 +604,116 @@
     <value>Events</value>
     <comment>Events</comment>
   </data>
+  <data name="RL_LevelName_1_1" xml:space="preserve">
+    <value>Once upon a Time</value>
+    <comment>Once upon a Time</comment>
+  </data>
+  <data name="RL_LevelName_1_2" xml:space="preserve">
+    <value>Creepy Castle</value>
+    <comment>Creepy Castle</comment>
+  </data>
+  <data name="RL_LevelName_1_3" xml:space="preserve">
+    <value>Enchanted Forest</value>
+    <comment>Enchanted Forest</comment>
+  </data>
+  <data name="RL_LevelName_1_4" xml:space="preserve">
+    <value>Ropes Course</value>
+    <comment>Ropes Course</comment>
+  </data>
+  <data name="RL_LevelName_1_5" xml:space="preserve">
+    <value>Quick Sand</value>
+    <comment>Quick Sand</comment>
+  </data>
+  <data name="RL_LevelName_1_6" xml:space="preserve">
+    <value>How to Shoot your Dragon</value>
+    <comment>How to Shoot your Dragon</comment>
+  </data>
+  <data name="RL_LevelName_2_1" xml:space="preserve">
+    <value>Ray and the Beanstalk</value>
+    <comment>Ray and the Beanstalk</comment>
+  </data>
+  <data name="RL_LevelName_2_2" xml:space="preserve">
+    <value>The Winds of Strange</value>
+    <comment>The Winds of Strange</comment>
+  </data>
+  <data name="RL_LevelName_2_3" xml:space="preserve">
+    <value>Castle in the Clouds</value>
+    <comment>Castle in the Clouds</comment>
+  </data>
+  <data name="RL_LevelName_2_4" xml:space="preserve">
+    <value>Altitude Quickness</value>
+    <comment>Altitude Quickness</comment>
+  </data>
+  <data name="RL_LevelName_2_5" xml:space="preserve">
+    <value>When Toads Fly</value>
+    <comment>When Toads Fly</comment>
+  </data>
+  <data name="RL_LevelName_3_1" xml:space="preserve">
+    <value>What the Duck?</value>
+    <comment>What the Duck?</comment>
+  </data>
+  <data name="RL_LevelName_3_2" xml:space="preserve">
+    <value>Spoiled Rotten</value>
+    <comment>Spoiled Rotten</comment>
+  </data>
+  <data name="RL_LevelName_3_3" xml:space="preserve">
+    <value>I've Got a Filling</value>
+    <comment>I've Got a Filling</comment>
+  </data>
+  <data name="RL_LevelName_3_4" xml:space="preserve">
+    <value>Snakes on a Cake</value>
+    <comment>Snakes on a Cake</comment>
+  </data>
+  <data name="RL_LevelName_3_5" xml:space="preserve">
+    <value>Lucha Libre Get Away</value>
+    <comment>Lucha Libre Get Away</comment>
+  </data>
+  <data name="RL_LevelName_4_1" xml:space="preserve">
+    <value>The Mysterious Inflatable Island</value>
+    <comment>The Mysterious Inflatable Island</comment>
+  </data>
+  <data name="RL_LevelName_4_2" xml:space="preserve">
+    <value>The Deadly Lights</value>
+    <comment>The Deadly Lights</comment>
+  </data>
+  <data name="RL_LevelName_4_3" xml:space="preserve">
+    <value>Mansion of the Deep</value>
+    <comment>Mansion of the Deep</comment>
+  </data>
+  <data name="RL_LevelName_4_4" xml:space="preserve">
+    <value>Infiltration Station</value>
+    <comment>Infiltration Station</comment>
+  </data>
+  <data name="RL_LevelName_4_5" xml:space="preserve">
+    <value>Elevator Ambush</value>
+    <comment>Elevator Ambush</comment>
+  </data>
+  <data name="RL_LevelName_4_6" xml:space="preserve">
+    <value>There's Always a Bigger Fish</value>
+    <comment>There's Always a Bigger Fish</comment>
+  </data>
+  <data name="RL_LevelName_5_1" xml:space="preserve">
+    <value>Shields Up... and Down</value>
+    <comment>Shields Up... and Down</comment>
+  </data>
+  <data name="RL_LevelName_5_2" xml:space="preserve">
+    <value>The Dark Creatures Rise</value>
+    <comment>The Dark Creatures Rise</comment>
+  </data>
+  <data name="RL_LevelName_5_3" xml:space="preserve">
+    <value>The Amazing Maze</value>
+    <comment>The Amazing Maze</comment>
+  </data>
+  <data name="RL_LevelName_5_4" xml:space="preserve">
+    <value>The Great Lava Pursuit</value>
+    <comment>The Great Lava Pursuit</comment>
+  </data>
+  <data name="RL_LevelName_5_5" xml:space="preserve">
+    <value>Swarmed and Dangerous</value>
+    <comment>Swarmed and Dangerous</comment>
+  </data>
+  <data name="RL_LevelName_5_6" xml:space="preserve">
+    <value>Hell Breaks Loose</value>
+    <comment>Hell Breaks Loose</comment>
+  </data>
 </root>
