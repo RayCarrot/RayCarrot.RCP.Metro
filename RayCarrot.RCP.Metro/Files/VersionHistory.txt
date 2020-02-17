@@ -2,10 +2,9 @@
 • Added the progression tab for Rayman Origins and Legends
 • Added a utility for converting Rayman Legends save files
 • Updated the UbiRay utility to patch the displayed character name and description (the patch needs to be re-applied for this to update)
+• IPK files with multiple offsets and compressed a compressed memory block are now supported
 
 Other changes:
-• Fixes and cleanup for reading IPK archive files. Files with multiple offsets are now supported.
-• IPK files with a compressed memory block can no longer be opened in the Archive Explorer (support will be added for these in a coming update)
 • Batch importing in the Archive Explorer will now recognize file names with their original file extensions (such as .tga.ckd)
 • Dialog windows will no longer show in the task bar or application switcher as separate windows
 • Replaced the game installer logos with higher quality images, downscaled to the displayed size

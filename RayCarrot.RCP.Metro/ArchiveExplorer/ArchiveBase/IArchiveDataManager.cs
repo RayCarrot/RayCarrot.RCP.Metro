@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace RayCarrot.RCP.Metro
@@ -14,11 +15,11 @@ namespace RayCarrot.RCP.Metro
         char PathSeparatorCharacter { get; }
 
         /// <summary>
-        /// Gets the available directories from the archive along with their contents
+        /// Loads the archive
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
-        /// <returns>The directories</returns>
-        IEnumerable<ArchiveDirectory> GetDirectories(Stream archiveFileStream);
+        /// <returns>The archive data</returns>
+        ArchiveData LoadArchive(Stream archiveFileStream);
 
         /// <summary>
         /// Updates the archive with the modified files
@@ -26,6 +27,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <param name="outputFileStream">The file stream for the updated archive</param>
         /// <param name="files">The files of the archive. Modified files have the <see cref="IArchiveFileData.PendingImportTempPath"/> property set to an existing path.</param>
-        void UpdateArchive(Stream archiveFileStream, Stream outputFileStream, IEnumerable<IArchiveFileData> files);
+        /// <param name="generator">The file generator</param>
+        void UpdateArchive(Stream archiveFileStream, Stream outputFileStream, IEnumerable<IArchiveFileData> files, IDisposable generator);
     }
 }

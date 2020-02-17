@@ -7,6 +7,8 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using RayCarrot.Extensions;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -130,11 +132,16 @@ namespace RayCarrot.RCP.Metro
         /// Gets the contents of the file from the stream
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="generator">The file generator</param>
         /// <returns>The contents of the file</returns>
-        public byte[] GetFileBytes(Stream archiveFileStream)
+        public byte[] GetFileBytes(Stream archiveFileStream, IDisposable generator)
         {
             // Get the bytes
-            var bytes = FileEntry.GetFileBytes(archiveFileStream, BaseOffset, Settings);
+            var bytes = generator.CastTo<IArchiveFileGenerator<UbiArtIPKFileEntry>>().GetBytes(FileEntry);
+
+            // Decompress the data if compressed
+            if (FileEntry.IsCompressed)
+                bytes = UbiArtIpkData.DecompressData(bytes, FileEntry.Size, Settings.IPKVersion);
 
             // Initialize the data
             InitializeData(bytes);

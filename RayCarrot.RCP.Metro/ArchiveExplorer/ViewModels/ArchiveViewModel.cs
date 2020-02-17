@@ -52,6 +52,11 @@ namespace RayCarrot.RCP.Metro
         #region Public Methods
 
         /// <summary>
+        /// The archive file generator
+        /// </summary>
+        public IDisposable ArchiveFileGenerator { get; set; }
+
+        /// <summary>
         /// The operation to use when running an async operation which needs to load
         /// </summary>
         public Operation LoadOperation { get; }
@@ -141,11 +146,17 @@ namespace RayCarrot.RCP.Metro
             // Clear existing items
             ClearAndDisposeItems();
 
-            // Get the archive directories
-            var dirs = Manager.GetDirectories(ArchiveFileStream);
+            // Load the archive
+            var data = Manager.LoadArchive(ArchiveFileStream);
+
+            // Dispose the current generator
+            ArchiveFileGenerator?.Dispose();
+
+            // Save the generator
+            ArchiveFileGenerator = data.Generator;
 
             // Add each directory
-            foreach (var dir in dirs)
+            foreach (var dir in data.Directories)
             {
                 // Check if it's the root directory
                 if (dir.DirectoryName == String.Empty)
@@ -203,7 +214,7 @@ namespace RayCarrot.RCP.Metro
                     var files = this.GetAllChildren<ArchiveDirectoryViewModel>(true).SelectMany(x => x.Files).Select(x => x.FileData);
 
                     // Update the archive
-                    Manager.UpdateArchive(ArchiveFileStream, outputStream, files);
+                    Manager.UpdateArchive(ArchiveFileStream, outputStream, files, ArchiveFileGenerator);
                 }
 
                 // Dispose the archive file stream
@@ -271,6 +282,9 @@ namespace RayCarrot.RCP.Metro
 
             // Dispose every directory
             ClearAndDisposeItems();
+
+            // Dispose the generator
+            ArchiveFileGenerator?.Dispose();
 
             RCFCore.Logger?.LogInformationSource($"The archive {DisplayName} has been disposed");
         }

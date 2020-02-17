@@ -128,7 +128,7 @@ namespace RayCarrot.RCP.Metro
             HasMipmaps = false;
 
             // Get the file bytes
-            var bytes = FileData.GetFileBytes(ArchiveFileStream);
+            var bytes = FileData.GetFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator);
 
             // Get the bitmap if the item is an image
             if (FileData is IArchiveImageFileData imgData)
@@ -199,7 +199,7 @@ namespace RayCarrot.RCP.Metro
                         try
                         {
                             // Get the file bytes
-                            var bytes = FileData.GetFileBytes(ArchiveFileStream);
+                            var bytes = FileData.GetFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator);
 
                             if (!includeMipmap)
                                 // Export the file
@@ -261,7 +261,7 @@ namespace RayCarrot.RCP.Metro
                         try
                         {
                             // Get the file bytes
-                            var bytes = FileData.GetFileBytes(ArchiveFileStream);
+                            var bytes = FileData.GetFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator);
 
                             // Import the file
                             var succeeded = await FileData.ImportFileAsync(bytes, result.SelectedFile);

@@ -1,8 +1,10 @@
 ﻿using ByteSizeLib;
 using MahApps.Metro.IconPacks;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
+using RayCarrot.Rayman.OpenSpace;
 using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
-using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -148,10 +149,17 @@ namespace RayCarrot.RCP.Metro
         /// Gets the contents of the file from the stream
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="generator">The file generator</param>
         /// <returns>The contents of the file</returns>
-        public byte[] GetFileBytes(Stream archiveFileStream)
+        public byte[] GetFileBytes(Stream archiveFileStream, IDisposable generator)
         {
-            return FileEntry.GetFileBytes(archiveFileStream);
+            // Get the bytes
+            var bytes = generator.CastTo<IArchiveFileGenerator<OpenSpaceCntFileEntry>>().GetBytes(FileEntry);
+
+            // Decrypt the bytes
+            OpenSpaceCntData.DecryptFileData(bytes, FileEntry.FileXORKey);
+
+            return bytes;
         }
 
         /// <summary>
@@ -165,8 +173,18 @@ namespace RayCarrot.RCP.Metro
             // Set if mipmaps should be deserialized
             Settings.DeserializeMipmaps = deserializeMipmap;
 
-            // Get the content
-            return FileEntry.GetFileContent(fileBytes, Settings);
+            // Load the bytes into a memory stream
+            using var stream = new MemoryStream(fileBytes);
+
+            // Serialize the data
+            var data = OpenSpaceGFFile.GetSerializer(Settings).Deserialize(stream);
+
+            // Make sure we read the entire file
+            if (stream.Position != stream.Length)
+                RCFCore.Logger?.LogWarningSource($"The GF file {FileName} was not fully read");
+
+            // Return the data
+            return data;
         }
 
         /// <summary>

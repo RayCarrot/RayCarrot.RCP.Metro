@@ -99,10 +99,20 @@ namespace RayCarrot.RCP.Metro
                 // Read the .cnt data
                 var cntData = OpenSpaceCntData.GetSerializer(gameSettings).Deserialize(cntFileStream);
 
+                // Get the file generator
+                using var generator = cntData.GetArchiveContent(cntFileStream);
+
                 // Read the size from every .gf file
                 gfFiles.AddRange(cntData.Files.Select(x =>
                 {
-                    using var gfMemoryStream = new MemoryStream(x.GetFileBytes(cntFileStream));
+                    // Get the file bytes
+                    var bytes = generator.GetBytes(x);
+
+                    // Decrypt the bytes
+                    OpenSpaceCntData.DecryptFileData(bytes, x.FileXORKey);
+
+                    // Read the bytes into a stream
+                    using var gfMemoryStream = new MemoryStream(bytes);
                     
                     // Get a reader
                     using var reader = new StandardBinaryReader(gfMemoryStream, gameSettings, false);

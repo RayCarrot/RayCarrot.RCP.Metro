@@ -1,13 +1,12 @@
-﻿using RayCarrot.Rayman;
+﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
+using RayCarrot.IO;
+using RayCarrot.Rayman;
+using RayCarrot.Rayman.UbiArt;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.IO;
-using RayCarrot.Extensions;
-using Ionic.Zlib;
-using RayCarrot.Rayman.UbiArt;
-using SevenZip.Compression.LZMA;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -50,11 +49,11 @@ namespace RayCarrot.RCP.Metro
         #region Public Methods
 
         /// <summary>
-        /// Gets the available directories from the archive along with their contents
+        /// Loads the archive
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
-        /// <returns>The directories</returns>
-        public IEnumerable<ArchiveDirectory> GetDirectories(Stream archiveFileStream)
+        /// <returns>The archive data</returns>
+        public ArchiveData LoadArchive(Stream archiveFileStream)
         {
             RCFCore.Logger?.LogInformationSource("The directories are being retrieved for an IPK archive");
 
@@ -75,12 +74,19 @@ namespace RayCarrot.RCP.Metro
                     return new UbiArtIPKArchiveFileData(file, Settings, data.BaseOffset);
             }
 
-            // Add the directories to the collection
-            foreach (var file in data.Files.GroupBy(x => x.Path.DirectoryPath))
+            // Helper method for getting the directories
+            IEnumerable<ArchiveDirectory> GetDirectories()
             {
-                // Return each directory with the available files, including the root directory
-                yield return new ArchiveDirectory(file.Key, file.Select(GetFileData).ToArray());
+                // Add the directories to the collection
+                foreach (var file in data.Files.GroupBy(x => x.Path.DirectoryPath))
+                {
+                    // Return each directory with the available files, including the root directory
+                    yield return new ArchiveDirectory(file.Key, file.Select(GetFileData).ToArray());
+                }
             }
+
+            // Return the data
+            return new ArchiveData(GetDirectories(), data.GetArchiveContent(archiveFileStream));
         }
 
         /// <summary>
@@ -89,7 +95,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <param name="outputFileStream">The file stream for the updated archive</param>
         /// <param name="files">The files of the archive. Modified files have the <see cref="IArchiveFileData.PendingImportTempPath"/> property set to an existing path.</param>
-        public void UpdateArchive(Stream archiveFileStream, Stream outputFileStream, IEnumerable<IArchiveFileData> files)
+        /// <param name="generator">The file generator</param>
+        public void UpdateArchive(Stream archiveFileStream, Stream outputFileStream, IEnumerable<IArchiveFileData> files, IDisposable generator)
         {
             RCFCore.Logger?.LogInformationSource($"An IPK archive is being repacked...");
 
@@ -106,7 +113,7 @@ namespace RayCarrot.RCP.Metro
             using var tempDir = new TempDirectory(true);
 
             // Create the file generator
-            var fileGenerator = new ArchiveFileGenerator();
+            using var fileGenerator = new ArchiveFileGenerator<UbiArtIPKFileEntry>();
 
             // The current pointer position
             ulong currentOffset = 0;
@@ -139,20 +146,8 @@ namespace RayCarrot.RCP.Metro
                         // Get the file bytes
                         var bytes = File.ReadAllBytes(tempFilePath);
 
-                        byte[] compressedBytes;
-
-                        // Use LZMA
-                        if (Settings.IPKVersion >= 8)
-                        {
-                            // Compress the bytes
-                            compressedBytes = SevenZipHelper.Compress(bytes);
-                        }
-                        // Use ZLib
-                        else
-                        {
-                            // Compress the bytes
-                            compressedBytes = ZlibStream.CompressBuffer(bytes);
-                        }
+                        // Compress the bytes
+                        byte[] compressedBytes = UbiArtIpkData.CompressData(bytes, Settings.IPKVersion);
 
                         RCFCore.Logger?.LogTraceSource($"The file {existingFile.FileName} has been compressed");
 
@@ -175,13 +170,13 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Add to the generator
-                    fileGenerator.Add(file.Path.FullPath, () => File.ReadAllBytes(tempFilePath));
+                    fileGenerator.Add(file, () => File.ReadAllBytes(tempFilePath));
                 }
                 // Use the original file without decompressing it
                 else
                 {
                     // Add to the generator
-                    fileGenerator.Add(file.Path.FullPath, () => existingFile.FileEntry.GetFileBytes(archiveFileStream, data.BaseOffset, Settings, false));
+                    fileGenerator.Add(file, () => generator.CastTo<IArchiveFileGenerator<UbiArtIPKFileEntry>>().GetBytes(existingFile.FileEntry));
                 }
 
                 // Reset the offset array to always contain 1 item

@@ -5,7 +5,6 @@ using RayCarrot.UI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -180,7 +179,7 @@ namespace RayCarrot.RCP.Metro
                                     var data = file.FileData;
 
                                     // Get the file bytes
-                                    var bytes = data.GetFileBytes(file.ArchiveFileStream);
+                                    var bytes = data.GetFileBytes(file.ArchiveFileStream, Archive.ArchiveFileGenerator);
 
                                     // Check if the format has not been selected
                                     if (!selectedFormats.ContainsKey(file.FileData.FileFormatName))
@@ -288,7 +287,7 @@ namespace RayCarrot.RCP.Metro
                                         continue;
 
                                     // Get the file bytes
-                                    var bytes = file.FileData.GetFileBytes(Archive.ArchiveFileStream);
+                                    var bytes = file.FileData.GetFileBytes(Archive.ArchiveFileStream, Archive.ArchiveFileGenerator);
 
                                     // Check if the base file exists without changing the extensions
                                     if (baseFilePath.FileExists)

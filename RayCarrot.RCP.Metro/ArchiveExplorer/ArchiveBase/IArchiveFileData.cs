@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
@@ -29,8 +30,9 @@ namespace RayCarrot.RCP.Metro
         /// Gets the contents of the file from the stream
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="generator">The file generator</param>
         /// <returns>The contents of the file</returns>
-        byte[] GetFileBytes(Stream archiveFileStream);
+        byte[] GetFileBytes(Stream archiveFileStream, IDisposable generator);
 
         /// <summary>
         /// The default icon to use for this file

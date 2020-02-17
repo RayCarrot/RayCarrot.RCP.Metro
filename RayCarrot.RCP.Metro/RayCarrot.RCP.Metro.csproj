@@ -100,6 +100,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ArchiveExplorer\ArchiveBase\ArchiveData.cs" />
     <Compile Include="ArchiveExplorer\ArchiveBase\ArchiveDirectory.cs" />
     <Compile Include="ArchiveExplorer\ArchiveBase\IArchiveDataManager.cs" />
     <Compile Include="ArchiveExplorer\ArchiveBase\IArchiveFileData.cs" />

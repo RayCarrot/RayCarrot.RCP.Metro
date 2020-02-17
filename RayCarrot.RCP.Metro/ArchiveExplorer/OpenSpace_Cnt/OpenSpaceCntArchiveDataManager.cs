@@ -54,11 +54,11 @@ namespace RayCarrot.RCP.Metro
         #region Public Methods
 
         /// <summary>
-        /// Gets the available directories from the archive along with their contents
+        /// Loads the archive
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
-        /// <returns>The directories</returns>
-        public IEnumerable<ArchiveDirectory> GetDirectories(Stream archiveFileStream)
+        /// <returns>The archive data</returns>
+        public ArchiveData LoadArchive(Stream archiveFileStream)
         {
             RCFCore.Logger?.LogInformationSource("The directories are being retrieved for a CNT archive");
 
@@ -70,15 +70,22 @@ namespace RayCarrot.RCP.Metro
 
             RCFCore.Logger?.LogInformationSource($"Read CNT file ({data.VersionID}) with {data.Files.Length} files and {data.Directories.Length} directories");
 
-            // Add the directories to the collection
-            for (var i = -1; i < data.Directories.Length; i++)
+            // Helper method for getting the directories
+            IEnumerable<ArchiveDirectory> GetDirectories()
             {
-                // Get the directory path
-                var dir = i == -1 ? String.Empty : data.Directories[i];
+                // Add the directories to the collection
+                for (var i = -1; i < data.Directories.Length; i++)
+                {
+                    // Get the directory path
+                    var dir = i == -1 ? String.Empty : data.Directories[i];
 
-                // Return each directory with the available files, including the root directory
-                yield return new ArchiveDirectory(dir, data.Files.Where(x => x.DirectoryIndex == i).Select(f => new OpenSpaceCntArchiveFileData(f, Settings, dir, EncryptFiles) as IArchiveFileData).ToArray());
+                    // Return each directory with the available files, including the root directory
+                    yield return new ArchiveDirectory(dir, data.Files.Where(x => x.DirectoryIndex == i).Select(f => new OpenSpaceCntArchiveFileData(f, Settings, dir, EncryptFiles) as IArchiveFileData).ToArray());
+                }
             }
+
+            // Return the data
+            return new ArchiveData(GetDirectories(), data.GetArchiveContent(archiveFileStream));
         }
 
         /// <summary>
@@ -87,7 +94,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <param name="outputFileStream">The file stream for the updated archive</param>
         /// <param name="files">The files of the archive. Modified files have the <see cref="IArchiveFileData.PendingImportTempPath"/> property set to an existing path.</param>
-        public void UpdateArchive(Stream archiveFileStream, Stream outputFileStream, IEnumerable<IArchiveFileData> files)
+        /// <param name="generator">The file generator</param>
+        public void UpdateArchive(Stream archiveFileStream, Stream outputFileStream, IEnumerable<IArchiveFileData> files, IDisposable generator)
         {
             RCFCore.Logger?.LogInformationSource($"A CNT archive is being repacked...");
 
@@ -104,7 +112,7 @@ namespace RayCarrot.RCP.Metro
             using var tempDir = new TempDirectory(true);
 
             // Create the file generator
-            var fileGenerator = new ArchiveFileGenerator();
+            using var fileGenerator = new ArchiveFileGenerator<OpenSpaceCntFileEntry>();
 
             // The current pointer position
             var pointer = data.GetHeaderSize(Settings);
@@ -151,13 +159,13 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Add to the generator
-                    fileGenerator.Add(fullPath, () => File.ReadAllBytes(tempFilePath));
+                    fileGenerator.Add(file, () => File.ReadAllBytes(tempFilePath));
                 }
                 // Use the original file without decrypting it
                 else
                 {
                     // Add to the generator
-                    fileGenerator.Add(fullPath, () => existingFile.FileEntry.GetFileBytes(archiveFileStream, false));
+                    fileGenerator.Add(file, () => generator.CastTo<IArchiveFileGenerator<OpenSpaceCntFileEntry>>().GetBytes(existingFile.FileEntry)); 
                 }
 
                 // Set the pointer

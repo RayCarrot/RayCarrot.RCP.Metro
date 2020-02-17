@@ -62,7 +62,7 @@ namespace RayCarrot.RCP.Metro
             }
             catch (Exception ex)
             {
-                ex.HandleError("Deleting temp directory");
+                ex.HandleError("Deleting temp file");
             }
         }
     }
