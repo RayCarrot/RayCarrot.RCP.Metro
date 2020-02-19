@@ -8,7 +8,6 @@ using Microsoft.Win32;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiIni;
 using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;

@@ -45,7 +45,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The localization file extension
         /// </summary>
-        protected abstract string LocalizationFileExtension { get; }
+        protected abstract FileExtension LocalizationFileExtension { get; }
 
         #endregion
 
@@ -91,7 +91,7 @@ namespace RayCarrot.RCP.Metro
             var outputResult = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
             {
                 Title = Resources.ExportDestinationSelectionHeader,
-                DefaultName = inputResult.SelectedFile.ChangeFileExtension(".json").Name,
+                DefaultName = inputResult.SelectedFile.ChangeFileExtension(new FileExtension(".json")).Name,
                 Extensions = new FileFilterItem("*.json", Resources.FileFilterDescription_JSON).StringRepresentation
             });
 

@@ -1,5 +1,4 @@
-﻿using RayCarrot.Rayman;
-using RayCarrot.Rayman.UbiIni;
+﻿using RayCarrot.Rayman.UbiIni;
 
 namespace RayCarrot.RCP.Metro
 {

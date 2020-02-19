@@ -5,7 +5,6 @@ using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiIni;
 using RayCarrot.UI;
 

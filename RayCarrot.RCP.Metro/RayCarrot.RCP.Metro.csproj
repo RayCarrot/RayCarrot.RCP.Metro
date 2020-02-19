@@ -103,12 +103,18 @@
     <Compile Include="ArchiveExplorer\ArchiveBase\ArchiveData.cs" />
     <Compile Include="ArchiveExplorer\ArchiveBase\ArchiveDirectory.cs" />
     <Compile Include="ArchiveExplorer\ArchiveBase\IArchiveDataManager.cs" />
-    <Compile Include="ArchiveExplorer\ArchiveBase\IArchiveFileData.cs" />
-    <Compile Include="ArchiveExplorer\ArchiveBase\IArchiveImageFileData.cs" />
+    <Compile Include="ArchiveExplorer\ArchiveBase\File\IArchiveFileData.cs" />
+    <Compile Include="ArchiveExplorer\ArchiveBase\File\IArchiveImageFileData.cs" />
+    <Compile Include="ArchiveExplorer\ArchiveCreator\ArchiveCreatorUI.xaml.cs">
+      <DependentUpon>ArchiveCreatorUI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
     <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
-    <Compile Include="ArchiveExplorer\FileFormat\FileExtension.cs" />
     <Compile Include="ArchiveExplorer\FileFormat\FileFormatInfoAttribute.cs" />
+    <Compile Include="ArchiveExplorer\ArchiveBase\Import\IArchiveImportData.cs" />
+    <Compile Include="ArchiveExplorer\ArchiveBase\Import\ModifiedArchiveImportData.cs" />
+    <Compile Include="ArchiveExplorer\ArchiveBase\Import\OriginalArchiveImportData.cs" />
+    <Compile Include="Helpers\DisposableList.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanMDemoConfigViewModel.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_2_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_1_Info.cs" />
@@ -456,6 +462,10 @@
     <Compile Include="DataModels\Enums\Pages.cs" />
     <Compile Include="Pages\Games\GameCategoryViewModel.cs" />
     <Compile Include="ViewModels\TaskbarIconViewModel.cs" />
+    <Page Include="ArchiveExplorer\ArchiveCreator\ArchiveCreatorUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ArchiveExplorer\ArchiveExplorerUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1248,7 +1258,7 @@
       <Version>1.2.11</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
-      <Version>1.5.1</Version>
+      <Version>1.6.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.UI">
       <Version>1.2.2</Version>

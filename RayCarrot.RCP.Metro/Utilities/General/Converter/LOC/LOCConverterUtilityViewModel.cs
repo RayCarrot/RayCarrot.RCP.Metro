@@ -1,8 +1,7 @@
-﻿using System.Text;
-using System.Threading.Tasks;
-using RayCarrot.IO;
-using RayCarrot.Rayman;
+﻿using RayCarrot.IO;
 using RayCarrot.Rayman.UbiArt;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -89,13 +88,13 @@ namespace RayCarrot.RCP.Metro
                 {
                     // Read the data
                     return DeserializeJSON<FiestaRunLocalizationData>(filePath);
-                }, new FileFilterItem("*.json", "JSON").ToString(), ".loc", false);
+                }, new FileFilterItem("*.json", "JSON").ToString(), new FileExtension(".loc"), false);
             }
             else
             {
                 var settings = GameModeSelection.SelectedValue.GetSettings();
 
-                var fileExtension = Equals(settings.Encoding, Encoding.UTF8) ? ".loc8" : ".loc";
+                var fileExtension = new FileExtension(Equals(settings.Encoding, Encoding.UTF8) ? ".loc8" : ".loc");
 
                 await ConvertToAsync(UbiArtLocalizationData.GetSerializer(settings), (filePath, configPath) =>
                 {

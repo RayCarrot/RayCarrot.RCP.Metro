@@ -71,6 +71,15 @@
                                 <Setter.Value>
                                     <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
                                         <Setter Property="Margin" Value="10 7" />
+                                        <Setter Property="KeyboardNavigation.IsTabStop"
+                                                Value="False" />
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected"
+                                                     Value="True">
+                                                <Setter Property="KeyboardNavigation.IsTabStop"
+                                                        Value="True" />
+                                            </Trigger>
+                                        </Style.Triggers>
                                     </Style>
                                 </Setter.Value>
                             </Setter>

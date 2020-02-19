@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
@@ -63,7 +62,7 @@ namespace RayCarrot.RCP.Metro
             {
                 // Read the data
                 return DeserializeJSON<LegendsPCSaveData>(filePath);
-            }, new FileFilterItem("*.json", "JSON").ToString(), String.Empty, false);
+            }, new FileFilterItem("*.json", "JSON").ToString(), new FileExtension(String.Empty), false);
         }
 
         #endregion

@@ -79,7 +79,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Make sure the file extension is correct or else Windows won't treat it as a shortcut
-                ShortcutName = ShortcutName.ChangeFileExtension(".lnk");
+                ShortcutName = ShortcutName.ChangeFileExtension(new FileExtension(".lnk"));
 
                 // Delete if a shortcut with the same name already exists
                 DeleteFile(DestinationDirectory + ShortcutName);
@@ -108,7 +108,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Make sure the file extension is correct or else Windows won't treat it as an URL shortcut
-                shortcutName = shortcutName.ChangeFileExtension(".url");
+                shortcutName = shortcutName.ChangeFileExtension(new FileExtension(".url"));
 
                 // Delete if a shortcut with the same name already exists
                 DeleteFile(destinationDirectory + shortcutName);

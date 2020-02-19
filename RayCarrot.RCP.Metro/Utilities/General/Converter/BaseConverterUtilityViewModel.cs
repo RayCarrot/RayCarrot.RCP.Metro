@@ -118,10 +118,10 @@ namespace RayCarrot.RCP.Metro
                             var destinationFile = destinationResult.SelectedDirectory + file.Name;
 
                             // Set the file extension
-                            destinationFile = destinationFile.ChangeFileExtension(extResult.SelectedFileFormat).GetNonExistingFileName();
+                            destinationFile = destinationFile.ChangeFileExtension(new FileExtension(extResult.SelectedFileFormat)).GetNonExistingFileName();
 
                             // Get the optional configuration path
-                            var configFile = destinationFile.ChangeFileExtension(".json").GetNonExistingFileName();
+                            var configFile = destinationFile.ChangeFileExtension(new FileExtension(".json")).GetNonExistingFileName();
 
                             // Convert the file
                             convertAction(data, destinationFile, configFile);
@@ -154,7 +154,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="fileExtension">The file extension to export as</param>
         /// <param name="requiresConfig">Indicates if the config file is required</param>
         /// <returns>The task</returns>
-        protected async Task ConvertToAsync<T, Settings>(BinaryDataSerializer<T, Settings> serializer, Func<FileSystemPath, FileSystemPath, T> convertAction, string fileFilter, string fileExtension, bool requiresConfig)
+        protected async Task ConvertToAsync<T, Settings>(BinaryDataSerializer<T, Settings> serializer, Func<FileSystemPath, FileSystemPath, T> convertAction, string fileFilter, FileExtension fileExtension, bool requiresConfig)
             where T : IBinarySerializable<Settings>
             where Settings : BinarySerializerSettings
         {
@@ -199,7 +199,7 @@ namespace RayCarrot.RCP.Metro
                             destinationFile = destinationFile.ChangeFileExtension(fileExtension).GetNonExistingFileName();
 
                             // Get the optional configuration path
-                            var configFile = file.ChangeFileExtension(".json");
+                            var configFile = file.ChangeFileExtension(new FileExtension(".json"));
 
                             if (requiresConfig && !configFile.FileExists)
                             {

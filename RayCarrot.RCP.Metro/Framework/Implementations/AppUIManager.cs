@@ -164,6 +164,25 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// Shows a new instance of the Archive Creator
+        /// </summary>
+        /// <param name="manager">The archive data manager</param>
+        /// <param name="origin">The callers member/function name</param>
+        /// <param name="filePath">The source code file path</param>
+        /// <param name="lineNumber">The line number in the code file of the caller</param>
+        /// <returns>The task</returns>
+        public async Task ShowArchiveCreatorAsync(IArchiveDataManager manager, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
+        {
+            if (Application.Current.Dispatcher == null)
+                throw new Exception("The application does not have a valid dispatcher");
+
+            RCFCore.Logger?.LogTraceSource($"An Archive Creator window was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+
+            // Run on UI thread
+            await Application.Current.Dispatcher.Invoke(() => new ArchiveCreatorUI(new ArchiveCreatorDialogViewModel(manager))).ShowWindowAsync();
+        }
+
         #endregion
     }
 }

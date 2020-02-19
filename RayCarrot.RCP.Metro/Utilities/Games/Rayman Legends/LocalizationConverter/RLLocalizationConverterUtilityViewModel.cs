@@ -1,5 +1,4 @@
 ﻿using RayCarrot.IO;
-using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
@@ -17,7 +16,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The localization file extension
         /// </summary>
-        protected override string LocalizationFileExtension => ".loc8";
+        protected override FileExtension LocalizationFileExtension => new FileExtension(".loc8");
 
         /// <summary>
         /// Deserializes the localization file

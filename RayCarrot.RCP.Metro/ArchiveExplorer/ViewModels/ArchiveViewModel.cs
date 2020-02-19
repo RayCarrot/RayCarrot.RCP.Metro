@@ -3,6 +3,7 @@ using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -115,9 +116,6 @@ namespace RayCarrot.RCP.Metro
             // Dispose every directory
             this.GetAllChildren<ArchiveDirectoryViewModel>().DisposeAll();
 
-            // Dispose the files
-            Files.DisposeAll();
-
             // Clear the items
             Clear();
             Files.Clear();
@@ -147,7 +145,7 @@ namespace RayCarrot.RCP.Metro
             ClearAndDisposeItems();
 
             // Load the archive
-            var data = Manager.LoadArchive(ArchiveFileStream);
+            var data = Manager.LoadArchiveData(ArchiveFileStream);
 
             // Dispose the current generator
             ArchiveFileGenerator?.Dispose();
@@ -185,8 +183,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Updates the archive with the pending imports
         /// </summary>
+        /// <param name="modifiedImportData">The import data for the files which have been modified</param>
         /// <returns>A value indicating if the updating succeeded</returns>
-        public async Task<bool> UpdateArchiveAsync()
+        public async Task<bool> UpdateArchiveAsync(IEnumerable<ModifiedArchiveImportData> modifiedImportData)
         {
             RCFCore.Logger?.LogInformationSource($"The archive {DisplayName} is being updated");
 
@@ -210,11 +209,24 @@ namespace RayCarrot.RCP.Metro
                 // Create the file and get the stream
                 using (var outputStream = File.Create(tempOutputFile.TempPath))
                 {
-                    // Get the files
-                    var files = this.GetAllChildren<ArchiveDirectoryViewModel>(true).SelectMany(x => x.Files).Select(x => x.FileData);
+                    // Get the modified files
+                    var modified = modifiedImportData.ToArray();
+
+                    // Get the non-modified files
+                    var origFiles = this.
+                        // Get all directories
+                        GetAllChildren<ArchiveDirectoryViewModel>(true).
+                        // Get the files
+                        SelectMany(x => x.Files).
+                        // Get the file data
+                        Select(x => x.FileData).
+                        // Make sure the file isn't one of the modified ones
+                        Where(x => !modified.Contains(x.FileEntryData)).
+                        // Get the import data
+                        Select(x => (IArchiveImportData)new OriginalArchiveImportData(x.FileEntryData));
 
                     // Update the archive
-                    Manager.UpdateArchive(ArchiveFileStream, outputStream, files, ArchiveFileGenerator);
+                    Manager.UpdateArchive(Manager.LoadArchive(ArchiveFileStream), outputStream, modified.Concat(origFiles), ArchiveFileGenerator);
                 }
 
                 // Dispose the archive file stream

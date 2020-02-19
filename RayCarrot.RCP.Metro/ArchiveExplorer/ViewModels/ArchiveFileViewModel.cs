@@ -15,7 +15,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for a file in an archive
     /// </summary>
-    public class ArchiveFileViewModel : BaseViewModel, IDisposable
+    public class ArchiveFileViewModel : BaseViewModel
     {
         #region Constructor
 
@@ -192,7 +192,7 @@ namespace RayCarrot.RCP.Metro
                         var result = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
                         {
                             Title = Resources.Archive_ExportHeader,
-                            DefaultName = new FileSystemPath(FileName).ChangeFileExtension(ext.First().PrimaryFileExtension, true),
+                            DefaultName = new FileSystemPath(FileName).ChangeFileExtension(ext.First().GetPrimaryFileExtension(), true),
                             Extensions = GetFileFilterCollection(ext).ToString()
                         });
 
@@ -208,10 +208,10 @@ namespace RayCarrot.RCP.Metro
 
                             if (!includeMipmap)
                                 // Export the file
-                                await ExportFileAsync(result.SelectedFileLocation, bytes, new FileExtension(result.SelectedFileLocation.FileExtension));
+                                await ExportFileAsync(result.SelectedFileLocation, bytes, result.SelectedFileLocation.FileExtension);
                             else
                                 // Export the mipmaps
-                                await ((IArchiveImageFileData)FileData).ExportMipmapsAsync(bytes, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension);
+                                await ((IArchiveImageFileData)FileData).ExportMipmapsAsync(bytes, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension.FileExtensions);
                         }
                         catch (Exception ex)
                         {
@@ -285,32 +285,45 @@ namespace RayCarrot.RCP.Metro
 
                         Archive.SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, FileName));
 
+                        // Keep track of the import data
+                        ModifiedArchiveImportData importData = null;
+
                         try
                         {
-                            // Get the file bytes
-                            var bytes = FileData.GetFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator);
+                            try
+                            {
+                                // Get the file bytes
+                                var bytes = FileData.GetFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator);
 
-                            // Import the file
-                            await ImportFileAsync(result.SelectedFile, bytes);
-                        }
-                        catch (Exception ex)
-                        {
-                            ex.HandleError("Importing archive file", FileName);
+                                // Import the file
+                                importData = await ImportFileAsync(result.SelectedFile, bytes);
+                            }
+                            catch (Exception ex)
+                            {
+                                ex.HandleError("Importing archive file", FileName);
 
-                            await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ImportError, result.SelectedFile.Name));
+                                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ImportError, result.SelectedFile.Name));
 
-                            return;
+                                return;
+                            }
+                            finally
+                            {
+                                Archive.SetDisplayStatus(String.Empty);
+                            }
+
+                            // Update the archive
+                            var repackSucceeded = await Archive.UpdateArchiveAsync(new ModifiedArchiveImportData[]
+                            {
+                                importData
+                            });
+
+                            if (!repackSucceeded)
+                                return;
                         }
                         finally
                         {
-                            Archive.SetDisplayStatus(String.Empty);
+                            importData?.Dispose();
                         }
-
-                        // Update the archive
-                        var repackSucceeded = await Archive.UpdateArchiveAsync();
-
-                        if (!repackSucceeded)
-                            return;
 
                         RCFCore.Logger?.LogTraceSource($"The archive file has been imported");
 
@@ -325,43 +338,48 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="filePath">The file path to import from</param>
         /// <param name="fileBytes">The file bytes for the file to import</param>
-        /// <returns>The task</returns>
-        public async Task ImportFileAsync(FileSystemPath filePath, byte[] fileBytes)
+        /// <returns>The import data</returns>
+        public async Task<ModifiedArchiveImportData> ImportFileAsync(FileSystemPath filePath, byte[] fileBytes)
         {
             RCFCore.Logger?.LogTraceSource($"An archive file is being imported as {filePath.FileExtension}");
 
             // Get the temporary file to save to, without disposing it
             var tempFile = new TempFile(false);
 
-            // Get the file format
-            var format = new FileExtension(filePath.Name);
-
-            // Copy the file as is if the specified format is the native one
-            if (format == NativeFileExtension)
+            try
             {
-                RCFRCP.File.CopyFile(filePath, tempFile.TempPath, true);
+                // Get the file format
+                var format = filePath.FileExtension;
+
+                // Copy the file as is if the specified format is the native one
+                if (format == NativeFileExtension)
+                {
+                    RCFRCP.File.CopyFile(filePath, tempFile.TempPath, true);
+                }
+                // Import the file if the format is not the native one
+                else
+                {
+                    // Open the file to import
+                    using var fileStream = File.OpenRead(filePath);
+
+                    // Open the temp file
+                    using var tempFileStream = File.Open(tempFile.TempPath, FileMode.Create, FileAccess.Write);
+
+                    // Import the file
+                    await FileData.ImportFileAsync(fileBytes, fileStream, tempFileStream, format);
+                }
             }
-            // Import the file if the format is not the native one
-            else
+            catch (Exception ex)
             {
-                // Open the file to import
-                using var fileStream = File.OpenRead(filePath);
+                ex.HandleError("Importing archive file", filePath);
 
-                // Open the temp file
-                using var tempFileStream = File.Open(tempFile.TempPath, FileMode.Create, FileAccess.Write);
+                tempFile.Dispose();
 
-                // Import the file
-                await FileData.ImportFileAsync(fileBytes, fileStream, tempFileStream, format);
+                throw;
             }
 
-            // Set the pending path
-            FileData.PendingImportTempPath = tempFile.TempPath;
-        }
-
-        public void Dispose()
-        {
-            // Delete temp file
-            RCFRCP.File.DeleteFile(FileData.PendingImportTempPath);
+            // Return the import data
+            return new ModifiedArchiveImportData(FileData.FileEntryData, tempFile);
         }
 
         #endregion

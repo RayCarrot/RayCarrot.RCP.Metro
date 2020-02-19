@@ -1,12 +1,12 @@
-﻿using RayCarrot.Extensions;
-using RayCarrot.IO;
+﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
 using RayCarrot.Rayman;
+using RayCarrot.Rayman.OpenSpace;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Rayman.OpenSpace;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -54,11 +54,11 @@ namespace RayCarrot.RCP.Metro
         #region Public Methods
 
         /// <summary>
-        /// Loads the archive
+        /// Loads the archive data
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <returns>The archive data</returns>
-        public ArchiveData LoadArchive(Stream archiveFileStream)
+        public ArchiveData LoadArchiveData(Stream archiveFileStream)
         {
             RCFCore.Logger?.LogInformationSource("The directories are being retrieved for a CNT archive");
 
@@ -89,27 +89,82 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Updates the archive with the modified files
+        /// Loads the archive
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
-        /// <param name="outputFileStream">The file stream for the updated archive</param>
-        /// <param name="files">The files of the archive. Modified files have the <see cref="IArchiveFileData.PendingImportTempPath"/> property set to an existing path.</param>
-        /// <param name="generator">The file generator</param>
-        public void UpdateArchive(Stream archiveFileStream, Stream outputFileStream, IEnumerable<IArchiveFileData> files, IDisposable generator)
+        /// <returns>The archive data</returns>
+        public object LoadArchive(Stream archiveFileStream)
         {
-            RCFCore.Logger?.LogInformationSource($"A CNT archive is being repacked...");
-
             // Set the stream position to 0
             archiveFileStream.Position = 0;
 
             // Load the current file
-            var data = OpenSpaceCntData.GetSerializer(Settings).Deserialize(archiveFileStream);
+            return OpenSpaceCntData.GetSerializer(Settings).Deserialize(archiveFileStream);
+        }
+
+        /// <summary>
+        /// Gets a new archive from a collection of modified files
+        /// </summary>
+        /// <param name="files"></param>
+        /// <returns>The archive</returns>
+        public object GetArchive(IEnumerable<IArchiveImportData> files)
+        {
+            throw new NotImplementedException();
+
+            return new OpenSpaceCntData
+            {
+                Signature = 0,
+                XORKey = 0,
+                Directories = new string[]
+                {
+                },
+                VersionID = 0,
+                Files = new OpenSpaceCntFileEntry[]
+                {
+                }
+            };
+        }
+
+        /// <summary>
+        /// Gets a new file entry from the specified path
+        /// </summary>
+        /// <param name="relativePath">The relative path of the file</param>
+        /// <returns>The file entry</returns>
+        public object GetFileEntry(FileSystemPath relativePath)
+        {
+            throw new NotImplementedException();
+
+            // TODO: Clean up and handle dir
+            return new OpenSpaceCntFileEntry(0)
+            {
+                DirectoryIndex = 0,
+                FileName = relativePath.Name,
+                FileXORKey = new byte[]
+                {
+                    0, 0, 0, 0
+                },
+                Unknown1 = 0,
+                Pointer = 0,
+                Size = 0
+            };
+        }
+
+        /// <summary>
+        /// Updates the archive with the modified files
+        /// </summary>
+        /// <param name="archive">The loaded archive data</param>
+        /// <param name="outputFileStream">The file stream for the updated archive</param>
+        /// <param name="files">The import data for the archive files</param>
+        /// <param name="generator">The file generator</param>
+        public void UpdateArchive(object archive, Stream outputFileStream, IEnumerable<IArchiveImportData> files, IDisposable generator)
+        {
+            RCFCore.Logger?.LogInformationSource($"A CNT archive is being repacked...");
+
+            // Get the archive data
+            var data = archive.CastTo<OpenSpaceCntData>();
 
             // Order files by path
-            var allFiles = files.Cast<OpenSpaceCntArchiveFileData>().ToDictionary(x => Path.Combine(x.Directory, x.FileName));
-
-            // Create a temporary directory to load the current files into 
-            using var tempDir = new TempDirectory(true);
+            var allFiles = files.ToDictionary(x => x.FileEntryData.CastTo<OpenSpaceCntFileEntry>().GetFullPath(data.Directories));
 
             // Create the file generator
             using var fileGenerator = new ArchiveFileGenerator<OpenSpaceCntFileEntry>();
@@ -124,24 +179,24 @@ namespace RayCarrot.RCP.Metro
                 var fullPath = file.GetFullPath(data.Directories);
 
                 // Get the file
-                var existingFile = allFiles.TryGetValue(fullPath);
+                var importData = allFiles.TryGetValue(fullPath);
+
+                // Get the entry
+                var fileEntry = importData.FileEntryData.CastTo<OpenSpaceCntFileEntry>();
 
                 // Check if the file is one of the modified files
-                if (existingFile.PendingImportTempPath.FileExists)
+                if (importData.IsModified)
                 {
-                    RCFCore.Logger?.LogTraceSource($"{existingFile.FileName} as been modified");
-
-                    // Get the temporary file path without disposing it as it gets removed from the directory
-                    var tempFilePath = (tempDir.TempPath + file.FileName).GetNonExistingFileName();
+                    RCFCore.Logger?.LogTraceSource($"{fileEntry.FileName} as been modified");
 
                     // Remove the file from the dictionary
                     allFiles.Remove(fullPath);
 
-                    // Move the file
-                    RCFRCP.File.MoveFile(existingFile.PendingImportTempPath, tempFilePath, true);
+                    // Get the stream
+                    using var stream = importData.GetDataStream;
 
                     // Set the file size
-                    file.Size = (int)tempFilePath.GetSize().Bytes;
+                    file.Size = (int)stream.Length;
 
                     // NOTE: Leaving this unknown value causes the game to crash if the texture is modified - why? Setting it to 0 always seems to work.
                     // Remove unknown value
@@ -155,7 +210,7 @@ namespace RayCarrot.RCP.Metro
                             0, 0, 0, 0
                         };
 
-                        RCFCore.Logger?.LogTraceSource($"The encryption has been removed for {existingFile.FileName}");
+                        RCFCore.Logger?.LogTraceSource($"The encryption has been removed for {fileEntry.FileName}");
                     }
                     // Otherwise encrypt the file
                     else
@@ -163,14 +218,15 @@ namespace RayCarrot.RCP.Metro
                         throw new NotImplementedException("Encrypting .gf files is currently not supported");
                     }
 
+                    // TODO: Allow to pass in stream to generator?
                     // Add to the generator
-                    fileGenerator.Add(file, () => File.ReadAllBytes(tempFilePath));
+                    fileGenerator.Add(file, () => importData.GetDataStream.RunAndDispose(s => s.ReadRemainingBytes()));
                 }
                 // Use the original file without decrypting it
                 else
                 {
                     // Add to the generator
-                    fileGenerator.Add(file, () => generator.CastTo<IArchiveFileGenerator<OpenSpaceCntFileEntry>>().GetBytes(existingFile.FileEntry)); 
+                    fileGenerator.Add(file, () => generator.CastTo<IArchiveFileGenerator<OpenSpaceCntFileEntry>>().GetBytes(fileEntry)); 
                 }
 
                 // Set the pointer

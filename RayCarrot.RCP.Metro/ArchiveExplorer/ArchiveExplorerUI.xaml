@@ -1,11 +1,11 @@
 ﻿<UserControl x:Class="RayCarrot.RCP.Metro.ArchiveExplorerUI"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:metro="clr-namespace:RayCarrot.WPF.Metro;assembly=RayCarrot.WPF.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ArchiveExplorerDialogViewModel}"
@@ -13,7 +13,9 @@
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              MinHeight="400"
              MinWidth="600">
-    <Grid>
+    <metro:LoaderContentControl HorizontalLoadingIconAlignment="Center"
+                                VerticalLoadingIconAlignment="Center"
+                                IsLoading="{Binding Path=IsLoading}">
         <Grid Margin="10"
               IsEnabled="{Binding Path=IsLoading, Converter={rwpf:InvertedBooleanConverter}}">
             <Grid.ColumnDefinitions>
@@ -197,11 +199,5 @@
 
         </Grid>
 
-        <!-- Loading Indicator -->
-
-        <mah:ProgressRing HorizontalAlignment="Center"
-                          VerticalAlignment="Center"
-                          Visibility="{Binding Path=IsLoading, Converter={rwpf:BooleanToVisibilityConverter}}" />
-
-    </Grid>
+    </metro:LoaderContentControl>
 </UserControl>

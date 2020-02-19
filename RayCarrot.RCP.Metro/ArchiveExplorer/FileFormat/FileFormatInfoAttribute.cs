@@ -1,4 +1,5 @@
 ﻿using System;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -15,14 +16,14 @@ namespace RayCarrot.RCP.Metro
         /// <param name="magicHeader">The magic header</param>
         public FileFormatInfoAttribute(string fileExtension, uint magicHeader)
         {
-            FileExtension = fileExtension;
+            FileExtension = new FileExtension(fileExtension);
             MagicHeader = magicHeader;
         }
 
         /// <summary>
         /// The file extension
         /// </summary>
-        public string FileExtension { get; }
+        public FileExtension FileExtension { get; }
 
         /// <summary>
         /// The magic header

@@ -207,7 +207,7 @@ namespace RayCarrot.RCP.Metro
                                     var format = forceNativeFormat ? file.NativeFileExtension : selectedFormats[data.FileFormatName];
 
                                     // Get the final file name to use when exporting
-                                    FileSystemPath exportFileName = forceNativeFormat ? new FileSystemPath(file.FileName) : new FileSystemPath(file.FileName).ChangeFileExtension(format.FileExtensions, true);
+                                    FileSystemPath exportFileName = forceNativeFormat ? new FileSystemPath(file.FileName) : new FileSystemPath(file.FileName).ChangeFileExtension(format, true);
 
                                     Archive.SetDisplayStatus(String.Format(Resources.Archive_ExportingFileStatus, file.FileName));
 
@@ -262,98 +262,105 @@ namespace RayCarrot.RCP.Metro
                         // Keep track of the number of files getting imported
                         var imported = 0;
 
-                        try
+                        // Get the import data
+                        using (var importData = new DisposableList<ModifiedArchiveImportData>())
                         {
-                            // Enumerate each directory view model
-                            foreach (var dir in this.GetAllChildren(true))
+                            try
                             {
-                                // Enumerate each file
-                                foreach (var file in dir.Files)
+                                // Enumerate each directory view model
+                                foreach (var dir in this.GetAllChildren(true))
                                 {
-                                    // Get the file directory, relative to the selected directory
-                                    FileSystemPath fileDir = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
-
-                                    // Get the base file path
-                                    var baseFilePath = fileDir + new FileSystemPath(file.FileName);
-
-                                    // Get the file path, without an extension
-                                    FileSystemPath filePath = baseFilePath.RemoveFileExtension(true);
-                                    
-                                    if (!fileDir.DirectoryExists)
-                                        continue;
-
-                                    // Make sure there are potential file matches
-                                    if (!Directory.GetFiles(fileDir, $"{filePath.Name}*", SearchOption.TopDirectoryOnly).Any())
-                                        continue;
-
-                                    // Get the file bytes
-                                    var bytes = file.FileData.GetFileBytes(Archive.ArchiveFileStream, Archive.ArchiveFileGenerator);
-
-                                    // Check if the base file exists without changing the extensions
-                                    if (baseFilePath.FileExists)
+                                    // Enumerate each file
+                                    foreach (var file in dir.Files)
                                     {
-                                        // Import the file
-                                        await ImportFile(baseFilePath);
+                                        // Get the file directory, relative to the selected directory
+                                        FileSystemPath fileDir = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
 
-                                        continue;
-                                    }
+                                        // Get the base file path
+                                        var baseFilePath = fileDir + new FileSystemPath(file.FileName);
 
-                                    // Attempt to find a file for each supported extension
-                                    foreach (var ext in file.FileData.SupportedImportFileExtensions)
-                                    {
-                                        // Get the path
-                                        var fullFilePath = filePath.ChangeFileExtension(ext.FileExtensions);
+                                        // Get the file path, without an extension
+                                        FileSystemPath filePath = baseFilePath.RemoveFileExtension(true);
 
-                                        // Make sure the file exists
-                                        if (!fullFilePath.FileExists)
+                                        if (!fileDir.DirectoryExists)
                                             continue;
 
-                                        // Import the file
-                                        await ImportFile(fullFilePath);
+                                        // Make sure there are potential file matches
+                                        if (!Directory.GetFiles(fileDir, $"{filePath.Name}*", SearchOption.TopDirectoryOnly).Any())
+                                            continue;
 
-                                        // Break the loop
-                                        break;
-                                    }
+                                        // Get the file bytes
+                                        var bytes = file.FileData.GetFileBytes(Archive.ArchiveFileStream, Archive.ArchiveFileGenerator);
 
-                                    // Helper method for importing a file
-                                    async Task ImportFile(FileSystemPath fullFilePath)
-                                    {
-                                        Archive.SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, file.FileName));
+                                        // Check if the base file exists without changing the extensions
+                                        if (baseFilePath.FileExists)
+                                        {
+                                            // Import the file
+                                            await ImportFile(baseFilePath);
 
-                                        // Import the file
-                                        await file.ImportFileAsync(fullFilePath, bytes);
+                                            continue;
+                                        }
 
-                                        imported++;
+                                        // Attempt to find a file for each supported extension
+                                        foreach (var ext in file.FileData.SupportedImportFileExtensions)
+                                        {
+                                            // Get the path
+                                            var fullFilePath = filePath.ChangeFileExtension(ext);
+
+                                            // Make sure the file exists
+                                            if (!fullFilePath.FileExists)
+                                                continue;
+
+                                            // Import the file
+                                            await ImportFile(fullFilePath);
+
+                                            // Break the loop
+                                            break;
+                                        }
+
+                                        // Helper method for importing a file
+                                        async Task ImportFile(FileSystemPath fullFilePath)
+                                        {
+                                            Archive.SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, file.FileName));
+
+                                            // Import the file
+                                            var data = await file.ImportFileAsync(fullFilePath, bytes);
+
+                                            // Add the data to the collection
+                                            importData.Add(data);
+
+                                            imported++;
+                                        }
                                     }
                                 }
                             }
+                            catch (Exception ex)
+                            {
+                                ex.HandleError("Importing archive directory", DisplayName);
+
+                                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ImportError, result.SelectedDirectory.Name));
+
+                                return;
+                            }
+                            finally
+                            {
+                                Archive.SetDisplayStatus(String.Empty);
+                            }
+
+                            // Make sure at least one file has been imported
+                            if (imported == 0)
+                            {
+                                await RCFUI.MessageUI.DisplayMessageAsync(Resources.Archive_ImportNoFilesError, MessageType.Error);
+
+                                return;
+                            }
+
+                            // Update the archive
+                            var repackSucceeded = await Archive.UpdateArchiveAsync(importData);
+
+                            if (!repackSucceeded)
+                                return;
                         }
-                        catch (Exception ex)
-                        {
-                            ex.HandleError("Importing archive directory", DisplayName);
-
-                            await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ImportError, result.SelectedDirectory.Name));
-
-                            return;
-                        }
-                        finally
-                        {
-                            Archive.SetDisplayStatus(String.Empty);
-                        }
-
-                        // Make sure at least one file has been imported
-                        if (imported == 0)
-                        {
-                            await RCFUI.MessageUI.DisplayMessageAsync(Resources.Archive_ImportNoFilesError, MessageType.Error);
-
-                            return;
-                        }
-
-                        // Update the archive
-                        var repackSucceeded = await Archive.UpdateArchiveAsync();
-
-                        if (!repackSucceeded)
-                            return;
 
                         await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ImportFilesSuccess);
                     });
@@ -366,9 +373,6 @@ namespace RayCarrot.RCP.Metro
             // Disable collection synchronization
             BindingOperations.DisableCollectionSynchronization(Files);
             BindingOperations.DisableCollectionSynchronization(this);
-
-            // Dispose files
-            Files.DisposeAll();
         }
 
         #endregion

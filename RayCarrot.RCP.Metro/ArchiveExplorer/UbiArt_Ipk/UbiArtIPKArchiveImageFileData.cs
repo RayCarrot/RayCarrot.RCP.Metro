@@ -128,7 +128,7 @@ namespace RayCarrot.RCP.Metro
 
             // Set the file extension
             if (TextureFormat != UbiArtTextureFormat.Unknown)
-                FileExtension = new FileExtension(TextureFormat.GetAttribute<FileFormatInfoAttribute>().FileExtension);
+                FileExtension = TextureFormat.GetAttribute<FileFormatInfoAttribute>().FileExtension;
 
             // Set the supported file extensions
             var supportedImportFileExtensions = new List<FileExtension>();
@@ -282,7 +282,7 @@ namespace RayCarrot.RCP.Metro
                 using var img = GetImage(fileBytes);
 
                 // Set the format
-                img.Format = ImageHelpers.GetMagickFormat(format.FileExtensions);
+                img.Format = ImageHelpers.GetMagickFormat(format);
 
                 // Save the file
                 img.Write(outputStream);
@@ -389,7 +389,7 @@ namespace RayCarrot.RCP.Metro
                 UbiArtTEXFile.GetSerializer(Settings).Serialize(outputStream, texture);
             }
 
-            return Task.FromResult(true);
+            return Task.CompletedTask;
         }
 
         #endregion

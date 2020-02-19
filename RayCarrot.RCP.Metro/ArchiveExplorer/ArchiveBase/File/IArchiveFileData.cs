@@ -12,6 +12,11 @@ namespace RayCarrot.RCP.Metro
     public interface IArchiveFileData
     {
         /// <summary>
+        /// The file entry data
+        /// </summary>
+        object FileEntryData { get; }
+
+        /// <summary>
         /// The directory the file is located under
         /// </summary>
         string Directory { get; }
@@ -53,11 +58,6 @@ namespace RayCarrot.RCP.Metro
         /// The supported file formats to export to
         /// </summary>
         FileExtension[] SupportedExportFileExtensions { get; }
-
-        /// <summary>
-        /// The path to the temporary file containing the data to be imported
-        /// </summary>
-        FileSystemPath PendingImportTempPath { get; set; }
 
         /// <summary>
         /// Exports the file to the stream in the specified format

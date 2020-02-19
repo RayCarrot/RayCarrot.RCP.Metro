@@ -1,9 +1,8 @@
-﻿using System.Drawing;
+﻿using RayCarrot.IO;
+using RayCarrot.Rayman.OpenSpace;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-using RayCarrot.IO;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -108,7 +107,7 @@ namespace RayCarrot.RCP.Metro
                 // Return the data
                 return data;
             }, new FileFilterItemCollection(ImageHelpers.GetSupportedBitmapExtensions().Select(x => new FileFilterItem($"*{x}",
-                x.Substring(1).ToUpper()))).ToString(), ".gf", true);
+                x.Substring(1).ToUpper()))).ToString(), new FileExtension(".gf"), true);
         }
 
         #endregion

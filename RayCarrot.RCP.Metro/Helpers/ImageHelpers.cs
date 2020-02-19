@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing.Imaging;
 using ImageMagick;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -44,10 +45,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="fileExtension">The file extension</param>
         /// <returns>The image format</returns>
-        public static ImageFormat GetImageFormat(string fileExtension)
+        public static ImageFormat GetImageFormat(FileExtension fileExtension)
         {
             // Get the format
-            return fileExtension switch
+            return fileExtension.PrimaryFileExtension switch
             {
                 ".png" => ImageFormat.Png,
                 ".jpeg" => ImageFormat.Jpeg,
@@ -62,10 +63,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="fileExtension">The file extension</param>
         /// <returns>The Magick format</returns>
-        public static MagickFormat GetMagickFormat(string fileExtension)
+        public static MagickFormat GetMagickFormat(FileExtension fileExtension)
         {
             // Get the format
-            return fileExtension switch
+            return fileExtension.PrimaryFileExtension switch
             {
                 ".dds" => MagickFormat.Dds,
                 ".png" => MagickFormat.Png,

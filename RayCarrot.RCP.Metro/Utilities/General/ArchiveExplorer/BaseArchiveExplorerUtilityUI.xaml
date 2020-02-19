@@ -20,6 +20,8 @@
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="20" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <ComboBox Grid.Column="0"
@@ -35,6 +37,10 @@
             <Button Grid.Column="2"
                     Content="{Resx Utilities_ArchiveExplorer_Open}"
                     Command="{Binding Path=OpenArchiveExplorerCommand, Mode=OneTime}" />
+
+            <Button Grid.Column="4"
+                    Content="{Resx Utilities_ArchiveExplorer_Create}"
+                    Command="{Binding Path=CreateArchiveCommand, Mode=OneTime}" />
 
         </Grid>
 

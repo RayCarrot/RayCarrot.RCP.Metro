@@ -22,6 +22,7 @@ namespace RayCarrot.RCP.Metro
         {
             // Create commands
             OpenArchiveExplorerCommand = new AsyncRelayCommand(OpenArchiveExplorerAsync);
+            CreateArchiveCommand = new AsyncRelayCommand(CreateArchiveAsync);
         }
 
         #endregion
@@ -86,11 +87,23 @@ namespace RayCarrot.RCP.Metro
             await RCFRCP.UI.ShowArchiveExplorerAsync(manager, fileResult.SelectedFiles);
         }
 
+        /// <summary>
+        /// Opens the Archive Creator
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task CreateArchiveAsync()
+        {
+            // Show the Archive Creator
+            await RCFRCP.UI.ShowArchiveCreatorAsync(GetArchiveDataManager);
+        }
+
         #endregion
 
         #region Commands
 
         public ICommand OpenArchiveExplorerCommand { get; }
+        
+        public ICommand CreateArchiveCommand { get; }
 
         #endregion
     }

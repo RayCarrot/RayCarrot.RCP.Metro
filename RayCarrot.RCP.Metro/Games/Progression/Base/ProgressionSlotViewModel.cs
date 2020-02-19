@@ -106,7 +106,7 @@ namespace RayCarrot.RCP.Metro
             var outputResult = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
             {
                 Title = Resources.ExportDestinationSelectionHeader,
-                DefaultName = SaveSlotFilePath.ChangeFileExtension(".json").Name,
+                DefaultName = SaveSlotFilePath.ChangeFileExtension(new FileExtension(".json")).Name,
                 Extensions = new FileFilterItem("*.json", Resources.FileFilterDescription_JSON).StringRepresentation
             });
 
@@ -142,7 +142,7 @@ namespace RayCarrot.RCP.Metro
             {
                 Title = Resources.ImportSelectionHeader,
                 ExtensionFilter = new FileFilterItem("*.json", Resources.FileFilterDescription_JSON).StringRepresentation,
-                DefaultName = SaveSlotFilePath.ChangeFileExtension(".json").Name
+                DefaultName = SaveSlotFilePath.ChangeFileExtension(new FileExtension(".json")).Name
             });
 
             if (inputResult.CanceledByUser)

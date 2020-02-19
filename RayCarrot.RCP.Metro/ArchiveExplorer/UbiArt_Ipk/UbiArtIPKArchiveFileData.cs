@@ -1,6 +1,5 @@
 ﻿using ByteSizeLib;
 using MahApps.Metro.IconPacks;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Rayman.UbiArt;
 using System;
@@ -65,6 +64,11 @@ namespace RayCarrot.RCP.Metro
         public UbiArtIPKFileEntry FileEntry { get; }
 
         /// <summary>
+        /// The file entry data
+        /// </summary>
+        public object FileEntryData => FileEntry;
+
+        /// <summary>
         /// The file name
         /// </summary>
         public string FileName { get; }
@@ -118,11 +122,6 @@ namespace RayCarrot.RCP.Metro
         /// The file extension
         /// </summary>
         public FileExtension FileExtension { get; set; }
-
-        /// <summary>
-        /// The path to the temporary file containing the data to be imported
-        /// </summary>
-        public FileSystemPath PendingImportTempPath { get; set; }
 
         #endregion
 
@@ -184,7 +183,7 @@ namespace RayCarrot.RCP.Metro
             // Copy the file
             inputStream.CopyTo(outputStream);
 
-            return Task.FromResult(true);
+            return Task.CompletedTask;
         }
 
         #endregion

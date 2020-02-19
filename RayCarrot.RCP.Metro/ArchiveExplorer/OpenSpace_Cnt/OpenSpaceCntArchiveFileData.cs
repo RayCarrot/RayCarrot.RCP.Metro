@@ -68,6 +68,11 @@ namespace RayCarrot.RCP.Metro
         public OpenSpaceCntFileEntry FileEntry { get; }
 
         /// <summary>
+        /// The file entry data
+        /// </summary>
+        public object FileEntryData => FileEntry;
+
+        /// <summary>
         /// The file name
         /// </summary>
         public string FileName { get; }
@@ -130,11 +135,6 @@ namespace RayCarrot.RCP.Metro
         /// The supported file formats for exporting mipmaps
         /// </summary>
         public FileExtension[] SupportedMipmapExportFileExtensions => ImageHelpers.GetSupportedBitmapExtensions().Select(x => new FileExtension(x)).ToArray();
-
-        /// <summary>
-        /// The path to the temporary file containing the data to be imported
-        /// </summary>
-        public FileSystemPath PendingImportTempPath { get; set; }
 
         /// <summary>
         /// Indicates if the image has mipmaps
@@ -249,7 +249,7 @@ namespace RayCarrot.RCP.Metro
             using var bmp = GetBitmap(fileBytes);
 
             // Get the format
-            var imgFormat = ImageHelpers.GetImageFormat(format.FileExtensions);
+            var imgFormat = ImageHelpers.GetImageFormat(format);
 
             // Save the file
             bmp.Save(outputStream, imgFormat);
@@ -281,7 +281,7 @@ namespace RayCarrot.RCP.Metro
                 using var file = File.Open(mipmapFile, FileMode.Create, FileAccess.Write, FileShare.None);
 
                 // Get the format
-                var format = ImageHelpers.GetImageFormat(fileFormat);
+                var format = ImageHelpers.GetImageFormat(new FileExtension(fileFormat));
 
                 // Save the file
                 bmp.Save(file, format);
