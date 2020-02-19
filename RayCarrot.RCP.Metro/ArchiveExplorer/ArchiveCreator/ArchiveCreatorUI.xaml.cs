@@ -4,6 +4,7 @@ using RayCarrot.IO;
 using RayCarrot.UI;
 using RayCarrot.WPF;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
@@ -183,25 +184,21 @@ namespace RayCarrot.RCP.Metro
                 // Make sure the input directory exists
                 if (!InputDirectory.DirectoryExists)
                 {
-                    // TODO: Message
+                    // TODO-UPDATE: Message
 
                     return;
                 }
 
                 // Get the import data for each file
-                using var importData = new DisposableList<ModifiedArchiveImportData>();
+                var importData = new List<ArchiveImportData>();
 
                 // Add every file
                 foreach (var file in Directory.GetFiles(InputDirectory, "*", SearchOption.AllDirectories))
                 {
-                    // Create the temp file
-                    var temp = new TempFile(false);
-
-                    // Cover the file over
-                    RCFRCP.File.CopyFile(file, temp.TempPath, true);
-
                     // Add the import data
-                    importData.Add(new ModifiedArchiveImportData(Manager.GetFileEntry(file - InputDirectory), temp));
+                    importData.Add(new ArchiveImportData(Manager.GetFileEntry(file - InputDirectory),
+                        // TODO-UPDATE: Encode the data
+                        y => File.ReadAllBytes(file)));
                 }
 
                 // Get a new archive
@@ -212,11 +209,11 @@ namespace RayCarrot.RCP.Metro
 
                 Manager.UpdateArchive(archive, outputStream, importData, null);
 
-                // TODO: Success message
+                // TODO-UPDATE: Success message
             }
             catch (Exception ex)
             {
-                // TODO: Handle crash
+                // TODO-UPDATE: Handle crash
             }
             finally
             {

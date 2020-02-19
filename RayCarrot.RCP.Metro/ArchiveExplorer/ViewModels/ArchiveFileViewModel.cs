@@ -1,4 +1,6 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
+﻿using MahApps.Metro.IconPacks;
+using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
@@ -7,8 +9,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
-using MahApps.Metro.IconPacks;
-using RayCarrot.Extensions;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -133,7 +133,7 @@ namespace RayCarrot.RCP.Metro
             HasMipmaps = false;
 
             // Get the file bytes
-            var bytes = FileData.GetFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator);
+            var bytes = FileData.GetDecodedFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator);
 
             // Get the bitmap if the item is an image
             if (FileData is IArchiveImageFileData imgData)
@@ -204,7 +204,7 @@ namespace RayCarrot.RCP.Metro
                         try
                         {
                             // Get the file bytes
-                            var bytes = FileData.GetFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator);
+                            var bytes = FileData.GetDecodedFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator);
 
                             if (!includeMipmap)
                                 // Export the file
@@ -283,47 +283,17 @@ namespace RayCarrot.RCP.Metro
                         if (result.CanceledByUser)
                             return;
 
-                        Archive.SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, FileName));
+                        // Import the file
+                        ArchiveImportData importData = ImportFile(result.SelectedFile);
 
-                        // Keep track of the import data
-                        ModifiedArchiveImportData importData = null;
-
-                        try
+                        // Update the archive
+                        var repackSucceeded = await Archive.UpdateArchiveAsync(new ArchiveImportData[]
                         {
-                            try
-                            {
-                                // Get the file bytes
-                                var bytes = FileData.GetFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator);
+                            importData
+                        });
 
-                                // Import the file
-                                importData = await ImportFileAsync(result.SelectedFile, bytes);
-                            }
-                            catch (Exception ex)
-                            {
-                                ex.HandleError("Importing archive file", FileName);
-
-                                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ImportError, result.SelectedFile.Name));
-
-                                return;
-                            }
-                            finally
-                            {
-                                Archive.SetDisplayStatus(String.Empty);
-                            }
-
-                            // Update the archive
-                            var repackSucceeded = await Archive.UpdateArchiveAsync(new ModifiedArchiveImportData[]
-                            {
-                                importData
-                            });
-
-                            if (!repackSucceeded)
-                                return;
-                        }
-                        finally
-                        {
-                            importData?.Dispose();
-                        }
+                        if (!repackSucceeded)
+                            return;
 
                         RCFCore.Logger?.LogTraceSource($"The archive file has been imported");
 
@@ -337,49 +307,47 @@ namespace RayCarrot.RCP.Metro
         /// Imports the specified file
         /// </summary>
         /// <param name="filePath">The file path to import from</param>
-        /// <param name="fileBytes">The file bytes for the file to import</param>
         /// <returns>The import data</returns>
-        public async Task<ModifiedArchiveImportData> ImportFileAsync(FileSystemPath filePath, byte[] fileBytes)
+        public ArchiveImportData ImportFile(FileSystemPath filePath)
         {
-            RCFCore.Logger?.LogTraceSource($"An archive file is being imported as {filePath.FileExtension}");
-
-            // Get the temporary file to save to, without disposing it
-            var tempFile = new TempFile(false);
-
-            try
+            // Return the import data
+            return new ArchiveImportData(FileData.FileEntryData, file =>
             {
+                Archive.SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, FileName));
+
+                RCFCore.Logger?.LogTraceSource($"An archive file is being imported as {filePath.FileExtension}");
+
                 // Get the file format
                 var format = filePath.FileExtension;
 
-                // Copy the file as is if the specified format is the native one
-                if (format == NativeFileExtension)
-                {
-                    RCFRCP.File.CopyFile(filePath, tempFile.TempPath, true);
-                }
-                // Import the file if the format is not the native one
-                else
-                {
-                    // Open the file to import
-                    using var fileStream = File.OpenRead(filePath);
+                byte[] importBytes;
 
-                    // Open the temp file
-                    using var tempFileStream = File.Open(tempFile.TempPath, FileMode.Create, FileAccess.Write);
+                // Import the file if the format is not the native one
+                if (format != NativeFileExtension)
+                {
+                    // Get the file bytes
+                    var bytes = FileData.GetDecodedFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator);
+
+                    // Open the file to import from
+                    using var importFileStream = File.Open(filePath, FileMode.Open, FileAccess.Read);
+
+                    // Create a memory stream for the bytes to encode
+                    using var importStream = new MemoryStream();
 
                     // Import the file
-                    await FileData.ImportFileAsync(fileBytes, fileStream, tempFileStream, format);
+                    FileData.ImportFile(bytes, importFileStream, importStream, format);
+
+                    importBytes = importStream.ToArray();
                 }
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Importing archive file", filePath);
+                else
+                {
+                    // Read the file bytes to import from
+                    importBytes = File.ReadAllBytes(filePath);
+                }
 
-                tempFile.Dispose();
-
-                throw;
-            }
-
-            // Return the import data
-            return new ModifiedArchiveImportData(FileData.FileEntryData, tempFile);
+                // Return the encoded file
+                return Archive.Manager.EncodeFile(importBytes, file);
+            });
         }
 
         #endregion

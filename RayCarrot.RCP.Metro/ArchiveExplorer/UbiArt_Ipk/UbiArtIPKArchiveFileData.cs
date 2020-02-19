@@ -128,25 +128,37 @@ namespace RayCarrot.RCP.Metro
         #region Public Methods
 
         /// <summary>
-        /// Gets the contents of the file from the stream
+        /// Gets the decoded contents of the file from the stream
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <param name="generator">The file generator</param>
         /// <returns>The contents of the file</returns>
-        public byte[] GetFileBytes(Stream archiveFileStream, IDisposable generator)
+        public byte[] GetDecodedFileBytes(Stream archiveFileStream, IDisposable generator)
         {
             // Get the bytes
-            var bytes = generator.CastTo<IArchiveFileGenerator<UbiArtIPKFileEntry>>().GetBytes(FileEntry);
+            var bytes = GetEncodedFileBytes(archiveFileStream, generator);
 
             // Decompress the data if compressed
             if (FileEntry.IsCompressed)
-                bytes = UbiArtIpkData.DecompressData(bytes, FileEntry.Size, Settings.IPKVersion);
+                bytes = UbiArtIpkData.GetEncoder(Settings.IPKVersion, FileEntry.Size).Decode(bytes);
 
             // Initialize the data
             InitializeData(bytes);
 
             // Return the bytes
             return bytes;
+        }
+
+        /// <summary>
+        /// Gets the original encoded contents of the file from the stream
+        /// </summary>
+        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="generator">The file generator</param>
+        /// <returns>The contents of the file</returns>
+        public byte[] GetEncodedFileBytes(Stream archiveFileStream, IDisposable generator)
+        {
+            // Get the bytes
+            return generator.CastTo<IArchiveFileGenerator<UbiArtIPKFileEntry>>().GetBytes(FileEntry);
         }
 
         /// <summary>
@@ -177,13 +189,10 @@ namespace RayCarrot.RCP.Metro
         /// <param name="inputStream">The input stream to import from</param>
         /// <param name="outputStream">The destination stream</param>
         /// <param name="format">The file format to use</param>
-        /// <returns>The task</returns>
-        public virtual Task ImportFileAsync(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format)
+        public virtual void ImportFile(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format)
         {
             // Copy the file
             inputStream.CopyTo(outputStream);
-
-            return Task.CompletedTask;
         }
 
         #endregion

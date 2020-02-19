@@ -22,7 +22,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!-- TODO: Add UI -->
+            <!-- TODO-UPDATE: Add UI -->
 
         </Grid>
 

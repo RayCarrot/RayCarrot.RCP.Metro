@@ -73,6 +73,11 @@ namespace RayCarrot.RCP.Metro
         public FileStream ArchiveFileStream { get; protected set; }
 
         /// <summary>
+        /// The data for the loaded archive
+        /// </summary>
+        public object ArchiveData { get; set; }
+
+        /// <summary>
         /// The lock to use when accessing the archive stream
         /// </summary>
         public AsyncLock ArchiveLock => ExplorerDialogViewModel.ArchiveLock;
@@ -144,8 +149,11 @@ namespace RayCarrot.RCP.Metro
             // Clear existing items
             ClearAndDisposeItems();
 
+            // Load the archive data
+            ArchiveData = Manager.LoadArchive(ArchiveFileStream);
+
             // Load the archive
-            var data = Manager.LoadArchiveData(ArchiveFileStream);
+            var data = Manager.LoadArchiveData(ArchiveData, ArchiveFileStream);
 
             // Dispose the current generator
             ArchiveFileGenerator?.Dispose();
@@ -185,7 +193,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="modifiedImportData">The import data for the files which have been modified</param>
         /// <returns>A value indicating if the updating succeeded</returns>
-        public async Task<bool> UpdateArchiveAsync(IEnumerable<ModifiedArchiveImportData> modifiedImportData)
+        public async Task<bool> UpdateArchiveAsync(IEnumerable<ArchiveImportData> modifiedImportData)
         {
             RCFCore.Logger?.LogInformationSource($"The archive {DisplayName} is being updated");
 
@@ -221,17 +229,18 @@ namespace RayCarrot.RCP.Metro
                         // Get the file data
                         Select(x => x.FileData).
                         // Make sure the file isn't one of the modified ones
-                        Where(x => !modified.Contains(x.FileEntryData)).
+                        Where(x => modified.All(y => y.FileEntryData != x.FileEntryData)).
                         // Get the import data
-                        Select(x => (IArchiveImportData)new OriginalArchiveImportData(x.FileEntryData));
+                        Select(x => (IArchiveImportData)new ArchiveImportData(x.FileEntryData, file => x.GetEncodedFileBytes(ArchiveFileStream, ArchiveFileGenerator)));
 
                     // Update the archive
-                    Manager.UpdateArchive(Manager.LoadArchive(ArchiveFileStream), outputStream, modified.Concat(origFiles), ArchiveFileGenerator);
+                    Manager.UpdateArchive(ArchiveData, outputStream, modified.Concat(origFiles), ArchiveFileGenerator);
                 }
 
                 // Dispose the archive file stream
                 ArchiveFileStream.Dispose();
 
+                ArchiveData = null;
                 ArchiveFileStream = null;
 
                 // If the operation succeeded, replace the archive file with the temporary output

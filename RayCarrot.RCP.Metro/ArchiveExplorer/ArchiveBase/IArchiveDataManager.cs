@@ -1,7 +1,7 @@
-﻿using System;
+﻿using RayCarrot.IO;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -18,9 +18,10 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Loads the archive data
         /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="archive">The archive data</param>
+        /// <param name="archiveFileStream">The archive file stream</param>
         /// <returns>The archive data</returns>
-        ArchiveData LoadArchiveData(Stream archiveFileStream);
+        ArchiveData LoadArchiveData(object archive, Stream archiveFileStream);
 
         /// <summary>
         /// Loads the archive
@@ -42,6 +43,14 @@ namespace RayCarrot.RCP.Metro
         /// <param name="relativePath">The relative path of the file</param>
         /// <returns>The file entry</returns>
         object GetFileEntry(FileSystemPath relativePath);
+
+        /// <summary>
+        /// Encodes the file bytes
+        /// </summary>
+        /// <param name="fileData">The bytes to encode</param>
+        /// <param name="fileEntry">The file entry for the file to encode</param>
+        /// <returns>The encoded bytes</returns>
+        byte[] EncodeFile(byte[] fileData, object fileEntry);
 
         /// <summary>
         /// Updates the archive with the modified files

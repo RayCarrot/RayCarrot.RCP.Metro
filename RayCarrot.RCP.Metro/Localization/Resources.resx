@@ -3415,4 +3415,10 @@ totalTextures</comment>
   <data name="RL_LevelName_5_6" xml:space="preserve">
     <value>Hell Breaks Loose</value>
   </data>
+  <data name="Archive_Extract" xml:space="preserve">
+    <value>Extract</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
 </root>

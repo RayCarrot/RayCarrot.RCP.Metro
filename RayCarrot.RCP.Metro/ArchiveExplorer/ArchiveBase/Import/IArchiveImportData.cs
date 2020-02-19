@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿using System;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -13,13 +13,8 @@ namespace RayCarrot.RCP.Metro
         object FileEntryData { get; }
 
         /// <summary>
-        /// Indicates if the file has been modified
+        /// The function used to get the encoded data to import, passing in the file entry
         /// </summary>
-        bool IsModified { get; }
-
-        /// <summary>
-        /// The stream to the file contents, if the file has been modified
-        /// </summary>
-        Stream GetDataStream { get; }
+        Func<object, byte[]> GetData { get; }
     }
 }

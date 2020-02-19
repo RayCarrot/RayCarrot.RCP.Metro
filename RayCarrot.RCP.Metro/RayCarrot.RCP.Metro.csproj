@@ -112,9 +112,7 @@
     <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
     <Compile Include="ArchiveExplorer\FileFormat\FileFormatInfoAttribute.cs" />
     <Compile Include="ArchiveExplorer\ArchiveBase\Import\IArchiveImportData.cs" />
-    <Compile Include="ArchiveExplorer\ArchiveBase\Import\ModifiedArchiveImportData.cs" />
-    <Compile Include="ArchiveExplorer\ArchiveBase\Import\OriginalArchiveImportData.cs" />
-    <Compile Include="Helpers\DisposableList.cs" />
+    <Compile Include="ArchiveExplorer\ArchiveBase\Import\ArchiveImportData.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanMDemoConfigViewModel.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_2_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_1_Info.cs" />
@@ -1258,7 +1256,7 @@
       <Version>1.2.11</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
-      <Version>1.6.1</Version>
+      <Version>1.6.2</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.UI">
       <Version>1.2.2</Version>

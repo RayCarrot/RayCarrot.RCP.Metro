@@ -32,12 +32,20 @@ namespace RayCarrot.RCP.Metro
         string FileDisplayInfo { get; }
 
         /// <summary>
-        /// Gets the contents of the file from the stream
+        /// Gets the decoded contents of the file from the stream
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <param name="generator">The file generator</param>
         /// <returns>The contents of the file</returns>
-        byte[] GetFileBytes(Stream archiveFileStream, IDisposable generator);
+        byte[] GetDecodedFileBytes(Stream archiveFileStream, IDisposable generator);
+
+        /// <summary>
+        /// Gets the original encoded contents of the file from the stream
+        /// </summary>
+        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="generator">The file generator</param>
+        /// <returns>The contents of the file</returns>
+        byte[] GetEncodedFileBytes(Stream archiveFileStream, IDisposable generator);
 
         /// <summary>
         /// The default icon to use for this file
@@ -75,7 +83,6 @@ namespace RayCarrot.RCP.Metro
         /// <param name="inputStream">The input stream to import from</param>
         /// <param name="outputStream">The destination stream</param>
         /// <param name="format">The file format to use</param>
-        /// <returns>The task</returns>
-        Task ImportFileAsync(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format);
+        void ImportFile(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format);
     }
 }

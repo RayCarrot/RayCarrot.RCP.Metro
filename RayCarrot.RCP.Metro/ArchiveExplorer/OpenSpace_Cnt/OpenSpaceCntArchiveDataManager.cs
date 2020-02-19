@@ -56,19 +56,15 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Loads the archive data
         /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="archive">The archive data</param>
+        /// <param name="archiveFileStream">The archive file stream</param>
         /// <returns>The archive data</returns>
-        public ArchiveData LoadArchiveData(Stream archiveFileStream)
+        public ArchiveData LoadArchiveData(object archive, Stream archiveFileStream)
         {
+            // Get the data
+            var data = archive.CastTo<OpenSpaceCntData>();
+
             RCFCore.Logger?.LogInformationSource("The directories are being retrieved for a CNT archive");
-
-            // Set the stream position to 0
-            archiveFileStream.Position = 0;
-
-            // Read the file data
-            var data = OpenSpaceCntData.GetSerializer(Settings).Deserialize(archiveFileStream);
-
-            RCFCore.Logger?.LogInformationSource($"Read CNT file ({data.VersionID}) with {data.Files.Length} files and {data.Directories.Length} directories");
 
             // Helper method for getting the directories
             IEnumerable<ArchiveDirectory> GetDirectories()
@@ -99,7 +95,11 @@ namespace RayCarrot.RCP.Metro
             archiveFileStream.Position = 0;
 
             // Load the current file
-            return OpenSpaceCntData.GetSerializer(Settings).Deserialize(archiveFileStream);
+            var data = OpenSpaceCntData.GetSerializer(Settings).Deserialize(archiveFileStream);
+
+            RCFCore.Logger?.LogInformationSource($"Read CNT file ({data.VersionID}) with {data.Files.Length} files and {data.Directories.Length} directories");
+
+            return data;
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace RayCarrot.RCP.Metro
         {
             throw new NotImplementedException();
 
-            // TODO: Clean up and handle dir
+            // TODO-UPDATE: Clean up and handle dir
             return new OpenSpaceCntFileEntry(0)
             {
                 DirectoryIndex = 0,
@@ -147,6 +147,38 @@ namespace RayCarrot.RCP.Metro
                 Pointer = 0,
                 Size = 0
             };
+        }
+
+        /// <summary>
+        /// Encodes the file bytes
+        /// </summary>
+        /// <param name="fileData">The bytes to encode</param>
+        /// <param name="fileEntry">The file entry for the file to encode</param>
+        /// <returns>The encoded bytes</returns>
+        public byte[] EncodeFile(byte[] fileData, object fileEntry)
+        {
+            // Get the file entry
+            var file = fileEntry.CastTo<OpenSpaceCntFileEntry>();
+
+            // Update the size
+            file.Size = fileData.Length;
+
+            // Remove the encryption if not encrypting files
+            if (!EncryptFiles)
+            {
+                file.FileXORKey = new byte[]
+                {
+                    0, 0, 0, 0
+                };
+
+                RCFCore.Logger?.LogTraceSource($"The encryption has been removed for {file.FileName}");
+
+                return fileData;
+            }
+            else
+            {
+                return new MultiXORDataEncoder(file.FileXORKey, true).Encode(fileData);
+            }
         }
 
         /// <summary>
@@ -163,84 +195,45 @@ namespace RayCarrot.RCP.Metro
             // Get the archive data
             var data = archive.CastTo<OpenSpaceCntData>();
 
-            // Order files by path
-            var allFiles = files.ToDictionary(x => x.FileEntryData.CastTo<OpenSpaceCntFileEntry>().GetFullPath(data.Directories));
-
             // Create the file generator
             using var fileGenerator = new ArchiveFileGenerator<OpenSpaceCntFileEntry>();
 
-            // The current pointer position
+            // Set the current pointer position to the header size
             var pointer = data.GetHeaderSize(Settings);
 
-            // Load each file data into temporary files as we're changing the archive structure by modifying the pointers
-            foreach (var file in data.Files)
+            // Load each file
+            foreach (var importData in files)
             {
-                // Get the full path
-                var fullPath = file.GetFullPath(data.Directories);
+                // Get the file entry
+                var file = importData.FileEntryData.CastTo<OpenSpaceCntFileEntry>();
 
-                // Get the file
-                var importData = allFiles.TryGetValue(fullPath);
+                // NOTE: Leaving this unknown value causes the game to crash if the texture is modified - why? Setting it to 0 always seems to work.
+                // Remove unknown value
+                file.Unknown1 = 0;
 
-                // Get the entry
-                var fileEntry = importData.FileEntryData.CastTo<OpenSpaceCntFileEntry>();
-
-                // Check if the file is one of the modified files
-                if (importData.IsModified)
+                // Add to the generator
+                fileGenerator.Add(file, () =>
                 {
-                    RCFCore.Logger?.LogTraceSource($"{fileEntry.FileName} as been modified");
+                    // Get the file bytes to write to the archive
+                    var bytes = importData.GetData(file);
 
-                    // Remove the file from the dictionary
-                    allFiles.Remove(fullPath);
+                    // Set the pointer
+                    file.Pointer = pointer;
 
-                    // Get the stream
-                    using var stream = importData.GetDataStream;
+                    // Update the pointer by the file size
+                    pointer += file.Size;
 
-                    // Set the file size
-                    file.Size = (int)stream.Length;
-
-                    // NOTE: Leaving this unknown value causes the game to crash if the texture is modified - why? Setting it to 0 always seems to work.
-                    // Remove unknown value
-                    file.Unknown1 = 0;
-
-                    // Remove the encryption if set to do so
-                    if (!EncryptFiles)
-                    {
-                        file.FileXORKey = new byte[]
-                        {
-                            0, 0, 0, 0
-                        };
-
-                        RCFCore.Logger?.LogTraceSource($"The encryption has been removed for {fileEntry.FileName}");
-                    }
-                    // Otherwise encrypt the file
-                    else
-                    {
-                        throw new NotImplementedException("Encrypting .gf files is currently not supported");
-                    }
-
-                    // TODO: Allow to pass in stream to generator?
-                    // Add to the generator
-                    fileGenerator.Add(file, () => importData.GetDataStream.RunAndDispose(s => s.ReadRemainingBytes()));
-                }
-                // Use the original file without decrypting it
-                else
-                {
-                    // Add to the generator
-                    fileGenerator.Add(file, () => generator.CastTo<IArchiveFileGenerator<OpenSpaceCntFileEntry>>().GetBytes(fileEntry)); 
-                }
-
-                // Set the pointer
-                file.Pointer = pointer;
-
-                // Increase by the file size
-                pointer += file.Size;
+                    return bytes;
+                });
             }
-
-            // Serialize the data
-            OpenSpaceCntData.GetSerializer(Settings).Serialize(outputFileStream, data);
 
             // Write the files
             data.WriteArchiveContent(outputFileStream, fileGenerator);
+
+            outputFileStream.Position = 0;
+
+            // Serialize the data
+            OpenSpaceCntData.GetSerializer(Settings).Serialize(outputFileStream, data);
 
             RCFCore.Logger?.LogInformationSource($"The CNT archive has been repacked");
         }

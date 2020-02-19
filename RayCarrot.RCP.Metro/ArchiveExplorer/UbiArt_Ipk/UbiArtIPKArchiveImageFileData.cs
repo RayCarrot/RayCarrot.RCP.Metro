@@ -307,14 +307,13 @@ namespace RayCarrot.RCP.Metro
         /// <param name="inputStream">The input stream to import from</param>
         /// <param name="outputStream">The destination stream</param>
         /// <param name="format">The file format to use</param>
-        /// <returns>The task</returns>
-        public override Task ImportFileAsync(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format)
+        public override void ImportFile(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format)
         {
             // Check if the file is in the TEX format or in the native format, thus not needing to be converted
             if (IsTEXFormat(format) || format == new FileExtension(FileName))
             {
                 // Copy the file
-                return base.ImportFileAsync(fileBytes, inputStream, outputStream, format);
+                base.ImportFile(fileBytes, inputStream, outputStream, format);
             }
             // Import as a standard image format
             else if (!UsesTexWrapper)
@@ -388,8 +387,6 @@ namespace RayCarrot.RCP.Metro
                 // Write the texture to the temp file
                 UbiArtTEXFile.GetSerializer(Settings).Serialize(outputStream, texture);
             }
-
-            return Task.CompletedTask;
         }
 
         #endregion

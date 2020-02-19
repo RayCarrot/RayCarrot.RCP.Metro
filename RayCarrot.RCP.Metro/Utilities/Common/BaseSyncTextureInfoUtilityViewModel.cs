@@ -109,7 +109,8 @@ namespace RayCarrot.RCP.Metro
                     var bytes = generator.GetBytes(x);
 
                     // Decrypt the bytes
-                    OpenSpaceCntData.DecryptFileData(bytes, x.FileXORKey);
+                    if (x.FileXORKey.Any(y => y != 0))
+                        bytes = new MultiXORDataEncoder(x.FileXORKey, true).Decode(bytes);
 
                     // Read the bytes into a stream
                     using var gfMemoryStream = new MemoryStream(bytes);

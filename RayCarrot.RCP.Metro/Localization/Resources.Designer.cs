@@ -577,6 +577,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extract.
+        /// </summary>
+        public static string Archive_Extract {
+            get {
+                return ResourceManager.GetString("Archive_Extract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File Extension Selection.
         /// </summary>
         public static string Archive_FileExtensionSelectionHeader {
@@ -8858,6 +8867,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_ArchiveExplorer_CNTHeader {
             get {
                 return ResourceManager.GetString("Utilities_ArchiveExplorer_CNTHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string Utilities_ArchiveExplorer_Create {
+            get {
+                return ResourceManager.GetString("Utilities_ArchiveExplorer_Create", resourceCulture);
             }
         }
         

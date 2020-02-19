@@ -146,20 +146,33 @@ namespace RayCarrot.RCP.Metro
         #region Public Methods
 
         /// <summary>
-        /// Gets the contents of the file from the stream
+        /// Gets the decoded contents of the file from the stream
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <param name="generator">The file generator</param>
         /// <returns>The contents of the file</returns>
-        public byte[] GetFileBytes(Stream archiveFileStream, IDisposable generator)
+        public byte[] GetDecodedFileBytes(Stream archiveFileStream, IDisposable generator)
         {
             // Get the bytes
-            var bytes = generator.CastTo<IArchiveFileGenerator<OpenSpaceCntFileEntry>>().GetBytes(FileEntry);
+            var bytes = GetEncodedFileBytes(archiveFileStream, generator);
 
-            // Decrypt the bytes
-            OpenSpaceCntData.DecryptFileData(bytes, FileEntry.FileXORKey);
+            if (FileEntry.FileXORKey.Any(x => x != 0))
+                // Decrypt the bytes
+                bytes = new MultiXORDataEncoder(FileEntry.FileXORKey, true).Decode(bytes);
 
             return bytes;
+        }
+
+        /// <summary>
+        /// Gets the original encoded contents of the file from the stream
+        /// </summary>
+        /// <param name="archiveFileStream">The file stream for the archive</param>
+        /// <param name="generator">The file generator</param>
+        /// <returns>The contents of the file</returns>
+        public byte[] GetEncodedFileBytes(Stream archiveFileStream, IDisposable generator)
+        {
+            // Get the bytes
+            return generator.CastTo<IArchiveFileGenerator<OpenSpaceCntFileEntry>>().GetBytes(FileEntry);
         }
 
         /// <summary>
@@ -299,8 +312,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="inputStream">The input stream to import from</param>
         /// <param name="outputStream">The destination stream</param>
         /// <param name="format">The file format to use</param>
-        /// <returns>The task</returns>
-        public Task ImportFileAsync(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format)
+        public void ImportFile(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format)
         {
             // Load the bitmap
             using var bmp = new Bitmap(inputStream);
@@ -313,8 +325,6 @@ namespace RayCarrot.RCP.Metro
 
             // Serialize the data to get the bytes
             OpenSpaceGFFile.GetSerializer(Settings).Serialize(outputStream, file);
-
-            return Task.CompletedTask;
         }
 
         #endregion

@@ -95,21 +95,17 @@ namespace RayCarrot.RCP.Metro
                 // Decode every file
                 foreach (var file in inputFiles)
                 {
-                    // Open the file
-                    using var fileStream = File.OpenRead(file);
+                    // Open the input file
+                    using var inputStream = File.OpenRead(file);
+
+                    // Open and create the destination file
+                    using var outputStream = File.OpenWrite((outputDir + file.Name).GetNonExistingFileName());
 
                     // Process the file data
-                    var data = shouldDecode ? encoder.Decode(fileStream) : encoder.Encode(fileStream);
-
-                    // Get the destination file
-                    var destinationFile = (outputDir + file.Name).GetNonExistingFileName();
-
-                    // Open and create the file
-                    using var outputFileStream = File.OpenWrite(destinationFile);
-
-                    // Write to the file
-                    foreach (var b in data)
-                        outputFileStream.WriteByte(b);
+                    if (shouldDecode)
+                        encoder.Decode(inputStream, outputStream);
+                    else
+                        encoder.Encode(inputStream, outputStream);
                 }
             }
             finally

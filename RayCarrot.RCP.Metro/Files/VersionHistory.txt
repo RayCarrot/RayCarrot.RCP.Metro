@@ -6,6 +6,7 @@
 • IPK files with multiple offsets and compressed a compressed memory block are now supported
 
 Other changes:
+• Major IO changes
 • Batch importing in the Archive Explorer will now recognize file names with their original file extensions (such as .tga.ckd)
 • Dialog windows will no longer show in the task bar or application switcher as separate windows
 • Replaced the game installer logos with higher quality images, downscaled to the displayed size
