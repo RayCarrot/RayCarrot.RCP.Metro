@@ -33,7 +33,6 @@ The Rayman Control Panel uses these main dependencies:
 - [Hardcodet.NotifyIcon.Wpf](http://www.hardcodet.net/wpf-notifyicon)
 - [gong-wpf-dragdrop](https://github.com/punker76/gong-wpf-dragdrop)
 - [DotNetZip](https://github.com/haf/DotNetZip.Semverd)
-- [FastBitmap](https://github.com/LuizZak/FastBitmap)
 - [Magick.NET](https://github.com/dlemstra/Magick.NET)
 
 ## Localization

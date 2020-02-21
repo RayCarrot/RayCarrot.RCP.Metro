@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 using RayCarrot.UI;
 
@@ -45,8 +46,20 @@ namespace RayCarrot.RCP.Metro
                 return null;
             }
 
+            // Open the file in a stream
+            using var fileStream = File.Open(filePath, FileMode.Open, FileAccess.Read);
+
+            // Create a memory stream
+            using var memStream = new MemoryStream();
+
+            // Decode the data
+            new Rayman3SaveDataEncoder().Decode(fileStream, memStream);
+
+            // Set the position
+            memStream.Position = 0;
+
             // Deserialize and return the data
-            var saveData = Rayman3PCSaveData.GetSerializer().Deserialize(filePath);
+            var saveData = Rayman3PCSaveData.GetSerializer().Deserialize(memStream);
 
             RCFCore.Logger?.LogInformationSource($"Slot has been deserialized");
 

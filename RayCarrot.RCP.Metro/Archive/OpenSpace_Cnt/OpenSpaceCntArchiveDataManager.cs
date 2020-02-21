@@ -35,6 +35,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected OpenSpaceSettings Settings { get; }
 
+        // TODO: Option for this
         /// <summary>
         /// Indicates if the files should be encrypted when imported. Defaulted to false due to encrypting the file being very slow.
         /// </summary>
@@ -76,7 +77,7 @@ namespace RayCarrot.RCP.Metro
                     var dir = i == -1 ? String.Empty : data.Directories[i];
 
                     // Return each directory with the available files, including the root directory
-                    yield return new ArchiveDirectory(dir, data.Files.Where(x => x.DirectoryIndex == i).Select(f => new OpenSpaceCntArchiveFileData(f, Settings, dir, EncryptFiles) as IArchiveFileData).ToArray());
+                    yield return new ArchiveDirectory(dir, data.Files.Where(x => x.DirectoryIndex == i).Select(f => new OpenSpaceCntArchiveFileData(f, Settings, dir) as IArchiveFileData).ToArray());
                 }
             }
 
@@ -187,8 +188,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="archive">The loaded archive data</param>
         /// <param name="outputFileStream">The file stream for the updated archive</param>
         /// <param name="files">The import data for the archive files</param>
-        /// <param name="generator">The file generator</param>
-        public void UpdateArchive(object archive, Stream outputFileStream, IEnumerable<IArchiveImportData> files, IDisposable generator)
+        public void UpdateArchive(object archive, Stream outputFileStream, IEnumerable<IArchiveImportData> files)
         {
             RCFCore.Logger?.LogInformationSource($"A CNT archive is being repacked...");
 

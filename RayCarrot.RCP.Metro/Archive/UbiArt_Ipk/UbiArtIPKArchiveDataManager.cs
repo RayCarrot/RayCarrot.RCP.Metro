@@ -113,7 +113,8 @@ namespace RayCarrot.RCP.Metro
             // Create the data
             var data = new UbiArtIpkData();
 
-            // TODO-UPDATE: Set default properties based on settings
+            // TODO-UPDATE: Option for setting block properties
+            // Set default properties based on settings
             switch (Settings.Game)
             {
                 case UbiArtGame.RaymanOrigins:
@@ -133,41 +134,112 @@ namespace RayCarrot.RCP.Metro
                     data.Unknown4 = true;
                     data.Unknown5 = true;
                     data.Unknown6 = 0;
-                    data.Unknown7 = 0;
-                    data.Unknown8 = 0;
+                    data.EngineVersion = 0;
 
                     break;
 
                 case UbiArtGame.RaymanLegends:
-                    break;
 
-                case UbiArtGame.RaymanJungleRun:
-                    break;
+                    if (Settings.Platform != UbiArtPlatform.PlayStation4)
+                    {
+                        data.Version = 5;
+                        data.Unknown1 = 0;
+                    }
+                    else
+                    {
+                        data.Version = 7;
+                        data.Unknown1 = 8;
+                    }
 
-                case UbiArtGame.RaymanFiestaRun:
+                    data.Unknown3 = false;
+                    data.Unknown4 = true;
+                    data.Unknown5 = true;
+                    data.Unknown6 = 0;
+                    data.EngineVersion = 30765;
+
                     break;
 
                 case UbiArtGame.RaymanAdventures:
+
+                    data.Version = 8;
+                    data.Unknown1 = 2;
+                    data.Unknown2 = 11;
+                    data.Unknown3 = true;
+                    data.Unknown4 = true;
+                    data.Unknown5 = true;
+                    data.Unknown6 = 0;
+                    data.EngineVersion = 30765;
+
                     break;
 
                 case UbiArtGame.RaymanMini:
+
+                    data.Version = 8;
+                    data.Unknown1 = 12;
+                    data.Unknown2 = 12;
+                    data.Unknown3 = true;
+                    data.Unknown4 = true;
+                    data.Unknown5 = true;
+                    data.Unknown6 = 3826;
+                    data.EngineVersion = 3826;
+
                     break;
 
                 case UbiArtGame.JustDance2017:
+
+                    data.Version = 5;
+                    data.Unknown1 = 8;
+                    data.Unknown3 = false;
+                    data.Unknown4 = false;
+                    data.Unknown5 = false;
+                    data.Unknown6 = 0;
+                    data.EngineVersion = 241478;
+
                     break;
 
                 case UbiArtGame.ValiantHearts:
+
+                    data.Version = 7;
+                    data.Unknown1 = 10;
+                    data.Unknown3 = false;
+                    data.Unknown4 = true;
+                    data.Unknown5 = true;
+                    data.Unknown6 = 0;
+                    data.EngineVersion = 0;
+                    data.Unknown9 = 0;
+
                     break;
 
                 case UbiArtGame.ChildOfLight:
+
+                    data.Version = 7;
+                    data.Unknown1 = 0;
+                    data.Unknown3 = false;
+                    data.Unknown4 = true;
+                    data.Unknown5 = true;
+                    data.Unknown6 = 0;
+                    data.EngineVersion = 30765;
+
                     break;
 
                 case UbiArtGame.GravityFalls:
+
+                    data.Version = 7;
+                    data.Unknown1 = 10;
+                    data.Unknown3 = false;
+                    data.Unknown4 = true;
+                    data.Unknown5 = true;
+                    data.Unknown6 = 0;
+                    data.EngineVersion = 0;
+
                     break;
 
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(Settings.Game), Settings.Game, null);
             }
+
+            // Unknown value used for all versions which we set to 0
+            data.Unknown7 = 0;
 
             // Set the files
             data.Files = files.Select(x => x.FileEntryData.CastTo<UbiArtIPKFileEntry>()).ToArray();
@@ -183,10 +255,24 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The file entry</returns>
         public object GetFileEntry(FileSystemPath relativePath)
         {
+            // IDEA: Allow this to be configured
+            var compressExtensions = new FileExtension[]
+            {
+                new FileExtension(".dtape.ckd"), 
+                new FileExtension(".fx.fxb"), 
+                new FileExtension(".m3d.ckd"), 
+                new FileExtension(".png.ckd"), 
+                new FileExtension(".tga.ckd"), 
+            };
+
+            bool compress = compressExtensions.Any(x => x == relativePath.FileExtension);
+
             return new UbiArtIPKFileEntry()
             {
-                Path = new UbiArtPath(relativePath)
-                // TODO-UPDATE: Possible set the file to use compression for certain types?
+                Path = new UbiArtPath(relativePath),
+
+                // IDEA: Perhaps find a cleaner way of handling this...
+                CompressedSize = compress ? 1u : 0u
             };
         }
 
@@ -226,8 +312,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="archive">The loaded archive data</param>
         /// <param name="outputFileStream">The file stream for the updated archive</param>
         /// <param name="files">The import data for the archive files</param>
-        /// <param name="generator">The file generator</param>
-        public void UpdateArchive(object archive, Stream outputFileStream, IEnumerable<IArchiveImportData> files, IDisposable generator)
+        public void UpdateArchive(object archive, Stream outputFileStream, IEnumerable<IArchiveImportData> files)
         {
             RCFCore.Logger?.LogInformationSource($"An IPK archive is being repacked...");
 
@@ -249,7 +334,7 @@ namespace RayCarrot.RCP.Metro
                 // Reset the offset array to always contain 1 item
                 file.Offsets = new ulong[]
                 {
-                    file.Offsets.First()
+                    file.Offsets?.FirstOrDefault() ?? 0
                 };
 
                 // Set the count

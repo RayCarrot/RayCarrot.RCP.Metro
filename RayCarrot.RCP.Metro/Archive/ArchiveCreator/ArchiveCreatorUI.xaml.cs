@@ -4,8 +4,8 @@ using RayCarrot.IO;
 using RayCarrot.UI;
 using RayCarrot.WPF;
 using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -150,6 +150,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool IsLoading { get; set; }
 
+        // TODO: Default these properties
+
         /// <summary>
         /// The selected input directory
         /// </summary>
@@ -181,35 +183,42 @@ namespace RayCarrot.RCP.Metro
 
                 IsLoading = true;
 
-                // Make sure the input directory exists
-                if (!InputDirectory.DirectoryExists)
+                await Task.Run(async () =>
                 {
-                    // TODO-UPDATE: Message
+                    // TODO-UPDATE: Show status for each file
 
-                    return;
-                }
+                    // Make sure the input directory exists
+                    if (!InputDirectory.DirectoryExists)
+                    {
+                        // TODO-UPDATE: Message
 
-                // Get the import data for each file
-                var importData = new List<ArchiveImportData>();
+                        return;
+                    }
 
-                // Add every file
-                foreach (var file in Directory.GetFiles(InputDirectory, "*", SearchOption.AllDirectories))
-                {
-                    // Add the import data
-                    importData.Add(new ArchiveImportData(Manager.GetFileEntry(file - InputDirectory),
-                        // TODO-UPDATE: Encode the data
-                        y => File.ReadAllBytes(file)));
-                }
+                    // Get the import data for each file
+                    var importData = Directory.GetFiles(InputDirectory, "*", SearchOption.AllDirectories).
+                        // Get the import data
+                        Select(file =>
+                        {
+                            // Get the file entry data
+                            var entry = Manager.GetFileEntry(file - InputDirectory);
 
-                // Get a new archive
-                var archive = Manager.GetArchive(importData);
+                            // Get the import data
+                            return new ArchiveImportData(entry, y => Manager.EncodeFile(File.ReadAllBytes(file), entry));
+                        }).ToArray();
 
-                // Open the output file
-                using var outputStream = File.Open(OutputFile, FileMode.Create, FileAccess.Write);
+                    // Get a new archive
+                    var archive = Manager.GetArchive(importData);
 
-                Manager.UpdateArchive(archive, outputStream, importData, null);
+                    // Open the output file
+                    using var outputStream = File.Open(OutputFile, FileMode.Create, FileAccess.Write);
 
-                // TODO-UPDATE: Success message
+                    // Update the archive
+                    Manager.UpdateArchive(archive, outputStream, importData);
+
+                    // TODO-UPDATE: Localize
+                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync($"The archive was successfully created with {importData.Length} files");
+                });
             }
             catch (Exception ex)
             {

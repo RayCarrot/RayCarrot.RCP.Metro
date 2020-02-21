@@ -133,7 +133,7 @@ namespace RayCarrot.RCP.Metro
             HasMipmaps = false;
 
             // Get the file bytes
-            var bytes = FileData.GetDecodedFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator);
+            var bytes = FileData.GetDecodedFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator, false);
 
             // Get the bitmap if the item is an image
             if (FileData is IArchiveImageFileData imgData)
@@ -204,14 +204,29 @@ namespace RayCarrot.RCP.Metro
                         try
                         {
                             // Get the file bytes
-                            var bytes = FileData.GetDecodedFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator);
+                            var bytes = FileData.GetDecodedFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator, false);
+
+                            // Get the file format
+                            var format = result.SelectedFileLocation.FileExtension;
 
                             if (!includeMipmap)
+                            {
                                 // Export the file
-                                await ExportFileAsync(result.SelectedFileLocation, bytes, result.SelectedFileLocation.FileExtension);
+                                ExportFile(result.SelectedFileLocation, bytes, format);
+                            }
                             else
+                            {
+                                // Helper method for getting the mipmap file stream
+                                Stream GetMipmapStream(int index)
+                                {
+                                    var path = $"{result.SelectedFileLocation.RemoveFileExtension().FullPath} ({index}){format.FileExtensions}";
+
+                                    return File.Open(path, FileMode.Create, FileAccess.Write);
+                                }
+
                                 // Export the mipmaps
-                                await ((IArchiveImageFileData)FileData).ExportMipmapsAsync(bytes, result.SelectedFileLocation, result.SelectedFileLocation.FileExtension.FileExtensions);
+                                FileData.CastTo<IArchiveImageFileData>().ExportMipmaps(bytes, GetMipmapStream, format);
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -241,7 +256,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="fileBytes">The file bytes for the file to export</param>
         /// <param name="format">The format to export as</param>
         /// <returns>The task</returns>
-        public async Task ExportFileAsync(FileSystemPath filePath, byte[] fileBytes, FileExtension format)
+        public void ExportFile(FileSystemPath filePath, byte[] fileBytes, FileExtension format)
         {
             RCFCore.Logger?.LogTraceSource($"An archive file is being exported as {format}");
 
@@ -253,7 +268,7 @@ namespace RayCarrot.RCP.Metro
                 fileStream.Write(fileBytes);
             // Convert the file if the format is not the native one
             else
-                await FileData.ExportFileAsync(fileBytes, fileStream, format);
+                FileData.ExportFile(fileBytes, fileStream, format);
         }
 
         /// <summary>
@@ -322,11 +337,11 @@ namespace RayCarrot.RCP.Metro
 
                 byte[] importBytes;
 
-                // Import the file if the format is not the native one
+                // Convert the file if the format is not the native one
                 if (format != NativeFileExtension)
                 {
                     // Get the file bytes
-                    var bytes = FileData.GetDecodedFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator);
+                    var bytes = FileData.GetDecodedFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator, false);
 
                     // Open the file to import from
                     using var importFileStream = File.Open(filePath, FileMode.Open, FileAccess.Read);
@@ -334,8 +349,8 @@ namespace RayCarrot.RCP.Metro
                     // Create a memory stream for the bytes to encode
                     using var importStream = new MemoryStream();
 
-                    // Import the file
-                    FileData.ImportFile(bytes, importFileStream, importStream, format);
+                    // Convert the file
+                    FileData.ConvertImportData(bytes, importFileStream, importStream, format);
 
                     importBytes = importStream.ToArray();
                 }

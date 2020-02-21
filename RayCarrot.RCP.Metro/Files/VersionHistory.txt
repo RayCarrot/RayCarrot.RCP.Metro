@@ -3,11 +3,14 @@
 • Added utilities for converting Rayman Origins and Legends save files
 • Updated the UbiRay utility to patch the displayed character name and description (the patch needs to be re-applied for this to update)
 • Added the option to extract folders from the Archive Explorer (this exports the contents without modifying the files)
-• IPK files with multiple offsets and compressed a compressed memory block are now supported
 
 Other changes:
-• Major IO changes
-• Batch importing in the Archive Explorer will now recognize file names with their original file extensions (such as .tga.ckd)
+• Major changes to the Archive Explorer, .gf serializer and .ipk management
+	• When repacking an archive it will no longer generate temporary files. The file importing is now done on a file by file basis, where each file is processed in memory
+	• Batch importing in the Archive Explorer will now recognize file names with their original file extensions (such as .tga.ckd)
+	• Converting to and from .gf files is now much faster due to it accessing the .NET bitmap directly from memory
+	• When converting an image to a .gf file it will now regenerate the correct number of mipmaps rather than keeping the original count
+	• IPK files with multiple offsets and a compressed memory block are now supported
 • Dialog windows will no longer show in the task bar or application switcher as separate windows
 • Replaced the game installer logos with higher quality images, downscaled to the displayed size
 • When selecting files for converter utilities it now defaults to the most relevant directory rather than the game install directory

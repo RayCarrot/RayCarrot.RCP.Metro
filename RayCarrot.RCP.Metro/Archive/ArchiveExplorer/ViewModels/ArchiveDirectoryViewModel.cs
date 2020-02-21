@@ -184,7 +184,7 @@ namespace RayCarrot.RCP.Metro
                                     var data = file.FileData;
 
                                     // Get the file bytes
-                                    var bytes = data.GetDecodedFileBytes(file.ArchiveFileStream, Archive.ArchiveFileGenerator);
+                                    var bytes = data.GetDecodedFileBytes(file.ArchiveFileStream, Archive.ArchiveFileGenerator, false);
 
                                     // Check if the format has not been selected
                                     if (!forceNativeFormat && !selectedFormats.ContainsKey(data.FileFormatName))
@@ -211,8 +211,8 @@ namespace RayCarrot.RCP.Metro
 
                                     Archive.SetDisplayStatus(String.Format(Resources.Archive_ExportingFileStatus, file.FileName));
 
-                                    // Save the file
-                                    await file.ExportFileAsync(path + exportFileName, bytes, format);
+                                    // Export the file
+                                    file.ExportFile(path + exportFileName, bytes, format);
                                 }
                             }
                         }
@@ -289,9 +289,8 @@ namespace RayCarrot.RCP.Metro
                                     if (!Directory.GetFiles(fileDir, $"{filePath.Name}*", SearchOption.TopDirectoryOnly).Any())
                                         continue;
 
-                                    // TODO-UPDATE: I think we still need to read them here to initialize the data? Perhaps do this in the file ext getter instead?
-                                    // Get the file bytes
-                                    var bytes = file.FileData.GetDecodedFileBytes(Archive.ArchiveFileStream, Archive.ArchiveFileGenerator);
+                                    // Initialize the file bytes
+                                    file.FileData.GetDecodedFileBytes(Archive.ArchiveFileStream, Archive.ArchiveFileGenerator, true);
 
                                     // Check if the base file exists without changing the extensions
                                     if (baseFilePath.FileExists)

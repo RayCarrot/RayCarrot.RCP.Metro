@@ -58,7 +58,6 @@ namespace RayCarrot.RCP.Metro
         /// <param name="archive">The loaded archive data</param>
         /// <param name="outputFileStream">The file stream for the updated archive</param>
         /// <param name="files">The import data for the archive files</param>
-        /// <param name="generator">The file generator</param>
-        void UpdateArchive(object archive, Stream outputFileStream, IEnumerable<IArchiveImportData> files, IDisposable generator);
+        void UpdateArchive(object archive, Stream outputFileStream, IEnumerable<IArchiveImportData> files);
     }
 }

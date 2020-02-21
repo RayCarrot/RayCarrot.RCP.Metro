@@ -1,8 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-using MahApps.Metro.IconPacks;
+﻿using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
+using System;
+using System.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -36,8 +35,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <param name="generator">The file generator</param>
+        /// <param name="initilizeOnly">Indicates if the bytes should be retrieved for initialization only, in which case the bytes don't need to be returned</param>
         /// <returns>The contents of the file</returns>
-        byte[] GetDecodedFileBytes(Stream archiveFileStream, IDisposable generator);
+        byte[] GetDecodedFileBytes(Stream archiveFileStream, IDisposable generator, bool initilizeOnly);
 
         /// <summary>
         /// Gets the original encoded contents of the file from the stream
@@ -73,16 +73,15 @@ namespace RayCarrot.RCP.Metro
         /// <param name="fileBytes">The file bytes</param>
         /// <param name="outputStream">The stream to export to</param>
         /// <param name="format">The file format to use</param>
-        /// <returns>The task</returns>
-        Task ExportFileAsync(byte[] fileBytes, Stream outputStream, FileExtension format);
+        void ExportFile(byte[] fileBytes, Stream outputStream, FileExtension format);
 
         /// <summary>
-        /// Imports the file from the stream to the output
+        /// Converts the import file data from the input stream to the output stream
         /// </summary>
         /// <param name="fileBytes">The file bytes</param>
         /// <param name="inputStream">The input stream to import from</param>
         /// <param name="outputStream">The destination stream</param>
         /// <param name="format">The file format to use</param>
-        void ImportFile(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format);
+        void ConvertImportData(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format);
     }
 }

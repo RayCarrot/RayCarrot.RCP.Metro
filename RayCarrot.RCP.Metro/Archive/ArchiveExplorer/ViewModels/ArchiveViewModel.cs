@@ -234,7 +234,7 @@ namespace RayCarrot.RCP.Metro
                         Select(x => (IArchiveImportData)new ArchiveImportData(x.FileEntryData, file => x.GetEncodedFileBytes(ArchiveFileStream, ArchiveFileGenerator)));
 
                     // Update the archive
-                    Manager.UpdateArchive(ArchiveData, outputStream, modified.Concat(origFiles), ArchiveFileGenerator);
+                    Manager.UpdateArchive(ArchiveData, outputStream, modified.Concat(origFiles));
                 }
 
                 // Dispose the archive file stream

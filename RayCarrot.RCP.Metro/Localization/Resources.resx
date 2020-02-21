@@ -3018,7 +3018,8 @@ Modified = {4}
 Encrypted = {5}
 Transparent = {6}
 Pointer = {7}
-Mipmaps = {8}</value>
+Mipmaps = {8}
+Format = {9}</value>
     <comment>Arguments:
 dirPath
 imgWidth

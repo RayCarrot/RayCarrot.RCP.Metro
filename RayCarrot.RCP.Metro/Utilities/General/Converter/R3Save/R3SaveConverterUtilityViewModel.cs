@@ -1,6 +1,7 @@
 ﻿using RayCarrot.IO;
 using RayCarrot.UI;
 using System.Threading.Tasks;
+using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro
@@ -49,7 +50,7 @@ namespace RayCarrot.RCP.Metro
             }, new FileFilterItem("*.sav", "SAV").ToString(), new[]
             {
                 ".json"
-            }, Games.Rayman3.GetInstallDir(false));
+            }, Games.Rayman3.GetInstallDir(false), new Rayman3SaveDataEncoder());
         }
 
         /// <summary>

@@ -100,19 +100,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ArchiveExplorer\ArchiveBase\ArchiveData.cs" />
-    <Compile Include="ArchiveExplorer\ArchiveBase\ArchiveDirectory.cs" />
-    <Compile Include="ArchiveExplorer\ArchiveBase\IArchiveDataManager.cs" />
-    <Compile Include="ArchiveExplorer\ArchiveBase\File\IArchiveFileData.cs" />
-    <Compile Include="ArchiveExplorer\ArchiveBase\File\IArchiveImageFileData.cs" />
-    <Compile Include="ArchiveExplorer\ArchiveCreator\ArchiveCreatorUI.xaml.cs">
+    <Compile Include="Archive\ArchiveBase\ArchiveData.cs" />
+    <Compile Include="Archive\ArchiveBase\ArchiveDirectory.cs" />
+    <Compile Include="Archive\ArchiveBase\IArchiveDataManager.cs" />
+    <Compile Include="Archive\ArchiveBase\File\IArchiveFileData.cs" />
+    <Compile Include="Archive\ArchiveBase\File\IArchiveImageFileData.cs" />
+    <Compile Include="Archive\ArchiveCreator\ArchiveCreatorUI.xaml.cs">
       <DependentUpon>ArchiveCreatorUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
-    <Compile Include="ArchiveExplorer\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
-    <Compile Include="ArchiveExplorer\FileFormat\FileFormatInfoAttribute.cs" />
-    <Compile Include="ArchiveExplorer\ArchiveBase\Import\IArchiveImportData.cs" />
-    <Compile Include="ArchiveExplorer\ArchiveBase\Import\ArchiveImportData.cs" />
+    <Compile Include="Archive\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
+    <Compile Include="Archive\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
+    <Compile Include="Archive\FileFormat\FileFormatInfoAttribute.cs" />
+    <Compile Include="Archive\ArchiveBase\Import\IArchiveImportData.cs" />
+    <Compile Include="Archive\ArchiveBase\Import\ArchiveImportData.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanMDemoConfigViewModel.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_2_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_1_Info.cs" />
@@ -167,20 +167,20 @@
     <Compile Include="Utilities\Games\Rayman M\SyncTextureInfo\RMGameSyncTextureInfoUtility.cs" />
     <Compile Include="Utilities\Games\Rayman Origins\IPKExplorer\ROIPKExplorerUtility.cs" />
     <Compile Include="Helpers\ImageHelpers.cs" />
-    <Compile Include="ArchiveExplorer\UbiArt_Ipk\UbiArtIPKArchiveDataManager.cs" />
-    <Compile Include="ArchiveExplorer\UbiArt_Ipk\UbiArtIPKArchiveFileData.cs" />
-    <Compile Include="ArchiveExplorer\UbiArt_Ipk\UbiArtIPKArchiveImageFileData.cs" />
-    <Compile Include="ArchiveExplorer\ArchiveExplorerUI.xaml.cs">
+    <Compile Include="Archive\UbiArt_Ipk\UbiArtIPKArchiveDataManager.cs" />
+    <Compile Include="Archive\UbiArt_Ipk\UbiArtIPKArchiveFileData.cs" />
+    <Compile Include="Archive\UbiArt_Ipk\UbiArtIPKArchiveImageFileData.cs" />
+    <Compile Include="Archive\ArchiveExplorer\ArchiveExplorerUI.xaml.cs">
       <DependentUpon>ArchiveExplorerUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ByteArrayHexConverter.cs" />
     <Compile Include="UI\Dialogs\FileExtensionSelectionDialog.xaml.cs">
       <DependentUpon>FileExtensionSelectionDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ArchiveExplorer\ViewModels\ArchiveDirectoryViewModel.cs" />
-    <Compile Include="ArchiveExplorer\ViewModels\ArchiveExplorerDialogViewModel.cs" />
-    <Compile Include="ArchiveExplorer\ViewModels\ArchiveFileViewModel.cs" />
-    <Compile Include="ArchiveExplorer\ViewModels\ArchiveViewModel.cs" />
+    <Compile Include="Archive\ArchiveExplorer\ViewModels\ArchiveDirectoryViewModel.cs" />
+    <Compile Include="Archive\ArchiveExplorer\ViewModels\ArchiveExplorerDialogViewModel.cs" />
+    <Compile Include="Archive\ArchiveExplorer\ViewModels\ArchiveFileViewModel.cs" />
+    <Compile Include="Archive\ArchiveExplorer\ViewModels\ArchiveViewModel.cs" />
     <Compile Include="Utilities\General\ArchiveExplorer\BaseArchiveExplorerUtilityUI.xaml.cs">
       <DependentUpon>BaseArchiveExplorerUtilityUI.xaml</DependentUpon>
     </Compile>
@@ -460,11 +460,11 @@
     <Compile Include="DataModels\Enums\Pages.cs" />
     <Compile Include="Pages\Games\GameCategoryViewModel.cs" />
     <Compile Include="ViewModels\TaskbarIconViewModel.cs" />
-    <Page Include="ArchiveExplorer\ArchiveCreator\ArchiveCreatorUI.xaml">
+    <Page Include="Archive\ArchiveCreator\ArchiveCreatorUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ArchiveExplorer\ArchiveExplorerUI.xaml">
+    <Page Include="Archive\ArchiveExplorer\ArchiveExplorerUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

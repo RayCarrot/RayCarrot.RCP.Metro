@@ -61,8 +61,9 @@ namespace RayCarrot.RCP.Metro
         /// <param name="fileFilter">The file filter when selecting files to convert</param>
         /// <param name="supportedFileExtensions">The supported file extensions to export as</param>
         /// <param name="defaultDir">The default directory</param>
+        /// <param name="encoder">An optional data encoder to use</param>
         /// <returns>The task</returns>
-        protected async Task ConvertFromAsync<T, Settings>(BinaryDataSerializer<T, Settings> serializer, Action<T, FileSystemPath, FileSystemPath> convertAction, string fileFilter, string[] supportedFileExtensions, FileSystemPath? defaultDir)
+        protected async Task ConvertFromAsync<T, Settings>(BinaryDataSerializer<T, Settings> serializer, Action<T, FileSystemPath, FileSystemPath> convertAction, string fileFilter, string[] supportedFileExtensions, FileSystemPath? defaultDir, IDataEncoder encoder = null)
             where T : IBinarySerializable<Settings>
             where Settings : BinarySerializerSettings
         {
@@ -111,20 +112,48 @@ namespace RayCarrot.RCP.Metro
                         // Convert every file
                         foreach (var file in fileResult.SelectedFiles)
                         {
-                            // Read the file data
-                            var data = serializer.Deserialize(file);
+                            Stream stream = null;
 
-                            // Get the destination file
-                            var destinationFile = destinationResult.SelectedDirectory + file.Name;
+                            try
+                            {
+                                if (encoder != null)
+                                {
+                                    // Open the file in a stream
+                                    using var fileStream = File.Open(file, FileMode.Open, FileAccess.Read);
 
-                            // Set the file extension
-                            destinationFile = destinationFile.ChangeFileExtension(new FileExtension(extResult.SelectedFileFormat)).GetNonExistingFileName();
+                                    // Create a memory stream
+                                    stream = new MemoryStream();
 
-                            // Get the optional configuration path
-                            var configFile = destinationFile.ChangeFileExtension(new FileExtension(".json")).GetNonExistingFileName();
+                                    // Decode the data
+                                    encoder.Decode(fileStream, stream);
 
-                            // Convert the file
-                            convertAction(data, destinationFile, configFile);
+                                    // Set the position
+                                    stream.Position = 0;
+                                }
+                                else
+                                {
+                                    stream = File.Open(file, FileMode.Open, FileAccess.Read);
+                                }
+
+                                // Read the file data
+                                var data = serializer.Deserialize(stream);
+
+                                // Get the destination file
+                                var destinationFile = destinationResult.SelectedDirectory + file.Name;
+
+                                // Set the file extension
+                                destinationFile = destinationFile.ChangeFileExtension(new FileExtension(extResult.SelectedFileFormat)).GetNonExistingFileName();
+
+                                // Get the optional configuration path
+                                var configFile = destinationFile.ChangeFileExtension(new FileExtension(".json")).GetNonExistingFileName();
+
+                                // Convert the file
+                                convertAction(data, destinationFile, configFile);
+                            }
+                            finally
+                            {
+                                stream?.Dispose();
+                            }
                         }
                     });
 

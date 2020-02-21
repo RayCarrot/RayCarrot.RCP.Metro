@@ -1,13 +1,12 @@
 ﻿using ByteSizeLib;
 using MahApps.Metro.IconPacks;
+using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;
 using System;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using RayCarrot.Extensions;
-using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -48,6 +47,11 @@ namespace RayCarrot.RCP.Metro
         /// The base offset to use when reading the files
         /// </summary>
         protected uint BaseOffset { get; }
+
+        /// <summary>
+        /// Indicates if the data has been initialized
+        /// </summary>
+        protected bool HasInitializedData { get; set; }
 
         #endregion
 
@@ -132,9 +136,14 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="archiveFileStream">The file stream for the archive</param>
         /// <param name="generator">The file generator</param>
+        /// <param name="initilizeOnly">Indicates if the bytes should be retrieved for initialization only, in which case the bytes don't need to be returned</param>
         /// <returns>The contents of the file</returns>
-        public byte[] GetDecodedFileBytes(Stream archiveFileStream, IDisposable generator)
+        public byte[] GetDecodedFileBytes(Stream archiveFileStream, IDisposable generator, bool initilizeOnly)
         {
+            // Don't read the bytes if it's only for initialization and the file has been initialized
+            if (initilizeOnly && HasInitializedData)
+                return null;
+
             // Get the bytes
             var bytes = GetEncodedFileBytes(archiveFileStream, generator);
 
@@ -173,23 +182,20 @@ namespace RayCarrot.RCP.Metro
         /// <param name="fileBytes">The file bytes</param>
         /// <param name="outputStream">The stream to export to</param>
         /// <param name="format">The file format to use</param>
-        /// <returns>The task</returns>
-        public virtual Task ExportFileAsync(byte[] fileBytes, Stream outputStream, FileExtension format)
+        public virtual void ExportFile(byte[] fileBytes, Stream outputStream, FileExtension format)
         {
             // Write to the stream
             outputStream.Write(fileBytes);
-
-            return Task.CompletedTask;
         }
 
         /// <summary>
-        /// Imports the file from the stream to the output
+        /// Converts the import file data from the input stream to the output stream
         /// </summary>
         /// <param name="fileBytes">The file bytes</param>
         /// <param name="inputStream">The input stream to import from</param>
         /// <param name="outputStream">The destination stream</param>
         /// <param name="format">The file format to use</param>
-        public virtual void ImportFile(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format)
+        public virtual void ConvertImportData(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format)
         {
             // Copy the file
             inputStream.CopyTo(outputStream);

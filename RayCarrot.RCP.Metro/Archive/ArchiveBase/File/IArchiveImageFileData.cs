@@ -1,5 +1,6 @@
 ﻿using RayCarrot.IO;
-using System.Threading.Tasks;
+using System;
+using System.IO;
 using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro
@@ -17,15 +18,13 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The image as an image source</returns>
         ImageSource GetThumbnail(byte[] fileBytes, int width);
 
-        // TODO-UPDATE: Update this to new system with FileExtension etc.
         /// <summary>
-        /// Exports the mipmaps from the file to the specified path
+        /// Exports the mipmaps from the file
         /// </summary>
         /// <param name="fileBytes">The file bytes</param>
-        /// <param name="filePath">The path to export the file to</param>
-        /// <param name="fileFormat">The file extension to use</param>
-        /// <returns>The task</returns>
-        Task ExportMipmapsAsync(byte[] fileBytes, FileSystemPath filePath, string fileFormat);
+        /// <param name="outputStreams">The function used to get the output streams for the mipmaps</param>
+        /// <param name="format">The file extension to use</param>
+        void ExportMipmaps(byte[] fileBytes, Func<int, Stream> outputStreams, FileExtension format);
 
         /// <summary>
         /// Indicates if the image has mipmaps

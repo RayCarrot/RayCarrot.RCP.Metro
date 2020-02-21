@@ -3,6 +3,7 @@ using RayCarrot.Rayman.OpenSpace;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -60,7 +61,7 @@ namespace RayCarrot.RCP.Metro
             await ConvertFromAsync(OpenSpaceGFFile.GetSerializer(GameModeSelection.SelectedValue.GetSettings()), (data, filePath, configPath) =>
             {
                 // Get a bitmap from the image data
-                using var bmp = data.GetBitmap();
+                using var bmp = data.GetRawBitmapData().GetBitmap();
 
                 // Save the image
                 bmp.Save(filePath, ImageHelpers.GetImageFormat(filePath.FileExtension));
@@ -98,7 +99,7 @@ namespace RayCarrot.RCP.Metro
                 using var bmp = new Bitmap(filePath);
 
                 // Load it into the GF data
-                data.ImportFromBitmap(bmp);
+                data.ImportFromBitmap(settings, new RawBitmapData(bmp), true, true);
 
                 // Set repeat byte if not auto generated
                 if (!config.AutoGenerateRepeatByte)

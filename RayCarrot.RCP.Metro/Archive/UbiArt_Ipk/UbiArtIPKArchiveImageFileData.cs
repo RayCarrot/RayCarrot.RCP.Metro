@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro
@@ -257,14 +256,13 @@ namespace RayCarrot.RCP.Metro
         /// <param name="fileBytes">The file bytes</param>
         /// <param name="outputStream">The stream to export to</param>
         /// <param name="format">The file format to use</param>
-        /// <returns>The task</returns>
-        public override Task ExportFileAsync(byte[] fileBytes, Stream outputStream, FileExtension format)
+        public override void ExportFile(byte[] fileBytes, Stream outputStream, FileExtension format)
         {
             // Check if the file should be saved as a TEX file, in which case use the native, unmodified file
             if (IsTEXFormat(format))
             {
                 // Export the file as its native format
-                return base.ExportFileAsync(fileBytes, outputStream, format);
+                base.ExportFile(fileBytes, outputStream, format);
             }
             // Check if the file should be saved as the native format
             else if (IsNativeFormat(format))
@@ -287,33 +285,30 @@ namespace RayCarrot.RCP.Metro
                 // Save the file
                 img.Write(outputStream);
             }
-
-            return Task.CompletedTask;
         }
 
         /// <summary>
-        /// Exports the mipmaps from the file to the specified path
+        /// Exports the mipmaps from the file
         /// </summary>
         /// <param name="fileBytes">The file bytes</param>
-        /// <param name="filePath">The path to export the file to</param>
-        /// <param name="fileFormat">The file extension to use</param>
-        /// <returns>The task</returns>
-        public Task ExportMipmapsAsync(byte[] fileBytes, FileSystemPath filePath, string fileFormat) => throw new Exception("IPK files do not support mipmaps");
+        /// <param name="outputStreams">The function used to get the output streams for the mipmaps</param>
+        /// <param name="format">The file extension to use</param>
+        public void ExportMipmaps(byte[] fileBytes, Func<int, Stream> outputStreams, FileExtension format) => throw new Exception("IPK files do not support mipmaps");
 
         /// <summary>
-        /// Imports the file from the stream to the output
+        /// Converts the import file data from the input stream to the output stream
         /// </summary>
         /// <param name="fileBytes">The file bytes</param>
         /// <param name="inputStream">The input stream to import from</param>
         /// <param name="outputStream">The destination stream</param>
         /// <param name="format">The file format to use</param>
-        public override void ImportFile(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format)
+        public override void ConvertImportData(byte[] fileBytes, Stream inputStream, Stream outputStream, FileExtension format)
         {
             // Check if the file is in the TEX format or in the native format, thus not needing to be converted
             if (IsTEXFormat(format) || format == new FileExtension(FileName))
             {
                 // Copy the file
-                base.ImportFile(fileBytes, inputStream, outputStream, format);
+                base.ConvertImportData(fileBytes, inputStream, outputStream, format);
             }
             // Import as a standard image format
             else if (!UsesTexWrapper)
@@ -397,11 +392,6 @@ namespace RayCarrot.RCP.Metro
         /// The file extension to use for TEX files
         /// </summary>
         protected FileExtension TEXFileExtension = new FileExtension(".tex");
-
-        /// <summary>
-        /// Indicates if the data has been initialized
-        /// </summary>
-        protected bool HasInitializedData { get; set; }
 
         #endregion
 

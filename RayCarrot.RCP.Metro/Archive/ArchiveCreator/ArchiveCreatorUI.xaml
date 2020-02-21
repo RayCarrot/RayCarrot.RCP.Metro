@@ -14,14 +14,37 @@
              MinWidth="600">
     <metro:LoaderContentControl HorizontalLoadingIconAlignment="Center"
                                 VerticalLoadingIconAlignment="Center"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch"
                                 IsLoading="{Binding Path=IsLoading}">
         <Grid Margin="10"
               IsEnabled="{Binding Path=IsLoading, Converter={rwpf:InvertedBooleanConverter}}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
+            <ScrollViewer Grid.Row="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <rwpf:BrowseBox Grid.Row="0"
+                                    SelectedPath="{Binding Path=InputDirectory}"
+                                    BrowseType="Directory"/>
+
+                    <rwpf:BrowseBox Grid.Row="1"
+                                    SelectedPath="{Binding Path=OutputFile}"
+                                    BrowseType="SaveFile"
+                                    FileFilter="IPK (*.ipk)|*.ipk"/>
+
+                </Grid>
+            </ScrollViewer>
+
+            <Button Grid.Row="1"
+                    Command="{Binding Path=CreateArchiveCommand}"/>
             <!-- TODO-UPDATE: Add UI -->
 
         </Grid>

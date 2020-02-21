@@ -487,7 +487,8 @@ namespace RayCarrot.RCP.Metro {
         ///Encrypted = {5}
         ///Transparent = {6}
         ///Pointer = {7}
-        ///Mipmaps = {8}.
+        ///Mipmaps = {8}
+        ///Format = {9}.
         /// </summary>
         public static string Archive_CNT_FileInfo {
             get {
