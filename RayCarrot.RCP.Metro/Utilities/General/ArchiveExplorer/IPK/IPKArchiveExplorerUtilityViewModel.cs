@@ -35,9 +35,14 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Gets a new archive data manager
+        /// Gets a new archive explorer data manager
         /// </summary>
-        protected override IArchiveDataManager GetArchiveDataManager => new UbiArtIPKArchiveDataManager(GameModeSelection.SelectedValue.GetSettings());
+        protected override IArchiveExplorerDataManager GetArchiveExplorerDataManager => new UbiArtIPKArchiveExplorerDataManager(GameModeSelection.SelectedValue.GetSettings());
+
+        /// <summary>
+        /// Gets a new archive creator data manager
+        /// </summary>
+        protected override IArchiveCreatorDataManager GetArchiveCreatorDataManager => new UbiArtIPKArchiveCreatorDataManager(GameModeSelection.SelectedValue.GetSettings());
 
         /// <summary>
         /// The file extension for the archive

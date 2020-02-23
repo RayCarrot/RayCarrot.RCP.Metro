@@ -2897,10 +2897,6 @@ Error message: {1}</value>
   <data name="Archive_ImportNoFilesError" xml:space="preserve">
     <value>Não foi encontrado nenhum ficheiro para importar</value>
   </data>
-  <data name="Archive_ImportFailsError" xml:space="preserve">
-    <value>Falhou a importação de alguns ficheiros
-</value>
-  </data>
   <data name="Archive_ImportFilesSuccess" xml:space="preserve">
     <value>Foram importados os ficheiros
 </value>
@@ -2918,9 +2914,6 @@ Error message: {1}</value>
   <data name="Archive_ExportError" xml:space="preserve">
     <value>Não pode ser exportado o {0}
 </value>
-  </data>
-  <data name="Archive_ImportError" xml:space="preserve">
-    <value>Não pode ser importado o {0}</value>
   </data>
   <data name="Archive_RepackingStatus" xml:space="preserve">
     <value>A reacondicionar o arquivo {0}
@@ -3051,9 +3044,6 @@ Pointer = {8}
   </data>
   <data name="Utilities_Converter_Success" xml:space="preserve">
     <value>O(s) ficheiro(s) foi/foram convertido(s) com sucesso</value>
-  </data>
-  <data name="Utilities_Converter_MissingConfig" xml:space="preserve">
-    <value>O ficheiro {0} não pode ser covnertido porque falta um ficheiro de configuração</value>
   </data>
   <data name="Archive_RepackError" xml:space="preserve">
     <value>Ocorreu um erro ao reacondicionar o arquivo</value>

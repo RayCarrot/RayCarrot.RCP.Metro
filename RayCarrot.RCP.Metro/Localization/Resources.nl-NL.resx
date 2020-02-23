@@ -2886,9 +2886,6 @@ Foutmelding: {1}</value>
   <data name="Archive_ImportNoFilesError" xml:space="preserve">
     <value>Geen bestanden gevonden om te importeren</value>
   </data>
-  <data name="Archive_ImportFailsError" xml:space="preserve">
-    <value>Sommige bestanden konden niet geïmporteerd worden</value>
-  </data>
   <data name="Archive_ImportFilesSuccess" xml:space="preserve">
     <value>De bestanden zijn geïmporteerd</value>
   </data>
@@ -2903,9 +2900,6 @@ Foutmelding: {1}</value>
   </data>
   <data name="Archive_ExportError" xml:space="preserve">
     <value>{0} kon niet geëxporteerd worden</value>
-  </data>
-  <data name="Archive_ImportError" xml:space="preserve">
-    <value>{0} kon niet geïmporteerd worden</value>
   </data>
   <data name="Archive_RepackingStatus" xml:space="preserve">
     <value>Ompakken archief {0}</value>
@@ -3029,9 +3023,6 @@ Pointer = {8}</value>
   </data>
   <data name="Utilities_Converter_Success" xml:space="preserve">
     <value>De bestanden zijn succesvol geconverteerd</value>
-  </data>
-  <data name="Utilities_Converter_MissingConfig" xml:space="preserve">
-    <value>Het bestand {0} kan niet geconverteerd worden, omdat het een configuratiebestand mist</value>
   </data>
   <data name="Archive_RepackError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het ompakken van het archief </value>

@@ -497,6 +497,60 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when creating the archive.
+        /// </summary>
+        public static string Archive_CreateError {
+            get {
+                return ResourceManager.GetString("Archive_CreateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified input directory does not exist.
+        /// </summary>
+        public static string Archive_CreateErrorInputNotFound {
+            get {
+                return ResourceManager.GetString("Archive_CreateErrorInputNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Archive.
+        /// </summary>
+        public static string Archive_CreateHeader {
+            get {
+                return ResourceManager.GetString("Archive_CreateHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Input directory.
+        /// </summary>
+        public static string Archive_CreateInputDir {
+            get {
+                return ResourceManager.GetString("Archive_CreateInputDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output file.
+        /// </summary>
+        public static string Archive_CreateOutputFile {
+            get {
+                return ResourceManager.GetString("Archive_CreateOutputFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The archive was successfully created with {0} files.
+        /// </summary>
+        public static string Archive_CreateSuccess {
+            get {
+                return ResourceManager.GetString("Archive_CreateSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred in the Archive Explorer™ and it had to close.
         /// </summary>
         public static string Archive_CriticalError {
@@ -628,24 +682,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_ImportDirectoryHeader {
             get {
                 return ResourceManager.GetString("Archive_ImportDirectoryHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} could not be imported.
-        /// </summary>
-        public static string Archive_ImportError {
-            get {
-                return ResourceManager.GetString("Archive_ImportError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Some files failed to import.
-        /// </summary>
-        public static string Archive_ImportFailsError {
-            get {
-                return ResourceManager.GetString("Archive_ImportFailsError", resourceCulture);
             }
         }
         
@@ -8095,6 +8131,78 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically generate mipmaps when importing to .gf files for supported games.
+        /// </summary>
+        public static string Settings_ArchiveGFGenerateMipmaps {
+            get {
+                return ResourceManager.GetString("Settings_ArchiveGFGenerateMipmaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically update format.
+        /// </summary>
+        public static string Settings_ArchiveGFTransparency {
+            get {
+                return ResourceManager.GetString("Settings_ArchiveGFTransparency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Never (preserve original format).
+        /// </summary>
+        public static string Settings_ArchiveGFTransparency_PreserveFormat {
+            get {
+                return ResourceManager.GetString("Settings_ArchiveGFTransparency_PreserveFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The original format will always be preserved. Importing an ARGB image to a .gf file which doesn&apos;t support transparency will result in the alpha channel getting lost..
+        /// </summary>
+        public static string Settings_ArchiveGFTransparency_PreserveFormatInfo {
+            get {
+                return ResourceManager.GetString("Settings_ArchiveGFTransparency_PreserveFormatInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match imported format.
+        /// </summary>
+        public static string Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat {
+            get {
+                return ResourceManager.GetString("Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match imported format if required.
+        /// </summary>
+        public static string Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized {
+            get {
+                return ResourceManager.GetString("Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The format will be updated to match that of the imported file if the current format doesn&apos;t support the data. For example if an ARGB image is being imported to a .gf file which doesn&apos;t support transparency it will only update the format to support it if the imported image utilizes the alpha channel. This setting is recommended to avoid changing formats when not necessary, however it will slow down the file importing..
+        /// </summary>
+        public static string Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo {
+            get {
+                return ResourceManager.GetString("Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The format will be updated to match that of the imported file. This might result in the .gf files taking more space than actually required..
+        /// </summary>
+        public static string Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo {
+            get {
+                return ResourceManager.GetString("Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup location.
         /// </summary>
         public static string Settings_BackupLocation {
@@ -8962,6 +9070,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select the format.
+        /// </summary>
+        public static string Utilities_Converter_FormatSelectionHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_FormatSelectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OpenSpace Texture Files (.gf).
         /// </summary>
         public static string Utilities_Converter_GFHeader {
@@ -8985,15 +9102,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_Converter_LOCHeader {
             get {
                 return ResourceManager.GetString("Utilities_Converter_LOCHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The file {0} can&apos;t be converted because it&apos;s missing a configuration file.
-        /// </summary>
-        public static string Utilities_Converter_MissingConfig {
-            get {
-                return ResourceManager.GetString("Utilities_Converter_MissingConfig", resourceCulture);
             }
         }
         

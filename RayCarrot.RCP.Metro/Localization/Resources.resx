@@ -2980,9 +2980,6 @@ fileName</comment>
   <data name="Archive_ImportNoFilesError" xml:space="preserve">
     <value>No files were found to import</value>
   </data>
-  <data name="Archive_ImportFailsError" xml:space="preserve">
-    <value>Some files failed to import</value>
-  </data>
   <data name="Archive_ImportFilesSuccess" xml:space="preserve">
     <value>The files have been imported</value>
   </data>
@@ -2997,11 +2994,6 @@ fileName</comment>
   </data>
   <data name="Archive_ExportError" xml:space="preserve">
     <value>{0} could not be exported</value>
-    <comment>Arguments:
-itemName</comment>
-  </data>
-  <data name="Archive_ImportError" xml:space="preserve">
-    <value>{0} could not be imported</value>
     <comment>Arguments:
 itemName</comment>
   </data>
@@ -3155,11 +3147,6 @@ pointer</comment>
   </data>
   <data name="Utilities_Converter_Success" xml:space="preserve">
     <value>The files were successfully converted</value>
-  </data>
-  <data name="Utilities_Converter_MissingConfig" xml:space="preserve">
-    <value>The file {0} can't be converted because it's missing a configuration file</value>
-    <comment>Arguments:
-filePath</comment>
   </data>
   <data name="Archive_RepackError" xml:space="preserve">
     <value>An error occurred when repacking the archive</value>
@@ -3326,12 +3313,6 @@ totalTextures</comment>
   <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
     <value>The UbiRay patch has been reverted</value>
   </data>
-  <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
-    <value>Rayman Legends Save Files</value>
-  </data>
-  <data name="Utilities_Converter_ROSaveHeader" xml:space="preserve">
-    <value>Rayman Origins Save Files</value>
-  </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Once upon a Time</value>
   </data>
@@ -3416,10 +3397,63 @@ totalTextures</comment>
   <data name="RL_LevelName_5_6" xml:space="preserve">
     <value>Hell Breaks Loose</value>
   </data>
+  <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
+    <value>Rayman Legends Save Files</value>
+  </data>
+  <data name="Utilities_Converter_ROSaveHeader" xml:space="preserve">
+    <value>Rayman Origins Save Files</value>
+  </data>
   <data name="Archive_Extract" xml:space="preserve">
     <value>Extract</value>
   </data>
   <data name="Utilities_ArchiveExplorer_Create" xml:space="preserve">
     <value>Create</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmaps" xml:space="preserve">
+    <value>Automatically generate mipmaps when importing to .gf files for supported games</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency" xml:space="preserve">
+    <value>Automatically update format</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormat" xml:space="preserve">
+    <value>Never (preserve original format)</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormatInfo" xml:space="preserve">
+    <value>The original format will always be preserved. Importing an ARGB image to a .gf file which doesn't support transparency will result in the alpha channel getting lost.</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat" xml:space="preserve">
+    <value>Match imported format</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo" xml:space="preserve">
+    <value>The format will be updated to match that of the imported file. This might result in the .gf files taking more space than actually required.</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized" xml:space="preserve">
+    <value>Match imported format if required</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo" xml:space="preserve">
+    <value>The format will be updated to match that of the imported file if the current format doesn't support the data. For example if an ARGB image is being imported to a .gf file which doesn't support transparency it will only update the format to support it if the imported image utilizes the alpha channel. This setting is recommended to avoid changing formats when not necessary, however it will slow down the file importing.</value>
+  </data>
+  <data name="Archive_CreateSuccess" xml:space="preserve">
+    <value>The archive was successfully created with {0} files</value>
+    <comment>Arguments:
+fileCount</comment>
+  </data>
+  <data name="Archive_CreateErrorInputNotFound" xml:space="preserve">
+    <value>The specified input directory does not exist</value>
+  </data>
+  <data name="Archive_CreateError" xml:space="preserve">
+    <value>An error occurred when creating the archive</value>
+  </data>
+  <data name="Archive_CreateHeader" xml:space="preserve">
+    <value>Create Archive</value>
+  </data>
+  <data name="Archive_CreateInputDir" xml:space="preserve">
+    <value>Input directory</value>
+  </data>
+  <data name="Archive_CreateOutputFile" xml:space="preserve">
+    <value>Output file</value>
+  </data>
+  <data name="Utilities_Converter_FormatSelectionHeader" xml:space="preserve">
+    <value>Select the format</value>
   </data>
 </root>

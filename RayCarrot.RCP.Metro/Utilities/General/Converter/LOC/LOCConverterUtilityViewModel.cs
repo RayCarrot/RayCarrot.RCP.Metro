@@ -50,7 +50,7 @@ namespace RayCarrot.RCP.Metro
         {
             if (GameModeSelection.SelectedValue == UbiArtGameMode.RaymanFiestaRunPC)
             {
-                await ConvertFromAsync(FiestaRunLocalizationData.GetSerializer(), (data, filePath, configPath) =>
+                await ConvertFromAsync(FiestaRunLocalizationData.GetSerializer(), (data, filePath) =>
                 {
                     // Save the data
                     SerializeJSON(data, filePath);
@@ -65,7 +65,7 @@ namespace RayCarrot.RCP.Metro
 
                 var fileExtension = Equals(settings.Encoding, Encoding.UTF8) ? new FileFilterItem("*.loc8", "LOC8") : new FileFilterItem("*.loc", "LOC");
 
-                await ConvertFromAsync(UbiArtLocalizationData.GetSerializer(settings), (data, filePath, configPath) =>
+                await ConvertFromAsync(UbiArtLocalizationData.GetSerializer(settings), (data, filePath) =>
                 {
                     // Save the data
                     SerializeJSON(data, filePath);
@@ -84,11 +84,11 @@ namespace RayCarrot.RCP.Metro
         {
             if (GameModeSelection.SelectedValue == UbiArtGameMode.RaymanFiestaRunPC)
             {
-                await ConvertToAsync(FiestaRunLocalizationData.GetSerializer(), (filePath, configPath) =>
+                await ConvertToAsync(FiestaRunLocalizationData.GetSerializer(), (filePath, format) =>
                 {
                     // Read the data
                     return DeserializeJSON<FiestaRunLocalizationData>(filePath);
-                }, new FileFilterItem("*.json", "JSON").ToString(), new FileExtension(".loc"), false);
+                }, new FileFilterItem("*.json", "JSON").ToString(), new FileExtension(".loc"));
             }
             else
             {
@@ -96,11 +96,11 @@ namespace RayCarrot.RCP.Metro
 
                 var fileExtension = new FileExtension(Equals(settings.Encoding, Encoding.UTF8) ? ".loc8" : ".loc");
 
-                await ConvertToAsync(UbiArtLocalizationData.GetSerializer(settings), (filePath, configPath) =>
+                await ConvertToAsync(UbiArtLocalizationData.GetSerializer(settings), (filePath, format) =>
                 {
                     // Read the data
                     return DeserializeJSON<UbiArtLocalizationData>(filePath);
-                }, new FileFilterItem("*.json", "JSON").ToString(), fileExtension, false);
+                }, new FileFilterItem("*.json", "JSON").ToString(), fileExtension);
             }
         }
 

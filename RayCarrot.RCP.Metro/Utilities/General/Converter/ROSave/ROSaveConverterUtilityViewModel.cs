@@ -42,7 +42,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertFromAsync()
         {
-            await ConvertFromAsync(OriginsPCSaveData.GetSerializer(), (data, filePath, configPath) =>
+            await ConvertFromAsync(OriginsPCSaveData.GetSerializer(), (data, filePath) =>
             {
                 // Save the data
                 SerializeJSON(data, filePath);
@@ -58,11 +58,11 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertToAsync()
         {
-            await ConvertToAsync(OriginsPCSaveData.GetSerializer(), (filePath, configPath) =>
+            await ConvertToAsync(OriginsPCSaveData.GetSerializer(), (filePath, format) =>
             {
                 // Read the data
                 return DeserializeJSON<OriginsPCSaveData>(filePath);
-            }, new FileFilterItem("*.json", "JSON").ToString(), new FileExtension(String.Empty), false);
+            }, new FileFilterItem("*.json", "JSON").ToString(), new FileExtension(String.Empty));
         }
 
         #endregion

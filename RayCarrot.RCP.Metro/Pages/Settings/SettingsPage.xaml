@@ -201,6 +201,57 @@
 
             </StackPanel>
 
+            <!-- Archive Explorer -->
+
+            <StackPanel DataContext="{Binding Path=Data}">
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                </i:Interaction.Behaviors>
+
+                <TextBlock Text="{Resx Archive_Title}"
+                           Style="{StaticResource LargeHeaderTextBlock}" />
+
+                <StackPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                    </i:Interaction.Behaviors>
+
+                    <CheckBox Content="{Resx Settings_ArchiveGFGenerateMipmaps}"
+                              ToolTip="{Resx Settings_ArchiveGFGenerateMipmaps}"
+                              IsChecked="{Binding Path=Archive_GF_GenerateMipmaps}" />
+
+                    <StackPanel>
+
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                   Text="{Resx Settings_ArchiveGFTransparency}"
+                                   Margin="0 0 0 8" />
+
+                        <ComboBox HorizontalAlignment="Left"
+                                  SelectedIndex="{Binding Path=Archive_GF_UpdateTransparency, Converter={rwpf:EnumToIntConverter}}">
+
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.ToolTip}" />
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+
+                            <TextBlock Text="{Resx Settings_ArchiveGFTransparency_PreserveFormat}"
+                                       ToolTip="{Resx Settings_ArchiveGFTransparency_PreserveFormatInfo}"/>
+
+                            <TextBlock Text="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat}"
+                                       ToolTip="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo}"/>
+
+                            <TextBlock Text="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized}"
+                                       ToolTip="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo}"/>
+
+                        </ComboBox>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </StackPanel>
+
             <!-- Startup -->
 
             <StackPanel DataContext="{Binding Path=Data}">

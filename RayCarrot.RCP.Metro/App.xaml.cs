@@ -522,6 +522,12 @@ namespace RayCarrot.RCP.Metro
                 }
             }
 
+            if (Data.LastVersion < new Version(9, 4, 0, 0))
+            {
+                Data.Archive_GF_GenerateMipmaps = true;
+                Data.Archive_GF_UpdateTransparency = Archive_GF_TransparencyMode.PreserveFormat;
+            }
+
             // Re-deploy files
             await RCFRCP.App.DeployFilesAsync(true);
 

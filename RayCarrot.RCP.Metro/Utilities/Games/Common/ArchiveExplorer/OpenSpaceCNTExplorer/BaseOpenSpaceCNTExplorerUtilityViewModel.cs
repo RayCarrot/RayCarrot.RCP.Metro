@@ -58,7 +58,7 @@ namespace RayCarrot.RCP.Metro
         public async Task OpenAsync()
         {
             // Show the archive explorer
-            await RCFRCP.UI.ShowArchiveExplorerAsync(new OpenSpaceCntArchiveDataManager(GameMode.GetSettings()), ArchiveFiles.Where(x => x.FileExists));
+            await RCFRCP.UI.ShowArchiveExplorerAsync(new OpenSpaceCntArchiveExplorerDataManager(GameMode.GetSettings()), ArchiveFiles.Where(x => x.FileExists));
         }
 
         #endregion

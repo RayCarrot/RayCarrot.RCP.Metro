@@ -1020,9 +1020,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
     <value>No se han encontrado archivos de importación.
 </value>
   </data>
-  <data name="Archive_ImportFailsError" xml:space="preserve">
-    <value>Algunos archivos han fallado en la importación</value>
-  </data>
   <data name="Archive_ImportFilesSuccess" xml:space="preserve">
     <value>Los archivos han sido importados</value>
   </data>
@@ -1038,9 +1035,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   </data>
   <data name="Archive_ExportError" xml:space="preserve">
     <value>{0} no se ha podido exportar</value>
-  </data>
-  <data name="Archive_ImportError" xml:space="preserve">
-    <value>{0} no se ha podido importar</value>
   </data>
   <data name="Archive_RepackingStatus" xml:space="preserve">
     <value>Reempaquetando archivo</value>

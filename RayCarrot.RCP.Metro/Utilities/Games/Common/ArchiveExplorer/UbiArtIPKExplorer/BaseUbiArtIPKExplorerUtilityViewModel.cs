@@ -58,7 +58,7 @@ namespace RayCarrot.RCP.Metro
         public async Task OpenAsync()
         {
             // Show the archive explorer
-            await RCFRCP.UI.ShowArchiveExplorerAsync(new UbiArtIPKArchiveDataManager(GameMode.GetSettings()), ArchiveFiles.Where(x => x.FileExists));
+            await RCFRCP.UI.ShowArchiveExplorerAsync(new UbiArtIPKArchiveExplorerDataManager(GameMode.GetSettings()), ArchiveFiles.Where(x => x.FileExists));
         }
 
         #endregion

@@ -20,7 +20,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="manager">The archive data manager</param>
         /// <param name="filePaths">The archive file paths</param>
-        public ArchiveExplorerDialogViewModel(IArchiveDataManager manager, IEnumerable<FileSystemPath> filePaths)
+        public ArchiveExplorerDialogViewModel(IArchiveExplorerDataManager manager, IEnumerable<FileSystemPath> filePaths)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The archive data manager
         /// </summary>
-        public IArchiveDataManager Manager { get; }
+        public IArchiveExplorerDataManager Manager { get; }
 
         /// <summary>
         /// The current status to display

@@ -25,7 +25,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="manager">The archive data manager</param>
         /// <param name="loadOperation">The operation to use when running an async operation which needs to load</param>
         /// <param name="explorerDialogViewModel">The explorer dialog view model</param>
-        public ArchiveViewModel(FileSystemPath filePath, IArchiveDataManager manager, Operation loadOperation, ArchiveExplorerDialogViewModel explorerDialogViewModel) : base(filePath.Name)
+        public ArchiveViewModel(FileSystemPath filePath, IArchiveExplorerDataManager manager, Operation loadOperation, ArchiveExplorerDialogViewModel explorerDialogViewModel) : base(filePath.Name)
         {
             RCFCore.Logger?.LogInformationSource($"An archive view model is being created for {filePath.Name}");
 
@@ -100,7 +100,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The archive data manager
         /// </summary>
-        public IArchiveDataManager Manager { get; }
+        public IArchiveExplorerDataManager Manager { get; }
 
         /// <summary>
         /// Gets the currently selected item

@@ -100,19 +100,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppUserData\DataModels\Archive_GF_TransparencyMode.cs" />
     <Compile Include="Archive\ArchiveBase\ArchiveData.cs" />
     <Compile Include="Archive\ArchiveBase\ArchiveDirectory.cs" />
-    <Compile Include="Archive\ArchiveBase\IArchiveDataManager.cs" />
+    <Compile Include="Archive\ArchiveBase\Manager\IArchiveCreatorDataManager.cs" />
+    <Compile Include="Archive\ArchiveBase\Manager\IArchiveBaseDataManager.cs" />
     <Compile Include="Archive\ArchiveBase\File\IArchiveFileData.cs" />
     <Compile Include="Archive\ArchiveBase\File\IArchiveImageFileData.cs" />
+    <Compile Include="Archive\ArchiveBase\Manager\IArchiveExplorerDataManager.cs" />
+    <Compile Include="Archive\ArchiveBase\ArchiveCreationData.cs" />
+    <Compile Include="Archive\ArchiveCreator\ArchiveCreatorDialogViewModel.cs" />
     <Compile Include="Archive\ArchiveCreator\ArchiveCreatorUI.xaml.cs">
       <DependentUpon>ArchiveCreatorUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Archive\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
+    <Compile Include="Archive\OpenSpace_Cnt\Manager\BaseOpenSpaceCntArchiveDataManager.cs" />
+    <Compile Include="Archive\OpenSpace_Cnt\Manager\OpenSpaceCntArchiveCreatorDataManager.cs" />
+    <Compile Include="Archive\OpenSpace_Cnt\Manager\OpenSpaceCntArchiveExplorerDataManager.cs" />
     <Compile Include="Archive\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
     <Compile Include="Archive\FileFormat\FileFormatInfoAttribute.cs" />
     <Compile Include="Archive\ArchiveBase\Import\IArchiveImportData.cs" />
     <Compile Include="Archive\ArchiveBase\Import\ArchiveImportData.cs" />
+    <Compile Include="Archive\UbiArt_Ipk\Config\UbiArtIPKArchiveConfigUI.xaml.cs">
+      <DependentUpon>UbiArtIPKArchiveConfigUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Archive\UbiArt_Ipk\Manager\BaseUbiArtIPKArchiveDataManager.cs" />
+    <Compile Include="Archive\UbiArt_Ipk\Manager\UbiArtIPKArchiveCreatorDataManager.cs" />
+    <Compile Include="Archive\UbiArt_Ipk\Manager\UbiArtIPKArchiveExplorerDataManager.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanMDemoConfigViewModel.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_2_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_1_Info.cs" />
@@ -167,7 +180,7 @@
     <Compile Include="Utilities\Games\Rayman M\SyncTextureInfo\RMGameSyncTextureInfoUtility.cs" />
     <Compile Include="Utilities\Games\Rayman Origins\IPKExplorer\ROIPKExplorerUtility.cs" />
     <Compile Include="Helpers\ImageHelpers.cs" />
-    <Compile Include="Archive\UbiArt_Ipk\UbiArtIPKArchiveDataManager.cs" />
+    <Compile Include="Archive\UbiArt_Ipk\Config\UbiArtIPKArchiveConfigViewModel.cs" />
     <Compile Include="Archive\UbiArt_Ipk\UbiArtIPKArchiveFileData.cs" />
     <Compile Include="Archive\UbiArt_Ipk\UbiArtIPKArchiveImageFileData.cs" />
     <Compile Include="Archive\ArchiveExplorer\ArchiveExplorerUI.xaml.cs">
@@ -467,6 +480,10 @@
     <Page Include="Archive\ArchiveExplorer\ArchiveExplorerUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Archive\UbiArt_Ipk\Config\UbiArtIPKArchiveConfigUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Games\Options\UI\GameOptionsUI.xaml">
       <SubType>Designer</SubType>
@@ -1256,7 +1273,7 @@
       <Version>1.2.11</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
-      <Version>1.6.2</Version>
+      <Version>1.6.3</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.UI">
       <Version>1.2.2</Version>

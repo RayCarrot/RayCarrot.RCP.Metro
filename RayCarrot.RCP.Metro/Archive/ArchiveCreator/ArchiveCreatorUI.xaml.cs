@@ -1,15 +1,9 @@
 ﻿using MahApps.Metro.Controls;
 using RayCarrot.Extensions;
-using RayCarrot.IO;
-using RayCarrot.UI;
 using RayCarrot.WPF;
 using System;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -54,12 +48,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the dialog should be resizable
         /// </summary>
-        public bool Resizable => true;
+        public bool Resizable => false;
 
         /// <summary>
         /// The base size for the dialog
         /// </summary>
-        public DialogBaseSize BaseSize => DialogBaseSize.Largest;
+        public DialogBaseSize BaseSize => DialogBaseSize.Medium;
 
         /// <summary>
         /// The window the control belongs to
@@ -114,120 +108,24 @@ namespace RayCarrot.RCP.Metro
         public event EventHandler CloseDialog;
 
         #endregion
-    }
 
-    /// <summary>
-    /// View model for an archive creator dialog
-    /// </summary>
-    public class ArchiveCreatorDialogViewModel : UserInputViewModel
-    {
-        #region Constructor
+        #region Event Handlers
 
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        /// <param name="manager">The manager</param>
-        public ArchiveCreatorDialogViewModel(IArchiveDataManager manager)
+        private async void OKButton_ClickAsync(object sender, RoutedEventArgs e)
         {
-            // Set properties
-            Manager = manager;
+            if (!await ViewModel.CreateArchiveAsync())
+                return;
 
-            // Create commands
-            CreateArchiveCommand = new AsyncRelayCommand(CreateArchiveAsync);
+            // Close the dialog
+            CloseDialog?.Invoke(this, new EventArgs());
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Close the dialog
+            CloseDialog?.Invoke(this, new EventArgs());
         }
 
         #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// The manager
-        /// </summary>
-        public IArchiveDataManager Manager { get; }
-
-        /// <summary>
-        /// Indicates if the creator tool is loading
-        /// </summary>
-        public bool IsLoading { get; set; }
-
-        // TODO: Default these properties
-
-        /// <summary>
-        /// The selected input directory
-        /// </summary>
-        public FileSystemPath InputDirectory { get; set; }
-
-        /// <summary>
-        /// The selected output file
-        /// </summary>
-        public FileSystemPath OutputFile { get; set; }
-
-        #endregion
-
-        #region Commands
-
-        public ICommand CreateArchiveCommand { get; }
-
-        #endregion
-
-        /// <summary>
-        /// Creates an archive
-        /// </summary>
-        /// <returns>The task</returns>
-        public async Task CreateArchiveAsync()
-        {
-            try
-            {
-                if (IsLoading)
-                    return;
-
-                IsLoading = true;
-
-                await Task.Run(async () =>
-                {
-                    // TODO-UPDATE: Show status for each file
-
-                    // Make sure the input directory exists
-                    if (!InputDirectory.DirectoryExists)
-                    {
-                        // TODO-UPDATE: Message
-
-                        return;
-                    }
-
-                    // Get the import data for each file
-                    var importData = Directory.GetFiles(InputDirectory, "*", SearchOption.AllDirectories).
-                        // Get the import data
-                        Select(file =>
-                        {
-                            // Get the file entry data
-                            var entry = Manager.GetFileEntry(file - InputDirectory);
-
-                            // Get the import data
-                            return new ArchiveImportData(entry, y => Manager.EncodeFile(File.ReadAllBytes(file), entry));
-                        }).ToArray();
-
-                    // Get a new archive
-                    var archive = Manager.GetArchive(importData);
-
-                    // Open the output file
-                    using var outputStream = File.Open(OutputFile, FileMode.Create, FileAccess.Write);
-
-                    // Update the archive
-                    Manager.UpdateArchive(archive, outputStream, importData);
-
-                    // TODO-UPDATE: Localize
-                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync($"The archive was successfully created with {importData.Length} files");
-                });
-            }
-            catch (Exception ex)
-            {
-                // TODO-UPDATE: Handle crash
-            }
-            finally
-            {
-                IsLoading = false;
-            }
-        }
     }
 }

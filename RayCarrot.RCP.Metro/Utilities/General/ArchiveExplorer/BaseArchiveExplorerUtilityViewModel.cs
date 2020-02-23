@@ -30,9 +30,14 @@ namespace RayCarrot.RCP.Metro
         #region Protected Abstract Properties
 
         /// <summary>
-        /// Gets a new archive data manager
+        /// Gets a new archive explorer data manager
         /// </summary>
-        protected abstract IArchiveDataManager GetArchiveDataManager { get; }
+        protected abstract IArchiveExplorerDataManager GetArchiveExplorerDataManager { get; }
+
+        /// <summary>
+        /// Gets a new archive creator data manager
+        /// </summary>
+        protected abstract IArchiveCreatorDataManager GetArchiveCreatorDataManager { get; }
 
         /// <summary>
         /// The file extension for the archive
@@ -59,7 +64,7 @@ namespace RayCarrot.RCP.Metro
         public async Task OpenArchiveExplorerAsync()
         {
             // Open the Archive Explorer
-            await OpenArchiveExplorerAsync(GetArchiveDataManager, new FileFilterItem($"*{ArchiveFileExtension}", ArchiveFileExtension.Substring(1).ToUpper()).ToString(), GameModeSelection.SelectedValue.GetGame());
+            await OpenArchiveExplorerAsync(GetArchiveExplorerDataManager, new FileFilterItem($"*{ArchiveFileExtension}", ArchiveFileExtension.Substring(1).ToUpper()).ToString(), GameModeSelection.SelectedValue.GetGame());
         }
 
         /// <summary>
@@ -69,7 +74,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="fileFilter">The file filter when selecting the files to open</param>
         /// <param name="game">The game to open, if available</param>
         /// <returns>The task</returns>
-        public async Task OpenArchiveExplorerAsync(IArchiveDataManager manager, string fileFilter, Games? game)
+        public async Task OpenArchiveExplorerAsync(IArchiveExplorerDataManager manager, string fileFilter, Games? game)
         {
             // Allow the user to select the files
             var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
@@ -94,7 +99,7 @@ namespace RayCarrot.RCP.Metro
         public async Task CreateArchiveAsync()
         {
             // Show the Archive Creator
-            await RCFRCP.UI.ShowArchiveCreatorAsync(GetArchiveDataManager);
+            await RCFRCP.UI.ShowArchiveCreatorAsync(GetArchiveCreatorDataManager);
         }
 
         #endregion

@@ -1,18 +1,22 @@
 ﻿-----   Version 9.4.0 - February ??, 2020   -----
+• Added the option to create archives (.cnt and .ipk)
 • Added the progression tab for Rayman Origins and Legends
 • Added utilities for converting Rayman Origins and Legends save files
+• Added settings for if mipmaps should be generated and if the format should be automatically changed to support transparency when importing .gf files
 • Updated the UbiRay utility to patch the displayed character name and description (the patch needs to be re-applied for this to update)
-• Added the option to extract folders from the Archive Explorer (this exports the contents without modifying the files)
 
 Other changes:
 • Major changes to the Archive Explorer, .gf serializer and .ipk management
-	• When repacking an archive it will no longer generate temporary files. The file importing is now done on a file by file basis, where each file is processed in memory
+	• Added the option to extract folders from the Archive Explorer (this exports the contents without modifying the files)
+	• When repacking an archive it will no longer generate temporary files. The file importing is now done on a file by file basis, where each file is processed in memory.
 	• Batch importing in the Archive Explorer will now recognize file names with their original file extensions (such as .tga.ckd)
-	• Converting to and from .gf files is now much faster due to it accessing the .NET bitmap directly from memory
-	• When converting an image to a .gf file it will now regenerate the correct number of mipmaps rather than keeping the original count
+	• Repacking .cnt files will now disable the encryption and checksum checks (non-replaced files will still be encrypted)
+	• Converting to and from .gf files is now much faster due to it accessing the .NET bitmap directly from memory (this was previously only done for transparent images)
+	• When converting an image to a .gf file it will now generate the matching number of mipmaps to the new resolution rather than keeping the original count (if set to generate mipmaps)
 	• IPK files with multiple offsets and a compressed memory block are now supported
+• The .gf file converter no longer uses configuration files. The format is now set from a dialog of options when converting back.
 • Dialog windows will no longer show in the task bar or application switcher as separate windows
-• Replaced the game installer logos with higher quality images, downscaled to the displayed size
+• Replaced the game installer logos with higher quality images
 • When selecting files for converter utilities it now defaults to the most relevant directory rather than the game install directory
 • Fixed some minor tabbing issues
 • Fixed a bug where the app would crash if the link item style was changed

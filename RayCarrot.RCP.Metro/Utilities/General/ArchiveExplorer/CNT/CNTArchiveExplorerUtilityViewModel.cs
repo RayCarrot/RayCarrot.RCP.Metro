@@ -28,9 +28,14 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Gets a new archive data manager
+        /// Gets a new archive explorer data manager
         /// </summary>
-        protected override IArchiveDataManager GetArchiveDataManager => new OpenSpaceCntArchiveDataManager(GameModeSelection.SelectedValue.GetSettings());
+        protected override IArchiveExplorerDataManager GetArchiveExplorerDataManager => new OpenSpaceCntArchiveExplorerDataManager(GameModeSelection.SelectedValue.GetSettings());
+
+        /// <summary>
+        /// Gets a new archive creator data manager
+        /// </summary>
+        protected override IArchiveCreatorDataManager GetArchiveCreatorDataManager => new OpenSpaceCntArchiveCreatorDataManager(GameModeSelection.SelectedValue.GetSettings());
 
         /// <summary>
         /// The file extension for the archive

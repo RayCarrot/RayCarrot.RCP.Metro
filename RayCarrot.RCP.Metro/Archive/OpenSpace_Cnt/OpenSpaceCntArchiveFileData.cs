@@ -12,6 +12,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Media;
+using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -102,7 +103,7 @@ namespace RayCarrot.RCP.Metro
             Directory, 
             Width, Height, 
             ByteSize.FromBytes(FileEntry.Size), 
-            FileEntry.Unknown1 == 0,
+            FileEntry.Checksum == 0,
             FileEntry.FileXORKey.Any(x => x != 0), 
             IsTransparent, 
             FileEntry.Pointer, 
@@ -241,7 +242,7 @@ namespace RayCarrot.RCP.Metro
             // Set properties
             Height = file.Height;
             Width = file.Width;
-            IsTransparent = file.IsTransparent;
+            IsTransparent = file.GFPixelFormat.SupportsTransparency();
             Mipmaps = file.RealMipmapCount;
             Format = file.Format;
 
@@ -307,15 +308,44 @@ namespace RayCarrot.RCP.Metro
             using var bmp = new Bitmap(inputStream);
 
             // Load the current file
-            var file = GetFileContent(fileBytes);
+            OpenSpaceGFFile gf = GetFileContent(fileBytes);
+
+            // IDEA: If bmp is not in supported format, then convert it?
+
+            RawBitmapData rawBitmapData;
+
+            // Get the bitmap lock
+            using (var bmpLock = new BitmapLock(bmp))
+            {
+                // Get the raw bitmap data
+                rawBitmapData = new RawBitmapData(bmp.Width, bmp.Height, bmpLock.Pixels, bmp.PixelFormat);
+
+                // Check if the format should be updated for transparency
+                if (RCFRCP.Data.Archive_GF_UpdateTransparency != Archive_GF_TransparencyMode.PreserveFormat)
+                {
+                    // NOTE: Only 24 and 32 bpp bitmaps are supported
+                    // Check if the imported file is transparent
+                    var isTransparent = bmp.PixelFormat switch
+                    {
+                        PixelFormat.Format32bppArgb => (RCFRCP.Data.Archive_GF_UpdateTransparency == Archive_GF_TransparencyMode.UpdateBasedOnPixelFormat ||
+                                                        bmpLock.UtilizesAlpha()),
+                        PixelFormat.Format24bppRgb => false,
+                        _ => (bool?)null
+                    };
+
+                    // NOTE: Currently only supported for formats with 3 or 4 channels
+                    // Check if the format should be updated for transparency
+                    if (gf.Channels >= 3 && isTransparent != null)
+                        // Update the format
+                        gf.GFPixelFormat = isTransparent.Value ? OpenSpaceGFFormat.Format_32bpp_BGRA_8888 : OpenSpaceGFFormat.Format_24bpp_BGR_888;
+                }
+            }
 
             // Import the bitmap
-            file.ImportFromBitmap(Settings, new RawBitmapData(bmp),
-                // TODO-UPDATE: Allow these to be configured
-                true, true);
+            gf.ImportFromBitmap(Settings, rawBitmapData, RCFRCP.Data.Archive_GF_GenerateMipmaps);
 
             // Serialize the data to get the bytes
-            OpenSpaceGFFile.GetSerializer(Settings).Serialize(outputStream, file);
+            OpenSpaceGFFile.GetSerializer(Settings).Serialize(outputStream, gf);
         }
 
         #endregion

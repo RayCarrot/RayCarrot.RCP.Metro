@@ -5,6 +5,7 @@ using RayCarrot.Rayman;
 using RayCarrot.UI;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -57,13 +58,13 @@ namespace RayCarrot.RCP.Metro
         /// <typeparam name="T">The type of data to convert</typeparam>
         /// <typeparam name="Settings">The type of serializer settings</typeparam>
         /// <param name="serializer">The serializer to use</param>
-        /// <param name="convertAction">The convert action, converting the data to the specified file path with an optional configuration path</param>
+        /// <param name="convertAction">The convert action, converting the data to the specified file path</param>
         /// <param name="fileFilter">The file filter when selecting files to convert</param>
         /// <param name="supportedFileExtensions">The supported file extensions to export as</param>
         /// <param name="defaultDir">The default directory</param>
         /// <param name="encoder">An optional data encoder to use</param>
         /// <returns>The task</returns>
-        protected async Task ConvertFromAsync<T, Settings>(BinaryDataSerializer<T, Settings> serializer, Action<T, FileSystemPath, FileSystemPath> convertAction, string fileFilter, string[] supportedFileExtensions, FileSystemPath? defaultDir, IDataEncoder encoder = null)
+        protected async Task ConvertFromAsync<T, Settings>(BinaryDataSerializer<T, Settings> serializer, Action<T, FileSystemPath> convertAction, string fileFilter, string[] supportedFileExtensions, FileSystemPath? defaultDir, IDataEncoder encoder = null)
             where T : IBinarySerializable<Settings>
             where Settings : BinarySerializerSettings
         {
@@ -144,11 +145,8 @@ namespace RayCarrot.RCP.Metro
                                 // Set the file extension
                                 destinationFile = destinationFile.ChangeFileExtension(new FileExtension(extResult.SelectedFileFormat)).GetNonExistingFileName();
 
-                                // Get the optional configuration path
-                                var configFile = destinationFile.ChangeFileExtension(new FileExtension(".json")).GetNonExistingFileName();
-
                                 // Convert the file
-                                convertAction(data, destinationFile, configFile);
+                                convertAction(data, destinationFile);
                             }
                             finally
                             {
@@ -178,12 +176,12 @@ namespace RayCarrot.RCP.Metro
         /// <typeparam name="T">The type of data to convert</typeparam>
         /// <typeparam name="Settings">The type of serializer settings</typeparam>
         /// <param name="serializer">The serializer to use</param>
-        /// <param name="convertAction">The convert action, converting the data from the specified file path with an optional configuration path</param>
+        /// <param name="convertAction">The convert action, converting the data from the specified file path with the selected output format</param>
         /// <param name="fileFilter">The file filter when selecting files to convert</param>
         /// <param name="fileExtension">The file extension to export as</param>
-        /// <param name="requiresConfig">Indicates if the config file is required</param>
+        /// <param name="outputFormats">The available output formats</param>
         /// <returns>The task</returns>
-        protected async Task ConvertToAsync<T, Settings>(BinaryDataSerializer<T, Settings> serializer, Func<FileSystemPath, FileSystemPath, T> convertAction, string fileFilter, FileExtension fileExtension, bool requiresConfig)
+        protected async Task ConvertToAsync<T, Settings>(BinaryDataSerializer<T, Settings> serializer, Func<FileSystemPath, string, T> convertAction, string fileFilter, FileExtension fileExtension, string[] outputFormats = null)
             where T : IBinarySerializable<Settings>
             where Settings : BinarySerializerSettings
         {
@@ -216,7 +214,22 @@ namespace RayCarrot.RCP.Metro
 
                 try
                 {
-                    await Task.Run(async () =>
+                    // The output format
+                    string outputFormat = null;
+
+                    // Get the output format if available
+                    if (outputFormats?.Any() == true)
+                    {
+                        // Get the format
+                        var formatResult = await RCFRCP.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(outputFormats, Resources.Utilities_Converter_FormatSelectionHeader));
+                        
+                        if (formatResult.CanceledByUser)
+                            return;
+
+                        outputFormat = formatResult.SelectedFileFormat;
+                    }
+
+                    await Task.Run(() =>
                     {
                         // Convert every file
                         foreach (var file in fileResult.SelectedFiles)
@@ -227,18 +240,8 @@ namespace RayCarrot.RCP.Metro
                             // Set the file extension
                             destinationFile = destinationFile.ChangeFileExtension(fileExtension).GetNonExistingFileName();
 
-                            // Get the optional configuration path
-                            var configFile = file.ChangeFileExtension(new FileExtension(".json"));
-
-                            if (requiresConfig && !configFile.FileExists)
-                            {
-                                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Utilities_Converter_MissingConfig, file), MessageType.Error);
-
-                                continue;
-                            }
-
                             // Convert the file
-                            var data = convertAction(file, configFile);
+                            var data = convertAction(file, outputFormat);
 
                             // Create the destination file
                             using var destinationFileStream = File.Open(destinationFile, FileMode.Create, FileAccess.Write);

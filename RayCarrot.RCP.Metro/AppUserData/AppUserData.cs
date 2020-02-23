@@ -19,7 +19,7 @@ namespace RayCarrot.RCP.Metro
         #region Interface Implementation
 
         /// <summary>
-        /// The path of the saved <see cref="RCPAppUserData"/> file
+        /// The path of the saved <see cref="AppUserData"/> file
         /// </summary>
         [JsonIgnore]
         public FileSystemPath FilePath => CommonPaths.AppUserDataPath;
@@ -73,6 +73,8 @@ namespace RayCarrot.RCP.Metro
             InstalledGames = new HashSet<Games>();
             CategorizeGames = true;
             ShownRabbidsActivityCenterLaunchMessage = false;
+            Archive_GF_GenerateMipmaps = true;
+            Archive_GF_UpdateTransparency = Archive_GF_TransparencyMode.PreserveFormat;
         }
 
         #endregion
@@ -277,6 +279,16 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool ShownRabbidsActivityCenterLaunchMessage { get; set; }
 
+        /// <summary>
+        /// Indicates if mipmaps should be generated when importing files for .gf files (if supported)
+        /// </summary>
+        public bool Archive_GF_GenerateMipmaps { get; set; }
+
+        /// <summary>
+        /// Indicates if the image format should be updated depending on if the imported file supports transparency for .gf files 
+        /// </summary>
+        public Archive_GF_TransparencyMode Archive_GF_UpdateTransparency { get; set; }
+        
         #endregion
     }
 }

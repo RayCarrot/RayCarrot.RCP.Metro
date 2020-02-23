@@ -43,7 +43,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertFromAsync()
         {
-            await ConvertFromAsync(Rayman3PCSaveData.GetSerializer(), (data, filePath, configPath) =>
+            await ConvertFromAsync(Rayman3PCSaveData.GetSerializer(), (data, filePath) =>
             {
                 // Save the data
                 SerializeJSON(data, filePath);

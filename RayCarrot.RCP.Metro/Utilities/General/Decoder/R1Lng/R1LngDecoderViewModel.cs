@@ -107,7 +107,7 @@ namespace RayCarrot.RCP.Metro
                     // German
                     new SegmentedDataEncoder.SegmentedDataInfo(new XORDataEncoder(213), 13850 - 8947),
 
-                    // English 2
+                    // Japanese
                     new SegmentedDataEncoder.SegmentedDataInfo(new XORDataEncoder(89), 16361 - 13850),
                 }),
 
@@ -122,10 +122,10 @@ namespace RayCarrot.RCP.Metro
                     // German
                     new SegmentedDataEncoder.SegmentedDataInfo(new XORDataEncoder(207), 13850 - 8947),
 
-                    // English 2
+                    // Japanese
                     new SegmentedDataEncoder.SegmentedDataInfo(new XORDataEncoder(208), 16361 - 13850),
 
-                    // English 3
+                    // Chinese
                     new SegmentedDataEncoder.SegmentedDataInfo(new XORDataEncoder(149), 18727 - 16361),
                 }),
 

@@ -6,12 +6,13 @@
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:metro="clr-namespace:RayCarrot.WPF.Metro;assembly=RayCarrot.WPF.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ArchiveCreatorDialogViewModel}"
              Language="{UICulture}"
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
-             MinHeight="400"
-             MinWidth="600">
+             MinHeight="250"
+             MinWidth="400">
     <metro:LoaderContentControl HorizontalLoadingIconAlignment="Center"
                                 VerticalLoadingIconAlignment="Center"
                                 HorizontalContentAlignment="Stretch"
@@ -25,27 +26,56 @@
             </Grid.RowDefinitions>
 
             <ScrollViewer Grid.Row="0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
+                <StackPanel>
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                    </i:Interaction.Behaviors>
 
-                    <rwpf:BrowseBox Grid.Row="0"
-                                    SelectedPath="{Binding Path=InputDirectory}"
+                    <TextBlock Style="{StaticResource HeaderTextBlock}"
+                               Text="{Resx Archive_CreateInputDir}" />
+
+                    <rwpf:BrowseBox SelectedPath="{Binding Path=InputDirectory}"
+                                    PathValidation="DirectoryExistsAndNotEmpty"
                                     BrowseType="Directory"/>
 
-                    <rwpf:BrowseBox Grid.Row="1"
-                                    SelectedPath="{Binding Path=OutputFile}"
-                                    BrowseType="SaveFile"
-                                    FileFilter="IPK (*.ipk)|*.ipk"/>
+                    <TextBlock Style="{StaticResource HeaderTextBlock}"
+                               Text="{Resx Archive_CreateOutputFile}" />
 
-                </Grid>
+                    <rwpf:BrowseBox SelectedPath="{Binding Path=OutputFile}"
+                                    PathValidation="NotEmpty"
+                                    BrowseType="SaveFile"
+                                    FileFilter="{Binding Path=Manager.ArchiveFileFilter, Mode=OneTime}"/>
+
+                    <ContentPresenter Content="{Binding Path=Manager.GetCreatorUIConfig, Mode=OneTime}" />
+
+                </StackPanel>
             </ScrollViewer>
 
-            <Button Grid.Row="1"
-                    Command="{Binding Path=CreateArchiveCommand}"/>
-            <!-- TODO-UPDATE: Add UI -->
+            <!-- Actions -->
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="{Binding Path=DisplayStatus}"
+                           TextWrapping="Wrap"/>
+
+                <Button Grid.Column="1"
+                        Content="{Resx Cancel}"
+                        IsCancel="True"
+                        Click="CancelButton_Click"/>
+
+                <Button Grid.Column="3"
+                        Content="{Resx Accept}"
+                        IsDefault="True"
+                        Click="OKButton_ClickAsync"/>
+
+            </Grid>
 
         </Grid>
 

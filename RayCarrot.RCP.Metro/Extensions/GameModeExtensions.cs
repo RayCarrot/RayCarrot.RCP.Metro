@@ -19,6 +19,8 @@ namespace RayCarrot.RCP.Metro
         {
             return gameMode switch
             {
+                OpenSpaceGameMode.Rayman2PCDemo1 => Games.Demo_Rayman2_1,
+                OpenSpaceGameMode.Rayman2PCDemo2 => Games.Demo_Rayman2_2,
                 OpenSpaceGameMode.Rayman2PC => Games.Rayman2,
                 OpenSpaceGameMode.RaymanMPC => Games.RaymanM,
                 OpenSpaceGameMode.RaymanArenaPC => Games.RaymanArena,
