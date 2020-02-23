@@ -96,6 +96,7 @@ namespace RayCarrot.RCP.Metro
 
             // Disable checksum
             data.IsChecksumUsed = false;
+            data.DirChecksum = 0;
 
             // NOTE: We can't disable the XOR key entirely as that would disable it for the file bytes too, which would require them all to be decrypted
             // Reset XOR keys

@@ -731,6 +731,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compress entire block.
+        /// </summary>
+        public static string Archive_IPK_CompressEntireBlock {
+            get {
+                return ResourceManager.GetString("Archive_IPK_CompressEntireBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File extensions to compress.
+        /// </summary>
+        public static string Archive_IPK_CompressExtensions {
+            get {
+                return ResourceManager.GetString("Archive_IPK_CompressExtensions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Directory = {0}
         ///Compressed = {1}
         ///File size = {2}
@@ -8131,7 +8149,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically generate mipmaps when importing to .gf files for supported games.
+        ///   Looks up a localized string similar to Automatically generate mipmaps (.gf).
         /// </summary>
         public static string Settings_ArchiveGFGenerateMipmaps {
             get {
@@ -8140,7 +8158,16 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically update format.
+        ///   Looks up a localized string similar to Automatically generate mipmaps when importing to .gf files for supported games.
+        /// </summary>
+        public static string Settings_ArchiveGFGenerateMipmapsInfo {
+            get {
+                return ResourceManager.GetString("Settings_ArchiveGFGenerateMipmapsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatically update format (.gf).
         /// </summary>
         public static string Settings_ArchiveGFTransparency {
             get {

@@ -10,7 +10,7 @@
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                 IsTabStop="False"
-                mc:Ignorable="d"    
+                mc:Ignorable="d"
                 d:DesignWidth="800"
                 d:DataContext="{d:DesignInstance local:SettingsPageViewModel}">
 
@@ -217,7 +217,7 @@
                     </i:Interaction.Behaviors>
 
                     <CheckBox Content="{Resx Settings_ArchiveGFGenerateMipmaps}"
-                              ToolTip="{Resx Settings_ArchiveGFGenerateMipmaps}"
+                              ToolTip="{Resx Settings_ArchiveGFGenerateMipmapsInfo}"
                               IsChecked="{Binding Path=Archive_GF_GenerateMipmaps}" />
 
                     <StackPanel>

@@ -3410,10 +3410,10 @@ totalTextures</comment>
     <value>Create</value>
   </data>
   <data name="Settings_ArchiveGFGenerateMipmaps" xml:space="preserve">
-    <value>Automatically generate mipmaps when importing to .gf files for supported games</value>
+    <value>Automatically generate mipmaps (.gf)</value>
   </data>
   <data name="Settings_ArchiveGFTransparency" xml:space="preserve">
-    <value>Automatically update format</value>
+    <value>Automatically update format (.gf)</value>
   </data>
   <data name="Settings_ArchiveGFTransparency_PreserveFormat" xml:space="preserve">
     <value>Never (preserve original format)</value>
@@ -3455,5 +3455,14 @@ fileCount</comment>
   </data>
   <data name="Utilities_Converter_FormatSelectionHeader" xml:space="preserve">
     <value>Select the format</value>
+  </data>
+  <data name="Archive_IPK_CompressEntireBlock" xml:space="preserve">
+    <value>Compress entire block</value>
+  </data>
+  <data name="Archive_IPK_CompressExtensions" xml:space="preserve">
+    <value>File extensions to compress</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmapsInfo" xml:space="preserve">
+    <value>Automatically generate mipmaps when importing to .gf files for supported games</value>
   </data>
 </root>

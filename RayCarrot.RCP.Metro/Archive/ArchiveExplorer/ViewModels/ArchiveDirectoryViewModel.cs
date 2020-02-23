@@ -336,7 +336,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             ex.HandleError("Importing archive directory", DisplayName);
 
-                            await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ImportError, result.SelectedDirectory.Name));
+                            await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RepackError);
 
                             return;
                         }
