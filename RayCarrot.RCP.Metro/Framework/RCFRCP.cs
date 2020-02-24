@@ -1,4 +1,5 @@
 ﻿using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.IO;
 using RayCarrot.UserData;
 
 namespace RayCarrot.RCP.Metro
@@ -36,6 +37,6 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The file manager
         /// </summary>
-        public static IFileManager File => RCF.GetService<IFileManager>();
+        public static IFileManager File => RCFIO.File;
     }
 }

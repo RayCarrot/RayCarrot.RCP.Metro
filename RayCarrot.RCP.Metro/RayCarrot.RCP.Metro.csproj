@@ -280,12 +280,7 @@
     <Compile Include="Games\Base\Games.cs" />
     <Compile Include="Games\Base\GameType.cs" />
     <Compile Include="Helpers\Operation.cs" />
-    <Compile Include="IO\IFileManager.cs" />
-    <Compile Include="IO\IOSearchPattern.cs" />
-    <Compile Include="IO\RCPFileManager.cs" />
-    <Compile Include="IO\Temp\TempDirectory.cs" />
-    <Compile Include="IO\Temp\TempFile.cs" />
-    <Compile Include="IO\Temp\TempFileSystemEntry.cs" />
+    <Compile Include="Framework\Implementations\RCPFileManager.cs" />
     <Compile Include="Pages\Links\LinksPage.xaml.cs">
       <DependentUpon>LinksPage.xaml</DependentUpon>
     </Compile>
@@ -1273,7 +1268,7 @@
       <Version>1.2.11</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
-      <Version>1.6.4</Version>
+      <Version>1.7.1</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.UI">
       <Version>1.2.2</Version>

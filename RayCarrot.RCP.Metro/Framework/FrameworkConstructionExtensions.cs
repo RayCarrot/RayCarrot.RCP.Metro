@@ -22,21 +22,5 @@ namespace RayCarrot.RCP.Metro
             // Return the construction
             return construction;
         }
-
-        /// <summary>
-        /// Adds a file manager to the construction
-        /// </summary>
-        /// <typeparam name="F">The type of file manager to add</typeparam>
-        /// <param name="construction">The construction</param>
-        /// <returns>The construction</returns>
-        public static IFrameworkConstruction AddFileManager<F>(this IFrameworkConstruction construction)
-            where F : class, IFileManager, new()
-        {
-            // Add the manager
-            construction.AddTransient<IFileManager, F>();
-
-            // Return the construction
-            return construction;
-        }
     }
 }
