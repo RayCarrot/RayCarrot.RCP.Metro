@@ -149,7 +149,7 @@ namespace RayCarrot.RCP.Metro
 
             // Decompress the data if compressed
             if (FileEntry.IsCompressed)
-                bytes = UbiArtIpkData.GetEncoder(Settings.IPKVersion, FileEntry.Size).Decode(bytes);
+                bytes = UbiArtIpkData.GetEncoder(FileEntry.IPKVersion, FileEntry.Size).Decode(bytes);
 
             // Initialize the data
             InitializeData(bytes);

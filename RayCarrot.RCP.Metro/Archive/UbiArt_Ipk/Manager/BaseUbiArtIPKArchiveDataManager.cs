@@ -76,7 +76,7 @@ namespace RayCarrot.RCP.Metro
                 return fileData;
 
             // Compress the bytes
-            var compressedBytes = UbiArtIpkData.GetEncoder(Settings.IPKVersion, file.Size).Encode(fileData);
+            var compressedBytes = UbiArtIpkData.GetEncoder(file.IPKVersion, file.Size).Encode(fileData);
 
             RCFCore.Logger?.LogTraceSource($"The file {file.Path.FileName} has been compressed");
 

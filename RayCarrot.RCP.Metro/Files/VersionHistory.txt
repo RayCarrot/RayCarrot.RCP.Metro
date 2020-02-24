@@ -18,6 +18,7 @@ Other changes:
 • Dialog windows will no longer show in the task bar or application switcher as separate windows
 • Replaced the game installer logos with higher quality images
 • When selecting files for converter utilities it now defaults to the most relevant directory rather than the game install directory
+• Rayman 1 maps now load faster
 • Fixed some minor tabbing issues
 • Fixed a bug where the app would crash if the link item style was changed
 • Bug fixes

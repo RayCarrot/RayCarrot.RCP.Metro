@@ -330,8 +330,6 @@ namespace RayCarrot.RCP.Metro
             {
                 Archive.SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, FileName));
 
-                RCFCore.Logger?.LogTraceSource($"An archive file is being imported as {filePath.FileExtension}");
-
                 // Get the file format
                 var format = filePath.FileExtension;
 

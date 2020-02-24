@@ -48,17 +48,17 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The archive creation data</returns>
         public ArchiveCreationData GetArchive(IEnumerable<FileSystemPath> files)
         {
-            // Create the entry data for each file
-            var fileEntries = files.Select(x => new ArchiveCreationData.FileEntryImportData(new UbiArtIPKFileEntry()
-            {
-                Path = new UbiArtPath(x),
-            }, x)).ToArray();
-
             // Create the data
             var data = new UbiArtIpkData();
 
             // Configure the data
             Config.ConfigureIpkData(data);
+
+            // Create the entry data for each file
+            var fileEntries = files.Select(x => new ArchiveCreationData.FileEntryImportData(new UbiArtIPKFileEntry(data.Version)
+            {
+                Path = new UbiArtPath(x),
+            }, x)).ToArray();
 
             // Set the files
             data.Files = fileEntries.Select(x => x.FileEntry.CastTo<UbiArtIPKFileEntry>()).ToArray();

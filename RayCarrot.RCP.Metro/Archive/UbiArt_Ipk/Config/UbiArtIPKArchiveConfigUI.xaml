@@ -6,6 +6,8 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:metro="clr-namespace:RayCarrot.RCP.Metro"
+             Language="{UICulture}"
+             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance metro:UbiArtIPKArchiveConfigViewModel}">
     <StackPanel>

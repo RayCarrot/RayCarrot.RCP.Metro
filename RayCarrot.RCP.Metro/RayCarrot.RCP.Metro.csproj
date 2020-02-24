@@ -1273,7 +1273,7 @@
       <Version>1.2.11</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.IO">
-      <Version>1.6.3</Version>
+      <Version>1.6.4</Version>
     </PackageReference>
     <PackageReference Include="RayCarrot.UI">
       <Version>1.2.2</Version>

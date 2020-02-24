@@ -62,6 +62,9 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           MaxWidth="250"
                            Text="{Binding Path=DisplayStatus}"
                            TextWrapping="Wrap"/>
 
