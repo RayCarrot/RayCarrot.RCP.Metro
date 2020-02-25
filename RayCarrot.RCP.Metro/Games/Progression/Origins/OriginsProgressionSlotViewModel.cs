@@ -19,13 +19,13 @@ namespace RayCarrot.RCP.Metro
         /// <param name="saveSlotFilePath">The file path for the save slot</param>
         /// <param name="progressionViewModel">The progression view model containing this slot</param>
         public OriginsProgressionSlotViewModel(LocalizedString slotName, ProgressionInfoItemViewModel[] items, FileSystemPath saveSlotFilePath, BaseProgressionViewModel progressionViewModel) : base(slotName, items, saveSlotFilePath, progressionViewModel)
-        {
-        }
+        { }
 
+        // TODO: Enable this again - currently Origins doesn't load modified saves, possibly due to a checksum check
         /// <summary>
         /// Indicates if the slot can be exported/imported
         /// </summary>
-        public override bool CanModify => true;
+        public override bool CanModify => false;
 
         /// <summary>
         /// Exports the save slot from the specified path

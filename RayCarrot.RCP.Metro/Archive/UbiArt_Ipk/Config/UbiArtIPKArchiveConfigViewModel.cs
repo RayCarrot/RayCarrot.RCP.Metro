@@ -91,127 +91,295 @@ namespace RayCarrot.RCP.Metro
             {
                 case UbiArtGame.RaymanOrigins:
 
-                    if (Settings.Platform != UbiArtPlatform.Nintendo3DS)
+                    switch (Settings.Platform)
                     {
-                        data.Version = 3;
-                        data.Unknown1 = 0;
-                    }
-                    else
-                    {
-                        data.Version = 4;
-                        data.Unknown1 = 5;
-                    }
+                        case UbiArtPlatform.Wii:
+                            data.Version = 3;
+                            data.Unknown1 = 6;
+                            data.Unknown3 = false;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 0;
+                            data.Unknown7 = 1698768603;
+                            data.EngineVersion = 0;
+                            break;
 
-                    data.Unknown3 = false;
-                    data.Unknown4 = true;
-                    data.Unknown5 = true;
-                    data.Unknown6 = 0;
-                    data.EngineVersion = 0;
+                        case UbiArtPlatform.Nintendo3DS:
+                            data.Version = 4;
+                            data.Unknown1 = 5;
+                            data.Unknown3 = false;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 0;
+                            data.Unknown7 = 1635089726;
+                            data.EngineVersion = 0;
+                            break;
+
+                        case UbiArtPlatform.PlayStation3:
+                            data.Version = 3;
+                            data.Unknown1 = 3;
+                            data.Unknown3 = false;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 0;
+                            data.Unknown7 = 1698768603;
+                            data.EngineVersion = 0;
+                            break;
+
+                        case UbiArtPlatform.PSVita:
+                            data.Version = 3;
+                            data.Unknown1 = 7;
+                            data.Unknown3 = false;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 0;
+                            data.Unknown7 = 559042371;
+                            data.EngineVersion = 0;
+                            break;
+
+                        case UbiArtPlatform.PC:
+                            data.Version = 3;
+                            data.Unknown1 = 0;
+                            data.Unknown3 = false;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 0;
+                            data.Unknown7 = 877930951;
+                            data.EngineVersion = 0;
+                            break;
+
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(Settings.Platform), Settings.Platform, null);
+                    }
 
                     break;
 
                 case UbiArtGame.RaymanLegends:
 
-                    if (Settings.Platform != UbiArtPlatform.PlayStation4)
+                    switch (Settings.Platform)
                     {
-                        data.Version = 5;
-                        data.Unknown1 = 0;
-                    }
-                    else
-                    {
-                        data.Version = 7;
-                        data.Unknown1 = 8;
-                    }
+                        case UbiArtPlatform.WiiU:
+                            data.Version = 5;
+                            data.Unknown1 = 6;
+                            data.Unknown3 = false;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 78992;
+                            data.Unknown7 = 2697850994;
+                            data.EngineVersion = 84435;
+                            break;
 
-                    data.Unknown3 = false;
-                    data.Unknown4 = true;
-                    data.Unknown5 = true;
-                    data.Unknown6 = 0;
-                    data.EngineVersion = 30765;
+                        case UbiArtPlatform.NintendoSwitch:
+                            data.Version = 7;
+                            data.Unknown1 = 10;
+                            data.Unknown3 = false;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 0;
+                            data.Unknown7 = 2514498303;
+                            data.EngineVersion = 0;
+                            break;
+
+                        case UbiArtPlatform.PSVita:
+                            data.Version = 5;
+                            data.Unknown1 = 6;
+                            data.Unknown3 = false;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 0;
+                            data.Unknown7 = 2869177618;
+                            data.EngineVersion = 0;
+                            break;
+
+                        case UbiArtPlatform.PlayStation4:
+                            data.Version = 7;
+                            data.Unknown1 = 8;
+                            data.Unknown3 = false;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 80253;
+                            data.Unknown7 = 2973796970;
+                            data.EngineVersion = 117321;
+                            break;
+
+                        case UbiArtPlatform.PC:
+                            data.Version = 5;
+                            data.Unknown1 = 0;
+                            data.Unknown3 = false;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 0;
+                            data.Unknown7 = 1274838019;
+                            data.EngineVersion = 0;
+                            break;
+
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(Settings.Platform), Settings.Platform, null);
+                    }
 
                     break;
 
                 case UbiArtGame.RaymanAdventures:
 
-                    data.Version = 8;
-                    data.Unknown1 = 2;
-                    data.Unknown2 = 11;
-                    data.Unknown3 = true;
-                    data.Unknown4 = true;
-                    data.Unknown5 = true;
-                    data.Unknown6 = 0;
-                    data.EngineVersion = 30765;
+                    switch (Settings.Platform)
+                    {
+                        case UbiArtPlatform.Android:
+                            data.Version = 8;
+                            data.Unknown1 = 12;
+                            data.Unknown2 = 11;
+                            data.Unknown3 = true;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 127901;
+                            data.Unknown7 = 3037303110;
+                            data.EngineVersion = 277220;
+                            break;
+
+                        case UbiArtPlatform.iOS:
+                            data.Version = 8;
+                            data.Unknown1 = 12;
+                            data.Unknown2 = 19;
+                            data.Unknown3 = true;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 127895;
+                            data.Unknown7 = 3037303110;
+                            data.EngineVersion = 277216;
+                            break;
+
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(Settings.Platform), Settings.Platform, null);
+                    }
 
                     break;
 
                 case UbiArtGame.RaymanMini:
 
-                    data.Version = 8;
-                    data.Unknown1 = 12;
-                    data.Unknown2 = 12;
-                    data.Unknown3 = true;
-                    data.Unknown4 = true;
-                    data.Unknown5 = true;
-                    data.Unknown6 = 3826;
-                    data.EngineVersion = 3826;
+                    switch (Settings.Platform)
+                    {
+                        case UbiArtPlatform.Mac:
+                            data.Version = 8;
+                            data.Unknown1 = 12;
+                            data.Unknown2 = 11;
+                            data.Unknown3 = true;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 3826;
+                            data.Unknown7 = 2057063881;
+                            data.EngineVersion = 3826;
+                            break;
+
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(Settings.Platform), Settings.Platform, null);
+                    }
 
                     break;
 
                 case UbiArtGame.JustDance2017:
 
-                    data.Version = 5;
-                    data.Unknown1 = 8;
-                    data.Unknown3 = false;
-                    data.Unknown4 = false;
-                    data.Unknown5 = false;
-                    data.Unknown6 = 0;
-                    data.EngineVersion = 241478;
+                    switch (Settings.Platform)
+                    {
+                        case UbiArtPlatform.WiiU:
+                            data.Version = 5;
+                            data.Unknown1 = 8;
+                            data.Unknown2 = 0;
+                            data.Unknown3 = false;
+                            data.Unknown4 = false;
+                            data.Unknown5 = false;
+                            data.Unknown6 = 0;
+                            data.Unknown7 = 3346979248;
+                            data.EngineVersion = 241478;
+                            break;
+
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(Settings.Platform), Settings.Platform, null);
+                    }
 
                     break;
 
                 case UbiArtGame.ValiantHearts:
 
-                    data.Version = 7;
-                    data.Unknown1 = 10;
-                    data.Unknown3 = false;
-                    data.Unknown4 = true;
-                    data.Unknown5 = true;
-                    data.Unknown6 = 0;
-                    data.EngineVersion = 0;
-                    data.Unknown9 = 0;
+                    switch (Settings.Platform)
+                    {
+                        case UbiArtPlatform.Android:
+                            data.Version = 7;
+                            data.Unknown1 = 10;
+                            data.Unknown2 = 0;
+                            data.Unknown3 = false;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 0;
+                            data.Unknown9 = 0;
+                            data.Unknown7 = 3713665533;
+                            data.EngineVersion = 0;
+                            break;
+
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(Settings.Platform), Settings.Platform, null);
+                    }
 
                     break;
 
                 case UbiArtGame.ChildOfLight:
 
-                    data.Version = 7;
-                    data.Unknown1 = 0;
-                    data.Unknown3 = false;
-                    data.Unknown4 = true;
-                    data.Unknown5 = true;
-                    data.Unknown6 = 0;
-                    data.EngineVersion = 30765;
+                    switch (Settings.Platform)
+                    {
+                        // NOTE: This is based on the demo
+                        case UbiArtPlatform.PC:
+                            data.Version = 7;
+                            data.Unknown1 = 0;
+                            data.Unknown2 = 0;
+                            data.Unknown3 = false;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 0;
+                            data.Unknown7 = 3669482532;
+                            data.EngineVersion = 30765;
+                            break;
+
+                        case UbiArtPlatform.PSVita:
+                            data.Version = 7;
+                            data.Unknown1 = 6;
+                            data.Unknown2 = 0;
+                            data.Unknown3 = false;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 0;
+                            data.Unknown7 = 19689438;
+                            data.EngineVersion = 0;
+                            break;
+
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(Settings.Platform), Settings.Platform, null);
+                    }
 
                     break;
 
                 case UbiArtGame.GravityFalls:
 
-                    data.Version = 7;
-                    data.Unknown1 = 10;
-                    data.Unknown3 = false;
-                    data.Unknown4 = true;
-                    data.Unknown5 = true;
-                    data.Unknown6 = 0;
-                    data.EngineVersion = 0;
+                    switch (Settings.Platform)
+                    {
+                        case UbiArtPlatform.Nintendo3DS:
+                            data.Version = 7;
+                            data.Unknown1 = 10;
+                            data.Unknown2 = 0;
+                            data.Unknown3 = false;
+                            data.Unknown4 = true;
+                            data.Unknown5 = true;
+                            data.Unknown6 = 0;
+                            data.Unknown7 = 4160251604;
+                            data.EngineVersion = 0;
+                            break;
+
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(Settings.Platform), Settings.Platform, null);
+                    }
 
                     break;
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(Settings.Game), Settings.Game, null);
             }
-
-            // Unknown value used for all versions which we set to 0
-            data.Unknown7 = 0;
         }
 
         /// <summary>

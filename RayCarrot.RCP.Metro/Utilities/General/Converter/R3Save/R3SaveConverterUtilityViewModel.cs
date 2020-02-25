@@ -1,8 +1,8 @@
 ﻿using RayCarrot.IO;
-using RayCarrot.UI;
-using System.Threading.Tasks;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
+using System.Threading.Tasks;
+using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -59,8 +59,14 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertToAsync()
         {
-            // TODO: Implement
+            // TODO: Implement when the serializing works correctly. Every value needs to be serialized first and strings handled correctly.
             await RCFUI.MessageUI.DisplayMessageAsync(Resources.NotImplemented, MessageType.Information);
+
+            //await ConvertToAsync(Rayman3PCSaveData.GetSerializer(), (filePath, format) =>
+            //{
+            //    // Read the data
+            //    return DeserializeJSON<Rayman3PCSaveData>(filePath);
+            //}, new FileFilterItem("*.json", "JSON").ToString(), new FileExtension(".sav"), null, new Rayman3SaveDataEncoder());
         }
 
         #endregion
