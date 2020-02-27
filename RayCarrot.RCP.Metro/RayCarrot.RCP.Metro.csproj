@@ -152,6 +152,9 @@
     <Compile Include="Games\Progression\UI\ProgressionUI.xaml.cs">
       <DependentUpon>ProgressionUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Test\R1Editor.xaml.cs">
+      <DependentUpon>R1Editor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\Games\Common\SyncTextureInfo\BaseGameSyncTextureInfoUtilityUI.xaml.cs">
       <DependentUpon>BaseGameSyncTextureInfoUtilityUI.xaml</DependentUpon>
     </Compile>
@@ -485,6 +488,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Games\Progression\UI\ProgressionUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Test\R1Editor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Test.R1Editor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro.Test"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:wpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             mc:Ignorable="d"
+             MinHeight="400"
+             MinWidth="600"
+             d:DataContext="{d:DesignInstance local:R1EditorViewModel}">
+
+    <UserControl.InputBindings>
+        <KeyBinding Command="{Binding Path=SaveCommand}" Key="S" Modifiers="Control" />
+        <KeyBinding Command="{Binding Path=DuplicateEventCommand}" Key="D" Modifiers="Control" />
+    </UserControl.InputBindings>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="15" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <WrapPanel Orientation="Horizontal">
+            <b:Interaction.Behaviors>
+                <wpf:UnifiedMarginBehavior Margin="0 0 10 0" />
+            </b:Interaction.Behaviors>
+
+            <ComboBox ItemsSource="{Binding Path=RelativeMapPaths, Mode=OneTime}"
+                      SelectedItem="{Binding Path=SelectedMapPath}"/>
+
+            <Button Content="Duplicate" Command="{Binding Path=DuplicateEventCommand}" />
+
+            <Button Content="Save" Command="{Binding Path=SaveCommand}" />
+
+        </WrapPanel>
+
+        <ScrollViewer Grid.Row="1"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto">
+            <Image Source="{Binding Path=LevelBmp}"
+                   SnapsToDevicePixels="True" 
+                   RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        </ScrollViewer>
+
+        <GridSplitter Grid.Row="2"
+                      Height="3"
+                      HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Center"
+                      ResizeDirection="Rows"/>
+
+        <DataGrid Grid.Row="3"
+                  SelectedItem="{Binding Path=SelectedEvent}"
+                  ItemsSource="{Binding Path=Events}"
+                  SelectionMode="Single"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Type" Binding="{Binding Path=Event.Type}" />
+                <DataGridTextColumn Header="Group" Binding="{Binding Path=Event.Group}" />
+                <DataGridTextColumn Header="DES" Binding="{Binding Path=Event.DES}" />
+                <DataGridTextColumn Header="DES2" Binding="{Binding Path=Event.DES2}" />
+                <DataGridTextColumn Header="DES3" Binding="{Binding Path=Event.DES3}" />
+                <DataGridTextColumn Header="ETA" Binding="{Binding Path=Event.ETA}" />
+                <DataGridTextColumn Header="X" Binding="{Binding Path=Event.XPosition}" />
+                <DataGridTextColumn Header="Y" Binding="{Binding Path=Event.YPosition}" />
+                <DataGridTextColumn Header="OffsetBX" Binding="{Binding Path=Event.OffsetBX}" />
+                <DataGridTextColumn Header="OffsetBY" Binding="{Binding Path=Event.OffsetBY}" />
+                <DataGridTextColumn Header="SubEtat" Binding="{Binding Path=Event.SubEtat}" />
+                <DataGridTextColumn Header="Etat" Binding="{Binding Path=Event.Etat}" />
+                <DataGridTextColumn Header="FollowSprite" Binding="{Binding Path=Event.FollowSprite}" />
+                <DataGridTextColumn Header="Hitpoints" Binding="{Binding Path=Event.HitPoints}" />
+                <DataGridTextColumn Header="HitSprite" Binding="{Binding Path=Event.HitSprite}" />
+                <DataGridTextColumn Header="FollowEnabled" Binding="{Binding Path=Event.FollowEnabled}" />
+                <DataGridTextColumn Header="Link" Binding="{Binding Path=Link}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+
+</UserControl>
