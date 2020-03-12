@@ -53,7 +53,7 @@ namespace RayCarrot.RCP.Metro
             RCFCore.Logger?.LogInformationSource($"Slot has been deserialized");
 
             // Create the collection with items for each time trial level + general information
-            var progressItems = new ProgressionInfoItemViewModel[saveData.Levels.Count + 2];
+            var progressItems = new ProgressionInfoItemViewModel[(saveData.Levels.Count / 10) + 2];
 
             // Get data values
             int collectedLums = 0;
@@ -116,7 +116,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 
                 // Create the view model
-                progressItems[i + 2] = new ProgressionInfoItemViewModel(ProgressionIcons.RO_Clock, new LocalizedString(() => $"{worldNum}-{lvlNum}: {levelData.RecordTime:mm\\:ss\\:fff}"));
+                progressItems[((i + 1) / 10) - 1 + 2] = new ProgressionInfoItemViewModel(ProgressionIcons.RO_Clock, new LocalizedString(() => $"{worldNum}-{lvlNum}: {levelData.RecordTime:mm\\:ss\\:fff}"));
             }
 
             // Set general progress info

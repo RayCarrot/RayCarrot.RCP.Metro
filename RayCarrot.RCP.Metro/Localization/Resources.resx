@@ -3021,7 +3021,8 @@ isModified
 isEncrypted
 isTransparent
 pointer
-mipmaps</comment>
+mipmaps
+format</comment>
   </data>
   <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
     <value>File Extension Selection</value>
@@ -3235,33 +3236,6 @@ totalTextures</comment>
   <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
     <value>Syncing the texture info will edit the game files to have the textures displayed at the same resolution as specified in the .cnt files</value>
   </data>
-  <data name="Utilities_R1MapViewer_SelectLevel" xml:space="preserve">
-    <value>Select level file</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Error" xml:space="preserve">
-    <value>An error occurred when loading the level</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Header" xml:space="preserve">
-    <value>Rayman 1 Level Viewer</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Load" xml:space="preserve">
-    <value>Load</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Width" xml:space="preserve">
-    <value>Width</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Height" xml:space="preserve">
-    <value>Height</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Events" xml:space="preserve">
-    <value>Events</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Textures" xml:space="preserve">
-    <value>Textures</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Background" xml:space="preserve">
-    <value>Background</value>
-  </data>
   <data name="Utilities_Other_Header" xml:space="preserve">
     <value>Other</value>
   </data>
@@ -3412,6 +3386,9 @@ totalTextures</comment>
   <data name="Settings_ArchiveGFGenerateMipmaps" xml:space="preserve">
     <value>Automatically generate mipmaps (.gf)</value>
   </data>
+  <data name="Settings_ArchiveGFGenerateMipmapsInfo" xml:space="preserve">
+    <value>Automatically generate mipmaps for supported games when importing to .gf files</value>
+  </data>
   <data name="Settings_ArchiveGFTransparency" xml:space="preserve">
     <value>Automatically update format (.gf)</value>
   </data>
@@ -3461,8 +3438,5 @@ fileCount</comment>
   </data>
   <data name="Archive_IPK_CompressExtensions" xml:space="preserve">
     <value>File extensions to compress</value>
-  </data>
-  <data name="Settings_ArchiveGFGenerateMipmapsInfo" xml:space="preserve">
-    <value>Automatically generate mipmaps when importing to .gf files for supported games</value>
   </data>
 </root>

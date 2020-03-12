@@ -1,7 +1,6 @@
-﻿using System;
-using RayCarrot.Rayman.OpenSpace;
-using RayCarrot.Rayman.Rayman1;
+﻿using RayCarrot.Rayman.OpenSpace;
 using RayCarrot.Rayman.UbiArt;
+using System;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -28,10 +27,6 @@ namespace RayCarrot.RCP.Metro
 
                 UbiArtGameMode.RaymanOriginsPC => Games.RaymanOrigins,
                 UbiArtGameMode.RaymanLegendsPC => Games.RaymanLegends,
-
-                Rayman1GameMode.Rayman1PC => Games.Rayman1,
-                Rayman1GameMode.RaymanDesignerPC => Games.RaymanDesigner,
-                //Rayman1GameMode.RaymanEduPC => Games.EducationalDos,
 
                 _ => (null as Games?)
             };

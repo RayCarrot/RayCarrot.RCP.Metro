@@ -8158,7 +8158,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatically generate mipmaps when importing to .gf files for supported games.
+        ///   Looks up a localized string similar to Automatically generate mipmaps for supported games when importing to .gf files.
         /// </summary>
         public static string Settings_ArchiveGFGenerateMipmapsInfo {
             get {
@@ -9291,87 +9291,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_Other_Header {
             get {
                 return ResourceManager.GetString("Utilities_Other_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Background.
-        /// </summary>
-        public static string Utilities_R1MapViewer_Background {
-            get {
-                return ResourceManager.GetString("Utilities_R1MapViewer_Background", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when loading the level.
-        /// </summary>
-        public static string Utilities_R1MapViewer_Error {
-            get {
-                return ResourceManager.GetString("Utilities_R1MapViewer_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Events.
-        /// </summary>
-        public static string Utilities_R1MapViewer_Events {
-            get {
-                return ResourceManager.GetString("Utilities_R1MapViewer_Events", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rayman 1 Level Viewer.
-        /// </summary>
-        public static string Utilities_R1MapViewer_Header {
-            get {
-                return ResourceManager.GetString("Utilities_R1MapViewer_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Height.
-        /// </summary>
-        public static string Utilities_R1MapViewer_Height {
-            get {
-                return ResourceManager.GetString("Utilities_R1MapViewer_Height", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Load.
-        /// </summary>
-        public static string Utilities_R1MapViewer_Load {
-            get {
-                return ResourceManager.GetString("Utilities_R1MapViewer_Load", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select level file.
-        /// </summary>
-        public static string Utilities_R1MapViewer_SelectLevel {
-            get {
-                return ResourceManager.GetString("Utilities_R1MapViewer_SelectLevel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Textures.
-        /// </summary>
-        public static string Utilities_R1MapViewer_Textures {
-            get {
-                return ResourceManager.GetString("Utilities_R1MapViewer_Textures", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Width.
-        /// </summary>
-        public static string Utilities_R1MapViewer_Width {
-            get {
-                return ResourceManager.GetString("Utilities_R1MapViewer_Width", resourceCulture);
             }
         }
         

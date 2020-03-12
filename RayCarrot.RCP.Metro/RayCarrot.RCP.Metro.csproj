@@ -152,9 +152,6 @@
     <Compile Include="Games\Progression\UI\ProgressionUI.xaml.cs">
       <DependentUpon>ProgressionUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Test\R1Editor.xaml.cs">
-      <DependentUpon>R1Editor.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Utilities\Games\Common\SyncTextureInfo\BaseGameSyncTextureInfoUtilityUI.xaml.cs">
       <DependentUpon>BaseGameSyncTextureInfoUtilityUI.xaml</DependentUpon>
     </Compile>
@@ -237,11 +234,6 @@
       <DependentUpon>SyncTextureInfoUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\General\Other\SyncTextureInfo\GeneralSyncTextureInfoUtilityViewModel.cs" />
-    <Compile Include="Utilities\General\Other\R1MapViewer\R1MapViewerUtilityUI.xaml.cs">
-      <DependentUpon>R1MapViewerUtilityUI.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Utilities\General\Other\R1MapViewer\R1MapViewerUtilityViewModel.cs" />
-    <Compile Include="Utilities\General\Other\R1MapViewer\R1MapViewerUtility.cs" />
     <Compile Include="Utilities\General\UtilityPlatforms.cs" />
     <Compile Include="ViewModels\Dialogs\FileExtensionSelectionDialogResult.cs" />
     <Compile Include="ViewModels\Dialogs\FileExtensionSelectionDialogViewModel.cs" />
@@ -491,10 +483,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Test\R1Editor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UI\Dialogs\FileExtensionSelectionDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -724,10 +712,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Utilities\General\Other\SyncTextureInfo\SyncTextureInfoUtilityUI.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Utilities\General\Other\R1MapViewer\R1MapViewerUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1222,10 +1206,10 @@
       <Version>4.1.0</Version>
     </PackageReference>
     <PackageReference Include="DotNetZip">
-      <Version>1.13.5</Version>
+      <Version>1.13.6</Version>
     </PackageReference>
     <PackageReference Include="Fody">
-      <Version>6.1.0</Version>
+      <Version>6.1.1</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -1239,16 +1223,16 @@
       <Version>2.5.2</Version>
     </PackageReference>
     <PackageReference Include="Magick.NET-Q8-x86">
-      <Version>7.15.1</Version>
+      <Version>7.15.4</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro">
       <Version>1.6.5</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro.IconPacks.Material">
-      <Version>3.2.0</Version>
+      <Version>3.4.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft-WindowsAPICodePack-Shell">
-      <Version>1.1.3.3</Version>
+      <Version>1.1.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.PowerShell.5.ReferenceAssemblies">
       <Version>1.1.0</Version>

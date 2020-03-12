@@ -35,7 +35,6 @@
             };
             OtherViewModels = new UtilityViewModel[]
             {
-                new UtilityViewModel(new R1MapViewerUtility()),
                 new UtilityViewModel(new SyncTextureInfoUtility()),
             };
         }

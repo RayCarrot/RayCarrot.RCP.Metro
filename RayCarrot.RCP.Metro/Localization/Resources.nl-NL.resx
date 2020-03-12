@@ -2912,7 +2912,8 @@ Gewijzigd = {4}
 Versleuteld = {5}
 Transparant = {6}
 Pointer = {7}
-Mipmaps = {8}</value>
+Mipmaps = {8}
+Bestandsindeling = {9}</value>
   </data>
   <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
     <value>Bestandsextensie Selectie</value>
@@ -2956,7 +2957,7 @@ Pointer = {4}</value>
     <value>Map = {0}
 Grootte = {1} x {2}
 Gebruikt TEX = {3}
-Bestandsindeling = {4}
+Afbeeldingsindeling = {4}
 Gecomprimeerd = {5}
 Bestandsgrootte = {6}
 Gecomprimeerde bestandsgrootte = {7}
@@ -3107,33 +3108,6 @@ Pointer = {8}</value>
   </data>
   <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
     <value>Als de textuurinformatie wordt gesynchroniseerd, zullen de spelbestanden zodanig worden gewijzigd dat de texturen worden weergegeven in dezelfde resolutie als gespecificeerd in de .cnt bestanden</value>
-  </data>
-  <data name="Utilities_R1MapViewer_SelectLevel" xml:space="preserve">
-    <value>Selecteer levelbestand</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Error" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het laden van het level</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Header" xml:space="preserve">
-    <value>Rayman 1 Level Viewer</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Load" xml:space="preserve">
-    <value>Laden</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Width" xml:space="preserve">
-    <value>Breedte</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Height" xml:space="preserve">
-    <value>Hoogte</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Events" xml:space="preserve">
-    <value>Events</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Textures" xml:space="preserve">
-    <value>Texturen</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Background" xml:space="preserve">
-    <value>Achtergrond</value>
   </data>
   <data name="Utilities_Other_Header" xml:space="preserve">
     <value>Overige</value>
@@ -3297,5 +3271,71 @@ Pointer = {8}</value>
   <data name="RL_LevelName_5_6" xml:space="preserve">
     <value>Hell Breaks Loose</value>
     <comment>Hell Breaks Loose</comment>
+  </data>
+  <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
+    <value>Rayman Legends Spelbestanden</value>
+  </data>
+  <data name="Utilities_Converter_ROSaveHeader" xml:space="preserve">
+    <value>Rayman Origins Spelbestanden</value>
+  </data>
+  <data name="Archive_Extract" xml:space="preserve">
+    <value>Uitpakken</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Create" xml:space="preserve">
+    <value>Aanmaken</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmaps" xml:space="preserve">
+    <value>Automatisch mipmaps genereren (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmapsInfo" xml:space="preserve">
+    <value>Automatisch mipmaps genereren voor ondersteunde spellen, wanneer geïmporteerd wordt naar .gf-bestanden</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency" xml:space="preserve">
+    <value>Bestandsindeling automatisch updaten (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormat" xml:space="preserve">
+    <value>Nooit (behoud originele bestandsindeling)</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormatInfo" xml:space="preserve">
+    <value>De originele bestandsindeling zal te allen tijde in stand worden gehouden. Wanneer een ARGB-afbeelding geïmporteerd wordt naar een .gf-bestand en deze geen transparantie ondersteunt, zal het alfakanaal verloren gaan.</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat" xml:space="preserve">
+    <value>Match geïmporteerde bestandsindeling</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo" xml:space="preserve">
+    <value>De bestandsindeling zal geüpdatet worden om deze te matchen met het geïmporteerde bestand. Dit kan resulteren in ingebruikname van meer opslagruimte dan nodig door de .gf-bestanden.</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized" xml:space="preserve">
+    <value>Match geïmporteerde bestandsindeling indie vereist</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo" xml:space="preserve">
+    <value>De bestandsindeling zal geüpdatet worden om deze te matchen met het geïmporteerde bestand als de huidige bestandsindeling de data niet ondersteunt. Als een ARGB-afbeelding bijvoorbeeld wordt geïmporteerd naar een .gf-bestand dat geen transparantie ondersteunt, zal het alleen de bestandsindeling updaten voor compatibiliteit als de geïmporteerde afbeelding het alfakanaal benut. Deze instelling is aanbevolen voor het voorkomen van veranderingen in bestandsindelingen wanneer dit overbodig is, echter zal het het importproces vertragen.</value>
+  </data>
+  <data name="Archive_CreateSuccess" xml:space="preserve">
+    <value>Het archief is met succes aangemaakt en bevat (0} bestanden</value>
+  </data>
+  <data name="Archive_CreateErrorInputNotFound" xml:space="preserve">
+    <value>De gespecificeerde invoermap bestaat niet</value>
+  </data>
+  <data name="Archive_CreateError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het aanmaken van het archief</value>
+  </data>
+  <data name="Archive_CreateHeader" xml:space="preserve">
+    <value>Aanmaken Archief</value>
+  </data>
+  <data name="Archive_CreateInputDir" xml:space="preserve">
+    <value>Invoermap</value>
+  </data>
+  <data name="Archive_CreateOutputFile" xml:space="preserve">
+    <value>Uitvoerbestand</value>
+  </data>
+  <data name="Utilities_Converter_FormatSelectionHeader" xml:space="preserve">
+    <value>Selecteer de bestandsindeling</value>
+  </data>
+  <data name="Archive_IPK_CompressEntireBlock" xml:space="preserve">
+    <value>Comprimeer volledig blok</value>
+  </data>
+  <data name="Archive_IPK_CompressExtensions" xml:space="preserve">
+    <value>Bestandsextensie voor compressie</value>
   </data>
 </root>

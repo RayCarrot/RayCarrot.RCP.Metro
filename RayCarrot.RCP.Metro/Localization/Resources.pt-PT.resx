@@ -2927,7 +2927,8 @@ Modificado = {4}
 Encriptado = {5}
 Transparente = {6}
 Pointer = {7}
-Mipmaps = {8}</value>
+Mipmaps = {8}
+Formato = {9}</value>
   </data>
   <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
     <value>Selecção de ficheiro de extensão</value>
@@ -3133,34 +3134,6 @@ Pointer = {8}
   <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
     <value>Sincronizar a informação de textura irá editar os ficheiros de jogo para ter as texturas exibidas à mesma resolução tal como especificadas nos ficheiros .cnt</value>
   </data>
-  <data name="Utilities_R1MapViewer_SelectLevel" xml:space="preserve">
-    <value>Seleccionar ficheiro de nível</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Error" xml:space="preserve">
-    <value>Ocorreu um erro ao carregar o nível</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Header" xml:space="preserve">
-    <value>Visualizador de Níveis Rayman 1</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Load" xml:space="preserve">
-    <value>Carregar</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Width" xml:space="preserve">
-    <value>Largura</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Height" xml:space="preserve">
-    <value>Altura</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Events" xml:space="preserve">
-    <value>Events</value>
-    <comment>Events</comment>
-  </data>
-  <data name="Utilities_R1MapViewer_Textures" xml:space="preserve">
-    <value>Texturas</value>
-  </data>
-  <data name="Utilities_R1MapViewer_Background" xml:space="preserve">
-    <value>Fundo</value>
-  </data>
   <data name="Utilities_Other_Header" xml:space="preserve">
     <value>Outro</value>
   </data>
@@ -3327,5 +3300,72 @@ Pointer = {8}
   <data name="RL_LevelName_5_6" xml:space="preserve">
     <value>Hell Breaks Loose</value>
     <comment>Hell Breaks Loose</comment>
+  </data>
+  <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
+    <value>Ficheiros de progressão do Rayman Legends</value>
+  </data>
+  <data name="Utilities_Converter_ROSaveHeader" xml:space="preserve">
+    <value>Ficheiros de progressão do Rayman Origins</value>
+  </data>
+  <data name="Archive_Extract" xml:space="preserve">
+    <value>Extraír</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Create" xml:space="preserve">
+    <value>Criar</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmaps" xml:space="preserve">
+    <value>Gerar mipmaps (.gf) automáticamente</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmapsInfo" xml:space="preserve">
+    <value>Gerar mipmaps automáticamente para jogos suportados ao importar para ficheiros .gf</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency" xml:space="preserve">
+    <value>Actualizar automáticamente o formato de ficheiro (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormat" xml:space="preserve">
+    <value>Nunca (Preservar o formato original)</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormatInfo" xml:space="preserve">
+    <value>O formato original será sempre preservado. Importar uma imagem ARGB para um ficheiro .gf que não suporta transparência irá resultar numa perda de canal alfa.</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat" xml:space="preserve">
+    <value>Corresponder formato importado</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo" xml:space="preserve">
+    <value>O formato será actualizado para corresponder ao do ficheiro importado. Isto poderá resultar que os ficheiros .gf ocupem mais espaço do que o que é necessário na verdade.</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized" xml:space="preserve">
+    <value>Corrresponder formato importado se requerido</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo" xml:space="preserve">
+    <value>O formato será actualizado para corresponder ao do ficheiro importado se o formato actual não suportar os dados. Por exemplo, se uma imagem ARGB está a ser importada para um ficheiro .gf que não suporta transparência irá actualizar apenas o formato para a suportar se a imagem importada utiliza o canal alfa. É recomendada esta definição para evitar alterar formatos quando não é necessário, no entando irá abrandar a importação do ficheiro.</value>
+  </data>
+  <data name="Archive_CreateSuccess" xml:space="preserve">
+    <value>O arquivo foi criado com sucesso com {0} ficheiro(s)</value>
+  </data>
+  <data name="Archive_CreateErrorInputNotFound" xml:space="preserve">
+    <value>Não existe o directório de saída especificado</value>
+  </data>
+  <data name="Archive_CreateError" xml:space="preserve">
+    <value>Ocorrreu um erro ao criar o arquivo</value>
+  </data>
+  <data name="Archive_CreateHeader" xml:space="preserve">
+    <value>Criar arquivo</value>
+  </data>
+  <data name="Archive_CreateInputDir" xml:space="preserve">
+    <value>Directório de entrada
+</value>
+  </data>
+  <data name="Archive_CreateOutputFile" xml:space="preserve">
+    <value>Ficheiro de saída</value>
+  </data>
+  <data name="Utilities_Converter_FormatSelectionHeader" xml:space="preserve">
+    <value>Selecciona o formato</value>
+  </data>
+  <data name="Archive_IPK_CompressEntireBlock" xml:space="preserve">
+    <value>Comprimir o bloco inteiro</value>
+  </data>
+  <data name="Archive_IPK_CompressExtensions" xml:space="preserve">
+    <value>Extensões de ficheiros a comprimir</value>
   </data>
 </root>

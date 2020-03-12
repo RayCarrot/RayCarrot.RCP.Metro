@@ -1475,10 +1475,6 @@ Notícias:
     <value>Archive Explorer™ (.ipk)</value>
     <comment>Archive Explorer™ (.ipk)</comment>
   </data>
-  <data name="Utilities_R1MapViewer_Events" xml:space="preserve">
-    <value>Events</value>
-    <comment>Events</comment>
-  </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Once upon a Time</value>
     <comment>Once upon a Time</comment>
