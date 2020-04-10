@@ -1,4 +1,8 @@
-﻿-----   Version 9.4.0 - March 12, 2020   -----
+﻿-----   Version 9.5.0 - April ??, 2020   -----
+• 
+
+
+-----   Version 9.4.0 - March 12, 2020   -----
 • Added the option to create archives (.cnt and .ipk)
 • Added the progression tab for Rayman Origins and Legends
 • Added utilities for converting Rayman Origins and Legends save files
