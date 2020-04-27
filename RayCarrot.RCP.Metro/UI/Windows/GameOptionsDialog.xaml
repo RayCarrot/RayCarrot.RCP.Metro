@@ -112,7 +112,7 @@
 
             <!-- Options -->
 
-            <local:RCPTabItem IconKind="SettingsOutline"
+            <local:RCPTabItem IconKind="CogOutline"
                               Header="{Resx GameOptions_Options}"
                               Visibility="{Binding Path=HasOptionsContent, Converter={rwpf:BooleanToVisibilityConverter}}">
 

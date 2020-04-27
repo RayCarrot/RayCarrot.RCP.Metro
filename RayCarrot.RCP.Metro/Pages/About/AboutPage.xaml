@@ -144,7 +144,7 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom">
 
-                <local:IconButton IconKind="GithubCircle"
+                <local:IconButton IconKind="Github"
                                   ToolTip="{Resx About_GitHub}"
                                   Command="{Binding Path=OpenUrlCommand}"
                                   CommandParameter="{x:Static local:CommonUrls.GitHubUrl}" />

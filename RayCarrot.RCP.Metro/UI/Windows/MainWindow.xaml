@@ -338,7 +338,7 @@
             <!-- Settings -->
 
             <local:RCPTabItem Header="{Resx SettingsPageHeader}"
-                              IconKind="SettingsOutline"
+                              IconKind="CogOutline"
                               IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Settings}">
                 <local:SettingsPage />
             </local:RCPTabItem>

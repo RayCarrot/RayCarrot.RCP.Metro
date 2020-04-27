@@ -260,7 +260,7 @@ namespace RayCarrot.RCP.Metro
                     actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
 
                     // Add Game options
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.SettingsOutline, new RelayCommand(() =>
+                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.CogOutline, new RelayCommand(() =>
                     {
                         RCFCore.Logger?.LogTraceSource($"The Game {Game} options dialog is opening...");
                         GameOptionsDialog.Show(Game);
