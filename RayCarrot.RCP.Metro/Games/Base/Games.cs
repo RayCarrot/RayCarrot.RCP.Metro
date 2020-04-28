@@ -130,6 +130,11 @@ namespace RayCarrot.RCP.Metro
         EducationalDos,
 
         /// <summary>
+        /// Rayman Dictées
+        /// </summary>
+        RaymanDictées,
+
+        /// <summary>
         /// Rayman 3 Print Studio
         /// </summary>
         PrintStudio,

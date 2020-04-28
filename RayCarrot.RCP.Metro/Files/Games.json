@@ -129,6 +129,9 @@
     "PrintStudio": {
       "Win32": "PrintStudio_Win32"
     },
+    "RaymanDictées": {
+      "Win32": "RaymanDictées_Win32"
+    },
     "RaymanActivityCenter": {
       "Win32": "RaymanActivityCenter_Win32"
     },
@@ -197,6 +200,7 @@
     "RabbidsBigBang": "RabbidsBigBang_Info",
     "EducationalDos": "EducationalDos_Info",
     "PrintStudio": "PrintStudio_Info",
+    "RaymanDictées": "RaymanDictées_Info",
     "RaymanActivityCenter": "RaymanActivityCenter_Info",
     "RaymanRavingRabbidsActivityCenter": "RaymanRavingRabbidsActivityCenter_Info",
     "GloboxMoment": "GloboxMoment_Info",
