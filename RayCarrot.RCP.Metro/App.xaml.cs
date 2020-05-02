@@ -538,6 +538,11 @@ namespace RayCarrot.RCP.Metro
                 Data.Archive_GF_UpdateTransparency = Archive_GF_TransparencyMode.PreserveFormat;
             }
 
+            if (Data.LastVersion < new Version(9, 5, 0, 0))
+            {
+                Data.BinarySerializationFileLogPath = FileSystemPath.EmptyPath;
+            }
+
             // Re-deploy files
             await RCFRCP.App.DeployFilesAsync(true);
 

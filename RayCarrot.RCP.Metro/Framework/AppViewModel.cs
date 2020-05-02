@@ -201,19 +201,7 @@ namespace RayCarrot.RCP.Metro
         /// Gets the binary serializer logger to use
         /// </summary>
         /// <returns>The binary serializer logger</returns>
-        public IBinarySerializerLogger GetBinarySerializerLogger()
-        {
-            // TODO-UPDATE: Add setting flag
-            if (true)
-            {
-                // TODO-UPDATE: Add setting for path
-                return new BinarySerializerFileLogger(@"C:\Users\RayCarrot\Downloads\log.txt");
-            }
-            else
-            {
-                return null;
-            }
-        }
+        public IBinarySerializerLogger GetBinarySerializerLogger() => !RCFRCP.Data.BinarySerializationFileLogPath.FullPath.IsNullOrWhiteSpace() && RCFRCP.Data.BinarySerializationFileLogPath.Parent.DirectoryExists ? new BinarySerializerFileLogger(RCFRCP.Data.BinarySerializationFileLogPath) : null;
 
         /// <summary>
         /// Gets new instances of utilities for a specific game

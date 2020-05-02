@@ -75,6 +75,7 @@ namespace RayCarrot.RCP.Metro
             ShownRabbidsActivityCenterLaunchMessage = false;
             Archive_GF_GenerateMipmaps = true;
             Archive_GF_UpdateTransparency = Archive_GF_TransparencyMode.PreserveFormat;
+            BinarySerializationFileLogPath = FileSystemPath.EmptyPath;
         }
 
         #endregion
@@ -288,7 +289,12 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the image format should be updated depending on if the imported file supports transparency for .gf files 
         /// </summary>
         public Archive_GF_TransparencyMode Archive_GF_UpdateTransparency { get; set; }
-        
+
+        /// <summary>
+        /// The binary serialization logging file path
+        /// </summary>
+        public FileSystemPath BinarySerializationFileLogPath { get; set; }
+
         #endregion
     }
 }

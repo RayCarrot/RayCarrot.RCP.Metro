@@ -161,6 +161,27 @@
                               DataContext="{Binding Path=Data}"
                               IsChecked="{Binding Path=CloseConfigOnSave}" />
 
+                    <CheckBox Content="{Resx Settings_GetBetaUpdates}"
+                              DataContext="{Binding Path=Data}"
+                              IsChecked="{Binding Path=GetBetaUpdates}"
+                              rwpf:UserLevelTag.MinUserLevel="Technical"/>
+
+                    <StackPanel rwpf:UserLevelTag.MinUserLevel="Advanced"
+                                DataContext="{Binding Path=Data}">
+
+                        <!-- TODO-UPDATE: Localize -->
+
+                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                   Text="{Resx Settings_BinarySerializationFileLogPath}"
+                                   Margin="0 0 0 8" />
+
+                        <rwpf:BrowseBox FileFilter="Txt (*.txt)|*.txt"
+                                        SelectedPath="{Binding Path=BinarySerializationFileLogPath}"
+                                        ToolTip="{Resx Settings_BinarySerializationFileLogPathInfo}"
+                                        BrowseType="SaveFile" />
+
+                    </StackPanel>
+
                 </StackPanel>
 
             </StackPanel>
@@ -353,9 +374,6 @@
                                   ToolTip="{Resx Settings_DebugExceptionLevelInfo}"/>
 
                     </StackPanel>
-
-                    <CheckBox Content="{Resx Settings_GetBetaUpdates}"
-                              IsChecked="{Binding Path=GetBetaUpdates}" />
 
                     <CheckBox Content="{Resx Settings_ForceUpdates}"
                               IsChecked="{Binding Path=ForceUpdate}" />
