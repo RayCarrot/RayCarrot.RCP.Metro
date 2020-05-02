@@ -166,7 +166,7 @@
                               IsChecked="{Binding Path=GetBetaUpdates}"
                               rwpf:UserLevelTag.MinUserLevel="Technical"/>
 
-                    <StackPanel rwpf:UserLevelTag.MinUserLevel="Advanced"
+                    <StackPanel rwpf:UserLevelTag.MinUserLevel="Technical"
                                 DataContext="{Binding Path=Data}">
 
                         <TextBlock Style="{StaticResource HeaderTextBlock}"
