@@ -239,6 +239,18 @@ namespace RayCarrot.RCP.Metro
             return Task.FromResult(true);
         }
 
+        /// <summary>
+        /// Disposes any disposable application objects
+        /// </summary>
+        protected override void Dispose()
+        {
+            // Dispose base
+            base.Dispose();
+
+            // Dispose log file
+            AppLogFileStream?.Dispose();
+        }
+
         #endregion
 
         #region Private Methods
@@ -825,6 +837,15 @@ namespace RayCarrot.RCP.Metro
         /// The saved previous link item style
         /// </summary>
         private LinkItemStyles PreviousLinkItemStyle { get; set; }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// The file stream for the application log file
+        /// </summary>
+        public StreamWriter AppLogFileStream { get; set; }
 
         #endregion
 

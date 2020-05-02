@@ -58,18 +58,35 @@ namespace RayCarrot.RCP.Metro
                         ex.HandleCritical("Removing log file due to size");
                     }
 
+                    try
+                    {
+                        // Create the parent directory if it doesn't exist
+                        if (!CommonPaths.LogFile.Parent.DirectoryExists)
+                            Directory.CreateDirectory(CommonPaths.LogFile.Parent);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleCritical("Creating log file directory");
+                    }
+
+                    try
+                    {
+                        // Open the file stream
+                        App.Current.AppLogFileStream = File.AppendText(CommonPaths.LogFile);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleCritical("Opening log file");
+                    }
+
                     // Indicate that the file logger has been set up
                     HasBeenSetUp = true;
                 }
 
                 try
                 {
-                    // Create the parent directory if it doesn't exist
-                    if (!CommonPaths.LogFile.Parent.DirectoryExists)
-                        Directory.CreateDirectory(CommonPaths.LogFile.Parent);
-
                     // Append the log to the log file, forcing the culture info to follow the Swedish standard
-                    File.AppendAllText(CommonPaths.LogFile, $@"{DateTime.Now.ToString(new CultureInfo("sv-SE"))} [{logLevel}] {message}" + Environment.NewLine);
+                    App.Current.AppLogFileStream?.WriteLine($"{DateTime.Now.ToString(new CultureInfo("sv-SE"))} [{logLevel}] {message}");
                 }
                 catch (Exception ex)
                 {
