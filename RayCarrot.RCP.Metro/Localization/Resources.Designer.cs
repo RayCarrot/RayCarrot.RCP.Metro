@@ -269,7 +269,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski and all other Rayman fans!.
+        ///   Looks up a localized string similar to Special thanks to AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski and all other Rayman fans!.
         /// </summary>
         public static string About_SpecialThanks {
             get {
