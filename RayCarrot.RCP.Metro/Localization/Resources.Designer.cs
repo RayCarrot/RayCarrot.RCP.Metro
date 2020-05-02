@@ -8239,6 +8239,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Serialization Log Path.
+        /// </summary>
+        public static string Settings_BinarySerializationFileLogPath {
+            get {
+                return ResourceManager.GetString("Settings_BinarySerializationFileLogPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optional file path to output the serialization log when serializing a binary file.
+        /// </summary>
+        public static string Settings_BinarySerializationFileLogPathInfo {
+            get {
+                return ResourceManager.GetString("Settings_BinarySerializationFileLogPathInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display exception level.
         /// </summary>
         public static string Settings_DebugExceptionLevel {

@@ -3439,4 +3439,10 @@ fileCount</comment>
   <data name="Archive_IPK_CompressExtensions" xml:space="preserve">
     <value>File extensions to compress</value>
   </data>
+  <data name="Settings_BinarySerializationFileLogPath" xml:space="preserve">
+    <value>Serialization Log Path</value>
+  </data>
+  <data name="Settings_BinarySerializationFileLogPathInfo" xml:space="preserve">
+    <value>Optional file path to output the serialization log when serializing a binary file</value>
+  </data>
 </root>

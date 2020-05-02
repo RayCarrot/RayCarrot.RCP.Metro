@@ -169,8 +169,6 @@
                     <StackPanel rwpf:UserLevelTag.MinUserLevel="Advanced"
                                 DataContext="{Binding Path=Data}">
 
-                        <!-- TODO-UPDATE: Localize -->
-
                         <TextBlock Style="{StaticResource HeaderTextBlock}"
                                    Text="{Resx Settings_BinarySerializationFileLogPath}"
                                    Margin="0 0 0 8" />
