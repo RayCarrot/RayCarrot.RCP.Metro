@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman.OpenSpace;
 using RayCarrot.UI;
@@ -80,7 +81,8 @@ namespace RayCarrot.RCP.Metro
                     var installDir = Game.GetInstallDir();
 
                     // Get the settings
-                    var gameSettings = GameMode.GetSettings();
+                    var attr = GameMode.GetAttribute<OpenSpaceGameModeInfoAttribute>();
+                    var gameSettings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
                     // Get the file extension for the level data files
                     var fileExt = GetLevelFileExtension(gameSettings);

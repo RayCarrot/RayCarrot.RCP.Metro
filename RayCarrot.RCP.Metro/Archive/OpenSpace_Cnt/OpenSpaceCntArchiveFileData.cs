@@ -12,6 +12,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Media;
+using RayCarrot.Binary;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace RayCarrot.RCP.Metro
@@ -190,7 +191,7 @@ namespace RayCarrot.RCP.Metro
             using var stream = new MemoryStream(fileBytes);
 
             // Serialize the data
-            var data = OpenSpaceGFFile.GetSerializer(Settings).Deserialize(stream);
+            var data = BinarySerializableHelpers.ReadFromStream<OpenSpaceGFFile>(stream, Settings, RCFRCP.App.GetBinarySerializerLogger());
 
             // Make sure we read the entire file
             if (stream.Position != stream.Length)
@@ -345,7 +346,7 @@ namespace RayCarrot.RCP.Metro
             gf.ImportFromBitmap(Settings, rawBitmapData, RCFRCP.Data.Archive_GF_GenerateMipmaps);
 
             // Serialize the data to get the bytes
-            OpenSpaceGFFile.GetSerializer(Settings).Serialize(outputStream, gf);
+            BinarySerializableHelpers.WriteToStream(gf, outputStream, Settings, RCFRCP.App.GetBinarySerializerLogger());
         }
 
         #endregion

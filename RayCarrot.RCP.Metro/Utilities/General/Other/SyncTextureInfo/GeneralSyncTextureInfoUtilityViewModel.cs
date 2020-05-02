@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.Extensions;
 using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro
@@ -74,7 +75,9 @@ namespace RayCarrot.RCP.Metro
 
                 var syncResult = await Task.Run(() =>
                 {
-                    var gameSettings = GameModeSelection.SelectedValue.GetSettings();
+                    // Get the settings
+                    var attr = GameModeSelection.SelectedValue.GetAttribute<OpenSpaceGameModeInfoAttribute>();
+                    var gameSettings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
                     // Get the file extension for the level data files
                     var fileExt = GetLevelFileExtension(gameSettings);

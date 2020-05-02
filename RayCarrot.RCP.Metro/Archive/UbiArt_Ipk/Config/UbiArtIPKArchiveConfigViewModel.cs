@@ -264,9 +264,9 @@ namespace RayCarrot.RCP.Metro
                             data.Unknown3 = true;
                             data.Unknown4 = true;
                             data.Unknown5 = true;
-                            data.Unknown6 = 3826;
-                            data.Unknown7 = 2057063881;
-                            data.EngineVersion = 3826;
+                            data.Unknown6 = 4533;
+                            data.Unknown7 = 2293139714;
+                            data.EngineVersion = 4533;
                             break;
 
                         default:

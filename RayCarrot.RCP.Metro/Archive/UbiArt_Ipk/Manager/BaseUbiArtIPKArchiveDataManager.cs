@@ -6,6 +6,7 @@ using RayCarrot.Rayman.UbiArt;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using RayCarrot.Binary;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -146,7 +147,7 @@ namespace RayCarrot.RCP.Metro
             outputFileStream.Position = 0;
 
             // Serialize the data
-            UbiArtIpkData.GetSerializer(Settings).Serialize(outputFileStream, data);
+            BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCFRCP.App.GetBinarySerializerLogger());
 
             RCFCore.Logger?.LogInformationSource($"The IPK archive has been repacked");
         }

@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.Binary;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -56,17 +57,15 @@ namespace RayCarrot.RCP.Metro
         /// Converts files using the specified serializer and convert action
         /// </summary>
         /// <typeparam name="T">The type of data to convert</typeparam>
-        /// <typeparam name="Settings">The type of serializer settings</typeparam>
-        /// <param name="serializer">The serializer to use</param>
+        /// <param name="settings">The serializer settings</param>
         /// <param name="convertAction">The convert action, converting the data to the specified file path</param>
         /// <param name="fileFilter">The file filter when selecting files to convert</param>
         /// <param name="supportedFileExtensions">The supported file extensions to export as</param>
         /// <param name="defaultDir">The default directory</param>
         /// <param name="encoder">An optional data encoder to use</param>
         /// <returns>The task</returns>
-        protected async Task ConvertFromAsync<T, Settings>(BinaryDataSerializer<T, Settings> serializer, Action<T, FileSystemPath> convertAction, string fileFilter, string[] supportedFileExtensions, FileSystemPath? defaultDir, IDataEncoder encoder = null)
-            where T : IBinarySerializable<Settings>
-            where Settings : BinarySerializerSettings
+        protected async Task ConvertFromAsync<T>(IBinarySerializerSettings settings, Action<T, FileSystemPath> convertAction, string fileFilter, string[] supportedFileExtensions, FileSystemPath? defaultDir, IDataEncoder encoder = null)
+            where T : IBinarySerializable, new()
         {
             if (IsLoading)
                 return;
@@ -137,7 +136,7 @@ namespace RayCarrot.RCP.Metro
                                 }
 
                                 // Read the file data
-                                var data = serializer.Deserialize(stream);
+                                var data = BinarySerializableHelpers.ReadFromStream<T>(stream, settings, RCFRCP.App.GetBinarySerializerLogger());
 
                                 // Get the destination file
                                 var destinationFile = destinationResult.SelectedDirectory + file.Name;
@@ -174,17 +173,15 @@ namespace RayCarrot.RCP.Metro
         /// Converts files using the specified serializer and convert action
         /// </summary>
         /// <typeparam name="T">The type of data to convert</typeparam>
-        /// <typeparam name="Settings">The type of serializer settings</typeparam>
-        /// <param name="serializer">The serializer to use</param>
+        /// <param name="settings">The serializer settings</param>
         /// <param name="convertAction">The convert action, converting the data from the specified file path with the selected output format</param>
         /// <param name="fileFilter">The file filter when selecting files to convert</param>
         /// <param name="fileExtension">The file extension to export as</param>
         /// <param name="outputFormats">The available output formats</param>
         /// <param name="encoder">An optional data encoder to use</param>
         /// <returns>The task</returns>
-        protected async Task ConvertToAsync<T, Settings>(BinaryDataSerializer<T, Settings> serializer, Func<FileSystemPath, string, T> convertAction, string fileFilter, FileExtension fileExtension, string[] outputFormats = null, IDataEncoder encoder = null)
-            where T : IBinarySerializable<Settings>
-            where Settings : BinarySerializerSettings
+        protected async Task ConvertToAsync<T>(IBinarySerializerSettings settings, Func<FileSystemPath, string, T> convertAction, string fileFilter, FileExtension fileExtension, string[] outputFormats = null, IDataEncoder encoder = null)
+            where T : IBinarySerializable, new()
         {
             if (IsLoading)
                 return;
@@ -250,7 +247,7 @@ namespace RayCarrot.RCP.Metro
                                 using var destinationFileStream = File.Open(destinationFile, FileMode.Create, FileAccess.Write);
 
                                 // Save the converted data
-                                serializer.Serialize(destinationFileStream, data);
+                                BinarySerializableHelpers.WriteToStream(data, destinationFileStream, settings, RCFRCP.App.GetBinarySerializerLogger());
                             }
                             else
                             {
@@ -258,7 +255,7 @@ namespace RayCarrot.RCP.Metro
                                 using var encodingStream = new MemoryStream();
 
                                 // Serialize the converted data to the memory stream
-                                serializer.Serialize(encodingStream, data);
+                                BinarySerializableHelpers.WriteToStream(data, encodingStream, settings, RCFRCP.App.GetBinarySerializerLogger());
 
                                 // Create the destination file
                                 using var destinationFileStream = File.Open(destinationFile, FileMode.Create, FileAccess.Write);
@@ -295,10 +292,7 @@ namespace RayCarrot.RCP.Metro
         protected void SerializeJSON<T>(T data, FileSystemPath filePath)
         {
             // Serialize the data
-            var configData = JsonConvert.SerializeObject(data, Formatting.Indented, new ByteArrayHexConverter());
-
-            // Save the data
-            File.WriteAllText(filePath, configData);
+            JsonHelpers.SerializeToFile(data, filePath);
         }
 
         /// <summary>
@@ -309,7 +303,7 @@ namespace RayCarrot.RCP.Metro
         protected T DeserializeJSON<T>(FileSystemPath filePath)
         {
             // Deserialize the data
-            return JsonConvert.DeserializeObject<T>(File.ReadAllText(filePath), new ByteArrayHexConverter());
+            return JsonHelpers.DeserializeFromFile<T>(filePath);
         }
 
         #endregion

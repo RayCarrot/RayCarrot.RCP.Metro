@@ -2,6 +2,7 @@
 using RayCarrot.IO;
 using System.IO;
 using System.Threading.Tasks;
+using RayCarrot.Binary;
 using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
@@ -35,10 +36,10 @@ namespace RayCarrot.RCP.Metro
         protected override Task ExportSaveDataAsync(FileSystemPath outputFilePath)
         {
             // Get the serialized level data
-            var data = JsonConvert.SerializeObject(LegendsPCSaveData.GetSerializer().Deserialize(SaveSlotFilePath).SaveData, Formatting.Indented);
+            var data = BinarySerializableHelpers.ReadFromFile<LegendsPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanLegends, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger()).SaveData;
 
             // Export the data
-            File.WriteAllText(outputFilePath, data);
+            JsonHelpers.SerializeToFile(data, outputFilePath);
 
             return Task.CompletedTask;
         }
@@ -51,13 +52,13 @@ namespace RayCarrot.RCP.Metro
         protected override Task ImportSaveDataAsync(FileSystemPath inputFilePath)
         {
             // Get the serialized data
-            var data = LegendsPCSaveData.GetSerializer().Deserialize(SaveSlotFilePath);
+            var data = BinarySerializableHelpers.ReadFromFile<LegendsPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanLegends, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             // Deserialize the input data
-            data.SaveData = JsonConvert.DeserializeObject<LegendsPCSaveData.PersistentGameData_Universe>(File.ReadAllText(inputFilePath));
+            data.SaveData = JsonHelpers.DeserializeFromFile<LegendsPCSaveData.PersistentGameData_Universe>(inputFilePath);
 
             // Import the data
-            LegendsPCSaveData.GetSerializer().Serialize(SaveSlotFilePath, data);
+            BinarySerializableHelpers.WriteToFile(data, SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanLegends, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             return Task.CompletedTask;
         }

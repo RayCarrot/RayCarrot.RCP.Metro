@@ -16,6 +16,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using RayCarrot.Binary;
 using Type = System.Type;
 
 namespace RayCarrot.RCP.Metro
@@ -195,6 +196,24 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Methods
+
+        /// <summary>
+        /// Gets the binary serializer logger to use
+        /// </summary>
+        /// <returns>The binary serializer logger</returns>
+        public IBinarySerializerLogger GetBinarySerializerLogger()
+        {
+            // TODO-UPDATE: Add setting flag
+            if (true)
+            {
+                // TODO-UPDATE: Add setting for path
+                return new BinarySerializerFileLogger(@"C:\Users\RayCarrot\Downloads\log.txt");
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         /// <summary>
         /// Gets new instances of utilities for a specific game

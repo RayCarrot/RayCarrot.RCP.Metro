@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman.UbiArt;
 
@@ -42,7 +43,10 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertFromAsync()
         {
-            await ConvertFromAsync(LegendsPCSaveData.GetSerializer(), (data, filePath) =>
+            var attr = GameModeSelection.SelectedValue.GetAttribute<UbiArtGameModeInfoAttribute>();
+            var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
+
+            await ConvertFromAsync<LegendsPCSaveData>(settings, (data, filePath) =>
             {
                 // Save the data
                 SerializeJSON(data, filePath);
@@ -58,7 +62,10 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertToAsync()
         {
-            await ConvertToAsync(LegendsPCSaveData.GetSerializer(), (filePath, format) =>
+            var attr = GameModeSelection.SelectedValue.GetAttribute<UbiArtGameModeInfoAttribute>();
+            var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
+
+            await ConvertToAsync<LegendsPCSaveData>(settings, (filePath, format) =>
             {
                 // Read the data
                 return DeserializeJSON<LegendsPCSaveData>(filePath);

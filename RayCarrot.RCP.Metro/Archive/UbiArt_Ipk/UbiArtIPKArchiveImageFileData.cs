@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Media;
+using RayCarrot.Binary;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -57,7 +58,7 @@ namespace RayCarrot.RCP.Metro
             // Create a memory stream
             using var memoryStream = new MemoryStream(bytes);
 
-            return UbiArtTEXFile.GetSerializer(Settings).Deserialize(memoryStream);
+            return BinarySerializableHelpers.ReadFromStream<UbiArtTEXFile>(memoryStream, Settings, RCFRCP.App.GetBinarySerializerLogger());
         }
 
         /// <summary>
@@ -380,7 +381,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Write the texture to the temp file
-                UbiArtTEXFile.GetSerializer(Settings).Serialize(outputStream, texture);
+                BinarySerializableHelpers.WriteToStream(texture, outputStream, Settings, RCFRCP.App.GetBinarySerializerLogger());
             }
         }
 

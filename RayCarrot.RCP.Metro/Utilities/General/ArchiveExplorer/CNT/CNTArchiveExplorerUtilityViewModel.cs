@@ -1,4 +1,5 @@
-﻿using RayCarrot.Rayman.OpenSpace;
+﻿using RayCarrot.Extensions;
+using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -30,12 +31,32 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets a new archive explorer data manager
         /// </summary>
-        protected override IArchiveExplorerDataManager GetArchiveExplorerDataManager => new OpenSpaceCntArchiveExplorerDataManager(GameModeSelection.SelectedValue.GetSettings());
+        protected override IArchiveExplorerDataManager GetArchiveExplorerDataManager
+        {
+            get
+            {
+                // Get the settings
+                var attr = GameModeSelection.SelectedValue.GetAttribute<OpenSpaceGameModeInfoAttribute>();
+                var gameSettings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
+
+                return new OpenSpaceCntArchiveExplorerDataManager(gameSettings);
+            }
+        }
 
         /// <summary>
         /// Gets a new archive creator data manager
         /// </summary>
-        protected override IArchiveCreatorDataManager GetArchiveCreatorDataManager => new OpenSpaceCntArchiveCreatorDataManager(GameModeSelection.SelectedValue.GetSettings());
+        protected override IArchiveCreatorDataManager GetArchiveCreatorDataManager
+        {
+            get
+            {
+                // Get the settings
+                var attr = GameModeSelection.SelectedValue.GetAttribute<OpenSpaceGameModeInfoAttribute>();
+                var gameSettings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
+
+                return new OpenSpaceCntArchiveCreatorDataManager(gameSettings);
+            }
+        }
 
         /// <summary>
         /// The file extension for the archive

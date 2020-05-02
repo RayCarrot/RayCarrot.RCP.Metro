@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using RayCarrot.Binary;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
@@ -134,7 +135,7 @@ namespace RayCarrot.RCP.Metro
             outputFileStream.Position = 0;
 
             // Serialize the data
-            OpenSpaceCntData.GetSerializer(Settings).Serialize(outputFileStream, data);
+            BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCFRCP.App.GetBinarySerializerLogger());
 
             RCFCore.Logger?.LogInformationSource($"The CNT archive has been repacked");
         }

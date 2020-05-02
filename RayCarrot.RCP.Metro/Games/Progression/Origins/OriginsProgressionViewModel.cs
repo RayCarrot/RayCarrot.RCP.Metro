@@ -6,6 +6,7 @@ using RayCarrot.Rayman.UbiArt;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using RayCarrot.Binary;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -48,7 +49,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Deserialize and get the data
-            var saveData = OriginsPCSaveData.GetSerializer().Deserialize(filePath).SaveData;
+            var saveData = BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(filePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger()).SaveData;
 
             RCFCore.Logger?.LogInformationSource($"Slot has been deserialized");
 
@@ -79,7 +80,7 @@ namespace RayCarrot.RCP.Metro
                     completed++;
 
                 // Get the number of completed cage maps (between 0-2)
-                cageMaps += lvl.Value.Object.CageMapPassedDoors.Count;
+                cageMaps += lvl.Value.Object.CageMapPassedDoors.Length;
 
                 // Get the best time attack score
                 var timeAttack = lvl.Value.Object.BestTimeAttack;
@@ -117,7 +118,7 @@ namespace RayCarrot.RCP.Metro
                 lumAttack2 + 
                 // Time attack 1
                 timeAttack1;
-            var teeth = saveData.Levels.Select(x => x.Value.Object.ISDs.Select(y => y.Value.Object.TakenTooth.Count)).SelectMany(x => x).Sum();
+            var teeth = saveData.Levels.Select(x => x.Value.Object.ISDs.Select(y => y.Value.Object.TakenTooth.Length)).SelectMany(x => x).Sum();
 
             // Set general progress info
             progressItems.Add(new ProgressionInfoItemViewModel(ProgressionIcons.RO_Electoon, new LocalizedString(() => $"{electoons}/246")));

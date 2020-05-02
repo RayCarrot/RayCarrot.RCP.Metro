@@ -154,6 +154,7 @@
     <Compile Include="Games\Progression\UI\ProgressionUI.xaml.cs">
       <DependentUpon>ProgressionUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\JsonHelpers.cs" />
     <Compile Include="Utilities\Games\Common\SyncTextureInfo\BaseGameSyncTextureInfoUtilityUI.xaml.cs">
       <DependentUpon>BaseGameSyncTextureInfoUtilityUI.xaml</DependentUpon>
     </Compile>
@@ -1015,6 +1016,10 @@
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\RayCarrot.Binary\RayCarrot.Binary\RayCarrot.Binary.csproj">
+      <Project>{fbbb053c-d02e-439d-b589-320fc21dd60c}</Project>
+      <Name>RayCarrot.Binary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.Windows.Shell\RayCarrot.Windows.Shell.csproj">
       <Project>{55f49d1e-c9bd-4cc4-9ff0-d646d9f42a21}</Project>
       <Name>RayCarrot.Windows.Shell</Name>

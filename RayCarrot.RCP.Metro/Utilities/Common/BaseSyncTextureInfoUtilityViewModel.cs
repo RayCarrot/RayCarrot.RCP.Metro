@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using RayCarrot.Binary;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -97,7 +98,7 @@ namespace RayCarrot.RCP.Metro
                 using var cntFileStream = File.OpenRead(cntFile);
 
                 // Read the .cnt data
-                var cntData = OpenSpaceCntData.GetSerializer(gameSettings).Deserialize(cntFileStream);
+                var cntData = BinarySerializableHelpers.ReadFromStream<OpenSpaceCntData>(cntFileStream, gameSettings, RCFRCP.App.GetBinarySerializerLogger());
 
                 // Get the file generator
                 using var generator = cntData.GetArchiveContent(cntFileStream);
@@ -116,7 +117,7 @@ namespace RayCarrot.RCP.Metro
                     using var gfMemoryStream = new MemoryStream(bytes);
                     
                     // Get a reader
-                    using var reader = new StandardBinaryReader(gfMemoryStream, gameSettings, false);
+                    using var reader = new Reader(gfMemoryStream, gameSettings.Endian);
 
                     // Set the position to where the .gf file is, skipping the format value
                     gfMemoryStream.Position = 4;

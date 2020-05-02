@@ -2,6 +2,7 @@
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 using System.Threading.Tasks;
+using RayCarrot.Extensions;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -43,7 +44,10 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertFromAsync()
         {
-            await ConvertFromAsync(Rayman3PCSaveData.GetSerializer(), (data, filePath) =>
+            var attr = GameModeSelection.SelectedValue.GetAttribute<OpenSpaceGameModeInfoAttribute>();
+            var settings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
+
+            await ConvertFromAsync<Rayman3PCSaveData>(settings, (data, filePath) =>
             {
                 // Save the data
                 SerializeJSON(data, filePath);

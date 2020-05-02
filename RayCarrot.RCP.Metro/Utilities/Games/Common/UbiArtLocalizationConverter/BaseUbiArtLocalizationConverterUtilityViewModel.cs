@@ -101,7 +101,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Serialize the data into the new file
-                File.WriteAllText(outputResult.SelectedFileLocation, JsonConvert.SerializeObject(Deserialize(inputResult.SelectedFile), Formatting.Indented));
+                JsonHelpers.SerializeToFile(Deserialize(inputResult.SelectedFile), outputResult.SelectedFileLocation);
 
                 await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.UbiArtU_LocalizationConverterExportSuccess);
             }
@@ -143,7 +143,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Deserialize the JSON input file
-                var data = JsonConvert.DeserializeObject<DataType>(File.ReadAllText(inputResult.SelectedFile));
+                var data = JsonHelpers.DeserializeFromFile<DataType>(inputResult.SelectedFile);
 
                 // Serialize the data to the output localization file
                 Serialize(outputResult.SelectedFile, data);

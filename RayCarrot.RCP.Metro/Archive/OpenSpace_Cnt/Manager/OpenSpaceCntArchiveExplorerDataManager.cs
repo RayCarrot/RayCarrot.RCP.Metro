@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using RayCarrot.Binary;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.Rayman.OpenSpace;
@@ -76,7 +77,7 @@ namespace RayCarrot.RCP.Metro
             archiveFileStream.Position = 0;
 
             // Load the current file
-            var data = OpenSpaceCntData.GetSerializer(Settings).Deserialize(archiveFileStream);
+            var data = BinarySerializableHelpers.ReadFromStream<OpenSpaceCntData>(archiveFileStream, Settings, RCFRCP.App.GetBinarySerializerLogger());
 
             RCFCore.Logger?.LogInformationSource($"Read CNT file with {data.Files.Length} files and {data.Directories.Length} directories");
 

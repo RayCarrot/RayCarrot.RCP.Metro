@@ -3,6 +3,7 @@ using RayCarrot.IO;
 using RayCarrot.Rayman.UbiArt;
 using System.IO;
 using System.Threading.Tasks;
+using RayCarrot.Binary;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -35,10 +36,10 @@ namespace RayCarrot.RCP.Metro
         protected override Task ExportSaveDataAsync(FileSystemPath outputFilePath)
         {
             // Get the serialized level data
-            var data = JsonConvert.SerializeObject(OriginsPCSaveData.GetSerializer().Deserialize(SaveSlotFilePath).SaveData, Formatting.Indented);
+            var data = BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             // Export the data
-            File.WriteAllText(outputFilePath, data);
+            JsonHelpers.SerializeToFile(data, outputFilePath);
 
             return Task.CompletedTask;
         }
@@ -51,13 +52,13 @@ namespace RayCarrot.RCP.Metro
         protected override Task ImportSaveDataAsync(FileSystemPath inputFilePath)
         {
             // Get the serialized data
-            var data = OriginsPCSaveData.GetSerializer().Deserialize(SaveSlotFilePath);
+            var data = BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             // Deserialize the input data
-            data.SaveData = JsonConvert.DeserializeObject<OriginsPCSaveData.PersistentGameData_Universe>(File.ReadAllText(inputFilePath));
+            data.SaveData = JsonHelpers.DeserializeFromFile<OriginsPCSaveData.PersistentGameData_Universe>(inputFilePath);
 
             // Import the data
-            OriginsPCSaveData.GetSerializer().Serialize(SaveSlotFilePath, data);
+            BinarySerializableHelpers.WriteToFile<OriginsPCSaveData>(data, SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             return Task.CompletedTask;
         }

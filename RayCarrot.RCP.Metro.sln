@@ -49,6 +49,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rayman Control Panel", "Ray
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployable", "Deployable", "{65E77864-A23C-4B4F-8219-BB141B902815}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RayCarrot.Binary", "..\RayCarrot.Binary\RayCarrot.Binary\RayCarrot.Binary.csproj", "{FBBB053C-D02E-439D-B589-320FC21DD60C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,14 @@ Global
 		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}.Release|x86.ActiveCfg = Release|Any CPU
 		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D}.Release|x86.Build.0 = Release|Any CPU
+		{FBBB053C-D02E-439D-B589-320FC21DD60C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBBB053C-D02E-439D-B589-320FC21DD60C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBBB053C-D02E-439D-B589-320FC21DD60C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FBBB053C-D02E-439D-B589-320FC21DD60C}.Debug|x86.Build.0 = Debug|Any CPU
+		{FBBB053C-D02E-439D-B589-320FC21DD60C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBBB053C-D02E-439D-B589-320FC21DD60C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBBB053C-D02E-439D-B589-320FC21DD60C}.Release|x86.ActiveCfg = Release|Any CPU
+		{FBBB053C-D02E-439D-B589-320FC21DD60C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -136,11 +146,12 @@ Global
 		{7187C3BD-9853-47B7-938F-CC45CC53F8EE} = {879B35F2-0456-4C5F-B4B8-F9088D687423}
 		{B3C0C9EE-0ACB-4CD6-9DAB-D9F3C741300D} = {879B35F2-0456-4C5F-B4B8-F9088D687423}
 		{65E77864-A23C-4B4F-8219-BB141B902815} = {5428B0C5-4DD5-4A42-BA9E-3DFF74D61362}
+		{FBBB053C-D02E-439D-B589-320FC21DD60C} = {879B35F2-0456-4C5F-B4B8-F9088D687423}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ExcelExportMode = MultipleSheets
-		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"{Resx $Key}","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
-		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
 		RESX_TaskErrorCategory = Message
+		SolutionGuid = {72682148-CB63-41E1-94BC-0CE816F7E910}
+		RESX_CodeReferences = {"Items":[{"Expression":"\\W($File.$Key)\\W","Extensions":".cs,.cshtml","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"ResourceManager.GetString\\(\"($Key)\"\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"typeof\\((\\w+\\.)*($File)\\).+\"($Key)\"|\"($Key)\".+typeof\\((\\w+\\.)*($File)\\)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"\\W($Key)\\W","Extensions":".vb","IsCaseSensitive":false,"SingleLineComment":"'"},{"Expression":"\\W($File::$Key)\\W","Extensions":".cpp,.c,.hxx,.h","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"&lt;%\\$\\s+Resources:\\s*($File)\\s*,\\s*($Key)\\s*%&gt;","Extensions":".aspx,.ascx,.master","IsCaseSensitive":true,"SingleLineComment":null},{"Expression":"StringResourceKey\\.($Key)","Extensions":".cs","IsCaseSensitive":true,"SingleLineComment":"\/\/"},{"Expression":"{Resx $Key}","Extensions":".xaml","IsCaseSensitive":true,"SingleLineComment":null}]}
+		RESX_ExcelExportMode = MultipleSheets
 	EndGlobalSection
 EndGlobal

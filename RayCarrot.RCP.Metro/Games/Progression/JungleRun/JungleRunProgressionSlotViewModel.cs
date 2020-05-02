@@ -2,6 +2,7 @@
 using RayCarrot.IO;
 using System.IO;
 using System.Threading.Tasks;
+using RayCarrot.Binary;
 using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
@@ -35,10 +36,10 @@ namespace RayCarrot.RCP.Metro
         protected override Task ExportSaveDataAsync(FileSystemPath outputFilePath)
         {
             // Get the serialized level data
-            var data = JsonConvert.SerializeObject(JungleRunPCSaveData.GetSerializer().Deserialize(SaveSlotFilePath).Levels, Formatting.Indented);
+            var data = BinarySerializableHelpers.ReadFromFile<JungleRunPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger()).Levels;
 
             // Export the data
-            File.WriteAllText(outputFilePath, data);
+            JsonHelpers.SerializeToFile(data, outputFilePath);
 
             return Task.CompletedTask;
         }
@@ -51,16 +52,13 @@ namespace RayCarrot.RCP.Metro
         protected override Task ImportSaveDataAsync(FileSystemPath inputFilePath)
         {
             // Get the serialized data
-            var data = JungleRunPCSaveData.GetSerializer().Deserialize(SaveSlotFilePath);
-
-            // Clear the level data
-            data.Levels.Clear();
+            var data = BinarySerializableHelpers.ReadFromFile<JungleRunPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             // Deserialize the input data
             JsonConvert.PopulateObject(File.ReadAllText(inputFilePath), data.Levels);
 
             // Import the data
-            JungleRunPCSaveData.GetSerializer().Serialize(SaveSlotFilePath, data);
+            BinarySerializableHelpers.WriteToFile(data, SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             return Task.CompletedTask;
         }

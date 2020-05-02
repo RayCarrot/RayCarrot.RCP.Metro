@@ -60,7 +60,10 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertFromAsync()
         {
-            await ConvertFromAsync(OpenSpaceGFFile.GetSerializer(GameModeSelection.SelectedValue.GetSettings()), (data, filePath) =>
+            var attr = GameModeSelection.SelectedValue.GetAttribute<OpenSpaceGameModeInfoAttribute>();
+            var settings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
+
+            await ConvertFromAsync<OpenSpaceGFFile>(settings, (data, filePath) =>
             {
                 // Get a bitmap from the image data
                 using var bmp = data.GetRawBitmapData().GetBitmap();
@@ -76,9 +79,10 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertToAsync()
         {
-            var settings = GameModeSelection.SelectedValue.GetSettings();
+            var attr = GameModeSelection.SelectedValue.GetAttribute<OpenSpaceGameModeInfoAttribute>();
+            var settings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
-            await ConvertToAsync(OpenSpaceGFFile.GetSerializer(settings), (filePath, format) =>
+            await ConvertToAsync<OpenSpaceGFFile>(settings, (filePath, format) =>
             {
                 // Create the GF data
                 var gf = new OpenSpaceGFFile

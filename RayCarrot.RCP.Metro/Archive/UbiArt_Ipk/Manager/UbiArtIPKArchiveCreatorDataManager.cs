@@ -55,8 +55,9 @@ namespace RayCarrot.RCP.Metro
             Config.ConfigureIpkData(data);
 
             // Create the entry data for each file
-            var fileEntries = files.Select(x => new ArchiveCreationData.FileEntryImportData(new UbiArtIPKFileEntry(data.Version)
+            var fileEntries = files.Select(x => new ArchiveCreationData.FileEntryImportData(new UbiArtIPKFileEntry()
             {
+                IPKVersion = data.Version,
                 Path = new UbiArtPath(x),
             }, x)).ToArray();
 

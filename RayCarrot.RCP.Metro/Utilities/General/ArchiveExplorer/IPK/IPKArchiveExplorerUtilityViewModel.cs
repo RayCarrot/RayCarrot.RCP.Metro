@@ -1,4 +1,5 @@
-﻿using RayCarrot.Rayman.UbiArt;
+﻿using RayCarrot.Extensions;
+using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -37,12 +38,30 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets a new archive explorer data manager
         /// </summary>
-        protected override IArchiveExplorerDataManager GetArchiveExplorerDataManager => new UbiArtIPKArchiveExplorerDataManager(GameModeSelection.SelectedValue.GetSettings());
+        protected override IArchiveExplorerDataManager GetArchiveExplorerDataManager
+        {
+            get
+            {
+                var attr = GameModeSelection.SelectedValue.GetAttribute<UbiArtGameModeInfoAttribute>();
+                var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
+
+                return new UbiArtIPKArchiveExplorerDataManager(settings);
+            }
+        }
 
         /// <summary>
         /// Gets a new archive creator data manager
         /// </summary>
-        protected override IArchiveCreatorDataManager GetArchiveCreatorDataManager => new UbiArtIPKArchiveCreatorDataManager(GameModeSelection.SelectedValue.GetSettings());
+        protected override IArchiveCreatorDataManager GetArchiveCreatorDataManager
+        {
+            get
+            {
+                var attr = GameModeSelection.SelectedValue.GetAttribute<UbiArtGameModeInfoAttribute>();
+                var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
+
+                return new UbiArtIPKArchiveCreatorDataManager(settings);
+            }
+        }
 
         /// <summary>
         /// The file extension for the archive

@@ -1,6 +1,11 @@
 ﻿-----   Version 9.5.0 - May ??, 2020   -----
 • Added support for Rayman Dictées
+• Reworked the binary serialization system. Logging can now be enabled for any serialized data.
 • 
+
+Other changes:
+• Updated archive creation for Rayman Mini files to support the 1.2 update
+• Removed an error check for the IPK offsets, causing a crash when loading certain IPK files
 
 
 -----   Version 9.4.0 - March 12, 2020   -----
@@ -10,7 +15,7 @@
 • Added settings for if mipmaps should be generated and if the format should be automatically changed to support transparency when importing .gf files
 • Updated the UbiRay utility to patch the displayed character name and description (the patch needs to be re-applied for this to update)
 • Rayman 3 save data can now be encoded
-• Removed the Rayman 1 map viewer utility (the project has migrated to Ray1Map, a Rayman 1 viewer/editor for all platforms by Adsolution, RayCarrot and Ryemanni)
+• Removed the Rayman 1 map viewer utility (the project has migrated to Ray1Map, a Rayman 1 viewer/editor for all platforms by Adsolution, RayCarrot, Ryemanni and Droolie)
 
 Other changes:
 • Major changes to the Archive Explorer, .gf serializer and .ipk management

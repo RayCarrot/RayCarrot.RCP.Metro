@@ -3,6 +3,7 @@ using RayCarrot.UI;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.Extensions;
 using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
@@ -57,8 +58,11 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task OpenAsync()
         {
+            var attr = GameMode.GetAttribute<UbiArtGameModeInfoAttribute>();
+            var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
+
             // Show the archive explorer
-            await RCFRCP.UI.ShowArchiveExplorerAsync(new UbiArtIPKArchiveExplorerDataManager(GameMode.GetSettings()), ArchiveFiles.Where(x => x.FileExists));
+            await RCFRCP.UI.ShowArchiveExplorerAsync(new UbiArtIPKArchiveExplorerDataManager(settings), ArchiveFiles.Where(x => x.FileExists));
         }
 
         #endregion

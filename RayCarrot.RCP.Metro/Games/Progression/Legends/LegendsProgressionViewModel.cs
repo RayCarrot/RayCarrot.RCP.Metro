@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using RayCarrot.Binary;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -172,7 +173,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Deserialize and return the data
-            var saveData = LegendsPCSaveData.GetSerializer().Deserialize(filePath).SaveData;
+            var saveData = BinarySerializableHelpers.ReadFromFile<LegendsPCSaveData>(filePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanLegends, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger()).SaveData;
 
             RCFCore.Logger?.LogInformationSource($"Slot has been deserialized");
 
@@ -187,7 +188,7 @@ namespace RayCarrot.RCP.Metro
             };
 
             // Get the total amount of freed teensies
-            var teensies = saveData.Levels.Select(x => x.Value.Object.FreedPrisoners.Count).Sum() + saveData.LuckyTicketRewardList.Count(x => x.Type == 5);
+            var teensies = saveData.Levels.Select(x => x.Value.Object.FreedPrisoners.Length).Sum() + saveData.LuckyTicketRewardList.Count(x => x.Type == 5);
 
             // Set general progress info
             progressItems.Add(new ProgressionInfoItemViewModel(ProgressionIcons.RL_Teensy, new LocalizedString(() => $"{teensies}/700")));

@@ -1,4 +1,5 @@
-﻿using RayCarrot.IO;
+﻿using RayCarrot.Binary;
+using RayCarrot.IO;
 using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
@@ -6,7 +7,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for the Rayman Fiesta Run localization converter utility
     /// </summary>
-    public class RFRLocalizationConverterUtilityViewModel : BaseUbiArtLocalizationConverterUtilityViewModel<SerializableDictionary<int, SerializableDictionary<int, SerializablePair<string, string>>>>
+    public class RFRLocalizationConverterUtilityViewModel : BaseUbiArtLocalizationConverterUtilityViewModel<UbiArtFiestaRunLocStringValuePair[]>
     {
         /// <summary>
         /// The default localization directory for the game, if available
@@ -23,9 +24,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="file">The localization file</param>
         /// <returns>The data</returns>
-        protected override SerializableDictionary<int, SerializableDictionary<int, SerializablePair<string, string>>> Deserialize(FileSystemPath file)
+        protected override UbiArtFiestaRunLocStringValuePair[] Deserialize(FileSystemPath file)
         {
-            return FiestaRunLocalizationData.GetSerializer().Deserialize(file).Strings;
+            return BinarySerializableHelpers.ReadFromFile<FiestaRunLocalizationData>(file, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanFiestaRun, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger()).Strings;
         }
 
         /// <summary>
@@ -33,19 +34,16 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="file">The localization file</param>
         /// <param name="data">The data</param>
-        protected override void Serialize(FileSystemPath file, SerializableDictionary<int, SerializableDictionary<int, SerializablePair<string, string>>> data)
+        protected override void Serialize(FileSystemPath file, UbiArtFiestaRunLocStringValuePair[] data)
         {
-            // Get the serializer
-            var serializer = FiestaRunLocalizationData.GetSerializer();
-
             // Read the current data to get the remaining bytes
-            var currentData = serializer.Deserialize(file);
+            var currentData = BinarySerializableHelpers.ReadFromFile<FiestaRunLocalizationData>(file, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanFiestaRun, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             // Replace the string data
             currentData.Strings = data;
 
             // Serialize the data
-            serializer.Serialize(file, currentData);
+            BinarySerializableHelpers.WriteToFile(currentData, file, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanFiestaRun, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
         }
     }
 }

@@ -3,6 +3,7 @@ using RayCarrot.IO;
 using RayCarrot.Rayman.UbiArt;
 using RayCarrot.UI;
 using System;
+using RayCarrot.Binary;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -48,23 +49,23 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Deserialize and return the data
-            var saveData = JungleRunPCSaveData.GetSerializer().Deserialize(filePath);
+            var saveData = BinarySerializableHelpers.ReadFromFile<JungleRunPCSaveData>(filePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             RCFCore.Logger?.LogInformationSource($"Slot has been deserialized");
 
             // Create the collection with items for each time trial level + general information
-            var progressItems = new ProgressionInfoItemViewModel[(saveData.Levels.Count / 10) + 2];
+            var progressItems = new ProgressionInfoItemViewModel[(saveData.Levels.Length / 10) + 2];
 
             // Get data values
             int collectedLums = 0;
             int availableLums = 0;
             int collectedTeeth = 0;
-            int availableTeeth = saveData.Levels.Count;
+            int availableTeeth = saveData.Levels.Length;
 
             RCFCore.Logger?.LogTraceSource($"Levels are being enumerated...");
 
             // Enumerate each level
-            for (int i = 0; i < saveData.Levels.Count; i++)
+            for (int i = 0; i < saveData.Levels.Length; i++)
             {
                 // Get the level data
                 var levelData = saveData.Levels[i];
@@ -90,7 +91,7 @@ namespace RayCarrot.RCP.Metro
                 RCFCore.Logger?.LogTraceSource($"Level index {i} is a time trial level");
 
                 // Make sure the level has been completed
-                if (levelData.RecordTime == TimeSpan.Zero)
+                if (levelData.RecordTime == 0)
                 {
                     RCFCore.Logger?.LogTraceSource($"Level has not been completed");
 
@@ -116,7 +117,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 
                 // Create the view model
-                progressItems[((i + 1) / 10) - 1 + 2] = new ProgressionInfoItemViewModel(ProgressionIcons.RO_Clock, new LocalizedString(() => $"{worldNum}-{lvlNum}: {levelData.RecordTime:mm\\:ss\\:fff}"));
+                progressItems[((i + 1) / 10) - 1 + 2] = new ProgressionInfoItemViewModel(ProgressionIcons.RO_Clock, new LocalizedString(() => $"{worldNum}-{lvlNum}: {new TimeSpan(0, 0, 0, 0, (int)levelData.RecordTime):mm\\:ss\\:fff}"));
             }
 
             // Set general progress info

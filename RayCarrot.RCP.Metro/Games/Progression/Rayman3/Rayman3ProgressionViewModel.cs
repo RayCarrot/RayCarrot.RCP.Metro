@@ -1,11 +1,12 @@
-﻿using System.Globalization;
-using System.IO;
-using System.Linq;
+﻿using RayCarrot.Binary;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 using RayCarrot.UI;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -59,7 +60,7 @@ namespace RayCarrot.RCP.Metro
             memStream.Position = 0;
 
             // Deserialize and return the data
-            var saveData = Rayman3PCSaveData.GetSerializer().Deserialize(memStream);
+            var saveData = BinarySerializableHelpers.ReadFromStream<Rayman3PCSaveData>(memStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, OpenSpacePlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             RCFCore.Logger?.LogInformationSource($"Slot has been deserialized");
 

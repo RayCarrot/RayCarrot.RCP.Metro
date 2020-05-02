@@ -48,8 +48,9 @@ namespace RayCarrot.RCP.Metro
         public ArchiveCreationData GetArchive(IEnumerable<FileSystemPath> files)
         {
             // Create the entry data for each file
-            var fileEntries = files.Select(x => new ArchiveCreationData.FileEntryImportData(new OpenSpaceCntFileEntry(0)
+            var fileEntries = files.Select(x => new ArchiveCreationData.FileEntryImportData(new OpenSpaceCntFileEntry()
             {
+                XORKey = 0,
                 FileName = x.Name
             }, x)).ToArray();
 
