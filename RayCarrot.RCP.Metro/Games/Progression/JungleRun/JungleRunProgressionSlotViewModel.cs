@@ -55,7 +55,7 @@ namespace RayCarrot.RCP.Metro
             var data = BinarySerializableHelpers.ReadFromFile<JungleRunPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             // Deserialize the input data
-            JsonConvert.PopulateObject(File.ReadAllText(inputFilePath), data.Levels);
+            data.Levels = JsonHelpers.DeserializeFromFile<JungleRunPCSaveDataLevel[]>(inputFilePath);
 
             // Import the data
             BinarySerializableHelpers.WriteToFile(data, SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
