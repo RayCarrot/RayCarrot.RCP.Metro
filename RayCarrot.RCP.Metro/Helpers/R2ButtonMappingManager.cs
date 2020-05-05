@@ -7,6 +7,8 @@ using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
+    // TODO: Use DirectX key enum and create dictionary where we match them with WPF keys
+
     /// <summary>
     /// Manages Rayman 2 button mapping through dinput.dll editing
     /// </summary>
