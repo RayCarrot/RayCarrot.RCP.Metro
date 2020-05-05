@@ -1,6 +1,9 @@
-﻿using RayCarrot.IO;
-using System;
+﻿using System.IO;
+using RayCarrot.Binary;
+using RayCarrot.IO;
+using RayCarrot.Rayman.OpenSpace;
 using System.Threading.Tasks;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -24,7 +27,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the slot can be exported/imported
         /// </summary>
-        public override bool CanModify => false;
+        public override bool CanModify => true;
 
         /// <summary>
         /// Exports the save slot from the specified path
@@ -33,7 +36,23 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override Task ExportSaveDataAsync(FileSystemPath outputFilePath)
         {
-            throw new InvalidOperationException();
+            // Create streams
+            using var saveFileStream = File.OpenRead(SaveSlotFilePath);
+            using var decodedDataStream = new MemoryStream();
+
+            // Decode the save file
+            new Rayman3SaveDataEncoder().Decode(saveFileStream, decodedDataStream);
+
+            // Set position to 0
+            decodedDataStream.Position = 0;
+
+            // Get the serialized data
+            var data = BinarySerializableHelpers.ReadFromStream<Rayman3PCSaveData>(decodedDataStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, OpenSpacePlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
+
+            // Export the data
+            JsonHelpers.SerializeToFile(data, outputFilePath);
+
+            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -43,7 +62,20 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override Task ImportSaveDataAsync(FileSystemPath inputFilePath)
         {
-            throw new InvalidOperationException();
+            // Deserialize the input data
+            var data = JsonHelpers.DeserializeFromFile<Rayman3PCSaveData>(inputFilePath);
+
+            // Create streams
+            using var decodedDataStream = new MemoryStream();
+            using var saveFileStream = File.Create(SaveSlotFilePath);
+
+            // Import the data
+            BinarySerializableHelpers.WriteToStream(data, decodedDataStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, OpenSpacePlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
+
+            // Encode the data to the file
+            new Rayman3SaveDataEncoder().Encode(decodedDataStream, saveFileStream);
+
+            return Task.CompletedTask;
         }
     }
 }

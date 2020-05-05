@@ -1,9 +1,8 @@
 ﻿using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
-using System.Threading.Tasks;
-using RayCarrot.Extensions;
 using RayCarrot.UI;
+using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -44,8 +43,9 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertFromAsync()
         {
-            var attr = GameModeSelection.SelectedValue.GetAttribute<OpenSpaceGameModeInfoAttribute>();
-            var settings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
+            var settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, 
+                // IDEA: Allow this to be changed once we allow more platforms
+                OpenSpacePlatform.PC);
 
             await ConvertFromAsync<Rayman3PCSaveData>(settings, (data, filePath) =>
             {
@@ -63,14 +63,15 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertToAsync()
         {
-            // TODO: Implement when the serializing works correctly. Every value needs to be serialized first and strings handled correctly.
-            await RCFUI.MessageUI.DisplayMessageAsync(Resources.NotImplemented, MessageType.Information);
+            var settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3,
+                // IDEA: Allow this to be changed once we allow more platforms
+                OpenSpacePlatform.PC);
 
-            //await ConvertToAsync(Rayman3PCSaveData.GetSerializer(), (filePath, format) =>
-            //{
-            //    // Read the data
-            //    return DeserializeJSON<Rayman3PCSaveData>(filePath);
-            //}, new FileFilterItem("*.json", "JSON").ToString(), new FileExtension(".sav"), null, new Rayman3SaveDataEncoder());
+            await ConvertToAsync(settings, (filePath, format) =>
+            {
+                // Read the data
+                return DeserializeJSON<Rayman3PCSaveData>(filePath);
+            }, new FileFilterItem("*.json", "JSON").ToString(), new FileExtension(".sav"), null, new Rayman3SaveDataEncoder());
         }
 
         #endregion
