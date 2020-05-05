@@ -95,6 +95,11 @@ namespace RayCarrot.RCP.Metro
         public virtual string DisplayName => ID;
 
         /// <summary>
+        /// The name of the directory to use when exporting
+        /// </summary>
+        public virtual string ExportDirName => DisplayName;
+
+        /// <summary>
         /// The full directory path
         /// </summary>
         public string FullPath => FullID.JoinItems(Path.DirectorySeparatorChar.ToString());
@@ -156,9 +161,9 @@ namespace RayCarrot.RCP.Metro
                             return;
 
                         // Make sure the directory doesn't exist
-                        if ((result.SelectedDirectory + DisplayName).Exists)
+                        if ((result.SelectedDirectory + ExportDirName).Exists)
                         {
-                            await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Archive_ExportDirectoryConflict, DisplayName), MessageType.Error);
+                            await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Archive_ExportDirectoryConflict, ExportDirName), MessageType.Error);
 
                             return;
                         }
@@ -172,7 +177,7 @@ namespace RayCarrot.RCP.Metro
                             foreach (var item in this.GetAllChildren(true))
                             {
                                 // Get the directory path
-                                var path = result.SelectedDirectory + DisplayName + item.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
+                                var path = result.SelectedDirectory + ExportDirName + item.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
 
                                 // Create the directory
                                 Directory.CreateDirectory(path);

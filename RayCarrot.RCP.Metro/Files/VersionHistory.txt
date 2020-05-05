@@ -1,11 +1,11 @@
 ﻿-----   Version 9.5.0 - May ??, 2020   -----
 • Added support for Rayman Dictées
 • Reworked the binary serialization system. Logging can now be enabled for any serialized data.
-• 
 
 Other changes:
 • The setting to enable beta updates is no tied to the Technical user level rather than the Debug one
 • Updated archive creation for Rayman Mini files to support the 1.2 update
+• Exporting the root of an archive file will no longer include the file extension in the directory name
 • Removed an error check for the IPK offsets, causing a crash when loading certain IPK files
 • The file logger now keeps the log file open during the application life cycle
 

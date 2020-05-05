@@ -98,6 +98,11 @@ namespace RayCarrot.RCP.Metro
         public override string DisplayName => FilePath.Name;
 
         /// <summary>
+        /// The name of the directory to use when exporting
+        /// </summary>
+        public override string ExportDirName => FilePath.RemoveFileExtension().Name;
+
+        /// <summary>
         /// The archive data manager
         /// </summary>
         public IArchiveExplorerDataManager Manager { get; }
