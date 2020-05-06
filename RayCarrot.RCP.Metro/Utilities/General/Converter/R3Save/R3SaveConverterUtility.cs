@@ -44,7 +44,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility is work in process
         /// </summary>
-        public bool IsWorkInProcess => true;
+        public bool IsWorkInProcess => false;
 
         /// <summary>
         /// The utility UI content
