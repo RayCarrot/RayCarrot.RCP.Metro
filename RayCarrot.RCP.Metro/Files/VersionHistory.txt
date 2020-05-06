@@ -4,6 +4,7 @@
 • Rayman 3 save files can now be converted back, imported and exported
 
 Other changes:
+• Added Eeeebray to the credits
 • The setting to enable beta updates is no tied to the Technical user level rather than the Debug one
 • Updated archive creation for Rayman Mini files to support the 1.2 update
 • Exporting the root of an archive file will no longer include the file extension in the directory name
