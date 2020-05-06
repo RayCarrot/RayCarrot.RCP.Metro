@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using RayCarrot.IO;
+using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;
 using RayCarrot.UI;
 
@@ -93,7 +94,7 @@ namespace RayCarrot.RCP.Metro
 
                     switch (Settings.Platform)
                     {
-                        case UbiArtPlatform.Wii:
+                        case Rayman.Platform.Wii:
                             data.Version = 3;
                             data.Unknown1 = 6;
                             data.Unknown3 = false;
@@ -104,7 +105,7 @@ namespace RayCarrot.RCP.Metro
                             data.EngineVersion = 0;
                             break;
 
-                        case UbiArtPlatform.Nintendo3DS:
+                        case Rayman.Platform.Nintendo3DS:
                             data.Version = 4;
                             data.Unknown1 = 5;
                             data.Unknown3 = false;
@@ -115,7 +116,7 @@ namespace RayCarrot.RCP.Metro
                             data.EngineVersion = 0;
                             break;
 
-                        case UbiArtPlatform.PlayStation3:
+                        case Rayman.Platform.PlayStation3:
                             data.Version = 3;
                             data.Unknown1 = 3;
                             data.Unknown3 = false;
@@ -126,7 +127,7 @@ namespace RayCarrot.RCP.Metro
                             data.EngineVersion = 0;
                             break;
 
-                        case UbiArtPlatform.PSVita:
+                        case Rayman.Platform.PSVita:
                             data.Version = 3;
                             data.Unknown1 = 7;
                             data.Unknown3 = false;
@@ -137,7 +138,7 @@ namespace RayCarrot.RCP.Metro
                             data.EngineVersion = 0;
                             break;
 
-                        case UbiArtPlatform.PC:
+                        case Rayman.Platform.PC:
                             data.Version = 3;
                             data.Unknown1 = 0;
                             data.Unknown3 = false;
@@ -158,7 +159,7 @@ namespace RayCarrot.RCP.Metro
 
                     switch (Settings.Platform)
                     {
-                        case UbiArtPlatform.WiiU:
+                        case Rayman.Platform.WiiU:
                             data.Version = 5;
                             data.Unknown1 = 6;
                             data.Unknown3 = false;
@@ -169,7 +170,7 @@ namespace RayCarrot.RCP.Metro
                             data.EngineVersion = 84435;
                             break;
 
-                        case UbiArtPlatform.NintendoSwitch:
+                        case Rayman.Platform.NintendoSwitch:
                             data.Version = 7;
                             data.Unknown1 = 10;
                             data.Unknown3 = false;
@@ -180,7 +181,7 @@ namespace RayCarrot.RCP.Metro
                             data.EngineVersion = 0;
                             break;
 
-                        case UbiArtPlatform.PSVita:
+                        case Rayman.Platform.PSVita:
                             data.Version = 5;
                             data.Unknown1 = 6;
                             data.Unknown3 = false;
@@ -191,7 +192,7 @@ namespace RayCarrot.RCP.Metro
                             data.EngineVersion = 0;
                             break;
 
-                        case UbiArtPlatform.PlayStation4:
+                        case Rayman.Platform.PlayStation4:
                             data.Version = 7;
                             data.Unknown1 = 8;
                             data.Unknown3 = false;
@@ -202,7 +203,7 @@ namespace RayCarrot.RCP.Metro
                             data.EngineVersion = 117321;
                             break;
 
-                        case UbiArtPlatform.PC:
+                        case Rayman.Platform.PC:
                             data.Version = 5;
                             data.Unknown1 = 0;
                             data.Unknown3 = false;
@@ -223,7 +224,7 @@ namespace RayCarrot.RCP.Metro
 
                     switch (Settings.Platform)
                     {
-                        case UbiArtPlatform.Android:
+                        case Rayman.Platform.Android:
                             data.Version = 8;
                             data.Unknown1 = 12;
                             data.Unknown2 = 11;
@@ -235,7 +236,7 @@ namespace RayCarrot.RCP.Metro
                             data.EngineVersion = 277220;
                             break;
 
-                        case UbiArtPlatform.iOS:
+                        case Rayman.Platform.iOS:
                             data.Version = 8;
                             data.Unknown1 = 12;
                             data.Unknown2 = 19;
@@ -257,7 +258,7 @@ namespace RayCarrot.RCP.Metro
 
                     switch (Settings.Platform)
                     {
-                        case UbiArtPlatform.Mac:
+                        case Rayman.Platform.Mac:
                             data.Version = 8;
                             data.Unknown1 = 12;
                             data.Unknown2 = 11;
@@ -279,7 +280,7 @@ namespace RayCarrot.RCP.Metro
 
                     switch (Settings.Platform)
                     {
-                        case UbiArtPlatform.WiiU:
+                        case Rayman.Platform.WiiU:
                             data.Version = 5;
                             data.Unknown1 = 8;
                             data.Unknown2 = 0;
@@ -301,7 +302,7 @@ namespace RayCarrot.RCP.Metro
 
                     switch (Settings.Platform)
                     {
-                        case UbiArtPlatform.Android:
+                        case Rayman.Platform.Android:
                             data.Version = 7;
                             data.Unknown1 = 10;
                             data.Unknown2 = 0;
@@ -325,7 +326,7 @@ namespace RayCarrot.RCP.Metro
                     switch (Settings.Platform)
                     {
                         // NOTE: This is based on the demo
-                        case UbiArtPlatform.PC:
+                        case Rayman.Platform.PC:
                             data.Version = 7;
                             data.Unknown1 = 0;
                             data.Unknown2 = 0;
@@ -337,7 +338,7 @@ namespace RayCarrot.RCP.Metro
                             data.EngineVersion = 30765;
                             break;
 
-                        case UbiArtPlatform.PSVita:
+                        case Rayman.Platform.PSVita:
                             data.Version = 7;
                             data.Unknown1 = 6;
                             data.Unknown2 = 0;
@@ -359,7 +360,7 @@ namespace RayCarrot.RCP.Metro
 
                     switch (Settings.Platform)
                     {
-                        case UbiArtPlatform.Nintendo3DS:
+                        case Rayman.Platform.Nintendo3DS:
                             data.Version = 7;
                             data.Unknown1 = 10;
                             data.Unknown2 = 0;

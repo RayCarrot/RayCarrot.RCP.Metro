@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using RayCarrot.Binary;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -49,7 +50,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Deserialize and get the data
-            var saveData = BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(filePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger()).SaveData;
+            var saveData = BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(filePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCFRCP.App.GetBinarySerializerLogger()).SaveData;
 
             RCFCore.Logger?.LogInformationSource($"Slot has been deserialized");
 

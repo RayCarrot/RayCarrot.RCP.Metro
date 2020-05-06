@@ -237,7 +237,6 @@
       <DependentUpon>SyncTextureInfoUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\General\Other\SyncTextureInfo\GeneralSyncTextureInfoUtilityViewModel.cs" />
-    <Compile Include="Utilities\General\UtilityPlatforms.cs" />
     <Compile Include="ViewModels\Dialogs\FileExtensionSelectionDialogResult.cs" />
     <Compile Include="ViewModels\Dialogs\FileExtensionSelectionDialogViewModel.cs" />
     <Compile Include="Games\Config\UI\RaymanFiestaRunConfig.xaml.cs">

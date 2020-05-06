@@ -1,7 +1,6 @@
 ﻿using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
-using RayCarrot.UI;
 using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
@@ -9,7 +8,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Utility view model for converting Rayman 3 .sav files
     /// </summary>
-    public class R3SaveConverterUtilityViewModel : BaseConverterUtilityViewModel<UtilityPlatforms>
+    public class R3SaveConverterUtilityViewModel : BaseConverterUtilityViewModel<Platform>
     {
         #region Constructor
 
@@ -18,9 +17,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public R3SaveConverterUtilityViewModel()
         {
-            GameModeSelection = new EnumSelectionViewModel<UtilityPlatforms>(UtilityPlatforms.PC, new UtilityPlatforms[]
+            GameModeSelection = new EnumSelectionViewModel<Platform>(Platform.PC, new Platform[]
             {
-                UtilityPlatforms.PC
+                Platform.PC
             });
         }
 
@@ -31,7 +30,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game mode selection
         /// </summary>
-        public override EnumSelectionViewModel<UtilityPlatforms> GameModeSelection { get; }
+        public override EnumSelectionViewModel<Platform> GameModeSelection { get; }
 
         #endregion
 
@@ -43,9 +42,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertFromAsync()
         {
-            var settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, 
-                // IDEA: Allow this to be changed once we allow more platforms
-                OpenSpacePlatform.PC);
+            var settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, GameModeSelection.SelectedValue);
 
             await ConvertFromAsync<Rayman3PCSaveData>(settings, (data, filePath) =>
             {
@@ -63,9 +60,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertToAsync()
         {
-            var settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3,
-                // IDEA: Allow this to be changed once we allow more platforms
-                OpenSpacePlatform.PC);
+            var settings = OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, GameModeSelection.SelectedValue);
 
             await ConvertToAsync(settings, (filePath, format) =>
             {

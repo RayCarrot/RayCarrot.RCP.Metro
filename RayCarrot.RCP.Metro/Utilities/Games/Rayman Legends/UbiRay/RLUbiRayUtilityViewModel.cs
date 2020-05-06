@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.Binary;
+using RayCarrot.Rayman;
 
 // ReSharper disable StringLiteralTypo
 
@@ -122,7 +123,7 @@ namespace RayCarrot.RCP.Metro
         protected IEnumerable<PatchInfo> GetPatchInfos(Stream ipkStream)
         {
             // Deserialize the IPK file
-            var ipk = BinarySerializableHelpers.ReadFromStream<UbiArtIpkData>(ipkStream, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanLegends, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
+            var ipk = BinarySerializableHelpers.ReadFromStream<UbiArtIpkData>(ipkStream, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanLegends, Platform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             // Enumerate every patch
             foreach (var patchGroup in GetPatches.GroupBy(x => x.FileName))

@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Utility view model for decoding Rayman 3 .sav files
     /// </summary>
-    public class R3SaveDecoderViewModel : BaseDecoderUtilityViewModel<UtilityPlatforms>
+    public class R3SaveDecoderViewModel : BaseDecoderUtilityViewModel<Platform>
     {
         #region Constructor
 
@@ -15,9 +15,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public R3SaveDecoderViewModel()
         {
-            GameModeSelection = new EnumSelectionViewModel<UtilityPlatforms>(UtilityPlatforms.PC, new UtilityPlatforms[]
+            GameModeSelection = new EnumSelectionViewModel<Platform>(Platform.PC, new Platform[]
             {
-                UtilityPlatforms.PC
+                Platform.PC
             });
         }
 
@@ -42,7 +42,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game mode selection
         /// </summary>
-        public override EnumSelectionViewModel<UtilityPlatforms> GameModeSelection { get; }
+        public override EnumSelectionViewModel<Platform> GameModeSelection { get; }
 
         #endregion
 

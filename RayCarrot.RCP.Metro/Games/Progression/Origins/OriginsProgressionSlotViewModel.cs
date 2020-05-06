@@ -1,9 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using RayCarrot.Binary;
 using RayCarrot.IO;
+using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;
-using System.IO;
 using System.Threading.Tasks;
-using RayCarrot.Binary;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -36,7 +35,7 @@ namespace RayCarrot.RCP.Metro
         protected override Task ExportSaveDataAsync(FileSystemPath outputFilePath)
         {
             // Get the serialized level data
-            var data = BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
+            var data = BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             // Export the data
             JsonHelpers.SerializeToFile(data, outputFilePath);
@@ -52,13 +51,13 @@ namespace RayCarrot.RCP.Metro
         protected override Task ImportSaveDataAsync(FileSystemPath inputFilePath)
         {
             // Get the serialized data
-            var data = BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
+            var data = BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             // Deserialize the input data
             data.SaveData = JsonHelpers.DeserializeFromFile<OriginsPCSaveData.PersistentGameData_Universe>(inputFilePath);
 
             // Import the data
-            BinarySerializableHelpers.WriteToFile<OriginsPCSaveData>(data, SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
+            BinarySerializableHelpers.WriteToFile<OriginsPCSaveData>(data, SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             return Task.CompletedTask;
         }

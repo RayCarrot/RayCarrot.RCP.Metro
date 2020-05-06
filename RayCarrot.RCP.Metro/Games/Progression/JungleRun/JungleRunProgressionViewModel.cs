@@ -4,6 +4,7 @@ using RayCarrot.Rayman.UbiArt;
 using RayCarrot.UI;
 using System;
 using RayCarrot.Binary;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -49,7 +50,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Deserialize and return the data
-            var saveData = BinarySerializableHelpers.ReadFromFile<JungleRunPCSaveData>(filePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
+            var saveData = BinarySerializableHelpers.ReadFromFile<JungleRunPCSaveData>(filePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, Platform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             RCFCore.Logger?.LogInformationSource($"Slot has been deserialized");
 

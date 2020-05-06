@@ -60,7 +60,7 @@ namespace RayCarrot.RCP.Metro
             memStream.Position = 0;
 
             // Deserialize and return the data
-            var saveData = BinarySerializableHelpers.ReadFromStream<Rayman3PCSaveData>(memStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, OpenSpacePlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
+            var saveData = BinarySerializableHelpers.ReadFromStream<Rayman3PCSaveData>(memStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Rayman.Platform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             RCFCore.Logger?.LogInformationSource($"Slot has been deserialized");
 

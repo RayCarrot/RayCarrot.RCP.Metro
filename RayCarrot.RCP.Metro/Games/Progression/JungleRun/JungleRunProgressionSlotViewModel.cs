@@ -1,9 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using RayCarrot.Binary;
 using RayCarrot.IO;
-using System.IO;
-using System.Threading.Tasks;
-using RayCarrot.Binary;
+using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;
+using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -36,7 +35,7 @@ namespace RayCarrot.RCP.Metro
         protected override Task ExportSaveDataAsync(FileSystemPath outputFilePath)
         {
             // Get the serialized level data
-            var data = BinarySerializableHelpers.ReadFromFile<JungleRunPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger()).Levels;
+            var data = BinarySerializableHelpers.ReadFromFile<JungleRunPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, Platform.PC), RCFRCP.App.GetBinarySerializerLogger()).Levels;
 
             // Export the data
             JsonHelpers.SerializeToFile(data, outputFilePath);
@@ -52,13 +51,13 @@ namespace RayCarrot.RCP.Metro
         protected override Task ImportSaveDataAsync(FileSystemPath inputFilePath)
         {
             // Get the serialized data
-            var data = BinarySerializableHelpers.ReadFromFile<JungleRunPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
+            var data = BinarySerializableHelpers.ReadFromFile<JungleRunPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, Platform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             // Deserialize the input data
             data.Levels = JsonHelpers.DeserializeFromFile<JungleRunPCSaveDataLevel[]>(inputFilePath);
 
             // Import the data
-            BinarySerializableHelpers.WriteToFile(data, SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, UbiArtPlatform.PC), RCFRCP.App.GetBinarySerializerLogger());
+            BinarySerializableHelpers.WriteToFile(data, SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, Platform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
             return Task.CompletedTask;
         }

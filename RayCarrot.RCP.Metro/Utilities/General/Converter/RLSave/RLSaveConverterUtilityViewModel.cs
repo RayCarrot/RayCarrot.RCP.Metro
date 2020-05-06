@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
@@ -9,7 +10,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Utility view model for converting Rayman Legends save files
     /// </summary>
-    public class RLSaveConverterUtilityViewModel : BaseConverterUtilityViewModel<UtilityPlatforms>
+    public class RLSaveConverterUtilityViewModel : BaseConverterUtilityViewModel<Platform>
     {
         #region Constructor
 
@@ -18,9 +19,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public RLSaveConverterUtilityViewModel()
         {
-            GameModeSelection = new EnumSelectionViewModel<UtilityPlatforms>(UtilityPlatforms.PC, new UtilityPlatforms[]
+            GameModeSelection = new EnumSelectionViewModel<Platform>(Platform.PC, new Platform[]
             {
-                UtilityPlatforms.PC
+                Platform.PC
             });
         }
 
@@ -31,7 +32,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game mode selection
         /// </summary>
-        public override EnumSelectionViewModel<UtilityPlatforms> GameModeSelection { get; }
+        public override EnumSelectionViewModel<Platform> GameModeSelection { get; }
 
         #endregion
 
@@ -43,8 +44,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertFromAsync()
         {
-            var attr = GameModeSelection.SelectedValue.GetAttribute<UbiArtGameModeInfoAttribute>();
-            var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
+            var settings = UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanLegends, GameModeSelection.SelectedValue);
 
             await ConvertFromAsync<LegendsPCSaveData>(settings, (data, filePath) =>
             {
@@ -62,8 +62,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertToAsync()
         {
-            var attr = GameModeSelection.SelectedValue.GetAttribute<UbiArtGameModeInfoAttribute>();
-            var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
+            var settings = UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanLegends, GameModeSelection.SelectedValue);
 
             await ConvertToAsync<LegendsPCSaveData>(settings, (filePath, format) =>
             {

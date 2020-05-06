@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Media;
 using RayCarrot.Binary;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -373,7 +374,7 @@ namespace RayCarrot.RCP.Metro
 
                 // TODO: Figure out what the values are on Wii U where they don't match the actual size
                 // On PS Vita the values are always 0, so keep them that way
-                if (Settings.Platform != UbiArtPlatform.PSVita)
+                if (Settings.Platform != Platform.PSVita)
                 {
                     // Set the length
                     texture.TextureSize = (uint)texture.TextureData.Length;
