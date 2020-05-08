@@ -44,7 +44,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertFromAsync()
         {
-            var settings = UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanLegends, GameModeSelection.SelectedValue);
+            var settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanLegends, GameModeSelection.SelectedValue);
 
             await ConvertFromAsync<LegendsPCSaveData>(settings, (data, filePath) =>
             {
@@ -62,7 +62,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertToAsync()
         {
-            var settings = UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanLegends, GameModeSelection.SelectedValue);
+            var settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanLegends, GameModeSelection.SelectedValue);
 
             await ConvertToAsync<LegendsPCSaveData>(settings, (filePath, format) =>
             {

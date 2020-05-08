@@ -44,7 +44,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertFromAsync()
         {
-            var settings = UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanJungleRun, GameModeSelection.SelectedValue);
+            var settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, GameModeSelection.SelectedValue);
 
             await ConvertFromAsync<JungleRunPCSaveData>(settings, (data, filePath) =>
             {
@@ -62,7 +62,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertToAsync()
         {
-            var settings = UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanJungleRun, GameModeSelection.SelectedValue);
+            var settings = UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, GameModeSelection.SelectedValue);
 
             await ConvertToAsync<JungleRunPCSaveData>(settings, (filePath, format) =>
             {
