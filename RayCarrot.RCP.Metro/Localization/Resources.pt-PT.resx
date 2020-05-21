@@ -3368,4 +3368,10 @@ Pointer = {8}
   <data name="Archive_IPK_CompressExtensions" xml:space="preserve">
     <value>Extensões de ficheiros a comprimir</value>
   </data>
+  <data name="Settings_BinarySerializationFileLogPath" xml:space="preserve">
+    <value>Diário de Endereço de Serialização</value>
+  </data>
+  <data name="Settings_BinarySerializationFileLogPathInfo" xml:space="preserve">
+    <value>Endereço opcional de ficheiros para a saída do diário de serialização quando se serializa um ficheiro binário</value>
+  </data>
 </root>

@@ -3338,4 +3338,10 @@ Pointer = {8}</value>
   <data name="Archive_IPK_CompressExtensions" xml:space="preserve">
     <value>Bestandsextensie voor compressie</value>
   </data>
+  <data name="Settings_BinarySerializationFileLogPath" xml:space="preserve">
+    <value>Serialisatie Log Bestandspad</value>
+  </data>
+  <data name="Settings_BinarySerializationFileLogPathInfo" xml:space="preserve">
+    <value>Optioneel bestandspad voor het opslaan van de serialisatielog wanneer er een binair bestand wordt geserialiseerd</value>
+  </data>
 </root>
