@@ -1,8 +1,6 @@
-﻿using Newtonsoft.Json;
-using RayCarrot.CarrotFramework.Abstractions;
+﻿using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
-using RayCarrot.Rayman.UbiArt;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 using RayCarrot.WPF;
@@ -17,7 +15,6 @@ using System.Runtime.Versioning;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using RayCarrot.Binary;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -42,31 +39,10 @@ namespace RayCarrot.RCP.Metro
             RefreshAllAsyncCommand = new AsyncRelayCommand(RefreshAllTaskAsync);
             RunInstallerCommand = new RelayCommand(RunInstaller);
             ShutdownAppCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await Metro.App.Current.ShutdownRCFAppAsync(false)));
-            AnalyzeIPKCommand = new AsyncRelayCommand(AnalyzeIPKAsync);
 
             // Get properties
             AvailableInstallers = App.GetGames.Where(x => x.GetGameInfo().CanBeInstalledFromDisc).ToArray();
             SelectedInstaller = AvailableInstallers.First();
-            AnalyzeIPKMode = new EnumSelectionViewModel<UbiArtGameMode>(UbiArtGameMode.RaymanOriginsPC, new UbiArtGameMode[]
-            {
-                UbiArtGameMode.RaymanOriginsPC,
-                UbiArtGameMode.RaymanOriginsPS3,
-                UbiArtGameMode.RaymanOriginsWii,
-                UbiArtGameMode.RaymanOriginsPSVita,
-                UbiArtGameMode.RaymanLegendsPC,
-                UbiArtGameMode.RaymanLegendsWiiU,
-                UbiArtGameMode.RaymanLegendsPSVita,
-                UbiArtGameMode.RaymanLegendsPS4,
-                UbiArtGameMode.RaymanLegendsSwitch,
-                UbiArtGameMode.RaymanAdventuresAndroid,
-                UbiArtGameMode.RaymanAdventuresiOS,
-                UbiArtGameMode.RaymanMiniMac,
-                UbiArtGameMode.JustDance2017WiiU,
-                UbiArtGameMode.ChildOfLightPC,
-                UbiArtGameMode.ChildOfLightPSVita,
-                UbiArtGameMode.ValiantHeartsAndroid,
-                UbiArtGameMode.GravityFalls3DS,
-            });
         }
 
         #endregion
@@ -97,11 +73,6 @@ namespace RayCarrot.RCP.Metro
         /// The selected game installer
         /// </summary>
         public Games SelectedInstaller { get; set; }
-
-        /// <summary>
-        /// The selected game mode when analyzing .ipk files
-        /// </summary>
-        public EnumSelectionViewModel<UbiArtGameMode> AnalyzeIPKMode { get; set; }
 
         #endregion
 
@@ -442,40 +413,6 @@ namespace RayCarrot.RCP.Metro
             new GameInstaller(SelectedInstaller).ShowDialog();
         }
 
-        /// <summary>
-        /// Analyzes .ipk files
-        /// </summary>
-        /// <returns>The task</returns>
-        public async Task AnalyzeIPKAsync()
-        {
-            var result = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
-            {
-                Title = "Select files",
-                MultiSelection = true
-            });
-
-            if (result.CanceledByUser)
-                return;
-
-            var data = new Dictionary<FileSystemPath, UbiArtIpkData>();
-
-            foreach (var file in result.SelectedFiles)
-            {
-                var attr = AnalyzeIPKMode.SelectedValue.GetAttribute<UbiArtGameModeInfoAttribute>();
-                var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
-
-                var ipk = BinarySerializableHelpers.ReadFromFile<UbiArtIpkData>(file, settings, RCFRCP.App.GetBinarySerializerLogger());
-
-                ipk.Files = null;
-
-                data.Add(file, ipk);
-            }
-
-            var outputFile = (result.SelectedFile.Parent + "ipk.json").GetNonExistingFileName();
-
-            JsonHelpers.SerializeToFile(data, outputFile);
-        }
-
         #endregion
 
         #region Commands
@@ -495,8 +432,6 @@ namespace RayCarrot.RCP.Metro
         public ICommand RunInstallerCommand { get; }
 
         public ICommand ShutdownAppCommand { get; }
-
-        public ICommand AnalyzeIPKCommand { get; }
 
         #endregion
 

@@ -9,6 +9,7 @@ Other changes:
 • Updated archive creation for Rayman Mini files to support the 1.2 update
 • Exporting the root of an archive file will no longer include the file extension in the directory name
 • Removed an error check for the IPK offsets, causing a crash when loading certain IPK files
+• Removed the debug option to analyze IPK files (the same thing can now be done with the serialization log)
 • The file logger now keeps the log file open during the application life cycle
 
 

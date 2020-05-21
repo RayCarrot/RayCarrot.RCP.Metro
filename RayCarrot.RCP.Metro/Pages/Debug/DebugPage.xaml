@@ -143,28 +143,6 @@
 
             </StackPanel>
 
-            <StackPanel>
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-                </i:Interaction.Behaviors>
-
-                <TextBlock Text="Analyze"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
-
-                <ComboBox ItemsSource="{Binding Path=AnalyzeIPKMode.AvailableValues, Mode=OneTime}"
-                          SelectedItem="{Binding Path=AnalyzeIPKMode.SelectedValue}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Converter={local:GameModeToDisplayNameConverter}}" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-
-                <Button Content="Analyze .ipk files"
-                        Command="{Binding Path=AnalyzeIPKCommand}" />
-
-            </StackPanel>
-
         </StackPanel>
     </ScrollViewer>
 </local:BasePage>
