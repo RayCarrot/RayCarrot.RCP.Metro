@@ -6,6 +6,7 @@ using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.Rayman.OpenSpace;
 using RayCarrot.UI;
 

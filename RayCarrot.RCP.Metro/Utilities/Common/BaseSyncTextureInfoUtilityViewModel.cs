@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using RayCarrot.Binary;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -188,7 +189,7 @@ namespace RayCarrot.RCP.Metro
                     // Ignore if not found
                     if (gf == null)
                     {
-                        RCFCore.Logger?.LogWarningSource($"A matching texture was not found for {longestName.Trim('\0')}");
+                        RL.Logger?.LogWarningSource($"A matching texture was not found for {longestName.Trim('\0')}");
                         continue;
                     }
 
@@ -251,7 +252,7 @@ namespace RayCarrot.RCP.Metro
                     edited++;
                 }
 
-                RCFCore.Logger?.LogInformationSource($"{foundCount} texture infos modified for {file.Name}");
+                RL.Logger?.LogInformationSource($"{foundCount} texture infos modified for {file.Name}");
 
                 // Encode if the game is Rayman 2
                 if (gameSettings.Game == OpenSpaceGame.Rayman2)

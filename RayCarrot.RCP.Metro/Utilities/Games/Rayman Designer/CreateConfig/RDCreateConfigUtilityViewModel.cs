@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -78,7 +79,7 @@ namespace RayCarrot.RCP.Metro
                     "Directory =.\\"
                 });
 
-                RCFCore.Logger?.LogInformationSource($"The Rayman Designer config file has been recreated");
+                RL.Logger?.LogInformationSource($"The Rayman Designer config file has been recreated");
 
                 await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RDU_CreateConfig_Success);
             }

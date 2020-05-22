@@ -8,6 +8,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -49,7 +50,7 @@ namespace RayCarrot.RCP.Metro
                 // Start the process and get the process
                 var p = Process.Start(info);
 
-                RCFCore.Logger?.LogInformationSource($"The file {file.FullPath} launched with the arguments: {arguments}");
+                RL.Logger?.LogInformationSource($"The file {file.FullPath} launched with the arguments: {arguments}");
 
                 // Return the process
                 return p;
@@ -87,7 +88,7 @@ namespace RayCarrot.RCP.Metro
                 // Create the shortcut
                 WindowsHelpers.CreateFileShortcut(ShortcutName, DestinationDirectory, TargetFile, arguments);
 
-                RCFCore.Logger?.LogInformationSource($"The shortcut {ShortcutName} was created");
+                RL.Logger?.LogInformationSource($"The shortcut {ShortcutName} was created");
             }
             catch (Exception ex)
             {
@@ -139,7 +140,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 WindowsHelpers.OpenExplorerPath(location);
-                RCFCore.Logger?.LogDebugSource($"The explorer location {location} was opened");
+                RL.Logger?.LogDebugSource($"The explorer location {location} was opened");
             }
             catch (Exception ex)
             {
@@ -166,7 +167,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 WindowsHelpers.OpenRegistryPath(registryKeyPath);
-                RCFCore.Logger?.LogDebugSource($"The Registry key path {registryKeyPath} was opened");
+                RL.Logger?.LogDebugSource($"The Registry key path {registryKeyPath} was opened");
             }
             catch (Exception ex)
             {
@@ -189,7 +190,7 @@ namespace RayCarrot.RCP.Metro
             // Delete the directory
             Directory.Delete(dirPath, true);
 
-            RCFCore.Logger?.LogDebugSource($"The directory {dirPath} was deleted");
+            RL.Logger?.LogDebugSource($"The directory {dirPath} was deleted");
         }
 
         /// <summary>
@@ -209,7 +210,7 @@ namespace RayCarrot.RCP.Metro
             // Create the file
             File.Create(filePath).Dispose();
 
-            RCFCore.Logger?.LogDebugSource($"The file {filePath} was created");
+            RL.Logger?.LogDebugSource($"The file {filePath} was created");
         }
 
         /// <summary>
@@ -225,7 +226,7 @@ namespace RayCarrot.RCP.Metro
             // Delete the file
             File.Delete(filePath);
 
-            RCFCore.Logger?.LogDebugSource($"The file {filePath} was deleted");
+            RL.Logger?.LogDebugSource($"The file {filePath} was deleted");
         }
 
         /// <summary>
@@ -273,7 +274,7 @@ namespace RayCarrot.RCP.Metro
             }
 
 
-            RCFCore.Logger?.LogDebugSource($"The directory {source} was moved to {destination}");
+            RL.Logger?.LogDebugSource($"The directory {source} was moved to {destination}");
         }
 
         /// <summary>
@@ -298,7 +299,7 @@ namespace RayCarrot.RCP.Metro
                 MoveFile(file, destFile, true);
             }
 
-            RCFCore.Logger?.LogDebugSource($"The files from {source.DirPath} were moved to {destination}");
+            RL.Logger?.LogDebugSource($"The files from {source.DirPath} were moved to {destination}");
         }
 
         /// <summary>
@@ -317,7 +318,7 @@ namespace RayCarrot.RCP.Metro
             // Copy the directory
             FileSystem.CopyDirectory(source, destination, replaceExistingFiles);
 
-            RCFCore.Logger?.LogDebugSource($"The directory {source} was copied to {destination}");
+            RL.Logger?.LogDebugSource($"The directory {source} was copied to {destination}");
         }
 
         /// <summary>
@@ -342,7 +343,7 @@ namespace RayCarrot.RCP.Metro
                 CopyFile(file, destFile, true);
             }
 
-            RCFCore.Logger?.LogDebugSource($"The files from {source.DirPath} were copied to {destination}");
+            RL.Logger?.LogDebugSource($"The files from {source.DirPath} were copied to {destination}");
         }
 
         /// <summary>
@@ -365,7 +366,7 @@ namespace RayCarrot.RCP.Metro
             // Move the file
             File.Move(source, destination);
 
-            RCFCore.Logger?.LogDebugSource($"The file {source} was moved to {destination}");
+            RL.Logger?.LogDebugSource($"The file {source} was moved to {destination}");
         }
 
         /// <summary>
@@ -388,7 +389,7 @@ namespace RayCarrot.RCP.Metro
             // Move the file
             File.Copy(source, destination);
 
-            RCFCore.Logger?.LogDebugSource($"The file {source} was copied to {destination}");
+            RL.Logger?.LogDebugSource($"The file {source} was copied to {destination}");
         }
 
         /// <summary>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.Extensions;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -45,7 +46,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ReplaceRayKitAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"The Rayman Designer replacement patch is downloading...");
+            RL.Logger?.LogInformationSource($"The Rayman Designer replacement patch is downloading...");
 
             // Find the files to be replaced
             var files = new Tuple<string, Uri>[]
@@ -89,7 +90,7 @@ namespace RayCarrot.RCP.Metro
                 }
             }
 
-            RCFCore.Logger?.LogInformationSource($"The following Rayman Designer files were found to replace: {foundFiles.Select(x => x.Item1.Name).JoinItems(", ")}");
+            RL.Logger?.LogInformationSource($"The following Rayman Designer files were found to replace: {foundFiles.Select(x => x.Item1.Name).JoinItems(", ")}");
 
             await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.RDU_ReplaceFiles_InfoMessage, foundFiles.Count, files.Length), MessageType.Information);
 
@@ -103,7 +104,7 @@ namespace RayCarrot.RCP.Metro
                     // Download the files
                     await App.DownloadAsync(group.Select(x => x.Item2).ToList(), false, group.Key);
 
-                RCFCore.Logger?.LogInformationSource($"The Rayman Designer files have been replaced");
+                RL.Logger?.LogInformationSource($"The Rayman Designer files have been replaced");
 
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.RDU_ReplaceFiles_Complete, MessageType.Information);
             }

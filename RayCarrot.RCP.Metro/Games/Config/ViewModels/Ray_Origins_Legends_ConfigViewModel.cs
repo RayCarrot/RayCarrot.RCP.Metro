@@ -4,6 +4,7 @@ using System.Windows;
 using Microsoft.Win32;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 
@@ -149,11 +150,11 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override Task SetupAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"{Game} config is being set up");
+            RL.Logger?.LogInformationSource($"{Game} config is being set up");
 
             using (var key = GetKey(false))
             {
-                RCFCore.Logger?.LogInformationSource(key != null
+                RL.Logger?.LogInformationSource(key != null
                     ? $"The key {key.Name} has been opened"
                     : $"The key for {Game} does not exist. Default values will be used.");
 
@@ -167,7 +168,7 @@ namespace RayCarrot.RCP.Metro
 
             UnsavedChanges = false;
 
-            RCFCore.Logger?.LogInformationSource($"All values have been loaded");
+            RL.Logger?.LogInformationSource($"All values have been loaded");
 
             return Task.CompletedTask;
         }
@@ -180,7 +181,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                RCFCore.Logger?.LogInformationSource($"{Game} configuration is saving...");
+                RL.Logger?.LogInformationSource($"{Game} configuration is saving...");
 
                 try
                 {
@@ -189,14 +190,14 @@ namespace RayCarrot.RCP.Metro
                         if (key == null)
                             throw new Exception("The Registry key could not be created");
 
-                        RCFCore.Logger?.LogInformationSource($"The key {key.Name} has been opened");
+                        RL.Logger?.LogInformationSource($"The key {key.Name} has been opened");
 
                         key.SetValue(ScreenHeightKey, ScreenHeight.ToString());
                         key.SetValue(ScreenWidthKey, ScreenWidth.ToString());
                         key.SetValue(FullScreenKey, FullscreenMode ? 1 : 0);
                     }
 
-                    RCFCore.Logger?.LogInformationSource($"{Game} configuration has been saved");
+                    RL.Logger?.LogInformationSource($"{Game} configuration has been saved");
                 }
                 catch (Exception ex)
                 {
@@ -232,7 +233,7 @@ namespace RayCarrot.RCP.Metro
             {
                 var key = RCFWinReg.RegistryManager.CreateRegistryKey(keyPath, RegistryView.Default, true);
 
-                RCFCore.Logger?.LogInformationSource($"The Registry key {key?.Name} has been created");
+                RL.Logger?.LogInformationSource($"The Registry key {key?.Name} has been created");
 
                 return key;
             }

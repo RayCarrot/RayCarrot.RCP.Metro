@@ -4,6 +4,7 @@ using System.Windows.Input;
 using ByteSizeLib;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -29,7 +30,7 @@ namespace RayCarrot.RCP.Metro
             // Get current translation
             SelectedTranslation = GetAppliedRayman2Translation() ?? Rayman2Translation.Original;
 
-            RCFCore.Logger?.LogInformationSource($"The applied Rayman 2 translation has been detected as {SelectedTranslation}");
+            RL.Logger?.LogInformationSource($"The applied Rayman 2 translation has been detected as {SelectedTranslation}");
         }
 
         #endregion
@@ -64,7 +65,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RCFCore.Logger?.LogInformationSource($"The Rayman 2 translation patch is downloading...");
+                RL.Logger?.LogInformationSource($"The Rayman 2 translation patch is downloading...");
 
                 // Attempt to get the files
                 var fixSna = GetFixSnaFilePath();
@@ -73,7 +74,7 @@ namespace RayCarrot.RCP.Metro
                 // Verify the files
                 if (!fixSna.FileExists || !texturesCnt.FileExists)
                 {
-                    RCFCore.Logger?.LogInformationSource($"The Rayman 2 translation patch could not be downloaded due to the required local files not being found");
+                    RL.Logger?.LogInformationSource($"The Rayman 2 translation patch could not be downloaded due to the required local files not being found");
 
                     await RCFUI.MessageUI.DisplayMessageAsync(Resources.R2U_Translations_FilesNotFound, MessageType.Error);
                     return;
@@ -88,12 +89,12 @@ namespace RayCarrot.RCP.Metro
                 if (!succeeded)
                     return;
 
-                RCFCore.Logger?.LogInformationSource($"The Rayman 2 fix.sna file has been downloaded");
+                RL.Logger?.LogInformationSource($"The Rayman 2 fix.sna file has been downloaded");
 
                 // Get the current textures file
                 var textures = GetTexturesVersion(texturesCnt);
 
-                RCFCore.Logger?.LogInformationSource($"The Rayman 2 textures file has been retrieved as {textures}");
+                RL.Logger?.LogInformationSource($"The Rayman 2 textures file has been retrieved as {textures}");
 
                 if (textures == SelectedTranslation || 
                     (textures == Rayman2Translation.Original && SelectedTranslation == Rayman2Translation.Irish) ||
@@ -106,7 +107,7 @@ namespace RayCarrot.RCP.Metro
 
                 if (await RCFUI.MessageUI.DisplayMessageAsync(message, Resources.R2U_Translations_ReplaceTexturesHeader, MessageType.Question, true))
                 {
-                    RCFCore.Logger?.LogInformationSource($"The Rayman 2 translation texture patch is downloading...");
+                    RL.Logger?.LogInformationSource($"The Rayman 2 translation texture patch is downloading...");
 
                     // Replace the textures.cnt file
                     var succeeded2 = await App.DownloadAsync(new Uri[]
@@ -118,7 +119,7 @@ namespace RayCarrot.RCP.Metro
                         return;
                 }
 
-                RCFCore.Logger?.LogInformationSource($"The Rayman 2 translation has been applied");
+                RL.Logger?.LogInformationSource($"The Rayman 2 translation has been applied");
 
                 await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_Translations_Success);
             }

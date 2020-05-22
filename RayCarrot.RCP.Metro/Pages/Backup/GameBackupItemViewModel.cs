@@ -6,6 +6,7 @@ using System.Windows.Input;
 using ByteSizeLib;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -215,7 +216,7 @@ namespace RayCarrot.RCP.Metro
                 // Confirm restore
                 if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, BackupInfo.GameDisplayName), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
                 {
-                    RCFCore.Logger?.LogInformationSource($"Restore canceled");
+                    RL.Logger?.LogInformationSource($"Restore canceled");
 
                     return;
                 }
@@ -260,7 +261,7 @@ namespace RayCarrot.RCP.Metro
                 // Confirm backup if one already exists
                 if (BackupInfo.ExistingBackups.Any() && !await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, BackupInfo.GameDisplayName), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
                 {
-                    RCFCore.Logger?.LogInformationSource($"Backup canceled");
+                    RL.Logger?.LogInformationSource($"Backup canceled");
                     return;
                 }
 

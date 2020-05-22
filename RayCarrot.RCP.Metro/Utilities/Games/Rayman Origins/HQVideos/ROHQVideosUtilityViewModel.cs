@@ -5,6 +5,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ByteSizeLib;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -80,7 +81,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RCFCore.Logger?.LogInformationSource($"The Rayman Origins videos are being replaced with {(IsOriginalVideos ? "HQ Videos" : "original videos")}");
+                RL.Logger?.LogInformationSource($"The Rayman Origins videos are being replaced with {(IsOriginalVideos ? "HQ Videos" : "original videos")}");
 
                 // Download the files
                 var succeeded = await App.DownloadAsync(new Uri[]

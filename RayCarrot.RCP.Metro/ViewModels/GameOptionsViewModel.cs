@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using RayCarrot.IO;
 using RayCarrot.Extensions;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -243,12 +244,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task UninstallAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"{Game} is being uninstalled...");
+            RL.Logger?.LogInformationSource($"{Game} is being uninstalled...");
 
             // Have user confirm
             if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.UninstallGameQuestion, DisplayName), Resources.UninstallGameQuestionHeader, MessageType.Question, true))
             {
-                RCFCore.Logger?.LogInformationSource($"The uninstallation was canceled");
+                RL.Logger?.LogInformationSource($"The uninstallation was canceled");
 
                 return;
             }
@@ -258,7 +259,7 @@ namespace RayCarrot.RCP.Metro
                 // Delete the game directory
                 RCFRCP.File.DeleteDirectory(Game.GetInstallDir(false));
 
-                RCFCore.Logger?.LogInformationSource($"The game install directory was removed");
+                RL.Logger?.LogInformationSource($"The game install directory was removed");
 
                 // Get additional uninstall directories
                 var dirs = Game.GetGameInfo().UninstallDirectories;
@@ -269,7 +270,7 @@ namespace RayCarrot.RCP.Metro
                     foreach (var dir in dirs)
                         RCFRCP.File.DeleteDirectory(dir);
 
-                    RCFCore.Logger?.LogInformationSource($"The game additional directories were removed");
+                    RL.Logger?.LogInformationSource($"The game additional directories were removed");
                 }
 
                 // Get additional uninstall files
@@ -281,7 +282,7 @@ namespace RayCarrot.RCP.Metro
                     foreach (var file in files)
                         RCFRCP.File.DeleteFile(file);
 
-                    RCFCore.Logger?.LogInformationSource($"The game additional files were removed");
+                    RL.Logger?.LogInformationSource($"The game additional files were removed");
                 }
             }
             catch (Exception ex)

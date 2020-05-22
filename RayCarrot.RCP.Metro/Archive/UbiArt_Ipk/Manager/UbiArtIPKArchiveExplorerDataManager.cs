@@ -5,6 +5,7 @@ using RayCarrot.Rayman.UbiArt;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -39,7 +40,7 @@ namespace RayCarrot.RCP.Metro
             // Get the data
             var data = archive.CastTo<UbiArtIpkData>();
 
-            RCFCore.Logger?.LogInformationSource("The directories are being retrieved for an IPK archive");
+            RL.Logger?.LogInformationSource("The directories are being retrieved for an IPK archive");
 
             // Helper method for getting the archive file data
             IArchiveFileData GetFileData(UbiArtIPKFileEntry file)
@@ -78,7 +79,7 @@ namespace RayCarrot.RCP.Metro
             // Load the current file
             var data = BinarySerializableHelpers.ReadFromStream<UbiArtIpkData>(archiveFileStream, Settings, RCFRCP.App.GetBinarySerializerLogger());
 
-            RCFCore.Logger?.LogInformationSource($"Read IPK file ({data.Version}) with {data.FilesCount} files");
+            RL.Logger?.LogInformationSource($"Read IPK file ({data.Version}) with {data.FilesCount} files");
 
             return data;
         }

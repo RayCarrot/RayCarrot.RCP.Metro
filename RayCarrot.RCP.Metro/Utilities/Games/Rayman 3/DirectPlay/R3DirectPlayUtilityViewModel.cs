@@ -4,6 +4,7 @@ using System.Management.Automation;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {

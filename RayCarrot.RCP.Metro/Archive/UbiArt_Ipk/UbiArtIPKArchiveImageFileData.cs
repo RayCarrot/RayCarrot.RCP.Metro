@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Media;
 using RayCarrot.Binary;
+using RayCarrot.Logging;
 using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
@@ -169,7 +170,7 @@ namespace RayCarrot.RCP.Metro
             SupportedImportFileExtensions = supportedImportFileExtensions.ToArray();
             SupportedExportFileExtensions = supportedExportFileExtensions.ToArray();
 
-            RCFCore.Logger?.LogTraceSource($"{FileName} has been initialized");
+            RL.Logger?.LogTraceSource($"{FileName} has been initialized");
 
             HasInitializedData = true;
         }

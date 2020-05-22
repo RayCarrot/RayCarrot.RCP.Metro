@@ -23,6 +23,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Shell;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -111,7 +112,7 @@ namespace RayCarrot.RCP.Metro
             {
                 await RCFData.UserDataCollection.AddUserDataAsync<AppUserData>(CommonPaths.AppUserDataPath);
 
-                RCFCore.Logger?.LogInformationSource($"The app user data has been loaded");
+                RL.Logger?.LogInformationSource($"The app user data has been loaded");
             }
             catch (Exception ex)
             {
@@ -146,7 +147,7 @@ namespace RayCarrot.RCP.Metro
             // Run basic startup
             await BasicStartupAsync();
 
-            RCFCore.Logger?.LogInformationSource($"Current version is {RCFRCP.App.CurrentAppVersion}");
+            RL.Logger?.LogInformationSource($"Current version is {RCFRCP.App.CurrentAppVersion}");
 
             // Check if it's a new version
             if (Data.LastVersion < RCFRCP.App.CurrentAppVersion)
@@ -162,7 +163,7 @@ namespace RayCarrot.RCP.Metro
             // Check if it's a lower version than previously recorded
             else if (Data.LastVersion > RCFRCP.App.CurrentAppVersion)
             {
-                RCFCore.Logger?.LogWarningSource($"A newer version ({Data.LastVersion}) has been recorded in the application data");
+                RL.Logger?.LogWarningSource($"A newer version ({Data.LastVersion}) has been recorded in the application data");
 
                 if (!Data.DisableDowngradeWarning)
                     await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, RCFRCP.App.CurrentAppVersion,
@@ -199,7 +200,7 @@ namespace RayCarrot.RCP.Metro
             // Save window state
             RCFRCP.Data.WindowState = WindowSessionState.GetWindowState(mainWindow);
 
-            RCFCore.Logger?.LogInformationSource($"The application is exiting...");
+            RL.Logger?.LogInformationSource($"The application is exiting...");
 
             // Save all user data
             await RCFRCP.App.SaveUserDataAsync();
@@ -331,7 +332,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Setting user level from args");
+                    ExceptionExtensions.HandleError(ex, "Setting user level from args");
                 }
             }
 
@@ -345,12 +346,12 @@ namespace RayCarrot.RCP.Metro
                     if (updateFile.FileExists)
                     {
                         updateFile.GetFileInfo().Delete();
-                        RCFCore.Logger?.LogInformationSource($"The updater was deleted");
+                        RL.Logger?.LogInformationSource($"The updater was deleted");
                     }
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Deleting updater");
+                    ExceptionExtensions.HandleError(ex, "Deleting updater");
                 }
             }
 
@@ -361,7 +362,7 @@ namespace RayCarrot.RCP.Metro
             {
                 Data.ApplicationPath = appPath;
 
-                RCFCore.Logger?.LogInformationSource("The application path has been updated");
+                RL.Logger?.LogInformationSource("The application path has been updated");
             }
 
             // Deploy additional files
@@ -436,7 +437,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        ex.HandleError("Moving Fiesta Run backups to 5.0.0 standard");
+                        ExceptionExtensions.HandleError(ex, "Moving Fiesta Run backups to 5.0.0 standard");
 
                         await RCFUI.MessageUI.DisplayMessageAsync(Metro.Resources.PostUpdate_MigrateFiestaRunBackup5Error, Metro.Resources.PostUpdate_MigrateBackupErrorHeader, MessageType.Error);
                     }
@@ -449,7 +450,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Cleaning pre-5.0.0 temp");
+                    ExceptionExtensions.HandleError(ex, "Cleaning pre-5.0.0 temp");
                 }
 
                 Data.DisableDowngradeWarning = false;
@@ -510,11 +511,11 @@ namespace RayCarrot.RCP.Metro
                             // Delete the sub-key
                             parentKey.DeleteSubKey(regUninstallKeyName);
 
-                            RCFCore.Logger?.LogInformationSource("The program Registry key has been deleted");
+                            RL.Logger?.LogInformationSource("The program Registry key has been deleted");
                         }
                         catch (Exception ex)
                         {
-                            ex.HandleError("Removing uninstall Registry key");
+                            ExceptionExtensions.HandleError(ex, "Removing uninstall Registry key");
 
                             await RCFUI.MessageUI.DisplayMessageAsync($"The Registry key {keyPath} could not be removed", MessageType.Error);
                         }
@@ -585,7 +586,7 @@ namespace RayCarrot.RCP.Metro
                 // Add to removed games
                 removed.Add(game);
 
-                RCFCore.Logger?.LogInformationSource($"The game {game} has been removed due to not being valid");
+                RL.Logger?.LogInformationSource($"The game {game} has been removed due to not being valid");
             }
 
             // Refresh if any games were removed
@@ -630,21 +631,21 @@ namespace RayCarrot.RCP.Metro
                     // Try for 2 seconds first
                     if (retryTime < 20)
                     {
-                        RCFCore.Logger?.LogDebugSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
+                        RL.Logger?.LogDebugSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
 
                         await Task.Delay(100);
                     }
                     // Now it's taking a long time... Try for 10 more seconds
                     else if (retryTime < 70)
                     {
-                        RCFCore.Logger?.LogWarningSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
+                        RL.Logger?.LogWarningSource($"The updater can not be removed due to not having write access. Retrying {retryTime}");
 
                         await Task.Delay(200);
                     }
                     // Give up and let the deleting of the file give an error message
                     else
                     {
-                        RCFCore.Logger?.LogCriticalSource($"The updater can not be removed due to not having write access");
+                        RL.Logger?.LogCriticalSource($"The updater can not be removed due to not having write access");
                         break;
                     }
                 }
@@ -654,11 +655,11 @@ namespace RayCarrot.RCP.Metro
                     // Remove the updater
                     RCFRCP.File.DeleteFile(CommonPaths.UpdaterFilePath);
 
-                    RCFCore.Logger?.LogInformationSource($"The updater has been removed");
+                    RL.Logger?.LogInformationSource($"The updater has been removed");
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleCritical("Removing updater");
+                    ExceptionExtensions.HandleCritical(ex, "Removing updater");
                 }
             }
 
@@ -714,11 +715,11 @@ namespace RayCarrot.RCP.Metro
 
                         if (!PreviousBackupLocation.DirectoryExists)
                         {
-                            RCFCore.Logger?.LogInformationSource("The backup location has been changed, but the previous directory does not exist");
+                            RL.Logger?.LogInformationSource("The backup location has been changed, but the previous directory does not exist");
                             return;
                         }
 
-                        RCFCore.Logger?.LogInformationSource("The backup location has been changed and old backups are being moved...");
+                        RL.Logger?.LogInformationSource("The backup location has been changed and old backups are being moved...");
 
                         await RCFRCP.App.MoveBackupsAsync(PreviousBackupLocation, Data.BackupLocation);
 
@@ -780,7 +781,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     if (RCFRCP.Data.JumpListItemIDCollection == null)
                     {
-                        RCFCore.Logger?.LogWarningSource("The jump could not refresh due to collection not existing");
+                        RL.Logger?.LogWarningSource("The jump could not refresh due to collection not existing");
 
                         return;
                     }
@@ -810,11 +811,11 @@ namespace RayCarrot.RCP.Metro
                         // Apply the new jump list
                         Apply();
 
-                    RCFCore.Logger?.LogInformationSource("The jump list has been refreshed");
+                    RL.Logger?.LogInformationSource("The jump list has been refreshed");
                 }
                 catch (Exception ex)
                 {
-                    ex.HandleError("Creating jump list");
+                    ExceptionExtensions.HandleError(ex, "Creating jump list");
                 }
             });
         }

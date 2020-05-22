@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -40,7 +41,7 @@ namespace RayCarrot.RCP.Metro
             if (IsCompressed)
                 TotalMaxProgress += 10 * InputSources.Count;
 
-            RCFCore.Logger?.LogInformationSource($"A download operation has started with the {(isCompressed ? "compressed" : "")} files {InputSources.JoinItems(", ")}");
+            RL.Logger?.LogInformationSource($"A download operation has started with the {(isCompressed ? "compressed" : "")} files {InputSources.JoinItems(", ")}");
         }
 
         #endregion
@@ -251,7 +252,7 @@ namespace RayCarrot.RCP.Metro
                 // Download files
                 foreach (var item in InputSources)
                 {
-                    RCFCore.Logger?.LogInformationSource($"The file {item} is being downloaded");
+                    RL.Logger?.LogInformationSource($"The file {item} is being downloaded");
 
                     await WCServer.DownloadFileTaskAsync(item, ServerTempDir.TempPath + Path.GetFileName(item.AbsolutePath));
                     ItemCurrentProgress = 100;
@@ -305,7 +306,7 @@ namespace RayCarrot.RCP.Metro
 
             if (await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_Cancel, Resources.Download_CancelHeader, MessageType.Question, true))
             {
-                RCFCore.Logger?.LogInformationSource($"The downloader has been requested to cancel");
+                RL.Logger?.LogInformationSource($"The downloader has been requested to cancel");
                 WCServer?.CancelAsync();
                 CancellationRequested = true;
             }
@@ -385,7 +386,7 @@ namespace RayCarrot.RCP.Metro
 
             DownloadState = DownloadStates.Succeeded;
 
-            RCFCore.Logger?.LogInformationSource($"The download operation has completed");
+            RL.Logger?.LogInformationSource($"The download operation has completed");
 
             await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_Success, Resources.Download_SuccessHeader, MessageType.Success);
             OnDownloadComplete();

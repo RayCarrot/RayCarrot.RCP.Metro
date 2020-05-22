@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -54,7 +55,7 @@ namespace RayCarrot.RCP.Metro
 
             IsIconVisible = true;
 
-            RCFCore.Logger?.LogInformationSource("The program has been minimized to tray");
+            RL.Logger?.LogInformationSource("The program has been minimized to tray");
         }
 
         /// <summary>
@@ -68,7 +69,7 @@ namespace RayCarrot.RCP.Metro
 
             IsIconVisible = false;
 
-            RCFCore.Logger?.LogInformationSource("The program has been shown from the tray icon");
+            RL.Logger?.LogInformationSource("The program has been shown from the tray icon");
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace RayCarrot.RCP.Metro
             // Open the app
             OpenFromTaskbar();
 
-            RCFCore.Logger?.LogInformationSource("The program is being closed from the tray icon");
+            RL.Logger?.LogInformationSource("The program is being closed from the tray icon");
 
             // Shut down the app
             await Metro.App.Current.ShutdownRCFAppAsync(false);

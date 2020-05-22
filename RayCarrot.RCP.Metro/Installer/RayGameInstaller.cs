@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -218,7 +219,7 @@ namespace RayCarrot.RCP.Metro
                 // Save drive information if new items were added
                 if (anyAdded)
                 {
-                    RCFCore.Logger?.LogInformationSource($"The drive {drive} was added to the installation");
+                    RL.Logger?.LogInformationSource($"The drive {drive} was added to the installation");
 
                     // Get the drive info
                     var driveInfo = new RayGameDriveInfo(drive, new DriveInfo(drive).VolumeLabel);
@@ -235,7 +236,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 else
                 {
-                    RCFCore.Logger?.LogInformationSource($"The drive {drive} was not added to the installation");
+                    RL.Logger?.LogInformationSource($"The drive {drive} was not added to the installation");
                 }
 
                 // Check if only optional items are remaining
@@ -258,7 +259,7 @@ namespace RayCarrot.RCP.Metro
             // Save the drives
             Drives = drives.ToArray();
 
-            RCFCore.Logger?.LogInformationSource($"The drives have been verified as {Drives.JoinItems(", ")}");
+            RL.Logger?.LogInformationSource($"The drives have been verified as {Drives.JoinItems(", ")}");
 
             return true;
         }
@@ -270,7 +271,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the drive is available, false if the request was canceled</returns>
         protected virtual async Task<bool> RequestDriveAsync(RayGameDriveInfo drive)
         {
-            RCFCore.Logger?.LogInformationSource($"The drive {drive.Root} has been requested");
+            RL.Logger?.LogInformationSource($"The drive {drive.Root} has been requested");
 
             // Make sure the drive is available
             while (!drive.IsAvailable)
@@ -288,7 +289,7 @@ namespace RayCarrot.RCP.Metro
                 OnStatusUpdated();
             }
 
-            RCFCore.Logger?.LogInformationSource($"The drive {drive.Root} is available");
+            RL.Logger?.LogInformationSource($"The drive {drive.Root} is available");
 
             return true;
         }
@@ -301,7 +302,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected virtual async Task HandleItemAsync(WebClient wc, RayGameInstallItem item)
         {
-            RCFCore.Logger?.LogDebugSource($"The installation item {item.BasePath} is being handled");
+            RL.Logger?.LogDebugSource($"The installation item {item.BasePath} is being handled");
 
             // Check if cancellation has been requested
             InstallData.CancellationToken.ThrowIfCancellationRequested();
@@ -320,7 +321,7 @@ namespace RayCarrot.RCP.Metro
                 // Flag that the item has been handled
                 item.ProcessStage = RayGameInstallItemStage.Complete;
 
-                RCFCore.Logger?.LogDebugSource($"The installation item {item.BasePath} has been handled as a directory");
+                RL.Logger?.LogDebugSource($"The installation item {item.BasePath} has been handled as a directory");
             }
             else if (item.InputPath.FileExists)
             {
@@ -333,11 +334,11 @@ namespace RayCarrot.RCP.Metro
                 // Flag that the item has been handled
                 item.ProcessStage = RayGameInstallItemStage.Complete;
 
-                RCFCore.Logger?.LogDebugSource($"The installation item {item.BasePath} has been handled as a file");
+                RL.Logger?.LogDebugSource($"The installation item {item.BasePath} has been handled as a file");
             }
             else
             {
-                RCFCore.Logger?.LogWarningSource($"The installation item {item.BasePath} is not a valid file or directory");
+                RL.Logger?.LogWarningSource($"The installation item {item.BasePath} is not a valid file or directory");
             }
 
             CurrentItem++;
@@ -375,13 +376,13 @@ namespace RayCarrot.RCP.Metro
 
                     ex.HandleError("Copying file");
 
-                    RCFCore.Logger?.LogInformationSource($"Failed to copy file {source.FullPath} during installation. Requesting retry.");
+                    RL.Logger?.LogInformationSource($"Failed to copy file {source.FullPath} during installation. Requesting retry.");
 
                     // Ask user to retry
                     if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_FileCopyError, source.Name, ex.Message), Resources.Installer_FileCopyErrorHeader, MessageType.Warning, true))
                         throw;
 
-                    RCFCore.Logger?.LogInformationSource($"Attempting to retry to copy file");
+                    RL.Logger?.LogInformationSource($"Attempting to retry to copy file");
 
                     // Remove partially copied file
                     FileManager.DeleteFile(destination);
@@ -402,7 +403,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task to run</returns>
         public virtual async Task<RayGameInstallerResult> InstallAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"An installation has begun");
+            RL.Logger?.LogInformationSource($"An installation has begun");
 
             // Flag indicating if the installation was completed
             bool complete = false;
@@ -422,12 +423,12 @@ namespace RayCarrot.RCP.Metro
                 if (!await VerifyInstallationAsync())
                     return RayGameInstallerResult.Canceled;
 
-                RCFCore.Logger?.LogInformationSource($"The installation has been verified");
+                RL.Logger?.LogInformationSource($"The installation has been verified");
 
                 // Check if the output directory already exists
                 if (InstallData.OutputDir.DirectoryExists)
                 {
-                    RCFCore.Logger?.LogInformationSource($"The installation output already exists");
+                    RL.Logger?.LogInformationSource($"The installation output already exists");
 
                     // Update the status to paused
                     OnStatusUpdated(OperationState.Paused);
@@ -499,7 +500,7 @@ namespace RayCarrot.RCP.Metro
                 // Flag that the installation completed
                 complete = true;
 
-                RCFCore.Logger?.LogInformationSource($"The installation has completed");
+                RL.Logger?.LogInformationSource($"The installation has completed");
 
                 return RayGameInstallerResult.Successful;
             }

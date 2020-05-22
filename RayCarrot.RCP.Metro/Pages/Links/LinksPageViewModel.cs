@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -102,7 +103,7 @@ namespace RayCarrot.RCP.Metro
 
                     time.Start();
 
-                    RCFCore.Logger?.LogInformationSource("The links are refreshing...");
+                    RL.Logger?.LogInformationSource("The links are refreshing...");
 
                     LocalLinkItems.Clear();
 
@@ -315,8 +316,8 @@ namespace RayCarrot.RCP.Metro
 
                     time.Stop();
 
-                    RCFCore.Logger?.LogInformationSource("The links have refreshed");
-                    RCFCore.Logger?.LogDebugSource($"The link refresh time was {time.ElapsedMilliseconds} ms");
+                    RL.Logger?.LogInformationSource("The links have refreshed");
+                    RL.Logger?.LogDebugSource($"The link refresh time was {time.ElapsedMilliseconds} ms");
                 }
                 catch (Exception ex)
                 {

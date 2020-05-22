@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.Binary;
+using RayCarrot.Logging;
 using RayCarrot.Rayman;
 
 // ReSharper disable StringLiteralTypo
@@ -183,7 +184,7 @@ namespace RayCarrot.RCP.Metro
                 // Apply the patch
                 PatchFile(true);
 
-                RCFCore.Logger?.LogInformationSource($"The Rayman Legends UbiRay utility has been applied");
+                RL.Logger?.LogInformationSource($"The Rayman Legends UbiRay utility has been applied");
 
                 IsApplied = true;
 
@@ -208,7 +209,7 @@ namespace RayCarrot.RCP.Metro
                 // Apply the patch
                 PatchFile(false);
 
-                RCFCore.Logger?.LogInformationSource($"The Rayman Legends UbiRay utility has been reverted");
+                RL.Logger?.LogInformationSource($"The Rayman Legends UbiRay utility has been reverted");
 
                 IsApplied = false;
 

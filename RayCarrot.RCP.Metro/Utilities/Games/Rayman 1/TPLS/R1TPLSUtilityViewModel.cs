@@ -3,6 +3,7 @@ using RayCarrot.UI;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -118,7 +119,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RCFCore.Logger?.LogInformationSource($"The TPLS utility is downloading...");
+                RL.Logger?.LogInformationSource($"The TPLS utility is downloading...");
 
                 // Check if the directory exists
                 if (CommonPaths.R1TPLSDir.DirectoryExists)
@@ -142,7 +143,7 @@ namespace RayCarrot.RCP.Metro
                 // Update the version
                 await Data.TPLSData.UpdateConfigAsync();
 
-                RCFCore.Logger?.LogInformationSource($"The TPLS utility has been downloaded");
+                RL.Logger?.LogInformationSource($"The TPLS utility has been downloaded");
             }
             catch (Exception ex)
             {
@@ -172,7 +173,7 @@ namespace RayCarrot.RCP.Metro
 
                 RCFRCP.Data.TPLSData = null;
 
-                RCFCore.Logger?.LogInformationSource($"The TPLS utility has been uninstalled");
+                RL.Logger?.LogInformationSource($"The TPLS utility has been uninstalled");
             }
             catch (Exception ex)
             {

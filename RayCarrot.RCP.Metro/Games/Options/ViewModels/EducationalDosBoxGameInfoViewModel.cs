@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -71,7 +72,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task EditGameAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"The educational game {GameData.Name} is being edited...");
+            RL.Logger?.LogInformationSource($"The educational game {GameData.Name} is being edited...");
 
             // Show the edit dialog and get the result
             var result = await RCFRCP.UI.EditEducationalDosGameAsync(new EducationalDosGameEditViewModel(GameData)
@@ -90,7 +91,7 @@ namespace RayCarrot.RCP.Metro
             if (result.Name.IsNullOrWhiteSpace())
             {
                 result.Name = GameData.InstallDir.Name;
-                RCFCore.Logger?.LogInformationSource($"The game name was blank and was defaulted to the installdir name");
+                RL.Logger?.LogInformationSource($"The game name was blank and was defaulted to the installdir name");
             }
 
             // Update the view model
@@ -103,7 +104,7 @@ namespace RayCarrot.RCP.Metro
 
             await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.EducationalOptions_EditSuccess);
 
-            RCFCore.Logger?.LogInformationSource($"The educational game {GameData.Name} has been edited");
+            RL.Logger?.LogInformationSource($"The educational game {GameData.Name} has been edited");
 
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
@@ -125,7 +126,7 @@ namespace RayCarrot.RCP.Metro
             // Open the location
             await RCFRCP.File.OpenExplorerLocationAsync(instDir);
 
-            RCFCore.Logger?.LogTraceSource($"The educational game {GameData.Name} install location was opened");
+            RL.Logger?.LogTraceSource($"The educational game {GameData.Name} install location was opened");
         }
 
         /// <summary>
@@ -134,12 +135,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RemoveGameAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"The educational game {GameData.Name} is being removed...");
+            RL.Logger?.LogInformationSource($"The educational game {GameData.Name} is being removed...");
 
             // Make sure it's not the last remaining game
             if (ParentVM.GameItems.Count <= 1)
             {
-                RCFCore.Logger?.LogInformationSource($"The educational game could not be removed due to being the last remaining game");
+                RL.Logger?.LogInformationSource($"The educational game could not be removed due to being the last remaining game");
 
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.EducationalOptions_RemoveErrorLastOne, Resources.EducationalOptions_RemoveErrorLastOneHeader, MessageType.Error);
                 return;
@@ -156,13 +157,13 @@ namespace RayCarrot.RCP.Metro
             ParentVM.GameItems.Remove(this);
             Data.EducationalDosBoxGames.Remove(GameData);
 
-            RCFCore.Logger?.LogInformationSource($"The educational game has been removed");
+            RL.Logger?.LogInformationSource($"The educational game has been removed");
 
             // Refresh the default if this game was the default
             if (isDefault)
             {
                 Games.EducationalDos.GetManager<RCPEducationalDOSBoxGame>().RefreshDefault();
-                RCFCore.Logger?.LogInformationSource($"The educational game was the default and it has now been refreshed");
+                RL.Logger?.LogInformationSource($"The educational game was the default and it has now been refreshed");
             }
 
             // Refresh

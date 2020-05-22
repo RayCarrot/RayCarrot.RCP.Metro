@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -57,7 +58,7 @@ namespace RayCarrot.RCP.Metro
                 // Replace the file
                 File.WriteAllBytes(path, Files.RAYMAN);
 
-                RCFCore.Logger?.LogInformationSource($"The Rayman 1 config file has been fixed");
+                RL.Logger?.LogInformationSource($"The Rayman 1 config file has been fixed");
 
                 await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R1U_FixConfig_Success);
             }

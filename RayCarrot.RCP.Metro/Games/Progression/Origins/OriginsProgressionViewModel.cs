@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using RayCarrot.Binary;
+using RayCarrot.Logging;
 using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
@@ -39,12 +40,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The progression slot view model</returns>
         protected ProgressionSlotViewModel GetProgressionSlotViewModel(FileSystemPath filePath, Func<string> slotNamegenerator)
         {
-            RCFCore.Logger?.LogInformationSource($"Origins slot {filePath.Name} is being loaded...");
+            RL.Logger?.LogInformationSource($"Origins slot {filePath.Name} is being loaded...");
 
             // Make sure the file exists
             if (!filePath.FileExists)
             {
-                RCFCore.Logger?.LogInformationSource($"Slot was not loaded due to not being found");
+                RL.Logger?.LogInformationSource($"Slot was not loaded due to not being found");
 
                 return null;
             }
@@ -52,7 +53,7 @@ namespace RayCarrot.RCP.Metro
             // Deserialize and get the data
             var saveData = BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(filePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCFRCP.App.GetBinarySerializerLogger()).SaveData;
 
-            RCFCore.Logger?.LogInformationSource($"Slot has been deserialized");
+            RL.Logger?.LogInformationSource($"Slot has been deserialized");
 
             // Get the level configuration
             var lvlConfig = JsonConvert.DeserializeObject<ROLevelConfig>(Files.RO_LevelConfig);
@@ -127,12 +128,12 @@ namespace RayCarrot.RCP.Metro
             progressItems.Add(new ProgressionInfoItemViewModel(ProgressionIcons.RO_Medal, new LocalizedString(() => $"{lumAttack3}/51")));
             progressItems.Add(new ProgressionInfoItemViewModel(ProgressionIcons.RO_Trophy, new LocalizedString(() => $"{timeAttack2}/31")));
 
-            RCFCore.Logger?.LogInformationSource($"General progress info has been set");
+            RL.Logger?.LogInformationSource($"General progress info has been set");
 
             // Calculate the percentage
             var percentage = ((electoons / 246d * 25) + (teeth / 10d * 25) + (lumAttack3 / 51d * 25) + (timeAttack2 / 31d * 25)).ToString("0.##");
 
-            RCFCore.Logger?.LogInformationSource($"Slot percentage is {percentage}%");
+            RL.Logger?.LogInformationSource($"Slot percentage is {percentage}%");
 
             // Return the data with the collection
             return new OriginsProgressionSlotViewModel(new LocalizedString(() => $"{slotNamegenerator()} ({percentage}%)"), progressItems.ToArray(), filePath, this);

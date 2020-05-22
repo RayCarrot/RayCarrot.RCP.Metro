@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using MahApps.Metro.IconPacks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
@@ -217,7 +218,7 @@ namespace RayCarrot.RCP.Metro
 
                 image.Freeze();
 
-                RCFCore.Logger?.LogDebugSource($"The link item image source has been created for the path '{path}'");
+                RL.Logger?.LogDebugSource($"The link item image source has been created for the path '{path}'");
 
                 IconCache.Add(path.FullPath, image);
 

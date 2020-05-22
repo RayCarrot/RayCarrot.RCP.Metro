@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -118,7 +119,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RefreshGameAsync(Games game)
         {
-            RCFCore.Logger?.LogInformationSource($"The displayed game {game} is being refreshed...");
+            RL.Logger?.LogInformationSource($"The displayed game {game} is being refreshed...");
 
             using (await AsyncLock.LockAsync())
             {
@@ -137,7 +138,7 @@ namespace RayCarrot.RCP.Metro
                     // Refresh the game in every category it's available in
                     foreach (var category in GameCategories.Where(x => x.Games.Contains(game)))
                     {
-                        RCFCore.Logger?.LogTraceSource($"The displayed game {game} in {category.DisplayName} is being refreshed...");
+                        RL.Logger?.LogTraceSource($"The displayed game {game} in {category.DisplayName} is being refreshed...");
 
                         // Get the collection containing the game
                         var collection = category.InstalledGames.Any(x => x.Game == game) ? category.InstalledGames : category.NotInstalledGames;
@@ -148,7 +149,7 @@ namespace RayCarrot.RCP.Metro
                         // Make sure we got a valid index
                         if (index == -1)
                         {
-                            RCFCore.Logger?.LogWarningSource($"The displayed game {game} in {category.DisplayName} could not be refreshed due to not existing in either game collection");
+                            RL.Logger?.LogWarningSource($"The displayed game {game} in {category.DisplayName} could not be refreshed due to not existing in either game collection");
 
                             return;
                         }
@@ -156,7 +157,7 @@ namespace RayCarrot.RCP.Metro
                         // Refresh the game
                         Application.Current.Dispatcher.Invoke(() => collection[index] = displayVM);
 
-                        RCFCore.Logger?.LogTraceSource($"The displayed game {game} in {category.DisplayName} has been refreshed");
+                        RL.Logger?.LogTraceSource($"The displayed game {game} in {category.DisplayName} has been refreshed");
                     }
                 }
                 catch (Exception ex)
@@ -166,7 +167,7 @@ namespace RayCarrot.RCP.Metro
                 }
             }
 
-            RCFCore.Logger?.LogInformationSource($"The displayed game {game} has been refreshed");
+            RL.Logger?.LogInformationSource($"The displayed game {game} has been refreshed");
         }
 
         /// <summary>
@@ -187,12 +188,12 @@ namespace RayCarrot.RCP.Metro
                     // Cache the game view models
                     var displayVMCache = new Dictionary<Games, GameDisplayViewModel>();
 
-                    RCFCore.Logger?.LogInformationSource($"All displayed games are being refreshed...");
+                    RL.Logger?.LogInformationSource($"All displayed games are being refreshed...");
 
                     // Refresh all categories
                     foreach (var category in GameCategories)
                     {
-                        RCFCore.Logger?.LogInformationSource($"The displayed games in {category.DisplayName.Value} are being refreshed...");
+                        RL.Logger?.LogInformationSource($"The displayed games in {category.DisplayName.Value} are being refreshed...");
 
                         try
                         {
@@ -234,7 +235,7 @@ namespace RayCarrot.RCP.Metro
                             throw;
                         }
 
-                        RCFCore.Logger?.LogInformationSource($"The displayed games in {category.DisplayName} have been refreshed with {category.InstalledGames.Count} installed and {category.NotInstalledGames.Count} not installed games");
+                        RL.Logger?.LogInformationSource($"The displayed games in {category.DisplayName} have been refreshed with {category.InstalledGames.Count} installed and {category.NotInstalledGames.Count} not installed games");
                     }
 
                     // Allow game finder to run only if there are games which have not been found

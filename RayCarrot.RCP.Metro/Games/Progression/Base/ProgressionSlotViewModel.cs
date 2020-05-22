@@ -5,6 +5,7 @@ using RayCarrot.UI;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -113,14 +114,14 @@ namespace RayCarrot.RCP.Metro
             if (outputResult.CanceledByUser)
                 return;
 
-            RCFCore.Logger?.LogInformationSource($"Progression data for slot {SlotName} is being exported...");
+            RL.Logger?.LogInformationSource($"Progression data for slot {SlotName} is being exported...");
 
             try
             {
                 // Export
                 await ExportSaveDataAsync(outputResult.SelectedFileLocation);
 
-                RCFCore.Logger?.LogInformationSource($"Progression data has been exported");
+                RL.Logger?.LogInformationSource($"Progression data has been exported");
 
                 await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_ExportSuccess);
             }
@@ -148,14 +149,14 @@ namespace RayCarrot.RCP.Metro
             if (inputResult.CanceledByUser)
                 return;
 
-            RCFCore.Logger?.LogInformationSource($"Progression data for slot {SlotName} is being imported...");
+            RL.Logger?.LogInformationSource($"Progression data for slot {SlotName} is being imported...");
 
             try
             {
                 // Import
                 await ImportSaveDataAsync(inputResult.SelectedFile);
 
-                RCFCore.Logger?.LogInformationSource($"Progression data has been imported");
+                RL.Logger?.LogInformationSource($"Progression data has been imported");
             }
             catch (Exception ex)
             {
@@ -170,7 +171,7 @@ namespace RayCarrot.RCP.Metro
                 // Reload data
                 await ProgressionViewModel.LoadDataAsync();
 
-                RCFCore.Logger?.LogInformationSource($"Progression data has been reloaded");
+                RL.Logger?.LogInformationSource($"Progression data has been reloaded");
             }
             catch (Exception ex)
             {

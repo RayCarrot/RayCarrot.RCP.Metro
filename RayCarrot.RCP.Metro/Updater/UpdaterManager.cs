@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 using RayCarrot.WPF;
 
@@ -24,7 +25,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The result</returns>
         public async Task<UpdaterCheckResult> CheckAsync(bool forceUpdate, bool includeBeta)
         {
-            RCFCore.Logger?.LogInformationSource($"Updates are being checked for");
+            RL.Logger?.LogInformationSource($"Updates are being checked for");
 
             string errorMessage = Resources.Update_UnknownError;
             Exception exception = null;
@@ -68,7 +69,7 @@ namespace RayCarrot.RCP.Metro
             // Flag indicating if the current update is a beta update
             bool isBetaUpdate = false;
 
-            RCFCore.Logger?.LogInformationSource($"The update manifest was retrieved");
+            RL.Logger?.LogInformationSource($"The update manifest was retrieved");
 
             try
             {
@@ -102,7 +103,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         else
                         {
-                            RCFCore.Logger?.LogInformationSource($"The latest version is installed");
+                            RL.Logger?.LogInformationSource($"The latest version is installed");
 
                             // Return the result
                             return new UpdaterCheckResult();
@@ -112,7 +113,7 @@ namespace RayCarrot.RCP.Metro
 
                 latestFoundVersion = isBetaUpdate ? latestBetaVersion : latestVersion;
 
-                RCFCore.Logger?.LogInformationSource($"A new version ({latestFoundVersion}) is available");
+                RL.Logger?.LogInformationSource($"A new version ({latestFoundVersion}) is available");
             }
             catch (Exception ex)
             {
@@ -168,7 +169,7 @@ namespace RayCarrot.RCP.Metro
                 // Deploy the updater
                 File.WriteAllBytes(CommonPaths.UpdaterFilePath, Files.Rayman_Control_Panel_Updater);
 
-                RCFCore.Logger?.LogInformationSource($"The updater was created");
+                RL.Logger?.LogInformationSource($"The updater was created");
             }
             catch (Exception ex)
             {

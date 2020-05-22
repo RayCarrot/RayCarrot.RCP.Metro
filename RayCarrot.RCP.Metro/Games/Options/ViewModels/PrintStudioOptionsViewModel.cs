@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -31,7 +32,7 @@ namespace RayCarrot.RCP.Metro
             CanSetVersion = currentVersion != null;
             _selectedVersion = currentVersion ?? PrintStudioVersion.Version_03;
 
-            RCFCore.Logger?.LogInformationSource($"The current Print Studio version has been detected as {SelectedVersion} with the option to set the version as {CanSetVersion}");
+            RL.Logger?.LogInformationSource($"The current Print Studio version has been detected as {SelectedVersion} with the option to set the version as {CanSetVersion}");
         }
 
         #endregion
@@ -127,7 +128,7 @@ namespace RayCarrot.RCP.Metro
             {
                 try
                 {
-                    RCFCore.Logger?.LogInformationSource("The Print Studio version is being updated...");
+                    RL.Logger?.LogInformationSource("The Print Studio version is being updated...");
 
                     // Helper method for getting version tag
                     static string GetVersionTag(PrintStudioVersion version) =>
@@ -152,12 +153,12 @@ namespace RayCarrot.RCP.Metro
                     // Get the current version
                     var previousVersion = GetCurrentVersion() ?? throw new Exception("Previous Print Studio version can not be null");
 
-                    RCFCore.Logger?.LogInformationSource($"The current version is {previousVersion}");
+                    RL.Logger?.LogInformationSource($"The current version is {previousVersion}");
 
                     // Make sure the version is different than the current one
                     if (previousVersion == SelectedVersion)
                     {
-                        RCFCore.Logger?.LogWarningSource("Print Studio version attempted to update when being the same");
+                        RL.Logger?.LogWarningSource("Print Studio version attempted to update when being the same");
                         return;
                     }
 
@@ -190,7 +191,7 @@ namespace RayCarrot.RCP.Metro
                         RCFRCP.File.MoveFiles(new IOSearchPattern(installDir + "CalendarData" + GetVersionTag(SelectedVersion) + lang), installDir + "Pictures" + lang + "calendars", true);
                     }
 
-                    RCFCore.Logger?.LogInformationSource($"The Print Studio version has been updated");
+                    RL.Logger?.LogInformationSource($"The Print Studio version has been updated");
                 }
                 catch (Exception ex)
                 {

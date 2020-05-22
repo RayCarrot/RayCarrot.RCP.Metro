@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Media;
 using RayCarrot.Binary;
+using RayCarrot.Logging;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace RayCarrot.RCP.Metro
@@ -195,7 +196,7 @@ namespace RayCarrot.RCP.Metro
 
             // Make sure we read the entire file
             if (stream.Position != stream.Length)
-                RCFCore.Logger?.LogWarningSource($"The GF file {FileName} was not fully read");
+                RL.Logger?.LogWarningSource($"The GF file {FileName} was not fully read");
 
             // Return the data
             return data;

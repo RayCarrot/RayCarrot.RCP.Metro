@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -52,7 +53,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task AddGameAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"A new educational game is being added...");
+            RL.Logger?.LogInformationSource($"A new educational game is being added...");
 
             // Get the manager
             var manager = Games.EducationalDos.GetManager<RCPEducationalDOSBoxGame>();
@@ -78,7 +79,7 @@ namespace RayCarrot.RCP.Metro
             // Add to the jump list
             Data.JumpListItemIDCollection.Add(newItem.ID);
 
-            RCFCore.Logger?.LogInformationSource($"A new educational game has been added with the name {newItem.Name}");
+            RL.Logger?.LogInformationSource($"A new educational game has been added with the name {newItem.Name}");
 
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
@@ -93,7 +94,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task SaveAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"The educational game options are saving...");
+            RL.Logger?.LogInformationSource($"The educational game options are saving...");
 
             // Clear the games
             Data.EducationalDosBoxGames.Clear();
@@ -112,7 +113,7 @@ namespace RayCarrot.RCP.Metro
             // Refresh
             await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.EducationalDos, false, true, true, true));
 
-            RCFCore.Logger?.LogInformationSource($"The educational game options have saved");
+            RL.Logger?.LogInformationSource($"The educational game options have saved");
         }
 
         #endregion

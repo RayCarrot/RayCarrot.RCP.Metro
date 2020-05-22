@@ -8,6 +8,7 @@ using MahApps.Metro;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -134,7 +135,7 @@ namespace RayCarrot.RCP.Metro
                     if (CurrentInput.Any())
                     {
                         CurrentInput.Clear();
-                        RCFCore.Logger?.LogDebugSource("The secret code inputs were reset due to an invalid key being pressed");
+                        RL.Logger?.LogDebugSource("The secret code inputs were reset due to an invalid key being pressed");
                     }
 
                     return;
@@ -150,7 +151,7 @@ namespace RayCarrot.RCP.Metro
                     return;
 
                 CurrentInput.Clear();
-                RCFCore.Logger?.LogDebugSource("The secret code inputs were reset due to a valid code having been entered");
+                RL.Logger?.LogDebugSource("The secret code inputs were reset due to a valid code having been entered");
 
                 // Run the task
                 await task();

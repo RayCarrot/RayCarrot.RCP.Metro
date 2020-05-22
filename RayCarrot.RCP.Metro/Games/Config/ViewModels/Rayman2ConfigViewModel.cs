@@ -10,6 +10,7 @@ using ByteSizeLib;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.Rayman.UbiIni;
 using RayCarrot.UI;
 
@@ -335,7 +336,7 @@ namespace RayCarrot.RCP.Metro
             {
                 HashSet<KeyMappingItem> result;
 
-                RCFCore.Logger?.LogInformationSource($"Loading current button mapping...");
+                RL.Logger?.LogInformationSource($"Loading current button mapping...");
 
                 try
                 {
@@ -351,7 +352,7 @@ namespace RayCarrot.RCP.Metro
                 if (result == null)
                     return;
 
-                RCFCore.Logger?.LogDebugSource($"{result.Count} key items retrieved");
+                RL.Logger?.LogDebugSource($"{result.Count} key items retrieved");
 
                 // Process each item
                 foreach (var item in result)
@@ -400,12 +401,12 @@ namespace RayCarrot.RCP.Metro
             // Get the config path
             ConfigPath = GetUbiIniPath();
 
-            RCFCore.Logger?.LogInformationSource($"The ubi.ini path has been retrieved as {ConfigPath}");
+            RL.Logger?.LogInformationSource($"The ubi.ini path has been retrieved as {ConfigPath}");
 
             // Get the dinput type
             var dt = CanModifyGame ? GetCurrentDinput() : R2Dinput.Unknown;
 
-            RCFCore.Logger?.LogInformationSource($"The dinput type has been retrieved as {dt}");
+            RL.Logger?.LogInformationSource($"The dinput type has been retrieved as {dt}");
 
             ControllerSupport = dt == R2Dinput.Controller;
 
@@ -423,7 +424,7 @@ namespace RayCarrot.RCP.Metro
                     // Create the file
                     RCFRCP.File.CreateFile(newFile);
 
-                    RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {newFile.FullPath}");
+                    RL.Logger?.LogInformationSource($"A new ubi.ini file has been created under {newFile.FullPath}");
                 }
                 catch (Exception ex)
                 {
@@ -454,7 +455,7 @@ namespace RayCarrot.RCP.Metro
                 var dt = GetCurrentDinput();
                 var path = GetDinputPath();
 
-                RCFCore.Logger?.LogInformationSource($"The dinput type has been retrieved as {dt}");
+                RL.Logger?.LogInformationSource($"The dinput type has been retrieved as {dt}");
 
                 if (ControllerSupport)
                 {
@@ -522,7 +523,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RCFCore.Logger?.LogInformationSource($"The Rayman 2 aspect ratio is being set...");
+                RL.Logger?.LogInformationSource($"The Rayman 2 aspect ratio is being set...");
 
                 // Get the file path
                 FileSystemPath path = Games.Rayman2.GetInstallDir(false) + Games.Rayman2.GetGameInfo().DefaultFileName;
@@ -530,7 +531,7 @@ namespace RayCarrot.RCP.Metro
                 // Make sure the file exists
                 if (!path.FileExists)
                 {
-                    RCFCore.Logger?.LogWarningSource("The Rayman 2 executable could not be found");
+                    RL.Logger?.LogWarningSource("The Rayman 2 executable could not be found");
 
                     if (WidescreenSupport)
                         await RCFUI.MessageUI.DisplayMessageAsync(Resources.R2Widescreen_ExeNotFound, MessageType.Error);
@@ -541,12 +542,12 @@ namespace RayCarrot.RCP.Metro
                 // Get the location
                 var location = GetAspectRatioLocation(path);
 
-                RCFCore.Logger?.LogDebugSource($"The aspect ratio byte location has been detected as {location}");
+                RL.Logger?.LogDebugSource($"The aspect ratio byte location has been detected as {location}");
 
                 // Cancel if unknown version
                 if (location == -1)
                 {
-                    RCFCore.Logger?.LogInformationSource($"The Rayman 2 executable file size does not match any supported version");
+                    RL.Logger?.LogInformationSource($"The Rayman 2 executable file size does not match any supported version");
 
                     if (WidescreenSupport)
                         await RCFUI.MessageUI.DisplayMessageAsync(Resources.R2Widescreen_ExeNotValid, MessageType.Error);
@@ -572,7 +573,7 @@ namespace RayCarrot.RCP.Metro
                         .Select(x => Convert.ToByte(value.Substring(x, 2), 16))
                         .ToArray();
 
-                    RCFCore.Logger?.LogDebugSource($"The Rayman 2 aspect ratio bytes detected as {input.JoinItems(", ")}");
+                    RL.Logger?.LogDebugSource($"The Rayman 2 aspect ratio bytes detected as {input.JoinItems(", ")}");
 
                     // Open the file
                     using (Stream stream = File.Open(path, FileMode.Open, FileAccess.Write, FileShare.Read))
@@ -584,7 +585,7 @@ namespace RayCarrot.RCP.Metro
                         await stream.WriteAsync(input, 0, input.Length);
                     }
 
-                    RCFCore.Logger?.LogInformationSource($"The Rayman 2 aspect ratio has been set");
+                    RL.Logger?.LogInformationSource($"The Rayman 2 aspect ratio has been set");
                 }
                 // Restore to 4/3 if modified previously
                 else
@@ -604,7 +605,7 @@ namespace RayCarrot.RCP.Metro
                     // Check if the data has been modified
                     if (CheckAspectRatio(buffer))
                     {
-                        RCFCore.Logger?.LogInformationSource($"The Rayman 2 aspect ratio has been detected as modified");
+                        RL.Logger?.LogInformationSource($"The Rayman 2 aspect ratio has been detected as modified");
 
                         // Close previous stream and open a new stream
                         readStream.Dispose();
@@ -623,7 +624,7 @@ namespace RayCarrot.RCP.Metro
                             63
                         }, 0, 4);
 
-                        RCFCore.Logger?.LogInformationSource($"The Rayman 2 aspect ratio has been restored");
+                        RL.Logger?.LogInformationSource($"The Rayman 2 aspect ratio has been restored");
                     }
                 }
             }
@@ -802,7 +803,7 @@ namespace RayCarrot.RCP.Metro
                 // Check if the data has been modified
                 if (CheckAspectRatio(buffer))
                 {
-                    RCFCore.Logger?.LogInformationSource($"The Rayman 2 aspect ratio has been detected as modified");
+                    RL.Logger?.LogInformationSource($"The Rayman 2 aspect ratio has been detected as modified");
 
                     return true;
                 }

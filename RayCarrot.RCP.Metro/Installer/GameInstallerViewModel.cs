@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -21,7 +22,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="game"></param>
         public GameInstallerViewModel(Games game)
         {
-            RCFCore.Logger?.LogInformationSource($"An installation has been requested for the game {game}");
+            RL.Logger?.LogInformationSource($"An installation has been requested for the game {game}");
 
             // Create the commands
             InstallCommand = new AsyncRelayCommand(InstallAsync);
@@ -187,7 +188,7 @@ namespace RayCarrot.RCP.Metro
 
             if (await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_CancelQuestion, Resources.Installer_CancelQuestionHeader, MessageType.Question, true))
             {
-                RCFCore.Logger?.LogInformationSource($"The installation has been requested to cancel");
+                RL.Logger?.LogInformationSource($"The installation has been requested to cancel");
                 CancellationTokenSource.Cancel();
             }
         }
@@ -198,7 +199,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task RefreshGifsAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"The gif images are being refreshed for the installation");
+            RL.Logger?.LogInformationSource($"The gif images are being refreshed for the installation");
 
             ShowGifImage = true;
 
@@ -227,7 +228,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure the installer is not already running
             if (InstallerRunning)
             {
-                RCFCore.Logger?.LogWarningSource($"A requested installation was canceled due to already running");
+                RL.Logger?.LogWarningSource($"A requested installation was canceled due to already running");
                 return;
             }
 
@@ -268,7 +269,7 @@ namespace RayCarrot.RCP.Metro
                 // Run the installer
                 var result = await Task.Run(async () => await installer.InstallAsync());
 
-                RCFCore.Logger?.LogInformationSource($"The installation finished with the result of {result}");
+                RL.Logger?.LogInformationSource($"The installation finished with the result of {result}");
 
                 // Make sure the result was successful
                 if (result == RayGameInstallerResult.Successful)

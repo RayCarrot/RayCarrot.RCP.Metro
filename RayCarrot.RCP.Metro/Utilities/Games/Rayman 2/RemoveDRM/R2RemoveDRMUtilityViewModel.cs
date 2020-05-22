@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Logging;
 using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro

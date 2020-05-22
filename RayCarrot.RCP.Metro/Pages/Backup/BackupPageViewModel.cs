@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -137,7 +138,7 @@ namespace RayCarrot.RCP.Metro
                 // Confirm backup
                 if (!await RCFUI.MessageUI.DisplayMessageAsync(Resources.Backup_ConfirmBackupAll, Resources.Backup_ConfirmBackupAllHeader, MessageType.Warning, true))
                 {
-                    RCFCore.Logger?.LogInformationSource($"Backup canceled");
+                    RL.Logger?.LogInformationSource($"Backup canceled");
 
                     return;
                 }

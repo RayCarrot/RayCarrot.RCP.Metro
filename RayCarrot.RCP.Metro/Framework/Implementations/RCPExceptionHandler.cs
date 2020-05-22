@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
 using RayCarrot.Extensions;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {

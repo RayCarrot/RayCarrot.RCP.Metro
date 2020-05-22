@@ -5,6 +5,7 @@ using RayCarrot.UI;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -73,7 +74,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RCFCore.Logger?.LogInformationSource($"The Rayman 1 soundtrack is being replaced with the {(IsOriginalMusic ? "complete version" : "original version")}");
+                RL.Logger?.LogInformationSource($"The Rayman 1 soundtrack is being replaced with the {(IsOriginalMusic ? "complete version" : "original version")}");
 
                 // Download the files
                 var succeeded = await App.DownloadAsync(new Uri[]

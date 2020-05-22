@@ -6,6 +6,7 @@ using System.Windows;
 using MahApps.Metro.IconPacks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
@@ -254,7 +255,7 @@ namespace RayCarrot.RCP.Metro
                         // Open the location
                         await RCFRCP.File.OpenExplorerLocationAsync(instDir);
 
-                        RCFCore.Logger?.LogTraceSource($"The Game {Game} install location was opened");
+                        RL.Logger?.LogTraceSource($"The Game {Game} install location was opened");
                     }), UserLevel.Advanced));
 
                     actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
@@ -262,7 +263,7 @@ namespace RayCarrot.RCP.Metro
                     // Add Game options
                     actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.CogOutline, new RelayCommand(() =>
                     {
-                        RCFCore.Logger?.LogTraceSource($"The Game {Game} options dialog is opening...");
+                        RL.Logger?.LogTraceSource($"The Game {Game} options dialog is opening...");
                         GameOptionsDialog.Show(Game);
                     })));
 
@@ -391,14 +392,14 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RCFCore.Logger?.LogTraceSource($"The game {Game} is being located...");
+                RL.Logger?.LogTraceSource($"The game {Game} is being located...");
 
                 var typeResult = await GetGameTypeAsync();
 
                 if (typeResult.CanceledByUser)
                     return;
 
-                RCFCore.Logger?.LogInformationSource($"The game {Game} type has been detected as {typeResult.SelectedType}");
+                RL.Logger?.LogInformationSource($"The game {Game} type has been detected as {typeResult.SelectedType}");
 
                 await Game.GetManager(typeResult.SelectedType).LocateAddGameAsync();
             }
@@ -417,7 +418,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RCFCore.Logger?.LogTraceSource($"The game {Game} is being downloaded...");
+                RL.Logger?.LogTraceSource($"The game {Game} is being downloaded...");
 
                 // Get the game directory
                 var gameDir = CommonPaths.GamesBaseDir + Game.ToString();
@@ -437,7 +438,7 @@ namespace RayCarrot.RCP.Metro
                 // Refresh
                 await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
 
-                RCFCore.Logger?.LogTraceSource($"The game {Game} has been downloaded");
+                RL.Logger?.LogTraceSource($"The game {Game} has been downloaded");
 
                 await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.GameInstall_Success, DisplayName), Resources.GameInstall_SuccessHeader);
             }

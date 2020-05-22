@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -81,12 +82,12 @@ namespace RayCarrot.RCP.Metro
             // Get the launch info
             GameLaunchInfo launchInfo = GetLaunchInfo();
 
-            RCFCore.Logger?.LogTraceSource($"The game {Game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
+            RL.Logger?.LogTraceSource($"The game {Game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
 
             // Launch the game
             var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, forceRunAsAdmin || Game.GetLaunchMode() == GameLaunchMode.AsAdmin, launchInfo.Args);
 
-            RCFCore.Logger?.LogInformationSource($"The game {Game} has been launched");
+            RL.Logger?.LogInformationSource($"The game {Game} has been launched");
 
             return new GameLaunchResult(process, process != null);
         }
@@ -120,7 +121,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure the directory is valid
             if (!await IsValidAsync(result.SelectedDirectory))
             {
-                RCFCore.Logger?.LogInformationSource($"The selected install directory for {Game} is not valid");
+                RL.Logger?.LogInformationSource($"The selected install directory for {Game} is not valid");
 
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation,
                     Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
@@ -166,7 +167,7 @@ namespace RayCarrot.RCP.Metro
             // Create the shortcut
             RCFRCP.File.CreateFileShortcut(shortcutName, destinationDirectory, launchInfo.Path, launchInfo.Args);
 
-            RCFCore.Logger?.LogTraceSource($"A shortcut was created for {Game} under {destinationDirectory}");
+            RL.Logger?.LogTraceSource($"A shortcut was created for {Game} under {destinationDirectory}");
         }
 
         #endregion

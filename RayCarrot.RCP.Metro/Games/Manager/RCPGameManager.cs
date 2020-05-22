@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -151,12 +152,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task LaunchGameAsync(bool forceRunAsAdmin)
         {
-            RCFCore.Logger?.LogTraceSource($"The game {Game} is being launched...");
+            RL.Logger?.LogTraceSource($"The game {Game} is being launched...");
 
             // Verify that the game can launch
             if (!await VerifyCanLaunchAsync())
             {
-                RCFCore.Logger?.LogInformationSource($"The game {Game} could not be launched");
+                RL.Logger?.LogInformationSource($"The game {Game} could not be launched");
                 return;
             }
 
@@ -186,7 +187,7 @@ namespace RayCarrot.RCP.Metro
             // Refresh
             await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
 
-            RCFCore.Logger?.LogInformationSource($"The game {Game} has been added");
+            RL.Logger?.LogInformationSource($"The game {Game} has been added");
         }
 
         #endregion

@@ -4,6 +4,7 @@ using System.Windows;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -238,7 +239,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override Task SetupAsync()
         {
-            RCFCore.Logger?.LogInformationSource("Rabbids Go Home config is being set up");
+            RL.Logger?.LogInformationSource("Rabbids Go Home config is being set up");
 
             // Get the current launch data
             var launchData = Data.RabbidsGoHomeLaunchData;
@@ -257,7 +258,7 @@ namespace RayCarrot.RCP.Metro
 
             UnsavedChanges = false;
 
-            RCFCore.Logger?.LogInformationSource($"All values have been loaded");
+            RL.Logger?.LogInformationSource($"All values have been loaded");
 
             return Task.CompletedTask;
         }
@@ -270,7 +271,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                RCFCore.Logger?.LogInformationSource($"Rabbids Go Home configuration is saving...");
+                RL.Logger?.LogInformationSource($"Rabbids Go Home configuration is saving...");
 
                 // Set the launch data
                 Data.RabbidsGoHomeLaunchData = EnableCustomSettings ? 
@@ -280,7 +281,7 @@ namespace RayCarrot.RCP.Metro
                 // Refresh
                 await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RabbidsGoHome, false, false, false, true));
 
-                RCFCore.Logger?.LogInformationSource($"Rabbids Go Home configuration has been saved");
+                RL.Logger?.LogInformationSource($"Rabbids Go Home configuration has been saved");
 
                 UnsavedChanges = false;
 

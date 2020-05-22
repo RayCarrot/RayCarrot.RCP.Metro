@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.WindowsAPICodePack.Shell;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -42,7 +43,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RCFCore.Logger?.LogInformationSource($"The Rayman Origins disc updater is being downloaded...");
+                RL.Logger?.LogInformationSource($"The Rayman Origins disc updater is being downloaded...");
 
                 // Download the file
                 var succeeded = await App.DownloadAsync(new Uri[]

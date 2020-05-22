@@ -4,6 +4,7 @@ using RayCarrot.Binary;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 
@@ -84,7 +85,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="files">The import data for the archive files</param>
         public void UpdateArchive(object archive, Stream outputFileStream, IEnumerable<IArchiveImportData> files)
         {
-            RCFCore.Logger?.LogInformationSource($"A CNT archive is being repacked...");
+            RL.Logger?.LogInformationSource($"A CNT archive is being repacked...");
 
             // Get the archive data
             var data = archive.CastTo<OpenSpaceCntData>();
@@ -137,7 +138,7 @@ namespace RayCarrot.RCP.Metro
             // Serialize the data
             BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCFRCP.App.GetBinarySerializerLogger());
 
-            RCFCore.Logger?.LogInformationSource($"The CNT archive has been repacked");
+            RL.Logger?.LogInformationSource($"The CNT archive has been repacked");
         }
 
         #endregion

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -98,7 +99,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure we got a directory
                     if (dir == null)
                     {
-                        RCFCore.Logger?.LogInformationSource($"The {Game} was not found under Windows Store packages");
+                        RL.Logger?.LogInformationSource($"The {Game} was not found under Windows Store packages");
                         continue;
                     }
 
@@ -108,7 +109,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure we got a valid directory
                     if (!await IsValidAsync(installDir, version))
                     {
-                        RCFCore.Logger?.LogInformationSource($"The {Game} install directory was not valid");
+                        RL.Logger?.LogInformationSource($"The {Game} install directory was not valid");
 
                         continue;
                     }

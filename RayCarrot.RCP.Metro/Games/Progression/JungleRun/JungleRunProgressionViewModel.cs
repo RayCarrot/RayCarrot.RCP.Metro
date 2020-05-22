@@ -4,6 +4,7 @@ using RayCarrot.Rayman.UbiArt;
 using RayCarrot.UI;
 using System;
 using RayCarrot.Binary;
+using RayCarrot.Logging;
 using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
@@ -36,7 +37,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The progression slot view model</returns>
         protected ProgressionSlotViewModel GetProgressionSlotViewModel(FileSystemPath fileName, Func<string> slotNamegenerator)
         {
-            RCFCore.Logger?.LogInformationSource($"Jungle Run slot {fileName.Name} is being loaded...");
+            RL.Logger?.LogInformationSource($"Jungle Run slot {fileName.Name} is being loaded...");
 
             // Get the file path
             var filePath = SaveDir + fileName;
@@ -44,7 +45,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure the file exists
             if (!filePath.FileExists)
             {
-                RCFCore.Logger?.LogInformationSource($"Slot was not loaded due to not being found");
+                RL.Logger?.LogInformationSource($"Slot was not loaded due to not being found");
 
                 return null;
             }
@@ -52,7 +53,7 @@ namespace RayCarrot.RCP.Metro
             // Deserialize and return the data
             var saveData = BinarySerializableHelpers.ReadFromFile<JungleRunPCSaveData>(filePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanJungleRun, Platform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
-            RCFCore.Logger?.LogInformationSource($"Slot has been deserialized");
+            RL.Logger?.LogInformationSource($"Slot has been deserialized");
 
             // Create the collection with items for each time trial level + general information
             var progressItems = new ProgressionInfoItemViewModel[(saveData.Levels.Length / 10) + 2];
@@ -63,7 +64,7 @@ namespace RayCarrot.RCP.Metro
             int collectedTeeth = 0;
             int availableTeeth = saveData.Levels.Length;
 
-            RCFCore.Logger?.LogTraceSource($"Levels are being enumerated...");
+            RL.Logger?.LogTraceSource($"Levels are being enumerated...");
 
             // Enumerate each level
             for (int i = 0; i < saveData.Levels.Length; i++)
@@ -74,13 +75,13 @@ namespace RayCarrot.RCP.Metro
                 // Check if the level is a normal level
                 if ((i + 1) % 10 != 0)
                 {
-                    RCFCore.Logger?.LogTraceSource($"Level index {i} is a normal level");
+                    RL.Logger?.LogTraceSource($"Level index {i} is a normal level");
 
                     // Get the collected lums
                     collectedLums += levelData.LumsRecord;
                     availableLums += 100;
 
-                    RCFCore.Logger?.LogTraceSource($"{levelData.LumsRecord} Lums have been collected");
+                    RL.Logger?.LogTraceSource($"{levelData.LumsRecord} Lums have been collected");
 
                     // Check if the level is 100% complete
                     if (levelData.LumsRecord >= 100)
@@ -89,17 +90,17 @@ namespace RayCarrot.RCP.Metro
                     continue;
                 }
 
-                RCFCore.Logger?.LogTraceSource($"Level index {i} is a time trial level");
+                RL.Logger?.LogTraceSource($"Level index {i} is a time trial level");
 
                 // Make sure the level has been completed
                 if (levelData.RecordTime == 0)
                 {
-                    RCFCore.Logger?.LogTraceSource($"Level has not been completed");
+                    RL.Logger?.LogTraceSource($"Level has not been completed");
 
                     continue;
                 }
 
-                RCFCore.Logger?.LogTraceSource($"Level has been completed with the record time {levelData.RecordTime}");
+                RL.Logger?.LogTraceSource($"Level has been completed with the record time {levelData.RecordTime}");
 
                 collectedTeeth++;
 
@@ -125,12 +126,12 @@ namespace RayCarrot.RCP.Metro
             progressItems[0] = new ProgressionInfoItemViewModel(ProgressionIcons.RO_Lum, new LocalizedString(() => $"{collectedLums}/{availableLums}"));
             progressItems[1] = new ProgressionInfoItemViewModel(ProgressionIcons.RO_RedTooth, new LocalizedString(() => $"{collectedTeeth}/{availableTeeth}"));
 
-            RCFCore.Logger?.LogInformationSource($"General progress info has been set");
+            RL.Logger?.LogInformationSource($"General progress info has been set");
 
             // Calculate the percentage
             var percentage = ((collectedLums / (double)availableLums * 50) + (collectedTeeth / (double)availableTeeth * 50)).ToString("0.##");
 
-            RCFCore.Logger?.LogInformationSource($"Slot percentage is {percentage}%");
+            RL.Logger?.LogInformationSource($"Slot percentage is {percentage}%");
 
             // Return the data with the collection
             return new JungleRunProgressionSlotViewModel(new LocalizedString(() => $"{slotNamegenerator()} ({percentage}%)"), progressItems, filePath, this);

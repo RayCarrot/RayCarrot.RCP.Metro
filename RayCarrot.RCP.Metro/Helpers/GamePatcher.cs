@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -65,7 +66,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game is not patched or false if it is. Null is returned if the game file can not be found or if neither the original or patched bytes are found.</returns>
         public bool? GetIsOriginal()
         {
-            RCFCore.Logger?.LogInformationSource("Getting if game file is patched or original...");
+            RL.Logger?.LogInformationSource("Getting if game file is patched or original...");
 
             try
             {
@@ -81,23 +82,23 @@ namespace RayCarrot.RCP.Metro
                     // Read the bytes
                     var read = stream.Read(currentBytes, 0, currentBytes.Length);
 
-                    RCFCore.Logger?.LogInformationSource($"{read}/{currentBytes.Length} bytes were read from the game file");
+                    RL.Logger?.LogInformationSource($"{read}/{currentBytes.Length} bytes were read from the game file");
                 }
 
                 // Check if they match
                 if (currentBytes.SequenceEqual(OriginalBytes))
                 {
-                    RCFCore.Logger?.LogInformationSource("The game file was detected as original");
+                    RL.Logger?.LogInformationSource("The game file was detected as original");
                     return true;
                 }
                 else if (currentBytes.SequenceEqual(PatchedBytes))
                 {
-                    RCFCore.Logger?.LogInformationSource("The game file was detected as patched");
+                    RL.Logger?.LogInformationSource("The game file was detected as patched");
                     return false;
                 }
                 else
                 {
-                    RCFCore.Logger?.LogWarningSource("The game file was detected as unknown");
+                    RL.Logger?.LogWarningSource("The game file was detected as unknown");
                     return null;
                 }
             }
@@ -114,7 +115,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="useOriginalBytes">True if the original bytes should be used, otherwise false</param>
         public void PatchFile(bool useOriginalBytes)
         {
-            RCFCore.Logger?.LogInformationSource("Patching game file...");
+            RL.Logger?.LogInformationSource("Patching game file...");
 
             try
             {
@@ -127,7 +128,7 @@ namespace RayCarrot.RCP.Metro
                 // Write the bytes
                 stream.Write(useOriginalBytes ? OriginalBytes : PatchedBytes, 0, OriginalBytes.Length);
 
-                RCFCore.Logger?.LogInformationSource("Game file was patched");
+                RL.Logger?.LogInformationSource("Game file was patched");
             }
             catch (Exception ex)
             {

@@ -4,6 +4,7 @@ using System.Text;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -53,12 +54,12 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void Create()
         {
-            RCFCore.Logger?.LogTraceSource($"Recreating DosBox config file {FilePath}");
+            RL.Logger?.LogTraceSource($"Recreating DosBox config file {FilePath}");
 
             // Check if the file exists and is valid
             if (FilePath.FileExists && File.ReadAllText(FilePath).StartsWith(FirstLines))
             {
-                RCFCore.Logger?.LogTraceSource($"The DosBox config file is valid and no further action is needed");
+                RL.Logger?.LogTraceSource($"The DosBox config file is valid and no further action is needed");
                 return;
             }
 
@@ -67,7 +68,7 @@ namespace RayCarrot.RCP.Metro
             // Create the file with default content
             File.WriteAllText(FilePath, FirstLines);
 
-            RCFCore.Logger?.LogInformationSource($"The DosBox config file was recreated");
+            RL.Logger?.LogInformationSource($"The DosBox config file was recreated");
         }
 
         /// <summary>

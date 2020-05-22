@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -163,7 +164,7 @@ namespace RayCarrot.RCP.Metro
             }
             else
             {
-                RCFCore.Logger?.LogDebugSource("A thumbnail can currently not be generated for non-image files in archives");
+                RL.Logger?.LogDebugSource("A thumbnail can currently not be generated for non-image files in archives");
             }
         }
 
@@ -174,7 +175,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ExportFileAsync(bool includeMipmap)
         {
-            RCFCore.Logger?.LogTraceSource($"The archive file {FileName} is being exported...");
+            RL.Logger?.LogTraceSource($"The archive file {FileName} is being exported...");
 
             // Run as a load operation
             using (Archive.LoadOperation.Run())
@@ -241,7 +242,7 @@ namespace RayCarrot.RCP.Metro
                             Archive.SetDisplayStatus(String.Empty);
                         }
 
-                        RCFCore.Logger?.LogTraceSource($"The archive file has been exported");
+                        RL.Logger?.LogTraceSource($"The archive file has been exported");
 
                         await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFileSuccess);
                     });
@@ -258,7 +259,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public void ExportFile(FileSystemPath filePath, byte[] fileBytes, FileExtension format)
         {
-            RCFCore.Logger?.LogTraceSource($"An archive file is being exported as {format}");
+            RL.Logger?.LogTraceSource($"An archive file is being exported as {format}");
 
             // Create the file and open it
             using var fileStream = File.Open(filePath, FileMode.Create, FileAccess.Write);
@@ -277,7 +278,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ImportFileAsync()
         {
-            RCFCore.Logger?.LogTraceSource($"The archive file {FileName} is being imported...");
+            RL.Logger?.LogTraceSource($"The archive file {FileName} is being imported...");
 
             // Run as a load operation
             using (Archive.LoadOperation.Run())
@@ -310,7 +311,7 @@ namespace RayCarrot.RCP.Metro
                         if (!repackSucceeded)
                             return;
 
-                        RCFCore.Logger?.LogTraceSource($"The archive file has been imported");
+                        RL.Logger?.LogTraceSource($"The archive file has been imported");
 
                         await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ImportFileSuccess);
                     });

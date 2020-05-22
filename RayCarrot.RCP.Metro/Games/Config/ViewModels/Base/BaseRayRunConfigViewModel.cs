@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -197,7 +198,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task SetupAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"{Game} config is being set up");
+            RL.Logger?.LogInformationSource($"{Game} config is being set up");
 
             // Get the save directory
             SaveDir = SaveDir = Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + Game.GetManager<RCPWinStoreGame>().FullPackageName + "LocalState";
@@ -212,7 +213,7 @@ namespace RayCarrot.RCP.Metro
 
             UnsavedChanges = false;
 
-            RCFCore.Logger?.LogInformationSource($"All values have been loaded");
+            RL.Logger?.LogInformationSource($"All values have been loaded");
         }
 
         /// <summary>
@@ -223,7 +224,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                RCFCore.Logger?.LogInformationSource($"{Game} configuration is saving...");
+                RL.Logger?.LogInformationSource($"{Game} configuration is saving...");
 
                 try
                 {
@@ -240,7 +241,7 @@ namespace RayCarrot.RCP.Metro
                         SoundVolume
                     });
 
-                    RCFCore.Logger?.LogInformationSource($"{Game} configuration has been saved");
+                    RL.Logger?.LogInformationSource($"{Game} configuration has been saved");
                 }
                 catch (Exception ex)
                 {

@@ -6,6 +6,7 @@ using System.Windows;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -393,7 +394,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task SetupAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"{Game} config is being set up");
+            RL.Logger?.LogInformationSource($"{Game} config is being set up");
 
             // Get the config manager
             var configManager = new DosBoxAutoConfigManager(Game.GetManager<RCPDOSBoxGame>(GameType).DosBoxConfigFile);
@@ -418,14 +419,14 @@ namespace RayCarrot.RCP.Metro
 
             CustomCommands = configData.CustomLines.JoinItems(Environment.NewLine);
 
-            RCFCore.Logger?.LogInformationSource($"DosBox configuration for {Game} has been loaded");
+            RL.Logger?.LogInformationSource($"DosBox configuration for {Game} has been loaded");
 
-            RCFCore.Logger?.LogInformationSource($"Additional setup for {Game} is being processed");
+            RL.Logger?.LogInformationSource($"Additional setup for {Game} is being processed");
 
             // Perform addition setup
             await SetupGameAsync();
 
-            RCFCore.Logger?.LogInformationSource($"Additional setup for {Game} has been processed");
+            RL.Logger?.LogInformationSource($"Additional setup for {Game} has been processed");
 
             UnsavedChanges = false;
 
@@ -443,7 +444,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                RCFCore.Logger?.LogInformationSource($"DosBox configuration for {Game} is saving...");
+                RL.Logger?.LogInformationSource($"DosBox configuration for {Game} is saving...");
 
                 try
                 {
@@ -500,7 +501,7 @@ namespace RayCarrot.RCP.Metro
                     // Write to the config file
                     configManager.WriteFile(configData);
 
-                    RCFCore.Logger?.LogInformationSource($"DosBox configuration for {Game} has been saved");
+                    RL.Logger?.LogInformationSource($"DosBox configuration for {Game} has been saved");
 
                     // Helper methods for setting properties
                     void SetProp(string propName, object value, bool ignoreDefault = false)
@@ -537,7 +538,7 @@ namespace RayCarrot.RCP.Metro
             SelectedOutput = "default";
             SelectedCycles = "20000";
 
-            RCFCore.Logger?.LogTraceSource($"Recommended DosBox settings were applied");
+            RL.Logger?.LogTraceSource($"Recommended DosBox settings were applied");
         }
 
         #endregion

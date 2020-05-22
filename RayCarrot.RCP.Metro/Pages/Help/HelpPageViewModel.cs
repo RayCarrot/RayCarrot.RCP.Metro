@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 
@@ -40,7 +41,7 @@ namespace RayCarrot.RCP.Metro
 
             time.Start();
 
-            RCFCore.Logger?.LogInformationSource("The help items are refreshing...");
+            RL.Logger?.LogInformationSource("The help items are refreshing...");
 
             HelpItems = new ObservableCollection<HelpItemViewModel>()
             {
@@ -344,8 +345,8 @@ namespace RayCarrot.RCP.Metro
 
             time.Stop();
 
-            RCFCore.Logger?.LogInformationSource("The help items have refreshed");
-            RCFCore.Logger?.LogDebugSource($"The help items refresh time was {time.ElapsedMilliseconds} ms");
+            RL.Logger?.LogInformationSource("The help items have refreshed");
+            RL.Logger?.LogDebugSource($"The help items refresh time was {time.ElapsedMilliseconds} ms");
         }
 
         /// <summary>

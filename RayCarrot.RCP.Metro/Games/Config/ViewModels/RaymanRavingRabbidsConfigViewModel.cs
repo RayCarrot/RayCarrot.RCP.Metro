@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Win32;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
 
@@ -116,11 +117,11 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override Task SetupAsync()
         {
-            RCFCore.Logger?.LogInformationSource("Rayman Raving Rabbids config is being set up");
+            RL.Logger?.LogInformationSource("Rayman Raving Rabbids config is being set up");
 
             using (var key = RCFWinReg.RegistryManager.GetKeyFromFullPath(RCFWinReg.RegistryManager.CombinePaths(CommonPaths.RaymanRavingRabbidsRegistryKey, "Basic video"), RegistryView.Default))
             {
-                RCFCore.Logger?.LogInformationSource(key != null
+                RL.Logger?.LogInformationSource(key != null
                     ? $"The key {key.Name} has been opened"
                     : $"The key for {Games.RaymanRavingRabbids} does not exist. Default values will be used.");
 
@@ -134,7 +135,7 @@ namespace RayCarrot.RCP.Metro
 
             UnsavedChanges = false;
 
-            RCFCore.Logger?.LogInformationSource($"All values have been loaded");
+            RL.Logger?.LogInformationSource($"All values have been loaded");
 
             return Task.CompletedTask;
         }
@@ -147,7 +148,7 @@ namespace RayCarrot.RCP.Metro
         {
             using (await AsyncLock.LockAsync())
             {
-                RCFCore.Logger?.LogInformationSource($"Rayman Raving Rabbids configuration is saving...");
+                RL.Logger?.LogInformationSource($"Rayman Raving Rabbids configuration is saving...");
 
                 try
                 {
@@ -161,7 +162,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         key = RCFWinReg.RegistryManager.CreateRegistryKey(keyPath, RegistryView.Default, true);
 
-                        RCFCore.Logger?.LogInformationSource($"The Registry key {key?.Name} has been created");
+                        RL.Logger?.LogInformationSource($"The Registry key {key?.Name} has been created");
                     }
                     else
                     {
@@ -173,14 +174,14 @@ namespace RayCarrot.RCP.Metro
                         if (key == null)
                             throw new Exception("The Registry key could not be created");
 
-                        RCFCore.Logger?.LogInformationSource($"The key {key.Name} has been opened");
+                        RL.Logger?.LogInformationSource($"The key {key.Name} has been opened");
 
                         key.SetValue(WindowedModeKey, FullscreenMode ? 0 : 1);
                         key.SetValue(DefaultControllerKey, UseController ? 1 : 0);
                         key.SetValue(ScreenModeKey, ScreenModeIndex + 1);
                     }
 
-                    RCFCore.Logger?.LogInformationSource($"Rayman Raving Rabbids configuration has been saved");
+                    RL.Logger?.LogInformationSource($"Rayman Raving Rabbids configuration has been saved");
                 }
                 catch (Exception ex)
                 {

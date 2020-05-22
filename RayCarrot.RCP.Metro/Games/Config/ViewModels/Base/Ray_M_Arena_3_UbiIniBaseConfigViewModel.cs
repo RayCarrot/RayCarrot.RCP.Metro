@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
+using RayCarrot.Logging;
 using RayCarrot.Rayman.UbiIni;
 
 namespace RayCarrot.RCP.Metro
@@ -404,7 +405,7 @@ namespace RayCarrot.RCP.Metro
             // Get the current dinput type
             var dinputType = CanModifyGame ? GetCurrentDinput() : DinputType.Unknown;
 
-            RCFCore.Logger?.LogInformationSource($"The dinput type has been retrieved as {dinputType}");
+            RL.Logger?.LogInformationSource($"The dinput type has been retrieved as {dinputType}");
 
             ControllerSupport = dinputType == DinputType.Controller;
 
@@ -428,32 +429,32 @@ namespace RayCarrot.RCP.Metro
                         IsDiscCheckRemoved = false;
                         CanRemoveDiscCheck = true;
 
-                        RCFCore.Logger?.LogInformationSource($"The game has not been modified to remove the disc checker");
+                        RL.Logger?.LogInformationSource($"The game has not been modified to remove the disc checker");
                     }
                     else if (result == false)
                     {
                         IsDiscCheckRemoved = true;
                         CanRemoveDiscCheck = true;
 
-                        RCFCore.Logger?.LogInformationSource($"The game has been modified to remove the disc checker");
+                        RL.Logger?.LogInformationSource($"The game has been modified to remove the disc checker");
                     }
                     else if (result == null)
                     {
                         CanRemoveDiscCheck = false;
 
-                        RCFCore.Logger?.LogInformationSource($"The game disc checker status could not be read");
+                        RL.Logger?.LogInformationSource($"The game disc checker status could not be read");
                     }
                 }
                 else
                 {
                     CanRemoveDiscCheck = false;
 
-                    RCFCore.Logger?.LogInformationSource($"The game file was not found");
+                    RL.Logger?.LogInformationSource($"The game file was not found");
                 }
             }
             else
             {
-                RCFCore.Logger?.LogTraceSource($"The disc checker can not be removed for this game");
+                RL.Logger?.LogTraceSource($"The disc checker can not be removed for this game");
             }
 
             // If the primary config file does not exist, create a new one
@@ -464,7 +465,7 @@ namespace RayCarrot.RCP.Metro
                     // Create the file
                     RCFRCP.File.CreateFile(CommonPaths.UbiIniPath1);
 
-                    RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {CommonPaths.UbiIniPath1}");
+                    RL.Logger?.LogInformationSource($"A new ubi.ini file has been created under {CommonPaths.UbiIniPath1}");
                 }
                 catch (Exception ex)
                 {
@@ -484,7 +485,7 @@ namespace RayCarrot.RCP.Metro
                     // Create the file
                     RCFRCP.File.CreateFile(CommonPaths.UbiIniPath2);
 
-                    RCFCore.Logger?.LogInformationSource($"A new ubi.ini file has been created under {CommonPaths.UbiIniPath2}");
+                    RL.Logger?.LogInformationSource($"A new ubi.ini file has been created under {CommonPaths.UbiIniPath2}");
                 }
                 catch (Exception ex)
                 {
@@ -530,7 +531,7 @@ namespace RayCarrot.RCP.Metro
                     var dt = GetCurrentDinput();
                     var path = GetDinputPath();
 
-                    RCFCore.Logger?.LogInformationSource($"The dinput type has been retrieved as {dt}");
+                    RL.Logger?.LogInformationSource($"The dinput type has been retrieved as {dt}");
 
                     if (ControllerSupport)
                     {

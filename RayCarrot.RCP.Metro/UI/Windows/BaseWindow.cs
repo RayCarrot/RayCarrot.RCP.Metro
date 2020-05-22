@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -19,7 +20,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public BaseWindow()
         {
-            RCFCore.Logger?.LogInformationSource($"A window is being created...");
+            RL.Logger?.LogInformationSource($"A window is being created...");
 
             // Default to true
             CloseWithEscape = true;
@@ -38,7 +39,7 @@ namespace RayCarrot.RCP.Metro
             // Set owner window
             Owner = Application.Current?.Windows.Cast<Window>().FindItem(x => x.IsActive);
 
-            RCFCore.Logger?.LogInformationSource($"The owner window has been set to {Owner?.ToString() ?? "null"}");
+            RL.Logger?.LogInformationSource($"The owner window has been set to {Owner?.ToString() ?? "null"}");
 
             // Do not show in the task bar if the window has a owner, is not the main window and a main window has been created
             if (Owner != null && Application.Current?.MainWindow != null && this != Application.Current.MainWindow)
@@ -56,7 +57,7 @@ namespace RayCarrot.RCP.Metro
                 // Set transition
                 WindowTransitionsEnabled = RCFRCP.Data?.EnableAnimations ?? true;
 
-                RCFCore.Logger?.LogInformationSource($"The window {this} has been created");
+                RL.Logger?.LogInformationSource($"The window {this} has been created");
             }
 
             PreviewKeyDown += (s, e) =>

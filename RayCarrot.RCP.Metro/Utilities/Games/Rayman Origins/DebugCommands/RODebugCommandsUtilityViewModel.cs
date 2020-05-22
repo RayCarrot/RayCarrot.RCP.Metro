@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -270,14 +271,14 @@ namespace RayCarrot.RCP.Metro
         {
             using (await UpdateDebugCommandsAsyncLock.LockAsync())
             {
-                RCFCore.Logger?.LogInformationSource($"The Rayman Origins debug commands are being updated...");
+                RL.Logger?.LogInformationSource($"The Rayman Origins debug commands are being updated...");
 
                 // Make sure the install directory was found
                 if (!DebugCommandFilePath.Parent.DirectoryExists)
                 {
                     IsDebugModeEnabled = false;
 
-                    RCFCore.Logger?.LogWarningSource($"The Rayman Origins debug commands could not be updated due to the install directory not being found");
+                    RL.Logger?.LogWarningSource($"The Rayman Origins debug commands could not be updated due to the install directory not being found");
 
                     await RCFUI.MessageUI.DisplayMessageAsync(Resources.ROU_DebugCommandsInstallationNotFound, MessageType.Error);
                     return;
@@ -289,14 +290,14 @@ namespace RayCarrot.RCP.Metro
 
                     if (!IsDebugModeEnabled)
                     {
-                        RCFCore.Logger?.LogInformationSource($"The Rayman Origins debug commands have been disabled");
+                        RL.Logger?.LogInformationSource($"The Rayman Origins debug commands have been disabled");
 
                         return;
                     }
 
                     File.WriteAllLines(DebugCommandFilePath, DebugCommands.Select(x => $"{x.Key}={x.Value}"));
 
-                    RCFCore.Logger?.LogInformationSource($"The Rayman Origins debug commands have been updated");
+                    RL.Logger?.LogInformationSource($"The Rayman Origins debug commands have been updated");
                 }
                 catch (Exception ex)
                 {

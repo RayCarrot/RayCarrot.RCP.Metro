@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {

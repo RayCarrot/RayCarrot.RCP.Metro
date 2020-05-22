@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using RayCarrot.Binary;
+using RayCarrot.Logging;
 using Type = System.Type;
 
 namespace RayCarrot.RCP.Metro
@@ -231,7 +232,7 @@ namespace RayCarrot.RCP.Metro
             // Lock the refresh
             using (await OnRefreshRequiredAsyncLock.LockAsync())
             {
-                RCFCore.Logger?.LogDebugSource("A refresh is being requested");
+                RL.Logger?.LogDebugSource("A refresh is being requested");
 
                 // Await the refresh event
                 await (RefreshRequired?.RaiseAsync(this, eventArgs) ?? Task.CompletedTask);
@@ -247,12 +248,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task AddNewGameAsync(Games game, GameType type, FileSystemPath installDirectory)
         {
-            RCFCore.Logger?.LogInformationSource($"The game {game} is being added of type {type}...");
+            RL.Logger?.LogInformationSource($"The game {game} is being added of type {type}...");
 
             // Make sure the game hasn't already been added
             if (game.IsAdded())
             {
-                RCFCore.Logger?.LogWarningSource($"The game {game} has already been added");
+                RL.Logger?.LogWarningSource($"The game {game} has already been added");
 
                 await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.AddGame_Duplicate, game), Resources.AddGame_DuplicateHeader, MessageType.Error);
 
@@ -265,7 +266,7 @@ namespace RayCarrot.RCP.Metro
             // Add the game
             Data.Games.Add(game, new GameData(type, installDirectory));
 
-            RCFCore.Logger?.LogInformationSource($"The game {game} has been added");
+            RL.Logger?.LogInformationSource($"The game {game} has been added");
 
             // Run post-add operations
             await manager.PostGameAddAsync();
@@ -328,14 +329,14 @@ namespace RayCarrot.RCP.Metro
             {
                 if (!CommonPaths.UbiIniPath1.FileExists)
                 {
-                    RCFCore.Logger?.LogInformationSource("The ubi.ini file was not found");
+                    RL.Logger?.LogInformationSource("The ubi.ini file was not found");
                     return;
                 }
 
                 // Check if we have write access
                 if (RCFRCP.File.CheckFileWriteAccess(CommonPaths.UbiIniPath1))
                 {
-                    RCFCore.Logger?.LogDebugSource("The ubi.ini file has write access");
+                    RL.Logger?.LogDebugSource("The ubi.ini file has write access");
                     return;
                 }
 
@@ -344,7 +345,7 @@ namespace RayCarrot.RCP.Metro
                 // Attempt to change the permission
                 await RunAdminWorkerAsync(AdminWorkerModes.GrantFullControl, CommonPaths.UbiIniPath1);
 
-                RCFCore.Logger?.LogInformationSource($"The ubi.ini file permission was changed");
+                RL.Logger?.LogInformationSource($"The ubi.ini file permission was changed");
             }
             catch (Exception ex)
             {
@@ -372,7 +373,7 @@ namespace RayCarrot.RCP.Metro
                 // Get all games which have not been added
                 var games = GetGames.Where(x => !x.IsAdded()).ToArray();
 
-                RCFCore.Logger?.LogTraceSource($"The following games were added to the game checker: {games.JoinItems(", ")}");
+                RL.Logger?.LogTraceSource($"The following games were added to the game checker: {games.JoinItems(", ")}");
 
                 // Get additional finder items
                 var finderItems = new List<FinderItem>(1);
@@ -390,11 +391,11 @@ namespace RayCarrot.RCP.Metro
                     {
                         if (File.Exists(Data.DosBoxPath))
                         {
-                            RCFCore.Logger?.LogWarningSource("The DosBox executable was not added from the game finder due to already having been added");
+                            RL.Logger?.LogWarningSource("The DosBox executable was not added from the game finder due to already having been added");
                             return;
                         }
 
-                        RCFCore.Logger?.LogInformationSource("The DosBox executable was found from the game finder");
+                        RL.Logger?.LogInformationSource("The DosBox executable was found from the game finder");
 
                         Data.DosBoxPath = installDir + "DOSBox.exe";
                     }
@@ -425,7 +426,7 @@ namespace RayCarrot.RCP.Metro
 
                     await RCFUI.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {gameFinderResults.Concat(finderResults).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
 
-                    RCFCore.Logger?.LogInformationSource($"The game finder found the following games {foundItems.JoinItems(", ", x => x.ToString())}");
+                    RL.Logger?.LogInformationSource($"The game finder found the following games {foundItems.JoinItems(", ", x => x.ToString())}");
 
                     return true;
                 }
@@ -460,12 +461,12 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                RCFCore.Logger?.LogInformationSource($"A download is starting...");
+                RL.Logger?.LogInformationSource($"A download is starting...");
 
                 // Make sure there are input sources to download
                 if (!inputSources.Any())
                 {
-                    RCFCore.Logger?.LogInformationSource($"Download failed due to there not being any input sources");
+                    RL.Logger?.LogInformationSource($"Download failed due to there not being any input sources");
 
                     await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_NoFilesFound, MessageType.Error);
                     return false;
@@ -484,7 +485,7 @@ namespace RayCarrot.RCP.Metro
                         size = size.Add(ByteSize.FromBytes(Convert.ToDouble(webResponse.Headers.Get("Content-Length"))));
                     }
 
-                    RCFCore.Logger?.LogDebugSource($"The size of the download has been retrieved as {size}");
+                    RL.Logger?.LogDebugSource($"The size of the download has been retrieved as {size}");
 
                     if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(isGame ? Resources.DownloadGame_ConfirmSize : Resources.Download_ConfirmSize, size), Resources.Download_ConfirmHeader, MessageType.Question, true))
                         return false;
@@ -502,7 +503,7 @@ namespace RayCarrot.RCP.Metro
                 // Show the dialog
                 dialog.ShowDialog();
 
-                RCFCore.Logger?.LogInformationSource($"The download finished with the result of {dialog.ViewModel.DownloadState}");
+                RL.Logger?.LogInformationSource($"The download finished with the result of {dialog.ViewModel.DownloadState}");
 
                 // Return the result
                 return dialog.ViewModel.DownloadState == DownloaderViewModel.DownloadStates.Succeeded;
@@ -528,7 +529,7 @@ namespace RayCarrot.RCP.Metro
             {
                 if (!await RCFUI.MessageUI.DisplayMessageAsync(Resources.MoveBackups_Question, Resources.MoveBackups_QuestionHeader, MessageType.Question, true))
                 {
-                    RCFCore.Logger?.LogInformationSource("Moving old backups has been canceled by the user");
+                    RL.Logger?.LogInformationSource("Moving old backups has been canceled by the user");
                     return;
                 }
 
@@ -541,7 +542,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure the old location has backups
                     if (!oldLocation.DirectoryExists || !Directory.GetFileSystemEntries(oldLocation).Any())
                     {
-                        RCFCore.Logger?.LogInformationSource("Old backups could not be moved due to not being found");
+                        RL.Logger?.LogInformationSource("Old backups could not be moved due to not being found");
 
                         await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.MoveBackups_NoBackupsFound, oldLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
 
@@ -551,7 +552,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure the new location doesn't already exist
                     if (newLocation.DirectoryExists)
                     {
-                        RCFCore.Logger?.LogInformationSource("Old backups could not be moved due to the new location already existing");
+                        RL.Logger?.LogInformationSource("Old backups could not be moved due to the new location already existing");
 
                         await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.MoveBackups_BackupAlreadyExists, newLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
                         return;
@@ -560,7 +561,7 @@ namespace RayCarrot.RCP.Metro
                     // Move the directory
                     RCFRCP.File.MoveDirectory(oldLocation, newLocation, false, false);
 
-                    RCFCore.Logger?.LogInformationSource("Old backups have been moved");
+                    RL.Logger?.LogInformationSource("Old backups have been moved");
 
                     // Refresh backups
                     await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, true, false));
@@ -709,7 +710,7 @@ namespace RayCarrot.RCP.Metro
                             var succeeded = await RCFRCP.UpdaterManager.UpdateAsync(result, false);
 
                             if (!succeeded)
-                                RCFCore.Logger?.LogWarningSource("The updater failed to update the program");
+                                RL.Logger?.LogWarningSource("The updater failed to update the program");
                         }
                     }
                     catch (Exception ex)
@@ -742,7 +743,7 @@ namespace RayCarrot.RCP.Metro
                         // Save all user data
                         await RCFData.UserDataCollection.SaveAllAsync();
 
-                        RCFCore.Logger?.LogInformationSource($"The application user data was saved");
+                        RL.Logger?.LogInformationSource($"The application user data was saved");
                     }
                     catch (Exception ex)
                     {

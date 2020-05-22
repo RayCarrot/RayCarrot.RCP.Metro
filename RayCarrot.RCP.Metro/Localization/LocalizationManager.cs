@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows;
 using Infralution.Localization.Wpf;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -116,7 +117,7 @@ namespace RayCarrot.RCP.Metro
                 // Set the framework culture
                 RCFCore.Data.CurrentCulture = ci;
 
-                RCFCore.Logger?.LogInformationSource($"The current culture was set to {ci.EnglishName}");
+                RL.Logger?.LogInformationSource($"The current culture was set to {ci.EnglishName}");
             }
         }
 

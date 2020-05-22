@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -27,7 +28,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="explorerDialogViewModel">The explorer dialog view model</param>
         public ArchiveViewModel(FileSystemPath filePath, IArchiveExplorerDataManager manager, Operation loadOperation, ArchiveExplorerDialogViewModel explorerDialogViewModel) : base(filePath.Name)
         {
-            RCFCore.Logger?.LogInformationSource($"An archive view model is being created for {filePath.Name}");
+            RL.Logger?.LogInformationSource($"An archive view model is being created for {filePath.Name}");
 
             // Set properties
             FilePath = filePath;
@@ -121,7 +122,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected void ClearAndDisposeItems()
         {
-            RCFCore.Logger?.LogInformationSource($"The archive items have been cleared and disposed");
+            RL.Logger?.LogInformationSource($"The archive items have been cleared and disposed");
 
             // Dispose every directory
             this.GetAllChildren<ArchiveDirectoryViewModel>().DisposeAll();
@@ -149,7 +150,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void LoadArchive()
         {
-            RCFCore.Logger?.LogInformationSource($"The archive {DisplayName} is being loaded");
+            RL.Logger?.LogInformationSource($"The archive {DisplayName} is being loaded");
 
             // Clear existing items
             ClearAndDisposeItems();
@@ -200,7 +201,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>A value indicating if the updating succeeded</returns>
         public async Task<bool> UpdateArchiveAsync(IEnumerable<ArchiveImportData> modifiedImportData)
         {
-            RCFCore.Logger?.LogInformationSource($"The archive {DisplayName} is being updated");
+            RL.Logger?.LogInformationSource($"The archive {DisplayName} is being updated");
 
             // Stop refreshing thumbnails
             if (ExplorerDialogViewModel.IsRefreshingThumbnails)
@@ -312,7 +313,7 @@ namespace RayCarrot.RCP.Metro
             // Dispose the generator
             ArchiveFileGenerator?.Dispose();
 
-            RCFCore.Logger?.LogInformationSource($"The archive {DisplayName} has been disposed");
+            RL.Logger?.LogInformationSource($"The archive {DisplayName} has been disposed");
         }
 
         #endregion

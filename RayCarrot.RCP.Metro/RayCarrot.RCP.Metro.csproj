@@ -1051,6 +1051,10 @@
       <Project>{55f49d1e-c9bd-4cc4-9ff0-d646d9f42a21}</Project>
       <Name>RayCarrot.Windows.Shell</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\RayCarrot.Logging\RayCarrot.Logging.csproj">
+      <Project>{adf134af-6db2-4a0f-8809-5a2c787b6b55}</Project>
+      <Name>RayCarrot.Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\RayCarrot.Rayman\RayCarrot.Rayman\RayCarrot.Rayman.csproj">
       <Project>{b3c0c9ee-0acb-4cd6-9dab-d9f3c741300d}</Project>
       <Name>RayCarrot.Rayman</Name>

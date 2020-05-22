@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -24,7 +25,7 @@ namespace RayCarrot.RCP.Metro
             InstallDir = Games.Rayman2.GetInstallDir();
             RequiresPatching = (InstallDir + "RAYMAN2.ICD").FileExists;
 
-            RCFCore.Logger?.LogInformationSource($"The R2 disc patch utility has detected that the currently installed game does {(RequiresPatching ? "require" : "not require")} the patch");
+            RL.Logger?.LogInformationSource($"The R2 disc patch utility has detected that the currently installed game does {(RequiresPatching ? "require" : "not require")} the patch");
 
             // Create commands
             ApplyPatchCommand = new AsyncRelayCommand(ApplyPatchAsync);
@@ -65,7 +66,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                RCFCore.Logger?.LogInformationSource($"The R2 disc patch is being applied...");
+                RL.Logger?.LogInformationSource($"The R2 disc patch is being applied...");
 
                 // Write the GOG executable file
                 File.WriteAllBytes(InstallDir + "Rayman2.exe", Files.Rayman2_GOG);
@@ -106,7 +107,7 @@ namespace RayCarrot.RCP.Metro
 
                 RequiresPatching = false;
 
-                RCFCore.Logger?.LogInformationSource($"The R2 disc patch has been applied");
+                RL.Logger?.LogInformationSource($"The R2 disc patch has been applied");
 
                 await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_DiscPatchApplied);
             }

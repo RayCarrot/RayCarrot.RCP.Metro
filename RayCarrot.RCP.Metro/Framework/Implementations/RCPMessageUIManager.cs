@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using RayCarrot.UI;
 using RayCarrot.Extensions;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -30,7 +31,7 @@ namespace RayCarrot.RCP.Metro
             if (Application.Current.Dispatcher == null)
                 throw new Exception("A message box can not be shown when the application dispatcher is null");
 
-            RCFCore.Logger?.LogTraceSource($"A message of type {messageType} was displayed with the content of: '{message}'", origin: origin, filePath: filePath, lineNumber: lineNumber);
+            RL.Logger?.LogTraceSource($"A message of type {messageType} was displayed with the content of: '{message}'", origin: origin, filePath: filePath, lineNumber: lineNumber);
 
             // Get the header message to use
             var headerMessage = !header.IsNullOrWhiteSpace()

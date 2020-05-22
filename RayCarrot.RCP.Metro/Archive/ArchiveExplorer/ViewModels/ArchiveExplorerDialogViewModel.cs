@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
 using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -39,7 +40,7 @@ namespace RayCarrot.RCP.Metro
                 // Set the archive lock
                 ArchiveLock = new AsyncLock();
 
-                RCFCore.Logger?.LogInformationSource($"The Archive Explorer is loading with {Archives.Length} archives");
+                RL.Logger?.LogInformationSource($"The Archive Explorer is loading with {Archives.Length} archives");
 
                 // Make sure we got an archive
                 if (!Archives.Any())
@@ -107,13 +108,13 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ChangeLoadedDirAsync(ArchiveDirectoryViewModel previousDir, ArchiveDirectoryViewModel newDir)
         {
-            RCFCore.Logger?.LogDebugSource($"The loaded archive directory is changing from {previousDir?.DisplayName ?? "NULL"} to {newDir?.DisplayName ?? "NULL"}");
+            RL.Logger?.LogDebugSource($"The loaded archive directory is changing from {previousDir?.DisplayName ?? "NULL"} to {newDir?.DisplayName ?? "NULL"}");
 
             // Stop refreshing thumbnails
             if (IsRefreshingThumbnails)
                 CancelRefreshingThumbnails = true;
 
-            RCFCore.Logger?.LogDebugSource($"Updating loaded archive dir from {previousDir?.DisplayName} to {newDir.DisplayName}");
+            RL.Logger?.LogDebugSource($"Updating loaded archive dir from {previousDir?.DisplayName} to {newDir.DisplayName}");
 
             // Lock the access to the archive
             using (await ArchiveLock.LockAsync())
@@ -123,7 +124,7 @@ namespace RayCarrot.RCP.Metro
                     // Check if the operation should be canceled
                     if (CancelRefreshingThumbnails)
                     {
-                        RCFCore.Logger?.LogDebugSource($"Canceled refreshing thumbnails for archive dir {newDir.DisplayName}");
+                        RL.Logger?.LogDebugSource($"Canceled refreshing thumbnails for archive dir {newDir.DisplayName}");
 
                         return;
                     }
@@ -131,7 +132,7 @@ namespace RayCarrot.RCP.Metro
                     // Indicate that we are refreshing the thumbnails
                     IsRefreshingThumbnails = true;
 
-                    RCFCore.Logger?.LogDebugSource($"Refreshing thumbnails for archive dir {newDir.DisplayName}");
+                    RL.Logger?.LogDebugSource($"Refreshing thumbnails for archive dir {newDir.DisplayName}");
 
                     // Remove all thumbnail image sources from memory
                     previousDir?.Files.ForEach(x =>
@@ -151,7 +152,7 @@ namespace RayCarrot.RCP.Metro
                             // Check if the operation should be canceled
                             if (CancelRefreshingThumbnails)
                             {
-                                RCFCore.Logger?.LogDebugSource($"Canceled refreshing thumbnails for archive dir {newDir.DisplayName}");
+                                RL.Logger?.LogDebugSource($"Canceled refreshing thumbnails for archive dir {newDir.DisplayName}");
 
                                 return;
                             }
@@ -164,7 +165,7 @@ namespace RayCarrot.RCP.Metro
                         }
                     });
 
-                    RCFCore.Logger?.LogDebugSource($"Finished thumbnails for archive dir {newDir.DisplayName}");
+                    RL.Logger?.LogDebugSource($"Finished thumbnails for archive dir {newDir.DisplayName}");
                 }
                 finally
                 {

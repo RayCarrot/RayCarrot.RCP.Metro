@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -144,7 +145,7 @@ namespace RayCarrot.RCP.Metro
                 if (mountPath.FileExists)
                 {
                     options.MountPath = mountPath;
-                    RCFCore.Logger?.LogInformationSource($"The mount path for {Game} was automatically found");
+                    RL.Logger?.LogInformationSource($"The mount path for {Game} was automatically found");
                 }
 
                 // Find DOSBox path if not already added
@@ -223,7 +224,7 @@ namespace RayCarrot.RCP.Metro
             // If the executable does not exist the location is not valid
             if (!(result.SelectedDirectory + ExecutableName).FileExists)
             {
-                RCFCore.Logger?.LogInformationSource($"The selected install directory for {Game} is not valid");
+                RL.Logger?.LogInformationSource($"The selected install directory for {Game} is not valid");
 
                 await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation, Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
                 return null;
@@ -236,7 +237,7 @@ namespace RayCarrot.RCP.Metro
                 $"{Path.GetFileNameWithoutExtension(ExecutableName)} ver=usa"
             });
 
-            RCFCore.Logger?.LogInformationSource($"A batch file was created for {Game}");
+            RL.Logger?.LogInformationSource($"A batch file was created for {Game}");
 
             return result.SelectedDirectory;
         }

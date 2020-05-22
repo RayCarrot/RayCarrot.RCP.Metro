@@ -7,6 +7,7 @@ using RayCarrot.UI;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -37,12 +38,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The progression slot view model</returns>
         protected ProgressionSlotViewModel GetProgressionSlotViewModel(FileSystemPath filePath)
         {
-            RCFCore.Logger?.LogInformationSource($"Rayman 3 slot {filePath.Name} is being loaded...");
+            RL.Logger?.LogInformationSource($"Rayman 3 slot {filePath.Name} is being loaded...");
 
             // Make sure the file exists
             if (!filePath.FileExists)
             {
-                RCFCore.Logger?.LogInformationSource($"Slot was not loaded due to not being found");
+                RL.Logger?.LogInformationSource($"Slot was not loaded due to not being found");
 
                 return null;
             }
@@ -62,7 +63,7 @@ namespace RayCarrot.RCP.Metro
             // Deserialize and return the data
             var saveData = BinarySerializableHelpers.ReadFromStream<Rayman3PCSaveData>(memStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Rayman.Platform.PC), RCFRCP.App.GetBinarySerializerLogger());
 
-            RCFCore.Logger?.LogInformationSource($"Slot has been deserialized");
+            RL.Logger?.LogInformationSource($"Slot has been deserialized");
 
             var formatInfo = new NumberFormatInfo()
             {
@@ -86,7 +87,7 @@ namespace RayCarrot.RCP.Metro
                 new ProgressionInfoItemViewModel(ProgressionIcons.R3_Score, new LocalizedString(() => $"{Resources.Progression_R3_Level9Header}: {saveData.Levels[8].Score.ToString("n", formatInfo)}"))
             };
 
-            RCFCore.Logger?.LogInformationSource($"General progress info has been set");
+            RL.Logger?.LogInformationSource($"General progress info has been set");
 
             // Return the data with the collection
             return new Rayman3ProgressionSlotViewModel(new LocalizedString(() => $"{filePath.RemoveFileExtension().Name}"), progressItems, filePath, this);

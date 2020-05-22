@@ -5,6 +5,7 @@ using System.Windows.Data;
 using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Extensions;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -67,7 +68,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task LoadDataAsync()
         {
-            RCFCore.Logger?.LogInformationSource($"Progression data for {Game} is being loaded...");
+            RL.Logger?.LogInformationSource($"Progression data for {Game} is being loaded...");
 
             // Run on a new thread
             await Task.Run(() =>
@@ -77,7 +78,7 @@ namespace RayCarrot.RCP.Metro
                     // Dispose existing slot view models
                     ProgressionSlots.DisposeAll();
 
-                    RCFCore.Logger?.LogDebugSource($"Existing slots have been disposed");
+                    RL.Logger?.LogDebugSource($"Existing slots have been disposed");
 
                     // Clear the collection
                     ProgressionSlots.Clear();
@@ -85,12 +86,12 @@ namespace RayCarrot.RCP.Metro
                     // Load the data
                     LoadData();
 
-                    RCFCore.Logger?.LogInformationSource($"Slots have been loaded");
+                    RL.Logger?.LogInformationSource($"Slots have been loaded");
 
                     // Remove empty slots
                     ProgressionSlots.RemoveWhere(x => x == null);
 
-                    RCFCore.Logger?.LogDebugSource($"Empty slots have been removed");
+                    RL.Logger?.LogDebugSource($"Empty slots have been removed");
                 }
                 catch (Exception ex)
                 {

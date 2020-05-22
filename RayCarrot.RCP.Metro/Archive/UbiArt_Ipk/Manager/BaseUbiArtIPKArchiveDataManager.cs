@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using RayCarrot.Binary;
+using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -79,7 +80,7 @@ namespace RayCarrot.RCP.Metro
             // Compress the bytes
             var compressedBytes = UbiArtIpkData.GetEncoder(file.IPKVersion, file.Size).Encode(fileData);
 
-            RCFCore.Logger?.LogTraceSource($"The file {file.Path.FileName} has been compressed");
+            RL.Logger?.LogTraceSource($"The file {file.Path.FileName} has been compressed");
 
             // Set the compressed file size
             file.CompressedSize = (uint)compressedBytes.Length;
@@ -96,7 +97,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="files">The import data for the archive files</param>
         public void UpdateArchive(object archive, Stream outputFileStream, IEnumerable<IArchiveImportData> files)
         {
-            RCFCore.Logger?.LogInformationSource($"An IPK archive is being repacked...");
+            RL.Logger?.LogInformationSource($"An IPK archive is being repacked...");
 
             // Get the archive data
             var data = archive.CastTo<UbiArtIpkData>();
@@ -149,7 +150,7 @@ namespace RayCarrot.RCP.Metro
             // Serialize the data
             BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCFRCP.App.GetBinarySerializerLogger());
 
-            RCFCore.Logger?.LogInformationSource($"The IPK archive has been repacked");
+            RL.Logger?.LogInformationSource($"The IPK archive has been repacked");
         }
 
         #endregion
