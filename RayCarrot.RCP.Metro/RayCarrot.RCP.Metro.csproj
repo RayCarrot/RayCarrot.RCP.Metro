@@ -1019,6 +1019,34 @@
       <Project>{fbbb053c-d02e-439d-b589-320fc21dd60c}</Project>
       <Name>RayCarrot.Binary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.CarrotFramework.Abstractions\RayCarrot.CarrotFramework.Abstractions.csproj">
+      <Project>{8ce22a89-240a-4e7a-862f-0b71ce65755d}</Project>
+      <Name>RayCarrot.CarrotFramework.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.CarrotFramework\RayCarrot.CarrotFramework.csproj">
+      <Project>{5a9ec81f-b7c0-41a0-b49d-4fbef5e9c44a}</Project>
+      <Name>RayCarrot.CarrotFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.Extensions\RayCarrot.Extensions.csproj">
+      <Project>{ebdc7092-971a-4531-aa49-272e279a3bcb}</Project>
+      <Name>RayCarrot.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.IO\RayCarrot.IO.csproj">
+      <Project>{b2bbfe1a-8d4d-468c-991d-ae34fb6fb956}</Project>
+      <Name>RayCarrot.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.UI\RayCarrot.UI.csproj">
+      <Project>{38596dd8-4ff8-4363-8626-45453c6ab280}</Project>
+      <Name>RayCarrot.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.UserData\RayCarrot.UserData.csproj">
+      <Project>{89d5c832-e49f-430a-867e-b8a5a856424e}</Project>
+      <Name>RayCarrot.UserData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry.csproj">
+      <Project>{7fc3b338-f660-43b4-b150-c4da185ba5ba}</Project>
+      <Name>RayCarrot.Windows.Registry</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.Windows.Shell\RayCarrot.Windows.Shell.csproj">
       <Project>{55f49d1e-c9bd-4cc4-9ff0-d646d9f42a21}</Project>
       <Name>RayCarrot.Windows.Shell</Name>
@@ -1255,27 +1283,6 @@
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
       <Version>3.2.8</Version>
-    </PackageReference>
-    <PackageReference Include="RayCarrot.CarrotFramework">
-      <Version>3.4.1</Version>
-    </PackageReference>
-    <PackageReference Include="RayCarrot.CarrotFramework.Abstractions">
-      <Version>1.5.2</Version>
-    </PackageReference>
-    <PackageReference Include="RayCarrot.Extensions">
-      <Version>1.2.11</Version>
-    </PackageReference>
-    <PackageReference Include="RayCarrot.IO">
-      <Version>1.7.1</Version>
-    </PackageReference>
-    <PackageReference Include="RayCarrot.UI">
-      <Version>1.2.2</Version>
-    </PackageReference>
-    <PackageReference Include="RayCarrot.UserData">
-      <Version>3.2.2</Version>
-    </PackageReference>
-    <PackageReference Include="RayCarrot.Windows.Registry">
-      <Version>3.2.2</Version>
     </PackageReference>
     <PackageReference Include="Resource.Embedder">
       <Version>2.1.1</Version>
