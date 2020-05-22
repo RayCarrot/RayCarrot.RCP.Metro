@@ -5,7 +5,7 @@
 
 Other changes:
 • Added Eeeebray to the credits
-• The setting to enable beta updates is no tied to the Technical user level rather than the Debug one
+• The setting to enable beta updates is now tied to the Technical user level rather than the Debug one
 • Updated archive creation for Rayman Mini files to support the 1.2 update
 • Exporting the root of an archive file will no longer include the file extension in the directory name
 • Removed an error check for the IPK offsets, causing a crash when loading certain IPK files
