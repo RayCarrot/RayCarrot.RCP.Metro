@@ -15,13 +15,13 @@
                   CloseWithEscape="False"
                   Height="680"
                   Width="950"
-                  DataContext="{x:Static local:RCFRCP.App}">
+                  DataContext="{x:Static local:RCPServices.App}">
     <Window.Resources>
         <local:TaskbarIconViewModel x:Key="TaskbarIconViewModel" />
     </Window.Resources>
     <local:BaseWindow.TitleTemplate>
         <DataTemplate>
-            <Grid DataContext="{x:Static local:RCFRCP.App}">
+            <Grid DataContext="{x:Static local:RCPServices.App}">
                 <Grid.Resources>
                     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
                         <Setter Property="Margin" Value="8 -1 1 0" />

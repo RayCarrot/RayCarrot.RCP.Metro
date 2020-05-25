@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.Logging;
 using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -75,7 +75,7 @@ namespace RayCarrot.RCP.Metro
             RL.Logger?.LogInformationSource($"The educational game {GameData.Name} is being edited...");
 
             // Show the edit dialog and get the result
-            var result = await RCFRCP.UI.EditEducationalDosGameAsync(new EducationalDosGameEditViewModel(GameData)
+            var result = await RCPServices.UI.EditEducationalDosGameAsync(new EducationalDosGameEditViewModel(GameData)
             {
                 Title = Resources.EducationalOptions_EditHeader
             });
@@ -85,7 +85,7 @@ namespace RayCarrot.RCP.Metro
 
             // Check if any games have the same launch mode
             if (Data.EducationalDosBoxGames.Any(x => x != GameData && x.LaunchMode != null && x.LaunchMode.Equals(result.LaunchMode, StringComparison.CurrentCultureIgnoreCase)))
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LaunchModeConflict, Resources.LaunchModeConflictHeader, MessageType.Warning);
+                await Services.MessageUI.DisplayMessageAsync(Resources.LaunchModeConflict, Resources.LaunchModeConflictHeader, MessageType.Warning);
 
             // If the name is blank, add default name
             if (result.Name.IsNullOrWhiteSpace())
@@ -102,7 +102,7 @@ namespace RayCarrot.RCP.Metro
             GameData.LaunchMode = result.LaunchMode;
             GameData.MountPath = result.MountPath;
 
-            await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.EducationalOptions_EditSuccess);
+            await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.EducationalOptions_EditSuccess);
 
             RL.Logger?.LogInformationSource($"The educational game {GameData.Name} has been edited");
 
@@ -124,7 +124,7 @@ namespace RayCarrot.RCP.Metro
                 instDir += GameData.LaunchName;
 
             // Open the location
-            await RCFRCP.File.OpenExplorerLocationAsync(instDir);
+            await RCPServices.File.OpenExplorerLocationAsync(instDir);
 
             RL.Logger?.LogTraceSource($"The educational game {GameData.Name} install location was opened");
         }
@@ -142,12 +142,12 @@ namespace RayCarrot.RCP.Metro
             {
                 RL.Logger?.LogInformationSource($"The educational game could not be removed due to being the last remaining game");
 
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.EducationalOptions_RemoveErrorLastOne, Resources.EducationalOptions_RemoveErrorLastOneHeader, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.EducationalOptions_RemoveErrorLastOne, Resources.EducationalOptions_RemoveErrorLastOneHeader, MessageType.Error);
                 return;
             }
 
             // Ask the user
-            if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGameQuestion, Name), Resources.RemoveGameQuestionHeader, MessageType.Question, true))
+            if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.RemoveGameQuestion, Name), Resources.RemoveGameQuestionHeader, MessageType.Question, true))
                 return;
 
             // Check if the game is the default game

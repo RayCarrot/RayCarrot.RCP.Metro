@@ -1,6 +1,6 @@
 ﻿using ByteSizeLib;
 using MahApps.Metro.IconPacks;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;

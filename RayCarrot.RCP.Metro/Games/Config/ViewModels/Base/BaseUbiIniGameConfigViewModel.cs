@@ -2,8 +2,7 @@
 using System.Threading.Tasks;
 using IniParser.Model;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman.UbiIni;
@@ -34,7 +33,7 @@ namespace RayCarrot.RCP.Metro
 
             // Set properties
             Game = game;
-            CanModifyGame = RCFRCP.File.CheckDirectoryWriteAccess(Game.GetInstallDir(false));
+            CanModifyGame = RCPServices.File.CheckDirectoryWriteAccess(Game.GetInstallDir(false));
 
             if (!CanModifyGame)
                 RL.Logger?.LogInformationSource($"The game {Game} can't be modified");
@@ -137,7 +136,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Saving ubi.ini data");
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
+                    await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
                     return;
                 }
 
@@ -149,14 +148,14 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("On save config");
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveWarning, Resources.Config_SaveErrorHeader);
+                    await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveWarning, Resources.Config_SaveErrorHeader);
 
                     return;
                 }
 
                 UnsavedChanges = false;
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
+                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
 
                 OnSave();
             }

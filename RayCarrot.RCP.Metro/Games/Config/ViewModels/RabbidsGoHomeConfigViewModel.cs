@@ -2,8 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.Logging;
 using RayCarrot.UI;
 
@@ -285,7 +284,7 @@ namespace RayCarrot.RCP.Metro
 
                 UnsavedChanges = false;
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
+                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
 
                 OnSave();
             }

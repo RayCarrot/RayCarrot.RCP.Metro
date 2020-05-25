@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
-using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -25,17 +24,17 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the package name for the game
         /// </summary>
-        public override string PackageName => GetFiestaRunPackageName(RCFRCP.Data.FiestaRunVersion);
+        public override string PackageName => GetFiestaRunPackageName(RCPServices.Data.FiestaRunVersion);
 
         /// <summary>
         /// Gets the full package name for the game
         /// </summary>
-        public override string FullPackageName => GetFiestaRunFullPackageName(RCFRCP.Data.FiestaRunVersion);
+        public override string FullPackageName => GetFiestaRunFullPackageName(RCPServices.Data.FiestaRunVersion);
 
         /// <summary>
         /// Gets store ID for the game
         /// </summary>
-        public override string StoreID => GetStoreID(RCFRCP.Data.FiestaRunVersion);
+        public override string StoreID => GetStoreID(RCPServices.Data.FiestaRunVersion);
 
         /// <summary>
         /// Gets the purchase links for the game
@@ -68,7 +67,7 @@ namespace RayCarrot.RCP.Metro
 
             // Return an empty path if not found
             return null;
-        }, (x, y) => RCFRCP.Data.FiestaRunVersion = y.CastTo<FiestaRunEdition>());
+        }, (x, y) => RCPServices.Data.FiestaRunVersion = y.CastTo<FiestaRunEdition>());
 
         #endregion
 
@@ -83,7 +82,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure version is at least Windows 8
             if (!SupportsWinStoreApps)
             {
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_WinStoreNotSupported, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_WinStoreNotSupported, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
 
                 return null;
             }
@@ -115,13 +114,13 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Set the version
-                    RCFRCP.Data.FiestaRunVersion = version;
+                    RCPServices.Data.FiestaRunVersion = version;
 
                     // Return the directory
                     return installDir;
                 }
 
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
 
                 return null;
             }
@@ -129,7 +128,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Getting Fiesta Run game install directory");
 
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
 
                 return null;
             }
@@ -152,7 +151,7 @@ namespace RayCarrot.RCP.Metro
             if (!SupportsWinStoreApps)
                 return Task.FromResult(false);
 
-            if (!((installDir + Game.GetGameInfo<RaymanFiestaRun_Info>().GetFiestaRunFileName(parameter as FiestaRunEdition? ?? RCFRCP.Data.FiestaRunVersion)).FileExists))
+            if (!((installDir + Game.GetGameInfo<RaymanFiestaRun_Info>().GetFiestaRunFileName(parameter as FiestaRunEdition? ?? RCPServices.Data.FiestaRunVersion)).FileExists))
                 return Task.FromResult(false);
 
             return Task.FromResult(true);
@@ -228,7 +227,7 @@ namespace RayCarrot.RCP.Metro
                 FiestaRunEdition.Default => "Ubisoft.RaymanFiestaRun",
                 FiestaRunEdition.Preload => "UbisoftEntertainment.RaymanFiestaRunPreloadEdition",
                 FiestaRunEdition.Win10 => "Ubisoft.RaymanFiestaRunWindows10Edition",
-                _ => throw new ArgumentOutOfRangeException(nameof(RCFRCP.Data.FiestaRunVersion), RCFRCP.Data.FiestaRunVersion, null)
+                _ => throw new ArgumentOutOfRangeException(nameof(RCPServices.Data.FiestaRunVersion), RCPServices.Data.FiestaRunVersion, null)
             };
         }
 
@@ -244,7 +243,7 @@ namespace RayCarrot.RCP.Metro
                 FiestaRunEdition.Default => "Ubisoft.RaymanFiestaRun_ngz4m417e0mpw",
                 FiestaRunEdition.Preload => "UbisoftEntertainment.RaymanFiestaRunPreloadEdition_dbgk1hhpxymar",
                 FiestaRunEdition.Win10 => "Ubisoft.RaymanFiestaRunWindows10Edition_ngz4m417e0mpw",
-                _ => throw new ArgumentOutOfRangeException(nameof(RCFRCP.Data.FiestaRunVersion), RCFRCP.Data.FiestaRunVersion, null)
+                _ => throw new ArgumentOutOfRangeException(nameof(RCPServices.Data.FiestaRunVersion), RCPServices.Data.FiestaRunVersion, null)
             };
         }
 

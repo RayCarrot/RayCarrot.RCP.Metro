@@ -20,12 +20,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app user data
         /// </summary>
-        public AppUserData Data => _data ??= RCFRCP.Data;
+        public AppUserData Data => _data ??= RCPServices.Data;
 
         /// <summary>
         /// The app view model
         /// </summary>
-        public AppViewModel App => _app ??= RCFRCP.App;
+        public AppViewModel App => _app ??= RCPServices.App;
 
         #endregion
     }

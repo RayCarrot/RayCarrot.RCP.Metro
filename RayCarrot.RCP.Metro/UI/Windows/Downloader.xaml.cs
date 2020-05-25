@@ -1,9 +1,9 @@
-﻿using System;
+﻿using RayCarrot.Common;
+using RayCarrot.Windows.Shell;
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -26,7 +26,7 @@ namespace RayCarrot.RCP.Metro
 
             ViewModel.DownloadComplete += ViewModelDownloadComplete;
 
-            if (RCFRCP.Data.ShowProgressOnTaskBar)
+            if (RCPServices.Data.ShowProgressOnTaskBar)
                 ViewModel.StatusUpdated += ViewModel_StatusUpdated;
         }
 

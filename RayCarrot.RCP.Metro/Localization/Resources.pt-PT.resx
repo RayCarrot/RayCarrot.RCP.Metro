@@ -1473,8 +1473,7 @@ As cópias de segurança em si são sempre arquivados no sub-directório '{0}'. 
     <value>O programa guarda principalmente os seus dados de aplicação nos dados de aplicação do utilizador actual, com algumas definições guardadas no Registo. Abaixo é a lista completa das localizações onde os dados são arquivados. 
   
 • Dados da aplicação principal - {0}
-• Definições de registo - {1}
-• Definições de registo de Framework - {2}</value>
+• Definições de registo - {1}</value>
   </data>
   <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
     <value>Argumentos de execução</value>

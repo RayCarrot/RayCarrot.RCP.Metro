@@ -1,4 +1,4 @@
-﻿using RayCarrot.Extensions;
+﻿using RayCarrot.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +31,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game backup name
         /// </summary>
-        public override string BackupName => $"Rayman Fiesta Run ({RCFRCP.Data.FiestaRunVersion})";
+        public override string BackupName => $"Rayman Fiesta Run ({RCPServices.Data.FiestaRunVersion})";
 
         /// <summary>
         /// Gets the default file name for launching the game, if available
         /// </summary>
-        public override string DefaultFileName => GetFiestaRunFileName(RCFRCP.Data.FiestaRunVersion);
+        public override string DefaultFileName => GetFiestaRunFileName(RCPServices.Data.FiestaRunVersion);
 
         /// <summary>
         /// The options UI, if any is available

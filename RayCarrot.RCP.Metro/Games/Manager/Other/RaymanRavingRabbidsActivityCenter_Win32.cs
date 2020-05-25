@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
-using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -28,12 +28,12 @@ namespace RayCarrot.RCP.Metro
         public override async Task PostLaunchAsync(Process process)
         {
             // Check if the launch message should show
-            if (!RCFRCP.Data.ShownRabbidsActivityCenterLaunchMessage)
+            if (!RCPServices.Data.ShownRabbidsActivityCenterLaunchMessage)
             {
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.RabbidsActivityCenter_LaunchMessage, MessageType.Information);
+                await Services.MessageUI.DisplayMessageAsync(Resources.RabbidsActivityCenter_LaunchMessage, MessageType.Information);
 
                 // Flag that the message should not be shown again
-                RCFRCP.Data.ShownRabbidsActivityCenterLaunchMessage = true;
+                RCPServices.Data.ShownRabbidsActivityCenterLaunchMessage = true;
             }
 
             // Run the base code

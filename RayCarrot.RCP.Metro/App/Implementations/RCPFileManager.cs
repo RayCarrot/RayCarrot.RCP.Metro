@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualBasic.FileIO;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
@@ -9,7 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using RayCarrot.Logging;
-using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -59,13 +58,13 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleExpected("Launching file", file);
                 
-                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.File_FileNotFound, file.FullPath), Resources.File_FileNotFoundHeader, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.File_FileNotFound, file.FullPath), Resources.File_FileNotFoundHeader, MessageType.Error);
             }
             catch (Exception ex)
             {
                 ex.HandleUnexpected("Launching file", file);
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.File_ErrorLaunchingFile, file.FullPath));
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.File_ErrorLaunchingFile, file.FullPath));
             }
 
             // Return null if the process could not launch
@@ -133,7 +132,7 @@ namespace RayCarrot.RCP.Metro
         {
             if (!location.Exists)
             {
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.File_LocationNotFound, Resources.File_OpenLocationErrorHeader, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.File_LocationNotFound, Resources.File_OpenLocationErrorHeader, MessageType.Error);
                 return;
             }
 
@@ -146,7 +145,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Opening explorer location", location);
                 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.File_OpenLocationError, Resources.File_OpenLocationErrorHeader);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.File_OpenLocationError, Resources.File_OpenLocationErrorHeader);
             }
         }
 
@@ -157,9 +156,9 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task OpenRegistryKeyAsync(string registryKeyPath)
         {
-            if (!RCFWinReg.RegistryManager.KeyExists(registryKeyPath))
+            if (!RegistryHelpers.KeyExists(registryKeyPath))
             {
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.File_RegKeyNotFound, Resources.File_RegKeyNotFoundHeader, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.File_RegKeyNotFound, Resources.File_RegKeyNotFoundHeader, MessageType.Error);
 
                 return;
             }
@@ -173,7 +172,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Opening Registry key path", registryKeyPath);
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.File_OpenRegKeyError, Resources.File_OpenRegKeyErrorHeader);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.File_OpenRegKeyError, Resources.File_OpenRegKeyErrorHeader);
             }
         }
 
@@ -181,17 +180,7 @@ namespace RayCarrot.RCP.Metro
         /// Deletes a directory recursively if it exists
         /// </summary>
         /// <param name="dirPath">The directory path</param>
-        public void DeleteDirectory(FileSystemPath dirPath)
-        {
-            // Check if the directory exists
-            if (!dirPath.DirectoryExists)
-                return;
-
-            // Delete the directory
-            Directory.Delete(dirPath, true);
-
-            RL.Logger?.LogDebugSource($"The directory {dirPath} was deleted");
-        }
+        public void DeleteDirectory(FileSystemPath dirPath) => dirPath.DeleteDirectory();
 
         /// <summary>
         /// Creates an new empty file
@@ -217,17 +206,7 @@ namespace RayCarrot.RCP.Metro
         /// Deletes a file if it exists
         /// </summary>
         /// <param name="filePath">The file path</param>
-        public void DeleteFile(FileSystemPath filePath)
-        {
-            // Check if the file exists
-            if (!filePath.FileExists)
-                return;
-
-            // Delete the file
-            File.Delete(filePath);
-
-            RL.Logger?.LogDebugSource($"The file {filePath} was deleted");
-        }
+        public void DeleteFile(FileSystemPath filePath) => filePath.DeleteFile();
 
         /// <summary>
         /// Moves a directory and creates the parent directory of its new location if it doesn't exist

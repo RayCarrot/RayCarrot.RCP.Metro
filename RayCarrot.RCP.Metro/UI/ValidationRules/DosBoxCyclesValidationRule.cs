@@ -1,4 +1,4 @@
-﻿using RayCarrot.Extensions;
+﻿using RayCarrot.Common;
 using System;
 using System.Globalization;
 using System.Linq;

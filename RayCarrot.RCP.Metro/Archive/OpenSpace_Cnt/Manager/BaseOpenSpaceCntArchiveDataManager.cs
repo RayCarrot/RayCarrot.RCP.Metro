@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using RayCarrot.Binary;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman;
@@ -136,7 +135,7 @@ namespace RayCarrot.RCP.Metro
             outputFileStream.Position = 0;
 
             // Serialize the data
-            BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCFRCP.App.GetBinarySerializerLogger());
+            BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
             RL.Logger?.LogInformationSource($"The CNT archive has been repacked");
         }

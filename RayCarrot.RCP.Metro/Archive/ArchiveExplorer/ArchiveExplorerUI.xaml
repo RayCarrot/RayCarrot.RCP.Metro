@@ -5,7 +5,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:metro="clr-namespace:RayCarrot.WPF.Metro;assembly=RayCarrot.WPF.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ArchiveExplorerDialogViewModel}"
@@ -13,7 +12,7 @@
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              MinHeight="400"
              MinWidth="600">
-    <metro:LoaderContentControl HorizontalLoadingIconAlignment="Center"
+    <local:LoaderContentControl HorizontalLoadingIconAlignment="Center"
                                 VerticalLoadingIconAlignment="Center"
                                 VerticalContentAlignment="Stretch"
                                 HorizontalContentAlignment="Stretch"
@@ -201,5 +200,5 @@
 
         </Grid>
 
-    </metro:LoaderContentControl>
+    </local:LoaderContentControl>
 </UserControl>

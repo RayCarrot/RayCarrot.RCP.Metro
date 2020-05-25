@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Logging;
 using RayCarrot.UI;
 

@@ -1,5 +1,4 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
 using System.IO;
@@ -60,12 +59,12 @@ namespace RayCarrot.RCP.Metro
 
                 RL.Logger?.LogInformationSource($"The Rayman 1 config file has been fixed");
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R1U_FixConfig_Success);
+                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R1U_FixConfig_Success);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Applying R1 fix config patch");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_FixConfig_Error);
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_FixConfig_Error);
             }
         }
 

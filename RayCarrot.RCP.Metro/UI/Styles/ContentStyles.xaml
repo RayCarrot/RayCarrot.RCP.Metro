@@ -55,7 +55,7 @@
     <!-- Default Animated Tab Control -->
 
     <Style TargetType="{x:Type mah:MetroAnimatedTabControl}" BasedOn="{StaticResource {x:Type mah:MetroAnimatedTabControl}}">
-        <Setter Property="mah:TabControlHelper.Transition" Value="{Binding Source={x:Static local:RCFRCP.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}" />
+        <Setter Property="mah:TabControlHelper.Transition" Value="{Binding Source={x:Static local:RCPServices.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}" />
     </Style>
 
     <!-- Default RCP tab item -->

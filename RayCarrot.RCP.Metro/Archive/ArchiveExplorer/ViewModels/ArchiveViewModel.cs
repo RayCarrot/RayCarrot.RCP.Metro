@@ -1,5 +1,5 @@
 ﻿using Nito.AsyncEx;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
@@ -250,7 +249,7 @@ namespace RayCarrot.RCP.Metro
                 ArchiveFileStream = null;
 
                 // If the operation succeeded, replace the archive file with the temporary output
-                RCFRCP.File.MoveFile(tempOutputFile.TempPath, FilePath, true);
+                RCPServices.File.MoveFile(tempOutputFile.TempPath, FilePath, true);
 
                 // Re-open the file stream
                 ArchiveFileStream = new FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
@@ -261,7 +260,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Repacking archive", DisplayName);
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RepackError);
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RepackError);
 
                 // Re-open the file stream if closed
                 if (ArchiveFileStream == null)

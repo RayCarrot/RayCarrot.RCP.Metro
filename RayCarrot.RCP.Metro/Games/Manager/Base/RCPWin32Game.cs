@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Logging;
-using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -85,7 +84,7 @@ namespace RayCarrot.RCP.Metro
             RL.Logger?.LogTraceSource($"The game {Game} launch info has been retrieved as Path = {launchInfo.Path}, Args = {launchInfo.Args}");
 
             // Launch the game
-            var process = await RCFRCP.File.LaunchFileAsync(launchInfo.Path, forceRunAsAdmin || Game.GetLaunchMode() == GameLaunchMode.AsAdmin, launchInfo.Args);
+            var process = await RCPServices.File.LaunchFileAsync(launchInfo.Path, forceRunAsAdmin || Game.GetLaunchMode() == GameLaunchMode.AsAdmin, launchInfo.Args);
 
             RL.Logger?.LogInformationSource($"The game {Game} has been launched");
 
@@ -103,7 +102,7 @@ namespace RayCarrot.RCP.Metro
         public override async Task<FileSystemPath?> LocateAsync()
         {
             // Have user browse for directory
-            var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+            var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
             {
                 Title = Resources.LocateGame_BrowserHeader,
                 DefaultDirectory = Environment.SpecialFolder.ProgramFilesX86.GetFolderPath(),
@@ -123,7 +122,7 @@ namespace RayCarrot.RCP.Metro
             {
                 RL.Logger?.LogInformationSource($"The selected install directory for {Game} is not valid");
 
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation,
+                await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidLocation,
                     Resources.LocateGame_InvalidLocationHeader, MessageType.Error);
 
                 return null;
@@ -165,7 +164,7 @@ namespace RayCarrot.RCP.Metro
             var launchInfo = GetLaunchInfo();
 
             // Create the shortcut
-            RCFRCP.File.CreateFileShortcut(shortcutName, destinationDirectory, launchInfo.Path, launchInfo.Args);
+            RCPServices.File.CreateFileShortcut(shortcutName, destinationDirectory, launchInfo.Path, launchInfo.Args);
 
             RL.Logger?.LogTraceSource($"A shortcut was created for {Game} under {destinationDirectory}");
         }

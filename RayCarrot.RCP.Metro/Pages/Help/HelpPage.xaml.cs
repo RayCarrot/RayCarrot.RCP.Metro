@@ -1,5 +1,4 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
@@ -13,9 +12,9 @@ namespace RayCarrot.RCP.Metro
         {
             InitializeComponent();
 
-            RCFCore.Data.UserLevelChanged += (s, e) =>
+            WPF.Services.Data.UserLevelChanged += (s, e) =>
             {
-                if ((HelpTreeView.SelectedItem as HelpItemViewModel)?.RequiredUserLevel > RCFRCP.Data.UserLevel)
+                if ((HelpTreeView.SelectedItem as HelpItemViewModel)?.RequiredUserLevel > RCPServices.Data.UserLevel)
                     ((TreeViewItem)HelpTreeView.ItemContainerGenerator.ContainerFromItem(HelpTreeView.Items[0])).IsSelected = true;
             };
         }

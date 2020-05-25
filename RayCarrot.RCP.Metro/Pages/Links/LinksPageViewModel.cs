@@ -1,6 +1,6 @@
 ﻿using Microsoft.Win32;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.WPF;
 using RayCarrot.IO;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
@@ -48,8 +48,8 @@ namespace RayCarrot.RCP.Metro
             // Refresh on startup
             Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();
 
-            RCFCore.Data.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
-            RCFCore.Data.UserLevelChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
+            Services.Data.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
+            Services.Data.UserLevelChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
         }
 
         #endregion
@@ -132,7 +132,7 @@ namespace RayCarrot.RCP.Metro
                     try
                     {
                         using RegistryKey key =
-                            RCFWinReg.RegistryManager.GetKeyFromFullPath(
+                            RegistryHelpers.GetKeyFromFullPath(
                                 @"HKEY_CURRENT_USER\Software\Valve\Steam", RegistryView.Default);
                         if (key != null)
                         {
@@ -156,7 +156,7 @@ namespace RayCarrot.RCP.Metro
                     // GOG paths
                     try
                     {
-                        using RegistryKey key = RCFWinReg.RegistryManager.GetKeyFromFullPath(
+                        using RegistryKey key = RegistryHelpers.GetKeyFromFullPath(
                             @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\GOG.com\GalaxyClient\paths",
                             RegistryView.Default);
                         if (key != null)
@@ -348,7 +348,7 @@ namespace RayCarrot.RCP.Metro
             public new void Add(LinkItemViewModel[] group)
             {
                 // Get the valid items
-                var validItems = group.Where(x => x.IsValid && x.MinUserLevel <= RCFRCP.Data.UserLevel).ToArray();
+                var validItems = group.Where(x => x.IsValid && x.MinUserLevel <= RCPServices.Data.UserLevel).ToArray();
 
                 // If there are valid items, add them
                 if (validItems.Any())

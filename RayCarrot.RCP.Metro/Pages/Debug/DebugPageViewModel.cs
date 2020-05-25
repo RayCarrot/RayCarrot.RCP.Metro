@@ -1,8 +1,6 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+﻿using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.UI;
-using RayCarrot.Windows.Registry;
 using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
@@ -15,6 +13,7 @@ using System.Runtime.Versioning;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Newtonsoft.Json;
 using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
@@ -99,56 +98,40 @@ namespace RayCarrot.RCP.Metro
                     }).ShowDialogAsync();
                     break;
 
-                case DebugDialogTypes.RegistryKey:
-                    await RCFWinReg.RegistryBrowseUIManager.BrowseRegistryKeyAsync(new RegistryBrowserViewModel()
-                    {
-                        Title = "Debug",
-                        BrowseValue = false
-                    });
-                    break;
-
-                case DebugDialogTypes.RegistryKeyValue:
-                    await RCFWinReg.RegistryBrowseUIManager.BrowseRegistryKeyAsync(new RegistryBrowserViewModel()
-                    {
-                        Title = "Debug",
-                        BrowseValue = true
-                    });
-                    break;
-
                 case DebugDialogTypes.Message:
-                    await RCFUI.MessageUI.DisplayMessageAsync("Debug message", "Debug header", MessageType.Information);
+                    await Services.MessageUI.DisplayMessageAsync("Debug message", "Debug header", MessageType.Information);
                     break;
 
                 case DebugDialogTypes.Directory:
-                    await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                    await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
                 case DebugDialogTypes.Drive:
-                    await RCFUI.BrowseUI.BrowseDriveAsync(new DriveBrowserViewModel()
+                    await Services.BrowseUI.BrowseDriveAsync(new DriveBrowserViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
                 case DebugDialogTypes.File:
-                    await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+                    await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
                 case DebugDialogTypes.SaveFile:
-                    await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
+                    await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
                 default:
-                    await RCFUI.MessageUI.DisplayMessageAsync("Invalid selection");
+                    await Services.MessageUI.DisplayMessageAsync("Invalid selection");
                     break;
             }
         }
@@ -179,7 +162,7 @@ namespace RayCarrot.RCP.Metro
                     lines.AddRange(from utility in await info.GetAppliedUtilitiesAsync() select $"{utility} ({info.DisplayName})");
             }
 
-            await RCFUI.MessageUI.DisplayMessageAsync(lines.JoinItems(Environment.NewLine), MessageType.Information);
+            await Services.MessageUI.DisplayMessageAsync(lines.JoinItems(Environment.NewLine), MessageType.Information);
         }
 
         /// <summary>
@@ -234,7 +217,7 @@ namespace RayCarrot.RCP.Metro
                         await App.SaveUserDataAsync();
 
                         // Display the file contents
-                        DataOutput = File.ReadAllText(RCFRCP.Data.FilePath);
+                        DataOutput = File.ReadAllText(CommonPaths.AppUserDataPath);
 
                         break;
 
@@ -269,7 +252,7 @@ namespace RayCarrot.RCP.Metro
 
                     case DebugDataOutputTypes.GameFinder:
                         // Select the games to find
-                        var selectionResult = await RCFRCP.UI.SelectGamesAsync(new GamesSelectionViewModel());
+                        var selectionResult = await RCPServices.UI.SelectGamesAsync(new GamesSelectionViewModel());
 
                         if (selectionResult.CanceledByUser)
                             return;
@@ -287,8 +270,6 @@ namespace RayCarrot.RCP.Metro
                         // Helper method for adding a new line of text
                         void AddLine(string header, object content) => DataOutput += $"{header}: {content}{Environment.NewLine}";
 
-                        IBaseSerializer serializer = new JsonBaseSerializer();
-
                         foreach (Games game in App.GetGames)
                         {
                             var info = game.GetGameInfo();
@@ -301,8 +282,8 @@ namespace RayCarrot.RCP.Metro
                             
                             if (info.IsAdded)
                             {
-                                AddLine("Backup directories", await serializer.SerializeAsync(info.GetBackupInfos));
-                                AddLine("Game file links", await serializer.SerializeAsync(info.GetGameFileLinks));
+                                AddLine("Backup directories", JsonConvert.SerializeObject(info.GetBackupInfos));
+                                AddLine("Game file links", JsonConvert.SerializeObject(info.GetGameFileLinks));
                             }
 
                             DataOutput += Environment.NewLine;
@@ -346,35 +327,6 @@ namespace RayCarrot.RCP.Metro
                         }
 
                         DataOutput += $"{Environment.NewLine}{totalTime} ms";
-
-                        break;
-
-                    case DebugDataOutputTypes.APIVersions:
-
-                        // Get the API libraries
-                        var libraries = new string[]
-                        {
-                            "RayCarrot.CarrotFramework",
-                            "RayCarrot.CarrotFramework.Abstractions",
-                            "RayCarrot.UI",
-                            "RayCarrot.IO",
-                            "RayCarrot.Extensions",
-                            "RayCarrot.UserData",
-                            "RayCarrot.Windows.Shell",
-                            "RayCarrot.Windows.Registry",
-                        };
-
-                        // Enumerate each library
-                        foreach (string lib in libraries)
-                        {
-                            // Load the assembly
-                            var a = Assembly.Load(lib);
-
-                            // Output
-                            DataOutput += $"{lib} ({a.GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version ?? "N/A"})";
-
-                            DataOutput += Environment.NewLine;
-                        }
 
                         break;
 
@@ -449,16 +401,6 @@ namespace RayCarrot.RCP.Metro
             GameTypeSelection,
 
             /// <summary>
-            /// A Registry key selection dialog
-            /// </summary>
-            RegistryKey,
-
-            /// <summary>
-            /// A Registry key and value selection dialog
-            /// </summary>
-            RegistryKeyValue,
-
-            /// <summary>
             /// A message dialog
             /// </summary>
             Message,
@@ -523,11 +465,6 @@ namespace RayCarrot.RCP.Metro
             /// Displays the install sizes for each game
             /// </summary>
             GameSizes,
-
-            /// <summary>
-            /// Displays the versions of the Carrot Framework and Rayman Control Panel API
-            /// </summary>
-            APIVersions
         }
 
         #endregion

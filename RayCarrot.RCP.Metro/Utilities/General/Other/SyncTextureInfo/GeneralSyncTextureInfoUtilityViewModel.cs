@@ -1,14 +1,14 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.Logging;
 using RayCarrot.Rayman.OpenSpace;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -61,7 +61,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task SyncTextureInfoAsync()
         {
-            var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+            var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
             {
                 Title = Resources.Utilities_SyncTextureInfo_SelectDirHeader,
                 DefaultDirectory = GameModeSelection.SelectedValue.GetGame()?.GetInstallDir(false) ?? FileSystemPath.EmptyPath
@@ -96,13 +96,13 @@ namespace RayCarrot.RCP.Metro
                     return EditTextureInfo(gameSettings, dataFiles, cntFiles);
                 });
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Utilities_SyncTextureInfo_Success, syncResult.EditedTextures, syncResult.TotalTextures));
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Utilities_SyncTextureInfo_Success, syncResult.EditedTextures, syncResult.TotalTextures));
             }
             catch (Exception ex)
             {
                 ex.HandleError("Syncing texture info");
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_SyncTextureInfo_Error);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_SyncTextureInfo_Error);
             }
             finally
             {

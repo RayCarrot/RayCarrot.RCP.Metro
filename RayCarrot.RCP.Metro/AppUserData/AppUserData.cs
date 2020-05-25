@@ -1,40 +1,25 @@
-﻿using Newtonsoft.Json;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
-using RayCarrot.UserData;
 using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
-using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// The application user data
     /// </summary>
-    public class AppUserData : BaseViewModel, IUserData
+    public class AppUserData : BaseViewModel
     {
-        #region Interface Implementation
-
-        /// <summary>
-        /// The path of the saved <see cref="AppUserData"/> file
-        /// </summary>
-        [JsonIgnore]
-        public FileSystemPath FilePath => CommonPaths.AppUserDataPath;
-
-        /// <summary>
-        /// The name of the <see cref="IUserData"/>
-        /// </summary>
-        [JsonIgnore]
-        public string Name => "AppUserData";
+        #region Public Methods
 
         /// <summary>
         /// Resets all values to their defaults
         /// </summary>
-        public virtual void Reset()
+        public void Reset()
         {
             UserLevel = UserLevel.Advanced;
             LastVersion = new Version(0, 0, 0, 0);
@@ -88,8 +73,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public UserLevel UserLevel
         {
-            get => RCFCore.Data.CurrentUserLevel;
-            set => RCFCore.Data.CurrentUserLevel = value;
+            get => Services.Data.CurrentUserLevel;
+            set => Services.Data.CurrentUserLevel = value;
         }
 
         /// <summary>
@@ -137,7 +122,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string CurrentCulture
         {
-            get => RCFCore.Data.CurrentCulture?.Name ?? LocalizationManager.DefaultCulture.Name;
+            get => Services.Data.CurrentCulture?.Name ?? LocalizationManager.DefaultCulture.Name;
             set => LocalizationManager.SetCulture(value);
         }
 

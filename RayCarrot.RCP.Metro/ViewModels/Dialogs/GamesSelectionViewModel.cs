@@ -1,5 +1,5 @@
-﻿using RayCarrot.UI;
-using System.Linq;
+﻿using System.Linq;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -14,7 +14,7 @@ namespace RayCarrot.RCP.Metro
         public GamesSelectionViewModel()
         {
             Title = "Select games";
-            Games = RCFRCP.App.GetGames.Select(x => new GamesItem(x)).ToArray();
+            Games = RCPServices.App.GetGames.Select(x => new GamesItem(x)).ToArray();
         }
 
         /// <summary>

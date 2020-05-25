@@ -1,5 +1,4 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.UI;
+﻿using RayCarrot.UI;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -115,7 +114,7 @@ namespace RayCarrot.RCP.Metro
                 CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture = CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = ci;
                 
                 // Set the framework culture
-                RCFCore.Data.CurrentCulture = ci;
+                WPF.Services.Data.CurrentCulture = ci;
 
                 RL.Logger?.LogInformationSource($"The current culture was set to {ci.EnglishName}");
             }

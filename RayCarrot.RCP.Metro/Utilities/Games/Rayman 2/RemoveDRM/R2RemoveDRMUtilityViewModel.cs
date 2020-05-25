@@ -7,7 +7,6 @@ using RayCarrot.UI;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Logging;
 using RayCarrot.Rayman;
 
@@ -106,7 +105,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         if (createBackup)
                             // Backup the file
-                            RCFRCP.File.CopyFile(sna.Key, CommonPaths.R2RemoveDRMDir + (sna.Key - BaseDirectory), true);
+                            RCPServices.File.CopyFile(sna.Key, CommonPaths.R2RemoveDRMDir + (sna.Key - BaseDirectory), true);
 
                         // Create the encoder
                         var encoder = new Rayman2SNADataEncoder();
@@ -131,13 +130,13 @@ namespace RayCarrot.RCP.Metro
 
                 HasBeenApplied = true;
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_RemoveDRM_Success);
+                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_RemoveDRM_Success);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Removal R2 DRM");
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_RemoveDRM_Error);
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_RemoveDRM_Error);
             }
             finally
             {
@@ -158,21 +157,21 @@ namespace RayCarrot.RCP.Metro
                 await Task.Run(() =>
                 {
                     // Move back the files
-                    RCFRCP.File.MoveFiles(new IOSearchPattern(CommonPaths.R2RemoveDRMDir), BaseDirectory, true);
+                    RCPServices.File.MoveFiles(new IOSearchPattern(CommonPaths.R2RemoveDRMDir), BaseDirectory, true);
 
                     // Delete the backup directory
-                    RCFRCP.File.DeleteDirectory(CommonPaths.R2RemoveDRMDir);
+                    RCPServices.File.DeleteDirectory(CommonPaths.R2RemoveDRMDir);
                 });
 
                 HasBeenApplied = false;
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_RemoveDRM_RevertSuccess);
+                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_RemoveDRM_RevertSuccess);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Reverting R2 DRM patch");
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_RemoveDRM_RevertError);
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_RemoveDRM_RevertError);
             }
             finally
             {

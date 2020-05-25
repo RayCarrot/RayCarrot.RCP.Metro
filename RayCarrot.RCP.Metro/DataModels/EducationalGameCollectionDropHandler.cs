@@ -1,5 +1,4 @@
 ﻿using GongSolutions.Wpf.DragDrop;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro

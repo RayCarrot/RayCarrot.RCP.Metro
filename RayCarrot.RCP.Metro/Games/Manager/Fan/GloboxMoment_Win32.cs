@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using MahApps.Metro.IconPacks;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Logging;
 using RayCarrot.UI;
 
@@ -33,7 +32,7 @@ namespace RayCarrot.RCP.Metro
         {
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenGameJoltPage, PackIconMaterialKind.Earth, new AsyncRelayCommand(async () =>
             {
-                (await RCFRCP.File.LaunchFileAsync("https://gamejolt.com/games/globoxmoment/428585"))?.Dispose();
+                (await RCPServices.File.LaunchFileAsync("https://gamejolt.com/games/globoxmoment/428585"))?.Dispose();
                 RL.Logger?.LogTraceSource($"The game {Game} GameJolt page was opened");
             })),
         };

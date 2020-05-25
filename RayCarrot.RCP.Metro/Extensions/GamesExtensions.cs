@@ -1,4 +1,4 @@
-﻿using RayCarrot.Extensions;
+﻿using RayCarrot.Common;
 using RayCarrot.IO;
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game has been added, otherwise false</returns>
         public static bool IsAdded(this Games game)
         {
-            return RCFRCP.Data.Games.ContainsKey(game);
+            return RCPServices.Data.Games.ContainsKey(game);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace RayCarrot.RCP.Metro
         public static FileSystemPath GetInstallDir(this Games game, bool throwIfNotFound = true)
         {
             // Get the game data
-            var data = RCFRCP.Data.Games.TryGetValue(game);
+            var data = RCPServices.Data.Games.TryGetValue(game);
 
             // Make sure it's not null
             if (data == null)
@@ -96,7 +96,7 @@ namespace RayCarrot.RCP.Metro
         public static GameType GetGameType(this Games game)
         {
             // Get the game data
-            var data = RCFRCP.Data.Games.TryGetValue(game);
+            var data = RCPServices.Data.Games.TryGetValue(game);
 
             // Make sure it's not null
             if (data == null)
@@ -114,7 +114,7 @@ namespace RayCarrot.RCP.Metro
         public static GameLaunchMode GetLaunchMode(this Games game)
         {
             // Get the game data
-            var data = RCFRCP.Data.Games.TryGetValue(game);
+            var data = RCPServices.Data.Games.TryGetValue(game);
 
             // Make sure it's not null
             if (data == null)
@@ -131,7 +131,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The manager</returns>
         public static RCPGameManager GetManager(this Games game)
         {
-            return RCFRCP.App.GamesManager.GameManagers[game][game.GetGameType()].CreateInstance<RCPGameManager>();
+            return RCPServices.App.GamesManager.GameManagers[game][game.GetGameType()].CreateInstance<RCPGameManager>();
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The managers</returns>
         public static IEnumerable<RCPGameManager> GetManagers(this Games game)
         {
-            return RCFRCP.App.GamesManager.GameManagers[game].Values.Select(managerType => managerType.CreateInstance<RCPGameManager>());
+            return RCPServices.App.GamesManager.GameManagers[game].Values.Select(managerType => managerType.CreateInstance<RCPGameManager>());
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The manager</returns>
         public static RCPGameManager GetManager(this Games game, GameType type)
         {
-            return RCFRCP.App.GamesManager.GameManagers[game][type].CreateInstance<RCPGameManager>();
+            return RCPServices.App.GamesManager.GameManagers[game][type].CreateInstance<RCPGameManager>();
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace RayCarrot.RCP.Metro
                     throw new Exception("The provided game manager type is not valid");
             }
 
-            return RCFRCP.App.GamesManager.GameManagers[game][type.Value].CreateInstance<T>();
+            return RCPServices.App.GamesManager.GameManagers[game][type.Value].CreateInstance<T>();
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The info</returns>
         public static RCPGameInfo GetGameInfo(this Games game)
         {
-            return RCFRCP.App.GamesManager.GameInfos[game].CreateInstance<RCPGameInfo>();
+            return RCPServices.App.GamesManager.GameInfos[game].CreateInstance<RCPGameInfo>();
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace RayCarrot.RCP.Metro
         public static T GetGameInfo<T>(this Games game)
             where T : RCPGameInfo
         {
-            return RCFRCP.App.GamesManager.GameInfos[game].CreateInstance<T>();
+            return RCPServices.App.GamesManager.GameInfos[game].CreateInstance<T>();
         }
     }
 }

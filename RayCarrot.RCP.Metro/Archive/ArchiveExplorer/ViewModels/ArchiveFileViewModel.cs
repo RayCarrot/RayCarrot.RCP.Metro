@@ -1,6 +1,5 @@
 ﻿using MahApps.Metro.IconPacks;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
@@ -10,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
 using RayCarrot.Logging;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -190,7 +190,7 @@ namespace RayCarrot.RCP.Metro
                         var ext = (includeMipmap ? FileData.CastTo<IArchiveImageFileData>().SupportedMipmapExportFileExtensions : FileData.SupportedExportFileExtensions);
 
                         // Get the output path
-                        var result = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
+                        var result = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
                         {
                             Title = Resources.Archive_ExportHeader,
                             DefaultName = new FileSystemPath(FileName).ChangeFileExtension(ext.First().GetPrimaryFileExtension(), true),
@@ -233,7 +233,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             ex.HandleError("Exporting archive file", FileName);
 
-                            await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ExportError, FileName));
+                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ExportError, FileName));
 
                             return;
                         }
@@ -244,7 +244,7 @@ namespace RayCarrot.RCP.Metro
 
                         RL.Logger?.LogTraceSource($"The archive file has been exported");
 
-                        await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFileSuccess);
+                        await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFileSuccess);
                     });
                 }
             }
@@ -290,7 +290,7 @@ namespace RayCarrot.RCP.Metro
                     await Task.Run(async () =>
                     {
                         // Get the file
-                        var result = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+                        var result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                         {
                             Title = Resources.Archive_ImportFileHeader,
                             ExtensionFilter = GetFileFilterCollection(FileData.SupportedExportFileExtensions).CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
@@ -313,7 +313,7 @@ namespace RayCarrot.RCP.Metro
 
                         RL.Logger?.LogTraceSource($"The archive file has been imported");
 
-                        await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ImportFileSuccess);
+                        await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ImportFileSuccess);
                     });
                 }
             }

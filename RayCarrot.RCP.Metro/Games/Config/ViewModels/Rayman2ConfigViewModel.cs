@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ByteSizeLib;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman.UbiIni;
-using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -422,7 +421,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Create the file
-                    RCFRCP.File.CreateFile(newFile);
+                    RCPServices.File.CreateFile(newFile);
 
                     RL.Logger?.LogInformationSource($"A new ubi.ini file has been created under {newFile.FullPath}");
                 }
@@ -430,7 +429,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     ex.HandleError("Creating ubi.ini file");
 
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_InvalidUbiIni, newFile.Parent.FullPath));
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_InvalidUbiIni, newFile.Parent.FullPath));
 
                     throw;
                 }
@@ -534,7 +533,7 @@ namespace RayCarrot.RCP.Metro
                     RL.Logger?.LogWarningSource("The Rayman 2 executable could not be found");
 
                     if (WidescreenSupport)
-                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.R2Widescreen_ExeNotFound, MessageType.Error);
+                        await Services.MessageUI.DisplayMessageAsync(Resources.R2Widescreen_ExeNotFound, MessageType.Error);
 
                     return;
                 }
@@ -550,7 +549,7 @@ namespace RayCarrot.RCP.Metro
                     RL.Logger?.LogInformationSource($"The Rayman 2 executable file size does not match any supported version");
 
                     if (WidescreenSupport)
-                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.R2Widescreen_ExeNotValid, MessageType.Error);
+                        await Services.MessageUI.DisplayMessageAsync(Resources.R2Widescreen_ExeNotValid, MessageType.Error);
 
                     return;
                 }
@@ -632,7 +631,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Setting R2 aspect ratio");
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2Widescreen_Error);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2Widescreen_Error);
 
                 if (WidescreenSupport)
                     throw;

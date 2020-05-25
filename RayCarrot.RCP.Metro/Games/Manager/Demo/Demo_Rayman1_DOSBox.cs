@@ -57,7 +57,7 @@ namespace RayCarrot.RCP.Metro
             var mountPath = Game.GetInstallDir() + "Disc" + "RAY1DEMO.cue";
 
             if (mountPath.FileExists)
-                RCFRCP.Data.DosBoxGames[Game].MountPath = mountPath;
+                RCPServices.Data.DosBoxGames[Game].MountPath = mountPath;
         }
 
         #endregion

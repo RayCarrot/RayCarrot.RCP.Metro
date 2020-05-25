@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 

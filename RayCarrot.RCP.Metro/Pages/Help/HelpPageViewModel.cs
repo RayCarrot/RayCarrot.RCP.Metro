@@ -1,11 +1,10 @@
-﻿using System;
+﻿using RayCarrot.Logging;
+using RayCarrot.UI;
+using RayCarrot.WPF;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Logging;
-using RayCarrot.UI;
-using RayCarrot.Windows.Registry;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -23,7 +22,7 @@ namespace RayCarrot.RCP.Metro
         {
             Refresh();
 
-            RCFCore.Data.CultureChanged += (s, e) => Refresh();
+            Services.Data.CultureChanged += (s, e) => Refresh();
             
             OpenDiscordCommand = new RelayCommand(OpenDiscord);
         }
@@ -83,7 +82,7 @@ namespace RayCarrot.RCP.Metro
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_RCP_AppDataHeader,
-                            HelpText = String.Format(Resources.Help_RCP_AppData, CommonPaths.UserDataBaseDir, CommonPaths.RegistryBaseKey, RCFRegistryPaths.RCFBasePath),
+                            HelpText = String.Format(Resources.Help_RCP_AppData, CommonPaths.UserDataBaseDir, CommonPaths.RegistryBaseKey),
                             RequiredUserLevel = UserLevel.Advanced
                         },
 

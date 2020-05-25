@@ -2,10 +2,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -115,7 +116,7 @@ namespace RayCarrot.RCP.Metro
             {
                 if (value && !App.IsRunningAsAdmin)
                 {
-                    Task.Run(async () => await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_InstallAllUsersError, Resources.Installer_InstallAllUsersErrorHeader, MessageType.Warning));
+                    Task.Run(async () => await Services.MessageUI.DisplayMessageAsync(Resources.Installer_InstallAllUsersError, Resources.Installer_InstallAllUsersErrorHeader, MessageType.Warning));
 
                     return;
                 }
@@ -182,11 +183,11 @@ namespace RayCarrot.RCP.Metro
         {
             if (CancellationTokenSource.IsCancellationRequested)
             {
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_OperationCanceling, Resources.Download_OperationCancelingHeader, MessageType.Information);
+                await Services.MessageUI.DisplayMessageAsync(Resources.Download_OperationCanceling, Resources.Download_OperationCancelingHeader, MessageType.Information);
                 return;
             }
 
-            if (await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_CancelQuestion, Resources.Installer_CancelQuestionHeader, MessageType.Question, true))
+            if (await Services.MessageUI.DisplayMessageAsync(Resources.Installer_CancelQuestion, Resources.Installer_CancelQuestionHeader, MessageType.Question, true))
             {
                 RL.Logger?.LogInformationSource($"The installation has been requested to cancel");
                 CancellationTokenSource.Cancel();
@@ -235,14 +236,14 @@ namespace RayCarrot.RCP.Metro
             // Make sure the selected directory exists
             if (!InstallDir.DirectoryExists)
             {
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_InvalidDirectory, Resources.Installer_InvalidDirectoryHeader, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.Installer_InvalidDirectory, Resources.Installer_InvalidDirectoryHeader, MessageType.Error);
                 return;
             }
 
             // Make sure write permission is granted to the selected directory
-            if (!RCFRCP.File.CheckDirectoryWriteAccess(InstallDir))
+            if (!RCPServices.File.CheckDirectoryWriteAccess(InstallDir))
             {
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_DirMissingWritePermission, Resources.Installer_DirMissingWritePermissionHeader, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.Installer_DirMissingWritePermission, Resources.Installer_DirMissingWritePermissionHeader, MessageType.Error);
                 return;
             }
 
@@ -278,7 +279,7 @@ namespace RayCarrot.RCP.Metro
                     await App.AddNewGameAsync(Game, GameType.Win32, output);
 
                     // Add game to installed games
-                    RCFRCP.Data.InstalledGames.Add(Game);
+                    RCPServices.Data.InstalledGames.Add(Game);
 
                     // Refresh
                     await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
@@ -299,7 +300,7 @@ namespace RayCarrot.RCP.Metro
                         catch (Exception ex)
                         {
                             ex.HandleError("Creating game shortcut from installer", Game);
-                            await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
+                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameShortcut_Error, Resources.GameShortcut_ErrorHeader);
                         }
                     }
                 }
@@ -307,16 +308,16 @@ namespace RayCarrot.RCP.Metro
                 switch (result)
                 {
                     case RayGameInstallerResult.Successful:
-                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_Success, displayName), Resources.Installer_SuccessHeader, MessageType.Success);
+                        await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_Success, displayName), Resources.Installer_SuccessHeader, MessageType.Success);
                         break;
 
                     default:
                     case RayGameInstallerResult.Failed:
-                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_Failed, Resources.Installer_FailedHeader, MessageType.Error);
+                        await Services.MessageUI.DisplayMessageAsync(Resources.Installer_Failed, Resources.Installer_FailedHeader, MessageType.Error);
                         break;
 
                     case RayGameInstallerResult.Canceled:
-                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_Canceled, Resources.Installer_FailedHeader, MessageType.Information);
+                        await Services.MessageUI.DisplayMessageAsync(Resources.Installer_Canceled, Resources.Installer_FailedHeader, MessageType.Information);
                         break;
                 }
             }

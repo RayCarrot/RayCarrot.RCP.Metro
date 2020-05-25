@@ -1,5 +1,4 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 using System;
@@ -99,7 +98,7 @@ namespace RayCarrot.RCP.Metro
                 using var cntFileStream = File.OpenRead(cntFile);
 
                 // Read the .cnt data
-                var cntData = BinarySerializableHelpers.ReadFromStream<OpenSpaceCntData>(cntFileStream, gameSettings, RCFRCP.App.GetBinarySerializerLogger());
+                var cntData = BinarySerializableHelpers.ReadFromStream<OpenSpaceCntData>(cntFileStream, gameSettings, RCPServices.App.GetBinarySerializerLogger());
 
                 // Get the file generator
                 using var generator = cntData.GetArchiveContent(cntFileStream);

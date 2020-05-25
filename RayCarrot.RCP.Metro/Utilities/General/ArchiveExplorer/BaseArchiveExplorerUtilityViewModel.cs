@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.IO;
 using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -77,7 +78,7 @@ namespace RayCarrot.RCP.Metro
         public async Task OpenArchiveExplorerAsync(IArchiveExplorerDataManager manager, string fileFilter, Games? game)
         {
             // Allow the user to select the files
-            var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+            var fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
                 Title = Resources.Utilities_ArchiveExplorer_FileSelectionHeader,
                 DefaultDirectory = game?.GetInstallDir(false).FullPath,
@@ -89,7 +90,7 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Show the Archive Explorer
-            await RCFRCP.UI.ShowArchiveExplorerAsync(manager, fileResult.SelectedFiles);
+            await RCPServices.UI.ShowArchiveExplorerAsync(manager, fileResult.SelectedFiles);
         }
 
         /// <summary>
@@ -99,7 +100,7 @@ namespace RayCarrot.RCP.Metro
         public async Task CreateArchiveAsync()
         {
             // Show the Archive Creator
-            await RCFRCP.UI.ShowArchiveCreatorAsync(GetArchiveCreatorDataManager);
+            await RCPServices.UI.ShowArchiveCreatorAsync(GetArchiveCreatorDataManager);
         }
 
         #endregion

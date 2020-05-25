@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using RayCarrot.Extensions;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;

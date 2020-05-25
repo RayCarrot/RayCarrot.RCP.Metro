@@ -57,7 +57,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the utility requires administration privileges
         /// </summary>
-        public bool RequiresAdmin => ViewModel.DebugCommandFilePath.FileExists && !RCFRCP.File.CheckFileWriteAccess(ViewModel.DebugCommandFilePath);
+        public bool RequiresAdmin => ViewModel.DebugCommandFilePath.FileExists && !RCPServices.File.CheckFileWriteAccess(ViewModel.DebugCommandFilePath);
 
         /// <summary>
         /// Indicates if the utility is available to the user

@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.Win32;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Logging;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
@@ -119,7 +118,7 @@ namespace RayCarrot.RCP.Metro
         {
             RL.Logger?.LogInformationSource("Rayman Raving Rabbids config is being set up");
 
-            using (var key = RCFWinReg.RegistryManager.GetKeyFromFullPath(RCFWinReg.RegistryManager.CombinePaths(CommonPaths.RaymanRavingRabbidsRegistryKey, "Basic video"), RegistryView.Default))
+            using (var key = RegistryHelpers.GetKeyFromFullPath(RegistryHelpers.CombinePaths(CommonPaths.RaymanRavingRabbidsRegistryKey, "Basic video"), RegistryView.Default))
             {
                 RL.Logger?.LogInformationSource(key != null
                     ? $"The key {key.Name} has been opened"
@@ -153,20 +152,20 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Get the key path
-                    var keyPath = RCFWinReg.RegistryManager.CombinePaths(CommonPaths.RaymanRavingRabbidsRegistryKey, "Basic video");
+                    var keyPath = RegistryHelpers.CombinePaths(CommonPaths.RaymanRavingRabbidsRegistryKey, "Basic video");
 
                     RegistryKey key;
 
                     // Create the key if it doesn't exist
-                    if (!RCFWinReg.RegistryManager.KeyExists(keyPath))
+                    if (!RegistryHelpers.KeyExists(keyPath))
                     {
-                        key = RCFWinReg.RegistryManager.CreateRegistryKey(keyPath, RegistryView.Default, true);
+                        key = RegistryHelpers.CreateRegistryKey(keyPath, RegistryView.Default, true);
 
                         RL.Logger?.LogInformationSource($"The Registry key {key?.Name} has been created");
                     }
                     else
                     {
-                        key = RCFWinReg.RegistryManager.GetKeyFromFullPath(keyPath, RegistryView.Default, true);
+                        key = RegistryHelpers.GetKeyFromFullPath(keyPath, RegistryView.Default, true);
                     }
 
                     using (key)
@@ -186,13 +185,13 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Saving Rayman Raving Rabbids registry data");
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveRRRError, Resources.Config_SaveErrorHeader);
+                    await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveRRRError, Resources.Config_SaveErrorHeader);
                     return;
                 }
 
                 UnsavedChanges = false;
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
+                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
 
                 OnSave();
             }

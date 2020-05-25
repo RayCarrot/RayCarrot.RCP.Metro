@@ -1,12 +1,10 @@
 ﻿using System;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.WPF;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows;
-using RayCarrot.UI;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro

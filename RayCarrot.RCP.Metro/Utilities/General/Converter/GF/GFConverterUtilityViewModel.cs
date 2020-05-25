@@ -4,7 +4,7 @@ using RayCarrot.Rayman.OpenSpace;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
@@ -97,7 +97,7 @@ namespace RayCarrot.RCP.Metro
                 // IDEA: If bmp is not in supported format, then convert it?
 
                 // Import from the bitmap
-                gf.ImportFromBitmap(settings, new RawBitmapData(bmp), RCFRCP.Data.Archive_GF_GenerateMipmaps);
+                gf.ImportFromBitmap(settings, new RawBitmapData(bmp), RCPServices.Data.Archive_GF_GenerateMipmaps);
 
                 // Return the data
                 return gf;

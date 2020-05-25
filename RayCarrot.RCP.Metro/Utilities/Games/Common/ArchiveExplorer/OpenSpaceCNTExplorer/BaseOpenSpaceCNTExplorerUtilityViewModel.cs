@@ -3,7 +3,7 @@ using RayCarrot.UI;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro
@@ -62,7 +62,7 @@ namespace RayCarrot.RCP.Metro
             var settings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
             // Show the archive explorer
-            await RCFRCP.UI.ShowArchiveExplorerAsync(new OpenSpaceCntArchiveExplorerDataManager(settings), ArchiveFiles.Where(x => x.FileExists));
+            await RCPServices.UI.ShowArchiveExplorerAsync(new OpenSpaceCntArchiveExplorerDataManager(settings), ArchiveFiles.Where(x => x.FileExists));
         }
 
         #endregion

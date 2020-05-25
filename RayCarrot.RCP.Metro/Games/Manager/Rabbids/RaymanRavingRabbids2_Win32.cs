@@ -15,7 +15,7 @@
         /// <summary>
         /// Gets the launch arguments for the game
         /// </summary>
-        public override string GetLaunchArgs => $"/{RCFRCP.Data.RRR2LaunchMode.ToString().ToLower()} /B Rrr2.bf";
+        public override string GetLaunchArgs => $"/{RCPServices.Data.RRR2LaunchMode.ToString().ToLower()} /B Rrr2.bf";
 
         /// <summary>
         /// Gets the game finder item for this game

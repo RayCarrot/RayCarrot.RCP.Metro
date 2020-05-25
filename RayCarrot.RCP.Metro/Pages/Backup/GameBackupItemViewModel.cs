@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ByteSizeLib;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -189,7 +189,7 @@ namespace RayCarrot.RCP.Metro
 
                 CanRestore = false;
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ReadingBackupError, BackupInfo.GameDisplayName));
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.ReadingBackupError, BackupInfo.GameDisplayName));
             }
         }
 
@@ -204,7 +204,7 @@ namespace RayCarrot.RCP.Metro
 
             // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
             if (IsGOGCloudSyncUsed)
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
+                await Services.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
 
             try
             {
@@ -214,7 +214,7 @@ namespace RayCarrot.RCP.Metro
                 await BackupInfo.RefreshAsync();
 
                 // Confirm restore
-                if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, BackupInfo.GameDisplayName), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
+                if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_Confirm, BackupInfo.GameDisplayName), Resources.Restore_ConfirmHeader, MessageType.Warning, true))
                 {
                     RL.Logger?.LogInformationSource($"Restore canceled");
 
@@ -224,11 +224,11 @@ namespace RayCarrot.RCP.Metro
                 ShowBackupRestoreIndicator = true;
 
                 // Perform the restore
-                if (await Task.Run(async () => await RCFRCP.Backup.RestoreAsync(BackupInfo)))
+                if (await Task.Run(async () => await RCPServices.Backup.RestoreAsync(BackupInfo)))
                 {
                     ShowBackupRestoreIndicator = false;
 
-                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, BackupInfo.GameDisplayName), Resources.Restore_SuccessHeader);
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Restore_Success, BackupInfo.GameDisplayName), Resources.Restore_SuccessHeader);
                 }
             }
             finally
@@ -249,7 +249,7 @@ namespace RayCarrot.RCP.Metro
 
             // Show a warning message if GOG cloud sync is being used for this game as that will redirect the game data to its own directory
             if (IsGOGCloudSyncUsed)
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
+                await Services.MessageUI.DisplayMessageAsync(Resources.Backup_GOGSyncWarning, Resources.Backup_GOGSyncWarningHeader, MessageType.Warning);
 
             try
             {
@@ -259,7 +259,7 @@ namespace RayCarrot.RCP.Metro
                 await BackupInfo.RefreshAsync();
 
                 // Confirm backup if one already exists
-                if (BackupInfo.ExistingBackups.Any() && !await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, BackupInfo.GameDisplayName), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
+                if (BackupInfo.ExistingBackups.Any() && !await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_Confirm, BackupInfo.GameDisplayName), Resources.Backup_ConfirmHeader, MessageType.Warning, true))
                 {
                     RL.Logger?.LogInformationSource($"Backup canceled");
                     return;
@@ -268,11 +268,11 @@ namespace RayCarrot.RCP.Metro
                 ShowBackupRestoreIndicator = true;
 
                 // Perform the backup
-                if (await Task.Run(async () => await RCFRCP.Backup.BackupAsync(BackupInfo)))
+                if (await Task.Run(async () => await RCPServices.Backup.BackupAsync(BackupInfo)))
                 {
                     ShowBackupRestoreIndicator = false;
 
-                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, BackupInfo.GameDisplayName), Resources.Backup_SuccessHeader);
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Backup_Success, BackupInfo.GameDisplayName), Resources.Backup_SuccessHeader);
                 }
 
                 // Refresh the backup info

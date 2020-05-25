@@ -1,12 +1,11 @@
 ﻿using MahApps.Metro.Controls;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
+using RayCarrot.Logging;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -52,13 +51,10 @@ namespace RayCarrot.RCP.Metro
                     Application.Current.MainWindow?.Focus();
             };
 
-            if (RCF.IsBuilt)
-            {
-                // Set transition
-                WindowTransitionsEnabled = RCFRCP.Data?.EnableAnimations ?? true;
+            // Set transition
+            WindowTransitionsEnabled = RCPServices.Data?.EnableAnimations ?? true;
 
-                RL.Logger?.LogInformationSource($"The window {this} has been created");
-            }
+            RL.Logger?.LogInformationSource($"The window {this} has been created");
 
             PreviewKeyDown += (s, e) =>
             {

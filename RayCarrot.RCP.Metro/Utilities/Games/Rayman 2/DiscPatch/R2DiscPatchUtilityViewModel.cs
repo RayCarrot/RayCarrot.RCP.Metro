@@ -2,7 +2,6 @@
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
@@ -78,44 +77,44 @@ namespace RayCarrot.RCP.Metro
                 File.WriteAllText(InstallDir + "ubi.ini", Files.ubi);
 
                 // Delete unnecessary files
-                RCFRCP.File.DeleteFile(InstallDir + "RAYMAN2.ICD");
+                RCPServices.File.DeleteFile(InstallDir + "RAYMAN2.ICD");
 
                 // NOTE: The below files are no longer included in the disc installer but have to be removed here for legacy reasons
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\ANIMS0.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\ANIMS1.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\ANIMS2.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\GRAPHICS0.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\GRAPHICS1.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\GRAPHICS2.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\LEVELS1.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\LEVELS2.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\MAP0.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\MAP1.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\MAP2.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\MENU0.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\MENU1.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\MENU2.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\MUSIC0.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\MUSIC1.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\MUSIC2.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\SOUNDS0.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\SOUNDS1.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\SOUNDS2.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\TEXTURES0.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\TEXTURES1.DAT");
-                RCFRCP.File.DeleteFile(InstallDir + @"Data\World\Levels\TEXTURES2.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\ANIMS0.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\ANIMS1.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\ANIMS2.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\GRAPHICS0.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\GRAPHICS1.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\GRAPHICS2.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\LEVELS1.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\LEVELS2.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MAP0.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MAP1.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MAP2.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MENU0.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MENU1.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MENU2.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MUSIC0.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MUSIC1.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\MUSIC2.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\SOUNDS0.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\SOUNDS1.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\SOUNDS2.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\TEXTURES0.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\TEXTURES1.DAT");
+                RCPServices.File.DeleteFile(InstallDir + @"Data\World\Levels\TEXTURES2.DAT");
 
                 RequiresPatching = false;
 
                 RL.Logger?.LogInformationSource($"The R2 disc patch has been applied");
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_DiscPatchApplied);
+                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_DiscPatchApplied);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Applying R2 disc patch");
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_DiscPatchError);
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_DiscPatchError);
             }
         }
 

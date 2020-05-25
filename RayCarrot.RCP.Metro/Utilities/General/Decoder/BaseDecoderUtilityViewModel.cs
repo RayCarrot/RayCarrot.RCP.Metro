@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Logging;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -126,7 +126,7 @@ namespace RayCarrot.RCP.Metro
         public async Task DecodeFileAsync()
         {
             // Allow the user to select the files
-            var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+            var fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
                 Title = Resources.Utilities_Decoder_DecodeFileSelectionHeader,
                 DefaultDirectory = GetGame?.GetInstallDir(false).FullPath,
@@ -138,7 +138,7 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Allow the user to select the destination directory
-            var destinationResult = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+            var destinationResult = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
             {
                 Title = Resources.Browse_DestinationHeader,
             });
@@ -151,19 +151,19 @@ namespace RayCarrot.RCP.Metro
                 // Process the files
                 await Task.Run(() => ProcessFile(fileResult.SelectedFiles, destinationResult.SelectedDirectory, true));
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Decoder_DecodeSuccess);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Decoder_DecodeSuccess);
             }
             catch (NotImplementedException ex)
             {
                 ex.HandleExpected("Decoding files");
 
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.NotImplemented, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.NotImplemented, MessageType.Error);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Decoding files");
                 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Decoder_DecodeError);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Decoder_DecodeError);
             }
         }
 
@@ -174,7 +174,7 @@ namespace RayCarrot.RCP.Metro
         public async Task EncodeFileAsync()
         {
             // Allow the user to select the files
-            var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+            var fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
                 Title = Resources.Utilities_Decoder_EncodeFileSelectionHeader,
                 DefaultDirectory = GetGame?.GetInstallDir(false).FullPath,
@@ -186,7 +186,7 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Allow the user to select the destination directory
-            var destinationResult = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+            var destinationResult = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
             {
                 Title = Resources.Browse_DestinationHeader,
             });
@@ -199,19 +199,19 @@ namespace RayCarrot.RCP.Metro
                 // Process the files
                 await Task.Run(() => ProcessFile(fileResult.SelectedFiles, destinationResult.SelectedDirectory, false));
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Decoder_EncodeSuccess);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Decoder_EncodeSuccess);
             }
             catch (NotImplementedException ex)
             {
                 ex.HandleExpected("Encoding files");
 
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.NotImplemented, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.NotImplemented, MessageType.Error);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Encoding files");
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Decoder_EncodeError);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Decoder_EncodeError);
             }
         }
 

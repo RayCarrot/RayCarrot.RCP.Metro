@@ -1,5 +1,4 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,7 +22,7 @@ namespace RayCarrot.RCP.Metro
             InitializeComponent();
 
             // Subscribe to events
-            RCFRCP.App.RefreshRequired += AppGameRefreshRequiredAsync;
+            RCPServices.App.RefreshRequired += AppGameRefreshRequiredAsync;
             Loaded += MainWindow_Loaded;
         }
 
@@ -41,7 +40,7 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                BackupPageTab.IsEnabled = RCFRCP.Data.Games?.Any() ?? false;
+                BackupPageTab.IsEnabled = RCPServices.Data.Games?.Any() ?? false;
             }
             catch (Exception ex)
             {

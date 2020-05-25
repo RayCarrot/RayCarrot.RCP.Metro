@@ -1,5 +1,4 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
 using System.Threading.Tasks;
@@ -95,7 +94,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Replacing RO videos");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ROU_HQVideosFailed);
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ROU_HQVideosFailed);
             }
         }
 

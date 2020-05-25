@@ -1,13 +1,12 @@
-﻿using RayCarrot.Extensions;
+﻿using RayCarrot.Common;
 using RayCarrot.IO;
-using RayCarrot.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Logging;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

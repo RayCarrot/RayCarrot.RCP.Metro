@@ -3,16 +3,11 @@ using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
-using RayCarrot.UI;
-using RayCarrot.UserData;
 using RayCarrot.Windows.Registry;
 using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
-using RayCarrot.WPF.Metro;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +18,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Shell;
+using Microsoft.Extensions.DependencyInjection;
 using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
@@ -30,7 +26,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : BaseRCFApp
+    public partial class App : BaseApp
     {
         #region Constructor
 
@@ -52,36 +48,28 @@ namespace RayCarrot.RCP.Metro
         #region Protected Overrides
 
         /// <summary>
-        /// Sets up the framework with loggers and other services
+        /// Gets the services to use for the application
         /// </summary>
-        /// <param name="config">The configuration values to pass on to the framework, if any</param>
         /// <param name="logLevel">The level to log</param>
         /// <param name="args">The launch arguments</param>
-        protected override void SetupFramework(IDictionary<string, object> config, LogLevel logLevel, string[] args)
+        /// <returns>The services to use</returns>
+        protected override IServiceCollection GetServices(LogLevel logLevel, string[] args)
         {
-            // Add custom configuration
-            config.Add(RCFIO.AutoCorrectPathCasingKey, false);
-
             // Set file log level
             FileLogger.FileLoggerLogLevel = logLevel;
 
-            // Set up the framework
-            new FrameworkConstruction().
+            // Add services
+            return new ServiceCollection().
                 // Add loggers
                 AddLoggers(DefaultLoggers.Console | DefaultLoggers.Debug | DefaultLoggers.Session, logLevel, builder => builder.AddProvider(new BaseLogProvider<FileLogger>())).
-                // Add user data manager
-                AddUserDataManager(() => new JsonBaseSerializer()
-                {
-                    Formatting = Formatting.Indented
-                }).
+                // Add user data
+                AddSingleton(new AppUserData()).
                 // Add exception handler
                 AddExceptionHandler<RCPExceptionHandler>().
                 // Add message UI manager
                 AddMessageUIManager<RCPMessageUIManager>().
                 // Add browse UI manager
                 AddBrowseUIManager<DefaultWPFBrowseUIManager>().
-                // Add Registry manager
-                AddRegistryManager<DefaultRegistryManager>().
                 // Add file manager
                 AddFileManager<RCPFileManager>().
                 // Add dialog base manager
@@ -93,9 +81,7 @@ namespace RayCarrot.RCP.Metro
                 // Add App UI manager
                 AddTransient<AppUIManager>().
                 // Add backup manager
-                AddTransient<BackupManager>().
-                // Build the framework with the configuration
-                Build(config);
+                AddTransient<BackupManager>();
         }
 
         /// <summary>
@@ -110,7 +96,7 @@ namespace RayCarrot.RCP.Metro
             // Load the user data
             try
             {
-                await RCFData.UserDataCollection.AddUserDataAsync<AppUserData>(CommonPaths.AppUserDataPath);
+                JsonConvert.PopulateObject(File.ReadAllText(CommonPaths.AppUserDataPath), RCPServices.Data);
 
                 RL.Logger?.LogInformationSource($"The app user data has been loaded");
             }
@@ -121,12 +107,11 @@ namespace RayCarrot.RCP.Metro
                 // NOTE: This is not localized due to the current culture not having been set at this point
                 MessageBox.Show($"An error occurred reading saved app data. Some settings have been reset to their default values.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
-                // Recreate the user data and reset it
-                RCFData.UserDataCollection.Add(new AppUserData());
-                RCFRCP.Data.Reset();
+                // Reset the user data
+                RCPServices.Data.Reset();
             }
 
-            Data = RCFRCP.Data;
+            Data = RCPServices.Data;
 
             LogStartupTime("User data has been loaded");
 
@@ -147,10 +132,10 @@ namespace RayCarrot.RCP.Metro
             // Run basic startup
             await BasicStartupAsync();
 
-            RL.Logger?.LogInformationSource($"Current version is {RCFRCP.App.CurrentAppVersion}");
+            RL.Logger?.LogInformationSource($"Current version is {RCPServices.App.CurrentAppVersion}");
 
             // Check if it's a new version
-            if (Data.LastVersion < RCFRCP.App.CurrentAppVersion)
+            if (Data.LastVersion < RCPServices.App.CurrentAppVersion)
             {
                 // Run post-update code
                 await PostUpdateAsync();
@@ -158,15 +143,15 @@ namespace RayCarrot.RCP.Metro
                 LogStartupTime("Post update has run");
 
                 // Update the last version
-                Data.LastVersion = RCFRCP.App.CurrentAppVersion;
+                Data.LastVersion = RCPServices.App.CurrentAppVersion;
             }
             // Check if it's a lower version than previously recorded
-            else if (Data.LastVersion > RCFRCP.App.CurrentAppVersion)
+            else if (Data.LastVersion > RCPServices.App.CurrentAppVersion)
             {
                 RL.Logger?.LogWarningSource($"A newer version ({Data.LastVersion}) has been recorded in the application data");
 
                 if (!Data.DisableDowngradeWarning)
-                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, RCFRCP.App.CurrentAppVersion,
+                    await Services.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.DowngradeWarning, RCPServices.App.CurrentAppVersion,
                         Data.LastVersion), Metro.Resources.DowngradeWarningHeader, MessageType.Warning);
             }
         }
@@ -181,7 +166,7 @@ namespace RayCarrot.RCP.Metro
             var window = new MainWindow();
 
             // Load previous state
-            RCFRCP.Data?.WindowState?.ApplyToWindow(window);
+            RCPServices.Data?.WindowState?.ApplyToWindow(window);
 
             return window;
         }
@@ -194,16 +179,16 @@ namespace RayCarrot.RCP.Metro
         protected override async Task OnCloseAsync(Window mainWindow)
         {
             // Make sure the user data has been loaded
-            if (RCFRCP.Data == null)
+            if (RCPServices.Data == null)
                 return;
             
             // Save window state
-            RCFRCP.Data.WindowState = WindowSessionState.GetWindowState(mainWindow);
+            RCPServices.Data.WindowState = WindowSessionState.GetWindowState(mainWindow);
 
             RL.Logger?.LogInformationSource($"The application is exiting...");
 
             // Save all user data
-            await RCFRCP.App.SaveUserDataAsync();
+            await RCPServices.App.SaveUserDataAsync();
         }
 
         /// <summary>
@@ -305,29 +290,29 @@ namespace RayCarrot.RCP.Metro
             PreviousBackupLocation = Data.BackupLocation;
 
             // Subscribe to when to refresh the jump list
-            RCFRCP.App.RefreshRequired += (s, e) =>
+            RCPServices.App.RefreshRequired += (s, e) =>
             {
                 if (e.GameCollectionModified || e.GameInfoModified || e.JumpListModified)
                     RefreshJumpList();
 
                 return Task.CompletedTask;
             };
-            RCFCore.Data.CultureChanged += (s, e) => RefreshJumpList();
+            Services.Data.CultureChanged += (s, e) => RefreshJumpList();
 
             // Subscribe to when the app has finished setting up
             StartupComplete += App_StartupComplete_GameFinder_Async;
             StartupComplete += App_StartupComplete_Miscellaneous_Async;
 
             // Check for reset argument
-            if (RCFCore.Data.Arguments.Contains("-reset"))
-                RCFRCP.Data.Reset();
+            if (Services.Data.Arguments.Contains("-reset"))
+                RCPServices.Data.Reset();
 
             // Check for user level argument
-            if (RCFCore.Data.Arguments.Contains("-ul"))
+            if (Services.Data.Arguments.Contains("-ul"))
             {
                 try
                 {
-                    string ul = RCFCore.Data.Arguments[RCFCore.Data.Arguments.FindItemIndex(x => x == "-ul") + 1];
+                    string ul = Services.Data.Arguments[Services.Data.Arguments.FindItemIndex(x => x == "-ul") + 1];
                     Data.UserLevel = Enum.Parse(typeof(UserLevel), ul, true).CastTo<UserLevel>();
                 }
                 catch (Exception ex)
@@ -338,11 +323,11 @@ namespace RayCarrot.RCP.Metro
 
             // NOTE: Starting with the updater 3.0.0 (available from 4.5.0) this is no longer used. It must however be maintained for legacy support (i.e. updating to version 4.5.0+ using an updater below 3.0.0)
             // Check for updater install argument
-            if (RCFCore.Data.Arguments.Contains("-install"))
+            if (Services.Data.Arguments.Contains("-install"))
             {
                 try
                 {
-                    FileSystemPath updateFile = RCFCore.Data.Arguments[RCFCore.Data.Arguments.FindItemIndex(x => x == "-install") + 1];
+                    FileSystemPath updateFile = Services.Data.Arguments[Services.Data.Arguments.FindItemIndex(x => x == "-install") + 1];
                     if (updateFile.FileExists)
                     {
                         updateFile.GetFileInfo().Delete();
@@ -366,7 +351,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Deploy additional files
-            await RCFRCP.App.DeployFilesAsync(false);
+            await RCPServices.App.DeployFilesAsync(false);
 
             // Show first launch info
             if (Data.IsFirstLaunch)
@@ -424,7 +409,7 @@ namespace RayCarrot.RCP.Metro
                     try
                     {
                         // Read the app data file
-                        JObject appData = new StringReader(File.ReadAllText(Data.FilePath)).RunAndDispose(x =>
+                        JObject appData = new StringReader(File.ReadAllText(CommonPaths.AppUserDataPath)).RunAndDispose(x =>
                             new JsonTextReader(x).RunAndDispose(y => JsonSerializer.Create().Deserialize(y))).CastTo<JObject>();
 
                         // Get the previous Fiesta Run version
@@ -433,20 +418,20 @@ namespace RayCarrot.RCP.Metro
                         // Set the current edition
                         Data.FiestaRunVersion = isWin10 ? FiestaRunEdition.Win10 : FiestaRunEdition.Default;
 
-                        RCFRCP.File.MoveDirectory(fiestaBackupDir, Data.BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetGameInfo().BackupName, true, true);
+                        RCPServices.File.MoveDirectory(fiestaBackupDir, Data.BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetGameInfo().BackupName, true, true);
                     }
                     catch (Exception ex)
                     {
                         ExceptionExtensions.HandleError(ex, "Moving Fiesta Run backups to 5.0.0 standard");
 
-                        await RCFUI.MessageUI.DisplayMessageAsync(Metro.Resources.PostUpdate_MigrateFiestaRunBackup5Error, Metro.Resources.PostUpdate_MigrateBackupErrorHeader, MessageType.Error);
+                        await Services.MessageUI.DisplayMessageAsync(Metro.Resources.PostUpdate_MigrateFiestaRunBackup5Error, Metro.Resources.PostUpdate_MigrateBackupErrorHeader, MessageType.Error);
                     }
                 }
 
                 // Remove old temp dir
                 try
                 {
-                    RCFRCP.File.DeleteDirectory(Path.Combine(Path.GetTempPath(), "RCP_Metro"));
+                    RCPServices.File.DeleteDirectory(Path.Combine(Path.GetTempPath(), "RCP_Metro"));
                 }
                 catch (Exception ex)
                 {
@@ -466,7 +451,7 @@ namespace RayCarrot.RCP.Metro
             if (Data.LastVersion < new Version(6, 0, 0, 2))
             {
                 // By default, add all games to the jump list collection
-                Data.JumpListItemIDCollection = RCFRCP.App.GetGames.
+                Data.JumpListItemIDCollection = RCPServices.App.GetGames.
                     Where(x => x.IsAdded()).
                     Select(x => x.GetManager().GetJumpListItems().Select(y => y.ID)).
                     SelectMany(x => x).
@@ -495,18 +480,18 @@ namespace RayCarrot.RCP.Metro
                 const string regUninstallKeyName = "RCP_Metro";
 
                 // Since support has been removed for showing the program under installed programs we now have to remove the key
-                var keyPath = RCFWinReg.RegistryManager.CombinePaths(CommonRegistryPaths.InstalledPrograms, regUninstallKeyName);
+                var keyPath = RegistryHelpers.CombinePaths(CommonRegistryPaths.InstalledPrograms, regUninstallKeyName);
 
                 // Check if the key exists
-                if (RCFWinReg.RegistryManager.KeyExists(keyPath))
+                if (RegistryHelpers.KeyExists(keyPath))
                 {
                     // Make sure the user is running as admin
-                    if (RCFRCP.App.IsRunningAsAdmin)
+                    if (RCPServices.App.IsRunningAsAdmin)
                     {
                         try
                         {
                             // Open the parent key
-                            using var parentKey = RCFWinReg.RegistryManager.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms, RegistryView.Default, true);
+                            using var parentKey = RegistryHelpers.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms, RegistryView.Default, true);
 
                             // Delete the sub-key
                             parentKey.DeleteSubKey(regUninstallKeyName);
@@ -517,19 +502,19 @@ namespace RayCarrot.RCP.Metro
                         {
                             ExceptionExtensions.HandleError(ex, "Removing uninstall Registry key");
 
-                            await RCFUI.MessageUI.DisplayMessageAsync($"The Registry key {keyPath} could not be removed", MessageType.Error);
+                            await Services.MessageUI.DisplayMessageAsync($"The Registry key {keyPath} could not be removed", MessageType.Error);
                         }
                     }
                     else
                     {
-                        await RCFUI.MessageUI.DisplayMessageAsync($"The Registry key {keyPath} could not be removed", MessageType.Error);
+                        await Services.MessageUI.DisplayMessageAsync($"The Registry key {keyPath} could not be removed", MessageType.Error);
                     }
                 }
 
                 if (Data.TPLSData != null)
                 {
                     Data.TPLSData.IsEnabled = false;
-                    await RCFUI.MessageUI.DisplayMessageAsync(Metro.Resources.PostUpdate_TPLSUpdatePrompt);
+                    await Services.MessageUI.DisplayMessageAsync(Metro.Resources.PostUpdate_TPLSUpdatePrompt);
                 }
             }
 
@@ -545,7 +530,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Re-deploy files
-            await RCFRCP.App.DeployFilesAsync(true);
+            await RCPServices.App.DeployFilesAsync(true);
 
             // Refresh the jump list
             RefreshJumpList();
@@ -567,7 +552,7 @@ namespace RayCarrot.RCP.Metro
             var removed = new List<Games>();
 
             // Make sure every game is valid
-            foreach (var game in RCFRCP.App.GetGames)
+            foreach (var game in RCPServices.App.GetGames)
             {
                 // Check if it has been added
                 if (!game.IsAdded())
@@ -578,10 +563,10 @@ namespace RayCarrot.RCP.Metro
                     continue;
 
                 // Show message
-                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.GameNotFound, game.GetGameInfo().DisplayName), Metro.Resources.GameNotFoundHeader, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(String.Format(Metro.Resources.GameNotFound, game.GetGameInfo().DisplayName), Metro.Resources.GameNotFoundHeader, MessageType.Error);
 
                 // Remove the game from app data
-                await RCFRCP.App.RemoveGameAsync(game, true);
+                await RCPServices.App.RemoveGameAsync(game, true);
 
                 // Add to removed games
                 removed.Add(game);
@@ -591,7 +576,7 @@ namespace RayCarrot.RCP.Metro
 
             // Refresh if any games were removed
             if (removed.Any())
-                await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(removed, true, false, false, false));
+                await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(removed, true, false, false, false));
         }
 
         #endregion
@@ -607,14 +592,14 @@ namespace RayCarrot.RCP.Metro
             Dispatcher.Invoke(SecretCodeManager.Setup);
 
             // Enable primary ubi.ini file write access
-            await RCFRCP.App.EnableUbiIniWriteAccessAsync();
+            await RCPServices.App.EnableUbiIniWriteAccessAsync();
         }
 
         private static async Task App_StartupComplete_GameFinder_Async(object sender, EventArgs eventArgs)
         {
             // Check for installed games
-            if (RCFRCP.Data.AutoLocateGames)
-                await RCFRCP.App.RunGameFinderAsync();
+            if (RCPServices.Data.AutoLocateGames)
+                await RCPServices.App.RunGameFinderAsync();
         }
 
         private static async Task App_StartupComplete_Updater_Async(object sender, EventArgs eventArgs)
@@ -624,7 +609,7 @@ namespace RayCarrot.RCP.Metro
                 int retryTime = 0;
 
                 // Wait until we can write to the file (i.e. it closing after an update)
-                while (!RCFRCP.File.CheckFileWriteAccess(CommonPaths.UpdaterFilePath))
+                while (!RCPServices.File.CheckFileWriteAccess(CommonPaths.UpdaterFilePath))
                 {
                     retryTime++;
 
@@ -653,7 +638,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Remove the updater
-                    RCFRCP.File.DeleteFile(CommonPaths.UpdaterFilePath);
+                    RCPServices.File.DeleteFile(CommonPaths.UpdaterFilePath);
 
                     RL.Logger?.LogInformationSource($"The updater has been removed");
                 }
@@ -664,8 +649,8 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Check for updates
-            if (RCFRCP.Data.AutoUpdate)
-                await RCFRCP.App.CheckForUpdatesAsync(false);
+            if (RCPServices.Data.AutoUpdate)
+                await RCPServices.App.CheckForUpdatesAsync(false);
         }
 
         private async Task BaseApp_StartupComplete_Miscellaneous_Async(object sender, EventArgs eventArgs)
@@ -692,7 +677,7 @@ namespace RayCarrot.RCP.Metro
 
         private static void App_StartupEventsCompleted(object sender, EventArgs e)
         {
-            RCFRCP.App.IsStartupRunning = false;
+            RCPServices.App.IsStartupRunning = false;
         }
 
         private async void Data_PropertyChangedAsync(object sender, PropertyChangedEventArgs e)
@@ -711,7 +696,7 @@ namespace RayCarrot.RCP.Metro
 
                     case nameof(AppUserData.BackupLocation):
 
-                        await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, true, false));
+                        await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, true, false));
 
                         if (!PreviousBackupLocation.DirectoryExists)
                         {
@@ -721,7 +706,7 @@ namespace RayCarrot.RCP.Metro
 
                         RL.Logger?.LogInformationSource("The backup location has been changed and old backups are being moved...");
 
-                        await RCFRCP.App.MoveBackupsAsync(PreviousBackupLocation, Data.BackupLocation);
+                        await RCPServices.App.MoveBackupsAsync(PreviousBackupLocation, Data.BackupLocation);
 
                         PreviousBackupLocation = Data.BackupLocation;
 
@@ -755,12 +740,12 @@ namespace RayCarrot.RCP.Metro
                         break;
 
                     case nameof(AppUserData.RRR2LaunchMode):
-                        await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, false, false, false, true));
+                        await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanRavingRabbids2, false, false, false, true));
                         break;
 
                     case nameof(AppUserData.DosBoxPath):
                     case nameof(AppUserData.DosBoxConfig):
-                        await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, false, true));
+                        await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, false, true));
                         break;
                 }
             }
@@ -779,7 +764,7 @@ namespace RayCarrot.RCP.Metro
             {
                 try
                 {
-                    if (RCFRCP.Data.JumpListItemIDCollection == null)
+                    if (RCPServices.Data.JumpListItemIDCollection == null)
                     {
                         RL.Logger?.LogWarningSource("The jump could not refresh due to collection not existing");
 
@@ -787,7 +772,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Create a jump list
-                    new JumpList(RCFRCP.App.GetGames.
+                    new JumpList(RCPServices.App.GetGames.
                             // Add only games which have been added
                             Where(x => x.IsAdded()).
                             // Get the items for each game
@@ -797,7 +782,7 @@ namespace RayCarrot.RCP.Metro
                             // Keep only the included items
                             Where(x => x.IsIncluded).
                             // Keep custom order
-                            OrderBy(x => RCFRCP.Data.JumpListItemIDCollection.IndexOf(x.ID)).
+                            OrderBy(x => RCPServices.Data.JumpListItemIDCollection.IndexOf(x.ID)).
                             // Create the jump tasks
                             Select(x => new JumpTask
                             {

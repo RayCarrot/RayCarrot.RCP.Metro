@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Logging;
 using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
@@ -202,13 +201,13 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError($"Saving {Game} registry data");
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
+                    await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
                     return;
                 }
 
                 UnsavedChanges = false;
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
+                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
 
                 OnSave();
             }
@@ -226,19 +225,19 @@ namespace RayCarrot.RCP.Metro
         private RegistryKey GetKey(bool writable)
         {
             // Get the key path
-            var keyPath = RCFWinReg.RegistryManager.CombinePaths(Game == Games.RaymanOrigins ? CommonPaths.RaymanOriginsRegistryKey : CommonPaths.RaymanLegendsRegistryKey, "Settings");
+            var keyPath = RegistryHelpers.CombinePaths(Game == Games.RaymanOrigins ? CommonPaths.RaymanOriginsRegistryKey : CommonPaths.RaymanLegendsRegistryKey, "Settings");
 
             // Create the key if it doesn't exist and should be written to
-            if (!RCFWinReg.RegistryManager.KeyExists(keyPath) && writable)
+            if (!RegistryHelpers.KeyExists(keyPath) && writable)
             {
-                var key = RCFWinReg.RegistryManager.CreateRegistryKey(keyPath, RegistryView.Default, true);
+                var key = RegistryHelpers.CreateRegistryKey(keyPath, RegistryView.Default, true);
 
                 RL.Logger?.LogInformationSource($"The Registry key {key?.Name} has been created");
 
                 return key;
             }
 
-            return RCFWinReg.RegistryManager.GetKeyFromFullPath(keyPath, RegistryView.Default, writable);
+            return RegistryHelpers.GetKeyFromFullPath(keyPath, RegistryView.Default, writable);
         }
 
         #endregion

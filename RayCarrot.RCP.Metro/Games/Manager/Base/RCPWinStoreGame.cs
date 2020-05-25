@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Management.Deployment;
 using MahApps.Metro.IconPacks;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -53,7 +53,7 @@ namespace RayCarrot.RCP.Metro
             new OverflowButtonItemViewModel(Resources.GameDisplay_OpenInWinStore, PackIconMaterialKind.MicrosoftWindows, new AsyncRelayCommand(async () =>
             {
                 // NOTE: We could use Launcher.LaunchURI here, but since we're targeting Windows 7 it is good to use as few of the WinRT APIs as possible to avoid any runtime errors. Launching a file as a process will work with URLs as well, although less information will be given in case of error (such as if no application is installed to handle the URI).
-                (await RCFRCP.File.LaunchFileAsync(GetStorePageURI()))?.Dispose();
+                (await RCPServices.File.LaunchFileAsync(GetStorePageURI()))?.Dispose();
             })),
         };
 
@@ -154,7 +154,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Launching Windows Store application");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.LaunchGame_WinStoreError, Game.GetGameInfo().DisplayName));
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.LaunchGame_WinStoreError, Game.GetGameInfo().DisplayName));
 
                 return new GameLaunchResult(null, false);
             }
@@ -185,7 +185,7 @@ namespace RayCarrot.RCP.Metro
             // Make sure version is at least Windows 8
             if (!SupportsWinStoreApps)
             {
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_WinStoreNotSupported, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_WinStoreNotSupported, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
 
                 return null;
             }
@@ -211,7 +211,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Getting Windows Store game install directory");
 
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
 
                 return null;
             }
@@ -220,7 +220,7 @@ namespace RayCarrot.RCP.Metro
             {
                 RL.Logger?.LogInformationSource($"The {Game} install directory was not valid");
 
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.LocateGame_InvalidWinStoreGame, Resources.LocateGame_InvalidWinStoreGameHeader, MessageType.Error);
 
                 return null;
             }
@@ -256,7 +256,7 @@ namespace RayCarrot.RCP.Metro
         public override void CreateGameShortcut(FileSystemPath shortcutName, FileSystemPath destinationDirectory)
         {
             // Create the shortcut
-            RCFRCP.File.CreateFileShortcut(shortcutName, destinationDirectory, LegacyLaunchPath);
+            RCPServices.File.CreateFileShortcut(shortcutName, destinationDirectory, LegacyLaunchPath);
 
             RL.Logger?.LogTraceSource($"A shortcut was created for {Game} under {destinationDirectory}");
         }

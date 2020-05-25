@@ -1,5 +1,4 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+﻿using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
@@ -12,6 +11,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using RayCarrot.Logging;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -153,7 +153,7 @@ namespace RayCarrot.RCP.Metro
                     await Task.Run(async () =>
                     {
                         // Get the output path
-                        var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                        var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                         {
                             Title = Resources.Archive_ExportHeader
                         });
@@ -164,7 +164,7 @@ namespace RayCarrot.RCP.Metro
                         // Make sure the directory doesn't exist
                         if ((result.SelectedDirectory + ExportDirName).Exists)
                         {
-                            await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Archive_ExportDirectoryConflict, ExportDirName), MessageType.Error);
+                            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Archive_ExportDirectoryConflict, ExportDirName), MessageType.Error);
 
                             return;
                         }
@@ -199,7 +199,7 @@ namespace RayCarrot.RCP.Metro
                                         var ext = data.SupportedExportFileExtensions.Select(x => x.FileExtensions).ToArray();
 
                                         // Have user select the format
-                                        FileExtensionSelectionDialogResult extResult = await RCFRCP.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(ext, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, data.FileFormatName)));
+                                        FileExtensionSelectionDialogResult extResult = await RCPServices.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(ext, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, data.FileFormatName)));
 
                                         // Since this operation can't be canceled we get the first format
                                         if (extResult.CanceledByUser)
@@ -226,7 +226,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             ex.HandleError("Exporting archive directory", DisplayName);
 
-                            await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ExportError, DisplayName));
+                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ExportError, DisplayName));
 
                             return;
                         }
@@ -235,7 +235,7 @@ namespace RayCarrot.RCP.Metro
                             Archive.SetDisplayStatus(String.Empty);
                         }
 
-                        await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFilesSuccess);
+                        await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFilesSuccess);
                     });
                 }
             }
@@ -257,7 +257,7 @@ namespace RayCarrot.RCP.Metro
                     await Task.Run(async () =>
                     {
                         // Get the directory
-                        var result = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                        var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                         {
                             Title = Resources.Archive_ImportDirectoryHeader,
                         });
@@ -342,7 +342,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             ex.HandleError("Importing archive directory", DisplayName);
 
-                            await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RepackError);
+                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RepackError);
 
                             return;
                         }
@@ -350,7 +350,7 @@ namespace RayCarrot.RCP.Metro
                         // Make sure at least one file has been imported
                         if (imported == 0)
                         {
-                            await RCFUI.MessageUI.DisplayMessageAsync(Resources.Archive_ImportNoFilesError, MessageType.Error);
+                            await Services.MessageUI.DisplayMessageAsync(Resources.Archive_ImportNoFilesError, MessageType.Error);
 
                             return;
                         }
@@ -361,7 +361,7 @@ namespace RayCarrot.RCP.Metro
                         if (!repackSucceeded)
                             return;
 
-                        await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ImportFilesSuccess);
+                        await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ImportFilesSuccess);
                     });
                 }
             }

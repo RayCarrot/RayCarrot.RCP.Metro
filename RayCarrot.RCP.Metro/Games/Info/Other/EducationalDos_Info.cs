@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -37,7 +37,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the launch name for the game
         /// </summary>
-        public override string DefaultFileName => RCFRCP.Data.EducationalDosBoxGames?.FirstOrDefault()?.LaunchName;
+        public override string DefaultFileName => RCPServices.Data.EducationalDosBoxGames?.FirstOrDefault()?.LaunchName;
 
         /// <summary>
         /// The config UI, if any is available
@@ -62,7 +62,7 @@ namespace RayCarrot.RCP.Metro
             get
             {
                 // Get the games with a launch mode
-                var games = RCFRCP.Data.EducationalDosBoxGames.Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).ToArray();
+                var games = RCPServices.Data.EducationalDosBoxGames.Where(x => !x.LaunchMode.IsNullOrWhiteSpace()).ToArray();
 
                 // Return a collection of the backup infos for the available games
                 return games.Select(x =>

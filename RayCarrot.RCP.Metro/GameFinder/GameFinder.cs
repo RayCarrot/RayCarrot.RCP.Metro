@@ -5,8 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using IniParser;
 using Microsoft.Win32;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman.UbiIni;
@@ -479,14 +478,14 @@ namespace RayCarrot.RCP.Metro
             var keys = Environment.Is64BitOperatingSystem
                 ? new RegistryKey[]
                 {
-                    RCFWinReg.RegistryManager.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms,
+                    RegistryHelpers.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms,
                         RegistryView.Registry32),
-                    RCFWinReg.RegistryManager.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms,
+                    RegistryHelpers.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms,
                         RegistryView.Registry64)
                 }
                 : new RegistryKey[]
                 {
-                    RCFWinReg.RegistryManager.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms,
+                    RegistryHelpers.GetKeyFromFullPath(CommonRegistryPaths.InstalledPrograms,
                         RegistryView.Registry32),
                 };
 

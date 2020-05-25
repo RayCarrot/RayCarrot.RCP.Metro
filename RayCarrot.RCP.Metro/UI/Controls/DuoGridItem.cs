@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.WPF;
 using System.Windows.Controls;
 
 namespace RayCarrot.RCP.Metro

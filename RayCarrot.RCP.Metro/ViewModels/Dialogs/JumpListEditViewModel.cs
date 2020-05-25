@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RayCarrot.Extensions;
-using RayCarrot.UI;
+using RayCarrot.Common;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -26,7 +26,7 @@ namespace RayCarrot.RCP.Metro
             NotIncluded = new ObservableCollection<JumpListItemViewModel>();
 
             // Get all jump list items
-            foreach (var game in RCFRCP.App.GetGames.Where(x => x.IsAdded()))
+            foreach (var game in RCPServices.App.GetGames.Where(x => x.IsAdded()))
             {
                 foreach (var item in game.GetManager().GetJumpListItems())
                 {
@@ -40,7 +40,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Order the included games
-            Included = included.OrderBy(x => RCFRCP.Data.JumpListItemIDCollection.IndexOf(x.ID)).ToObservableCollection();
+            Included = included.OrderBy(x => RCPServices.Data.JumpListItemIDCollection.IndexOf(x.ID)).ToObservableCollection();
         }
 
         #endregion

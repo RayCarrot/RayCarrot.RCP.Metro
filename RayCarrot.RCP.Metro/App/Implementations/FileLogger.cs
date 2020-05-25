@@ -1,7 +1,6 @@
 ﻿using ByteSizeLib;
 using Microsoft.Extensions.Logging;
-using RayCarrot.CarrotFramework;
-using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.WPF;
 using RayCarrot.IO;
 using System;
 using System.Globalization;

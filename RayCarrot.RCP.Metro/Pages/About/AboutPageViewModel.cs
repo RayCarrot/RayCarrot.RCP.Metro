@@ -1,4 +1,4 @@
-﻿using RayCarrot.Extensions;
+﻿using RayCarrot.Common;
 using RayCarrot.UI;
 using RayCarrot.WPF;
 using System;
@@ -74,11 +74,11 @@ namespace RayCarrot.RCP.Metro
         public async Task UninstallAsync()
         {
             // Confirm
-            if (!await RCFUI.MessageUI.DisplayMessageAsync(Resources.About_ConfirmUninstall, Resources.About_ConfirmUninstallHeader, MessageType.Question, true))
+            if (!await Services.MessageUI.DisplayMessageAsync(Resources.About_ConfirmUninstall, Resources.About_ConfirmUninstallHeader, MessageType.Question, true))
                 return;
 
             // Run the uninstaller
-            if (await RCFRCP.File.LaunchFileAsync(CommonPaths.UninstallFilePath, true, $"\"{Assembly.GetEntryAssembly()?.Location}\"") == null)
+            if (await RCPServices.File.LaunchFileAsync(CommonPaths.UninstallFilePath, true, $"\"{Assembly.GetEntryAssembly()?.Location}\"") == null)
             {
                 string[] appDataLocations = 
                 {
@@ -86,7 +86,7 @@ namespace RayCarrot.RCP.Metro
                     CommonPaths.RegistryBaseKey
                 };
 
-                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.About_UninstallFailed, appDataLocations.JoinItems(Environment.NewLine)), MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.About_UninstallFailed, appDataLocations.JoinItems(Environment.NewLine)), MessageType.Error);
 
                 return;
             }

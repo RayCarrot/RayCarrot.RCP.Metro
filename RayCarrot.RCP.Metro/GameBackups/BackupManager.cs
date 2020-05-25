@@ -1,5 +1,4 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 using Nito.AsyncEx;
 using RayCarrot.IO;
 using RayCarrot.Logging;
-using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -34,7 +33,7 @@ namespace RayCarrot.RCP.Metro
         public BackupManager()
         {
             // Get a new file manager
-            FileManager = RCFRCP.File;
+            FileManager = RCPServices.File;
         }
 
         #endregion
@@ -101,7 +100,7 @@ namespace RayCarrot.RCP.Metro
                 // Check if any files were backed up
                 if (!destinationDir.DirectoryExists)
                 {
-                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, gameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
+                    await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, gameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
 
                     if (tempDir.TempPath.DirectoryExists)
                         // Restore temp backup
@@ -186,7 +185,7 @@ namespace RayCarrot.RCP.Metro
                 // Check if any files were backed up
                 if (!backedUp)
                 {
-                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, gameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
+                    await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingFilesError, gameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
                     
                     // Check if a temp backup exists
                     if (tempFile.TempPath.FileExists)
@@ -239,12 +238,12 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Make sure we have write access to the backup location
-                    if (!FileManager.CheckDirectoryWriteAccess(RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily))
+                    if (!FileManager.CheckDirectoryWriteAccess(RCPServices.Data.BackupLocation + AppViewModel.BackupFamily))
                     {
                         RL.Logger?.LogInformationSource($"Backup failed - backup location lacks write access");
 
                         // Request to restart as admin
-                        await RCFRCP.App.RequestRestartAsAdminAsync();
+                        await RCPServices.App.RequestRestartAsAdminAsync();
 
                         return false;
                     }
@@ -294,13 +293,13 @@ namespace RayCarrot.RCP.Metro
                     {
                         RL.Logger?.LogInformationSource($"Backup failed - the input directories could not be found");
 
-                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingDirectoriesError, backupInformation.GameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
+                        await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_MissingDirectoriesError, backupInformation.GameDisplayName), Resources.Backup_FailedHeader, MessageType.Error);
 
                         return false;
                     }
 
                     // Check if the backup should be compressed
-                    bool compress = RCFRCP.Data.CompressBackups;
+                    bool compress = RCPServices.Data.CompressBackups;
 
                     RL.Logger?.LogDebugSource(compress ? $"The backup will be compressed" : $"The backup will not be compressed");
 
@@ -352,7 +351,7 @@ namespace RayCarrot.RCP.Metro
                     ex.HandleError("Backing up game", backupInformation);
 
                     // Display message to user
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Backup_Failed, backupInformation.GameDisplayName), Resources.Backup_FailedHeader);
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Backup_Failed, backupInformation.GameDisplayName), Resources.Backup_FailedHeader);
 
                     // Return that backup did not succeed
                     return false;
@@ -381,7 +380,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         RL.Logger?.LogInformationSource($"Restore failed - the input location could not be found");
 
-                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_MissingBackup, backupInformation.GameDisplayName), Resources.Restore_FailedHeader, MessageType.Error);
+                        await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Restore_MissingBackup, backupInformation.GameDisplayName), Resources.Restore_FailedHeader, MessageType.Error);
 
                         return false;
                     }
@@ -395,7 +394,7 @@ namespace RayCarrot.RCP.Metro
                         RL.Logger?.LogInformationSource($"Restore failed - one or more restore destinations lack write access");
 
                         // Request to restart as admin
-                        await RCFRCP.App.RequestRestartAsAdminAsync();
+                        await RCPServices.App.RequestRestartAsAdminAsync();
 
                         return false;
                     }
@@ -500,7 +499,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Restoring game", backupInformation);
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Restore_Failed, backupInformation.GameDisplayName), Resources.Restore_FailedHeader);
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Restore_Failed, backupInformation.GameDisplayName), Resources.Restore_FailedHeader);
 
                     return false;
                 }

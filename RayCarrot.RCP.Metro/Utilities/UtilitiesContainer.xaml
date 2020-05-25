@@ -71,7 +71,7 @@
                                                     <Button HorizontalAlignment="Center"
                                                             Margin="0 10 0 0"
                                                             Content="{Resx App_RestartAsAdmin}"
-                                                            Command="{Binding Path=RestartAsAdminCommand, Mode=OneTime, Source={x:Static local:RCFRCP.App}}"/>
+                                                            Command="{Binding Path=RestartAsAdminCommand, Mode=OneTime, Source={x:Static local:RCPServices.App}}"/>
 
                                                 </StackPanel>
 

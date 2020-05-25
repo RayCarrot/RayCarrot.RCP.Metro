@@ -77,7 +77,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The registry base key
         /// </summary>
-        public const string RegistryBaseKey = RCFRegistryPaths.BasePath + @"\RCP_Metro";
+        public const string RegistryBaseKey = @"HKEY_CURRENT_USER\Software\RayCarrot\RCP_Metro";
 
         /// <summary>
         /// The license accepted value name

@@ -2,11 +2,10 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
-using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -108,7 +107,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure the input directory exists
                     if (!InputDirectory.DirectoryExists)
                     {
-                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.Archive_CreateErrorInputNotFound, MessageType.Error);
+                        await Services.MessageUI.DisplayMessageAsync(Resources.Archive_CreateErrorInputNotFound, MessageType.Error);
 
                         return false;
                     }
@@ -136,7 +135,7 @@ namespace RayCarrot.RCP.Metro
 
                     DisplayStatus = String.Empty;
 
-                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Archive_CreateSuccess, importData.Length));
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Archive_CreateSuccess, importData.Length));
 
                     return true;
                 });
@@ -145,7 +144,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Creating archive", Manager);
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CreateError);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CreateError);
 
                 return false;
             }

@@ -37,14 +37,14 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The DOSBox file path
         /// </summary>
-        public override FileSystemPath DOSBoxFilePath => RCFRCP.Data.TPLSData?.IsEnabled != true ? base.DOSBoxFilePath : RCFRCP.Data.TPLSData.DOSBoxFilePath;
+        public override FileSystemPath DOSBoxFilePath => RCPServices.Data.TPLSData?.IsEnabled != true ? base.DOSBoxFilePath : RCPServices.Data.TPLSData.DOSBoxFilePath;
 
         /// <summary>
         /// Optional additional config files
         /// </summary>
-        public override IEnumerable<FileSystemPath> AdditionalConfigFiles => RCFRCP.Data.TPLSData?.IsEnabled != true ? base.AdditionalConfigFiles : new FileSystemPath[]
+        public override IEnumerable<FileSystemPath> AdditionalConfigFiles => RCPServices.Data.TPLSData?.IsEnabled != true ? base.AdditionalConfigFiles : new FileSystemPath[]
         {
-            RCFRCP.Data.TPLSData.ConfigFilePath
+            RCPServices.Data.TPLSData.ConfigFilePath
         };
         #endregion
     }

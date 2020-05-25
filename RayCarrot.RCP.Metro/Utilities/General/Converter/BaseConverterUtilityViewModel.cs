@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.UI;
 using System;
@@ -10,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.Binary;
 using RayCarrot.Logging;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -80,7 +79,7 @@ namespace RayCarrot.RCP.Metro
                     defaultDir = null;
 
                 // Allow the user to select the files
-                var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+                var fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                 {
                     Title = Resources.Utilities_Converter_FileSelectionHeader,
                     DefaultDirectory = defaultDir?.FullPath,
@@ -92,7 +91,7 @@ namespace RayCarrot.RCP.Metro
                     return;
 
                 // Allow the user to select the destination directory
-                var destinationResult = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                var destinationResult = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                 {
                     Title = Resources.Browse_DestinationHeader,
                 });
@@ -101,7 +100,7 @@ namespace RayCarrot.RCP.Metro
                     return;
 
                 // Allow the user to select the file extension to export as
-                var extResult = await RCFRCP.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(supportedFileExtensions, Resources.Utilities_Converter_ExportExtensionHeader));
+                var extResult = await RCPServices.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(supportedFileExtensions, Resources.Utilities_Converter_ExportExtensionHeader));
 
                 if (extResult.CanceledByUser)
                     return;
@@ -137,7 +136,7 @@ namespace RayCarrot.RCP.Metro
                                 }
 
                                 // Read the file data
-                                var data = BinarySerializableHelpers.ReadFromStream<T>(stream, settings, RCFRCP.App.GetBinarySerializerLogger());
+                                var data = BinarySerializableHelpers.ReadFromStream<T>(stream, settings, RCPServices.App.GetBinarySerializerLogger());
 
                                 // Get the destination file
                                 var destinationFile = destinationResult.SelectedDirectory + file.Name;
@@ -155,13 +154,13 @@ namespace RayCarrot.RCP.Metro
                         }
                     });
 
-                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Converter_Success);
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Converter_Success);
                 }
                 catch (Exception ex)
                 {
                     ex.HandleError("Converting files");
 
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Converter_Error);
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Converter_Error);
                 }
             }
             finally
@@ -192,7 +191,7 @@ namespace RayCarrot.RCP.Metro
                 IsLoading = true;
 
                 // Allow the user to select the files
-                var fileResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+                var fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                 {
                     Title = Resources.Utilities_Converter_FileSelectionHeader,
                     ExtensionFilter = fileFilter,
@@ -203,7 +202,7 @@ namespace RayCarrot.RCP.Metro
                     return;
 
                 // Allow the user to select the destination directory
-                var destinationResult = await RCFUI.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                var destinationResult = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                 {
                     Title = Resources.Browse_DestinationHeader,
                 });
@@ -220,7 +219,7 @@ namespace RayCarrot.RCP.Metro
                     if (outputFormats?.Any() == true)
                     {
                         // Get the format
-                        var formatResult = await RCFRCP.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(outputFormats, Resources.Utilities_Converter_FormatSelectionHeader));
+                        var formatResult = await RCPServices.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(outputFormats, Resources.Utilities_Converter_FormatSelectionHeader));
                         
                         if (formatResult.CanceledByUser)
                             return;
@@ -248,7 +247,7 @@ namespace RayCarrot.RCP.Metro
                                 using var destinationFileStream = File.Open(destinationFile, FileMode.Create, FileAccess.Write);
 
                                 // Save the converted data
-                                BinarySerializableHelpers.WriteToStream(data, destinationFileStream, settings, RCFRCP.App.GetBinarySerializerLogger());
+                                BinarySerializableHelpers.WriteToStream(data, destinationFileStream, settings, RCPServices.App.GetBinarySerializerLogger());
                             }
                             else
                             {
@@ -256,7 +255,7 @@ namespace RayCarrot.RCP.Metro
                                 using var encodingStream = new MemoryStream();
 
                                 // Serialize the converted data to the memory stream
-                                BinarySerializableHelpers.WriteToStream(data, encodingStream, settings, RCFRCP.App.GetBinarySerializerLogger());
+                                BinarySerializableHelpers.WriteToStream(data, encodingStream, settings, RCPServices.App.GetBinarySerializerLogger());
 
                                 // Create the destination file
                                 using var destinationFileStream = File.Open(destinationFile, FileMode.Create, FileAccess.Write);
@@ -269,13 +268,13 @@ namespace RayCarrot.RCP.Metro
                         }
                     });
 
-                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Converter_Success);
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Utilities_Converter_Success);
                 }
                 catch (Exception ex)
                 {
                     ex.HandleError("Converting files");
 
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Converter_Error);
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Utilities_Converter_Error);
                 }
             }
             finally

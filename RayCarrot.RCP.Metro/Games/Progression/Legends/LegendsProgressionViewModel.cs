@@ -1,5 +1,4 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+﻿using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Rayman.UbiArt;
 using RayCarrot.UI;
@@ -175,7 +174,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Deserialize and return the data
-            var saveData = BinarySerializableHelpers.ReadFromFile<LegendsPCSaveData>(filePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanLegends, Platform.PC), RCFRCP.App.GetBinarySerializerLogger()).SaveData;
+            var saveData = BinarySerializableHelpers.ReadFromFile<LegendsPCSaveData>(filePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanLegends, Platform.PC), RCPServices.App.GetBinarySerializerLogger()).SaveData;
 
             RL.Logger?.LogInformationSource($"Slot has been deserialized");
 

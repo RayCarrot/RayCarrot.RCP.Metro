@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using Microsoft.WindowsAPICodePack.Taskbar;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Windows.Shell;
 using System.Threading.Tasks;
+using RayCarrot.Common;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -30,7 +30,7 @@ namespace RayCarrot.RCP.Metro
 
             VM.InstallationComplete += VM_InstallationComplete;
 
-            if (RCFRCP.Data.ShowProgressOnTaskBar)
+            if (RCPServices.Data.ShowProgressOnTaskBar)
                 VM.StatusUpdated += VM_StatusUpdated;
         }
 

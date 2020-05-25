@@ -22,7 +22,7 @@
 
         </StackPanel>
 
-        <ComboBox SelectedIndex="{Binding Source={x:Static local:RCFRCP.Data}, Path=RRR2LaunchMode, Converter={rwpf:EnumToIntConverter}}"
+        <ComboBox SelectedIndex="{Binding Source={x:Static local:RCPServices.Data}, Path=RRR2LaunchMode, Converter={rwpf:EnumToIntConverter}}"
                   HorizontalAlignment="Left">
 
             <TextBlock Text="{Resx RR2Options_GameMode_All}" />

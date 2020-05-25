@@ -1,6 +1,4 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.UI;
-using RayCarrot.WPF;
+﻿using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -127,7 +125,7 @@ namespace RayCarrot.RCP.Metro
 
         private async void GameOptions_OnLoadedAsync(object sender, RoutedEventArgs e)
         {
-            RCFRCP.App.RefreshRequired += AppGameRefreshRequiredAsync;
+            RCPServices.App.RefreshRequired += AppGameRefreshRequiredAsync;
 
             try
             {
@@ -135,7 +133,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     ViewModel.ConfigViewModel.OnSave = () =>
                     {
-                        if (RCFRCP.Data.CloseConfigOnSave)
+                        if (RCPServices.Data.CloseConfigOnSave)
                             Close();
                     };
 
@@ -145,7 +143,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Set up game config view model");
-                ViewModel.ConfigContent = RCFCore.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
+                ViewModel.ConfigContent = Services.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
             }
 
             try
@@ -163,13 +161,13 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Set up game progression view model");
-                ProgressionTab.Content = RCFCore.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
+                ProgressionTab.Content = Services.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
             }
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            RCFRCP.App.RefreshRequired -= AppGameRefreshRequiredAsync;
+            RCPServices.App.RefreshRequired -= AppGameRefreshRequiredAsync;
 
             ViewModel?.Dispose();
 
@@ -199,7 +197,7 @@ namespace RayCarrot.RCP.Metro
 
             ChangePage(GameOptionsPage.Config);
 
-            if (!await RCFUI.MessageUI.DisplayMessageAsync(Metro.Resources.GameOptions_UnsavedChanges, Metro.Resources.GameOptions_UnsavedChangesHeader, MessageType.Question, true))
+            if (!await Services.MessageUI.DisplayMessageAsync(Metro.Resources.GameOptions_UnsavedChanges, Metro.Resources.GameOptions_UnsavedChangesHeader, MessageType.Question, true))
                 return;
 
             ForceClose = true;

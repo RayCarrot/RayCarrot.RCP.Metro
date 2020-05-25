@@ -1,11 +1,11 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+﻿using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.Logging;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -104,7 +104,7 @@ namespace RayCarrot.RCP.Metro
         public async Task ExportAsync()
         {
             // Get the output file
-            var outputResult = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
+            var outputResult = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
             {
                 Title = Resources.ExportDestinationSelectionHeader,
                 DefaultName = SaveSlotFilePath.ChangeFileExtension(new FileExtension(".json")).Name,
@@ -123,12 +123,12 @@ namespace RayCarrot.RCP.Metro
 
                 RL.Logger?.LogInformationSource($"Progression data has been exported");
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_ExportSuccess);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_ExportSuccess);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Exporting progression slot to JSON");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Progression_ExportError);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Progression_ExportError);
             }
         }
 
@@ -139,7 +139,7 @@ namespace RayCarrot.RCP.Metro
         public async Task ImportAsync()
         {
             // Get the input file
-            var inputResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+            var inputResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
                 Title = Resources.ImportSelectionHeader,
                 ExtensionFilter = new FileFilterItem("*.json", Resources.FileFilterDescription_JSON).StringRepresentation,
@@ -161,7 +161,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Importing JSON to progression slot file");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Progression_ImportError);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Progression_ImportError);
 
                 return;
             }
@@ -178,7 +178,7 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Reload game progression view model");
             }
 
-            await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_ImportSuccess);
+            await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Progression_ImportSuccess);
         }
 
         public void Dispose()

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.WPF;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -21,7 +21,7 @@ namespace RayCarrot.RCP.Metro
             Value = generator();
 
             // Subscribe to when the culture changes
-            RCFCore.Data.CultureChanged += Data_CultureChanged;
+            Services.Data.CultureChanged += Data_CultureChanged;
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace RayCarrot.RCP.Metro
 
         public void Dispose()
         {
-            RCFCore.Data.CultureChanged -= Data_CultureChanged;
+            Services.Data.CultureChanged -= Data_CultureChanged;
         }
     }
 }

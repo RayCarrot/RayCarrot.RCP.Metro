@@ -1,5 +1,4 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+﻿using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;
@@ -148,7 +147,7 @@ namespace RayCarrot.RCP.Metro
             outputFileStream.Position = 0;
 
             // Serialize the data
-            BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCFRCP.App.GetBinarySerializerLogger());
+            BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
             RL.Logger?.LogInformationSource($"The IPK archive has been repacked");
         }

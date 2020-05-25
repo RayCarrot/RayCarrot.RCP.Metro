@@ -1,11 +1,11 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
+﻿using RayCarrot.WPF;
 using System;
 using System.Linq;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
@@ -30,7 +30,7 @@ namespace RayCarrot.RCP.Metro
             
             try
             {
-                if (RCFRCP.Data.DisplayExceptionLevel <= exceptionLevel)
+                if (RCPServices.Data.DisplayExceptionLevel <= exceptionLevel)
                     MessageBox.Show(GetMessage(), Resources.ExceptionMessageHeader, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 #pragma warning disable 168
@@ -48,7 +48,7 @@ namespace RayCarrot.RCP.Metro
                 sb.AppendLine(Resources.ExceptionMessageInfo);
                 sb.AppendLine();
 
-                if (RCFCore.Data.CurrentUserLevel >= UserLevel.Debug)
+                if (Services.Data.CurrentUserLevel >= UserLevel.Debug)
                 {
                     sb.AppendLine($"Exception: {exception}");
 
@@ -70,7 +70,7 @@ namespace RayCarrot.RCP.Metro
                     sb.AppendLine($"Exception message: {exception.Message}");
                 }
 
-                if (RCFCore.Data.CurrentUserLevel < UserLevel.Advanced)
+                if (Services.Data.CurrentUserLevel < UserLevel.Advanced)
                     return sb.ToString();
 
                 sb.AppendLine();

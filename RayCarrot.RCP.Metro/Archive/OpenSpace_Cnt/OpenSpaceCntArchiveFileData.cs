@@ -1,7 +1,6 @@
 ﻿using ByteSizeLib;
 using MahApps.Metro.IconPacks;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
@@ -192,7 +191,7 @@ namespace RayCarrot.RCP.Metro
             using var stream = new MemoryStream(fileBytes);
 
             // Serialize the data
-            var data = BinarySerializableHelpers.ReadFromStream<OpenSpaceGFFile>(stream, Settings, RCFRCP.App.GetBinarySerializerLogger());
+            var data = BinarySerializableHelpers.ReadFromStream<OpenSpaceGFFile>(stream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
             // Make sure we read the entire file
             if (stream.Position != stream.Length)
@@ -323,13 +322,13 @@ namespace RayCarrot.RCP.Metro
                 rawBitmapData = new RawBitmapData(bmp.Width, bmp.Height, bmpLock.Pixels, bmp.PixelFormat);
 
                 // Check if the format should be updated for transparency
-                if (RCFRCP.Data.Archive_GF_UpdateTransparency != Archive_GF_TransparencyMode.PreserveFormat)
+                if (RCPServices.Data.Archive_GF_UpdateTransparency != Archive_GF_TransparencyMode.PreserveFormat)
                 {
                     // NOTE: Only 24 and 32 bpp bitmaps are supported
                     // Check if the imported file is transparent
                     var isTransparent = bmp.PixelFormat switch
                     {
-                        PixelFormat.Format32bppArgb => (RCFRCP.Data.Archive_GF_UpdateTransparency == Archive_GF_TransparencyMode.UpdateBasedOnPixelFormat ||
+                        PixelFormat.Format32bppArgb => (RCPServices.Data.Archive_GF_UpdateTransparency == Archive_GF_TransparencyMode.UpdateBasedOnPixelFormat ||
                                                         bmpLock.UtilizesAlpha()),
                         PixelFormat.Format24bppRgb => false,
                         _ => (bool?)null
@@ -344,10 +343,10 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Import the bitmap
-            gf.ImportFromBitmap(Settings, rawBitmapData, RCFRCP.Data.Archive_GF_GenerateMipmaps);
+            gf.ImportFromBitmap(Settings, rawBitmapData, RCPServices.Data.Archive_GF_GenerateMipmaps);
 
             // Serialize the data to get the bytes
-            BinarySerializableHelpers.WriteToStream(gf, outputStream, Settings, RCFRCP.App.GetBinarySerializerLogger());
+            BinarySerializableHelpers.WriteToStream(gf, outputStream, Settings, RCPServices.App.GetBinarySerializerLogger());
         }
 
         #endregion

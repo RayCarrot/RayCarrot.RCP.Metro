@@ -4,8 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.Logging;
 using RayCarrot.UI;
 
@@ -515,13 +514,13 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Saving DosBox configuration data");
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_DosBoxSaveError, Resources.Config_SaveErrorHeader);
+                    await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_DosBoxSaveError, Resources.Config_SaveErrorHeader);
                     return;
                 }
 
                 UnsavedChanges = false;
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
+                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
 
                 OnSave();
             }

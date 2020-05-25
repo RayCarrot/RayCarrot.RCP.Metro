@@ -1,13 +1,13 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.Logging;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -92,7 +92,7 @@ namespace RayCarrot.RCP.Metro
 
             RL.Logger?.LogInformationSource($"The following Rayman Designer files were found to replace: {foundFiles.Select(x => x.Item1.Name).JoinItems(", ")}");
 
-            await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.RDU_ReplaceFiles_InfoMessage, foundFiles.Count, files.Length), MessageType.Information);
+            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.RDU_ReplaceFiles_InfoMessage, foundFiles.Count, files.Length), MessageType.Information);
 
             try
             {
@@ -106,12 +106,12 @@ namespace RayCarrot.RCP.Metro
 
                 RL.Logger?.LogInformationSource($"The Rayman Designer files have been replaced");
 
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.RDU_ReplaceFiles_Complete, MessageType.Information);
+                await Services.MessageUI.DisplayMessageAsync(Resources.RDU_ReplaceFiles_Complete, MessageType.Information);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Replacing R1 soundtrack");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.RDU_ReplaceFiles_Error);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.RDU_ReplaceFiles_Error);
             }
         }
 

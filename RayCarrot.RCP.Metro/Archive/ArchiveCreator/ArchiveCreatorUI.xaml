@@ -4,7 +4,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:metro="clr-namespace:RayCarrot.WPF.Metro;assembly=RayCarrot.WPF.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
@@ -13,7 +12,7 @@
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              MinHeight="250"
              MinWidth="400">
-    <metro:LoaderContentControl HorizontalLoadingIconAlignment="Center"
+    <local:LoaderContentControl HorizontalLoadingIconAlignment="Center"
                                 VerticalLoadingIconAlignment="Center"
                                 HorizontalContentAlignment="Stretch"
                                 VerticalContentAlignment="Stretch"
@@ -82,5 +81,5 @@
 
         </Grid>
 
-    </metro:LoaderContentControl>
+    </local:LoaderContentControl>
 </UserControl>

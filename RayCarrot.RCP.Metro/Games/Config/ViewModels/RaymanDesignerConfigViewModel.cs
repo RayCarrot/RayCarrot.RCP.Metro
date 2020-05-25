@@ -1,10 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Logging;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -220,7 +218,7 @@ namespace RayCarrot.RCP.Metro
                 };
 
                 // Delete the existing file
-                RCFRCP.File.DeleteFile(batchFile);
+                RCPServices.File.DeleteFile(batchFile);
 
                 // Create the .bat file
                 File.WriteAllLines(batchFile, new string[]
@@ -232,7 +230,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Setting DOSBox game language from batch file");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.DosBoxConfig_SetLanguageError, Resources.DosBoxConfig_SetLanguageErrorHeader);
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.DosBoxConfig_SetLanguageError, Resources.DosBoxConfig_SetLanguageErrorHeader);
             }
         }
 

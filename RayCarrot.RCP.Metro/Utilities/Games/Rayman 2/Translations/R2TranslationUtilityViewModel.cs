@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ByteSizeLib;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -76,7 +76,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     RL.Logger?.LogInformationSource($"The Rayman 2 translation patch could not be downloaded due to the required local files not being found");
 
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.R2U_Translations_FilesNotFound, MessageType.Error);
+                    await Services.MessageUI.DisplayMessageAsync(Resources.R2U_Translations_FilesNotFound, MessageType.Error);
                     return;
                 }
 
@@ -105,7 +105,7 @@ namespace RayCarrot.RCP.Metro
                     ? Resources.R2U_Translations_RevertTextures
                     : Resources.R2U_Translations_ReplaceTextures;
 
-                if (await RCFUI.MessageUI.DisplayMessageAsync(message, Resources.R2U_Translations_ReplaceTexturesHeader, MessageType.Question, true))
+                if (await Services.MessageUI.DisplayMessageAsync(message, Resources.R2U_Translations_ReplaceTexturesHeader, MessageType.Question, true))
                 {
                     RL.Logger?.LogInformationSource($"The Rayman 2 translation texture patch is downloading...");
 
@@ -121,12 +121,12 @@ namespace RayCarrot.RCP.Metro
 
                 RL.Logger?.LogInformationSource($"The Rayman 2 translation has been applied");
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_Translations_Success);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.R2U_Translations_Success);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Applying R2 translation patch");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_Translations_Error);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R2U_Translations_Error);
             }
         }
 

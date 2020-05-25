@@ -6,10 +6,10 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.Logging;
 using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -44,7 +44,7 @@ namespace RayCarrot.RCP.Metro
             };
 
             // Refresh on culture changed
-            RCFCore.Data.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
+            Services.Data.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync());
 
             // Refresh on startup
             Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync();
@@ -136,7 +136,7 @@ namespace RayCarrot.RCP.Metro
                 GameBackupItems.ForEach(x => x.PerformingBackupRestore = true);
 
                 // Confirm backup
-                if (!await RCFUI.MessageUI.DisplayMessageAsync(Resources.Backup_ConfirmBackupAll, Resources.Backup_ConfirmBackupAllHeader, MessageType.Warning, true))
+                if (!await Services.MessageUI.DisplayMessageAsync(Resources.Backup_ConfirmBackupAll, Resources.Backup_ConfirmBackupAllHeader, MessageType.Warning, true))
                 {
                     RL.Logger?.LogInformationSource($"Backup canceled");
 
@@ -152,7 +152,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         game.ShowBackupRestoreIndicator = true;
 
-                        if (await RCFRCP.Backup.BackupAsync(game.BackupInfo))
+                        if (await RCPServices.Backup.BackupAsync(game.BackupInfo))
                             completed++;
 
                         game.ShowBackupRestoreIndicator = false;
@@ -160,9 +160,9 @@ namespace RayCarrot.RCP.Metro
                 });
 
                 if (completed == GameBackupItems.Count)
-                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Backup_BackupAllSuccess);
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Backup_BackupAllSuccess);
                 else
-                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, GameBackupItems.Count), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
+                    await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Backup_BackupAllFailed, completed, GameBackupItems.Count), Resources.Backup_BackupAllFailedHeader, MessageType.Information);
 
                 // Refresh the item
                 await Task.Run(async () => await RefreshAsync());

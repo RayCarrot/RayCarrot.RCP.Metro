@@ -5,9 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Logging;
-using RayCarrot.UI;
 using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
@@ -175,34 +173,34 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Writing updater to temp path", CommonPaths.UpdaterFilePath);
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, UserFallbackURL), Resources.Update_UpdaterErrorHeader);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, UserFallbackURL), Resources.Update_UpdaterErrorHeader);
 
                 return false;
             }
 
             // Launch the updater and capture the process
-            using var updateProcess = await RCFRCP.File.LaunchFileAsync(CommonPaths.UpdaterFilePath, asAdmin, 
+            using var updateProcess = await RCPServices.File.LaunchFileAsync(CommonPaths.UpdaterFilePath, asAdmin, 
                 // Arg 1: Program path
                 $"\"{Assembly.GetEntryAssembly()?.Location}\" " +
                 // Arg 2: Dark mode
-                $"{RCFRCP.Data.DarkMode} " +
+                $"{RCPServices.Data.DarkMode} " +
                 // Arg 3: User level
-                $"{RCFRCP.Data.UserLevel} " +
+                $"{RCPServices.Data.UserLevel} " +
                 // Arg 4: Update URL
                 $"\"{result.DownloadURL}\" " +
                 // Arg 5: Current culture
-                $"\"{RCFCore.Data.CurrentCulture}\"");
+                $"\"{Services.Data.CurrentCulture}\"");
 
             // Make sure we have a valid process
             if (updateProcess == null)
             {
-                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, UserFallbackURL), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_RunningUpdaterError, UserFallbackURL), Resources.Update_RunningUpdaterErrorHeader, MessageType.Error);
 
                 return false;
             }
 
             // Shut down the app
-            await BaseRCFApp.Current.ShutdownRCFAppAsync(true);
+            await BaseApp.Current.ShutdownRCFAppAsync(true);
 
             return true;
         }

@@ -1,7 +1,5 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+﻿using RayCarrot.Common;
 using RayCarrot.IO;
-using RayCarrot.UI;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
 using RayCarrot.Logging;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -280,13 +279,13 @@ namespace RayCarrot.RCP.Metro
 
                     RL.Logger?.LogWarningSource($"The Rayman Origins debug commands could not be updated due to the install directory not being found");
 
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.ROU_DebugCommandsInstallationNotFound, MessageType.Error);
+                    await Services.MessageUI.DisplayMessageAsync(Resources.ROU_DebugCommandsInstallationNotFound, MessageType.Error);
                     return;
                 }
 
                 try
                 {
-                    RCFRCP.File.DeleteFile(DebugCommandFilePath);
+                    RCPServices.File.DeleteFile(DebugCommandFilePath);
 
                     if (!IsDebugModeEnabled)
                     {
@@ -302,7 +301,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Applying RO debug commands");
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ROU_DebugCommandsError);
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ROU_DebugCommandsError);
                 }
             }
         }

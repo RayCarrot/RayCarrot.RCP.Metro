@@ -1,7 +1,5 @@
 ﻿using ByteSizeLib;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
-using RayCarrot.UI;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -463,7 +461,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Create the file
-                    RCFRCP.File.CreateFile(CommonPaths.UbiIniPath1);
+                    RCPServices.File.CreateFile(CommonPaths.UbiIniPath1);
 
                     RL.Logger?.LogInformationSource($"A new ubi.ini file has been created under {CommonPaths.UbiIniPath1}");
                 }
@@ -471,7 +469,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     ex.HandleError("Creating ubi.ini file");
 
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_InvalidUbiIni, CommonPaths.UbiIniPath1.Parent));
+                    await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_InvalidUbiIni, CommonPaths.UbiIniPath1.Parent));
 
                     throw;
                 }
@@ -483,7 +481,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Create the file
-                    RCFRCP.File.CreateFile(CommonPaths.UbiIniPath2);
+                    RCPServices.File.CreateFile(CommonPaths.UbiIniPath2);
 
                     RL.Logger?.LogInformationSource($"A new ubi.ini file has been created under {CommonPaths.UbiIniPath2}");
                 }
@@ -539,7 +537,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             if (dt != DinputType.None)
                                 // Attempt to delete existing dinput file
-                                RCFRCP.File.DeleteFile(path);
+                                RCPServices.File.DeleteFile(path);
 
                             // Write controller patch
                             File.WriteAllBytes(path, Files.dinput8_controller);
@@ -548,7 +546,7 @@ namespace RayCarrot.RCP.Metro
                     else if (dt == DinputType.Controller)
                     {
                         // Attempt to delete existing dinput file
-                        RCFRCP.File.DeleteFile(path);
+                        RCPServices.File.DeleteFile(path);
                     }
 
                 }
@@ -609,7 +607,7 @@ namespace RayCarrot.RCP.Metro
                 // as the Rayman 2 dinput file was accidentally used prior to version 4.1.2
                 if (size == ByteSize.FromBytes(66560))
                 {
-                    RCFRCP.File.DeleteFile(path);
+                    RCPServices.File.DeleteFile(path);
                     return DinputType.None;
                 }
 

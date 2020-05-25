@@ -7,7 +7,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using MahApps.Metro.IconPacks;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
@@ -189,7 +188,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the link is valid
         /// </summary>
-        public bool IsValid => !IsLocal || (IsRegistryPath ? RCFWinReg.RegistryManager.KeyExists(RegistryLinkPath) : LocalLinkPath.Exists);
+        public bool IsValid => !IsLocal || (IsRegistryPath ? RegistryHelpers.KeyExists(RegistryLinkPath) : LocalLinkPath.Exists);
 
         #endregion
 
@@ -238,16 +237,16 @@ namespace RayCarrot.RCP.Metro
             if (IsLocal)
             {
                 if (IsRegistryPath)
-                    await RCFRCP.File.OpenRegistryKeyAsync(RegistryLinkPath);
+                    await RCPServices.File.OpenRegistryKeyAsync(RegistryLinkPath);
 
                 else if (LocalLinkPath.FileExists)
-                    await RCFRCP.File.LaunchFileAsync(LocalLinkPath);
+                    await RCPServices.File.LaunchFileAsync(LocalLinkPath);
 
                 else if (LocalLinkPath.DirectoryExists)
-                    await RCFRCP.File.OpenExplorerLocationAsync(LocalLinkPath);
+                    await RCPServices.File.OpenExplorerLocationAsync(LocalLinkPath);
 
                 else
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.Links_OpenErrorNotFound, Resources.Links_OpenErrorNotFoundHeader, MessageType.Error);
+                    await Services.MessageUI.DisplayMessageAsync(Resources.Links_OpenErrorNotFound, Resources.Links_OpenErrorNotFoundHeader, MessageType.Error);
             }
             else
             {

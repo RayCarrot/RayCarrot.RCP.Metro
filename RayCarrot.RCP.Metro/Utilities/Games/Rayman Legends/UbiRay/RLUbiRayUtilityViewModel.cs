@@ -1,5 +1,4 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+﻿using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Rayman.UbiArt;
 using RayCarrot.UI;
@@ -124,7 +123,7 @@ namespace RayCarrot.RCP.Metro
         protected IEnumerable<PatchInfo> GetPatchInfos(Stream ipkStream)
         {
             // Deserialize the IPK file
-            var ipk = BinarySerializableHelpers.ReadFromStream<UbiArtIpkData>(ipkStream, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanLegends, Platform.PC), RCFRCP.App.GetBinarySerializerLogger());
+            var ipk = BinarySerializableHelpers.ReadFromStream<UbiArtIpkData>(ipkStream, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanLegends, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
 
             // Enumerate every patch
             foreach (var patchGroup in GetPatches.GroupBy(x => x.FileName))
@@ -188,13 +187,13 @@ namespace RayCarrot.RCP.Metro
 
                 IsApplied = true;
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RLU_UbiRay_ApplySuccess);
+                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RLU_UbiRay_ApplySuccess);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Applying RL UbiRay patch");
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex);
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex);
             }
         }
 
@@ -213,13 +212,13 @@ namespace RayCarrot.RCP.Metro
 
                 IsApplied = false;
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RLU_UbiRay_RevertSuccess);
+                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RLU_UbiRay_RevertSuccess);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Reverting RL UbiRay patch");
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex);
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex);
             }
         }
 

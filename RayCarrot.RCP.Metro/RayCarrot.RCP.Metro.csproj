@@ -155,6 +155,9 @@
       <DependentUpon>ProgressionUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\JsonHelpers.cs" />
+    <Compile Include="App\Interfaces\IFileManager.cs" />
+    <Compile Include="UI\Controls\LoaderContentControl.cs" />
+    <Compile Include="Extensions\ApplicationExtensions.cs" />
     <Compile Include="Utilities\Games\Common\SyncTextureInfo\BaseGameSyncTextureInfoUtilityUI.xaml.cs">
       <DependentUpon>BaseGameSyncTextureInfoUtilityUI.xaml</DependentUpon>
     </Compile>
@@ -267,17 +270,17 @@
     <Compile Include="Helpers\CommonPaths.cs" />
     <Compile Include="Localization\LocalizationManager.cs" />
     <Compile Include="Extensions\MessageUIManagerExtensions.cs" />
-    <Compile Include="Framework\FrameworkConstructionExtensions.cs" />
-    <Compile Include="Framework\Implementations\FileLogger.cs" />
-    <Compile Include="Framework\Implementations\RCPDialogBaseManager.cs" />
-    <Compile Include="Framework\Implementations\RCPExceptionHandler.cs" />
-    <Compile Include="Framework\Implementations\RCPMessageUIManager.cs" />
+    <Compile Include="App\ServiceCollectionExtensions.cs" />
+    <Compile Include="App\Implementations\FileLogger.cs" />
+    <Compile Include="App\Implementations\RCPDialogBaseManager.cs" />
+    <Compile Include="App\Implementations\RCPExceptionHandler.cs" />
+    <Compile Include="App\Implementations\RCPMessageUIManager.cs" />
     <Compile Include="Games\Base\GameData.cs" />
     <Compile Include="Games\Base\GameLaunchMode.cs" />
     <Compile Include="Games\Base\Games.cs" />
     <Compile Include="Games\Base\GameType.cs" />
     <Compile Include="Helpers\Operation.cs" />
-    <Compile Include="Framework\Implementations\RCPFileManager.cs" />
+    <Compile Include="App\Implementations\RCPFileManager.cs" />
     <Compile Include="Pages\Links\LinksPage.xaml.cs">
       <DependentUpon>LinksPage.xaml</DependentUpon>
     </Compile>
@@ -484,6 +487,14 @@
     <Page Include="Games\Progression\UI\ProgressionUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Styles\MetroCommon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Dialogs\FileExtensionSelectionDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -885,7 +896,7 @@
     <Compile Include="Pages\Backup\BackupPageViewModel.cs" />
     <Compile Include="ViewModels\Base\BaseRCPViewModel.cs" />
     <Compile Include="Games\Config\ViewModels\Base\BaseDosBoxConfigViewModel.cs" />
-    <Compile Include="Framework\Implementations\AppUIManager.cs" />
+    <Compile Include="App\Implementations\AppUIManager.cs" />
     <Compile Include="DataModels\KeyMappingItem.cs" />
     <Compile Include="Helpers\R2ButtonMappingManager.cs" />
     <Compile Include="AppUserData\DataModels\DosBoxOptions.cs" />
@@ -912,7 +923,7 @@
     <Compile Include="DataModels\GamePurchaseLink.cs" />
     <Compile Include="DataModels\GameFileLink.cs" />
     <Compile Include="Extensions\GamesExtensions.cs" />
-    <Compile Include="Framework\RCFRCP.cs" />
+    <Compile Include="App\RCPServices.cs" />
     <Compile Include="Img\Images.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -929,7 +940,7 @@
     </Compile>
     <Compile Include="AppUserData\AppUserData.cs" />
     <Compile Include="ViewModels\ActionItemViewModel.cs" />
-    <Compile Include="Framework\AppViewModel.cs" />
+    <Compile Include="App\AppViewModel.cs" />
     <Compile Include="Pages\Debug\DebugPageViewModel.cs" />
     <Compile Include="Pages\Settings\SettingsPageViewModel.cs" />
     <Compile Include="Pages\Games\GamesPageViewModel.cs" />
@@ -1019,49 +1030,33 @@
       <Project>{fbbb053c-d02e-439d-b589-320fc21dd60c}</Project>
       <Name>RayCarrot.Binary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.CarrotFramework.Abstractions\RayCarrot.CarrotFramework.Abstractions.csproj">
-      <Project>{8ce22a89-240a-4e7a-862f-0b71ce65755d}</Project>
-      <Name>RayCarrot.CarrotFramework.Abstractions</Name>
+    <ProjectReference Include="..\..\RayCarrot.Common\RayCarrot.Common\RayCarrot.Common.csproj">
+      <Project>{bd854370-65ef-41c0-b920-7c82dd3daa63}</Project>
+      <Name>RayCarrot.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.CarrotFramework\RayCarrot.CarrotFramework.csproj">
-      <Project>{5a9ec81f-b7c0-41a0-b49d-4fbef5e9c44a}</Project>
-      <Name>RayCarrot.CarrotFramework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.Extensions\RayCarrot.Extensions.csproj">
-      <Project>{ebdc7092-971a-4531-aa49-272e279a3bcb}</Project>
-      <Name>RayCarrot.Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.IO\RayCarrot.IO.csproj">
-      <Project>{b2bbfe1a-8d4d-468c-991d-ae34fb6fb956}</Project>
+    <ProjectReference Include="..\..\RayCarrot.IO\RayCarrot.IO\RayCarrot.IO.csproj">
+      <Project>{e271dc05-6629-48d1-9423-fe4957eab807}</Project>
       <Name>RayCarrot.IO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.UI\RayCarrot.UI.csproj">
-      <Project>{38596dd8-4ff8-4363-8626-45453c6ab280}</Project>
-      <Name>RayCarrot.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.UserData\RayCarrot.UserData.csproj">
-      <Project>{89d5c832-e49f-430a-867e-b8a5a856424e}</Project>
-      <Name>RayCarrot.UserData</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry.csproj">
-      <Project>{7fc3b338-f660-43b4-b150-c4da185ba5ba}</Project>
-      <Name>RayCarrot.Windows.Registry</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.CarrotFramework\RayCarrot.Windows.Shell\RayCarrot.Windows.Shell.csproj">
-      <Project>{55f49d1e-c9bd-4cc4-9ff0-d646d9f42a21}</Project>
-      <Name>RayCarrot.Windows.Shell</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.Logging\RayCarrot.Logging.csproj">
-      <Project>{adf134af-6db2-4a0f-8809-5a2c787b6b55}</Project>
+    <ProjectReference Include="..\..\RayCarrot.Logging\RayCarrot.Logging\RayCarrot.Logging.csproj">
+      <Project>{f0ba66a8-806b-464e-9a2a-b8050c453524}</Project>
       <Name>RayCarrot.Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\RayCarrot.Rayman\RayCarrot.Rayman\RayCarrot.Rayman.csproj">
       <Project>{b3c0c9ee-0acb-4cd6-9dab-d9f3c741300d}</Project>
       <Name>RayCarrot.Rayman</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\RayCarrot.WPF.Metro\RayCarrot.WPF.Metro\RayCarrot.WPF.Metro.csproj">
-      <Project>{5d776c26-0212-4062-a0f4-8ad7c2561a69}</Project>
-      <Name>RayCarrot.WPF.Metro</Name>
+    <ProjectReference Include="..\..\RayCarrot.UI\RayCarrot.UI\RayCarrot.UI.csproj">
+      <Project>{d5fc22f6-391e-4ef1-8818-1c2256b2816a}</Project>
+      <Name>RayCarrot.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry\RayCarrot.Windows.Registry.csproj">
+      <Project>{44d63afc-58d4-4f7e-9304-4abf40ebae29}</Project>
+      <Name>RayCarrot.Windows.Registry</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\RayCarrot.Windows.Shell\RayCarrot.Windows.Shell\RayCarrot.Windows.Shell.csproj">
+      <Project>{55f49d1e-c9bd-4cc4-9ff0-d646d9f42a21}</Project>
+      <Name>RayCarrot.Windows.Shell</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\RayCarrot.WPF\RayCarrot.WPF\RayCarrot.WPF.csproj">
       <Project>{9b10dc81-cb32-45a1-b52b-fbb3e4d056a0}</Project>
@@ -1245,10 +1240,10 @@
       <Version>4.1.0</Version>
     </PackageReference>
     <PackageReference Include="DotNetZip">
-      <Version>1.13.7</Version>
+      <Version>1.13.8</Version>
     </PackageReference>
     <PackageReference Include="Fody">
-      <Version>6.1.1</Version>
+      <Version>6.1.2</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -1258,11 +1253,8 @@
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf">
       <Version>1.0.8</Version>
     </PackageReference>
-    <PackageReference Include="ini-parser">
-      <Version>2.5.2</Version>
-    </PackageReference>
     <PackageReference Include="Magick.NET-Q8-x86">
-      <Version>7.16.0</Version>
+      <Version>7.17.0.1</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro">
       <Version>1.6.5</Version>
@@ -1270,17 +1262,17 @@
     <PackageReference Include="MahApps.Metro.IconPacks.Material">
       <Version>4.0.0</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft-WindowsAPICodePack-Shell">
-      <Version>1.1.4</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.PowerShell.5.ReferenceAssemblies">
       <Version>1.1.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Windows.SDK.Contracts">
-      <Version>10.0.18362.2005</Version>
+      <Version>10.0.19041.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
       <Version>1.1.19</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
     </PackageReference>
     <PackageReference Include="Nito.AsyncEx">
       <Version>5.0.0</Version>

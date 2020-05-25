@@ -1471,8 +1471,7 @@ De back-ups an sich worden altijd opgeslagen in de '{0}' submap. Het is niet aan
     <value>Het programma slaat zijn app data hoofdzakelijk op in de huidige gebruiker zijn lokale app data map, waarbij sommige instellingen opgeslagen worden in het register. Hieronder een lijst met alle locaties voor data-opslag:
 
 • Belangrijkste applicatiedata - {0}
-• Registerinstellingen - {1}
-• Framework Registerinstellingen - {2}</value>
+• Registerinstellingen - {1}</value>
   </data>
   <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
     <value>Opstartargumenten</value>

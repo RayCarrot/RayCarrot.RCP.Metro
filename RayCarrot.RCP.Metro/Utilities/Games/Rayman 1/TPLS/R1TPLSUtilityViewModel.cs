@@ -1,9 +1,9 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.UI;
+﻿using RayCarrot.UI;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.Logging;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -92,7 +92,7 @@ namespace RayCarrot.RCP.Metro
                 _isEnabled = value;
                 Data.TPLSData.IsEnabled = value;
 
-                _ = Task.Run(async () => await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.Rayman1, false, false, false, true)));
+                _ = Task.Run(async () => await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.Rayman1, false, false, false, true)));
             }
         }
 
@@ -124,7 +124,7 @@ namespace RayCarrot.RCP.Metro
                 // Check if the directory exists
                 if (CommonPaths.R1TPLSDir.DirectoryExists)
                     // Delete the directory
-                    RCFRCP.File.DeleteDirectory(CommonPaths.R1TPLSDir);
+                    RCPServices.File.DeleteDirectory(CommonPaths.R1TPLSDir);
 
                 // Download the files
                 if (!await App.DownloadAsync(new Uri[]
@@ -133,12 +133,12 @@ namespace RayCarrot.RCP.Metro
                 }, true, CommonPaths.R1TPLSDir))
                 {
                     // If canceled, delete the directory
-                    RCFRCP.File.DeleteDirectory(CommonPaths.R1TPLSDir);
+                    RCPServices.File.DeleteDirectory(CommonPaths.R1TPLSDir);
                     return;
                 }
 
                 // Save
-                RCFRCP.Data.TPLSData = new TPLSData(CommonPaths.R1TPLSDir);
+                RCPServices.Data.TPLSData = new TPLSData(CommonPaths.R1TPLSDir);
 
                 // Update the version
                 await Data.TPLSData.UpdateConfigAsync();
@@ -148,7 +148,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Installing TPLS");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_TPLSInstallationFailed, Resources.R1U_TPLSInstallationFailedHeader);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_TPLSInstallationFailed, Resources.R1U_TPLSInstallationFailedHeader);
             }
             finally
             {
@@ -162,23 +162,23 @@ namespace RayCarrot.RCP.Metro
         public async Task UninstallTPLSAsync()
         {
             // Have user confirm uninstall
-            if (!await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSConfirmUninstall, Resources.R1U_TPLSConfirmUninstallHeader, MessageType.Question, true))
+            if (!await Services.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSConfirmUninstall, Resources.R1U_TPLSConfirmUninstallHeader, MessageType.Question, true))
                 return;
 
             try
             {
-                RCFRCP.File.DeleteDirectory(RCFRCP.Data.TPLSData.InstallDir);
+                RCPServices.File.DeleteDirectory(RCPServices.Data.TPLSData.InstallDir);
 
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSUninstallSuccess, Resources.R1U_TPLSUninstallSuccessHeader, MessageType.Success);
+                await Services.MessageUI.DisplayMessageAsync(Resources.R1U_TPLSUninstallSuccess, Resources.R1U_TPLSUninstallSuccessHeader, MessageType.Success);
 
-                RCFRCP.Data.TPLSData = null;
+                RCPServices.Data.TPLSData = null;
 
                 RL.Logger?.LogInformationSource($"The TPLS utility has been uninstalled");
             }
             catch (Exception ex)
             {
                 ex.HandleError("Uninstalling TPLS");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_TPLSUninstallError, Resources.R1U_TPLSUninstallErrorHeader);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_TPLSUninstallError, Resources.R1U_TPLSUninstallErrorHeader);
             }
         }
 

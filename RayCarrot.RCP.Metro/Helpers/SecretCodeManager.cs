@@ -6,10 +6,9 @@ using System.Windows;
 using System.Windows.Input;
 using MahApps.Metro;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.Logging;
-using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -45,7 +44,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Red"), ThemeManager.GetAppTheme("BaseDark"));
 
-                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Konami, Resources.SecretCodes_KonamiHeader, MessageType.Success);
+                        await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Konami, Resources.SecretCodes_KonamiHeader, MessageType.Success);
                     }
                 },
                 {
@@ -66,7 +65,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Orange"), ThemeManager.GetAppTheme("BaseDark"));
 
-                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.SecretCodes_RayCarrot, Resources.SecretCodes_RayCarrotHeader, MessageType.Success);
+                        await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_RayCarrot, Resources.SecretCodes_RayCarrotHeader, MessageType.Success);
                     }
                 },
                 {
@@ -82,7 +81,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Lime"), ThemeManager.GetAppTheme("BaseDark"));
 
-                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Lime, Resources.SecretCodes_LimeHeader, MessageType.Success);
+                        await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Lime, Resources.SecretCodes_LimeHeader, MessageType.Success);
                     }
                 },
                 {
@@ -98,7 +97,7 @@ namespace RayCarrot.RCP.Metro
                     },
                     async () =>
                     {
-                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Secret, Resources.SecretCodes_SecretHeader, MessageType.Success);
+                        await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Secret, Resources.SecretCodes_SecretHeader, MessageType.Success);
                     }
                 },
             };

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using MahApps.Metro.IconPacks;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
@@ -37,7 +36,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the game can be uninstalled
         /// </summary>
-        public bool CanBeUninstalled => (CanBeDownloaded || CanBeInstalledFromDisc) && RCFRCP.Data.InstalledGames.Contains(Game);
+        public bool CanBeUninstalled => (CanBeDownloaded || CanBeInstalledFromDisc) && RCPServices.Data.InstalledGames.Contains(Game);
 
         #endregion
 
@@ -169,7 +168,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The applied utilities</returns>
         public virtual Task<IList<string>> GetAppliedUtilitiesAsync()
         {
-            return Task.FromResult<IList<string>>(RCFRCP.App.GetUtilities(Game).SelectMany(x => x.GetAppliedUtilities()).ToArray());
+            return Task.FromResult<IList<string>>(RCPServices.App.GetUtilities(Game).SelectMany(x => x.GetAppliedUtilities()).ToArray());
         }
 
         #endregion
@@ -212,7 +211,7 @@ namespace RayCarrot.RCP.Metro
                             string path = x.Path;
 
                             // Create the command
-                            var command = new AsyncRelayCommand(async () => (await RCFRCP.File.LaunchFileAsync(path))?.Dispose());
+                            var command = new AsyncRelayCommand(async () => (await RCPServices.File.LaunchFileAsync(path))?.Dispose());
 
                                 if (x.Icon != PackIconMaterialKind.None)
                                     return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
@@ -253,7 +252,7 @@ namespace RayCarrot.RCP.Metro
                             instDir += DefaultFileName;
 
                         // Open the location
-                        await RCFRCP.File.OpenExplorerLocationAsync(instDir);
+                        await RCPServices.File.OpenExplorerLocationAsync(instDir);
 
                         RL.Logger?.LogTraceSource($"The Game {Game} install location was opened");
                     }), UserLevel.Advanced));
@@ -301,7 +300,7 @@ namespace RayCarrot.RCP.Metro
                             string path = x.Path;
 
                             // Create the command
-                            var command = new AsyncRelayCommand(async () => (await RCFRCP.File.LaunchFileAsync(path))?.Dispose());
+                            var command = new AsyncRelayCommand(async () => (await RCPServices.File.LaunchFileAsync(path))?.Dispose());
 
                             // Return the item
                             return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
@@ -347,7 +346,7 @@ namespace RayCarrot.RCP.Metro
         public async Task<GameTypeSelectionResult> GetGameTypeAsync()
         {
             // Get the available types
-            var types = RCFRCP.App.GamesManager.GameManagers[Game].Keys.ToArray();
+            var types = RCPServices.App.GamesManager.GameManagers[Game].Keys.ToArray();
 
             // If only one type, return that
             if (types.Length == 1)
@@ -381,7 +380,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Create and show the dialog and return the result
-            return await RCFRCP.UI.SelectGameTypeAsync(vm);
+            return await RCPServices.UI.SelectGameTypeAsync(vm);
         }
 
         /// <summary>
@@ -406,7 +405,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Locating game");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.LocateGame_Error, Resources.LocateGame_ErrorHeader);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.LocateGame_Error, Resources.LocateGame_ErrorHeader);
             }
         }
 
@@ -424,28 +423,28 @@ namespace RayCarrot.RCP.Metro
                 var gameDir = CommonPaths.GamesBaseDir + Game.ToString();
 
                 // Download the game
-                var downloaded = await RCFRCP.App.DownloadAsync(DownloadURLs, true, gameDir, true);
+                var downloaded = await RCPServices.App.DownloadAsync(DownloadURLs, true, gameDir, true);
 
                 if (!downloaded)
                     return;
 
                 // Add the game
-                await RCFRCP.App.AddNewGameAsync(Game, DownloadType, gameDir);
+                await RCPServices.App.AddNewGameAsync(Game, DownloadType, gameDir);
 
                 // Add game to installed games
-                RCFRCP.Data.InstalledGames.Add(Game);
+                RCPServices.Data.InstalledGames.Add(Game);
 
                 // Refresh
-                await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
+                await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
 
                 RL.Logger?.LogTraceSource($"The game {Game} has been downloaded");
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.GameInstall_Success, DisplayName), Resources.GameInstall_SuccessHeader);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.GameInstall_Success, DisplayName), Resources.GameInstall_SuccessHeader);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Downloading game");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.GameInstall_Error, DisplayName), Resources.GameInstall_ErrorHeader);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.GameInstall_Error, DisplayName), Resources.GameInstall_ErrorHeader);
             }
         }
 

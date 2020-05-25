@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using RayCarrot.IO;
-using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {

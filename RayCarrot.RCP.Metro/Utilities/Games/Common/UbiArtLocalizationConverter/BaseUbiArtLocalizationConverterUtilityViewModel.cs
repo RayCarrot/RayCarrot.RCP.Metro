@@ -1,12 +1,10 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Newtonsoft.Json;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -77,7 +75,7 @@ namespace RayCarrot.RCP.Metro
         public async Task ExportToJSONAsync()
         {
             // Get the input file
-            var inputResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+            var inputResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
                 Title = Resources.UbiArtU_LocalizationConverterExportSelectionHeader,
                 DefaultDirectory = DefaultLocalizationDirectory ?? FileSystemPath.EmptyPath,
@@ -89,7 +87,7 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Get the output file
-            var outputResult = await RCFUI.BrowseUI.SaveFileAsync(new SaveFileViewModel()
+            var outputResult = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
             {
                 Title = Resources.ExportDestinationSelectionHeader,
                 DefaultName = inputResult.SelectedFile.ChangeFileExtension(new FileExtension(".json")).Name,
@@ -104,12 +102,12 @@ namespace RayCarrot.RCP.Metro
                 // Serialize the data into the new file
                 JsonHelpers.SerializeToFile(Deserialize(inputResult.SelectedFile), outputResult.SelectedFileLocation);
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.UbiArtU_LocalizationConverterExportSuccess);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.UbiArtU_LocalizationConverterExportSuccess);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Exporting localization file to JSON");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.UbiArtU_LocalizationConverterExportError);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.UbiArtU_LocalizationConverterExportError);
             }
         }
 
@@ -120,7 +118,7 @@ namespace RayCarrot.RCP.Metro
         public async Task ImportToLocAsync()
         {
             // Get the input file
-            var inputResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+            var inputResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
                 Title = Resources.ImportSelectionHeader,
                 ExtensionFilter = new FileFilterItem("*.json", Resources.FileFilterDescription_JSON).StringRepresentation,
@@ -131,7 +129,7 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Get the localization file
-            var outputResult = await RCFUI.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+            var outputResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
             {
                 Title = Resources.UbiArtU_LocalizationConverterImportDestinationSelectionHeader,
                 DefaultName = inputResult.SelectedFile.ChangeFileExtension(LocalizationFileExtension).Name,
@@ -149,12 +147,12 @@ namespace RayCarrot.RCP.Metro
                 // Serialize the data to the output localization file
                 Serialize(outputResult.SelectedFile, data);
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.UbiArtU_LocalizationConverterImportSuccess);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.UbiArtU_LocalizationConverterImportSuccess);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Importing JSON to localization file");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.UbiArtU_LocalizationConverterImportError);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.UbiArtU_LocalizationConverterImportError);
             }
         }
 

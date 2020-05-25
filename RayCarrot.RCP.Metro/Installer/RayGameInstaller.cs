@@ -1,14 +1,13 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Net;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
-using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -27,7 +26,7 @@ namespace RayCarrot.RCP.Metro
         {
             WebClient = new WebClient();
             InstallData = installerData;
-            FileManager = RCFRCP.File;
+            FileManager = RCPServices.File;
         }
 
         #endregion
@@ -164,7 +163,7 @@ namespace RayCarrot.RCP.Metro
                 OnStatusUpdated(OperationState.Paused);
 
                 // Get a drive from the user
-                var result = await RCFUI.BrowseUI.BrowseDriveAsync(new DriveBrowserViewModel()
+                var result = await Services.BrowseUI.BrowseDriveAsync(new DriveBrowserViewModel()
                 {
                     Title = Resources.Installer_BrowseDiscHeader,
                     MultiSelection = false,
@@ -227,7 +226,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure the label and drive path are not the same as an existing one
                     if (drives.Any(x => x.Root == driveInfo.Root && x.VolumeLabel == driveInfo.VolumeLabel))
                     {
-                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_DriveNameConflict, Resources.Installer_DriveNameConflictHeader, MessageType.Error);
+                        await Services.MessageUI.DisplayMessageAsync(Resources.Installer_DriveNameConflict, Resources.Installer_DriveNameConflictHeader, MessageType.Error);
                         return false;
                     }
 
@@ -249,7 +248,7 @@ namespace RayCarrot.RCP.Metro
                     // Update the status to paused
                     OnStatusUpdated(OperationState.Paused);
 
-                    await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_MissingFiles, missingItems), Resources.Installer_MissingFilesHeader, MessageType.Information);
+                    await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_MissingFiles, missingItems), Resources.Installer_MissingFilesHeader, MessageType.Information);
 
                     // Update the status to default
                     OnStatusUpdated();
@@ -282,7 +281,7 @@ namespace RayCarrot.RCP.Metro
                 // Update the status to paused
                 OnStatusUpdated(OperationState.Paused);
 
-                if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_InsertDriveRequest, drive.VolumeLabel, drive.Root), Resources.Installer_InsertDriveRequestHeader, MessageType.Information, true))
+                if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_InsertDriveRequest, drive.VolumeLabel, drive.Root), Resources.Installer_InsertDriveRequestHeader, MessageType.Information, true))
                     return false;
 
                 // Update the status to default
@@ -379,7 +378,7 @@ namespace RayCarrot.RCP.Metro
                     RL.Logger?.LogInformationSource($"Failed to copy file {source.FullPath} during installation. Requesting retry.");
 
                     // Ask user to retry
-                    if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_FileCopyError, source.Name, ex.Message), Resources.Installer_FileCopyErrorHeader, MessageType.Warning, true))
+                    if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_FileCopyError, source.Name, ex.Message), Resources.Installer_FileCopyErrorHeader, MessageType.Warning, true))
                         throw;
 
                     RL.Logger?.LogInformationSource($"Attempting to retry to copy file");
@@ -434,7 +433,7 @@ namespace RayCarrot.RCP.Metro
                     OnStatusUpdated(OperationState.Paused);
 
                     // Ask user to overwrite files
-                    if (!(await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_OverwriteOutput, InstallData.OutputDir), Resources.Installer_OverwriteOutputHeader, MessageType.Question, true)))
+                    if (!(await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_OverwriteOutput, InstallData.OutputDir), Resources.Installer_OverwriteOutputHeader, MessageType.Question, true)))
                         return RayGameInstallerResult.Canceled;
 
                     // Delete the existing directory
@@ -471,7 +470,7 @@ namespace RayCarrot.RCP.Metro
                     // Update the status to paused
                     OnStatusUpdated(OperationState.Paused);
 
-                    if (!(await RCFUI.MessageUI.DisplayMessageAsync(Resources.Installer_UnhandledItems, Resources.Installer_UnhandledItemsHeader, MessageType.Warning, true)))
+                    if (!(await Services.MessageUI.DisplayMessageAsync(Resources.Installer_UnhandledItems, Resources.Installer_UnhandledItemsHeader, MessageType.Warning, true)))
                         return RayGameInstallerResult.Canceled;
 
                     // Update the status to default
@@ -533,8 +532,8 @@ namespace RayCarrot.RCP.Metro
                     {
                         ex2.HandleError("Deleting incomplete installation directory");
 
-                        if (RCFCore.Data.CurrentUserLevel >= UserLevel.Advanced)
-                            await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_CleanupError, InstallData.OutputDir), MessageType.Error);
+                        if (Services.Data.CurrentUserLevel >= UserLevel.Advanced)
+                            await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Installer_CleanupError, InstallData.OutputDir), MessageType.Error);
                     }
                 }
             }

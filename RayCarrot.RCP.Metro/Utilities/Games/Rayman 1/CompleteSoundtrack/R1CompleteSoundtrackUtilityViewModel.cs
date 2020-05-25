@@ -1,5 +1,4 @@
 ﻿using ByteSizeLib;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
@@ -88,7 +87,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Replacing R1 soundtrack");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_CompleteOSTReplaceError);
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.R1U_CompleteOSTReplaceError);
             }
         }
 

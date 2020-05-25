@@ -70,7 +70,7 @@ namespace RayCarrot.RCP.Metro
         public async Task EditJumpListAsync()
         {
             // Get the result
-            var result = await RCFRCP.UI.EditJumpListAsync(new JumpListEditViewModel());
+            var result = await RCPServices.UI.EditJumpListAsync(new JumpListEditViewModel());
 
             if (result.CanceledByUser)
                 return;

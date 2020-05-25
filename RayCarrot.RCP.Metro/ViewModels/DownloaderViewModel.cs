@@ -4,11 +4,11 @@ using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -32,7 +32,7 @@ namespace RayCarrot.RCP.Metro
             OutputDirectory = outputDirectory;
             IsCompressed = isCompressed;
             ProcessedPaths = new List<FileSystemPath>();
-            FileManager = RCFRCP.File;
+            FileManager = RCPServices.File;
 
             // Set properties
             DownloadState = DownloadStates.Paused;
@@ -115,7 +115,7 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Cleaning up incomplete download operation");
 
                 // Let the user know the restore failed
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Download_RestoreStoppedDownloadError, LocalTempDir.TempPath, ServerTempDir.TempPath));
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Download_RestoreStoppedDownloadError, LocalTempDir.TempPath, ServerTempDir.TempPath));
             }
         }
 
@@ -300,11 +300,11 @@ namespace RayCarrot.RCP.Metro
         {
             if (CancellationRequested)
             {
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_OperationCanceling, Resources.Download_OperationCancelingHeader, MessageType.Information);
+                await Services.MessageUI.DisplayMessageAsync(Resources.Download_OperationCanceling, Resources.Download_OperationCancelingHeader, MessageType.Information);
                 return;
             }
 
-            if (await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_Cancel, Resources.Download_CancelHeader, MessageType.Question, true))
+            if (await Services.MessageUI.DisplayMessageAsync(Resources.Download_Cancel, Resources.Download_CancelHeader, MessageType.Question, true))
             {
                 RL.Logger?.LogInformationSource($"The downloader has been requested to cancel");
                 WCServer?.CancelAsync();
@@ -356,12 +356,12 @@ namespace RayCarrot.RCP.Metro
                         if (CancellationRequested)
                         {
                             ex.HandleExpected("Downloading files");
-                            await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_Canceled, Resources.Download_CanceledHeader, MessageType.Information);
+                            await Services.MessageUI.DisplayMessageAsync(Resources.Download_Canceled, Resources.Download_CanceledHeader, MessageType.Information);
                         }
                         else
                         {
                             ex.HandleError("Downloading files");
-                            await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_Failed, Resources.Download_FailedHeader, MessageType.Error);
+                            await Services.MessageUI.DisplayMessageAsync(Resources.Download_Failed, Resources.Download_FailedHeader, MessageType.Error);
                         }
 
                         // Restore the stopped download
@@ -388,7 +388,7 @@ namespace RayCarrot.RCP.Metro
 
             RL.Logger?.LogInformationSource($"The download operation has completed");
 
-            await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_Success, Resources.Download_SuccessHeader, MessageType.Success);
+            await Services.MessageUI.DisplayMessageAsync(Resources.Download_Success, Resources.Download_SuccessHeader, MessageType.Success);
             OnDownloadComplete();
         }
 

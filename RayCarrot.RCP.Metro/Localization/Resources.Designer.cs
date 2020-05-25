@@ -4795,8 +4795,7 @@ namespace RayCarrot.RCP.Metro {
         ///   Looks up a localized string similar to The program saves its app data mainly in the current user&apos;s local app data directory, with some settings stored in the Registry. Below is a complete list of the locations where data is stored.
         ///
         ///• Main application data - {0}
-        ///• Registry Settings - {1}
-        ///• Framework Registry Settings - {2}.
+        ///• Registry Settings - {1}.
         /// </summary>
         public static string Help_RCP_AppData {
             get {

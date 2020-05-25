@@ -1,4 +1,4 @@
-﻿using RayCarrot.Extensions;
+﻿using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
@@ -167,7 +167,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task LaunchGameAsync()
         {
-            await RCFRCP.File.LaunchFileAsync(GameFilePath, false, DebugCommands.Select(x => $"{x.Key}={x.Value}").JoinItems(";"));
+            await RCPServices.File.LaunchFileAsync(GameFilePath, false, DebugCommands.Select(x => $"{x.Key}={x.Value}").JoinItems(";"));
         }
 
         #endregion

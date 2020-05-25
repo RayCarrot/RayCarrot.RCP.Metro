@@ -20,7 +20,7 @@ namespace RayCarrot.RCP.Metro
             AssociatedObject.PreviewKeyDown -= AssociatedObject_PreviewKeyDown;
         }
 
-        private void AssociatedObject_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void AssociatedObject_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (
                 // If tab key is pressed...

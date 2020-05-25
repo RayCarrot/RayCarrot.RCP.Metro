@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.WPF;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -161,7 +159,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Archive explorer");
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CriticalError);
             }
         }
 

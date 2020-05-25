@@ -1555,12 +1555,10 @@ backupFamilyName</comment>
     <value>The program saves its app data mainly in the current user's local app data directory, with some settings stored in the Registry. Below is a complete list of the locations where data is stored.
 
 • Main application data - {0}
-• Registry Settings - {1}
-• Framework Registry Settings - {2}</value>
+• Registry Settings - {1}</value>
     <comment>Arguments:
 userDataBaseDir
-registryBaseKeyPath
-RCFRegistryBaseKeyPath</comment>
+registryBaseKeyPath</comment>
   </data>
   <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
     <value>Launch Arguments</value>

@@ -6,11 +6,10 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             xmlns:rwpfmetro="clr-namespace:RayCarrot.WPF.Metro;assembly=RayCarrot.WPF.Metro"
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              mc:Ignorable="d"
              d:DesignWidth="550" d:DataContext="{d:DesignInstance local:R2RemoveDRMUtilityViewModel}">
-    <rwpfmetro:LoaderContentControl IsLoading="{Binding Path=IsLoading}">
+    <local:LoaderContentControl IsLoading="{Binding Path=IsLoading}">
 
         <StackPanel Orientation="Horizontal">
             <i:Interaction.Behaviors>
@@ -28,6 +27,6 @@
 
         </StackPanel>
 
-    </rwpfmetro:LoaderContentControl>
+    </local:LoaderContentControl>
 
 </UserControl>

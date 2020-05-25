@@ -33,7 +33,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the launch name for the game
         /// </summary>
-        public override string DefaultFileName => RCFRCP.Data.RabbidsGoHomeLaunchData == null ? "Launcher.exe" : "LyN_f.exe";
+        public override string DefaultFileName => RCPServices.Data.RabbidsGoHomeLaunchData == null ? "Launcher.exe" : "LyN_f.exe";
 
         /// <summary>
         /// The config UI, if any is available

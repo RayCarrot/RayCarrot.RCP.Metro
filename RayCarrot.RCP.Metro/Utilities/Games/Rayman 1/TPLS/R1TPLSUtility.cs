@@ -70,7 +70,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The applied utilities</returns>
         public IEnumerable<string> GetAppliedUtilities()
         {
-            if (RCFRCP.Data.TPLSData != null)
+            if (RCPServices.Data.TPLSData != null)
                 yield return Resources.R1U_TPLSHeader;
         }
 

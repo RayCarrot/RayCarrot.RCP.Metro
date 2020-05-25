@@ -1,10 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Logging;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -93,7 +91,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Updating TPLS config");
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.TPLS_UpdateVersionError);
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.TPLS_UpdateVersionError);
             }
         }
 

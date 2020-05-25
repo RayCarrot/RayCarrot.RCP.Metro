@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -32,7 +30,7 @@ namespace RayCarrot.RCP.Metro
             // Get the latest backup version to create a backup from
             LatestAvailableBackupVersion = AllBackupDirectories.Select(x => x.Value.Select(y => y.BackupVersion)).SelectMany(x => x).Max();
 
-            BackupLocation = RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily + (BackupName + $"-{LatestAvailableBackupVersion.ToString().PadLeft(2, '0')}");
+            BackupLocation = RCPServices.Data.BackupLocation + AppViewModel.BackupFamily + (BackupName + $"-{LatestAvailableBackupVersion.ToString().PadLeft(2, '0')}");
             CompressedBackupLocation = BackupLocation.FullPath + CommonPaths.BackupCompressionExtension;
             GameDisplayName = displayName;
         }
@@ -108,7 +106,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                var path = RCFRCP.Data.BackupLocation + AppViewModel.BackupFamily;
+                var path = RCPServices.Data.BackupLocation + AppViewModel.BackupFamily;
 
                 if (!path.DirectoryExists)
                     return new RCPBackup[0];
@@ -116,13 +114,13 @@ namespace RayCarrot.RCP.Metro
                 return Directory.GetFileSystemEntries(path, $"{BackupName}*", SearchOption.TopDirectoryOnly).
                     Select(x => new RCPBackup(x)).
                     OrderByDescending(x => x.BackupVersion).
-                    ThenBy(x => x.IsCompressed == RCFRCP.Data.CompressBackups ? 0 : 1).
+                    ThenBy(x => x.IsCompressed == RCPServices.Data.CompressBackups ? 0 : 1).
                     ToArray();
             }
             catch (Exception ex)
             {
                 ex.HandleError("Getting existing backups");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.GetExistingBackupsError, GameDisplayName));
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.GetExistingBackupsError, GameDisplayName));
                 return new RCPBackup[0];
             }
         }

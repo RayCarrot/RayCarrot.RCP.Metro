@@ -1,11 +1,9 @@
 ﻿using ByteSizeLib;
 using Newtonsoft.Json;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.UI;
-using RayCarrot.UserData;
 using RayCarrot.Windows.Shell;
 using System;
 using System.Collections.Generic;
@@ -18,7 +16,7 @@ using System.Windows;
 using System.Windows.Input;
 using RayCarrot.Binary;
 using RayCarrot.Logging;
-using Type = System.Type;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -128,17 +126,17 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentAppVersion => new Version(9, 5, 0, 1);
+        public Version CurrentAppVersion => new Version(10, 0, 0, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
         /// </summary>
-        public bool IsBeta => false;
+        public bool IsBeta => true;
 
         /// <summary>
         /// Shortcut to the app user data
         /// </summary>
-        public AppUserData Data => RCFRCP.Data;
+        public AppUserData Data => RCPServices.Data;
 
         /// <summary>
         /// The application games manager
@@ -202,7 +200,7 @@ namespace RayCarrot.RCP.Metro
         /// Gets the binary serializer logger to use
         /// </summary>
         /// <returns>The binary serializer logger</returns>
-        public IBinarySerializerLogger GetBinarySerializerLogger() => !RCFRCP.Data.BinarySerializationFileLogPath.FullPath.IsNullOrWhiteSpace() && RCFRCP.Data.BinarySerializationFileLogPath.Parent.DirectoryExists ? new BinarySerializerFileLogger(RCFRCP.Data.BinarySerializationFileLogPath) : null;
+        public IBinarySerializerLogger GetBinarySerializerLogger() => !RCPServices.Data.BinarySerializationFileLogPath.FullPath.IsNullOrWhiteSpace() && RCPServices.Data.BinarySerializationFileLogPath.Parent.DirectoryExists ? new BinarySerializerFileLogger(RCPServices.Data.BinarySerializationFileLogPath) : null;
 
         /// <summary>
         /// Gets new instances of utilities for a specific game
@@ -255,7 +253,7 @@ namespace RayCarrot.RCP.Metro
             {
                 RL.Logger?.LogWarningSource($"The game {game} has already been added");
 
-                await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.AddGame_Duplicate, game), Resources.AddGame_DuplicateHeader, MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.AddGame_Duplicate, game), Resources.AddGame_DuplicateHeader, MessageType.Error);
 
                 return;
             }
@@ -294,7 +292,7 @@ namespace RayCarrot.RCP.Metro
                     var appliedUtilities = await game.GetGameInfo().GetAppliedUtilitiesAsync();
 
                     // Warn about applied utilities, if any
-                    if (appliedUtilities.Any() && !await RCFUI.MessageUI.DisplayMessageAsync($"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}{appliedUtilities.JoinItems(Environment.NewLine)}", Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
+                    if (appliedUtilities.Any() && !await Services.MessageUI.DisplayMessageAsync($"{Resources.RemoveGame_UtilityWarning}{Environment.NewLine}{Environment.NewLine}{appliedUtilities.JoinItems(Environment.NewLine)}", Resources.RemoveGame_UtilityWarningHeader, MessageType.Warning, true))
                         return;
                 }
 
@@ -334,13 +332,13 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Check if we have write access
-                if (RCFRCP.File.CheckFileWriteAccess(CommonPaths.UbiIniPath1))
+                if (RCPServices.File.CheckFileWriteAccess(CommonPaths.UbiIniPath1))
                 {
                     RL.Logger?.LogDebugSource("The ubi.ini file has write access");
                     return;
                 }
 
-                await RCFUI.MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
+                await Services.MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
 
                 // Attempt to change the permission
                 await RunAdminWorkerAsync(AdminWorkerModes.GrantFullControl, CommonPaths.UbiIniPath1);
@@ -350,7 +348,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError("Changing ubi.ini file permissions");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.UbiIniWriteAccess_Error);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.UbiIniWriteAccess_Error);
             }
         }
 
@@ -424,7 +422,7 @@ namespace RayCarrot.RCP.Metro
                     var gameFinderResults = foundItems.OfType<GameFinderResult>().OrderBy(x => x.Game).Select(x => x.DisplayName);
                     var finderResults = foundItems.OfType<FinderResult>().OrderBy(x => x.DisplayName).Select(x => x.DisplayName);
 
-                    await RCFUI.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {gameFinderResults.Concat(finderResults).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
+                    await Services.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {gameFinderResults.Concat(finderResults).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
 
                     RL.Logger?.LogInformationSource($"The game finder found the following games {foundItems.JoinItems(", ", x => x.ToString())}");
 
@@ -435,7 +433,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Game finder");
 
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameFinder_Error);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.GameFinder_Error);
             }
             finally
             {
@@ -468,7 +466,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     RL.Logger?.LogInformationSource($"Download failed due to there not being any input sources");
 
-                    await RCFUI.MessageUI.DisplayMessageAsync(Resources.Download_NoFilesFound, MessageType.Error);
+                    await Services.MessageUI.DisplayMessageAsync(Resources.Download_NoFilesFound, MessageType.Error);
                     return false;
                 }
 
@@ -487,13 +485,13 @@ namespace RayCarrot.RCP.Metro
 
                     RL.Logger?.LogDebugSource($"The size of the download has been retrieved as {size}");
 
-                    if (!await RCFUI.MessageUI.DisplayMessageAsync(String.Format(isGame ? Resources.DownloadGame_ConfirmSize : Resources.Download_ConfirmSize, size), Resources.Download_ConfirmHeader, MessageType.Question, true))
+                    if (!await Services.MessageUI.DisplayMessageAsync(String.Format(isGame ? Resources.DownloadGame_ConfirmSize : Resources.Download_ConfirmSize, size), Resources.Download_ConfirmHeader, MessageType.Question, true))
                         return false;
                 }
                 catch (Exception ex)
                 {
                     ex.HandleUnexpected("Getting download size");
-                    if (!await RCFUI.MessageUI.DisplayMessageAsync(isGame ? Resources.DownloadGame_Confirm : Resources.Download_Confirm, Resources.Download_ConfirmHeader, MessageType.Question, true))
+                    if (!await Services.MessageUI.DisplayMessageAsync(isGame ? Resources.DownloadGame_Confirm : Resources.Download_Confirm, Resources.Download_ConfirmHeader, MessageType.Question, true))
                         return false;
                 }
 
@@ -511,7 +509,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleError($"Downloading files");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Download_Error);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Download_Error);
                 return false;
             }
         }
@@ -527,7 +525,7 @@ namespace RayCarrot.RCP.Metro
             // Lock moving the backups
             using (await MoveBackupsAsyncLock.LockAsync())
             {
-                if (!await RCFUI.MessageUI.DisplayMessageAsync(Resources.MoveBackups_Question, Resources.MoveBackups_QuestionHeader, MessageType.Question, true))
+                if (!await Services.MessageUI.DisplayMessageAsync(Resources.MoveBackups_Question, Resources.MoveBackups_QuestionHeader, MessageType.Question, true))
                 {
                     RL.Logger?.LogInformationSource("Moving old backups has been canceled by the user");
                     return;
@@ -544,7 +542,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         RL.Logger?.LogInformationSource("Old backups could not be moved due to not being found");
 
-                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.MoveBackups_NoBackupsFound, oldLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
+                        await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.MoveBackups_NoBackupsFound, oldLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
 
                         return;
                     }
@@ -554,24 +552,24 @@ namespace RayCarrot.RCP.Metro
                     {
                         RL.Logger?.LogInformationSource("Old backups could not be moved due to the new location already existing");
 
-                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.MoveBackups_BackupAlreadyExists, newLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
+                        await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.MoveBackups_BackupAlreadyExists, newLocation.FullPath), Resources.MoveBackups_ErrorHeader, MessageType.Error);
                         return;
                     }
 
                     // Move the directory
-                    RCFRCP.File.MoveDirectory(oldLocation, newLocation, false, false);
+                    RCPServices.File.MoveDirectory(oldLocation, newLocation, false, false);
 
                     RL.Logger?.LogInformationSource("Old backups have been moved");
 
                     // Refresh backups
                     await OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, true, false));
 
-                    await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.MoveBackups_Success);
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.MoveBackups_Success);
                 }
                 catch (Exception ex)
                 {
                     ex.HandleError("Moving backups");
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.MoveBackups_Error, Resources.MoveBackups_ErrorHeader);
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.MoveBackups_Error, Resources.MoveBackups_ErrorHeader);
                 }
             }
         }
@@ -597,7 +595,7 @@ namespace RayCarrot.RCP.Metro
             // Lock
             using (await AdminWorkerAsyncLock.LockAsync())
                 // Launch the admin worker with the specified launch arguments
-                await RCFRCP.File.LaunchFileAsync(CommonPaths.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
+                await RCPServices.File.LaunchFileAsync(CommonPaths.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
         }
 
         /// <summary>
@@ -625,7 +623,7 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 ex.HandleCritical("Deploying additional files");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.DeployFilesError);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.DeployFilesError);
             }
         }
 
@@ -636,7 +634,7 @@ namespace RayCarrot.RCP.Metro
         public async Task RequestRestartAsAdminAsync()
         {
             // Request restarting the application as admin
-            if (await RCFUI.MessageUI.DisplayMessageAsync(Resources.App_RequiresAdminQuestion, Resources.App_RestartAsAdmin, MessageType.Warning, true))
+            if (await Services.MessageUI.DisplayMessageAsync(Resources.App_RequiresAdminQuestion, Resources.App_RestartAsAdmin, MessageType.Warning, true))
                 // Restart as admin
                 await RestartAsAdminAsync();
         }
@@ -673,14 +671,14 @@ namespace RayCarrot.RCP.Metro
                 CheckingForUpdates = true;
 
                 // Check for updates
-                var result = await RCFRCP.UpdaterManager.CheckAsync(RCFRCP.Data.ForceUpdate && isManualSearch, RCFRCP.Data.GetBetaUpdates || IsBeta);
+                var result = await RCPServices.UpdaterManager.CheckAsync(RCPServices.Data.ForceUpdate && isManualSearch, RCPServices.Data.GetBetaUpdates || IsBeta);
 
                 // Check if there is an error
                 if (result.ErrorMessage != null)
                 {
-                    await RCFUI.MessageUI.DisplayExceptionMessageAsync(result.Exception, result.ErrorMessage, Resources.Update_ErrorHeader);
+                    await Services.MessageUI.DisplayExceptionMessageAsync(result.Exception, result.ErrorMessage, Resources.Update_ErrorHeader);
 
-                    RCFRCP.Data.IsUpdateAvailable = false;
+                    RCPServices.Data.IsUpdateAvailable = false;
 
                     return;
                 }
@@ -689,25 +687,25 @@ namespace RayCarrot.RCP.Metro
                 if (!result.IsNewUpdateAvailable)
                 {
                     if (isManualSearch)
-                        await RCFUI.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, CurrentAppVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
+                        await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Update_LatestInstalled, CurrentAppVersion), Resources.Update_LatestInstalledHeader, MessageType.Information);
 
-                    RCFRCP.Data.IsUpdateAvailable = false;
+                    RCPServices.Data.IsUpdateAvailable = false;
 
                     return;
                 }
 
                 // Indicate that a new update is available
-                RCFRCP.Data.IsUpdateAvailable = true;
+                RCPServices.Data.IsUpdateAvailable = true;
 
                 // Run as new task to mark this operation as finished
                 _ = Task.Run(async () =>
                 {
                     try
                     {
-                        if (await RCFUI.MessageUI.DisplayMessageAsync(!result.IsBetaUpdate ? String.Format(Resources.Update_UpdateAvailable, result.DisplayNews) : Resources.Update_BetaUpdateAvailable, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
+                        if (await Services.MessageUI.DisplayMessageAsync(!result.IsBetaUpdate ? String.Format(Resources.Update_UpdateAvailable, result.DisplayNews) : Resources.Update_BetaUpdateAvailable, Resources.Update_UpdateAvailableHeader, MessageType.Question, true))
                         {
                             // Launch the updater and run as admin if set to show under installed programs in under to update the Registry key
-                            var succeeded = await RCFRCP.UpdaterManager.UpdateAsync(result, false);
+                            var succeeded = await RCPServices.UpdaterManager.UpdateAsync(result, false);
 
                             if (!succeeded)
                                 RL.Logger?.LogWarningSource("The updater failed to update the program");
@@ -716,7 +714,7 @@ namespace RayCarrot.RCP.Metro
                     catch (Exception ex)
                     {
                         ex.HandleError("Updating RCP");
-                        await RCFUI.MessageUI.DisplayMessageAsync(Resources.Update_Error, Resources.Update_ErrorHeader, MessageType.Error);
+                        await Services.MessageUI.DisplayMessageAsync(Resources.Update_Error, Resources.Update_ErrorHeader, MessageType.Error);
                     }
                 });
             }
@@ -735,13 +733,13 @@ namespace RayCarrot.RCP.Metro
             using (await SaveUserDataAsyncLock.LockAsync())
             {
                 // Run it as a new task
-                await Task.Run(async () =>
+                await Task.Run(() =>
                 {
-                    // Save all user data
+                    // Save the user data
                     try
                     {
-                        // Save all user data
-                        await RCFData.UserDataCollection.SaveAllAsync();
+                        // Save the user data
+                        JsonHelpers.SerializeToFile(RCPServices.Data, CommonPaths.AppUserDataPath);
 
                         RL.Logger?.LogInformationSource($"The application user data was saved");
                     }

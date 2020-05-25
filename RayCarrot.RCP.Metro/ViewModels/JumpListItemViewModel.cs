@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Media;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Windows.Shell;

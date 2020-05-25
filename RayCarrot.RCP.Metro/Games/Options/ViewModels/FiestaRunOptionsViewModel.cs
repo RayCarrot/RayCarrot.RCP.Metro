@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Nito.AsyncEx;
-using RayCarrot.CarrotFramework.Abstractions;
 using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
@@ -126,9 +125,9 @@ namespace RayCarrot.RCP.Metro
                     });
 
                     // Update the game data
-                    RCFRCP.Data.Games[Games.RaymanFiestaRun] = gameData;
+                    RCPServices.Data.Games[Games.RaymanFiestaRun] = gameData;
 
-                    await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun, false, false, false, true));
+                    await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RaymanFiestaRun, false, false, false, true));
                 }
                 catch (Exception ex)
                 {

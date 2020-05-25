@@ -1,5 +1,4 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.UI;
+﻿using RayCarrot.UI;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -52,12 +51,12 @@ namespace RayCarrot.RCP.Metro
                 }, true, KnownFolders.Downloads.Path);
 
                 if (succeeded)
-                    (await RCFRCP.File.LaunchFileAsync(Path.Combine(KnownFolders.Downloads.Path, "RaymanOriginspc_1.02.exe")))?.Dispose();
+                    (await RCPServices.File.LaunchFileAsync(Path.Combine(KnownFolders.Downloads.Path, "RaymanOriginspc_1.02.exe")))?.Dispose();
             }
             catch (Exception ex)
             {
                 ex.HandleError("Downloading RO updater");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ROU_UpdateFailed);
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.ROU_UpdateFailed);
             }
 
 

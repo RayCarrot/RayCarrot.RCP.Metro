@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using RayCarrot.CarrotFramework.Abstractions;
+using RayCarrot.WPF;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 
@@ -96,7 +96,7 @@ namespace RayCarrot.RCP.Metro
             process?.Dispose();
 
             // Check if the application should close
-            if (RCFRCP.Data.CloseAppOnGameLaunch)
+            if (RCPServices.Data.CloseAppOnGameLaunch)
                 await App.Current.ShutdownRCFAppAsync(false);
         }
 
@@ -182,10 +182,10 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Add the game
-            await RCFRCP.App.AddNewGameAsync(Game, Type, path.Value);
+            await RCPServices.App.AddNewGameAsync(Game, Type, path.Value);
 
             // Refresh
-            await RCFRCP.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
+            await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, true, false, false, false));
 
             RL.Logger?.LogInformationSource($"The game {Game} has been added");
         }

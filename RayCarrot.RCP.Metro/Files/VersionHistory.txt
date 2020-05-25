@@ -1,4 +1,13 @@
-﻿-----   Version 9.5.0 - May 21, 2020   -----
+﻿-----   Version 10.0.0 - June ??, 2020   -----
+• The Carrot Framework has been retired, splitting it into multiple smaller, non-dependent, libraries
+• Updated libraries
+
+Other changes:
+• The Registry browser has been removed
+• Removed the debug option to log API versions
+
+
+-----   Version 9.5.0 - May 21, 2020   -----
 • Added support for Rayman Dictées
 • Reworked the binary serialization system. Logging can now be enabled for any serialized data.
 • Rayman 3 save files can now be converted back, imported and exported

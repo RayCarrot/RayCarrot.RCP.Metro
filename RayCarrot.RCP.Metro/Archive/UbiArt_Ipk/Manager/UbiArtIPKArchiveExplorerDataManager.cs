@@ -1,6 +1,5 @@
 ﻿using RayCarrot.Binary;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.Rayman.UbiArt;
 using System.Collections.Generic;
 using System.IO;
@@ -77,7 +76,7 @@ namespace RayCarrot.RCP.Metro
             archiveFileStream.Position = 0;
 
             // Load the current file
-            var data = BinarySerializableHelpers.ReadFromStream<UbiArtIpkData>(archiveFileStream, Settings, RCFRCP.App.GetBinarySerializerLogger());
+            var data = BinarySerializableHelpers.ReadFromStream<UbiArtIpkData>(archiveFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
             RL.Logger?.LogInformationSource($"Read IPK file ({data.Version}) with {data.FilesCount} files");
 

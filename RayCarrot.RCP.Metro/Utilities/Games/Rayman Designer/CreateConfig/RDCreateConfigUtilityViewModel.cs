@@ -1,11 +1,11 @@
-﻿using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.Logging;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -56,7 +56,7 @@ namespace RayCarrot.RCP.Metro
             // Check if the file exists
             if (path.FileExists)
             {
-                if (!await RCFUI.MessageUI.DisplayMessageAsync(Resources.RDU_CreateConfig_ReplaceQuestion, Resources.RDU_CreateConfig_ReplaceQuestionHeader, MessageType.Question, true))
+                if (!await Services.MessageUI.DisplayMessageAsync(Resources.RDU_CreateConfig_ReplaceQuestion, Resources.RDU_CreateConfig_ReplaceQuestionHeader, MessageType.Question, true))
                     return;
             }
 
@@ -81,12 +81,12 @@ namespace RayCarrot.RCP.Metro
 
                 RL.Logger?.LogInformationSource($"The Rayman Designer config file has been recreated");
 
-                await RCFUI.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RDU_CreateConfig_Success);
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.RDU_CreateConfig_Success);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Applying RD config patch");
-                await RCFUI.MessageUI.DisplayExceptionMessageAsync(ex, Resources.RDU_CreateConfig_Error);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.RDU_CreateConfig_Error);
             }
         }
 

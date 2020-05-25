@@ -1,8 +1,7 @@
 ﻿using ByteSizeLib;
 using ImageMagick;
 using MahApps.Metro.IconPacks;
-using RayCarrot.CarrotFramework.Abstractions;
-using RayCarrot.Extensions;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Rayman.UbiArt;
 using System;
@@ -10,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Media;
+using ImageMagick.Formats.Dds;
 using RayCarrot.Binary;
 using RayCarrot.Logging;
 using RayCarrot.Rayman;
@@ -60,7 +60,7 @@ namespace RayCarrot.RCP.Metro
             // Create a memory stream
             using var memoryStream = new MemoryStream(bytes);
 
-            return BinarySerializableHelpers.ReadFromStream<UbiArtTEXFile>(memoryStream, Settings, RCFRCP.App.GetBinarySerializerLogger());
+            return BinarySerializableHelpers.ReadFromStream<UbiArtTEXFile>(memoryStream, Settings, RCPServices.App.GetBinarySerializerLogger());
         }
 
         /// <summary>
@@ -383,7 +383,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Write the texture to the temp file
-                BinarySerializableHelpers.WriteToStream(texture, outputStream, Settings, RCFRCP.App.GetBinarySerializerLogger());
+                BinarySerializableHelpers.WriteToStream(texture, outputStream, Settings, RCPServices.App.GetBinarySerializerLogger());
             }
         }
 
