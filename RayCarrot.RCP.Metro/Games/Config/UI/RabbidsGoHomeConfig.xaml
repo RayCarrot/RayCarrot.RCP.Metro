@@ -34,10 +34,10 @@
 
                 </StackPanel>
 
-                <metro:ToggleSwitch IsChecked="{Binding Path=EnableCustomSettings}"
+                <metro:ToggleSwitch IsOn="{Binding Path=EnableCustomSettings}"
                                     HorizontalAlignment="Left"
-                                    OnLabel="{Resx SettingEnabled}"
-                                    OffLabel="{Resx SettingDisabled}"/>
+                                    OnContent="{Resx SettingEnabled}"
+                                    OffContent="{Resx SettingDisabled}"/>
 
                 <StackPanel IsEnabled="{Binding Path=EnableCustomSettings}"
                             rwpf:UnifiedMargin.Ignored="True">

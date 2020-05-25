@@ -17,10 +17,10 @@
 
         <local:LoaderContentControl IsLoading="{Binding Path=IsLoadingDirectPlay}">
 
-            <metro:ToggleSwitch IsChecked="{Binding Path=IsDirectPlayEnabled}"
+            <metro:ToggleSwitch IsOn="{Binding Path=IsDirectPlayEnabled}"
                                 HorizontalAlignment="Left"
-                                OnLabel="{Resx SettingEnabled}"
-                                OffLabel="{Resx SettingDisabled}" />
+                                OnContent="{Resx SettingEnabled}"
+                                OffContent="{Resx SettingDisabled}" />
 
         </local:LoaderContentControl>
 

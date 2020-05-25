@@ -1,14 +1,13 @@
-﻿using System;
+﻿using Nito.AsyncEx;
+using RayCarrot.Common;
+using RayCarrot.Logging;
+using RayCarrot.WPF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using MahApps.Metro;
-using Nito.AsyncEx;
-using RayCarrot.Common;
-using RayCarrot.Logging;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -42,7 +41,7 @@ namespace RayCarrot.RCP.Metro
                     },
                     async () =>
                     {
-                        ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Red"), ThemeManager.GetAppTheme("BaseDark"));
+                        Application.Current.SetTheme(RCPServices.Data.DarkMode, false, "Red");
 
                         await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Konami, Resources.SecretCodes_KonamiHeader, MessageType.Success);
                     }
@@ -63,7 +62,7 @@ namespace RayCarrot.RCP.Metro
                     },
                     async () =>
                     {
-                        ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Orange"), ThemeManager.GetAppTheme("BaseDark"));
+                        Application.Current.SetTheme(RCPServices.Data.DarkMode, false, "Orange");
 
                         await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_RayCarrot, Resources.SecretCodes_RayCarrotHeader, MessageType.Success);
                     }
@@ -79,7 +78,7 @@ namespace RayCarrot.RCP.Metro
                     },
                     async () =>
                     {
-                        ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent("Lime"), ThemeManager.GetAppTheme("BaseDark"));
+                        Application.Current.SetTheme(RCPServices.Data.DarkMode, false, "Lime");
 
                         await Services.MessageUI.DisplayMessageAsync(Resources.SecretCodes_Lime, Resources.SecretCodes_LimeHeader, MessageType.Success);
                     }

@@ -10,9 +10,7 @@
 
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Purple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Purple.xaml" />
 
                 <!-- Libraries -->
 
@@ -21,7 +19,6 @@
 
                 <!-- Local -->
 
-                <ResourceDictionary Source="UI/Styles/MetroCommon.xaml" />
                 <ResourceDictionary Source="UI/Styles/UnifiedMargins.xaml" />
                 <ResourceDictionary Source="UI/Styles/InfoIconStyles.xaml" />
                 <ResourceDictionary Source="UI/Styles/TextStyles.xaml" />

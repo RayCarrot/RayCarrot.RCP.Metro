@@ -5,6 +5,52 @@
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
+    <!-- Default radio button -->
+
+    <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MahApps.Styles.RadioButton.Win10}">
+        <Setter Property="MinWidth" Value="10" />
+        <Setter Property="MinHeight" Value="10" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+
+    <!-- Default check box -->
+
+    <!--<Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MahApps.Styles.CheckBox.Win10}">
+        <Setter Property="MinWidth" Value="10" />
+        <Setter Property="MinHeight" Value="10" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>-->
+
+        <!-- Tab item with no padding -->
+
+    <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <!-- Tab control with underline -->
+
+    <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource {x:Type TabControl}}">
+        <Setter Property="mah:TabControlHelper.Underlined" Value="TabPanel" />
+    </Style>
+
+    <!-- Expander without background and larger font -->
+
+    <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource {x:Type Expander}}">
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Control.Background}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="mah:ControlsHelper.ContentCharacterCasing" Value="Normal"/>
+        <Setter Property="IsExpanded" Value="True" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentPresenter Content="{Binding}"
+                                      TextElement.FontSize="20"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- List Box with Radio Buttons -->
 
     <Style x:Key="ListBoxWithRadioButtons" TargetType="{x:Type ListBox}" BasedOn="{StaticResource {x:Type ListBox}}">

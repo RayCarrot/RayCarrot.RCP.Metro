@@ -199,10 +199,15 @@
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
-                    <metro:ToggleSwitch IsChecked="{Binding Path=DarkMode}"
+                    <CheckBox Content="{Resx Settings_SyncTheme}"
+                              ToolTip="{Resx Settings_SyncThemeInfo}"
+                              IsChecked="{Binding Path=SyncTheme}" />
+
+                    <metro:ToggleSwitch IsOn="{Binding Path=DarkMode}"
+                                        IsEnabled="{Binding Path=SyncTheme, Converter={rwpf:InvertedBooleanConverter}}"
                                         HorizontalAlignment="Left"
-                                        OnLabel="{Resx Settings_DesignDark}"
-                                        OffLabel="{Resx Settings_DesignLight}" />
+                                        OnContent="{Resx Settings_DesignDark}"
+                                        OffContent="{Resx Settings_DesignLight}" />
 
                     <CheckBox Content="{Resx Settings_DesignAnimations}"
                               ToolTip="{Resx Settings_DesignAnimationsInfo}"

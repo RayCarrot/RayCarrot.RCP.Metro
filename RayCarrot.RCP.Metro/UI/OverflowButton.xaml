@@ -15,7 +15,7 @@
     <Grid UseLayoutRounding="True" x:Name="ContainerGrid">
         <Border x:Name="MainBorder"
                 Background="Transparent"
-                BorderBrush="{DynamicResource BlackColorBrush}"
+                BorderBrush="{DynamicResource MahApps.Brushes.ThemeForeground}"
                 BorderThickness="1"
                 SnapsToDevicePixels="True">
 
@@ -32,12 +32,12 @@
                             VerticalAlignment="Stretch"
                             HorizontalContentAlignment="Stretch"
                             VerticalContentAlignment="Stretch"
-                            Background="{DynamicResource WhiteColorBrush}"
-                            BorderBrush="{DynamicResource BlackColorBrush}"
-                            Foreground="{DynamicResource BlackColorBrush}"
+                            Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                            BorderBrush="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                            Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                             SnapsToDevicePixels="True"
                             Command="{Binding Path=MainCommand}"
-                            Style="{DynamicResource ButtonSplitStyle}">
+                            Style="{DynamicResource MahApps.Styles.Button.Split}">
 
                         <StackPanel Orientation="Horizontal">
                             <iconPacks:PackIconMaterial Kind="{Binding Path=MainIconKind}"
@@ -47,7 +47,7 @@
                             <mah:ContentControlEx Margin="5 2 0 2"
                                                   HorizontalAlignment="Center"
                                                   VerticalAlignment="Center"
-                                                  Content="{Binding Path=MainContent}"
+                                                  Content="{Binding Path=MainContent, FallbackValue=GameName}"
                                                   RecognizesAccessKey="True"
                                                   SnapsToDevicePixels="True"
                                                   UseLayoutRounding="False" />
@@ -56,18 +56,18 @@
 
                     <Button Grid.Column="1"
                             Width="20"
-                            Background="{DynamicResource WhiteColorBrush}"
-                            BorderBrush="{DynamicResource BlackColorBrush}"
-                            Foreground="{DynamicResource BlackColorBrush}"
+                            Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                            BorderBrush="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                            Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                             SnapsToDevicePixels="True"
-                            Style="{DynamicResource ButtonSplitArrowStyle}"
+                            Style="{DynamicResource MahApps.Styles.Button.Split.Arrow}"
                             Click="ExpanderButton_OnClick"
                             Visibility="{Binding Path=OverflowItemSource, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
 
                         <ContentControl Width="9"
                                         Height="9"
                                         Content="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-                                        Style="{DynamicResource PathIconContentControlStyle}" />
+                                        Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}" />
 
                     </Button>
                 </Grid>
@@ -87,12 +87,13 @@
                           MinWidth="{Binding ActualWidth, ElementName=ContainerGrid}"
                           ItemsSource="{Binding Path=OverflowItemSource}"
                           Margin="0"
-                          BorderBrush="{DynamicResource BlackColorBrush}"
+                          BorderBrush="{DynamicResource MahApps.Brushes.ThemeForeground
+}"
                           BorderThickness="1"
                           SnapsToDevicePixels="True">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate DataType="local:OverflowButtonItemViewModel">
-                        <Grid Background="{StaticResource ControlBackgroundBrush}"
+                        <Grid Background="{StaticResource MahApps.Brushes.Control.Background}"
                               rwpf:UserLevelTag.MinUserLevel="{Binding Path=MinUserLevel}">
                             <MenuItem Header="{Binding Path=Header}"
                                       Command="{Binding Path=Command}"

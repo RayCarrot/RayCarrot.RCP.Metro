@@ -1,10 +1,13 @@
 ﻿-----   Version 10.0.0 - June ??, 2020   -----
-• The Carrot Framework has been retired, splitting it into multiple smaller, non-dependent, libraries
-• Updated libraries
+• Major library updates. The Carrot Framework has been retired, splitting it into multiple smaller, non-dependent, libraries. MahApps.Metro has been updated to version 2.0.
+• The app theme can now be synced with the system theme (dark/light and accent color) on Windows 10
+• 
 
 Other changes:
-• The Registry browser has been removed
-• Removed the debug option to log API versions
+• Changes resulted from library updates:
+	• The Registry browser has been removed
+	• Removed the debug option to log API versions
+	• The window title, radio button and slider styles have changed to match the Windows 10 style
 
 
 -----   Version 9.5.0 - May 21, 2020   -----

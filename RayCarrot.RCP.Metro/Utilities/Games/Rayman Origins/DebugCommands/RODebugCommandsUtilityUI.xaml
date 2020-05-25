@@ -15,10 +15,10 @@
             <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
         </Interactions:Interaction.Behaviors>
 
-        <mah:ToggleSwitch IsChecked="{Binding Path=IsDebugModeEnabled}"
-                                HorizontalAlignment="Left"
-                                OnLabel="{Resx SettingEnabled}"
-                                OffLabel="{Resx SettingDisabled}" />
+        <mah:ToggleSwitch IsOn="{Binding Path=IsDebugModeEnabled}"
+                          HorizontalAlignment="Left"
+                          OnContent="{Resx SettingEnabled}"
+                          OffContent="{Resx SettingDisabled}" />
 
         <CheckBox Content="{Resx ROU_DebugCommandsInvincibility}"
                       ToolTip="{Resx ROU_DebugCommandsInvincibilityInfo}"

@@ -25,6 +25,7 @@ namespace RayCarrot.RCP.Metro
             LastVersion = new Version(0, 0, 0, 0);
             WindowState = null;
             DarkMode = true;
+            SyncTheme = false;
             ShowActionComplete = true;
             AutoUpdate = true;
             ShowProgressOnTaskBar = true;
@@ -91,6 +92,11 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the dark mode is on
         /// </summary>
         public bool DarkMode { get; set; }
+
+        /// <summary>
+        /// Indicates if the theme should sync with the system theme
+        /// </summary>
+        public bool SyncTheme { get; set; }
 
         /// <summary>
         /// Indicates if action complete messages should be shown

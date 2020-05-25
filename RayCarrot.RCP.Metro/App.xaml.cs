@@ -116,7 +116,7 @@ namespace RayCarrot.RCP.Metro
             LogStartupTime("User data has been loaded");
 
             // Set the theme
-            this.SetTheme(Data.DarkMode);
+            this.SetTheme(Data.DarkMode, Data.SyncTheme);
 
             // Apply the current culture if defaulted
             if (Data.CurrentCulture == LocalizationManager.DefaultCulture.Name)
@@ -525,9 +525,10 @@ namespace RayCarrot.RCP.Metro
             }
 
             if (Data.LastVersion < new Version(9, 5, 0, 0))
-            {
                 Data.BinarySerializationFileLogPath = FileSystemPath.EmptyPath;
-            }
+
+            if (Data.LastVersion < new Version(10, 0, 0, 0))
+                Data.SyncTheme = false;
 
             // Re-deploy files
             await RCPServices.App.DeployFilesAsync(true);
@@ -687,7 +688,8 @@ namespace RayCarrot.RCP.Metro
                 switch (e.PropertyName)
                 {
                     case nameof(AppUserData.DarkMode):
-                        this.SetTheme(Data.DarkMode);
+                    case nameof(AppUserData.SyncTheme):
+                        this.SetTheme(Data.DarkMode, Data.SyncTheme);
                         break;
 
                     case nameof(AppUserData.ShowIncompleteTranslations):

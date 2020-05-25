@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using MahApps.Metro;
+﻿using ControlzEx.Theming;
+using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -13,9 +13,20 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="app">The application</param>
         /// <param name="darkMode">True to use dark mode or false to use light mode</param>
-        public static void SetTheme(this Application app, bool darkMode)
+        /// <param name="sync">Indicates if the theme should sync with the system theme. This will override the <see cref="darkMode"/> setting.</param>
+        /// <param name="color">Optional accent color</param>
+        public static void SetTheme(this Application app, bool darkMode, bool sync, string color = "Purple")
         {
-            ThemeManager.ChangeAppTheme(app, $"Base{(darkMode ? "Dark" : "Light")}");
+            if (sync)
+            {
+                ThemeManager.Current.ThemeSyncMode = ThemeSyncMode.SyncAll;
+                ThemeManager.Current.SyncTheme(ThemeSyncMode.SyncAll);
+            }
+            else
+            {
+                ThemeManager.Current.ThemeSyncMode = ThemeSyncMode.DoNotSync;
+                ThemeManager.Current.ChangeTheme(app, $"{(darkMode ? "Dark" : "Light")}.{color}");
+            }
         }
     }
 }
