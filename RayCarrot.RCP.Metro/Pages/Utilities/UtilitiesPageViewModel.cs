@@ -20,6 +20,7 @@
             };
             ConverterViewModels = new UtilityViewModel[]
             {
+                new UtilityViewModel(new R1SaveConverterUtility()),
                 new UtilityViewModel(new GFConverterUtility()),
                 new UtilityViewModel(new R3SaveConverterUtility()),
                 new UtilityViewModel(new LOCConverterUtility()),
@@ -30,6 +31,7 @@
             DecoderViewModels = new UtilityViewModel[]
             {
                 new UtilityViewModel(new R1LngDecoderUtility()),
+                new UtilityViewModel(new R12SaveDecoderUtility()),
                 new UtilityViewModel(new R2SnaDsbDecoderUtility()),
                 new UtilityViewModel(new R3SaveDecoderUtility()),
             };

@@ -1,16 +1,17 @@
-﻿using System.IO;
-using RayCarrot.Binary;
+﻿using RayCarrot.Binary;
 using RayCarrot.IO;
-using RayCarrot.Rayman.OpenSpace;
-using System.Threading.Tasks;
 using RayCarrot.Rayman;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
+using RayCarrot.Rayman.Ray1;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// View model for a Rayman 3 progression slot item
+    /// View model for a Rayman 1 progression slot item
     /// </summary>
-    public class Rayman3ProgressionSlotViewModel : ProgressionSlotViewModel
+    public class Rayman1ProgressionSlotViewModel : ProgressionSlotViewModel
     {
         /// <summary>
         /// Default constructor
@@ -19,7 +20,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="items">The progression info items</param>
         /// <param name="saveSlotFilePath">The file path for the save slot</param>
         /// <param name="progressionViewModel">The progression view model containing this slot</param>
-        public Rayman3ProgressionSlotViewModel(LocalizedString slotName, ProgressionInfoItemViewModel[] items, FileSystemPath saveSlotFilePath, BaseProgressionViewModel progressionViewModel) : base(slotName, items, saveSlotFilePath, progressionViewModel)
+        public Rayman1ProgressionSlotViewModel(LocalizedString slotName, ProgressionInfoItemViewModel[] items, FileSystemPath saveSlotFilePath, BaseProgressionViewModel progressionViewModel) : base(slotName, items, saveSlotFilePath, progressionViewModel)
         {
 
         }
@@ -41,13 +42,13 @@ namespace RayCarrot.RCP.Metro
             using var decodedDataStream = new MemoryStream();
 
             // Decode the save file
-            new Rayman3SaveDataEncoder().Decode(saveFileStream, decodedDataStream);
+            new Rayman12PCSaveDataEncoder().Decode(saveFileStream, decodedDataStream);
 
             // Set position to 0
             decodedDataStream.Position = 0;
 
             // Get the serialized data
-            var data = BinarySerializableHelpers.ReadFromStream<Rayman3PCSaveData>(decodedDataStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
+            var data = BinarySerializableHelpers.ReadFromStream<Rayman1PCSaveData>(decodedDataStream, new BinarySerializerSettings(Endian.Little, Encoding.GetEncoding(437)), RCPServices.App.GetBinarySerializerLogger());
 
             // Export the data
             JsonHelpers.SerializeToFile(data, outputFilePath);
@@ -63,20 +64,20 @@ namespace RayCarrot.RCP.Metro
         protected override Task ImportSaveDataAsync(FileSystemPath inputFilePath)
         {
             // Deserialize the input data
-            var data = JsonHelpers.DeserializeFromFile<Rayman3PCSaveData>(inputFilePath);
+            var data = JsonHelpers.DeserializeFromFile<Rayman1PCSaveData>(inputFilePath);
 
             // Create streams
             using var decodedDataStream = new MemoryStream();
             using var saveFileStream = File.Create(SaveSlotFilePath);
 
             // Import the data
-            BinarySerializableHelpers.WriteToStream(data, decodedDataStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
+            BinarySerializableHelpers.WriteToStream(data, decodedDataStream, new BinarySerializerSettings(Endian.Little, Encoding.GetEncoding(437)), RCPServices.App.GetBinarySerializerLogger());
 
             // Set position to 0
             decodedDataStream.Position = 0;
 
             // Encode the data to the file
-            new Rayman3SaveDataEncoder().Encode(decodedDataStream, saveFileStream);
+            new Rayman12PCSaveDataEncoder().Encode(decodedDataStream, saveFileStream);
 
             return Task.CompletedTask;
         }

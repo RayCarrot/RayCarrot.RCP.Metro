@@ -5,6 +5,10 @@
     /// </summary>
     public enum ProgressionIcons
     {
+        // Rayman 1
+        R1_Cage,
+        R1_Life,
+
         // Rayman 3
         R3_Cage,
         R3_Score,

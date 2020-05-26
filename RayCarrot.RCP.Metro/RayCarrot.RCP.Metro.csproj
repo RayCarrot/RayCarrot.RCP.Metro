@@ -151,6 +151,8 @@
     <Compile Include="Games\Progression\Origins\OriginsProgressionViewModel.cs" />
     <Compile Include="Games\Progression\Legends\LegendsProgressionSlotViewModel.cs" />
     <Compile Include="Games\Progression\Legends\LegendsProgressionViewModel.cs" />
+    <Compile Include="Games\Progression\Rayman1\Rayman1ProgressionSlotViewModel.cs" />
+    <Compile Include="Games\Progression\Rayman1\Rayman1ProgressionViewModel.cs" />
     <Compile Include="Games\Progression\UI\ProgressionUI.xaml.cs">
       <DependentUpon>ProgressionUI.xaml</DependentUpon>
     </Compile>
@@ -215,6 +217,8 @@
     <Compile Include="Utilities\General\Converter\GF\GFConverterUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Converter\LOC\LOCConverterUtility.cs" />
     <Compile Include="Utilities\General\Converter\LOC\LOCConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\Converter\R1Save\R1SaveConverterUtility.cs" />
+    <Compile Include="Utilities\General\Converter\R1Save\R1SaveConverterUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Converter\R3Save\R3SaveConverterUtility.cs" />
     <Compile Include="Utilities\General\Converter\R3Save\R3SaveConverterUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Converter\ROSave\ROSaveConverterUtility.cs" />
@@ -231,6 +235,8 @@
     <Compile Include="Utilities\General\Decoder\BaseDecoderUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Decoder\R1Lng\R1LngDecoderViewModel.cs" />
     <Compile Include="Utilities\General\Decoder\R1Lng\R1LngDecoderUtility.cs" />
+    <Compile Include="Utilities\General\Decoder\R12Save\R12SaveDecoderUtility.cs" />
+    <Compile Include="Utilities\General\Decoder\R12Save\R12SaveDecoderViewModel.cs" />
     <Compile Include="Utilities\General\Decoder\R3Save\R3SaveDecoderUtility.cs" />
     <Compile Include="Utilities\General\Decoder\R3Save\R3SaveDecoderViewModel.cs" />
     <Compile Include="Utilities\General\Decoder\R2SnaDsb\R2SnaDsbDecoderUtility.cs" />
@@ -1099,6 +1105,8 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\ProgressionIcons\R1_Life.png" />
+    <Resource Include="Img\ProgressionIcons\R1_Cage.png" />
     <Resource Include="Img\GameIcons\RaymanDictées.png" />
     <Resource Include="Img\ProgressionIcons\RL_Rank0.png" />
     <Resource Include="Img\ProgressionIcons\RL_Rank1.png" />
