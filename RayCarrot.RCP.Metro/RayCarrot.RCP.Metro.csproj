@@ -217,6 +217,8 @@
     <Compile Include="Utilities\General\Converter\GF\GFConverterUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Converter\LOC\LOCConverterUtility.cs" />
     <Compile Include="Utilities\General\Converter\LOC\LOCConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\Converter\R2Save\R2SaveConverterUtility.cs" />
+    <Compile Include="Utilities\General\Converter\R2Save\R2SaveConverterUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Converter\R1Save\R1SaveConverterUtility.cs" />
     <Compile Include="Utilities\General\Converter\R1Save\R1SaveConverterUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Converter\R3Save\R3SaveConverterUtility.cs" />

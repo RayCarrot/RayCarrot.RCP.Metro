@@ -21,6 +21,7 @@
             ConverterViewModels = new UtilityViewModel[]
             {
                 new UtilityViewModel(new R1SaveConverterUtility()),
+                new UtilityViewModel(new R2SaveConverterUtility()),
                 new UtilityViewModel(new GFConverterUtility()),
                 new UtilityViewModel(new R3SaveConverterUtility()),
                 new UtilityViewModel(new LOCConverterUtility()),
