@@ -77,7 +77,7 @@ namespace RayCarrot.RCP.Metro
             RL.Logger?.LogInformationSource($"General progress info has been set");
 
             // Calculate the percentage
-            var percentage = ((cages / 120d * 100)).ToString("0.##");
+            var percentage = ((cages / 102d * 100)).ToString("0.##");
 
             RL.Logger?.LogInformationSource($"Slot percentage is {percentage}%");
 
