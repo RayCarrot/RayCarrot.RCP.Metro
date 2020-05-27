@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.Common;
 using RayCarrot.Logging;
+using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 using RayCarrot.WPF;
 
@@ -28,12 +29,12 @@ namespace RayCarrot.RCP.Metro
             CorrectTextureInfoCommand = new AsyncRelayCommand(SyncTextureInfoAsync);
 
             // Set up selection
-            GameModeSelection = new EnumSelectionViewModel<OpenSpaceGameMode>(OpenSpaceGameMode.Rayman2PC, new OpenSpaceGameMode[]
+            GameModeSelection = new EnumSelectionViewModel<GameMode>(GameMode.Rayman2PC, new GameMode[]
             {
-                OpenSpaceGameMode.Rayman2PC,
-                OpenSpaceGameMode.RaymanMPC,
-                OpenSpaceGameMode.RaymanArenaPC,
-                OpenSpaceGameMode.Rayman3PC,
+                GameMode.Rayman2PC,
+                GameMode.RaymanMPC,
+                GameMode.RaymanArenaPC,
+                GameMode.Rayman3PC,
             });
         }
 
@@ -44,7 +45,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game mode selection
         /// </summary>
-        public EnumSelectionViewModel<OpenSpaceGameMode> GameModeSelection { get; }
+        public EnumSelectionViewModel<GameMode> GameModeSelection { get; }
 
         /// <summary>
         /// Indicates if the utility is loading

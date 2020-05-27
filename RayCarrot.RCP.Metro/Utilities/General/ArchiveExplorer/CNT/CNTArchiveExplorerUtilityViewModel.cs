@@ -1,4 +1,5 @@
 ﻿using RayCarrot.Common;
+using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro
@@ -6,25 +7,25 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// A view model for the CNT Archive Explorer utility
     /// </summary>
-    public class CNTArchiveExplorerUtilityViewModel : BaseArchiveExplorerUtilityViewModel<OpenSpaceGameMode>
+    public class CNTArchiveExplorerUtilityViewModel : BaseArchiveExplorerUtilityViewModel<GameMode>
     {
         /// <summary>
         /// Default constructor
         /// </summary>
         public CNTArchiveExplorerUtilityViewModel()
         {
-            GameModeSelection = new EnumSelectionViewModel<OpenSpaceGameMode>(OpenSpaceGameMode.Rayman2PC, new OpenSpaceGameMode[]
+            GameModeSelection = new EnumSelectionViewModel<GameMode>(GameMode.Rayman2PC, new GameMode[]
             {
-                OpenSpaceGameMode.Rayman2PC,
-                OpenSpaceGameMode.Rayman2PCDemo1,
-                OpenSpaceGameMode.Rayman2PCDemo2,
-                OpenSpaceGameMode.RaymanMPC,
-                OpenSpaceGameMode.RaymanArenaPC,
-                OpenSpaceGameMode.Rayman3PC,
-                OpenSpaceGameMode.TonicTroublePC,
-                OpenSpaceGameMode.TonicTroubleSEPC,
-                OpenSpaceGameMode.DonaldDuckPC,
-                OpenSpaceGameMode.PlaymobilHypePC,
+                GameMode.Rayman2PC,
+                GameMode.Rayman2PCDemo1,
+                GameMode.Rayman2PCDemo2,
+                GameMode.RaymanMPC,
+                GameMode.RaymanArenaPC,
+                GameMode.Rayman3PC,
+                GameMode.TonicTroublePC,
+                GameMode.TonicTroubleSEPC,
+                GameMode.DonaldDuckPC,
+                GameMode.PlaymobilHypePC,
             });
         }
 
@@ -66,6 +67,6 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game mode selection
         /// </summary>
-        public override EnumSelectionViewModel<OpenSpaceGameMode> GameModeSelection { get; }
+        public override EnumSelectionViewModel<GameMode> GameModeSelection { get; }
     }
 }

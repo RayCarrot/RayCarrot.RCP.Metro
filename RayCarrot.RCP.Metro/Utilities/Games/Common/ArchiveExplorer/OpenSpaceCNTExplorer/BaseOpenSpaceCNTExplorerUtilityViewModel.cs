@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using RayCarrot.Common;
+using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro
@@ -18,7 +19,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        public BaseOpenSpaceCNTExplorerUtilityViewModel(OpenSpaceGameMode gameMode, FileSystemPath[] archiveFiles)
+        public BaseOpenSpaceCNTExplorerUtilityViewModel(GameMode gameMode, FileSystemPath[] archiveFiles)
         {
             // Set properties
             GameMode = gameMode;
@@ -35,7 +36,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game mode
         /// </summary>
-        public OpenSpaceGameMode GameMode { get; }
+        public GameMode GameMode { get; }
 
         /// <summary>
         /// The game install directory

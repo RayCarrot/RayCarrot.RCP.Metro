@@ -1,4 +1,4 @@
-﻿using RayCarrot.Rayman.OpenSpace;
+﻿using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -10,7 +10,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        public R2CNTExplorerUtility() : base(Games.Rayman2, OpenSpaceGameMode.Rayman2PC)
+        public R2CNTExplorerUtility() : base(Games.Rayman2, GameMode.Rayman2PC)
         { }
     }
 }

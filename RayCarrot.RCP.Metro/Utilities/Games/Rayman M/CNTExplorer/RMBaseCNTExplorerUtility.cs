@@ -1,5 +1,5 @@
 ﻿using RayCarrot.IO;
-using RayCarrot.Rayman.OpenSpace;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -28,7 +28,7 @@ namespace RayCarrot.RCP.Metro
                 installDir + "TribeBin" + "vignette.cnt",
             };
 
-            ViewModel = new BaseOpenSpaceCNTExplorerUtilityViewModel(OpenSpaceGameMode.RaymanMPC, archiveFiles);
+            ViewModel = new BaseOpenSpaceCNTExplorerUtilityViewModel(GameMode.RaymanMPC, archiveFiles);
         }
 
         /// <summary>

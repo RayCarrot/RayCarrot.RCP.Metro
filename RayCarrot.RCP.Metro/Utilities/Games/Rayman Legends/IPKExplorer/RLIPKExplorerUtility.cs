@@ -1,5 +1,5 @@
 ﻿using RayCarrot.IO;
-using RayCarrot.Rayman.UbiArt;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -23,7 +23,7 @@ namespace RayCarrot.RCP.Metro
                 installDir + "persistentLoading_PC.ipk",
             };
 
-            ViewModel = new BaseUbiArtIPKExplorerUtilityViewModel(UbiArtGameMode.RaymanLegendsPC, archiveFiles);
+            ViewModel = new BaseUbiArtIPKExplorerUtilityViewModel(GameMode.RaymanLegendsPC, archiveFiles);
         }
 
         /// <summary>

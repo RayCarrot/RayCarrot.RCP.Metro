@@ -1,12 +1,10 @@
-﻿using RayCarrot.Rayman.OpenSpace;
-using RayCarrot.Rayman.Ray1;
-using RayCarrot.Rayman.UbiArt;
+﻿using RayCarrot.Rayman;
 using System;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// Extension methods for <see cref="OpenSpaceGameMode"/>, <see cref="UbiArtGameMode"/> and <see cref="Ray1GameMode"/>
+    /// Extension methods for <see cref="GameMode"/>
     /// </summary>
     public static class GameModeExtensions
     {
@@ -19,18 +17,18 @@ namespace RayCarrot.RCP.Metro
         {
             return gameMode switch
             {
-                Ray1GameMode.Rayman1PC => Games.Rayman1,
-                Ray1GameMode.RayKitPC => Games.RaymanDesigner,
+                GameMode.Rayman1PC => Games.Rayman1,
+                GameMode.RayKitPC => Games.RaymanDesigner,
 
-                OpenSpaceGameMode.Rayman2PCDemo1 => Games.Demo_Rayman2_1,
-                OpenSpaceGameMode.Rayman2PCDemo2 => Games.Demo_Rayman2_2,
-                OpenSpaceGameMode.Rayman2PC => Games.Rayman2,
-                OpenSpaceGameMode.RaymanMPC => Games.RaymanM,
-                OpenSpaceGameMode.RaymanArenaPC => Games.RaymanArena,
-                OpenSpaceGameMode.Rayman3PC => Games.Rayman3,
+                GameMode.Rayman2PCDemo1 => Games.Demo_Rayman2_1,
+                GameMode.Rayman2PCDemo2 => Games.Demo_Rayman2_2,
+                GameMode.Rayman2PC => Games.Rayman2,
+                GameMode.RaymanMPC => Games.RaymanM,
+                GameMode.RaymanArenaPC => Games.RaymanArena,
+                GameMode.Rayman3PC => Games.Rayman3,
 
-                UbiArtGameMode.RaymanOriginsPC => Games.RaymanOrigins,
-                UbiArtGameMode.RaymanLegendsPC => Games.RaymanLegends,
+                GameMode.RaymanOriginsPC => Games.RaymanOrigins,
+                GameMode.RaymanLegendsPC => Games.RaymanLegends,
 
                 _ => (null as Games?)
             };

@@ -1,5 +1,5 @@
 ﻿using RayCarrot.IO;
-using RayCarrot.Rayman.UbiArt;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -22,7 +22,7 @@ namespace RayCarrot.RCP.Metro
                 installDir + "GameData" + "bundle_PC.ipk",
             };
 
-            ViewModel = new BaseUbiArtIPKExplorerUtilityViewModel(UbiArtGameMode.RaymanOriginsPC, archiveFiles);
+            ViewModel = new BaseUbiArtIPKExplorerUtilityViewModel(GameMode.RaymanOriginsPC, archiveFiles);
         }
 
         /// <summary>

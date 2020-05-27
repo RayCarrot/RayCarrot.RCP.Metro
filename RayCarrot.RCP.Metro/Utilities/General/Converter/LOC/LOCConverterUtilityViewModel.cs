@@ -3,13 +3,14 @@ using RayCarrot.Rayman.UbiArt;
 using System.Text;
 using System.Threading.Tasks;
 using RayCarrot.Common;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Utility view model for converting .loc and .loc8 files
     /// </summary>
-    public class LOCConverterUtilityViewModel : BaseConverterUtilityViewModel<UbiArtGameMode>
+    public class LOCConverterUtilityViewModel : BaseConverterUtilityViewModel<GameMode>
     {
         #region Constructor
 
@@ -18,15 +19,15 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public LOCConverterUtilityViewModel()
         {
-            GameModeSelection = new EnumSelectionViewModel<UbiArtGameMode>(UbiArtGameMode.RaymanOriginsPC, new[]
+            GameModeSelection = new EnumSelectionViewModel<GameMode>(GameMode.RaymanOriginsPC, new[]
             {
-                UbiArtGameMode.RaymanOriginsPC,
-                UbiArtGameMode.RaymanFiestaRunPC,
-                UbiArtGameMode.RaymanFiestaRunAndroid,
-                UbiArtGameMode.RaymanLegendsPC,
-                UbiArtGameMode.RaymanAdventuresAndroid,
-                UbiArtGameMode.RaymanMiniMac,
-                UbiArtGameMode.ValiantHeartsAndroid,
+                GameMode.RaymanOriginsPC,
+                GameMode.RaymanFiestaRunPC,
+                GameMode.RaymanFiestaRunAndroid,
+                GameMode.RaymanLegendsPC,
+                GameMode.RaymanAdventuresAndroid,
+                GameMode.RaymanMiniMac,
+                GameMode.ValiantHeartsAndroid,
             });
         }
 
@@ -37,7 +38,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game mode selection
         /// </summary>
-        public override EnumSelectionViewModel<UbiArtGameMode> GameModeSelection { get; }
+        public override EnumSelectionViewModel<GameMode> GameModeSelection { get; }
 
         #endregion
 
@@ -52,7 +53,7 @@ namespace RayCarrot.RCP.Metro
             var attr = GameModeSelection.SelectedValue.GetAttribute<UbiArtGameModeInfoAttribute>();
             var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
-            if (GameModeSelection.SelectedValue == UbiArtGameMode.RaymanFiestaRunPC)
+            if (GameModeSelection.SelectedValue == GameMode.RaymanFiestaRunPC)
             {
                 await ConvertFromAsync<FiestaRunLocalizationData>(settings, (data, filePath) =>
                 {
@@ -88,7 +89,7 @@ namespace RayCarrot.RCP.Metro
             var attr = GameModeSelection.SelectedValue.GetAttribute<UbiArtGameModeInfoAttribute>();
             var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
-            if (GameModeSelection.SelectedValue == UbiArtGameMode.RaymanFiestaRunPC)
+            if (GameModeSelection.SelectedValue == GameMode.RaymanFiestaRunPC)
             {
                 await ConvertToAsync<FiestaRunLocalizationData>(settings, (filePath, format) =>
                 {

@@ -1,4 +1,4 @@
-﻿using RayCarrot.Rayman.OpenSpace;
+﻿using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -10,7 +10,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        public RAGameSyncTextureInfoUtility() : base(new BaseGameSyncTextureInfoUtilityViewModel(Games.RaymanArena, OpenSpaceGameMode.RaymanArenaPC, new string[]
+        public RAGameSyncTextureInfoUtility() : base(new BaseGameSyncTextureInfoUtilityViewModel(Games.RaymanArena, GameMode.RaymanArenaPC, new string[]
         {
             "MenuBin",
             "TribeBin",

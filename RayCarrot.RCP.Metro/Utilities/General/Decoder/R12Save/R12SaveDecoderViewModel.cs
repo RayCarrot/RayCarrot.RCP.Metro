@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Utility view model for decoding Rayman 1 and 2 .sav files
     /// </summary>
-    public class R12SaveDecoderViewModel : BaseDecoderUtilityViewModel<Platform>
+    public class R12SaveDecoderViewModel : BaseDecoderUtilityViewModel<GameMode>
     {
         #region Constructor
 
@@ -15,9 +15,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public R12SaveDecoderViewModel()
         {
-            GameModeSelection = new EnumSelectionViewModel<Platform>(Platform.PC, new Platform[]
+            GameModeSelection = new EnumSelectionViewModel<GameMode>(GameMode.Rayman1PC, new GameMode[]
             {
-                Platform.PC
+                GameMode.Rayman1PC,
+                GameMode.Rayman2PC,
             });
         }
 
@@ -34,11 +35,10 @@ namespace RayCarrot.RCP.Metro
             new FileFilterItem("*.cfg", "CFG"),
         }.CombineAll("SAV").ToString();
 
-        // TODO: Make two utilities, one for each game?
         /// <summary>
         /// Gets the game for the current selection
         /// </summary>
-        protected override Games? GetGame => Games.Rayman1;
+        protected override Games? GetGame => GameModeSelection.SelectedValue.GetGame();
 
         #endregion
 
@@ -47,7 +47,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game mode selection
         /// </summary>
-        public override EnumSelectionViewModel<Platform> GameModeSelection { get; }
+        public override EnumSelectionViewModel<GameMode> GameModeSelection { get; }
 
         #endregion
 
@@ -56,10 +56,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets a new data encoder
         /// </summary>
-        protected override IDataEncoder GetEncoder()
-        {
-            return new Rayman12PCSaveDataEncoder();
-        }
+        protected override IDataEncoder GetEncoder() => new Rayman12PCSaveDataEncoder();
 
         #endregion
     }

@@ -6,6 +6,7 @@ using System.Windows.Input;
 using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
+using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 using RayCarrot.UI;
 
@@ -24,7 +25,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="game">The game</param>
         /// <param name="gameMode">The game mode</param>
         /// <param name="gameDataDirNames">The game data directory names</param>
-        public BaseGameSyncTextureInfoUtilityViewModel(Games game, OpenSpaceGameMode gameMode, string[] gameDataDirNames)
+        public BaseGameSyncTextureInfoUtilityViewModel(Games game, GameMode gameMode, string[] gameDataDirNames)
         {
             Game = game;
             GameMode = gameMode;
@@ -45,7 +46,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game mode
         /// </summary>
-        protected OpenSpaceGameMode GameMode { get; }
+        protected GameMode GameMode { get; }
 
         /// <summary>
         /// The game data directory names

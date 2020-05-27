@@ -1,5 +1,4 @@
 ﻿using RayCarrot.IO;
-using RayCarrot.Windows.Registry;
 using System;
 
 namespace RayCarrot.RCP.Metro

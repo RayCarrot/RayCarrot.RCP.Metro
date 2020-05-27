@@ -12,7 +12,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Utility view model for converting .gf files
     /// </summary>
-    public class GFConverterUtilityViewModel : BaseConverterUtilityViewModel<OpenSpaceGameMode>
+    public class GFConverterUtilityViewModel : BaseConverterUtilityViewModel<GameMode>
     {
         #region Constructor
 
@@ -21,23 +21,23 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public GFConverterUtilityViewModel()
         {
-            GameModeSelection = new EnumSelectionViewModel<OpenSpaceGameMode>(OpenSpaceGameMode.Rayman2PC, new OpenSpaceGameMode[]
+            GameModeSelection = new EnumSelectionViewModel<GameMode>(GameMode.Rayman2PC, new GameMode[]
             {
-                OpenSpaceGameMode.Rayman2PC,
-                OpenSpaceGameMode.Rayman2IOS,
-                OpenSpaceGameMode.Rayman2PCDemo1,
-                OpenSpaceGameMode.Rayman2PCDemo2,
-                OpenSpaceGameMode.RaymanMPC,
-                OpenSpaceGameMode.RaymanArenaPC,
-                OpenSpaceGameMode.Rayman3PC,
-                OpenSpaceGameMode.TonicTroublePC,
-                OpenSpaceGameMode.TonicTroubleSEPC,
-                OpenSpaceGameMode.DonaldDuckPC,
-                OpenSpaceGameMode.PlaymobilHypePC,
-                OpenSpaceGameMode.PlaymobilLauraPC,
-                OpenSpaceGameMode.PlaymobilAlexPC,
-                OpenSpaceGameMode.DinosaurPC,
-                OpenSpaceGameMode.LargoWinchPC
+                GameMode.Rayman2PC,
+                GameMode.Rayman2IOS,
+                GameMode.Rayman2PCDemo1,
+                GameMode.Rayman2PCDemo2,
+                GameMode.RaymanMPC,
+                GameMode.RaymanArenaPC,
+                GameMode.Rayman3PC,
+                GameMode.TonicTroublePC,
+                GameMode.TonicTroubleSEPC,
+                GameMode.DonaldDuckPC,
+                GameMode.PlaymobilHypePC,
+                GameMode.PlaymobilLauraPC,
+                GameMode.PlaymobilAlexPC,
+                GameMode.DinosaurPC,
+                GameMode.LargoWinchPC
             });
         }
 
@@ -48,7 +48,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game mode selection
         /// </summary>
-        public override EnumSelectionViewModel<OpenSpaceGameMode> GameModeSelection { get; }
+        public override EnumSelectionViewModel<GameMode> GameModeSelection { get; }
 
         #endregion
 

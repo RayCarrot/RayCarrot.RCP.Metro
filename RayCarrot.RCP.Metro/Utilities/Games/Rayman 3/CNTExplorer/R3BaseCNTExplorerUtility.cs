@@ -1,5 +1,5 @@
 ﻿using RayCarrot.IO;
-using RayCarrot.Rayman.OpenSpace;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -31,7 +31,7 @@ namespace RayCarrot.RCP.Metro
                 installDir + "Gamedatabin" + "vignette.cnt",
             };
 
-            ViewModel = new BaseOpenSpaceCNTExplorerUtilityViewModel(OpenSpaceGameMode.Rayman3PC, archiveFiles);
+            ViewModel = new BaseOpenSpaceCNTExplorerUtilityViewModel(GameMode.Rayman3PC, archiveFiles);
         }
 
         /// <summary>

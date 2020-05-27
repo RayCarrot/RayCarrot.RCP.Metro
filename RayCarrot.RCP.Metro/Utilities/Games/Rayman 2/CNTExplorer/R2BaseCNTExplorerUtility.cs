@@ -1,5 +1,5 @@
 ﻿using RayCarrot.IO;
-using RayCarrot.Rayman.OpenSpace;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -13,7 +13,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="game">The game</param>
         /// <param name="gameMode">The game mode</param>
-        protected R2BaseCNTExplorerUtility(Games game, OpenSpaceGameMode gameMode)
+        protected R2BaseCNTExplorerUtility(Games game, GameMode gameMode)
         {
             // Get the game install directory
             var installDir = game.GetInstallDir();

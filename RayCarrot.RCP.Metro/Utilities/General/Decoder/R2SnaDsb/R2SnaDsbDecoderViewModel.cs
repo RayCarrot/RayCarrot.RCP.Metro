@@ -1,13 +1,12 @@
 ﻿using RayCarrot.IO;
 using RayCarrot.Rayman;
-using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Utility view model for decoding Rayman 2 .sna/.dsb files
     /// </summary>
-    public class R2SnaDsbDecoderViewModel : BaseDecoderUtilityViewModel<OpenSpaceGameMode>
+    public class R2SnaDsbDecoderViewModel : BaseDecoderUtilityViewModel<GameMode>
     {
         #region Constructor
 
@@ -16,9 +15,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public R2SnaDsbDecoderViewModel()
         {
-            GameModeSelection = new EnumSelectionViewModel<OpenSpaceGameMode>(OpenSpaceGameMode.Rayman2PC, new OpenSpaceGameMode[]
+            GameModeSelection = new EnumSelectionViewModel<GameMode>(GameMode.Rayman2PC, new GameMode[]
             {
-                OpenSpaceGameMode.Rayman2PC
+                GameMode.Rayman2PC
             });
         }
 
@@ -47,7 +46,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game mode selection
         /// </summary>
-        public override EnumSelectionViewModel<OpenSpaceGameMode> GameModeSelection { get; }
+        public override EnumSelectionViewModel<GameMode> GameModeSelection { get; }
 
         #endregion
 

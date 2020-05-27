@@ -2,13 +2,14 @@
 using RayCarrot.IO;
 using RayCarrot.Rayman.Ray1;
 using System.Threading.Tasks;
+using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Utility view model for converting Rayman 1 .cfg files
     /// </summary>
-    public class R1ConfigConverterUtilityViewModel : BaseConverterUtilityViewModel<Ray1GameMode>
+    public class R1ConfigConverterUtilityViewModel : BaseConverterUtilityViewModel<GameMode>
     {
         #region Constructor
 
@@ -17,10 +18,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public R1ConfigConverterUtilityViewModel()
         {
-            GameModeSelection = new EnumSelectionViewModel<Ray1GameMode>(Ray1GameMode.Rayman1PC, new[]
+            GameModeSelection = new EnumSelectionViewModel<GameMode>(GameMode.Rayman1PC, new[]
             {
-                Ray1GameMode.Rayman1PC,
-                Ray1GameMode.RayKitPC,
+                GameMode.Rayman1PC,
+                GameMode.RayKitPC,
             });
         }
 
@@ -31,7 +32,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game mode selection
         /// </summary>
-        public override EnumSelectionViewModel<Ray1GameMode> GameModeSelection { get; }
+        public override EnumSelectionViewModel<GameMode> GameModeSelection { get; }
 
         #endregion
 
