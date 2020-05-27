@@ -137,6 +137,7 @@
     <Compile Include="Games\Info\Demo\Demo_Rayman3_3_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman3_4_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman3_5_Info.cs" />
+    <Compile Include="Games\Info\Other\Ray1Minigames_Info.cs" />
     <Compile Include="Games\Info\Other\RaymanPremiersClics_Info.cs" />
     <Compile Include="Games\Info\Other\RaymanDictées_Info.cs" />
     <Compile Include="Games\Manager\Demo\Demo_Rayman2_Win32.cs" />
@@ -144,11 +145,16 @@
     <Compile Include="Games\Manager\Demo\Demo_Rayman3_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_RaymanM_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_RaymanGold_DOSBox.cs" />
+    <Compile Include="Games\Manager\Other\Ray1Minigames_Win32.cs" />
     <Compile Include="Games\Manager\Other\RaymanPremiersClics_Win32.cs" />
     <Compile Include="Games\Manager\Other\RaymanDictées_Win32.cs" />
     <Compile Include="Games\Options\UI\GameOptionsUI.xaml.cs">
       <DependentUpon>GameOptionsUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Games\Options\UI\Ray1MinigamesOptions.xaml.cs">
+      <DependentUpon>Ray1MinigamesOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Games\Options\ViewModels\Ray1MinigamesOptionsViewModel.cs" />
     <Compile Include="Games\Progression\Origins\OriginsProgressionSlotViewModel.cs" />
     <Compile Include="Games\Progression\Origins\OriginsProgressionViewModel.cs" />
     <Compile Include="Games\Progression\Legends\LegendsProgressionSlotViewModel.cs" />
@@ -497,6 +503,10 @@
     <Page Include="Games\Options\UI\GameOptionsUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Games\Options\UI\Ray1MinigamesOptions.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Games\Progression\UI\ProgressionUI.xaml">
       <SubType>Designer</SubType>
@@ -1113,6 +1123,7 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\GameIcons\Ray1Minigames.png" />
     <Resource Include="Img\GameIcons\RaymanPremiersClics.png" />
     <Resource Include="Img\ProgressionIcons\R1_Life.png" />
     <Resource Include="Img\ProgressionIcons\R1_Cage.png" />

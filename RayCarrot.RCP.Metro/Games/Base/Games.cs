@@ -125,6 +125,11 @@ namespace RayCarrot.RCP.Metro
         #region Other
 
         /// <summary>
+        /// Rayman 1 minigames
+        /// </summary>
+        Ray1Minigames,
+
+        /// <summary>
         /// Educational DOS Rayman games
         /// </summary>
         EducationalDos,

@@ -126,6 +126,9 @@
     "EducationalDos": {
       "EducationalDosBox": "EducationalDos_EducationalDOSBox"
     },
+    "Ray1Minigames": {
+      "Win32": "Ray1Minigames_Win32"
+    },
     "PrintStudio": {
       "Win32": "PrintStudio_Win32"
     },
@@ -202,6 +205,7 @@
     "RaymanFiestaRun": "RaymanFiestaRun_Info",
     "RabbidsBigBang": "RabbidsBigBang_Info",
     "EducationalDos": "EducationalDos_Info",
+    "Ray1Minigames": "Ray1Minigames_Info",
     "PrintStudio": "PrintStudio_Info",
     "RaymanDictées": "RaymanDictées_Info",
     "RaymanPremiersClics": "RaymanPremiersClics_Info",

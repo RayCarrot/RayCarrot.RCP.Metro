@@ -3464,4 +3464,7 @@ fileCount</comment>
   <data name="Settings_SyncThemeInfo" xml:space="preserve">
     <value>If enabled, the application theme (accent color and dark/light mode) will sync with the system settings on Windows 10</value>
   </data>
+  <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
+    <value>An error occurred when updating the language</value>
+  </data>
 </root>

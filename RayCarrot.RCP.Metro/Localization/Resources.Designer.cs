@@ -7168,6 +7168,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when updating the language.
+        /// </summary>
+        public static string Ray1MinigamesOptions_LanguageUpdateError {
+            get {
+                return ResourceManager.GetString("Ray1MinigamesOptions_LanguageUpdateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File could not be created.
         /// </summary>
         public static string RDU_CreateConfig_Error {

@@ -42,6 +42,11 @@
         #region Games
 
         /// <summary>
+        /// The Rayman 1 Minigames download URL
+        /// </summary>
+        public const string Games_Ray1Minigames_Url = GamesBaseUrl + "Ray1Minigames.zip";
+
+        /// <summary>
         /// The Rayman 3 Print Studio part 1 download URL
         /// </summary>
         public const string Games_PrintStudio1_Url = GamesBaseUrl + "PrintStudio1.zip";
