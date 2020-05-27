@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Windows;
 using System.Windows.Threading;
-using MahApps.Metro;
+using ControlzEx.Theming;
 
 namespace RayCarrot.RCP.Updater
 {
@@ -63,7 +63,7 @@ namespace RayCarrot.RCP.Updater
             var darkMode = !Boolean.TryParse(args[1], out bool dm) || dm;
 
             // Set the app theme
-            ThemeManager.ChangeAppTheme(this, $"Base{(darkMode ? "Dark" : "Light")}");
+            ThemeManager.Current.ChangeTheme(this, $"{(darkMode ? "Dark" : "Light")}.Purple");
 
             // Get the user level
             CurrentUserLevel = Enum.TryParse(args[2], out UserLevel ule) ? ule : UserLevel.Normal;

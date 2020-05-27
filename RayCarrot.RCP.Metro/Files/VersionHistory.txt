@@ -11,6 +11,7 @@ Other changes:
 	• The Registry browser has been removed
 	• Removed the debug option to log API versions
 	• The window title, radio button and slider styles have changed to match the Windows 10 style
+• Updated the updater to use MahApps.Metro 2.0
 • Fixed a bug where generating mipmaps for a .gf file would fail due to being defaulted back to 0
 • Fixed a bug where importing a Rayman 3 save file would fail due to the stream position not being reset to 0 upon writing
 
