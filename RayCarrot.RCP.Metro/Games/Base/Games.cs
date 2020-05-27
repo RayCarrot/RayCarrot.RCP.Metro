@@ -135,6 +135,11 @@ namespace RayCarrot.RCP.Metro
         RaymanDictées,
 
         /// <summary>
+        /// Rayman Premiers Clics
+        /// </summary>
+        RaymanPremiersClics,
+
+        /// <summary>
         /// Rayman 3 Print Studio
         /// </summary>
         PrintStudio,

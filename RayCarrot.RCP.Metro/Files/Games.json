@@ -132,6 +132,9 @@
     "RaymanDictées": {
       "Win32": "RaymanDictées_Win32"
     },
+    "RaymanPremiersClics": {
+      "Win32": "RaymanPremiersClics_Win32"
+    },
     "RaymanActivityCenter": {
       "Win32": "RaymanActivityCenter_Win32"
     },
@@ -201,6 +204,7 @@
     "EducationalDos": "EducationalDos_Info",
     "PrintStudio": "PrintStudio_Info",
     "RaymanDictées": "RaymanDictées_Info",
+    "RaymanPremiersClics": "RaymanPremiersClics_Info",
     "RaymanActivityCenter": "RaymanActivityCenter_Info",
     "RaymanRavingRabbidsActivityCenter": "RaymanRavingRabbidsActivityCenter_Info",
     "GloboxMoment": "GloboxMoment_Info",

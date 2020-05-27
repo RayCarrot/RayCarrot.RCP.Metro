@@ -137,12 +137,14 @@
     <Compile Include="Games\Info\Demo\Demo_Rayman3_3_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman3_4_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman3_5_Info.cs" />
+    <Compile Include="Games\Info\Other\RaymanPremiersClics_Info.cs" />
     <Compile Include="Games\Info\Other\RaymanDictées_Info.cs" />
     <Compile Include="Games\Manager\Demo\Demo_Rayman2_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_Rayman1_DOSBox.cs" />
     <Compile Include="Games\Manager\Demo\Demo_Rayman3_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_RaymanM_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_RaymanGold_DOSBox.cs" />
+    <Compile Include="Games\Manager\Other\RaymanPremiersClics_Win32.cs" />
     <Compile Include="Games\Manager\Other\RaymanDictées_Win32.cs" />
     <Compile Include="Games\Options\UI\GameOptionsUI.xaml.cs">
       <DependentUpon>GameOptionsUI.xaml</DependentUpon>
@@ -1111,6 +1113,7 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\GameIcons\RaymanPremiersClics.png" />
     <Resource Include="Img\ProgressionIcons\R1_Life.png" />
     <Resource Include="Img\ProgressionIcons\R1_Cage.png" />
     <Resource Include="Img\GameIcons\RaymanDictées.png" />
