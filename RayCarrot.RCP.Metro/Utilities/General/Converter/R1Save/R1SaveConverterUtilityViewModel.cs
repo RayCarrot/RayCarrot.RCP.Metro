@@ -42,7 +42,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertFromAsync()
         {
-            var settings = Ray1Settings.GetDefaultSettings();
+            var settings = Ray1Settings.GetDefaultSettings(Ray1Game.Rayman1, Platform.PC);
 
             await ConvertFromAsync<Rayman1PCSaveData>(settings, (data, filePath) =>
             {
@@ -60,7 +60,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertToAsync()
         {
-            var settings = Ray1Settings.GetDefaultSettings();
+            var settings = Ray1Settings.GetDefaultSettings(Ray1Game.Rayman1, Platform.PC);
 
             await ConvertToAsync(settings, (filePath, format) =>
             {

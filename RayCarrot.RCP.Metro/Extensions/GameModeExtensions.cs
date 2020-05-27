@@ -1,11 +1,12 @@
 ﻿using RayCarrot.Rayman.OpenSpace;
+using RayCarrot.Rayman.Ray1;
 using RayCarrot.Rayman.UbiArt;
 using System;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// Extension methods for <see cref="OpenSpaceGameMode"/>, <see cref="UbiArtGameMode"/> and <see cref="Rayman1GameMode"/>
+    /// Extension methods for <see cref="OpenSpaceGameMode"/>, <see cref="UbiArtGameMode"/> and <see cref="Ray1GameMode"/>
     /// </summary>
     public static class GameModeExtensions
     {
@@ -18,6 +19,9 @@ namespace RayCarrot.RCP.Metro
         {
             return gameMode switch
             {
+                Ray1GameMode.Rayman1PC => Games.Rayman1,
+                Ray1GameMode.RayKitPC => Games.RaymanDesigner,
+
                 OpenSpaceGameMode.Rayman2PCDemo1 => Games.Demo_Rayman2_1,
                 OpenSpaceGameMode.Rayman2PCDemo2 => Games.Demo_Rayman2_2,
                 OpenSpaceGameMode.Rayman2PC => Games.Rayman2,

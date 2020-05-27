@@ -1,10 +1,9 @@
 ﻿using RayCarrot.Binary;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using RayCarrot.Rayman.Ray1;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -48,7 +47,7 @@ namespace RayCarrot.RCP.Metro
             decodedDataStream.Position = 0;
 
             // Get the serialized data
-            var data = BinarySerializableHelpers.ReadFromStream<Rayman1PCSaveData>(decodedDataStream, Ray1Settings.GetDefaultSettings(), RCPServices.App.GetBinarySerializerLogger());
+            var data = BinarySerializableHelpers.ReadFromStream<Rayman1PCSaveData>(decodedDataStream, Ray1Settings.GetDefaultSettings(Ray1Game.Rayman1, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
 
             // Export the data
             JsonHelpers.SerializeToFile(data, outputFilePath);
@@ -71,7 +70,7 @@ namespace RayCarrot.RCP.Metro
             using var saveFileStream = File.Create(SaveSlotFilePath);
 
             // Import the data
-            BinarySerializableHelpers.WriteToStream(data, decodedDataStream, Ray1Settings.GetDefaultSettings(), RCPServices.App.GetBinarySerializerLogger());
+            BinarySerializableHelpers.WriteToStream(data, decodedDataStream, Ray1Settings.GetDefaultSettings(Ray1Game.Rayman1, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
 
             // Set position to 0
             decodedDataStream.Position = 0;

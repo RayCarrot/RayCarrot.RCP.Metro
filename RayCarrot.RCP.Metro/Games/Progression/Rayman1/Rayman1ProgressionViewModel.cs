@@ -6,7 +6,6 @@ using RayCarrot.Rayman.Ray1;
 using RayCarrot.UI;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -60,7 +59,7 @@ namespace RayCarrot.RCP.Metro
             memStream.Position = 0;
 
             // Deserialize and return the data
-            var saveData = BinarySerializableHelpers.ReadFromStream<Rayman1PCSaveData>(memStream, Ray1Settings.GetDefaultSettings(), RCPServices.App.GetBinarySerializerLogger());
+            var saveData = BinarySerializableHelpers.ReadFromStream<Rayman1PCSaveData>(memStream, Ray1Settings.GetDefaultSettings(Ray1Game.Rayman1, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
 
             RL.Logger?.LogInformationSource($"Slot has been deserialized");
 
