@@ -1,9 +1,7 @@
-﻿using RayCarrot.Binary;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using RayCarrot.Rayman;
-using System.Text;
-using System.Threading.Tasks;
 using RayCarrot.Rayman.Ray1;
+using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -44,7 +42,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertFromAsync()
         {
-            var settings = new BinarySerializerSettings(Endian.Little, Encoding.GetEncoding(437));
+            var settings = Ray1Settings.GetDefaultSettings();
 
             await ConvertFromAsync<Rayman1PCSaveData>(settings, (data, filePath) =>
             {
@@ -62,7 +60,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public override async Task ConvertToAsync()
         {
-            var settings = new BinarySerializerSettings(Endian.Little, Encoding.GetEncoding(437));
+            var settings = Ray1Settings.GetDefaultSettings();
 
             await ConvertToAsync(settings, (filePath, format) =>
             {
