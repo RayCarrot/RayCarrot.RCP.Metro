@@ -196,7 +196,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Control Panel™, Carrot Framework, utilities, per-level soundtrack, Archive Explorer, Rayman 2 translations, Swedish (Sweden) program translation.
+        ///   Looks up a localized string similar to Rayman Control Panel™, utilities, per-level soundtrack, Archive Explorer, Rayman 2 translations, Swedish (Sweden) program translation.
         /// </summary>
         public static string About_Credits_RayCarrot {
             get {
@@ -3497,7 +3497,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An exception has occurred in the application. Below is the available debug information for the current user level in the Carrot Framework..
+        ///   Looks up a localized string similar to An exception has occurred in the application. Below is the available debug information for the current user level..
         /// </summary>
         public static string ExceptionMessageInfo {
             get {
@@ -4894,7 +4894,8 @@ namespace RayCarrot.RCP.Metro {
         ///
         ///-reset (Resets all app data before launch)
         ///-install {filePath} (Removes the installer from the specified path - no longer used as of version 4.5.0)
-        ///-ul {userLevel} (Sets the user level once [rest of string was truncated]&quot;;.
+        ///-ul {userLevel} (Sets the user level)
+        ///-l [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Help_RCP_LaunchArgs {
             get {
@@ -8553,6 +8554,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sync theme.
+        /// </summary>
+        public static string Settings_SyncTheme {
+            get {
+                return ResourceManager.GetString("Settings_SyncTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If enabled, the application theme (accent color and dark/light mode) will sync with the system settings on Windows 10.
+        /// </summary>
+        public static string Settings_SyncThemeInfo {
+            get {
+                return ResourceManager.GetString("Settings_SyncThemeInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Level.
         /// </summary>
         public static string Settings_UserLevel {
@@ -9150,6 +9169,42 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman 1 Config Files.
+        /// </summary>
+        public static string Utilities_Converter_R1ConfigHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_R1ConfigHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 1 Save Files.
+        /// </summary>
+        public static string Utilities_Converter_R1SaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_R1SaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 Config Files.
+        /// </summary>
+        public static string Utilities_Converter_R2ConfigHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_R2ConfigHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 2 Save Files.
+        /// </summary>
+        public static string Utilities_Converter_R2SaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_R2SaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman 3 Save Files (.sav).
         /// </summary>
         public static string Utilities_Converter_R3SaveHeader {
@@ -9272,6 +9327,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_Decoder_Header {
             get {
                 return ResourceManager.GetString("Utilities_Decoder_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 1/2 Save Files (.sav/.cfg).
+        /// </summary>
+        public static string Utilities_Decoder_R12SavHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Decoder_R12SavHeader", resourceCulture);
             }
         }
         

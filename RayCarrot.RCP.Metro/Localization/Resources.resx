@@ -764,7 +764,7 @@ This is a growing project with more features planned on being added with future 
     <value>Exception</value>
   </data>
   <data name="ExceptionMessageInfo" xml:space="preserve">
-    <value>An exception has occurred in the application. Below is the available debug information for the current user level in the Carrot Framework.</value>
+    <value>An exception has occurred in the application. Below is the available debug information for the current user level.</value>
   </data>
   <data name="File_FileNotFound" xml:space="preserve">
     <value>The specified file could not be found: {0}</value>
@@ -1271,7 +1271,7 @@ gameDisplayName</comment>
     <value>Special thanks to AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski and all other Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel™, Carrot Framework, utilities, per-level soundtrack, Archive Explorer, Rayman 2 translations, Swedish (Sweden) program translation</value>
+    <value>Rayman Control Panel™, utilities, per-level soundtrack, Archive Explorer, Rayman 2 translations, Swedish (Sweden) program translation</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -1568,7 +1568,7 @@ registryBaseKeyPath</comment>
 
 -reset (Resets all app data before launch)
 -install {filePath} (Removes the installer from the specified path - no longer used as of version 4.5.0)
--ul {userLevel} (Sets the user level once the framework is built)
+-ul {userLevel} (Sets the user level)
 -loglevel {logLevel} (Sets the log level to log, default is Information)</value>
   </data>
   <data name="Help_RCP_DebugHeader" xml:space="preserve">
@@ -3442,5 +3442,26 @@ fileCount</comment>
   </data>
   <data name="Settings_BinarySerializationFileLogPathInfo" xml:space="preserve">
     <value>Optional file path to output the serialization log when serializing a binary file</value>
+  </data>
+  <data name="Utilities_Converter_R1ConfigHeader" xml:space="preserve">
+    <value>Rayman 1 Config Files</value>
+  </data>
+  <data name="Utilities_Converter_R1SaveHeader" xml:space="preserve">
+    <value>Rayman 1 Save Files</value>
+  </data>
+  <data name="Utilities_Converter_R2ConfigHeader" xml:space="preserve">
+    <value>Rayman 2 Config Files</value>
+  </data>
+  <data name="Utilities_Converter_R2SaveHeader" xml:space="preserve">
+    <value>Rayman 2 Save Files</value>
+  </data>
+  <data name="Utilities_Decoder_R12SavHeader" xml:space="preserve">
+    <value>Rayman 1/2 Save Files (.sav/.cfg)</value>
+  </data>
+  <data name="Settings_SyncTheme" xml:space="preserve">
+    <value>Sync theme</value>
+  </data>
+  <data name="Settings_SyncThemeInfo" xml:space="preserve">
+    <value>If enabled, the application theme (accent color and dark/light mode) will sync with the system settings on Windows 10</value>
   </data>
 </root>

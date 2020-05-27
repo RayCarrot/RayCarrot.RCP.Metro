@@ -763,7 +763,7 @@
     <value>Excepção</value>
   </data>
   <data name="ExceptionMessageInfo" xml:space="preserve">
-    <value>Ocorreu uma excepção na aplicação. Abaixo está a informação de depuração disponível para o nível de utilizador actual no Carrot Framework.</value>
+    <value>Ocorreu uma excepção na aplicação. Abaixo está a informação de depuração disponível para o nível de utilizador.</value>
   </data>
   <data name="File_FileNotFound" xml:space="preserve">
     <value>O ficheiro especificado não pode ser encontrado: {0}</value>
@@ -1206,7 +1206,7 @@ Tentar novamente?</value>
     <value>Agradecimentos especiais ao AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski e a todos os outros fãs de Rayman!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel™, Carrot Framework, Utilitários, Banda sonora-por nível, Explorador de Arquivos, Traduções do Rayman 2, Programa de tradução Sueca (Suécia)</value>
+    <value>Rayman Control Panel™, Utilitários, Banda sonora-por nível, Explorador de Arquivos, Traduções do Rayman 2, Programa de tradução Sueca (Suécia)</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Patches de comandos</value>
@@ -1483,7 +1483,7 @@ As cópias de segurança em si são sempre arquivados no sub-directório '{0}'. 
   
 -reset (Reinicia todos os dados de aplicação antes da execução)
 -install {EndereçoDeFicheiro} (Remove o instalador do endereço especificado)
--ul {NívelDeUtilizador} (Define o nível de utilizador assim que o framework é construído)
+-ul {NívelDeUtilizador} (Define o nível de utilizador)
 -loglevel {NívelDeDiário} (Define o nível de diário para diário, padrão é Informação)</value>
   </data>
   <data name="Help_RCP_DebugHeader" xml:space="preserve">

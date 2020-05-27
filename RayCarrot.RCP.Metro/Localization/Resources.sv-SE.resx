@@ -764,7 +764,7 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
     <value>Fel</value>
   </data>
   <data name="ExceptionMessageInfo" xml:space="preserve">
-    <value>Ett fel har inträffat i programmet. Nedan finns den tillgängliga felsökningsinformationen för den aktuella användarnivån i Carrot Framework.</value>
+    <value>Ett fel har inträffat i programmet. Nedan finns den tillgängliga felsökningsinformationen för den aktuella användarnivån.</value>
   </data>
   <data name="File_FileNotFound" xml:space="preserve">
     <value>Den angivna filen kunde inte hittas: {0}</value>
@@ -1207,7 +1207,7 @@ Försök igen?"</value>
     <value>Ett särskilt tack till AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski och alla andra Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel™, Carrot Framework, verktyg, per-nivå musik, Archive Explorer, Rayman 2 översättningar, svensk (Sverige) programöversättning</value>
+    <value>Rayman Control Panel™, verktyg, per-nivå musik, Archive Explorer, Rayman 2 översättningar, svensk (Sverige) programöversättning</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Fix för handkontroller</value>

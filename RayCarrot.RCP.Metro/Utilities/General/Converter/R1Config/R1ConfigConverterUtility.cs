@@ -24,9 +24,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The header for the utility. This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string DisplayHeader => 
-            // TODO-UPDATE: Localize
-            "R1 config";
+        public string DisplayHeader => Resources.Utilities_Converter_R1ConfigHeader;
 
         /// <summary>
         /// The utility information text (optional). This property is retrieved again when the current culture is changed.

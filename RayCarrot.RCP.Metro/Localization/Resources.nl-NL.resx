@@ -763,7 +763,7 @@
     <value>Exception</value>
   </data>
   <data name="ExceptionMessageInfo" xml:space="preserve">
-    <value>Een exceptie heeft zich voorgedaan in de applicatie. Hieronder de beschikbare debug informatie, op basis van het huidige gebruikersniveau in het Carrot Framework.</value>
+    <value>Een exceptie heeft zich voorgedaan in de applicatie. Hieronder de beschikbare debug informatie, op basis van het huidige gebruikersniveau.</value>
   </data>
   <data name="File_FileNotFound" xml:space="preserve">
     <value>Het gespecificeerde bestand kon niet gevonden worden: {0}</value>
@@ -1206,7 +1206,7 @@ Opnieuw proberen?</value>
     <value>In het bijzonder dank aan AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski en alle andere Rayman fans!</value>
   </data>
   <data name="About_Credits_RayCarrot" xml:space="preserve">
-    <value>Rayman Control Panel™, Carrot Framework, hulpprogramma's, per-level soundtrack hulpprogramma, Archive Explorer, Rayman 2 vertalingen, Zweedse (Zweden) programmavertaling</value>
+    <value>Rayman Control Panel™, hulpprogramma's, per-level soundtrack hulpprogramma, Archive Explorer, Rayman 2 vertalingen, Zweedse (Zweden) programmavertaling</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
     <value>Controller patches</value>
@@ -1481,7 +1481,7 @@ De back-ups an sich worden altijd opgeslagen in de '{0}' submap. Het is niet aan
  
 -reset (Reset alle app data voorafgaand aan het starten)
 -install {filePath} (Verwijdert de Installer via het gespecificeerde pad - niet langer gebruikt vanaf versie 4.5.0)
--ul {userLevel} (stelt het gebruikersniveau in wanneer het raamwerk is gecreëerd)
+-ul {userLevel} (stelt het gebruikersniveau)
 -loglevel {loglevel} (stelt logniveau in; de standaardwaarde is 'Informatie')</value>
   </data>
   <data name="Help_RCP_DebugHeader" xml:space="preserve">
