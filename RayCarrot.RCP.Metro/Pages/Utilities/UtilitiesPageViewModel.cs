@@ -23,6 +23,7 @@
                 new UtilityViewModel(new R1SaveConverterUtility()),
                 new UtilityViewModel(new R1ConfigConverterUtility()),
                 new UtilityViewModel(new R2SaveConverterUtility()),
+                new UtilityViewModel(new R2ConfigConverterUtility()),
                 new UtilityViewModel(new GFConverterUtility()),
                 new UtilityViewModel(new R3SaveConverterUtility()),
                 new UtilityViewModel(new LOCConverterUtility()),
