@@ -134,6 +134,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected override void LoadData()
         {
+            // Make sure the file exists
+            if (!ConfigFilePath.FileExists)
+                return;
+
             // Create streams
             using var saveFileStream = File.OpenRead(ConfigFilePath);
             using var decodedDataStream = new MemoryStream();
