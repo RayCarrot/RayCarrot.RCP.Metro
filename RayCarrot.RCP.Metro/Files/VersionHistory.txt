@@ -5,7 +5,6 @@
 • Added a utility for decoding Rayman 1 & 2 save files, allowing Rayman 1 PC saves to be used on Rayman Classic or Pocket PC and vice versa
 • Major library updates. The Carrot Framework has been retired, splitting it into multiple smaller, non-dependent, libraries. MahApps.Metro has been updated to version 2.0.
 • The app theme can now be synced with the system theme (dark/light and accent color) on Windows 10
-• 
 
 Other changes:
 • Changes resulted from library updates:
@@ -13,8 +12,8 @@ Other changes:
 	• Removed the debug option to log API versions
 	• The window title, radio button and slider styles have changed to match the Windows 10 style
 • Updated the updater to use MahApps.Metro 2.0
-• Fixed a bug where generating mipmaps for a .gf file would fail due to being defaulted back to 0
-• Fixed a bug where importing a Rayman 3 save file would fail due to the stream position not being reset to 0 upon writing
+• Fixed a bug where generating mipmaps for a .gf file would fail
+• Fixed a bug where importing a Rayman 3 save file would fail
 
 
 -----   Version 9.5.0 - May 21, 2020   -----
