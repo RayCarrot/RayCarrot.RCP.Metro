@@ -159,6 +159,8 @@
     <Compile Include="Games\Progression\Origins\OriginsProgressionViewModel.cs" />
     <Compile Include="Games\Progression\Legends\LegendsProgressionSlotViewModel.cs" />
     <Compile Include="Games\Progression\Legends\LegendsProgressionViewModel.cs" />
+    <Compile Include="Games\Progression\Rayman2\Rayman2ProgressionSlotViewModel.cs" />
+    <Compile Include="Games\Progression\Rayman2\Rayman2ProgressionViewModel.cs" />
     <Compile Include="Games\Progression\Rayman1\Rayman1ProgressionSlotViewModel.cs" />
     <Compile Include="Games\Progression\Rayman1\Rayman1ProgressionViewModel.cs" />
     <Compile Include="Games\Progression\UI\ProgressionUI.xaml.cs">
@@ -1123,6 +1125,10 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\ProgressionIcons\R2_Clock.png" />
+    <Resource Include="Img\ProgressionIcons\R1_Continue.png" />
+    <Resource Include="Img\ProgressionIcons\R2_Cage.png" />
+    <Resource Include="Img\ProgressionIcons\R2_Lum.png" />
     <Resource Include="Img\GameIcons\Ray1Minigames.png" />
     <Resource Include="Img\GameIcons\RaymanPremiersClics.png" />
     <Resource Include="Img\ProgressionIcons\R1_Life.png" />

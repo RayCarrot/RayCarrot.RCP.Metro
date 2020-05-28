@@ -6799,6 +6799,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Walk of Life.
+        /// </summary>
+        public static string R2_BonusLevelName_1 {
+            get {
+                return ResourceManager.GetString("R2_BonusLevelName_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Walk of Power.
+        /// </summary>
+        public static string R2_BonusLevelName_2 {
+            get {
+                return ResourceManager.GetString("R2_BonusLevelName_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Custom.
         /// </summary>
         public static string R2Config_Graphics_Custom {

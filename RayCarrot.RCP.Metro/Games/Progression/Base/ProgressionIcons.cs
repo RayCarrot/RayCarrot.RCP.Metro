@@ -8,6 +8,12 @@
         // Rayman 1
         R1_Cage,
         R1_Life,
+        R1_Continue,
+
+        // Rayman 2
+        R2_Cage,
+        R2_Lum,
+        R2_Clock,
 
         // Rayman 3
         R3_Cage,

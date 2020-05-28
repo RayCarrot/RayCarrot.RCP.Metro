@@ -56,6 +56,11 @@ namespace RayCarrot.RCP.Metro
         public override FrameworkElement ConfigUI => new Rayman2Config();
 
         /// <summary>
+        /// The progression view model, if any is available
+        /// </summary>
+        public override BaseProgressionViewModel ProgressionViewModel => new Rayman2ProgressionViewModel();
+
+        /// <summary>
         /// Gets the file links for the game
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]

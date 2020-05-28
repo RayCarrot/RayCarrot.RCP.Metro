@@ -3373,4 +3373,12 @@ Pointer = {8}
   <data name="Settings_BinarySerializationFileLogPathInfo" xml:space="preserve">
     <value>Endereço opcional de ficheiros para a saída do diário de serialização quando se serializa um ficheiro binário</value>
   </data>
+  <data name="R2_BonusLevelName_1" xml:space="preserve">
+    <value>The Walk of Life</value>
+    <comment>The Walk of Life</comment>
+  </data>
+  <data name="R2_BonusLevelName_2" xml:space="preserve">
+    <value>The Walk of Power</value>
+    <comment>The Walk of Power</comment>
+  </data>
 </root>

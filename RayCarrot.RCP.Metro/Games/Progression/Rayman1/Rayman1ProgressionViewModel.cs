@@ -70,6 +70,7 @@ namespace RayCarrot.RCP.Metro
             var progressItems = new ProgressionInfoItemViewModel[]
             {
                 new ProgressionInfoItemViewModel(ProgressionIcons.R1_Cage, new LocalizedString(() => $"{cages}/102")),
+                new ProgressionInfoItemViewModel(ProgressionIcons.R1_Continue, new LocalizedString(() => $"{saveData.ContinuesCount}")),
                 new ProgressionInfoItemViewModel(ProgressionIcons.R1_Life, new LocalizedString(() => $"{saveData.StatusBar[0]}")),
             };
 

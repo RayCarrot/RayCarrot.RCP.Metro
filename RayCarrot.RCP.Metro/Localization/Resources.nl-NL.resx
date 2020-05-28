@@ -3343,4 +3343,10 @@ Pointer = {8}</value>
   <data name="Settings_BinarySerializationFileLogPathInfo" xml:space="preserve">
     <value>Optioneel bestandspad voor het opslaan van de serialisatielog wanneer er een binair bestand wordt geserialiseerd</value>
   </data>
+  <data name="R2_BonusLevelName_1" xml:space="preserve">
+    <value>The Walk of Life</value>
+  </data>
+  <data name="R2_BonusLevelName_2" xml:space="preserve">
+    <value>The Walk of Power</value>
+  </data>
 </root>

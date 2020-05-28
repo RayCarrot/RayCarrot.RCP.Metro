@@ -712,4 +712,12 @@
     <value>Hell Breaks Loose</value>
     <comment>Hell Breaks Loose</comment>
   </data>
+  <data name="R2_BonusLevelName_1" xml:space="preserve">
+    <value>The Walk of Life</value>
+    <comment>The Walk of Life</comment>
+  </data>
+  <data name="R2_BonusLevelName_2" xml:space="preserve">
+    <value>The Walk of Power</value>
+    <comment>The Walk of Power</comment>
+  </data>
 </root>

@@ -3467,4 +3467,10 @@ fileCount</comment>
   <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
     <value>An error occurred when updating the language</value>
   </data>
+  <data name="R2_BonusLevelName_1" xml:space="preserve">
+    <value>The Walk of Life</value>
+  </data>
+  <data name="R2_BonusLevelName_2" xml:space="preserve">
+    <value>The Walk of Power</value>
+  </data>
 </root>
