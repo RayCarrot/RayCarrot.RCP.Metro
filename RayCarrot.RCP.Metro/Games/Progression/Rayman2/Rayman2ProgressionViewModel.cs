@@ -21,7 +21,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        public Rayman2ProgressionViewModel() : base(Games.Rayman3)
+        public Rayman2ProgressionViewModel() : base(Games.Rayman2)
         {
             // Get the save data directory
             SaveDir = Games.Rayman2.GetInstallDir(false) + "Data";
