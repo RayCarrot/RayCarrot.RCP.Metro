@@ -5,6 +5,7 @@
 • Added a utility for decoding Rayman 1 & 2 save files, allowing Rayman 1 PC saves to be used on Rayman Classic or Pocket PC and vice versa
 • Major library updates. The Carrot Framework has been retired, splitting it into multiple smaller, non-dependent, libraries. MahApps.Metro has been updated to version 2.0.
 • The app theme can now be synced with the system theme (dark/light and accent color) on Windows 10
+• Added option to handle downloads manually
 
 Other changes:
 • Changes resulted from library updates:
