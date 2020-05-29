@@ -116,8 +116,9 @@ namespace RayCarrot.RCP.Metro
             RL.Logger?.LogInformationSource($"General progress info has been set");
 
             // Get the name and percentage
-            var name = slotName.Substring(0, slotName.Length - 4);
-            var percentage = slotName.Substring(slotName.Length - 4);
+            var separatorIndex = slotName.LastIndexOf((char)0x20);
+            var name = slotName.Substring(0, separatorIndex);
+            var percentage = slotName.Substring(separatorIndex + 1);
 
             RL.Logger?.LogInformationSource($"Slot percentage is {percentage}%");
 
