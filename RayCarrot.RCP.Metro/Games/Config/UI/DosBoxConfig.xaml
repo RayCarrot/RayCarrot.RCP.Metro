@@ -191,7 +191,7 @@
                     <ComboBox Grid.Column="1"
                               Grid.Row="3"
                               ToolTip="{Resx DosBoxOptions_FullscreenResInfo}"
-                              ItemsSource="{Binding Path=AvailableResolutionValues, Mode=OneTime}"
+                              ItemsSource="{Binding Path=AvailableFullscreenResolutionValues, Mode=OneTime}"
                               IsEditable="True"
                               IsTextSearchEnabled="False">
                         <ComboBox.Text>
@@ -210,7 +210,7 @@
                     <ComboBox Grid.Column="1"
                               Grid.Row="4"
                               ToolTip="{Resx DosBoxOptions_WindowedResInfo}"
-                              ItemsSource="{Binding Path=AvailableResolutionValues, Mode=OneTime}"
+                              ItemsSource="{Binding Path=AvailableWindowedResolutionValues, Mode=OneTime}"
                               IsEditable="True"
                               IsTextSearchEnabled="False">
                         <ComboBox.Text>

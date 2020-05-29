@@ -8,6 +8,7 @@
 • Added option to handle downloads manually
 
 Other changes:
+• The DOSBox game config now allows the fullscreen resolution to be set to "desktop"
 • Changes resulted from library updates:
 	• The Registry browser has been removed
 	• Removed the debug option to log API versions

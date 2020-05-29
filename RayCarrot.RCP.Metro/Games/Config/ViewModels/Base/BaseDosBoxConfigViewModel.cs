@@ -32,16 +32,22 @@ namespace RayCarrot.RCP.Metro
             UseRecommendedCommand = new RelayCommand(UseRecommended);
 
             // Set up the available resolution values
-            AvailableResolutionValues = new ObservableCollection<string>();
+            AvailableFullscreenResolutionValues = new ObservableCollection<string>();
+            AvailableWindowedResolutionValues = new ObservableCollection<string>();
 
             const double ratio = 16d / 10d;
             const int minHeight = 200;
             double maxHeight = SystemParameters.PrimaryScreenHeight;
 
-            AvailableResolutionValues.Add($"Original");
+            AvailableFullscreenResolutionValues.Add($"Original");
+            AvailableFullscreenResolutionValues.Add($"Desktop");
+            AvailableWindowedResolutionValues.Add($"Original");
 
             for (int height = minHeight; height <= maxHeight; height += minHeight)
-                AvailableResolutionValues.Add($"{height * ratio}x{height}");
+            {
+                AvailableFullscreenResolutionValues.Add($"{height * ratio}x{height}");
+                AvailableWindowedResolutionValues.Add($"{height * ratio}x{height}");
+            }
 
             // NOTE: Below options are not localized
 
@@ -177,9 +183,14 @@ namespace RayCarrot.RCP.Metro
         public GameType GameType { get; }
 
         /// <summary>
-        /// The available resolution values to use
+        /// The available resolution values to use for fullscreen
         /// </summary>
-        public ObservableCollection<string> AvailableResolutionValues { get; }
+        public ObservableCollection<string> AvailableFullscreenResolutionValues { get; }
+
+        /// <summary>
+        /// The available resolution values to use for windowed mode
+        /// </summary>
+        public ObservableCollection<string> AvailableWindowedResolutionValues { get; }
 
         /// <summary>
         /// The available DosBox outputs to use
