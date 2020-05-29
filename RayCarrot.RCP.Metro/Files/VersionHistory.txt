@@ -15,6 +15,7 @@ Other changes:
 • Updated the updater to use MahApps.Metro 2.0
 • Fixed a bug where generating mipmaps for a .gf file would fail
 • Fixed a bug where importing a Rayman 3 save file would fail
+• Fixed a bug where saving the DOSBox config for the educational games would give an error
 
 
 -----   Version 9.5.0 - May 21, 2020   -----

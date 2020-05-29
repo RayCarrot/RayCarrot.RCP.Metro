@@ -451,7 +451,7 @@ namespace RayCarrot.RCP.Metro
                     await SaveGameAsync();
 
                     // Get the config manager
-                    var configManager = new DosBoxAutoConfigManager(Game.GetManager<RCPDOSBoxGame>().DosBoxConfigFile);
+                    var configManager = new DosBoxAutoConfigManager(Game.GetManager<RCPDOSBoxGame>(GameType).DosBoxConfigFile);
 
                     // Create config data
                     var configData = new DosBoxAutoConfigData();
