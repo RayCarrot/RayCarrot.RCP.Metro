@@ -96,9 +96,18 @@ namespace RayCarrot.RCP.Metro
             // Load the user data
             try
             {
-                JsonConvert.PopulateObject(File.ReadAllText(CommonPaths.AppUserDataPath), RCPServices.Data);
+                if (CommonPaths.AppUserDataPath.FileExists)
+                {
+                    JsonConvert.PopulateObject(File.ReadAllText(CommonPaths.AppUserDataPath), RCPServices.Data);
+                    RL.Logger?.LogInformationSource($"The app user data has been loaded");
+                }
+                else
+                {
+                    // Reset the user data
+                    RCPServices.Data.Reset();
 
-                RL.Logger?.LogInformationSource($"The app user data has been loaded");
+                    RL.Logger?.LogInformationSource($"The app user data has been reset");
+                }
             }
             catch (Exception ex)
             {
