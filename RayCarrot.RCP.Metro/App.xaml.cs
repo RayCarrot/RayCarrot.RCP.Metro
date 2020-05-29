@@ -528,7 +528,10 @@ namespace RayCarrot.RCP.Metro
                 Data.BinarySerializationFileLogPath = FileSystemPath.EmptyPath;
 
             if (Data.LastVersion < new Version(10, 0, 0, 0))
+            {
                 Data.SyncTheme = false;
+                Data.HandleDownloadsManually = false;
+            }
 
             // Re-deploy files
             await RCPServices.App.DeployFilesAsync(true);

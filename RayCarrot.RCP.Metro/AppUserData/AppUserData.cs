@@ -63,6 +63,7 @@ namespace RayCarrot.RCP.Metro
             Archive_GF_GenerateMipmaps = true;
             Archive_GF_UpdateTransparency = Archive_GF_TransparencyMode.PreserveFormat;
             BinarySerializationFileLogPath = FileSystemPath.EmptyPath;
+            HandleDownloadsManually = false;
         }
 
         #endregion
@@ -286,6 +287,11 @@ namespace RayCarrot.RCP.Metro
         /// The binary serialization logging file path
         /// </summary>
         public FileSystemPath BinarySerializationFileLogPath { get; set; }
+
+        /// <summary>
+        /// Indicates if downloads should be handled manually. This does not apply to application updates.
+        /// </summary>
+        public bool HandleDownloadsManually { get; set; }
 
         #endregion
     }

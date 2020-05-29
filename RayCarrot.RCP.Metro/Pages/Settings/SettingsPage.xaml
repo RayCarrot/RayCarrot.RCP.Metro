@@ -166,6 +166,12 @@
                               IsChecked="{Binding Path=GetBetaUpdates}"
                               rwpf:UserLevelTag.MinUserLevel="Technical"/>
 
+                    <CheckBox Content="{Resx Settings_ManualDownloads}"
+                              ToolTip="{Resx Settings_ManualDownloadsInfo}"
+                              DataContext="{Binding Path=Data}"
+                              IsChecked="{Binding Path=HandleDownloadsManually}"
+                              rwpf:UserLevelTag.MinUserLevel="Advanced"/>
+
                     <StackPanel rwpf:UserLevelTag.MinUserLevel="Technical"
                                 DataContext="{Binding Path=Data}">
 

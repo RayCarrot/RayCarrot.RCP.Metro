@@ -470,29 +470,68 @@ namespace RayCarrot.RCP.Metro
                     return false;
                 }
 
-                // Allow user to confirm
-                try
+                if (Data.HandleDownloadsManually)
                 {
-                    ByteSize size = ByteSize.FromBytes(0);
-                    foreach (var item in inputSources)
-                    {
-                        var webRequest = WebRequest.Create(item);
-                        webRequest.Method = "HEAD";
+                    var result = await RCPServices.UI.DisplayMessageAsync(Resources.Download_ManualInstructions, Resources.Download_ManualHeader, MessageType.Information, true, new DialogMessageActionViewModel[]
+                        {
+                            // Download files
+                            new DialogMessageActionViewModel
+                            {
+                                DisplayText = Resources.Download_ManualDownload,
+                                ShouldCloseDialog = false,
+                                OnHandled = () =>
+                                {
+                                    foreach (var u in inputSources)
+                                        OpenUrl(u.AbsoluteUri);
+                                }
+                            },
+                            // Open destination folder
+                            new DialogMessageActionViewModel
+                            {
+                                DisplayText = Resources.Download_ManualOpenDestination,
+                                ShouldCloseDialog = false,
+                                OnHandled = () =>
+                                {
+                                    Directory.CreateDirectory(outputDir);
+                                    Task.Run(async () => await RCPServices.File.OpenExplorerLocationAsync(outputDir));
+                                }
+                            },
+                        });
 
-                        using var webResponse = webRequest.GetResponse();
-                        size = size.Add(ByteSize.FromBytes(Convert.ToDouble(webResponse.Headers.Get("Content-Length"))));
-                    }
-
-                    RL.Logger?.LogDebugSource($"The size of the download has been retrieved as {size}");
-
-                    if (!await Services.MessageUI.DisplayMessageAsync(String.Format(isGame ? Resources.DownloadGame_ConfirmSize : Resources.Download_ConfirmSize, size), Resources.Download_ConfirmHeader, MessageType.Question, true))
+                    if (!result)
                         return false;
+
+                    RL.Logger?.LogInformationSource($"Manual download finished");
+
+                    // Return the result
+                    return true;
                 }
-                catch (Exception ex)
+                else
                 {
-                    ex.HandleUnexpected("Getting download size");
-                    if (!await Services.MessageUI.DisplayMessageAsync(isGame ? Resources.DownloadGame_Confirm : Resources.Download_Confirm, Resources.Download_ConfirmHeader, MessageType.Question, true))
-                        return false;
+                    // Allow user to confirm
+                    try
+                    {
+                        ByteSize size = ByteSize.FromBytes(0);
+                        foreach (var item in inputSources)
+                        {
+                            var webRequest = WebRequest.Create(item);
+                            webRequest.Method = "HEAD";
+
+                            using var webResponse = webRequest.GetResponse();
+                            size = size.Add(ByteSize.FromBytes(Convert.ToDouble(webResponse.Headers.Get("Content-Length"))));
+                        }
+
+                        RL.Logger?.LogDebugSource($"The size of the download has been retrieved as {size}");
+
+                        if (!await Services.MessageUI.DisplayMessageAsync(String.Format(isGame ? Resources.DownloadGame_ConfirmSize : Resources.Download_ConfirmSize, size), Resources.Download_ConfirmHeader, MessageType.Question, true))
+                            return false;
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleUnexpected("Getting download size");
+                        if (!await Services.MessageUI.DisplayMessageAsync(isGame ? Resources.DownloadGame_Confirm : Resources.Download_Confirm, Resources.Download_ConfirmHeader, MessageType.Question, true))
+                            return false;
+                    }
                 }
 
                 // Create the download dialog

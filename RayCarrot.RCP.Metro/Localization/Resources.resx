@@ -3473,4 +3473,26 @@ fileCount</comment>
   <data name="R2_BonusLevelName_2" xml:space="preserve">
     <value>The Walk of Power</value>
   </data>
+  <data name="Download_ManualInstructions" xml:space="preserve">
+    <value>Download files:
+
+1. Press the download button to manually download the files.
+2. Move the files to the destination directory. If they're compressed, extract them.
+3. Press 'Ok' to continue.</value>
+  </data>
+  <data name="Download_ManualHeader" xml:space="preserve">
+    <value>Manual Download</value>
+  </data>
+  <data name="Download_ManualDownload" xml:space="preserve">
+    <value>Download Files</value>
+  </data>
+  <data name="Download_ManualOpenDestination" xml:space="preserve">
+    <value>Open Destination Directory</value>
+  </data>
+  <data name="Settings_ManualDownloads" xml:space="preserve">
+    <value>Handle downloads manually</value>
+  </data>
+  <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
+    <value>Only use this option if downloads aren't working</value>
+  </data>
 </root>

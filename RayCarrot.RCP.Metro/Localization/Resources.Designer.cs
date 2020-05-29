@@ -3299,6 +3299,46 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download Files.
+        /// </summary>
+        public static string Download_ManualDownload {
+            get {
+                return ResourceManager.GetString("Download_ManualDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Download.
+        /// </summary>
+        public static string Download_ManualHeader {
+            get {
+                return ResourceManager.GetString("Download_ManualHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download files:
+        ///
+        ///1. Press the download button to manually download the files.
+        ///2. Move the files to the destination directory. If they&apos;re compressed, extract them.
+        ///3. Press &apos;Ok&apos; to continue..
+        /// </summary>
+        public static string Download_ManualInstructions {
+            get {
+                return ResourceManager.GetString("Download_ManualInstructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Destination Directory.
+        /// </summary>
+        public static string Download_ManualOpenDestination {
+            get {
+                return ResourceManager.GetString("Download_ManualOpenDestination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No files were found to download.
         /// </summary>
         public static string Download_NoFilesFound {
@@ -8532,6 +8572,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_LanguageContribute {
             get {
                 return ResourceManager.GetString("Settings_LanguageContribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Handle downloads manually.
+        /// </summary>
+        public static string Settings_ManualDownloads {
+            get {
+                return ResourceManager.GetString("Settings_ManualDownloads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only use this option if downloads aren&apos;t working.
+        /// </summary>
+        public static string Settings_ManualDownloadsInfo {
+            get {
+                return ResourceManager.GetString("Settings_ManualDownloadsInfo", resourceCulture);
             }
         }
         
