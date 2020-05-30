@@ -223,7 +223,7 @@
     <value>Schermresolutie Fullscreen</value>
   </data>
   <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
-    <value>De te gebruiken schermresolutie voor fullscreen modus; de oorspronkelijke resolutie of een o.b.v. vaste waarden, zoals '1024 x 768'</value>
+    <value>De te gebruiken schermresolutie voor fullscreen modus; Original, Desktop of een o.b.v. vaste waarden, zoals '1024 x 768'</value>
   </data>
   <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
     <value>Schermresolutie Venster</value>
@@ -3348,5 +3348,51 @@ Pointer = {8}</value>
   </data>
   <data name="R2_BonusLevelName_2" xml:space="preserve">
     <value>The Walk of Power</value>
+  </data>
+  <data name="Utilities_Converter_R1ConfigHeader" xml:space="preserve">
+    <value>Rayman 1 Configuratiebestanden</value>
+  </data>
+  <data name="Utilities_Converter_R1SaveHeader" xml:space="preserve">
+    <value>Rayman 1 Spelbestanden</value>
+  </data>
+  <data name="Utilities_Converter_R2ConfigHeader" xml:space="preserve">
+    <value>Rayman 2 Configuratiebestanden</value>
+  </data>
+  <data name="Utilities_Converter_R2SaveHeader" xml:space="preserve">
+    <value>Rayman 2 Spelbestanden</value>
+  </data>
+  <data name="Utilities_Decoder_R12SavHeader" xml:space="preserve">
+    <value>Rayman 1/2 Spelbestanden (.sav/.cfg)</value>
+  </data>
+  <data name="Settings_SyncTheme" xml:space="preserve">
+    <value>Sync thema</value>
+  </data>
+  <data name="Settings_SyncThemeInfo" xml:space="preserve">
+    <value>Indien ingeschakeld, zal het applicatiethema (kleuraccent en donkere/lichte modus) synchroniseren met de systeeminstellingen van Windows 10</value>
+  </data>
+  <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het updaten van de taal</value>
+  </data>
+  <data name="Download_ManualInstructions" xml:space="preserve">
+    <value>Downloaden van bestanden:
+
+1. Klik op de downloadknop voor het handmatig downloaden van de bestanden;
+2. Verplaats de bestanden naar de doelmap. Indien ze gecomprimeerd zijn, pak je ze uit;
+3. Klik op 'Ok' om verder te gaan.</value>
+  </data>
+  <data name="Download_ManualHeader" xml:space="preserve">
+    <value>Handmatige Download</value>
+  </data>
+  <data name="Download_ManualDownload" xml:space="preserve">
+    <value>Download Bestanden</value>
+  </data>
+  <data name="Download_ManualOpenDestination" xml:space="preserve">
+    <value>Open Doelmap</value>
+  </data>
+  <data name="Settings_ManualDownloads" xml:space="preserve">
+    <value>Behandel downloads handmatig</value>
+  </data>
+  <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
+    <value>Gebruik deze optie alléén als de downloads niet starten!</value>
   </data>
 </root>

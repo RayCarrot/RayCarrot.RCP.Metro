@@ -3020,7 +3020,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What resolution to use for fullscreen: original or fixed size (e.g. 1024x768).
+        ///   Looks up a localized string similar to What resolution to use for fullscreen: original, desktop or fixed size (e.g. 1024x768).
         /// </summary>
         public static string DosBoxOptions_FullscreenResInfo {
             get {

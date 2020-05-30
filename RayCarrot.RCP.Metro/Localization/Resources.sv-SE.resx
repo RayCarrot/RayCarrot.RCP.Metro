@@ -223,7 +223,7 @@
     <value>Fullskärmsupplösning</value>
   </data>
   <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
-    <value>Upplösningen att använda i fullskärmsläge: original eller specifik storlek (t.ex. 1024x768)</value>
+    <value>Upplösningen att använda i fullskärmsläge: original, desktop eller specifik storlek (t.ex. 1024x768)</value>
   </data>
   <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
     <value>Fönsterupplösning</value>

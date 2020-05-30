@@ -223,7 +223,7 @@
     <value>Fullscreen resolution</value>
   </data>
   <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
-    <value>What resolution to use for fullscreen: original or fixed size (e.g. 1024x768)</value>
+    <value>What resolution to use for fullscreen: original, desktop or fixed size (e.g. 1024x768)</value>
   </data>
   <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
     <value>Windowed resolution</value>

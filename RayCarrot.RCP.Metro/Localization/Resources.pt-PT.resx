@@ -223,7 +223,7 @@
     <value>Resolução de ecrã inteiro</value>
   </data>
   <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
-    <value>Que resolução usar no ecrã inteiro: original ou tamanho fixo (ex. 1024x768)</value>
+    <value>Que resolução usar no ecrã inteiro: original, desktop ou tamanho fixo (ex. 1024x768)</value>
   </data>
   <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
     <value>Resolução em janela</value>
@@ -3380,5 +3380,51 @@ Pointer = {8}
   <data name="R2_BonusLevelName_2" xml:space="preserve">
     <value>The Walk of Power</value>
     <comment>The Walk of Power</comment>
+  </data>
+  <data name="Utilities_Converter_R1ConfigHeader" xml:space="preserve">
+    <value>Ficheiros de Configuração Rayman 1</value>
+  </data>
+  <data name="Utilities_Converter_R1SaveHeader" xml:space="preserve">
+    <value>Ficheiros de Progressão Rayman 1</value>
+  </data>
+  <data name="Utilities_Converter_R2ConfigHeader" xml:space="preserve">
+    <value>Ficheiros de Configuração Rayman 2</value>
+  </data>
+  <data name="Utilities_Converter_R2SaveHeader" xml:space="preserve">
+    <value>Ficheiros de Progressão Rayman 1</value>
+  </data>
+  <data name="Utilities_Decoder_R12SavHeader" xml:space="preserve">
+    <value>Ficheiros de Progressão Rayman 1/2 (.sav/.cfg)</value>
+  </data>
+  <data name="Settings_SyncTheme" xml:space="preserve">
+    <value>Tema de sincronização</value>
+  </data>
+  <data name="Settings_SyncThemeInfo" xml:space="preserve">
+    <value>Se activado, o tema da aplicação (cor acentuada e modo claro/escuro) irá sincronizar com as configurações de sistema do Windows 10</value>
+  </data>
+  <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
+    <value>Ocorreu um erro ao actualizar a língua</value>
+  </data>
+  <data name="Download_ManualInstructions" xml:space="preserve">
+    <value>Descarga de ficheiros:
+
+1. Pressiona o botão de descarga para descarregar manualmente os ficheiros.
+2. Move os ficheiros para o directório de destino. Extrai-os se estiverem comprimidos.
+3. Pressiona 'OK' para continuar.</value>
+  </data>
+  <data name="Download_ManualHeader" xml:space="preserve">
+    <value>Descarga manual</value>
+  </data>
+  <data name="Download_ManualDownload" xml:space="preserve">
+    <value>Descarregar ficheiros</value>
+  </data>
+  <data name="Download_ManualOpenDestination" xml:space="preserve">
+    <value>Abrir directório de destino</value>
+  </data>
+  <data name="Settings_ManualDownloads" xml:space="preserve">
+    <value>Manusear as descargas manualmente</value>
+  </data>
+  <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
+    <value>Utiliza apenas esta opção se as descargas não estiverem a funcionar</value>
   </data>
 </root>
