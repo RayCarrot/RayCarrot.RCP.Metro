@@ -1,4 +1,4 @@
-﻿-----   Version 10.0.0 - June ??, 2020   -----
+﻿-----   Version 10.0.0 - June 2, 2020   -----
 • Added support for Rayman Premiers Clics and Rayman 1 Minigames
 • Added the progression tab for Rayman 1 and Rayman 2
 • Added utilities for converting Rayman 1 and Rayman 2 save and config files
