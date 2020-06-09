@@ -12,7 +12,7 @@ namespace RayCarrot.RCP.Metro
             if (!(value is string s))
                 return new ValidationResult(false, value == null ? Resources.DosBoxResolutionValidation_NullOrEmpty : Resources.DosBoxResolutionValidation_InvalidFormat);
 
-            if (s.Equals("original", StringComparison.CurrentCultureIgnoreCase))
+            if (s.Equals("original", StringComparison.CurrentCultureIgnoreCase) || s.Equals("desktop", StringComparison.CurrentCultureIgnoreCase))
                 return ValidationResult.ValidResult;
 
             if (s.IsNullOrWhiteSpace())

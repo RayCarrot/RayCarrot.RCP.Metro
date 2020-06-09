@@ -64,7 +64,7 @@ namespace RayCarrot.RCP.Metro
             var file = fileEntry.CastTo<OpenSpaceCntFileEntry>();
 
             // Update the size
-            file.Size = fileData.Length;
+            file.Size = (uint)fileData.Length;
 
             // Remove the encryption
             file.FileXORKey = new byte[]
