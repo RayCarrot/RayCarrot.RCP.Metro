@@ -28,6 +28,7 @@ namespace RayCarrot.RCP.Metro
         {
             return gameSettings.EngineVersion switch
             {
+                OpenSpaceEngineVersion.TonicTrouble => ".sna",
                 OpenSpaceEngineVersion.Rayman2 => ".sna",
                 OpenSpaceEngineVersion.Rayman3 => ".lvl",
                 _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.EngineVersion), gameSettings.EngineVersion, null)
@@ -43,6 +44,16 @@ namespace RayCarrot.RCP.Metro
         {
             return gameSettings.Game switch
             {
+                OpenSpaceGame.TonicTroubleSpecialEdition => new string[]
+                {
+                    "TEXTURES.CNT",
+                    "VIGNETTE.CNT",
+                },
+                OpenSpaceGame.TonicTrouble => new string[]
+                {
+                    "Textures.cnt",
+                    "Vignette.cnt",
+                },
                 OpenSpaceGame.Rayman2 => new string[]
                 {
                     "Textures.cnt",
@@ -80,8 +91,8 @@ namespace RayCarrot.RCP.Metro
             // The offset for the size from the name
             var sizeOffset = gameSettings.EngineVersion switch
             {
+                OpenSpaceEngineVersion.TonicTrouble => 42,
                 OpenSpaceEngineVersion.Rayman2 => 42,
-
                 OpenSpaceEngineVersion.Rayman3 => 46,
 
                 // Other versions are not yet supported...
@@ -153,8 +164,13 @@ namespace RayCarrot.RCP.Metro
             int total = 0;
             int edited = 0;
 
-            // Create a Rayman 2 encoder
-            var r2Encoder = new Rayman2SNADataEncoder();
+            // Create a encoder
+            IDataEncoder encoder = gameSettings.Game switch
+            {
+                OpenSpaceGame.TonicTrouble => new TonicTroubleSNADataEncoder(),
+                OpenSpaceGame.Rayman2 => new Rayman2SNADataEncoder(),
+                _ => null
+            };
 
             // Enumerate each file
             foreach (var file in files)
@@ -165,9 +181,9 @@ namespace RayCarrot.RCP.Metro
                 // Read the file data
                 var data = File.ReadAllBytes(file);
 
-                // Decode if the game is Rayman 2
-                if (gameSettings.Game == OpenSpaceGame.Rayman2)
-                    data = r2Encoder.Decode(data);
+                // Decode if we have an encoder
+                if (encoder != null)
+                    data = encoder.Decode(data);
 
                 // Enumerate each byte
                 for (int i = sizeOffset + largestNameSize; i < data.Length - 4; i++)
@@ -220,10 +236,10 @@ namespace RayCarrot.RCP.Metro
                     var widthBytes = BitConverter.GetBytes(gfWidth);
 
                     // NOTE: I'm not sure we need to set these sizes too. The game seems to work without them as well. Confirm?
-                    data[i - pathLength - sizeOffset - 4] = heightBytes[0];
-                    data[i - pathLength - sizeOffset - 3] = heightBytes[1];
-                    data[i - pathLength - sizeOffset - 2] = widthBytes[0];
-                    data[i - pathLength - sizeOffset - 1] = widthBytes[1];
+                    //data[i - pathLength - sizeOffset - 4] = heightBytes[0];
+                    //data[i - pathLength - sizeOffset - 3] = heightBytes[1];
+                    //data[i - pathLength - sizeOffset - 2] = widthBytes[0];
+                    //data[i - pathLength - sizeOffset - 1] = widthBytes[1];
 
                     // Set the new sizes
                     data[i - pathLength - sizeOffset] = heightBytes[0];
@@ -253,9 +269,9 @@ namespace RayCarrot.RCP.Metro
 
                 RL.Logger?.LogInformationSource($"{foundCount} texture infos modified for {file.Name}");
 
-                // Encode if the game is Rayman 2
-                if (gameSettings.Game == OpenSpaceGame.Rayman2)
-                    data = r2Encoder.Encode(data);
+                // Encode if we have an encoder
+                if (encoder != null)
+                    data = encoder.Encode(data);
 
                 // Write the new data
                 File.WriteAllBytes(file, data);

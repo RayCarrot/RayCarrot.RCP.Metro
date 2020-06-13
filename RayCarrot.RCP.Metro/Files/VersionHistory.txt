@@ -1,5 +1,7 @@
 ﻿-----   Version 10.1.0 - June ??, 2020   -----
-• .cnt archive files can now exceed 2 GB when repacking (the game however won't be able to parse these correctly)
+• 
+• Fixed a bug where the texture syncing tool would potentially overwrite incorrect values
+• .cnt archive files can now exceed 2 GB when repacking (the game might however not be able to load these correctly)
 • Fixed a bug causing "desktop" not to be a valid option for the DOSBox config
 
 
