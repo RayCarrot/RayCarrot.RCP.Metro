@@ -253,6 +253,8 @@
     <Compile Include="Utilities\General\Decoder\R1Lng\R1LngDecoderUtility.cs" />
     <Compile Include="Utilities\General\Decoder\R12Save\R12SaveDecoderUtility.cs" />
     <Compile Include="Utilities\General\Decoder\R12Save\R12SaveDecoderViewModel.cs" />
+    <Compile Include="Utilities\General\Decoder\TTSnaDsb\TTSnaDsbDecoderUtility.cs" />
+    <Compile Include="Utilities\General\Decoder\TTSnaDsb\TTSnaDsbDecoderViewModel.cs" />
     <Compile Include="Utilities\General\Decoder\R3Save\R3SaveDecoderUtility.cs" />
     <Compile Include="Utilities\General\Decoder\R3Save\R3SaveDecoderViewModel.cs" />
     <Compile Include="Utilities\General\Decoder\R2SnaDsb\R2SnaDsbDecoderUtility.cs" />

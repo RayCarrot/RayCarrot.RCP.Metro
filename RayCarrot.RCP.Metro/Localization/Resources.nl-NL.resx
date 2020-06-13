@@ -181,7 +181,7 @@
     <value>DOSBox Instellingen</value>
   </data>
   <data name="DosBoxSettingsInfo" xml:space="preserve">
-    <value>Het instellen van één van de onderstaande opties naar Uitgeschakeld of een lege waarde, resulteert in het gebruik van de standaardwaarde, zoals gespecificeerd het DOSBox configuratiebestand. Als een specifiek configuratiebestand wordt weergegeven via de instellingen, kan een gedeelte van onderstaande instellingen worden overschreven.</value>
+    <value>Het instellen van één van de onderstaande opties naar Uitgeschakeld of een lege waarde, resulteert in het gebruik van de standaardwaarde, zoals gespecificeerd in het DOSBox configuratiebestand. Als een specifiek configuratiebestand wordt weergegeven via de instellingen, kan een gedeelte van onderstaande instellingen worden overschreven.</value>
   </data>
   <data name="DosBoxOptions_Fullscreeen" xml:space="preserve">
     <value>Fullscreen</value>
@@ -223,7 +223,7 @@
     <value>Schermresolutie Fullscreen</value>
   </data>
   <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
-    <value>De te gebruiken schermresolutie voor fullscreen modus; Original, Desktop of een o.b.v. vaste waarden, zoals '1024 x 768'</value>
+    <value>De te gebruiken schermresolutie voor fullscreen modus; 'original', 'desktop' of een o.b.v. vaste waarden, zoals '1024 x 768'</value>
   </data>
   <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
     <value>Schermresolutie Venster</value>
@@ -3343,12 +3343,6 @@ Pointer = {8}</value>
   <data name="Settings_BinarySerializationFileLogPathInfo" xml:space="preserve">
     <value>Optioneel bestandspad voor het opslaan van de serialisatielog wanneer er een binair bestand wordt geserialiseerd</value>
   </data>
-  <data name="R2_BonusLevelName_1" xml:space="preserve">
-    <value>The Walk of Life</value>
-  </data>
-  <data name="R2_BonusLevelName_2" xml:space="preserve">
-    <value>The Walk of Power</value>
-  </data>
   <data name="Utilities_Converter_R1ConfigHeader" xml:space="preserve">
     <value>Rayman 1 Configuratiebestanden</value>
   </data>
@@ -3373,6 +3367,12 @@ Pointer = {8}</value>
   <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het updaten van de taal</value>
   </data>
+  <data name="R2_BonusLevelName_1" xml:space="preserve">
+    <value>The Walk of Life</value>
+  </data>
+  <data name="R2_BonusLevelName_2" xml:space="preserve">
+    <value>The Walk of Power</value>
+  </data>
   <data name="Download_ManualInstructions" xml:space="preserve">
     <value>Downloaden van bestanden:
 
@@ -3394,5 +3394,8 @@ Pointer = {8}</value>
   </data>
   <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
     <value>Gebruik deze optie alléén als de downloads niet starten!</value>
+  </data>
+  <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
+    <value>Tonic Trouble Geëncodeerde Bestanden (.sna/.dsb)</value>
   </data>
 </root>

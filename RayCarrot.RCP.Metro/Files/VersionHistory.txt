@@ -1,5 +1,8 @@
-﻿-----   Version 10.1.0 - June ??, 2020   -----
+﻿-----   Version 10.1.0 - June 19, 2020   -----
+• Added a utility for decoding Tonic Trouble .sna/.dsb files
 • 
+
+Other changes:
 • Fixed a bug where the texture syncing tool would potentially overwrite incorrect values
 • .cnt archive files can now exceed 2 GB when repacking (the game might however not be able to load these correctly)
 • Fixed a bug causing "desktop" not to be a valid option for the DOSBox config

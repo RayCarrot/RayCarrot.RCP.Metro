@@ -354,6 +354,51 @@
   <data name="Config_ResolutionR2Info" xml:space="preserve">
     <value>Ако подршка широког екрана није омогућена, игра ће се издужити уколико су пропорције </value>
   </data>
+  <data name="Config_WidescreenSupport" xml:space="preserve">
+    <value>Подршка за широки екран</value>
+  </data>
+  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
+    <value>Подршка за широки екран осигурава да приказ игре није растегнут када је она покренута у пропорцијама које нису у размери 4: 3</value>
+  </data>
+  <data name="Config_WidescreenHorizontal" xml:space="preserve">
+    <value>Хоризонтални широки екран</value>
+  </data>
+  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
+    <value>Повећај ширину екрана хоризонтално</value>
+  </data>
+  <data name="Config_VerticalHorizontal" xml:space="preserve">
+    <value>Вертикални широки екран</value>
+  </data>
+  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
+    <value>Повећај ширину екрана вертикално</value>
+  </data>
+  <data name="Config_LanguageR2Info" xml:space="preserve">
+    <value>Ово поставља одабрани подразумевани језик приликом покретања игре. Језик се може променити у игри.</value>
+  </data>
+  <data name="Config_ControllerR2Info" xml:space="preserve">
+    <value>Ако твој контролер није препознат, овде можеш омогућити подршку контролера. Ово ће уклонити било које прилагођено мапирање  дугмета.</value>
+  </data>
+  <data name="Config_ButtonMapping" xml:space="preserve">
+    <value>Мапирање дугмета (тастатура)</value>
+  </data>
+  <data name="Config_ButtonMappingInfo" xml:space="preserve">
+    <value>Пошто игра не дозвољава природно мапирање дугмета, овде их можеш променити. Ово неће радити за контролере.</value>
+  </data>
+  <data name="Config_ButtonMappingActionHeader" xml:space="preserve">
+    <value>Акција</value>
+  </data>
+  <data name="Config_ButtonMappingKeyHeader" xml:space="preserve">
+    <value>Тастер</value>
+  </data>
+  <data name="Config_ButtonMappingReset" xml:space="preserve">
+    <value>Ресет</value>
+  </data>
+  <data name="Config_RRRScreenMode" xml:space="preserve">
+    <value>Режим екрана</value>
+  </data>
+  <data name="Config_RRRScreenModeInfo" xml:space="preserve">
+    <value>Опције режима екрана ће се понашати различито у зависности од изабране резолуције. Углавном ће задржавањем размере  4:3 омогућити игри да не буде растегнута у примени других пропорција.</value>
+  </data>
   <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
     <value>1.20</value>
   </data>

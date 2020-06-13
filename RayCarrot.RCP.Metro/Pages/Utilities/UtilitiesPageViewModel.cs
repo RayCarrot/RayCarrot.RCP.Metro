@@ -35,6 +35,7 @@
             {
                 new UtilityViewModel(new R1LngDecoderUtility()),
                 new UtilityViewModel(new R12SaveDecoderUtility()),
+                new UtilityViewModel(new TTSnaDsbDecoderUtility()),
                 new UtilityViewModel(new R2SnaDsbDecoderUtility()),
                 new UtilityViewModel(new R3SaveDecoderUtility()),
             };

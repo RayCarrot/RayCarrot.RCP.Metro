@@ -219,9 +219,6 @@
   <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
     <value>Rozdzielczość w pełnym ekranie</value>
   </data>
-  <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
-    <value>Jaką rozdzielczość używać w pełnym ekranie: oryginalną czy stałą (np. 1024x768)</value>
-  </data>
   <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
     <value>Okienkowa rozdzielczość</value>
   </data>

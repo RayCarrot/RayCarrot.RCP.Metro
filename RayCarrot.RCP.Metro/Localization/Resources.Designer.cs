@@ -9452,6 +9452,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tonic Trouble Encoded Files (.sna/.dsb).
+        /// </summary>
+        public static string Utilities_Decoder_TTSnaHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Decoder_TTSnaHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Other.
         /// </summary>
         public static string Utilities_Other_Header {

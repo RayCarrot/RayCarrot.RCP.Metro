@@ -3495,4 +3495,7 @@ fileCount</comment>
   <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
     <value>Only use this option if downloads aren't working</value>
   </data>
+  <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
+    <value>Tonic Trouble Encoded Files (.sna/.dsb)</value>
+  </data>
 </root>
