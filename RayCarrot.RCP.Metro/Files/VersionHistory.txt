@@ -1,7 +1,7 @@
 ﻿-----   Version 10.1.0 - June 19, 2020   -----
+• Added support for Rayman Redemption
 • Added a utility for decoding Tonic Trouble .sna/.dsb files
 • Added Tonic Trouble and Tonic Trouble Special Edition to the texture syncing utility
-• 
 
 Other changes:
 • The texture syncing tool now only modifies the primary size values
