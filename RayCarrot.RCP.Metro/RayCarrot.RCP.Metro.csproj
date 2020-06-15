@@ -137,6 +137,7 @@
     <Compile Include="Games\Info\Demo\Demo_Rayman3_3_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman3_4_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman3_5_Info.cs" />
+    <Compile Include="Games\Info\Fan\RaymanRedemption_Info.cs" />
     <Compile Include="Games\Info\Other\Ray1Minigames_Info.cs" />
     <Compile Include="Games\Info\Other\RaymanPremiersClics_Info.cs" />
     <Compile Include="Games\Info\Other\RaymanDictées_Info.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Games\Manager\Demo\Demo_Rayman3_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_RaymanM_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_RaymanGold_DOSBox.cs" />
+    <Compile Include="Games\Manager\Fan\RaymanRedemption_Win32.cs" />
     <Compile Include="Games\Manager\Other\Ray1Minigames_Win32.cs" />
     <Compile Include="Games\Manager\Other\RaymanPremiersClics_Win32.cs" />
     <Compile Include="Games\Manager\Other\RaymanDictées_Win32.cs" />
@@ -1127,6 +1129,7 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\GameIcons\RaymanRedemption.png" />
     <Resource Include="Img\ProgressionIcons\R2_Clock.png" />
     <Resource Include="Img\ProgressionIcons\R1_Continue.png" />
     <Resource Include="Img\ProgressionIcons\R2_Cage.png" />

@@ -169,6 +169,11 @@ namespace RayCarrot.RCP.Metro
         TheDarkMagiciansReignofTerror,
 
         /// <summary>
+        /// Rayman Redemption
+        /// </summary>
+        RaymanRedemption,
+
+        /// <summary>
         /// Globox Moment
         /// </summary>
         GloboxMoment,

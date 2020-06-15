@@ -150,6 +150,9 @@
     "TheDarkMagiciansReignofTerror": {
       "Win32": "TheDarkMagiciansReignofTerror_Win32"
     },
+    "RaymanRedemption": {
+      "Win32": "RaymanRedemption_Win32"
+    },
     "RabbidsCoding": {
       "Win32": "RabbidsCoding_Win32"
     },
@@ -213,6 +216,7 @@
     "RaymanRavingRabbidsActivityCenter": "RaymanRavingRabbidsActivityCenter_Info",
     "GloboxMoment": "GloboxMoment_Info",
     "TheDarkMagiciansReignofTerror": "TheDarkMagiciansReignofTerror_Info",
+    "RaymanRedemption": "RaymanRedemption_Info",
     "RabbidsCoding": "RabbidsCoding_Info",
     "Demo_Rayman3_1": "Demo_Rayman3_1_Info",
     "Demo_Rayman3_2": "Demo_Rayman3_2_Info",
