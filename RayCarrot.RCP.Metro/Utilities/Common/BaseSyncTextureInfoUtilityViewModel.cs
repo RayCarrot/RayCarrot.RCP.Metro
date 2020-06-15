@@ -91,13 +91,17 @@ namespace RayCarrot.RCP.Metro
             // The offset for the size from the name
             var sizeOffset = gameSettings.EngineVersion switch
             {
-                OpenSpaceEngineVersion.TonicTrouble => 42,
+                OpenSpaceEngineVersion.TonicTrouble => 52,
                 OpenSpaceEngineVersion.Rayman2 => 42,
                 OpenSpaceEngineVersion.Rayman3 => 46,
 
                 // Other versions are not yet supported...
                 _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.EngineVersion), gameSettings.EngineVersion, null)
             };
+
+            // NOTE: Although TT uses 32-bit integers for the sizes we use ushorts anyway since they never exceed the ushort max size
+            // Indicates if sizes are 32-bit
+            var is32Bit = gameSettings.EngineVersion == OpenSpaceEngineVersion.TonicTrouble;
 
             // Create a list of .gf files to read into
             List<GFFileSizeData> gfFiles = new List<GFFileSizeData>();
@@ -130,8 +134,8 @@ namespace RayCarrot.RCP.Metro
                     // Get a reader
                     using var reader = new Reader(gfMemoryStream, gameSettings.Endian);
 
-                    // Set the position to where the .gf file is, skipping the format value
-                    gfMemoryStream.Position = 4;
+                    // Set the position to where the .gf file size is, skipping the format value
+                    gfMemoryStream.Position = gameSettings.Game == OpenSpaceGame.TonicTroubleSpecialEdition ? 0 : 4;
                     
                     // Read the size
                     var width = reader.ReadInt32();
@@ -188,6 +192,7 @@ namespace RayCarrot.RCP.Metro
                 // Enumerate each byte
                 for (int i = sizeOffset + largestNameSize; i < data.Length - 4; i++)
                 {
+                    // TODO: Tonic Trouble seems to also have some file extensions as .bmp - do these need to be synced as well?
                     // Make sure the position contains the .tga file extension used at the end of a file path
                     if (data[i] != 0x2E || data[i + 1] != 0x74 || data[i + 2] != 0x67 || data[i + 3] != 0x61)
                         continue;
@@ -198,8 +203,11 @@ namespace RayCarrot.RCP.Metro
                     // Get the longest possible name
                     var longestName = Encoding.GetEncoding(1252).GetString(data, i - largestNameSize, largestNameSize);
 
+                    if (gameSettings.EngineVersion == OpenSpaceEngineVersion.TonicTrouble)
+                        longestName = longestName.Replace('/', '\\');
+
                     // Find the matching file
-                    var gf = gfFiles.Find(x => longestName.EndsWith(x.FullPathWithoutExtension, StringComparison.InvariantCultureIgnoreCase));
+                    var gf = gfFiles.Where(x => longestName.EndsWith(x.FullPathWithoutExtension, StringComparison.InvariantCultureIgnoreCase)).OrderByDescending(x => x.FullPathWithoutExtension.Length).FirstOrDefault();
 
                     // Ignore if not found
                     if (gf == null)
@@ -212,8 +220,8 @@ namespace RayCarrot.RCP.Metro
                     var pathLength = gf.FullPathWithoutExtension.Length;
 
                     // Get the current sizes from the .sna file
-                    var snaHeight = BitConverter.ToUInt16(data, i - pathLength - sizeOffset);
-                    var snaWidth = BitConverter.ToUInt16(data, i - pathLength - sizeOffset + 2);
+                    var snaHeight = is32Bit ? BitConverter.ToUInt32(data, i - pathLength - sizeOffset) : BitConverter.ToUInt16(data, i - pathLength - sizeOffset);
+                    var snaWidth = is32Bit ? BitConverter.ToUInt32(data, i - pathLength - sizeOffset + 4) : BitConverter.ToUInt16(data, i - pathLength - sizeOffset + 2);
 
                     // Get the size from the .gf file
                     var gfHeight = gf.Height;
@@ -232,20 +240,17 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Get the bytes for the sizes
-                    var heightBytes = BitConverter.GetBytes(gfHeight);
-                    var widthBytes = BitConverter.GetBytes(gfWidth);
+                    var heightBytes = is32Bit ? BitConverter.GetBytes((uint)gfHeight) : BitConverter.GetBytes(gfHeight);
+                    var widthBytes = is32Bit ? BitConverter.GetBytes((uint)gfWidth) : BitConverter.GetBytes(gfWidth);
 
-                    // NOTE: I'm not sure we need to set these sizes too. The game seems to work without them as well. Confirm?
-                    //data[i - pathLength - sizeOffset - 4] = heightBytes[0];
-                    //data[i - pathLength - sizeOffset - 3] = heightBytes[1];
-                    //data[i - pathLength - sizeOffset - 2] = widthBytes[0];
-                    //data[i - pathLength - sizeOffset - 1] = widthBytes[1];
+                    var byteIndex = 0;
 
                     // Set the new sizes
-                    data[i - pathLength - sizeOffset] = heightBytes[0];
-                    data[i - pathLength - sizeOffset + 1] = heightBytes[1];
-                    data[i - pathLength - sizeOffset + 2] = widthBytes[0];
-                    data[i - pathLength - sizeOffset + 3] = widthBytes[1];
+                    foreach (var b in heightBytes.Concat(widthBytes))
+                    {
+                        data[i - pathLength - sizeOffset + byteIndex] = b;
+                        byteIndex++;
+                    }
 
                     // Set mipmaps if available
                     if (gameSettings.EngineVersion == OpenSpaceEngineVersion.Rayman3)

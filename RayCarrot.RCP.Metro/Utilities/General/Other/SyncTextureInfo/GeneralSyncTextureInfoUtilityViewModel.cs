@@ -35,6 +35,8 @@ namespace RayCarrot.RCP.Metro
                 GameMode.RaymanMPC,
                 GameMode.RaymanArenaPC,
                 GameMode.Rayman3PC,
+                GameMode.TonicTroublePC,
+                GameMode.TonicTroubleSEPC,
             });
         }
 
