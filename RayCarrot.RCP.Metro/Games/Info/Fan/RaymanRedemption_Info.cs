@@ -47,7 +47,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the launch name for the game
         /// </summary>
-        public override string DefaultFileName => "RaymanRedemption.exe";
+        public override string DefaultFileName => "Rayman Redemption.exe";
 
         /// <summary>
         /// Indicates if the game can be downloaded
