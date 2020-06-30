@@ -1,10 +1,8 @@
 ﻿using RayCarrot.Logging;
-using RayCarrot.UI;
 using RayCarrot.WPF;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -23,8 +21,6 @@ namespace RayCarrot.RCP.Metro
             Refresh();
 
             Services.Data.CultureChanged += (s, e) => Refresh();
-            
-            OpenDiscordCommand = new RelayCommand(OpenDiscord);
         }
 
         #endregion
@@ -348,14 +344,6 @@ namespace RayCarrot.RCP.Metro
             RL.Logger?.LogDebugSource($"The help items refresh time was {time.ElapsedMilliseconds} ms");
         }
 
-        /// <summary>
-        /// Opens the Discord URL
-        /// </summary>
-        public void OpenDiscord()
-        {
-            App.OpenUrl(CommonUrls.DiscordUrl);
-        }
-
         #endregion
 
         #region Public Properties
@@ -364,12 +352,6 @@ namespace RayCarrot.RCP.Metro
         /// The help items
         /// </summary>
         public ObservableCollection<HelpItemViewModel> HelpItems { get; set; }
-
-        #endregion
-
-        #region Commands
-
-        public ICommand OpenDiscordCommand { get; }
 
         #endregion
     }

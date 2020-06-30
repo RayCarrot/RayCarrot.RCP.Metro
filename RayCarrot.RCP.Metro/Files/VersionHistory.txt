@@ -3,6 +3,7 @@
 
 Other changes:
 • Removed option to directly download fan-games
+• Removed links to the Discord server due to it having been removed
 
 
 -----   Version 10.1.0 - June 18, 2020   -----

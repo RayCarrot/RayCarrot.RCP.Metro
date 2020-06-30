@@ -52,11 +52,6 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
                 <StackPanel Grid.Column="0"
                             Grid.Row="0">
 
@@ -160,15 +155,6 @@
                        Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Img/MessageIcons/Info.png"
                        Height="128"
                        Width="128"/>
-
-                <TextBlock Grid.Column="0"
-                           Grid.Row="1"
-                           Margin="0 20 0 0">
-                    <Hyperlink Command="{Binding Path=OpenDiscordCommand}">
-                        <TextBlock Text="{Resx Help_AdditionalHelp}"
-                                   TextWrapping="Wrap"/>
-                    </Hyperlink>
-                </TextBlock>
 
             </Grid>
         </ScrollViewer>
