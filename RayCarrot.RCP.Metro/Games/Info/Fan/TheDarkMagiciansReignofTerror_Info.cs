@@ -52,15 +52,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the game can be downloaded
         /// </summary>
-        public override bool CanBeDownloaded => true;
-
-        /// <summary>
-        /// The download URLs for the game if it can be downloaded. All sources must be compressed.
-        /// </summary>
-        public override IList<Uri> DownloadURLs => new Uri[]
-        {
-            new Uri(CommonUrls.Games_TheDarkMagiciansReignofTerror_Url),
-        };
+        public override bool CanBeDownloaded => false;
 
         /// <summary>
         /// The directories to remove when uninstalling. This should not include the game install directory as that is included by default.

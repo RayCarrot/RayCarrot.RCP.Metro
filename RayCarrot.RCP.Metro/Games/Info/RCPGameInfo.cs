@@ -36,7 +36,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the game can be uninstalled
         /// </summary>
-        public bool CanBeUninstalled => (CanBeDownloaded || CanBeInstalledFromDisc) && RCPServices.Data.InstalledGames.Contains(Game);
+        public bool CanBeUninstalled => RCPServices.Data.InstalledGames.Contains(Game);
 
         #endregion
 

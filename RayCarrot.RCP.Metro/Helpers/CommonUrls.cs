@@ -57,16 +57,6 @@
         public const string Games_PrintStudio2_Url = GamesBaseUrl + "PrintStudio2.zip";
 
         /// <summary>
-        /// The Globox Moment download URL
-        /// </summary>
-        public const string Games_GloboxMoment_Url = GamesBaseUrl + "GloboxMoment.zip";
-
-        /// <summary>
-        /// The Rayman The Dark Magician's Reign of Terror download URL
-        /// </summary>
-        public const string Games_TheDarkMagiciansReignofTerror_Url = GamesBaseUrl + "TheDarkMagiciansReignofTerror.zip";
-
-        /// <summary>
         /// The Rayman Raving Rabbids Activity Center download URL
         /// </summary>
         public const string Games_RavingRabbidsActivityCenter_Url = GamesBaseUrl + "RavingRabbidsActivityCenter.zip";

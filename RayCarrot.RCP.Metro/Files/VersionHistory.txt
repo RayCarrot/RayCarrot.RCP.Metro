@@ -1,6 +1,9 @@
 ﻿-----   Version 10.2.0 - July ??, 2020   -----
 • 
 
+Other changes:
+• Removed option to directly download fan-games
+
 
 -----   Version 10.1.0 - June 18, 2020   -----
 • Added support for Rayman Redemption
