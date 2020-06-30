@@ -1,10 +1,13 @@
 ﻿using ByteSizeLib;
 using Newtonsoft.Json;
 using Nito.AsyncEx;
+using RayCarrot.Binary;
 using RayCarrot.Common;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 using RayCarrot.Windows.Shell;
+using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,9 +17,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using RayCarrot.Binary;
-using RayCarrot.Logging;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -126,7 +126,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current app version
         /// </summary>
-        public Version CurrentAppVersion => new Version(10, 1, 0, 3);
+        public Version CurrentAppVersion => new Version(10, 2, 0, 0);
 
         /// <summary>
         /// Indicates if the current version is a beta version
