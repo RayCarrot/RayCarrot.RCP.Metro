@@ -2,6 +2,7 @@
 • 
 
 Other changes:
+• Added Fabiosek to the credits
 • Removed option to directly download fan-games
 • Removed links to the Discord server due to it having been removed
 

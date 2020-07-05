@@ -58,6 +58,9 @@
                     <local:DuoGridItem Header="Droolie"
                                        Text="{Resx About_Credits_Droolie}" />
 
+                    <local:DuoGridItem Header="Fabiosek"
+                                       Text="{Resx About_Credits_Fabiosek}" />
+
                     <local:DuoGridItem Header="Hakyra"
                                        Text="{Resx About_Credits_Hakyra}" />
 
