@@ -21,6 +21,7 @@ namespace RayCarrot.RCP.Metro
         {
             GameModeSelection = new EnumSelectionViewModel<GameMode>(GameMode.RaymanOriginsPC, new[]
             {
+                GameMode.RaymanOrigins3DS,
                 GameMode.RaymanOriginsPC,
                 GameMode.RaymanFiestaRunPC,
                 GameMode.RaymanFiestaRunAndroid,
