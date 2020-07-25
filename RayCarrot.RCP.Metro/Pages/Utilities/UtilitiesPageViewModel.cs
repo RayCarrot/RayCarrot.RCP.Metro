@@ -25,6 +25,7 @@
                 new UtilityViewModel(new R2SaveConverterUtility()),
                 new UtilityViewModel(new R2ConfigConverterUtility()),
                 new UtilityViewModel(new GFConverterUtility()),
+                new UtilityViewModel(new RMSaveConverterUtility()),
                 new UtilityViewModel(new R3SaveConverterUtility()),
                 new UtilityViewModel(new LOCConverterUtility()),
                 new UtilityViewModel(new ROSaveConverterUtility()),

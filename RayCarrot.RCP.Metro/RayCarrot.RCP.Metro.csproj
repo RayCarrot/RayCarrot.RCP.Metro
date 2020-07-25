@@ -237,6 +237,8 @@
     <Compile Include="Utilities\General\Converter\R2Save\R2SaveConverterUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Converter\R1Save\R1SaveConverterUtility.cs" />
     <Compile Include="Utilities\General\Converter\R1Save\R1SaveConverterUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\Converter\RMSave\RMSaveConverterUtility.cs" />
+    <Compile Include="Utilities\General\Converter\RMSave\RMSaveConverterUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Converter\R3Save\R3SaveConverterUtility.cs" />
     <Compile Include="Utilities\General\Converter\R3Save\R3SaveConverterUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Converter\ROSave\ROSaveConverterUtility.cs" />
