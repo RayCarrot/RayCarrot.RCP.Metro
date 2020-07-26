@@ -412,7 +412,7 @@ namespace RayCarrot.RCP.Metro
             FileEntry.IsCompressed,
             ByteSize.FromBytes(FileEntry.Size),
             ByteSize.FromBytes(FileEntry.CompressedSize),
-            FileEntry.Offsets.First() + BaseOffset);
+            $"0x{FileEntry.Offsets.First() + BaseOffset:x8}");
 
         /// <summary>
         /// The default icon to use for this file

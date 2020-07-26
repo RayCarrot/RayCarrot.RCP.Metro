@@ -5,6 +5,7 @@
 
 Other changes:
 • Added Fabiosek to the credits
+• The Archive Explorer now shows file pointers as hex values
 • Improved the Rayman 1 & 3 save file serialization
 • Removed option to directly download fan-games
 • Removed links to the Discord server due to it having been removed

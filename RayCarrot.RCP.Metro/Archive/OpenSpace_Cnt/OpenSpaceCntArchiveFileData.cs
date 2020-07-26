@@ -107,7 +107,7 @@ namespace RayCarrot.RCP.Metro
             FileEntry.Checksum == 0,
             FileEntry.FileXORKey.Any(x => x != 0), 
             IsTransparent, 
-            FileEntry.Pointer, 
+            $"0x{FileEntry.Pointer:x8}", 
             Mipmaps,
             Format);
 
