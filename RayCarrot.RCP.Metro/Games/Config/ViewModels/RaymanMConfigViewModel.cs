@@ -24,86 +24,40 @@ namespace RayCarrot.RCP.Metro
         #region Protected Override Properties
 
         /// <summary>
-        /// The offset for when patching the game check or -1 if not available
+        /// The available game patches
         /// </summary>
-        protected override int PatchGameCheckOffset => 9776;
-
-        /// <summary>
-        /// The original bytes for when patching the game check
-        /// </summary>
-        protected override byte[] PatchGameCheckOriginalBytes => new byte[]
+        protected override GamePatcherData[] Patches => new GamePatcherData[]
         {
-            0x00,
-            0x00,
-            0x83,
-            0xC4,
-            0x0C,
-            0x6A,
-            0xFF,
-            0xFF,
-            0x15,
-            0x68,
-            0x32,
-            0x58,
-            0x00,
-            0xE8,
-            0x3E,
-            0xBE,
-            0x02,
-            0x00,
-            0xE8,
-            0x2C,
-            0xF1,
-            0xFF,
-            0xFF,
-            0x85,
-            0xC0,
-            0x75,
-            0x0F,
-            0x5F,
-            0x5E,
-            0x83,
-            0xC8,
-            0xFF
-        };
-
-        /// <summary>
-        /// The patched bytes when patching the game check
-        /// </summary>
-        protected override byte[] PatchGameCheckPatchedBytes => new byte[]
-        {
-            0x00,
-            0x00,
-            0x83,
-            0xC4,
-            0x0C,
-            0x6A,
-            0xFF,
-            0xFF,
-            0x15,
-            0x68,
-            0x32,
-            0x58,
-            0x00,
-            0xE9,
-            0x00,
-            0x00,
-            0x00,
-            0x00,
-            0xE8,
-            0x2C,
-            0xF1,
-            0xFF,
-            0xFF,
-            0x85,
-            0xC0,
-            0x75,
-            0x0F,
-            0x5F,
-            0x5E,
-            0x83,
-            0xC8,
-            0xFF
+            new GamePatcherData(0x263D, new byte[]
+            {
+                0xE8,
+                0x3E,
+                0xBE,
+                0x02,
+                0x00,
+            }, new byte[]
+            {
+                0xE9,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+            }, 0x1C4000), 
+            new GamePatcherData(0x21EE, new byte[]
+            {
+                0xE8,
+                0xEd,
+                0xBD,
+                0x02,
+                0x00,
+            }, new byte[]
+            {
+                0xE9,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+            }, 0x1C3000), 
         };
 
         #endregion

@@ -82,19 +82,9 @@ namespace RayCarrot.RCP.Metro
         #region Protected Abstract Properties
 
         /// <summary>
-        /// The offset for when patching the game check or -1 if not available
+        /// The available game patches
         /// </summary>
-        protected abstract int PatchGameCheckOffset { get; }
-
-        /// <summary>
-        /// The original bytes for when patching the game check
-        /// </summary>
-        protected abstract byte[] PatchGameCheckOriginalBytes { get; }
-
-        /// <summary>
-        /// The patched bytes when patching the game check
-        /// </summary>
-        protected abstract byte[] PatchGameCheckPatchedBytes { get; }
+        protected abstract GamePatcherData[] Patches { get; }
 
         #endregion
 
@@ -408,7 +398,7 @@ namespace RayCarrot.RCP.Metro
             ControllerSupport = dinputType == DinputType.Controller;
 
             // Check if the disc check has been removed
-            CanRemoveDiscCheck = PatchGameCheckOffset != -1;
+            CanRemoveDiscCheck = Patches != null;
 
             if (CanRemoveDiscCheck)
             {
@@ -418,7 +408,7 @@ namespace RayCarrot.RCP.Metro
                 // Check if it exists
                 if (gameFile.FileExists)
                 {
-                    Patcher = new GamePatcher(gameFile, PatchGameCheckOriginalBytes, PatchGameCheckPatchedBytes, PatchGameCheckOffset);
+                    Patcher = new GamePatcher(gameFile, Patches);
 
                     var result = Patcher.GetIsOriginal();
 
@@ -560,7 +550,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     try
                     {
-                        Patcher = new GamePatcher(Game.GetInstallDir() + Game.GetGameInfo().DefaultFileName, PatchGameCheckOriginalBytes, PatchGameCheckPatchedBytes, PatchGameCheckOffset);
+                        Patcher = new GamePatcher(Game.GetInstallDir() + Game.GetGameInfo().DefaultFileName, Patches);
 
                         var result = Patcher.GetIsOriginal();
 

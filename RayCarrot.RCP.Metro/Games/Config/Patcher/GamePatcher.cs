@@ -17,18 +17,14 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         /// <param name="gameFile">The game file to patch</param>
-        /// <param name="originalBytes">The original bytes to patch</param>
-        /// <param name="patchedBytes">The bytes to replace the original ones with</param>
-        /// <param name="offset">The byte offset</param>
-        public GamePatcher(FileSystemPath gameFile, byte[] originalBytes, byte[] patchedBytes, int offset)
+        /// <param name="patches">The patches to use</param>
+        public GamePatcher(FileSystemPath gameFile, GamePatcherData[] patches)
         {
             GameFile = gameFile;
-            OriginalBytes = originalBytes;
-            PatchedBytes = patchedBytes;
-            Offset = offset;
+            Patches = patches;
 
-            if (originalBytes.Length != patchedBytes.Length)
-                throw new ArgumentException("The original and patched bytes need to be of the same length");
+            if (Patches.Select(x => x.FileSize).Distinct().Count() != Patches.Length)
+                throw new ArgumentException("All patches must have unique file sizes", nameof(patches));
         }
 
         #endregion
@@ -41,19 +37,9 @@ namespace RayCarrot.RCP.Metro
         public FileSystemPath GameFile { get; }
 
         /// <summary>
-        /// The original bytes to patch
+        /// The patches to use
         /// </summary>
-        public byte[] OriginalBytes { get; }
-
-        /// <summary>
-        /// The bytes to replace the original ones with
-        /// </summary>
-        public byte[] PatchedBytes { get; }
-
-        /// <summary>
-        /// The byte offset
-        /// </summary>
-        public int Offset { get; }
+        public GamePatcherData[] Patches { get; set; }
 
         #endregion
 
@@ -69,14 +55,26 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
+                // Get the file size
+                var fileSize = (uint)GameFile.GetSize().Bytes;
+
+                // Find matching patch
+                var patch = Patches.FirstOrDefault(x => x.FileSize == fileSize);
+
+                if (patch == null)
+                {
+                    RL.Logger?.LogWarningSource("The game file size does not match any available patch");
+                    return null;
+                }
+
                 // Create a buffer
-                byte[] currentBytes = new byte[OriginalBytes.Length];
+                byte[] currentBytes = new byte[patch.OriginalBytes.Length];
 
                 // Open the file as a stream
                 using (Stream stream = File.Open(GameFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     // Set the position
-                    stream.Position = Offset;
+                    stream.Position = patch.PatchOffset;
 
                     // Read the bytes
                     var read = stream.Read(currentBytes, 0, currentBytes.Length);
@@ -85,12 +83,12 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Check if they match
-                if (currentBytes.SequenceEqual(OriginalBytes))
+                if (currentBytes.SequenceEqual(patch.OriginalBytes))
                 {
                     RL.Logger?.LogInformationSource("The game file was detected as original");
                     return true;
                 }
-                else if (currentBytes.SequenceEqual(PatchedBytes))
+                else if (currentBytes.SequenceEqual(patch.PatchedBytes))
                 {
                     RL.Logger?.LogInformationSource("The game file was detected as patched");
                     return false;
@@ -121,11 +119,14 @@ namespace RayCarrot.RCP.Metro
                 // Open the file as a stream
                 using Stream stream = File.Open(GameFile, FileMode.Open, FileAccess.Write);
 
+                // Find matching patch
+                var patch = Patches.First(x => x.FileSize == stream.Length);
+
                 // Set the position
-                stream.Position = Offset;
+                stream.Position = patch.PatchOffset;
 
                 // Write the bytes
-                stream.Write(useOriginalBytes ? OriginalBytes : PatchedBytes, 0, OriginalBytes.Length);
+                stream.Write(useOriginalBytes ? patch.OriginalBytes : patch.PatchedBytes, 0, patch.OriginalBytes.Length);
 
                 RL.Logger?.LogInformationSource("Game file was patched");
             }
