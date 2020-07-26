@@ -59,7 +59,7 @@ namespace RayCarrot.RCP.Metro
             // Set the position
             memStream.Position = 0;
 
-            // Deserialize and return the data
+            // Deserialize the data
             var saveData = BinarySerializableHelpers.ReadFromStream<Rayman3PCSaveData>(memStream, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman3, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
 
             RL.Logger?.LogInformationSource($"Slot has been deserialized");
@@ -70,7 +70,7 @@ namespace RayCarrot.RCP.Metro
                 NumberDecimalDigits = 0
             };
 
-            // Create the collection with items for each time trial level + general information
+            // Create the collection with items for each level + general information
             var progressItems = new ProgressionInfoItemViewModel[]
             {
                 new ProgressionInfoItemViewModel(ProgressionIcons.R3_Cage, new LocalizedString(() => $"{saveData.TotalCages}/60")),

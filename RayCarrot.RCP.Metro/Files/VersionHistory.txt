@@ -1,6 +1,7 @@
-﻿-----   Version 10.2.0 - July ??, 2020   -----
-• The UbiArt localization converter utility can now handle Rayman Origins (3DS) files
+﻿-----   Version 10.2.0 - August ??, 2020   -----
+• Added the progression tab for Rayman M/Arena
 • Added a utility for converting Rayman M/Arena save files
+• The UbiArt localization converter utility can now handle Rayman Origins (3DS) files
 
 Other changes:
 • Added Fabiosek to the credits

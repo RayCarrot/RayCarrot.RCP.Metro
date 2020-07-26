@@ -165,6 +165,10 @@
     <Compile Include="Games\Progression\Rayman2\Rayman2ProgressionViewModel.cs" />
     <Compile Include="Games\Progression\Rayman1\Rayman1ProgressionSlotViewModel.cs" />
     <Compile Include="Games\Progression\Rayman1\Rayman1ProgressionViewModel.cs" />
+    <Compile Include="Games\Progression\RaymanM\RaymanMArenaProgressionSlotViewModel.cs" />
+    <Compile Include="Games\Progression\RaymanM\RaymanArenaProgressionViewModel.cs" />
+    <Compile Include="Games\Progression\RaymanM\RaymanMProgressionViewModel.cs" />
+    <Compile Include="Games\Progression\RaymanM\RaymanMArenaProgressionViewModel.cs" />
     <Compile Include="Games\Progression\UI\ProgressionUI.xaml.cs">
       <DependentUpon>ProgressionUI.xaml</DependentUpon>
     </Compile>
@@ -1131,6 +1135,24 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\ProgressionIcons\RM_Battle.png" />
+    <Resource Include="Img\ProgressionIcons\RM_Race.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R10.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R11.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R12.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R13.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R14.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R15.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R2.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R3.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R4.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R5.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R6.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R7.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R8.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R9.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R1.png" />
+    <Resource Include="Img\ProgressionIcons\RM_R0.png" />
     <Resource Include="Img\GameIcons\RaymanRedemption.png" />
     <Resource Include="Img\ProgressionIcons\R2_Clock.png" />
     <Resource Include="Img\ProgressionIcons\R1_Continue.png" />

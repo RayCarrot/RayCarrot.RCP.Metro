@@ -15,6 +15,27 @@
         R2_Lum,
         R2_Clock,
 
+        // Rayman M
+        RM_Race,
+        RM_Battle,
+
+        RM_R0,
+        RM_R1,
+        RM_R2,
+        RM_R3,
+        RM_R4,
+        RM_R5,
+        RM_R6,
+        RM_R7,
+        RM_R8,
+        RM_R9,
+        RM_R10,
+        RM_R11,
+        RM_R12,
+        RM_R13,
+        RM_R14,
+        RM_R15,
+
         // Rayman 3
         R3_Cage,
         R3_Score,
