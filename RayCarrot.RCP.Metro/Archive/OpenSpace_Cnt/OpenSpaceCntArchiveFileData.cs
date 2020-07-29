@@ -321,6 +321,10 @@ namespace RayCarrot.RCP.Metro
                 // Get the raw bitmap data
                 rawBitmapData = new RawBitmapData(bmp.Width, bmp.Height, bmpLock.Pixels, bmp.PixelFormat);
 
+                // Force the new pixel format to be 888 or 8888 if set to do so
+                if (RCPServices.Data.Archive_GF_ForceGF8888Import)
+                    gf.GFPixelFormat = gf.GFPixelFormat.SupportsTransparency() ? OpenSpaceGFFormat.Format_32bpp_BGRA_8888 : OpenSpaceGFFormat.Format_24bpp_BGR_888;
+
                 // Check if the format should be updated for transparency
                 if (RCPServices.Data.Archive_GF_UpdateTransparency != Archive_GF_TransparencyMode.PreserveFormat)
                 {

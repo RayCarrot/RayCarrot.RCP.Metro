@@ -64,6 +64,7 @@ namespace RayCarrot.RCP.Metro
             Archive_GF_UpdateTransparency = Archive_GF_TransparencyMode.PreserveFormat;
             BinarySerializationFileLogPath = FileSystemPath.EmptyPath;
             HandleDownloadsManually = false;
+            Archive_GF_ForceGF8888Import = false;
         }
 
         #endregion
@@ -292,6 +293,11 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if downloads should be handled manually. This does not apply to application updates.
         /// </summary>
         public bool HandleDownloadsManually { get; set; }
+
+        /// <summary>
+        /// Indicates if an imported .gf file should be forced to 888 (no transparency) or 8888 (with transparency)
+        /// </summary>
+        public bool Archive_GF_ForceGF8888Import { get; set; }
 
         #endregion
     }

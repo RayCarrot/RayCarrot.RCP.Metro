@@ -3,6 +3,7 @@
 • Added a utility for converting Rayman M/Arena save files
 • The UbiArt localization converter utility can now handle Rayman Origins (3DS) files
 • The disc check removal option now supports a second version of Rayman M
+• Added an option to convert .gf files to 32-bit on import
 
 Other changes:
 • Added Fabiosek to the credits

@@ -542,6 +542,11 @@ namespace RayCarrot.RCP.Metro
                 Data.HandleDownloadsManually = false;
             }
 
+            if (Data.LastVersion < new Version(10, 2, 0, 0))
+            {
+                Data.Archive_GF_ForceGF8888Import = false;
+            }
+
             // Re-deploy files
             await RCPServices.App.DeployFilesAsync(true);
 
