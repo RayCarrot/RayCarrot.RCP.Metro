@@ -21,11 +21,10 @@ namespace RayCarrot.RCP.Metro
 
         #region Interface Members
 
-        // TODO-UPDATE: Localize
         /// <summary>
         /// The header for the utility. This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string DisplayHeader => "Rayman M/Arena Save Files (.sav)";
+        public string DisplayHeader => Resources.Utilities_Converter_RMSaveHeader;
 
         /// <summary>
         /// The utility information text (optional). This property is retrieved again when the current culture is changed.

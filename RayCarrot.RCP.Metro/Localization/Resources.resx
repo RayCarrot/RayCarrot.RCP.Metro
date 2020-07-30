@@ -2362,7 +2362,7 @@ appDataLocations</comment>
   </data>
   <data name="Cheats_RM" xml:space="preserve">
     <value>Music team:
-To activate it, enter race mode and pause the game. On the pause screen, hold L1 + R1 (or equivalent on the currently used controller), then press the optimize button. Five blue balls will appear at the bottom of the screen. Release alll buttons and press jump. The player should hear a high pitched "ding" sound, and after 0.5 seconds, the first ball should turn yellow. As soon as the ball turns yellow, hold jump. The second ball should then turn yellow. As soon as the second ball turns yellow, release jump. The third ball should then turn yellow. As soon as the third ball turns yellow, hold jump again. The fourth ball should then turn yellow. As soon as the fourth ball turns yellow, release jump. The player should be taken to the "Music Mode" screen where the player will be able to choose "Music Team".
+To activate it, enter race mode and pause the game. On the pause screen, hold L1 + R1 (or equivalent on the currently used controller), then press the optimize button. Five blue balls will appear at the bottom of the screen. Release all buttons and press jump. The player should hear a high pitched "ding" sound, and after 0.5 seconds, the first ball should turn yellow. As soon as the ball turns yellow, hold jump. The second ball should then turn yellow. As soon as the second ball turns yellow, release jump. The third ball should then turn yellow. As soon as the third ball turns yellow, hold jump again. The fourth ball should then turn yellow. As soon as the fourth ball turns yellow, release jump. The player should be taken to the "Music Mode" screen where the player will be able to choose "Music Team".
 
 Cheat menu:
 Hold L1 + R1 in the menu (or equivalent on the currently used controller), then hold circle, then hold the rest of the face buttons + L2 + R2. 10 balls will appear at the bottom and count up. When it reaches the last one the menu will be unlocked.</value>
@@ -3497,5 +3497,92 @@ fileCount</comment>
   </data>
   <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
     <value>Tonic Trouble Encoded Files (.sna/.dsb)</value>
+  </data>
+  <data name="About_Credits_Fabiosek" xml:space="preserve">
+    <value>Polish (Poland) program translation</value>
+  </data>
+  <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
+    <value>Rayman M/Arena Save Files (.sav)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888" xml:space="preserve">
+    <value>Convert to 32-bit on import (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888Info" xml:space="preserve">
+    <value>Indicates if the .gf file should be converted to 24/32-bit on import for highest possible quality</value>
+  </data>
+  <data name="Progression_RM_LapTraining" xml:space="preserve">
+    <value>Best Lap (Training)</value>
+  </data>
+  <data name="Progression_RM_LapRace" xml:space="preserve">
+    <value>Best Lap (Race)</value>
+  </data>
+  <data name="Progression_RM_LapTarget" xml:space="preserve">
+    <value>Best Lap (Target)</value>
+  </data>
+  <data name="Progression_RM_LapLums" xml:space="preserve">
+    <value>Best Lap (Lums)</value>
+  </data>
+  <data name="Progression_RM_TimeRace" xml:space="preserve">
+    <value>Best Time (Race)</value>
+  </data>
+  <data name="Progression_RM_TimeTarget" xml:space="preserve">
+    <value>Best Time (Target)</value>
+  </data>
+  <data name="Progression_RM_TimeLums" xml:space="preserve">
+    <value>Best Time (Lums)</value>
+  </data>
+  <data name="Progression_RM_Targets" xml:space="preserve">
+    <value>Targets</value>
+  </data>
+  <data name="Progression_RM_Lums" xml:space="preserve">
+    <value>Lums</value>
+  </data>
+  <data name="RM_RaceName_0" xml:space="preserve">
+    <value>First Ruins</value>
+  </data>
+  <data name="RM_RaceName_1" xml:space="preserve">
+    <value>Nebulous Tower</value>
+  </data>
+  <data name="RM_RaceName_2" xml:space="preserve">
+    <value>Dark Sewer</value>
+  </data>
+  <data name="RM_RaceName_3" xml:space="preserve">
+    <value>Dawn Sand</value>
+  </data>
+  <data name="RM_RaceName_4" xml:space="preserve">
+    <value>Water Canyon</value>
+  </data>
+  <data name="RM_RaceName_5" xml:space="preserve">
+    <value>Thousand Waterfalls</value>
+  </data>
+  <data name="RM_RaceName_6" xml:space="preserve">
+    <value>Forest Jump</value>
+  </data>
+  <data name="RM_RaceName_7" xml:space="preserve">
+    <value>Zenith Harbour</value>
+  </data>
+  <data name="RM_RaceName_8" xml:space="preserve">
+    <value>Treasure Ship</value>
+  </data>
+  <data name="RM_RaceName_9" xml:space="preserve">
+    <value>Pipe Maze</value>
+  </data>
+  <data name="RM_RaceName_10" xml:space="preserve">
+    <value>Lava Factory</value>
+  </data>
+  <data name="RM_RaceName_11" xml:space="preserve">
+    <value>Electric Final</value>
+  </data>
+  <data name="RM_RaceName_12" xml:space="preserve">
+    <value>Future</value>
+  </data>
+  <data name="RM_RaceName_13" xml:space="preserve">
+    <value>Big Bang</value>
+  </data>
+  <data name="RM_RaceName_14" xml:space="preserve">
+    <value>Speed Stress</value>
+  </data>
+  <data name="RM_RaceName_15" xml:space="preserve">
+    <value>Born To Slide</value>
   </data>
 </root>

@@ -250,10 +250,8 @@
                               ToolTip="{Resx Settings_ArchiveGFGenerateMipmapsInfo}"
                               IsChecked="{Binding Path=Archive_GF_GenerateMipmaps}" />
 
-                    <!-- TODO-UPDATE: Localize -->
-
-                    <CheckBox Content="Convert to 32-bit on import (.gf)"
-                              ToolTip="Indicates if the .gf file should be converted to 24/32-bit on import for highest possible quality"
+                    <CheckBox Content="{Resx Settings_ArchiveGFForce8888}"
+                              ToolTip="{Resx Settings_ArchiveGFForce8888Info}"
                               IsChecked="{Binding Path=Archive_GF_ForceGF8888Import}" />
 
                     <StackPanel>

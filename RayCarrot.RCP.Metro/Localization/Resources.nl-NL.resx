@@ -3398,4 +3398,55 @@ Pointer = {8}</value>
   <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
     <value>Tonic Trouble Geëncodeerde Bestanden (.sna/.dsb)</value>
   </data>
+  <data name="About_Credits_Fabiosek" xml:space="preserve">
+    <value>Poolse (Polen) programmavertaling</value>
+  </data>
+  <data name="RM_RaceName_0" xml:space="preserve">
+    <value>First Ruins</value>
+  </data>
+  <data name="RM_RaceName_1" xml:space="preserve">
+    <value>Nebulous Tower</value>
+  </data>
+  <data name="RM_RaceName_2" xml:space="preserve">
+    <value>Dark Sewer</value>
+  </data>
+  <data name="RM_RaceName_3" xml:space="preserve">
+    <value>Dawn Sand</value>
+  </data>
+  <data name="RM_RaceName_4" xml:space="preserve">
+    <value>Water Canyon</value>
+  </data>
+  <data name="RM_RaceName_5" xml:space="preserve">
+    <value>Thousand Waterfalls</value>
+  </data>
+  <data name="RM_RaceName_6" xml:space="preserve">
+    <value>Forest Jump</value>
+  </data>
+  <data name="RM_RaceName_7" xml:space="preserve">
+    <value>Zenith Harbour</value>
+  </data>
+  <data name="RM_RaceName_8" xml:space="preserve">
+    <value>Treasure Ship</value>
+  </data>
+  <data name="RM_RaceName_9" xml:space="preserve">
+    <value>Pipe Maze</value>
+  </data>
+  <data name="RM_RaceName_10" xml:space="preserve">
+    <value>Lava Factory</value>
+  </data>
+  <data name="RM_RaceName_11" xml:space="preserve">
+    <value>Electric Final</value>
+  </data>
+  <data name="RM_RaceName_12" xml:space="preserve">
+    <value>Future</value>
+  </data>
+  <data name="RM_RaceName_13" xml:space="preserve">
+    <value>Big Bang</value>
+  </data>
+  <data name="RM_RaceName_14" xml:space="preserve">
+    <value>Speed Stress</value>
+  </data>
+  <data name="RM_RaceName_15" xml:space="preserve">
+    <value>Born To Slide</value>
+  </data>
 </root>

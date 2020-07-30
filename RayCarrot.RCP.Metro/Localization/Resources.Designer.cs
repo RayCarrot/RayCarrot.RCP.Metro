@@ -115,6 +115,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Polish (Poland) program translation.
+        /// </summary>
+        public static string About_Credits_Fabiosek {
+            get {
+                return ResourceManager.GetString("About_Credits_Fabiosek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Spanish (Spain) program translation, Catalan (Catalan) program translation.
         /// </summary>
         public static string About_Credits_Hakyra {
@@ -1931,7 +1940,7 @@ namespace RayCarrot.RCP.Metro {
         
         /// <summary>
         ///   Looks up a localized string similar to Music team:
-        ///To activate it, enter race mode and pause the game. On the pause screen, hold L1 + R1 (or equivalent on the currently used controller), then press the optimize button. Five blue balls will appear at the bottom of the screen. Release alll buttons and press jump. The player should hear a high pitched &quot;ding&quot; sound, and after 0.5 seconds, the first ball should turn yellow. As soon as the ball turns yellow, hold jump. The second ball should then turn yellow. As soon as the second ball turns yellow,  [rest of string was truncated]&quot;;.
+        ///To activate it, enter race mode and pause the game. On the pause screen, hold L1 + R1 (or equivalent on the currently used controller), then press the optimize button. Five blue balls will appear at the bottom of the screen. Release all buttons and press jump. The player should hear a high pitched &quot;ding&quot; sound, and after 0.5 seconds, the first ball should turn yellow. As soon as the ball turns yellow, hold jump. The second ball should then turn yellow. As soon as the second ball turns yellow, r [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Cheats_RM {
             get {
@@ -6551,6 +6560,87 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Best Lap (Lums).
+        /// </summary>
+        public static string Progression_RM_LapLums {
+            get {
+                return ResourceManager.GetString("Progression_RM_LapLums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Best Lap (Race).
+        /// </summary>
+        public static string Progression_RM_LapRace {
+            get {
+                return ResourceManager.GetString("Progression_RM_LapRace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Best Lap (Target).
+        /// </summary>
+        public static string Progression_RM_LapTarget {
+            get {
+                return ResourceManager.GetString("Progression_RM_LapTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Best Lap (Training).
+        /// </summary>
+        public static string Progression_RM_LapTraining {
+            get {
+                return ResourceManager.GetString("Progression_RM_LapTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lums.
+        /// </summary>
+        public static string Progression_RM_Lums {
+            get {
+                return ResourceManager.GetString("Progression_RM_Lums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Targets.
+        /// </summary>
+        public static string Progression_RM_Targets {
+            get {
+                return ResourceManager.GetString("Progression_RM_Targets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Best Time (Lums).
+        /// </summary>
+        public static string Progression_RM_TimeLums {
+            get {
+                return ResourceManager.GetString("Progression_RM_TimeLums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Best Time (Race).
+        /// </summary>
+        public static string Progression_RM_TimeRace {
+            get {
+                return ResourceManager.GetString("Progression_RM_TimeRace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Best Time (Target).
+        /// </summary>
+        public static string Progression_RM_TimeTarget {
+            get {
+                return ResourceManager.GetString("Progression_RM_TimeTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Complete Soundtrack.
         /// </summary>
         public static string R1U_CompleteOSTHeader {
@@ -7784,6 +7874,150 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First Ruins.
+        /// </summary>
+        public static string RM_RaceName_0 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nebulous Tower.
+        /// </summary>
+        public static string RM_RaceName_1 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lava Factory.
+        /// </summary>
+        public static string RM_RaceName_10 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Electric Final.
+        /// </summary>
+        public static string RM_RaceName_11 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Future.
+        /// </summary>
+        public static string RM_RaceName_12 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Big Bang.
+        /// </summary>
+        public static string RM_RaceName_13 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed Stress.
+        /// </summary>
+        public static string RM_RaceName_14 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Born To Slide.
+        /// </summary>
+        public static string RM_RaceName_15 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark Sewer.
+        /// </summary>
+        public static string RM_RaceName_2 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dawn Sand.
+        /// </summary>
+        public static string RM_RaceName_3 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Water Canyon.
+        /// </summary>
+        public static string RM_RaceName_4 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thousand Waterfalls.
+        /// </summary>
+        public static string RM_RaceName_5 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forest Jump.
+        /// </summary>
+        public static string RM_RaceName_6 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zenith Harbour.
+        /// </summary>
+        public static string RM_RaceName_7 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Treasure Ship.
+        /// </summary>
+        public static string RM_RaceName_8 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pipe Maze.
+        /// </summary>
+        public static string RM_RaceName_9 {
+            get {
+                return ResourceManager.GetString("RM_RaceName_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred when applying the debug commands.
         /// </summary>
         public static string ROU_DebugCommandsError {
@@ -8212,6 +8446,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Settings_AdminInfo {
             get {
                 return ResourceManager.GetString("Settings_AdminInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert to 32-bit on import (.gf).
+        /// </summary>
+        public static string Settings_ArchiveGFForce8888 {
+            get {
+                return ResourceManager.GetString("Settings_ArchiveGFForce8888", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicates if the .gf file should be converted to 24/32-bit on import for highest possible quality.
+        /// </summary>
+        public static string Settings_ArchiveGFForce8888Info {
+            get {
+                return ResourceManager.GetString("Settings_ArchiveGFForce8888Info", resourceCulture);
             }
         }
         
@@ -9313,6 +9565,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_Converter_RLSaveHeader {
             get {
                 return ResourceManager.GetString("Utilities_Converter_RLSaveHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman M/Arena Save Files (.sav).
+        /// </summary>
+        public static string Utilities_Converter_RMSaveHeader {
+            get {
+                return ResourceManager.GetString("Utilities_Converter_RMSaveHeader", resourceCulture);
             }
         }
         

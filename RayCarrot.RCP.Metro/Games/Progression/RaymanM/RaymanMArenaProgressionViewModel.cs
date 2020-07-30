@@ -106,33 +106,8 @@ namespace RayCarrot.RCP.Metro
                     // Get the index to use for this race in this slot
                     var index = slotIndex * 16 + raceIndex;
 
-                    // TODO-UPDATE: Localize
-                    var levelNames = new string[]
-                    {
-                        "First Ruins",
-                        "Nebulous Tower",
-                        "Dark Sewer",
-
-                        "Dawn Sand",
-                        "Water Canyon",
-                        "Thousand Waterfalls",
-
-                        "Forest Jump",
-                        "Zenith Harbour",
-                        "Treasure Ship",
-
-                        "Pipe Maze",
-                        "Lava Factory",
-                        "Electric Final",
-
-                        "Future",
-                        "Big Bang",
-                        "Speed Stress",
-                        "Born To Slide",
-                    };
-
                     // Helper method for adding a race item
-                    void AddRaceItem(string key, string description, bool isTime = true)
+                    void AddRaceItem(string key, Func<string> getDescription, bool isTime = true)
                     {
                         // Get the value
                         var value = GetValues(key)[index];
@@ -143,21 +118,20 @@ namespace RayCarrot.RCP.Metro
                                 // Get the level icon
                                 Enum.Parse(typeof(ProgressionIcons), $"RM_R{raceIndex}").CastTo<ProgressionIcons>(), 
                                 // The value
-                                new LocalizedString(() => $"{description}: {(isTime ? (GetTime(value).ToString("mm\\:ss\\:fff")) : value.ToString())}"),
+                                new LocalizedString(() => $"{getDescription()}: {(isTime ? (GetTime(value).ToString("mm\\:ss\\:fff")) : value.ToString())}"),
                                 // The description (level name)
-                                new LocalizedString(() => levelNames[raceIndex])));
+                                new LocalizedString(() => Resources.ResourceManager.GetString($"RM_RaceName_{raceIndex}"))));
                     }
 
-                    // TODO-UPDATE: Localize
-                    AddRaceItem("sg_racelevels_bestlap_training", "Best Lap (Training)");
-                    AddRaceItem("sg_racelevels_bestlap_race", "Best Lap (Race)");
-                    AddRaceItem("sg_racelevels_bestlap_target", "Best Lap (Target)");
-                    AddRaceItem("sg_racelevels_bestlap_lums", "Best Lap (Lums)");
-                    AddRaceItem("sg_racelevels_besttime_race", "Best Time (Race)");
-                    AddRaceItem("sg_racelevels_besttime_target", "Best Time (Target)");
-                    AddRaceItem("sg_racelevels_besttime_lums", "Best Time (Lums)");
-                    AddRaceItem("sg_racelevels_bestnumber_target", "Targets", false);
-                    AddRaceItem("sg_racelevels_bestnumber_lums", "Lums", false);
+                    AddRaceItem("sg_racelevels_bestlap_training", () => Resources.Progression_RM_LapTraining);
+                    AddRaceItem("sg_racelevels_bestlap_race", () => Resources.Progression_RM_LapRace);
+                    AddRaceItem("sg_racelevels_bestlap_target", () => Resources.Progression_RM_LapTarget);
+                    AddRaceItem("sg_racelevels_bestlap_lums", () => Resources.Progression_RM_LapLums);
+                    AddRaceItem("sg_racelevels_besttime_race", () => Resources.Progression_RM_TimeRace);
+                    AddRaceItem("sg_racelevels_besttime_target", () => Resources.Progression_RM_TimeTarget);
+                    AddRaceItem("sg_racelevels_besttime_lums", () => Resources.Progression_RM_TimeLums);
+                    AddRaceItem("sg_racelevels_bestnumber_target", () => Resources.Progression_RM_Targets, false);
+                    AddRaceItem("sg_racelevels_bestnumber_lums", () => Resources.Progression_RM_Lums, false);
                 }
 
                 RL.Logger?.LogInformationSource($"General progress info has been set for slot {slotIndex}");
