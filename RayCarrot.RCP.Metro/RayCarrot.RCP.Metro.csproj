@@ -113,6 +113,10 @@
     <Compile Include="Archive\ArchiveCreator\ArchiveCreatorUI.xaml.cs">
       <DependentUpon>ArchiveCreatorUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Archive\New\File\ArchiveFileItem.cs" />
+    <Compile Include="Archive\New\File\Type\ArchiveFileType_Default.cs" />
+    <Compile Include="Archive\New\File\Type\ArchiveFileType_Image.cs" />
+    <Compile Include="Archive\New\File\Type\IArchiveFileType.cs" />
     <Compile Include="Archive\OpenSpace_Cnt\Manager\BaseOpenSpaceCntArchiveDataManager.cs" />
     <Compile Include="Archive\OpenSpace_Cnt\Manager\OpenSpaceCntArchiveCreatorDataManager.cs" />
     <Compile Include="Archive\OpenSpace_Cnt\Manager\OpenSpaceCntArchiveExplorerDataManager.cs" />
