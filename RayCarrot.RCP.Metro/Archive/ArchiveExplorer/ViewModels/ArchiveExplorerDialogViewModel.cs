@@ -20,7 +20,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="manager">The archive data manager</param>
         /// <param name="filePaths">The archive file paths</param>
-        public ArchiveExplorerDialogViewModel(IArchiveExplorerDataManager manager, IEnumerable<FileSystemPath> filePaths)
+        public ArchiveExplorerDialogViewModel(IArchiveDataManager manager, IEnumerable<FileSystemPath> filePaths)
         {
             try
             {
@@ -67,14 +67,14 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Indicates if thumbnails are being refreshed
+        /// Indicates if files are being initialized
         /// </summary>
-        public bool IsRefreshingThumbnails { get; set; }
+        public bool IsInitializingFiles { get; set; }
 
         /// <summary>
-        /// Indicates if refreshing the thumbnails should be canceled
+        /// Indicates if initializing files should be canceled
         /// </summary>
-        public bool CancelRefreshingThumbnails { get; set; }
+        public bool CancelInitializeFiles { get; set; }
 
         /// <summary>
         /// Indicates if a process is running, such as importing/exporting
@@ -89,7 +89,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The archive data manager
         /// </summary>
-        public IArchiveExplorerDataManager Manager { get; }
+        public IArchiveDataManager Manager { get; }
 
         /// <summary>
         /// The current status to display
@@ -110,8 +110,8 @@ namespace RayCarrot.RCP.Metro
             RL.Logger?.LogDebugSource($"The loaded archive directory is changing from {previousDir?.DisplayName ?? "NULL"} to {newDir?.DisplayName ?? "NULL"}");
 
             // Stop refreshing thumbnails
-            if (IsRefreshingThumbnails)
-                CancelRefreshingThumbnails = true;
+            if (IsInitializingFiles)
+                CancelInitializeFiles = true;
 
             RL.Logger?.LogDebugSource($"Updating loaded archive dir from {previousDir?.DisplayName} to {newDir.DisplayName}");
 
@@ -121,17 +121,17 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Check if the operation should be canceled
-                    if (CancelRefreshingThumbnails)
+                    if (CancelInitializeFiles)
                     {
-                        RL.Logger?.LogDebugSource($"Canceled refreshing thumbnails for archive dir {newDir.DisplayName}");
+                        RL.Logger?.LogDebugSource($"Canceled initializing files for archive dir {newDir.DisplayName}");
 
                         return;
                     }
 
                     // Indicate that we are refreshing the thumbnails
-                    IsRefreshingThumbnails = true;
+                    IsInitializingFiles = true;
 
-                    RL.Logger?.LogDebugSource($"Refreshing thumbnails for archive dir {newDir.DisplayName}");
+                    RL.Logger?.LogDebugSource($"Initializing files for archive dir {newDir.DisplayName}");
 
                     // Remove all thumbnail image sources from memory
                     previousDir?.Files.ForEach(x =>
@@ -140,36 +140,33 @@ namespace RayCarrot.RCP.Metro
                         x.ThumbnailSource = null;
                     });
 
-                    // Load the thumbnail image sources for the new directory
+                    // Initialize files in the new directory
                     await Task.Run(() =>
                     {
-                        // Load the thumbnail for each file
+                        // Initialize each file
                         foreach (var x in newDir.Files.
                             // Copy to an array to avoid an exception when the files refresh
                             ToArray())
                         {
                             // Check if the operation should be canceled
-                            if (CancelRefreshingThumbnails)
+                            if (CancelInitializeFiles)
                             {
-                                RL.Logger?.LogDebugSource($"Canceled refreshing thumbnails for archive dir {newDir.DisplayName}");
+                                RL.Logger?.LogDebugSource($"Canceled initializing files for archive dir {newDir.DisplayName}");
 
                                 return;
                             }
 
-                            // Load the thumbnail
-                            x.LoadThumbnail();
-
-                            // Indicate that the thumbnail has been loaded
-                            x.IsInitialized = true;
+                            // Initialize the file
+                            x.InitializeFile();
                         }
                     });
 
-                    RL.Logger?.LogDebugSource($"Finished thumbnails for archive dir {newDir.DisplayName}");
+                    RL.Logger?.LogDebugSource($"Initialized files for archive dir {newDir.DisplayName}");
                 }
                 finally
                 {
-                    IsRefreshingThumbnails = false;
-                    CancelRefreshingThumbnails = false;
+                    IsInitializingFiles = false;
+                    CancelInitializeFiles = false;
                 }
             }
         }

@@ -32,7 +32,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets a new archive explorer data manager
         /// </summary>
-        protected override IArchiveExplorerDataManager GetArchiveExplorerDataManager
+        protected override IArchiveDataManager GetArchiveDataManager
         {
             get
             {
@@ -40,22 +40,7 @@ namespace RayCarrot.RCP.Metro
                 var attr = GameModeSelection.SelectedValue.GetAttribute<OpenSpaceGameModeInfoAttribute>();
                 var gameSettings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
-                return new OpenSpaceCntArchiveExplorerDataManager(gameSettings);
-            }
-        }
-
-        /// <summary>
-        /// Gets a new archive creator data manager
-        /// </summary>
-        protected override IArchiveCreatorDataManager GetArchiveCreatorDataManager
-        {
-            get
-            {
-                // Get the settings
-                var attr = GameModeSelection.SelectedValue.GetAttribute<OpenSpaceGameModeInfoAttribute>();
-                var gameSettings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
-
-                return new OpenSpaceCntArchiveCreatorDataManager(gameSettings);
+                return new OpenSpaceCntArchiveDataManager(gameSettings);
             }
         }
 

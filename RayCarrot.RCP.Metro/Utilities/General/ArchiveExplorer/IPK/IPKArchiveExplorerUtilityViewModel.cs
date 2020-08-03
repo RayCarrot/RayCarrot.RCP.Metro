@@ -39,28 +39,15 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets a new archive explorer data manager
         /// </summary>
-        protected override IArchiveExplorerDataManager GetArchiveExplorerDataManager
+        protected override IArchiveDataManager GetArchiveDataManager
         {
             get
             {
                 var attr = GameModeSelection.SelectedValue.GetAttribute<UbiArtGameModeInfoAttribute>();
                 var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
-                return new UbiArtIPKArchiveExplorerDataManager(settings);
-            }
-        }
-
-        /// <summary>
-        /// Gets a new archive creator data manager
-        /// </summary>
-        protected override IArchiveCreatorDataManager GetArchiveCreatorDataManager
-        {
-            get
-            {
-                var attr = GameModeSelection.SelectedValue.GetAttribute<UbiArtGameModeInfoAttribute>();
-                var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
-
-                return new UbiArtIPKArchiveCreatorDataManager(settings);
+                // TODO-UPDATE: Should be MatchesSettings for creator!
+                return new UbiArtIPKArchiveDataManager(new UbiArtIPKArchiveConfigViewModel(settings, UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed));
             }
         }
 

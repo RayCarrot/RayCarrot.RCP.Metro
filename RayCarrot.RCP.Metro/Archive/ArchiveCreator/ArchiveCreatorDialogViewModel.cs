@@ -20,7 +20,7 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         /// <param name="manager">The manager</param>
-        public ArchiveCreatorDialogViewModel(IArchiveCreatorDataManager manager)
+        public ArchiveCreatorDialogViewModel(IArchiveDataManager manager)
         {
             // Set properties
             Title = Resources.Archive_CreateHeader;
@@ -45,7 +45,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The manager
         /// </summary>
-        public IArchiveCreatorDataManager Manager { get; }
+        public IArchiveDataManager Manager { get; }
 
         /// <summary>
         /// Indicates if the creator tool is loading
@@ -95,64 +95,65 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the archive was successfully created, otherwise false</returns>
         public async Task<bool> CreateArchiveAsync()
         {
-            try
-            {
-                if (IsLoading)
-                    return false;
+            throw new NotImplementedException();
+            //try
+            //{
+            //    if (IsLoading)
+            //        return false;
 
-                IsLoading = true;
+            //    IsLoading = true;
 
-                return await Task.Run(async () =>
-                {
-                    // Make sure the input directory exists
-                    if (!InputDirectory.DirectoryExists)
-                    {
-                        await Services.MessageUI.DisplayMessageAsync(Resources.Archive_CreateErrorInputNotFound, MessageType.Error);
+            //    return await Task.Run(async () =>
+            //    {
+            //        // Make sure the input directory exists
+            //        if (!InputDirectory.DirectoryExists)
+            //        {
+            //            await Services.MessageUI.DisplayMessageAsync(Resources.Archive_CreateErrorInputNotFound, MessageType.Error);
 
-                        return false;
-                    }
+            //            return false;
+            //        }
 
-                    // Get the archive data from the files
-                    var archiveData = Manager.GetArchive(Directory.GetFiles(InputDirectory, "*", SearchOption.AllDirectories).Select(file => file - InputDirectory));
+            //        // Get the archive data from the files
+            //        var archiveData = Manager.GetArchive(Directory.GetFiles(InputDirectory, "*", SearchOption.AllDirectories).Select(file => file - InputDirectory));
 
-                    // Get the import data
-                    var importData = archiveData.FileEntries.Select(x => new ArchiveImportData(x.FileEntry, y =>
-                    {
-                        // Get the file path
-                        var filePath = InputDirectory + x.RelativeImportFilePath;
+            //        // Get the import data
+            //        var importData = archiveData.FileEntries.Select(x => new ArchiveImportData(x.FileEntry, y =>
+            //        {
+            //            // Get the file path
+            //            var filePath = InputDirectory + x.RelativeImportFilePath;
 
-                        SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, Path.GetFileName(filePath)));
+            //            SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, Path.GetFileName(filePath)));
 
-                        // Return the encoded file
-                        return Manager.EncodeFile(File.ReadAllBytes(filePath), x.FileEntry);
-                    })).ToArray();
+            //            // Return the encoded file
+            //            return Manager.EncodeFile(File.ReadAllBytes(filePath), x.FileEntry);
+            //        })).ToArray();
 
-                    // Open the output file
-                    using var outputStream = File.Open(OutputFile, FileMode.Create, FileAccess.Write);
+            //        // Open the output file
+            //        using var outputStream = File.Open(OutputFile, FileMode.Create, FileAccess.Write);
 
-                    // Update the archive
-                    Manager.UpdateArchive(archiveData.Archive, outputStream, importData);
+            //        // Update the archive
+            //        Manager.UpdateArchive(archiveData.Archive, outputStream, importData);
 
-                    DisplayStatus = String.Empty;
+            //        DisplayStatus = String.Empty;
 
-                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Archive_CreateSuccess, importData.Length));
+            //        await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Archive_CreateSuccess, importData.Length));
 
-                    return true;
-                });
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Creating archive", Manager);
+            //        return true;
+            //    });
+            //}
+            //catch (Exception ex)
+            //{
+            //    ex.HandleError("Creating archive", Manager);
 
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CreateError);
+            //    await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CreateError);
 
-                return false;
-            }
-            finally
-            {
-                IsLoading = false;
-                DisplayStatus = String.Empty;
-            }
+            //    return false;
+            //}
+            //finally
+            //{
+            //    IsLoading = false;
+            //    DisplayStatus = String.Empty;
+            //}
         }
 
         #endregion

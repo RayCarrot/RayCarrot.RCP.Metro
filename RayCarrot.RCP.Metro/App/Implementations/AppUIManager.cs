@@ -238,7 +238,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="filePath">The source code file path</param>
         /// <param name="lineNumber">The line number in the code file of the caller</param>
         /// <returns>The task</returns>
-        public async Task ShowArchiveExplorerAsync(IArchiveExplorerDataManager manager, IEnumerable<FileSystemPath> filePaths, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
+        public async Task ShowArchiveExplorerAsync(IArchiveDataManager manager, IEnumerable<FileSystemPath> filePaths, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
         {
             try
             {
@@ -267,7 +267,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="filePath">The source code file path</param>
         /// <param name="lineNumber">The line number in the code file of the caller</param>
         /// <returns>The task</returns>
-        public async Task ShowArchiveCreatorAsync(IArchiveCreatorDataManager manager, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
+        public async Task ShowArchiveCreatorAsync(IArchiveDataManager manager, [CallerMemberName]string origin = "", [CallerFilePath]string filePath = "", [CallerLineNumber]int lineNumber = 0)
         {
             if (Application.Current.Dispatcher == null)
                 throw new Exception("The application does not have a valid dispatcher");

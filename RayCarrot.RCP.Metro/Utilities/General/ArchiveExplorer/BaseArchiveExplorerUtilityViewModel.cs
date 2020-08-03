@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using RayCarrot.UI;
 using RayCarrot.WPF;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -33,12 +33,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets a new archive explorer data manager
         /// </summary>
-        protected abstract IArchiveExplorerDataManager GetArchiveExplorerDataManager { get; }
-
-        /// <summary>
-        /// Gets a new archive creator data manager
-        /// </summary>
-        protected abstract IArchiveCreatorDataManager GetArchiveCreatorDataManager { get; }
+        protected abstract IArchiveDataManager GetArchiveDataManager { get; }
 
         /// <summary>
         /// The file extension for the archive
@@ -65,7 +60,7 @@ namespace RayCarrot.RCP.Metro
         public async Task OpenArchiveExplorerAsync()
         {
             // Open the Archive Explorer
-            await OpenArchiveExplorerAsync(GetArchiveExplorerDataManager, new FileFilterItem($"*{ArchiveFileExtension}", ArchiveFileExtension.Substring(1).ToUpper()).ToString(), GameModeSelection.SelectedValue.GetGame());
+            await OpenArchiveExplorerAsync(GetArchiveDataManager, new FileFilterItem($"*{ArchiveFileExtension}", ArchiveFileExtension.Substring(1).ToUpper()).ToString(), GameModeSelection.SelectedValue.GetGame());
         }
 
         /// <summary>
@@ -75,7 +70,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="fileFilter">The file filter when selecting the files to open</param>
         /// <param name="game">The game to open, if available</param>
         /// <returns>The task</returns>
-        public async Task OpenArchiveExplorerAsync(IArchiveExplorerDataManager manager, string fileFilter, Games? game)
+        public async Task OpenArchiveExplorerAsync(IArchiveDataManager manager, string fileFilter, Games? game)
         {
             // Allow the user to select the files
             var fileResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
@@ -100,7 +95,7 @@ namespace RayCarrot.RCP.Metro
         public async Task CreateArchiveAsync()
         {
             // Show the Archive Creator
-            await RCPServices.UI.ShowArchiveCreatorAsync(GetArchiveCreatorDataManager);
+            await RCPServices.UI.ShowArchiveCreatorAsync(GetArchiveDataManager);
         }
 
         #endregion

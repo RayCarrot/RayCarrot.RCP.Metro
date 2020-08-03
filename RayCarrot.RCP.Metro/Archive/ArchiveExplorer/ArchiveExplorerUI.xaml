@@ -6,6 +6,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:controlzex="urn:controlzex"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ArchiveExplorerDialogViewModel}"
              Language="{UICulture}"
@@ -23,6 +25,11 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
             <!-- Directory Tree View -->
 
@@ -118,19 +125,22 @@
                             <Setter Property="ContextMenu">
                                 <Setter.Value>
                                     <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
-                                                 IsEnabled="{Binding Path=IsInitialized}"
                                                  d:DataContext="{d:DesignInstance local:ArchiveFileViewModel}">
 
                                         <local:MenuItemIcon Header="{Resx Archive_Export}"
-                                                            Command="{Binding Path=ExportCommand}"
-                                                            IconKind="FileExportOutline" />
-
-                                        <local:MenuItemIcon Header="{Resx Archive_ExportMipmaps}"
-                                                            Command="{Binding Path=ExportMipmapsCommand}"
-                                                            Visibility="{Binding Path=HasMipmaps, Converter={rwpf:BooleanToVisibilityConverter}}"
-                                                            IconKind="ImageMultiple" />
+                                                            IsEnabled="{Binding Path=IsInitialized}"
+                                                            IconKind="FileExportOutline"
+                                                            ItemsSource="{Binding Path=FileExports}">
+                                            <local:MenuItemIcon.ItemContainerStyle>
+                                                <Style TargetType="{x:Type MenuItem}">
+                                                    <Setter Property="Command" Value="{Binding Path=ExportCommand}"/>
+                                                    <Setter Property="Header" Value="{Binding Path=DisplayName, Mode=OneTime}"/>
+                                                </Style>
+                                            </local:MenuItemIcon.ItemContainerStyle>
+                                        </local:MenuItemIcon>
 
                                         <local:MenuItemIcon Header="{Resx Archive_Import}"
+                                                            IsEnabled="{Binding Path=IsInitialized}"
                                                             Command="{Binding Path=ImportCommand}"
                                                             IconKind="FileImportOutline" />
                                     </ContextMenu>
@@ -158,20 +168,34 @@
                                       Width="64"
                                       Height="64">
 
-                                    <Grid Visibility="{Binding Path=IsInitialized, Converter={rwpf:BooleanToVisibilityConverter}}">
+                                    <mah:Badged Padding="-5" 
+                                                Margin="5">
+                                        <mah:Badged.Style>
+                                            <Style TargetType="{x:Type mah:Badged}" BasedOn="{StaticResource {x:Type controlzex:BadgedEx}}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=HasPendingImport}" Value="True">
+                                                        <DataTrigger.Setters>
+                                                            <Setter Property="Badge" Value="{iconPacks:Material Kind=FileUploadOutline}" />
+                                                        </DataTrigger.Setters>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </mah:Badged.Style>
+                                        <Grid>
 
-                                        <Image Source="{Binding Path=ThumbnailSource}"
-                                               HorizontalAlignment="Center"
-                                               Width="64"
-                                               Height="64" />
+                                            <Image Source="{Binding Path=ThumbnailSource}"
+                                                   HorizontalAlignment="Center"
+                                                   Width="64"
+                                                   Height="64" />
 
-                                        <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind, Mode=OneTime}"
-                                                                    HorizontalAlignment="Center"
-                                                                    Visibility="{Binding Path=ThumbnailSource, Converter={rwpf:ObjectNullToVisibilityConverter}}"
-                                                                    Width="48"
-                                                                    Height="48" />
+                                            <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
+                                                                        HorizontalAlignment="Center"
+                                                                        Visibility="{Binding Path=ThumbnailSource, Converter={rwpf:ObjectNullToVisibilityConverter}}"
+                                                                        Width="48"
+                                                                        Height="48" />
 
-                                    </Grid>
+                                        </Grid>
+                                    </mah:Badged>
                                 </Grid>
 
                                 <TextBlock Grid.Row="2"
@@ -197,6 +221,47 @@
                            Text="{Binding Path=DisplayStatus}" />
 
             </Grid>
+
+            <!-- Messages -->
+
+            <ItemsControl Grid.Row="1"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          ItemsSource="{Binding Path=Archives, Mode=OneTime}">
+
+                <ItemsControl.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <Border BorderThickness="1" 
+                                BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}"
+                                Padding="10 7"
+                                Margin="0 0 0 2"
+                                Visibility="{Binding Path=HasModifiedFiles, Converter={rwpf:BooleanToVisibilityConverter}}">
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" 
+                                           Text="{Binding Path=ModifiedFilesDisplayText}" />
+
+                                <!-- TODO-UPDATE: Localize -->
+
+                                <Button Grid.Column="1"
+                                        Content="Save Archive" />
+
+                            </Grid>
+
+                        </Border>
+
+                    </DataTemplate>
+
+                </ItemsControl.ItemTemplate>
+
+            </ItemsControl>
 
         </Grid>
 

@@ -8,37 +8,60 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// File item data for the Archive Explorer
     /// </summary>
-    public class ArchiveFileItem
+    public class ArchiveFileItem : IDisposable
     {
-        public ArchiveFileItem(string fileName, string directory, object archiveEntry)
+        public ArchiveFileItem(IArchiveDataManager manager, string fileName, string directory, object archiveEntry)
         {
+            Manager = manager;
             FileName = fileName;
             Directory = directory;
             ArchiveEntry = archiveEntry;
         }
 
-        private IArchiveFileType FileType { get; set; }
+        protected IArchiveFileType FileType { get; set; }
+        protected IArchiveDataManager Manager { get; }
 
         public string FileName { get; }
         public string Directory { get; }
         public object ArchiveEntry { get; }
 
+        public Stream PendingImport { get; protected set; }
+        public bool IsPendingImport => PendingImport != null;
+
         public FileExtension FileExtension => new FileExtension(FileName);
 
-        protected IArchiveFileType GetFileType(Func<Stream> getDataStream)
+        public ArchiveFileStream GetFileData(IDisposable generator)
+        {
+            return IsPendingImport ? new ArchiveFileStream(PendingImport, false) : new ArchiveFileStream(() => new MemoryStream(Manager.GetFileData(generator, ArchiveEntry)), true);
+        }
+
+        public void SetPendingImport(Stream import)
+        {
+            PendingImport?.Dispose();
+            PendingImport = import;
+        }
+
+        public IArchiveFileType GetFileType(Func<Stream> getDataStream)
         {
             // Check if we already got the type
             if (FileType != null)
                 return FileType;
 
-            // TODO-UPDATE: We don't want to read the file twice (thumbnail + filetype) - use same decoded data for both - pass in here?
+            // Get types supported by the current manager
+            var types = FileTypes.Where(x => x.IsSupported(Manager)).ToArray();
 
             // First attempt to find matching file type based off of the file extension to avoid having to read the file
-            var match = FileTypes.First(x => x.IsOfType(FileExtension));
+            var match = types.FirstOrDefault(x => x.IsOfType(FileExtension));
 
             // If no match, check the data
             if (match == null)
-                match = FileTypes.First(x => x.IsOfType(FileExtension, getDataStream()));
+            {
+                // Get the file data stream
+                Stream fileStream = getDataStream();
+
+                // Find a match from the stream data
+                match = types.FirstOrDefault(x => x.IsOfType(FileExtension, fileStream, Manager));
+            }
 
             // If still null, set to default
             if (match == null)
@@ -55,7 +78,12 @@ namespace RayCarrot.RCP.Metro
         // TODO-UPDATE: Move elsewhere
         private static readonly IArchiveFileType[] FileTypes = new IArchiveFileType[]
         {
-
+            new ArchiveFileType_GF()
         };
+
+        public void Dispose()
+        {
+            PendingImport?.Dispose();
+        }
     }
 }

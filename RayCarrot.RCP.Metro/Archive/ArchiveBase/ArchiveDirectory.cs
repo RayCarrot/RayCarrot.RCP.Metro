@@ -1,7 +1,7 @@
 ﻿namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// An archive directory, containing an array of <see cref="IArchiveFileData"/>
+    /// An archive directory, containing an array of <see cref="ArchiveFileItem"/>
     /// </summary>
     public class ArchiveDirectory
     {
@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="directoryName">The full path of the directory, or empty if the root</param>
         /// <param name="files">The files in the directory</param>
-        public ArchiveDirectory(string directoryName, IArchiveFileData[] files)
+        public ArchiveDirectory(string directoryName, ArchiveFileItem[] files)
         {
             DirectoryName = directoryName;
             Files = files;
@@ -24,6 +24,6 @@
         /// <summary>
         /// The files in the directory
         /// </summary>
-        public IArchiveFileData[] Files { get; }
+        public ArchiveFileItem[] Files { get; }
     }
 }

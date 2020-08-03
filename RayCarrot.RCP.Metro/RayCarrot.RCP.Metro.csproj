@@ -103,33 +103,26 @@
     <Compile Include="AppUserData\DataModels\Archive_GF_TransparencyMode.cs" />
     <Compile Include="Archive\ArchiveBase\ArchiveData.cs" />
     <Compile Include="Archive\ArchiveBase\ArchiveDirectory.cs" />
-    <Compile Include="Archive\ArchiveBase\Manager\IArchiveCreatorDataManager.cs" />
-    <Compile Include="Archive\ArchiveBase\Manager\IArchiveBaseDataManager.cs" />
-    <Compile Include="Archive\ArchiveBase\File\IArchiveFileData.cs" />
-    <Compile Include="Archive\ArchiveBase\File\IArchiveImageFileData.cs" />
-    <Compile Include="Archive\ArchiveBase\Manager\IArchiveExplorerDataManager.cs" />
+    <Compile Include="Archive\ArchiveBase\Manager\IArchiveDataManager.cs" />
     <Compile Include="Archive\ArchiveBase\ArchiveCreationData.cs" />
     <Compile Include="Archive\ArchiveCreator\ArchiveCreatorDialogViewModel.cs" />
     <Compile Include="Archive\ArchiveCreator\ArchiveCreatorUI.xaml.cs">
       <DependentUpon>ArchiveCreatorUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Archive\New\File\ArchiveFileItem.cs" />
-    <Compile Include="Archive\New\File\Type\ArchiveFileType_Default.cs" />
-    <Compile Include="Archive\New\File\Type\ArchiveFileType_Image.cs" />
-    <Compile Include="Archive\New\File\Type\IArchiveFileType.cs" />
-    <Compile Include="Archive\OpenSpace_Cnt\Manager\BaseOpenSpaceCntArchiveDataManager.cs" />
-    <Compile Include="Archive\OpenSpace_Cnt\Manager\OpenSpaceCntArchiveCreatorDataManager.cs" />
-    <Compile Include="Archive\OpenSpace_Cnt\Manager\OpenSpaceCntArchiveExplorerDataManager.cs" />
-    <Compile Include="Archive\OpenSpace_Cnt\OpenSpaceCntArchiveFileData.cs" />
+    <Compile Include="Archive\NEW\ArchiveFileStream.cs" />
+    <Compile Include="Archive\NEW\File\ArchiveFileItem.cs" />
+    <Compile Include="Archive\NEW\File\Type\ArchiveFileType_Default.cs" />
+    <Compile Include="Archive\NEW\File\Type\ArchiveFileType_GF.cs" />
+    <Compile Include="Archive\NEW\File\Type\ArchiveFileType_Image.cs" />
+    <Compile Include="Archive\NEW\File\Type\IArchiveFileType.cs" />
+    <Compile Include="Archive\NEW\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
     <Compile Include="Archive\FileFormat\FileFormatInfoAttribute.cs" />
     <Compile Include="Archive\ArchiveBase\Import\IArchiveImportData.cs" />
     <Compile Include="Archive\ArchiveBase\Import\ArchiveImportData.cs" />
     <Compile Include="Archive\UbiArt_Ipk\Config\UbiArtIPKArchiveConfigUI.xaml.cs">
       <DependentUpon>UbiArtIPKArchiveConfigUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Archive\UbiArt_Ipk\Manager\BaseUbiArtIPKArchiveDataManager.cs" />
-    <Compile Include="Archive\UbiArt_Ipk\Manager\UbiArtIPKArchiveCreatorDataManager.cs" />
-    <Compile Include="Archive\UbiArt_Ipk\Manager\UbiArtIPKArchiveExplorerDataManager.cs" />
+    <Compile Include="Archive\NEW\UbiArt_Ipk\UbiArtIPKArchiveDataManager.cs" />
     <Compile Include="Games\Config\Patcher\GamePatcherData.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanMDemoConfigViewModel.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_2_Info.cs" />

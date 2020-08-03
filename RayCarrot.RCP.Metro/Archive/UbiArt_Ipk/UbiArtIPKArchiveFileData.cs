@@ -2,7 +2,6 @@
 using MahApps.Metro.IconPacks;
 using RayCarrot.Common;
 using RayCarrot.IO;
-using RayCarrot.Rayman;
 using RayCarrot.Rayman.UbiArt;
 using System;
 using System.IO;
@@ -13,7 +12,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Archived file data for a UbiArt .ipk file
     /// </summary>
-    public class UbiArtIPKArchiveFileData : IArchiveFileData
+    public class UbiArtIPKArchiveFileData
     {
         #region Constructor
 
@@ -130,51 +129,6 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Methods
-
-        /// <summary>
-        /// Gets the decoded contents of the file from the stream
-        /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
-        /// <param name="generator">The file generator</param>
-        /// <param name="initilizeOnly">Indicates if the bytes should be retrieved for initialization only, in which case the bytes don't need to be returned</param>
-        /// <returns>The contents of the file</returns>
-        public byte[] GetDecodedFileBytes(Stream archiveFileStream, IDisposable generator, bool initilizeOnly)
-        {
-            // Don't read the bytes if it's only for initialization and the file has been initialized
-            if (initilizeOnly && HasInitializedData)
-                return null;
-
-            // Get the bytes
-            var bytes = GetEncodedFileBytes(archiveFileStream, generator);
-
-            // Decompress the data if compressed
-            if (FileEntry.IsCompressed)
-                bytes = UbiArtIpkData.GetEncoder(FileEntry.IPKVersion, FileEntry.Size).Decode(bytes);
-
-            // Initialize the data
-            InitializeData(bytes);
-
-            // Return the bytes
-            return bytes;
-        }
-
-        /// <summary>
-        /// Gets the original encoded contents of the file from the stream
-        /// </summary>
-        /// <param name="archiveFileStream">The file stream for the archive</param>
-        /// <param name="generator">The file generator</param>
-        /// <returns>The contents of the file</returns>
-        public byte[] GetEncodedFileBytes(Stream archiveFileStream, IDisposable generator)
-        {
-            // Get the bytes
-            return generator.CastTo<IArchiveFileGenerator<UbiArtIPKFileEntry>>().GetBytes(FileEntry);
-        }
-
-        /// <summary>
-        /// Initializes the data for the file
-        /// </summary>
-        /// <param name="fileBytes">The file bytes</param>
-        public virtual void InitializeData(byte[] fileBytes) { }
 
         /// <summary>
         /// Exports the file to the stream in the specified format

@@ -1,13 +1,14 @@
 ﻿using Nito.AsyncEx;
 using RayCarrot.Common;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using RayCarrot.Logging;
+using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -25,7 +26,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="manager">The archive data manager</param>
         /// <param name="loadOperation">The operation to use when running an async operation which needs to load</param>
         /// <param name="explorerDialogViewModel">The explorer dialog view model</param>
-        public ArchiveViewModel(FileSystemPath filePath, IArchiveExplorerDataManager manager, Operation loadOperation, ArchiveExplorerDialogViewModel explorerDialogViewModel) : base(filePath.Name)
+        public ArchiveViewModel(FileSystemPath filePath, IArchiveDataManager manager, Operation loadOperation, ArchiveExplorerDialogViewModel explorerDialogViewModel) : base(filePath.Name)
         {
             RL.Logger?.LogInformationSource($"An archive view model is being created for {filePath.Name}");
 
@@ -34,6 +35,9 @@ namespace RayCarrot.RCP.Metro
             Manager = manager;
             LoadOperation = loadOperation;
             ExplorerDialogViewModel = explorerDialogViewModel;
+
+            // Create commands
+            SaveCommand = new AsyncRelayCommand(SaveAsync);
             
             // Create the file stream
             ArchiveFileStream = new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
@@ -47,6 +51,12 @@ namespace RayCarrot.RCP.Metro
         /// The explorer dialog view model
         /// </summary>
         protected ArchiveExplorerDialogViewModel ExplorerDialogViewModel { get; }
+
+        #endregion
+
+        #region Commands
+
+        public ICommand SaveCommand { get; }
 
         #endregion
 
@@ -105,12 +115,16 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The archive data manager
         /// </summary>
-        public IArchiveExplorerDataManager Manager { get; }
+        public IArchiveDataManager Manager { get; }
 
         /// <summary>
         /// Gets the currently selected item
         /// </summary>
         public ArchiveDirectoryViewModel SelectedItem => this.GetAllChildren<ArchiveDirectoryViewModel>(true).FindItem(x => x.IsSelected);
+
+        public string ModifiedFilesDisplayText { get; set; }
+
+        public bool HasModifiedFiles { get; set; }
 
         #endregion
 
@@ -125,6 +139,9 @@ namespace RayCarrot.RCP.Metro
 
             // Dispose every directory
             this.GetAllChildren<ArchiveDirectoryViewModel>().DisposeAll();
+
+            // Dispose files
+            Files.DisposeAll();
 
             // Clear the items
             Clear();
@@ -200,105 +217,121 @@ namespace RayCarrot.RCP.Metro
         /// <returns>A value indicating if the updating succeeded</returns>
         public async Task<bool> UpdateArchiveAsync(IEnumerable<ArchiveImportData> modifiedImportData)
         {
-            RL.Logger?.LogInformationSource($"The archive {DisplayName} is being updated");
+            throw new NotImplementedException();
+            //RL.Logger?.LogInformationSource($"The archive {DisplayName} is being updated");
 
-            // Stop refreshing thumbnails
-            if (ExplorerDialogViewModel.IsRefreshingThumbnails)
-                ExplorerDialogViewModel.CancelRefreshingThumbnails = true;
+            //// Stop refreshing thumbnails
+            //if (ExplorerDialogViewModel.IsRefreshingThumbnails)
+            //    ExplorerDialogViewModel.CancelRefreshingThumbnails = true;
 
-            Archive.SetDisplayStatus(String.Format(Resources.Archive_RepackingStatus, DisplayName));
+            //Archive.SetDisplayStatus(String.Format(Resources.Archive_RepackingStatus, DisplayName));
 
-            // Find the selected item ID
-            var selected = SelectedItem.FullID;
+            //// Find the selected item ID
+            //var selected = SelectedItem.FullID;
 
-            // Flag for if the update succeeded
-            var succeeded = false;
+            //// Flag for if the update succeeded
+            //var succeeded = false;
 
-            try
-            {
-                // Get a temporary file path to write to
-                using var tempOutputFile = new TempFile(false);
+            //try
+            //{
+            //    // Get a temporary file path to write to
+            //    using var tempOutputFile = new TempFile(false);
 
-                // Create the file and get the stream
-                using (var outputStream = File.Create(tempOutputFile.TempPath))
-                {
-                    // Get the modified files
-                    var modified = modifiedImportData.ToArray();
+            //    // Create the file and get the stream
+            //    using (var outputStream = File.Create(tempOutputFile.TempPath))
+            //    {
+            //        // Get the modified files
+            //        var modified = modifiedImportData.ToArray();
 
-                    // Get the non-modified files
-                    var origFiles = this.
-                        // Get all directories
-                        GetAllChildren<ArchiveDirectoryViewModel>(true).
-                        // Get the files
-                        SelectMany(x => x.Files).
-                        // Get the file data
-                        Select(x => x.FileData).
-                        // Make sure the file isn't one of the modified ones
-                        Where(x => modified.All(y => y.FileEntryData != x.FileEntryData)).
-                        // Get the import data
-                        Select(x => (IArchiveImportData)new ArchiveImportData(x.FileEntryData, file => x.GetEncodedFileBytes(ArchiveFileStream, ArchiveFileGenerator)));
+            //        // Get the non-modified files
+            //        var origFiles = this.
+            //            // Get all directories
+            //            GetAllChildren<ArchiveDirectoryViewModel>(true).
+            //            // Get the files
+            //            SelectMany(x => x.Files).
+            //            // Get the file data
+            //            Select(x => x.FileData).
+            //            // Make sure the file isn't one of the modified ones
+            //            Where(x => modified.All(y => y.FileEntryData != x.FileEntryData)).
+            //            // Get the import data
+            //            Select(x => (IArchiveImportData)new ArchiveImportData(x.FileEntryData, file => x.GetEncodedFileBytes(ArchiveFileStream, ArchiveFileGenerator)));
 
-                    // Update the archive
-                    Manager.UpdateArchive(ArchiveData, outputStream, modified.Concat(origFiles));
-                }
+            //        // Update the archive
+            //        Manager.UpdateArchive(ArchiveData, outputStream, modified.Concat(origFiles));
+            //    }
 
-                // Dispose the archive file stream
-                ArchiveFileStream.Dispose();
+            //    // Dispose the archive file stream
+            //    ArchiveFileStream.Dispose();
 
-                ArchiveData = null;
-                ArchiveFileStream = null;
+            //    ArchiveData = null;
+            //    ArchiveFileStream = null;
 
-                // If the operation succeeded, replace the archive file with the temporary output
-                RCPServices.File.MoveFile(tempOutputFile.TempPath, FilePath, true);
+            //    // If the operation succeeded, replace the archive file with the temporary output
+            //    RCPServices.File.MoveFile(tempOutputFile.TempPath, FilePath, true);
 
-                // Re-open the file stream
-                ArchiveFileStream = new FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
+            //    // Re-open the file stream
+            //    ArchiveFileStream = new FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
 
-                succeeded = true;
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Repacking archive", DisplayName);
+            //    succeeded = true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    ex.HandleError("Repacking archive", DisplayName);
 
-                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RepackError);
+            //    await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RepackError);
 
-                // Re-open the file stream if closed
-                if (ArchiveFileStream == null)
-                    ArchiveFileStream = new FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
-            }
+            //    // Re-open the file stream if closed
+            //    if (ArchiveFileStream == null)
+            //        ArchiveFileStream = new FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
+            //}
 
-            // Reload the archive
-            LoadArchive();
+            //// Reload the archive
+            //LoadArchive();
 
-            // Get the previously selected item
-            var previouslySelectedItem = this.GetAllChildren<ArchiveDirectoryViewModel>(true).FindItem(x => x.FullID.SequenceEqual(selected));
+            //// Get the previously selected item
+            //var previouslySelectedItem = this.GetAllChildren<ArchiveDirectoryViewModel>(true).FindItem(x => x.FullID.SequenceEqual(selected));
 
-            // Expand the parent items
-            var parent = previouslySelectedItem;
+            //// Expand the parent items
+            //var parent = previouslySelectedItem;
 
-            while (parent != null)
-            {
-                parent.IsExpanded = true;
-                parent = parent.Parent;
-            }
+            //while (parent != null)
+            //{
+            //    parent.IsExpanded = true;
+            //    parent = parent.Parent;
+            //}
 
-            // If the item is selected, simply reload the thumbnails, but without awaiting it
-            if (previouslySelectedItem.IsSelected)
-                // Run async without awaiting
-                _ = ExplorerDialogViewModel.ChangeLoadedDirAsync(null, previouslySelectedItem);
-            // Otherwise select the item and let the thumbnails get automatically reloaded
-            else
-                previouslySelectedItem.IsSelected = true;
+            //// If the item is selected, simply reload the thumbnails, but without awaiting it
+            //if (previouslySelectedItem.IsSelected)
+            //    // Run async without awaiting
+            //    _ = ExplorerDialogViewModel.ChangeLoadedDirAsync(null, previouslySelectedItem);
+            //// Otherwise select the item and let the thumbnails get automatically reloaded
+            //else
+            //    previouslySelectedItem.IsSelected = true;
 
-            Archive.SetDisplayStatus(String.Empty);
+            //Archive.SetDisplayStatus(String.Empty);
 
-            return succeeded;
+            //return succeeded;
+        }
+
+        public void UpdateModifiedFilesCount()
+        {
+            var count = this.GetAllChildren<ArchiveDirectoryViewModel>(true).SelectMany(x => x.Files).Count(x => x.HasPendingImport);
+
+            // TODO-UPDATE: Localize
+            ModifiedFilesDisplayText = $"{count} files have been modified in {DisplayName}";
+            
+            HasModifiedFiles = count > 0;
+        }
+
+        public async Task SaveAsync()
+        {
+            // TODO-UPDATE: Repack archive with current files and directories - then reload archive
         }
 
         public override void Dispose()
         {
             // Cancel refreshing thumbnails
-            ExplorerDialogViewModel.CancelRefreshingThumbnails = true;
+            ExplorerDialogViewModel.CancelInitializeFiles = true;
 
             // Dispose base class
             base.Dispose();

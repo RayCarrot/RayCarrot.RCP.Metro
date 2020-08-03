@@ -63,7 +63,7 @@ namespace RayCarrot.RCP.Metro
             var settings = OpenSpaceSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
             // Show the archive explorer
-            await RCPServices.UI.ShowArchiveExplorerAsync(new OpenSpaceCntArchiveExplorerDataManager(settings), ArchiveFiles.Where(x => x.FileExists));
+            await RCPServices.UI.ShowArchiveExplorerAsync(new OpenSpaceCntArchiveDataManager(settings), ArchiveFiles.Where(x => x.FileExists));
         }
 
         #endregion

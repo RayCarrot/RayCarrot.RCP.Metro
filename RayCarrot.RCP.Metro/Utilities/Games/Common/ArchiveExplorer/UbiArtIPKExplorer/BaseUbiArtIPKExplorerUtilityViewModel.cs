@@ -63,7 +63,7 @@ namespace RayCarrot.RCP.Metro
             var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
             // Show the archive explorer
-            await RCPServices.UI.ShowArchiveExplorerAsync(new UbiArtIPKArchiveExplorerDataManager(settings), ArchiveFiles.Where(x => x.FileExists));
+            await RCPServices.UI.ShowArchiveExplorerAsync(new UbiArtIPKArchiveDataManager(new UbiArtIPKArchiveConfigViewModel(settings, UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed)), ArchiveFiles.Where(x => x.FileExists));
         }
 
         #endregion

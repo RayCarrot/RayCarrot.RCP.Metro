@@ -19,7 +19,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Archived file data for a UbiArt .ipk image file
     /// </summary>
-    public class UbiArtIPKArchiveImageFileData : UbiArtIPKArchiveFileData, IArchiveImageFileData
+    public class UbiArtIPKArchiveImageFileData : UbiArtIPKArchiveFileData
     {
         #region Constructor
 
@@ -93,7 +93,7 @@ namespace RayCarrot.RCP.Metro
         /// Initializes the data for the file
         /// </summary>
         /// <param name="fileBytes">The file bytes</param>
-        public override void InitializeData(byte[] fileBytes)
+        public void InitializeData(byte[] fileBytes)
         {
             if (HasInitializedData)
                 return;

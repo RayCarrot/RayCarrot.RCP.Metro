@@ -1,22 +1,24 @@
 ﻿using MahApps.Metro.IconPacks;
-using RayCarrot.Common;
 using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
+using RayCarrot.WPF;
 using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
-using RayCarrot.Logging;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// View model for a file in an archive
     /// </summary>
-    public class ArchiveFileViewModel : BaseViewModel
+    [DebuggerDisplay("{FileName}")]
+    public class ArchiveFileViewModel : BaseViewModel, IDisposable
     {
         #region Constructor
 
@@ -25,26 +27,20 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="fileData">The file data</param>
         /// <param name="archive">The archive the file belongs to</param>
-        public ArchiveFileViewModel(IArchiveFileData fileData, ArchiveViewModel archive)
+        public ArchiveFileViewModel(ArchiveFileItem fileData, ArchiveViewModel archive)
         {
             // Set properties
             FileData = fileData;
             Archive = archive;
-            FileName = FileData.FileName;
+            IconKind = PackIconMaterialKind.FileSyncOutline;
 
             // Create commands
-            ExportCommand = new AsyncRelayCommand(async () => await ExportFileAsync(false));
-            ExportMipmapsCommand = new AsyncRelayCommand(async () => await ExportFileAsync(true));
             ImportCommand = new AsyncRelayCommand(ImportFileAsync);
         }
 
         #endregion
 
         #region Commands
-
-        public ICommand ExportCommand { get; }
-
-        public ICommand ExportMipmapsCommand { get; }
 
         public ICommand ImportCommand { get; }
 
@@ -60,7 +56,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The file data
         /// </summary>
-        public IArchiveFileData FileData { get; }
+        public ArchiveFileItem FileData { get; }
 
         /// <summary>
         /// The image source for the thumbnail
@@ -68,81 +64,133 @@ namespace RayCarrot.RCP.Metro
         public ImageSource ThumbnailSource { get; set; }
 
         /// <summary>
-        /// Indicates if the thumbnail has been loaded and data has been initialized
-        /// </summary>
-        public bool IsInitialized { get; set; }
-
-        /// <summary>
         /// The archive file stream
         /// </summary>
         public FileStream ArchiveFileStream => Archive.ArchiveFileStream;
 
         /// <summary>
-        /// The name of the file
+        /// The archive data manager
         /// </summary>
-        public string FileName { get; }
+        public IArchiveDataManager Manager => Archive.Manager;
 
         /// <summary>
-        /// The native file extension
+        /// The name of the file
         /// </summary>
-        public FileExtension NativeFileExtension => new FileExtension(FileName);
+        public string FileName => FileData.FileName;
 
+        // TODO-UPDATE: Implement
         /// <summary>
         /// The info about the file to display
         /// </summary>
-        public string FileDisplayInfo => FileData.FileDisplayInfo;
-
-        /// <summary>
-        /// Indicates if the file is an image with mipmaps
-        /// </summary>
-        public bool HasMipmaps { get; set; }
-
-        /// <summary>
-        /// Indicates if the file is an image
-        /// </summary>
-        public bool IsImage => FileData is IArchiveImageFileData;
+        public string FileDisplayInfo => "";
 
         /// <summary>
         /// The icon kind to use for the file
         /// </summary>
-        public PackIconMaterialKind IconKind => FileData.IconKind;
+        public PackIconMaterialKind IconKind { get; set; }
+
+        /// <summary>
+        /// Indicates if the file is initialized
+        /// </summary>
+        public bool IsInitialized { get; set; }
+
+        /// <summary>
+        /// The file export options for the file
+        /// </summary>
+        public ObservableCollection<ArchiveFileExportViewModel> FileExports { get; set; }
+
+        /// <summary>
+        /// The file type (available after having been initialized once)
+        /// </summary>
+        public IArchiveFileType FileType { get; set; }
+
+        /// <summary>
+        /// The native file format
+        /// </summary>
+        public FileExtension NativeFormat => FileType is ArchiveFileType_Default ? FileData.FileExtension : FileType.NativeFormat;
+
+        /// <summary>
+        /// Indicates if the file has pending imports
+        /// </summary>
+        public bool HasPendingImport { get; set; }
 
         #endregion
 
         #region Protected Methods
 
         /// <summary>
-        /// Gets the collection of file filter items from a collection of file extensions
+        /// Gets the decoded file data in a stream
         /// </summary>
-        /// <param name="fileExtensions">The file extensions</param>
-        /// <returns>The file filter item collection</returns>
-        protected FileFilterItemCollection GetFileFilterCollection(FileExtension[] fileExtensions)
+        /// <returns>The file stream with the decoded data</returns>
+        protected ArchiveFileStream GetDecodedFileStream()
         {
-            return new FileFilterItemCollection(fileExtensions.Select(x => x.GetFileFilterItem));
+            ArchiveFileStream encodedStream = null;
+            ArchiveFileStream decodedStream = null;
+
+            try
+            {
+                // Get the encoded file bytes
+                encodedStream = FileData.GetFileData(Archive.ArchiveFileGenerator);
+
+                // Create a stream for the decoded bytes
+                decodedStream = new ArchiveFileStream(new MemoryStream(), true);
+
+                // Decode the bytes
+                Manager.DecodeFile(encodedStream.Stream, decodedStream.Stream, FileData.ArchiveEntry);
+
+                // Check if the data was decoded
+                if (decodedStream.Stream.Length > 0)
+                {
+                    encodedStream?.Dispose();
+                    decodedStream.SeekToBeginning();
+                    return decodedStream;
+                }
+                else
+                {
+                    decodedStream?.Dispose();
+                    encodedStream.SeekToBeginning();
+                    return encodedStream;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Dispose both streams if an exception is thrown
+                encodedStream?.Dispose();
+                decodedStream?.Dispose();
+
+                ex.HandleError("Getting decoded archive file data");
+
+                throw;
+            }
         }
 
         #endregion
 
         #region Public Methods
 
-        /// <summary>
-        /// Loads the thumbnail image source for the file
-        /// </summary>
-        public void LoadThumbnail()
+        public void InitializeFile(ArchiveFileStream fileStream = null)
         {
-            // Default to not having mipmaps
-            HasMipmaps = false;
-
-            // Get the file bytes
-            var bytes = FileData.GetDecodedFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator, false);
-
-            // Get the bitmap if the item is an image
-            if (FileData is IArchiveImageFileData imgData)
+            try
             {
-                try
+                // Get the file data
+                using (fileStream ??= GetDecodedFileStream())
                 {
+                    // Get the type
+                    FileType = FileData.GetFileType(() => fileStream.Stream);
+
+                    // Add native export format
+                    FileExports = new ObservableCollection<ArchiveFileExportViewModel>()
+                    {
+                        new ArchiveFileExportViewModel(NativeFormat, NativeFormat.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(NativeFormat)))
+                    };
+
+                    // Get export formats
+                    FileExports.AddRange(FileType.ExportFormats.Select(x => new ArchiveFileExportViewModel(x, x.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(x)))));
+
+                    fileStream.SeekToBeginning();
+
                     // Get the thumbnail
-                    var img = imgData.GetThumbnail(bytes, 64);
+                    var img = FileType.GetThumbnail(fileStream, 64, Manager);
 
                     // Freeze the image to avoid thread errors
                     img?.Freeze();
@@ -150,32 +198,25 @@ namespace RayCarrot.RCP.Metro
                     // Set the image source
                     ThumbnailSource = img;
 
-                    // Get if the image has mipmaps
-                    HasMipmaps = imgData.HasMipmaps;
-                }
-                catch (Exception ex)
-                {
-                    // If the stream has closed it's not an error
-                    if (ArchiveFileStream.CanRead)
-                        ex.HandleExpected("Getting archive file thumbnail");
-                    else
-                        ex.HandleError("Getting archive file thumbnail");
+                    // Set icon
+                    IconKind = FileType.Icon;
+
+                    IsInitialized = true;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                RL.Logger?.LogDebugSource("A thumbnail can currently not be generated for non-image files in archives");
+                // If the stream has closed it's not an error
+                if (ArchiveFileStream.CanRead)
+                    ex.HandleExpected("Initializing file");
+                else
+                    ex.HandleError("Initializing file");
             }
         }
 
-        /// <summary>
-        /// Exports the file
-        /// </summary>
-        /// <param name="includeMipmap">Indicates if available mipmaps should be included</param>
-        /// <returns>The task</returns>
-        public async Task ExportFileAsync(bool includeMipmap)
+        public async Task ExportFileAsync(FileExtension format)
         {
-            RL.Logger?.LogTraceSource($"The archive file {FileName} is being exported...");
+            RL.Logger?.LogTraceSource($"The archive file {FileName} is being exported as {format.FileExtensions}");
 
             // Run as a load operation
             using (Archive.LoadOperation.Run())
@@ -186,15 +227,12 @@ namespace RayCarrot.RCP.Metro
                     // Run as a task
                     await Task.Run(async () =>
                     {
-                        // Get the file extensions
-                        var ext = (includeMipmap ? FileData.CastTo<IArchiveImageFileData>().SupportedMipmapExportFileExtensions : FileData.SupportedExportFileExtensions);
-
                         // Get the output path
                         var result = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
                         {
                             Title = Resources.Archive_ExportHeader,
-                            DefaultName = new FileSystemPath(FileName).ChangeFileExtension(ext.First().GetPrimaryFileExtension(), true),
-                            Extensions = GetFileFilterCollection(ext).ToString()
+                            DefaultName = new FileSystemPath(FileName).ChangeFileExtension(format.GetPrimaryFileExtension(), true),
+                            Extensions = format.GetFileFilterItem.ToString()
                         });
 
                         if (result.CanceledByUser)
@@ -204,30 +242,11 @@ namespace RayCarrot.RCP.Metro
 
                         try
                         {
-                            // Get the file bytes
-                            var bytes = FileData.GetDecodedFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator, false);
+                            // Get the file data
+                            using var fileStream = GetDecodedFileStream();
 
-                            // Get the file format
-                            var format = result.SelectedFileLocation.FileExtension;
-
-                            if (!includeMipmap)
-                            {
-                                // Export the file
-                                ExportFile(result.SelectedFileLocation, bytes, format);
-                            }
-                            else
-                            {
-                                // Helper method for getting the mipmap file stream
-                                Stream GetMipmapStream(int index)
-                                {
-                                    var path = $"{result.SelectedFileLocation.RemoveFileExtension().FullPath} ({index}){format.FileExtensions}";
-
-                                    return File.Open(path, FileMode.Create, FileAccess.Write);
-                                }
-
-                                // Export the mipmaps
-                                FileData.CastTo<IArchiveImageFileData>().ExportMipmaps(bytes, GetMipmapStream, format);
-                            }
+                            // Export the file
+                            ExportFile(result.SelectedFileLocation, fileStream.Stream, format);
                         }
                         catch (Exception ex)
                         {
@@ -254,22 +273,22 @@ namespace RayCarrot.RCP.Metro
         /// Exports the specified file
         /// </summary>
         /// <param name="filePath">The file path to export to</param>
-        /// <param name="fileBytes">The file bytes for the file to export</param>
+        /// <param name="stream">The file stream to export</param>
         /// <param name="format">The format to export as</param>
         /// <returns>The task</returns>
-        public void ExportFile(FileSystemPath filePath, byte[] fileBytes, FileExtension format)
+        public void ExportFile(FileSystemPath filePath, Stream stream, FileExtension format)
         {
             RL.Logger?.LogTraceSource($"An archive file is being exported as {format}");
 
-            // Create the file and open it
-            using var fileStream = File.Open(filePath, FileMode.Create, FileAccess.Write);
+            // Create the output file and open it
+            using var fileStream = File.Create(filePath);
 
             // Write the bytes directly to the stream if the specified format is the native one
-            if (format == NativeFileExtension)
-                fileStream.Write(fileBytes);
+            if (format == NativeFormat)
+                stream.CopyTo(fileStream);
             // Convert the file if the format is not the native one
             else
-                FileData.ExportFile(fileBytes, fileStream, format);
+                FileType.ConvertTo(format, stream, fileStream, Manager);
         }
 
         /// <summary>
@@ -293,27 +312,51 @@ namespace RayCarrot.RCP.Metro
                         var result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                         {
                             Title = Resources.Archive_ImportFileHeader,
-                            ExtensionFilter = GetFileFilterCollection(FileData.SupportedExportFileExtensions).CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
+                            ExtensionFilter = new FileFilterItemCollection(FileType.ExportFormats.Select(x => x.GetFileFilterItem)).CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
                         });
 
                         if (result.CanceledByUser)
                             return;
 
-                        // Import the file
-                        ArchiveImportData importData = ImportFile(result.SelectedFile);
+                        // TODO-UPDATE: Try/catch all of this
 
-                        // Update the archive
-                        var repackSucceeded = await Archive.UpdateArchiveAsync(new ArchiveImportData[]
+                        // Open the file to be imported
+                        using (var importFile = File.OpenRead(result.SelectedFile))
                         {
-                            importData
-                        });
+                            // Memory stream for converted data
+                            using (var memStream = new MemoryStream())
+                            {
+                                // If it's being imported from a non-native format, convert it
+                                var convert = result.SelectedFile.FileExtension != NativeFormat;
 
-                        if (!repackSucceeded)
-                            return;
+                                if (convert)
+                                    // Convert from the imported file to the memory stream
+                                    FileType.ConvertFrom(result.SelectedFile.FileExtension, GetDecodedFileStream(), importFile, memStream, Manager);
 
-                        RL.Logger?.LogTraceSource($"The archive file has been imported");
+                                // Get the temp stream to store the pending import data
+                                FileData.SetPendingImport(File.Create(Path.GetTempFileName()));
 
-                        await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ImportFileSuccess);
+                                // Get the file stream with the decoded data
+                                var decodedStream = convert ? (Stream)memStream : importFile;
+
+                                decodedStream.Position = 0;
+
+                                // Encode the data to the pending import stream
+                                Manager.EncodeFile(decodedStream, FileData.PendingImport, FileData.ArchiveEntry);
+
+                                // If no data was encoded we copy over the decoded data
+                                if (FileData.PendingImport.Length == 0)
+                                    decodedStream.CopyTo(FileData.PendingImport);
+
+                                HasPendingImport = true;
+                                Archive.UpdateModifiedFilesCount();
+
+                                // Re-initialize the file
+                                InitializeFile(new ArchiveFileStream(decodedStream, false));
+                            }
+                        }
+
+                        RL.Logger?.LogTraceSource($"The archive file is pending to be imported");
                     });
                 }
             }
@@ -326,42 +369,83 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The import data</returns>
         public ArchiveImportData ImportFile(FileSystemPath filePath)
         {
-            // Return the import data
-            return new ArchiveImportData(FileData.FileEntryData, file =>
+            throw new NotImplementedException();
+            //// Return the import data
+            //return new ArchiveImportData(FileData.FileEntryData, file =>
+            //{
+            //    Archive.SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, FileName));
+
+            //    // Get the file format
+            //    var format = filePath.FileExtension;
+
+            //    byte[] importBytes;
+
+            //    // Convert the file if the format is not the native one
+            //    if (format != NativeFileExtension)
+            //    {
+            //        // Get the file bytes
+            //        var bytes = FileData.GetDecodedFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator, false);
+
+            //        // Open the file to import from
+            //        using var importFileStream = File.Open(filePath, FileMode.Open, FileAccess.Read);
+
+            //        // Create a memory stream for the bytes to encode
+            //        using var importStream = new MemoryStream();
+
+            //        // Convert the file
+            //        FileData.ConvertImportData(bytes, importFileStream, importStream, format);
+
+            //        importBytes = importStream.ToArray();
+            //    }
+            //    else
+            //    {
+            //        // Read the file bytes to import from
+            //        importBytes = File.ReadAllBytes(filePath);
+            //    }
+
+            //    // Return the encoded file
+            //    return Archive.Manager.EncodeFile(importBytes, file);
+            //});
+        }
+
+        public void Dispose() => FileData?.Dispose();
+
+        #endregion
+
+        #region Classes
+
+        /// <summary>
+        /// View model for an archive file export option
+        /// </summary>
+        public class ArchiveFileExportViewModel : BaseViewModel
+        {
+            /// <summary>
+            /// Default constructor
+            /// </summary>
+            /// <param name="exportFormat">The format to export as</param>
+            /// <param name="displayName">The format display name</param>
+            /// <param name="exportCommand">The export command</param>
+            public ArchiveFileExportViewModel(FileExtension exportFormat, string displayName, ICommand exportCommand)
             {
-                Archive.SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, FileName));
+                ExportFormat = exportFormat;
+                DisplayName = displayName;
+                ExportCommand = exportCommand;
+            }
 
-                // Get the file format
-                var format = filePath.FileExtension;
+            /// <summary>
+            /// The format to export as
+            /// </summary>
+            public FileExtension ExportFormat { get; }
 
-                byte[] importBytes;
+            /// <summary>
+            /// The format display name
+            /// </summary>
+            public string DisplayName { get; }
 
-                // Convert the file if the format is not the native one
-                if (format != NativeFileExtension)
-                {
-                    // Get the file bytes
-                    var bytes = FileData.GetDecodedFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator, false);
-
-                    // Open the file to import from
-                    using var importFileStream = File.Open(filePath, FileMode.Open, FileAccess.Read);
-
-                    // Create a memory stream for the bytes to encode
-                    using var importStream = new MemoryStream();
-
-                    // Convert the file
-                    FileData.ConvertImportData(bytes, importFileStream, importStream, format);
-
-                    importBytes = importStream.ToArray();
-                }
-                else
-                {
-                    // Read the file bytes to import from
-                    importBytes = File.ReadAllBytes(filePath);
-                }
-
-                // Return the encoded file
-                return Archive.Manager.EncodeFile(importBytes, file);
-            });
+            /// <summary>
+            /// The export command
+            /// </summary>
+            public ICommand ExportCommand { get; }
         }
 
         #endregion
