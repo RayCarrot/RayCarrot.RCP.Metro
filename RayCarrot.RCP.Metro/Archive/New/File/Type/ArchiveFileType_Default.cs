@@ -62,13 +62,13 @@ namespace RayCarrot.RCP.Metro
         public FileExtension[] ExportFormats => new FileExtension[0];
 
         /// <summary>
-        /// Gets the thumbnail for the file if it has image data
+        /// Initializes the file
         /// </summary>
         /// <param name="inputStream">The file data stream</param>
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
-        /// <returns>The thumbnail, or null if not available</returns>
-        public ImageSource GetThumbnail(ArchiveFileStream inputStream, int width, IArchiveDataManager manager) => null;
+        /// <returns>The init data</returns>
+        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, int width, IArchiveDataManager manager) => new ArchiveFileInitData(null, new DuoGridItemViewModel[0]);
 
         /// <summary>
         /// Converts the file data to the specified format

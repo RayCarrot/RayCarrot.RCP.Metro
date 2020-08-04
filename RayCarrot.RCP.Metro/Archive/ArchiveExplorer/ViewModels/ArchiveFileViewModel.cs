@@ -33,6 +33,7 @@ namespace RayCarrot.RCP.Metro
             FileData = fileData;
             Archive = archive;
             IconKind = PackIconMaterialKind.FileSyncOutline;
+            FileDisplayInfo = new ObservableCollection<DuoGridItemViewModel>();
 
             // Create commands
             ImportCommand = new AsyncRelayCommand(ImportFileAsync);
@@ -78,11 +79,10 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string FileName => FileData.FileName;
 
-        // TODO-UPDATE: Implement
         /// <summary>
         /// The info about the file to display
         /// </summary>
-        public string FileDisplayInfo => "";
+        public ObservableCollection<DuoGridItemViewModel> FileDisplayInfo { get; }
 
         /// <summary>
         /// The icon kind to use for the file
@@ -189,8 +189,11 @@ namespace RayCarrot.RCP.Metro
 
                     fileStream.SeekToBeginning();
 
+                    // Initialize the file
+                    var initData = FileType.InitFile(fileStream, 64, Manager);
+
                     // Get the thumbnail
-                    var img = FileType.GetThumbnail(fileStream, 64, Manager);
+                    var img = initData.Thumbnail;
 
                     // Freeze the image to avoid thread errors
                     img?.Freeze();
@@ -201,6 +204,16 @@ namespace RayCarrot.RCP.Metro
                     // Set icon
                     IconKind = FileType.Icon;
 
+                    // Populate info
+                    FileDisplayInfo.Clear();
+                    
+                    // TODO-UPDATE: Localize
+                    FileDisplayInfo.Add(new DuoGridItemViewModel("Directory:", FileData.Directory));
+                    FileDisplayInfo.Add(new DuoGridItemViewModel("Type:", FileType.TypeDisplayName, UserLevel.Advanced));
+                    
+                    FileDisplayInfo.AddRange(Manager.GetFileInfo(Archive.ArchiveData, FileData.ArchiveEntry));
+                    FileDisplayInfo.AddRange(initData.FileInfo);
+                    
                     IsInitialized = true;
                 }
             }
@@ -360,52 +373,6 @@ namespace RayCarrot.RCP.Metro
                     });
                 }
             }
-        }
-
-        /// <summary>
-        /// Imports the specified file
-        /// </summary>
-        /// <param name="filePath">The file path to import from</param>
-        /// <returns>The import data</returns>
-        public ArchiveImportData ImportFile(FileSystemPath filePath)
-        {
-            throw new NotImplementedException();
-            //// Return the import data
-            //return new ArchiveImportData(FileData.FileEntryData, file =>
-            //{
-            //    Archive.SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, FileName));
-
-            //    // Get the file format
-            //    var format = filePath.FileExtension;
-
-            //    byte[] importBytes;
-
-            //    // Convert the file if the format is not the native one
-            //    if (format != NativeFileExtension)
-            //    {
-            //        // Get the file bytes
-            //        var bytes = FileData.GetDecodedFileBytes(ArchiveFileStream, Archive.ArchiveFileGenerator, false);
-
-            //        // Open the file to import from
-            //        using var importFileStream = File.Open(filePath, FileMode.Open, FileAccess.Read);
-
-            //        // Create a memory stream for the bytes to encode
-            //        using var importStream = new MemoryStream();
-
-            //        // Convert the file
-            //        FileData.ConvertImportData(bytes, importFileStream, importStream, format);
-
-            //        importBytes = importStream.ToArray();
-            //    }
-            //    else
-            //    {
-            //        // Read the file bytes to import from
-            //        importBytes = File.ReadAllBytes(filePath);
-            //    }
-
-            //    // Return the encoded file
-            //    return Archive.Manager.EncodeFile(importBytes, file);
-            //});
         }
 
         public void Dispose() => FileData?.Dispose();

@@ -1,7 +1,6 @@
 ﻿using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
 using System.IO;
-using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -59,13 +58,13 @@ namespace RayCarrot.RCP.Metro
         FileExtension[] ExportFormats { get; }
 
         /// <summary>
-        /// Gets the thumbnail for the file if it has image data
+        /// Initializes the file
         /// </summary>
         /// <param name="inputStream">The file data stream</param>
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
-        /// <returns>The thumbnail, or null if not available</returns>
-        ImageSource GetThumbnail(ArchiveFileStream inputStream, int width, IArchiveDataManager manager);
+        /// <returns>The init data</returns>
+        ArchiveFileInitData InitFile(ArchiveFileStream inputStream, int width, IArchiveDataManager manager);
 
         /// <summary>
         /// Converts the file data to the specified format

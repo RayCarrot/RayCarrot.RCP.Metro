@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ByteSizeLib;
 using RayCarrot.Binary;
 using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -252,6 +254,23 @@ namespace RayCarrot.RCP.Metro
                 // Disable the XOR encryption
                 IsXORUsed = false
             };
+        }
+
+        /// <summary>
+        /// Gets info to display about the file
+        /// </summary>
+        /// <param name="archive">The archive</param>
+        /// <param name="fileEntry">The file entry</param>
+        /// <returns>The info items to display</returns>
+        public IEnumerable<DuoGridItemViewModel> GetFileInfo(object archive, object fileEntry)
+        {
+            var entry = (OpenSpaceCntFileEntry)fileEntry;
+
+            // TODO-UPDATE: Localize
+            yield return new DuoGridItemViewModel("File size:", $"{ByteSize.FromBytes(entry.Size)}");
+            yield return new DuoGridItemViewModel("Pointer:", $"0x{entry.Pointer:X8}", UserLevel.Technical);
+            yield return new DuoGridItemViewModel("Modified:", $"{entry.Checksum == 0}");
+            yield return new DuoGridItemViewModel("Encrypted:", $"{entry.FileXORKey.Any(x => x != 0)}", UserLevel.Advanced);
         }
 
         #endregion

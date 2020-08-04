@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ByteSizeLib;
+using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -262,6 +264,24 @@ namespace RayCarrot.RCP.Metro
             Config.ConfigureIpkData(data);
 
             return data;
+        }
+
+        /// <summary>
+        /// Gets info to display about the file
+        /// </summary>
+        /// <param name="archive">The archive</param>
+        /// <param name="fileEntry">The file entry</param>
+        /// <returns>The info items to display</returns>
+        public IEnumerable<DuoGridItemViewModel> GetFileInfo(object archive, object fileEntry)
+        {
+            var entry = (UbiArtIPKFileEntry)fileEntry;
+            var ipk = (UbiArtIpkData)archive;
+
+            // TODO-UPDATE: Localize
+            yield return new DuoGridItemViewModel("File size:", $"{ByteSize.FromBytes(entry.Size)}");
+            yield return new DuoGridItemViewModel("Compressed file size:", $"{ByteSize.FromBytes(entry.CompressedSize)}");
+            yield return new DuoGridItemViewModel("Pointer:", $"0x{entry.Offsets.First() + ipk.BaseOffset:X8}", UserLevel.Technical);
+            yield return new DuoGridItemViewModel("Compressed:", $"{entry.IsCompressed}");
         }
 
         #endregion

@@ -109,8 +109,9 @@
     <Compile Include="Archive\ArchiveCreator\ArchiveCreatorUI.xaml.cs">
       <DependentUpon>ArchiveCreatorUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Archive\NEW\ArchiveFileStream.cs" />
+    <Compile Include="Archive\NEW\DataTypes\ArchiveFileStream.cs" />
     <Compile Include="Archive\NEW\File\ArchiveFileItem.cs" />
+    <Compile Include="Archive\NEW\DataTypes\ArchiveFileInitData.cs" />
     <Compile Include="Archive\NEW\File\Type\ArchiveFileType_Default.cs" />
     <Compile Include="Archive\NEW\File\Type\ArchiveFileType_GF.cs" />
     <Compile Include="Archive\NEW\File\Type\ArchiveFileType_Image.cs" />

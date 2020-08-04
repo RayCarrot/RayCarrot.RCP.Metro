@@ -91,6 +91,14 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <returns>The archive object</returns>
         object CreateArchive();
+
+        /// <summary>
+        /// Gets info to display about the file
+        /// </summary>
+        /// <param name="archive">The archive</param>
+        /// <param name="fileEntry">The file entry</param>
+        /// <returns>The info items to display</returns>
+        IEnumerable<DuoGridItemViewModel> GetFileInfo(object archive, object fileEntry);
     }
 
     // TODO-UPDATE: Use this for path stuff

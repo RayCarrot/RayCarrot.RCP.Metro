@@ -1,14 +1,13 @@
 ﻿using MahApps.Metro.IconPacks;
 using RayCarrot.Binary;
 using RayCarrot.IO;
+using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
 using RayCarrot.WPF;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Windows.Media;
-using RayCarrot.Rayman;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace RayCarrot.RCP.Metro
@@ -80,19 +79,26 @@ namespace RayCarrot.RCP.Metro
         };
 
         /// <summary>
-        /// Gets the thumbnail for the file if it has image data
+        /// Initializes the file
         /// </summary>
         /// <param name="inputStream">The file data stream</param>
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
-        /// <returns>The thumbnail, or null if not available</returns>
-        public ImageSource GetThumbnail(ArchiveFileStream inputStream, int width, IArchiveDataManager manager)
+        /// <returns>The init data</returns>
+        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, int width, IArchiveDataManager manager)
         {
             // Load the file
             var file = GetFileContent(inputStream.Stream, manager);
 
             // Get the thumbnail with the specified size
-            return file.GetRawBitmapData(width, (int)(file.Height / ((double)file.Width / width))).GetBitmap().ToImageSource();
+            return new ArchiveFileInitData(file.GetRawBitmapData(width, (int)(file.Height / ((double)file.Width / width))).GetBitmap().ToImageSource(), new DuoGridItemViewModel[]
+            {
+                // TODO-UPDATE: Localize
+                new DuoGridItemViewModel("Size:", $"{file.Width}x{file.Height}"), 
+                new DuoGridItemViewModel("Transparent:", $"{file.GFPixelFormat.SupportsTransparency()}"), 
+                new DuoGridItemViewModel("Mipmaps:", $"{file.RealMipmapCount}"),
+                new DuoGridItemViewModel("Format:", $"{file.Format}", UserLevel.Technical), 
+            });
         }
 
         /// <summary>
