@@ -1,5 +1,7 @@
 ﻿using RayCarrot.Common;
+using RayCarrot.Logging;
 using RayCarrot.UI;
+using RayCarrot.WPF;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -370,7 +372,57 @@ namespace RayCarrot.RCP.Metro
 
         public async Task AddFileAsync()
         {
-            throw new NotImplementedException();
+            RL.Logger?.LogTraceSource($"A file is being added to {FullPath}");
+
+            // Run as a load operation
+            using (Archive.LoadOperation.Run())
+            {
+                // Lock the access to the archive
+                using (await Archive.ArchiveLock.LockAsync())
+                {
+                    // Run as a task
+                    await Task.Run(async () =>
+                    {
+                        // Get the files
+                        var result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+                        {
+                            // TODO-UPDATE: Localize
+                            Title = "Select files to add",
+                            MultiSelection = true
+                        });
+
+                        if (result.CanceledByUser)
+                            return;
+
+                        // Get the manager
+                        var manager = Archive.Manager;
+
+                        // TODO-UPDATE: Try/catch this
+                        // TODO-UPDATE: Make sure an added file doesn't have a name which conflicts with an existing file
+
+                        // Add every file
+                        foreach (var file in result.SelectedFiles)
+                        {
+                            // Open the file as a stream
+                            using var fileStream = File.OpenRead(file);
+
+                            var fileName = file.Name;
+                            var dir = FullPath;
+
+                            // TODO-UPDATE: Can we use FullPath when dealing with IPK files since they have different separator?
+                            var fileViewModel = new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData, fileName, dir)), Archive);
+
+                            // Replace the empty file with the import data
+                            fileViewModel.ReplaceFile(fileStream);
+
+                            // Add the file to the list
+                            Files.Add(fileViewModel);
+                        }
+
+                        Archive.UpdateModifiedFilesCount();
+                    });
+                }
+            }
         }
 
         public virtual void Dispose()

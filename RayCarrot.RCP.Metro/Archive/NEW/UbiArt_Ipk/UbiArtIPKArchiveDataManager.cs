@@ -145,11 +145,7 @@ namespace RayCarrot.RCP.Metro
             // Get files and entries
             var archiveFiles = files.Select(x => new
             {
-                Entry = (x.ArchiveEntry as UbiArtIPKFileEntry) ?? new UbiArtIPKFileEntry
-                {
-                    Path = new UbiArtPath(this.CombinePaths(x.Directory, x.FileName)),
-                    IPKVersion = data.Version
-                },
+                Entry = (UbiArtIPKFileEntry)x.ArchiveEntry,
                 FileItme = x
             }).ToArray();
 
@@ -282,6 +278,22 @@ namespace RayCarrot.RCP.Metro
             yield return new DuoGridItemViewModel("Compressed file size:", $"{ByteSize.FromBytes(entry.CompressedSize)}");
             yield return new DuoGridItemViewModel("Pointer:", $"0x{entry.Offsets.First() + ipk.BaseOffset:X8}", UserLevel.Technical);
             yield return new DuoGridItemViewModel("Compressed:", $"{entry.IsCompressed}");
+        }
+
+        /// <summary>
+        /// Gets a new file entry object for the file
+        /// </summary>
+        /// <param name="archive">The archive</param>
+        /// <param name="directory">The directory</param>
+        /// <param name="fileName">The file name</param>
+        /// <returns>The file entry object</returns>
+        public object GetNewFileEntry(object archive, string directory, string fileName)
+        {
+            return new UbiArtIPKFileEntry
+            {
+                Path = new UbiArtPath(this.CombinePaths(directory, fileName)),
+                IPKVersion = ((UbiArtIpkData)archive).Version
+            };
         }
 
         #endregion

@@ -277,13 +277,17 @@
 
                     <DataTemplate>
 
-                        <Border BorderThickness="1" 
-                                BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}"
-                                Padding="10 7"
-                                Margin="0 2"
-                                Visibility="{Binding Path=HasModifiedFiles, Converter={rwpf:BooleanToVisibilityConverter}}">
-                            <Grid>
+                        <Grid Visibility="{Binding Path=HasModifiedFiles, Converter={rwpf:BooleanToVisibilityConverter}}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
+                            <Separator Grid.Row="0"
+                                       Margin="0 7"/>
+
+                            <Grid Grid.Row="1"
+                                  Margin="7 0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
@@ -298,8 +302,7 @@
                                         Content="Save Archive" />
 
                             </Grid>
-
-                        </Border>
+                        </Grid>
 
                     </DataTemplate>
 

@@ -122,10 +122,7 @@ namespace RayCarrot.RCP.Metro
             // Get files and entries
             var archiveFiles = files.Select(x => new
             {
-                Entry = (x.ArchiveEntry as OpenSpaceCntFileEntry) ?? new OpenSpaceCntFileEntry
-                {
-                    FileName = x.FileName
-                },
+                Entry = (OpenSpaceCntFileEntry)x.ArchiveEntry,
                 FileItem = x
             }).ToArray();
 
@@ -271,6 +268,21 @@ namespace RayCarrot.RCP.Metro
             yield return new DuoGridItemViewModel("Pointer:", $"0x{entry.Pointer:X8}", UserLevel.Technical);
             yield return new DuoGridItemViewModel("Modified:", $"{entry.Checksum == 0}");
             yield return new DuoGridItemViewModel("Encrypted:", $"{entry.FileXORKey.Any(x => x != 0)}", UserLevel.Advanced);
+        }
+
+        /// <summary>
+        /// Gets a new file entry object for the file
+        /// </summary>
+        /// <param name="archive">The archive</param>
+        /// <param name="directory">The directory</param>
+        /// <param name="fileName">The file name</param>
+        /// <returns>The file entry object</returns>
+        public object GetNewFileEntry(object archive, string directory, string fileName)
+        {
+            return new OpenSpaceCntFileEntry()
+            {
+                FileName = fileName
+            };
         }
 
         #endregion

@@ -356,26 +356,10 @@ namespace RayCarrot.RCP.Metro
                                     // Convert from the imported file to the memory stream
                                     FileType.ConvertFrom(result.SelectedFile.FileExtension, GetDecodedFileStream(), importFile, memStream, Manager);
 
-                                // Get the temp stream to store the pending import data
-                                FileData.SetPendingImport(File.Create(Path.GetTempFileName()));
+                                // Replace the file with the import data
+                                ReplaceFile(convert ? (Stream)memStream : importFile);
 
-                                // Get the file stream with the decoded data
-                                var decodedStream = convert ? (Stream)memStream : importFile;
-
-                                decodedStream.Position = 0;
-
-                                // Encode the data to the pending import stream
-                                Manager.EncodeFile(decodedStream, FileData.PendingImport, FileData.ArchiveEntry);
-
-                                // If no data was encoded we copy over the decoded data
-                                if (FileData.PendingImport.Length == 0)
-                                    decodedStream.CopyTo(FileData.PendingImport);
-
-                                HasPendingImport = true;
                                 Archive.UpdateModifiedFilesCount();
-
-                                // Re-initialize the file
-                                InitializeFile(new ArchiveFileStream(decodedStream, false));
                             }
                         }
 
@@ -383,6 +367,27 @@ namespace RayCarrot.RCP.Metro
                     });
                 }
             }
+        }
+
+        public void ReplaceFile(Stream inputStream)
+        {
+            // Reset position
+            inputStream.Position = 0;
+
+            // Get the temp stream to store the pending import data
+            FileData.SetPendingImport(File.Create(Path.GetTempFileName()));
+
+            // Encode the data to the pending import stream
+            Manager.EncodeFile(inputStream, FileData.PendingImport, FileData.ArchiveEntry);
+
+            // If no data was encoded we copy over the decoded data
+            if (FileData.PendingImport.Length == 0)
+                inputStream.CopyTo(FileData.PendingImport);
+
+            HasPendingImport = true;
+
+            // Initialize the file
+            InitializeFile(new ArchiveFileStream(inputStream, false));
         }
 
         public async Task DeleteFileAsync()
