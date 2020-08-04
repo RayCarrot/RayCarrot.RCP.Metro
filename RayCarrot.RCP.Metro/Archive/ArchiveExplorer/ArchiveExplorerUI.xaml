@@ -253,6 +253,7 @@
                                   ToolTip="Add File"
                                   DataContext="{Binding ElementName=DirTreeView, Path=SelectedItem}"
                                   d:DataContext="{d:DesignInstance local:ArchiveDirectoryViewModel}"
+                                  Background="{DynamicResource MahApps.Brushes.Control.Background}"
                                   Command="{Binding Path=AddFileCommand, Mode=OneTime}"/>
 
                 <!-- Status -->
