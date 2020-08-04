@@ -58,6 +58,10 @@ namespace RayCarrot.RCP.Metro
             ExtractCommand = new AsyncRelayCommand(async () => await ExportAsync(true));
             ImportCommand = new AsyncRelayCommand(ImportAsync);
             AddFileCommand = new AsyncRelayCommand(AddFileAsync);
+
+            // Enable collection synchronization
+            BindingOperations.EnableCollectionSynchronization(Files, Application.Current);
+            BindingOperations.EnableCollectionSynchronization(this, Application.Current);
         }
 
         #endregion
@@ -400,6 +404,8 @@ namespace RayCarrot.RCP.Metro
                         // TODO-UPDATE: Try/catch this
                         // TODO-UPDATE: Make sure an added file doesn't have a name which conflicts with an existing file
 
+                        var modifiedCount = 0;
+
                         // Add every file
                         foreach (var file in result.SelectedFiles)
                         {
@@ -410,16 +416,17 @@ namespace RayCarrot.RCP.Metro
                             var dir = FullPath;
 
                             // TODO-UPDATE: Can we use FullPath when dealing with IPK files since they have different separator?
-                            var fileViewModel = new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData, fileName, dir)), Archive);
+                            var fileViewModel = new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData, fileName, dir)), this);
 
                             // Replace the empty file with the import data
-                            fileViewModel.ReplaceFile(fileStream);
+                            if (fileViewModel.ReplaceFile(fileStream))
+                                modifiedCount++;
 
                             // Add the file to the list
                             Files.Add(fileViewModel);
                         }
 
-                        Archive.UpdateModifiedFilesCount();
+                        Archive.AddModifiedFiles(modifiedCount);
                     });
                 }
             }

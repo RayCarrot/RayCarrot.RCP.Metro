@@ -52,6 +52,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected ArchiveExplorerDialogViewModel ExplorerDialogViewModel { get; }
 
+        /// <summary>
+        /// The current amount of modified files
+        /// </summary>
+        protected int ModifiedFilesCount { get; set; }
+
         #endregion
 
         #region Commands
@@ -121,10 +126,9 @@ namespace RayCarrot.RCP.Metro
         /// Gets the currently selected item
         /// </summary>
         public ArchiveDirectoryViewModel SelectedItem => this.GetAllChildren<ArchiveDirectoryViewModel>(true).FindItem(x => x.IsSelected);
-
-        public string ModifiedFilesDisplayText { get; set; }
-
-        public bool HasModifiedFiles { get; set; }
+       
+        public string ModifiedFilesDisplayText { get; protected set; }
+        public bool HasModifiedFiles { get; protected set; }
 
         #endregion
 
@@ -206,7 +210,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Add the files
-                prevItem.Files.AddRange(dir.Files.Select(x => new ArchiveFileViewModel(x, this)));
+                prevItem.Files.AddRange(dir.Files.Select(x => new ArchiveFileViewModel(x, prevItem)));
             }
         }
 
@@ -313,19 +317,21 @@ namespace RayCarrot.RCP.Metro
             //return succeeded;
         }
 
-        public void UpdateModifiedFilesCount()
-        {
-            var count = this.GetAllChildren<ArchiveDirectoryViewModel>(true).SelectMany(x => x.Files).Count(x => x.HasPendingImport);
-
-            // TODO-UPDATE: Localize
-            ModifiedFilesDisplayText = $"{count} files have been modified in {DisplayName}";
-            
-            HasModifiedFiles = count > 0;
-        }
-
         public async Task SaveAsync()
         {
             // TODO-UPDATE: Repack archive with current files and directories - then reload archive
+        }
+
+        public void AddModifiedFiles(int count = 1)
+        {
+            // Increment by the count
+            ModifiedFilesCount += count;
+
+            // Update text
+            ModifiedFilesDisplayText = $"{ModifiedFilesCount} files have been modified in {DisplayName}";
+
+            // Update boolean
+            HasModifiedFiles = ModifiedFilesCount > 0;
         }
 
         public override void Dispose()

@@ -28,12 +28,12 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         /// <param name="fileData">The file data</param>
-        /// <param name="archive">The archive the file belongs to</param>
-        public ArchiveFileViewModel(ArchiveFileItem fileData, ArchiveViewModel archive)
+        /// <param name="archiveDirectory">The archive directory the file belongs to</param>
+        public ArchiveFileViewModel(ArchiveFileItem fileData, ArchiveDirectoryViewModel archiveDirectory)
         {
             // Set properties
             FileData = fileData;
-            Archive = archive;
+            ArchiveDirectory = archiveDirectory;
             IconKind = PackIconMaterialKind.FileSyncOutline;
             FileDisplayInfo = new ObservableCollection<DuoGridItemViewModel>();
             FileExports = new ObservableCollection<ArchiveFileExportViewModel>();
@@ -62,7 +62,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The archive the file belongs to
         /// </summary>
-        public ArchiveViewModel Archive { get; }
+        public ArchiveViewModel Archive => ArchiveDirectory.Archive;
+
+        /// <summary>
+        /// The archive directory the file belongs to
+        /// </summary>
+        public ArchiveDirectoryViewModel ArchiveDirectory { get; }
 
         /// <summary>
         /// The file data
@@ -357,9 +362,8 @@ namespace RayCarrot.RCP.Metro
                                     FileType.ConvertFrom(result.SelectedFile.FileExtension, GetDecodedFileStream(), importFile, memStream, Manager);
 
                                 // Replace the file with the import data
-                                ReplaceFile(convert ? (Stream)memStream : importFile);
-
-                                Archive.UpdateModifiedFilesCount();
+                                if (ReplaceFile(convert ? (Stream)memStream : importFile))
+                                    Archive.AddModifiedFiles();
                             }
                         }
 
@@ -369,8 +373,15 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        public void ReplaceFile(Stream inputStream)
+        /// <summary>
+        /// Replaces the current file with the data from the stream
+        /// </summary>
+        /// <param name="inputStream">The decoded data stream</param>
+        /// <returns>True if the file should be added as a new modified file, otherwise false</returns>
+        public bool ReplaceFile(Stream inputStream)
         {
+            var wasModified = HasPendingImport;
+
             // Reset position
             inputStream.Position = 0;
 
@@ -388,11 +399,36 @@ namespace RayCarrot.RCP.Metro
 
             // Initialize the file
             InitializeFile(new ArchiveFileStream(inputStream, false));
+
+            return !wasModified;
         }
 
         public async Task DeleteFileAsync()
         {
-            throw new NotImplementedException();
+            RL.Logger?.LogTraceSource($"The archive file {FileName} is being removed...");
+
+            // Run as a load operation
+            using (Archive.LoadOperation.Run())
+            {
+                // Lock the access to the archive
+                using (await Archive.ArchiveLock.LockAsync())
+                {
+                    // Run as a task
+                    await Task.Run(() =>
+                    {
+                        // Remove the file from the directory
+                        ArchiveDirectory.Files.Remove(this);
+
+                        // Dispose the file
+                        Dispose();
+
+                        // Add as modified file
+                        Archive.AddModifiedFiles();
+
+                        RL.Logger?.LogTraceSource($"The archive file has been removed");
+                    });
+                }
+            }
         }
 
         public void Dispose()
