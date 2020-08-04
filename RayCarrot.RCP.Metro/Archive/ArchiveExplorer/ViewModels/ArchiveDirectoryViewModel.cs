@@ -5,6 +5,7 @@ using RayCarrot.WPF;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
@@ -107,6 +108,8 @@ namespace RayCarrot.RCP.Metro
         /// The full directory path
         /// </summary>
         public string FullPath => FullID.JoinItems(Path.DirectorySeparatorChar.ToString());
+
+        public string FullDisplayPath => $"{Archive.DisplayName}:{Path.DirectorySeparatorChar}{FullID.Skip(1).JoinItems(Path.DirectorySeparatorChar.ToString())}";
 
         #endregion
 

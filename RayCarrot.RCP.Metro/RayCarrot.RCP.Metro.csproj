@@ -101,6 +101,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppUserData\DataModels\Archive_GF_TransparencyMode.cs" />
+    <Compile Include="AppUserData\DataModels\ArchiveExplorerSort.cs" />
     <Compile Include="Archive\ArchiveBase\ArchiveData.cs" />
     <Compile Include="Archive\ArchiveBase\ArchiveDirectory.cs" />
     <Compile Include="Archive\ArchiveBase\Manager\IArchiveDataManager.cs" />

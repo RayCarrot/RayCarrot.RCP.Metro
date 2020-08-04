@@ -27,15 +27,66 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+
+            <!-- Top Bar -->
+
+            <Grid Grid.Row="0"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  Margin="0 0 0 5">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="0"
+                         DataContext="{Binding ElementName=DirTreeView, Path=SelectedItem}"
+                         d:DataContext="{d:DesignInstance local:ArchiveDirectoryViewModel}"
+                         Text="{Binding Path=FullDisplayPath, Mode=OneWay}"
+                         IsReadOnly="True"
+                         Margin="0 0 5 0"/>
+
+                <local:OverflowMenu Grid.Column="1"
+                                    InheritDataContext="False"
+                                    Visibility="{Binding Converter={rwpf:InvertedObjectNullToVisibilityConverter}}">
+                    <local:OverflowMenu.ContextMenu>
+                        <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                                     DataContext="{x:Static local:RCPServices.Data}">
+                            <local:MenuItemIcon Header="Sort"
+                                                IconKind="Sort" >
+
+                                <!-- TODO-UPDATE: Localize -->
+                                <local:MenuItemIcon IsChecked="{Binding Path=ArchiveExplorerSortOption, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Default}" 
+                                                    Header="Default"
+                                                    IsCheckable="True"
+                                                    Checked="SortMenuItem_OnChecked"/>
+
+                                <local:MenuItemIcon IsChecked="{Binding Path=ArchiveExplorerSortOption, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AlphabeticalAscending}" 
+                                                    Header="Alphabetically (ascending)"
+                                                    IsCheckable="True"
+                                                    Checked="SortMenuItem_OnChecked" />
+
+                                <local:MenuItemIcon IsChecked="{Binding Path=ArchiveExplorerSortOption, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AlphabeticalDescending}" 
+                                                    Header="Alphabetically (descending)"
+                                                    IsCheckable="True"
+                                                    Checked="SortMenuItem_OnChecked" />
+
+                            </local:MenuItemIcon>
+                        </ContextMenu>
+                    </local:OverflowMenu.ContextMenu>
+                </local:OverflowMenu>
+            </Grid>
 
             <!-- Directory Tree View -->
 
             <TreeView x:Name="DirTreeView"
                       Grid.Column="0"
-                      Grid.Row="0"
+                      Grid.Row="1"
                       ItemsSource="{Binding Path=Archives, Mode=OneTime}"
                       PreviewMouseRightButtonDown="DirTreeView_OnPreviewMouseRightButtonDown"
                       SelectedItemChanged="DirTreeView_OnSelectedItemChangedAsync"
@@ -98,7 +149,7 @@
             <!-- Directory Content View -->
 
             <Grid Grid.Column="1"
-                  Grid.Row="0">
+                  Grid.Row="1">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -108,7 +159,8 @@
 
                 <!-- Files List -->
 
-                <ListBox Grid.Row="0"
+                <ListBox x:Name="FilesList" 
+                         Grid.Row="0"
                          Grid.IsSharedSizeScope="True"
                          DataContext="{Binding ElementName=DirTreeView, Path=SelectedItem}"
                          d:DataContext="{d:DesignInstance local:ArchiveDirectoryViewModel}"
@@ -122,20 +174,18 @@
                             <Setter Property="Margin" Value="0" />
                             <Setter Property="ToolTip">
                                 <Setter.Value>
-                                    <Grid>
-                                        <ItemsControl ItemsSource="{Binding Path=FileDisplayInfo, Mode=OneTime}"
-                                                      Grid.IsSharedSizeScope="True">
+                                    <ItemsControl ItemsSource="{Binding Path=FileDisplayInfo, Mode=OneTime}"
+                                                  Grid.IsSharedSizeScope="True">
 
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate DataType="local:DuoGridItem">
-                                                    <local:DuoGridItem Text="{Binding Path=Text}"
-                                                                       Header="{Binding Path=Header}"
-                                                                       MinUserLevel="{Binding Path=MinUserLevel}" />
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate DataType="local:DuoGridItem">
+                                                <local:DuoGridItem Text="{Binding Path=Text}"
+                                                                   Header="{Binding Path=Header}"
+                                                                   MinUserLevel="{Binding Path=MinUserLevel}" />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
 
-                                        </ItemsControl>
-                                    </Grid>
+                                    </ItemsControl>
                                 </Setter.Value>
                             </Setter>
                             <EventSetter Event="ToolTipOpening" Handler="EventSetter_OnHandler" />
@@ -269,7 +319,7 @@
 
             <!-- Messages -->
 
-            <ItemsControl Grid.Row="1"
+            <ItemsControl Grid.Row="2"
                           Grid.Column="0"
                           Grid.ColumnSpan="2"
                           ItemsSource="{Binding Path=Archives, Mode=OneTime}">

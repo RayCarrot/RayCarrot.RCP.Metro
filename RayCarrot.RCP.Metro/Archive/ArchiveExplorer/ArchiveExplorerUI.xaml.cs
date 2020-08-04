@@ -2,6 +2,7 @@
 using RayCarrot.Common;
 using RayCarrot.WPF;
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -65,6 +66,26 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Methods
 
+        public void RefreshSort()
+        {
+            // Clear existing sort descriptions
+            FilesList?.Items.SortDescriptions.Clear();
+            DirTreeView?.Items.SortDescriptions.Clear();
+
+            switch (RCPServices.Data.ArchiveExplorerSortOption)
+            {
+                case ArchiveExplorerSort.AlphabeticalAscending:
+                    FilesList?.Items.SortDescriptions.Add(new SortDescription(nameof(ArchiveFileViewModel.FileName), ListSortDirection.Ascending));
+                    DirTreeView?.Items.SortDescriptions.Add(new SortDescription(nameof(ArchiveDirectoryViewModel.DisplayName), ListSortDirection.Ascending));
+                    break;
+
+                case ArchiveExplorerSort.AlphabeticalDescending:
+                    FilesList?.Items.SortDescriptions.Add(new SortDescription(nameof(ArchiveFileViewModel.FileName), ListSortDirection.Descending));
+                    DirTreeView?.Items.SortDescriptions.Add(new SortDescription(nameof(ArchiveDirectoryViewModel.DisplayName), ListSortDirection.Descending));
+                    break;
+            }
+        }
+
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
@@ -96,6 +117,9 @@ namespace RayCarrot.RCP.Metro
             // Make sure this won't get called again
             Loaded -= ArchiveExplorer_Loaded;
 
+            // Refresh the sort
+            RefreshSort();
+
             // Get the parent window
             ParentWindow = Window.GetWindow(this).CastTo<MetroWindow>();
 
@@ -126,6 +150,8 @@ namespace RayCarrot.RCP.Metro
             // Update the tool tip info each time it's shown
             sender.CastTo<ListBoxItem>().GetBindingExpression(ToolTipProperty)?.UpdateTarget();
         }
+
+        private void SortMenuItem_OnChecked(object sender, RoutedEventArgs e) => RefreshSort();
 
         #endregion
 

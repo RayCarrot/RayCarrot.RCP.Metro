@@ -65,6 +65,7 @@ namespace RayCarrot.RCP.Metro
             BinarySerializationFileLogPath = FileSystemPath.EmptyPath;
             HandleDownloadsManually = false;
             Archive_GF_ForceGF8888Import = false;
+            ArchiveExplorerSortOption = ArchiveExplorerSort.Default;
         }
 
         #endregion
@@ -298,6 +299,9 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if an imported .gf file should be forced to 888 (no transparency) or 8888 (with transparency)
         /// </summary>
         public bool Archive_GF_ForceGF8888Import { get; set; }
+
+        // TODO-UPDATE: Set in post-update
+        public ArchiveExplorerSort ArchiveExplorerSortOption { get; set; }
 
         #endregion
     }
