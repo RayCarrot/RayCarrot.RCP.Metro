@@ -104,7 +104,8 @@
     <Compile Include="AppUserData\DataModels\ArchiveExplorerSort.cs" />
     <Compile Include="Archive\ArchiveBase\ArchiveData.cs" />
     <Compile Include="Archive\ArchiveBase\ArchiveDirectory.cs" />
-    <Compile Include="Archive\ArchiveBase\Manager\IArchiveDataManager.cs" />
+    <Compile Include="Archive\NEW\Manager\ArchiveDataManagerExtensions.cs" />
+    <Compile Include="Archive\NEW\Manager\IArchiveDataManager.cs" />
     <Compile Include="Archive\ArchiveBase\ArchiveCreationData.cs" />
     <Compile Include="Archive\ArchiveCreator\ArchiveCreatorDialogViewModel.cs" />
     <Compile Include="Archive\ArchiveCreator\ArchiveCreatorUI.xaml.cs">
@@ -117,14 +118,14 @@
     <Compile Include="Archive\NEW\File\Type\ArchiveFileType_GF.cs" />
     <Compile Include="Archive\NEW\File\Type\ArchiveFileType_Image.cs" />
     <Compile Include="Archive\NEW\File\Type\IArchiveFileType.cs" />
-    <Compile Include="Archive\NEW\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
+    <Compile Include="Archive\NEW\Manager\OpenSpaceCntArchiveDataManager.cs" />
     <Compile Include="Archive\FileFormat\FileFormatInfoAttribute.cs" />
     <Compile Include="Archive\ArchiveBase\Import\IArchiveImportData.cs" />
     <Compile Include="Archive\ArchiveBase\Import\ArchiveImportData.cs" />
     <Compile Include="Archive\UbiArt_Ipk\Config\UbiArtIPKArchiveConfigUI.xaml.cs">
       <DependentUpon>UbiArtIPKArchiveConfigUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Archive\NEW\UbiArt_Ipk\UbiArtIPKArchiveDataManager.cs" />
+    <Compile Include="Archive\NEW\Manager\UbiArtIPKArchiveDataManager.cs" />
     <Compile Include="Games\Config\Patcher\GamePatcherData.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanMDemoConfigViewModel.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_2_Info.cs" />
@@ -1349,6 +1350,8 @@
       <Version>1.2.2</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Archive\ArchiveBase\Manager\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

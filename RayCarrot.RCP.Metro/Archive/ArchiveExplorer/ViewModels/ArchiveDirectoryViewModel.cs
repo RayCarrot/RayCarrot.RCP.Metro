@@ -107,9 +107,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The full directory path
         /// </summary>
-        public string FullPath => FullID.JoinItems(Path.DirectorySeparatorChar.ToString());
+        public string FullPath => Archive.Manager.CombinePaths(FullID);
 
-        public string FullDisplayPath => $"{Archive.DisplayName}:{Path.DirectorySeparatorChar}{FullID.Skip(1).JoinItems(Path.DirectorySeparatorChar.ToString())}";
+        public string FullDisplayPath => $"{Archive.DisplayName}:{Archive.Manager.PathSeparatorCharacter}{Archive.Manager.CombinePaths(FullID.Skip(1))}";
 
         #endregion
 
@@ -418,7 +418,6 @@ namespace RayCarrot.RCP.Metro
                             var fileName = file.Name;
                             var dir = FullPath;
 
-                            // TODO-UPDATE: Can we use FullPath when dealing with IPK files since they have different separator?
                             var fileViewModel = new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData, fileName, dir)), this);
 
                             // Replace the empty file with the import data

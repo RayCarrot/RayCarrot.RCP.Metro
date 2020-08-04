@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using RayCarrot.Binary;
-using RayCarrot.Common;
 using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
@@ -108,14 +106,5 @@ namespace RayCarrot.RCP.Metro
         /// <param name="fileName">The file name</param>
         /// <returns>The file entry object</returns>
         object GetNewFileEntry(object archive, string directory, string fileName);
-    }
-
-    // TODO-UPDATE: Use this for path stuff
-    public static class ArchiveDataManagerExtensions
-    {
-        public static string CombinePaths(this IArchiveDataManager manager, params string[] paths)
-        {
-            return paths.Select(x => x.TrimEnd(manager.PathSeparatorCharacter)).JoinItems(manager.PathSeparatorCharacter.ToString());
-        }
     }
 }
