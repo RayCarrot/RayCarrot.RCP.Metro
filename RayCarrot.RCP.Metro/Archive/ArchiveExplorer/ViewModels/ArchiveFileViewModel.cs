@@ -9,6 +9,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -34,9 +36,15 @@ namespace RayCarrot.RCP.Metro
             Archive = archive;
             IconKind = PackIconMaterialKind.FileSyncOutline;
             FileDisplayInfo = new ObservableCollection<DuoGridItemViewModel>();
+            FileExports = new ObservableCollection<ArchiveFileExportViewModel>();
 
             // Create commands
             ImportCommand = new AsyncRelayCommand(ImportFileAsync);
+            DeleteCommand = new AsyncRelayCommand(DeleteFileAsync);
+
+            // Enable collection synchronization
+            BindingOperations.EnableCollectionSynchronization(FileExports, Application.Current);
+            BindingOperations.EnableCollectionSynchronization(FileDisplayInfo, Application.Current);
         }
 
         #endregion
@@ -44,6 +52,8 @@ namespace RayCarrot.RCP.Metro
         #region Commands
 
         public ICommand ImportCommand { get; }
+
+        public ICommand DeleteCommand { get; }
 
         #endregion
 
@@ -97,7 +107,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The file export options for the file
         /// </summary>
-        public ObservableCollection<ArchiveFileExportViewModel> FileExports { get; set; }
+        public ObservableCollection<ArchiveFileExportViewModel> FileExports { get;}
 
         /// <summary>
         /// The file type (available after having been initialized once)
@@ -178,11 +188,11 @@ namespace RayCarrot.RCP.Metro
                     // Get the type
                     FileType = FileData.GetFileType(() => fileStream.Stream);
 
+                    // Remove previous export formats
+                    FileExports.Clear();
+
                     // Add native export format
-                    FileExports = new ObservableCollection<ArchiveFileExportViewModel>()
-                    {
-                        new ArchiveFileExportViewModel(NativeFormat, NativeFormat.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(NativeFormat)))
-                    };
+                    FileExports.Add(new ArchiveFileExportViewModel(NativeFormat, NativeFormat.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(NativeFormat))));
 
                     // Get export formats
                     FileExports.AddRange(FileType.ExportFormats.Select(x => new ArchiveFileExportViewModel(x, x.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(x)))));
@@ -375,7 +385,20 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        public void Dispose() => FileData?.Dispose();
+        public async Task DeleteFileAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            // Disable collection synchronization
+            BindingOperations.DisableCollectionSynchronization(FileExports);
+            BindingOperations.DisableCollectionSynchronization(FileDisplayInfo);
+
+            // Dispose the file data
+            FileData?.Dispose();
+        }
 
         #endregion
 

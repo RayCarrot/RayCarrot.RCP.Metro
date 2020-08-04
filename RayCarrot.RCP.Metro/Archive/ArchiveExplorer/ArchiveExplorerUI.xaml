@@ -144,13 +144,15 @@
                                     <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                                                  d:DataContext="{d:DesignInstance local:ArchiveFileViewModel}">
 
+                                        <!-- TODO-UPDATE: Add tooltips describing what the actions do -->
+
                                         <local:MenuItemIcon Header="{Resx Archive_Export}"
                                                             IsEnabled="{Binding Path=IsInitialized}"
                                                             IconKind="FileExportOutline"
-                                                            ItemsSource="{Binding Path=FileExports}">
+                                                            ItemsSource="{Binding Path=FileExports, Mode=OneTime}">
                                             <local:MenuItemIcon.ItemContainerStyle>
                                                 <Style TargetType="{x:Type MenuItem}">
-                                                    <Setter Property="Command" Value="{Binding Path=ExportCommand}"/>
+                                                    <Setter Property="Command" Value="{Binding Path=ExportCommand, Mode=OneTime}"/>
                                                     <Setter Property="Header" Value="{Binding Path=DisplayName, Mode=OneTime}"/>
                                                 </Style>
                                             </local:MenuItemIcon.ItemContainerStyle>
@@ -158,8 +160,18 @@
 
                                         <local:MenuItemIcon Header="{Resx Archive_Import}"
                                                             IsEnabled="{Binding Path=IsInitialized}"
-                                                            Command="{Binding Path=ImportCommand}"
+                                                            Command="{Binding Path=ImportCommand, Mode=OneTime}"
                                                             IconKind="FileImportOutline" />
+
+                                        <Separator />
+
+                                        <!-- TODO-UPDATE: Localize -->
+
+                                        <local:MenuItemIcon Header="Delete"
+                                                            IsEnabled="{Binding Path=IsInitialized}"
+                                                            Command="{Binding Path=DeleteCommand, Mode=OneTime}"
+                                                            IconKind="DeleteOutline" />
+
                                     </ContextMenu>
                                 </Setter.Value>
                             </Setter>
@@ -229,13 +241,28 @@
 
                 </ListBox>
 
+                <!-- Add File Button -->
+
+                <!-- TODO-UPDATE: Localize -->
+
+                <local:IconButton Grid.Row="0"
+                                  HorizontalAlignment="Right"
+                                  VerticalAlignment="Bottom"
+                                  Margin="15"
+                                  IconKind="Plus"
+                                  ToolTip="Add File"
+                                  DataContext="{Binding ElementName=DirTreeView, Path=SelectedItem}"
+                                  d:DataContext="{d:DesignInstance local:ArchiveDirectoryViewModel}"
+                                  Command="{Binding Path=AddFileCommand, Mode=OneTime}"/>
+
                 <!-- Status -->
 
                 <Separator Grid.Row="1"
                            Visibility="{Binding Path=DisplayStatus, Converter={rwpf:StringEmptyToVisibilityConverter}}" />
 
                 <TextBlock Grid.Row="2"
-                           Text="{Binding Path=DisplayStatus}" />
+                           Text="{Binding Path=DisplayStatus}" 
+                           Visibility="{Binding Path=DisplayStatus, Converter={rwpf:StringEmptyToVisibilityConverter}}"/>
 
             </Grid>
 
@@ -253,7 +280,7 @@
                         <Border BorderThickness="1" 
                                 BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}"
                                 Padding="10 7"
-                                Margin="0 0 0 2"
+                                Margin="0 2"
                                 Visibility="{Binding Path=HasModifiedFiles, Converter={rwpf:BooleanToVisibilityConverter}}">
                             <Grid>
 

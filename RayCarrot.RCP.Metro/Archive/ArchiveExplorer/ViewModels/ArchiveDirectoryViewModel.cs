@@ -1,17 +1,12 @@
 ﻿using RayCarrot.Common;
-using RayCarrot.IO;
 using RayCarrot.UI;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
-using RayCarrot.Logging;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -35,6 +30,7 @@ namespace RayCarrot.RCP.Metro
             ExportCommand = new AsyncRelayCommand(async () => await ExportAsync(false));
             ExtractCommand = new AsyncRelayCommand(async () => await ExportAsync(true));
             ImportCommand = new AsyncRelayCommand(ImportAsync);
+            AddFileCommand = new AsyncRelayCommand(AddFileAsync);
 
             // Enable collection synchronization
             BindingOperations.EnableCollectionSynchronization(Files, Application.Current);
@@ -59,6 +55,7 @@ namespace RayCarrot.RCP.Metro
             ExportCommand = new AsyncRelayCommand(async () => await ExportAsync(false));
             ExtractCommand = new AsyncRelayCommand(async () => await ExportAsync(true));
             ImportCommand = new AsyncRelayCommand(ImportAsync);
+            AddFileCommand = new AsyncRelayCommand(AddFileAsync);
         }
 
         #endregion
@@ -114,6 +111,8 @@ namespace RayCarrot.RCP.Metro
         public ICommand ExtractCommand { get; }
 
         public ICommand ImportCommand { get; }
+
+        public ICommand AddFileCommand { get; }
 
         #endregion
 
@@ -367,6 +366,11 @@ namespace RayCarrot.RCP.Metro
             //        });
             //    }
             //}
+        }
+
+        public async Task AddFileAsync()
+        {
+            throw new NotImplementedException();
         }
 
         public virtual void Dispose()
