@@ -8,6 +8,8 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace RayCarrot.RCP.Metro
@@ -90,8 +92,16 @@ namespace RayCarrot.RCP.Metro
             // Load the file
             var file = GetFileContent(inputStream.Stream, manager);
 
+            // Load the raw bitmap data
+            var rawBmp = file.GetRawBitmapData(width, (int)(file.Height / ((double)file.Width / width)));
+
+            var is32Bit = rawBmp.PixelFormat == PixelFormat.Format32bppArgb;
+
+            // Get a thumbnail source
+            var thumbnailSource = BitmapSource.Create(rawBmp.Width, rawBmp.Height, 96, 96, is32Bit ? PixelFormats.Bgra32 : PixelFormats.Bgr24, null, rawBmp.PixelData, (rawBmp.Width * (is32Bit ? 32 : 24) + 7) / 8);
+
             // Get the thumbnail with the specified size
-            return new ArchiveFileInitData(file.GetRawBitmapData(width, (int)(file.Height / ((double)file.Width / width))).GetBitmap().ToImageSource(), new DuoGridItemViewModel[]
+            return new ArchiveFileInitData(thumbnailSource, new DuoGridItemViewModel[]
             {
                 // TODO-UPDATE: Localize
                 new DuoGridItemViewModel("Size:", $"{file.Width}x{file.Height}"), 
