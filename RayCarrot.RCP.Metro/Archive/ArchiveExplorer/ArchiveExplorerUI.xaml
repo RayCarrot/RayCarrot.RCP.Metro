@@ -131,7 +131,8 @@
                                 </Grid.ColumnDefinitions>
 
                                 <iconPacks:PackIconMaterial Grid.Column="0"
-                                                            Kind="FolderOutline" />
+                                                            Kind="FolderOutline" 
+                                                            Foreground="DarkOrange" />
 
                                 <TextBlock Grid.Column="2"
                                            Text="{Binding Path=DisplayName, Mode=OneTime}"
@@ -266,6 +267,7 @@
                                                    Height="64" />
 
                                             <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
+                                                                        Foreground="DarkMagenta"
                                                                         HorizontalAlignment="Center"
                                                                         Visibility="{Binding Path=ThumbnailSource, Converter={rwpf:ObjectNullToVisibilityConverter}}"
                                                                         Width="48"
@@ -294,6 +296,7 @@
                 <!-- TODO-UPDATE: Localize -->
 
                 <local:IconButton Grid.Row="0"
+                                  Foreground="DarkGreen"
                                   HorizontalAlignment="Right"
                                   VerticalAlignment="Bottom"
                                   Margin="15"
