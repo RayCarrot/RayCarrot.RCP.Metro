@@ -120,8 +120,6 @@
     <Compile Include="Archive\NEW\File\Type\IArchiveFileType.cs" />
     <Compile Include="Archive\NEW\Manager\OpenSpaceCntArchiveDataManager.cs" />
     <Compile Include="Archive\FileFormat\FileFormatInfoAttribute.cs" />
-    <Compile Include="Archive\ArchiveBase\Import\IArchiveImportData.cs" />
-    <Compile Include="Archive\ArchiveBase\Import\ArchiveImportData.cs" />
     <Compile Include="Archive\UbiArt_Ipk\Config\UbiArtIPKArchiveConfigUI.xaml.cs">
       <DependentUpon>UbiArtIPKArchiveConfigUI.xaml</DependentUpon>
     </Compile>
@@ -1350,8 +1348,6 @@
       <Version>1.2.2</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Archive\ArchiveBase\Manager\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

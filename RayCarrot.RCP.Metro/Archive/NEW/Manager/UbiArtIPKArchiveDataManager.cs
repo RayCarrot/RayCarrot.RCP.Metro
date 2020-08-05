@@ -175,7 +175,10 @@ namespace RayCarrot.RCP.Metro
                 fileGenerator.Add(entry, () =>
                 {
                     // Get the file bytes to write to the archive
-                    var fileStream = file.FileItme.GetFileData(generator);
+                    using var fileStream = file.FileItme.GetFileData(generator);
+
+                    // Get the bytes
+                    var bytes = fileStream.Stream.ReadRemainingBytes();
 
                     // Set the offset
                     entry.Offsets[0] = currentOffset;
@@ -183,7 +186,7 @@ namespace RayCarrot.RCP.Metro
                     // Increase by the file size
                     currentOffset += entry.ArchiveSize;
 
-                    return fileStream.Stream.ReadRemainingBytes();
+                    return bytes;
                 });
             }
 

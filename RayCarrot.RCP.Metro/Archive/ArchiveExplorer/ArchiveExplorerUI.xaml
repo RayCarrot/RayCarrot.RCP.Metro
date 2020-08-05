@@ -350,7 +350,8 @@
                                 <!-- TODO-UPDATE: Localize -->
 
                                 <Button Grid.Column="1"
-                                        Content="Save Archive" />
+                                        Content="Save Archive"
+                                        Command="{Binding Path=SaveCommand, Mode=OneTime}"/>
 
                             </Grid>
                         </Grid>

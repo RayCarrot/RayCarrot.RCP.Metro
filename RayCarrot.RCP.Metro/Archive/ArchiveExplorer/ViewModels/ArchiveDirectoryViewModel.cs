@@ -107,9 +107,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The full directory path
         /// </summary>
-        public string FullPath => Archive.Manager.CombinePaths(FullID);
+        public string FullPath => Archive.Manager.CombinePaths(FullID.Skip(1));
 
-        public string FullDisplayPath => $"{Archive.DisplayName}:{Archive.Manager.PathSeparatorCharacter}{Archive.Manager.CombinePaths(FullID.Skip(1))}";
+        public string FullDisplayPath => $"{Archive.DisplayName}:{Archive.Manager.PathSeparatorCharacter}{FullPath}";
 
         #endregion
 
@@ -418,7 +418,7 @@ namespace RayCarrot.RCP.Metro
                             var fileName = file.Name;
                             var dir = FullPath;
 
-                            var fileViewModel = new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData, fileName, dir)), this);
+                            var fileViewModel = new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData, dir, fileName)), this);
 
                             // Replace the empty file with the import data
                             if (fileViewModel.ReplaceFile(fileStream))

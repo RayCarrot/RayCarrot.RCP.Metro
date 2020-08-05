@@ -127,13 +127,13 @@ namespace RayCarrot.RCP.Metro
             }).ToArray();
 
             // Set files and directories
-            data.Directories = files.Select(x => x.Directory).Distinct().ToArray();
+            data.Directories = files.Select(x => x.Directory).Distinct().Where(x => !x.IsNullOrWhiteSpace()).ToArray();
             data.Files = archiveFiles.Select(x => x.Entry).ToArray();
 
             // Set the directory indexes
             foreach (var file in archiveFiles)
                 // Set the directory index
-                file.Entry.DirectoryIndex = data.Directories.FindItemIndex(x => x == file.FileItem.Directory);
+                file.Entry.DirectoryIndex = file.FileItem.Directory == String.Empty ? -1 : data.Directories.FindItemIndex(x => x == file.FileItem.Directory);
 
             // Set the current pointer position to the header size
             var pointer = data.GetHeaderSize(Settings);
@@ -160,7 +160,10 @@ namespace RayCarrot.RCP.Metro
                 fileGenerator.Add(entry, () =>
                 {
                     // Get the file bytes to write to the archive
-                    var fileStream = file.FileItem.GetFileData(generator);
+                    using var fileStream = file.FileItem.GetFileData(generator);
+
+                    // Get the bytes
+                    var bytes = fileStream.Stream.ReadRemainingBytes();
 
                     // Set the pointer
                     entry.Pointer = pointer;
@@ -169,7 +172,7 @@ namespace RayCarrot.RCP.Metro
                     pointer += entry.Size;
 
                     // TODO-UPDATE: Return stream directly
-                    return fileStream.Stream.ReadRemainingBytes();
+                    return bytes;
                 });
             }
 
@@ -266,7 +269,6 @@ namespace RayCarrot.RCP.Metro
             // TODO-UPDATE: Localize
             yield return new DuoGridItemViewModel("File size:", $"{ByteSize.FromBytes(entry.Size)}");
             yield return new DuoGridItemViewModel("Pointer:", $"0x{entry.Pointer:X8}", UserLevel.Technical);
-            yield return new DuoGridItemViewModel("Modified:", $"{entry.Checksum == 0}");
             yield return new DuoGridItemViewModel("Encrypted:", $"{entry.FileXORKey.Any(x => x != 0)}", UserLevel.Advanced);
         }
 

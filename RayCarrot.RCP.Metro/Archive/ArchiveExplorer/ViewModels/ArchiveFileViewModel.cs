@@ -190,6 +190,14 @@ namespace RayCarrot.RCP.Metro
                 // Get the file data
                 using (fileStream ??= GetDecodedFileStream())
                 {
+                    // Populate info
+                    FileDisplayInfo.Clear();
+
+                    // TODO-UPDATE: Localize
+                    FileDisplayInfo.Add(new DuoGridItemViewModel("Directory:", FileData.Directory));
+
+                    FileDisplayInfo.AddRange(Manager.GetFileInfo(Archive.ArchiveData, FileData.ArchiveEntry));
+
                     // Get the type
                     FileType = FileData.GetFileType(() => fileStream.Stream);
 
@@ -219,16 +227,10 @@ namespace RayCarrot.RCP.Metro
                     // Set icon
                     IconKind = FileType.Icon;
 
-                    // Populate info
-                    FileDisplayInfo.Clear();
-                    
-                    // TODO-UPDATE: Localize
-                    FileDisplayInfo.Add(new DuoGridItemViewModel("Directory:", FileData.Directory));
-                    FileDisplayInfo.Add(new DuoGridItemViewModel("Type:", FileType.TypeDisplayName, UserLevel.Advanced));
-                    
-                    FileDisplayInfo.AddRange(Manager.GetFileInfo(Archive.ArchiveData, FileData.ArchiveEntry));
+                    // Add display info from the init data
                     FileDisplayInfo.AddRange(initData.FileInfo);
-                    
+                    FileDisplayInfo.Add(new DuoGridItemViewModel("Type:", FileType.TypeDisplayName, UserLevel.Advanced));
+
                     IsInitialized = true;
                 }
             }
@@ -239,6 +241,8 @@ namespace RayCarrot.RCP.Metro
                     ex.HandleExpected("Initializing file");
                 else
                     ex.HandleError("Initializing file");
+
+                IconKind = PackIconMaterialKind.FileAlertOutline;
             }
         }
 
@@ -433,6 +437,8 @@ namespace RayCarrot.RCP.Metro
 
         public void Dispose()
         {
+            RL.Logger.LogTraceSource($"{FileName} has been disposed");
+
             // Disable collection synchronization
             BindingOperations.DisableCollectionSynchronization(FileExports);
             BindingOperations.DisableCollectionSynchronization(FileDisplayInfo);
