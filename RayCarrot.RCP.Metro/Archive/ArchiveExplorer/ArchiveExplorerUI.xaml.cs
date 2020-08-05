@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
@@ -152,6 +153,18 @@ namespace RayCarrot.RCP.Metro
         }
 
         private void SortMenuItem_OnChecked(object sender, RoutedEventArgs e) => RefreshSort();
+
+        private void UIElement_OnKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Enter) 
+                return;
+
+            TextBox tBox = (TextBox)sender;
+            DependencyProperty prop = TextBox.TextProperty;
+
+            BindingExpression binding = BindingOperations.GetBindingExpression(tBox, prop);
+            binding?.UpdateSource();
+        }
 
         #endregion
 

@@ -285,22 +285,8 @@ namespace RayCarrot.RCP.Metro
                         // Get the previously selected item
                         var previouslySelectedItem = this.GetAllChildren<ArchiveDirectoryViewModel>(true).FindItem(x => x.FullID.SequenceEqual(selected));
 
-                        // Expand the parent items
-                        var parent = previouslySelectedItem;
-
-                        while (parent != null)
-                        {
-                            parent.IsExpanded = true;
-                            parent = parent.Parent;
-                        }
-
-                        // If the item is selected, simply initialize the files, but without awaiting it
-                        if (previouslySelectedItem.IsSelected)
-                            // Run async without awaiting
-                            _ = ExplorerDialogViewModel.ChangeLoadedDirAsync(null, previouslySelectedItem);
-                        // Otherwise select the item and let the thumbnails get automatically reloaded
-                        else
-                            previouslySelectedItem.IsSelected = true;
+                        // Load the previously selected directory
+                        ExplorerDialogViewModel.LoadDirectory(previouslySelectedItem);
 
                         Archive.SetDisplayStatus(String.Empty);
                     });

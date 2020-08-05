@@ -109,8 +109,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string FullPath => Archive.Manager.CombinePaths(FullID.Skip(1));
 
-        public string FullDisplayPath => $"{Archive.DisplayName}:{Archive.Manager.PathSeparatorCharacter}{FullPath}";
-
         #endregion
 
         #region Commands

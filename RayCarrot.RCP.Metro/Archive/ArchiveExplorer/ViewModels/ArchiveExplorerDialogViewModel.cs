@@ -66,6 +66,8 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        private string _currentDirectoryAddress;
+
         /// <summary>
         /// Indicates if files are being initialized
         /// </summary>
@@ -101,6 +103,67 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public AsyncLock ArchiveLock { get; }
 
+        public string CurrentDirectoryAddress
+        {
+            get => _currentDirectoryAddress;
+            set
+            {
+                LoadDirectory(value);
+                UpdateAddress();
+            }
+        }
+
+        protected ArchiveDirectoryViewModel SelectedDir { get; set; }
+
+        protected void LoadDirectory(string address)
+        {
+            RL.Logger.LogDebugSource($"Loading directory from address: {address}");
+
+            var paths = address.Split(Manager.PathSeparatorCharacter);
+
+            ArchiveDirectoryViewModel dir = Archives.FirstOrDefault(x => x.DisplayName.Equals(paths.FirstOrDefault()?.TrimEnd(':'), StringComparison.OrdinalIgnoreCase));
+
+            if (dir == null || paths.Length < 2)
+                return;
+
+            foreach (var path in paths.Skip(1))
+            {
+                dir = dir.FirstOrDefault(x => x.ID.Equals(path, StringComparison.OrdinalIgnoreCase));
+
+                if (dir == null)
+                    return;
+            }
+
+            // Load the directory
+            LoadDirectory(dir);
+        }
+
+        public void LoadDirectory(ArchiveDirectoryViewModel dir)
+        {
+            // Expand the parent items
+            var parent = dir;
+
+            while (parent != null)
+            {
+                parent.IsExpanded = true;
+                parent = parent.Parent;
+            }
+
+            // If the item is selected, simply initialize the files, but without awaiting it
+            if (dir.IsSelected)
+                // Run async without awaiting
+                _ = ChangeLoadedDirAsync(null, dir);
+            // Otherwise select the item and let the thumbnails get automatically reloaded
+            else
+                dir.IsSelected = true;
+        }
+
+        protected void UpdateAddress()
+        {
+            _currentDirectoryAddress = $"{SelectedDir.Archive.DisplayName}:{SelectedDir.Archive.Manager.PathSeparatorCharacter}{SelectedDir.FullPath}";
+            OnPropertyChanged(nameof(CurrentDirectoryAddress));
+        }
+
         /// <summary>
         /// Updates the loaded directory thumbnails
         /// </summary>
@@ -112,6 +175,12 @@ namespace RayCarrot.RCP.Metro
             // Stop refreshing thumbnails
             if (IsInitializingFiles)
                 CancelInitializeFiles = true;
+
+            // Set the selected directory
+            SelectedDir = newDir;
+
+            // Update the address bar
+            UpdateAddress();
 
             RL.Logger?.LogDebugSource($"Updating loaded archive dir from {previousDir?.DisplayName} to {newDir.DisplayName}");
 
