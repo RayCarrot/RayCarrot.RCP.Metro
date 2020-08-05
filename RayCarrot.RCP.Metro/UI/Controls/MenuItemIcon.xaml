@@ -9,6 +9,7 @@
     <MenuItem.Icon>
         <iconPacks:PackIconMaterial x:Name="PackIcon"
                                     Kind="{Binding Path=IconKind}"
+                                    Foreground="{Binding Path=IconForeground}"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
                                     d:DataContext="{d:DesignInstance local:MenuItemIcon}" />

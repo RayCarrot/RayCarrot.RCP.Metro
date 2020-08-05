@@ -137,7 +137,9 @@
 
     <!-- Default Menu Item Icon -->
 
-    <Style TargetType="{x:Type local:MenuItemIcon}" BasedOn="{StaticResource {x:Type MenuItem}}" />
+    <Style TargetType="{x:Type local:MenuItemIcon}" BasedOn="{StaticResource {x:Type MenuItem}}">
+        <Setter Property="IconForeground" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Foreground}" />
+    </Style>
 
     <!-- Default Button -->
 
