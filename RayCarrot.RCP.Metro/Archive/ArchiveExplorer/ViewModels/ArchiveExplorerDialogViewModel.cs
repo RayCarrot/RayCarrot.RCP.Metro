@@ -103,6 +103,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public AsyncLock ArchiveLock { get; }
 
+        /// <summary>
+        /// The current directory address
+        /// </summary>
         public string CurrentDirectoryAddress
         {
             get => _currentDirectoryAddress;
@@ -113,8 +116,15 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// The currently selected directory
+        /// </summary>
         protected ArchiveDirectoryViewModel SelectedDir { get; set; }
 
+        /// <summary>
+        /// Attempts to load the directory specified by the address
+        /// </summary>
+        /// <param name="address">The address of the directory to load</param>
         protected void LoadDirectory(string address)
         {
             RL.Logger.LogDebugSource($"Loading directory from address: {address}");
@@ -138,6 +148,10 @@ namespace RayCarrot.RCP.Metro
             LoadDirectory(dir);
         }
 
+        /// <summary>
+        /// Loads the specified directory
+        /// </summary>
+        /// <param name="dir">The directory to load</param>
         public void LoadDirectory(ArchiveDirectoryViewModel dir)
         {
             // Expand the parent items
@@ -158,6 +172,9 @@ namespace RayCarrot.RCP.Metro
                 dir.IsSelected = true;
         }
 
+        /// <summary>
+        /// Updates the current directory address
+        /// </summary>
         protected void UpdateAddress()
         {
             _currentDirectoryAddress = $"{SelectedDir.Archive.DisplayName}:{SelectedDir.Archive.Manager.PathSeparatorCharacter}{SelectedDir.FullPath}";
@@ -240,10 +257,9 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        public void Dispose()
-        {
-            // Dispose every archive
-            Archives?.ForEach(x => x.Dispose());
-        }
+        /// <summary>
+        /// Disposes the archives
+        /// </summary>
+        public void Dispose() => Archives?.DisposeAll();
     }
 }

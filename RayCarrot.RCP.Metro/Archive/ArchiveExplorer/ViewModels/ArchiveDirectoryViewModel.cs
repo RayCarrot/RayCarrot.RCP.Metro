@@ -113,12 +113,15 @@ namespace RayCarrot.RCP.Metro
 
         #region Commands
 
-        public ICommand ExportCommand { get; }
-
         public ICommand ExtractCommand { get; }
+        public ICommand AddFilesCommand { get; }
 
+        public ICommand ExportCommand { get; }
         public ICommand ImportCommand { get; }
 
+        public ICommand CreateDirectoryCommand { get; }
+        public ICommand DeleteCommand { get; }
+        
         public ICommand AddFileCommand { get; }
 
         #endregion
@@ -432,6 +435,9 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// Disposes the directory and its containing files
+        /// </summary>
         public virtual void Dispose()
         {
             // Disable collection synchronization

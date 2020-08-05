@@ -183,6 +183,10 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Methods
 
+        /// <summary>
+        /// Initializes the file
+        /// </summary>
+        /// <param name="fileStream">The file stream, if available</param>
         public void InitializeFile(ArchiveFileStream fileStream = null)
         {
             try
@@ -246,6 +250,11 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// Exports the file using the specified format
+        /// </summary>
+        /// <param name="format">The format to export as</param>
+        /// <returns>The task</returns>
         public async Task ExportFileAsync(FileExtension format)
         {
             RL.Logger?.LogTraceSource($"The archive file {FileName} is being exported as {format.FileExtensions}");
@@ -356,19 +365,18 @@ namespace RayCarrot.RCP.Metro
                         using (var importFile = File.OpenRead(result.SelectedFile))
                         {
                             // Memory stream for converted data
-                            using (var memStream = new MemoryStream())
-                            {
-                                // If it's being imported from a non-native format, convert it
-                                var convert = result.SelectedFile.FileExtension != NativeFormat;
+                            using var memStream = new MemoryStream();
 
-                                if (convert)
-                                    // Convert from the imported file to the memory stream
-                                    FileType.ConvertFrom(result.SelectedFile.FileExtension, GetDecodedFileStream(), importFile, memStream, Manager);
+                            // If it's being imported from a non-native format, convert it
+                            var convert = result.SelectedFile.FileExtension != NativeFormat;
 
-                                // Replace the file with the import data
-                                if (ReplaceFile(convert ? (Stream)memStream : importFile))
-                                    Archive.AddModifiedFiles();
-                            }
+                            if (convert)
+                                // Convert from the imported file to the memory stream
+                                FileType.ConvertFrom(result.SelectedFile.FileExtension, GetDecodedFileStream(), importFile, memStream, Manager);
+
+                            // Replace the file with the import data
+                            if (ReplaceFile(convert ? (Stream)memStream : importFile))
+                                Archive.AddModifiedFiles();
                         }
 
                         RL.Logger?.LogTraceSource($"The archive file is pending to be imported");
@@ -407,6 +415,10 @@ namespace RayCarrot.RCP.Metro
             return !wasModified;
         }
 
+        /// <summary>
+        /// Deletes the file from the archive
+        /// </summary>
+        /// <returns>The task</returns>
         public async Task DeleteFileAsync()
         {
             RL.Logger?.LogTraceSource($"The archive file {FileName} is being removed...");
@@ -435,6 +447,9 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// Disposes the file
+        /// </summary>
         public void Dispose()
         {
             // Disable collection synchronization

@@ -4,7 +4,6 @@ using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -127,7 +126,14 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public ArchiveDirectoryViewModel SelectedItem => this.GetAllChildren<ArchiveDirectoryViewModel>(true).FindItem(x => x.IsSelected);
        
+        /// <summary>
+        /// The text to display for the save prompt if there are modified files
+        /// </summary>
         public string ModifiedFilesDisplayText { get; protected set; }
+
+        /// <summary>
+        /// Indicates if there are modified files
+        /// </summary>
         public bool HasModifiedFiles { get; protected set; }
 
         #endregion
@@ -294,6 +300,10 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// Adds the specified number of new files as being modified
+        /// </summary>
+        /// <param name="count">The number of new modified files to add</param>
         public void AddModifiedFiles(int count = 1)
         {
             // Increment by the count
@@ -306,6 +316,9 @@ namespace RayCarrot.RCP.Metro
             HasModifiedFiles = true;
         }
 
+        /// <summary>
+        /// Disposes the archive and its folders and files
+        /// </summary>
         public override void Dispose()
         {
             // Cancel refreshing thumbnails
