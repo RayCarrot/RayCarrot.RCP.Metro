@@ -1,4 +1,4 @@
-﻿-----   Version 10.2.0 - August ??, 2020   -----
+﻿-----   Version 10.2.0 - August 5, 2020   -----
 • The program has now been translated to Polish (thanks Fabiosek & Pixelise!)
 • Added the progression tab for Rayman M/Arena
 • Added a utility for converting Rayman M/Arena save files
