@@ -21,7 +21,7 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
     </Style>-->
 
-        <!-- Tab item with no padding -->
+    <!-- Tab item with no padding -->
 
     <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
         <Setter Property="Padding" Value="0" />
@@ -121,7 +121,8 @@
 
                         <ContentControl ContentStringFormat="{Binding Path=HeaderStringFormat}" 
                                         FontSize="{Binding Path=HeaderFontSize}"
-                                        Content="{Binding Path=Header}"/>
+                                        Content="{Binding Path=Header}"
+                                        VerticalAlignment="Center" />
 
                     </StackPanel>
                 </DataTemplate>
@@ -322,6 +323,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="SelectFileHeader" Value="{Resx Key=Browse_SelectFile, ResxName={StaticResource ResourcePath}}" />
+        <Setter Property="SaveFileHeader" Value="{Resx Key=Browse_SaveFile, ResxName={StaticResource ResourcePath}}" />
+        <Setter Property="SelectDirectoryHeader" Value="{Resx Key=Browse_SelectDir, ResxName={StaticResource ResourcePath}}" />
+        <Setter Property="SelectDriveHeader" Value="{Resx Key=Browse_SelectDrive, ResxName={StaticResource ResourcePath}}" />
     </Style>
 
 </ResourceDictionary>

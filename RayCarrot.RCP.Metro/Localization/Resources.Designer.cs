@@ -1039,6 +1039,42 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save a file.
+        /// </summary>
+        public static string Browse_SaveFile {
+            get {
+                return ResourceManager.GetString("Browse_SaveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a folder.
+        /// </summary>
+        public static string Browse_SelectDir {
+            get {
+                return ResourceManager.GetString("Browse_SelectDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a drive.
+        /// </summary>
+        public static string Browse_SelectDrive {
+            get {
+                return ResourceManager.GetString("Browse_SelectDrive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a file.
+        /// </summary>
+        public static string Browse_SelectFile {
+            get {
+                return ResourceManager.GetString("Browse_SelectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Browse.
         /// </summary>
         public static string BrowseBox_Browse {
@@ -4507,6 +4543,60 @@ namespace RayCarrot.RCP.Metro {
         public static string Help_Cheats {
             get {
                 return ResourceManager.GetString("Help_Cheats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cheats.
+        /// </summary>
+        public static string Help_Cheats_Cheats {
+            get {
+                return ResourceManager.GetString("Help_Cheats_Cheats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cheats 1.
+        /// </summary>
+        public static string Help_Cheats_Cheats1 {
+            get {
+                return ResourceManager.GetString("Help_Cheats_Cheats1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cheats 2.
+        /// </summary>
+        public static string Help_Cheats_Cheats2 {
+            get {
+                return ResourceManager.GetString("Help_Cheats_Cheats2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cheats 3.
+        /// </summary>
+        public static string Help_Cheats_Cheats3 {
+            get {
+                return ResourceManager.GetString("Help_Cheats_Cheats3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Help_Cheats_Description {
+            get {
+                return ResourceManager.GetString("Help_Cheats_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        public static string Help_Cheats_Location {
+            get {
+                return ResourceManager.GetString("Help_Cheats_Location", resourceCulture);
             }
         }
         

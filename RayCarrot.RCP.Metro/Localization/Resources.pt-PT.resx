@@ -862,13 +862,13 @@
     <value>Restauro sucedido</value>
   </data>
   <data name="Restore_Success" xml:space="preserve">
-    <value>Os teus ficheiros de progresso para o {0} foram restaurados com sucesso</value>
+    <value>Os teus ficheiros de progressão para o {0} foram restaurados com sucesso</value>
   </data>
   <data name="Restore_ConfirmHeader" xml:space="preserve">
     <value>Confirmar restauro</value>
   </data>
   <data name="Restore_Confirm" xml:space="preserve">
-    <value>Isto irá substituir os ficheiros de progresso actuais do {0} com os da cópia de segurança.</value>
+    <value>Isto irá substituir os ficheiros de progressão actuais do {0} com os da cópia de segurança.</value>
   </data>
   <data name="Restore_FailedHeader" xml:space="preserve">
     <value>O restauro falhou</value>
@@ -2587,10 +2587,10 @@ Error message: {1}</value>
     <value>Substituir directório</value>
   </data>
   <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
-    <value>Desactivar carregamento/salvaguarda do ficheiro de progresso</value>
+    <value>Desactivar carregamento/salvaguarda do ficheiro de progressão</value>
   </data>
   <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
-    <value>Isto irá prevenir que o jogo carregue ou guarde em qualquer ficheiro de progresso</value>
+    <value>Isto irá prevenir que o jogo carregue ou guarde em qualquer ficheiro de progressão</value>
   </data>
   <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
     <value>1.21. (Chinês)</value>
@@ -2772,10 +2772,10 @@ Error message: {1}</value>
     <value>Importar</value>
   </data>
   <data name="Progression_ExportError" xml:space="preserve">
-    <value>Ocorreu um erro quando se exportava o ficheiro de progresso. Assegura-te que o ficheiro é suportado.</value>
+    <value>Ocorreu um erro quando se exportava o ficheiro de progressão. Assegura-te que o ficheiro é suportado.</value>
   </data>
   <data name="Progression_ImportError" xml:space="preserve">
-    <value>Ocorreu um erro quando se importava o ficheiro de progresso. Assegura-te que o formato do ficheiro .JSON está correcto e que o ficheiro de progresso é suportado.</value>
+    <value>Ocorreu um erro quando se importava o ficheiro de progressão. Assegura-te que o formato do ficheiro .JSON está correcto e que o ficheiro de progresso é suportado.</value>
   </data>
   <data name="UbiArtU_LocalizationConverterExportSuccess" xml:space="preserve">
     <value>Foi exportado com sucesso o ficheiro de localização
@@ -2797,10 +2797,10 @@ Error message: {1}</value>
     <value>Instalação completa</value>
   </data>
   <data name="Progression_ExportSuccess" xml:space="preserve">
-    <value>Foi exportado com sucesso o ficheiro de progresso</value>
+    <value>Foi exportado com sucesso o ficheiro de progressão</value>
   </data>
   <data name="Progression_ImportSuccess" xml:space="preserve">
-    <value>Foi importado com sucesso o ficheiro de progresso
+    <value>Foi importado com sucesso o ficheiro de progressão
 </value>
   </data>
   <data name="Config_CharacterHeader" xml:space="preserve">
@@ -2829,7 +2829,7 @@ Error message: {1}</value>
     <value>Teensy Gótico</value>
   </data>
   <data name="Config_SelectedSlotHeader" xml:space="preserve">
-    <value>Slot de progresso seleccionado</value>
+    <value>Slot de progressão seleccionado</value>
   </data>
   <data name="Config_MusicVolumeHeader" xml:space="preserve">
     <value>Volume de Música</value>
@@ -3015,10 +3015,10 @@ Pointer = {8}
     <value>Abrir</value>
   </data>
   <data name="Utilities_Converter_R3SaveHeader" xml:space="preserve">
-    <value>Ficheiros de Progresso Rayman 3 (.sav)</value>
+    <value>Ficheiros de Progressão Rayman 3 (.sav)</value>
   </data>
   <data name="Utilities_Converter_RJRSaveHeader" xml:space="preserve">
-    <value>Ficheiros de Progresso Rayman Jungle Run (.dat)</value>
+    <value>Ficheiros de Progressão Rayman Jungle Run (.dat)</value>
   </data>
   <data name="Utilities_ArchiveExplorer_FileSelectionHeader" xml:space="preserve">
     <value>Seleccionar ficheiros de arquivo</value>
@@ -3178,7 +3178,7 @@ Pointer = {8}
     <value>Ficheiros de Idioma Rayman 1 (.lng)</value>
   </data>
   <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
-    <value>Ficheiros de Progresso Rayman 3 (.sav)</value>
+    <value>Ficheiros de Progressão Rayman 3 (.sav)</value>
   </data>
   <data name="RLU_UbiRay_ApplySuccess" xml:space="preserve">
     <value>Foi aplicado com sucesso o patch UbiRay
@@ -3496,5 +3496,71 @@ Pointer = {8}
   <data name="RM_RaceName_15" xml:space="preserve">
     <value>Born To Slide</value>
     <comment>Born To Slide</comment>
+  </data>
+  <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
+    <value>Ficheiros de Progressão Rayman M/Arena (.sav)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888" xml:space="preserve">
+    <value>Converter para 32-bits na importação (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888Info" xml:space="preserve">
+    <value>Indica se o ficheiro .gf deverá ser convertido para 24/32-bits na importação para a qualidade mais alta possível</value>
+  </data>
+  <data name="Progression_RM_LapTraining" xml:space="preserve">
+    <value>Melhor Volta (Treino)</value>
+  </data>
+  <data name="Progression_RM_LapRace" xml:space="preserve">
+    <value>Melhor Volta (Corrida)</value>
+  </data>
+  <data name="Progression_RM_LapTarget" xml:space="preserve">
+    <value>Melhor Volta (Alvos)</value>
+  </data>
+  <data name="Progression_RM_LapLums" xml:space="preserve">
+    <value>Melhor Volta (Lums)</value>
+  </data>
+  <data name="Progression_RM_TimeRace" xml:space="preserve">
+    <value>Melhor Tempo (Corrida)</value>
+  </data>
+  <data name="Progression_RM_TimeTarget" xml:space="preserve">
+    <value>Melhor Tempo (Alvos)</value>
+  </data>
+  <data name="Progression_RM_TimeLums" xml:space="preserve">
+    <value>Melhor Tempo (Lums)</value>
+  </data>
+  <data name="Progression_RM_Targets" xml:space="preserve">
+    <value>Alvos</value>
+  </data>
+  <data name="Progression_RM_Lums" xml:space="preserve">
+    <value>Lums</value>
+  </data>
+  <data name="Help_Cheats_Description" xml:space="preserve">
+    <value>Descrição</value>
+  </data>
+  <data name="Help_Cheats_Location" xml:space="preserve">
+    <value>Localização</value>
+  </data>
+  <data name="Help_Cheats_Cheats" xml:space="preserve">
+    <value>Batotas</value>
+  </data>
+  <data name="Help_Cheats_Cheats1" xml:space="preserve">
+    <value>Batotas 1</value>
+  </data>
+  <data name="Help_Cheats_Cheats2" xml:space="preserve">
+    <value>Batotas 2</value>
+  </data>
+  <data name="Help_Cheats_Cheats3" xml:space="preserve">
+    <value>Batotas 3</value>
+  </data>
+  <data name="Browse_SelectFile" xml:space="preserve">
+    <value>Selecciona um ficheiro</value>
+  </data>
+  <data name="Browse_SaveFile" xml:space="preserve">
+    <value>Salva um ficheiro</value>
+  </data>
+  <data name="Browse_SelectDir" xml:space="preserve">
+    <value>Selecciona uma pasta</value>
+  </data>
+  <data name="Browse_SelectDrive" xml:space="preserve">
+    <value>Selecciona um disco</value>
   </data>
 </root>
