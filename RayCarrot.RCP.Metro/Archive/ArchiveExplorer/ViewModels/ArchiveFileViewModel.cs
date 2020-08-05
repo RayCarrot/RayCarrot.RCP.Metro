@@ -437,8 +437,6 @@ namespace RayCarrot.RCP.Metro
 
         public void Dispose()
         {
-            RL.Logger.LogTraceSource($"{FileName} has been disposed");
-
             // Disable collection synchronization
             BindingOperations.DisableCollectionSynchronization(FileExports);
             BindingOperations.DisableCollectionSynchronization(FileDisplayInfo);
