@@ -323,10 +323,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="SelectFileHeader" Value="{Resx Key=Browse_SelectFile, ResxName={StaticResource ResourcePath}}" />
-        <Setter Property="SaveFileHeader" Value="{Resx Key=Browse_SaveFile, ResxName={StaticResource ResourcePath}}" />
-        <Setter Property="SelectDirectoryHeader" Value="{Resx Key=Browse_SelectDir, ResxName={StaticResource ResourcePath}}" />
-        <Setter Property="SelectDriveHeader" Value="{Resx Key=Browse_SelectDrive, ResxName={StaticResource ResourcePath}}" />
+        <Setter Property="SelectFileHeader" Value="{x:Static local:Resources.Browse_SelectFile}" />
+        <Setter Property="SaveFileHeader" Value="{x:Static local:Resources.Browse_SaveFile}" />
+        <Setter Property="SelectDirectoryHeader" Value="{x:Static local:Resources.Browse_SelectDir}" />
+        <Setter Property="SelectDriveHeader" Value="{x:Static local:Resources.Browse_SelectDrive}" />
     </Style>
 
 </ResourceDictionary>
