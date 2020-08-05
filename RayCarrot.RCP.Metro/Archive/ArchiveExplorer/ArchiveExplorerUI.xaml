@@ -14,6 +14,14 @@
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              MinHeight="400"
              MinWidth="600">
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="Archive_FileBrush" Color="DarkMagenta" />
+        <SolidColorBrush x:Key="Archive_FolderBrush" Color="DarkOrange" />
+        <SolidColorBrush x:Key="Archive_AddItemBrush" Color="Green" />
+        <SolidColorBrush x:Key="Archive_DeleteItemBrush" Color="Red" />
+    </UserControl.Resources>
+
     <local:LoaderContentControl HorizontalLoadingIconAlignment="Center"
                                 VerticalLoadingIconAlignment="Center"
                                 VerticalContentAlignment="Stretch"
@@ -97,19 +105,39 @@
                                 <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                                              d:DataContext="{d:DesignInstance local:ArchiveDirectoryViewModel}">
 
-                                    <local:MenuItemIcon Header="{Resx Archive_Export}"
+                                    <!-- TODO-UPDATE: Add tooltips describing what the actions do -->
+                                    <!-- TODO-UPDATE: Localize -->
+
+                                    <local:MenuItemIcon Header="{Resx Archive_Extract}"
+                                                        Command="{Binding Path=ExtractCommand}"
+                                                        IconKind="ApplicationExport" />
+
+                                    <local:MenuItemIcon Header="Add files"
+                                                        Command="{Binding Path=AddFilesCommand}"
+                                                        IconKind="FilePlusOutline" />
+
+                                    <Separator />
+
+                                    <local:MenuItemIcon Header="Export &amp; convert"
                                                         Command="{Binding Path=ExportCommand}"
                                                         IconKind="Export" />
 
-                                    <local:MenuItemIcon Header="{Resx Archive_Import}"
+                                    <local:MenuItemIcon Header="Import &amp; convert"
                                                         Command="{Binding Path=ImportCommand}"
                                                         IconKind="Import" />
 
                                     <Separator />
 
-                                    <local:MenuItemIcon Header="{Resx Archive_Extract}"
-                                                        Command="{Binding Path=ExtractCommand}"
-                                                        IconKind="ApplicationExport" />
+                                    <local:MenuItemIcon Header="Create directory"
+                                                        Command="{Binding Path=CreateDirectoryCommand}"
+                                                        IconForeground="{StaticResource Archive_AddItemBrush}"
+                                                        IconKind="FolderPlusOutline" />
+
+                                    <local:MenuItemIcon Header="Delete"
+                                                        Command="{Binding Path=DeleteCommand}"
+                                                        IconForeground="{StaticResource Archive_DeleteItemBrush}"
+                                                        IconKind="DeleteOutline" />
+
 
                                 </ContextMenu>
                             </Setter.Value>
@@ -132,7 +160,7 @@
 
                                 <iconPacks:PackIconMaterial Grid.Column="0"
                                                             Kind="FolderOutline" 
-                                                            Foreground="DarkOrange" />
+                                                            Foreground="{StaticResource Archive_FolderBrush}" />
 
                                 <TextBlock Grid.Column="2"
                                            Text="{Binding Path=DisplayName, Mode=OneTime}"
@@ -219,6 +247,7 @@
                                         <local:MenuItemIcon Header="Delete"
                                                             IsEnabled="{Binding Path=IsInitialized}"
                                                             Command="{Binding Path=DeleteCommand, Mode=OneTime}"
+                                                            IconForeground="{StaticResource Archive_DeleteItemBrush}"
                                                             IconKind="DeleteOutline" />
 
                                     </ContextMenu>
@@ -267,7 +296,7 @@
                                                    Height="64" />
 
                                             <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
-                                                                        Foreground="DarkMagenta"
+                                                                        Foreground="{StaticResource Archive_FileBrush}"
                                                                         HorizontalAlignment="Center"
                                                                         Visibility="{Binding Path=ThumbnailSource, Converter={rwpf:ObjectNullToVisibilityConverter}}"
                                                                         Width="48"
@@ -296,7 +325,7 @@
                 <!-- TODO-UPDATE: Localize -->
 
                 <local:IconButton Grid.Row="0"
-                                  Foreground="DarkGreen"
+                                  Foreground="{StaticResource Archive_AddItemBrush}"
                                   HorizontalAlignment="Right"
                                   VerticalAlignment="Bottom"
                                   Margin="15"
