@@ -42,6 +42,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if it is of this type, otherwise false</returns>
         bool IsOfType(FileExtension fileExtension, Stream inputStream, IArchiveDataManager manager);
 
+        // TODO-UPDATE: This always has to match the file extension - so perhaps use this instead of IsOfType?
         /// <summary>
         /// The native file format
         /// </summary>
@@ -64,7 +65,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
         /// <returns>The init data</returns>
-        ArchiveFileInitData InitFile(ArchiveFileStream inputStream, int width, IArchiveDataManager manager);
+        ArchiveFileInitData InitFile(ArchiveFileStream inputStream, int? width, IArchiveDataManager manager);
 
         /// <summary>
         /// Converts the file data to the specified format

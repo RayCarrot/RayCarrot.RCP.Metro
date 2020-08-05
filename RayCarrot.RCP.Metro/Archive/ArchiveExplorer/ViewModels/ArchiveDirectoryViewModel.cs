@@ -3,6 +3,7 @@ using RayCarrot.Logging;
 using RayCarrot.UI;
 using RayCarrot.WPF;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -152,103 +154,110 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ExportAsync(bool forceNativeFormat)
         {
-            throw new NotImplementedException();
-            //// Run as a load operation
-            //using (Archive.LoadOperation.Run())
-            //{
-            //    // Lock the access to the archive
-            //    using (await Archive.ArchiveLock.LockAsync())
-            //    {
-            //        // Run as a task
-            //        await Task.Run(async () =>
-            //        {
-            //            // Get the output path
-            //            var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
-            //            {
-            //                Title = Resources.Archive_ExportHeader
-            //            });
+            // Run as a load operation
+            using (Archive.LoadOperation.Run())
+            {
+                // Lock the access to the archive
+                using (await Archive.ArchiveLock.LockAsync())
+                {
+                    // Run as a task
+                    await Task.Run(async () =>
+                    {
+                        // Get the output path
+                        var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                        {
+                            Title = Resources.Archive_ExportHeader
+                        });
 
-            //            if (result.CanceledByUser)
-            //                return;
+                        if (result.CanceledByUser)
+                            return;
 
-            //            // Make sure the directory doesn't exist
-            //            if ((result.SelectedDirectory + ExportDirName).Exists)
-            //            {
-            //                await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Archive_ExportDirectoryConflict, ExportDirName), MessageType.Error);
+                        // Make sure there isn't an existing file at the output path
+                        if ((result.SelectedDirectory + ExportDirName).FileExists)
+                        {
+                            await Services.MessageUI.DisplayMessageAsync(String.Format("The select directory contains a file with the same name as {0}", ExportDirName), MessageType.Error);
 
-            //                return;
-            //            }
+                            return;
+                        }
 
-            //            // Save the selected the format for each collection
-            //            Dictionary<string, FileExtension> selectedFormats = new Dictionary<string, FileExtension>();
+                        // Get the manager
+                        var manager = Archive.Manager;
 
-            //            try
-            //            {
-            //                // Handle each directory
-            //                foreach (var item in this.GetAllChildren(true))
-            //                {
-            //                    // Get the directory path
-            //                    var path = result.SelectedDirectory + ExportDirName + item.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
+                        // Save the selected the format for each collection
+                        Dictionary<IArchiveFileType, FileExtension> selectedFormats = new Dictionary<IArchiveFileType, FileExtension>();
 
-            //                    // Create the directory
-            //                    Directory.CreateDirectory(path);
+                        try
+                        {
+                            // Handle each directory
+                            foreach (var item in this.GetAllChildren(true))
+                            {
+                                // Get the directory path
+                                var path = result.SelectedDirectory + ExportDirName + item.FullPath.Remove(0, FullPath.Length).Trim(manager.PathSeparatorCharacter);
 
-            //                    // Save each file
-            //                    foreach (var file in item.Files)
-            //                    {
-            //                        // Get the file data
-            //                        var data = file.FileData;
+                                // Create the directory
+                                Directory.CreateDirectory(path);
 
-            //                        // Get the file bytes
-            //                        var bytes = data.GetDecodedFileBytes(file.ArchiveFileStream, Archive.ArchiveFileGenerator, false);
+                                // Save each file
+                                foreach (var file in item.Files)
+                                {
+                                    // Get the file stream
+                                    using var fileStream = file.GetDecodedFileStream();
 
-            //                        // Check if the format has not been selected
-            //                        if (!forceNativeFormat && !selectedFormats.ContainsKey(data.FileFormatName))
-            //                        {
-            //                            // Get the available extensions
-            //                            var ext = data.SupportedExportFileExtensions.Select(x => x.FileExtensions).ToArray();
+                                    // Initialize the file without loading the thumbnail
+                                    file.InitializeFile(fileStream, false);
 
-            //                            // Have user select the format
-            //                            FileExtensionSelectionDialogResult extResult = await RCPServices.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(ext, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, data.FileFormatName)));
+                                    fileStream.SeekToBeginning();
 
-            //                            // Since this operation can't be canceled we get the first format
-            //                            if (extResult.CanceledByUser)
-            //                                extResult.SelectedFileFormat = ext.First();
+                                    // Check if the format has not been selected
+                                    if (!forceNativeFormat && !selectedFormats.ContainsKey(file.FileType) && !(file.FileType is ArchiveFileType_Default))
+                                    {
+                                        // Get the available extensions
+                                        var ext = new string[]
+                                        {
+                                            file.FileType.NativeFormat.FileExtensions
+                                        }.Concat(file.FileType.ExportFormats.Select(x => x.FileExtensions)).ToArray();
 
-            //                            // Add the selected format
-            //                            selectedFormats.Add(data.FileFormatName, new FileExtension(extResult.SelectedFileFormat));
-            //                        }
+                                        // Have user select the format
+                                        FileExtensionSelectionDialogResult extResult = await RCPServices.UI.SelectFileExtensionAsync(new FileExtensionSelectionDialogViewModel(ext, String.Format(Resources.Archive_FileExtensionSelectionInfoHeader, file.FileType.TypeDisplayName)));
 
-            //                        // Get the selected format
-            //                        var format = forceNativeFormat ? file.NativeFileExtension : selectedFormats[data.FileFormatName];
+                                        // Since this operation can't be canceled we get the first format
+                                        if (extResult.CanceledByUser)
+                                            extResult.SelectedFileFormat = ext.First();
 
-            //                        // Get the final file name to use when exporting
-            //                        FileSystemPath exportFileName = forceNativeFormat ? new FileSystemPath(file.FileName) : new FileSystemPath(file.FileName).ChangeFileExtension(format, true);
+                                        // Add the selected format
+                                        selectedFormats.Add(file.FileType, new FileExtension(extResult.SelectedFileFormat));
+                                    }
 
-            //                        Archive.SetDisplayStatus(String.Format(Resources.Archive_ExportingFileStatus, file.FileName));
+                                    // Get the selected format
+                                    var format = forceNativeFormat || (file.FileType is ArchiveFileType_Default) ? file.NativeFormat : selectedFormats[file.FileType];
 
-            //                        // Export the file
-            //                        file.ExportFile(path + exportFileName, bytes, format);
-            //                    }
-            //                }
-            //            }
-            //            catch (Exception ex)
-            //            {
-            //                ex.HandleError("Exporting archive directory", DisplayName);
+                                    // Get the final file name to use when exporting
+                                    FileSystemPath exportFileName = forceNativeFormat ? new FileSystemPath(file.FileName) : new FileSystemPath(file.FileName).ChangeFileExtension(format, true);
 
-            //                await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ExportError, DisplayName));
+                                    Archive.SetDisplayStatus(String.Format(Resources.Archive_ExportingFileStatus, file.FileName));
 
-            //                return;
-            //            }
-            //            finally
-            //            {
-            //                Archive.SetDisplayStatus(String.Empty);
-            //            }
+                                    // Export the file
+                                    file.ExportFile(path + exportFileName, fileStream.Stream, format);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            ex.HandleError("Exporting archive directory", DisplayName);
 
-            //            await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFilesSuccess);
-            //        });
-            //    }
-            //}
+                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_ExportError, DisplayName));
+
+                            return;
+                        }
+                        finally
+                        {
+                            Archive.SetDisplayStatus(String.Empty);
+                        }
+
+                        await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ExportFilesSuccess);
+                    });
+                }
+            }
         }
 
         /// <summary>

@@ -87,18 +87,23 @@ namespace RayCarrot.RCP.Metro
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
         /// <returns>The init data</returns>
-        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, int width, IArchiveDataManager manager)
+        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, int? width, IArchiveDataManager manager)
         {
             // Load the file
             var file = GetFileContent(inputStream.Stream, manager);
 
-            // Load the raw bitmap data
-            var rawBmp = file.GetRawBitmapData(width, (int)(file.Height / ((double)file.Width / width)));
+            BitmapSource thumbnailSource = null;
 
-            var is32Bit = rawBmp.PixelFormat == PixelFormat.Format32bppArgb;
+            if (width.HasValue)
+            {
+                // Load the raw bitmap data
+                var rawBmp = file.GetRawBitmapData(width.Value, (int)(file.Height / ((double)file.Width / width)));
 
-            // Get a thumbnail source
-            var thumbnailSource = BitmapSource.Create(rawBmp.Width, rawBmp.Height, 96, 96, is32Bit ? PixelFormats.Bgra32 : PixelFormats.Bgr24, null, rawBmp.PixelData, (rawBmp.Width * (is32Bit ? 32 : 24) + 7) / 8);
+                var is32Bit = rawBmp.PixelFormat == PixelFormat.Format32bppArgb;
+
+                // Get a thumbnail source
+                 thumbnailSource = BitmapSource.Create(rawBmp.Width, rawBmp.Height, 96, 96, is32Bit ? PixelFormats.Bgra32 : PixelFormats.Bgr24, null, rawBmp.PixelData, (rawBmp.Width * (is32Bit ? 32 : 24) + 7) / 8);
+            }
 
             // Get the thumbnail with the specified size
             return new ArchiveFileInitData(thumbnailSource, new DuoGridItemViewModel[]

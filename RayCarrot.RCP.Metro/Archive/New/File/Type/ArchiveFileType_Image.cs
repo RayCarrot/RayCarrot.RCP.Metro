@@ -3,6 +3,7 @@ using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
 using System.IO;
 using System.Linq;
+using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -81,15 +82,22 @@ namespace RayCarrot.RCP.Metro
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
         /// <returns>The init data</returns>
-        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, int width, IArchiveDataManager manager)
+        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, int? width, IArchiveDataManager manager)
         {
-            // Get the image
-            using var img = GetImage(inputStream.Stream);
+            ImageSource thumb = null;
 
-            // Resize to a thumbnail
-            img.Thumbnail(width, (int)(img.Height / ((double)img.Width / width)));
+            if (width.HasValue)
+            {
+                // Get the image
+                using var img = GetImage(inputStream.Stream);
 
-            return new ArchiveFileInitData(img.ToBitmapSource(), new DuoGridItemViewModel[]
+                // Resize to a thumbnail
+                img.Thumbnail(width.Value, (int)(img.Height / ((double)img.Width / width)));
+
+                thumb = img.ToBitmapSource();
+            }
+
+            return new ArchiveFileInitData(thumb, new DuoGridItemViewModel[]
             {
                 // TODO-UPDATE: Add info (width, height, format etc.)
             });

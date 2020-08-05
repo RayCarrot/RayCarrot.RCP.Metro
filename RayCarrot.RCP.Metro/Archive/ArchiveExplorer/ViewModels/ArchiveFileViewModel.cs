@@ -131,13 +131,13 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Protected Methods
+        #region Public Methods
 
         /// <summary>
         /// Gets the decoded file data in a stream
         /// </summary>
         /// <returns>The file stream with the decoded data</returns>
-        protected ArchiveFileStream GetDecodedFileStream()
+        public ArchiveFileStream GetDecodedFileStream()
         {
             ArchiveFileStream encodedStream = null;
             ArchiveFileStream decodedStream = null;
@@ -179,46 +179,47 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        #endregion
-
-        #region Public Methods
-
         /// <summary>
         /// Initializes the file
         /// </summary>
         /// <param name="fileStream">The file stream, if available</param>
-        public void InitializeFile(ArchiveFileStream fileStream = null)
+        /// <param name="loadThumbnail">Indicates if the thumbnail should be loaded</param>
+        public void InitializeFile(ArchiveFileStream fileStream = null, bool loadThumbnail = true)
         {
+            var hadStream = fileStream != null;
+
             try
             {
                 // Get the file data
-                using (fileStream ??= GetDecodedFileStream())
+                fileStream ??= GetDecodedFileStream();
+
+                // Populate info
+                FileDisplayInfo.Clear();
+
+                // TODO-UPDATE: Localize
+                FileDisplayInfo.Add(new DuoGridItemViewModel("Directory:", FileData.Directory));
+
+                FileDisplayInfo.AddRange(Manager.GetFileInfo(Archive.ArchiveData, FileData.ArchiveEntry));
+
+                // Get the type
+                FileType = FileData.GetFileType(() => fileStream.Stream);
+
+                // Remove previous export formats
+                FileExports.Clear();
+
+                // Add native export format
+                FileExports.Add(new ArchiveFileExportViewModel(NativeFormat, NativeFormat.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(NativeFormat))));
+
+                // Get export formats
+                FileExports.AddRange(FileType.ExportFormats.Select(x => new ArchiveFileExportViewModel(x, x.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(x)))));
+
+                fileStream.SeekToBeginning();
+
+                // Initialize the file
+                var initData = FileType.InitFile(fileStream, loadThumbnail ? (int?)64 : null, Manager);
+
+                if (loadThumbnail)
                 {
-                    // Populate info
-                    FileDisplayInfo.Clear();
-
-                    // TODO-UPDATE: Localize
-                    FileDisplayInfo.Add(new DuoGridItemViewModel("Directory:", FileData.Directory));
-
-                    FileDisplayInfo.AddRange(Manager.GetFileInfo(Archive.ArchiveData, FileData.ArchiveEntry));
-
-                    // Get the type
-                    FileType = FileData.GetFileType(() => fileStream.Stream);
-
-                    // Remove previous export formats
-                    FileExports.Clear();
-
-                    // Add native export format
-                    FileExports.Add(new ArchiveFileExportViewModel(NativeFormat, NativeFormat.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(NativeFormat))));
-
-                    // Get export formats
-                    FileExports.AddRange(FileType.ExportFormats.Select(x => new ArchiveFileExportViewModel(x, x.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(x)))));
-
-                    fileStream.SeekToBeginning();
-
-                    // Initialize the file
-                    var initData = FileType.InitFile(fileStream, 64, Manager);
-
                     // Get the thumbnail
                     var img = initData.Thumbnail;
 
@@ -227,16 +228,16 @@ namespace RayCarrot.RCP.Metro
 
                     // Set the image source
                     ThumbnailSource = img;
-
-                    // Set icon
-                    IconKind = FileType.Icon;
-
-                    // Add display info from the init data
-                    FileDisplayInfo.AddRange(initData.FileInfo);
-                    FileDisplayInfo.Add(new DuoGridItemViewModel("Type:", FileType.TypeDisplayName, UserLevel.Advanced));
-
-                    IsInitialized = true;
                 }
+
+                // Set icon
+                IconKind = FileType.Icon;
+
+                // Add display info from the init data
+                FileDisplayInfo.AddRange(initData.FileInfo);
+                FileDisplayInfo.Add(new DuoGridItemViewModel("Type:", FileType.TypeDisplayName, UserLevel.Advanced));
+
+                IsInitialized = true;
             }
             catch (Exception ex)
             {
@@ -247,6 +248,11 @@ namespace RayCarrot.RCP.Metro
                     ex.HandleError("Initializing file");
 
                 IconKind = PackIconMaterialKind.FileAlertOutline;
+            }
+            finally
+            {
+                if (!hadStream)
+                    fileStream?.Dispose();
             }
         }
 

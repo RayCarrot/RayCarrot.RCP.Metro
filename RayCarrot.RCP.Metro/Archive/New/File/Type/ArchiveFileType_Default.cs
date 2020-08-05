@@ -68,7 +68,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
         /// <returns>The init data</returns>
-        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, int width, IArchiveDataManager manager) => new ArchiveFileInitData(null, new DuoGridItemViewModel[0]);
+        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, int? width, IArchiveDataManager manager) => new ArchiveFileInitData(null, new DuoGridItemViewModel[0]);
 
         /// <summary>
         /// Converts the file data to the specified format
