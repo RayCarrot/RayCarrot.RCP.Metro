@@ -175,6 +175,7 @@ namespace RayCarrot.RCP.Metro
                         // Make sure there isn't an existing file at the output path
                         if ((result.SelectedDirectory + ExportDirName).FileExists)
                         {
+                            // TODO-UPDATE: Localize
                             await Services.MessageUI.DisplayMessageAsync(String.Format("The select directory contains a file with the same name as {0}", ExportDirName), MessageType.Error);
 
                             return;
@@ -214,7 +215,8 @@ namespace RayCarrot.RCP.Metro
                                         // Get the available extensions
                                         var ext = new string[]
                                         {
-                                            file.FileType.NativeFormat.FileExtensions
+                                            // TODO-UPDATE: Localize
+                                            $"Original"
                                         }.Concat(file.FileType.ExportFormats.Select(x => x.FileExtensions)).ToArray();
 
                                         // Have user select the format
@@ -225,17 +227,18 @@ namespace RayCarrot.RCP.Metro
                                             extResult.SelectedFileFormat = ext.First();
 
                                         // Add the selected format
-                                        selectedFormats.Add(file.FileType, new FileExtension(extResult.SelectedFileFormat));
+                                        selectedFormats.Add(file.FileType, extResult.SelectedFileFormat == ext.First() ? null : new FileExtension(extResult.SelectedFileFormat));
                                     }
 
                                     // Get the selected format
-                                    var format = forceNativeFormat || (file.FileType is ArchiveFileType_Default) ? file.NativeFormat : selectedFormats[file.FileType];
+                                    var format = forceNativeFormat || (file.FileType is ArchiveFileType_Default) ? null : selectedFormats[file.FileType];
 
                                     // Get the final file name to use when exporting
                                     FileSystemPath exportFileName = forceNativeFormat ? new FileSystemPath(file.FileName) : new FileSystemPath(file.FileName).ChangeFileExtension(format, true);
 
                                     Archive.SetDisplayStatus(String.Format(Resources.Archive_ExportingFileStatus, file.FileName));
 
+                                    // TODO-UPDATE: Update this
                                     // Export the file
                                     file.ExportFile(path + exportFileName, fileStream.Stream, format);
                                 }

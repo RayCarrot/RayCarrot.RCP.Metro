@@ -10,14 +10,15 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// An image file type
     /// </summary>
-    public abstract class ArchiveFileType_Image : IArchiveFileType
+    public class ArchiveFileType_Image : IArchiveFileType
     {
         #region Interface Implementations
 
+        // TODO-UPDATE: Localize
         /// <summary>
         /// The display name for the file type
         /// </summary>
-        public string TypeDisplayName => Format.ToString().ToUpper();
+        public string TypeDisplayName => "Image";
 
         /// <summary>
         /// The default icon kind for the type
@@ -36,7 +37,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="fileExtension">The file extension to check</param>
         /// <returns>True if it is of this type, otherwise false</returns>
-        public virtual bool IsOfType(FileExtension fileExtension) => FileExtensions.Contains(fileExtension);
+        public virtual bool IsOfType(FileExtension fileExtension) => SupportedFormats.Any(x => GetFormat(x) == fileExtension);
 
         /// <summary>
         /// Indicates if a file with the specifies file extension and data is of this type
@@ -48,48 +49,31 @@ namespace RayCarrot.RCP.Metro
         public virtual bool IsOfType(FileExtension fileExtension, Stream inputStream, IArchiveDataManager manager) => false;
 
         /// <summary>
-        /// The native file format
-        /// </summary>
-        public FileExtension NativeFormat => FileExtensions.First();
-
-        /// <summary>
         /// The supported formats to import from
         /// </summary>
-        public FileExtension[] ImportFormats => new FileExtension[]
-        {
-            new FileExtension(".png"),
-            new FileExtension(".jpg"),
-            new FileExtension(".jpeg"),
-            new FileExtension(".dds"),
-            new FileExtension(".bmp"),
-        };
+        public FileExtension[] ImportFormats => SupportedFormats.Select(GetFormat).ToArray();
 
         /// <summary>
         /// The supported formats to export to
         /// </summary>
-        public FileExtension[] ExportFormats => new FileExtension[]
-        {
-            new FileExtension(".png"),
-            new FileExtension(".jpg"),
-            new FileExtension(".dds"),
-            new FileExtension(".bmp"),
-        };
+        public FileExtension[] ExportFormats => ImportFormats;
 
         /// <summary>
         /// Initializes the file
         /// </summary>
         /// <param name="inputStream">The file data stream</param>
+        /// <param name="fileExtension">The file extension</param>
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
         /// <returns>The init data</returns>
-        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, int? width, IArchiveDataManager manager)
+        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, FileExtension fileExtension, int? width, IArchiveDataManager manager)
         {
             ImageSource thumb = null;
 
             if (width.HasValue)
             {
                 // Get the image
-                using var img = GetImage(inputStream.Stream);
+                using var img = GetImage(inputStream.Stream, fileExtension);
 
                 // Resize to a thumbnail
                 img.Thumbnail(width.Value, (int)(img.Height / ((double)img.Width / width)));
@@ -106,34 +90,36 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Converts the file data to the specified format
         /// </summary>
-        /// <param name="format">The format to convert to</param>
+        /// <param name="inputFormat">The format to convert from</param>
+        /// <param name="outputFormat">The format to convert to</param>
         /// <param name="inputStream">The input file data stream</param>
         /// <param name="outputStream">The output stream for the converted data</param>
         /// <param name="manager">The manager</param>
-        public virtual void ConvertTo(FileExtension format, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
+        public virtual void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
         {
             // Get the image
-            using var img = GetImage(inputStream);
+            using var img = GetImage(inputStream, inputFormat);
 
             // Write to stream as new format
-            img.Write(outputStream, MagickFormatInfo.Create(format.FileExtensions).Format);
+            img.Write(outputStream, MagickFormatInfo.Create(outputFormat.FileExtensions).Format);
         }
 
         /// <summary>
         /// Converts the file data from the specified format
         /// </summary>
-        /// <param name="format">The format to convert from</param>
+        /// <param name="inputFormat">The format to convert from</param>
+        /// <param name="outputFormat">The format to convert to</param>
         /// <param name="currentFileStream">The current file stream</param>
         /// <param name="inputStream">The input file data stream to convert from</param>
         /// <param name="outputStream">The output stream for the converted data</param>
         /// <param name="manager">The manager</param>
-        public virtual void ConvertFrom(FileExtension format, ArchiveFileStream currentFileStream, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
+        public virtual void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
         {
             // Get the image in specified format
-            using var img = new MagickImage(inputStream, MagickFormatInfo.Create(format.FileExtensions).Format);
+            using var img = new MagickImage(inputStream, MagickFormatInfo.Create(inputFormat.FileExtensions).Format);
 
             // Write to stream as native format
-            img.Write(outputStream, Format);
+            img.Write(outputStream, GetMagickFormat(outputFormat));
         }
 
         #endregion
@@ -141,21 +127,33 @@ namespace RayCarrot.RCP.Metro
         #region Image Data
 
         /// <summary>
-        /// The image format
-        /// </summary>
-        public abstract MagickFormat Format { get; }
-        
-        /// <summary>
-        /// The file extensions used by the image format
-        /// </summary>
-        public abstract FileExtension[] FileExtensions { get; }
-        
-        /// <summary>
         /// Gets an image from the file data
         /// </summary>
         /// <param name="inputStream">The file data stream</param>
+        /// <param name="format">The file format</param>
         /// <returns>The image</returns>
-        protected virtual MagickImage GetImage(Stream inputStream) => new MagickImage(inputStream, Format);
+        protected virtual MagickImage GetImage(Stream inputStream, FileExtension format) => new MagickImage(inputStream, GetMagickFormat(format));
+
+        /// <summary>
+        /// Gets the file extension for the image format
+        /// </summary>
+        /// <param name="format">The magick image format</param>
+        /// <returns>The file extension</returns>
+        protected FileExtension GetFormat(MagickFormat format) => new FileExtension($".{format}");
+
+        protected MagickFormat GetMagickFormat(FileExtension data) => MagickFormatInfo.Create(data.PrimaryFileExtension).Format;
+
+        /// <summary>
+        /// The supported image formats
+        /// </summary>
+        protected MagickFormat[] SupportedFormats => new MagickFormat[]
+        {
+            MagickFormat.Png,
+            MagickFormat.Jpg,
+            MagickFormat.Jpeg,
+            MagickFormat.Bmp,
+            MagickFormat.Dds,
+        };
 
         #endregion
     }

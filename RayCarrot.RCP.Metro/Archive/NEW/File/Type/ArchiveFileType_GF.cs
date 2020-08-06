@@ -21,10 +21,11 @@ namespace RayCarrot.RCP.Metro
     {
         #region Interface Implementations
 
+        // TODO-UPDATE: Localize
         /// <summary>
         /// The display name for the file type
         /// </summary>
-        public string TypeDisplayName => "GF";
+        public string TypeDisplayName => "GF (Graphic File)";
 
         /// <summary>
         /// The default icon kind for the type
@@ -55,11 +56,6 @@ namespace RayCarrot.RCP.Metro
         public virtual bool IsOfType(FileExtension fileExtension, Stream inputStream, IArchiveDataManager manager) => false;
 
         /// <summary>
-        /// The native file format
-        /// </summary>
-        public FileExtension NativeFormat => new FileExtension(".gf");
-
-        /// <summary>
         /// The supported formats to import from
         /// </summary>
         public FileExtension[] ImportFormats => new FileExtension[]
@@ -84,10 +80,11 @@ namespace RayCarrot.RCP.Metro
         /// Initializes the file
         /// </summary>
         /// <param name="inputStream">The file data stream</param>
+        /// <param name="fileExtension">The file extension</param>
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
         /// <returns>The init data</returns>
-        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, int? width, IArchiveDataManager manager)
+        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, FileExtension fileExtension, int? width, IArchiveDataManager manager)
         {
             // Load the file
             var file = GetFileContent(inputStream.Stream, manager);
@@ -119,20 +116,21 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Converts the file data to the specified format
         /// </summary>
-        /// <param name="format">The format to convert to</param>
+        /// <param name="inputFormat">The format to convert from</param>
+        /// <param name="outputFormat">The format to convert to</param>
         /// <param name="inputStream">The input file data stream</param>
         /// <param name="outputStream">The output stream for the converted data</param>
         /// <param name="manager">The manager</param>
-        public void ConvertTo(FileExtension format, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
+        public void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
         {
             // Get the image format
-            var imgFormat = format.PrimaryFileExtension switch
+            var imgFormat = outputFormat.PrimaryFileExtension switch
             {
                 ".png" => ImageFormat.Png,
                 ".jpeg" => ImageFormat.Jpeg,
                 ".jpg" => ImageFormat.Jpeg,
                 ".bmp" => ImageFormat.Bmp,
-                _ => throw new Exception($"The specified file format {format.PrimaryFileExtension} is not supported")
+                _ => throw new Exception($"The specified file format {outputFormat.PrimaryFileExtension} is not supported")
             };
 
             // Get the bitmap
@@ -145,12 +143,13 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Converts the file data from the specified format
         /// </summary>
-        /// <param name="format">The format to convert from</param>
+        /// <param name="inputFormat">The format to convert from</param>
+        /// <param name="outputFormat">The format to convert to</param>
         /// <param name="currentFileStream">The current file stream</param>
         /// <param name="inputStream">The input file data stream to convert from</param>
         /// <param name="outputStream">The output stream for the converted data</param>
         /// <param name="manager">The manager</param>
-        public void ConvertFrom(FileExtension format, ArchiveFileStream currentFileStream, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
+        public void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
         {
             // Load the bitmap
             using var bmp = new Bitmap(inputStream);

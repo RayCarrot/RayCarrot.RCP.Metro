@@ -1,7 +1,7 @@
-﻿using System;
+﻿using RayCarrot.IO;
+using System;
 using System.IO;
 using System.Linq;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -10,6 +10,20 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class ArchiveFileItem : IDisposable
     {
+        static ArchiveFileItem()
+        {
+            // IDEA: Move this somewhere else?
+            // Set the supported file types
+            FileTypes = new IArchiveFileType[]
+            {
+                new ArchiveFileType_GF(),
+                new ArchiveFileType_Image()
+            };
+
+            // Set default file type
+            DefaultFileType = new ArchiveFileType_Default();
+        }
+
         public ArchiveFileItem(IArchiveDataManager manager, string fileName, string directory, object archiveEntry)
         {
             Manager = manager;
@@ -48,7 +62,7 @@ namespace RayCarrot.RCP.Metro
             PendingImport = import;
         }
 
-        public IArchiveFileType GetFileType(Func<Stream> getDataStream)
+        public IArchiveFileType GetFileType(ArchiveFileStream stream)
         {
             // Check if we already got the type
             if (FileType != null)
@@ -64,7 +78,7 @@ namespace RayCarrot.RCP.Metro
             if (match == null)
             {
                 // Get the file data stream
-                Stream fileStream = getDataStream();
+                Stream fileStream = stream.Stream;
 
                 // Find a match from the stream data
                 match = types.FirstOrDefault(x => x.IsOfType(FileExtension, fileStream, Manager));
@@ -72,21 +86,14 @@ namespace RayCarrot.RCP.Metro
 
             // If still null, set to default
             if (match == null)
-                match = new ArchiveFileType_Default()
-                {
-                    // TODO-UPDATE: Implement
-                    //SerializerSettings = 
-                };
+                match = DefaultFileType;
 
             // Return and set the type
             return FileType = match;
         }
 
-        // TODO-UPDATE: Move elsewhere
-        private static readonly IArchiveFileType[] FileTypes = new IArchiveFileType[]
-        {
-            new ArchiveFileType_GF()
-        };
+        private static IArchiveFileType[] FileTypes { get; }
+        private static IArchiveFileType DefaultFileType { get; }
 
         public void Dispose()
         {

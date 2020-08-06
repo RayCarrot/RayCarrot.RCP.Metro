@@ -2,7 +2,6 @@
 using RayCarrot.IO;
 using System;
 using System.IO;
-using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -13,6 +12,7 @@ namespace RayCarrot.RCP.Metro
     {
         #region Interface Implementations
 
+        // TODO-UPDATE: Localize
         /// <summary>
         /// The display name for the file type
         /// </summary>
@@ -47,11 +47,6 @@ namespace RayCarrot.RCP.Metro
         public virtual bool IsOfType(FileExtension fileExtension, Stream inputStream, IArchiveDataManager manager) => true;
 
         /// <summary>
-        /// The native file format
-        /// </summary>
-        public FileExtension NativeFormat => throw new NotSupportedException("A default file type does not have a native format");
-
-        /// <summary>
         /// The supported formats to import from
         /// </summary>
         public FileExtension[] ImportFormats => new FileExtension[0];
@@ -65,29 +60,32 @@ namespace RayCarrot.RCP.Metro
         /// Initializes the file
         /// </summary>
         /// <param name="inputStream">The file data stream</param>
+        /// <param name="fileExtension">The file extension</param>
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
         /// <returns>The init data</returns>
-        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, int? width, IArchiveDataManager manager) => new ArchiveFileInitData(null, new DuoGridItemViewModel[0]);
+        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, FileExtension fileExtension, int? width, IArchiveDataManager manager) => new ArchiveFileInitData(null, new DuoGridItemViewModel[0]);
 
         /// <summary>
         /// Converts the file data to the specified format
         /// </summary>
-        /// <param name="format">The format to convert to</param>
+        /// <param name="inputFormat">The format to convert from</param>
+        /// <param name="outputFormat">The format to convert to</param>
         /// <param name="inputStream">The input file data stream</param>
         /// <param name="outputStream">The output stream for the converted data</param>
         /// <param name="manager">The manager</param>
-        public virtual void ConvertTo(FileExtension format, Stream inputStream, Stream outputStream, IArchiveDataManager manager) => throw new NotSupportedException("A default file types can't be converted");
+        public virtual void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, Stream inputStream, Stream outputStream, IArchiveDataManager manager) => throw new NotSupportedException("A default file types can't be converted");
 
         /// <summary>
         /// Converts the file data from the specified format
         /// </summary>
-        /// <param name="format">The format to convert from</param>
+        /// <param name="inputFormat">The format to convert from</param>
+        /// <param name="outputFormat">The format to convert to</param>
         /// <param name="currentFileStream">The current file stream</param>
         /// <param name="inputStream">The input file data stream to convert from</param>
         /// <param name="outputStream">The output stream for the converted data</param>
         /// <param name="manager">The manager</param>
-        public virtual void ConvertFrom(FileExtension format, ArchiveFileStream currentFileStream, Stream inputStream, Stream outputStream, IArchiveDataManager manager) => throw new NotSupportedException("A default file types can't be converted");
+        public virtual void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, Stream inputStream, Stream outputStream, IArchiveDataManager manager) => throw new NotSupportedException("A default file types can't be converted");
 
         #endregion
     }

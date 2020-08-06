@@ -42,12 +42,6 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if it is of this type, otherwise false</returns>
         bool IsOfType(FileExtension fileExtension, Stream inputStream, IArchiveDataManager manager);
 
-        // TODO-UPDATE: This always has to match the file extension - so perhaps use this instead of IsOfType?
-        /// <summary>
-        /// The native file format
-        /// </summary>
-        FileExtension NativeFormat { get; }
-
         /// <summary>
         /// The supported formats to import from
         /// </summary>
@@ -62,28 +56,31 @@ namespace RayCarrot.RCP.Metro
         /// Initializes the file
         /// </summary>
         /// <param name="inputStream">The file data stream</param>
+        /// <param name="fileExtension">The file extension</param>
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
         /// <returns>The init data</returns>
-        ArchiveFileInitData InitFile(ArchiveFileStream inputStream, int? width, IArchiveDataManager manager);
+        ArchiveFileInitData InitFile(ArchiveFileStream inputStream, FileExtension fileExtension, int? width, IArchiveDataManager manager);
 
         /// <summary>
         /// Converts the file data to the specified format
         /// </summary>
-        /// <param name="format">The format to convert to</param>
+        /// <param name="inputFormat">The format to convert from</param>
+        /// <param name="outputFormat">The format to convert to</param>
         /// <param name="inputStream">The input file data stream</param>
         /// <param name="outputStream">The output stream for the converted data</param>
         /// <param name="manager">The manager</param>
-        void ConvertTo(FileExtension format, Stream inputStream, Stream outputStream, IArchiveDataManager manager);
+        void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, Stream inputStream, Stream outputStream, IArchiveDataManager manager);
 
         /// <summary>
         /// Converts the file data from the specified format
         /// </summary>
-        /// <param name="format">The format to convert from</param>
+        /// <param name="inputFormat">The format to convert from</param>
+        /// <param name="outputFormat">The format to convert to</param>
         /// <param name="currentFileStream">The current file stream</param>
         /// <param name="inputStream">The input file data stream to convert from</param>
         /// <param name="outputStream">The output stream for the converted data</param>
         /// <param name="manager">The manager</param>
-        void ConvertFrom(FileExtension format, ArchiveFileStream currentFileStream, Stream inputStream, Stream outputStream, IArchiveDataManager manager);
+        void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, Stream inputStream, Stream outputStream, IArchiveDataManager manager);
     }
 }

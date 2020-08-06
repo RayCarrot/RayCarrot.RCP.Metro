@@ -120,9 +120,9 @@ namespace RayCarrot.RCP.Metro
         public IArchiveFileType FileType { get; set; }
 
         /// <summary>
-        /// The native file format
+        /// The file extension
         /// </summary>
-        public FileExtension NativeFormat => FileType is ArchiveFileType_Default ? FileData.FileExtension : FileType.NativeFormat;
+        public FileExtension FileExtension => new FileExtension(FileName);
 
         /// <summary>
         /// Indicates if the file has pending imports
@@ -193,6 +193,7 @@ namespace RayCarrot.RCP.Metro
                 // Get the file data
                 fileStream ??= GetDecodedFileStream();
 
+                // TODO-UPDATE: Sometimes a threading error is thrown here - why? Happens when exporting a folder.
                 // Populate info
                 FileDisplayInfo.Clear();
 
@@ -202,21 +203,22 @@ namespace RayCarrot.RCP.Metro
                 FileDisplayInfo.AddRange(Manager.GetFileInfo(Archive.ArchiveData, FileData.ArchiveEntry));
 
                 // Get the type
-                FileType = FileData.GetFileType(() => fileStream.Stream);
+                FileType = FileData.GetFileType(fileStream);
 
                 // Remove previous export formats
                 FileExports.Clear();
 
                 // Add native export format
-                FileExports.Add(new ArchiveFileExportViewModel(NativeFormat, NativeFormat.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(NativeFormat))));
+                // TODO-UPDATE: Localize
+                FileExports.Add(new ArchiveFileExportViewModel($"Original ({FileExtension})", new AsyncRelayCommand(async () => await ExportFileAsync())));
 
                 // Get export formats
-                FileExports.AddRange(FileType.ExportFormats.Select(x => new ArchiveFileExportViewModel(x, x.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(x)))));
+                FileExports.AddRange(FileType.ExportFormats.Select(x => new ArchiveFileExportViewModel(x.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(x)))));
 
                 fileStream.SeekToBeginning();
 
                 // Initialize the file
-                var initData = FileType.InitFile(fileStream, loadThumbnail ? (int?)64 : null, Manager);
+                var initData = FileType.InitFile(fileStream, FileExtension, loadThumbnail ? (int?)64 : null, Manager);
 
                 if (loadThumbnail)
                 {
@@ -261,9 +263,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="format">The format to export as</param>
         /// <returns>The task</returns>
-        public async Task ExportFileAsync(FileExtension format)
+        public async Task ExportFileAsync(FileExtension format = null)
         {
-            RL.Logger?.LogTraceSource($"The archive file {FileName} is being exported as {format.FileExtensions}");
+            RL.Logger?.LogTraceSource($"The archive file {FileName} is being exported as {format?.FileExtensions ?? "original"}");
 
             // Run as a load operation
             using (Archive.LoadOperation.Run())
@@ -275,11 +277,15 @@ namespace RayCarrot.RCP.Metro
                     await Task.Run(async () =>
                     {
                         // Get the output path
-                        var result = await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
+                        var result = await Services.BrowseUI.SaveFileAsync(format != null ? new SaveFileViewModel()
                         {
                             Title = Resources.Archive_ExportHeader,
                             DefaultName = new FileSystemPath(FileName).ChangeFileExtension(format.GetPrimaryFileExtension(), true),
                             Extensions = format.GetFileFilterItem.ToString()
+                        } : new SaveFileViewModel()
+                        {
+                            Title = Resources.Archive_ExportHeader,
+                            DefaultName = FileName
                         });
 
                         if (result.CanceledByUser)
@@ -321,7 +327,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="filePath">The file path to export to</param>
         /// <param name="stream">The file stream to export</param>
-        /// <param name="format">The format to export as</param>
+        /// <param name="format">The format to export as, or null to not convert it</param>
         /// <returns>The task</returns>
         public void ExportFile(FileSystemPath filePath, Stream stream, FileExtension format)
         {
@@ -330,12 +336,12 @@ namespace RayCarrot.RCP.Metro
             // Create the output file and open it
             using var fileStream = File.Create(filePath);
 
-            // Write the bytes directly to the stream if the specified format is the native one
-            if (format == NativeFormat)
+            // Write the bytes directly to the stream if no format is specified
+            if (format == null)
                 stream.CopyTo(fileStream);
             // Convert the file if the format is not the native one
             else
-                FileType.ConvertTo(format, stream, fileStream, Manager);
+                FileType.ConvertTo(FileExtension, format, stream, fileStream, Manager);
         }
 
         /// <summary>
@@ -374,11 +380,11 @@ namespace RayCarrot.RCP.Metro
                             using var memStream = new MemoryStream();
 
                             // If it's being imported from a non-native format, convert it
-                            var convert = result.SelectedFile.FileExtension != NativeFormat;
+                            var convert = result.SelectedFile.FileExtension != FileExtension;
 
                             if (convert)
                                 // Convert from the imported file to the memory stream
-                                FileType.ConvertFrom(result.SelectedFile.FileExtension, GetDecodedFileStream(), importFile, memStream, Manager);
+                                FileType.ConvertFrom(result.SelectedFile.FileExtension, FileExtension, GetDecodedFileStream(), importFile, memStream, Manager);
 
                             // Replace the file with the import data
                             if (ReplaceFile(convert ? (Stream)memStream : importFile))
@@ -478,20 +484,13 @@ namespace RayCarrot.RCP.Metro
             /// <summary>
             /// Default constructor
             /// </summary>
-            /// <param name="exportFormat">The format to export as</param>
             /// <param name="displayName">The format display name</param>
             /// <param name="exportCommand">The export command</param>
-            public ArchiveFileExportViewModel(FileExtension exportFormat, string displayName, ICommand exportCommand)
+            public ArchiveFileExportViewModel(string displayName, ICommand exportCommand)
             {
-                ExportFormat = exportFormat;
                 DisplayName = displayName;
                 ExportCommand = exportCommand;
             }
-
-            /// <summary>
-            /// The format to export as
-            /// </summary>
-            public FileExtension ExportFormat { get; }
 
             /// <summary>
             /// The format display name
