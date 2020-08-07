@@ -129,6 +129,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool HasPendingImport { get; set; }
 
+        /// <summary>
+        /// Indicates if the file is selected
+        /// </summary>
+        public bool IsSelected { get; set; }
+
         #endregion
 
         #region Public Methods

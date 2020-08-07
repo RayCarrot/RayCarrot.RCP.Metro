@@ -9,6 +9,7 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:controlzex="urn:controlzex"
              xmlns:wpfTextBoxAutoComplete="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
+             xmlns:editors="http://wpfcontrols.com/"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ArchiveExplorerDialogViewModel}"
              Language="{UICulture}"
@@ -66,12 +67,38 @@
                 </TextBox>
 
                 <!-- TODO: Localize -->
-                <TextBox Grid.Column="1"
-                         Text=""
-                         mah:TextBoxHelper.Watermark="Search"
-                         mah:TextBoxHelper.ButtonContent="{iconPacks:Material Magnify}"
-                         mah:TextBoxHelper.ClearTextButton="True"
-                         Margin="0 0 5 0"/>
+                <editors:AutoCompleteTextBox Grid.Column="1"
+                                             Margin="0 0 5 0"
+                                             DisplayMember="FileName"
+                                             Provider="{Binding Path=SearchProvider, Mode=OneTime}"
+                                             SelectedItem="{Binding Path=CurrentSearchFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             mah:TextBoxHelper.Watermark="Search"
+                                             mah:TextBoxHelper.SelectAllOnFocus="True">
+
+                    <editors:AutoCompleteTextBox.ItemTemplate>
+                        <DataTemplate DataType="local:ArchiveFileViewModel">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <iconPacks:PackIconMaterial Grid.Column="0"
+                                                            Kind="FileOutline" 
+                                                            Foreground="{StaticResource Archive_FileBrush}" />
+
+                                <TextBlock Grid.Column="2"
+                                           Text="{Binding Path=FileName, Mode=OneTime}"
+                                           VerticalAlignment="Center"
+                                           Margin="0 0 10 0" />
+
+                            </Grid>
+
+                        </DataTemplate>
+                    </editors:AutoCompleteTextBox.ItemTemplate>
+
+                </editors:AutoCompleteTextBox>
 
                 <local:OverflowMenu Grid.Column="2"
                                     InheritDataContext="False"
@@ -269,6 +296,7 @@
                                     </ContextMenu>
                                 </Setter.Value>
                             </Setter>
+                            <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
                         </Style>
                     </ListBox.ItemContainerStyle>
 

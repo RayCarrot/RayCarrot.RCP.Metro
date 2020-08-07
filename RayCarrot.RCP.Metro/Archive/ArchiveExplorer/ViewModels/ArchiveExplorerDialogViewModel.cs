@@ -1,11 +1,13 @@
 ﻿using RayCarrot.Common;
 using RayCarrot.IO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using AutoCompleteTextBox.Editors;
 using Nito.AsyncEx;
 using RayCarrot.Logging;
 using RayCarrot.UI;
@@ -18,6 +20,8 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class ArchiveExplorerDialogViewModel : UserInputViewModel, IDisposable
     {
+        #region Constructor
+
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -30,6 +34,7 @@ namespace RayCarrot.RCP.Metro
 
             // Set properties
             CurrentDirectorySuggestions = new ObservableCollection<string>();
+            SearchProvider = new BaseSuggestionProvider(x => Archives.SelectMany(y => y).SelectMany(y => y.Files).Concat(Archives.SelectMany(x => x.Files)).Where(y => y.FileName.IndexOf(x, StringComparison.CurrentCultureIgnoreCase) > -1));
 
             try
             {
@@ -75,9 +80,23 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        #endregion
+
+        #region Private Fields
+
         private string _currentDirectoryAddress;
 
+        private ArchiveFileViewModel _currentSearchFile;
+
+        #endregion
+
+        #region Commands
+
         public ICommand NavigateToAddressCommand { get; }
+
+        #endregion
+
+        #region Public Properties
 
         /// <summary>
         /// Indicates if files are being initialized
@@ -139,8 +158,30 @@ namespace RayCarrot.RCP.Metro
                     if (dir != null)
                         CurrentDirectorySuggestions.AddRange(dir.Select(x => $"{x.Archive.DisplayName}:{Manager.PathSeparatorCharacter}{x.FullPath}"));
                 }
+            }
+        }
 
-                RL.Logger.LogInformationSource($"{CurrentDirectorySuggestions.JoinItems("-")}");
+        /// <summary>
+        /// The search provider
+        /// </summary>
+        public BaseSuggestionProvider SearchProvider { get; }
+
+        /// <summary>
+        /// The currently selected search file
+        /// </summary>
+        public ArchiveFileViewModel CurrentSearchFile
+        {
+            get => _currentSearchFile;
+            set
+            {
+                _currentSearchFile = value;
+
+                if (CurrentSearchFile != null)
+                {
+                    LoadDirectory(CurrentSearchFile.ArchiveDirectory);
+                    CurrentSearchFile.IsSelected = true;
+                    CurrentSearchFile = null;
+                }
             }
         }
 
@@ -152,7 +193,11 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The currently selected directory
         /// </summary>
-        protected ArchiveDirectoryViewModel SelectedDir { get; set; }
+        public ArchiveDirectoryViewModel SelectedDir { get; set; }
+
+        #endregion
+
+        #region Protected Methods
 
         /// <summary>
         /// Gets the directory for the specified address
@@ -196,6 +241,18 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
+        /// Updates the current directory address
+        /// </summary>
+        protected void UpdateAddress()
+        {
+            CurrentDirectoryAddress = $"{SelectedDir.Archive.DisplayName}:{SelectedDir.Archive.Manager.PathSeparatorCharacter}{SelectedDir.FullPath}";
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
         /// Loads the specified directory
         /// </summary>
         /// <param name="dir">The directory to load</param>
@@ -217,14 +274,6 @@ namespace RayCarrot.RCP.Metro
             // Otherwise select the item and let the thumbnails get automatically reloaded
             else
                 dir.IsSelected = true;
-        }
-
-        /// <summary>
-        /// Updates the current directory address
-        /// </summary>
-        protected void UpdateAddress()
-        {
-            CurrentDirectoryAddress = $"{SelectedDir.Archive.DisplayName}:{SelectedDir.Archive.Manager.PathSeparatorCharacter}{SelectedDir.FullPath}";
         }
 
         /// <summary>
@@ -316,5 +365,26 @@ namespace RayCarrot.RCP.Metro
         /// Disposes the archives
         /// </summary>
         public void Dispose() => Archives?.DisposeAll();
+
+        #endregion
+
+        #region Classes
+
+        /// <summary>
+        /// A base suggestion provider
+        /// </summary>
+        public class BaseSuggestionProvider : ISuggestionProvider
+        {
+            public BaseSuggestionProvider(Func<string, IEnumerable> getSuggestionsFunc)
+            {
+                GetSuggestionsFunc = getSuggestionsFunc;
+            }
+
+            protected Func<string, IEnumerable> GetSuggestionsFunc { get; }
+
+            public IEnumerable GetSuggestions(string filter) => GetSuggestionsFunc(filter);
+        }
+
+        #endregion
     }
 }
