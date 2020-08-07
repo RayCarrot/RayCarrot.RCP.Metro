@@ -115,11 +115,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="manager">The manager</param>
         public virtual void ConvertFrom(FileExtension inputFormat, FileExtension outputFormat, ArchiveFileStream currentFileStream, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
         {
-            // Get the image in specified format
-            using var img = new MagickImage(inputStream, MagickFormatInfo.Create(inputFormat.FileExtensions).Format);
-
-            // Write to stream as native format
-            img.Write(outputStream, GetMagickFormat(outputFormat));
+            ConvertFrom(inputFormat, GetMagickFormat(outputFormat), inputStream, outputStream);
         }
 
         #endregion
@@ -134,6 +130,22 @@ namespace RayCarrot.RCP.Metro
         /// <param name="manager">The manager to check</param>
         /// <returns>The image</returns>
         protected virtual MagickImage GetImage(Stream inputStream, FileExtension format, IArchiveDataManager manager) => new MagickImage(inputStream, GetMagickFormat(format));
+
+        /// <summary>
+        /// Converts the file data from the specified format
+        /// </summary>
+        /// <param name="inputFormat">The format to convert from</param>
+        /// <param name="outputFormat">The format to convert to</param>
+        /// <param name="inputStream">The input file data stream to convert from</param>
+        /// <param name="outputStream">The output stream for the converted data</param>
+        public void ConvertFrom(FileExtension inputFormat, MagickFormat outputFormat, Stream inputStream, Stream outputStream)
+        {
+            // Get the image in specified format
+            using var img = new MagickImage(inputStream, MagickFormatInfo.Create(inputFormat.FileExtensions).Format);
+
+            // Write to stream as native format
+            img.Write(outputStream, outputFormat);
+        }
 
         /// <summary>
         /// Gets the file extension for the image format

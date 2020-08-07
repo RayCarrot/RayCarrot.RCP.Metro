@@ -137,7 +137,7 @@ namespace RayCarrot.RCP.Metro
                 if (outputFormat == Format)
                     inputStream.CopyTo(outputStream);
                 else
-                    base.ConvertFrom(inputFormat, outputFormat, currentFileStream, inputStream, outputStream, manager);
+                    ConvertFrom(inputFormat, MagickFormat, inputStream, outputStream);
             }
             else
             {
@@ -219,6 +219,11 @@ namespace RayCarrot.RCP.Metro
         /// The format
         /// </summary>
         protected abstract FileExtension Format { get; }
+
+        /// <summary>
+        /// The magick format
+        /// </summary>
+        protected abstract MagickFormat MagickFormat { get; }
 
         /// <summary>
         /// The magic header for the format
