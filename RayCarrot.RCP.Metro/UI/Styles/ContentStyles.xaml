@@ -3,7 +3,8 @@
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
+                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                    xmlns:editors="http://wpfcontrols.com/">
 
     <!-- Default radio button -->
 
@@ -321,6 +322,77 @@
 
                         </Grid>
                     </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Default AutoCompleteTextBox -->
+
+    <Style TargetType="{x:Type editors:AutoCompleteTextBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type editors:AutoCompleteTextBox}">
+                    <Grid>
+                        <DockPanel>
+                            <ContentPresenter x:Name="PART_Icon"
+                                                                  ContentSource="Icon"
+                                                                  Visibility="{TemplateBinding IconVisibility}" />
+                            <Grid>
+
+                                <TextBlock x:Name="PART_Watermark"
+                                                               Text="{TemplateBinding Watermark}"
+                                                               Padding="{TemplateBinding Padding}"
+                                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                               Foreground="{TemplateBinding Foreground}"
+                                                               Visibility="Collapsed"
+                                                               Focusable="False"
+                                                               Margin="4 0" />
+
+                                <TextBox x:Name="PART_Editor"
+                                                             HorizontalAlignment="Stretch"
+                                                             VerticalAlignment="Center"
+                                                             Foreground="{TemplateBinding Foreground}"
+                                                             Text="{Binding Path=Text, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}" 
+                                                             mah:TextBoxHelper.Watermark="{TemplateBinding mah:TextBoxHelper.Watermark}"
+                                                             mah:TextBoxHelper.SelectAllOnFocus="{TemplateBinding mah:TextBoxHelper.SelectAllOnFocus}"/>
+                            </Grid>
+                        </DockPanel>
+
+                        <Popup x:Name="PART_Popup"
+                                                   IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource Mode=TemplatedParent},Mode=TwoWay}"
+                                                   Width="{TemplateBinding ActualWidth}"
+                                                   MinHeight="25"
+                                                   MaxHeight="600"
+                                                   AllowsTransparency="True"
+                                                   Focusable="False">
+                            <Border Background="{TemplateBinding Background}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        CornerRadius="{TemplateBinding mah:ControlsHelper.CornerRadius}"
+                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                                <Grid>
+                                    <ListBox x:Name="PART_Selector"
+                                                                 ItemTemplate="{TemplateBinding ItemTemplate}"
+                                                                 ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                                 Focusable="False"
+                                                                 MaxHeight="{Binding Path=MaxPopupHeight, RelativeSource={RelativeSource Mode=TemplatedParent},Mode=TwoWay}"
+                                                                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                                                 ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                                    <Border Visibility="{Binding Path=IsLoading, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={rwpf:BooleanToVisibilityConverter}}">
+                                        <ContentPresenter ContentSource="LoadingContent"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </Popup>
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="" SourceName="PART_Editor">
+                            <Setter Property="Visibility" Value="Visible" TargetName="PART_Watermark" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
