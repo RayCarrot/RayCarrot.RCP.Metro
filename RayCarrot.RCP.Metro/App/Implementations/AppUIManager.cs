@@ -225,6 +225,27 @@ namespace RayCarrot.RCP.Metro
             });
         }
 
+        public async Task<StringInputResult> GetStringInput(StringInputViewModel stringInputViewModel, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        {
+            RL.Logger?.LogTraceSource($"A string input dialog was opened", origin: origin, filePath: filePath, lineNumber: lineNumber);
+
+            if (Application.Current.Dispatcher == null)
+                throw new Exception("The application does not have a valid dispatcher");
+
+            // Create the dialog and get the result
+            var result = await Application.Current.Dispatcher.Invoke(() => new StringInputDialog(stringInputViewModel)).ShowDialogAsync();
+
+            if (result == null)
+                RL.Logger?.LogTraceSource($"The string input dialog returned null");
+            else if (result.CanceledByUser)
+                RL.Logger?.LogTraceSource($"The string input dialog was canceled by the user");
+            else
+                RL.Logger?.LogTraceSource($"The string input dialog returned the selected string {result.StringInput}");
+
+            // Return the result
+            return result;
+        }
+
         #endregion
 
         #region Windows

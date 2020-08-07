@@ -35,7 +35,8 @@ namespace RayCarrot.RCP.Metro
             ExportCommand = new AsyncRelayCommand(async () => await ExportAsync(false));
             ExtractCommand = new AsyncRelayCommand(async () => await ExportAsync(true));
             ImportCommand = new AsyncRelayCommand(ImportAsync);
-            DeleteCommand = new AsyncRelayCommand(DeleteDirectory);
+            CreateDirectoryCommand = new AsyncRelayCommand(CreateDirectoryAsync);
+            DeleteCommand = new AsyncRelayCommand(DeleteDirectoryAsync);
             AddFileCommand = new AsyncRelayCommand(AddFileAsync);
 
             // Enable collection synchronization
@@ -61,7 +62,8 @@ namespace RayCarrot.RCP.Metro
             ExportCommand = new AsyncRelayCommand(async () => await ExportAsync(false));
             ExtractCommand = new AsyncRelayCommand(async () => await ExportAsync(true));
             ImportCommand = new AsyncRelayCommand(ImportAsync);
-            DeleteCommand = new AsyncRelayCommand(DeleteDirectory);
+            CreateDirectoryCommand = new AsyncRelayCommand(CreateDirectoryAsync);
+            DeleteCommand = new AsyncRelayCommand(DeleteDirectoryAsync);
             AddFileCommand = new AsyncRelayCommand(AddFileAsync);
 
             // Enable collection synchronization
@@ -392,11 +394,40 @@ namespace RayCarrot.RCP.Metro
             //}
         }
 
+        public async Task CreateDirectoryAsync()
+        {
+            // Run as a load operation
+            using (Archive.LoadOperation.Run())
+            {
+                // Lock the access to the archive
+                using (await Archive.ArchiveLock.LockAsync())
+                {
+                    // TODO-UPDATE: Localize
+                    var result = await RCPServices.UI.GetStringInput(new StringInputViewModel
+                    {
+                        Title = "Select a directory name",
+                        HeaderText = "Select a directory name",
+                        StringInput = "New Folder"
+                    });
+
+                    if (result.CanceledByUser)
+                        return;
+
+                    // TODO-UPDATE: Make sure the name doesn't conflict with an existing directory
+
+                    // Add the directory
+                    Add(result.StringInput);
+
+                    RL.Logger?.LogTraceSource($"The archive directory {result.StringInput} has been added to {DisplayName}");
+                }
+            }
+        }
+
         /// <summary>
         /// Deletes the directory
         /// </summary>
         /// <returns>The task</returns>
-        public async Task DeleteDirectory()
+        public async Task DeleteDirectoryAsync()
         {
             RL.Logger?.LogTraceSource($"The archive directory {DisplayName} is being removed...");
 
