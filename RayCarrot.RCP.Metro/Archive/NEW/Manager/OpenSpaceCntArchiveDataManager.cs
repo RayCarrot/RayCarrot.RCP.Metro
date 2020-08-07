@@ -265,10 +265,14 @@ namespace RayCarrot.RCP.Metro
         public IEnumerable<DuoGridItemViewModel> GetFileInfo(object archive, object fileEntry)
         {
             var entry = (OpenSpaceCntFileEntry)fileEntry;
+            var cnt = (OpenSpaceCntData)archive;
 
             // TODO-UPDATE: Localize
             yield return new DuoGridItemViewModel("File size:", $"{ByteSize.FromBytes(entry.Size)}");
-            yield return new DuoGridItemViewModel("Pointer:", $"0x{entry.Pointer:X8}", UserLevel.Technical);
+
+            if (cnt.Files.Contains(entry))
+                yield return new DuoGridItemViewModel("Pointer:", $"0x{entry.Pointer:X8}", UserLevel.Technical);
+            
             yield return new DuoGridItemViewModel("Encrypted:", $"{entry.FileXORKey.Any(x => x != 0)}", UserLevel.Advanced);
         }
 

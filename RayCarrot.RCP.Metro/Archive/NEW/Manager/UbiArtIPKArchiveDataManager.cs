@@ -279,7 +279,10 @@ namespace RayCarrot.RCP.Metro
             // TODO-UPDATE: Localize
             yield return new DuoGridItemViewModel("File size:", $"{ByteSize.FromBytes(entry.Size)}");
             yield return new DuoGridItemViewModel("Compressed file size:", $"{ByteSize.FromBytes(entry.CompressedSize)}");
-            yield return new DuoGridItemViewModel("Pointer:", $"0x{entry.Offsets.First() + ipk.BaseOffset:X8}", UserLevel.Technical);
+
+            if (ipk.Files.Contains(entry))
+                yield return new DuoGridItemViewModel("Pointer:", $"0x{entry.Offsets.First() + ipk.BaseOffset:X8}", UserLevel.Technical);
+            
             yield return new DuoGridItemViewModel("Compressed:", $"{entry.IsCompressed}");
         }
 
