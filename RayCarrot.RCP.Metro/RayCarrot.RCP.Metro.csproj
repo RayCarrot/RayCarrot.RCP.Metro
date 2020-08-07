@@ -104,6 +104,12 @@
     <Compile Include="AppUserData\DataModels\ArchiveExplorerSort.cs" />
     <Compile Include="Archive\ArchiveBase\ArchiveData.cs" />
     <Compile Include="Archive\ArchiveBase\ArchiveDirectory.cs" />
+    <Compile Include="Archive\NEW\File\Type\UbiArt\ArchiveFileType_BaseUbiArtTex.cs" />
+    <Compile Include="Archive\NEW\File\Type\UbiArt\ArchiveFileType_DDSUbiArtTex.cs" />
+    <Compile Include="Archive\NEW\File\Type\UbiArt\ArchiveFileType_GNFUbiArtTex.cs" />
+    <Compile Include="Archive\NEW\File\Type\UbiArt\ArchiveFileType_GTXUbiArtTex.cs" />
+    <Compile Include="Archive\NEW\File\Type\UbiArt\ArchiveFileType_GXTUbiArtTex.cs" />
+    <Compile Include="Archive\NEW\File\Type\UbiArt\ArchiveFileType_PVRUbiArtTex.cs" />
     <Compile Include="Archive\NEW\Manager\ArchiveDataManagerExtensions.cs" />
     <Compile Include="Archive\NEW\Manager\IArchiveDataManager.cs" />
     <Compile Include="Archive\ArchiveBase\ArchiveCreationData.cs" />
@@ -115,7 +121,7 @@
     <Compile Include="Archive\NEW\File\ArchiveFileItem.cs" />
     <Compile Include="Archive\NEW\DataTypes\ArchiveFileInitData.cs" />
     <Compile Include="Archive\NEW\File\Type\ArchiveFileType_Default.cs" />
-    <Compile Include="Archive\NEW\File\Type\ArchiveFileType_GF.cs" />
+    <Compile Include="Archive\NEW\File\Type\OpenSpace\ArchiveFileType_GF.cs" />
     <Compile Include="Archive\NEW\File\Type\ArchiveFileType_Image.cs" />
     <Compile Include="Archive\NEW\File\Type\IArchiveFileType.cs" />
     <Compile Include="Archive\NEW\Manager\OpenSpaceCntArchiveDataManager.cs" />
@@ -204,8 +210,6 @@
     <Compile Include="Utilities\Games\Rayman Origins\IPKExplorer\ROIPKExplorerUtility.cs" />
     <Compile Include="Helpers\ImageHelpers.cs" />
     <Compile Include="Archive\UbiArt_Ipk\Config\UbiArtIPKArchiveConfigViewModel.cs" />
-    <Compile Include="Archive\UbiArt_Ipk\UbiArtIPKArchiveFileData.cs" />
-    <Compile Include="Archive\UbiArt_Ipk\UbiArtIPKArchiveImageFileData.cs" />
     <Compile Include="Archive\ArchiveExplorer\ArchiveExplorerUI.xaml.cs">
       <DependentUpon>ArchiveExplorerUI.xaml</DependentUpon>
     </Compile>

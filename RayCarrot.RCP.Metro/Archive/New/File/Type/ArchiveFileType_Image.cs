@@ -18,7 +18,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The display name for the file type
         /// </summary>
-        public string TypeDisplayName => "Image";
+        public virtual string TypeDisplayName => "Image";
 
         /// <summary>
         /// The default icon kind for the type
@@ -30,7 +30,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="manager">The manager to check</param>
         /// <returns>True if supported, otherwise false</returns>
-        public bool IsSupported(IArchiveDataManager manager) => true;
+        public virtual bool IsSupported(IArchiveDataManager manager) => true;
 
         /// <summary>
         /// Indicates if a file with the specifies file extension is of this type
@@ -51,12 +51,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The supported formats to import from
         /// </summary>
-        public FileExtension[] ImportFormats => SupportedFormats.Select(GetFormat).ToArray();
+        public virtual FileExtension[] ImportFormats => SupportedFormats.Select(GetFormat).ToArray();
 
         /// <summary>
         /// The supported formats to export to
         /// </summary>
-        public FileExtension[] ExportFormats => ImportFormats;
+        public virtual FileExtension[] ExportFormats => ImportFormats;
 
         /// <summary>
         /// Initializes the file
@@ -66,14 +66,14 @@ namespace RayCarrot.RCP.Metro
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
         /// <returns>The init data</returns>
-        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, FileExtension fileExtension, int? width, IArchiveDataManager manager)
+        public virtual ArchiveFileInitData InitFile(ArchiveFileStream inputStream, FileExtension fileExtension, int? width, IArchiveDataManager manager)
         {
             ImageSource thumb = null;
 
             if (width.HasValue)
             {
                 // Get the image
-                using var img = GetImage(inputStream.Stream, fileExtension);
+                using var img = GetImage(inputStream.Stream, fileExtension, manager);
 
                 // Resize to a thumbnail
                 img.Thumbnail(width.Value, (int)(img.Height / ((double)img.Width / width)));
@@ -98,7 +98,7 @@ namespace RayCarrot.RCP.Metro
         public virtual void ConvertTo(FileExtension inputFormat, FileExtension outputFormat, Stream inputStream, Stream outputStream, IArchiveDataManager manager)
         {
             // Get the image
-            using var img = GetImage(inputStream, inputFormat);
+            using var img = GetImage(inputStream, inputFormat, manager);
 
             // Write to stream as new format
             img.Write(outputStream, MagickFormatInfo.Create(outputFormat.FileExtensions).Format);
@@ -131,8 +131,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="inputStream">The file data stream</param>
         /// <param name="format">The file format</param>
+        /// <param name="manager">The manager to check</param>
         /// <returns>The image</returns>
-        protected virtual MagickImage GetImage(Stream inputStream, FileExtension format) => new MagickImage(inputStream, GetMagickFormat(format));
+        protected virtual MagickImage GetImage(Stream inputStream, FileExtension format, IArchiveDataManager manager) => new MagickImage(inputStream, GetMagickFormat(format));
 
         /// <summary>
         /// Gets the file extension for the image format
