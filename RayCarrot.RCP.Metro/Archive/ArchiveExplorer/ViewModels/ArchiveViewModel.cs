@@ -238,6 +238,9 @@ namespace RayCarrot.RCP.Metro
                 // Lock the access to the archive
                 using (await Archive.ArchiveLock.LockAsync())
                 {
+                    // Find the selected item ID
+                    var selected = SelectedItem.FullID;
+
                     // Run as a task
                     await Task.Run(async () =>
                     {
@@ -246,9 +249,6 @@ namespace RayCarrot.RCP.Metro
                             ExplorerDialogViewModel.CancelInitializeFiles = true;
 
                         Archive.SetDisplayStatus(String.Format(Resources.Archive_RepackingStatus, DisplayName));
-
-                        // Find the selected item ID
-                        var selected = SelectedItem.FullID;
 
                         try
                         {
@@ -284,18 +284,18 @@ namespace RayCarrot.RCP.Metro
                             if (ArchiveFileStream == null)
                                 ArchiveFileStream = new FileStream(FilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
                         }
-
-                        // Reload the archive
-                        LoadArchive();
-
-                        // Get the previously selected item
-                        var previouslySelectedItem = this.GetAllChildren<ArchiveDirectoryViewModel>(true).FindItem(x => x.FullID.SequenceEqual(selected));
-
-                        // Load the previously selected directory
-                        ExplorerDialogViewModel.LoadDirectory(previouslySelectedItem);
-
-                        Archive.SetDisplayStatus(String.Empty);
                     });
+
+                    // Reload the archive
+                    LoadArchive();
+
+                    // Get the previously selected item
+                    var previouslySelectedItem = this.GetAllChildren<ArchiveDirectoryViewModel>(true).FindItem(x => x.FullID.SequenceEqual(selected));
+
+                    // Load the previously selected directory
+                    ExplorerDialogViewModel.LoadDirectory(previouslySelectedItem);
+
+                    Archive.SetDisplayStatus(String.Empty);
                 }
             }
         }

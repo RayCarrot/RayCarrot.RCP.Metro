@@ -160,27 +160,27 @@ namespace RayCarrot.RCP.Metro
                 // Lock the access to the archive
                 using (await Archive.ArchiveLock.LockAsync())
                 {
+                    // Get the output path
+                    var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                    {
+                        Title = Resources.Archive_ExportHeader
+                    });
+
+                    if (result.CanceledByUser)
+                        return;
+
+                    // Make sure there isn't an existing file at the output path
+                    if ((result.SelectedDirectory + ExportDirName).FileExists)
+                    {
+                        // TODO-UPDATE: Localize
+                        await Services.MessageUI.DisplayMessageAsync(String.Format("The select directory contains a file with the same name as {0}", ExportDirName), MessageType.Error);
+
+                        return;
+                    }
+
                     // Run as a task
                     await Task.Run(async () =>
                     {
-                        // Get the output path
-                        var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
-                        {
-                            Title = Resources.Archive_ExportHeader
-                        });
-
-                        if (result.CanceledByUser)
-                            return;
-
-                        // Make sure there isn't an existing file at the output path
-                        if ((result.SelectedDirectory + ExportDirName).FileExists)
-                        {
-                            // TODO-UPDATE: Localize
-                            await Services.MessageUI.DisplayMessageAsync(String.Format("The select directory contains a file with the same name as {0}", ExportDirName), MessageType.Error);
-
-                            return;
-                        }
-
                         // Get the manager
                         var manager = Archive.Manager;
 
@@ -400,49 +400,46 @@ namespace RayCarrot.RCP.Metro
                 // Lock the access to the archive
                 using (await Archive.ArchiveLock.LockAsync())
                 {
-                    // Run as a task
-                    await Task.Run(async () =>
+                    // Get the files
+                    var result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                     {
-                        // Get the files
-                        var result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
-                        {
-                            // TODO-UPDATE: Localize
-                            Title = "Select files to add",
-                            MultiSelection = true
-                        });
-
-                        if (result.CanceledByUser)
-                            return;
-
-                        // Get the manager
-                        var manager = Archive.Manager;
-
-                        // TODO-UPDATE: Try/catch this
-                        // TODO-UPDATE: Make sure an added file doesn't have a name which conflicts with an existing file
-
-                        var modifiedCount = 0;
-
-                        // Add every file
-                        foreach (var file in result.SelectedFiles)
-                        {
-                            // Open the file as a stream
-                            using var fileStream = File.OpenRead(file);
-
-                            var fileName = file.Name;
-                            var dir = FullPath;
-
-                            var fileViewModel = new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData, dir, fileName)), this);
-
-                            // Replace the empty file with the import data
-                            if (fileViewModel.ReplaceFile(fileStream))
-                                modifiedCount++;
-
-                            // Add the file to the list
-                            Files.Add(fileViewModel);
-                        }
-
-                        Archive.AddModifiedFiles(modifiedCount);
+                        // TODO-UPDATE: Localize
+                        Title = "Select files to add",
+                        MultiSelection = true
                     });
+
+                    if (result.CanceledByUser)
+                        return;
+
+                    // Get the manager
+                    var manager = Archive.Manager;
+
+                    // TODO-UPDATE: Try/catch this
+                    // TODO-UPDATE: Make sure an added file doesn't have a name which conflicts with an existing file
+
+                    var modifiedCount = 0;
+
+                    // Add every file
+                    foreach (var file in result.SelectedFiles)
+                    {
+                        // Open the file as a stream
+                        using var fileStream = File.OpenRead(file);
+
+                        var fileName = file.Name;
+                        var dir = FullPath;
+
+                        var fileViewModel = new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData, dir, fileName)), this);
+
+                        // Replace the empty file with the import data
+                        if (await Task.Run(() => fileViewModel.ReplaceFile(fileStream)))
+                            modifiedCount++;
+
+                        // Add the file to the list
+                        Files.Add(fileViewModel);
+                    }
+
+                    Archive.AddModifiedFiles(modifiedCount);
+
                 }
             }
         }

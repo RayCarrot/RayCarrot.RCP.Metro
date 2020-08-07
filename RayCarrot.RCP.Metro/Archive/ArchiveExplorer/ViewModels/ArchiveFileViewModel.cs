@@ -278,24 +278,24 @@ namespace RayCarrot.RCP.Metro
                 // Lock the access to the archive
                 using (await Archive.ArchiveLock.LockAsync())
                 {
+                    // Get the output path
+                    var result = await Services.BrowseUI.SaveFileAsync(format != null ? new SaveFileViewModel()
+                    {
+                        Title = Resources.Archive_ExportHeader,
+                        DefaultName = new FileSystemPath(FileName).ChangeFileExtension(format.GetPrimaryFileExtension(), true),
+                        Extensions = format.GetFileFilterItem.ToString()
+                    } : new SaveFileViewModel()
+                    {
+                        Title = Resources.Archive_ExportHeader,
+                        DefaultName = FileName
+                    });
+
+                    if (result.CanceledByUser)
+                        return;
+
                     // Run as a task
                     await Task.Run(async () =>
                     {
-                        // Get the output path
-                        var result = await Services.BrowseUI.SaveFileAsync(format != null ? new SaveFileViewModel()
-                        {
-                            Title = Resources.Archive_ExportHeader,
-                            DefaultName = new FileSystemPath(FileName).ChangeFileExtension(format.GetPrimaryFileExtension(), true),
-                            Extensions = format.GetFileFilterItem.ToString()
-                        } : new SaveFileViewModel()
-                        {
-                            Title = Resources.Archive_ExportHeader,
-                            DefaultName = FileName
-                        });
-
-                        if (result.CanceledByUser)
-                            return;
-
                         Archive.SetDisplayStatus(String.Format(Resources.Archive_ExportingFileStatus, FileName));
 
                         try
@@ -363,19 +363,19 @@ namespace RayCarrot.RCP.Metro
                 // Lock the access to the archive
                 using (await Archive.ArchiveLock.LockAsync())
                 {
+                    // Get the file
+                    var result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
+                    {
+                        Title = Resources.Archive_ImportFileHeader,
+                        ExtensionFilter = new FileFilterItemCollection(FileType.ExportFormats.Select(x => x.GetFileFilterItem)).CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
+                    });
+
+                    if (result.CanceledByUser)
+                        return;
+
                     // Run as a task
                     await Task.Run(async () =>
                     {
-                        // Get the file
-                        var result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
-                        {
-                            Title = Resources.Archive_ImportFileHeader,
-                            ExtensionFilter = new FileFilterItemCollection(FileType.ExportFormats.Select(x => x.GetFileFilterItem)).CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
-                        });
-
-                        if (result.CanceledByUser)
-                            return;
-
                         // TODO-UPDATE: Try/catch all of this
 
                         // Open the file to be imported
@@ -446,20 +446,16 @@ namespace RayCarrot.RCP.Metro
                 // Lock the access to the archive
                 using (await Archive.ArchiveLock.LockAsync())
                 {
-                    // Run as a task
-                    await Task.Run(() =>
-                    {
-                        // Remove the file from the directory
-                        ArchiveDirectory.Files.Remove(this);
+                    // Remove the file from the directory
+                    ArchiveDirectory.Files.Remove(this);
 
-                        // Dispose the file
-                        Dispose();
+                    // Dispose the file
+                    Dispose();
 
-                        // Add as modified file
-                        Archive.AddModifiedFiles();
+                    // Add as modified file
+                    Archive.AddModifiedFiles();
 
-                        RL.Logger?.LogTraceSource($"The archive file has been removed");
-                    });
+                    RL.Logger?.LogTraceSource($"The archive file has been removed");
                 }
             }
         }
