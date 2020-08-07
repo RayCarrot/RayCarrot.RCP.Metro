@@ -23,6 +23,6 @@ namespace RayCarrot.RCP.Metro
         /// <param name="manager">The manager</param>
         /// <param name="paths">The paths to combine</param>
         /// <returns>The combined paths</returns>
-        public static string CombinePaths(this IArchiveDataManager manager, IEnumerable<string> paths) => paths.Select(x => x.TrimEnd(manager.PathSeparatorCharacter)).JoinItems(manager.PathSeparatorCharacter.ToString());
+        public static string CombinePaths(this IArchiveDataManager manager, IEnumerable<string> paths) => paths.Where(x => !x.IsNullOrWhiteSpace()).Select(x => x.TrimEnd(manager.PathSeparatorCharacter)).JoinItems(manager.PathSeparatorCharacter.ToString());
     }
 }
