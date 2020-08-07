@@ -8,6 +8,7 @@
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:controlzex="urn:controlzex"
+             xmlns:wpfTextBoxAutoComplete="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ArchiveExplorerDialogViewModel}"
              Language="{UICulture}"
@@ -48,16 +49,31 @@
                   Margin="0 0 0 5">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="3*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <TextBox Grid.Column="0"
-                         Text="{Binding Path=CurrentDirectoryAddress}"
-                         KeyUp="UIElement_OnKeyUp"
+                         Text="{Binding Path=CurrentDirectoryAddress, UpdateSourceTrigger=PropertyChanged}"
+                         wpfTextBoxAutoComplete:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding Path=CurrentDirectorySuggestions, Mode=OneTime}"
+                         wpfTextBoxAutoComplete:AutoCompleteBehavior.AutoCompleteStringComparison="InvariantCultureIgnoreCase"
+                         Margin="0 0 5 0">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Return"
+                                    Command="{Binding Path=NavigateToAddressCommand, Mode=OneTime}" />
+                    </TextBox.InputBindings>
+                </TextBox>
+
+                <!-- TODO: Localize -->
+                <TextBox Grid.Column="1"
+                         Text=""
+                         mah:TextBoxHelper.Watermark="Search"
+                         mah:TextBoxHelper.ButtonContent="{iconPacks:Material Magnify}"
+                         mah:TextBoxHelper.ClearTextButton="True"
                          Margin="0 0 5 0"/>
 
-                <local:OverflowMenu Grid.Column="1"
+                <local:OverflowMenu Grid.Column="2"
                                     InheritDataContext="False"
                                     Visibility="{Binding Converter={rwpf:InvertedObjectNullToVisibilityConverter}}">
                     <local:OverflowMenu.ContextMenu>

@@ -2,10 +2,13 @@
 using RayCarrot.IO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Nito.AsyncEx;
 using RayCarrot.Logging;
+using RayCarrot.UI;
 using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
@@ -22,6 +25,12 @@ namespace RayCarrot.RCP.Metro
         /// <param name="filePaths">The archive file paths</param>
         public ArchiveExplorerDialogViewModel(IArchiveDataManager manager, IEnumerable<FileSystemPath> filePaths)
         {
+            // Create commands
+            NavigateToAddressCommand = new RelayCommand(NavigateToAddress);
+
+            // Set properties
+            CurrentDirectorySuggestions = new ObservableCollection<string>();
+
             try
             {
                 // Set the default title
@@ -68,6 +77,8 @@ namespace RayCarrot.RCP.Metro
 
         private string _currentDirectoryAddress;
 
+        public ICommand NavigateToAddressCommand { get; }
+
         /// <summary>
         /// Indicates if files are being initialized
         /// </summary>
@@ -111,15 +122,62 @@ namespace RayCarrot.RCP.Metro
             get => _currentDirectoryAddress;
             set
             {
-                LoadDirectory(value);
-                UpdateAddress();
+                _currentDirectoryAddress = value;
+
+                CurrentDirectorySuggestions.Clear();
+
+                var separatorIndex = CurrentDirectoryAddress.LastIndexOf(Manager.PathSeparatorCharacter);
+                if (separatorIndex == -1)
+                {
+                    CurrentDirectorySuggestions.AddRange(Archives.Select(x => $"{x.DisplayName}:{Manager.PathSeparatorCharacter}"));
+                }
+                else
+                {
+                    var parentDir = CurrentDirectoryAddress.Substring(0, separatorIndex);
+                    var dir = GetDirectory(parentDir);
+
+                    if (dir != null)
+                        CurrentDirectorySuggestions.AddRange(dir.Select(x => $"{x.Archive.DisplayName}:{Manager.PathSeparatorCharacter}{x.FullPath}"));
+                }
+
+                RL.Logger.LogInformationSource($"{CurrentDirectorySuggestions.JoinItems("-")}");
             }
         }
+
+        /// <summary>
+        /// The currently available directory suggestions
+        /// </summary>
+        public ObservableCollection<string> CurrentDirectorySuggestions { get; }
 
         /// <summary>
         /// The currently selected directory
         /// </summary>
         protected ArchiveDirectoryViewModel SelectedDir { get; set; }
+
+        /// <summary>
+        /// Gets the directory for the specified address
+        /// </summary>
+        /// <param name="address">The address</param>
+        /// <returns>The directory, or null if no match was found</returns>
+        protected ArchiveDirectoryViewModel GetDirectory(string address)
+        {
+            var paths = address.TrimEnd(Manager.PathSeparatorCharacter).Split(Manager.PathSeparatorCharacter);
+
+            ArchiveDirectoryViewModel dir = Archives.FirstOrDefault(x => x.DisplayName.Equals(paths.FirstOrDefault()?.TrimEnd(':'), StringComparison.OrdinalIgnoreCase));
+
+            if (dir == null)
+                return null;
+
+            foreach (var path in paths.Skip(1))
+            {
+                dir = dir.FirstOrDefault(x => x.ID.Equals(path, StringComparison.OrdinalIgnoreCase));
+
+                if (dir == null)
+                    return null;
+            }
+
+            return dir;
+        }
 
         /// <summary>
         /// Attempts to load the directory specified by the address
@@ -129,23 +187,12 @@ namespace RayCarrot.RCP.Metro
         {
             RL.Logger.LogDebugSource($"Loading directory from address: {address}");
 
-            var paths = address.Split(Manager.PathSeparatorCharacter);
+            // Get the directory
+            var dir = GetDirectory(address);
 
-            ArchiveDirectoryViewModel dir = Archives.FirstOrDefault(x => x.DisplayName.Equals(paths.FirstOrDefault()?.TrimEnd(':'), StringComparison.OrdinalIgnoreCase));
-
-            if (dir == null || paths.Length < 2)
-                return;
-
-            foreach (var path in paths.Skip(1))
-            {
-                dir = dir.FirstOrDefault(x => x.ID.Equals(path, StringComparison.OrdinalIgnoreCase));
-
-                if (dir == null)
-                    return;
-            }
-
-            // Load the directory
-            LoadDirectory(dir);
+            // Load the directory if not null
+            if (dir != null)
+                LoadDirectory(dir);
         }
 
         /// <summary>
@@ -177,8 +224,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected void UpdateAddress()
         {
-            _currentDirectoryAddress = $"{SelectedDir.Archive.DisplayName}:{SelectedDir.Archive.Manager.PathSeparatorCharacter}{SelectedDir.FullPath}";
-            OnPropertyChanged(nameof(CurrentDirectoryAddress));
+            CurrentDirectoryAddress = $"{SelectedDir.Archive.DisplayName}:{SelectedDir.Archive.Manager.PathSeparatorCharacter}{SelectedDir.FullPath}";
         }
 
         /// <summary>
@@ -255,6 +301,15 @@ namespace RayCarrot.RCP.Metro
                     CancelInitializeFiles = false;
                 }
             }
+        }
+
+        /// <summary>
+        /// Attempts to navigate to the currently address
+        /// </summary>
+        public void NavigateToAddress()
+        {
+            LoadDirectory(CurrentDirectoryAddress);
+            UpdateAddress();
         }
 
         /// <summary>
