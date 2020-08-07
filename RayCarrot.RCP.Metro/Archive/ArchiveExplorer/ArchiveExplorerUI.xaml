@@ -179,7 +179,8 @@
                                     <local:MenuItemIcon Header="Delete"
                                                         Command="{Binding Path=DeleteCommand}"
                                                         IconForeground="{StaticResource Archive_DeleteItemBrush}"
-                                                        IconKind="DeleteOutline" />
+                                                        IconKind="DeleteOutline"
+                                                        IsEnabled="{Binding Path=Parent, Converter={rwpf:IsNotNullConverter}}"/>
 
 
                                 </ContextMenu>

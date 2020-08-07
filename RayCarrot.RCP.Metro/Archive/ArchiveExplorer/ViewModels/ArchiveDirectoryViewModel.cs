@@ -35,6 +35,7 @@ namespace RayCarrot.RCP.Metro
             ExportCommand = new AsyncRelayCommand(async () => await ExportAsync(false));
             ExtractCommand = new AsyncRelayCommand(async () => await ExportAsync(true));
             ImportCommand = new AsyncRelayCommand(ImportAsync);
+            DeleteCommand = new AsyncRelayCommand(DeleteDirectory);
             AddFileCommand = new AsyncRelayCommand(AddFileAsync);
 
             // Enable collection synchronization
@@ -60,6 +61,7 @@ namespace RayCarrot.RCP.Metro
             ExportCommand = new AsyncRelayCommand(async () => await ExportAsync(false));
             ExtractCommand = new AsyncRelayCommand(async () => await ExportAsync(true));
             ImportCommand = new AsyncRelayCommand(ImportAsync);
+            DeleteCommand = new AsyncRelayCommand(DeleteDirectory);
             AddFileCommand = new AsyncRelayCommand(AddFileAsync);
 
             // Enable collection synchronization
@@ -388,6 +390,34 @@ namespace RayCarrot.RCP.Metro
             //        });
             //    }
             //}
+        }
+
+        /// <summary>
+        /// Deletes the directory
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task DeleteDirectory()
+        {
+            RL.Logger?.LogTraceSource($"The archive directory {DisplayName} is being removed...");
+
+            // Run as a load operation
+            using (Archive.LoadOperation.Run())
+            {
+                // Lock the access to the archive
+                using (await Archive.ArchiveLock.LockAsync())
+                {
+                    // Remove from parent directory
+                    Parent.Remove(this);
+
+                    // Dispose the directory and the sub-directory
+                    this.GetAllChildren(true).DisposeAll();
+
+                    // Add as modified file
+                    Archive.AddModifiedFiles();
+
+                    RL.Logger?.LogTraceSource($"The archive directory has been removed");
+                }
+            }
         }
 
         public async Task AddFileAsync()
