@@ -57,7 +57,7 @@ namespace RayCarrot.RCP.Updater
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            Process.Start("http://raycarrot.ylemnova.com/")?.Dispose();
+            Process.Start("https://raym.app/rcp/")?.Dispose();
             Close();
         }
 

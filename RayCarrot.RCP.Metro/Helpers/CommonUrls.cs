@@ -10,7 +10,7 @@
         /// <summary>
         /// The base URL
         /// </summary>
-        public const string BaseUrl = "http://raycarrot.ylemnova.com/RCP/";
+        public const string BaseUrl = "https://raym.app/rcp/";
 
         /// <summary>
         /// The update manifest URL
