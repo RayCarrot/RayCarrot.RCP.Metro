@@ -56,7 +56,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The fallback URL to display to the user in case of an error
         /// </summary>
-        protected override string UserFallbackURL => "raycarrot.ylemnova.com";
+        protected override string UserFallbackURL => "https://raym.app/rcp/";
 
         /// <summary>
         /// The manifest URL

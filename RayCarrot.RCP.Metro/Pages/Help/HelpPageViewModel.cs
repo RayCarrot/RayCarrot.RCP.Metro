@@ -50,7 +50,7 @@ namespace RayCarrot.RCP.Metro
                         new HelpItemViewModel()
                         {
                             DisplayHeader = Resources.Help_RCP_UpdatesHeader,
-                            HelpText = String.Format(Resources.Help_RCP_Updates, "http://raycarrot.ylemnova.com/")
+                            HelpText = String.Format(Resources.Help_RCP_Updates, "https://raym.app/rcp/")
                         },
 
                         // Compatibility

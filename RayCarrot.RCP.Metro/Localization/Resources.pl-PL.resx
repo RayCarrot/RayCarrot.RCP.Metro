@@ -124,7 +124,7 @@
     <value>Informacje</value>
   </data>
   <data name="BackupPageHeader" xml:space="preserve">
-    <value>Utwórz kopie zapasową/ Przywróć</value>
+    <value>Utwórz/Przywróć kopię zapasową</value>
   </data>
   <data name="DebugPageHeader" xml:space="preserve">
     <value>Debug</value>
@@ -1902,19 +1902,19 @@ Spróbować ponownie?</value>
     <value>Słowacki (Słowacja) - przez MixerX</value>
   </data>
   <data name="R2U_Translations_Original" xml:space="preserve">
-    <value>Oryginalny</value>
+    <value>Oryginalne</value>
   </data>
   <data name="R2U_Translations_Irish" xml:space="preserve">
-    <value>Irlandzki</value>
+    <value>Irlandzkie</value>
   </data>
   <data name="R2U_Translations_Swedish" xml:space="preserve">
-    <value>Szwedzki</value>
+    <value>Szwedzkie</value>
   </data>
   <data name="R2U_Translations_Portuguese" xml:space="preserve">
-    <value>Portugalski</value>
+    <value>Portugalskie</value>
   </data>
   <data name="R2U_Translations_Slovak" xml:space="preserve">
-    <value>Słowacki</value>
+    <value>Słowackie</value>
   </data>
   <data name="R2U_Translations_FilesNotFound" xml:space="preserve">
     <value>Nie można znaleźć wymaganych plików
@@ -2034,7 +2034,7 @@ Jeśli w usłudze aktualizacji wystąpi błąd, można go pobrać ręcznie z:
   <data name="Help_RCP_GameInstaller" xml:space="preserve">
     <value>W przypadku gier, które mogą być zainstalowane z dysku, można to zrobić z rozwijanego menu gry. Obecnie Rayman 2, Rayman M i Rayman Arena są jedynymi wspieranymi grami.
 
-Podczas instalacji musisz określić folder, w którym chcesz zainstalować grę.Nie zostanie ona zainstalowana w podfolderze określonego folderu. Na przykład, zdecydujesz się zainstalować Rayman 2 pod C:\Ubisoft, a gra zostanie zainstalowana pod C:\Ubisoft\Rayman 2</value>
+Podczas instalacji musisz określić folder, w którym chcesz zainstalować grę. Nie zostanie ona zainstalowana w podfolderze określonego folderu. Na przykład, zdecydujesz się zainstalować Rayman 2 pod C:\Ubisoft, a gra zostanie zainstalowana pod C:\Ubisoft\Rayman 2</value>
   </data>
   <data name="Help_RCP_BackupRestore" xml:space="preserve">
     <value>Program ma funkcję tworzenia kopii zapasowych i przywracania dla wszystkich obsługiwanych gier. Kopie zapasowe są domyślnie przechowywane w folderze dokumentów, ale lokalizacja może zostać zmieniona w ustawieniach.
@@ -2113,7 +2113,7 @@ Uruchamianie aplikacji w trybie zgodności odbywa się poprzez wybranie opcji po
     <value>Obecnie nie ma rozwiązania dla tego błędu. Pojawia się on na wszystkich wersjach, w tym wersji GOG, na niektórych komputerach.</value>
   </data>
   <data name="Help_Games_RL_LoadError" xml:space="preserve">
-    <value>Błąd występuje główny na urządzeniach z systemem Windows 10, ponieważ gra nie jest w stanie odczytać/zapisać pliku zapisu gry i/lub ustawień konfiguracji gry. Najczęstsza poprawką jest dodanie Rayman Legends do wyjątków w systemie.</value>
+    <value>Błąd występuje głównie na urządzeniach z systemem Windows 10, ponieważ gra nie jest w stanie odczytać/zapisać pliku zapisu gry i/lub ustawień konfiguracji gry. Najczęstsza poprawką jest dodanie Rayman Legends do wyjątków w systemie.</value>
   </data>
   <data name="About_Credits_Snagglebee" xml:space="preserve">
     <value>Narzędzie do ścieżki dźwiękowej na poziom, Usunięcie sprawdzania dysku Rayman M/Arena</value>
@@ -2921,8 +2921,7 @@ Komunikat o błędzie: {1}</value>
     <value>To narzędzie może przekonwertować lokalizację typu .loc, która jest używana w Rayman Fiesta Run. Konwersja do pliku .JSON pozwoli na swobodną edycję plików. Podczas konwersji z powrotem musisz wybrać istniejący plik .loc8, do którego chcesz zaimportować zmiany.</value>
   </data>
   <data name="Progression_Header" xml:space="preserve">
-    <value>Postęp
-</value>
+    <value>Postęp</value>
   </data>
   <data name="Progression_GenericSlot" xml:space="preserve">
     <value>Slot {0}</value>
@@ -3446,7 +3445,7 @@ Wskaźnik = {8}</value>
     <comment>Nebulous Tower</comment>
   </data>
   <data name="RM_RaceName_2" xml:space="preserve">
-    <value>Dark Sewer</value>
+    <value>Mroczny Kanał</value>
     <comment>Dark Sewer</comment>
   </data>
   <data name="RM_RaceName_3" xml:space="preserve">
@@ -3500,5 +3499,71 @@ Wskaźnik = {8}</value>
   <data name="RM_RaceName_15" xml:space="preserve">
     <value>Born To Slide</value>
     <comment>Born To Slide</comment>
+  </data>
+  <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
+    <value>Pliki zapisu gier Rayman M/Arena (.sav)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888" xml:space="preserve">
+    <value>Konwersja do formatu 32-bitowego podczas importu (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888Info" xml:space="preserve">
+    <value>Wskazuje, czy plik .gf powinien być konwertowany na 24/32 bity przy imporcie dla najwyższej możliwej jakości</value>
+  </data>
+  <data name="Progression_RM_LapTraining" xml:space="preserve">
+    <value>Najlepsze okrążenie (Trening)</value>
+  </data>
+  <data name="Progression_RM_LapRace" xml:space="preserve">
+    <value>Najlepsze okrążenie (Wyścig)</value>
+  </data>
+  <data name="Progression_RM_LapTarget" xml:space="preserve">
+    <value>Najlepsze okrążenie (Cele)</value>
+  </data>
+  <data name="Progression_RM_LapLums" xml:space="preserve">
+    <value>Najlepsze okrążenie (Lumki)</value>
+  </data>
+  <data name="Progression_RM_TimeRace" xml:space="preserve">
+    <value>Najlepszy czas (Wyścig)</value>
+  </data>
+  <data name="Progression_RM_TimeTarget" xml:space="preserve">
+    <value>Najlepszy czas (Cele)</value>
+  </data>
+  <data name="Progression_RM_TimeLums" xml:space="preserve">
+    <value>Najlepszy czas (Lumki)</value>
+  </data>
+  <data name="Progression_RM_Targets" xml:space="preserve">
+    <value>Cele</value>
+  </data>
+  <data name="Progression_RM_Lums" xml:space="preserve">
+    <value>Lumki</value>
+  </data>
+  <data name="Help_Cheats_Description" xml:space="preserve">
+    <value>Opis</value>
+  </data>
+  <data name="Help_Cheats_Location" xml:space="preserve">
+    <value>Lokalizacja</value>
+  </data>
+  <data name="Help_Cheats_Cheats" xml:space="preserve">
+    <value>Kod</value>
+  </data>
+  <data name="Help_Cheats_Cheats1" xml:space="preserve">
+    <value>Kod 1</value>
+  </data>
+  <data name="Help_Cheats_Cheats2" xml:space="preserve">
+    <value>Kod 2</value>
+  </data>
+  <data name="Help_Cheats_Cheats3" xml:space="preserve">
+    <value>Kod 3</value>
+  </data>
+  <data name="Browse_SelectFile" xml:space="preserve">
+    <value>Wybierz plik</value>
+  </data>
+  <data name="Browse_SaveFile" xml:space="preserve">
+    <value>Zapisz plik</value>
+  </data>
+  <data name="Browse_SelectDir" xml:space="preserve">
+    <value>Wybierz folder</value>
+  </data>
+  <data name="Browse_SelectDrive" xml:space="preserve">
+    <value>Wybierz dysk</value>
   </data>
 </root>

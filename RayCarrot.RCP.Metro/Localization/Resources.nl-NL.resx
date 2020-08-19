@@ -3449,4 +3449,70 @@ Pointer = {8}</value>
   <data name="RM_RaceName_15" xml:space="preserve">
     <value>Born To Slide</value>
   </data>
+  <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
+    <value>Rayman M/Arena Save Files (.sav)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888" xml:space="preserve">
+    <value>Converteren naar 32-bit tijdens het importeren (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888Info" xml:space="preserve">
+    <value>Geeft aan of het .gf-bestand geconverteerd zou moeten worden naar 24/32-bit tijdens de import voor de hoogst mogelijke kwaliteit</value>
+  </data>
+  <data name="Progression_RM_LapTraining" xml:space="preserve">
+    <value>Beste Ronde (Training)</value>
+  </data>
+  <data name="Progression_RM_LapRace" xml:space="preserve">
+    <value>Beste Ronde (Race)</value>
+  </data>
+  <data name="Progression_RM_LapTarget" xml:space="preserve">
+    <value>Beste Ronde (Doelwit)</value>
+  </data>
+  <data name="Progression_RM_LapLums" xml:space="preserve">
+    <value>Beste Ronde (Lums)</value>
+  </data>
+  <data name="Progression_RM_TimeRace" xml:space="preserve">
+    <value>Beste Tijd (Race)</value>
+  </data>
+  <data name="Progression_RM_TimeTarget" xml:space="preserve">
+    <value>Beste Tijd (Doelwit)</value>
+  </data>
+  <data name="Progression_RM_TimeLums" xml:space="preserve">
+    <value>Beste Tijd (Lums)</value>
+  </data>
+  <data name="Progression_RM_Targets" xml:space="preserve">
+    <value>Doelwitten</value>
+  </data>
+  <data name="Progression_RM_Lums" xml:space="preserve">
+    <value>Lums</value>
+  </data>
+  <data name="Help_Cheats_Description" xml:space="preserve">
+    <value>Beschrijving</value>
+  </data>
+  <data name="Help_Cheats_Location" xml:space="preserve">
+    <value>Locatie</value>
+  </data>
+  <data name="Help_Cheats_Cheats" xml:space="preserve">
+    <value>Cheats</value>
+  </data>
+  <data name="Help_Cheats_Cheats1" xml:space="preserve">
+    <value>Cheats 1</value>
+  </data>
+  <data name="Help_Cheats_Cheats2" xml:space="preserve">
+    <value>Cheats 2</value>
+  </data>
+  <data name="Help_Cheats_Cheats3" xml:space="preserve">
+    <value>Cheats 3</value>
+  </data>
+  <data name="Browse_SelectFile" xml:space="preserve">
+    <value>Selecteer een bestand</value>
+  </data>
+  <data name="Browse_SaveFile" xml:space="preserve">
+    <value>Opslaan bestand</value>
+  </data>
+  <data name="Browse_SelectDir" xml:space="preserve">
+    <value>Selecteer een map</value>
+  </data>
+  <data name="Browse_SelectDrive" xml:space="preserve">
+    <value>Selecteer een schrijf</value>
+  </data>
 </root>
