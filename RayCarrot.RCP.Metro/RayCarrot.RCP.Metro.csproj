@@ -1044,6 +1044,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>RayCarrot.RCP.Metro</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Resources.ru-RU.resx" />
     <EmbeddedResource Include="Localization\Resources.sr-Cyrl.resx" />
     <EmbeddedResource Include="Localization\Resources.sv-SE.resx" />
     <None Include="Files\Games.json" />

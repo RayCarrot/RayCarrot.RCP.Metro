@@ -1405,9 +1405,6 @@ Försök igen?"</value>
   <data name="BrowseBox_Browse" xml:space="preserve">
     <value>Bläddra</value>
   </data>
-  <data name="About_Discord" xml:space="preserve">
-    <value>Discord</value>
-  </data>
   <data name="Settings_IncompleteTranslations" xml:space="preserve">
     <value>Visa språk med ofullständiga översättningar</value>
   </data>
@@ -1721,6 +1718,10 @@ Försök igen?"</value>
   <data name="GoHomeConfig_BigFile" xml:space="preserve">
     <value>Big file</value>
     <comment>Big file</comment>
+  </data>
+  <data name="R2Config_Graphics_DirectX" xml:space="preserve">
+    <value>DirectX</value>
+    <comment>DirectX</comment>
   </data>
   <data name="R2Config_Graphics_nGlide" xml:space="preserve">
     <value>Glide</value>

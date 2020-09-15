@@ -399,6 +399,54 @@
   <data name="Config_RRRScreenModeInfo" xml:space="preserve">
     <value>Опције режима екрана ће се понашати различито у зависности од изабране резолуције. Углавном ће задржавањем размере  4:3 омогућити игри да не буде растегнута у примени других пропорција.</value>
   </data>
+  <data name="About_ProgramInfo" xml:space="preserve">
+    <value>Rayman Control Panel™ је заједнички пројекат отвореног кода који је креирао корисник са псеудонимом RayCarrot. Овај софтвер је јединствена извршна датотека  слободна за употребу са намером да омогући лако приступање подешавањима Рејмен наслова издатих за Виндоус. Развој овог пројекта је још увек у току и у будућим ажурирањима је планирано  више могућности. Помоћни програми и различите алатке за конфигурацију су креирани уз помоћ разних чланова Рејмен заједнице, и сви су наведени у наставку.</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>Заслуге</value>
+  </data>
+  <data name="About_UpdateHistory" xml:space="preserve">
+    <value>Историја ажурирања</value>
+  </data>
+  <data name="About_UpdateCheck" xml:space="preserve">
+    <value>Провери нова ажурирања</value>
+  </data>
+  <data name="About_GitHub" xml:space="preserve">
+    <value>Гитхаб</value>
+  </data>
+  <data name="About_Twitter" xml:space="preserve">
+    <value>Твитер</value>
+  </data>
+  <data name="About_YouTube" xml:space="preserve">
+    <value>Јутјуб</value>
+  </data>
+  <data name="About_Email" xml:space="preserve">
+    <value>Имејл</value>
+  </data>
+  <data name="Backup_LastBackupDate" xml:space="preserve">
+    <value>Последња резервна копија</value>
+  </data>
+  <data name="Backup_LastBackupSize" xml:space="preserve">
+    <value>Величина резервне копије</value>
+  </data>
+  <data name="Backup_Backup" xml:space="preserve">
+    <value>Направи резервну копију</value>
+  </data>
+  <data name="Backup_Restore" xml:space="preserve">
+    <value>Поврати</value>
+  </data>
+  <data name="Games_Installed" xml:space="preserve">
+    <value>Инсталирано</value>
+  </data>
+  <data name="Games_NotInstalled" xml:space="preserve">
+    <value>Није инсталирано</value>
+  </data>
+  <data name="Help_CategoryHelp" xml:space="preserve">
+    <value>Изабери помоћну страницу из доступних категорија са леве стране</value>
+  </data>
+  <data name="Settings_UserLevel" xml:space="preserve">
+    <value>Кориснички ниво</value>
+  </data>
   <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
     <value>1.20</value>
   </data>
@@ -617,6 +665,9 @@
   <data name="GoHomeConfig_BigFile" xml:space="preserve">
     <value>Big file</value>
     <comment>Big file</comment>
+  </data>
+  <data name="R2Config_Graphics_DirectX" xml:space="preserve">
+    <value>DirectX</value>
   </data>
   <data name="R2Config_Graphics_nGlide" xml:space="preserve">
     <value>Glide</value>

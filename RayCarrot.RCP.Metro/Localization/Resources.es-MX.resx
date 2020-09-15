@@ -973,12 +973,6 @@ Notícias:
   <data name="BrowseBox_Browse" xml:space="preserve">
     <value>Navegar</value>
   </data>
-  <data name="About_Discord" xml:space="preserve">
-    <value>Discord</value>
-  </data>
-  <data name="Help_AdditionalHelp" xml:space="preserve">
-    <value>Para ayuda adicional, chequea el servidor de Discord</value>
-  </data>
   <data name="Settings_IncompleteTranslations" xml:space="preserve">
     <value>Mostrar idiomas con traducciones incompletas</value>
   </data>
@@ -1447,6 +1441,10 @@ Notícias:
   <data name="GoHomeConfig_BigFile" xml:space="preserve">
     <value>Big file</value>
     <comment>Big file</comment>
+  </data>
+  <data name="R2Config_Graphics_DirectX" xml:space="preserve">
+    <value>DirectX</value>
+    <comment>DirectX</comment>
   </data>
   <data name="R2Config_Graphics_nGlide" xml:space="preserve">
     <value>Glide</value>

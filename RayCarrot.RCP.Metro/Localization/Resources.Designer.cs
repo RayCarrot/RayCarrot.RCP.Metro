@@ -241,15 +241,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Discord.
-        /// </summary>
-        public static string About_Discord {
-            get {
-                return ResourceManager.GetString("About_Discord", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string About_Email {
@@ -4516,15 +4507,6 @@ namespace RayCarrot.RCP.Metro {
         public static string GoHomeConfig_VersionIndex {
             get {
                 return ResourceManager.GetString("GoHomeConfig_VersionIndex", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to For additional help, check the Discord server.
-        /// </summary>
-        public static string Help_AdditionalHelp {
-            get {
-                return ResourceManager.GetString("Help_AdditionalHelp", resourceCulture);
             }
         }
         
