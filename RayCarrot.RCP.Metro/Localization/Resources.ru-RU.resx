@@ -3444,4 +3444,7 @@
   <data name="Browse_SelectDrive" xml:space="preserve">
     <value>Выбрать диск</value>
   </data>
+  <data name="About_Credits_RaymanUniverse" xml:space="preserve">
+    <value>Перевод программы на русский (Россия)</value>
+  </data>
 </root>

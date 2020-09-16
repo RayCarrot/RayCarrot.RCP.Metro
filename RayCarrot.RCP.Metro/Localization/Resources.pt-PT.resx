@@ -3557,4 +3557,7 @@ Pointer = {8}
   <data name="Browse_SelectDrive" xml:space="preserve">
     <value>Selecciona um disco</value>
   </data>
+  <data name="About_Credits_RaymanUniverse" xml:space="preserve">
+    <value>Programa de tradução Russo (Rússia)</value>
+  </data>
 </root>

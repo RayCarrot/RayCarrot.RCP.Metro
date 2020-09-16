@@ -3609,4 +3609,7 @@ fileCount</comment>
   <data name="Browse_SelectDrive" xml:space="preserve">
     <value>Select a drive</value>
   </data>
+  <data name="About_Credits_RaymanUniverse" xml:space="preserve">
+    <value>Russian (Russia) program translation</value>
+  </data>
 </root>

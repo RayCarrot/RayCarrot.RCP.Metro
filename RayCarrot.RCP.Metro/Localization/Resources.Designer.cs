@@ -214,6 +214,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Russian (Russia) program translation.
+        /// </summary>
+        public static string About_Credits_RaymanUniverse {
+            get {
+                return ResourceManager.GetString("About_Credits_RaymanUniverse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cheat code list, general help with the utilities.
         /// </summary>
         public static string About_Credits_RibShark {

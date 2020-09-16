@@ -3560,4 +3560,7 @@ Wskaźnik = {8}</value>
   <data name="Browse_SelectDrive" xml:space="preserve">
     <value>Wybierz dysk</value>
   </data>
+  <data name="About_Credits_RaymanUniverse" xml:space="preserve">
+    <value>Tłumaczenie rosyjskie (Rosja) programu</value>
+  </data>
 </root>
