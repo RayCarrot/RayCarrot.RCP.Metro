@@ -138,6 +138,7 @@
     <Compile Include="Games\Info\Demo\Demo_Rayman3_3_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman3_4_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman3_5_Info.cs" />
+    <Compile Include="Games\Info\Fan\RaymanBowling2_Info.cs" />
     <Compile Include="Games\Info\Fan\RaymanRedemption_Info.cs" />
     <Compile Include="Games\Info\Other\Ray1Minigames_Info.cs" />
     <Compile Include="Games\Info\Other\RaymanPremiersClics_Info.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Games\Manager\Demo\Demo_Rayman3_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_RaymanM_Win32.cs" />
     <Compile Include="Games\Manager\Demo\Demo_RaymanGold_DOSBox.cs" />
+    <Compile Include="Games\Manager\Fan\RaymanBowling2_Win32.cs" />
     <Compile Include="Games\Manager\Fan\RaymanRedemption_Win32.cs" />
     <Compile Include="Games\Manager\Other\Ray1Minigames_Win32.cs" />
     <Compile Include="Games\Manager\Other\RaymanPremiersClics_Win32.cs" />
@@ -1137,6 +1139,7 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\GameIcons\RaymanBowling2.png" />
     <Resource Include="Img\ProgressionIcons\RM_Battle.png" />
     <Resource Include="Img\ProgressionIcons\RM_Race.png" />
     <Resource Include="Img\ProgressionIcons\RM_R10.png" />
