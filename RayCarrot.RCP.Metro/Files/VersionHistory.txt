@@ -1,4 +1,9 @@
-﻿-----   Version 10.2.1 - August 19, 2020   -----
+﻿-----   Version 10.3.0 - September 21, 2020   -----
+• The program has now been translated to Russian (thanks Rayman Universe - Рэйман и его Вселенная!)
+• Added support for Rayman Bowling 2
+
+
+-----   Version 10.2.1 - August 19, 2020   -----
 • Updated the updater
 
 
