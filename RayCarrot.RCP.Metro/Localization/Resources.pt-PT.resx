@@ -1665,12 +1665,6 @@ Executar uma aplicação em modo de compactibilidade é feito ao seleccionar a o
   <data name="BrowseBox_Browse" xml:space="preserve">
     <value>Navegar</value>
   </data>
-  <data name="About_Discord" xml:space="preserve">
-    <value>Discord</value>
-  </data>
-  <data name="Help_AdditionalHelp" xml:space="preserve">
-    <value>Para ajuda adicional, verifica o servidor Discord</value>
-  </data>
   <data name="Settings_IncompleteTranslations" xml:space="preserve">
     <value>Mostrar línguas com traduções incompletas</value>
   </data>
@@ -3433,6 +3427,42 @@ Pointer = {8}
   <data name="About_Credits_Fabiosek" xml:space="preserve">
     <value>Programa de tradução Polaca (Polónia)</value>
   </data>
+  <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
+    <value>Ficheiros de Progressão Rayman M/Arena (.sav)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888" xml:space="preserve">
+    <value>Converter para 32-bits na importação (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888Info" xml:space="preserve">
+    <value>Indica se o ficheiro .gf deverá ser convertido para 24/32-bits na importação para a qualidade mais alta possível</value>
+  </data>
+  <data name="Progression_RM_LapTraining" xml:space="preserve">
+    <value>Melhor Volta (Treino)</value>
+  </data>
+  <data name="Progression_RM_LapRace" xml:space="preserve">
+    <value>Melhor Volta (Corrida)</value>
+  </data>
+  <data name="Progression_RM_LapTarget" xml:space="preserve">
+    <value>Melhor Volta (Alvos)</value>
+  </data>
+  <data name="Progression_RM_LapLums" xml:space="preserve">
+    <value>Melhor Volta (Lums)</value>
+  </data>
+  <data name="Progression_RM_TimeRace" xml:space="preserve">
+    <value>Melhor Tempo (Corrida)</value>
+  </data>
+  <data name="Progression_RM_TimeTarget" xml:space="preserve">
+    <value>Melhor Tempo (Alvos)</value>
+  </data>
+  <data name="Progression_RM_TimeLums" xml:space="preserve">
+    <value>Melhor Tempo (Lums)</value>
+  </data>
+  <data name="Progression_RM_Targets" xml:space="preserve">
+    <value>Alvos</value>
+  </data>
+  <data name="Progression_RM_Lums" xml:space="preserve">
+    <value>Lums</value>
+  </data>
   <data name="RM_RaceName_0" xml:space="preserve">
     <value>First Ruins</value>
     <comment>First Ruins</comment>
@@ -3497,42 +3527,6 @@ Pointer = {8}
     <value>Born To Slide</value>
     <comment>Born To Slide</comment>
   </data>
-  <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
-    <value>Ficheiros de Progressão Rayman M/Arena (.sav)</value>
-  </data>
-  <data name="Settings_ArchiveGFForce8888" xml:space="preserve">
-    <value>Converter para 32-bits na importação (.gf)</value>
-  </data>
-  <data name="Settings_ArchiveGFForce8888Info" xml:space="preserve">
-    <value>Indica se o ficheiro .gf deverá ser convertido para 24/32-bits na importação para a qualidade mais alta possível</value>
-  </data>
-  <data name="Progression_RM_LapTraining" xml:space="preserve">
-    <value>Melhor Volta (Treino)</value>
-  </data>
-  <data name="Progression_RM_LapRace" xml:space="preserve">
-    <value>Melhor Volta (Corrida)</value>
-  </data>
-  <data name="Progression_RM_LapTarget" xml:space="preserve">
-    <value>Melhor Volta (Alvos)</value>
-  </data>
-  <data name="Progression_RM_LapLums" xml:space="preserve">
-    <value>Melhor Volta (Lums)</value>
-  </data>
-  <data name="Progression_RM_TimeRace" xml:space="preserve">
-    <value>Melhor Tempo (Corrida)</value>
-  </data>
-  <data name="Progression_RM_TimeTarget" xml:space="preserve">
-    <value>Melhor Tempo (Alvos)</value>
-  </data>
-  <data name="Progression_RM_TimeLums" xml:space="preserve">
-    <value>Melhor Tempo (Lums)</value>
-  </data>
-  <data name="Progression_RM_Targets" xml:space="preserve">
-    <value>Alvos</value>
-  </data>
-  <data name="Progression_RM_Lums" xml:space="preserve">
-    <value>Lums</value>
-  </data>
   <data name="Help_Cheats_Description" xml:space="preserve">
     <value>Descrição</value>
   </data>
@@ -3562,5 +3556,8 @@ Pointer = {8}
   </data>
   <data name="Browse_SelectDrive" xml:space="preserve">
     <value>Selecciona um disco</value>
+  </data>
+  <data name="About_Credits_RaymanUniverse" xml:space="preserve">
+    <value>Programa de tradução Russo (Rússia)</value>
   </data>
 </root>

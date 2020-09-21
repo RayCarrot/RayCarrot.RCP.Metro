@@ -1,0 +1,3450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GamesPageHeader" xml:space="preserve">
+    <value>Игры</value>
+  </data>
+  <data name="AboutPageHeader" xml:space="preserve">
+    <value>О программе</value>
+  </data>
+  <data name="BackupPageHeader" xml:space="preserve">
+    <value>Создать/Восстановить резервную копию</value>
+  </data>
+  <data name="DebugPageHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="HelpPageHeader" xml:space="preserve">
+    <value>Помощь</value>
+  </data>
+  <data name="SettingsPageHeader" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ок</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Принять</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="GameType_Desktop" xml:space="preserve">
+    <value>Приложение на рабочем столе</value>
+  </data>
+  <data name="GameType_DosBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="GameType_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="GameType_WinStore" xml:space="preserve">
+    <value>Microsoft Store</value>
+  </data>
+  <data name="MountPathHeader" xml:space="preserve">
+    <value>Путь монтирования</value>
+  </data>
+  <data name="MountPathInfo" xml:space="preserve">
+    <value>Путь монтирования может быть либо файлом, либо диском. Если Вы используете GOG-версию - это файл 'game.inst'. Если у Вас образ диска - обычно это .cue файл. В противном случае используйте букву диска с игрой.</value>
+  </data>
+  <data name="MountOption_File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="MountOption_Drive" xml:space="preserve">
+    <value>Диск</value>
+  </data>
+  <data name="MountOption_FileInfo" xml:space="preserve">
+    <value>Указывает на то, что путь монтирования является файлом</value>
+  </data>
+  <data name="MountOption_DriveInfo" xml:space="preserve">
+    <value>Указывает на то, что путь монтирования является накопителем или диском</value>
+  </data>
+  <data name="DosBoxSettingsHeader" xml:space="preserve">
+    <value>Настройки DOSBox</value>
+  </data>
+  <data name="DosBoxSettingsInfo" xml:space="preserve">
+    <value>Все отключенные или пустые приведенные ниже параметры будут использовать значения по умолчанию, указанные в файле конфигурации DOSBox. Если в настройках был указан конкретный файл конфигурации, он может изменить некоторые из приведенных ниже настроек.</value>
+  </data>
+  <data name="DosBoxOptions_Fullscreeen" xml:space="preserve">
+    <value>Полноэкранный режим</value>
+  </data>
+  <data name="DosBoxOptions_FullscreeenInfo" xml:space="preserve">
+    <value>Запустить DOSBox в полноэкранном режиме</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBuffering" xml:space="preserve">
+    <value>Двойная буферизация в полноэкранном режиме</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBufferingInfo" xml:space="preserve">
+    <value>Активировать двойную буферизацию в полноэкранном режиме</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
+    <value>Корректировать соотношение сторон</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrectionInfo" xml:space="preserve">
+    <value>Корректировка соотношения сторон. Если ваш метод вывода не поддерживает масштабирование, это может замедлить работу!</value>
+  </data>
+  <data name="DosBoxOptions_MemorySize" xml:space="preserve">
+    <value>Объем памяти</value>
+  </data>
+  <data name="DosBoxOptions_MemorySizeInfo" xml:space="preserve">
+    <value>Объем памяти DOSBox в мегабайтах</value>
+  </data>
+  <data name="DosBoxOptions_Frameskip" xml:space="preserve">
+    <value>Пропуск кадров</value>
+  </data>
+  <data name="DosBoxOptions_FrameskipInfo" xml:space="preserve">
+    <value>Сколько кадров DOSBox пропускает перед отображением нового</value>
+  </data>
+  <data name="DosBoxOptions_Output" xml:space="preserve">
+    <value>Вывод</value>
+  </data>
+  <data name="DosBoxOptions_OutputInfo" xml:space="preserve">
+    <value>Что использовать для вывода</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
+    <value>Разрешение полноэкранного режима</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
+    <value>Какое разрешение использовать для полноэкранного режима: 'original', 'desktop' или фиксированный размер (например, 1024x768)</value>
+  </data>
+  <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
+    <value>Разрешение оконного режима</value>
+  </data>
+  <data name="DosBoxOptions_WindowedResInfo" xml:space="preserve">
+    <value>Масштабирует окно до этого размера, ЕСЛИ устройство вывода поддерживает аппаратное масштабирование</value>
+  </data>
+  <data name="DosBoxOptions_Scaler" xml:space="preserve">
+    <value>Масштабирователь</value>
+  </data>
+  <data name="DosBoxOptions_ScalerInfo" xml:space="preserve">
+    <value>Масштабирователь используется для увеличения/улучшения режимов низкого разрешения</value>
+  </data>
+  <data name="DosBoxOptions_Core" xml:space="preserve">
+    <value>Ядро</value>
+  </data>
+  <data name="DosBoxOptions_CoreInfo" xml:space="preserve">
+    <value>Ядро процессора, используемое в эмуляции. Автоматически переключается с 'normal' на 'dynamic', если это необходимо.</value>
+  </data>
+  <data name="DosBoxOptions_Cycles" xml:space="preserve">
+    <value>Циклы</value>
+  </data>
+  <data name="DosBoxOptions_CyclesInfo" xml:space="preserve">
+    <value>Количество инструкций, которые DOSBox пытается эмулировать каждую миллисекунду. Слишком высокое значение может привести к проблемам со звуком и подтормаживаниям. Вы также можете позволить DOSBox самостоятельно подобрать подходящее значение, установив его на 'max'. Значение по умолчанию ('auto') при необходимости переключается на 'max'.</value>
+  </data>
+  <data name="DosBoxOptions_Commands" xml:space="preserve">
+    <value>Команды DOSBox</value>
+  </data>
+  <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
+    <value>(Необязательно)</value>
+  </data>
+  <data name="DosBoxOptions_Recommended" xml:space="preserve">
+    <value>Применить рекомендуемые настройки</value>
+  </data>
+  <data name="Config_Resolution" xml:space="preserve">
+    <value>Разрешение</value>
+  </data>
+  <data name="Config_ResolutionHorizontalInfo" xml:space="preserve">
+    <value>Горизонтальное разрешение экрана</value>
+  </data>
+  <data name="Config_ResolutionVerticalInfo" xml:space="preserve">
+    <value>Вертикальное разрешение экрана</value>
+  </data>
+  <data name="Config_LockRes" xml:space="preserve">
+    <value>Выставить текущее разрешение экрана</value>
+  </data>
+  <data name="Config_LockResInfo" xml:space="preserve">
+    <value>Указывает горизонтальные и вертикальные значения в соответствии с текущим разрешением экрана</value>
+  </data>
+  <data name="Config_Fullscreen" xml:space="preserve">
+    <value>Полноэкранный режим</value>
+  </data>
+  <data name="Config_FullscreenInfo" xml:space="preserve">
+    <value>Игра будет работать в полноэкранном режиме, в противном случае она запуститься в оконном режиме</value>
+  </data>
+  <data name="Config_Graphics" xml:space="preserve">
+    <value>Графика</value>
+  </data>
+  <data name="Config_TriLinear" xml:space="preserve">
+    <value>Трилинейная фильтрация</value>
+  </data>
+  <data name="Config_TnL" xml:space="preserve">
+    <value>Трансформация и Освещение</value>
+  </data>
+  <data name="Config_TnLInfo" xml:space="preserve">
+    <value>Отключите, если в игре есть графические сбои</value>
+  </data>
+  <data name="Config_DynamicShadows" xml:space="preserve">
+    <value>Динамические тени</value>
+  </data>
+  <data name="Config_StaticShadows" xml:space="preserve">
+    <value>Статичные тени</value>
+  </data>
+  <data name="Config_Textures" xml:space="preserve">
+    <value>Текстуры</value>
+  </data>
+  <data name="Config_Textures16" xml:space="preserve">
+    <value>16 бит</value>
+  </data>
+  <data name="Config_Textures32" xml:space="preserve">
+    <value>32 бита</value>
+  </data>
+  <data name="Config_Compressed" xml:space="preserve">
+    <value>Сжато</value>
+  </data>
+  <data name="Config_Video" xml:space="preserve">
+    <value>Видео</value>
+  </data>
+  <data name="Config_VideoGood" xml:space="preserve">
+    <value>Хорошее качество</value>
+  </data>
+  <data name="Config_VideoBad" xml:space="preserve">
+    <value>Плохое качество</value>
+  </data>
+  <data name="Config_VideoAuto" xml:space="preserve">
+    <value>Автоматическая регулировка качества</value>
+  </data>
+  <data name="Config_Video16Bpp" xml:space="preserve">
+    <value>16 бит на пиксель</value>
+  </data>
+  <data name="Config_Video32Bpp" xml:space="preserve">
+    <value>32 бита на пиксель</value>
+  </data>
+  <data name="Config_Language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Config_Controller" xml:space="preserve">
+    <value>Контроллер</value>
+  </data>
+  <data name="Config_UseController" xml:space="preserve">
+    <value>Использовать подключенный контроллер</value>
+  </data>
+  <data name="Config_ControllerInfo" xml:space="preserve">
+    <value>Если Ваш контроллер не распознан, Вы можете активировать поддержку контроллера здесь</value>
+  </data>
+  <data name="Config_EnableNativeController" xml:space="preserve">
+    <value>Включить встроенную поддержку контроллера</value>
+  </data>
+  <data name="Config_ControllerVertical" xml:space="preserve">
+    <value>Вертикальная ось</value>
+  </data>
+  <data name="Config_ControllerHorizontal" xml:space="preserve">
+    <value>Горизонтальная ось</value>
+  </data>
+  <data name="Config_Network" xml:space="preserve">
+    <value>Сеть</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>Если широкоэкранная поддержка не включена, и установлено соотношение сторон, отличное от 4:3, игра растянется</value>
+  </data>
+  <data name="Config_WidescreenSupport" xml:space="preserve">
+    <value>Широкоэкранная поддержка</value>
+  </data>
+  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
+    <value>Если широкоэкранная поддержка активирована, а соотношение сторон отлично от 4:3, игра не растягивается при запуске</value>
+  </data>
+  <data name="Config_WidescreenHorizontal" xml:space="preserve">
+    <value>Горизонтальный широкоэкранный режим</value>
+  </data>
+  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
+    <value>Позволяет изменять ширину экрана</value>
+  </data>
+  <data name="Config_VerticalHorizontal" xml:space="preserve">
+    <value>Вертикальный широкоэкранный режим</value>
+  </data>
+  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
+    <value>Позволяет изменять высоту экрана</value>
+  </data>
+  <data name="Config_LanguageR2Info" xml:space="preserve">
+    <value>Устанавливает язык по умолчанию, выбранный при запуске игры. Язык можно изменить в меню игры.</value>
+  </data>
+  <data name="Config_ControllerR2Info" xml:space="preserve">
+    <value>Если Ваш контроллер не распознан, Вы можете активировать поддержку контроллера здесь. Это приведет к полному удалению пользовательского назначения кнопок.</value>
+  </data>
+  <data name="Config_ButtonMapping" xml:space="preserve">
+    <value>Назначение клавиш (клавиатура)</value>
+  </data>
+  <data name="Config_ButtonMappingInfo" xml:space="preserve">
+    <value>Поскольку игра не позволяет переназначать кнопки, Вы можете поменять их здесь. Это не будет работать с контроллерами.</value>
+  </data>
+  <data name="Config_ButtonMappingActionHeader" xml:space="preserve">
+    <value>Действие</value>
+  </data>
+  <data name="Config_ButtonMappingKeyHeader" xml:space="preserve">
+    <value>Клавиша</value>
+  </data>
+  <data name="Config_ButtonMappingReset" xml:space="preserve">
+    <value>Сброс</value>
+  </data>
+  <data name="Config_RRRScreenMode" xml:space="preserve">
+    <value>Экранный режим</value>
+  </data>
+  <data name="Config_RRRScreenModeInfo" xml:space="preserve">
+    <value>Параметры экранного режима будут вести себя по-разному в зависимости от выбранного разрешения. Обычно сохранение режима 4:3 позволит игре не растягиваться на разные соотношения сторон.</value>
+  </data>
+  <data name="About_ProgramInfo" xml:space="preserve">
+    <value>Rayman Control Panel™ - это совместный проект с открытым исходным кодом, созданный RayCarrot. Это программное обеспечение представляет собой один бесплатный исполняемый файл с возможностями легко получить доступ к настройкам и исправлениям для различных игр серии Rayman, выпущенных для Windows.
+Это растущий проект с большим количеством функций, которые планируется добавить в будущих обновлениях. Утилиты и различные инструменты были созданы с помощью членов фан-базы Рэймана, перечисленных ниже.</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>Разработчики</value>
+  </data>
+  <data name="About_UpdateHistory" xml:space="preserve">
+    <value>История обновлений</value>
+  </data>
+  <data name="About_UpdateCheck" xml:space="preserve">
+    <value>Проверить наличие обновлений</value>
+  </data>
+  <data name="About_GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="About_Twitter" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="About_YouTube" xml:space="preserve">
+    <value>YouTube</value>
+  </data>
+  <data name="About_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Backup_LastBackupDate" xml:space="preserve">
+    <value>Последняя резервная копия</value>
+  </data>
+  <data name="Backup_LastBackupSize" xml:space="preserve">
+    <value>Размер резервной копии</value>
+  </data>
+  <data name="Backup_Backup" xml:space="preserve">
+    <value>Резервное копирование</value>
+  </data>
+  <data name="Backup_Restore" xml:space="preserve">
+    <value>Восстановить</value>
+  </data>
+  <data name="Games_Installed" xml:space="preserve">
+    <value>Установлено</value>
+  </data>
+  <data name="Games_NotInstalled" xml:space="preserve">
+    <value>Не установлено</value>
+  </data>
+  <data name="Help_CategoryHelp" xml:space="preserve">
+    <value>Выберите раздел справки из доступных категорий слева</value>
+  </data>
+  <data name="Settings_UserLevel" xml:space="preserve">
+    <value>Уровень пользователя</value>
+  </data>
+  <data name="Settings_UserLevelInfo" xml:space="preserve">
+    <value>Уровень пользователя определяет, какие параметры и информация доступны в приложении. Чем выше уровень пользователя, тем больше дополнительных параметров и информации будет доступно.</value>
+  </data>
+  <data name="Settings_UserLevelNormal" xml:space="preserve">
+    <value>Обычный</value>
+  </data>
+  <data name="Settings_UserLevelNormalInfo" xml:space="preserve">
+    <value>Уровень пользователя 'обычный' - для пользователей, которым нужны все стандартные функции без каких-либо более продвинутых параметров или технических деталей</value>
+  </data>
+  <data name="Settings_UserLevelAdvanced" xml:space="preserve">
+    <value>Продвинутый</value>
+  </data>
+  <data name="Settings_UserLevelAdvancedInfo" xml:space="preserve">
+    <value>Уровень пользователя 'продвинутый' - для пользователей, которые хотят получить более продвинутые функции, помимо стандартных, но без технических деталей</value>
+  </data>
+  <data name="Settings_UserLevelTechnical" xml:space="preserve">
+    <value>Технический</value>
+  </data>
+  <data name="Settings_UserLevelTechnicalInfo" xml:space="preserve">
+    <value>Уровень пользователя 'технический' - для пользователей, которые хотят получить более продвинутые функции, помимо стандартных, а также технические детали</value>
+  </data>
+  <data name="Settings_UserLevelDebug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_UserLevelDebugInfo" xml:space="preserve">
+    <value>Уровень пользователя debug -для разработчиков приложений и тестировщиков, которым нужны расширенные debug параметры и информация</value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Settings_LanguageContribute" xml:space="preserve">
+    <value>Внести свой вклад с помощью переводов</value>
+  </data>
+  <data name="Settings_DesignHeader" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="Settings_DesignLight" xml:space="preserve">
+    <value>Светлая</value>
+  </data>
+  <data name="Settings_DesignDark" xml:space="preserve">
+    <value>Темная</value>
+  </data>
+  <data name="Settings_DesignAnimations" xml:space="preserve">
+    <value>Включить анимации</value>
+  </data>
+  <data name="Settings_DesignSuccessMessages" xml:space="preserve">
+    <value>Показывать сообщения об успешном окончании операции</value>
+  </data>
+  <data name="Settings_DesignSuccessMessagesInfo" xml:space="preserve">
+    <value>Показывать сообщения в случае успешного окончания операции</value>
+  </data>
+  <data name="Settings_DesignShowAllGames" xml:space="preserve">
+    <value>Показывать неустановленные игры</value>
+  </data>
+  <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
+    <value>Показывать все игры во вкладке 'Игры', даже если они не установлены</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
+    <value>Показывать процессы на значке панели задач</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgressInfo" xml:space="preserve">
+    <value>Показывать процесс загрузки на значке панели задач</value>
+  </data>
+  <data name="Settings_DosBoxHeader" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="Settings_DosBoxPath" xml:space="preserve">
+    <value>Путь к файлу DOSBox</value>
+  </data>
+  <data name="Settings_DosBoxPathInfo" xml:space="preserve">
+    <value>Путь к исполняемому файлу DOSBox</value>
+  </data>
+  <data name="Settings_OptionalDosBoxConfigPath" xml:space="preserve">
+    <value>Путь к конфигурационному файлу DOSBox (необязательно)</value>
+  </data>
+  <data name="Settings_OptionalDosBoxConfigPathInfo" xml:space="preserve">
+    <value>Путь к конфигурационному файлу DOSBox</value>
+  </data>
+  <data name="Settings_DebugHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_DebugExceptionLevel" xml:space="preserve">
+    <value>Отображать уровень исключения</value>
+  </data>
+  <data name="Settings_DebugExceptionLevelInfo" xml:space="preserve">
+    <value>Уровень исключения для отображения информации о debug и трассировании</value>
+  </data>
+  <data name="Settings_BackupLocation" xml:space="preserve">
+    <value>Расположение резервной копии</value>
+  </data>
+  <data name="Settings_StartupHeader" xml:space="preserve">
+    <value>Запуск</value>
+  </data>
+  <data name="Settings_StartupGameFinder" xml:space="preserve">
+    <value>Сканировать установленные игры</value>
+  </data>
+  <data name="Settings_StartupUpdateCheck" xml:space="preserve">
+    <value>Проверять наличие обновлений</value>
+  </data>
+  <data name="Settings_GeneralHeader" xml:space="preserve">
+    <value>Общие</value>
+  </data>
+  <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
+    <value>Закрывать приложение при запуске игры</value>
+  </data>
+  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
+    <value>Закрывать окно конфигурации при сохранении</value>
+  </data>
+  <data name="R1U_TPLSHeader" xml:space="preserve">
+    <value>PlayStation-версия саундтрека</value>
+  </data>
+  <data name="R1U_TPLSInfo" xml:space="preserve">
+    <value>По умолчанию версия для ПК имеет только одну музыкальную дорожку для каждого мира. Этот патч дает каждому уровню свой собственный трек, как в версии для PlayStation.</value>
+  </data>
+  <data name="R1U_TPLSInstall" xml:space="preserve">
+    <value>Установить</value>
+  </data>
+  <data name="R1U_TPLSUninstall" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="SettingEnabled" xml:space="preserve">
+    <value>Включено</value>
+  </data>
+  <data name="SettingDisabled" xml:space="preserve">
+    <value>Отключено</value>
+  </data>
+  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
+    <value>Версия Rayman</value>
+  </data>
+  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
+    <value>Полный саундтрек</value>
+  </data>
+  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
+    <value>Rayman Forever, в том числе GOG-версия, включает в себя неполный саундтрек, так как изначально места на диске было недостаточно. Эта утилита позволяет заменить текущий неполный саундтрек на полный или же наоборот вернуть его обратно.</value>
+  </data>
+  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
+    <value>Заменить на полный саундтрек</value>
+  </data>
+  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
+    <value>Заменить обратно на неполный саундтрек</value>
+  </data>
+  <data name="R2U_TranslationsHeader" xml:space="preserve">
+    <value>Неофициальные переводы</value>
+  </data>
+  <data name="R2U_TranslationsInfo" xml:space="preserve">
+    <value>Активация неофициального перевода заменяет один из уже присутствующих языков в игре выбранным. В большинстве случаев заменяется английский. Изменения в любой момент могут быть отменены путем возвращения к первоначальной версии.</value>
+  </data>
+  <data name="Utility_Apply" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="R3U_DirectPlayHeader" xml:space="preserve">
+    <value>DirectPlay</value>
+  </data>
+  <data name="R3U_DirectPlayInfo" xml:space="preserve">
+    <value>DirectPlay должен быть включен для того, чтобы запустить Rayman 3. По умолчанию он обычно отключен в Windows 10.</value>
+  </data>
+  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
+    <value>Заменить зараженные файлы</value>
+  </data>
+  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
+    <value>В некоторых версиях Rayman Designer, включая Rayman Forever, некоторые файлы RayKit заражены вредоносным ПО. Хоть оно и не кажется таковым или хотя бы активным, а GOG подтвердил, что файлы не представляют опасности, вы все равно можете безопасно заменить их на незараженные версии с помощью этой утилиты.</value>
+  </data>
+  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
+    <value>Заменить</value>
+  </data>
+  <data name="RDU_CreateConfigHeader" xml:space="preserve">
+    <value>Создать отсутствующий конфигурационный файл</value>
+  </data>
+  <data name="RDU_CreateConfigInfo" xml:space="preserve">
+    <value>Во время установки Rayman Designer есть вероятность, что конфигурационный файл не будет создан, что приведет к тому, что Mapper выдаст ошибку при запуске. Эта утилита исправит эту проблему, создав файл конфигурации, если он отсутствует.</value>
+  </data>
+  <data name="RDU_CreateConfigCreate" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="RLU_UbiRayHeader" xml:space="preserve">
+    <value>Активировать Рэй-Чемпиона</value>
+  </data>
+  <data name="RLU_UbiRayInfo" xml:space="preserve">
+    <value>Эта утилита изменяет файлы игры, тем самым добавляя полноценный костюм Рэй-Чемпиона в Галерею Героев</value>
+  </data>
+  <data name="ROU_HQVideosHeader" xml:space="preserve">
+    <value>Улучшить качество видео</value>
+  </data>
+  <data name="ROU_HQVideosInfo" xml:space="preserve">
+    <value>Видео-катсцены в ПК-версии игры сжаты и записаны в более низком качестве, нежели в версиях для консолей. Эта утилита заменяет текущие катсцены более качественными из консольных версий.</value>
+  </data>
+  <data name="ROU_HQVideosReplace" xml:space="preserve">
+    <value>Заменить на видео высокого качества</value>
+  </data>
+  <data name="ROU_HQVideosRevert" xml:space="preserve">
+    <value>Заменить обратно на оригинальные версии видео</value>
+  </data>
+  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
+    <value>Команды debug</value>
+  </data>
+  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
+    <value>Использование любой из приведенных ниже debug команд позволяет запускать игру в debug среде, также команды изменяют способ запуска игры.</value>
+  </data>
+  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
+    <value>ВНИМАНИЕ: Использование debug команд может привести к повреждению файла сохранения. Всегда делайте резервную копию, прежде чем использовать их.</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
+    <value>Неуязвимость</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
+    <value>Игрок не будет умирать при получении урона</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
+    <value>Скрыть курсор мыши</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
+    <value>Курсор мыши не будет отображаться в меню игры</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
+    <value>Максимальное приближение камеры</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
+    <value>Камера всегда будет максимально приближена к игроку</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
+    <value>Частота кадров</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
+    <value>Благодаря этому, Вы можете установить частоту кадров игры</value>
+  </data>
+  <data name="ROU_DebugCommandsMap" xml:space="preserve">
+    <value>Карта</value>
+  </data>
+  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
+    <value>Благодаря этому, Вы можете загрузить любую карту вместо главного меню при запуске игры</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
+    <value>Благодаря этому, Вы можете изменить язык игры</value>
+  </data>
+  <data name="ROU_UpdateHeader" xml:space="preserve">
+    <value>Обновление до версии 1.02 (для версии игры на диске)</value>
+  </data>
+  <data name="ROU_UpdateInfo" xml:space="preserve">
+    <value>В случае, если Rayman Origins не был автоматически обновлен до версии 1.02, эта утилита может обновить игру.</value>
+  </data>
+  <data name="ROU_UpdateUpdate" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
+    <value>Открыть страницу магазина</value>
+  </data>
+  <data name="GameDisplay_OpenSteamCommunity" xml:space="preserve">
+    <value>Открыть страницу сообщества</value>
+  </data>
+  <data name="GameDisplay_OpenLocation" xml:space="preserve">
+    <value>Открыть папку</value>
+  </data>
+  <data name="GameDisplay_Options" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="GameDisplay_Launch" xml:space="preserve">
+    <value>Запустить</value>
+  </data>
+  <data name="GameDisplay_DiscInstall" xml:space="preserve">
+    <value>Установить с диска</value>
+  </data>
+  <data name="GameDisplay_Locate" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="GameDisplay_PurchaseGOG" xml:space="preserve">
+    <value>Купить в GOG</value>
+  </data>
+  <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
+    <value>Купить в Uplay</value>
+  </data>
+  <data name="GameDisplay_Steam" xml:space="preserve">
+    <value>Купить в Steam</value>
+  </data>
+  <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
+    <value>Купить в Microsoft Store</value>
+  </data>
+  <data name="GameLink_RDMapper" xml:space="preserve">
+    <value>Mapper</value>
+  </data>
+  <data name="GameLink_Setup" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="GameLink_R2nGlide" xml:space="preserve">
+    <value>Настройки nGlide</value>
+  </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Действие выполнено</value>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Предупреждение</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Успех</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Вопрос</value>
+  </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Исключение</value>
+  </data>
+  <data name="ExceptionMessageInfo" xml:space="preserve">
+    <value>В приложении произошло исключение. Ниже приведена debug информация, доступная текущему уровню пользователя.</value>
+  </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>Указанный файл не удалось найти: {0}</value>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>Файл не найден</value>
+  </data>
+  <data name="File_ErrorLaunchingFile" xml:space="preserve">
+    <value>Произошла ошибка при попытке запуска {0}</value>
+  </data>
+  <data name="File_LocationNotFound" xml:space="preserve">
+    <value>Местоположение не найдено</value>
+  </data>
+  <data name="File_OpenLocationErrorHeader" xml:space="preserve">
+    <value>Ошибка каталога</value>
+  </data>
+  <data name="File_OpenLocationError" xml:space="preserve">
+    <value>Не удалось открыть папку</value>
+  </data>
+  <data name="LocateGame_BrowserHeader" xml:space="preserve">
+    <value>Выберите папку для установки</value>
+  </data>
+  <data name="LocateGame_InvalidLocation" xml:space="preserve">
+    <value>Выбранная папка не подходит для этой игры</value>
+  </data>
+  <data name="LocateGame_InvalidLocationHeader" xml:space="preserve">
+    <value>Неверное местоположение</value>
+  </data>
+  <data name="LocateGame_InvalidSteamGame" xml:space="preserve">
+    <value>Не удалось найти игру. Попробуйте вместо этого выбрать настольное приложение.</value>
+  </data>
+  <data name="LocateGame_InvalidSteamGameHeader" xml:space="preserve">
+    <value>Игра не найдена</value>
+  </data>
+  <data name="LocateGame_InvalidWinStoreGame" xml:space="preserve">
+    <value>Не удалось найти игру среди установленных приложений Microsoft Store</value>
+  </data>
+  <data name="LocateGame_InvalidWinStoreGameHeader" xml:space="preserve">
+    <value>Игра не найдена</value>
+  </data>
+  <data name="LocateGame_Error" xml:space="preserve">
+    <value>Во время определения местоположения игры произошла ошибка</value>
+  </data>
+  <data name="LocateGame_ErrorHeader" xml:space="preserve">
+    <value>Ошибка определения местоположения игры</value>
+  </data>
+  <data name="LaunchGame_WinStoreError" xml:space="preserve">
+    <value>При попытке запуска {0} произошла ошибка</value>
+  </data>
+  <data name="LaunchGame_DosBoxNotFound" xml:space="preserve">
+    <value>Не удалось найти DOSBox. Укажите в настройках подходящий для запуска этой игры путь.</value>
+  </data>
+  <data name="LaunchGame_MountPathNotFound" xml:space="preserve">
+    <value>Не удалось найти путь монтирования. Укажите в настройках подходящий для запуска этой игры путь.</value>
+  </data>
+  <data name="Backup_Confirm" xml:space="preserve">
+    <value>Это заменит все предыдущие резервные копии для {0}</value>
+  </data>
+  <data name="Backup_ConfirmHeader" xml:space="preserve">
+    <value>Подтвердить резервное копирование</value>
+  </data>
+  <data name="Backup_FailedHeader" xml:space="preserve">
+    <value>Ошибка резервного копирования</value>
+  </data>
+  <data name="Backup_MissingDirectoriesError" xml:space="preserve">
+    <value>Резервное копирование для {0} не удалось завершить, так как не все указанные папки были найдены</value>
+  </data>
+  <data name="RemoveGame_UtilityWarningHeader" xml:space="preserve">
+    <value>Предупреждение утилиты</value>
+  </data>
+  <data name="GameFinder_GamesFoundHeader" xml:space="preserve">
+    <value>Найдены установленные игры</value>
+  </data>
+  <data name="GameFinder_GamesFound" xml:space="preserve">
+    <value>Были найдены следующие новые игры:</value>
+  </data>
+  <data name="UbiIniWriteAccess_Error" xml:space="preserve">
+    <value>Произошла ошибка при попытке открыть доступ на изменение конфигурационного файла Rayman</value>
+  </data>
+  <data name="UbiIniWriteAccess_InfoMessage" xml:space="preserve">
+    <value>Чтобы иметь возможность настроить игры из серии Rayman без запуска этой программы от имени администратора, Вам нужно будет принять следующее приглашение администратора</value>
+  </data>
+  <data name="RemoveGame_UtilityWarning" xml:space="preserve">
+    <value>Следующие утилиты были применены к этой игре и не будут удалены при удалении игры. Чтобы удалить утилиты, перейдите в окно c настройками утилит и отключите/удалите их или же вернитесь к исходным настройкам, если они доступны.</value>
+  </data>
+  <data name="AddGame_DuplicateHeader" xml:space="preserve">
+    <value>Ошибка при добавлении новой игры</value>
+  </data>
+  <data name="AddGame_Duplicate" xml:space="preserve">
+    <value>Игра {0} уже была добавлена</value>
+  </data>
+  <data name="Restore_Failed" xml:space="preserve">
+    <value>Ошибка при восстановлении {0}</value>
+  </data>
+  <data name="Restore_SuccessHeader" xml:space="preserve">
+    <value>Восстановление прошло успешно</value>
+  </data>
+  <data name="Restore_Success" xml:space="preserve">
+    <value>Ваши файлы сохранения для {0} успешно восстановлены</value>
+  </data>
+  <data name="Restore_ConfirmHeader" xml:space="preserve">
+    <value>Подтверждение восстановления</value>
+  </data>
+  <data name="Restore_Confirm" xml:space="preserve">
+    <value>Это заменит текущие файлы сохранения {0} на резервные копии.</value>
+  </data>
+  <data name="Restore_FailedHeader" xml:space="preserve">
+    <value>Ошибка при восстановлении</value>
+  </data>
+  <data name="Restore_MissingBackup" xml:space="preserve">
+    <value>Не было найдено резервных копий для {0}</value>
+  </data>
+  <data name="Backup_Failed" xml:space="preserve">
+    <value>Ошибка резервного копирования {0}</value>
+  </data>
+  <data name="Backup_SuccessHeader" xml:space="preserve">
+    <value>Резервное копирование прошло успешно</value>
+  </data>
+  <data name="Backup_Success" xml:space="preserve">
+    <value>Ваши резервные копии файлов сохранения для {0} были успешно созданы</value>
+  </data>
+  <data name="Backup_MissingFilesError" xml:space="preserve">
+    <value>Файлы для резервного копирования {0} не были найдены</value>
+  </data>
+  <data name="GameFinder_Error" xml:space="preserve">
+    <value>Произошла ошибка во время поиска игр</value>
+  </data>
+  <data name="Download_NoFilesFound" xml:space="preserve">
+    <value>Файлы для загрузки не были найдены</value>
+  </data>
+  <data name="Download_ConfirmSize" xml:space="preserve">
+    <value>Для работы этого патча необходимо загрузить дополнительные файлы, общий объем которых составляет {0}. Продолжить?</value>
+  </data>
+  <data name="Download_ConfirmHeader" xml:space="preserve">
+    <value>Подтверждение загрузки</value>
+  </data>
+  <data name="Download_Confirm" xml:space="preserve">
+    <value>Для работы этого патча необходимо загрузить дополнительные файлы. Продолжить?</value>
+  </data>
+  <data name="Download_Error" xml:space="preserve">
+    <value>Не удалось загрузить файлы</value>
+  </data>
+  <data name="Update_UnknownError" xml:space="preserve">
+    <value>Неизвестная ошибка</value>
+  </data>
+  <data name="Update_WebError" xml:space="preserve">
+    <value>Не удалось установить соединение с сервером</value>
+  </data>
+  <data name="Update_FormatError" xml:space="preserve">
+    <value>Данные с сервера были недействительными</value>
+  </data>
+  <data name="Update_GenericError" xml:space="preserve">
+    <value>При подключении к серверу произошла неизвестная ошибка</value>
+  </data>
+  <data name="Update_ErrorHeader" xml:space="preserve">
+    <value>Не удалось проверить наличие обновлений</value>
+  </data>
+  <data name="Update_LatestInstalled" xml:space="preserve">
+    <value>Последняя версия ({0}) уже была установлена</value>
+  </data>
+  <data name="Update_LatestInstalledHeader" xml:space="preserve">
+    <value>Новых версий не было найдено</value>
+  </data>
+  <data name="Update_ManifestError" xml:space="preserve">
+    <value>Не удалось прочитать манифест сервера</value>
+  </data>
+  <data name="Update_NewsError" xml:space="preserve">
+    <value>Ошибка при получении данных об обновлении</value>
+  </data>
+  <data name="Update_UpdateAvailable" xml:space="preserve">
+    <value>Новое обновление уже доступно для скачивания. Установить сейчас?
+
+Что нового:
+{0}</value>
+  </data>
+  <data name="Update_UpdateAvailableHeader" xml:space="preserve">
+    <value>Обнаружена новая версия</value>
+  </data>
+  <data name="Update_UpdaterError" xml:space="preserve">
+    <value>Не удалось создать службу обновления. Чтобы вручную загрузить новую версию, перейдите по ссылке {0} и загрузите оттуда последнюю версию.</value>
+  </data>
+  <data name="Update_UpdaterErrorHeader" xml:space="preserve">
+    <value>Ошибка при создании службы обновления</value>
+  </data>
+  <data name="MoveBackups_Question" xml:space="preserve">
+    <value>Вы хотите переместить существующие резервные копии в новое место?</value>
+  </data>
+  <data name="MoveBackups_QuestionHeader" xml:space="preserve">
+    <value>Перемещение старых резервных копий</value>
+  </data>
+  <data name="MoveBackups_NoBackupsFound" xml:space="preserve">
+    <value>Не найдено резервных копий в {0}</value>
+  </data>
+  <data name="MoveBackups_ErrorHeader" xml:space="preserve">
+    <value>Не удалось переместить резервные копии</value>
+  </data>
+  <data name="MoveBackups_BackupAlreadyExists" xml:space="preserve">
+    <value>Перемещение резервных копий было отклонено. Резервная копия уже существует в {0}</value>
+  </data>
+  <data name="MoveBackups_Success" xml:space="preserve">
+    <value>Резервные копии успешно перемещены</value>
+  </data>
+  <data name="MoveBackups_Error" xml:space="preserve">
+    <value>Возникла ошибка при перемещении резервных копий</value>
+  </data>
+  <data name="Installer_CreateDesktopShortcut" xml:space="preserve">
+    <value>Создать ярлык на рабочем столе</value>
+  </data>
+  <data name="Installer_CreateStartMenuShortcut" xml:space="preserve">
+    <value>Создать ярлык в меню 'Пуск'</value>
+  </data>
+  <data name="Installer_InstallAllUsers" xml:space="preserve">
+    <value>Установить для всех пользователей</value>
+  </data>
+  <data name="Installer_TotalProgress" xml:space="preserve">
+    <value>Общий прогресс</value>
+  </data>
+  <data name="Installer_CurrentProgress" xml:space="preserve">
+    <value>Текущий прогресс файла</value>
+  </data>
+  <data name="Installer_Install" xml:space="preserve">
+    <value>Установка</value>
+  </data>
+  <data name="Installer_BrowseDiscHeader" xml:space="preserve">
+    <value>Выберите диск, с которого будет вестись установка</value>
+  </data>
+  <data name="Installer_DriveNameConflict" xml:space="preserve">
+    <value>Выбранный диск имеет ту же метку и корневой путь, что и ранее вставленный. Из-за этого установщик не может их различить. Пожалуйста, переименуйте один из дисков и повторите попытку или смонтируйте их в качестве разных корневых каталогов.</value>
+  </data>
+  <data name="Installer_DriveNameConflictHeader" xml:space="preserve">
+    <value>Конфликт дисков</value>
+  </data>
+  <data name="Installer_MissingFiles" xml:space="preserve">
+    <value>{0} не были найдены на указанном диске. Если для установки игры требуется более одного диска, пожалуйста, вставьте следующий.</value>
+  </data>
+  <data name="Installer_MissingFilesHeader" xml:space="preserve">
+    <value>Отсутствующие пути</value>
+  </data>
+  <data name="Installer_InsertDriveRequest" xml:space="preserve">
+    <value>Пожалуйста, вставьте "{0} " в порт {1}, чтобы продолжить, или отмените, чтобы прекратить установку</value>
+  </data>
+  <data name="Installer_InsertDriveRequestHeader" xml:space="preserve">
+    <value>Вставьте диск</value>
+  </data>
+  <data name="Installer_FileCopyError" xml:space="preserve">
+    <value>Не удалось скопировать файл {0} из-за следующей ошибки: {1}
+
+Попробовать снова?</value>
+  </data>
+  <data name="Installer_FileCopyErrorHeader" xml:space="preserve">
+    <value>Не удалось скопировать элемент в пункт назначения</value>
+  </data>
+  <data name="Installer_UnhandledItems" xml:space="preserve">
+    <value>Некоторые элементы не были обработаны во время установки. Хотите повторить попытку их обработатки?</value>
+  </data>
+  <data name="Installer_UnhandledItemsHeader" xml:space="preserve">
+    <value>Необработанные Элементы</value>
+  </data>
+  <data name="Installer_CleanupError" xml:space="preserve">
+    <value>Часть установки не удалось очистить в {0}</value>
+  </data>
+  <data name="Installer_CancelQuestion" xml:space="preserve">
+    <value>Вы хотите отменить установку?</value>
+  </data>
+  <data name="Installer_CancelQuestionHeader" xml:space="preserve">
+    <value>Отмена текущей установки</value>
+  </data>
+  <data name="Installer_InvalidDirectory" xml:space="preserve">
+    <value>Указанная папка не существует</value>
+  </data>
+  <data name="Installer_InvalidDirectoryHeader" xml:space="preserve">
+    <value>Папка не найдена</value>
+  </data>
+  <data name="Installer_ShortcutName" xml:space="preserve">
+    <value>Запуск {0}</value>
+  </data>
+  <data name="Installer_Success" xml:space="preserve">
+    <value>Установка завершена. Запустите параметры {0}, чтобы настроить игру.</value>
+  </data>
+  <data name="Installer_SuccessHeader" xml:space="preserve">
+    <value>Установка завершена</value>
+  </data>
+  <data name="Installer_FailedHeader" xml:space="preserve">
+    <value>Не удалось совершить действие</value>
+  </data>
+  <data name="Installer_Failed" xml:space="preserve">
+    <value>Установка не удалась</value>
+  </data>
+  <data name="Installer_Canceled" xml:space="preserve">
+    <value>Установка отменена</value>
+  </data>
+  <data name="Utility_AdditionalFilesRequired" xml:space="preserve">
+    <value>Для работы этой утилиты требуется загрузить дополнительные файлы</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidFormat" xml:space="preserve">
+    <value>Недопустимый формат</value>
+  </data>
+  <data name="R2HotKeyValidation_ModifierKeysUsed" xml:space="preserve">
+    <value>Необходимо использовать один ключ</value>
+  </data>
+  <data name="R2HotKeyValidation_InvalidKey" xml:space="preserve">
+    <value>Ключ не действителен</value>
+  </data>
+  <data name="DosBoxCyclesValidation_InvalidFormat" xml:space="preserve">
+    <value>Значение циклов в недопустимом формате</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NullOrEmpty" xml:space="preserve">
+    <value>Значение циклов не может быть пустым</value>
+  </data>
+  <data name="DosBoxCyclesValidation_NonDigit" xml:space="preserve">
+    <value>При использовании указанного значения допускаются только цифры</value>
+  </data>
+  <data name="DosBoxResolutionValidation_NullOrEmpty" xml:space="preserve">
+    <value>Значение разрешения не может быть пустым</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidFormat" xml:space="preserve">
+    <value>Недопустимый формат</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidCharacter" xml:space="preserve">
+    <value>Символ '{0}' недопустим</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MultipleSeparators" xml:space="preserve">
+    <value>Разделитель разрешения 'x' можно использовать только один раз</value>
+  </data>
+  <data name="DosBoxResolutionValidation_MissingSeparator" xml:space="preserve">
+    <value>Необходимо использовать разделитель разрешения 'x'</value>
+  </data>
+  <data name="DosBoxResolutionValidation_InvalidHeight" xml:space="preserve">
+    <value>Необходимо указать допустимую высоту</value>
+  </data>
+  <data name="Config_InvalidUbiIni" xml:space="preserve">
+    <value>ubi.ini-файл не был найден, а создание нового не удалось. Попробуйте запустить программу от имени администратора или изменить права доступа к папке по следующему пути: {0}</value>
+  </data>
+  <data name="Config_SaveError" xml:space="preserve">
+    <value>Произошла ошибка при сохранении настроек {0}</value>
+  </data>
+  <data name="Config_SaveErrorHeader" xml:space="preserve">
+    <value>Ошибка сохранения</value>
+  </data>
+  <data name="Config_DosBoxSaveError" xml:space="preserve">
+    <value>Произошла ошибка при сохранении настроек DOSBox</value>
+  </data>
+  <data name="Config_SaveSuccess" xml:space="preserve">
+    <value>Изменения сохранены</value>
+  </data>
+  <data name="R2Widescreen_ExeNotFound" xml:space="preserve">
+    <value>Не удалось установить соотношение сторон из-за того, что исполняемый файл игры не был найден</value>
+  </data>
+  <data name="R2Widescreen_ExeNotValid" xml:space="preserve">
+    <value>Не удалось установить соотношение сторон из-за того, что исполняемый файл игры недопустим</value>
+  </data>
+  <data name="R2Widescreen_Error" xml:space="preserve">
+    <value>Произошла ошибка при установке соотношения сторон Rayman 2</value>
+  </data>
+  <data name="Config_SaveRRRError" xml:space="preserve">
+    <value>Произошла ошибка при сохранении настроек Rayman Raving Rabbids</value>
+  </data>
+  <data name="SecretCodes_Konami" xml:space="preserve">
+    <value>Вы только что ввели код Konami! Наслаждайтесь новой красной темой.</value>
+  </data>
+  <data name="SecretCodes_KonamiHeader" xml:space="preserve">
+    <value>Код Konami</value>
+  </data>
+  <data name="SecretCodes_RayCarrot" xml:space="preserve">
+    <value>Вы только что ввели код RayCarrot! Наслаждайтесь оранжевой, морковной темой.</value>
+  </data>
+  <data name="SecretCodes_RayCarrotHeader" xml:space="preserve">
+    <value>Код RayCarrot</value>
+  </data>
+  <data name="SecretCodes_Lime" xml:space="preserve">
+    <value>Вы только что ввели лаймовый код! Наслаждайтесь этой лаймовой темой.</value>
+  </data>
+  <data name="SecretCodes_LimeHeader" xml:space="preserve">
+    <value>Лаймовый код</value>
+  </data>
+  <data name="SecretCodes_Secret" xml:space="preserve">
+    <value>Вы только что ввели секретный код! К сожалению, он ничего не делает.</value>
+  </data>
+  <data name="SecretCodes_SecretHeader" xml:space="preserve">
+    <value>Секретный код</value>
+  </data>
+  <data name="GameInfo_LaunchPath" xml:space="preserve">
+    <value>Путь запуска:</value>
+  </data>
+  <data name="GameInfo_LaunchArgs" xml:space="preserve">
+    <value>Запуск аргументов:</value>
+  </data>
+  <data name="GameInfo_SteamID" xml:space="preserve">
+    <value>Steam ID:</value>
+  </data>
+  <data name="GameInfo_GameType" xml:space="preserve">
+    <value>Тип игры:</value>
+  </data>
+  <data name="GameInfo_InstallDir" xml:space="preserve">
+    <value>Место установки:</value>
+  </data>
+  <data name="GameInfo_WinStoreDependencies" xml:space="preserve">
+    <value>Зависимости</value>
+  </data>
+  <data name="GameInfo_WinStoreFullName" xml:space="preserve">
+    <value>Полная игра</value>
+  </data>
+  <data name="GameInfo_WinStoreArchitecture" xml:space="preserve">
+    <value>Архитектура</value>
+  </data>
+  <data name="GameInfo_WinStoreVersion" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="GameInfo_WinStoreInstallDate" xml:space="preserve">
+    <value>Установлено</value>
+  </data>
+  <data name="RemoveGameQuestion" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить {0} из Rayman Control Panel™? Это не приведет к удалению игры с Вашего компьютера или каких-либо ее файлов, включая резервные копии, созданные с помощью этой программы.</value>
+  </data>
+  <data name="RemoveGameQuestionHeader" xml:space="preserve">
+    <value>Подтверждение удаления</value>
+  </data>
+  <data name="GameShortcut_BrowseHeader" xml:space="preserve">
+    <value>Выбор местоположения ярлыка</value>
+  </data>
+  <data name="GameShortcut_ShortcutName" xml:space="preserve">
+    <value>Запуск {0}</value>
+  </data>
+  <data name="GameShortcut_Success" xml:space="preserve">
+    <value>Ярлык создан успешно</value>
+  </data>
+  <data name="GameShortcut_Error" xml:space="preserve">
+    <value>Не удалось создать ярлык</value>
+  </data>
+  <data name="GameShortcut_ErrorHeader" xml:space="preserve">
+    <value>Ошибка создания ярлыка</value>
+  </data>
+  <data name="GameNotFound" xml:space="preserve">
+    <value>Игра {0} не найдена</value>
+  </data>
+  <data name="GameNotFoundHeader" xml:space="preserve">
+    <value>Не удалось найти игру</value>
+  </data>
+  <data name="About_SpecialThanks" xml:space="preserve">
+    <value>Отдельная благодарность AuToMaNiAk005, Eeeebray, Evelyn Chickentalk, MilesTheCreator, MixerX, PokGOT4N, Ryemanni, Steo, Szymski и всем другим фанатам Рэймана!</value>
+  </data>
+  <data name="About_Credits_RayCarrot" xml:space="preserve">
+    <value>Rayman Control Panel™, утилиты, PlayStation-версия саундтрека, Archive Explorer, переводы Rayman 2, перевод программы на шведский (Швеция)</value>
+  </data>
+  <data name="About_Credits_Noserdog" xml:space="preserve">
+    <value>Патчи для контроллера</value>
+  </data>
+  <data name="About_Credits_Janmv94" xml:space="preserve">
+    <value>Переназначение кнопок для Rayman 2</value>
+  </data>
+  <data name="About_Credits_RibShark" xml:space="preserve">
+    <value>Список чит-кодов, основная помощь с утилитами</value>
+  </data>
+  <data name="About_Credits_PluMGMK" xml:space="preserve">
+    <value>Утилита PlayStation-версии саундтрека, переводы Rayman 2</value>
+  </data>
+  <data name="About_Credits_HarukaTavares" xml:space="preserve">
+    <value>Переводы Rayman 2, перевод программы на португальский (Португалия)</value>
+  </data>
+  <data name="ROU_HQVideosFailed" xml:space="preserve">
+    <value>Не удалось заменить видео</value>
+  </data>
+  <data name="ROU_UpdateFailed" xml:space="preserve">
+    <value>Загрузка обновления Rayman Origins не удалась</value>
+  </data>
+  <data name="ROU_DebugCommandsInstallationNotFound" xml:space="preserve">
+    <value>Программа установки Rayman Origins не найдена</value>
+  </data>
+  <data name="ROU_DebugCommandsError" xml:space="preserve">
+    <value>Произошла ошибка при применении debug команд</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_Auto" xml:space="preserve">
+    <value>Авто</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12" xml:space="preserve">
+    <value>1.12 (Издание 1)</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_20" xml:space="preserve">
+    <value>1.20</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21" xml:space="preserve">
+    <value>1.21</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailed" xml:space="preserve">
+    <value>Установка не удалась</value>
+  </data>
+  <data name="R1U_TPLSInstallationFailedHeader" xml:space="preserve">
+    <value>Установка не удалась</value>
+  </data>
+  <data name="R1U_TPLSConfirmUninstall" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить утилиту PlayStation-версии саундтрека?</value>
+  </data>
+  <data name="R1U_TPLSConfirmUninstallHeader" xml:space="preserve">
+    <value>Подтверждение удаления</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccess" xml:space="preserve">
+    <value>Утилита была успешно удалена</value>
+  </data>
+  <data name="R1U_TPLSUninstallSuccessHeader" xml:space="preserve">
+    <value>Удаление завершено</value>
+  </data>
+  <data name="R1U_TPLSUninstallError" xml:space="preserve">
+    <value>Во время удаления произошла ошибка</value>
+  </data>
+  <data name="R1U_TPLSUninstallErrorHeader" xml:space="preserve">
+    <value>Удаление прервано</value>
+  </data>
+  <data name="R1U_CompleteOSTReplaceError" xml:space="preserve">
+    <value>Не удалось заменить саундтрек.</value>
+  </data>
+  <data name="RDU_ReplaceFiles_InfoMessage" xml:space="preserve">
+    <value>{0}/{1} файлов было найдено для замены. Это может потребовать несколько загрузок в зависимости от их местоположения.</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Complete" xml:space="preserve">
+    <value>Полная замена</value>
+  </data>
+  <data name="RDU_ReplaceFiles_Error" xml:space="preserve">
+    <value>Не удалось заменить файлы</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestion" xml:space="preserve">
+    <value>Конфигурационный файл уже существует. Вы все еще можете воссоздать его, если он поврежден. Продолжить?</value>
+  </data>
+  <data name="RDU_CreateConfig_ReplaceQuestionHeader" xml:space="preserve">
+    <value>Заменить файл</value>
+  </data>
+  <data name="RDU_CreateConfig_Success" xml:space="preserve">
+    <value>Файл был успешно создан</value>
+  </data>
+  <data name="RDU_CreateConfig_Error" xml:space="preserve">
+    <value>Не удалось создать файл</value>
+  </data>
+  <data name="R2U_Translations_IrishInfo" xml:space="preserve">
+    <value>Ирландский (Gaeilge) - автор: PluMGMK</value>
+  </data>
+  <data name="R2U_Translations_SwedishInfo" xml:space="preserve">
+    <value>Шведский (Svenska) - автор: RayCarrot</value>
+  </data>
+  <data name="R2U_Translations_PortugueseInfo" xml:space="preserve">
+    <value>Португальский (Português) - автор: Haruka Tavares</value>
+  </data>
+  <data name="R2U_Translations_SlovakInfo" xml:space="preserve">
+    <value>Словацкий (Slovenský) - автор: MixerX</value>
+  </data>
+  <data name="R2U_Translations_Original" xml:space="preserve">
+    <value>Оригинальный</value>
+  </data>
+  <data name="R2U_Translations_Irish" xml:space="preserve">
+    <value>Ирландский</value>
+  </data>
+  <data name="R2U_Translations_Swedish" xml:space="preserve">
+    <value>Шведский</value>
+  </data>
+  <data name="R2U_Translations_Portuguese" xml:space="preserve">
+    <value>Португальский</value>
+  </data>
+  <data name="R2U_Translations_Slovak" xml:space="preserve">
+    <value>Словацкий</value>
+  </data>
+  <data name="R2U_Translations_FilesNotFound" xml:space="preserve">
+    <value>Не удалось найти необходимые файлы</value>
+  </data>
+  <data name="R2U_Translations_RevertTextures" xml:space="preserve">
+    <value>В связи с тем, что файл текстур был изменен предыдущим переводом, рекомендуется заменить его оригинальной версией.</value>
+  </data>
+  <data name="R2U_Translations_ReplaceTextures" xml:space="preserve">
+    <value>Рекомендуется заменить файл текстур игры на модифицированную версию, чтобы получить шрифт и символы, необходимые для этого перевода.</value>
+  </data>
+  <data name="R2U_Translations_ReplaceTexturesHeader" xml:space="preserve">
+    <value>Подтверждение замены текстур</value>
+  </data>
+  <data name="R2U_Translations_Success" xml:space="preserve">
+    <value>Все файлы были успешно заменены</value>
+  </data>
+  <data name="R2U_Translations_Error" xml:space="preserve">
+    <value>Произошла ошибка при применении утилиты перевода Rayman 2</value>
+  </data>
+  <data name="ReadingBackupError" xml:space="preserve">
+    <value>Произошла ошибка при чтении резервной копии {0}</value>
+  </data>
+  <data name="Download_RestoreStoppedDownloadError" xml:space="preserve">
+    <value>Не удалось восстановить некоторые файлы. Проверьте {0} и {1}, чтобы восстановить потерянные файлы.</value>
+  </data>
+  <data name="Download_OperationCanceling" xml:space="preserve">
+    <value>В настоящее время операция уже отменяется</value>
+  </data>
+  <data name="Download_OperationCancelingHeader" xml:space="preserve">
+    <value>Операция уже отменяется</value>
+  </data>
+  <data name="Download_Cancel" xml:space="preserve">
+    <value>Вы хотите отменить загрузку?</value>
+  </data>
+  <data name="Download_CancelHeader" xml:space="preserve">
+    <value>Отмена текущей загрузки</value>
+  </data>
+  <data name="Download_Canceled" xml:space="preserve">
+    <value>Загрузка была отменена</value>
+  </data>
+  <data name="Download_CanceledHeader" xml:space="preserve">
+    <value>Загрузка отменена</value>
+  </data>
+  <data name="Download_Failed" xml:space="preserve">
+    <value>Загрузка была прервана</value>
+  </data>
+  <data name="Download_FailedHeader" xml:space="preserve">
+    <value>Загрузка прервана</value>
+  </data>
+  <data name="Download_Success" xml:space="preserve">
+    <value>Файлы были успешно загружены</value>
+  </data>
+  <data name="Download_SuccessHeader" xml:space="preserve">
+    <value>Загрузка завершена</value>
+  </data>
+  <data name="AppNews_Title" xml:space="preserve">
+    <value>Новости приложения</value>
+  </data>
+  <data name="AppNews_Header" xml:space="preserve">
+    <value>Список версий</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Продолжить</value>
+  </data>
+  <data name="Download_Title" xml:space="preserve">
+    <value>Загрузка</value>
+  </data>
+  <data name="Download_TotalProgress" xml:space="preserve">
+    <value>Общий прогресс</value>
+  </data>
+  <data name="Download_CurrentFileProgress" xml:space="preserve">
+    <value>Текущий прогресс файла</value>
+  </data>
+  <data name="FirstLaunchInfo_Title" xml:space="preserve">
+    <value>Добро пожаловать в Rayman Control Panel™</value>
+  </data>
+  <data name="FirstLaunchInfo_Header" xml:space="preserve">
+    <value>Добро пожаловать в Rayman Control Panel™</value>
+  </data>
+  <data name="FirstLaunchInfo_Text" xml:space="preserve">
+    <value>В некоторых версиях Rayman Designer, включая Rayman Forever, некоторые файлы RayKit заражены вредоносным ПО. Хоть оно и не кажется таковым или хотя бы активным, а GOG подтвердил, что файлы не представляют опасности, Вы все равно можете безопасно заменить их на незараженные версии с помощью этой утилиты.</value>
+  </data>
+  <data name="GameOptions_UnsavedChanges" xml:space="preserve">
+    <value>Ваши изменения настроек не были сохранены. Вы действительно хотите выйти и сбросить их?</value>
+  </data>
+  <data name="GameOptions_UnsavedChangesHeader" xml:space="preserve">
+    <value>Подтверждение выхода</value>
+  </data>
+  <data name="GameOptions_Utilities" xml:space="preserve">
+    <value>Утилиты</value>
+  </data>
+  <data name="GameOptions_Options" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="GameOptions_CreateShortcut" xml:space="preserve">
+    <value>Создать ярлык</value>
+  </data>
+  <data name="GameOptions_Remove" xml:space="preserve">
+    <value>Удалить из программы</value>
+  </data>
+  <data name="DowngradeWarning" xml:space="preserve">
+    <value>Вы используете более старую версию программы ({0}) по сравнению с версией текущих данных приложения ({1}). Это может привести к проблемам совместимости. Они могут быть исправлены путем сброса данных приложения.</value>
+  </data>
+  <data name="DowngradeWarningHeader" xml:space="preserve">
+    <value>Обнаружена более старая версия</value>
+  </data>
+  <data name="JumpListItemDescription" xml:space="preserve">
+    <value>Запуск {0}</value>
+  </data>
+  <data name="Help_RCP" xml:space="preserve">
+    <value>Rayman Control Panel™</value>
+  </data>
+  <data name="Help_RCP_UpdatesHeader" xml:space="preserve">
+    <value>Обновления</value>
+  </data>
+  <data name="Help_RCP_Updates" xml:space="preserve">
+    <value>Программа будет по умолчанию проверять наличие обновлений при запуске, только если эта опция не была отключена. Это делается в фоновом режиме и может занять несколько секунд. Обновления можно проверить вручную в настройках.
+
+Если в средстве обновления возникает ошибка, новую версию можно загрузить вручную, перейдя по следующей ссылке:
+{0}</value>
+  </data>
+  <data name="Help_RCP_CompatibilityHeader" xml:space="preserve">
+    <value>Совместимость</value>
+  </data>
+  <data name="Help_RCP_Compatibility" xml:space="preserve">
+    <value>Минимальная версия, требуемая для запуска программы - Windows Vista, рекомендуемая версия - Windows 7 или выше.</value>
+  </data>
+  <data name="Help_RCP_GameInstallerHeader" xml:space="preserve">
+    <value>Установщик Игр</value>
+  </data>
+  <data name="Help_RCP_GameInstaller" xml:space="preserve">
+    <value>Для игр, которые поддерживают установку с диска, Вы можете сделать это из появляющегося меню игры. На данный момент Rayman 2, Rayman M и Rayman Arena являются единственными поддерживаемыми играми.
+
+Во время установки вам нужно будет указать папку, в которую вы хотите установить игру. Игра будет установлена в подпапку в указанной папке. Например, если Вы решили установить Rayman 2 в разделе C:\Ubisoft, он будет установлен в C:\Ubisoft\Rayman 2</value>
+  </data>
+  <data name="Help_RCP_BackupRestoreHeader" xml:space="preserve">
+    <value>Создать/Восстановить резервную копию</value>
+  </data>
+  <data name="Help_RCP_BackupRestore" xml:space="preserve">
+    <value>Программа имеет функцию резервного копирования и восстановления для всех поддерживаемых игр. Резервные копии по умолчанию хранятся в папке 'Документы', но их расположение можно изменить в настройках.
+
+Сами резервные копии всегда хранятся в подпапке '{0}'. Не рекомендуется вручную изменять эти файлы.</value>
+  </data>
+  <data name="Help_RCP_AppDataHeader" xml:space="preserve">
+    <value>Расположение данных приложения</value>
+  </data>
+  <data name="Help_RCP_AppData" xml:space="preserve">
+    <value>Программа сохраняет свои данные чаще всего в локальном каталоге данных приложений текущего пользователя с некоторыми настройками, хранящимися в реестре. Ниже приведен полный список папок, где хранятся данные.
+
+• Основные данные приложения - {0}
+• Настройки реестра - {1}</value>
+  </data>
+  <data name="Help_RCP_LaunchArgsHeader" xml:space="preserve">
+    <value>Аргументы запуска</value>
+  </data>
+  <data name="Help_RCP_LaunchArgs" xml:space="preserve">
+    <value>Rayman Control Panel™ поддерживает несколько аргументов запуска, в основном предназначенных для режима debug. Ниже приведен полный список доступных аргументов запуска. Символ "-" всегда должен быть включен. Символы "{} "показывают, что пользовательская переменная может быть использована, и в этом случае "{} " не должно быть включено.
+
+- reset (сбрасывает все данные приложения перед запуском)
+- install {ПутьФайла} (удаляет установщик по указанному пути - недоступно для версий, начиная с 4.5.0)
+- ul {УровеньПользователя} (устанавливает уровень пользователя)
+- loglevel {УровеньЛогирования} (устанавливает уровень логирования для логов, по умолчанию это информация)</value>
+  </data>
+  <data name="Help_RCP_DebugHeader" xml:space="preserve">
+    <value>Режим debug</value>
+  </data>
+  <data name="Help_RCP_Debug" xml:space="preserve">
+    <value>Если к программе присоединен debug инструмент, программа для просмотра логов откроется автоматически. Она может быть открыта вручную со страницы debug даже без подключения debug инструмента. Если debug уровень пользователя не активирован, логи все равно можно просмотреть с помощью файла, в который они записываются, по следующему пути:
+{0}</value>
+  </data>
+  <data name="Help_Games" xml:space="preserve">
+    <value>Игры</value>
+  </data>
+  <data name="Help_Games_General" xml:space="preserve">
+    <value>Общее</value>
+  </data>
+  <data name="Help_Games_General_GameNotLaunchingHeader" xml:space="preserve">
+    <value>Игра не запускается</value>
+  </data>
+  <data name="Help_Games_General_GameNotLaunching" xml:space="preserve">
+    <value>Есть два наиболее распространенных способа, которые нужно попробовать, если игра не запускается:
+
+*Запустите игру от имени администратора:
+Функцию запуска программы от имени администратора можно найти в контекстном меню, щелкнув правой кнопкой мыши по программе.
+
+*Запустите игру в режиме совместимости:
+Запуск приложения в режиме совместимости выполняется путем выбора параметра в разделе 'Параметры совместимости' в свойствах файла. Для большинства старых игр рекомендуется выбрать Windows XP Service Pack 2 или 3.</value>
+  </data>
+  <data name="Help_Games_R1" xml:space="preserve">
+    <value>Rayman 1</value>
+  </data>
+  <data name="Help_Games_R1_EmulatorHeader" xml:space="preserve">
+    <value>Эмулятор MS-Dos </value>
+  </data>
+  <data name="Help_Games_R1_Emulator" xml:space="preserve">
+    <value>Rayman 1 и большинство его спин-оффов для PC (включая Rayman Designer, Rayman by his Fans и Rayman 60 Levels) являются приложениями для MS-DOS и не совместимы с современными версиями Windows. Для их запуска требуется эмулятор DOS, например DOSBox. В настоящее время DOSBox является единственным поддерживаемым эмулятором Rayman Control Panel™.</value>
+  </data>
+  <data name="Help_Games_R1_InstallationFailedHeader" xml:space="preserve">
+    <value>Установка не удалась</value>
+  </data>
+  <data name="Help_Games_R1_InstallationFailed" xml:space="preserve">
+    <value>Если один из установщиков Rayman 1 потерпит неудачу после завершения установки, он удалит установленную игру, если Вы отмените процесс в установщике. Чтобы предотвратить это, принудительно закройте установщик с помощью Диспетчера задач. Игра, скорее всего, все еще будет установлена. Если какие-либо файлы отсутствуют, скопируйте их с диска вручную.</value>
+  </data>
+  <data name="Help_Games_R1_MapperHeader" xml:space="preserve">
+    <value>Редактор Rayman Designer</value>
+  </data>
+  <data name="Help_Games_R1_Mapper" xml:space="preserve">
+    <value>Rayman Designer, также известная как Rayman Gold или Rayman's World, - это игра про Рэймана, которая включает в себя программу Mapper, которая используется для создания Ваших собственных уровней. Mapper является обычным исполняемым файлом Windows и будет работать без использования эмулятора. Все статические части уровня создаются в программе Mapper, а все так называемые 'события' помещаются в редактор событий (находящийся внутри самой игры).</value>
+  </data>
+  <data name="Help_Games_R1_ImportMapsHeader" xml:space="preserve">
+    <value>Импорт карт</value>
+  </data>
+  <data name="Help_Games_R1_ImportMaps" xml:space="preserve">
+    <value>Импорт карт осуществляется в программе Mapper. Если при этом возникает ошибка, Вы можете попробовать переместить файл карты в папку RayKit и импортировать его оттуда.</value>
+  </data>
+  <data name="Help_Games_R2" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="Help_Games_R2_GameSpeedHeader" xml:space="preserve">
+    <value>Игра работает слишком быстро</value>
+  </data>
+  <data name="Help_Games_R2_GameSpeed" xml:space="preserve">
+    <value>Если Rayman 2 работает слишком быстро при использовании nGlide, измените частоту обновления на 120 Гц. Это должно быть сделано даже на мониторах, которые не поддерживают 120 Гц.</value>
+  </data>
+  <data name="Help_Games_R2_FpsHeader" xml:space="preserve">
+    <value>60 vs 30 fps</value>
+  </data>
+  <data name="Help_Games_R2_Fps" xml:space="preserve">
+    <value>Некоторые части игры могут не работать, если игра работает со скоростью 60 кадров в секунду. Наиболее заметная проблема возникает во время бонусных уровней, где разница во времени делает победу практически невозможной. Еще одним побочным эффектом может быть невозможность спрыгнуть с головы Умбры в Святилище Камня и Огня.</value>
+  </data>
+  <data name="Help_Games_R2_NoDiscHeader" xml:space="preserve">
+    <value>Ошибка отсутствия диска</value>
+  </data>
+  <data name="Help_Games_R2_NoDisc" xml:space="preserve">
+    <value>В версиях игры для дисков существует известная проблема, когда игра отображает ошибку CD во время игрового процесса. Эта проблема отсутствует в GOG-версии. С помощью утилиты патча диска эта проблема пропадет.</value>
+  </data>
+  <data name="Help_Games_RMA" xml:space="preserve">
+    <value>Rayman M/Arena</value>
+  </data>
+  <data name="Help_Games_RMA_MissingTexturesHeader" xml:space="preserve">
+    <value>Отсутствующие текстуры</value>
+  </data>
+  <data name="Help_Games_RMA_MissingTextures" xml:space="preserve">
+    <value>Если текстуры отсутствуют в игре при использовании видеокарты Intel, попробуйте отключить трансформацию и освещение.</value>
+  </data>
+  <data name="Help_Games_R3" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="Help_Games_RRR" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="Help_Games_RRR_EngineErrorHeader" xml:space="preserve">
+    <value>jade_enr.exe ошибка</value>
+  </data>
+  <data name="Help_Games_RRR_EngineError" xml:space="preserve">
+    <value>На данный момент не существует какого-либо решения этой проблемы. Она появляется на некоторых компьютерах во всех версиях, включая GOG-версию.</value>
+  </data>
+  <data name="Help_Games_RL" xml:space="preserve">
+    <value>Rayman Legends</value>
+  </data>
+  <data name="Help_Games_RL_LoadErrorHeader" xml:space="preserve">
+    <value>Ошибка при загрузке</value>
+  </data>
+  <data name="Help_Games_RL_LoadError" xml:space="preserve">
+    <value>Ошибка возникает в основном на устройствах Windows 10 из-за того, что игра не может читать/записывать файл сохранения игры и/или её параметры. Наиболее распространенное решение заключается в добавлении Rayman Legends в качестве исключения в раздел контролируемого доступа к папкам встроенной системы безопасности Windows.</value>
+  </data>
+  <data name="Help_Cheats" xml:space="preserve">
+    <value>Чит-коды</value>
+  </data>
+  <data name="Help_Cheats_R1Header" xml:space="preserve">
+    <value>Rayman 1</value>
+  </data>
+  <data name="Help_Cheats_RDHeader" xml:space="preserve">
+    <value>Rayman Designer + Spin-Offs</value>
+  </data>
+  <data name="Help_Cheats_R2Header" xml:space="preserve">
+    <value>Rayman 2</value>
+  </data>
+  <data name="Help_Cheats_RMAHeader" xml:space="preserve">
+    <value>Rayman M/Arena</value>
+  </data>
+  <data name="Help_Cheats_R3Header" xml:space="preserve">
+    <value>Rayman 3</value>
+  </data>
+  <data name="Lang_English" xml:space="preserve">
+    <value>Английский</value>
+  </data>
+  <data name="Lang_German" xml:space="preserve">
+    <value>Немецкий</value>
+  </data>
+  <data name="Lang_French" xml:space="preserve">
+    <value>Французский</value>
+  </data>
+  <data name="Lang_Spanish" xml:space="preserve">
+    <value>Испанский</value>
+  </data>
+  <data name="Lang_Italian" xml:space="preserve">
+    <value>Итальянский</value>
+  </data>
+  <data name="Lang_Danish" xml:space="preserve">
+    <value>Датский</value>
+  </data>
+  <data name="Lang_Finnish" xml:space="preserve">
+    <value>Финский</value>
+  </data>
+  <data name="Lang_Norwegian" xml:space="preserve">
+    <value>Норвежский</value>
+  </data>
+  <data name="Lang_Swedish" xml:space="preserve">
+    <value>Шведский</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3" xml:space="preserve">
+    <value>4:3</value>
+  </data>
+  <data name="Config_RRRScreenMode_4_3Borders" xml:space="preserve">
+    <value>4:3 рамки</value>
+  </data>
+  <data name="Config_RRRScreenMode_16_9" xml:space="preserve">
+    <value>16:9</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Rayman Control Panel™</value>
+  </data>
+  <data name="About_Credits_Snagglebee" xml:space="preserve">
+    <value>Утилита PlayStation-версии саундтрека, удаление проверки диска Rayman M/Arena</value>
+  </data>
+  <data name="About_Credits_ICUP321" xml:space="preserve">
+    <value>Перевод программы на испанский (Мексика)</value>
+  </data>
+  <data name="About_Credits_OldClassicGamer" xml:space="preserve">
+    <value>Перевод программы на сербский (кириллица)</value>
+  </data>
+  <data name="About_Credits_Pixelise" xml:space="preserve">
+    <value>Перевод программы на польский (Польша)</value>
+  </data>
+  <data name="About_Credits_432Hz" xml:space="preserve">
+    <value>Перевод программы на голландский (Нидерланды), тестирование программы</value>
+  </data>
+  <data name="BrowseBox_Browse" xml:space="preserve">
+    <value>Обзор</value>
+  </data>
+  <data name="Settings_IncompleteTranslations" xml:space="preserve">
+    <value>Показывать языки с неполными переводами</value>
+  </data>
+  <data name="Backup_BackupAll" xml:space="preserve">
+    <value>Резервное копирование всего</value>
+  </data>
+  <data name="GameDisplay_RunAsAdmin" xml:space="preserve">
+    <value>Запуск от имени администратора</value>
+  </data>
+  <data name="Backup_ConfirmBackupAll" xml:space="preserve">
+    <value>Вы хотите создать резервную копию всех игр? Это заменит все предыдущие резервные копии. Продолжить?</value>
+  </data>
+  <data name="Backup_ConfirmBackupAllHeader" xml:space="preserve">
+    <value>Подтверждение резервного копирования</value>
+  </data>
+  <data name="Backup_BackupAllSuccess" xml:space="preserve">
+    <value>Резервное копирование всех игр проведено успешно</value>
+  </data>
+  <data name="Backup_BackupAllFailed" xml:space="preserve">
+    <value>Резервные копии созданы для {0}/{1} игр</value>
+  </data>
+  <data name="Backup_BackupAllFailedHeader" xml:space="preserve">
+    <value>Не удалось создать резервные копии для некоторых игр</value>
+  </data>
+  <data name="GameOptions_LaunchMode" xml:space="preserve">
+    <value>Режим запуска</value>
+  </data>
+  <data name="GameOptions_LaunchModeInfo" xml:space="preserve">
+    <value>Это определяет то, как будет запущена игра. Если игра запускается внутри эмулятора, такого как DOSBox, то режим запуска будет применяться к эмулятору.</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsInvoker" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdminOption" xml:space="preserve">
+    <value>От имени администратора (необязательно)</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdmin" xml:space="preserve">
+    <value>От имени администратора</value>
+  </data>
+  <data name="GameOptions_Config" xml:space="preserve">
+    <value>Параметры</value>
+  </data>
+  <data name="Settings_DesignAnimationsInfo" xml:space="preserve">
+    <value>Анимации включают в себя переходы страниц и анимацию изменения размера для страницы 'Игры'</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsInvokerInfo" xml:space="preserve">
+    <value>Игра всегда будет запускаться с теми же разрешениями, с которыми была запущена Rayman Control Panel™ </value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdminOptionInfo" xml:space="preserve">
+    <value>То же самое, что и по умолчанию, но с возможностью запуска игры от имени администратора</value>
+  </data>
+  <data name="GameOptions_LaunchMode_AsAdminInfo" xml:space="preserve">
+    <value>Игра всегда будет пытаться запуститься от имени администратора</value>
+  </data>
+  <data name="About_Steam" xml:space="preserve">
+    <value>Группа Steam</value>
+  </data>
+  <data name="Config_SaveWarning" xml:space="preserve">
+    <value>Во время сохранения произошла ошибка. Не все изменения были сохранены.</value>
+  </data>
+  <data name="GameLink_R2dgVoodoo" xml:space="preserve">
+    <value>dgVoodoo</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_00" xml:space="preserve">
+    <value>1.00</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_1" xml:space="preserve">
+    <value>1.12 (Издание 2)</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_12_2" xml:space="preserve">
+    <value>1.12 (Издание 3)</value>
+  </data>
+  <data name="LinksPage_LinkStyleHeader" xml:space="preserve">
+    <value>Тип ссылки</value>
+  </data>
+  <data name="LinksPage_LinkStyle_List" xml:space="preserve">
+    <value>Список</value>
+  </data>
+  <data name="LinksPage_LinkStyle_Group" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="Page_Refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="LinksPage_CommunityHeader" xml:space="preserve">
+    <value>Сообщество</value>
+  </data>
+  <data name="LinksPage_ForumsHeader" xml:space="preserve">
+    <value>Форумы</value>
+  </data>
+  <data name="LinksPage_ToolsHeader" xml:space="preserve">
+    <value>Модификации/Инструменты</value>
+  </data>
+  <data name="LinksPage_LocalHeader" xml:space="preserve">
+    <value>Локальное</value>
+  </data>
+  <data name="Settings_AdminInfo" xml:space="preserve">
+    <value>Эта функция требует, чтобы программа была запущена от имени администратора</value>
+  </data>
+  <data name="Settings_ForceUpdates" xml:space="preserve">
+    <value>Принудительные обновления вручную</value>
+  </data>
+  <data name="Update_RunningUpdaterError" xml:space="preserve">
+    <value>Не удалось запустить инструмент обновления. Чтобы вручную загрузить новую версию, перейдите по ссылке {0} и загрузите оттуда последнюю версию.</value>
+  </data>
+  <data name="Update_RunningUpdaterErrorHeader" xml:space="preserve">
+    <value>Ошибка запуска инструмента обновления</value>
+  </data>
+  <data name="File_RegKeyNotFound" xml:space="preserve">
+    <value>Раздел реестра не был найден</value>
+  </data>
+  <data name="File_RegKeyNotFoundHeader" xml:space="preserve">
+    <value>Раздел реестра не найден</value>
+  </data>
+  <data name="File_OpenRegKeyError" xml:space="preserve">
+    <value>Раздел не может быть открыт</value>
+  </data>
+  <data name="File_OpenRegKeyErrorHeader" xml:space="preserve">
+    <value>Ошибка открытия раздела</value>
+  </data>
+  <data name="Links_Local_PrimaryUbiIni" xml:space="preserve">
+    <value>Первичный ubi.ini файл</value>
+  </data>
+  <data name="Links_Local_SecondaryUbiIni" xml:space="preserve">
+    <value>Вторичный ubi.ini файл</value>
+  </data>
+  <data name="Links_Local_R2UbiIni" xml:space="preserve">
+    <value>ubi.ini файл Rayman 2</value>
+  </data>
+  <data name="Links_Local_DOSBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="Links_Local_DOSBoxConfig" xml:space="preserve">
+    <value>Конфигурационный файл DOSBox</value>
+  </data>
+  <data name="Links_Local_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="Links_Local_SteamGames" xml:space="preserve">
+    <value>Игры Steam</value>
+  </data>
+  <data name="Links_Local_GOGClient" xml:space="preserve">
+    <value>GOG Galaxy</value>
+  </data>
+  <data name="Links_Local_GOGGames" xml:space="preserve">
+    <value>Игры GOG Galaxy</value>
+  </data>
+  <data name="Links_Local_RRRRegSettings" xml:space="preserve">
+    <value>Настройки Rayman Raving Rabbids</value>
+  </data>
+  <data name="Links_Local_RORegSettings" xml:space="preserve">
+    <value>Настройки Rayman Origins</value>
+  </data>
+  <data name="Links_Local_RLRegSettings" xml:space="preserve">
+    <value>Настройки Rayman Legends</value>
+  </data>
+  <data name="Links_Local_nGlideRegSettings" xml:space="preserve">
+    <value>Настройки nGlide</value>
+  </data>
+  <data name="Links_Local_nGlide2RegSettings" xml:space="preserve">
+    <value>Настройки nGlide 2.0</value>
+  </data>
+  <data name="Links_Local_AppData" xml:space="preserve">
+    <value>Пользовательские данные приложения</value>
+  </data>
+  <data name="Links_Local_LogFile" xml:space="preserve">
+    <value>Файл регистрации</value>
+  </data>
+  <data name="Links_Local_Utilities" xml:space="preserve">
+    <value>Папка утилит</value>
+  </data>
+  <data name="Links_Local_RegAppData" xml:space="preserve">
+    <value>Данные реестра</value>
+  </data>
+  <data name="Links_Community_RPC" xml:space="preserve">
+    <value>Rayman Pirate-Community</value>
+  </data>
+  <data name="Links_Community_RayWiki" xml:space="preserve">
+    <value>RayWiki</value>
+  </data>
+  <data name="Links_Community_RayTunes" xml:space="preserve">
+    <value>RayTunes</value>
+  </data>
+  <data name="Links_Community_RaySaves" xml:space="preserve">
+    <value>RaySaves</value>
+  </data>
+  <data name="Links_Community_RaymanCentral" xml:space="preserve">
+    <value>Rayman Central</value>
+  </data>
+  <data name="Links_Community_RaymanTogether" xml:space="preserve">
+    <value>Rayman Together</value>
+  </data>
+  <data name="Links_Community_raym_app" xml:space="preserve">
+    <value>raym.app</value>
+  </data>
+  <data name="Links_Community_Raymap" xml:space="preserve">
+    <value>Raymap</value>
+  </data>
+  <data name="Links_Community_Menezis_Browser" xml:space="preserve">
+    <value>Menezis (браузерная версия)</value>
+  </data>
+  <data name="Links_Community_KMG" xml:space="preserve">
+    <value>KMG Associates - Rayman</value>
+  </data>
+  <data name="Links_Community_Fanpage" xml:space="preserve">
+    <value>Rayman Fanpage</value>
+  </data>
+  <data name="Links_Forums_RPC" xml:space="preserve">
+    <value>Pirate-Community</value>
+  </data>
+  <data name="Links_Forums_Ubisoft" xml:space="preserve">
+    <value>Ubisoft</value>
+  </data>
+  <data name="Links_Forums_GOG" xml:space="preserve">
+    <value>GOG</value>
+  </data>
+  <data name="Links_Forums_Steam_R2" xml:space="preserve">
+    <value>Steam - Rayman 2</value>
+  </data>
+  <data name="Links_Forums_Steam_RRR" xml:space="preserve">
+    <value>Steam - Rayman Raving Rabbids</value>
+  </data>
+  <data name="Links_Forums_Steam_RO" xml:space="preserve">
+    <value>Steam - Rayman Origins</value>
+  </data>
+  <data name="Links_Forums_Steam_RL" xml:space="preserve">
+    <value>Steam - Rayman Legends</value>
+  </data>
+  <data name="Links_Tools_RDEditor" xml:space="preserve">
+    <value>Extended Rayman Designer editor</value>
+  </data>
+  <data name="Links_Tools_RayPlus" xml:space="preserve">
+    <value>Rayman Plus</value>
+  </data>
+  <data name="Links_Tools_RayTwol" xml:space="preserve">
+    <value>RayTwol</value>
+  </data>
+  <data name="Links_Tools_R2Tools" xml:space="preserve">
+    <value>Инструменты Rayman 2</value>
+  </data>
+  <data name="Links_Tools_R2Moonjump" xml:space="preserve">
+    <value>Rayman 2 GOG Лунный Прыжок</value>
+  </data>
+  <data name="Links_Tools_R2FunBox" xml:space="preserve">
+    <value>Rayman 2 Коробка Веселья</value>
+  </data>
+  <data name="Links_Tools_BetterR3" xml:space="preserve">
+    <value>Улучшенный Rayman 3</value>
+  </data>
+  <data name="Links_Tools_R3GCTexturePack" xml:space="preserve">
+    <value>Rayman 3 (Эмулятор Dolphin) Пак HD-Текстур</value>
+  </data>
+  <data name="Links_OpenErrorNotFound" xml:space="preserve">
+    <value>Не удалось перейти по ссылке, так как она не была найдена</value>
+  </data>
+  <data name="Links_OpenErrorNotFoundHeader" xml:space="preserve">
+    <value>Неверный адрес ссылки</value>
+  </data>
+  <data name="Window_MinimizeToTray" xml:space="preserve">
+    <value>Свернуть в трей</value>
+  </data>
+  <data name="TaskBarIcon_Open" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="TaskBarIcon_Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="LinksPageHeader" xml:space="preserve">
+    <value>Ссылки</value>
+  </data>
+  <data name="Update_BetaUpdateAvailable" xml:space="preserve">
+    <value>Новое бета-обновление доступно для загрузки. Скачать сейчас?</value>
+  </data>
+  <data name="About_Uninstall" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="About_ConfirmUninstall" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить Rayman Control Panel™? Это приведет к удалению исполняемого файла и всех данных приложения программы. Это не приведет к удалению каких-либо установленных игр, файлов сохранения или резервных копий. Некоторые активированные утилиты все еще могут быть доступны.</value>
+  </data>
+  <data name="About_ConfirmUninstallHeader" xml:space="preserve">
+    <value>Подтверждение удаления</value>
+  </data>
+  <data name="About_UninstallFailed" xml:space="preserve">
+    <value>Произошла ошибка при запуске инструмента удаления. Вы можете вручную удалить данные приложения, которые находятся в следующих папках:
+
+{0}</value>
+  </data>
+  <data name="Settings_GetBetaUpdates" xml:space="preserve">
+    <value>Получать бета-обновления</value>
+  </data>
+  <data name="About_Credits_RayActivity" xml:space="preserve">
+    <value>Значок страницы 'Игры', тестирование программы</value>
+  </data>
+  <data name="Backup_GOGSyncWarning" xml:space="preserve">
+    <value>Эта игра может иметь собственные файлы сохранения, синхронизированные через GOG Galaxy. Если это так, то утилита резервного копирования/восстановления не сможет работать с ней, даже если операция завершится успешно.</value>
+  </data>
+  <data name="Backup_GOGSyncWarningHeader" xml:space="preserve">
+    <value>Предупреждение перед резервным копированием/восстановлением</value>
+  </data>
+  <data name="About_BetaTag" xml:space="preserve">
+    <value>(БЕТА)</value>
+  </data>
+  <data name="AppNameAdmin" xml:space="preserve">
+    <value>Rayman Control Panel™ (Администратор)</value>
+  </data>
+  <data name="Cheats_Location_Level" xml:space="preserve">
+    <value>Уровень</value>
+  </data>
+  <data name="Cheats_Location_Map" xml:space="preserve">
+    <value>Карта</value>
+  </data>
+  <data name="Cheats_Location_Pause" xml:space="preserve">
+    <value>Экран паузы</value>
+  </data>
+  <data name="Cheats_Location_AccessDenied" xml:space="preserve">
+    <value>Экран отказа в доступе</value>
+  </data>
+  <data name="Cheats_Location_TotA3" xml:space="preserve">
+    <value>Гробница Древних часть 3, стоя на третьей панели вдали от входа в техосмотр, где Рэйман сражается с Кларком</value>
+  </data>
+  <data name="Cheats_Location_Credits" xml:space="preserve">
+    <value>Титры</value>
+  </data>
+  <data name="Cheats_Location_Cutscene" xml:space="preserve">
+    <value>Катсцена</value>
+  </data>
+  <data name="Cheats_Location_ProfileName" xml:space="preserve">
+    <value>Имя профиля</value>
+  </data>
+  <data name="Cheats_R1" xml:space="preserve">
+    <value>Различные чит-коды будут работать в разных версиях. Некоторые версии поддерживают несколько типов чит-кодов.</value>
+  </data>
+  <data name="Cheats_R1_99LivesTitle" xml:space="preserve">
+    <value>99 жизней</value>
+  </data>
+  <data name="Cheats_R1_99LivesInput1" xml:space="preserve">
+    <value>trj8p</value>
+  </data>
+  <data name="Cheats_R1_99LivesInput2" xml:space="preserve">
+    <value>raylives</value>
+  </data>
+  <data name="Cheats_R1_99LivesInput3" xml:space="preserve">
+    <value>[TAB]bertrand</value>
+  </data>
+  <data name="Cheats_R1_FistPowerTitle" xml:space="preserve">
+    <value>Полностью улучшенный кулак</value>
+  </data>
+  <data name="Cheats_R1_FistPowerInput1" xml:space="preserve">
+    <value>2x2rmfmf</value>
+  </data>
+  <data name="Cheats_R1_FistPowerInput2" xml:space="preserve">
+    <value>goldfist</value>
+  </data>
+  <data name="Cheats_R1_FistPowerInput3" xml:space="preserve">
+    <value>[TAB]antoine</value>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsTitle" xml:space="preserve">
+    <value>Все обычные способности</value>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput1" xml:space="preserve">
+    <value>en5gol2g</value>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput2" xml:space="preserve">
+    <value>power</value>
+  </data>
+  <data name="Cheats_R1_AllPowerUpsInput3" xml:space="preserve">
+    <value>[TAB]benoit</value>
+  </data>
+  <data name="Cheats_R1_FullHealthTitle" xml:space="preserve">
+    <value>Полное здоровье</value>
+  </data>
+  <data name="Cheats_R1_FullHealthInput1" xml:space="preserve">
+    <value>kom0ogdk</value>
+  </data>
+  <data name="Cheats_R1_FullHealthInput2" xml:space="preserve">
+    <value>raypoint</value>
+  </data>
+  <data name="Cheats_R1_FullHealthInput3" xml:space="preserve">
+    <value>[TAB]christ</value>
+  </data>
+  <data name="Cheats_R1_10TingsTitle" xml:space="preserve">
+    <value>10 дополнительных тингов</value>
+  </data>
+  <data name="Cheats_R1_10TingsInput1" xml:space="preserve">
+    <value>86e40g91</value>
+  </data>
+  <data name="Cheats_R1_10TingsInput2" xml:space="preserve">
+    <value>raywiz</value>
+  </data>
+  <data name="Cheats_R1_10TingsInput3" xml:space="preserve">
+    <value>[TAB]jojo</value>
+  </data>
+  <data name="Cheats_R1_SkipLevelTitle" xml:space="preserve">
+    <value>Пропуск части уровня</value>
+  </data>
+  <data name="Cheats_R1_SkipLevelInput1" xml:space="preserve">
+    <value>o8feh</value>
+  </data>
+  <data name="Cheats_R1_SkipLevelInput2" xml:space="preserve">
+    <value>winmap</value>
+  </data>
+  <data name="Cheats_R1_SkipLevelInput3" xml:space="preserve">
+    <value>[TAB]cyril</value>
+  </data>
+  <data name="Cheats_R1_HiddenMessageTitle" xml:space="preserve">
+    <value>Отображение скрытого сообщения</value>
+  </data>
+  <data name="Cheats_R1_HiddenMessageInput3" xml:space="preserve">
+    <value>[TAB]program</value>
+  </data>
+  <data name="Cheats_R1_FreeMovementTitle" xml:space="preserve">
+    <value>Свободное перемещение</value>
+  </data>
+  <data name="Cheats_R1_FreeMovementInput3" xml:space="preserve">
+    <value>[TAB];overay[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_R1_100RefreshRateTitle" xml:space="preserve">
+    <value>Частота обновления 100 МГц</value>
+  </data>
+  <data name="Cheats_R1_100RefreshRateInput2" xml:space="preserve">
+    <value>freq10</value>
+  </data>
+  <data name="Cheats_R1_80RefreshRateTitle" xml:space="preserve">
+    <value>Частота обновления 80 МГц</value>
+  </data>
+  <data name="Cheats_R1_80RefreshRateInput2" xml:space="preserve">
+    <value>freq80</value>
+  </data>
+  <data name="Cheats_R1_LensEffectTitle" xml:space="preserve">
+    <value>Эффект линзы</value>
+  </data>
+  <data name="Cheats_R1_LensEffectInput2" xml:space="preserve">
+    <value>lens</value>
+  </data>
+  <data name="Cheats_R1_AllLevelsTitle" xml:space="preserve">
+    <value>Разблокировка всех уровней</value>
+  </data>
+  <data name="Cheats_R1_AllLevelsInput1" xml:space="preserve">
+    <value>4ctrepfj</value>
+  </data>
+  <data name="Cheats_R1_AllLevelsInput2" xml:space="preserve">
+    <value>alworld</value>
+  </data>
+  <data name="Cheats_R1_AllLevelsInput3" xml:space="preserve">
+    <value>[TAB]francois</value>
+  </data>
+  <data name="Cheats_R1_BreakoutTitle" xml:space="preserve">
+    <value>Запуск мини-игры Breakout (необходимо, чтобы уровень 'Mr Dark's Dare' был завершен)</value>
+  </data>
+  <data name="Cheats_R1_BreakoutInput1" xml:space="preserve">
+    <value>b76b7081</value>
+  </data>
+  <data name="Cheats_R1_BreakoutInput2" xml:space="preserve">
+    <value>cbray</value>
+  </data>
+  <data name="Cheats_R1_BreakoutInput3" xml:space="preserve">
+    <value>[TAB]olivier</value>
+  </data>
+  <data name="Cheats_R1_BreakoutStageTitle" xml:space="preserve">
+    <value>Запуск случайного уровня мини-игры Breakout</value>
+  </data>
+  <data name="Cheats_R1_BreakoutStageInput3" xml:space="preserve">
+    <value>[TAB]cbrayal[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_R1_SelectStageTitle" xml:space="preserve">
+    <value>Выбор уровня</value>
+  </data>
+  <data name="Cheats_R1_SelectStageInput3" xml:space="preserve">
+    <value>[TAB]alevel[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_5LivesTitle" xml:space="preserve">
+    <value>5 жизней</value>
+  </data>
+  <data name="Cheats_RD_5LivesInput" xml:space="preserve">
+    <value>[TAB]lives05[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_20LivesTitle" xml:space="preserve">
+    <value>20 жизней</value>
+  </data>
+  <data name="Cheats_RD_20LivesInput" xml:space="preserve">
+    <value>[TAB]lives20[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_50LivesTitle" xml:space="preserve">
+    <value>50 жизней</value>
+  </data>
+  <data name="Cheats_RD_50LivesInput" xml:space="preserve">
+    <value>[TAB]lives50[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_FistPowerTitle" xml:space="preserve">
+    <value>Полностью улучшенный кулак</value>
+  </data>
+  <data name="Cheats_RD_FistPowerInput" xml:space="preserve">
+    <value>[TAB]goldens</value>
+  </data>
+  <data name="Cheats_RD_FinishLevelTitle" xml:space="preserve">
+    <value>Завершение уровня</value>
+  </data>
+  <data name="Cheats_RD_FinishLevelInput" xml:space="preserve">
+    <value>[TAB]finishing</value>
+  </data>
+  <data name="Cheats_RD_FullHealthTitle" xml:space="preserve">
+    <value>Полное здоровье</value>
+  </data>
+  <data name="Cheats_RD_FullHealthInput" xml:space="preserve">
+    <value>[TAB]points</value>
+  </data>
+  <data name="Cheats_RD_MapIndexTitle" xml:space="preserve">
+    <value>Отображение индекса карты</value>
+  </data>
+  <data name="Cheats_RD_MapIndexInput" xml:space="preserve">
+    <value>[TAB]map[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_FreeMovementTitle" xml:space="preserve">
+    <value>Свободное перемещение</value>
+  </data>
+  <data name="Cheats_RD_FreeMovementInput" xml:space="preserve">
+    <value>[TAB]moveray[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_RD_AllLevelsTitle" xml:space="preserve">
+    <value>Разблокировка всех уровней</value>
+  </data>
+  <data name="Cheats_RD_AllLevelsInput" xml:space="preserve">
+    <value>[TAB]openall[BACKSPACE]</value>
+  </data>
+  <data name="Cheats_R2_FistUpgradeTitle" xml:space="preserve">
+    <value>Улучшение магического кулака</value>
+  </data>
+  <data name="Cheats_R2_FistUpgradeInput" xml:space="preserve">
+    <value>glowfist</value>
+  </data>
+  <data name="Cheats_R2_RestoreHealthTitle" xml:space="preserve">
+    <value>Восстанавление здоровья</value>
+  </data>
+  <data name="Cheats_R2_RestoreHealthInput" xml:space="preserve">
+    <value>gimmelife</value>
+  </data>
+  <data name="Cheats_R2_5LumsTitle" xml:space="preserve">
+    <value>Дополнительные 5 Жёлтых Люмов</value>
+  </data>
+  <data name="Cheats_R2_5LumsInput" xml:space="preserve">
+    <value>gimmelumz</value>
+  </data>
+  <data name="Cheats_R2_LevelSelectionTitle" xml:space="preserve">
+    <value>Переход на любой уровень</value>
+  </data>
+  <data name="Cheats_R2_LevelSelectionInput" xml:space="preserve">
+    <value>gothere</value>
+  </data>
+  <data name="Cheats_R2_GrappleTitle" xml:space="preserve">
+    <value>Разблокировка способности захвата</value>
+  </data>
+  <data name="Cheats_R2_GrappleInput" xml:space="preserve">
+    <value>hangon</value>
+  </data>
+  <data name="Cheats_R2_MaxHealthTitle" xml:space="preserve">
+    <value>Увеличение максимального запаса здоровья</value>
+  </data>
+  <data name="Cheats_R2_MaxHealthInput" xml:space="preserve">
+    <value>Нажимайте и отпускайте клавишу 'J' под ритм главной темы Rayman 2</value>
+  </data>
+  <data name="Cheats_R2_BonusLevelTitle" xml:space="preserve">
+    <value>Вход на бонусный уровень без всех Люмов и Клеток</value>
+  </data>
+  <data name="Cheats_R2_BonusLevelInput" xml:space="preserve">
+    <value>A[NUMPAD 0]QWQW[ENTER]</value>
+  </data>
+  <data name="Cheats_R2_SkipMoviesTitle" xml:space="preserve">
+    <value>Пропуск катсцен</value>
+  </data>
+  <data name="Cheats_R2_SkipMoviesInput" xml:space="preserve">
+    <value>NOMOVIES</value>
+  </data>
+  <data name="Cheats_R2_LoadingScreensTitle" xml:space="preserve">
+    <value>Новые загрузочные экраны</value>
+  </data>
+  <data name="Cheats_R2_LoadingScreensInput" xml:space="preserve">
+    <value>allvign</value>
+  </data>
+  <data name="Cheats_R2_NoMurfyTitle" xml:space="preserve">
+    <value>Отключение Мерфи</value>
+  </data>
+  <data name="Cheats_R2_NoMurfyInput" xml:space="preserve">
+    <value>nomoremurfy</value>
+  </data>
+  <data name="Cheats_R2_TotASecretTitle" xml:space="preserve">
+    <value>Доступ к скрытой области в Гробнице Древних</value>
+  </data>
+  <data name="Cheats_R2_TotASecretInput" xml:space="preserve">
+    <value>playjeff</value>
+  </data>
+  <data name="Cheats_R2_MenezisTitle" xml:space="preserve">
+    <value>Доступ к мини-игре 'Menezis'</value>
+  </data>
+  <data name="Cheats_R2_MenezisInput" xml:space="preserve">
+    <value>shootemup</value>
+  </data>
+  <data name="Cheats_RM" xml:space="preserve">
+    <value>Музыкальная команда:
+Чтобы активировать его, войдите в режим гонки и приостановите игру. На экране паузы удерживайте L1 + R1 (или альтернативные кнопки на используемом в данный момент контроллере), затем нажмите кнопку оптимизации. В нижней части экрана появятся пять синих шаров. Отпустите все кнопки и нажмите кнопку прыжка. Игрок должен услышать резкий динь, и через 0,5 секунды первый шар должен стать желтым. Как только шар станет желтым, удерживайте кнопку прыжка. Затем второй шар должен стать желтым. Как только второй шар станет желтым, отпустите прыжок. Затем третий шар должен стать желтым. Как только третий шар станет желтым, удерживайте прыжок снова. Четвертый шар должен затем стать желтым. Как только четвертый шар станет желтым, отпустите прыжок. Игрок должен будет переместиться на экран "Музыкального Режима", где игрок сможет выбрать "Музыкальную Команду".
+
+Чит-меню:
+Удерживайте L1 + R1 в меню (или альтернативные кнопки на используемом в данный момент контроллере), затем удерживайте 'кружок', затем удерживайте остальные функциональные кнопки + L2 + R2. 10 шаров появятся внизу и будут поочередно отсчитываться. Когда это достигнет последнего, меню будет разблокировано.</value>
+  </data>
+  <data name="Cheats_RM3_SkipMovieTitle" xml:space="preserve">
+    <value>Пропуск катсцен</value>
+  </data>
+  <data name="Cheats_RM3_SkipMovieInput" xml:space="preserve">
+    <value>esc</value>
+  </data>
+  <data name="Cheats_RM3_ReverseMapTitle" xml:space="preserve">
+    <value>Обратная карта</value>
+  </data>
+  <data name="Cheats_RM3_ReverseMapInput" xml:space="preserve">
+    <value>reverse</value>
+  </data>
+  <data name="Cheats_RM_UnlockBattlesTitle" xml:space="preserve">
+    <value>Разблокировка всех уровней режима битвы</value>
+  </data>
+  <data name="Cheats_RM_UnlockBattlesInput" xml:space="preserve">
+    <value>Введите ALLFISH в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_UnlockRacesTitle" xml:space="preserve">
+    <value>Разблокировка всех уровней режима гонки</value>
+  </data>
+  <data name="Cheats_RM_UnlockRacesInput" xml:space="preserve">
+    <value>Введите ALLTRIBES в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_UnlockAllTitle" xml:space="preserve">
+    <value>Разблокировка всех уровней</value>
+  </data>
+  <data name="Cheats_RM_UnlockAllInput" xml:space="preserve">
+    <value>Введите ALLRAYMANM в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_AllCharactersTitle" xml:space="preserve">
+    <value>Разблокировка всех персонажей</value>
+  </data>
+  <data name="Cheats_RM_AllCharactersInput" xml:space="preserve">
+    <value>Введите PUPPETS в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_AllSkinsTitle" xml:space="preserve">
+    <value>Разблокировка всех костюмов</value>
+  </data>
+  <data name="Cheats_RM_AllSkinsInput" xml:space="preserve">
+    <value>Введите CARNIVAL в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_Battle1Title" xml:space="preserve">
+    <value>Разблокировка всех уровней режима битвы в режиме 1</value>
+  </data>
+  <data name="Cheats_RM_Battle1Input" xml:space="preserve">
+    <value>Введите ARENAS в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_Race1Title" xml:space="preserve">
+    <value>Разблокировка всех уровней режима гонки в режиме 1</value>
+  </data>
+  <data name="Cheats_RM_Race1Input" xml:space="preserve">
+    <value>Введите TRACKS в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_Levels1Title" xml:space="preserve">
+    <value>Разблокировка всех уровней в режиме 1</value>
+  </data>
+  <data name="Cheats_RM_Levels1Input" xml:space="preserve">
+    <value>Введите FIELDS в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
+  </data>
+  <data name="Cheats_RM_RagtimeMusicTitle" xml:space="preserve">
+    <value>Регтайм музыка в режиме гонки</value>
+  </data>
+  <data name="Cheats_RM_RagtimeMusicInput" xml:space="preserve">
+    <value>Введите OLDTV в качестве имени профиля и нажмите Shift + Ctrl + Alt</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyleHeader" xml:space="preserve">
+    <value>Выравнивание кнопок</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyle_Left" xml:space="preserve">
+    <value>Выровнять по левому краю</value>
+  </data>
+  <data name="LinksPage_LinkAlignmentStyle_Stretch" xml:space="preserve">
+    <value>Растянуть</value>
+  </data>
+  <data name="Installer_DirMissingWritePermission" xml:space="preserve">
+    <value>Доступ к выбранной папке установки был запрещен. Выберите другое местоположение или запустите программу от имени администратора.</value>
+  </data>
+  <data name="Installer_DirMissingWritePermissionHeader" xml:space="preserve">
+    <value>Доступ запрещен</value>
+  </data>
+  <data name="Backup_Compress" xml:space="preserve">
+    <value>Сжатие резервных копий</value>
+  </data>
+  <data name="Backup_CompressInfo" xml:space="preserve">
+    <value>Сжатые резервные копии будут занимать меньше места и легче управляться благодаря тому, что они находятся в едином файле для каждой игры. Это изменение вступит в силу при следующем резервном копировании.</value>
+  </data>
+  <data name="DosBoxConfig_SetLanguageError" xml:space="preserve">
+    <value>Язык не может быть обновлен</value>
+  </data>
+  <data name="DosBoxConfig_SetLanguageErrorHeader" xml:space="preserve">
+    <value>Ошибка обновления языка</value>
+  </data>
+  <data name="DosBoxConfig_LanguageInfo" xml:space="preserve">
+    <value>Доступные языки могут варьироваться в зависимости от версий</value>
+  </data>
+  <data name="Settings_DisableDowngradeWarning" xml:space="preserve">
+    <value>Отключить предупреждения о более старых версиях</value>
+  </data>
+  <data name="FiestaRunVersion_Default" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+  <data name="FiestaRunVersion_Preload" xml:space="preserve">
+    <value>Preload Edition</value>
+  </data>
+  <data name="FiestaRunVersion_Win10" xml:space="preserve">
+    <value>Windows 10 Edition</value>
+  </data>
+  <data name="Config_FiestaRunVersion" xml:space="preserve">
+    <value>Версия Rayman Fiesta Run</value>
+  </data>
+  <data name="Config_FiestaRunVersionInfo" xml:space="preserve">
+    <value>Если у Вас имеется несколько версий Rayman Fiesta Run, Вы можете заменить версию для запуска по умолчанию здесь</value>
+  </data>
+  <data name="PostUpdate_MigrateFiestaRunBackup5Error" xml:space="preserve">
+    <value>Произошла ошибка при переносе существующей резервной копии Rayman Fiesta Run на новый стандарт резервного копирования 5.0.0. Из-за этого Ваша резервная копия станет недоступной, но останется в вашей папке резервных копий и может быть восстановлена вручную.</value>
+  </data>
+  <data name="PostUpdate_MigrateBackupErrorHeader" xml:space="preserve">
+    <value>Ошибка переноса резервной копии</value>
+  </data>
+  <data name="Installer_InstallAllUsersError" xml:space="preserve">
+    <value>Вам нужно запустить программу от имени администратора, чтобы установить для всех пользователей</value>
+  </data>
+  <data name="Installer_InstallAllUsersErrorHeader" xml:space="preserve">
+    <value>Отсутствующие разрешения</value>
+  </data>
+  <data name="DeployFilesError" xml:space="preserve">
+    <value>Произошла ошибка при настройке дополнительных необходимых файлов. Некоторые функции программы могут работать не так, как должны. Рекомендуется попытаться перезапустить программу.</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_10" xml:space="preserve">
+    <value>1.10</value>
+  </data>
+  <data name="Utilities_RequiresAdmin" xml:space="preserve">
+    <value>Эта утилита требует, чтобы приложение было запущено от имени администратора</value>
+  </data>
+  <data name="App_RestartAsAdmin" xml:space="preserve">
+    <value>Перезагрузка от имени администратора</value>
+  </data>
+  <data name="App_RequiresAdminQuestion" xml:space="preserve">
+    <value>Приложение не имеет необходимых разрешений для этой операции. Перезагрузить приложение от имени администратора?</value>
+  </data>
+  <data name="GameType_EducationalDosBox" xml:space="preserve">
+    <value>Развивающий DOSBox</value>
+  </data>
+  <data name="EducationalConfig_Name" xml:space="preserve">
+    <value>Название игры</value>
+  </data>
+  <data name="EducationalConfig_LaunchMode" xml:space="preserve">
+    <value>Режим запуска</value>
+  </data>
+  <data name="EducationalOptions_Header" xml:space="preserve">
+    <value>Развивающие игры</value>
+  </data>
+  <data name="EducationalOptions_Info" xml:space="preserve">
+    <value>Для запуска можно добавить несколько развивающих игр или одну и ту же игру с различными режимами запуска. Первая игра в списке всегда является игрой по умолчанию. Список можно переупорядочить, перетаскивая элементы.</value>
+  </data>
+  <data name="EducationalOptions_Edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="EducationalOptions_Remove" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="EducationalOptions_AddNew" xml:space="preserve">
+    <value>Добавить новую игру</value>
+  </data>
+  <data name="EducationalOptions_EditHeader" xml:space="preserve">
+    <value>Редактировать игру</value>
+  </data>
+  <data name="EducationalOptions_RemoveErrorLastOne" xml:space="preserve">
+    <value>Для запуска должна быть доступна как минимум одна игра</value>
+  </data>
+  <data name="EducationalOptions_RemoveErrorLastOneHeader" xml:space="preserve">
+    <value>Невозможно удалить игру</value>
+  </data>
+  <data name="EducationalOptions_EditSuccess" xml:space="preserve">
+    <value>Игра успешно отредактирована</value>
+  </data>
+  <data name="App_ExceptionMessage" xml:space="preserve">
+    <value>{0}
+
+Сообщение об ошибке: {1}</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultHeader" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="App_ExceptionMessageDefaultMessage" xml:space="preserve">
+    <value>Произошла ошибка.</value>
+  </data>
+  <data name="Lang_Dutch" xml:space="preserve">
+    <value>Нидерландский</value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchHeader" xml:space="preserve">
+    <value>Пользовательские настройки запуска</value>
+  </data>
+  <data name="GoHomeConfig_CustomLaunchInfo" xml:space="preserve">
+    <value>Если эта функция активирована, то при запуске игры с помощью Rayman Control Panel™ будут использоваться следующие настройки</value>
+  </data>
+  <data name="Config_VSync" xml:space="preserve">
+    <value>Вертикальная синхронизация</value>
+  </data>
+  <data name="GoHomeConfig_VersionIndex" xml:space="preserve">
+    <value>Индекс версии</value>
+  </data>
+  <data name="GoHomeConfig_BigFile" xml:space="preserve">
+    <value>Big file</value>
+  </data>
+  <data name="GoHomeConfig_Commands" xml:space="preserve">
+    <value>Пользовательские команды</value>
+  </data>
+  <data name="R2Config_Graphics_DirectX" xml:space="preserve">
+    <value>DirectX</value>
+    <comment>DirectX</comment>
+  </data>
+  <data name="R2Config_Graphics_nGlide" xml:space="preserve">
+    <value>Glide</value>
+  </data>
+  <data name="R2Config_Graphics_Custom" xml:space="preserve">
+    <value>Пользовательские</value>
+  </data>
+  <data name="RR2Options_GameModeHeader" xml:space="preserve">
+    <value>Режим игры</value>
+  </data>
+  <data name="RR2Options_GameModeInfo" xml:space="preserve">
+    <value>Режим игры определяет, какие наборы мини-игр доступны в игре. Некоторые версии игры ограничены определенным игровым режимом, в то время как другие поддерживают их все. Если при запуске игры возникает ошибка, попробуйте изменить режим игры.</value>
+  </data>
+  <data name="RR2Options_GameMode_All" xml:space="preserve">
+    <value>Все игры</value>
+  </data>
+  <data name="RR2Options_GameMode_Orange" xml:space="preserve">
+    <value>Оранжевые</value>
+  </data>
+  <data name="RR2Options_GameMode_Red" xml:space="preserve">
+    <value>Красные</value>
+  </data>
+  <data name="RR2Options_GameMode_Green" xml:space="preserve">
+    <value>Зелёные</value>
+  </data>
+  <data name="RR2Options_GameMode_Blue" xml:space="preserve">
+    <value>Синие</value>
+  </data>
+  <data name="LaunchModeConflict" xml:space="preserve">
+    <value>Две или более развивающих игр имеют одно и то же название режима запуска и, таким образом, будут использовать одну и ту же резервную копию. Измените имена режимов запуска на другие, чтобы избежать этого.</value>
+  </data>
+  <data name="LaunchModeConflictHeader" xml:space="preserve">
+    <value>Конфликт режима запуска</value>
+  </data>
+  <data name="Links_Local_RGHConfig" xml:space="preserve">
+    <value>Параметры Rabbids Go Home</value>
+  </data>
+  <data name="Links_Local_RRR2RegSettings" xml:space="preserve">
+    <value>Настройки Rayman Raving Rabbids 2</value>
+  </data>
+  <data name="Settings_EditJumpList" xml:space="preserve">
+    <value>Изменить список переходов</value>
+  </data>
+  <data name="Settings_EditJumpListInfo" xml:space="preserve">
+    <value>Список переходов - это список ярлыков игр, который появляется при щелчке правой кнопкой мыши по приложению на панели задач или в меню Пуск</value>
+  </data>
+  <data name="JumpListEditor_Header" xml:space="preserve">
+    <value>Редактирование элементов списка переходов</value>
+  </data>
+  <data name="JumpListEditor_IncludedHeader" xml:space="preserve">
+    <value>Включено</value>
+  </data>
+  <data name="JumpListEditor_NotIncludedHeader" xml:space="preserve">
+    <value>Не включено</value>
+  </data>
+  <data name="LocateGame_WinStoreNotSupported" xml:space="preserve">
+    <value>Приложения Microsoft Store не поддерживаются текущей версией Windows</value>
+  </data>
+  <data name="GetExistingBackupsError" xml:space="preserve">
+    <value>Не удалось получить существующие резервные копии для {0}</value>
+  </data>
+  <data name="Installer_OverwriteOutput" xml:space="preserve">
+    <value>Папка {0} уже существует. Вы хотите её перезаписать?</value>
+  </data>
+  <data name="Installer_OverwriteOutputHeader" xml:space="preserve">
+    <value>Перезаписать папку</value>
+  </data>
+  <data name="ROU_DebugCommandsNoSave" xml:space="preserve">
+    <value>Отключить загрузку/сохранение файла сохранения</value>
+  </data>
+  <data name="ROU_DebugCommandsNoSaveInfo" xml:space="preserve">
+    <value>Это предотвратит загрузку или сохранение игры в любой существующий файл сохранения</value>
+  </data>
+  <data name="R1U_TPLS_RayVersions_1_21_Chinese" xml:space="preserve">
+    <value>1.21 (Китайский)</value>
+  </data>
+  <data name="Config_DiscCheck" xml:space="preserve">
+    <value>Проверка диска</value>
+  </data>
+  <data name="Config_DisableDiscCheck" xml:space="preserve">
+    <value>Отключить проверку диска</value>
+  </data>
+  <data name="Config_DiscCheckInfo" xml:space="preserve">
+    <value>Отключение проверки диска позволяет воспроизводить игру без необходимости вставлять диск с игрой</value>
+  </data>
+  <data name="App_SelectGameTypeHeader" xml:space="preserve">
+    <value>Выберите тип игры</value>
+  </data>
+  <data name="GameDisplay_OpenInWinStore" xml:space="preserve">
+    <value>Открыть в Microsoft Store</value>
+  </data>
+  <data name="GamesPage_FindGames" xml:space="preserve">
+    <value>Поиск игр</value>
+  </data>
+  <data name="GamesPage_FindGamesInfo" xml:space="preserve">
+    <value>Поиск установленных игр и добавление их в программу</value>
+  </data>
+  <data name="R2U_DiscPatchHeader" xml:space="preserve">
+    <value>Патч версии диска</value>
+  </data>
+  <data name="R2U_DiscPatchHeaderInfo" xml:space="preserve">
+    <value>Эта утилита заменяет файлы версии диска на файлы GOG-версии, позволяя игре работать без диска и устраняя ошибку 'CD отсутствует'.</value>
+  </data>
+  <data name="R2U_DiscPatchNotRequired" xml:space="preserve">
+    <value>Игра не нуждается в патче</value>
+  </data>
+  <data name="R2U_DiscPatchApplied" xml:space="preserve">
+    <value>Игра успешно пропатчена</value>
+  </data>
+  <data name="R2U_DiscPatchError" xml:space="preserve">
+    <value>Произошла ошибка при применении патча диска</value>
+  </data>
+  <data name="GameFinder_NoResults" xml:space="preserve">
+    <value>Новые игры не были найдены</value>
+  </data>
+  <data name="GameFinder_ResultHeader" xml:space="preserve">
+    <value>Результат поиска игр</value>
+  </data>
+  <data name="GameOptions_Info" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="GameDisplay_CloudInstall" xml:space="preserve">
+    <value>Установить</value>
+  </data>
+  <data name="GameInstall_Error" xml:space="preserve">
+    <value>При установке {0} произошла ошибка</value>
+  </data>
+  <data name="GameInstall_ErrorHeader" xml:space="preserve">
+    <value>Не удалось установить игру</value>
+  </data>
+  <data name="GameOptions_Uninstall" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="RemoveInstalledGameQuestion" xml:space="preserve">
+    <value>{0} изначально была установлена с помощью Rayman Control Panel™. Удаление игры из программы не приведет к удалению игры с Вашего компьютера или любых ее файлов, включая резервные копии, созданные с помощью этой программы. Вместо этого рекомендуется удалить игру.</value>
+  </data>
+  <data name="UninstallGameQuestion" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить {0}? Это приведет к удалению игры с Вашего компьютера, включая данные сохранений. Резервные копии не будут удалены.</value>
+  </data>
+  <data name="UninstallGameQuestionHeader" xml:space="preserve">
+    <value>Подтверждение удаления</value>
+  </data>
+  <data name="UninstallGameError" xml:space="preserve">
+    <value>Произошла ошибка при удалении {0}</value>
+  </data>
+  <data name="UninstallGameErrorHeader" xml:space="preserve">
+    <value>Удаление было прервано</value>
+  </data>
+  <data name="PrintStudioOptions_VersionHeader" xml:space="preserve">
+    <value>Версия Print Studio</value>
+  </data>
+  <data name="PrintStudioOptions_VersionInfo" xml:space="preserve">
+    <value>Изменение версии приведет к изменению доступных опций в игре. В версии 2003 года есть календари на 2003 и 2004 годы. В версии 2005 года есть календари на 2006 и 2007 годы, а также раздел 'goodies'.</value>
+  </data>
+  <data name="PrintStudioOptions_Version03" xml:space="preserve">
+    <value>Версия 2003</value>
+  </data>
+  <data name="PrintStudioOptions_Version05" xml:space="preserve">
+    <value>Версия 2005</value>
+  </data>
+  <data name="DownloadGame_ConfirmSize" xml:space="preserve">
+    <value>Эта игра требует, чтобы ее файлы были загружены. Общий размер файлов равен {0}. Продолжить?</value>
+  </data>
+  <data name="DownloadGame_Confirm" xml:space="preserve">
+    <value>Эта игра требует, чтобы ее файлы были загружены. Продолжить?</value>
+  </data>
+  <data name="GameDisplay_GameJolt" xml:space="preserve">
+    <value>Загрузить с GameJolt</value>
+  </data>
+  <data name="GameDisplay_OpenGameJoltPage" xml:space="preserve">
+    <value>Открыть страницу в GameJolt</value>
+  </data>
+  <data name="PrintStudioOptions_VersionUpdateError" xml:space="preserve">
+    <value>Произошла ошибка при обновлении версии Print Studio</value>
+  </data>
+  <data name="GamesPage_Category_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="GamesPage_Category_Rabbids" xml:space="preserve">
+    <value>Rabbids</value>
+  </data>
+  <data name="GamesPage_Category_Demos" xml:space="preserve">
+    <value>Демо</value>
+  </data>
+  <data name="GamesPage_Category_Other" xml:space="preserve">
+    <value>Прочее</value>
+  </data>
+  <data name="GamesPage_Category_Fan" xml:space="preserve">
+    <value>Фан-игры</value>
+  </data>
+  <data name="Links_Community_RaymanReanimated" xml:space="preserve">
+    <value>Rayman Reanimated</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterHeader" xml:space="preserve">
+    <value>Преобразователь локализации</value>
+  </data>
+  <data name="RLU_LocalizationConverterHeaderInfo" xml:space="preserve">
+    <value>Эта утилита позволяет конвертировать файл локализации типа .loc8, который используется в Rayman Legends, Rayman Adventures и Rayman Mini. Преобразование в .JSON-файл позволит свободно редактировать файлы. При обратном преобразовании вам нужно выбрать существующий .файл loc8 для импорта изменений.</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterExport" xml:space="preserve">
+    <value>Экспорт в JSON</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterImport" xml:space="preserve">
+    <value>Импорт в файл локализации</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterExportSelectionHeader" xml:space="preserve">
+    <value>Выберите файл локализации для экспорта из него</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterLocFilterDescription" xml:space="preserve">
+    <value>Файлы локализации</value>
+  </data>
+  <data name="ExportDestinationSelectionHeader" xml:space="preserve">
+    <value>Выберите место назначения для экспорта файла</value>
+  </data>
+  <data name="FileFilterDescription_JSON" xml:space="preserve">
+    <value>JSON-файлы</value>
+  </data>
+  <data name="ImportSelectionHeader" xml:space="preserve">
+    <value>Выберите преобразованный JSON-файл для импорта из него</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterImportDestinationSelectionHeader" xml:space="preserve">
+    <value>Выберите файл локализации для импорта в него</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterImportError" xml:space="preserve">
+    <value>При импорте файла локализации произошла ошибка. Убедитесь в том, что формат .JSON-файла является правильным, и что файл локализации поддерживается.</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterExportError" xml:space="preserve">
+    <value>При экспорте файла локализации произошла ошибка. Убедитесь в том, что файл поддерживается.</value>
+  </data>
+  <data name="ROU_LocalizationConverterHeaderInfo" xml:space="preserve">
+    <value>Эта утилита позволяет конвертировать локализацию для типа .loc, который используется в Rayman Origins. Преобразование в .JSON-файл позволит свободно редактировать файлы. При обратном преобразовании вам нужно выбрать существующий .loc8-файл для импорта изменений.</value>
+  </data>
+  <data name="RFRU_LocalizationConverterHeaderInfo" xml:space="preserve">
+    <value>Эта утилита позволяет конвертировать локализацию для типа .loc, который используется в Rayman Fiesta Run. Преобразование в .JSON-файл позволит свободно редактировать файлы. При обратном преобразовании вам нужно выбрать существующий .loc8-файл для импорта изменений.</value>
+  </data>
+  <data name="Progression_Header" xml:space="preserve">
+    <value>Прогресс</value>
+  </data>
+  <data name="Progression_GenericSlot" xml:space="preserve">
+    <value>Слот {0}</value>
+  </data>
+  <data name="Progression_Export" xml:space="preserve">
+    <value>Экспорт</value>
+  </data>
+  <data name="Progression_Import" xml:space="preserve">
+    <value>Импорт</value>
+  </data>
+  <data name="Progression_ExportError" xml:space="preserve">
+    <value>При экспорте файла сохранения произошла ошибка. Убедитесь в том, что файл поддерживается.</value>
+  </data>
+  <data name="Progression_ImportError" xml:space="preserve">
+    <value>При импорте файла сохранения произошла ошибка. Убедитесь в том, что формат .JSON-файла является правильным, и что файл сохранения поддерживается.</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterExportSuccess" xml:space="preserve">
+    <value>Файл локализации успешно экспортирован</value>
+  </data>
+  <data name="UbiArtU_LocalizationConverterImportSuccess" xml:space="preserve">
+    <value>Файл локализации успешно импортирован</value>
+  </data>
+  <data name="UninstallGameSuccess" xml:space="preserve">
+    <value>{0} была удалена</value>
+  </data>
+  <data name="UninstallGameSuccessHeader" xml:space="preserve">
+    <value>Удаление завершено</value>
+  </data>
+  <data name="GameInstall_Success" xml:space="preserve">
+    <value>{0} успешно установлена</value>
+  </data>
+  <data name="GameInstall_SuccessHeader" xml:space="preserve">
+    <value>Установка завершена</value>
+  </data>
+  <data name="Progression_ExportSuccess" xml:space="preserve">
+    <value>Файл сохранения успешно экспортирован</value>
+  </data>
+  <data name="Progression_ImportSuccess" xml:space="preserve">
+    <value>Файл сохранения успешно импортирован</value>
+  </data>
+  <data name="Config_CharacterHeader" xml:space="preserve">
+    <value>Персонаж</value>
+  </data>
+  <data name="Config_CharacterHeaderRJRInfo" xml:space="preserve">
+    <value>Выбор персонажа здесь изменит текущего выбранного персонажа в игре. Последние две Малютки могут быть установлены только отсюда, так как этого невозможно сделать в самой игре.</value>
+  </data>
+  <data name="Config_RJRHeroes_Rayman" xml:space="preserve">
+    <value>Rayman</value>
+  </data>
+  <data name="Config_RJRHeroes_Globox" xml:space="preserve">
+    <value>Globox</value>
+  </data>
+  <data name="Config_RJRHeroes_DarkRayman" xml:space="preserve">
+    <value>Dark Rayman</value>
+  </data>
+  <data name="Config_RJRHeroes_GloboxOutfit" xml:space="preserve">
+    <value>Globox Outfit</value>
+  </data>
+  <data name="Config_RJRHeroes_GreenTeensy" xml:space="preserve">
+    <value>Green Teensy</value>
+  </data>
+  <data name="Config_RJRHeroes_GothTeensy" xml:space="preserve">
+    <value>Goth Teensy</value>
+  </data>
+  <data name="Config_SelectedSlotHeader" xml:space="preserve">
+    <value>Выбранный слот сохранения</value>
+  </data>
+  <data name="Config_MusicVolumeHeader" xml:space="preserve">
+    <value>Громкость музыки</value>
+  </data>
+  <data name="Config_SoundVolumeHeader" xml:space="preserve">
+    <value>Громкость звуковых эффектов</value>
+  </data>
+  <data name="Update_Error" xml:space="preserve">
+    <value>Произошла ошибка при обновлении приложения</value>
+  </data>
+  <data name="CategorizeGames" xml:space="preserve">
+    <value>Сортировать игры</value>
+  </data>
+  <data name="R1U_FixConfigHeader" xml:space="preserve">
+    <value>Восстановить настройки</value>
+  </data>
+  <data name="R1U_FixConfigInfo" xml:space="preserve">
+    <value>Восстановление настроек игры устранит любые потенциальные проблемы со звуком в игре. Оно также сбросит любые другие настройки, такие как назначение кнопок, но не изменит слоты сохранения.</value>
+  </data>
+  <data name="R1U_FixConfig_Success" xml:space="preserve">
+    <value>Настройки были восстановлены</value>
+  </data>
+  <data name="R1U_FixConfig_Error" xml:space="preserve">
+    <value>Настройки не могут быть восстановлены</value>
+  </data>
+  <data name="R1U_FixConfigRepair" xml:space="preserve">
+    <value>Восстановить</value>
+  </data>
+  <data name="RabbidsActivityCenter_LaunchMessage" xml:space="preserve">
+    <value>Запуск игры может занять несколько секунд. Если появится черный экран, нажмите клавишу ESC на клавиатуре, чтобы начать игру. Это сообщение больше не появится.</value>
+  </data>
+  <data name="GameDisplay_DownloadUplay" xml:space="preserve">
+    <value>Загрузить через Uplay</value>
+  </data>
+  <data name="Archive_ImportFileHeader" xml:space="preserve">
+    <value>Выберите файл для импорта</value>
+  </data>
+  <data name="Archive_FileSelectionGroupName" xml:space="preserve">
+    <value>Поддерживаемые файлы</value>
+  </data>
+  <data name="Archive_ImportingFileStatus" xml:space="preserve">
+    <value>Импорт {0}</value>
+  </data>
+  <data name="Archive_ExportHeader" xml:space="preserve">
+    <value>Выберите пункт назначения для экспорта</value>
+  </data>
+  <data name="Archive_ExportingFileStatus" xml:space="preserve">
+    <value>Экспорт {0}</value>
+  </data>
+  <data name="Archive_Export" xml:space="preserve">
+    <value>Экспорт</value>
+  </data>
+  <data name="Archive_Import" xml:space="preserve">
+    <value>Импорт</value>
+  </data>
+  <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
+    <value>Выберите папку для импорта</value>
+  </data>
+  <data name="Archive_ExportDirectoryConflict" xml:space="preserve">
+    <value>Выбранная папка уже содержит папку с тем же названием, что и {0}</value>
+  </data>
+  <data name="Archive_ImportNoFilesError" xml:space="preserve">
+    <value>Файлы для импорта не были найдены</value>
+  </data>
+  <data name="Archive_ImportFilesSuccess" xml:space="preserve">
+    <value>Файлы были импортированы</value>
+  </data>
+  <data name="Archive_ExportFilesSuccess" xml:space="preserve">
+    <value>Файлы были экспортированы</value>
+  </data>
+  <data name="Archive_ImportFileSuccess" xml:space="preserve">
+    <value>Файл был импортирован</value>
+  </data>
+  <data name="Archive_ExportFileSuccess" xml:space="preserve">
+    <value>Файл был экспортирован</value>
+  </data>
+  <data name="Archive_ExportError" xml:space="preserve">
+    <value>Не удалось экспортировать {0}</value>
+  </data>
+  <data name="Archive_RepackingStatus" xml:space="preserve">
+    <value>Переупаковка архива {0}</value>
+  </data>
+  <data name="Archive_CNT_FileInfo" xml:space="preserve">
+    <value>Папка = {0}
+Размер = {1} x {2}
+Размер файла = {3}
+Изменен = {4}
+Зашифрован = {5}
+Прозрачен = {6}
+Указатель = {7}
+Мипмапы = {8}
+Формат = {9}</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
+    <value>Выбор расширения файла</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
+    <value>Выберите расширение файла для экспорта как для файлов {0}</value>
+  </data>
+  <data name="Archive_Title" xml:space="preserve">
+    <value>Archive Explorer™</value>
+  </data>
+  <data name="Archive_CriticalError" xml:space="preserve">
+    <value>Программу пришлось закрыть, так как в Archive Explorer™ произошла ошибка</value>
+  </data>
+  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™ (.cnt)</value>
+  </data>
+  <data name="OSU_CNTExplorer_Info" xml:space="preserve">
+    <value>Этот инструмент позволяет просматривать/редактировать архивные файлы .cnt, позволяющие импортировать/экспортировать текстуры игр</value>
+  </data>
+  <data name="ArchiveExplorer_Open" xml:space="preserve">
+    <value>Открыть Archive Explorer™</value>
+  </data>
+  <data name="About_Credits_Droolie" xml:space="preserve">
+    <value>Обратная инженерия Rayman</value>
+  </data>
+  <data name="About_Credits_Hakyra" xml:space="preserve">
+    <value>Перевод программы на испанский (Испания), перевод программы на каталонский (Каталония) </value>
+  </data>
+  <data name="Archive_ExportMipmaps" xml:space="preserve">
+    <value>Экспорт мипмапов</value>
+  </data>
+  <data name="Archive_IPK_FileInfo" xml:space="preserve">
+    <value>Папка = {0}
+Сжат = {1}
+Размер файла = {2}
+Размер сжатого файла = {3}
+Указатель = {4}</value>
+  </data>
+  <data name="Archive_IPK_ImageFileInfo" xml:space="preserve">
+    <value>Папка = {0}
+Размер = {1} x {2}
+Использует TEX = {3}
+Формат изображения = {4}
+Сжат = {5}
+Размер файла = {6}
+Размер сжатого файла = {7}
+Указатель = {8}</value>
+  </data>
+  <data name="UtilitiesPageHeader" xml:space="preserve">
+    <value>Утилиты</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
+    <value>Архивы OpenSpace (.cnt)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
+    <value>Архивы UbiArt (.ipk)</value>
+  </data>
+  <data name="Utilities_Converter_GFHeader" xml:space="preserve">
+    <value>Файлы текстур OpenSpace (.gf)</value>
+  </data>
+  <data name="Utilities_Converter_Convert" xml:space="preserve">
+    <value>Преобразовать</value>
+  </data>
+  <data name="Utilities_Converter_ConvertBack" xml:space="preserve">
+    <value>Преобразовать обратно</value>
+  </data>
+  <data name="Utilities_Converter_LOCHeader" xml:space="preserve">
+    <value>Файлы локализации UbiArt (.loc/.loc8)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™</value>
+  </data>
+  <data name="Utilities_Converter_Header" xml:space="preserve">
+    <value>Преобразователи</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Open" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="Utilities_Converter_R3SaveHeader" xml:space="preserve">
+    <value>Файлы сохранения Rayman 3 (.sav)</value>
+  </data>
+  <data name="Utilities_Converter_RJRSaveHeader" xml:space="preserve">
+    <value>Файлы сохранения Rayman Jungle Run (.dat)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_FileSelectionHeader" xml:space="preserve">
+    <value>Выберите архивные файлы</value>
+  </data>
+  <data name="Utilities_Converter_FileSelectionHeader" xml:space="preserve">
+    <value>Выберите файлы для преобразования</value>
+  </data>
+  <data name="Browse_DestinationHeader" xml:space="preserve">
+    <value>Выберите пункт назначения</value>
+  </data>
+  <data name="Utilities_Converter_Error" xml:space="preserve">
+    <value>Не удалось преобразовать файл(ы)</value>
+  </data>
+  <data name="UAU_IPKExplorer_Header" xml:space="preserve">
+    <value>Archive Explorer™ (.ipk)</value>
+  </data>
+  <data name="UAU_IPKExplorer_Info" xml:space="preserve">
+    <value>Этот инструмент позволяет просматривать/редактировать архивные файлы .ipk, позволяющие импортировать/экспортировать игровые файлы и текстуры</value>
+  </data>
+  <data name="Utilities_Converter_ExportExtensionHeader" xml:space="preserve">
+    <value>Выберите расширение, в котором будет экспортирован файл</value>
+  </data>
+  <data name="Utilities_Converter_Success" xml:space="preserve">
+    <value>Файлы были успешно преобразованы</value>
+  </data>
+  <data name="Archive_RepackError" xml:space="preserve">
+    <value>Произошла ошибка при переупаковке архива</value>
+  </data>
+  <data name="Progression_R3_TotalHeader" xml:space="preserve">
+    <value>Всего</value>
+  </data>
+  <data name="Progression_R3_Level1Header" xml:space="preserve">
+    <value>The Fairy Council</value>
+  </data>
+  <data name="Progression_R3_Level2Header" xml:space="preserve">
+    <value>Clearleaf Forest</value>
+  </data>
+  <data name="Progression_R3_Level3Header" xml:space="preserve">
+    <value>The Bog of Murk</value>
+  </data>
+  <data name="Progression_R3_Level4Header" xml:space="preserve">
+    <value>The Land of the Livid Dead</value>
+  </data>
+  <data name="Progression_R3_Level5Header" xml:space="preserve">
+    <value>The Desert of the Knaaren</value>
+  </data>
+  <data name="Progression_R3_Level6Header" xml:space="preserve">
+    <value>The Longest Shortcut</value>
+  </data>
+  <data name="Progression_R3_Level7Header" xml:space="preserve">
+    <value>The Summit Beyond the Clouds</value>
+  </data>
+  <data name="Progression_R3_Level8Header" xml:space="preserve">
+    <value>Hoodlum Headquarters</value>
+  </data>
+  <data name="Progression_R3_Level9Header" xml:space="preserve">
+    <value>The Tower of the Leptys</value>
+  </data>
+  <data name="PostUpdate_TPLSUpdatePrompt" xml:space="preserve">
+    <value>Утилита PlayStation-версии саундтрека была обновлена. Перейдите к утилитам Rayman 1 и переустановите ее, чтобы продолжать использовать ее.</value>
+  </data>
+  <data name="TPLS_UpdateVersionError" xml:space="preserve">
+    <value>Версия Rayman не может быть обновлена</value>
+  </data>
+  <data name="Utility_Revert" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="R2U_RemoveDRM_Success" xml:space="preserve">
+    <value>DRM был удален</value>
+  </data>
+  <data name="R2U_RemoveDRM_Error" xml:space="preserve">
+    <value>Произошла ошибка при удалении DRM</value>
+  </data>
+  <data name="R2U_RemoveDRM_RevertSuccess" xml:space="preserve">
+    <value>Удаление DRM было отменено</value>
+  </data>
+  <data name="R2U_RemoveDRM_RevertError" xml:space="preserve">
+    <value>Произошла ошибка при отмене удаления DRM</value>
+  </data>
+  <data name="R2U_RemoveDRM_Header" xml:space="preserve">
+    <value>Удалить голову Робо-Пирата (защита DRM)</value>
+  </data>
+  <data name="R2U_RemoveDRM_Info" xml:space="preserve">
+    <value>Эта утилита исправляет .sna-файлы, чтобы удалить DRM, из-за которого на уровнях появляется голова Робо-Пирата</value>
+  </data>
+  <data name="R2U_RemoveDRM_Warning" xml:space="preserve">
+    <value>Эта утилита может работать не со всеми версиями. Было проверено, что она работает с GOG-версией.</value>
+  </data>
+  <data name="Utility_WIP" xml:space="preserve">
+    <value>Эта утилита на данный момент находится в разработке, из-за чего некоторые функции могут быть нестабильными или же вовсе отсутствовать</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_SelectDirHeader" xml:space="preserve">
+    <value>Выберите папку с данными игры</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Success" xml:space="preserve">
+    <value>Информация о {0}/{1} текстурах была синхронизирована</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Error" xml:space="preserve">
+    <value>Произошла ошибка при синхронизации информации о текстурах</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Sync" xml:space="preserve">
+    <value>Синхронизация</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Header" xml:space="preserve">
+    <value>Синхронизация информации о текстурах</value>
+  </data>
+  <data name="Utilities_SyncTextureInfo_Info" xml:space="preserve">
+    <value>Синхронизация информации о текстурах приведет к редактированию игровых файлов, чтобы текстуры отображались с тем же разрешением, что и указано в .cnt-файлах</value>
+  </data>
+  <data name="Utilities_Other_Header" xml:space="preserve">
+    <value>Прочее</value>
+  </data>
+  <data name="NotImplemented" xml:space="preserve">
+    <value>Эта функция еще не реализована</value>
+  </data>
+  <data name="About_Credits_Robin" xml:space="preserve">
+    <value>Удаление DRM в Rayman 2</value>
+  </data>
+  <data name="Utilities_Decoder_Header" xml:space="preserve">
+    <value>Декодеры</value>
+  </data>
+  <data name="Utilities_Decoder_Decode" xml:space="preserve">
+    <value>Декодирование</value>
+  </data>
+  <data name="Utilities_Decoder_Encode" xml:space="preserve">
+    <value>Кодирование</value>
+  </data>
+  <data name="Utilities_Decoder_R2SnaHeader" xml:space="preserve">
+    <value>Закодированные файлы Rayman 2 (.sna/.dsb)</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeFileSelectionHeader" xml:space="preserve">
+    <value>Выберите файлы для декодирования</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeFileSelectionHeader" xml:space="preserve">
+    <value>Выберите файлы для кодирования</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeSuccess" xml:space="preserve">
+    <value>Файлы были успешно декодированы</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeSuccess" xml:space="preserve">
+    <value>Файлы были успешно закодированы</value>
+  </data>
+  <data name="Utilities_Decoder_DecodeError" xml:space="preserve">
+    <value>Произошла ошибка при декодировании файлов</value>
+  </data>
+  <data name="Utilities_Decoder_EncodeError" xml:space="preserve">
+    <value>Произошла ошибка при кодировании файлов</value>
+  </data>
+  <data name="Utilities_Decoder_R1LngHeader" xml:space="preserve">
+    <value>Языковые файлы Rayman 1 (.lng)</value>
+  </data>
+  <data name="Utilities_Decoder_R3SaveHeader" xml:space="preserve">
+    <value>Файлы сохранения Rayman 3 (.sav)</value>
+  </data>
+  <data name="RLU_UbiRay_ApplySuccess" xml:space="preserve">
+    <value>Патч Рэй-Чемпиона успешно применен</value>
+  </data>
+  <data name="RLU_UbiRay_RevertSuccess" xml:space="preserve">
+    <value>Патч Рэй-Чемпиона отменен</value>
+  </data>
+  <data name="RL_LevelName_1_1" xml:space="preserve">
+    <value>Давным-давно</value>
+  </data>
+  <data name="RL_LevelName_1_2" xml:space="preserve">
+    <value>Зловещий замок</value>
+  </data>
+  <data name="RL_LevelName_1_3" xml:space="preserve">
+    <value>Волшебный лес</value>
+  </data>
+  <data name="RL_LevelName_1_4" xml:space="preserve">
+    <value>Веревочный курс</value>
+  </data>
+  <data name="RL_LevelName_1_5" xml:space="preserve">
+    <value>Зыбучие пески</value>
+  </data>
+  <data name="RL_LevelName_1_6" xml:space="preserve">
+    <value>Как пристрелить дракона</value>
+  </data>
+  <data name="RL_LevelName_2_1" xml:space="preserve">
+    <value>Рэй и бобовое зернышко</value>
+  </data>
+  <data name="RL_LevelName_2_2" xml:space="preserve">
+    <value>Ветра странных перемен</value>
+  </data>
+  <data name="RL_LevelName_2_3" xml:space="preserve">
+    <value>Замок в небесах</value>
+  </data>
+  <data name="RL_LevelName_2_4" xml:space="preserve">
+    <value>Гонка в воздухе</value>
+  </data>
+  <data name="RL_LevelName_2_5" xml:space="preserve">
+    <value>Когда у жаб вырастают крылья</value>
+  </data>
+  <data name="RL_LevelName_3_1" xml:space="preserve">
+    <value>Какого кряка?</value>
+  </data>
+  <data name="RL_LevelName_3_2" xml:space="preserve">
+    <value>Испорченный до крайности</value>
+  </data>
+  <data name="RL_LevelName_3_3" xml:space="preserve">
+    <value>Меня наполняет...</value>
+  </data>
+  <data name="RL_LevelName_3_4" xml:space="preserve">
+    <value>Змеиный десерт</value>
+  </data>
+  <data name="RL_LevelName_3_5" xml:space="preserve">
+    <value>Прочь, злые мексиканцы!</value>
+  </data>
+  <data name="RL_LevelName_4_1" xml:space="preserve">
+    <value>Таинственный надувной остров</value>
+  </data>
+  <data name="RL_LevelName_4_2" xml:space="preserve">
+    <value>Смертельный свет</value>
+  </data>
+  <data name="RL_LevelName_4_3" xml:space="preserve">
+    <value>Глубинный особняк</value>
+  </data>
+  <data name="RL_LevelName_4_4" xml:space="preserve">
+    <value>Станция зачистки</value>
+  </data>
+  <data name="RL_LevelName_4_5" xml:space="preserve">
+    <value>Засада на подъёмнике</value>
+  </data>
+  <data name="RL_LevelName_4_6" xml:space="preserve">
+    <value>Всегда найдётся рыба побольше</value>
+  </data>
+  <data name="RL_LevelName_5_1" xml:space="preserve">
+    <value>Поднять щиты... и опустить</value>
+  </data>
+  <data name="RL_LevelName_5_2" xml:space="preserve">
+    <value>Тёмная тварь: Возрождение</value>
+  </data>
+  <data name="RL_LevelName_5_3" xml:space="preserve">
+    <value>Идеальный лабиринт</value>
+  </data>
+  <data name="RL_LevelName_5_4" xml:space="preserve">
+    <value>Геройская гонка с лавой</value>
+  </data>
+  <data name="RL_LevelName_5_5" xml:space="preserve">
+    <value>Очень опасный рой</value>
+  </data>
+  <data name="RL_LevelName_5_6" xml:space="preserve">
+    <value>Ад на земле</value>
+  </data>
+  <data name="Utilities_Converter_RLSaveHeader" xml:space="preserve">
+    <value>Файлы сохранения Rayman Legends</value>
+  </data>
+  <data name="Utilities_Converter_ROSaveHeader" xml:space="preserve">
+    <value>Файлы сохранения Rayman Origins</value>
+  </data>
+  <data name="Archive_Extract" xml:space="preserve">
+    <value>Извлечь</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Create" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmaps" xml:space="preserve">
+    <value>Автоматическое создание мипмапов (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmapsInfo" xml:space="preserve">
+    <value>Автоматическое создание мипмапов для поддерживаемых игр при импорте в .gf-файлы</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency" xml:space="preserve">
+    <value>Автоматическое обновление формата (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormat" xml:space="preserve">
+    <value>Никогда (сохранять исходный формат)</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormatInfo" xml:space="preserve">
+    <value>Исходный формат всегда будет сохранен. Импорт изображения ARGB в .gf-файл, который не поддерживает прозрачность, приведет к потере альфа-канала.</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat" xml:space="preserve">
+    <value>Сопоставлять импортированный формат</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo" xml:space="preserve">
+    <value>Формат будет обновлен в соответствии с форматом импортированного файла. Это может привести к тому, что .gf-файлы займут больше места, чем требуется на самом деле.</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized" xml:space="preserve">
+    <value>Сопоставлять импортированный формат только при необходимости</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo" xml:space="preserve">
+    <value>Формат будет обновлен в соответствии с форматом импортированного файла, если текущий формат не поддерживает эти данные. Например, если изображение ARGB импортируется в .gf-файл, который не поддерживает прозрачность, формат будет обновляться только в том случае, если импортированное изображение использует альфа-канал. Этот параметр рекомендуется для того, чтобы избежать изменения форматов, когда в этом нет необходимости, однако это замедлит импорт файлов.</value>
+  </data>
+  <data name="Archive_CreateSuccess" xml:space="preserve">
+    <value>Архив с {0} файлами был успешно создан </value>
+  </data>
+  <data name="Archive_CreateErrorInputNotFound" xml:space="preserve">
+    <value>Указанная входная папка не существует</value>
+  </data>
+  <data name="Archive_CreateError" xml:space="preserve">
+    <value>При создании архива произошла ошибка</value>
+  </data>
+  <data name="Archive_CreateHeader" xml:space="preserve">
+    <value>Создание архива</value>
+  </data>
+  <data name="Archive_CreateInputDir" xml:space="preserve">
+    <value>Входная папка</value>
+  </data>
+  <data name="Archive_CreateOutputFile" xml:space="preserve">
+    <value>Конечный файл</value>
+  </data>
+  <data name="Utilities_Converter_FormatSelectionHeader" xml:space="preserve">
+    <value>Выберите нужный формат</value>
+  </data>
+  <data name="Archive_IPK_CompressEntireBlock" xml:space="preserve">
+    <value>Сжать весь блок</value>
+  </data>
+  <data name="Archive_IPK_CompressExtensions" xml:space="preserve">
+    <value>Расширения файлов для сжатия</value>
+  </data>
+  <data name="Settings_BinarySerializationFileLogPath" xml:space="preserve">
+    <value>Путь к журналу сериализации</value>
+  </data>
+  <data name="Settings_BinarySerializationFileLogPathInfo" xml:space="preserve">
+    <value>Необязательный путь к файлу для вывода журнала сериализации при сериализации двоичного файла</value>
+  </data>
+  <data name="Utilities_Converter_R1ConfigHeader" xml:space="preserve">
+    <value>Файлы конфигурации Rayman 1</value>
+  </data>
+  <data name="Utilities_Converter_R1SaveHeader" xml:space="preserve">
+    <value>Файлы сохранения Rayman 1</value>
+  </data>
+  <data name="Utilities_Converter_R2ConfigHeader" xml:space="preserve">
+    <value>Файлы конфигурации Rayman 2</value>
+  </data>
+  <data name="Utilities_Converter_R2SaveHeader" xml:space="preserve">
+    <value>Файлы сохранения Rayman 2</value>
+  </data>
+  <data name="Utilities_Decoder_R12SavHeader" xml:space="preserve">
+    <value>Файлы сохранения Rayman 1/2 (.sav/.cfg)</value>
+  </data>
+  <data name="Settings_SyncTheme" xml:space="preserve">
+    <value>Синхронизация темы</value>
+  </data>
+  <data name="Settings_SyncThemeInfo" xml:space="preserve">
+    <value>Если эта функция включена, тема приложения (цветовой акцент и темный/светлый режим) будет синхронизироваться с системными настройками Windows 10</value>
+  </data>
+  <data name="Ray1MinigamesOptions_LanguageUpdateError" xml:space="preserve">
+    <value>Произошла ошибка при обновлении языка</value>
+  </data>
+  <data name="R2_BonusLevelName_1" xml:space="preserve">
+    <value>The Walk of Life</value>
+  </data>
+  <data name="R2_BonusLevelName_2" xml:space="preserve">
+    <value>The Walk of Power</value>
+  </data>
+  <data name="Download_ManualInstructions" xml:space="preserve">
+    <value>Загрузка файлов:
+
+1. Нажмите кнопку 'Загрузить', чтобы загрузить файлы вручную.
+2. Переместите файлы в папку назначения. Если они сжаты, извлеките их.
+3. Нажмите кнопку 'Ок', чтобы продолжить.</value>
+  </data>
+  <data name="Download_ManualHeader" xml:space="preserve">
+    <value>Загрузка вручную</value>
+  </data>
+  <data name="Download_ManualDownload" xml:space="preserve">
+    <value>Загрузка файлов</value>
+  </data>
+  <data name="Download_ManualOpenDestination" xml:space="preserve">
+    <value>Открыть папку назначения</value>
+  </data>
+  <data name="Settings_ManualDownloads" xml:space="preserve">
+    <value>Обрабатывать загрузки вручную</value>
+  </data>
+  <data name="Settings_ManualDownloadsInfo" xml:space="preserve">
+    <value>Используйте эту опцию только в том случае, если загрузка не начинается</value>
+  </data>
+  <data name="Utilities_Decoder_TTSnaHeader" xml:space="preserve">
+    <value>Закодированные файлы Tonic Trouble (.sna/.dsb)</value>
+  </data>
+  <data name="About_Credits_Fabiosek" xml:space="preserve">
+    <value>Перевод программы на польский (Польша)</value>
+  </data>
+  <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
+    <value>Файлы сохранения Rayman M/Arena (.sav)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888" xml:space="preserve">
+    <value>Преобразовывать в 32-битную версию при импорте (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888Info" xml:space="preserve">
+    <value>Указывает, должен ли .gf-файл быть преобразован в 24/32-битную версию при импорте для обеспечения максимального возможного качества</value>
+  </data>
+  <data name="Progression_RM_LapTraining" xml:space="preserve">
+    <value>Лучший круг (Тренировка)</value>
+  </data>
+  <data name="Progression_RM_LapRace" xml:space="preserve">
+    <value>Лучший круг (Гонка)</value>
+  </data>
+  <data name="Progression_RM_LapTarget" xml:space="preserve">
+    <value>Лучший круг (Цель)</value>
+  </data>
+  <data name="Progression_RM_LapLums" xml:space="preserve">
+    <value>Лучший круг (Люмы)</value>
+  </data>
+  <data name="Progression_RM_TimeRace" xml:space="preserve">
+    <value>Лучшее время (Гонка)</value>
+  </data>
+  <data name="Progression_RM_TimeTarget" xml:space="preserve">
+    <value>Лучшее время (Цель)</value>
+  </data>
+  <data name="Progression_RM_TimeLums" xml:space="preserve">
+    <value>Лучшее время (Люмы)</value>
+  </data>
+  <data name="Progression_RM_Targets" xml:space="preserve">
+    <value>Цели</value>
+  </data>
+  <data name="Progression_RM_Lums" xml:space="preserve">
+    <value>Люмы</value>
+  </data>
+  <data name="RM_RaceName_0" xml:space="preserve">
+    <value>First Ruins</value>
+  </data>
+  <data name="RM_RaceName_1" xml:space="preserve">
+    <value>Nebulous Tower</value>
+  </data>
+  <data name="RM_RaceName_2" xml:space="preserve">
+    <value>Dark Sewer</value>
+  </data>
+  <data name="RM_RaceName_3" xml:space="preserve">
+    <value>Dawn Sand</value>
+  </data>
+  <data name="RM_RaceName_4" xml:space="preserve">
+    <value>Water Canyon</value>
+  </data>
+  <data name="RM_RaceName_5" xml:space="preserve">
+    <value>Thousand Waterfalls</value>
+  </data>
+  <data name="RM_RaceName_6" xml:space="preserve">
+    <value>Forest Jump</value>
+  </data>
+  <data name="RM_RaceName_7" xml:space="preserve">
+    <value>Zenith Harbour</value>
+  </data>
+  <data name="RM_RaceName_8" xml:space="preserve">
+    <value>Treasure Ship</value>
+  </data>
+  <data name="RM_RaceName_9" xml:space="preserve">
+    <value>Pipe Maze</value>
+  </data>
+  <data name="RM_RaceName_10" xml:space="preserve">
+    <value>Lava Factory</value>
+  </data>
+  <data name="RM_RaceName_11" xml:space="preserve">
+    <value>Electric Final</value>
+  </data>
+  <data name="RM_RaceName_12" xml:space="preserve">
+    <value>Future</value>
+  </data>
+  <data name="RM_RaceName_13" xml:space="preserve">
+    <value>Big Bang</value>
+  </data>
+  <data name="RM_RaceName_14" xml:space="preserve">
+    <value>Speed Stress</value>
+  </data>
+  <data name="RM_RaceName_15" xml:space="preserve">
+    <value>Born To Slide</value>
+  </data>
+  <data name="Help_Cheats_Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Help_Cheats_Location" xml:space="preserve">
+    <value>Местоположение</value>
+  </data>
+  <data name="Help_Cheats_Cheats" xml:space="preserve">
+    <value>Читы</value>
+  </data>
+  <data name="Help_Cheats_Cheats1" xml:space="preserve">
+    <value>Читы 1</value>
+  </data>
+  <data name="Help_Cheats_Cheats2" xml:space="preserve">
+    <value>Читы 2</value>
+  </data>
+  <data name="Help_Cheats_Cheats3" xml:space="preserve">
+    <value>Читы 3</value>
+  </data>
+  <data name="Browse_SelectFile" xml:space="preserve">
+    <value>Выбрать файл</value>
+  </data>
+  <data name="Browse_SaveFile" xml:space="preserve">
+    <value>Сохранить файл</value>
+  </data>
+  <data name="Browse_SelectDir" xml:space="preserve">
+    <value>Выбрать папку</value>
+  </data>
+  <data name="Browse_SelectDrive" xml:space="preserve">
+    <value>Выбрать диск</value>
+  </data>
+  <data name="About_Credits_RaymanUniverse" xml:space="preserve">
+    <value>Перевод программы на русский (Россия)</value>
+  </data>
+</root>

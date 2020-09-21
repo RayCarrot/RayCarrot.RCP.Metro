@@ -56,6 +56,9 @@ namespace RayCarrot.RCP.Metro
 
                 // Polish (Poland)
                 new CultureInfo("pl-PL"),
+
+                // Russian (Russia)
+                new CultureInfo("ru-RU"),
             });
 
             if (includeIncomplete)

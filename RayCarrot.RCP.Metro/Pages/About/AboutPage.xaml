@@ -88,6 +88,9 @@
                     <local:DuoGridItem Header="RayActivity"
                                        Text="{Resx About_Credits_RayActivity}" />
 
+                    <local:DuoGridItem Header="Rayman Universe - Рэйман и его Вселенная"
+                                       Text="{Resx About_Credits_RaymanUniverse}" />
+
                     <local:DuoGridItem Header="RibShark"
                                        Text="{Resx About_Credits_RibShark}" />
 

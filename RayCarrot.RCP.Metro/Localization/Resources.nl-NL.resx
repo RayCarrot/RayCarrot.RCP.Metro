@@ -1662,12 +1662,6 @@ Om het spel te kunnen starten in een compatibiliteitsmodus, ga je via de eigensc
   <data name="BrowseBox_Browse" xml:space="preserve">
     <value>Browsen</value>
   </data>
-  <data name="About_Discord" xml:space="preserve">
-    <value>Discord</value>
-  </data>
-  <data name="Help_AdditionalHelp" xml:space="preserve">
-    <value>Voor extra hulp, check de Discord server</value>
-  </data>
   <data name="Settings_IncompleteTranslations" xml:space="preserve">
     <value>Laat talen zien met incomplete vertalingen</value>
   </data>
@@ -3401,6 +3395,42 @@ Pointer = {8}</value>
   <data name="About_Credits_Fabiosek" xml:space="preserve">
     <value>Poolse (Polen) programmavertaling</value>
   </data>
+  <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
+    <value>Rayman M/Arena Save Files (.sav)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888" xml:space="preserve">
+    <value>Converteren naar 32-bit tijdens het importeren (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888Info" xml:space="preserve">
+    <value>Geeft aan of het .gf-bestand geconverteerd zou moeten worden naar 24/32-bit tijdens de import voor de hoogst mogelijke kwaliteit</value>
+  </data>
+  <data name="Progression_RM_LapTraining" xml:space="preserve">
+    <value>Beste Ronde (Training)</value>
+  </data>
+  <data name="Progression_RM_LapRace" xml:space="preserve">
+    <value>Beste Ronde (Race)</value>
+  </data>
+  <data name="Progression_RM_LapTarget" xml:space="preserve">
+    <value>Beste Ronde (Doelwit)</value>
+  </data>
+  <data name="Progression_RM_LapLums" xml:space="preserve">
+    <value>Beste Ronde (Lums)</value>
+  </data>
+  <data name="Progression_RM_TimeRace" xml:space="preserve">
+    <value>Beste Tijd (Race)</value>
+  </data>
+  <data name="Progression_RM_TimeTarget" xml:space="preserve">
+    <value>Beste Tijd (Doelwit)</value>
+  </data>
+  <data name="Progression_RM_TimeLums" xml:space="preserve">
+    <value>Beste Tijd (Lums)</value>
+  </data>
+  <data name="Progression_RM_Targets" xml:space="preserve">
+    <value>Doelwitten</value>
+  </data>
+  <data name="Progression_RM_Lums" xml:space="preserve">
+    <value>Lums</value>
+  </data>
   <data name="RM_RaceName_0" xml:space="preserve">
     <value>First Ruins</value>
   </data>
@@ -3449,42 +3479,6 @@ Pointer = {8}</value>
   <data name="RM_RaceName_15" xml:space="preserve">
     <value>Born To Slide</value>
   </data>
-  <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
-    <value>Rayman M/Arena Save Files (.sav)</value>
-  </data>
-  <data name="Settings_ArchiveGFForce8888" xml:space="preserve">
-    <value>Converteren naar 32-bit tijdens het importeren (.gf)</value>
-  </data>
-  <data name="Settings_ArchiveGFForce8888Info" xml:space="preserve">
-    <value>Geeft aan of het .gf-bestand geconverteerd zou moeten worden naar 24/32-bit tijdens de import voor de hoogst mogelijke kwaliteit</value>
-  </data>
-  <data name="Progression_RM_LapTraining" xml:space="preserve">
-    <value>Beste Ronde (Training)</value>
-  </data>
-  <data name="Progression_RM_LapRace" xml:space="preserve">
-    <value>Beste Ronde (Race)</value>
-  </data>
-  <data name="Progression_RM_LapTarget" xml:space="preserve">
-    <value>Beste Ronde (Doelwit)</value>
-  </data>
-  <data name="Progression_RM_LapLums" xml:space="preserve">
-    <value>Beste Ronde (Lums)</value>
-  </data>
-  <data name="Progression_RM_TimeRace" xml:space="preserve">
-    <value>Beste Tijd (Race)</value>
-  </data>
-  <data name="Progression_RM_TimeTarget" xml:space="preserve">
-    <value>Beste Tijd (Doelwit)</value>
-  </data>
-  <data name="Progression_RM_TimeLums" xml:space="preserve">
-    <value>Beste Tijd (Lums)</value>
-  </data>
-  <data name="Progression_RM_Targets" xml:space="preserve">
-    <value>Doelwitten</value>
-  </data>
-  <data name="Progression_RM_Lums" xml:space="preserve">
-    <value>Lums</value>
-  </data>
   <data name="Help_Cheats_Description" xml:space="preserve">
     <value>Beschrijving</value>
   </data>
@@ -3514,5 +3508,8 @@ Pointer = {8}</value>
   </data>
   <data name="Browse_SelectDrive" xml:space="preserve">
     <value>Selecteer een schrijf</value>
+  </data>
+  <data name="About_Credits_RaymanUniverse" xml:space="preserve">
+    <value>Russische (Rusland) programmavertaling</value>
   </data>
 </root>

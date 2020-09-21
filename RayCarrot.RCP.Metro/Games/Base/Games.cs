@@ -174,6 +174,11 @@ namespace RayCarrot.RCP.Metro
         RaymanRedemption,
 
         /// <summary>
+        /// Rayman Bowling 2
+        /// </summary>
+        RaymanBowling2,
+
+        /// <summary>
         /// Globox Moment
         /// </summary>
         GloboxMoment,

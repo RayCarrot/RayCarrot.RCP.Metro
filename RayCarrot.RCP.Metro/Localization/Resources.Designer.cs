@@ -214,6 +214,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Russian (Russia) program translation.
+        /// </summary>
+        public static string About_Credits_RaymanUniverse {
+            get {
+                return ResourceManager.GetString("About_Credits_RaymanUniverse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cheat code list, general help with the utilities.
         /// </summary>
         public static string About_Credits_RibShark {
@@ -237,15 +246,6 @@ namespace RayCarrot.RCP.Metro {
         public static string About_Credits_Snagglebee {
             get {
                 return ResourceManager.GetString("About_Credits_Snagglebee", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Discord.
-        /// </summary>
-        public static string About_Discord {
-            get {
-                return ResourceManager.GetString("About_Discord", resourceCulture);
             }
         }
         
@@ -4516,15 +4516,6 @@ namespace RayCarrot.RCP.Metro {
         public static string GoHomeConfig_VersionIndex {
             get {
                 return ResourceManager.GetString("GoHomeConfig_VersionIndex", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to For additional help, check the Discord server.
-        /// </summary>
-        public static string Help_AdditionalHelp {
-            get {
-                return ResourceManager.GetString("Help_AdditionalHelp", resourceCulture);
             }
         }
         

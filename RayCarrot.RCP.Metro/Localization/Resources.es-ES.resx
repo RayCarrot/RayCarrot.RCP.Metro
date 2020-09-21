@@ -1005,6 +1005,10 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
     <value>Big file</value>
     <comment>Big file</comment>
   </data>
+  <data name="R2Config_Graphics_DirectX" xml:space="preserve">
+    <value>DirectX</value>
+    <comment>DirectX</comment>
+  </data>
   <data name="R2Config_Graphics_nGlide" xml:space="preserve">
     <value>Glide</value>
   </data>
