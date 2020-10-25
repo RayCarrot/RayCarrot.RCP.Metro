@@ -1304,7 +1304,7 @@
       <Version>4.1.0</Version>
     </PackageReference>
     <PackageReference Include="DotNetZip">
-      <Version>1.13.8</Version>
+      <Version>1.14.0</Version>
     </PackageReference>
     <PackageReference Include="Fody">
       <Version>6.2.5</Version>
@@ -1312,22 +1312,22 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="gong-wpf-dragdrop">
-      <Version>2.2.0</Version>
+      <Version>2.3.1</Version>
     </PackageReference>
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf">
       <Version>1.0.8</Version>
     </PackageReference>
     <PackageReference Include="Magick.NET-Q8-x86">
-      <Version>7.21.1</Version>
+      <Version>7.22.0</Version>
     </PackageReference>
     <PackageReference Include="Magick.NET.SystemWindowsMedia">
-      <Version>2.0.1</Version>
+      <Version>2.0.2</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro">
-      <Version>2.2.0</Version>
+      <Version>2.3.1</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro.IconPacks.Material">
-      <Version>4.4.0</Version>
+      <Version>4.6.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.PowerShell.5.ReferenceAssemblies">
       <Version>1.1.0</Version>
@@ -1342,10 +1342,10 @@
       <Version>12.0.3</Version>
     </PackageReference>
     <PackageReference Include="Nito.AsyncEx">
-      <Version>5.0.0</Version>
+      <Version>5.1.0</Version>
     </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
-      <Version>3.2.9</Version>
+      <Version>3.2.10</Version>
     </PackageReference>
     <PackageReference Include="Resource.Embedder">
       <Version>2.1.1</Version>
