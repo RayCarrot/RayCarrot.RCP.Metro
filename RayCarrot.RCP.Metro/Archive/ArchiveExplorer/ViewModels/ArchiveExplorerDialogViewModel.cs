@@ -34,7 +34,7 @@ namespace RayCarrot.RCP.Metro
 
             // Set properties
             CurrentDirectorySuggestions = new ObservableCollection<string>();
-            SearchProvider = new BaseSuggestionProvider(x => Archives.SelectMany(y => y).SelectMany(y => y.Files).Concat(Archives.SelectMany(x => x.Files)).Where(y => y.FileName.IndexOf(x, StringComparison.CurrentCultureIgnoreCase) > -1));
+            SearchProvider = new BaseSuggestionProvider(x => EnumerateFiles.Where(y => y.FileName.IndexOf(x, StringComparison.InvariantCultureIgnoreCase) > -1));
 
             try
             {
@@ -97,6 +97,11 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// Enumerates the files in all available archives
+        /// </summary>
+        public IEnumerable<ArchiveFileViewModel> EnumerateFiles => Archives.SelectMany(y => ((ArchiveDirectoryViewModel)y).GetAllChildren(true)).SelectMany(y => y.Files);
 
         /// <summary>
         /// Indicates if files are being initialized

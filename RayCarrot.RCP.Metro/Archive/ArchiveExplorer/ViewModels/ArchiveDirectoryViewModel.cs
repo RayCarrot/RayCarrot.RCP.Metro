@@ -188,7 +188,7 @@ namespace RayCarrot.RCP.Metro
                         // Get the manager
                         var manager = Archive.Manager;
 
-                        // Save the selected the format for each collection
+                        // Save the selected format for each collection
                         Dictionary<IArchiveFileType, FileExtension> selectedFormats = new Dictionary<IArchiveFileType, FileExtension>();
 
                         try
