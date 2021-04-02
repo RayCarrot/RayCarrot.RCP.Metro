@@ -125,7 +125,6 @@
     <Compile Include="Archive\NEW\File\Type\ArchiveFileType_Image.cs" />
     <Compile Include="Archive\NEW\File\Type\IArchiveFileType.cs" />
     <Compile Include="Archive\NEW\Manager\OpenSpaceCntArchiveDataManager.cs" />
-    <Compile Include="Archive\FileFormat\FileFormatInfoAttribute.cs" />
     <Compile Include="Archive\UbiArt_Ipk\Config\UbiArtIPKArchiveConfigUI.xaml.cs">
       <DependentUpon>UbiArtIPKArchiveConfigUI.xaml</DependentUpon>
     </Compile>
