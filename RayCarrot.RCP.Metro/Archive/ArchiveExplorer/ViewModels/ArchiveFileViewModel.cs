@@ -287,7 +287,8 @@ namespace RayCarrot.RCP.Metro
                     } : new SaveFileViewModel()
                     {
                         Title = Resources.Archive_ExportHeader,
-                        DefaultName = FileName
+                        DefaultName = FileName,
+                        Extensions = FileExtension.GetFileFilterItem.ToString()
                     });
 
                     if (result.CanceledByUser)
