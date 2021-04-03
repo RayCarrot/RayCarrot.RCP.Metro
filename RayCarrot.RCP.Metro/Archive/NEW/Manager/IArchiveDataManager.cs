@@ -58,7 +58,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="generator">The generator</param>
         /// <param name="fileEntry">The file entry</param>
         /// <returns>The encoded file data</returns>
-        byte[] GetFileData(IDisposable generator, object fileEntry);
+        Stream GetFileData(IDisposable generator, object fileEntry);
 
         /// <summary>
         /// Writes the files to the archive

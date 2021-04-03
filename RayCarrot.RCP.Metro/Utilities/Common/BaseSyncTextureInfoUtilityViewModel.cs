@@ -121,39 +121,50 @@ namespace RayCarrot.RCP.Metro
                 // Read the size from every .gf file
                 gfFiles.AddRange(cntData.Files.Select(x =>
                 {
-                    // Get the file bytes
-                    var bytes = generator.GetBytes(x);
+                    Stream fileStream = null;
 
-                    // Decrypt the bytes
-                    if (x.FileXORKey.Any(y => y != 0))
-                        bytes = new MultiXORDataEncoder(x.FileXORKey, true).Decode(bytes);
-
-                    // Read the bytes into a stream
-                    using var gfMemoryStream = new MemoryStream(bytes);
-                    
-                    // Get a reader
-                    using var reader = new Reader(gfMemoryStream, gameSettings.Endian);
-
-                    // Set the position to where the .gf file size is, skipping the format value
-                    gfMemoryStream.Position = gameSettings.Game == OpenSpaceGame.TonicTroubleSpecialEdition ? 0 : 4;
-                    
-                    // Read the size
-                    var width = reader.ReadInt32();
-                    var height = reader.ReadInt32();
-
-                    uint mipmaps = 0;
-
-                    if (gameSettings.EngineVersion == OpenSpaceEngineVersion.Rayman3)
+                    try
                     {
-                        // Skip the channel count...
-                        reader.ReadByte();
+                        // Get the file data
+                        fileStream = generator.GetFileStream(x);
 
-                        // Read mipmap count
-                        mipmaps = reader.ReadByte();
+                        // Decrypt the bytes
+                        if (x.FileXORKey.Any(y => y != 0))
+                        {
+                            var decodedFileStream = new MemoryStream();
+                            new MultiXORDataEncoder(x.FileXORKey, true).Decode(fileStream, decodedFileStream);
+                            fileStream.Dispose();
+                            fileStream = decodedFileStream;
+                        }
+
+                        // Get a reader
+                        using var reader = new Reader(fileStream, gameSettings.Endian);
+
+                        // Set the position to where the .gf file size is, skipping the format value
+                        fileStream.Position = gameSettings.Game == OpenSpaceGame.TonicTroubleSpecialEdition ? 0 : 4;
+
+                        // Read the size
+                        var width = reader.ReadInt32();
+                        var height = reader.ReadInt32();
+
+                        uint mipmaps = 0;
+
+                        if (gameSettings.EngineVersion == OpenSpaceEngineVersion.Rayman3)
+                        {
+                            // Skip the channel count...
+                            reader.ReadByte();
+
+                            // Read mipmap count
+                            mipmaps = reader.ReadByte();
+                        }
+
+                        // Get the .gf data
+                        return new GFFileSizeData(x.GetFullPath(cntData.Directories), (ushort)height, (ushort)width, mipmaps);
                     }
-
-                    // Get the .gf data
-                    return new GFFileSizeData(x.GetFullPath(cntData.Directories), (ushort)height, (ushort)width, mipmaps);
+                    finally
+                    {
+                        fileStream?.Dispose();
+                    }
                 }));
             }
             

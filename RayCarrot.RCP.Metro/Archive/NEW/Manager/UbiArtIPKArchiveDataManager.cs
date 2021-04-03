@@ -123,7 +123,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="generator">The generator</param>
         /// <param name="fileEntry">The file entry</param>
         /// <returns>The encoded file data</returns>
-        public byte[] GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IArchiveFileGenerator<UbiArtIPKFileEntry>>().GetBytes((UbiArtIPKFileEntry)fileEntry);
+        public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IArchiveFileGenerator<UbiArtIPKFileEntry>>().GetFileStream((UbiArtIPKFileEntry)fileEntry);
 
         /// <summary>
         /// Writes the files to the archive
@@ -175,10 +175,7 @@ namespace RayCarrot.RCP.Metro
                 fileGenerator.Add(entry, () =>
                 {
                     // Get the file bytes to write to the archive
-                    using var fileStream = file.FileItme.GetFileData(generator);
-
-                    // Get the bytes
-                    var bytes = fileStream.Stream.ReadRemainingBytes();
+                    var fileStream = file.FileItme.GetFileData(generator);
 
                     // Set the offset
                     entry.Offsets[0] = currentOffset;
@@ -186,7 +183,7 @@ namespace RayCarrot.RCP.Metro
                     // Increase by the file size
                     currentOffset += entry.ArchiveSize;
 
-                    return bytes;
+                    return fileStream.Stream;
                 });
             }
 

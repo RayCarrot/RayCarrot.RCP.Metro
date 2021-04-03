@@ -52,7 +52,7 @@ namespace RayCarrot.RCP.Metro
         public ArchiveFileStream GetFileData(IDisposable generator)
         {
             // Get the stream
-            var stream = IsPendingImport ? new ArchiveFileStream(PendingImport, false) : new ArchiveFileStream(() => new MemoryStream(Manager.GetFileData(generator, ArchiveEntry)), true);
+            var stream = IsPendingImport ? new ArchiveFileStream(PendingImport, false) : new ArchiveFileStream(() => Manager.GetFileData(generator, ArchiveEntry), true);
             
             // Seek to the beginning
             stream.SeekToBeginning();

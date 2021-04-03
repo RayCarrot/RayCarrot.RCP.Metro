@@ -100,7 +100,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="generator">The generator</param>
         /// <param name="fileEntry">The file entry</param>
         /// <returns>The encoded file data</returns>
-        public byte[] GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IArchiveFileGenerator<OpenSpaceCntFileEntry>>().GetBytes((OpenSpaceCntFileEntry)fileEntry);
+        public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IArchiveFileGenerator<OpenSpaceCntFileEntry>>().GetFileStream((OpenSpaceCntFileEntry)fileEntry);
 
         /// <summary>
         /// Writes the files to the archive
@@ -159,11 +159,8 @@ namespace RayCarrot.RCP.Metro
                 // Add to the generator
                 fileGenerator.Add(entry, () =>
                 {
-                    // Get the file bytes to write to the archive
-                    using var fileStream = file.FileItem.GetFileData(generator);
-
-                    // Get the bytes
-                    var bytes = fileStream.Stream.ReadRemainingBytes();
+                    // Get the file stream to write to the archive
+                    var fileStream = file.FileItem.GetFileData(generator);
 
                     // Set the pointer
                     entry.Pointer = pointer;
@@ -171,8 +168,7 @@ namespace RayCarrot.RCP.Metro
                     // Update the pointer by the file size
                     pointer += entry.Size;
 
-                    // TODO-UPDATE: Return stream directly
-                    return bytes;
+                    return fileStream.Stream;
                 });
             }
 
