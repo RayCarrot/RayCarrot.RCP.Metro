@@ -50,7 +50,14 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Seeks to the beginning of the stream
         /// </summary>
-        public void SeekToBeginning() => Stream.Position = 0;
+        public void SeekToBeginning()
+        {
+            // If the stream has not been created there is no need to create it just to reset the position (we always assume that a newly created stream has the position reset!)
+            if (_stream == null)
+                return;
+
+            Stream.Position = 0;
+        }
 
         /// <summary>
         /// Disposes the stream if set to do so
