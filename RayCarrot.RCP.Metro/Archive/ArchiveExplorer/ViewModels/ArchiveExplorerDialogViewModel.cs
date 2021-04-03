@@ -251,6 +251,7 @@ namespace RayCarrot.RCP.Metro
         protected void UpdateAddress()
         {
             CurrentDirectoryAddress = $"{SelectedDir.Archive.DisplayName}:{SelectedDir.Archive.Manager.PathSeparatorCharacter}{SelectedDir.FullPath}";
+            OnPropertyChanged(nameof(CurrentDirectoryAddress)); // Temp fix - without this the text box won't update if going back to a parent directory, why? The event gets triggered correctly and the value gets updated
         }
 
         #endregion

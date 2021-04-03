@@ -187,7 +187,7 @@
                             </Setter.Value>
                         </Setter>
                         <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
-                        <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded}" />
+                        <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}" />
                         <Setter Property="ToolTip" Value="{Binding Path=DisplayDescription}" />
                     </Style>
                 </TreeView.ItemContainerStyle>
