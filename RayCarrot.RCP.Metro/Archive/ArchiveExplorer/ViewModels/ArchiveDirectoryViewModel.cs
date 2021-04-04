@@ -412,7 +412,12 @@ namespace RayCarrot.RCP.Metro
                     if (result.CanceledByUser)
                         return;
 
-                    // TODO-UPDATE: Make sure the name doesn't conflict with an existing directory
+                    // Check if the name conflicts with an existing directory
+                    if (this.Any(x => x.ID.Equals(result.StringInput, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        RL.Logger?.LogTraceSource($"The archive directory {result.StringInput} was not added due to already existing");
+                        return;
+                    }
 
                     // Add the directory
                     Add(result.StringInput);
@@ -475,27 +480,37 @@ namespace RayCarrot.RCP.Metro
                     var manager = Archive.Manager;
 
                     // TODO-UPDATE: Try/catch this
-                    // TODO-UPDATE: Make sure an added file doesn't have a name which conflicts with an existing file
 
                     var modifiedCount = 0;
 
                     // Add every file
                     foreach (var file in result.SelectedFiles)
                     {
-                        // Open the file as a stream
-                        using var fileStream = File.OpenRead(file);
-
                         var fileName = file.Name;
                         var dir = FullPath;
 
-                        var fileViewModel = new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData, dir, fileName)), this);
+                        var existingFile = Files.FirstOrDefault(x => x.FileName.Equals(fileName, StringComparison.OrdinalIgnoreCase));
 
-                        // Replace the empty file with the import data
+                        // Check if the file name conflicts with an existing file
+                        if (existingFile != null)
+                        {
+                            // TODO-UPDATE: Localize
+                            if (!await Services.MessageUI.DisplayMessageAsync($"The file '{file}' has the same name as an existing file. Do you want to replace it?", "File name conflict", MessageType.Warning, true))
+                                continue;
+                        }
+
+                        // Open the file as a stream
+                        using var fileStream = File.OpenRead(file);
+
+                        var fileViewModel = existingFile ?? new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData, dir, fileName)), this);
+
+                        // Replace the file with the import data
                         if (await Task.Run(() => fileViewModel.ReplaceFile(fileStream)))
                             modifiedCount++;
 
-                        // Add the file to the list
-                        Files.Add(fileViewModel);
+                        // Add the file to the list if it was created
+                        if (existingFile == null)
+                            Files.Add(fileViewModel);
                     }
 
                     Archive.AddModifiedFiles(modifiedCount);

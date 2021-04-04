@@ -306,6 +306,9 @@ namespace RayCarrot.RCP.Metro
         /// <param name="count">The number of new modified files to add</param>
         public void AddModifiedFiles(int count = 1)
         {
+            if (count == 0)
+                return;
+
             // Increment by the count
             ModifiedFilesCount += count;
 
