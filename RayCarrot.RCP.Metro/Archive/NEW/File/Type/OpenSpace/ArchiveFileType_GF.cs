@@ -96,10 +96,10 @@ namespace RayCarrot.RCP.Metro
                 // Load the raw bitmap data
                 var rawBmp = file.GetRawBitmapData(width.Value, (int)(file.Height / ((double)file.Width / width)));
 
-                var is32Bit = rawBmp.PixelFormat == PixelFormat.Format32bppArgb;
+                var format = rawBmp.PixelFormat == PixelFormat.Format32bppArgb ? PixelFormats.Bgra32 : PixelFormats.Bgr24;
 
                 // Get a thumbnail source
-                 thumbnailSource = BitmapSource.Create(rawBmp.Width, rawBmp.Height, 96, 96, is32Bit ? PixelFormats.Bgra32 : PixelFormats.Bgr24, null, rawBmp.PixelData, (rawBmp.Width * (is32Bit ? 32 : 24) + 7) / 8);
+                thumbnailSource = BitmapSource.Create(rawBmp.Width, rawBmp.Height, 96, 96, format, null, rawBmp.PixelData, (rawBmp.Width * format.BitsPerPixel + 7) / 8);
             }
 
             // Get the thumbnail with the specified size

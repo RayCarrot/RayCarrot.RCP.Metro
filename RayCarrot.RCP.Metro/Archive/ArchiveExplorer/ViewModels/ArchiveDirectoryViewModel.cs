@@ -37,7 +37,7 @@ namespace RayCarrot.RCP.Metro
             ImportCommand = new AsyncRelayCommand(ImportAsync);
             CreateDirectoryCommand = new AsyncRelayCommand(CreateDirectoryAsync);
             DeleteCommand = new AsyncRelayCommand(DeleteDirectoryAsync);
-            AddFileCommand = new AsyncRelayCommand(AddFileAsync);
+            AddFilesCommand = new AsyncRelayCommand(AddFilesAsync);
 
             // Enable collection synchronization
             BindingOperations.EnableCollectionSynchronization(Files, Application.Current);
@@ -64,7 +64,7 @@ namespace RayCarrot.RCP.Metro
             ImportCommand = new AsyncRelayCommand(ImportAsync);
             CreateDirectoryCommand = new AsyncRelayCommand(CreateDirectoryAsync);
             DeleteCommand = new AsyncRelayCommand(DeleteDirectoryAsync);
-            AddFileCommand = new AsyncRelayCommand(AddFileAsync);
+            AddFilesCommand = new AsyncRelayCommand(AddFilesAsync);
 
             // Enable collection synchronization
             BindingOperations.EnableCollectionSynchronization(Files, Application.Current);
@@ -120,7 +120,6 @@ namespace RayCarrot.RCP.Metro
         #region Commands
 
         public ICommand ExtractCommand { get; }
-        public ICommand AddFilesCommand { get; }
 
         public ICommand ExportCommand { get; }
         public ICommand ImportCommand { get; }
@@ -128,7 +127,7 @@ namespace RayCarrot.RCP.Metro
         public ICommand CreateDirectoryCommand { get; }
         public ICommand DeleteCommand { get; }
         
-        public ICommand AddFileCommand { get; }
+        public ICommand AddFilesCommand { get; }
 
         #endregion
 
@@ -451,9 +450,9 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        public async Task AddFileAsync()
+        public async Task AddFilesAsync()
         {
-            RL.Logger?.LogTraceSource($"A file is being added to {FullPath}");
+            RL.Logger?.LogTraceSource($"Files are being added to {FullPath}");
 
             // Run as a load operation
             using (Archive.LoadOperation.Run())
@@ -500,7 +499,6 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     Archive.AddModifiedFiles(modifiedCount);
-
                 }
             }
         }
