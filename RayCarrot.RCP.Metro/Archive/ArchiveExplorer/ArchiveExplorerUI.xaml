@@ -55,6 +55,8 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
+                <!-- Address bar -->
+
                 <TextBox Grid.Column="0"
                          Text="{Binding Path=CurrentDirectoryAddress, UpdateSourceTrigger=PropertyChanged}"
                          wpfTextBoxAutoComplete:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding Path=CurrentDirectorySuggestions, Mode=OneTime}"
@@ -65,6 +67,8 @@
                                     Command="{Binding Path=NavigateToAddressCommand, Mode=OneTime}" />
                     </TextBox.InputBindings>
                 </TextBox>
+
+                <!-- Search bar -->
 
                 <!-- TODO: Localize -->
                 <editors:AutoCompleteTextBox Grid.Column="1"
@@ -77,7 +81,7 @@
 
                     <editors:AutoCompleteTextBox.ItemTemplate>
                         <DataTemplate DataType="local:ArchiveFileViewModel">
-                            <Grid>
+                            <Grid ToolTip="{Binding Path=ArchiveDirectory.FullPath, Mode=OneTime}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="5" />
