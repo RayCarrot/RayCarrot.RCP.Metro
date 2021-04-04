@@ -385,15 +385,11 @@ namespace RayCarrot.RCP.Metro
                             // Memory stream for converted data
                             using var memStream = new MemoryStream();
 
-                            // If it's being imported from a non-native format, convert it
-                            var convert = result.SelectedFile.FileExtension != FileExtension;
-
-                            if (convert)
-                                // Convert from the imported file to the memory stream
-                                FileType.ConvertFrom(result.SelectedFile.FileExtension, FileExtension, GetDecodedFileStream(), importFile, memStream, Manager);
+                            // Convert from the imported file to the memory stream
+                            FileType.ConvertFrom(result.SelectedFile.FileExtension, FileExtension, GetDecodedFileStream(), importFile, memStream, Manager);
 
                             // Replace the file with the import data
-                            if (ReplaceFile(convert ? (Stream)memStream : importFile))
+                            if (ReplaceFile(memStream))
                                 Archive.AddModifiedFiles();
                         }
 
