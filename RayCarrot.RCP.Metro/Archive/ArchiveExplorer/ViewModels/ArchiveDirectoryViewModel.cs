@@ -476,46 +476,52 @@ namespace RayCarrot.RCP.Metro
                     if (result.CanceledByUser)
                         return;
 
-                    // Get the manager
-                    var manager = Archive.Manager;
-
-                    // TODO-UPDATE: Try/catch this
-
-                    var modifiedCount = 0;
-
                     // Add every file
-                    foreach (var file in result.SelectedFiles)
-                    {
-                        var fileName = file.Name;
-                        var dir = FullPath;
-
-                        var existingFile = Files.FirstOrDefault(x => x.FileName.Equals(fileName, StringComparison.OrdinalIgnoreCase));
-
-                        // Check if the file name conflicts with an existing file
-                        if (existingFile != null)
-                        {
-                            // TODO-UPDATE: Localize
-                            if (!await Services.MessageUI.DisplayMessageAsync($"The file '{file}' has the same name as an existing file. Do you want to replace it?", "File name conflict", MessageType.Warning, true))
-                                continue;
-                        }
-
-                        // Open the file as a stream
-                        using var fileStream = File.OpenRead(file);
-
-                        var fileViewModel = existingFile ?? new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData, dir, fileName)), this);
-
-                        // Replace the file with the import data
-                        if (await Task.Run(() => fileViewModel.ReplaceFile(fileStream)))
-                            modifiedCount++;
-
-                        // Add the file to the list if it was created
-                        if (existingFile == null)
-                            Files.Add(fileViewModel);
-                    }
-
-                    Archive.AddModifiedFiles(modifiedCount);
+                    await AddFilesAsync(result.SelectedFiles);
                 }
             }
+        }
+
+        public async Task AddFilesAsync(IEnumerable<FileSystemPath> files)
+        {
+            // Get the manager
+            var manager = Archive.Manager;
+
+            // TODO-UPDATE: Try/catch this
+
+            var modifiedCount = 0;
+
+            // Add every file
+            foreach (var file in files)
+            {
+                var fileName = file.Name;
+                var dir = FullPath;
+
+                var existingFile = Files.FirstOrDefault(x => x.FileName.Equals(fileName, StringComparison.OrdinalIgnoreCase));
+
+                // Check if the file name conflicts with an existing file
+                if (existingFile != null)
+                {
+                    // TODO-UPDATE: Localize
+                    if (!await Services.MessageUI.DisplayMessageAsync($"The file '{file}' has the same name as an existing file. Do you want to replace it?", "File name conflict", MessageType.Warning, true))
+                        continue;
+                }
+
+                // Open the file as a stream
+                using var fileStream = File.OpenRead(file);
+
+                var fileViewModel = existingFile ?? new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData, dir, fileName)), this);
+
+                // Replace the file with the import data
+                if (await Task.Run(() => fileViewModel.ReplaceFile(fileStream)))
+                    modifiedCount++;
+
+                // Add the file to the list if it was created
+                if (existingFile == null)
+                    Files.Add(fileViewModel);
+            }
+
+            Archive.AddModifiedFiles(modifiedCount);
         }
 
         /// <summary>

@@ -3,10 +3,12 @@ using RayCarrot.Common;
 using RayCarrot.WPF;
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -153,6 +155,34 @@ namespace RayCarrot.RCP.Metro
         }
 
         private void SortMenuItem_OnChecked(object sender, RoutedEventArgs e) => RefreshSort();
+
+        private async void FilesList_OnDrop(object sender, DragEventArgs e)
+        {
+            // Make sure there is file drop data
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop))
+                return;
+
+            // Get the files
+            if (!(e.Data.GetData(DataFormats.FileDrop) is string[] files))
+                return;
+
+            // Get the currently selected directory
+            var dir = ViewModel.SelectedDir;
+
+            if (dir == null)
+                return;
+
+            // Run as a load operation
+            using (dir.Archive.LoadOperation.Run())
+            {
+                // Lock the access to the archive
+                using (await dir.Archive.ArchiveLock.LockAsync())
+                {
+                    // Add the files
+                    await dir.AddFilesAsync(files.Select(x => new FileSystemPath(x)));
+                }
+            }
+        }
 
         #endregion
 

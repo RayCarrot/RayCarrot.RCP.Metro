@@ -241,6 +241,8 @@
                          d:DataContext="{d:DesignInstance local:ArchiveDirectoryViewModel}"
                          ItemsSource="{Binding Path=Files, Mode=OneTime}"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         AllowDrop="True"
+                         Drop="FilesList_OnDrop"
                          Padding="5">
 
                     <!-- File container -->
@@ -373,7 +375,6 @@
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-
 
                 </ListBox>
 
