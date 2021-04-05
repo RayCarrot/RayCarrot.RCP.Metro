@@ -39,6 +39,8 @@ The Rayman Control Panel uses these main dependencies:
 - [PropertyChanged.Fody](https://github.com/Fody/PropertyChanged)
 - [Resource.Embedder](https://github.com/MarcStan/Resource.Embedder)
 - [XamlAnimatedGif](https://github.com/XamlAnimatedGif/XamlAnimatedGif)
+- [AutoCompleteTextBox](https://github.com/quicoli/WPF-AutoComplete-TextBox)
+- [WPFTextBoxAutoComplete](https://github.com/Nimgoble/WPFTextBoxAutoComplete)
 
 ## Localization
 Starting with version 4.1.0 the Rayman Control Panel will support localization.
