@@ -272,125 +272,105 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ImportAsync()
         {
-            throw new NotImplementedException();
-            //// Run as a load operation
-            //using (Archive.LoadOperation.Run())
-            //{
-            //    // Lock the access to the archive
-            //    using (await Archive.ArchiveLock.LockAsync())
-            //    {
-            //        // Run as a task
-            //        await Task.Run(async () =>
-            //        {
-            //            // Get the directory
-            //            var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
-            //            {
-            //                Title = Resources.Archive_ImportDirectoryHeader,
-            //            });
+            // Run as a load operation
+            using (Archive.LoadOperation.Run())
+            {
+                // Lock the access to the archive
+                using (await Archive.ArchiveLock.LockAsync())
+                {
+                    // Get the directory
+                    var result = await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
+                    {
+                        Title = Resources.Archive_ImportDirectoryHeader,
+                    });
 
-            //            if (result.CanceledByUser)
-            //                return;
+                    if (result.CanceledByUser)
+                        return;
 
-            //            // Keep track of the number of files getting imported
-            //            var imported = 0;
+                    // Run as a task
+                    await Task.Run(async () =>
+                    {
+                        // Keep track of the number of files getting imported
+                        var imported = 0;
 
-            //            // Get the import data
-            //            var importData = new List<ArchiveImportData>();
+                        try
+                        {
+                            // Enumerate each directory view model
+                            foreach (var dir in this.GetAllChildren(true))
+                            {
+                                // Enumerate each file
+                                foreach (var file in dir.Files)
+                                {
+                                    // Get the file directory, relative to the selected directory
+                                    FileSystemPath fileDir = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
 
-            //            try
-            //            {
-            //                // Enumerate each directory view model
-            //                foreach (var dir in this.GetAllChildren(true))
-            //                {
-            //                    // Enumerate each file
-            //                    foreach (var file in dir.Files)
-            //                    {
-            //                        // Get the file directory, relative to the selected directory
-            //                        FileSystemPath fileDir = result.SelectedDirectory + dir.FullPath.Remove(0, FullPath.Length).Trim(Path.DirectorySeparatorChar);
+                                    if (!fileDir.DirectoryExists)
+                                        continue;
 
-            //                        // Get the base file path
-            //                        var baseFilePath = fileDir + new FileSystemPath(file.FileName);
+                                    // Get the base file path
+                                    var baseFilePath = fileDir + new FileSystemPath(file.FileName);
 
-            //                        // Get the file path, without an extension
-            //                        FileSystemPath filePath = baseFilePath.RemoveFileExtension(true);
+                                    // Get the file path, without an extension
+                                    FileSystemPath filePath = baseFilePath.RemoveFileExtension(true);
 
-            //                        if (!fileDir.DirectoryExists)
-            //                            continue;
+                                    // Make sure there are potential file matches
+                                    if (!Directory.GetFiles(fileDir, $"{filePath.Name}*", SearchOption.TopDirectoryOnly).Any())
+                                        continue;
 
-            //                        // Make sure there are potential file matches
-            //                        if (!Directory.GetFiles(fileDir, $"{filePath.Name}*", SearchOption.TopDirectoryOnly).Any())
-            //                            continue;
+                                    // Get the file stream
+                                    using var fileStream = file.GetDecodedFileStream();
 
-            //                        // Initialize the file bytes
-            //                        file.FileData.GetDecodedFileBytes(Archive.ArchiveFileStream, Archive.ArchiveFileGenerator, true);
+                                    // Initialize the file without loading the thumbnail
+                                    file.InitializeFile(fileStream, false);
 
-            //                        // Check if the base file exists without changing the extensions
-            //                        if (baseFilePath.FileExists)
-            //                        {
-            //                            // Import the file
-            //                            ImportFile(baseFilePath);
+                                    // Check if the base file exists without changing the extensions
+                                    if (baseFilePath.FileExists)
+                                    {
+                                        // Import the file
+                                        file.ImportFile(baseFilePath, false);
 
-            //                            continue;
-            //                        }
+                                        imported++;
 
-            //                        // Attempt to find a file for each supported extension
-            //                        foreach (var ext in file.FileData.SupportedImportFileExtensions)
-            //                        {
-            //                            // Get the path
-            //                            var fullFilePath = filePath.ChangeFileExtension(ext);
+                                        continue;
+                                    }
 
-            //                            // Make sure the file exists
-            //                            if (!fullFilePath.FileExists)
-            //                                continue;
+                                    // Attempt to find a file for each supported extension
+                                    foreach (var ext in file.FileType.ImportFormats)
+                                    {
+                                        // Get the path
+                                        var fullFilePath = filePath.ChangeFileExtension(ext);
 
-            //                            // Import the file
-            //                            ImportFile(fullFilePath);
+                                        // Make sure the file exists
+                                        if (!fullFilePath.FileExists)
+                                            continue;
 
-            //                            // Break the loop
-            //                            break;
-            //                        }
+                                        // Import the file
+                                        file.ImportFile(fullFilePath, true);
 
-            //                        // Helper method for importing a file
-            //                        void ImportFile(FileSystemPath fullFilePath)
-            //                        {
-            //                            // Import the file
-            //                            var data = file.ImportFile(fullFilePath);
+                                        imported++;
 
-            //                            // Add the data to the collection
-            //                            importData.Add(data);
+                                        // Break the loop
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            ex.HandleError("Importing archive directory", DisplayName);
 
-            //                            imported++;
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //            catch (Exception ex)
-            //            {
-            //                ex.HandleError("Importing archive directory", DisplayName);
+                            // TODO: Localize
+                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when importing the files");
 
-            //                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_RepackError);
+                            return;
+                        }
 
-            //                return;
-            //            }
-
-            //            // Make sure at least one file has been imported
-            //            if (imported == 0)
-            //            {
-            //                await Services.MessageUI.DisplayMessageAsync(Resources.Archive_ImportNoFilesError, MessageType.Error);
-
-            //                return;
-            //            }
-
-            //            // Update the archive
-            //            var repackSucceeded = await Archive.UpdateArchiveAsync(importData);
-
-            //            if (!repackSucceeded)
-            //                return;
-
-            //            await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Archive_ImportFilesSuccess);
-            //        });
-            //    }
-            //}
+                        // Make sure at least one file has been imported
+                        if (imported == 0)
+                            await Services.MessageUI.DisplayMessageAsync(Resources.Archive_ImportNoFilesError, MessageType.Warning);
+                    });
+                }
+            }
         }
 
         public async Task CreateDirectoryAsync()

@@ -379,24 +379,30 @@ namespace RayCarrot.RCP.Metro
                     {
                         // TODO-UPDATE: Try/catch all of this
 
-                        // Open the file to be imported
-                        using (var importFile = File.OpenRead(result.SelectedFile))
-                        {
-                            // Memory stream for converted data
-                            using var memStream = new MemoryStream();
-
-                            // Convert from the imported file to the memory stream
-                            FileType.ConvertFrom(result.SelectedFile.FileExtension, FileExtension, GetDecodedFileStream(), importFile, memStream, Manager);
-
-                            // Replace the file with the import data
-                            if (ReplaceFile(memStream))
-                                Archive.AddModifiedFiles();
-                        }
+                        // Import the file
+                        ImportFile(result.SelectedFile, false);
 
                         RL.Logger?.LogTraceSource($"The archive file is pending to be imported");
                     });
                 }
             }
+        }
+
+        public void ImportFile(FileSystemPath file, bool convert)
+        {
+            // Open the file to be imported
+            using var importFile = File.OpenRead(file);
+
+            // Memory stream for converted data
+            using var memStream = new MemoryStream();
+
+            // Convert from the imported file to the memory stream
+            if (convert)
+                FileType.ConvertFrom(file.FileExtension, FileExtension, GetDecodedFileStream(), importFile, memStream, Manager);
+
+            // Replace the file with the import data
+            if (ReplaceFile(convert ? (Stream)memStream : importFile))
+                Archive.AddModifiedFiles();
         }
 
         /// <summary>
