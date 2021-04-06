@@ -68,6 +68,19 @@ namespace RayCarrot.RCP.Metro
             ArchiveExplorerSortOption = ArchiveExplorerSort.Default;
         }
 
+        /// <summary>
+        /// Verifies all values are valid and corrects them if not
+        /// </summary>
+        public void Verify()
+        {
+            LastVersion ??= new Version(0, 0, 0, 0);
+            CurrentCulture ??= LocalizationManager.DefaultCulture.Name;
+            Games ??= new Dictionary<Games, GameData>();
+            DosBoxGames ??= new Dictionary<Games, DosBoxOptions>();
+            JumpListItemIDCollection ??= new List<string>();
+            InstalledGames ??= new HashSet<Games>();
+        }
+
         #endregion
 
         #region Public Properties
@@ -300,7 +313,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool Archive_GF_ForceGF8888Import { get; set; }
 
-        // TODO-UPDATE: Set in post-update
+        /// <summary>
+        /// The sort option for the Archive Explorer
+        /// </summary>
         public ArchiveExplorerSort ArchiveExplorerSortOption { get; set; }
 
         #endregion

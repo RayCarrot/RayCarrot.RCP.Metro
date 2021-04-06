@@ -1,4 +1,17 @@
-﻿-----   Version 10.3.1 - October 25, 2020   -----
+﻿-----   Version 11.0.0 - April ??, 2021   -----
+• Updated the Archive Explorer™
+	• New files can now be added
+	• New directories can now be created
+	• Multiple changes can be made to the archive before repacking
+	• An address bar and a search bar has been added
+	• Performance improvements
+• 
+
+Other changes:
+• The app data now gets verified on launch, automatically correcting any invalid/corrupt values
+
+
+-----   Version 10.3.1 - October 25, 2020   -----
 • Updated referenced assemblies
 
 

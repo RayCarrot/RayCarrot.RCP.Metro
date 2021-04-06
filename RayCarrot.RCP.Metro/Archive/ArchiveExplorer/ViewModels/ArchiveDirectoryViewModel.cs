@@ -241,7 +241,6 @@ namespace RayCarrot.RCP.Metro
 
                                     Archive.SetDisplayStatus(String.Format(Resources.Archive_ExportingFileStatus, file.FileName));
 
-                                    // TODO-UPDATE: Update this
                                     // Export the file
                                     file.ExportFile(path + exportFileName, fileStream.Stream, format);
                                 }

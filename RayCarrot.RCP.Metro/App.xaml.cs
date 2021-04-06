@@ -100,6 +100,9 @@ namespace RayCarrot.RCP.Metro
                 {
                     JsonConvert.PopulateObject(File.ReadAllText(CommonPaths.AppUserDataPath), RCPServices.Data);
                     RL.Logger?.LogInformationSource($"The app user data has been loaded");
+
+                    // Verify the data
+                    RCPServices.Data.Verify();
                 }
                 else
                 {
@@ -431,7 +434,7 @@ namespace RayCarrot.RCP.Metro
                     }
                     catch (Exception ex)
                     {
-                        ExceptionExtensions.HandleError(ex, "Moving Fiesta Run backups to 5.0.0 standard");
+                        ex.HandleError("Moving Fiesta Run backups to 5.0.0 standard");
 
                         await Services.MessageUI.DisplayMessageAsync(Metro.Resources.PostUpdate_MigrateFiestaRunBackup5Error, Metro.Resources.PostUpdate_MigrateBackupErrorHeader, MessageType.Error);
                     }
@@ -444,7 +447,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ExceptionExtensions.HandleError(ex, "Cleaning pre-5.0.0 temp");
+                    ex.HandleError("Cleaning pre-5.0.0 temp");
                 }
 
                 Data.DisableDowngradeWarning = false;
@@ -509,7 +512,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         catch (Exception ex)
                         {
-                            ExceptionExtensions.HandleError(ex, "Removing uninstall Registry key");
+                            ex.HandleError("Removing uninstall Registry key");
 
                             await Services.MessageUI.DisplayMessageAsync($"The Registry key {keyPath} could not be removed", MessageType.Error);
                         }
@@ -543,9 +546,10 @@ namespace RayCarrot.RCP.Metro
             }
 
             if (Data.LastVersion < new Version(10, 2, 0, 0))
-            {
                 Data.Archive_GF_ForceGF8888Import = false;
-            }
+
+            if (Data.LastVersion < new Version(11, 0, 0, 0))
+                Data.ArchiveExplorerSortOption = ArchiveExplorerSort.Default;
 
             // Re-deploy files
             await RCPServices.App.DeployFilesAsync(true);
