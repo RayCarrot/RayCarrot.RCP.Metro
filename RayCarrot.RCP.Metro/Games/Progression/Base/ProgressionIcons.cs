@@ -9,6 +9,7 @@
         R1_Cage,
         R1_Life,
         R1_Continue,
+        R1_Flag,
 
         // Rayman 2
         R2_Cage,
