@@ -70,6 +70,30 @@ namespace RayCarrot.RCP.Metro
 
         public static readonly DependencyProperty MainCommandProperty = DependencyProperty.Register(nameof(MainCommand), typeof(ICommand), typeof(OverflowButton));
 
+        public bool ShowSecondaryButton
+        {
+            get => (bool)GetValue(ShowSecondaryButtonProperty);
+            set => SetValue(ShowSecondaryButtonProperty, value);
+        }
+
+        public static readonly DependencyProperty ShowSecondaryButtonProperty = DependencyProperty.Register(nameof(ShowSecondaryButton), typeof(bool), typeof(OverflowButton));
+
+        public ICommand SecondaryCommand
+        {
+            get => (ICommand)GetValue(SecondaryCommandProperty);
+            set => SetValue(SecondaryCommandProperty, value);
+        }
+
+        public static readonly DependencyProperty SecondaryCommandProperty = DependencyProperty.Register(nameof(SecondaryCommand), typeof(ICommand), typeof(OverflowButton));
+
+        public PackIconMaterialKind SecondaryIconKind
+        {
+            get => (PackIconMaterialKind)GetValue(SecondaryIconKindProperty);
+            set => SetValue(SecondaryIconKindProperty, value);
+        }
+
+        public static readonly DependencyProperty SecondaryIconKindProperty = DependencyProperty.Register(nameof(SecondaryIconKind), typeof(PackIconMaterialKind), typeof(OverflowButton));
+
         #endregion
 
         #region Event Handlers

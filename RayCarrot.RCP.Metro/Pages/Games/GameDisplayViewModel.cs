@@ -14,14 +14,16 @@ namespace RayCarrot.RCP.Metro
         /// <param name="displayName">The display name</param>
         /// <param name="iconSource">The icon source</param>
         /// <param name="mainAction">The main action</param>
+        /// <param name="secondaryAction">The secondary action</param>
         /// <param name="launchActions">The launch actions</param>
-        public GameDisplayViewModel(Games game, string displayName, string iconSource, ActionItemViewModel mainAction, IEnumerable<OverflowButtonItemViewModel> launchActions)
+        public GameDisplayViewModel(Games game, string displayName, string iconSource, ActionItemViewModel mainAction, ActionItemViewModel secondaryAction, IEnumerable<OverflowButtonItemViewModel> launchActions)
         {
             Game = game;
             DisplayName = displayName;
             IconSource = iconSource;
-            LaunchActions = launchActions ?? new OverflowButtonItemViewModel[0];
             MainAction = mainAction;
+            SecondaryAction = secondaryAction;
+            LaunchActions = launchActions ?? new OverflowButtonItemViewModel[0];
         }
 
         /// <summary>
@@ -30,9 +32,14 @@ namespace RayCarrot.RCP.Metro
         public Games Game { get; }
 
         /// <summary>
-        /// The main actions
+        /// The main action
         /// </summary>
         public ActionItemViewModel MainAction { get; }
+
+        /// <summary>
+        /// The secondary action
+        /// </summary>
+        public ActionItemViewModel SecondaryAction { get; }
 
         /// <summary>
         /// The display name

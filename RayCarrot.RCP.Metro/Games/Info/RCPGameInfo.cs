@@ -260,13 +260,21 @@ namespace RayCarrot.RCP.Metro
                     actions.Add(new OverflowButtonItemViewModel(UserLevel.Advanced));
 
                     // Add Game options
-                    actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.CogOutline, new RelayCommand(() =>
+                    var optionsAction = new OverflowButtonItemViewModel(Resources.GameDisplay_Options, PackIconMaterialKind.CogOutline, new RelayCommand(() =>
                     {
                         RL.Logger?.LogTraceSource($"The Game {Game} options dialog is opening...");
                         GameOptionsDialog.Show(Game);
-                    })));
+                    }));
 
-                    return new GameDisplayViewModel(Game, DisplayName, IconSource, new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.PlayOutline, new AsyncRelayCommand(async () => await Game.GetManager().LaunchGameAsync(false))), actions);
+                    actions.Add(optionsAction);
+
+                    return new GameDisplayViewModel(
+                        game: Game, 
+                        displayName: DisplayName, 
+                        iconSource: IconSource, 
+                        mainAction: new ActionItemViewModel(Resources.GameDisplay_Launch, PackIconMaterialKind.PlayOutline, new AsyncRelayCommand(async () => await Game.GetManager().LaunchGameAsync(false))), 
+                        secondaryAction: optionsAction, 
+                        launchActions: actions);
                 }
                 else
                 {
@@ -329,7 +337,7 @@ namespace RayCarrot.RCP.Metro
                         : downloadItem;
 
                     // Return the view model
-                    return new GameDisplayViewModel(Game, DisplayName, IconSource, mainAction, actions);
+                    return new GameDisplayViewModel(Game, DisplayName, IconSource, mainAction, null, actions);
                 }
             }
             catch (Exception ex)

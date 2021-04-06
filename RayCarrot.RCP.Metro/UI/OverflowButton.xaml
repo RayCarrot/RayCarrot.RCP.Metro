@@ -24,6 +24,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="0"
@@ -54,7 +55,37 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Grid.Column="1"
+                    <Grid Grid.Column="1">
+                        <Grid.Style>
+                            <Style TargetType="{x:Type Grid}">
+                                <Setter Property="Visibility" Value="Hidden" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=MainBorder}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+
+                        <Button Width="20"
+                                Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                                BorderBrush="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                                Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                                SnapsToDevicePixels="True"
+                                Style="{DynamicResource MahApps.Styles.Button.Split.Arrow}"
+                                Visibility="{Binding Path=ShowSecondaryButton, Converter={rwpf:BooleanToVisibilityConverter}}"
+                                Command="{Binding Path=SecondaryCommand}">
+
+                            <iconPacks:PackIconMaterial Width="14"
+                                                        Height="14"
+                                                        Kind="{Binding Path=SecondaryIconKind}"
+                                                        VerticalAlignment="Center" />
+
+                        </Button>
+
+                    </Grid>
+
+                    <Button Grid.Column="2"
                             Width="20"
                             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
                             BorderBrush="{DynamicResource MahApps.Brushes.ThemeForeground}"

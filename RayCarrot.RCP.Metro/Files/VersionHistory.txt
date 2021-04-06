@@ -5,6 +5,7 @@
 	• Multiple changes can be made to the archive before repacking
 	• An address bar and a search bar has been added
 	• Performance improvements
+• The game options can now be quickly accessed by hovering on the launch button and selecting the new option
 • 
 
 Other changes:
