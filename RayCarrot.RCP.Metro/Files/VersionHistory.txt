@@ -7,6 +7,7 @@
 	• Performance improvements
 • Added the progression tab for Rayman Designer, Rayman by his Fans & Rayman 60 Levels
 • The game options can now be quickly accessed by hovering on the launch button and selecting the new option
+• A link to view the game maps at raym.app is now available for each supported game
 • 
 
 Other changes:

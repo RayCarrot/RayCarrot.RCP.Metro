@@ -50,6 +50,11 @@ namespace RayCarrot.RCP.Metro
         public override FrameworkElement OptionsUI => new EducationalDosOptions();
 
         /// <summary>
+        /// Optional RayMap URL
+        /// </summary>
+        public override string RayMapURL => CommonUrls.GetRay1MapGameURL("RaymanEducationalPC", "r1/edu/pc_gb", "GB1");
+
+        /// <summary>
         /// Gets the file links for the game
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];

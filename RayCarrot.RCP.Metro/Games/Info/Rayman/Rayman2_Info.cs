@@ -61,6 +61,11 @@ namespace RayCarrot.RCP.Metro
         public override BaseProgressionViewModel ProgressionViewModel => new Rayman2ProgressionViewModel();
 
         /// <summary>
+        /// Optional RayMap URL
+        /// </summary>
+        public override string RayMapURL => CommonUrls.GetRayMapGameURL("r2_pc", "r2_pc");
+
+        /// <summary>
         /// Gets the file links for the game
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]

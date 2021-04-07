@@ -96,6 +96,11 @@ namespace RayCarrot.RCP.Metro
         public virtual IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];
 
         /// <summary>
+        /// Optional RayMap URL
+        /// </summary>
+        public virtual string RayMapURL => null;
+
+        /// <summary>
         /// Gets the backup infos from the directories specified from <see cref="GetBackupDirectories"/>
         /// </summary>
         public virtual IList<IBackupInfo> GetBackupInfos
@@ -207,11 +212,11 @@ namespace RayCarrot.RCP.Metro
                         actions.AddRange(links.
                             Select(x =>
                             {
-                            // Get the path
-                            string path = x.Path;
+                                // Get the path
+                                string path = x.Path;
 
-                            // Create the command
-                            var command = new AsyncRelayCommand(async () => (await RCPServices.File.LaunchFileAsync(path))?.Dispose());
+                                // Create the command
+                                var command = new AsyncRelayCommand(async () => (await RCPServices.File.LaunchFileAsync(path))?.Dispose());
 
                                 if (x.Icon != PackIconMaterialKind.None)
                                     return new OverflowButtonItemViewModel(x.Header, x.Icon, command);
@@ -238,6 +243,14 @@ namespace RayCarrot.RCP.Metro
                     {
                         actions.AddRange(additionalItems);
 
+                        actions.Add(new OverflowButtonItemViewModel());
+                    }
+
+                    // Add RayMap link
+                    if (RayMapURL != null)
+                    {
+                        // TODO-UPDATE: Localize
+                        actions.Add(new OverflowButtonItemViewModel("View Maps", PackIconMaterialKind.MapMarkerOutline, new AsyncRelayCommand(async () => (await RCPServices.File.LaunchFileAsync(RayMapURL))?.Dispose())));
                         actions.Add(new OverflowButtonItemViewModel());
                     }
 
