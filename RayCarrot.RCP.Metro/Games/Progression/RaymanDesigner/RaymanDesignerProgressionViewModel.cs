@@ -91,7 +91,7 @@ namespace RayCarrot.RCP.Metro
 
                 return new
                 {
-                    FilePath = sct,
+                    FilePath = (FileSystemPath)sct,
                     World = world,
                     Level = lev
                 };
@@ -104,7 +104,13 @@ namespace RayCarrot.RCP.Metro
                 var saveData = BinarySerializableHelpers.ReadFromStream<RayKitSaveData>(fileStream, Ray1Settings.GetDefaultSettings(Ray1Game.RayKit, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
 
                 // Get the save value
-                var value = saveData.GetDecodedValue(save.World, save.Level);
+                var value = saveData.GetDecodedValue(save.World, save.Level, Game == Games.RaymanDesigner ? RayKitSaveData.SaveRevision.KIT : RayKitSaveData.SaveRevision.FAN_60N);
+
+                if (value == -1)
+                {
+                    RL.Logger?.LogWarningSource($"Invalid save value for {save.FilePath.Name}");
+                    continue;
+                }
 
                 // Get the time
                 var time = new TimeSpan((long)(value / (3600d / TimeSpan.TicksPerSecond)));
@@ -114,8 +120,16 @@ namespace RayCarrot.RCP.Metro
 
             RL.Logger?.LogInformationSource($"General progress info has been set");
 
+            var levelsCount = Game switch
+            {
+                Games.RaymanDesigner => 24,
+                Games.RaymanByHisFans => 40,
+                Games.Rayman60Levels => 60,
+                _ => -1 
+            };
+
             // Calculate the percentage
-            var percentage = ((progressItems.Count / 24d * 100)).ToString("0.##");
+            var percentage = ((progressItems.Count / (double)levelsCount * 100)).ToString("0.##");
 
             RL.Logger?.LogInformationSource($"Slot percentage is {percentage}%");
 
