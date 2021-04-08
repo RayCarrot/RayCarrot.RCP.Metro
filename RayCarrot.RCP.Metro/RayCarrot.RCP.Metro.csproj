@@ -102,33 +102,32 @@
     </ApplicationDefinition>
     <Compile Include="AppUserData\DataModels\Archive_GF_TransparencyMode.cs" />
     <Compile Include="AppUserData\DataModels\ArchiveExplorerSort.cs" />
-    <Compile Include="Archive\ArchiveBase\ArchiveData.cs" />
-    <Compile Include="Archive\ArchiveBase\ArchiveDirectory.cs" />
-    <Compile Include="Archive\NEW\File\Type\UbiArt\ArchiveFileType_BaseUbiArtTex.cs" />
-    <Compile Include="Archive\NEW\File\Type\UbiArt\ArchiveFileType_DDSUbiArtTex.cs" />
-    <Compile Include="Archive\NEW\File\Type\UbiArt\ArchiveFileType_GNFUbiArtTex.cs" />
-    <Compile Include="Archive\NEW\File\Type\UbiArt\ArchiveFileType_GTXUbiArtTex.cs" />
-    <Compile Include="Archive\NEW\File\Type\UbiArt\ArchiveFileType_GXTUbiArtTex.cs" />
-    <Compile Include="Archive\NEW\File\Type\UbiArt\ArchiveFileType_PVRUbiArtTex.cs" />
-    <Compile Include="Archive\NEW\Manager\ArchiveDataManagerExtensions.cs" />
-    <Compile Include="Archive\NEW\Manager\IArchiveDataManager.cs" />
-    <Compile Include="Archive\ArchiveBase\ArchiveCreationData.cs" />
+    <Compile Include="Archive\Data\ArchiveData.cs" />
+    <Compile Include="Archive\Data\ArchiveDirectory.cs" />
+    <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_BaseUbiArtTex.cs" />
+    <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_DDSUbiArtTex.cs" />
+    <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_GNFUbiArtTex.cs" />
+    <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_GTXUbiArtTex.cs" />
+    <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_GXTUbiArtTex.cs" />
+    <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_PVRUbiArtTex.cs" />
+    <Compile Include="Archive\Manager\ArchiveDataManagerExtensions.cs" />
+    <Compile Include="Archive\Manager\IArchiveDataManager.cs" />
     <Compile Include="Archive\ArchiveCreator\ArchiveCreatorDialogViewModel.cs" />
     <Compile Include="Archive\ArchiveCreator\ArchiveCreatorUI.xaml.cs">
       <DependentUpon>ArchiveCreatorUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Archive\NEW\DataTypes\ArchiveFileStream.cs" />
-    <Compile Include="Archive\NEW\File\ArchiveFileItem.cs" />
-    <Compile Include="Archive\NEW\DataTypes\ArchiveFileInitData.cs" />
-    <Compile Include="Archive\NEW\File\Type\ArchiveFileType_Default.cs" />
-    <Compile Include="Archive\NEW\File\Type\OpenSpace\ArchiveFileType_GF.cs" />
-    <Compile Include="Archive\NEW\File\Type\ArchiveFileType_Image.cs" />
-    <Compile Include="Archive\NEW\File\Type\IArchiveFileType.cs" />
-    <Compile Include="Archive\NEW\Manager\OpenSpaceCntArchiveDataManager.cs" />
-    <Compile Include="Archive\UbiArt_Ipk\Config\UbiArtIPKArchiveConfigUI.xaml.cs">
+    <Compile Include="Archive\Data\ArchiveFileStream.cs" />
+    <Compile Include="Archive\Data\ArchiveFileItem.cs" />
+    <Compile Include="Archive\Data\ArchiveFileInitData.cs" />
+    <Compile Include="Archive\Data\FileType\ArchiveFileType_Default.cs" />
+    <Compile Include="Archive\Data\FileType\OpenSpace\ArchiveFileType_GF.cs" />
+    <Compile Include="Archive\Data\FileType\ArchiveFileType_Image.cs" />
+    <Compile Include="Archive\Data\FileType\IArchiveFileType.cs" />
+    <Compile Include="Archive\Manager\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
+    <Compile Include="Archive\Manager\UbiArt_Ipk\UbiArtIPKArchiveConfigUI.xaml.cs">
       <DependentUpon>UbiArtIPKArchiveConfigUI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Archive\NEW\Manager\UbiArtIPKArchiveDataManager.cs" />
+    <Compile Include="Archive\Manager\UbiArt_Ipk\UbiArtIPKArchiveDataManager.cs" />
     <Compile Include="Games\Config\Patcher\GamePatcherData.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanMDemoConfigViewModel.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_2_Info.cs" />
@@ -213,7 +212,7 @@
     <Compile Include="Utilities\Games\Rayman M\SyncTextureInfo\RMGameSyncTextureInfoUtility.cs" />
     <Compile Include="Utilities\Games\Rayman Origins\IPKExplorer\ROIPKExplorerUtility.cs" />
     <Compile Include="Helpers\ImageHelpers.cs" />
-    <Compile Include="Archive\UbiArt_Ipk\Config\UbiArtIPKArchiveConfigViewModel.cs" />
+    <Compile Include="Archive\Manager\UbiArt_Ipk\UbiArtIPKArchiveConfigViewModel.cs" />
     <Compile Include="Archive\ArchiveExplorer\ArchiveExplorerUI.xaml.cs">
       <DependentUpon>ArchiveExplorerUI.xaml</DependentUpon>
     </Compile>
@@ -520,7 +519,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Archive\UbiArt_Ipk\Config\UbiArtIPKArchiveConfigUI.xaml">
+    <Page Include="Archive\Manager\UbiArt_Ipk\UbiArtIPKArchiveConfigUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
