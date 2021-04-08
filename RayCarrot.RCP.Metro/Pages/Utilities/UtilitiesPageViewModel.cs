@@ -43,6 +43,7 @@
             OtherViewModels = new UtilityViewModel[]
             {
                 new UtilityViewModel(new SyncTextureInfoUtility()),
+                new UtilityViewModel(new R1PasswordGeneratorUtility()),
             };
         }
 

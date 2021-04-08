@@ -184,6 +184,7 @@
     <Compile Include="App\Interfaces\IFileManager.cs" />
     <Compile Include="UI\Controls\LoaderContentControl.cs" />
     <Compile Include="Extensions\ApplicationExtensions.cs" />
+    <Compile Include="UI\ValidationRules\R1PasswordValidationRule.cs" />
     <Compile Include="Utilities\Games\Common\SyncTextureInfo\BaseGameSyncTextureInfoUtilityUI.xaml.cs">
       <DependentUpon>BaseGameSyncTextureInfoUtilityUI.xaml</DependentUpon>
     </Compile>
@@ -273,6 +274,11 @@
     <Compile Include="Utilities\General\Decoder\R3Save\R3SaveDecoderViewModel.cs" />
     <Compile Include="Utilities\General\Decoder\R2SnaDsb\R2SnaDsbDecoderUtility.cs" />
     <Compile Include="Utilities\General\Decoder\R2SnaDsb\R2SnaDsbDecoderViewModel.cs" />
+    <Compile Include="Utilities\General\Other\R1PasswordGenerator\R1PasswordGeneratorUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\Other\R1PasswordGenerator\R1PasswordGeneratorUtility.cs" />
+    <Compile Include="Utilities\General\Other\R1PasswordGenerator\R1PasswordGeneratorUtilityUI.xaml.cs">
+      <DependentUpon>R1PasswordGeneratorUtilityUI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\General\Other\SyncTextureInfo\SyncTextureInfoUtility.cs" />
     <Compile Include="Utilities\General\Other\SyncTextureInfo\SyncTextureInfoUtilityUI.xaml.cs">
       <DependentUpon>SyncTextureInfoUtilityUI.xaml</DependentUpon>
@@ -759,6 +765,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Utilities\General\Decoder\BaseDecoderUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\General\Other\R1PasswordGenerator\R1PasswordGeneratorUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
