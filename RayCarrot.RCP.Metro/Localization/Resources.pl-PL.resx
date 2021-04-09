@@ -723,7 +723,7 @@
     <value>Kup z GOG</value>
   </data>
   <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
-    <value>Kup z Uplay</value>
+    <value>Kup z Ubisoft Connect</value>
   </data>
   <data name="GameDisplay_Steam" xml:space="preserve">
     <value>Kup z Steam</value>
@@ -741,7 +741,7 @@
     <value>Konfiguracja nGlide</value>
   </data>
   <data name="ActionSucceeded" xml:space="preserve">
-    <value>Akcja się powiodła</value>
+    <value>Akcja powiodła się</value>
   </data>
   <data name="MessageHeader_Generic" xml:space="preserve">
     <value>Komunikat ogólny</value>
@@ -2874,7 +2874,7 @@ Komunikat o błędzie: {1}</value>
 </value>
   </data>
   <data name="GameDisplay_DownloadUplay" xml:space="preserve">
-    <value>Pobierz z Uplay</value>
+    <value>Pobierz z Ubisoft Connect</value>
   </data>
   <data name="Archive_ImportFileHeader" xml:space="preserve">
     <value>Wybierz plik do zaimportowania</value>

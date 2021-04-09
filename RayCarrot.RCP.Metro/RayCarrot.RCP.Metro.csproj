@@ -1049,6 +1049,7 @@
     <EmbeddedResource Include="Localization\Resources.ca-ES.resx" />
     <EmbeddedResource Include="Localization\Resources.es-ES.resx" />
     <EmbeddedResource Include="Localization\Resources.es-MX.resx" />
+    <EmbeddedResource Include="Localization\Resources.it-IT.resx" />
     <EmbeddedResource Include="Localization\Resources.nl-NL.resx" />
     <EmbeddedResource Include="Localization\Resources.pl-PL.resx" />
     <EmbeddedResource Include="Localization\Resources.pt-PT.resx" />

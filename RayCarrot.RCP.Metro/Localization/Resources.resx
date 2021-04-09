@@ -722,7 +722,7 @@ This is a growing project with more features planned on being added with future 
     <value>Purchase from GOG</value>
   </data>
   <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
-    <value>Purchase from Uplay</value>
+    <value>Purchase from Ubisoft Connect</value>
   </data>
   <data name="GameDisplay_Steam" xml:space="preserve">
     <value>Purchase from Steam</value>
@@ -2936,7 +2936,7 @@ gameDisplayName</comment>
     <value>The game may take a few seconds to launch. If a black screen appears, then press the ESC key on your keyboard to play the game. This message will not show again.</value>
   </data>
   <data name="GameDisplay_DownloadUplay" xml:space="preserve">
-    <value>Download from Uplay</value>
+    <value>Download from Ubisoft Connect</value>
   </data>
   <data name="Archive_ImportFileHeader" xml:space="preserve">
     <value>Select file to import</value>
@@ -3611,5 +3611,8 @@ fileCount</comment>
   </data>
   <data name="About_Credits_RaymanUniverse" xml:space="preserve">
     <value>Russian (Russia) program translation</value>
+  </data>
+  <data name="About_Credits_ItzalDrake" xml:space="preserve">
+    <value>Italian (Italy) program translation</value>
   </data>
 </root>

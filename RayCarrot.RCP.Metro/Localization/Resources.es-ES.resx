@@ -710,7 +710,7 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
     <comment>Comprar por GOG</comment>
   </data>
   <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
-    <value>Comprar en Uplay</value>
+    <value>Comprar en Ubisoft Connect</value>
     <comment>Comprar por Uplay</comment>
   </data>
   <data name="GameDisplay_Steam" xml:space="preserve">

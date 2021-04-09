@@ -80,6 +80,9 @@ namespace RayCarrot.RCP.Metro
 
                     // Catalan (Catalan)
                     new CultureInfo("ca-ES"), 
+
+                    // Italian (Italy)
+                    new CultureInfo("it-IT"), 
                 });
             }
         }

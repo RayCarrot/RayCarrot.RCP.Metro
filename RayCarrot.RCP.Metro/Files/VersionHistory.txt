@@ -14,6 +14,9 @@
 Other changes:
 • The app data now gets verified on launch, automatically correcting any invalid/corrupt values
 • Creating a new archive will now ignore system files when importing
+• The name "Uplay" has been changed to "Ubisoft Connect" to reflect the official name change
+• Added the language Italian (Italy) as an incomplete translation
+• Added ItzalDrake to the credits
 
 
 -----   Version 10.3.1 - October 25, 2020   -----

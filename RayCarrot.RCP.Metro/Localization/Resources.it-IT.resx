@@ -1,0 +1,727 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GamesPageHeader" xml:space="preserve">
+    <value>Giochi</value>
+  </data>
+  <data name="AboutPageHeader" xml:space="preserve">
+    <value>Informazioni</value>
+  </data>
+  <data name="BackupPageHeader" xml:space="preserve">
+    <value>Backup/Ripristina</value>
+  </data>
+  <data name="DebugPageHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="HelpPageHeader" xml:space="preserve">
+    <value>Aiuto</value>
+  </data>
+  <data name="SettingsPageHeader" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancella</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accetta</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="GameType_Desktop" xml:space="preserve">
+    <value>Applicazione Desktop</value>
+  </data>
+  <data name="GameType_DosBox" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="GameType_Steam" xml:space="preserve">
+    <value>Steam</value>
+  </data>
+  <data name="GameType_WinStore" xml:space="preserve">
+    <value>Microsoft Store</value>
+  </data>
+  <data name="MountPathHeader" xml:space="preserve">
+    <value>Percorso di Montaggio</value>
+  </data>
+  <data name="MountPathInfo" xml:space="preserve">
+    <value>Il percorso di montaggio può essere un file o un'unità. Se stai usando la versione GOG, sarà il file "game.inst". Se hai un'immagine disco, di solito è il file .cue. Altrimenti usa la lettera di unità del disco del gioco.</value>
+  </data>
+  <data name="MountOption_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="MountOption_Drive" xml:space="preserve">
+    <value>Unità</value>
+  </data>
+  <data name="MountOption_FileInfo" xml:space="preserve">
+    <value>Indica che il percorso di montaggio è un file</value>
+  </data>
+  <data name="MountOption_DriveInfo" xml:space="preserve">
+    <value>Indica che il percorso di montaggio è un'unità o disco</value>
+  </data>
+  <data name="DosBoxSettingsHeader" xml:space="preserve">
+    <value>Impostazioni DOSBox</value>
+  </data>
+  <data name="DosBoxSettingsInfo" xml:space="preserve">
+    <value>Impostando una delle opzioni seguenti su Disabilitato o un valore vuoto, verrà utilizzato il valore predefinito come specificato nel file di configurazione DOSBox. Se un file di configurazione specifico è stato specificato nelle impostazioni potrebbe sovrascrivere alcune delle impostazioni seguenti. </value>
+  </data>
+  <data name="DosBoxOptions_Fullscreeen" xml:space="preserve">
+    <value>Schermo intero</value>
+  </data>
+  <data name="DosBoxOptions_FullscreeenInfo" xml:space="preserve">
+    <value>Avvia DOSBox a schermo intero</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBuffering" xml:space="preserve">
+    <value>Schermo intero con doppio buffering</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenDubbleBufferingInfo" xml:space="preserve">
+    <value>Usa doppio buffering con schermo intero</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
+    <value>Correzione formato</value>
+  </data>
+  <data name="DosBoxOptions_AspectCorrectionInfo" xml:space="preserve">
+    <value>Applca la correzione delle proporzioni, se il ridimensionamento non è supportato, questa correzione può causare rallentamenti! </value>
+  </data>
+  <data name="DosBoxOptions_MemorySize" xml:space="preserve">
+    <value>Dimensione della Memoria</value>
+  </data>
+  <data name="DosBoxOptions_MemorySizeInfo" xml:space="preserve">
+    <value>Quantità di memoria che DOSBox ha in megabyte</value>
+  </data>
+  <data name="DosBoxOptions_Frameskip" xml:space="preserve">
+    <value>Frameskip</value>
+  </data>
+  <data name="DosBoxOptions_FrameskipInfo" xml:space="preserve">
+    <value>Quantità di fotogrammi che DOSBox salta prima di mostrarne uno</value>
+  </data>
+  <data name="DosBoxOptions_Output" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="DosBoxOptions_OutputInfo" xml:space="preserve">
+    <value>Tipo di output da utilizzare</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
+    <value>Risoluzione Schermo Intero</value>
+  </data>
+  <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
+    <value>Risoluzione da usare per lo schermo intero: originale, desktop o fisso (es. 1024x768)</value>
+  </data>
+  <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
+    <value>Risoluzione in finestra</value>
+  </data>
+  <data name="DosBoxOptions_WindowedResInfo" xml:space="preserve">
+    <value>Ridimensiona la finestra a questa dimensione SE il dispositivo di output supporta il ridimensionamento hardware</value>
+  </data>
+  <data name="DosBoxOptions_Scaler" xml:space="preserve">
+    <value>Ridimensionamento</value>
+  </data>
+  <data name="DosBoxOptions_ScalerInfo" xml:space="preserve">
+    <value>Ridimensionamento utilizzato per ingrandire/migliorare le modalità a bassa risoluzione</value>
+  </data>
+  <data name="DosBoxOptions_Core" xml:space="preserve">
+    <value>Core</value>
+  </data>
+  <data name="DosBoxOptions_CoreInfo" xml:space="preserve">
+    <value>Core della CPU utilizzata nell'emulazione. Se appropriato, passa automaticamente da normale a dinamico. </value>
+  </data>
+  <data name="DosBoxOptions_Cycles" xml:space="preserve">
+    <value>Cicli</value>
+  </data>
+  <data name="DosBoxOptions_CyclesInfo" xml:space="preserve">
+    <value>Quantità di istruzioni che DOSBox tenta di emulare ogni millisecondo. L'impostazione di un valore troppo alto provoca interruzioni e ritardi dell'audio. Puoi anche lasciare che DOSBox indovini il valore corretto impostandolo al massimo. L'impostazione predefinita (auto) passa al massimo se appropriato.</value>
+  </data>
+  <data name="DosBoxOptions_Commands" xml:space="preserve">
+    <value>Comandi DOSBox</value>
+  </data>
+  <data name="DosBoxOptions_CommandsOptional" xml:space="preserve">
+    <value>(Opzionale)</value>
+  </data>
+  <data name="DosBoxOptions_Recommended" xml:space="preserve">
+    <value>Usa le impostazioni raccomandate</value>
+  </data>
+  <data name="Config_Resolution" xml:space="preserve">
+    <value>Risoluzione</value>
+  </data>
+  <data name="Config_ResolutionHorizontalInfo" xml:space="preserve">
+    <value>La risoluzione dello schermo orizzontale</value>
+  </data>
+  <data name="Config_ResolutionVerticalInfo" xml:space="preserve">
+    <value>La risoluzione dello schermo verticale</value>
+  </data>
+  <data name="Config_LockRes" xml:space="preserve">
+    <value>Blocca alla risoluzione dello schermo</value>
+  </data>
+  <data name="Config_LockResInfo" xml:space="preserve">
+    <value>Blocca i valori orizzontali e verticali a quelle della risoluzione schermo attuale</value>
+  </data>
+  <data name="Config_Fullscreen" xml:space="preserve">
+    <value>Schermo intero</value>
+  </data>
+  <data name="Config_FullscreenInfo" xml:space="preserve">
+    <value>Fa eseguire il gioco a schermo intero, altrimenti verrà eseguito in modalità finestra</value>
+  </data>
+  <data name="Config_Graphics" xml:space="preserve">
+    <value>Grafica</value>
+  </data>
+  <data name="Config_TriLinear" xml:space="preserve">
+    <value>Filtraggio trilineare</value>
+  </data>
+  <data name="Config_TnL" xml:space="preserve">
+    <value>Trasformazione e Illuminazione</value>
+  </data>
+  <data name="Config_TnLInfo" xml:space="preserve">
+    <value>Deseleziona questa opzione se ci sono problemi grafici nel gioco</value>
+  </data>
+  <data name="Config_DynamicShadows" xml:space="preserve">
+    <value>Ombre Dinamiche</value>
+  </data>
+  <data name="Config_StaticShadows" xml:space="preserve">
+    <value>Ombre Statiche</value>
+  </data>
+  <data name="Config_Textures" xml:space="preserve">
+    <value>Texture</value>
+  </data>
+  <data name="Config_Textures16" xml:space="preserve">
+    <value>16 bit</value>
+  </data>
+  <data name="Config_Textures32" xml:space="preserve">
+    <value>32 bit</value>
+  </data>
+  <data name="Config_Compressed" xml:space="preserve">
+    <value>Compresso</value>
+  </data>
+  <data name="Config_Video" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="Config_VideoGood" xml:space="preserve">
+    <value>Buona qualità</value>
+  </data>
+  <data name="Config_VideoBad" xml:space="preserve">
+    <value>Pessima qualità</value>
+  </data>
+  <data name="Config_VideoAuto" xml:space="preserve">
+    <value>Regolazione automatica della qualità</value>
+  </data>
+  <data name="Config_Video16Bpp" xml:space="preserve">
+    <value>16 bit per pixel</value>
+  </data>
+  <data name="Config_Video32Bpp" xml:space="preserve">
+    <value>32 bit per pixel</value>
+  </data>
+  <data name="Config_Language" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="Config_Controller" xml:space="preserve">
+    <value>Controller</value>
+  </data>
+  <data name="Config_UseController" xml:space="preserve">
+    <value>Usa controller connesso</value>
+  </data>
+  <data name="Config_ControllerInfo" xml:space="preserve">
+    <value>Se il tuo controller non viene riconosiuto, puoi abilitare il supporto del controller qui </value>
+  </data>
+  <data name="Config_EnableNativeController" xml:space="preserve">
+    <value>Abilita il supporto del controller nativo</value>
+  </data>
+  <data name="Config_ControllerVertical" xml:space="preserve">
+    <value>Asse Verticale</value>
+  </data>
+  <data name="Config_ControllerHorizontal" xml:space="preserve">
+    <value>Asse Orizzontale</value>
+  </data>
+  <data name="Config_Network" xml:space="preserve">
+    <value>Rete</value>
+  </data>
+  <data name="Config_ResolutionR2Info" xml:space="preserve">
+    <value>Se il supporto widescreen non è abilitato, la visuale del gioco si allungherà se impostato su un formato diverso da 4:3</value>
+  </data>
+  <data name="Config_WidescreenSupport" xml:space="preserve">
+    <value>Supporto widescreen</value>
+  </data>
+  <data name="Config_WidescreenSupportInfo" xml:space="preserve">
+    <value>Il supporto widescreen garantisce che il gioco non sia allungato quando viene eseguito in un formato diverso da 4:3 </value>
+  </data>
+  <data name="Config_WidescreenHorizontal" xml:space="preserve">
+    <value>Widescreen orizzontale</value>
+  </data>
+  <data name="Config_WidescreenHorizontalInfo" xml:space="preserve">
+    <value>Espande orizzontalmente il widescreen</value>
+  </data>
+  <data name="Config_VerticalHorizontal" xml:space="preserve">
+    <value>Widescreen verticale</value>
+  </data>
+  <data name="Config_WidescreenVerticalInfo" xml:space="preserve">
+    <value>Riduce verticalmente il widescreen</value>
+  </data>
+  <data name="Config_LanguageR2Info" xml:space="preserve">
+    <value>Imposta la lingua predefinita selezionata all'avvio del gioco. La lingua può ancora essere modificata dal menu di gioco.</value>
+  </data>
+  <data name="Config_ControllerR2Info" xml:space="preserve">
+    <value>Se il tuo controller non viene riconosciuto, puoi abilitare il supporto del controller qui. Ciò rimuoverà qualsiasi mappatura personalizzata dei tasti. </value>
+  </data>
+  <data name="Config_ButtonMapping" xml:space="preserve">
+    <value>Mappatura Tasti (tastiera)</value>
+  </data>
+  <data name="Config_ButtonMappingInfo" xml:space="preserve">
+    <value>Poiché il gioco non consente la rimappatura nativa dei pulsanti, puoi modificarla qui. Questo non funzionerà per i controller.</value>
+  </data>
+  <data name="Config_ButtonMappingActionHeader" xml:space="preserve">
+    <value>Azione</value>
+  </data>
+  <data name="Config_ButtonMappingKeyHeader" xml:space="preserve">
+    <value>Tasto</value>
+  </data>
+  <data name="Config_ButtonMappingReset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Config_RRRScreenMode" xml:space="preserve">
+    <value>Modalità Schermo</value>
+  </data>
+  <data name="Config_RRRScreenModeInfo" xml:space="preserve">
+    <value>Le opzioni della modalità schermo si comporteranno in modo diverso a seconda della risoluzione selezionata. Di solito mantenere la modalità 4:3 abilitata consentirà al gioco di non essere allungato su diversi formati. </value>
+  </data>
+  <data name="About_ProgramInfo" xml:space="preserve">
+    <value>Rayman Control Panel™ è un progetto comunitario open source creato da RayCarrot. Questo software è un unico file eseguibile gratuito con l'intento di accedere facilmente alle impostazioni e alle correzioni per i vari titoli di Rayman rilasciati per Windows.
+Questo è un progetto in crescita con ulteriori funzionalità pianificate per essere aggiunte con aggiornamenti futuri. Le utilità e i vari strumenti di configurazione sono stati creati con l'aiuto di vari membri della comunità Rayman, tutti indicati di seguito.</value>
+  </data>
+  <data name="About_Credits" xml:space="preserve">
+    <value>Crediti</value>
+  </data>
+  <data name="About_UpdateHistory" xml:space="preserve">
+    <value>Cronologia degli aggiornamenti</value>
+  </data>
+  <data name="About_UpdateCheck" xml:space="preserve">
+    <value>Verifica la presenza di nuovi aggiornamenti</value>
+  </data>
+  <data name="About_GitHub" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="About_Twitter" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="About_YouTube" xml:space="preserve">
+    <value>YouTube</value>
+  </data>
+  <data name="About_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Backup_LastBackupDate" xml:space="preserve">
+    <value>Ultimo Backup</value>
+  </data>
+  <data name="Backup_LastBackupSize" xml:space="preserve">
+    <value>Dimensione Backup</value>
+  </data>
+  <data name="Backup_Backup" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="Backup_Restore" xml:space="preserve">
+    <value>Ripristina</value>
+  </data>
+  <data name="Games_Installed" xml:space="preserve">
+    <value>Installato</value>
+  </data>
+  <data name="Games_NotInstalled" xml:space="preserve">
+    <value>Non installato</value>
+  </data>
+  <data name="Help_CategoryHelp" xml:space="preserve">
+    <value>Seleziona una pagina della guida dalle categorie disponibili a sinistra</value>
+  </data>
+  <data name="Settings_UserLevel" xml:space="preserve">
+    <value>Livello Utente</value>
+  </data>
+  <data name="Settings_UserLevelInfo" xml:space="preserve">
+    <value>Il livello utente determina quali opzioni e informazioni sono disponibili nell'applicazione. Più alto è il livello utente, più avanzate saranno le opzioni e le informazioni mostrate all'utente. </value>
+  </data>
+  <data name="Settings_UserLevelNormal" xml:space="preserve">
+    <value>Normale</value>
+  </data>
+  <data name="Settings_UserLevelNormalInfo" xml:space="preserve">
+    <value>Livello utente normale - per gli utenti che desiderano tutte le funzionalità predefinite senza alcuna delle opzioni più avanzate o dettagli tecnici </value>
+  </data>
+  <data name="Settings_UserLevelAdvanced" xml:space="preserve">
+    <value>Avanzato</value>
+  </data>
+  <data name="Settings_UserLevelAdvancedInfo" xml:space="preserve">
+    <value>Livello utente avanzato - per gli utenti che desiderano funzionalità più avanzate rispetto a quelle predefinite, ma senza i dettagli tecnici</value>
+  </data>
+  <data name="Settings_UserLevelTechnical" xml:space="preserve">
+    <value>Tecnico</value>
+  </data>
+  <data name="Settings_UserLevelTechnicalInfo" xml:space="preserve">
+    <value>Livello utente tecnico - per gli utenti che desiderano funzionalità più avanzate rispetto a quelle predefinite, nonché i dettagli tecnici</value>
+  </data>
+  <data name="Settings_UserLevelDebug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_UserLevelDebugInfo" xml:space="preserve">
+    <value>Livello utente di debug - per sviluppatori di app e tester che desiderano informazioni e opzioni di debug avanzate </value>
+  </data>
+  <data name="Settings_Language" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="Settings_LanguageContribute" xml:space="preserve">
+    <value>Contribuisci con le traduzioni</value>
+  </data>
+  <data name="Settings_DesignHeader" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="Settings_DesignLight" xml:space="preserve">
+    <value>Chiaro</value>
+  </data>
+  <data name="Settings_DesignDark" xml:space="preserve">
+    <value>Scuro</value>
+  </data>
+  <data name="Settings_DesignAnimations" xml:space="preserve">
+    <value>Abilita le animazioni</value>
+  </data>
+  <data name="Settings_DesignSuccessMessages" xml:space="preserve">
+    <value>Mostra i messaggi di successo</value>
+  </data>
+  <data name="Settings_DesignSuccessMessagesInfo" xml:space="preserve">
+    <value>Mostra un messaggio quando un'operazione è riuscita</value>
+  </data>
+  <data name="Settings_DesignShowAllGames" xml:space="preserve">
+    <value>Mostra i giochi non installati</value>
+  </data>
+  <data name="Settings_DesignShowAllGamesInfo" xml:space="preserve">
+    <value>Mostra tutti i giochi nella pagina dei giochi, compresi quelli non installati</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgress" xml:space="preserve">
+    <value>Mostra lo stato di avanzamento sull'icona della barra delle applicazioni</value>
+  </data>
+  <data name="Settings_DesignShowTaskBarProgressInfo" xml:space="preserve">
+    <value>Mostra l'avanzamento del download sull'icona della barra delle applicazioni</value>
+  </data>
+  <data name="Settings_DosBoxHeader" xml:space="preserve">
+    <value>DOSBox</value>
+  </data>
+  <data name="Settings_DosBoxPath" xml:space="preserve">
+    <value>Percorso del file DOSBox</value>
+  </data>
+  <data name="Settings_DosBoxPathInfo" xml:space="preserve">
+    <value>Il percorso del file eseguibile DOSBox</value>
+  </data>
+  <data name="Settings_OptionalDosBoxConfigPath" xml:space="preserve">
+    <value>Percorso del file di configurazione DOSBox (opzionale)</value>
+  </data>
+  <data name="Settings_OptionalDosBoxConfigPathInfo" xml:space="preserve">
+    <value>Il percorso del file di configurazione di DOSBox</value>
+  </data>
+  <data name="Settings_DebugHeader" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="Settings_DebugExceptionLevel" xml:space="preserve">
+    <value>Visualizza il livello di eccezione</value>
+  </data>
+  <data name="Settings_DebugExceptionLevelInfo" xml:space="preserve">
+    <value>Il livello di eccezione per la visualizzazione delle informazioni di debug e tracce</value>
+  </data>
+  <data name="Settings_BackupLocation" xml:space="preserve">
+    <value>Posizione di backup </value>
+  </data>
+  <data name="Settings_StartupHeader" xml:space="preserve">
+    <value>Avvio</value>
+  </data>
+  <data name="Settings_StartupGameFinder" xml:space="preserve">
+    <value>Cerca giochi installati</value>
+  </data>
+  <data name="Settings_StartupUpdateCheck" xml:space="preserve">
+    <value>Cerca aggiornamenti del programma</value>
+  </data>
+  <data name="Settings_GeneralHeader" xml:space="preserve">
+    <value>Generale</value>
+  </data>
+  <data name="Settings_GeneralCloseOnLaunch" xml:space="preserve">
+    <value>Chiudi l'applicazione all'avvio di un gioco</value>
+  </data>
+  <data name="Settings_GeneralCloseOnSave" xml:space="preserve">
+    <value>Chiudi la finestra di dialogo di configurazione durante il salvataggio </value>
+  </data>
+  <data name="R1U_TPLSHeader" xml:space="preserve">
+    <value>Colonna sonora Per-Livello</value>
+  </data>
+  <data name="R1U_TPLSInfo" xml:space="preserve">
+    <value>Per impostazione predefinita, la versione per PC ha solo una singola traccia musicale per ogni mondo. Questa patch fa in modo che ogni livello abbia la propria traccia, in modo simile a quello su PlayStation.</value>
+  </data>
+  <data name="R1U_TPLSInstall" xml:space="preserve">
+    <value>Installa</value>
+  </data>
+  <data name="R1U_TPLSUninstall" xml:space="preserve">
+    <value>Disinstalla</value>
+  </data>
+  <data name="SettingEnabled" xml:space="preserve">
+    <value>Attivato</value>
+  </data>
+  <data name="SettingDisabled" xml:space="preserve">
+    <value>Disattivato</value>
+  </data>
+  <data name="R1U_TPLSRaymanVersion" xml:space="preserve">
+    <value>Versione di Rayman</value>
+  </data>
+  <data name="R1U_CompleteOSTHeader" xml:space="preserve">
+    <value>Colonna Sonora Completa</value>
+  </data>
+  <data name="R1U_CompleteOSTInfo" xml:space="preserve">
+    <value>Rayman Forever, inclusa la versione GOG, non viene fornito con la colonna sonora completa a causa dello spazio su disco originariamente non disponibile. Questa utility può sostituire la colonna sonora incompleta esistente con quella completa o, in alternativa, ripristinarla. </value>
+  </data>
+  <data name="R1U_CompleteOSTReplace" xml:space="preserve">
+    <value>Sostituisci con la colonna sonora completa</value>
+  </data>
+  <data name="R1U_CompleteOSTRevert" xml:space="preserve">
+    <value>Torna alla colonna sonora incompleta</value>
+  </data>
+  <data name="R2U_TranslationsHeader" xml:space="preserve">
+    <value>Traduzioni non ufficiali</value>
+  </data>
+  <data name="R2U_TranslationsInfo" xml:space="preserve">
+    <value>L'applicazione di una traduzione non ufficiale sostituirà una delle lingue del gioco con quella selezionata. Nella maggior parte dei casi questo sarà quello inglese. Le modifiche possono essere annullate in qualsiasi momento applicando la versione originale.</value>
+  </data>
+  <data name="Utility_Apply" xml:space="preserve">
+    <value>Applica</value>
+  </data>
+  <data name="R3U_DirectPlayHeader" xml:space="preserve">
+    <value>DirectPlay</value>
+  </data>
+  <data name="R3U_DirectPlayInfo" xml:space="preserve">
+    <value>DirectPlay deve essere abilitato per eseguire Rayman 3. Per impostazione predefinita, di solito è disabilitato su Windows 10.</value>
+  </data>
+  <data name="RDU_ReplaceFilesHeader" xml:space="preserve">
+    <value>Sostituisci File Infetti</value>
+  </data>
+  <data name="RDU_ReplaceFilesInfo" xml:space="preserve">
+    <value>Alcune versioni di Rayman Designer, incluso Rayman Forever, hanno alcuni dei file RayKit infettati da un malware. Sebbene non sembri dannoso, o addirittura attivo, e GOG ha confermato che non esiste alcun pericolo, puoi comunque sostituire in sicurezza i file con le loro versioni non infette utilizzando questa utility. </value>
+  </data>
+  <data name="RDU_ReplaceFilesLanguage" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="RDU_ReplaceFilesReplace" xml:space="preserve">
+    <value>Sostituire</value>
+  </data>
+  <data name="RDU_CreateConfigHeader" xml:space="preserve">
+    <value>Crea File di Configurazione Mancante</value>
+  </data>
+  <data name="RDU_CreateConfigInfo" xml:space="preserve">
+    <value>Durante alcune installazioni di Rayman Designer il file di configurazione non viene creato, causando un errore del Mapper all'avvio. Questa utility risolverà il problema creando il file di configurazione se non presente.</value>
+  </data>
+  <data name="RDU_CreateConfigCreate" xml:space="preserve">
+    <value>Crea</value>
+  </data>
+  <data name="RLU_UbiRayHeader" xml:space="preserve">
+    <value>Attiva UbiRay</value>
+  </data>
+  <data name="RLU_UbiRayInfo" xml:space="preserve">
+    <value>Questa utility modifica la configurazione del gioco per far apparire UbiRay come un normale costume nella Galleria degli Eroi</value>
+  </data>
+  <data name="ROU_HQVideosHeader" xml:space="preserve">
+    <value>Video di Qualità Superiore</value>
+  </data>
+  <data name="ROU_HQVideosInfo" xml:space="preserve">
+    <value>I filmati nella versione PC sono compressi e di qualità inferiore rispetto alle versioni console. Questa utility sostituisce quei video con quelli di qualità superiore delle versioni per console.</value>
+  </data>
+  <data name="ROU_HQVideosReplace" xml:space="preserve">
+    <value>Sostituisci con i video di qualità superiore</value>
+  </data>
+  <data name="ROU_HQVideosRevert" xml:space="preserve">
+    <value>Torna ai video originali </value>
+  </data>
+  <data name="ROU_DebugCommandsHeader" xml:space="preserve">
+    <value>Comandi Debug</value>
+  </data>
+  <data name="ROU_DebugCommandsInfo" xml:space="preserve">
+    <value>L'uso di uno dei seguenti comandi di debug consente di avviare il gioco in un ambiente di debug, con i comandi che cambiano il modo in cui il gioco viene eseguito.</value>
+  </data>
+  <data name="ROU_DebugCommandsWarning" xml:space="preserve">
+    <value>ATTENZIONE: L'utilizzo di questi comandi di debug potrebbe danneggiare il file di salvataggio. Effettua sempre un backup prima di utilizzarli.</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibility" xml:space="preserve">
+    <value>Invincibilità</value>
+  </data>
+  <data name="ROU_DebugCommandsInvincibilityInfo" xml:space="preserve">
+    <value>Consente al giocatore di non morire quando subisce danni</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouse" xml:space="preserve">
+    <value>Nascondere il puntatore del mouse</value>
+  </data>
+  <data name="ROU_DebugCommandsHideMouseInfo" xml:space="preserve">
+    <value>Questo nasconderà il puntatore del mouse nei menu di gioco</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoom" xml:space="preserve">
+    <value>Zoom massimo della fotocamera</value>
+  </data>
+  <data name="ROU_DebugCommandsMaxZoomInfo" xml:space="preserve">
+    <value>Questo massimizzerà lo zoom della fotocamera</value>
+  </data>
+  <data name="ROU_DebugCommandsFramerate" xml:space="preserve">
+    <value>Frequenza dei fotogrammi </value>
+  </data>
+  <data name="ROU_DebugCommandsFramerateInfo" xml:space="preserve">
+    <value>Questo imposterà il framerate per eseguire il gioco</value>
+  </data>
+  <data name="ROU_DebugCommandsMap" xml:space="preserve">
+    <value>Mappa</value>
+  </data>
+  <data name="ROU_DebugCommandsMapInfo" xml:space="preserve">
+    <value>Questo consentirà di caricare una mappa specifica al posto del menu principale all'avvio del gioco</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguage" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="ROU_DebugCommandsLanguageInfo" xml:space="preserve">
+    <value>Questo cambierà la lingua del gioco</value>
+  </data>
+  <data name="ROU_UpdateHeader" xml:space="preserve">
+    <value>Aggiorna a 1.02 (Versione su disco)</value>
+  </data>
+  <data name="ROU_UpdateInfo" xml:space="preserve">
+    <value>Nel caso in cui Rayman Origins non sia stato aggiornato automaticamente all'ultima versione, 1.02, questa utility può aggiornarlo. </value>
+  </data>
+  <data name="ROU_UpdateUpdate" xml:space="preserve">
+    <value>Aggiorna</value>
+  </data>
+  <data name="GameDisplay_OpenSteamStore" xml:space="preserve">
+    <value>Apri la pagina del negozio</value>
+  </data>
+  <data name="GameDisplay_OpenSteamCommunity" xml:space="preserve">
+    <value>Apri la pagina della community</value>
+  </data>
+  <data name="GameDisplay_OpenLocation" xml:space="preserve">
+    <value>Apri percorso del gioco</value>
+  </data>
+  <data name="GameDisplay_Options" xml:space="preserve">
+    <value>Opzioni</value>
+  </data>
+  <data name="GameDisplay_Launch" xml:space="preserve">
+    <value>Avvia</value>
+  </data>
+  <data name="GameDisplay_DiscInstall" xml:space="preserve">
+    <value>Installa dal disco</value>
+  </data>
+  <data name="GameDisplay_Locate" xml:space="preserve">
+    <value>Localizzare</value>
+  </data>
+  <data name="GameDisplay_PurchaseGOG" xml:space="preserve">
+    <value>Compra su GOG</value>
+  </data>
+  <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
+    <value>Compra su Ubisoft Connect</value>
+  </data>
+</root>

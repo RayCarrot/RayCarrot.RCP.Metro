@@ -151,6 +151,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Italian (Italy) program translation.
+        /// </summary>
+        public static string About_Credits_ItzalDrake {
+            get {
+                return ResourceManager.GetString("About_Credits_ItzalDrake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rayman 2 button remapping.
         /// </summary>
         public static string About_Credits_Janmv94 {
@@ -3773,7 +3782,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download from Uplay.
+        ///   Looks up a localized string similar to Download from Ubisoft Connect.
         /// </summary>
         public static string GameDisplay_DownloadUplay {
             get {
@@ -3872,7 +3881,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Purchase from Uplay.
+        ///   Looks up a localized string similar to Purchase from Ubisoft Connect.
         /// </summary>
         public static string GameDisplay_PurchaseUplay {
             get {

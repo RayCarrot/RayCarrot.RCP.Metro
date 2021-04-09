@@ -722,7 +722,7 @@
     <value>Купить в GOG</value>
   </data>
   <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
-    <value>Купить в Uplay</value>
+    <value>Купить в Ubisoft Connect</value>
   </data>
   <data name="GameDisplay_Steam" xml:space="preserve">
     <value>Купить в Steam</value>
@@ -2813,7 +2813,7 @@
     <value>Запуск игры может занять несколько секунд. Если появится черный экран, нажмите клавишу ESC на клавиатуре, чтобы начать игру. Это сообщение больше не появится.</value>
   </data>
   <data name="GameDisplay_DownloadUplay" xml:space="preserve">
-    <value>Загрузить через Uplay</value>
+    <value>Загрузить через Ubisoft Connect</value>
   </data>
   <data name="Archive_ImportFileHeader" xml:space="preserve">
     <value>Выберите файл для импорта</value>

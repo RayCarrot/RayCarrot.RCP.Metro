@@ -721,7 +721,7 @@
     <value>Comprar pelo GOG</value>
   </data>
   <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
-    <value>Comprar pelo Uplay</value>
+    <value>Comprar pelo Ubisoft Connect</value>
   </data>
   <data name="GameDisplay_Steam" xml:space="preserve">
     <value>Comprar pelo Steam</value>
@@ -2857,7 +2857,7 @@ Error message: {1}</value>
     <value>O jogo poderá levar alguns segundos a executar. Se surgir um ecrã negro, pressiona a tecla ESC no teu teclado para jogar o jogo. Esta mensagem não voltará a aparecer.</value>
   </data>
   <data name="GameDisplay_DownloadUplay" xml:space="preserve">
-    <value>Descarregar pela Uplay</value>
+    <value>Descarregar pela Ubisoft Connect</value>
   </data>
   <data name="Archive_ImportFileHeader" xml:space="preserve">
     <value>Seleccionar ficheiro para importar</value>

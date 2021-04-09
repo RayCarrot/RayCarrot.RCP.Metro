@@ -505,7 +505,7 @@
     <value>Comprar por GOG</value>
   </data>
   <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
-    <value>Comprar por Uplay</value>
+    <value>Comprar por Ubisoft Connect</value>
   </data>
   <data name="GameDisplay_Steam" xml:space="preserve">
     <value>Comprar por Steam</value>

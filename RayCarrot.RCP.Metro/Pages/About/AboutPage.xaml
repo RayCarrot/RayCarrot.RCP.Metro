@@ -70,6 +70,9 @@
                     <local:DuoGridItem Header="ICUP321"
                                        Text="{Resx About_Credits_ICUP321}" />
 
+                    <local:DuoGridItem Header="ItzalDrake"
+                                       Text="{Resx About_Credits_ItzalDrake}" />
+
                     <local:DuoGridItem Header="Juanmv94"
                                        Text="{Resx About_Credits_Janmv94}" />
 

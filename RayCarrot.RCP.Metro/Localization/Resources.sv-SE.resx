@@ -722,7 +722,7 @@ Det här är ett växande projekt med fler funktioner planerade att läggas till
     <value>Köp från GOG</value>
   </data>
   <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
-    <value>Köp från Uplay</value>
+    <value>Köp från Ubisoft Connect</value>
   </data>
   <data name="GameDisplay_Steam" xml:space="preserve">
     <value>Köp från Steam</value>

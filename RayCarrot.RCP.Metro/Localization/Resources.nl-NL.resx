@@ -721,7 +721,7 @@
     <value>Kopen via GOG</value>
   </data>
   <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
-    <value>Kopen via Uplay</value>
+    <value>Kopen via Ubisoft Connect</value>
   </data>
   <data name="GameDisplay_Steam" xml:space="preserve">
     <value>Kopen via Steam</value>
@@ -2847,7 +2847,7 @@ Foutmelding: {1}</value>
     <value>Het kan een paar seconden duren voordat het spel gestart wordt. Als er een zwart scherm aanwezig blijft, druk dan op de Escape-toets om het spel te starten. Het bericht zal vervolgens niet meer worden weergegeven.</value>
   </data>
   <data name="GameDisplay_DownloadUplay" xml:space="preserve">
-    <value>Downloaden via Uplay</value>
+    <value>Downloaden via Ubisoft Connect</value>
   </data>
   <data name="Archive_ImportFileHeader" xml:space="preserve">
     <value>Selecteer bestand voor import</value>
