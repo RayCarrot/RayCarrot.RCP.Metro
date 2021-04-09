@@ -1024,15 +1024,8 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
     <value>No se han encontrado archivos de importación.
 </value>
   </data>
-  <data name="Archive_ImportFilesSuccess" xml:space="preserve">
-    <value>Los archivos han sido importados</value>
-  </data>
   <data name="Archive_ExportFilesSuccess" xml:space="preserve">
     <value>Los archivos han sido exportados</value>
-  </data>
-  <data name="Archive_ImportFileSuccess" xml:space="preserve">
-    <value>El archivo se ha importado
-</value>
   </data>
   <data name="Archive_ExportFileSuccess" xml:space="preserve">
     <value>El archivo se ha exportado</value>
@@ -1054,9 +1047,6 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
   <data name="OSU_CNTExplorer_Header" xml:space="preserve">
     <value>Archive Explorer™ (.cnt)</value>
     <comment>Archive Explorer™ (.cnt)</comment>
-  </data>
-  <data name="Archive_ExportMipmaps" xml:space="preserve">
-    <value>Exportar mipmaps</value>
   </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
     <value>Archive Explorer™</value>

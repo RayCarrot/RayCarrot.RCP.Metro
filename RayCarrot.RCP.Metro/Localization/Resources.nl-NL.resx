@@ -2855,38 +2855,20 @@ Foutmelding: {1}</value>
   <data name="Archive_FileSelectionGroupName" xml:space="preserve">
     <value>Ondersteunde bestanden</value>
   </data>
-  <data name="Archive_ImportingFileStatus" xml:space="preserve">
-    <value>Importeren {0}</value>
-  </data>
   <data name="Archive_ExportHeader" xml:space="preserve">
     <value>Selecteer locatie voor export</value>
   </data>
   <data name="Archive_ExportingFileStatus" xml:space="preserve">
     <value>Exporteren {0}</value>
   </data>
-  <data name="Archive_Export" xml:space="preserve">
-    <value>Exporteren</value>
-  </data>
-  <data name="Archive_Import" xml:space="preserve">
-    <value>Importeren</value>
-  </data>
   <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
     <value>Selecteer map voor import</value>
-  </data>
-  <data name="Archive_ExportDirectoryConflict" xml:space="preserve">
-    <value>De geselecteerde map bevat al een map met dezelfde naam als {0} </value>
   </data>
   <data name="Archive_ImportNoFilesError" xml:space="preserve">
     <value>Geen bestanden gevonden om te importeren</value>
   </data>
-  <data name="Archive_ImportFilesSuccess" xml:space="preserve">
-    <value>De bestanden zijn geïmporteerd</value>
-  </data>
   <data name="Archive_ExportFilesSuccess" xml:space="preserve">
     <value>De bestanden zijn geëxporteerd</value>
-  </data>
-  <data name="Archive_ImportFileSuccess" xml:space="preserve">
-    <value>Het bestand is geïmporteerd</value>
   </data>
   <data name="Archive_ExportFileSuccess" xml:space="preserve">
     <value>Het bestand is geëxporteerd</value>
@@ -2935,9 +2917,6 @@ Bestandsindeling = {9}</value>
   </data>
   <data name="About_Credits_Hakyra" xml:space="preserve">
     <value>Spaanse (Spanje) programmavertaling, Catalaanse (Catalonië) programmavertaling</value>
-  </data>
-  <data name="Archive_ExportMipmaps" xml:space="preserve">
-    <value>Exporteren mipmaps</value>
   </data>
   <data name="Archive_IPK_FileInfo" xml:space="preserve">
     <value>Map = {0}

@@ -175,8 +175,7 @@ namespace RayCarrot.RCP.Metro
                     // Make sure there isn't an existing file at the output path
                     if ((result.SelectedDirectory + ExportDirName).FileExists)
                     {
-                        // TODO-UPDATE: Localize
-                        await Services.MessageUI.DisplayMessageAsync(String.Format("The select directory contains a file with the same name as {0}", ExportDirName), MessageType.Error);
+                        await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Archive_ExportDirFileConflict, ExportDirName), MessageType.Error);
 
                         return;
                     }
@@ -218,8 +217,7 @@ namespace RayCarrot.RCP.Metro
                                         // Get the available extensions
                                         var ext = new string[]
                                         {
-                                            // TODO-UPDATE: Localize
-                                            $"Original"
+                                            Resources.Archive_Export_Format_Original
                                         }.Concat(file.FileType.ExportFormats.Select(x => x.FileExtensions)).ToArray();
 
                                         // Have user select the format
@@ -358,8 +356,7 @@ namespace RayCarrot.RCP.Metro
                         {
                             ex.HandleError("Importing archive directory", DisplayName);
 
-                            // TODO: Localize
-                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when importing the files");
+                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ImportDir_Error);
 
                             return;
                         }
@@ -380,11 +377,10 @@ namespace RayCarrot.RCP.Metro
                 // Lock the access to the archive
                 using (await Archive.ArchiveLock.LockAsync())
                 {
-                    // TODO-UPDATE: Localize
                     var result = await RCPServices.UI.GetStringInput(new StringInputViewModel
                     {
-                        Title = "Select a directory name",
-                        HeaderText = "Select a directory name",
+                        Title = Resources.Archive_CreateDir_Header,
+                        HeaderText = Resources.Archive_CreateDir_Header,
                         StringInput = "New Folder"
                     });
 
@@ -447,8 +443,7 @@ namespace RayCarrot.RCP.Metro
                     // Get the files
                     var result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                     {
-                        // TODO-UPDATE: Localize
-                        Title = "Select files to add",
+                        Title = Resources.Archive_AddFiles_Header,
                         MultiSelection = true
                     });
 
@@ -481,8 +476,7 @@ namespace RayCarrot.RCP.Metro
                 // Check if the file name conflicts with an existing file
                 if (existingFile != null)
                 {
-                    // TODO-UPDATE: Localize
-                    if (!await Services.MessageUI.DisplayMessageAsync($"The file '{file}' has the same name as an existing file. Do you want to replace it?", "File name conflict", MessageType.Warning, true))
+                    if (!await Services.MessageUI.DisplayMessageAsync(String.Format(Resources.Archive_AddFiles_Conflict, file), Resources.Archive_AddFiles_ConflictHeader, MessageType.Warning, true))
                         continue;
                 }
 

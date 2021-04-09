@@ -70,13 +70,12 @@
 
                 <!-- Search bar -->
 
-                <!-- TODO: Localize -->
                 <editors:AutoCompleteTextBox Grid.Column="1"
                                              Margin="0 0 5 0"
                                              DisplayMember="FileName"
                                              Provider="{Binding Path=SearchProvider, Mode=OneTime}"
                                              SelectedItem="{Binding Path=CurrentSearchFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                             mah:TextBoxHelper.Watermark="Search"
+                                             mah:TextBoxHelper.Watermark="{Resx Archive_Search}"
                                              mah:TextBoxHelper.SelectAllOnFocus="True">
 
                     <editors:AutoCompleteTextBox.ItemTemplate>
@@ -110,22 +109,21 @@
                     <local:OverflowMenu.ContextMenu>
                         <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                                      DataContext="{x:Static local:RCPServices.Data}">
-                            <local:MenuItemIcon Header="Sort"
+                            <local:MenuItemIcon Header="{Resx Archive_Sort}"
                                                 IconKind="Sort" >
 
-                                <!-- TODO-UPDATE: Localize -->
                                 <local:MenuItemIcon IsChecked="{Binding Path=ArchiveExplorerSortOption, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Default}" 
-                                                    Header="Default"
+                                                    Header="{Resx Archive_Sort_Default}"
                                                     IsCheckable="True"
                                                     Checked="SortMenuItem_OnChecked"/>
 
                                 <local:MenuItemIcon IsChecked="{Binding Path=ArchiveExplorerSortOption, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AlphabeticalAscending}" 
-                                                    Header="Alphabetically (ascending)"
+                                                    Header="{Resx Archive_Sort_AlphabeticallyAscending}"
                                                     IsCheckable="True"
                                                     Checked="SortMenuItem_OnChecked" />
 
                                 <local:MenuItemIcon IsChecked="{Binding Path=ArchiveExplorerSortOption, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=AlphabeticalDescending}" 
-                                                    Header="Alphabetically (descending)"
+                                                    Header="{Resx Archive_Sort_AlphabeticalDescending}"
                                                     IsCheckable="True"
                                                     Checked="SortMenuItem_OnChecked" />
 
@@ -152,35 +150,38 @@
                                 <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                                              d:DataContext="{d:DesignInstance local:ArchiveDirectoryViewModel}">
 
-                                    <!-- TODO-UPDATE: Add tooltips describing what the actions do -->
-                                    <!-- TODO-UPDATE: Localize -->
-
                                     <local:MenuItemIcon Header="{Resx Archive_Extract}"
+                                                        ToolTip="{Resx Archive_Extract_Info}"
                                                         Command="{Binding Path=ExtractCommand}"
                                                         IconKind="ApplicationExport" />
 
-                                    <local:MenuItemIcon Header="Add files"
+                                    <local:MenuItemIcon Header="{Resx Archive_AddFiles}"
+                                                        ToolTip="{Resx Archive_AddFiles_Info}"
                                                         Command="{Binding Path=AddFilesCommand}"
                                                         IconKind="FilePlusOutline" />
 
                                     <Separator />
 
-                                    <local:MenuItemIcon Header="Export &amp; convert"
+                                    <local:MenuItemIcon Header="{Resx Archive_ExportConvert}"
+                                                        ToolTip="{Resx Archive_ExportConvert_Info}"
                                                         Command="{Binding Path=ExportCommand}"
                                                         IconKind="Export" />
 
-                                    <local:MenuItemIcon Header="Import &amp; convert"
+                                    <local:MenuItemIcon Header="{Resx Archive_ImportConvert}"
+                                                        ToolTip="{Resx Archive_ImportConvert_Info}"
                                                         Command="{Binding Path=ImportCommand}"
                                                         IconKind="Import" />
 
                                     <Separator />
 
-                                    <local:MenuItemIcon Header="Create directory"
+                                    <local:MenuItemIcon Header="{Resx Archive_CreateDir}"
+                                                        ToolTip="{Resx Archive_CreateDir_Info}"
                                                         Command="{Binding Path=CreateDirectoryCommand}"
                                                         IconForeground="{StaticResource Archive_AddItemBrush}"
                                                         IconKind="FolderPlusOutline" />
 
-                                    <local:MenuItemIcon Header="Delete"
+                                    <local:MenuItemIcon Header="{Resx Archive_Delete}"
+                                                        ToolTip="{Resx Archive_DeleteDir_Info}"
                                                         Command="{Binding Path=DeleteCommand}"
                                                         IconForeground="{StaticResource Archive_DeleteItemBrush}"
                                                         IconKind="DeleteOutline"
@@ -273,9 +274,7 @@
                                     <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                                                  d:DataContext="{d:DesignInstance local:ArchiveFileViewModel}">
 
-                                        <!-- TODO-UPDATE: Add tooltips describing what the actions do -->
-
-                                        <local:MenuItemIcon Header="{Resx Archive_Export}"
+                                        <local:MenuItemIcon Header="{Resx Archive_ExportFile}"
                                                             IsEnabled="{Binding Path=IsInitialized}"
                                                             IconKind="FileExportOutline"
                                                             ItemsSource="{Binding Path=FileExports, Mode=OneTime}">
@@ -287,16 +286,14 @@
                                             </local:MenuItemIcon.ItemContainerStyle>
                                         </local:MenuItemIcon>
 
-                                        <local:MenuItemIcon Header="{Resx Archive_Import}"
+                                        <local:MenuItemIcon Header="{Resx Archive_ImportFile}"
                                                             IsEnabled="{Binding Path=IsInitialized}"
                                                             Command="{Binding Path=ImportCommand, Mode=OneTime}"
                                                             IconKind="FileImportOutline" />
 
                                         <Separator />
 
-                                        <!-- TODO-UPDATE: Localize -->
-
-                                        <local:MenuItemIcon Header="Delete"
+                                        <local:MenuItemIcon Header="{Resx Archive_Delete}"
                                                             IsEnabled="{Binding Path=IsInitialized}"
                                                             Command="{Binding Path=DeleteCommand, Mode=OneTime}"
                                                             IconForeground="{StaticResource Archive_DeleteItemBrush}"
@@ -380,15 +377,13 @@
 
                 <!-- Add File Button -->
 
-                <!-- TODO-UPDATE: Localize -->
-
                 <local:IconButton Grid.Row="0"
                                   Foreground="{StaticResource Archive_AddItemBrush}"
                                   HorizontalAlignment="Right"
                                   VerticalAlignment="Bottom"
                                   Margin="15"
                                   IconKind="Plus"
-                                  ToolTip="Add files"
+                                  ToolTip="{Resx Archive_AddFiles}"
                                   DataContext="{Binding ElementName=DirTreeView, Path=SelectedItem}"
                                   d:DataContext="{d:DesignInstance local:ArchiveDirectoryViewModel}"
                                   Background="{DynamicResource MahApps.Brushes.Control.Background}"
@@ -435,10 +430,8 @@
                                 <TextBlock Grid.Column="0" 
                                            Text="{Binding Path=ModifiedFilesDisplayText}" />
 
-                                <!-- TODO-UPDATE: Localize -->
-
                                 <Button Grid.Column="1"
-                                        Content="Save Archive"
+                                        Content="{Resx Archive_Save}"
                                         Command="{Binding Path=SaveCommand, Mode=OneTime}"/>
 
                             </Grid>

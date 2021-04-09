@@ -2882,39 +2882,20 @@ Komunikat o błędzie: {1}</value>
   <data name="Archive_FileSelectionGroupName" xml:space="preserve">
     <value>Obsługiwane pliki</value>
   </data>
-  <data name="Archive_ImportingFileStatus" xml:space="preserve">
-    <value>Importowanie {0}</value>
-  </data>
   <data name="Archive_ExportHeader" xml:space="preserve">
     <value>Wybierz miejsce docelowe do eksportu</value>
   </data>
   <data name="Archive_ExportingFileStatus" xml:space="preserve">
     <value>Eksportowanie {0}</value>
   </data>
-  <data name="Archive_Export" xml:space="preserve">
-    <value>Eksportuj</value>
-  </data>
-  <data name="Archive_Import" xml:space="preserve">
-    <value>Importuj</value>
-  </data>
   <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
     <value>Wybierz folder do zaimportowania</value>
-  </data>
-  <data name="Archive_ExportDirectoryConflict" xml:space="preserve">
-    <value>Wybrany folder zawiera już folder o tej samej nazwie co {0}
-</value>
   </data>
   <data name="Archive_ImportNoFilesError" xml:space="preserve">
     <value>Nie znaleziono plików do zaimportowania</value>
   </data>
-  <data name="Archive_ImportFilesSuccess" xml:space="preserve">
-    <value>Pliki zostały zaimportowane</value>
-  </data>
   <data name="Archive_ExportFilesSuccess" xml:space="preserve">
     <value>Pliki zostały wyeksportowane</value>
-  </data>
-  <data name="Archive_ImportFileSuccess" xml:space="preserve">
-    <value>Plik został zaimportowany</value>
   </data>
   <data name="Archive_ExportFileSuccess" xml:space="preserve">
     <value>Plik został wyeksportowany</value>
@@ -2964,9 +2945,6 @@ Format = {9}</value>
   </data>
   <data name="About_Credits_Hakyra" xml:space="preserve">
     <value>Tłumaczenie hiszpańskie (Hiszpania) programu, Tłumaczenie katalońskie (Katalonia) programu</value>
-  </data>
-  <data name="Archive_ExportMipmaps" xml:space="preserve">
-    <value>Eksportuj mipmapy</value>
   </data>
   <data name="Archive_IPK_FileInfo" xml:space="preserve">
     <value>Folder = {0}

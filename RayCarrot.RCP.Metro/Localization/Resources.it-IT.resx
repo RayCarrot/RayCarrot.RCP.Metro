@@ -181,7 +181,7 @@
     <value>Impostazioni DOSBox</value>
   </data>
   <data name="DosBoxSettingsInfo" xml:space="preserve">
-    <value>Impostando una delle opzioni seguenti su Disabilitato o un valore vuoto, verrà utilizzato il valore predefinito come specificato nel file di configurazione DOSBox. Se un file di configurazione specifico è stato specificato nelle impostazioni potrebbe sovrascrivere alcune delle impostazioni seguenti. </value>
+    <value>Impostando una delle opzioni seguenti su disabilitato o con un valore vuoto, verrà utilizzato il valore predefinito come specificato nel file di configurazione DOSBox. Se un file di configurazione specifico è stato specificato nelle impostazioni potrebbe sovrascrivere alcune delle impostazioni seguenti. </value>
   </data>
   <data name="DosBoxOptions_Fullscreeen" xml:space="preserve">
     <value>Schermo intero</value>
@@ -199,7 +199,7 @@
     <value>Correzione formato</value>
   </data>
   <data name="DosBoxOptions_AspectCorrectionInfo" xml:space="preserve">
-    <value>Applca la correzione delle proporzioni, se il ridimensionamento non è supportato, questa correzione può causare rallentamenti! </value>
+    <value>Applica la correzione delle proporzioni, se il ridimensionamento non è supportato, questa correzione può causare rallentamenti! </value>
   </data>
   <data name="DosBoxOptions_MemorySize" xml:space="preserve">
     <value>Dimensione della Memoria</value>
@@ -358,7 +358,7 @@
     <value>Supporto widescreen</value>
   </data>
   <data name="Config_WidescreenSupportInfo" xml:space="preserve">
-    <value>Il supporto widescreen garantisce che il gioco non sia allungato quando viene eseguito in un formato diverso da 4:3 </value>
+    <value>Il supporto widescreen garantisce che la visuale del gioco non sia allungata quando viene eseguito in un formato diverso da 4:3 </value>
   </data>
   <data name="Config_WidescreenHorizontal" xml:space="preserve">
     <value>Widescreen orizzontale</value>
@@ -397,7 +397,7 @@
     <value>Modalità Schermo</value>
   </data>
   <data name="Config_RRRScreenModeInfo" xml:space="preserve">
-    <value>Le opzioni della modalità schermo si comporteranno in modo diverso a seconda della risoluzione selezionata. Di solito mantenere la modalità 4:3 abilitata consentirà al gioco di non essere allungato su diversi formati. </value>
+    <value>Le opzioni della modalità schermo si comporteranno in modo diverso a seconda della risoluzione selezionata. Di solito mantenere la modalità 4:3 abilitata consentirà alla visuale del gioco di non essere allungata su diversi formati. </value>
   </data>
   <data name="About_ProgramInfo" xml:space="preserve">
     <value>Rayman Control Panel™ è un progetto comunitario open source creato da RayCarrot. Questo software è un unico file eseguibile gratuito con l'intento di accedere facilmente alle impostazioni e alle correzioni per i vari titoli di Rayman rilasciati per Windows.
@@ -536,7 +536,7 @@ Questo è un progetto in crescita con ulteriori funzionalità pianificate per es
     <value>Il livello di eccezione per la visualizzazione delle informazioni di debug e tracce</value>
   </data>
   <data name="Settings_BackupLocation" xml:space="preserve">
-    <value>Posizione di backup </value>
+    <value>Posizione del backup </value>
   </data>
   <data name="Settings_StartupHeader" xml:space="preserve">
     <value>Avvio</value>
@@ -723,5 +723,53 @@ Questo è un progetto in crescita con ulteriori funzionalità pianificate per es
   </data>
   <data name="GameDisplay_PurchaseUplay" xml:space="preserve">
     <value>Compra su Ubisoft Connect</value>
+  </data>
+  <data name="GameDisplay_Steam" xml:space="preserve">
+    <value>Compra su Steam</value>
+  </data>
+  <data name="GameDisplay_PurchaseWinStore" xml:space="preserve">
+    <value>Compra sul Microsoft Store</value>
+  </data>
+  <data name="GameLink_RDMapper" xml:space="preserve">
+    <value>Mapper</value>
+  </data>
+  <data name="GameLink_Setup" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="GameLink_R2nGlide" xml:space="preserve">
+    <value>Configurazione nGlide</value>
+  </data>
+  <data name="ActionSucceeded" xml:space="preserve">
+    <value>Azione riuscita</value>
+  </data>
+  <data name="MessageHeader_Generic" xml:space="preserve">
+    <value>Messaggio generico</value>
+  </data>
+  <data name="MessageHeader_Information" xml:space="preserve">
+    <value>Messaggio di informazione</value>
+  </data>
+  <data name="MessageHeader_Error" xml:space="preserve">
+    <value>Messaggio di errore</value>
+  </data>
+  <data name="MessageHeader_Warning" xml:space="preserve">
+    <value>Messaggio di avviso</value>
+  </data>
+  <data name="MessageHeader_Success" xml:space="preserve">
+    <value>Messaggio di successo</value>
+  </data>
+  <data name="MessageHeader_Question" xml:space="preserve">
+    <value>Messaggio di domanda</value>
+  </data>
+  <data name="ExceptionMessageHeader" xml:space="preserve">
+    <value>Eccezione</value>
+  </data>
+  <data name="ExceptionMessageInfo" xml:space="preserve">
+    <value>Si è verificata un'eccezione nell'applicazione. Di seguito sono riportate le informazioni di debug disponibili per il livello utente corrente.</value>
+  </data>
+  <data name="File_FileNotFound" xml:space="preserve">
+    <value>Impossibile trovare il file specificato: {0}</value>
+  </data>
+  <data name="File_FileNotFoundHeader" xml:space="preserve">
+    <value>File non trovato</value>
   </data>
 </root>

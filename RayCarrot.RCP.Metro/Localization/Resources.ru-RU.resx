@@ -2821,38 +2821,20 @@
   <data name="Archive_FileSelectionGroupName" xml:space="preserve">
     <value>Поддерживаемые файлы</value>
   </data>
-  <data name="Archive_ImportingFileStatus" xml:space="preserve">
-    <value>Импорт {0}</value>
-  </data>
   <data name="Archive_ExportHeader" xml:space="preserve">
     <value>Выберите пункт назначения для экспорта</value>
   </data>
   <data name="Archive_ExportingFileStatus" xml:space="preserve">
     <value>Экспорт {0}</value>
   </data>
-  <data name="Archive_Export" xml:space="preserve">
-    <value>Экспорт</value>
-  </data>
-  <data name="Archive_Import" xml:space="preserve">
-    <value>Импорт</value>
-  </data>
   <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
     <value>Выберите папку для импорта</value>
-  </data>
-  <data name="Archive_ExportDirectoryConflict" xml:space="preserve">
-    <value>Выбранная папка уже содержит папку с тем же названием, что и {0}</value>
   </data>
   <data name="Archive_ImportNoFilesError" xml:space="preserve">
     <value>Файлы для импорта не были найдены</value>
   </data>
-  <data name="Archive_ImportFilesSuccess" xml:space="preserve">
-    <value>Файлы были импортированы</value>
-  </data>
   <data name="Archive_ExportFilesSuccess" xml:space="preserve">
     <value>Файлы были экспортированы</value>
-  </data>
-  <data name="Archive_ImportFileSuccess" xml:space="preserve">
-    <value>Файл был импортирован</value>
   </data>
   <data name="Archive_ExportFileSuccess" xml:space="preserve">
     <value>Файл был экспортирован</value>
@@ -2900,9 +2882,6 @@
   </data>
   <data name="About_Credits_Hakyra" xml:space="preserve">
     <value>Перевод программы на испанский (Испания), перевод программы на каталонский (Каталония) </value>
-  </data>
-  <data name="Archive_ExportMipmaps" xml:space="preserve">
-    <value>Экспорт мипмапов</value>
   </data>
   <data name="Archive_IPK_FileInfo" xml:space="preserve">
     <value>Папка = {0}

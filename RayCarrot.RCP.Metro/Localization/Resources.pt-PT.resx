@@ -2865,41 +2865,20 @@ Error message: {1}</value>
   <data name="Archive_FileSelectionGroupName" xml:space="preserve">
     <value>Ficheiros suportados</value>
   </data>
-  <data name="Archive_ImportingFileStatus" xml:space="preserve">
-    <value>A importar {0}
-</value>
-  </data>
   <data name="Archive_ExportHeader" xml:space="preserve">
     <value>Selecciona o destino a exportar</value>
   </data>
   <data name="Archive_ExportingFileStatus" xml:space="preserve">
     <value>A exportar {0}</value>
   </data>
-  <data name="Archive_Export" xml:space="preserve">
-    <value>Exportar</value>
-  </data>
-  <data name="Archive_Import" xml:space="preserve">
-    <value>Importar</value>
-  </data>
   <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
     <value>Selecciona o directório a importar</value>
-  </data>
-  <data name="Archive_ExportDirectoryConflict" xml:space="preserve">
-    <value>O directório seleccionado já contém um directório com o mesmo nome que {0}</value>
   </data>
   <data name="Archive_ImportNoFilesError" xml:space="preserve">
     <value>Não foi encontrado nenhum ficheiro para importar</value>
   </data>
-  <data name="Archive_ImportFilesSuccess" xml:space="preserve">
-    <value>Foram importados os ficheiros
-</value>
-  </data>
   <data name="Archive_ExportFilesSuccess" xml:space="preserve">
     <value>Foram exportados os ficheiros</value>
-  </data>
-  <data name="Archive_ImportFileSuccess" xml:space="preserve">
-    <value>Foi importado o ficheiro
-</value>
   </data>
   <data name="Archive_ExportFileSuccess" xml:space="preserve">
     <value>Foi exportado o ficheiro</value>
@@ -2954,9 +2933,6 @@ Formato = {9}</value>
     <value>Programa de tradução Espanhola (Espanha),
 Programa de tradução Catalã (Catalunha)
 </value>
-  </data>
-  <data name="Archive_ExportMipmaps" xml:space="preserve">
-    <value>Exportar mipmaps</value>
   </data>
   <data name="Archive_IPK_FileInfo" xml:space="preserve">
     <value>Directório = {0}

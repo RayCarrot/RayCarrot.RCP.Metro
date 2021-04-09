@@ -2944,11 +2944,6 @@ gameDisplayName</comment>
   <data name="Archive_FileSelectionGroupName" xml:space="preserve">
     <value>Supported files</value>
   </data>
-  <data name="Archive_ImportingFileStatus" xml:space="preserve">
-    <value>Importing {0}</value>
-    <comment>Arguments:
-fileName</comment>
-  </data>
   <data name="Archive_ExportHeader" xml:space="preserve">
     <value>Select destination to export to</value>
   </data>
@@ -2957,29 +2952,14 @@ fileName</comment>
     <comment>Arguments:
 fileName</comment>
   </data>
-  <data name="Archive_Export" xml:space="preserve">
-    <value>Export</value>
-  </data>
-  <data name="Archive_Import" xml:space="preserve">
-    <value>Import</value>
-  </data>
   <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
     <value>Select directory to import</value>
-  </data>
-  <data name="Archive_ExportDirectoryConflict" xml:space="preserve">
-    <value>The selected directory already contains a directory with the same name as {0}</value>
   </data>
   <data name="Archive_ImportNoFilesError" xml:space="preserve">
     <value>No files were found to import</value>
   </data>
-  <data name="Archive_ImportFilesSuccess" xml:space="preserve">
-    <value>The files have been imported</value>
-  </data>
   <data name="Archive_ExportFilesSuccess" xml:space="preserve">
     <value>The files have been exported</value>
-  </data>
-  <data name="Archive_ImportFileSuccess" xml:space="preserve">
-    <value>The file has been imported</value>
   </data>
   <data name="Archive_ExportFileSuccess" xml:space="preserve">
     <value>The file has been exported</value>
@@ -3044,9 +3024,6 @@ fileFormat</comment>
   </data>
   <data name="About_Credits_Hakyra" xml:space="preserve">
     <value>Spanish (Spain) program translation, Catalan (Catalan) program translation</value>
-  </data>
-  <data name="Archive_ExportMipmaps" xml:space="preserve">
-    <value>Export mipmaps</value>
   </data>
   <data name="Archive_IPK_FileInfo" xml:space="preserve">
     <value>Directory = {0}
@@ -3614,5 +3591,90 @@ fileCount</comment>
   </data>
   <data name="About_Credits_ItzalDrake" xml:space="preserve">
     <value>Italian (Italy) program translation</value>
+  </data>
+  <data name="Archive_Sort" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="Archive_Sort_Default" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Archive_Sort_AlphabeticallyAscending" xml:space="preserve">
+    <value>Alphabetically (ascending)</value>
+  </data>
+  <data name="Archive_Sort_AlphabeticalDescending" xml:space="preserve">
+    <value>Alphabetically (descending)</value>
+  </data>
+  <data name="Archive_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Archive_Extract_Info" xml:space="preserve">
+    <value>Extracts all files in this directory, including any sub-directories</value>
+  </data>
+  <data name="Archive_AddFiles" xml:space="preserve">
+    <value>Add files</value>
+  </data>
+  <data name="Archive_AddFiles_Info" xml:space="preserve">
+    <value>Adds the selected files to the directory</value>
+  </data>
+  <data name="Archive_ExportConvert" xml:space="preserve">
+    <value>Export &amp; convert</value>
+  </data>
+  <data name="Archive_ExportConvert_Info" xml:space="preserve">
+    <value>Extracts all files in this directory, including any sub-directories, and allows the files to be converted</value>
+  </data>
+  <data name="Archive_ImportConvert" xml:space="preserve">
+    <value>Import &amp; convert</value>
+  </data>
+  <data name="Archive_ImportConvert_Info" xml:space="preserve">
+    <value>Imports any files with matching file names from the selected directory and converts them where possible to match the original format</value>
+  </data>
+  <data name="Archive_CreateDir" xml:space="preserve">
+    <value>Create directory</value>
+  </data>
+  <data name="Archive_CreateDir_Info" xml:space="preserve">
+    <value>Creates a new empty directory</value>
+  </data>
+  <data name="Archive_DeleteDir" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Archive_DeleteDir_Info" xml:space="preserve">
+    <value>Deletes the directory and all of its content, including files and sub-directories</value>
+  </data>
+  <data name="Archive_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Archive_ExportFile" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Archive_ImportFile" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="Archive_Save" xml:space="preserve">
+    <value>Save Archive</value>
+  </data>
+  <data name="Archive_ExportDirFileConflict" xml:space="preserve">
+    <value>The selected directory contains a file with the same name as {0}</value>
+    <comment>Arguments:
+exportDirName</comment>
+  </data>
+  <data name="Archive_Export_Format_Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="Archive_ImportDir_Error" xml:space="preserve">
+    <value>An error occurred when importing the files</value>
+  </data>
+  <data name="Archive_CreateDir_Header" xml:space="preserve">
+    <value>Select a directory name</value>
+  </data>
+  <data name="Archive_AddFiles_Header" xml:space="preserve">
+    <value>Select files to add</value>
+  </data>
+  <data name="Archive_AddFiles_Conflict" xml:space="preserve">
+    <value>The file '{0}' has the same name as an existing file. Do you want to replace it?</value>
+    <comment>Arguments:
+file</comment>
+  </data>
+  <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
+    <value>File name conflict</value>
   </data>
 </root>

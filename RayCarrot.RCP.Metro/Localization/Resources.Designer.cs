@@ -498,6 +498,51 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add files.
+        /// </summary>
+        public static string Archive_AddFiles {
+            get {
+                return ResourceManager.GetString("Archive_AddFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file &apos;{0}&apos; has the same name as an existing file. Do you want to replace it?.
+        /// </summary>
+        public static string Archive_AddFiles_Conflict {
+            get {
+                return ResourceManager.GetString("Archive_AddFiles_Conflict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File name conflict.
+        /// </summary>
+        public static string Archive_AddFiles_ConflictHeader {
+            get {
+                return ResourceManager.GetString("Archive_AddFiles_ConflictHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select files to add.
+        /// </summary>
+        public static string Archive_AddFiles_Header {
+            get {
+                return ResourceManager.GetString("Archive_AddFiles_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adds the selected files to the directory.
+        /// </summary>
+        public static string Archive_AddFiles_Info {
+            get {
+                return ResourceManager.GetString("Archive_AddFiles_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Directory = {0}
         ///Size = {1} x {2}
         ///File size = {3}
@@ -511,6 +556,33 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_CNT_FileInfo {
             get {
                 return ResourceManager.GetString("Archive_CNT_FileInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create directory.
+        /// </summary>
+        public static string Archive_CreateDir {
+            get {
+                return ResourceManager.GetString("Archive_CreateDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a directory name.
+        /// </summary>
+        public static string Archive_CreateDir_Header {
+            get {
+                return ResourceManager.GetString("Archive_CreateDir_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creates a new empty directory.
+        /// </summary>
+        public static string Archive_CreateDir_Info {
+            get {
+                return ResourceManager.GetString("Archive_CreateDir_Info", resourceCulture);
             }
         }
         
@@ -578,20 +650,65 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Export.
+        ///   Looks up a localized string similar to Delete.
         /// </summary>
-        public static string Archive_Export {
+        public static string Archive_Delete {
             get {
-                return ResourceManager.GetString("Archive_Export", resourceCulture);
+                return ResourceManager.GetString("Archive_Delete", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The selected directory already contains a directory with the same name as {0}.
+        ///   Looks up a localized string similar to Delete.
         /// </summary>
-        public static string Archive_ExportDirectoryConflict {
+        public static string Archive_DeleteDir {
             get {
-                return ResourceManager.GetString("Archive_ExportDirectoryConflict", resourceCulture);
+                return ResourceManager.GetString("Archive_DeleteDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deletes the directory and all of its content, including files and sub-directories.
+        /// </summary>
+        public static string Archive_DeleteDir_Info {
+            get {
+                return ResourceManager.GetString("Archive_DeleteDir_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Original.
+        /// </summary>
+        public static string Archive_Export_Format_Original {
+            get {
+                return ResourceManager.GetString("Archive_Export_Format_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export &amp; convert.
+        /// </summary>
+        public static string Archive_ExportConvert {
+            get {
+                return ResourceManager.GetString("Archive_ExportConvert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extracts all files in this directory, including any sub-directories, and allows the files to be converted.
+        /// </summary>
+        public static string Archive_ExportConvert_Info {
+            get {
+                return ResourceManager.GetString("Archive_ExportConvert_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The selected directory contains a file with the same name as {0}.
+        /// </summary>
+        public static string Archive_ExportDirFileConflict {
+            get {
+                return ResourceManager.GetString("Archive_ExportDirFileConflict", resourceCulture);
             }
         }
         
@@ -601,6 +718,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_ExportError {
             get {
                 return ResourceManager.GetString("Archive_ExportError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string Archive_ExportFile {
+            get {
+                return ResourceManager.GetString("Archive_ExportFile", resourceCulture);
             }
         }
         
@@ -641,20 +767,20 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Export mipmaps.
-        /// </summary>
-        public static string Archive_ExportMipmaps {
-            get {
-                return ResourceManager.GetString("Archive_ExportMipmaps", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Extract.
         /// </summary>
         public static string Archive_Extract {
             get {
                 return ResourceManager.GetString("Archive_Extract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extracts all files in this directory, including any sub-directories.
+        /// </summary>
+        public static string Archive_Extract_Info {
+            get {
+                return ResourceManager.GetString("Archive_Extract_Info", resourceCulture);
             }
         }
         
@@ -686,11 +812,29 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import.
+        ///   Looks up a localized string similar to Import &amp; convert.
         /// </summary>
-        public static string Archive_Import {
+        public static string Archive_ImportConvert {
             get {
-                return ResourceManager.GetString("Archive_Import", resourceCulture);
+                return ResourceManager.GetString("Archive_ImportConvert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imports any files with matching file names from the selected directory and converts them where possible to match the original format.
+        /// </summary>
+        public static string Archive_ImportConvert_Info {
+            get {
+                return ResourceManager.GetString("Archive_ImportConvert_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when importing the files.
+        /// </summary>
+        public static string Archive_ImportDir_Error {
+            get {
+                return ResourceManager.GetString("Archive_ImportDir_Error", resourceCulture);
             }
         }
         
@@ -704,38 +848,20 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        public static string Archive_ImportFile {
+            get {
+                return ResourceManager.GetString("Archive_ImportFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select file to import.
         /// </summary>
         public static string Archive_ImportFileHeader {
             get {
                 return ResourceManager.GetString("Archive_ImportFileHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The files have been imported.
-        /// </summary>
-        public static string Archive_ImportFilesSuccess {
-            get {
-                return ResourceManager.GetString("Archive_ImportFilesSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The file has been imported.
-        /// </summary>
-        public static string Archive_ImportFileSuccess {
-            get {
-                return ResourceManager.GetString("Archive_ImportFileSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Importing {0}.
-        /// </summary>
-        public static string Archive_ImportingFileStatus {
-            get {
-                return ResourceManager.GetString("Archive_ImportingFileStatus", resourceCulture);
             }
         }
         
@@ -810,6 +936,60 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_RepackingStatus {
             get {
                 return ResourceManager.GetString("Archive_RepackingStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Archive.
+        /// </summary>
+        public static string Archive_Save {
+            get {
+                return ResourceManager.GetString("Archive_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Archive_Search {
+            get {
+                return ResourceManager.GetString("Archive_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort.
+        /// </summary>
+        public static string Archive_Sort {
+            get {
+                return ResourceManager.GetString("Archive_Sort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alphabetically (descending).
+        /// </summary>
+        public static string Archive_Sort_AlphabeticalDescending {
+            get {
+                return ResourceManager.GetString("Archive_Sort_AlphabeticalDescending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alphabetically (ascending).
+        /// </summary>
+        public static string Archive_Sort_AlphabeticallyAscending {
+            get {
+                return ResourceManager.GetString("Archive_Sort_AlphabeticallyAscending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        public static string Archive_Sort_Default {
+            get {
+                return ResourceManager.GetString("Archive_Sort_Default", resourceCulture);
             }
         }
         
