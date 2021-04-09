@@ -106,5 +106,10 @@ namespace RayCarrot.RCP.Metro
         /// <param name="fileName">The file name</param>
         /// <returns>The file entry object</returns>
         object GetNewFileEntry(object archive, string directory, string fileName);
+
+        /// <summary>
+        /// Occurs when a file is being written to an archive
+        /// </summary>
+        event EventHandler<ValueEventArgs<ArchiveFileItem>> OnWritingFileToArchive;
     }
 }

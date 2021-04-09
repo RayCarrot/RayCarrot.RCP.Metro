@@ -146,7 +146,7 @@ namespace RayCarrot.RCP.Metro
             var archiveFiles = files.Select(x => new
             {
                 Entry = (UbiArtIPKFileEntry)x.ArchiveEntry,
-                FileItme = x
+                FileItem = x
             }).ToArray();
 
             // Set the files
@@ -175,13 +175,16 @@ namespace RayCarrot.RCP.Metro
                 fileGenerator.Add(entry, () =>
                 {
                     // Get the file bytes to write to the archive
-                    var fileStream = file.FileItme.GetFileData(generator);
+                    var fileStream = file.FileItem.GetFileData(generator);
 
                     // Set the offset
                     entry.Offsets[0] = currentOffset;
 
                     // Increase by the file size
                     currentOffset += entry.ArchiveSize;
+
+                    // Invoke event
+                    OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<ArchiveFileItem>(file.FileItem));
 
                     return fileStream.Stream;
                 });
@@ -298,6 +301,15 @@ namespace RayCarrot.RCP.Metro
                 IPKVersion = ((UbiArtIpkData)archive).Version
             };
         }
+
+        #endregion
+
+        #region Events
+
+        /// <summary>
+        /// Occurs when a file is being written to an archive
+        /// </summary>
+        public event EventHandler<ValueEventArgs<ArchiveFileItem>> OnWritingFileToArchive;
 
         #endregion
     }

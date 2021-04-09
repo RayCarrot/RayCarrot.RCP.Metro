@@ -13,6 +13,7 @@
 
 Other changes:
 • The app data now gets verified on launch, automatically correcting any invalid/corrupt values
+• Creating a new archive will now ignore system files when importing
 
 
 -----   Version 10.3.1 - October 25, 2020   -----

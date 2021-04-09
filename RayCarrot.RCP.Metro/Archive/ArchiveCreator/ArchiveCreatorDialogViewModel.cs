@@ -74,6 +74,15 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Event Handlers
+
+        private void Manager_OnWritingFileToArchive(object sender, ValueEventArgs<ArchiveFileItem> e)
+        {
+            SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, e.Value.FileName));
+        }
+
+        #endregion
+
         #region Protected Methods
 
         /// <summary>
@@ -95,65 +104,98 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the archive was successfully created, otherwise false</returns>
         public async Task<bool> CreateArchiveAsync()
         {
-            throw new NotImplementedException();
-            //try
-            //{
-            //    if (IsLoading)
-            //        return false;
+            try
+            {
+                if (IsLoading)
+                    return false;
 
-            //    IsLoading = true;
+                IsLoading = true;
 
-            //    return await Task.Run(async () =>
-            //    {
-            //        // Make sure the input directory exists
-            //        if (!InputDirectory.DirectoryExists)
-            //        {
-            //            await Services.MessageUI.DisplayMessageAsync(Resources.Archive_CreateErrorInputNotFound, MessageType.Error);
+                return await Task.Run(async () =>
+                {
+                    ArchiveFileItem[] archiveFiles = null;
 
-            //            return false;
-            //        }
+                    try
+                    {
+                        Manager.OnWritingFileToArchive += Manager_OnWritingFileToArchive;
 
-            //        // Get the archive data from the files
-            //        var archiveData = Manager.GetArchive(Directory.GetFiles(InputDirectory, "*", SearchOption.AllDirectories).Select(file => file - InputDirectory));
+                        // Make sure the input directory exists
+                        if (!InputDirectory.DirectoryExists)
+                        {
+                            await Services.MessageUI.DisplayMessageAsync(Resources.Archive_CreateErrorInputNotFound, MessageType.Error);
 
-            //        // Get the import data
-            //        var importData = archiveData.FileEntries.Select(x => new ArchiveImportData(x.FileEntry, y =>
-            //        {
-            //            // Get the file path
-            //            var filePath = InputDirectory + x.RelativeImportFilePath;
+                            return false;
+                        }
 
-            //            SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, Path.GetFileName(filePath)));
+                        // Create a new archive
+                        var archive = Manager.CreateArchive();
 
-            //            // Return the encoded file
-            //            return Manager.EncodeFile(File.ReadAllBytes(filePath), x.FileEntry);
-            //        })).ToArray();
+                        var inputFiles = InputDirectory.
+                            GetDirectoryInfo().
+                            GetFiles("*", SearchOption.AllDirectories).
+                            Where(x => !x.Attributes.HasFlag(FileAttributes.System)).
+                            Select(x => new FileSystemPath(x.FullName)).
+                            ToArray();
 
-            //        // Open the output file
-            //        using var outputStream = File.Open(OutputFile, FileMode.Create, FileAccess.Write);
+                        archiveFiles = inputFiles.Select(x =>
+                        {
+                            var relativePath = x - InputDirectory;
+                            var dir = relativePath.Parent.FullPath.Replace(Path.DirectorySeparatorChar, Manager.PathSeparatorCharacter);
+                            var file = relativePath.Name;
 
-            //        // Update the archive
-            //        Manager.UpdateArchive(archiveData.Archive, outputStream, importData);
+                            var archiveEntry = Manager.GetNewFileEntry(archive, dir, file);
 
-            //        DisplayStatus = String.Empty;
+                            var archiveFileItem = new ArchiveFileItem(Manager, file, dir, archiveEntry);
 
-            //        await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Archive_CreateSuccess, importData.Length));
+                            // IDEA: If not encoded there's no need to copy the stream, instead just use origin file
 
-            //        return true;
-            //    });
-            //}
-            //catch (Exception ex)
-            //{
-            //    ex.HandleError("Creating archive", Manager);
+                            // Open the file to be imported
+                            using var inputStream = File.OpenRead(x);
 
-            //    await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CreateError);
+                            // Get the temp stream to store the pending import data
+                            archiveFileItem.SetPendingImport(File.Create(Path.GetTempFileName()));
 
-            //    return false;
-            //}
-            //finally
-            //{
-            //    IsLoading = false;
-            //    DisplayStatus = String.Empty;
-            //}
+                            // Encode the data to the pending import stream
+                            Manager.EncodeFile(inputStream, archiveFileItem.PendingImport, archiveEntry);
+
+                            // If no data was encoded we copy over the decoded data
+                            if (archiveFileItem.PendingImport.Length == 0)
+                                inputStream.CopyTo(archiveFileItem.PendingImport);
+
+                            return archiveFileItem;
+                        }).ToArray();
+
+                        // Open the output file
+                        using var outputStream = File.Open(OutputFile, FileMode.Create, FileAccess.Write);
+
+                        // Write the archive
+                        Manager.WriteArchive(null, archive, outputStream, archiveFiles);
+                    }
+                    finally
+                    {
+                        archiveFiles?.DisposeAll();
+                        Manager.OnWritingFileToArchive -= Manager_OnWritingFileToArchive;
+                        DisplayStatus = String.Empty;
+                    }
+
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(String.Format(Resources.Archive_CreateSuccess, archiveFiles.Length));
+
+                    return true;
+                });
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Creating archive", Manager);
+
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_CreateError);
+
+                return false;
+            }
+            finally
+            {
+                IsLoading = false;
+                DisplayStatus = String.Empty;
+            }
         }
 
         #endregion
