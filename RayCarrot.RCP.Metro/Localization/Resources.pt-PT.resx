@@ -2891,17 +2891,6 @@ Error message: {1}</value>
     <value>A reacondicionar o arquivo {0}
 </value>
   </data>
-  <data name="Archive_CNT_FileInfo" xml:space="preserve">
-    <value>Directório = {0}
-Tamanho = {1} x {2}
-Tamanho de ficheiro = {3}
-Modificado = {4}
-Encriptado = {5}
-Transparente = {6}
-Pointer = {7}
-Mipmaps = {8}
-Formato = {9}</value>
-  </data>
   <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
     <value>Selecção de ficheiro de extensão</value>
   </data>
@@ -2932,25 +2921,6 @@ Formato = {9}</value>
   <data name="About_Credits_Hakyra" xml:space="preserve">
     <value>Programa de tradução Espanhola (Espanha),
 Programa de tradução Catalã (Catalunha)
-</value>
-  </data>
-  <data name="Archive_IPK_FileInfo" xml:space="preserve">
-    <value>Directório = {0}
-Comprimido = {1}
-Tamanho de ficheiro = {2}
-Tamanho de ficheiro comprimido = {3}
-Pointer = {4}</value>
-  </data>
-  <data name="Archive_IPK_ImageFileInfo" xml:space="preserve">
-    <value>Directório = {0}
-Tamanho = {1} x {2}
-Utiliza TEX = {3}
-Formato de imagem = {4}
-Comprimido = {5}
-Tamanho de ficheiro = {6}
-Tamanho de ficheiro comprimido = {7}
-Pointer = {8}
-
 </value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
@@ -3535,5 +3505,35 @@ Pointer = {8}
   </data>
   <data name="About_Credits_RaymanUniverse" xml:space="preserve">
     <value>Programa de tradução Russo (Rússia)</value>
+  </data>
+  <data name="Archive_FileInfo_Dir" xml:space="preserve">
+    <value>Directório:</value>
+  </data>
+  <data name="Archive_FileInfo_Size" xml:space="preserve">
+    <value>Tamanho de ficheiro:</value>
+  </data>
+  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
+    <value>Tamanho de ficheiro comprimido:</value>
+  </data>
+  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
+    <value>Pointer:</value>
+  </data>
+  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
+    <value>Comprimido:</value>
+  </data>
+  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
+    <value>Encriptado:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
+    <value>Tamanho:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
+    <value>Transparente:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
+    <value>Mipmaps:</value>
+  </data>
+  <data name="Archive_FileInfo_Format" xml:space="preserve">
+    <value>Formato:</value>
   </data>
 </root>

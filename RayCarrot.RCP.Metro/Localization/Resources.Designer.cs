@@ -543,23 +543,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Directory = {0}
-        ///Size = {1} x {2}
-        ///File size = {3}
-        ///Modified = {4}
-        ///Encrypted = {5}
-        ///Transparent = {6}
-        ///Pointer = {7}
-        ///Mipmaps = {8}
-        ///Format = {9}.
-        /// </summary>
-        public static string Archive_CNT_FileInfo {
-            get {
-                return ResourceManager.GetString("Archive_CNT_FileInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Create directory.
         /// </summary>
         public static string Archive_CreateDir {
@@ -641,6 +624,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adding file {0}.
+        /// </summary>
+        public static string Archive_CreationFileStatus {
+            get {
+                return ResourceManager.GetString("Archive_CreationFileStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred in the Archive Explorer™ and it had to close.
         /// </summary>
         public static string Archive_CriticalError {
@@ -655,15 +647,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_Delete {
             get {
                 return ResourceManager.GetString("Archive_Delete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete.
-        /// </summary>
-        public static string Archive_DeleteDir {
-            get {
-                return ResourceManager.GetString("Archive_DeleteDir", resourceCulture);
             }
         }
         
@@ -803,6 +786,105 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Directory:.
+        /// </summary>
+        public static string Archive_FileInfo_Dir {
+            get {
+                return ResourceManager.GetString("Archive_FileInfo_Dir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Format:.
+        /// </summary>
+        public static string Archive_FileInfo_Format {
+            get {
+                return ResourceManager.GetString("Archive_FileInfo_Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transparent:.
+        /// </summary>
+        public static string Archive_FileInfo_Img_HasAlpha {
+            get {
+                return ResourceManager.GetString("Archive_FileInfo_Img_HasAlpha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mipmaps:.
+        /// </summary>
+        public static string Archive_FileInfo_Img_Mipmaps {
+            get {
+                return ResourceManager.GetString("Archive_FileInfo_Img_Mipmaps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size:.
+        /// </summary>
+        public static string Archive_FileInfo_Img_Size {
+            get {
+                return ResourceManager.GetString("Archive_FileInfo_Img_Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compressed:.
+        /// </summary>
+        public static string Archive_FileInfo_IsComp {
+            get {
+                return ResourceManager.GetString("Archive_FileInfo_IsComp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encrypted:.
+        /// </summary>
+        public static string Archive_FileInfo_IsEncrypted {
+            get {
+                return ResourceManager.GetString("Archive_FileInfo_IsEncrypted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pointer:.
+        /// </summary>
+        public static string Archive_FileInfo_Pointer {
+            get {
+                return ResourceManager.GetString("Archive_FileInfo_Pointer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File size:.
+        /// </summary>
+        public static string Archive_FileInfo_Size {
+            get {
+                return ResourceManager.GetString("Archive_FileInfo_Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compressed file size:.
+        /// </summary>
+        public static string Archive_FileInfo_SizeComp {
+            get {
+                return ResourceManager.GetString("Archive_FileInfo_SizeComp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type:.
+        /// </summary>
+        public static string Archive_FileInfo_Type {
+            get {
+                return ResourceManager.GetString("Archive_FileInfo_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Supported files.
         /// </summary>
         public static string Archive_FileSelectionGroupName {
@@ -889,35 +971,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_IPK_CompressExtensions {
             get {
                 return ResourceManager.GetString("Archive_IPK_CompressExtensions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Directory = {0}
-        ///Compressed = {1}
-        ///File size = {2}
-        ///Compressed file size = {3}
-        ///Pointer = {4}.
-        /// </summary>
-        public static string Archive_IPK_FileInfo {
-            get {
-                return ResourceManager.GetString("Archive_IPK_FileInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Directory = {0}
-        ///Size = {1} x {2}
-        ///Uses TEX = {3}
-        ///Image format = {4}
-        ///Compressed = {5}
-        ///File size = {6}
-        ///Compressed file size = {7}
-        ///Pointer = {8}.
-        /// </summary>
-        public static string Archive_IPK_ImageFileInfo {
-            get {
-                return ResourceManager.GetString("Archive_IPK_ImageFileInfo", resourceCulture);
             }
         }
         

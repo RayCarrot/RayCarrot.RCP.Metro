@@ -2845,17 +2845,6 @@
   <data name="Archive_RepackingStatus" xml:space="preserve">
     <value>Переупаковка архива {0}</value>
   </data>
-  <data name="Archive_CNT_FileInfo" xml:space="preserve">
-    <value>Папка = {0}
-Размер = {1} x {2}
-Размер файла = {3}
-Изменен = {4}
-Зашифрован = {5}
-Прозрачен = {6}
-Указатель = {7}
-Мипмапы = {8}
-Формат = {9}</value>
-  </data>
   <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
     <value>Выбор расширения файла</value>
   </data>
@@ -2882,23 +2871,6 @@
   </data>
   <data name="About_Credits_Hakyra" xml:space="preserve">
     <value>Перевод программы на испанский (Испания), перевод программы на каталонский (Каталония) </value>
-  </data>
-  <data name="Archive_IPK_FileInfo" xml:space="preserve">
-    <value>Папка = {0}
-Сжат = {1}
-Размер файла = {2}
-Размер сжатого файла = {3}
-Указатель = {4}</value>
-  </data>
-  <data name="Archive_IPK_ImageFileInfo" xml:space="preserve">
-    <value>Папка = {0}
-Размер = {1} x {2}
-Использует TEX = {3}
-Формат изображения = {4}
-Сжат = {5}
-Размер файла = {6}
-Размер сжатого файла = {7}
-Указатель = {8}</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Утилиты</value>
@@ -3425,5 +3397,35 @@
   </data>
   <data name="About_Credits_RaymanUniverse" xml:space="preserve">
     <value>Перевод программы на русский (Россия)</value>
+  </data>
+  <data name="Archive_FileInfo_Dir" xml:space="preserve">
+    <value>Папка:</value>
+  </data>
+  <data name="Archive_FileInfo_Size" xml:space="preserve">
+    <value>Размер файла:</value>
+  </data>
+  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
+    <value>Размер сжатого файла:</value>
+  </data>
+  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
+    <value>Указатель:</value>
+  </data>
+  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
+    <value>Сжат:</value>
+  </data>
+  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
+    <value>Зашифрован:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
+    <value>Размер:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
+    <value>Прозрачен:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
+    <value>Мипмапы:</value>
+  </data>
+  <data name="Archive_FileInfo_Format" xml:space="preserve">
+    <value>Формат:</value>
   </data>
 </root>

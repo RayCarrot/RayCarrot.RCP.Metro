@@ -78,7 +78,7 @@ namespace RayCarrot.RCP.Metro
 
         private void Manager_OnWritingFileToArchive(object sender, ValueEventArgs<ArchiveFileItem> e)
         {
-            SetDisplayStatus(String.Format(Resources.Archive_ImportingFileStatus, e.Value.FileName));
+            SetDisplayStatus(String.Format(Resources.Archive_CreationFileStatus, e.Value.FileName));
         }
 
         #endregion

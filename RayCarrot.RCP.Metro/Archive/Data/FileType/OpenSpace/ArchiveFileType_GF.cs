@@ -105,11 +105,10 @@ namespace RayCarrot.RCP.Metro
             // Get the thumbnail with the specified size
             return new ArchiveFileInitData(thumbnailSource, new DuoGridItemViewModel[]
             {
-                // TODO-UPDATE: Localize
-                new DuoGridItemViewModel("Size:", $"{file.Width}x{file.Height}"), 
-                new DuoGridItemViewModel("Transparent:", $"{file.GFPixelFormat.SupportsTransparency()}"), 
-                new DuoGridItemViewModel("Mipmaps:", $"{file.RealMipmapCount}"),
-                new DuoGridItemViewModel("Format:", $"{file.Format}", UserLevel.Technical), 
+                new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_Size, $"{file.Width}x{file.Height}"),
+                new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_HasAlpha, $"{file.GFPixelFormat.SupportsTransparency()}"),
+                new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_Mipmaps, $"{file.RealMipmapCount}"),
+                new DuoGridItemViewModel(Resources.Archive_FileInfo_Format, $"{file.Format}", UserLevel.Technical),
             });
         }
 

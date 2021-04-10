@@ -2974,28 +2974,6 @@ itemName</comment>
     <comment>Arguments:
 archiveName</comment>
   </data>
-  <data name="Archive_CNT_FileInfo" xml:space="preserve">
-    <value>Directory = {0}
-Size = {1} x {2}
-File size = {3}
-Modified = {4}
-Encrypted = {5}
-Transparent = {6}
-Pointer = {7}
-Mipmaps = {8}
-Format = {9}</value>
-    <comment>Arguments:
-dirPath
-imgWidth
-imgHeight
-fileSize
-isModified
-isEncrypted
-isTransparent
-pointer
-mipmaps
-format</comment>
-  </data>
   <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
     <value>File Extension Selection</value>
   </data>
@@ -3024,39 +3002,6 @@ fileFormat</comment>
   </data>
   <data name="About_Credits_Hakyra" xml:space="preserve">
     <value>Spanish (Spain) program translation, Catalan (Catalan) program translation</value>
-  </data>
-  <data name="Archive_IPK_FileInfo" xml:space="preserve">
-    <value>Directory = {0}
-Compressed = {1}
-File size = {2}
-Compressed file size = {3}
-Pointer = {4}</value>
-    <comment>Arguments:
-dirPath
-isCompressed
-fileSize
-compressedFileSize
-pointer</comment>
-  </data>
-  <data name="Archive_IPK_ImageFileInfo" xml:space="preserve">
-    <value>Directory = {0}
-Size = {1} x {2}
-Uses TEX = {3}
-Image format = {4}
-Compressed = {5}
-File size = {6}
-Compressed file size = {7}
-Pointer = {8}</value>
-    <comment>Arguments:
-dirPath
-imgWidth
-imgHeight
-usesTexWrapper
-fileExtension
-isCompressed
-fileSize
-compressedFileSize
-pointer</comment>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Utilities</value>
@@ -3634,14 +3579,11 @@ fileCount</comment>
   <data name="Archive_CreateDir_Info" xml:space="preserve">
     <value>Creates a new empty directory</value>
   </data>
-  <data name="Archive_DeleteDir" xml:space="preserve">
+  <data name="Archive_Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
   <data name="Archive_DeleteDir_Info" xml:space="preserve">
     <value>Deletes the directory and all of its content, including files and sub-directories</value>
-  </data>
-  <data name="Archive_Delete" xml:space="preserve">
-    <value>Delete</value>
   </data>
   <data name="Archive_ExportFile" xml:space="preserve">
     <value>Export</value>
@@ -3676,5 +3618,43 @@ file</comment>
   </data>
   <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
     <value>File name conflict</value>
+  </data>
+  <data name="Archive_FileInfo_Dir" xml:space="preserve">
+    <value>Directory:</value>
+  </data>
+  <data name="Archive_FileInfo_Size" xml:space="preserve">
+    <value>File size:</value>
+  </data>
+  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
+    <value>Compressed file size:</value>
+  </data>
+  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
+    <value>Pointer:</value>
+  </data>
+  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
+    <value>Compressed:</value>
+  </data>
+  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
+    <value>Encrypted:</value>
+  </data>
+  <data name="Archive_FileInfo_Type" xml:space="preserve">
+    <value>Type:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
+    <value>Size:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
+    <value>Transparent:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
+    <value>Mipmaps:</value>
+  </data>
+  <data name="Archive_FileInfo_Format" xml:space="preserve">
+    <value>Format:</value>
+  </data>
+  <data name="Archive_CreationFileStatus" xml:space="preserve">
+    <value>Adding file {0}</value>
+    <comment>Arguments:
+file</comment>
   </data>
 </root>

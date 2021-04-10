@@ -2906,17 +2906,6 @@ Komunikat o błędzie: {1}</value>
   <data name="Archive_RepackingStatus" xml:space="preserve">
     <value>Przepakowywanie archiwum {0}</value>
   </data>
-  <data name="Archive_CNT_FileInfo" xml:space="preserve">
-    <value>Folder = {0}
-Rozmiar = {1} x {2}
-Rozmiar pliku = {3}
-Zmodyfikowany = {4}
-Szyfrowane = {5}
-Przezroczysty = {6}
-Wskaźnik = {7}
-Mipmapy = {8}
-Format = {9}</value>
-  </data>
   <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
     <value>Wybór rozszerzenia pliku</value>
   </data>
@@ -2945,23 +2934,6 @@ Format = {9}</value>
   </data>
   <data name="About_Credits_Hakyra" xml:space="preserve">
     <value>Tłumaczenie hiszpańskie (Hiszpania) programu, Tłumaczenie katalońskie (Katalonia) programu</value>
-  </data>
-  <data name="Archive_IPK_FileInfo" xml:space="preserve">
-    <value>Folder = {0}
-Skompresowany = {1}
-Rozmiar pliku = {2}
-Rozmiar skompresowanego pliku = {3}
-Wskaźnik = {4}</value>
-  </data>
-  <data name="Archive_IPK_ImageFileInfo" xml:space="preserve">
-    <value>Folder = {0}
-Rozmiar = {1} x {2}
-Używa TEX = {3}
-Format obrazu = {4}
-Skompresowany = {5}
-Rozmiar pliku = {6}
-Rozmiar skompresowanego pliku = {7}
-Wskaźnik = {8}</value>
   </data>
   <data name="UtilitiesPageHeader" xml:space="preserve">
     <value>Narzędzia</value>
@@ -3540,5 +3512,35 @@ Wskaźnik = {8}</value>
   </data>
   <data name="About_Credits_RaymanUniverse" xml:space="preserve">
     <value>Tłumaczenie rosyjskie (Rosja) programu</value>
+  </data>
+  <data name="Archive_FileInfo_Dir" xml:space="preserve">
+    <value>Folder:</value>
+  </data>
+  <data name="Archive_FileInfo_Size" xml:space="preserve">
+    <value>Rozmiar pliku:</value>
+  </data>
+  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
+    <value>Rozmiar skompresowanego pliku:</value>
+  </data>
+  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
+    <value>Wskaźnik:</value>
+  </data>
+  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
+    <value>Skompresowany:</value>
+  </data>
+  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
+    <value>Szyfrowane:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
+    <value>Rozmiar:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
+    <value>Przezroczysty:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
+    <value>Mipmapy:</value>
+  </data>
+  <data name="Archive_FileInfo_Format" xml:space="preserve">
+    <value>Format:</value>
   </data>
 </root>

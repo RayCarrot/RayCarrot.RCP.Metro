@@ -266,13 +266,12 @@ namespace RayCarrot.RCP.Metro
             var entry = (OpenSpaceCntFileEntry)fileEntry;
             var cnt = (OpenSpaceCntData)archive;
 
-            // TODO-UPDATE: Localize
-            yield return new DuoGridItemViewModel("File size:", $"{ByteSize.FromBytes(entry.Size)}");
+            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Size, $"{ByteSize.FromBytes(entry.Size)}");
 
             if (cnt.Files.Contains(entry))
-                yield return new DuoGridItemViewModel("Pointer:", $"0x{entry.Pointer:X8}", UserLevel.Technical);
+                yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Pointer, $"0x{entry.Pointer:X8}", UserLevel.Technical);
             
-            yield return new DuoGridItemViewModel("Encrypted:", $"{entry.FileXORKey.Any(x => x != 0)}", UserLevel.Advanced);
+            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_IsEncrypted, $"{entry.FileXORKey.Any(x => x != 0)}", UserLevel.Advanced);
         }
 
         /// <summary>

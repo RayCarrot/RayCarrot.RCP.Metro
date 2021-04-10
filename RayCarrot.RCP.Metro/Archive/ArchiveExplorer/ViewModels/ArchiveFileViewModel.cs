@@ -202,8 +202,7 @@ namespace RayCarrot.RCP.Metro
                 // Populate info
                 FileDisplayInfo.Clear();
 
-                // TODO-UPDATE: Localize
-                FileDisplayInfo.Add(new DuoGridItemViewModel("Directory:", FileData.Directory));
+                FileDisplayInfo.Add(new DuoGridItemViewModel(Resources.Archive_FileInfo_Dir, FileData.Directory));
 
                 FileDisplayInfo.AddRange(Manager.GetFileInfo(Archive.ArchiveData, FileData.ArchiveEntry));
 
@@ -242,7 +241,7 @@ namespace RayCarrot.RCP.Metro
 
                 // Add display info from the init data
                 FileDisplayInfo.AddRange(initData.FileInfo);
-                FileDisplayInfo.Add(new DuoGridItemViewModel("Type:", FileType.TypeDisplayName, UserLevel.Advanced));
+                FileDisplayInfo.Add(new DuoGridItemViewModel(Resources.Archive_FileInfo_Type, FileType.TypeDisplayName, UserLevel.Advanced));
 
                 IsInitialized = true;
             }

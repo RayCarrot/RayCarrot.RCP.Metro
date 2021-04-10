@@ -70,11 +70,11 @@ namespace RayCarrot.RCP.Metro
         {
             ImageSource thumb = null;
 
+            // Get the image
+            using var img = GetImage(inputStream.Stream, fileExtension, manager);
+
             if (width.HasValue)
             {
-                // Get the image
-                using var img = GetImage(inputStream.Stream, fileExtension, manager);
-
                 // Resize to a thumbnail
                 img.Thumbnail(width.Value, (int)(img.Height / ((double)img.Width / width)));
 
@@ -83,7 +83,8 @@ namespace RayCarrot.RCP.Metro
 
             return new ArchiveFileInitData(thumb, new DuoGridItemViewModel[]
             {
-                // TODO-UPDATE: Add info (width, height, format etc.)
+                new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_Size, $"{img.Width}x{img.Height}"),
+                new DuoGridItemViewModel(Resources.Archive_FileInfo_Format, $"{GetFormat(fileExtension)}"),
             });
         }
 
@@ -167,6 +168,13 @@ namespace RayCarrot.RCP.Metro
             MagickFormat.Bmp,
             MagickFormat.Dds,
         };
+
+        /// <summary>
+        /// Gets the format to display the image as
+        /// </summary>
+        /// <param name="ext">The file extension</param>
+        /// <returns>The file format display name</returns>
+        public virtual string GetFormat(FileExtension ext) => ext.DisplayName;
 
         #endregion
     }

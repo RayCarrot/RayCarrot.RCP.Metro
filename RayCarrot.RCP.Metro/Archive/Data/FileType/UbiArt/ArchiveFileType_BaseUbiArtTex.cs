@@ -183,6 +183,13 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
+        /// Gets the format to display the image as
+        /// </summary>
+        /// <param name="ext">The file extension</param>
+        /// <returns>The file format display name</returns>
+        public override string GetFormat(FileExtension ext) => Format.DisplayName;
+
+        /// <summary>
         /// Reads the TEX header if there is one
         /// </summary>
         /// <param name="inputStream">The input stream</param>

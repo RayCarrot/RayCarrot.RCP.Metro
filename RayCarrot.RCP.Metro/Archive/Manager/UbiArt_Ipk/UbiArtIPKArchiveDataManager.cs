@@ -276,14 +276,13 @@ namespace RayCarrot.RCP.Metro
             var entry = (UbiArtIPKFileEntry)fileEntry;
             var ipk = (UbiArtIpkData)archive;
 
-            // TODO-UPDATE: Localize
-            yield return new DuoGridItemViewModel("File size:", $"{ByteSize.FromBytes(entry.Size)}");
-            yield return new DuoGridItemViewModel("Compressed file size:", $"{ByteSize.FromBytes(entry.CompressedSize)}");
+            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Size, $"{ByteSize.FromBytes(entry.Size)}");
+            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_SizeComp, $"{ByteSize.FromBytes(entry.CompressedSize)}");
 
             if (ipk.Files.Contains(entry))
-                yield return new DuoGridItemViewModel("Pointer:", $"0x{entry.Offsets.First() + ipk.BaseOffset:X8}", UserLevel.Technical);
+                yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Pointer, $"0x{entry.Offsets.First() + ipk.BaseOffset:X8}", UserLevel.Technical);
             
-            yield return new DuoGridItemViewModel("Compressed:", $"{entry.IsCompressed}");
+            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_IsComp, $"{entry.IsCompressed}");
         }
 
         /// <summary>
