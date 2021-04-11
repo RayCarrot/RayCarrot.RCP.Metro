@@ -102,6 +102,7 @@
     </ApplicationDefinition>
     <Compile Include="AppUserData\DataModels\Archive_GF_TransparencyMode.cs" />
     <Compile Include="AppUserData\DataModels\ArchiveExplorerSort.cs" />
+    <Compile Include="Archive\ArchiveExplorer\Converters\ArchiveExplorerIsFolderExpandedToIconConverter.cs" />
     <Compile Include="Archive\Data\ArchiveData.cs" />
     <Compile Include="Archive\Data\ArchiveDirectory.cs" />
     <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_BaseUbiArtTex.cs" />

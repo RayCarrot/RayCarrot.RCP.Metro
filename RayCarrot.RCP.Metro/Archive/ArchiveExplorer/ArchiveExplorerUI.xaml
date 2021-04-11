@@ -195,6 +195,7 @@
                         <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
                         <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}" />
                         <Setter Property="ToolTip" Value="{Binding Path=DisplayDescription}" />
+                        <EventSetter Event="Expanded" Handler="DirTreeItem_OnExpanded" />
                     </Style>
                 </TreeView.ItemContainerStyle>
 
@@ -209,7 +210,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <iconPacks:PackIconMaterial Grid.Column="0"
-                                                            Kind="FolderOutline" 
+                                                            Kind="{Binding Path=IsExpanded, Converter={local:ArchiveExplorerIsFolderExpandedToIconConverter}}" 
                                                             Foreground="{StaticResource Archive_FolderBrush}" />
 
                                 <TextBlock Grid.Column="2"

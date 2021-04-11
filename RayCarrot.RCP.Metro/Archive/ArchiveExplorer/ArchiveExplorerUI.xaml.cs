@@ -184,6 +184,12 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        private void DirTreeItem_OnExpanded(object sender, RoutedEventArgs e)
+        {
+            if (sender is TreeViewItem t && !t.HasItems && t.DataContext is ArchiveDirectoryViewModel d && d.Parent != null)
+                t.IsExpanded = false;
+        }
+
         #endregion
 
         #region Events
