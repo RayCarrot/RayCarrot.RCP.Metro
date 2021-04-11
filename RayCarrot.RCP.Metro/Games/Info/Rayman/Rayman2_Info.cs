@@ -2,6 +2,9 @@
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
+using RayCarrot.IO;
+using RayCarrot.Rayman;
+using RayCarrot.Rayman.OpenSpace;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -109,6 +112,26 @@ namespace RayCarrot.RCP.Metro
                 };
             }
         }
+
+        /// <summary>
+        /// Indicates if the game has archives which can be opened
+        /// </summary>
+        public override bool HasArchives => true;
+
+        /// <summary>
+        /// Gets the archive data manager for the game
+        /// </summary>
+        public override IArchiveDataManager GetArchiveDataManager => new OpenSpaceCntArchiveDataManager(OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.Rayman2, Platform.PC));
+
+        /// <summary>
+        /// Gets the archive file paths for the game
+        /// </summary>
+        /// <param name="installDir">The game's install directory</param>
+        public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new FileSystemPath[]
+        {
+            installDir + "Data" + "Textures.cnt",
+            installDir + "Data" + "Vignette.cnt",
+        };
 
         #endregion
 

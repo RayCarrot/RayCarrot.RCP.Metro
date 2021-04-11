@@ -6,7 +6,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// The Rayman 2 Demo 1 game info
     /// </summary>
-    public sealed class Demo_Rayman2_1_Info : RCPGameInfo
+    public sealed class Demo_Rayman2_1_Info : Demo_Rayman2_BaseInfo
     {
         #region Public Override Properties
 
@@ -14,11 +14,6 @@ namespace RayCarrot.RCP.Metro
         /// The game
         /// </summary>
         public override Games Game => Games.Demo_Rayman2_1;
-
-        /// <summary>
-        /// The category for the game
-        /// </summary>
-        public override GameCategory Category => GameCategory.Demo;
 
         /// <summary>
         /// The game display name
@@ -29,16 +24,6 @@ namespace RayCarrot.RCP.Metro
         /// The game backup name
         /// </summary>
         public override string BackupName => "Rayman 2 Demo 1";
-
-        /// <summary>
-        /// Gets the launch name for the game
-        /// </summary>
-        public override string DefaultFileName => "Rayman2Demo.exe";
-
-        /// <summary>
-        /// Indicates if the game can be downloaded
-        /// </summary>
-        public override bool CanBeDownloaded => true;
 
         /// <summary>
         /// The download URLs for the game if it can be downloaded. All sources must be compressed.

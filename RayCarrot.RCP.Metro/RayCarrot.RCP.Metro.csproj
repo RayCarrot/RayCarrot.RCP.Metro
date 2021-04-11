@@ -133,6 +133,8 @@
     <Compile Include="Games\Config\ViewModels\RaymanMDemoConfigViewModel.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_2_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_1_Info.cs" />
+    <Compile Include="Games\Info\Demo\Demo_Rayman2_BaseInfo.cs" />
+    <Compile Include="Games\Info\Demo\Demo_Rayman3_BaseInfo.cs" />
     <Compile Include="Games\Info\Demo\Demo_RaymanGold_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman2_2_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman2_1_Info.cs" />
@@ -185,39 +187,23 @@
     <Compile Include="UI\Controls\LoaderContentControl.cs" />
     <Compile Include="Extensions\ApplicationExtensions.cs" />
     <Compile Include="UI\ValidationRules\R1PasswordValidationRule.cs" />
-    <Compile Include="Utilities\Games\Common\ArchiveExplorer\Ray1ArchiveExplorer\BaseRay1ExplorerUtility.cs" />
-    <Compile Include="Utilities\Games\Common\ArchiveExplorer\Ray1ArchiveExplorer\BaseRay1ArchiveExplorerUtilityViewModel.cs" />
     <Compile Include="Utilities\Games\Common\SyncTextureInfo\BaseGameSyncTextureInfoUtilityUI.xaml.cs">
       <DependentUpon>BaseGameSyncTextureInfoUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Games\Common\SyncTextureInfo\BaseGameSyncTextureInfoUtility.cs" />
-    <Compile Include="Utilities\Games\Educational DOS\ArchiveExplorer\EDUArchiveExplorerUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman 60 Levels\ArchiveExplorer\R6ArchiveExplorerUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman by his Fans\ArchiveExplorer\RFArchiveExplorerUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman Designer\ArchiveExplorer\RDArchiveExplorerUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman 2\CNTExplorer\R2BaseCNTExplorerUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman 2\CNTExplorer\R2DemoCNTExplorerUtility.cs" />
     <Compile Include="Utilities\Games\Rayman 2\RemoveDRM\R2RemoveDRMUtility.cs" />
     <Compile Include="Utilities\Games\Rayman 2\RemoveDRM\R2RemoveDRMUtilityUI.xaml.cs">
       <DependentUpon>R2RemoveDRMUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Games\Rayman 2\RemoveDRM\R2RemoveDRMUtilityViewModel.cs" />
     <Compile Include="Utilities\Games\Rayman 2\SyncTextureInfo\R2GameSyncTextureInfoUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman 3\CNTExplorer\R3BaseCNTExplorerUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman 3\CNTExplorer\R3DemoCNTExplorerUtility.cs" />
     <Compile Include="Utilities\Games\Rayman 3\SyncTextureInfo\R3GameSyncTextureInfoUtility.cs" />
     <Compile Include="Utilities\Games\Rayman Arena\SyncTextureInfo\RAGameSyncTextureInfoUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman M\CNTExplorer\RMBaseCNTExplorerUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman M\CNTExplorer\RMDemoCNTExplorerUtility.cs" />
     <Compile Include="Helpers\SimpleTypeConverter.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman3_1_Info.cs" />
     <Compile Include="Utilities\Games\Rayman 1\TPLS\TPLSRaymanVersion.cs" />
     <Compile Include="Helpers\LocalizedString.cs" />
-    <Compile Include="Utilities\Games\Common\ArchiveExplorer\UbiArtIPKExplorer\UbiArtIPKExplorerUtility.cs" />
-    <Compile Include="Utilities\Games\Common\ArchiveExplorer\UbiArtIPKExplorer\BaseUbiArtIPKExplorerUtilityViewModel.cs" />
-    <Compile Include="Utilities\Games\Rayman Legends\IPKExplorer\RLIPKExplorerUtility.cs" />
     <Compile Include="Utilities\Games\Rayman M\SyncTextureInfo\RMGameSyncTextureInfoUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman Origins\IPKExplorer\ROIPKExplorerUtility.cs" />
     <Compile Include="Helpers\ImageHelpers.cs" />
     <Compile Include="Archive\Manager\UbiArt_Ipk\UbiArtIPKArchiveConfigViewModel.cs" />
     <Compile Include="Archive\ArchiveExplorer\ArchiveExplorerUI.xaml.cs">
@@ -315,10 +301,6 @@
     <Compile Include="Games\Progression\JungleRun\JungleRunProgressionSlotViewModel.cs" />
     <Compile Include="Games\Progression\Rayman3\Rayman3ProgressionSlotViewModel.cs" />
     <Compile Include="Games\Progression\Rayman3\Rayman3ProgressionViewModel.cs" />
-    <Compile Include="Utilities\Games\Rayman 2\CNTExplorer\R2CNTExplorerUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman Arena\CNTExplorer\RACNTExplorerUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman 3\CNTExplorer\R3CNTExplorerUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman M\CNTExplorer\RMCNTExplorerUtility.cs" />
     <Compile Include="Helpers\CommonPaths.cs" />
     <Compile Include="Localization\LocalizationManager.cs" />
     <Compile Include="Extensions\MessageUIManagerExtensions.cs" />
@@ -446,11 +428,6 @@
       <DependentUpon>R1FixConfigUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Games\Rayman 1\FixConfig\R1FixConfigUtilityViewModel.cs" />
-    <Compile Include="Utilities\Games\Common\ArchiveExplorer\OpenSpaceCNTExplorer\BaseOpenSpaceCNTExplorerUtility.cs" />
-    <Compile Include="Utilities\Games\Common\ArchiveExplorer\BaseArchiveExplorerGameUtilityUI.xaml.cs">
-      <DependentUpon>BaseArchiveExplorerGameUtilityUI.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Utilities\Games\Common\ArchiveExplorer\OpenSpaceCNTExplorer\BaseOpenSpaceCNTExplorerUtilityViewModel.cs" />
     <Compile Include="Utilities\Games\Rayman 2\DiscPatch\R2DiscPatchUtility.cs" />
     <Compile Include="Utilities\Games\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml.cs">
       <DependentUpon>R2DiscPatchUtilityUI.xaml</DependentUpon>
@@ -689,10 +666,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Utilities\Games\Rayman 1\FixConfig\R1FixConfigUtilityUI.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Utilities\Games\Common\ArchiveExplorer\BaseArchiveExplorerGameUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

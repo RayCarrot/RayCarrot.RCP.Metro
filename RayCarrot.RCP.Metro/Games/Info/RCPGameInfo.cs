@@ -163,6 +163,22 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public virtual IEnumerable<FileSystemPath> UninstallFiles => null;
 
+        /// <summary>
+        /// Indicates if the game has archives which can be opened
+        /// </summary>
+        public virtual bool HasArchives => false;
+
+        /// <summary>
+        /// Gets the archive data manager for the game
+        /// </summary>
+        public virtual IArchiveDataManager GetArchiveDataManager => null;
+
+        /// <summary>
+        /// Gets the archive file paths for the game
+        /// </summary>
+        /// <param name="installDir">The game's install directory</param>
+        public virtual FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => null;
+
         #endregion
 
         #region Public Virtual Methods
@@ -250,8 +266,19 @@ namespace RayCarrot.RCP.Metro
                     if (RayMapURL != null)
                     {
                         // TODO-UPDATE: Localize
-                        actions.Add(new OverflowButtonItemViewModel("View Maps", PackIconMaterialKind.MapMarkerOutline, new AsyncRelayCommand(async () => (await RCPServices.File.LaunchFileAsync(RayMapURL))?.Dispose())));
+                        actions.Add(new OverflowButtonItemViewModel("View maps", PackIconMaterialKind.MapMarkerOutline, new AsyncRelayCommand(async () => (await RCPServices.File.LaunchFileAsync(RayMapURL))?.Dispose())));
                         actions.Add(new OverflowButtonItemViewModel());
+                    }
+
+                    // Add open archive
+                    if (HasArchives)
+                    {
+                        // TODO-UPDATE: Localize
+                        actions.Add(new OverflowButtonItemViewModel("Open archives", PackIconMaterialKind.FolderMultipleOutline, new AsyncRelayCommand(async () =>
+                        {
+                            // Show the archive explorer
+                            await RCPServices.UI.ShowArchiveExplorerAsync(GetArchiveDataManager, GetArchiveFilePaths(Game.GetInstallDir()).Where(x => x.FileExists));
+                        }), UserLevel.Advanced));
                     }
 
                     // Add open location

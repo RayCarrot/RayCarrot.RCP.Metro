@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using RayCarrot.Common;
+using RayCarrot.IO;
+using RayCarrot.Rayman;
+using RayCarrot.Rayman.Ray1;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -83,6 +86,22 @@ namespace RayCarrot.RCP.Metro
                 }).ToArray<IBackupInfo>();
             }
         }
+
+        /// <summary>
+        /// Indicates if the game has archives which can be opened
+        /// </summary>
+        public override bool HasArchives => true;
+
+        /// <summary>
+        /// Gets the archive data manager for the game
+        /// </summary>
+        public override IArchiveDataManager GetArchiveDataManager => new Ray1PCArchiveDataManager(Ray1Settings.GetDefaultSettings(Ray1Game.RayEdu, Platform.PC));
+
+        /// <summary>
+        /// Gets the archive file paths for the game
+        /// </summary>
+        /// <param name="installDir">The game's install directory</param>
+        public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => Ray1PCArchiveDataManager.GetArchiveFiles(installDir);
 
         #endregion
     }

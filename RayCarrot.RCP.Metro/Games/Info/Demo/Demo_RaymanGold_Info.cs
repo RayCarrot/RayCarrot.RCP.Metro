@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using RayCarrot.IO;
+using RayCarrot.Rayman;
+using RayCarrot.Rayman.Ray1;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -58,6 +61,22 @@ namespace RayCarrot.RCP.Metro
         /// The config UI, if any is available
         /// </summary>
         public override FrameworkElement ConfigUI => new DosBoxConfig(new RaymanDesignerConfigViewModel(Game, false));
+
+        /// <summary>
+        /// Indicates if the game has archives which can be opened
+        /// </summary>
+        public override bool HasArchives => true;
+
+        /// <summary>
+        /// Gets the archive data manager for the game
+        /// </summary>
+        public override IArchiveDataManager GetArchiveDataManager => new Ray1PCArchiveDataManager(Ray1Settings.GetDefaultSettings(Ray1Game.RayKit, Platform.PC));
+
+        /// <summary>
+        /// Gets the archive file paths for the game
+        /// </summary>
+        /// <param name="installDir">The game's install directory</param>
+        public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => Ray1PCArchiveDataManager.GetArchiveFiles(installDir);
 
         #endregion
     }

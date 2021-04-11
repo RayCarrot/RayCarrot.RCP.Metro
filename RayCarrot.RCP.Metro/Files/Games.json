@@ -6,72 +6,32 @@
       "R1FixConfigUtility"
     ],
     "RaymanDesigner": [
-      "RDArchiveExplorerUtility",
       "RDReplaceFilesUtility",
       "RDCreateConfigUtility"
     ],
-    "RaymanByHisFans": [
-      "RFArchiveExplorerUtility"
-    ],
-    "Rayman60Levels": [
-      "R6ArchiveExplorerUtility"
-    ],
-    "EducationalDos": [
-      "EDUArchiveExplorerUtility"
-    ],
     "Rayman2": [
-      "R2CNTExplorerUtility",
       "R2GameSyncTextureInfoUtility",
       "R2RemoveDRMUtility",
       "R2DiscPatchUtility",
       "R2TranslationUtility"
     ],
-    "Demo_Rayman2_1": [
-      "R2Demo1CNTExplorerUtility"
-    ],
-    "Demo_Rayman2_2": [
-      "R2Demo2CNTExplorerUtility"
-    ],
     "RaymanM": [
-      "RMCNTExplorerUtility",
       "RMGameSyncTextureInfoUtility"
     ],
-    "Demo_RaymanM": [
-      "RMDemoCNTExplorerUtility"
-    ],
     "RaymanArena": [
-      "RACNTExplorerUtility",
       "RAGameSyncTextureInfoUtility"
     ],
     "Rayman3": [
-      "R3CNTExplorerUtility",
       "R3GameSyncTextureInfoUtility",
       "R3DirectPlayUtility"
     ],
-    "Demo_Rayman3_1": [
-      "R3Demo1CNTExplorerUtility"
-    ],
-    "Demo_Rayman3_2": [
-      "R3Demo2CNTExplorerUtility"
-    ],
-    "Demo_Rayman3_3": [
-      "R3Demo3CNTExplorerUtility"
-    ],
-    "Demo_Rayman3_4": [
-      "R3Demo4CNTExplorerUtility"
-    ],
-    "Demo_Rayman3_5": [
-      "R3Demo5CNTExplorerUtility"
-    ],
     "RaymanOrigins": [
-      "ROIPKExplorerUtility",
       "ROHQVideosUtility",
       "ROLocalizationConverterUtility",
       "RODebugCommandsUtility",
       "ROUpdateUtility"
     ],
     "RaymanLegends": [
-      "RLIPKExplorerUtility",
       "RLUbiRayUtility",
       "RLLocalizationConverterUtility",
       "RLDebugCommandsUtility"

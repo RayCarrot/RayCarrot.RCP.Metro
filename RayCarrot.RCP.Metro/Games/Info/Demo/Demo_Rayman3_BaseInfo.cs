@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 using RayCarrot.IO;
 using RayCarrot.Rayman;
@@ -8,70 +7,38 @@ using RayCarrot.Rayman.OpenSpace;
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// The Rayman 3 game info
+    /// The Rayman 3 Demo base game info
     /// </summary>
-    public sealed class Rayman3_Info : RCPGameInfo
+    public abstract class Demo_Rayman3_BaseInfo : RCPGameInfo
     {
-        #region Protected Override Properties
-
-        /// <summary>
-        /// Gets the backup directories for the game
-        /// </summary>
-        protected override IList<BackupDir> GetBackupDirectories => new List<BackupDir>()
-        {
-            new BackupDir(Game.GetInstallDir() + "GAMEDATA" + "SaveGame", SearchOption.TopDirectoryOnly, "*", "0", 0)
-        };
-
-        #endregion
-
         #region Public Override Properties
-
-        /// <summary>
-        /// The game
-        /// </summary>
-        public override Games Game => Games.Rayman3;
 
         /// <summary>
         /// The category for the game
         /// </summary>
-        public override GameCategory Category => GameCategory.Rayman;
-
-        /// <summary>
-        /// The game display name
-        /// </summary>
-        public override string DisplayName => "Rayman 3";
-
-        /// <summary>
-        /// The game backup name
-        /// </summary>
-        public override string BackupName => "Rayman 3";
+        public override GameCategory Category => GameCategory.Demo;
 
         /// <summary>
         /// Gets the launch name for the game
         /// </summary>
-        public override string DefaultFileName => "Rayman3.exe";
+        public override string DefaultFileName => "MainP5Pvf.exe";
+
+        /// <summary>
+        /// Indicates if the game can be downloaded
+        /// </summary>
+        public override bool CanBeDownloaded => true;
 
         /// <summary>
         /// The config UI, if any is available
         /// </summary>
-        public override FrameworkElement ConfigUI => new Ray_M_Arena_3_Config(new Rayman3ConfigViewModel());
-
-        /// <summary>
-        /// The progression view model, if any is available
-        /// </summary>
-        public override BaseProgressionViewModel ProgressionViewModel => new Rayman3ProgressionViewModel();
-
-        /// <summary>
-        /// Optional RayMap URL
-        /// </summary>
-        public override string RayMapURL => CommonUrls.GetRayMapGameURL("r3_pc", "r3_pc");
+        public override FrameworkElement ConfigUI => new Ray_M_Arena_3_Config(new Rayman3ConfigViewModel(Game));
 
         /// <summary>
         /// Gets the file links for the game
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[]
         {
-            new GameFileLink(Resources.GameLink_Setup, Game.GetInstallDir() + "R3_Setup_DX8.exe")
+            new GameFileLink(Resources.GameLink_Setup, Game.GetInstallDir() + "R3_Setup_DX8D.exe")
         };
 
         /// <summary>
@@ -98,8 +65,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="installDir">The game's install directory</param>
         public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new FileSystemPath[]
         {
-            installDir + "Gamedatabin" + "tex32_1.cnt",
-            installDir + "Gamedatabin" + "tex32_2.cnt",
+            //installDir + "Gamedatabin" + "tex16.cnt",
+            installDir + "Gamedatabin" + "tex32.cnt",
             installDir + "Gamedatabin" + "vignette.cnt",
         };
 
