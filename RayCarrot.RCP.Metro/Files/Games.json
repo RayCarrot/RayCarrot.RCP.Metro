@@ -123,6 +123,9 @@
     "RaymanRedemption": {
       "Win32": "RaymanRedemption_Win32"
     },
+    "RaymanRedesigner": {
+      "Win32": "RaymanRedesigner_Win32"
+    },
     "RaymanBowling2": {
       "Win32": "RaymanBowling2_Win32"
     },
@@ -190,6 +193,7 @@
     "GloboxMoment": "GloboxMoment_Info",
     "TheDarkMagiciansReignofTerror": "TheDarkMagiciansReignofTerror_Info",
     "RaymanRedemption": "RaymanRedemption_Info",
+    "RaymanRedesigner": "RaymanRedesigner_Info",
     "RaymanBowling2": "RaymanBowling2_Info",
     "RabbidsCoding": "RabbidsCoding_Info",
     "Demo_Rayman3_1": "Demo_Rayman3_1_Info",

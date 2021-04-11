@@ -174,6 +174,11 @@ namespace RayCarrot.RCP.Metro
         RaymanRedemption,
 
         /// <summary>
+        /// Rayman ReDesigner
+        /// </summary>
+        RaymanRedesigner,
+
+        /// <summary>
         /// Rayman Bowling 2
         /// </summary>
         RaymanBowling2,
