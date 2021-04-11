@@ -115,6 +115,16 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string FullPath => Archive.Manager.CombinePaths(FullID.Skip(1));
 
+        /// <summary>
+        /// Indicates if the directory can be deleted
+        /// </summary>
+        public bool CanBeDeleted => Parent != null && Archive.Manager.CanModifyDirectories;
+
+        /// <summary>
+        /// Indicates if a sub-directory can be added
+        /// </summary>
+        public bool CanAddSubDirectory => Archive.Manager.CanModifyDirectories;
+
         #endregion
 
         #region Commands
@@ -371,6 +381,9 @@ namespace RayCarrot.RCP.Metro
 
         public async Task CreateDirectoryAsync()
         {
+            if (!Archive.Manager.CanModifyDirectories)
+                return;
+
             // Run as a load operation
             using (Archive.LoadOperation.Run())
             {
@@ -408,6 +421,9 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task DeleteDirectoryAsync()
         {
+            if (!Archive.Manager.CanModifyDirectories)
+                return;
+
             RL.Logger?.LogTraceSource($"The archive directory {DisplayName} is being removed...");
 
             // Run as a load operation

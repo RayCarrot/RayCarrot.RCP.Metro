@@ -6,8 +6,18 @@
       "R1FixConfigUtility"
     ],
     "RaymanDesigner": [
+      "RDArchiveExplorerUtility",
       "RDReplaceFilesUtility",
       "RDCreateConfigUtility"
+    ],
+    "RaymanByHisFans": [
+      "RFArchiveExplorerUtility"
+    ],
+    "Rayman60Levels": [
+      "R6ArchiveExplorerUtility"
+    ],
+    "EducationalDos": [
+      "EDUArchiveExplorerUtility"
     ],
     "Rayman2": [
       "R2CNTExplorerUtility",

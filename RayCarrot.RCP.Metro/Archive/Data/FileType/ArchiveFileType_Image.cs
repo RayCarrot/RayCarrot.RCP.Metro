@@ -167,6 +167,7 @@ namespace RayCarrot.RCP.Metro
             MagickFormat.Jpeg,
             MagickFormat.Bmp,
             MagickFormat.Dds,
+            MagickFormat.Pcx,
         };
 
         /// <summary>

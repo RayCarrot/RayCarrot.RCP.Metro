@@ -15,6 +15,7 @@
             // Create view models
             ArchiveExplorerViewModels = new UtilityViewModel[]
             {
+                new UtilityViewModel(new R1ArchiveExplorerUtility()),
                 new UtilityViewModel(new CNTArchiveExplorerUtility()),
                 new UtilityViewModel(new IPKArchiveExplorerUtility()),
             };

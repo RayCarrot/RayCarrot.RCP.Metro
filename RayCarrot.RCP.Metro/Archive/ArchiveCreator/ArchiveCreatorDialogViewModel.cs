@@ -132,7 +132,7 @@ namespace RayCarrot.RCP.Metro
 
                         var inputFiles = InputDirectory.
                             GetDirectoryInfo().
-                            GetFiles("*", SearchOption.AllDirectories).
+                            GetFiles("*", Manager.CanModifyDirectories ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly).
                             Where(x => !x.Attributes.HasFlag(FileAttributes.System)).
                             Select(x => new FileSystemPath(x.FullName)).
                             ToArray();

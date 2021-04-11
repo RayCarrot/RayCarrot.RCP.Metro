@@ -34,6 +34,11 @@ namespace RayCarrot.RCP.Metro
         #region Public Properties
 
         /// <summary>
+        /// Indicates if directories can be created and deleted
+        /// </summary>
+        public bool CanModifyDirectories => true;
+
+        /// <summary>
         /// The path separator character to use. This is usually \ or /.
         /// </summary>
         public char PathSeparatorCharacter => '/';
@@ -209,8 +214,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="archive">The archive data</param>
         /// <param name="archiveFileStream">The archive file stream</param>
+        /// <param name="fileName">The name of the file the archive is loaded from, if available</param>
         /// <returns>The archive data</returns>
-        public ArchiveData LoadArchiveData(object archive, Stream archiveFileStream)
+        public ArchiveData LoadArchiveData(object archive, Stream archiveFileStream, string fileName)
         {
             // Get the data
             var data = archive.CastTo<UbiArtIpkData>();

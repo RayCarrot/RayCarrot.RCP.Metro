@@ -189,7 +189,7 @@ namespace RayCarrot.RCP.Metro
             ArchiveData = Manager.LoadArchive(ArchiveFileStream);
 
             // Load the archive
-            var data = Manager.LoadArchiveData(ArchiveData, ArchiveFileStream);
+            var data = Manager.LoadArchiveData(ArchiveData, ArchiveFileStream, FilePath.Name);
 
             // Dispose the current generator
             ArchiveFileGenerator?.Dispose();

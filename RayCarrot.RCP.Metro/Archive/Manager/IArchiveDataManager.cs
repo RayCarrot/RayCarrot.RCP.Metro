@@ -17,6 +17,11 @@ namespace RayCarrot.RCP.Metro
         char PathSeparatorCharacter { get; }
 
         /// <summary>
+        /// Indicates if directories can be created and deleted
+        /// </summary>
+        bool CanModifyDirectories { get; }
+
+        /// <summary>
         /// The file extension for the archive file
         /// </summary>
         FileExtension ArchiveFileExtension { get; }
@@ -74,8 +79,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="archive">The archive data</param>
         /// <param name="archiveFileStream">The archive file stream</param>
+        /// <param name="fileName">The name of the file the archive is loaded from, if available</param>
         /// <returns>The archive data</returns>
-        ArchiveData LoadArchiveData(object archive, Stream archiveFileStream);
+        ArchiveData LoadArchiveData(object archive, Stream archiveFileStream, string fileName);
 
         /// <summary>
         /// Loads the archive from a stream

@@ -178,14 +178,15 @@
                                                         ToolTip="{Resx Archive_CreateDir_Info}"
                                                         Command="{Binding Path=CreateDirectoryCommand}"
                                                         IconForeground="{StaticResource Archive_AddItemBrush}"
-                                                        IconKind="FolderPlusOutline" />
+                                                        IconKind="FolderPlusOutline"
+                                                        IsEnabled="{Binding Path=CanAddSubDirectory, Mode=OneTime}" />
 
                                     <local:MenuItemIcon Header="{Resx Archive_Delete}"
                                                         ToolTip="{Resx Archive_DeleteDir_Info}"
                                                         Command="{Binding Path=DeleteCommand}"
                                                         IconForeground="{StaticResource Archive_DeleteItemBrush}"
                                                         IconKind="DeleteOutline"
-                                                        IsEnabled="{Binding Path=Parent, Converter={rwpf:IsNotNullConverter}}"/>
+                                                        IsEnabled="{Binding Path=CanBeDeleted, Mode=OneTime}"/>
 
 
                                 </ContextMenu>

@@ -22,6 +22,8 @@ namespace RayCarrot.RCP.Metro
             {
                 GameMode.Rayman1PC,
                 GameMode.RayKitPC,
+                GameMode.RayFanPC,
+                GameMode.Ray60nPC,
             });
         }
 

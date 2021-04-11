@@ -8,15 +8,15 @@ using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman;
-using RayCarrot.Rayman.OpenSpace;
+using RayCarrot.Rayman.Ray1;
 using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// Archive data manager for an OpenSpace .cnt file
+    /// Archive data manager for Rayman 1 PC spin-off .dat files
     /// </summary>
-    public class OpenSpaceCntArchiveDataManager : IArchiveDataManager
+    public class Ray1PCArchiveDataManager : IArchiveDataManager
     {
         #region Constructor
 
@@ -24,7 +24,7 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         /// <param name="settings">The settings when serializing the data</param>
-        public OpenSpaceCntArchiveDataManager(OpenSpaceSettings settings) => Settings = settings;
+        public Ray1PCArchiveDataManager(Ray1Settings settings) => Settings = settings;
 
         #endregion
 
@@ -38,12 +38,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if directories can be created and deleted
         /// </summary>
-        public bool CanModifyDirectories => true;
+        public bool CanModifyDirectories => false;
 
         /// <summary>
         /// The file extension for the archive file
         /// </summary>
-        public FileExtension ArchiveFileExtension => new FileExtension(".cnt");
+        public FileExtension ArchiveFileExtension => new FileExtension(".dat");
 
         /// <summary>
         /// The serializer settings to use for the archive
@@ -53,14 +53,14 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The default archive file name to use when creating an archive
         /// </summary>
-        public string DefaultArchiveFileName => "Textures.cnt";
+        public string DefaultArchiveFileName => "Archive.dat";
 
         /// <summary>
         /// Gets the configuration UI to use for creator
         /// </summary>
         public object GetCreatorUIConfig => null;
 
-        public OpenSpaceSettings Settings { get; }
+        public Ray1Settings Settings { get; }
 
         #endregion
 
@@ -75,13 +75,13 @@ namespace RayCarrot.RCP.Metro
         public void EncodeFile(Stream inputStream, Stream outputStream, object fileEntry)
         {
             // Get the file entry
-            var file = fileEntry.CastTo<OpenSpaceCntFileEntry>();
+            var file = fileEntry.CastTo<Rayman1PCArchiveEntry>();
 
             // Update the size
-            file.Size = (uint)inputStream.Length;
+            file.FileSize = (uint)inputStream.Length;
 
             // Remove the encryption
-            file.FileXORKey = new byte[4];
+            file.XORKey = 0;
         }
 
         /// <summary>
@@ -92,11 +92,11 @@ namespace RayCarrot.RCP.Metro
         /// <param name="fileEntry">The file entry for the file to decode</param>
         public void DecodeFile(Stream inputStream, Stream outputStream, object fileEntry)
         {
-            var entry = (OpenSpaceCntFileEntry)fileEntry;
+            var entry = (Rayman1PCArchiveEntry)fileEntry;
 
-            if (entry.FileXORKey.Any(x => x != 0))
+            if (entry.XORKey != 0)
                 // Decrypt the bytes
-                new MultiXORDataEncoder(entry.FileXORKey, true).Decode(inputStream, outputStream);
+                new XORDataEncoder(entry.XORKey).Decode(inputStream, outputStream);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="generator">The generator</param>
         /// <param name="fileEntry">The file entry</param>
         /// <returns>The encoded file data</returns>
-        public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IArchiveFileGenerator<OpenSpaceCntFileEntry>>().GetFileStream((OpenSpaceCntFileEntry)fileEntry);
+        public Stream GetFileData(IDisposable generator, object fileEntry) => generator.CastTo<IArchiveFileGenerator<Rayman1PCArchiveEntry>>().GetFileStream((Rayman1PCArchiveEntry)fileEntry);
 
         /// <summary>
         /// Writes the files to the archive
@@ -116,50 +116,40 @@ namespace RayCarrot.RCP.Metro
         /// <param name="files">The files to include</param>
         public void WriteArchive(IDisposable generator, object archive, Stream outputFileStream, IList<ArchiveFileItem> files)
         {
-            RL.Logger?.LogInformationSource($"A CNT archive is being repacked...");
+            RL.Logger?.LogInformationSource($"An R1 PC archive is being repacked...");
 
             // Get the archive data
-            var data = archive.CastTo<OpenSpaceCntData>();
+            var data = archive.CastTo<Rayman1PCArchiveData>();
 
             // Create the file generator
-            using var fileGenerator = new ArchiveFileGenerator<OpenSpaceCntFileEntry>();
+            using var fileGenerator = new ArchiveFileGenerator<Rayman1PCArchiveEntry>();
 
             // Get files and entries
             var archiveFiles = files.Select(x => new
             {
-                Entry = (OpenSpaceCntFileEntry)x.ArchiveEntry,
+                Entry = (Rayman1PCArchiveEntry)x.ArchiveEntry,
                 FileItem = x
             }).ToArray();
 
             // Set files and directories
-            data.Directories = files.Select(x => x.Directory).Distinct().Where(x => !x.IsNullOrWhiteSpace()).ToArray();
             data.Files = archiveFiles.Select(x => x.Entry).ToArray();
-
-            // Set the directory indexes
-            foreach (var file in archiveFiles)
-                // Set the directory index
-                file.Entry.DirectoryIndex = file.FileItem.Directory == String.Empty ? -1 : data.Directories.FindItemIndex(x => x == file.FileItem.Directory);
 
             // Set the current pointer position to the header size
             var pointer = data.GetHeaderSize(Settings);
 
-            // Disable checksum
-            data.IsChecksumUsed = false;
-            data.DirChecksum = 0;
-
-            // NOTE: We can't disable the XOR key entirely as that would disable it for the file bytes too, which would require them all to be decrypted
-            // Reset XOR keys
-            data.XORKey = 0;
-
             // Load each file
             foreach (var file in archiveFiles)
             {
+                // Process the file name
+                file.Entry.FileName = ProcessFileName(file.Entry.FileName);
+
                 // Get the file entry
                 var entry = file.Entry;
 
-                // Reset checksum and XOR key
-                entry.Checksum = 0;
+                // Reset XOR key
                 entry.XORKey = 0;
+
+                // TODO-UPDATE: Update checksum!
 
                 // Add to the generator
                 fileGenerator.Add(entry, () =>
@@ -168,10 +158,10 @@ namespace RayCarrot.RCP.Metro
                     var fileStream = file.FileItem.GetFileData(generator);
 
                     // Set the pointer
-                    entry.Pointer = pointer;
+                    entry.FileOffset = pointer;
 
                     // Update the pointer by the file size
-                    pointer += entry.Size;
+                    pointer += entry.FileSize;
 
                     // Invoke event
                     OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<ArchiveFileItem>(file.FileItem));
@@ -188,7 +178,7 @@ namespace RayCarrot.RCP.Metro
             // Serialize the data
             BinarySerializableHelpers.WriteToStream(data, outputFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
-            RL.Logger?.LogInformationSource($"The CNT archive has been repacked");
+            RL.Logger?.LogInformationSource($"The R1 PC archive has been repacked");
         }
 
         /// <summary>
@@ -201,32 +191,17 @@ namespace RayCarrot.RCP.Metro
         public ArchiveData LoadArchiveData(object archive, Stream archiveFileStream, string fileName)
         {
             // Get the data
-            var data = archive.CastTo<OpenSpaceCntData>();
+            var data = archive.CastTo<Rayman1PCArchiveData>();
 
-            RL.Logger?.LogInformationSource("The directories are being retrieved for a CNT archive");
+            RL.Logger?.LogInformationSource("The files are being retrieved for an R1 PC archive");
 
-            // Helper method for getting the directories
-            IEnumerable<ArchiveDirectory> GetDirectories()
-            {
-                // Add the directories to the collection
-                for (var i = -1; i < data.Directories.Length; i++)
-                {
-                    // Get the directory path
-                    var dir = i == -1 ? String.Empty : data.Directories[i];
-
-                    // Get the directory index
-                    var dirIndex = i;
-
-                    // Return each directory with the available files, including the root directory
-                    yield return new ArchiveDirectory(dir, data.Files.
-                        Where(x => x.DirectoryIndex == dirIndex).
-                        Select(f => new ArchiveFileItem(this, f.FileName, dir, f)).
-                        ToArray());
-                }
-            }
+            var fileExt = fileName.StartsWith("VIGNET", StringComparison.OrdinalIgnoreCase) || fileName.StartsWith("WldDesc", StringComparison.OrdinalIgnoreCase) ? ".pcx" : ".dat";
 
             // Return the data
-            return new ArchiveData(GetDirectories(), data.GetArchiveContent(archiveFileStream));
+            return new ArchiveData(new ArchiveDirectory[]
+            {
+                new ArchiveDirectory(String.Empty, data.Files.Select(f => new ArchiveFileItem(this, $"{f.FileName}{fileExt}", String.Empty, f)).ToArray())
+            }, data.GetArchiveContent(archiveFileStream));
         }
 
         /// <summary>
@@ -240,9 +215,9 @@ namespace RayCarrot.RCP.Metro
             archiveFileStream.Position = 0;
 
             // Load the current file
-            var data = BinarySerializableHelpers.ReadFromStream<OpenSpaceCntData>(archiveFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
+            var data = BinarySerializableHelpers.ReadFromStream<Rayman1PCArchiveData>(archiveFileStream, Settings, RCPServices.App.GetBinarySerializerLogger());
 
-            RL.Logger?.LogInformationSource($"Read CNT file with {data.Files.Length} files and {data.Directories.Length} directories");
+            RL.Logger?.LogInformationSource($"Read R1 PC archive file with {data.Files.Length} files");
 
             return data;
         }
@@ -254,10 +229,11 @@ namespace RayCarrot.RCP.Metro
         public object CreateArchive()
         {
             // Create the .cnt data
-            return new OpenSpaceCntData
+            return new Rayman1PCArchiveData()
             {
-                // Disable the XOR encryption
-                IsXORUsed = false
+                // TODO-UPDATE: Allow these to be changed! Add GetCreatorUIConfig
+                PrimaryKitHeader = "KIT",
+                SecondaryKitHeader = "KIT"
             };
         }
 
@@ -269,15 +245,15 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The info items to display</returns>
         public IEnumerable<DuoGridItemViewModel> GetFileInfo(object archive, object fileEntry)
         {
-            var entry = (OpenSpaceCntFileEntry)fileEntry;
-            var cnt = (OpenSpaceCntData)archive;
+            var entry = (Rayman1PCArchiveEntry)fileEntry;
+            var cnt = (Rayman1PCArchiveData)archive;
 
-            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Size, $"{ByteSize.FromBytes(entry.Size)}");
+            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Size, $"{ByteSize.FromBytes(entry.FileSize)}");
 
             if (cnt.Files.Contains(entry))
-                yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Pointer, $"0x{entry.Pointer:X8}", UserLevel.Technical);
+                yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Pointer, $"0x{entry.FileOffset:X8}", UserLevel.Technical);
             
-            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_IsEncrypted, $"{entry.FileXORKey.Any(x => x != 0)}", UserLevel.Advanced);
+            yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_IsEncrypted, $"{entry.XORKey != 0}", UserLevel.Advanced);
         }
 
         /// <summary>
@@ -289,11 +265,18 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The file entry object</returns>
         public object GetNewFileEntry(object archive, string directory, string fileName)
         {
-            return new OpenSpaceCntFileEntry()
+            return new Rayman1PCArchiveEntry()
             {
-                FileName = fileName
+                FileName = ProcessFileName(fileName)
             };
         }
+
+        /// <summary>
+        /// Updates the file name by removing added file extensions and truncates the length
+        /// </summary>
+        /// <param name="fileName">The file name</param>
+        /// <returns>The processed file name</returns>
+        public string ProcessFileName(string fileName) => fileName.Replace(".dat", String.Empty).Replace(".pcx", String.Empty).Truncate(9);
 
         #endregion
 

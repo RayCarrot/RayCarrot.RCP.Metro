@@ -124,6 +124,7 @@
     <Compile Include="Archive\Data\FileType\ArchiveFileType_Image.cs" />
     <Compile Include="Archive\Data\FileType\IArchiveFileType.cs" />
     <Compile Include="Archive\Manager\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
+    <Compile Include="Archive\Manager\Ray1_Dat\Ray1PCArchiveDataManager.cs" />
     <Compile Include="Archive\Manager\UbiArt_Ipk\UbiArtIPKArchiveConfigUI.xaml.cs">
       <DependentUpon>UbiArtIPKArchiveConfigUI.xaml</DependentUpon>
     </Compile>
@@ -184,10 +185,16 @@
     <Compile Include="UI\Controls\LoaderContentControl.cs" />
     <Compile Include="Extensions\ApplicationExtensions.cs" />
     <Compile Include="UI\ValidationRules\R1PasswordValidationRule.cs" />
+    <Compile Include="Utilities\Games\Common\ArchiveExplorer\Ray1ArchiveExplorer\BaseRay1ExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Common\ArchiveExplorer\Ray1ArchiveExplorer\BaseRay1ArchiveExplorerUtilityViewModel.cs" />
     <Compile Include="Utilities\Games\Common\SyncTextureInfo\BaseGameSyncTextureInfoUtilityUI.xaml.cs">
       <DependentUpon>BaseGameSyncTextureInfoUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Games\Common\SyncTextureInfo\BaseGameSyncTextureInfoUtility.cs" />
+    <Compile Include="Utilities\Games\Educational DOS\ArchiveExplorer\EDUArchiveExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman 60 Levels\ArchiveExplorer\R6ArchiveExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman by his Fans\ArchiveExplorer\RFArchiveExplorerUtility.cs" />
+    <Compile Include="Utilities\Games\Rayman Designer\ArchiveExplorer\RDArchiveExplorerUtility.cs" />
     <Compile Include="Utilities\Games\Rayman 2\CNTExplorer\R2BaseCNTExplorerUtility.cs" />
     <Compile Include="Utilities\Games\Rayman 2\CNTExplorer\R2DemoCNTExplorerUtility.cs" />
     <Compile Include="Utilities\Games\Rayman 2\RemoveDRM\R2RemoveDRMUtility.cs" />
@@ -231,6 +238,8 @@
     <Compile Include="Utilities\General\ArchiveExplorer\CNT\CNTArchiveExplorerUtilityViewModel.cs" />
     <Compile Include="Utilities\General\ArchiveExplorer\IPK\IPKArchiveExplorerUtility.cs" />
     <Compile Include="Utilities\General\ArchiveExplorer\IPK\IPKArchiveExplorerUtilityViewModel.cs" />
+    <Compile Include="Utilities\General\ArchiveExplorer\R1\R1ArchiveExplorerUtility.cs" />
+    <Compile Include="Utilities\General\ArchiveExplorer\R1\R1ArchiveExplorerUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Converter\BaseConverterUtilityUI.xaml.cs">
       <DependentUpon>BaseConverterUtilityUI.xaml</DependentUpon>
     </Compile>

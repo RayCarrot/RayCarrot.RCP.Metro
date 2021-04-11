@@ -18,7 +18,10 @@ namespace RayCarrot.RCP.Metro
             return gameMode switch
             {
                 GameMode.Rayman1PC => Games.Rayman1,
+                GameMode.RayEduPC => Games.EducationalDos,
                 GameMode.RayKitPC => Games.RaymanDesigner,
+                GameMode.RayFanPC => Games.RaymanByHisFans,
+                GameMode.Ray60nPC => Games.Rayman60Levels,
 
                 GameMode.Rayman2PCDemo1 => Games.Demo_Rayman2_1,
                 GameMode.Rayman2PCDemo2 => Games.Demo_Rayman2_2,
