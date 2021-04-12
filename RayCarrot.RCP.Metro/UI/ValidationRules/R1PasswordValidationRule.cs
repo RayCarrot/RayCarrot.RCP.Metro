@@ -1,5 +1,4 @@
-﻿using RayCarrot.Common;
-using RayCarrot.Rayman.Ray1;
+﻿using RayCarrot.Rayman.Ray1;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -18,8 +17,7 @@ namespace RayCarrot.RCP.Metro
                 return ValidationResult.ValidResult;
             }
 
-            // TODO-UPDATE: Localize
-            return new ValidationResult(false, "Invalid password");
+            return new ValidationResult(false, Resources.R1Passwords_Invalid);
         }
     }
 }

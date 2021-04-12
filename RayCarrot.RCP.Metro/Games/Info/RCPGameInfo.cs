@@ -265,16 +265,14 @@ namespace RayCarrot.RCP.Metro
                     // Add RayMap link
                     if (RayMapURL != null)
                     {
-                        // TODO-UPDATE: Localize
-                        actions.Add(new OverflowButtonItemViewModel("View maps", PackIconMaterialKind.MapMarkerOutline, new AsyncRelayCommand(async () => (await RCPServices.File.LaunchFileAsync(RayMapURL))?.Dispose())));
+                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Raymap, PackIconMaterialKind.MapMarkerOutline, new AsyncRelayCommand(async () => (await RCPServices.File.LaunchFileAsync(RayMapURL))?.Dispose())));
                         actions.Add(new OverflowButtonItemViewModel());
                     }
 
                     // Add open archive
                     if (HasArchives)
                     {
-                        // TODO-UPDATE: Localize
-                        actions.Add(new OverflowButtonItemViewModel("Open archives", PackIconMaterialKind.FolderMultipleOutline, new AsyncRelayCommand(async () =>
+                        actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Archives, PackIconMaterialKind.FolderMultipleOutline, new AsyncRelayCommand(async () =>
                         {
                             // Show the archive explorer
                             await RCPServices.UI.ShowArchiveExplorerAsync(GetArchiveDataManager, GetArchiveFilePaths(Game.GetInstallDir()).Where(x => x.FileExists));

@@ -2751,7 +2751,7 @@ Error message: {1}</value>
     <value>Este utilitário pode converter uma localização para o tipo .loc que é utilizado no Rayman Origins. Converter para um ficheiro .JSON irá permitir que os ficheiros sejam livremente editados. Necessitas de seleccionar um ficheiro .loc8 existente para se importar as alterações para lá quando convertendo de volta.</value>
   </data>
   <data name="RFRU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>Este utilitário pode converter uma localização para o tipo .loc que é utilizado no Rayman Fiesta Run. Converter para um ficheiro .JSON irá permitir que os ficheiros sejam livremente editados. Necessitas de seleccionar um ficheiro .loc8 existente para se importar as alterações para lá quando convertendo de volta.</value>
+    <value>Este utilitário pode converter uma localização para o tipo .loc que é utilizado no Rayman Fiesta Run. Converter para um ficheiro .JSON irá permitir que os ficheiros sejam livremente editados. Necessitas de seleccionar um ficheiro .loc existente para se importar as alterações para lá quando convertendo de volta.</value>
   </data>
   <data name="Progression_Header" xml:space="preserve">
     <value>Progressão</value>
@@ -2904,16 +2904,6 @@ Error message: {1}</value>
   <data name="Archive_CriticalError" xml:space="preserve">
     <value>Ocorreu um erro no Archive Explorer™ (Explorador de Arquivos) e teve de fechar</value>
   </data>
-  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™ (.cnt)</value>
-    <comment>Archive Explorer™ (.cnt)</comment>
-  </data>
-  <data name="OSU_CNTExplorer_Info" xml:space="preserve">
-    <value>Esta ferramenta permite que vejas/edites os ficheiros de arquivo .cnt, permitindo a importação/exportação das texturas de jogo</value>
-  </data>
-  <data name="ArchiveExplorer_Open" xml:space="preserve">
-    <value>Abrir Archive Explorer™</value>
-  </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>Engenharia Reversa do Rayman
 </value>
@@ -2971,13 +2961,6 @@ Programa de tradução Catalã (Catalunha)
   </data>
   <data name="Utilities_Converter_Error" xml:space="preserve">
     <value>O(s) ficheiro(s) não pode/puderam ser convertido(s)</value>
-  </data>
-  <data name="UAU_IPKExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™ (.ipk)</value>
-    <comment>Archive Explorer™ (.ipk)</comment>
-  </data>
-  <data name="UAU_IPKExplorer_Info" xml:space="preserve">
-    <value>Esta ferramenta permite-te ver/editar o arquivo de ficheiros .ipk, permitindo a importação/exportação de texturas e ficheiros de jogo</value>
   </data>
   <data name="Utilities_Converter_ExportExtensionHeader" xml:space="preserve">
     <value>Seleccionar extensão de ficheiro a exportar como</value>

@@ -2745,7 +2745,7 @@ Foutmelding: {1}</value>
     <value>Dit hulpprogramma kan een lokalisatie converteren van het type .loc8, welke extensie gebruikt wordt in Rayman Origins. Het converteren naar een .JSON-bestand zal ervoor zorgen dat de bestanden vrij kunnen worden bewerkt. Voor het ongedaan maken van de conversie dien je een bestaand .loc8-bestand te selecteren waarin je de wijzigingen importeert.</value>
   </data>
   <data name="RFRU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>Dit hulpprogramma kan een lokalisatie converteren van het type .loc8, welke extensie gebruikt wordt in Rayman Fiesta. Het converteren naar een .JSON-bestand zal ervoor zorgen dat de bestanden vrij kunnen worden bewerkt. Voor het ongedaan maken van de conversie dien je een bestaand .loc8-bestand te selecteren waarin je de wijzigingen importeert.</value>
+    <value>Dit hulpprogramma kan een lokalisatie converteren van het type .loc, welke extensie gebruikt wordt in Rayman Fiesta. Het converteren naar een .JSON-bestand zal ervoor zorgen dat de bestanden vrij kunnen worden bewerkt. Voor het ongedaan maken van de conversie dien je een bestaand .loc-bestand te selecteren waarin je de wijzigingen importeert.</value>
   </data>
   <data name="Progression_Header" xml:space="preserve">
     <value>Voortgang</value>
@@ -2892,15 +2892,6 @@ Foutmelding: {1}</value>
   <data name="Archive_CriticalError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden in de Archive Explorer™ en deze moest afgesloten worden</value>
   </data>
-  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™ (.cnt)</value>
-  </data>
-  <data name="OSU_CNTExplorer_Info" xml:space="preserve">
-    <value>Deze tool stelt je in staat om de .cnt archiefbestanden in te zien/wijzigen, waarbij het importeren/exporteren van speltexturen mogelijk wordt gemaakt</value>
-  </data>
-  <data name="ArchiveExplorer_Open" xml:space="preserve">
-    <value>Open Archive Explorer™</value>
-  </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>Rayman reverse engineering</value>
   </data>
@@ -2955,13 +2946,6 @@ Foutmelding: {1}</value>
   </data>
   <data name="Utilities_Converter_Error" xml:space="preserve">
     <value>De bestanden konden niet worden geconverteerd</value>
-  </data>
-  <data name="UAU_IPKExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™ (.ipk)</value>
-    <comment>Archive Explorer™ (.ipk)</comment>
-  </data>
-  <data name="UAU_IPKExplorer_Info" xml:space="preserve">
-    <value>Dit hulpprogramma stelt je in staat om .ipk archiefbestanden te bekijken/wijzigen, waardoor het tevens mogelijk is spelbestanden en texturen te importeren/exporteren</value>
   </data>
   <data name="Utilities_Converter_ExportExtensionHeader" xml:space="preserve">
     <value>Selecteer bestandsextensie voor export</value>

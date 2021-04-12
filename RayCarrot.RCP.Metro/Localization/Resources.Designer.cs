@@ -525,6 +525,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when adding {0}.
+        /// </summary>
+        public static string Archive_AddFiles_Error {
+            get {
+                return ResourceManager.GetString("Archive_AddFiles_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select files to add.
         /// </summary>
         public static string Archive_AddFiles_Header {
@@ -894,6 +903,42 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string Archive_Format_Default {
+            get {
+                return ResourceManager.GetString("Archive_Format_Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GF (Graphic File).
+        /// </summary>
+        public static string Archive_Format_GF {
+            get {
+                return ResourceManager.GetString("Archive_Format_GF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image.
+        /// </summary>
+        public static string Archive_Format_Img {
+            get {
+                return ResourceManager.GetString("Archive_Format_Img", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Original.
+        /// </summary>
+        public static string Archive_Format_Original {
+            get {
+                return ResourceManager.GetString("Archive_Format_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import &amp; convert.
         /// </summary>
         public static string Archive_ImportConvert {
@@ -1052,15 +1097,6 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_Title {
             get {
                 return ResourceManager.GetString("Archive_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Open Archive Explorer™.
-        /// </summary>
-        public static string ArchiveExplorer_Open {
-            get {
-                return ResourceManager.GetString("ArchiveExplorer_Open", resourceCulture);
             }
         }
         
@@ -3997,6 +4033,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open archives.
+        /// </summary>
+        public static string GameDisplay_Archives {
+            get {
+                return ResourceManager.GetString("GameDisplay_Archives", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Install.
         /// </summary>
         public static string GameDisplay_CloudInstall {
@@ -4128,6 +4173,15 @@ namespace RayCarrot.RCP.Metro {
         public static string GameDisplay_PurchaseWinStore {
             get {
                 return ResourceManager.GetString("GameDisplay_PurchaseWinStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View maps.
+        /// </summary>
+        public static string GameDisplay_Raymap {
+            get {
+                return ResourceManager.GetString("GameDisplay_Raymap", resourceCulture);
             }
         }
         
@@ -6622,24 +6676,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Archive Explorer™ (.cnt).
-        /// </summary>
-        public static string OSU_CNTExplorer_Header {
-            get {
-                return ResourceManager.GetString("OSU_CNTExplorer_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This tool allows you to view/edit the .cnt archive files, allowing importing/exporting of game textures.
-        /// </summary>
-        public static string OSU_CNTExplorer_Info {
-            get {
-                return ResourceManager.GetString("OSU_CNTExplorer_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
         public static string Page_Refresh {
@@ -6744,6 +6780,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_ExportSuccess {
             get {
                 return ResourceManager.GetString("Progression_ExportSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Progression_GenericSave {
+            get {
+                return ResourceManager.GetString("Progression_GenericSave", resourceCulture);
             }
         }
         
@@ -6960,6 +7005,249 @@ namespace RayCarrot.RCP.Metro {
         public static string Progression_RM_TimeTarget {
             get {
                 return ResourceManager.GetString("Progression_RM_TimeTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pink Plant Woods.
+        /// </summary>
+        public static string R1_LevelName_0 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anguish Lagoon.
+        /// </summary>
+        public static string R1_LevelName_1 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mr Stone&apos;s Peaks.
+        /// </summary>
+        public static string R1_LevelName_10 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eraser Plains.
+        /// </summary>
+        public static string R1_LevelName_11 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pencil Pentathlon.
+        /// </summary>
+        public static string R1_LevelName_12 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Space Mama&apos;s Crater.
+        /// </summary>
+        public static string R1_LevelName_13 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crystal Palace.
+        /// </summary>
+        public static string R1_LevelName_14 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eat at Joe&apos;s.
+        /// </summary>
+        public static string R1_LevelName_15 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mr Skops&apos; Stalactites.
+        /// </summary>
+        public static string R1_LevelName_16 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Swamps of Forgetfulness.
+        /// </summary>
+        public static string R1_LevelName_2 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moskito&apos;s Nest.
+        /// </summary>
+        public static string R1_LevelName_3 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bongo Hills.
+        /// </summary>
+        public static string R1_LevelName_4 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allegro Presto.
+        /// </summary>
+        public static string R1_LevelName_5 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gong Heights.
+        /// </summary>
+        public static string R1_LevelName_6 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mr Sax&apos;s Hullaballoo.
+        /// </summary>
+        public static string R1_LevelName_7 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Twilight Gulch.
+        /// </summary>
+        public static string R1_LevelName_8 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Hard Rocks.
+        /// </summary>
+        public static string R1_LevelName_9 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continues.
+        /// </summary>
+        public static string R1Passwords_Continues {
+            get {
+                return ResourceManager.GetString("R1Passwords_Continues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beat boss.
+        /// </summary>
+        public static string R1Passwords_FinBoss {
+            get {
+                return ResourceManager.GetString("R1Passwords_FinBoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finished the game.
+        /// </summary>
+        public static string R1Passwords_Finished {
+            get {
+                return ResourceManager.GetString("R1Passwords_Finished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate.
+        /// </summary>
+        public static string R1Passwords_Generate {
+            get {
+                return ResourceManager.GetString("R1Passwords_Generate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Helped The Musician.
+        /// </summary>
+        public static string R1Passwords_HelpedMus {
+            get {
+                return ResourceManager.GetString("R1Passwords_HelpedMus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid password.
+        /// </summary>
+        public static string R1Passwords_Invalid {
+            get {
+                return ResourceManager.GetString("R1Passwords_Invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All cages.
+        /// </summary>
+        public static string R1Passwords_LevAllCages {
+            get {
+                return ResourceManager.GetString("R1Passwords_LevAllCages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlocked.
+        /// </summary>
+        public static string R1Passwords_LevUnlocked {
+            get {
+                return ResourceManager.GetString("R1Passwords_LevUnlocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lives.
+        /// </summary>
+        public static string R1Passwords_Lives {
+            get {
+                return ResourceManager.GetString("R1Passwords_Lives", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load.
+        /// </summary>
+        public static string R1Passwords_Load {
+            get {
+                return ResourceManager.GetString("R1Passwords_Load", resourceCulture);
             }
         }
         
@@ -8557,7 +8845,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This utility can convert a localization for of type .loc which is used in Rayman Origins. Converting to a .JSON file will allow the files to be edited freely. When converting back you need to select an existing .loc8 file to import the changes into..
+        ///   Looks up a localized string similar to This utility can convert a localization for of type .loc which is used in Rayman Origins. Converting to a .JSON file will allow the files to be edited freely. When converting back you need to select an existing .loc file to import the changes into..
         /// </summary>
         public static string ROU_LocalizationConverterHeaderInfo {
             get {
@@ -9358,24 +9646,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Archive Explorer™ (.ipk).
-        /// </summary>
-        public static string UAU_IPKExplorer_Header {
-            get {
-                return ResourceManager.GetString("UAU_IPKExplorer_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This tool allows you to view/edit the .ipk archive files, allowing importing/exporting of game files and textures.
-        /// </summary>
-        public static string UAU_IPKExplorer_Info {
-            get {
-                return ResourceManager.GetString("UAU_IPKExplorer_Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Export to JSON.
         /// </summary>
         public static string UbiArtU_LocalizationConverterExport {
@@ -9748,6 +10018,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rayman 1 PC Archives (.dat).
+        /// </summary>
+        public static string Utilities_ArchiveExplorer_R1Header {
+            get {
+                return ResourceManager.GetString("Utilities_ArchiveExplorer_R1Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Convert.
         /// </summary>
         public static string Utilities_Converter_Convert {
@@ -10050,6 +10329,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Utilities_Other_Header {
             get {
                 return ResourceManager.GetString("Utilities_Other_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman 1 PS1 Password Generator.
+        /// </summary>
+        public static string Utilities_R1Passwords_Header {
+            get {
+                return ResourceManager.GetString("Utilities_R1Passwords_Header", resourceCulture);
             }
         }
         

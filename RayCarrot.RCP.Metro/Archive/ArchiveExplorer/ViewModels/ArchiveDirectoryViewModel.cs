@@ -477,8 +477,6 @@ namespace RayCarrot.RCP.Metro
             // Get the manager
             var manager = Archive.Manager;
 
-            // TODO-UPDATE: Try/catch this
-
             var modifiedCount = 0;
 
             // Add every file
@@ -496,18 +494,29 @@ namespace RayCarrot.RCP.Metro
                         continue;
                 }
 
-                // Open the file as a stream
-                using var fileStream = File.OpenRead(file);
+                try
+                {
+                    // Open the file as a stream
+                    using var fileStream = File.OpenRead(file);
 
-                var fileViewModel = existingFile ?? new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData, dir, fileName)), this);
+                    var fileViewModel = existingFile ?? new ArchiveFileViewModel(new ArchiveFileItem(manager, fileName, dir, manager.GetNewFileEntry(Archive.ArchiveData, dir, fileName)), this);
 
-                // Replace the file with the import data
-                if (await Task.Run(() => fileViewModel.ReplaceFile(fileStream)))
-                    modifiedCount++;
+                    // Replace the file with the import data
+                    if (await Task.Run(() => fileViewModel.ReplaceFile(fileStream)))
+                        modifiedCount++;
 
-                // Add the file to the list if it was created
-                if (existingFile == null)
-                    Files.Add(fileViewModel);
+                    // Add the file to the list if it was created
+                    if (existingFile == null)
+                        Files.Add(fileViewModel);
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Adding files to archive directory", DisplayName);
+
+                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Archive_AddFiles_Error, file.Name));
+
+                    return;
+                }
             }
 
             Archive.AddModifiedFiles(modifiedCount);

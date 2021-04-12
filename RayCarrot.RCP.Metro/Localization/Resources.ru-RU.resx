@@ -2711,7 +2711,7 @@
     <value>Эта утилита позволяет конвертировать локализацию для типа .loc, который используется в Rayman Origins. Преобразование в .JSON-файл позволит свободно редактировать файлы. При обратном преобразовании вам нужно выбрать существующий .loc8-файл для импорта изменений.</value>
   </data>
   <data name="RFRU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>Эта утилита позволяет конвертировать локализацию для типа .loc, который используется в Rayman Fiesta Run. Преобразование в .JSON-файл позволит свободно редактировать файлы. При обратном преобразовании вам нужно выбрать существующий .loc8-файл для импорта изменений.</value>
+    <value>Эта утилита позволяет конвертировать локализацию для типа .loc, который используется в Rayman Fiesta Run. Преобразование в .JSON-файл позволит свободно редактировать файлы. При обратном преобразовании вам нужно выбрать существующий .loc-файл для импорта изменений.</value>
   </data>
   <data name="Progression_Header" xml:space="preserve">
     <value>Прогресс</value>
@@ -2857,15 +2857,6 @@
   <data name="Archive_CriticalError" xml:space="preserve">
     <value>Программу пришлось закрыть, так как в Archive Explorer™ произошла ошибка</value>
   </data>
-  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™ (.cnt)</value>
-  </data>
-  <data name="OSU_CNTExplorer_Info" xml:space="preserve">
-    <value>Этот инструмент позволяет просматривать/редактировать архивные файлы .cnt, позволяющие импортировать/экспортировать текстуры игр</value>
-  </data>
-  <data name="ArchiveExplorer_Open" xml:space="preserve">
-    <value>Открыть Archive Explorer™</value>
-  </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>Обратная инженерия Rayman</value>
   </data>
@@ -2919,12 +2910,6 @@
   </data>
   <data name="Utilities_Converter_Error" xml:space="preserve">
     <value>Не удалось преобразовать файл(ы)</value>
-  </data>
-  <data name="UAU_IPKExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™ (.ipk)</value>
-  </data>
-  <data name="UAU_IPKExplorer_Info" xml:space="preserve">
-    <value>Этот инструмент позволяет просматривать/редактировать архивные файлы .ipk, позволяющие импортировать/экспортировать игровые файлы и текстуры</value>
   </data>
   <data name="Utilities_Converter_ExportExtensionHeader" xml:space="preserve">
     <value>Выберите расширение, в котором будет экспортирован файл</value>

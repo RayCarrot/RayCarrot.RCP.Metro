@@ -215,8 +215,7 @@ namespace RayCarrot.RCP.Metro
                 FileExports.Clear();
 
                 // Add native export format
-                // TODO-UPDATE: Localize
-                FileExports.Add(new ArchiveFileExportViewModel($"Original ({FileExtension})", new AsyncRelayCommand(async () => await ExportFileAsync())));
+                FileExports.Add(new ArchiveFileExportViewModel($"{Resources.Archive_Format_Original} ({FileExtension})", new AsyncRelayCommand(async () => await ExportFileAsync())));
 
                 // Get export formats
                 FileExports.AddRange(FileType.ExportFormats.Select(x => new ArchiveFileExportViewModel(x.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(x)))));

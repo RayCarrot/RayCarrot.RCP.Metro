@@ -134,8 +134,7 @@ namespace RayCarrot.RCP.Metro
             RL.Logger?.LogInformationSource($"Slot percentage is {percentage}%");
 
             // Return the data with the collection
-            // TODO-UPDATE: Localize
-            return new RaymanDesignerProgressionSlotViewModel(new LocalizedString(() => $"Save ({percentage}%)"), progressItems.ToArray(), this);
+            return new RaymanDesignerProgressionSlotViewModel(new LocalizedString(() => $"{Resources.Progression_GenericSave} ({percentage}%)"), progressItems.ToArray(), this);
         }
 
         #endregion

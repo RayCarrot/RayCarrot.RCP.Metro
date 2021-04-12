@@ -12,11 +12,10 @@ namespace RayCarrot.RCP.Metro
     {
         #region Interface Implementations
 
-        // TODO-UPDATE: Localize
         /// <summary>
         /// The display name for the file type
         /// </summary>
-        public string TypeDisplayName => "File";
+        public string TypeDisplayName => Resources.Archive_Format_Default;
 
         /// <summary>
         /// The default icon kind for the type

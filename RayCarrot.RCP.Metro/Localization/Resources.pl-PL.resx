@@ -2770,7 +2770,7 @@ Komunikat o błędzie: {1}</value>
     <value>To narzędzie może przekonwertować lokalizację typu .loc, która jest używana w Rayman Origins. Konwersja do pliku .JSON pozwoli na swobodną edycję plików. Podczas konwersji z powrotem musisz wybrać istniejący plik .loc8, do którego chcesz zaimportować zmiany.</value>
   </data>
   <data name="RFRU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>To narzędzie może przekonwertować lokalizację typu .loc, która jest używana w Rayman Fiesta Run. Konwersja do pliku .JSON pozwoli na swobodną edycję plików. Podczas konwersji z powrotem musisz wybrać istniejący plik .loc8, do którego chcesz zaimportować zmiany.</value>
+    <value>To narzędzie może przekonwertować lokalizację typu .loc, która jest używana w Rayman Fiesta Run. Konwersja do pliku .JSON pozwoli na swobodną edycję plików. Podczas konwersji z powrotem musisz wybrać istniejący plik .loc, do którego chcesz zaimportować zmiany.</value>
   </data>
   <data name="Progression_Header" xml:space="preserve">
     <value>Postęp</value>
@@ -2919,16 +2919,6 @@ Komunikat o błędzie: {1}</value>
   <data name="Archive_CriticalError" xml:space="preserve">
     <value>Wystąpił błąd w Archive Explorer ™ i program musi zostać zamknięty</value>
   </data>
-  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™ (.cnt)</value>
-    <comment>Archive Explorer™ (.cnt)</comment>
-  </data>
-  <data name="OSU_CNTExplorer_Info" xml:space="preserve">
-    <value>To narzędzie pozwala przeglądać/edytować pliki archiwów .cnt, umożliwiając importowanie/eksportowanie tekstur gry</value>
-  </data>
-  <data name="ArchiveExplorer_Open" xml:space="preserve">
-    <value>Otwórz Archive Explorer ™</value>
-  </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>Inżynieria odwrotna Raymana</value>
   </data>
@@ -2984,13 +2974,6 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="Utilities_Converter_Error" xml:space="preserve">
     <value>Nie można przekonwertować pliku lub plików</value>
-  </data>
-  <data name="UAU_IPKExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™ (.ipk)</value>
-    <comment>Archive Explorer™ (.ipk)</comment>
-  </data>
-  <data name="UAU_IPKExplorer_Info" xml:space="preserve">
-    <value>To narzędzie pozwala na przeglądanie/edycję plików archiwów .ipk, umożliwiając importowanie/eksportowanie plików gry i tekstur</value>
   </data>
   <data name="Utilities_Converter_ExportExtensionHeader" xml:space="preserve">
     <value>Wybierz rozszerzenie pliku, aby wyeksportować jako</value>

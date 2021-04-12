@@ -24,7 +24,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The header for the utility. This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string DisplayHeader => "Rayman 1 PC Archives (.dat)"; // TODO-UPDATE: Localize
+        public string DisplayHeader => Resources.Utilities_ArchiveExplorer_R1Header;
 
         /// <summary>
         /// The utility information text (optional). This property is retrieved again when the current culture is changed.

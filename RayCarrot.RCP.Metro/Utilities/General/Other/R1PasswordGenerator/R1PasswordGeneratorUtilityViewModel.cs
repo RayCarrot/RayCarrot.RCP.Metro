@@ -35,24 +35,23 @@ namespace RayCarrot.RCP.Metro
             // Set levels
             Levels = new LevelViewModel[]
             {
-                // TODO-UPDATE: Localize
-                new LevelViewModel(new LocalizedString(() => "Pink Plant Woods"), ProcessUnlockedChange, canIsUnlockedBeModified: false),
-                new LevelViewModel(new LocalizedString(() => "Anguish Lagoon"), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => "The Swamps of Forgetfulness"), ProcessUnlockedChange, link: 4),
-                new LevelViewModel(new LocalizedString(() => "Moskito's Nest"), ProcessUnlockedChange, branched: true, bossIndex: 1),
-                new LevelViewModel(new LocalizedString(() => "Bongo Hills"), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => "Allegro Presto"), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => "Gong Heights"), ProcessUnlockedChange, link: 8),
-                new LevelViewModel(new LocalizedString(() => "Mr Sax's Hullaballoo"), ProcessUnlockedChange, branched: true, bossIndex: 2),
-                new LevelViewModel(new LocalizedString(() => "Twilight Gulch"), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => "The Hard Rocks"), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => "Mr Stone's Peaks"), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => "Eraser Plains"), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => "Pencil Pentathlon"), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => "Space Mama's Crater"), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => "Crystal Palace"), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => "Eat at Joe's"), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => "Mr Skops' Stalactites"), ProcessUnlockedChange, bossIndex: 6)
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_0), ProcessUnlockedChange, canIsUnlockedBeModified: false),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_1), ProcessUnlockedChange),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_2), ProcessUnlockedChange, link: 4),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_3), ProcessUnlockedChange, branched: true, bossIndex: 1),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_4), ProcessUnlockedChange),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_5), ProcessUnlockedChange),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_6), ProcessUnlockedChange, link: 8),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_7), ProcessUnlockedChange, branched: true, bossIndex: 2),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_8), ProcessUnlockedChange),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_9), ProcessUnlockedChange),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_10), ProcessUnlockedChange),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_11), ProcessUnlockedChange),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_12), ProcessUnlockedChange),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_13), ProcessUnlockedChange),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_14), ProcessUnlockedChange),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_15), ProcessUnlockedChange),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_16), ProcessUnlockedChange, bossIndex: 6)
             };
 
             // First level should always be unlocked
@@ -158,8 +157,7 @@ namespace RayCarrot.RCP.Metro
 
             if (save == null)
             {
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayMessageAsync("Invalid password!", MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.R1Passwords_Invalid, MessageType.Error);
 
                 return;
             }

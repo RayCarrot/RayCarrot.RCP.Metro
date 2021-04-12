@@ -853,7 +853,7 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
 </value>
   </data>
   <data name="Help_Games_R3" xml:space="preserve">
-    <value>Rayman 5</value>
+    <value>Rayman 3</value>
     <comment>Rayman 4</comment>
   </data>
   <data name="Help_Games_RRR" xml:space="preserve">
@@ -1044,17 +1044,9 @@ Dependiendo de la resolución seleccionada, puede que la imagen termine distoris
     <value>Archive Explorer™</value>
     <comment>Archive Explorer™</comment>
   </data>
-  <data name="OSU_CNTExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™ (.cnt)</value>
-    <comment>Archive Explorer™ (.cnt)</comment>
-  </data>
   <data name="Utilities_ArchiveExplorer_Header" xml:space="preserve">
     <value>Archive Explorer™</value>
     <comment>Archive Explorer™</comment>
-  </data>
-  <data name="UAU_IPKExplorer_Header" xml:space="preserve">
-    <value>Archive Explorer™ (.ipk)</value>
-    <comment>Archive Explorer™ (.ipk)</comment>
   </data>
   <data name="RL_LevelName_1_1" xml:space="preserve">
     <value>Once upon a Time</value>

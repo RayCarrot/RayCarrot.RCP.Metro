@@ -21,11 +21,10 @@ namespace RayCarrot.RCP.Metro
     {
         #region Interface Implementations
 
-        // TODO-UPDATE: Localize
         /// <summary>
         /// The display name for the file type
         /// </summary>
-        public string TypeDisplayName => "GF (Graphic File)";
+        public string TypeDisplayName => Resources.Archive_Format_GF;
 
         /// <summary>
         /// The default icon kind for the type
