@@ -3756,4 +3756,15 @@ file</comment>
   <data name="Utilities_R1Passwords_Header" xml:space="preserve">
     <value>Rayman 1 PS1 Password Generator</value>
   </data>
+  <data name="Archive_ImportFile_Error" xml:space="preserve">
+    <value>An error occurred when importing the file</value>
+  </data>
+  <data name="R1Passwords_InvalidLength" xml:space="preserve">
+    <value>Password must contain 10 characters</value>
+  </data>
+  <data name="R1Passwords_InvalidChar" xml:space="preserve">
+    <value>Invalid password character {0}</value>
+    <comment>Arguments:
+passwordChar</comment>
+  </data>
 </root>

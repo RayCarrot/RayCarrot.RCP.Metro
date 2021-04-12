@@ -2,6 +2,7 @@
 using RayCarrot.Rayman.Ray1;
 using RayCarrot.UI;
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -150,7 +151,10 @@ namespace RayCarrot.RCP.Metro
 
         public async Task LoadPasswordAsync()
         {
-            // TODO-UPDATE: Verify password length and characters
+            var validationRule = new R1PasswordValidationRule().Validate(Password, CultureInfo.CurrentCulture);
+
+            if (!validationRule.IsValid)
+                return;
 
             var password = new R1_PS1_Password(Password, ModeSelection.SelectedValue);
             var save = password.Decode();

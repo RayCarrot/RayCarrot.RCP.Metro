@@ -12,12 +12,19 @@ namespace RayCarrot.RCP.Metro
         {
             var supportedChars = R1_PS1_Password.GetSupportedCharacters();
 
-            if (value is string s && s.Length == 10 && s.All(x => supportedChars.Any(c => c.ToString().Equals(x.ToString(), StringComparison.InvariantCultureIgnoreCase))))
-            {
-                return ValidationResult.ValidResult;
-            }
+            if (!(value is string s))
+                return new ValidationResult(false, Resources.R1Passwords_Invalid);
 
-            return new ValidationResult(false, Resources.R1Passwords_Invalid);
+            if (s.Length != 10)
+                return new ValidationResult(false, Resources.R1Passwords_InvalidLength);
+
+            var invalidChar = s.Select(x => (char?)x).FirstOrDefault(x => !supportedChars.Any(c => c.ToString().Equals(x.ToString(), StringComparison.InvariantCultureIgnoreCase)));
+
+            if (invalidChar != null)
+                return new ValidationResult(false, String.Format(Resources.R1Passwords_InvalidChar, invalidChar));
+
+            return ValidationResult.ValidResult;
+
         }
     }
 }

@@ -136,7 +136,7 @@
     <value>Impostazioni</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancella</value>
+    <value>Annulla</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
@@ -1363,7 +1363,7 @@ Riprovare?</value>
     <value>L'operazione di download è stata annullata</value>
   </data>
   <data name="Download_CanceledHeader" xml:space="preserve">
-    <value>Operazione cancellata</value>
+    <value>Operazione annullata</value>
   </data>
   <data name="Download_Failed" xml:space="preserve">
     <value>L'operazione di download non è riuscita</value>
@@ -3266,5 +3266,356 @@ Messaggio di errore: {1} </value>
   </data>
   <data name="About_Credits_ItzalDrake" xml:space="preserve">
     <value>Traduzione del programma in Italiano (Italia)</value>
+  </data>
+  <data name="Archive_ImportFileHeader" xml:space="preserve">
+    <value>Seleziona il file da importare</value>
+  </data>
+  <data name="Archive_FileSelectionGroupName" xml:space="preserve">
+    <value>File supportati</value>
+  </data>
+  <data name="Archive_ExportHeader" xml:space="preserve">
+    <value>Seleziona la destinazione in cui esportare</value>
+  </data>
+  <data name="Archive_ExportingFileStatus" xml:space="preserve">
+    <value>Esportando {0}</value>
+  </data>
+  <data name="Archive_ImportDirectoryHeader" xml:space="preserve">
+    <value>Seleziona la directory da importare</value>
+  </data>
+  <data name="Archive_ImportNoFilesError" xml:space="preserve">
+    <value>Non sono stati trovati file da importare</value>
+  </data>
+  <data name="Archive_ExportFilesSuccess" xml:space="preserve">
+    <value>I file sono stati esportati</value>
+  </data>
+  <data name="Archive_ExportFileSuccess" xml:space="preserve">
+    <value>I file è stato esportato</value>
+  </data>
+  <data name="Archive_ExportError" xml:space="preserve">
+    <value>{0} non può essere esportato</value>
+  </data>
+  <data name="Archive_RepackingStatus" xml:space="preserve">
+    <value>Reimpaccando l'archivio {0}</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
+    <value>Selezione Estensione File</value>
+  </data>
+  <data name="Archive_FileExtensionSelectionInfoHeader" xml:space="preserve">
+    <value>Seleziona l'estensione del file da esportare come file {0}</value>
+  </data>
+  <data name="Archive_Title" xml:space="preserve">
+    <value>Archive Explorer™</value>
+  </data>
+  <data name="Archive_CriticalError" xml:space="preserve">
+    <value>Si è verificato un errore, Archive Explorer™ deve essere chiuso</value>
+  </data>
+  <data name="About_Credits_Droolie" xml:space="preserve">
+    <value>Reverse engineering di Rayman</value>
+  </data>
+  <data name="About_Credits_Hakyra" xml:space="preserve">
+    <value>Traduzione del programma in Spagnolo (Spagna), traduzione del programms in Catalano (Catalogna)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_CNTHeader" xml:space="preserve">
+    <value>Archivi OpenSpace (.cnt)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_IPKHeader" xml:space="preserve">
+    <value>Archivi UbiArt (.ipk)</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Open" xml:space="preserve">
+    <value>Apri</value>
+  </data>
+  <data name="Archive_RepackError" xml:space="preserve">
+    <value>Si è verificato un errore durante il reimpaccamento dell'archivio</value>
+  </data>
+  <data name="Archive_Extract" xml:space="preserve">
+    <value>Estrai</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_Create" xml:space="preserve">
+    <value>Crea</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmaps" xml:space="preserve">
+    <value>Genera mipmap automaticamente (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFGenerateMipmapsInfo" xml:space="preserve">
+    <value>Genera mipmap automaticamente per i giochi supportati durante l'importazione in file .gf</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency" xml:space="preserve">
+    <value>Aggiorna automaticamente il formato (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormat" xml:space="preserve">
+    <value>Mai (conserva il formato originale)</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_PreserveFormatInfo" xml:space="preserve">
+    <value>Il formato originale verrà sempre conservato. L'importazione di un'immagine ARGB in un file .gf che non supporta la trasparenza comporterà la perdita del canale alfa.</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat" xml:space="preserve">
+    <value>Corrispondere al formato importato</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo" xml:space="preserve">
+    <value>Il formato verrà aggiornato per corrispondere a quello del file importato. Ciò potrebbe comportare che i file .gf occupino più spazio di quanto effettivamente richiesto.</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized" xml:space="preserve">
+    <value>Corrispondere al formato importato, se necessario</value>
+  </data>
+  <data name="Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo" xml:space="preserve">
+    <value>Il formato verrà aggiornato per corrispondere a quello del file importato se il formato corrente non supporta i dati. Ad esempio, se un'immagine ARGB viene importata in un file .gf che non supporta la trasparenza, aggiornerà il formato per supportarlo solo se l'immagine importata utilizza il canale alfa. Questa impostazione è consigliata per evitare di modificare i formati quando non è necessario, tuttavia rallenterà l'importazione del file.</value>
+  </data>
+  <data name="Archive_CreateSuccess" xml:space="preserve">
+    <value>L'archivio è stato creato con successo con {0} file</value>
+  </data>
+  <data name="Archive_CreateErrorInputNotFound" xml:space="preserve">
+    <value>La directory di input specificata non esiste</value>
+  </data>
+  <data name="Archive_CreateError" xml:space="preserve">
+    <value>Si è verificato un errore durante la creazione dell'archivio</value>
+  </data>
+  <data name="Archive_CreateHeader" xml:space="preserve">
+    <value>Crea Archivio</value>
+  </data>
+  <data name="Archive_CreateInputDir" xml:space="preserve">
+    <value>Directory di input</value>
+  </data>
+  <data name="Archive_CreateOutputFile" xml:space="preserve">
+    <value>File di output</value>
+  </data>
+  <data name="Utilities_Converter_FormatSelectionHeader" xml:space="preserve">
+    <value>Seleziona il formato</value>
+  </data>
+  <data name="Archive_IPK_CompressEntireBlock" xml:space="preserve">
+    <value>Comprimi il blocco intero</value>
+  </data>
+  <data name="Archive_IPK_CompressExtensions" xml:space="preserve">
+    <value>Estensioni di file da comprimere</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888" xml:space="preserve">
+    <value>Converti in 32 bit durante l'importazione (.gf)</value>
+  </data>
+  <data name="Settings_ArchiveGFForce8888Info" xml:space="preserve">
+    <value>Indica se il file .gf deve essere convertito a 24/32 bit durante l'importazione per ottenere la massima qualità possibile</value>
+  </data>
+  <data name="Archive_Sort" xml:space="preserve">
+    <value>Ordina</value>
+  </data>
+  <data name="Archive_Sort_Default" xml:space="preserve">
+    <value>Predefinito</value>
+  </data>
+  <data name="Archive_Sort_AlphabeticallyAscending" xml:space="preserve">
+    <value>In ordine alfabetico (crescente)</value>
+  </data>
+  <data name="Archive_Sort_AlphabeticalDescending" xml:space="preserve">
+    <value>In ordine alfabetico (decrescente)</value>
+  </data>
+  <data name="Archive_Search" xml:space="preserve">
+    <value>Cerca</value>
+  </data>
+  <data name="Archive_Extract_Info" xml:space="preserve">
+    <value>Estrae tutti i file in questa directory, comprese le eventuali sottodirectory</value>
+  </data>
+  <data name="Archive_AddFiles" xml:space="preserve">
+    <value>Aggiungi file</value>
+  </data>
+  <data name="Archive_AddFiles_Info" xml:space="preserve">
+    <value>Aggiunge i file selezionati alla directory</value>
+  </data>
+  <data name="Archive_ExportConvert" xml:space="preserve">
+    <value>Esporta e converti</value>
+  </data>
+  <data name="Archive_ExportConvert_Info" xml:space="preserve">
+    <value>Estrae tutti i file in questa directory, comprese eventuali sottodirectory e consente la conversione dei file</value>
+  </data>
+  <data name="Archive_ImportConvert" xml:space="preserve">
+    <value>Importa e converti</value>
+  </data>
+  <data name="Archive_ImportConvert_Info" xml:space="preserve">
+    <value>Importa tutti i file con nomi di file corrispondenti dalla directory selezionata e li converte, ove possibile, in modo che corrispondano al formato originale</value>
+  </data>
+  <data name="Archive_CreateDir" xml:space="preserve">
+    <value>Crea directory</value>
+  </data>
+  <data name="Archive_CreateDir_Info" xml:space="preserve">
+    <value>Crea una nuova directory vuota</value>
+  </data>
+  <data name="Archive_Delete" xml:space="preserve">
+    <value>Elimina</value>
+  </data>
+  <data name="Archive_DeleteDir_Info" xml:space="preserve">
+    <value>Elimina la directory e tutto il suo contenuto, inclusi file e sottodirectory</value>
+  </data>
+  <data name="Archive_ExportFile" xml:space="preserve">
+    <value>Esporta</value>
+  </data>
+  <data name="Archive_ImportFile" xml:space="preserve">
+    <value>Importa</value>
+  </data>
+  <data name="Archive_Save" xml:space="preserve">
+    <value>Salva Archivio</value>
+  </data>
+  <data name="Archive_ExportDirFileConflict" xml:space="preserve">
+    <value>La directory selezionata contiene un file con lo stesso nome di {0}</value>
+  </data>
+  <data name="Archive_Export_Format_Original" xml:space="preserve">
+    <value>Originale</value>
+  </data>
+  <data name="Archive_ImportDir_Error" xml:space="preserve">
+    <value>Si è verificato un errore durante l'importazione dei file</value>
+  </data>
+  <data name="Archive_CreateDir_Header" xml:space="preserve">
+    <value>Seleziona un nome di directory</value>
+  </data>
+  <data name="Archive_AddFiles_Header" xml:space="preserve">
+    <value>Seleziona i file da aggiungere</value>
+  </data>
+  <data name="Archive_AddFiles_Conflict" xml:space="preserve">
+    <value>Il file '{0}' ha lo stesso nome di un file esistente. Vuoi sostituirlo?</value>
+  </data>
+  <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
+    <value>Conflitto di nomi dei file</value>
+  </data>
+  <data name="Archive_FileInfo_Dir" xml:space="preserve">
+    <value>Directory:</value>
+  </data>
+  <data name="Archive_FileInfo_Size" xml:space="preserve">
+    <value>Dimensione file:</value>
+  </data>
+  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
+    <value>Dimensioni file compresso:</value>
+  </data>
+  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
+    <value>Puntatore:</value>
+  </data>
+  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
+    <value>Compresso:</value>
+  </data>
+  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
+    <value>Criptato:</value>
+  </data>
+  <data name="Archive_FileInfo_Type" xml:space="preserve">
+    <value>Tipo:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
+    <value>Dimensione:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
+    <value>Trasparente:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
+    <value>Mipmap:</value>
+  </data>
+  <data name="Archive_FileInfo_Format" xml:space="preserve">
+    <value>Formato:</value>
+  </data>
+  <data name="Archive_CreationFileStatus" xml:space="preserve">
+    <value>Aggiungendo il file {0}</value>
+  </data>
+  <data name="Archive_AddFiles_Error" xml:space="preserve">
+    <value>Si è verificato un errore durante l'aggiunta del file {0}</value>
+  </data>
+  <data name="Archive_Format_Original" xml:space="preserve">
+    <value>Originale</value>
+  </data>
+  <data name="Archive_Format_Default" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Archive_Format_GF" xml:space="preserve">
+    <value>GF (Graphic File)</value>
+  </data>
+  <data name="Archive_Format_Img" xml:space="preserve">
+    <value>Immagine</value>
+  </data>
+  <data name="GameDisplay_Raymap" xml:space="preserve">
+    <value>Visualizza mappe</value>
+  </data>
+  <data name="GameDisplay_Archives" xml:space="preserve">
+    <value>Apri archivi</value>
+  </data>
+  <data name="Progression_GenericSave" xml:space="preserve">
+    <value>Salvataggio</value>
+  </data>
+  <data name="R1Passwords_Invalid" xml:space="preserve">
+    <value>Password non valida</value>
+  </data>
+  <data name="R1_LevelName_0" xml:space="preserve">
+    <value>Foresta Primordiale</value>
+  </data>
+  <data name="R1_LevelName_1" xml:space="preserve">
+    <value>Laguna della Paura</value>
+  </data>
+  <data name="R1_LevelName_2" xml:space="preserve">
+    <value>Paludi dell'Oblio</value>
+  </data>
+  <data name="R1_LevelName_3" xml:space="preserve">
+    <value>Covo delle Zanzare</value>
+  </data>
+  <data name="R1_LevelName_4" xml:space="preserve">
+    <value>Colline dei Bonghi</value>
+  </data>
+  <data name="R1_LevelName_5" xml:space="preserve">
+    <value>Allegro Presto</value>
+  </data>
+  <data name="R1_LevelName_6" xml:space="preserve">
+    <value>Gong Celeste</value>
+  </data>
+  <data name="R1_LevelName_7" xml:space="preserve">
+    <value>Hullaballoo di Mr. Sax</value>
+  </data>
+  <data name="R1_LevelName_8" xml:space="preserve">
+    <value>Burrone del Crepuscolo</value>
+  </data>
+  <data name="R1_LevelName_9" xml:space="preserve">
+    <value>Le Grandi Rocce</value>
+  </data>
+  <data name="R1_LevelName_10" xml:space="preserve">
+    <value>Monti di Mr. Stone</value>
+  </data>
+  <data name="R1_LevelName_11" xml:space="preserve">
+    <value>Pianure del Pianto</value>
+  </data>
+  <data name="R1_LevelName_12" xml:space="preserve">
+    <value>Pentathlon della Matita</value>
+  </data>
+  <data name="R1_LevelName_13" xml:space="preserve">
+    <value>Cratere della Mamma Spaziale</value>
+  </data>
+  <data name="R1_LevelName_14" xml:space="preserve">
+    <value>Palazzo di Cristallo</value>
+  </data>
+  <data name="R1_LevelName_15" xml:space="preserve">
+    <value>A Pranzo da Joe</value>
+  </data>
+  <data name="R1_LevelName_16" xml:space="preserve">
+    <value>Stalattiti di Mr. Skop</value>
+  </data>
+  <data name="R1Passwords_Generate" xml:space="preserve">
+    <value>Genera</value>
+  </data>
+  <data name="R1Passwords_Load" xml:space="preserve">
+    <value>Carica</value>
+  </data>
+  <data name="R1Passwords_LevUnlocked" xml:space="preserve">
+    <value>Sbloccato</value>
+  </data>
+  <data name="R1Passwords_LevAllCages" xml:space="preserve">
+    <value>Tutte le gabbie</value>
+  </data>
+  <data name="R1Passwords_FinBoss" xml:space="preserve">
+    <value>Sconfiggi il boss</value>
+  </data>
+  <data name="R1Passwords_HelpedMus" xml:space="preserve">
+    <value>Musicista aiutato</value>
+  </data>
+  <data name="R1Passwords_Finished" xml:space="preserve">
+    <value>Gioco finito</value>
+  </data>
+  <data name="R1Passwords_Lives" xml:space="preserve">
+    <value>Vite</value>
+  </data>
+  <data name="R1Passwords_Continues" xml:space="preserve">
+    <value>Continues</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_R1Header" xml:space="preserve">
+    <value>Archivi PC Rayman 1 (.dat)</value>
+  </data>
+  <data name="Utilities_R1Passwords_Header" xml:space="preserve">
+    <value>Generatore Password Rayman 1 PS1</value>
   </data>
 </root>

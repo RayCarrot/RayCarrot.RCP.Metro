@@ -1,5 +1,6 @@
 ﻿-----   Version 11.0.0 - April ??, 2021   -----
 • Updated the Archive Explorer™
+	• The archive no longer automatically repacks when a file has been modified, allowing multiple modifications to be done before saving
 	• New files can now be added
 	• New directories can now be created
 	• Multiple changes can be made to the archive before repacking

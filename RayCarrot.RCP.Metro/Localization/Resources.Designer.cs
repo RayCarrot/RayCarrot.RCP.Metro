@@ -984,6 +984,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred when importing the file.
+        /// </summary>
+        public static string Archive_ImportFile_Error {
+            get {
+                return ResourceManager.GetString("Archive_ImportFile_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select file to import.
         /// </summary>
         public static string Archive_ImportFileHeader {
@@ -7212,6 +7221,24 @@ namespace RayCarrot.RCP.Metro {
         public static string R1Passwords_Invalid {
             get {
                 return ResourceManager.GetString("R1Passwords_Invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid password character {0}.
+        /// </summary>
+        public static string R1Passwords_InvalidChar {
+            get {
+                return ResourceManager.GetString("R1Passwords_InvalidChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password must contain 10 characters.
+        /// </summary>
+        public static string R1Passwords_InvalidLength {
+            get {
+                return ResourceManager.GetString("R1Passwords_InvalidLength", resourceCulture);
             }
         }
         

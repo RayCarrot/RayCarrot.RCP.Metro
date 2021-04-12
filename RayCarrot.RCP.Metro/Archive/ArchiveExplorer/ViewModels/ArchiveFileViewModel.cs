@@ -379,12 +379,19 @@ namespace RayCarrot.RCP.Metro
                     // Run as a task
                     await Task.Run(async () =>
                     {
-                        // TODO-UPDATE: Try/catch all of this
+                        try
+                        {
+                            // Import the file
+                            ImportFile(result.SelectedFile, true);
 
-                        // Import the file
-                        ImportFile(result.SelectedFile, true);
+                            RL.Logger?.LogTraceSource($"The archive file is pending to be imported");
+                        }
+                        catch (Exception ex)
+                        {
+                            ex.HandleError("Importing file");
 
-                        RL.Logger?.LogTraceSource($"The archive file is pending to be imported");
+                            await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ImportFile_Error);
+                        }
                     });
                 }
             }
