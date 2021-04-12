@@ -4,11 +4,11 @@ using System.Windows.Media;
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// Archive file data when initializing a file
+    /// Archive file thumbnail data
     /// </summary>
-    public class ArchiveFileInitData
+    public class ArchiveFileThumbnailData
     {
-        public ArchiveFileInitData(ImageSource thumbnail, IEnumerable<DuoGridItemViewModel> fileInfo)
+        public ArchiveFileThumbnailData(ImageSource thumbnail, IEnumerable<DuoGridItemViewModel> fileInfo)
         {
             Thumbnail = thumbnail;
             FileInfo = fileInfo;

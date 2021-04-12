@@ -185,7 +185,7 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Initializes the file
+        /// Initializes the file. This sets the <see cref="FileType"/> and optionally loads the <see cref="ThumbnailSource"/> and <see cref="FileDisplayInfo"/>.
         /// </summary>
         /// <param name="fileStream">The file stream, if available</param>
         /// <param name="loadThumbnail">Indicates if the thumbnail should be loaded</param>
@@ -206,6 +206,8 @@ namespace RayCarrot.RCP.Metro
 
                 FileDisplayInfo.AddRange(Manager.GetFileInfo(Archive.ArchiveData, FileData.ArchiveEntry));
 
+                fileStream.SeekToBeginning();
+
                 // Get the type
                 FileType = FileData.GetFileType(fileStream);
 
@@ -219,28 +221,30 @@ namespace RayCarrot.RCP.Metro
                 // Get export formats
                 FileExports.AddRange(FileType.ExportFormats.Select(x => new ArchiveFileExportViewModel(x.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(x)))));
 
-                fileStream.SeekToBeginning();
-
-                // Initialize the file
-                var initData = FileType.InitFile(fileStream, FileExtension, loadThumbnail ? (int?)64 : null, Manager);
-
                 if (loadThumbnail)
                 {
-                    // Get the thumbnail
-                    var img = initData.Thumbnail;
+                    fileStream.SeekToBeginning();
+
+                    // Load the thumbnail
+                    var thumb = FileType.LoadThumbnail(fileStream, FileExtension, 64, Manager);
+
+                    // Get the thumbnail image
+                    var img = thumb.Thumbnail;
 
                     // Freeze the image to avoid thread errors
                     img?.Freeze();
 
                     // Set the image source
                     ThumbnailSource = img;
+
+                    // Add display info from the type data
+                    FileDisplayInfo.AddRange(thumb.FileInfo);
                 }
 
                 // Set icon
                 IconKind = FileType.Icon;
 
-                // Add display info from the init data
-                FileDisplayInfo.AddRange(initData.FileInfo);
+                // Set file type
                 FileDisplayInfo.Add(new DuoGridItemViewModel(Resources.Archive_FileInfo_Type, FileType.TypeDisplayName, UserLevel.Advanced));
 
                 IsInitialized = true;
@@ -379,7 +383,7 @@ namespace RayCarrot.RCP.Metro
                         // TODO-UPDATE: Try/catch all of this
 
                         // Import the file
-                        ImportFile(result.SelectedFile, false);
+                        ImportFile(result.SelectedFile, true);
 
                         RL.Logger?.LogTraceSource($"The archive file is pending to be imported");
                     });

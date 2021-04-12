@@ -119,7 +119,7 @@
     </Compile>
     <Compile Include="Archive\Data\ArchiveFileStream.cs" />
     <Compile Include="Archive\Data\ArchiveFileItem.cs" />
-    <Compile Include="Archive\Data\ArchiveFileInitData.cs" />
+    <Compile Include="Archive\Data\ArchiveFileThumbnailData.cs" />
     <Compile Include="Archive\Data\FileType\ArchiveFileType_Default.cs" />
     <Compile Include="Archive\Data\FileType\OpenSpace\ArchiveFileType_GF.cs" />
     <Compile Include="Archive\Data\FileType\ArchiveFileType_Image.cs" />

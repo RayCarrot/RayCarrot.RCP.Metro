@@ -77,33 +77,28 @@ namespace RayCarrot.RCP.Metro
         };
 
         /// <summary>
-        /// Initializes the file
+        /// Loads the thumbnail and display info for the file
         /// </summary>
         /// <param name="inputStream">The file data stream</param>
         /// <param name="fileExtension">The file extension</param>
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
-        /// <returns>The init data</returns>
-        public ArchiveFileInitData InitFile(ArchiveFileStream inputStream, FileExtension fileExtension, int? width, IArchiveDataManager manager)
+        /// <returns>The thumbnail data</returns>
+        public ArchiveFileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager)
         {
             // Load the file
             var file = GetFileContent(inputStream.Stream, manager);
 
-            BitmapSource thumbnailSource = null;
+            // Load the raw bitmap data
+            var rawBmp = file.GetRawBitmapData(width, (int)(file.Height / ((double)file.Width / width)));
 
-            if (width.HasValue)
-            {
-                // Load the raw bitmap data
-                var rawBmp = file.GetRawBitmapData(width.Value, (int)(file.Height / ((double)file.Width / width)));
+            var format = rawBmp.PixelFormat == PixelFormat.Format32bppArgb ? PixelFormats.Bgra32 : PixelFormats.Bgr24;
 
-                var format = rawBmp.PixelFormat == PixelFormat.Format32bppArgb ? PixelFormats.Bgra32 : PixelFormats.Bgr24;
-
-                // Get a thumbnail source
-                thumbnailSource = BitmapSource.Create(rawBmp.Width, rawBmp.Height, 96, 96, format, null, rawBmp.PixelData, (rawBmp.Width * format.BitsPerPixel + 7) / 8);
-            }
+            // Get a thumbnail source
+            var thumbnailSource = BitmapSource.Create(rawBmp.Width, rawBmp.Height, 96, 96, format, null, rawBmp.PixelData, (rawBmp.Width * format.BitsPerPixel + 7) / 8);
 
             // Get the thumbnail with the specified size
-            return new ArchiveFileInitData(thumbnailSource, new DuoGridItemViewModel[]
+            return new ArchiveFileThumbnailData(thumbnailSource, new DuoGridItemViewModel[]
             {
                 new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_Size, $"{file.Width}x{file.Height}"),
                 new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_HasAlpha, $"{file.GFPixelFormat.SupportsTransparency()}"),

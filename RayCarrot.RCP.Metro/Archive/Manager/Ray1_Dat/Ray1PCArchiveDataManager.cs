@@ -82,6 +82,13 @@ namespace RayCarrot.RCP.Metro
 
             // Remove the encryption
             file.XORKey = 0;
+
+            // Calculate the checksum
+            var c = new Checksum8Calculator();
+            c.AddBytes(inputStream.ReadRemainingBytes());
+            file.Checksum = c.ChecksumValue;
+
+            inputStream.Position = 0;
         }
 
         /// <summary>
@@ -146,16 +153,11 @@ namespace RayCarrot.RCP.Metro
                 // Get the file entry
                 var entry = file.Entry;
 
-                // Reset XOR key
-                entry.XORKey = 0;
-
-                // TODO-UPDATE: Update checksum!
-
                 // Add to the generator
                 fileGenerator.Add(entry, () =>
                 {
                     // Get the file stream to write to the archive
-                    var fileStream = file.FileItem.GetFileData(generator);
+                    var fileStream = file.FileItem.GetFileData(generator).Stream;
 
                     // Set the pointer
                     entry.FileOffset = pointer;
@@ -166,7 +168,7 @@ namespace RayCarrot.RCP.Metro
                     // Invoke event
                     OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<ArchiveFileItem>(file.FileItem));
 
-                    return fileStream.Stream;
+                    return fileStream;
                 });
             }
 

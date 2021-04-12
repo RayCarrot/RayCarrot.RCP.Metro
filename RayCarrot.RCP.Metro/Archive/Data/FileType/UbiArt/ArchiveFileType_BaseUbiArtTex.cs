@@ -76,17 +76,20 @@ namespace RayCarrot.RCP.Metro
         };
 
         /// <summary>
-        /// Initializes the file
+        /// Loads the thumbnail and display info for the file
         /// </summary>
         /// <param name="inputStream">The file data stream</param>
         /// <param name="fileExtension">The file extension</param>
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
-        /// <returns>The init data</returns>
-        public override ArchiveFileInitData InitFile(ArchiveFileStream inputStream, FileExtension fileExtension, int? width, IArchiveDataManager manager)
+        /// <returns>The thumbnail data</returns>
+        public override ArchiveFileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager)
         {
             // Only load thumbnails for supported formats
-            return base.InitFile(inputStream, fileExtension, IsFormatSupported ? width : null, manager);
+            if (!IsFormatSupported)
+                return new ArchiveFileThumbnailData(null, new DuoGridItemViewModel[0]);
+            else
+                return base.LoadThumbnail(inputStream, fileExtension, width, manager);
         }
 
         /// <summary>

@@ -165,7 +165,7 @@ namespace RayCarrot.RCP.Metro
                 fileGenerator.Add(entry, () =>
                 {
                     // Get the file stream to write to the archive
-                    var fileStream = file.FileItem.GetFileData(generator);
+                    var fileStream = file.FileItem.GetFileData(generator).Stream;
 
                     // Set the pointer
                     entry.Pointer = pointer;
@@ -176,7 +176,7 @@ namespace RayCarrot.RCP.Metro
                     // Invoke event
                     OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<ArchiveFileItem>(file.FileItem));
 
-                    return fileStream.Stream;
+                    return fileStream;
                 });
             }
 

@@ -3,7 +3,6 @@ using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
 using System.IO;
 using System.Linq;
-using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -59,29 +58,24 @@ namespace RayCarrot.RCP.Metro
         public virtual FileExtension[] ExportFormats => ImportFormats;
 
         /// <summary>
-        /// Initializes the file
+        /// Loads the thumbnail and display info for the file
         /// </summary>
         /// <param name="inputStream">The file data stream</param>
         /// <param name="fileExtension">The file extension</param>
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
-        /// <returns>The init data</returns>
-        public virtual ArchiveFileInitData InitFile(ArchiveFileStream inputStream, FileExtension fileExtension, int? width, IArchiveDataManager manager)
+        /// <returns>The thumbnail data</returns>
+        public virtual ArchiveFileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager)
         {
-            ImageSource thumb = null;
-
             // Get the image
             using var img = GetImage(inputStream.Stream, fileExtension, manager);
 
-            if (width.HasValue)
-            {
-                // Resize to a thumbnail
-                img.Thumbnail(width.Value, (int)(img.Height / ((double)img.Width / width)));
+            // Resize to a thumbnail
+            img.Thumbnail(width, (int)(img.Height / ((double)img.Width / width)));
 
-                thumb = img.ToBitmapSource();
-            }
+            var thumb = img.ToBitmapSource();
 
-            return new ArchiveFileInitData(thumb, new DuoGridItemViewModel[]
+            return new ArchiveFileThumbnailData(thumb, new DuoGridItemViewModel[]
             {
                 new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_Size, $"{img.Width}x{img.Height}"),
                 new DuoGridItemViewModel(Resources.Archive_FileInfo_Format, $"{GetFormat(fileExtension)}"),

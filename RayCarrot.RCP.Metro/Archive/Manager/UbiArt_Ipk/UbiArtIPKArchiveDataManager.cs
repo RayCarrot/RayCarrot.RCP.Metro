@@ -180,7 +180,7 @@ namespace RayCarrot.RCP.Metro
                 fileGenerator.Add(entry, () =>
                 {
                     // Get the file bytes to write to the archive
-                    var fileStream = file.FileItem.GetFileData(generator);
+                    var fileStream = file.FileItem.GetFileData(generator).Stream;
 
                     // Set the offset
                     entry.Offsets[0] = currentOffset;
@@ -191,7 +191,7 @@ namespace RayCarrot.RCP.Metro
                     // Invoke event
                     OnWritingFileToArchive?.Invoke(this, new ValueEventArgs<ArchiveFileItem>(file.FileItem));
 
-                    return fileStream.Stream;
+                    return fileStream;
                 });
             }
 

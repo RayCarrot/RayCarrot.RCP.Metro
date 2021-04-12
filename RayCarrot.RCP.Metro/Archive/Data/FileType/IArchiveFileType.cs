@@ -53,14 +53,14 @@ namespace RayCarrot.RCP.Metro
         FileExtension[] ExportFormats { get; }
 
         /// <summary>
-        /// Initializes the file
+        /// Loads the thumbnail and display info for the file
         /// </summary>
         /// <param name="inputStream">The file data stream</param>
         /// <param name="fileExtension">The file extension</param>
         /// <param name="width">The thumbnail width</param>
         /// <param name="manager">The manager</param>
-        /// <returns>The init data</returns>
-        ArchiveFileInitData InitFile(ArchiveFileStream inputStream, FileExtension fileExtension, int? width, IArchiveDataManager manager);
+        /// <returns>The thumbnail data</returns>
+        ArchiveFileThumbnailData LoadThumbnail(ArchiveFileStream inputStream, FileExtension fileExtension, int width, IArchiveDataManager manager);
 
         /// <summary>
         /// Converts the file data to the specified format
