@@ -101,10 +101,10 @@ namespace RayCarrot.RCP.Metro
                 using var fileStream = File.Open(save.FilePath, FileMode.Open, FileAccess.Read);
 
                 // Deserialize the data
-                var saveData = BinarySerializableHelpers.ReadFromStream<RayKitSaveData>(fileStream, Ray1Settings.GetDefaultSettings(Ray1Game.RayKit, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
+                var saveData = BinarySerializableHelpers.ReadFromStream<RaymanDesignerSaveData>(fileStream, Ray1Settings.GetDefaultSettings(Ray1Game.RayKit, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
 
                 // Get the save value
-                var value = saveData.GetDecodedValue(save.World, save.Level, Game == Games.RaymanDesigner ? RayKitSaveData.SaveRevision.KIT : RayKitSaveData.SaveRevision.FAN_60N);
+                var value = saveData.GetDecodedValue(save.World, save.Level, Game == Games.RaymanDesigner ? RaymanDesignerSaveData.SaveRevision.KIT : RaymanDesignerSaveData.SaveRevision.FAN_60N);
 
                 if (value == -1)
                 {

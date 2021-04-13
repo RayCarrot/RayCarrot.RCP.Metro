@@ -7099,6 +7099,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mr Dark&apos;s Dare.
+        /// </summary>
+        public static string R1_LevelName_17 {
+            get {
+                return ResourceManager.GetString("R1_LevelName_17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Swamps of Forgetfulness.
         /// </summary>
         public static string R1_LevelName_2 {
@@ -7189,15 +7198,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finished the game.
-        /// </summary>
-        public static string R1Passwords_Finished {
-            get {
-                return ResourceManager.GetString("R1Passwords_Finished", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Generate.
         /// </summary>
         public static string R1Passwords_Generate {
@@ -7230,6 +7230,15 @@ namespace RayCarrot.RCP.Metro {
         public static string R1Passwords_InvalidChar {
             get {
                 return ResourceManager.GetString("R1Passwords_InvalidChar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password data is invalid.
+        /// </summary>
+        public static string R1Passwords_InvalidData {
+            get {
+                return ResourceManager.GetString("R1Passwords_InvalidData", resourceCulture);
             }
         }
         

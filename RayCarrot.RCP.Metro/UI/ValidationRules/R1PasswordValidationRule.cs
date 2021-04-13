@@ -10,7 +10,7 @@ namespace RayCarrot.RCP.Metro
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            var supportedChars = R1_PS1_Password.GetSupportedCharacters();
+            var supportedChars = Rayman1PS1Password.GetSupportedCharacters();
 
             if (!(value is string s))
                 return new ValidationResult(false, Resources.R1Passwords_Invalid);

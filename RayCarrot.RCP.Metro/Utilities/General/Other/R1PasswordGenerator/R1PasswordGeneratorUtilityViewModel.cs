@@ -1,12 +1,13 @@
-﻿using RayCarrot.Rayman;
+﻿using RayCarrot.Common;
+using RayCarrot.Logging;
 using RayCarrot.Rayman.Ray1;
 using RayCarrot.UI;
+using RayCarrot.WPF;
 using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -23,13 +24,13 @@ namespace RayCarrot.RCP.Metro
         public R1PasswordGeneratorUtilityViewModel()
         {
             // Create commands
-            GeneratePasswordCommand = new RelayCommand(GeneratePassword);
+            GeneratePasswordCommand = new AsyncRelayCommand(GeneratePasswordAsync);
             LoadPasswordCommand = new AsyncRelayCommand(LoadPasswordAsync);
 
             // Set up selection
-            ModeSelection = new EnumSelectionViewModel<R1_PS1_Password.PasswordMode>(R1_PS1_Password.PasswordMode.NTSC, new R1_PS1_Password.PasswordMode[]
+            ModeSelection = new EnumSelectionViewModel<Rayman1PS1Password.PasswordMode>(Rayman1PS1Password.PasswordMode.NTSC, new Rayman1PS1Password.PasswordMode[]
             {
-                R1_PS1_Password.PasswordMode.NTSC,
+                Rayman1PS1Password.PasswordMode.NTSC,
                 //R1_PS1_Password.PasswordMode.PAL, // TODO: Support the PAL version
             });
 
@@ -39,11 +40,11 @@ namespace RayCarrot.RCP.Metro
                 new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_0), ProcessUnlockedChange, canIsUnlockedBeModified: false),
                 new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_1), ProcessUnlockedChange),
                 new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_2), ProcessUnlockedChange, link: 4),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_3), ProcessUnlockedChange, branched: true, bossIndex: 1),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_3), ProcessUnlockedChange, branched: true, bossFlag: Rayman1FinBossLevelFlags.Moskito),
                 new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_4), ProcessUnlockedChange),
                 new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_5), ProcessUnlockedChange),
                 new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_6), ProcessUnlockedChange, link: 8),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_7), ProcessUnlockedChange, branched: true, bossIndex: 2),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_7), ProcessUnlockedChange, branched: true, bossFlag: Rayman1FinBossLevelFlags.MrSax),
                 new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_8), ProcessUnlockedChange),
                 new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_9), ProcessUnlockedChange),
                 new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_10), ProcessUnlockedChange),
@@ -52,7 +53,8 @@ namespace RayCarrot.RCP.Metro
                 new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_13), ProcessUnlockedChange),
                 new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_14), ProcessUnlockedChange),
                 new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_15), ProcessUnlockedChange),
-                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_16), ProcessUnlockedChange, bossIndex: 6)
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_16), ProcessUnlockedChange, bossFlag: Rayman1FinBossLevelFlags.MrSkops),
+                new LevelViewModel(new LocalizedString(() => Resources.R1_LevelName_17), ProcessUnlockedChange, bossFlag: Rayman1FinBossLevelFlags.MrDark, hasCages: false)
             };
 
             // First level should always be unlocked
@@ -68,7 +70,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game mode selection
         /// </summary>
-        public EnumSelectionViewModel<R1_PS1_Password.PasswordMode> ModeSelection { get; }
+        public EnumSelectionViewModel<Rayman1PS1Password.PasswordMode> ModeSelection { get; }
 
         /// <summary>
         /// The game levels which can be modified
@@ -76,7 +78,6 @@ namespace RayCarrot.RCP.Metro
         public LevelViewModel[] Levels { get; }
 
         public bool HasHelpedTheMusician { get; set; }
-        public bool HasFinishedTheGame { get; set; }
 
         public int LivesCount { get; set; }
         public int ContinuesCount { get; set; }
@@ -91,9 +92,13 @@ namespace RayCarrot.RCP.Metro
         {
             var disabled = !changedLvl.IsUnlocked;
 
-            // No need to process branched levels
+            // If the level is branched we need to unlock the previous levels
             if (changedLvl.Branched)
+            {
+                var prevLev = Levels[Levels.FindItemIndex(x => x == changedLvl) - 1];
+                Levels[prevLev.Link].IsUnlocked = true;
                 return;
+            }
 
             bool reachedItem = false;
 
@@ -116,13 +121,51 @@ namespace RayCarrot.RCP.Metro
 
             // Update linked levels
             foreach (LevelViewModel lvl in Levels.Where(x => x.Link != -1))
-                lvl.SetIsUnlocked(Levels[lvl.Link].IsUnlocked);
+            {
+                var isUnlocked = Levels[lvl.Link].IsUnlocked;
+                lvl.SetIsUnlocked(isUnlocked);
+
+                // If we lock a linked level we also have to lock the next level which is always the branched one
+                if (!isUnlocked)
+                    Levels[Levels.FindItemIndex(x => x == lvl) + 1].SetIsUnlocked(false);
+            }
         }
 
-        public void GeneratePassword()
+        public void CorrectData()
         {
+            // Clamp lives and continues
+            LivesCount = LivesCount.Clamp(0, 99);
+            ContinuesCount = ContinuesCount.Clamp(0, 9);
+
+            // Moskito has to be beaten before finishing Twilight Gulch
+            if (!Levels[3].BeatBoss && Levels[9].IsUnlocked)
+            {
+                Levels[3].IsUnlocked = true;
+                Levels[3].BeatBoss = true;
+            }
+
+            // Make sure The Musician has been helped under valid circumstances
+            if (HasHelpedTheMusician && !Levels[9].IsUnlocked)
+                HasHelpedTheMusician = false;
+            else if (!HasHelpedTheMusician && Levels[11].IsUnlocked)
+                HasHelpedTheMusician = true;
+
+            // Mr Skops has to be beaten before unlocking Mr Dark's Dare
+            if (!Levels[16].BeatBoss && Levels[17].IsUnlocked)
+                Levels[16].BeatBoss = true;
+
+            // All cages have to be collected for Mr Dark's Dare to be unlocked
+            if (Levels[17].IsUnlocked && Levels.Any(x => x.HasCages && !x.HasAllCages))
+                Levels[17].IsUnlocked = false;
+        }
+
+        public async Task GeneratePasswordAsync()
+        {
+            // Correct the data in case it's out of range
+            CorrectData();
+
             // Create a save
-            var save = new R1_PS1_Password.R1_PS1_SaveFile
+            var save = new Rayman1PS1Password.SaveData
             {
                 LivesCount = (byte)LivesCount,
                 Continues = (byte)ContinuesCount
@@ -134,17 +177,26 @@ namespace RayCarrot.RCP.Metro
                 save.WorldInfo[i].IsUnlocked = Levels[i].IsUnlocked;
                 save.WorldInfo[i].HasAllCages = Levels[i].HasAllCages;
             }
-            
+
             // Set boss flags
-            foreach (var lev in Levels.Where(x => x.BossIndex != -1))
-                save.FinBossLevel[0] = (byte)BitHelpers.SetBits(save.FinBossLevel[0], lev.BeatBoss ? 1 : 0, 1, lev.BossIndex);
+            foreach (var lev in Levels.Where(x => x.HasBoss))
+                save.FinBossLevel = save.FinBossLevel.SetFlag(lev.BossFlag, lev.BeatBoss);
 
             // Set flags
-            save.FinBossLevel[0] = (byte)BitHelpers.SetBits(save.FinBossLevel[0], HasFinishedTheGame ? 1 : 0, 1, 7);
-            save.FinBossLevel[1] = (byte)BitHelpers.SetBits(save.FinBossLevel[1], HasHelpedTheMusician ? 1 : 0, 1, 3);
+            save.FinBossLevel = save.FinBossLevel.SetFlag(Rayman1FinBossLevelFlags.HelpedMusician, HasHelpedTheMusician);
+
+            // Validate the password
+            var error = save.Validate();
+
+            if (error != null)
+            {
+                RL.Logger.LogWarningSource($"Invalid R1 password: {error}");
+                await Services.MessageUI.DisplayMessageAsync(Resources.R1Passwords_InvalidData, MessageType.Error);
+                return;
+            }
 
             // Get the password
-            var password = new R1_PS1_Password(save, ModeSelection.SelectedValue);
+            var password = new Rayman1PS1Password(save, ModeSelection.SelectedValue);
 
             Password = password.ToString().ToUpper();
         }
@@ -156,13 +208,12 @@ namespace RayCarrot.RCP.Metro
             if (!validationRule.IsValid)
                 return;
 
-            var password = new R1_PS1_Password(Password, ModeSelection.SelectedValue);
+            var password = new Rayman1PS1Password(Password, ModeSelection.SelectedValue);
             var save = password.Decode();
 
             if (save == null)
             {
                 await Services.MessageUI.DisplayMessageAsync(Resources.R1Passwords_Invalid, MessageType.Error);
-
                 return;
             }
 
@@ -177,12 +228,11 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Set boss flags
-            foreach (var lev in Levels.Where(x => x.BossIndex != -1))
-                lev.BeatBoss = BitHelpers.ExtractBits(save.FinBossLevel[0], 1, lev.BossIndex) == 1;
+            foreach (var lev in Levels.Where(x => x.HasBoss))
+                lev.BeatBoss = save.FinBossLevel.HasFlag(lev.BossFlag);
 
             // Set flags
-            HasFinishedTheGame = BitHelpers.ExtractBits(save.FinBossLevel[0], 1, 7) == 1;
-            HasHelpedTheMusician = BitHelpers.ExtractBits(save.FinBossLevel[1], 1, 3) == 1;
+            HasHelpedTheMusician = save.FinBossLevel.HasFlag(Rayman1FinBossLevelFlags.HelpedMusician);
         }
 
         #endregion
@@ -198,14 +248,15 @@ namespace RayCarrot.RCP.Metro
 
         public class LevelViewModel : BaseRCPViewModel
         {
-            public LevelViewModel(LocalizedString levelName, Action<LevelViewModel> onChangedIsUnlocked, bool branched = false, int link = -1, bool canIsUnlockedBeModified = true, int bossIndex = -1)
+            public LevelViewModel(LocalizedString levelName, Action<LevelViewModel> onChangedIsUnlocked, bool branched = false, int link = -1, bool canIsUnlockedBeModified = true, Rayman1FinBossLevelFlags bossFlag = Rayman1FinBossLevelFlags.None, bool hasCages = true)
             {
                 LevelName = levelName;
                 OnChangedIsUnlocked = onChangedIsUnlocked;
                 Branched = branched;
                 Link = link;
                 CanIsUnlockedBeModified = canIsUnlockedBeModified && link == -1;
-                BossIndex = bossIndex;
+                BossFlag = bossFlag;
+                HasCages = hasCages;
             }
 
             private bool _isUnlocked;
@@ -221,12 +272,20 @@ namespace RayCarrot.RCP.Metro
                 set
                 {
                     _isUnlocked = value;
+
+                    if (!IsUnlocked)
+                    {
+                        HasAllCages = false;
+                        BeatBoss = false;
+                    }
+
                     OnChangedIsUnlocked(this);
                 }
             }
+            public bool HasCages { get; }
             public bool HasAllCages { get; set; }
-            public int BossIndex { get; }
-            public bool HasBoss => BossIndex != -1;
+            public Rayman1FinBossLevelFlags BossFlag { get; }
+            public bool HasBoss => BossFlag != Rayman1FinBossLevelFlags.None;
             public bool BeatBoss { get; set; }
 
             public void SetIsUnlocked(bool isUnlocked)

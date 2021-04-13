@@ -3723,6 +3723,9 @@ file</comment>
   <data name="R1_LevelName_16" xml:space="preserve">
     <value>Mr Skops' Stalactites</value>
   </data>
+  <data name="R1_LevelName_17" xml:space="preserve">
+    <value>Mr Dark's Dare</value>
+  </data>
   <data name="R1Passwords_Generate" xml:space="preserve">
     <value>Generate</value>
   </data>
@@ -3740,9 +3743,6 @@ file</comment>
   </data>
   <data name="R1Passwords_HelpedMus" xml:space="preserve">
     <value>Helped The Musician</value>
-  </data>
-  <data name="R1Passwords_Finished" xml:space="preserve">
-    <value>Finished the game</value>
   </data>
   <data name="R1Passwords_Lives" xml:space="preserve">
     <value>Lives</value>
@@ -3766,5 +3766,8 @@ file</comment>
     <value>Invalid password character {0}</value>
     <comment>Arguments:
 passwordChar</comment>
+  </data>
+  <data name="R1Passwords_InvalidData" xml:space="preserve">
+    <value>The password data is invalid</value>
   </data>
 </root>
