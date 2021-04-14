@@ -31,6 +31,7 @@ namespace RayCarrot.RCP.Metro
         {
             // Create commands
             NavigateToAddressCommand = new RelayCommand(NavigateToAddress);
+            DeleteSelectedDirCommand = new AsyncRelayCommand(DeleteSelectedDirAsync);
 
             // Set properties
             CurrentDirectorySuggestions = new ObservableCollection<string>();
@@ -93,6 +94,8 @@ namespace RayCarrot.RCP.Metro
         #region Commands
 
         public ICommand NavigateToAddressCommand { get; }
+
+        public ICommand DeleteSelectedDirCommand { get; }
 
         #endregion
 
@@ -366,6 +369,8 @@ namespace RayCarrot.RCP.Metro
             LoadDirectory(CurrentDirectoryAddress);
             UpdateAddress();
         }
+
+        public async Task DeleteSelectedDirAsync() => await (SelectedDir?.DeleteDirectoryAsync() ?? Task.CompletedTask);
 
         /// <summary>
         /// Disposes the archives

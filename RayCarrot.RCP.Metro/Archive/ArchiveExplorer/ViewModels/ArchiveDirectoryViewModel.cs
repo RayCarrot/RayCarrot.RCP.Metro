@@ -37,6 +37,7 @@ namespace RayCarrot.RCP.Metro
             ImportCommand = new AsyncRelayCommand(ImportAsync);
             CreateDirectoryCommand = new AsyncRelayCommand(CreateDirectoryAsync);
             DeleteCommand = new AsyncRelayCommand(DeleteDirectoryAsync);
+            DeleteSelectedFileCommand = new AsyncRelayCommand(DeleteSelectedFileAsync);
             AddFilesCommand = new AsyncRelayCommand(AddFilesAsync);
 
             // Enable collection synchronization
@@ -64,6 +65,7 @@ namespace RayCarrot.RCP.Metro
             ImportCommand = new AsyncRelayCommand(ImportAsync);
             CreateDirectoryCommand = new AsyncRelayCommand(CreateDirectoryAsync);
             DeleteCommand = new AsyncRelayCommand(DeleteDirectoryAsync);
+            DeleteSelectedFileCommand = new AsyncRelayCommand(DeleteSelectedFileAsync);
             AddFilesCommand = new AsyncRelayCommand(AddFilesAsync);
 
             // Enable collection synchronization
@@ -136,6 +138,8 @@ namespace RayCarrot.RCP.Metro
 
         public ICommand CreateDirectoryCommand { get; }
         public ICommand DeleteCommand { get; }
+
+        public ICommand DeleteSelectedFileCommand { get; }
         
         public ICommand AddFilesCommand { get; }
 
@@ -421,7 +425,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task DeleteDirectoryAsync()
         {
+            // Make sure the archive supports creating directories
             if (!Archive.Manager.CanModifyDirectories)
+                return;
+
+            // We can't delete the root directory
+            if (Archive.Parent == null)
                 return;
 
             RL.Logger?.LogTraceSource($"The archive directory {DisplayName} is being removed...");
@@ -444,6 +453,16 @@ namespace RayCarrot.RCP.Metro
                     RL.Logger?.LogTraceSource($"The archive directory has been removed");
                 }
             }
+        }
+
+        public ArchiveFileViewModel GetSelectedFile() => Files.FirstOrDefault(x => x.IsSelected);
+
+        public async Task DeleteSelectedFileAsync()
+        {
+            var selectedFile = GetSelectedFile();
+
+            if (selectedFile != null)
+                await selectedFile.DeleteFileAsync();
         }
 
         public async Task AddFilesAsync()

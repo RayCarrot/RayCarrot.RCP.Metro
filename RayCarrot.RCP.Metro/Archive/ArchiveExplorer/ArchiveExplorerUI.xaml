@@ -143,6 +143,12 @@
                       SelectedItemChanged="DirTreeView_OnSelectedItemChangedAsync"
                       MinWidth="80">
 
+                <!-- Keyboard shortcuts -->
+
+                <TreeView.InputBindings>
+                    <KeyBinding Key="Delete" Command="{Binding Path=DeleteSelectedDirCommand, Mode=OneTime}" />
+                </TreeView.InputBindings>
+
                 <TreeView.ItemContainerStyle>
                     <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
                         <Setter Property="ContextMenu">
@@ -186,6 +192,7 @@
                                                         Command="{Binding Path=DeleteCommand}"
                                                         IconForeground="{StaticResource Archive_DeleteItemBrush}"
                                                         IconKind="DeleteOutline"
+                                                        InputGestureText="Del"
                                                         IsEnabled="{Binding Path=CanBeDeleted, Mode=OneTime}"/>
 
 
@@ -248,6 +255,12 @@
                          Drop="FilesList_OnDrop"
                          Padding="5">
 
+                    <!-- Keyboard shortcuts -->
+
+                    <ListBox.InputBindings>
+                        <KeyBinding Key="Delete" Command="{Binding Path=DeleteSelectedFileCommand, Mode=OneTime}" />
+                    </ListBox.InputBindings>
+
                     <!-- File container -->
 
                     <ListBox.ItemContainerStyle>
@@ -299,6 +312,7 @@
                                                             IsEnabled="{Binding Path=IsInitialized}"
                                                             Command="{Binding Path=DeleteCommand, Mode=OneTime}"
                                                             IconForeground="{StaticResource Archive_DeleteItemBrush}"
+                                                            InputGestureText="Del"
                                                             IconKind="DeleteOutline" />
 
                                     </ContextMenu>
