@@ -205,8 +205,13 @@ namespace RayCarrot.RCP.Metro
 
                         try
                         {
+                            var allDirs = this.GetAllChildren(true).ToArray();
+                         
+                            var fileIndex = 0;
+                            var filesCount = allDirs.Sum(x => x.Files.Count);
+
                             // Handle each directory
-                            foreach (var item in this.GetAllChildren(true))
+                            foreach (var item in allDirs)
                             {
                                 // Get the directory path
                                 var path = result.SelectedDirectory + ExportDirName + item.FullPath.Remove(0, FullPath.Length).Trim(manager.PathSeparatorCharacter);
@@ -251,7 +256,7 @@ namespace RayCarrot.RCP.Metro
                                     // Get the final file name to use when exporting
                                     FileSystemPath exportFileName = forceNativeFormat ? new FileSystemPath(file.FileName) : new FileSystemPath(file.FileName).ChangeFileExtension(format, true);
 
-                                    Archive.SetDisplayStatus(String.Format(Resources.Archive_ExportingFileStatus, file.FileName));
+                                    Archive.SetDisplayStatus($"{String.Format(Resources.Archive_ExportingFileStatus, file.FileName)}{Environment.NewLine}{++fileIndex}/{filesCount}");
 
                                     // Export the file
                                     file.ExportFile(path + exportFileName, fileStream.Stream, format);
