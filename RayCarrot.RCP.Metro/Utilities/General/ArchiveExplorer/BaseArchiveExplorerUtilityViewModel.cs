@@ -31,11 +31,6 @@ namespace RayCarrot.RCP.Metro
         #region Protected Abstract Properties
 
         /// <summary>
-        /// Gets a new archive explorer data manager
-        /// </summary>
-        protected abstract IArchiveDataManager GetArchiveDataManager { get; }
-
-        /// <summary>
         /// The file extension for the archive
         /// </summary>
         public abstract string ArchiveFileExtension { get; }
@@ -48,6 +43,17 @@ namespace RayCarrot.RCP.Metro
         /// The game mode selection
         /// </summary>
         public abstract EnumSelectionViewModel<GameMode> GameModeSelection { get; }
+
+        #endregion
+
+        #region Protected Abstract Methods
+
+        /// <summary>
+        /// Gets a new archive data manager
+        /// </summary>
+        /// <param name="mode">The archive mode</param>
+        /// <returns>The archive data manager</returns>
+        protected abstract IArchiveDataManager GetArchiveDataManager(ArchiveMode mode);
 
         #endregion
 
@@ -105,6 +111,16 @@ namespace RayCarrot.RCP.Metro
         public ICommand OpenArchiveExplorerCommand { get; }
         
         public ICommand CreateArchiveCommand { get; }
+
+        #endregion
+
+        #region Enums
+
+        protected enum ArchiveMode
+        {
+            Explorer,
+            Creator
+        }
 
         #endregion
     }

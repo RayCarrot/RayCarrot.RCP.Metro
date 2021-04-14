@@ -37,18 +37,19 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Gets a new archive explorer data manager
+        /// Gets a new archive data manager
         /// </summary>
-        protected override IArchiveDataManager GetArchiveDataManager
+        /// <param name="mode">The archive mode</param>
+        /// <returns>The archive data manager</returns>
+        protected override IArchiveDataManager GetArchiveDataManager(ArchiveMode mode)
         {
-            get
-            {
-                var attr = GameModeSelection.SelectedValue.GetAttribute<UbiArtGameModeInfoAttribute>();
-                var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
+            var attr = GameModeSelection.SelectedValue.GetAttribute<UbiArtGameModeInfoAttribute>();
+            var settings = UbiArtSettings.GetDefaultSettings(attr.Game, attr.Platform);
 
-                // TODO-UPDATE: Should be MatchesSettings for creator!
-                return new UbiArtIPKArchiveDataManager(new UbiArtIPKArchiveConfigViewModel(settings, UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed));
-            }
+            return new UbiArtIPKArchiveDataManager(new UbiArtIPKArchiveConfigViewModel(settings, 
+                mode == ArchiveMode.Explorer 
+                    ? UbiArtIPKArchiveConfigViewModel.FileCompressionMode.WasCompressed 
+                    : UbiArtIPKArchiveConfigViewModel.FileCompressionMode.MatchesSetting));
         }
 
         /// <summary>

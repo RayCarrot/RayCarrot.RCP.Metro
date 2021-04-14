@@ -24,18 +24,17 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Gets a new archive explorer data manager
+        /// Gets a new archive data manager
         /// </summary>
-        protected override IArchiveDataManager GetArchiveDataManager
+        /// <param name="mode">The archive mode</param>
+        /// <returns>The archive data manager</returns>
+        protected override IArchiveDataManager GetArchiveDataManager(ArchiveMode mode)
         {
-            get
-            {
-                // Get the settings
-                var attr = GameModeSelection.SelectedValue.GetAttribute<Ray1GameModeInfoAttribute>();
-                var gameSettings = Ray1Settings.GetDefaultSettings(attr.Game, attr.Platform);
+            // Get the settings
+            var attr = GameModeSelection.SelectedValue.GetAttribute<Ray1GameModeInfoAttribute>();
+            var gameSettings = Ray1Settings.GetDefaultSettings(attr.Game, attr.Platform);
 
-                return new Ray1PCArchiveDataManager(gameSettings);
-            }
+            return new Ray1PCArchiveDataManager(gameSettings);
         }
 
         /// <summary>
