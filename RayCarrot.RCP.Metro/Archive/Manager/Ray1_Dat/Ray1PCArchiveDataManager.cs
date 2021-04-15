@@ -23,8 +23,11 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="settings">The settings when serializing the data</param>
-        public Ray1PCArchiveDataManager(Ray1Settings settings) => Settings = settings;
+        /// <param name="configViewModel">The configuration view model</param>
+        public Ray1PCArchiveDataManager(Ray1PCArchiveConfigViewModel configViewModel)
+        {
+            Config = configViewModel;
+        }
 
         #endregion
 
@@ -58,9 +61,20 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the configuration UI to use for creator
         /// </summary>
-        public object GetCreatorUIConfig => null;
+        public object GetCreatorUIConfig => new Ray1PCArchiveConfigUI()
+        {
+            DataContext = Config
+        };
 
-        public Ray1Settings Settings { get; }
+        /// <summary>
+        /// The settings when serializing the data
+        /// </summary>
+        protected Ray1Settings Settings => Config.Settings;
+
+        /// <summary>
+        /// The configuration view model
+        /// </summary>
+        protected Ray1PCArchiveConfigViewModel Config { get; }
 
         #endregion
 
@@ -230,13 +244,12 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The archive object</returns>
         public object CreateArchive()
         {
-            // Create the .cnt data
-            return new Rayman1PCArchiveData()
-            {
-                // TODO-UPDATE: Allow these to be changed! Add GetCreatorUIConfig
-                PrimaryKitHeader = "KIT",
-                SecondaryKitHeader = "KIT"
-            };
+            // Create the archive data
+            var archive = new Rayman1PCArchiveData();
+
+            Config.ConfigureArchiveData(archive);
+
+            return archive;
         }
 
         /// <summary>
@@ -248,11 +261,11 @@ namespace RayCarrot.RCP.Metro
         public IEnumerable<DuoGridItemViewModel> GetFileInfo(object archive, object fileEntry)
         {
             var entry = (Rayman1PCArchiveEntry)fileEntry;
-            var cnt = (Rayman1PCArchiveData)archive;
+            var archiveData = (Rayman1PCArchiveData)archive;
 
             yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Size, $"{ByteSize.FromBytes(entry.FileSize)}");
 
-            if (cnt.Files.Contains(entry))
+            if (archiveData.Files.Contains(entry))
                 yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Pointer, $"0x{entry.FileOffset:X8}", UserLevel.Technical);
             
             yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_IsEncrypted, $"{entry.XORKey != 0}", UserLevel.Advanced);

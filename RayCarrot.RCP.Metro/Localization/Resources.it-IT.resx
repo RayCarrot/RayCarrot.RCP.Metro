@@ -3627,4 +3627,7 @@ Messaggio di errore: {1} </value>
   <data name="R1_LevelName_17" xml:space="preserve">
     <value>Sfida di Mr. Dark</value>
   </data>
+  <data name="R1Passwords_InvalidData" xml:space="preserve">
+    <value>I dati della password non sono validi</value>
+  </data>
 </root>

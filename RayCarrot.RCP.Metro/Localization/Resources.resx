@@ -3770,4 +3770,10 @@ passwordChar</comment>
   <data name="R1Passwords_InvalidData" xml:space="preserve">
     <value>The password data is invalid</value>
   </data>
+  <data name="Archive_R1PC_PrimaryVersion" xml:space="preserve">
+    <value>Primary version</value>
+  </data>
+  <data name="Archive_R1PC_SecondaryVersion" xml:space="preserve">
+    <value>Secondary version</value>
+  </data>
 </root>

@@ -126,6 +126,10 @@
     <Compile Include="Archive\Data\FileType\IArchiveFileType.cs" />
     <Compile Include="Archive\Manager\OpenSpace_Cnt\OpenSpaceCntArchiveDataManager.cs" />
     <Compile Include="Archive\Manager\Ray1_Dat\Ray1PCArchiveDataManager.cs" />
+    <Compile Include="Archive\Manager\Ray1_Dat\Ray1PCArchiveConfigViewModel.cs" />
+    <Compile Include="Archive\Manager\Ray1_Dat\Ray1PCArchiveConfigUI.xaml.cs">
+      <DependentUpon>Ray1PCArchiveConfigUI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Archive\Manager\UbiArt_Ipk\UbiArtIPKArchiveConfigUI.xaml.cs">
       <DependentUpon>UbiArtIPKArchiveConfigUI.xaml</DependentUpon>
     </Compile>
@@ -505,6 +509,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Archive\ArchiveExplorer\ArchiveExplorerUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Archive\Manager\Ray1_Dat\Ray1PCArchiveConfigUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -34,7 +34,7 @@ namespace RayCarrot.RCP.Metro
             var attr = GameModeSelection.SelectedValue.GetAttribute<Ray1GameModeInfoAttribute>();
             var gameSettings = Ray1Settings.GetDefaultSettings(attr.Game, attr.Platform);
 
-            return new Ray1PCArchiveDataManager(gameSettings);
+            return new Ray1PCArchiveDataManager(new Ray1PCArchiveConfigViewModel(gameSettings));
         }
 
         /// <summary>

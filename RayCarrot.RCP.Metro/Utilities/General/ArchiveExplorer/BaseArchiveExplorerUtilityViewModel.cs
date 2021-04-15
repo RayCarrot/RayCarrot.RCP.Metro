@@ -66,7 +66,7 @@ namespace RayCarrot.RCP.Metro
         public async Task OpenArchiveExplorerAsync()
         {
             // Open the Archive Explorer
-            await OpenArchiveExplorerAsync(GetArchiveDataManager, new FileFilterItem($"*{ArchiveFileExtension}", ArchiveFileExtension.Substring(1).ToUpper()).ToString(), GameModeSelection.SelectedValue.GetGame());
+            await OpenArchiveExplorerAsync(GetArchiveDataManager(ArchiveMode.Explorer), new FileFilterItem($"*{ArchiveFileExtension}", ArchiveFileExtension.Substring(1).ToUpper()).ToString(), GameModeSelection.SelectedValue.GetGame());
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace RayCarrot.RCP.Metro
         public async Task CreateArchiveAsync()
         {
             // Show the Archive Creator
-            await RCPServices.UI.ShowArchiveCreatorAsync(GetArchiveDataManager);
+            await RCPServices.UI.ShowArchiveCreatorAsync(GetArchiveDataManager(ArchiveMode.Creator));
         }
 
         #endregion

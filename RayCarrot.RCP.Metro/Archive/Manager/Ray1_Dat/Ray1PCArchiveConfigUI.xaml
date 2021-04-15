@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Ray1PCArchiveConfigUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:metro="clr-namespace:RayCarrot.RCP.Metro"
+             Language="{UICulture}"
+             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance metro:Ray1PCArchiveConfigViewModel}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" MinWidth="110" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="Padding" Value="0 0 10 0" />
+            </Style>
+        </Grid.Resources>
+
+        <i:Interaction.Behaviors>
+            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+        </i:Interaction.Behaviors>
+
+        <TextBlock Grid.Column="0"
+                   Grid.Row="0"
+                   Text="{Resx Archive_R1PC_PrimaryVersion}"/>
+
+        <TextBox Grid.Column="1"
+                 Grid.Row="0"
+                 Text="{Binding Path=PrimaryVersion}" MaxLength="5" />
+
+        <TextBlock Grid.Column="0"
+                   Grid.Row="1"
+                   Text="{Resx Archive_R1PC_SecondaryVersion}"/>
+
+        <TextBox Grid.Column="1"
+                 Grid.Row="1"
+                 Text="{Binding Path=SecondaryVersion}" MaxLength="5" />
+
+    </Grid>
+</UserControl>

@@ -1029,6 +1029,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Primary version.
+        /// </summary>
+        public static string Archive_R1PC_PrimaryVersion {
+            get {
+                return ResourceManager.GetString("Archive_R1PC_PrimaryVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secondary version.
+        /// </summary>
+        public static string Archive_R1PC_SecondaryVersion {
+            get {
+                return ResourceManager.GetString("Archive_R1PC_SecondaryVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred when repacking the archive.
         /// </summary>
         public static string Archive_RepackError {

@@ -95,7 +95,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the archive data manager for the game
         /// </summary>
-        public override IArchiveDataManager GetArchiveDataManager => new Ray1PCArchiveDataManager(Ray1Settings.GetDefaultSettings(Ray1Game.RayEdu, Platform.PC));
+        public override IArchiveDataManager GetArchiveDataManager => new Ray1PCArchiveDataManager(new Ray1PCArchiveConfigViewModel(Ray1Settings.GetDefaultSettings(Ray1Game.RayEdu, Platform.PC)));
 
         /// <summary>
         /// Gets the archive file paths for the game
