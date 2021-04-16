@@ -198,7 +198,6 @@ namespace RayCarrot.RCP.Metro
                 // Get the file data
                 fileStream ??= GetDecodedFileStream();
 
-                // TODO-UPDATE: Sometimes a threading error is thrown here - why? Happens when exporting a folder.
                 // Populate info
                 FileDisplayInfo.Clear();
 
