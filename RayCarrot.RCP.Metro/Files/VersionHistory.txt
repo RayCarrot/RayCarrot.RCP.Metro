@@ -11,10 +11,12 @@
 • Added a utility for generating Rayman 1 PS1 passwords
 • Added the progression tab for Rayman Designer, Rayman by his Fans & Rayman 60 Levels
 • The program has now been translated to Italian (thanks ItzalDrake!)
+• Removed the links page (local links can now be found in the settings page)
 
 Other changes:
 • The game specific Archive Explorer™ utilities have been replaced by a button in the game drop-down menus
 • A link to view the game maps at raym.app is now available for each supported game in the drop-down menus
+• The settings page has been categorized into tabs
 • The app data now gets verified on launch, automatically correcting any invalid/corrupt values
 • Creating a new archive will now ignore system files when importing
 • The game options can now be quickly accessed by hovering on the launch button and selecting the new option

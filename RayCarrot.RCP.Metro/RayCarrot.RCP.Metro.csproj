@@ -322,10 +322,6 @@
     <Compile Include="Games\Base\GameType.cs" />
     <Compile Include="Helpers\Operation.cs" />
     <Compile Include="App\Implementations\RCPFileManager.cs" />
-    <Compile Include="Pages\Links\LinksPage.xaml.cs">
-      <DependentUpon>LinksPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Links\LinksPageViewModel.cs" />
     <Compile Include="Utilities\General\EnumSelectionViewModel.cs" />
     <Compile Include="Extensions\GameModeExtensions.cs" />
     <Compile Include="Utilities\General\ArchiveExplorer\BaseArchiveExplorerUtilityViewModel.cs" />
@@ -545,10 +541,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Games\Config\UI\RaymanJungleRunConfig.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Pages\Links\LinksPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -872,7 +864,7 @@
     </Compile>
     <Compile Include="Pages\Help\Cheats\Base\BaseCheatCodeItemViewModel.cs" />
     <Compile Include="Pages\Help\Cheats\GenericCheatCodeItemViewModel.cs" />
-    <Compile Include="Pages\Links\LinkItemViewModel.cs" />
+    <Compile Include="Pages\Settings\LinkItemViewModel.cs" />
     <Compile Include="Pages\Utilities\UtilitiesPageViewModel.cs" />
     <Compile Include="Pages\Help\Cheats\Rayman1CheatCodeItemViewModel.cs" />
     <Compile Include="UI\Converters\BooleanToFluidMoveDurationConverter.cs" />

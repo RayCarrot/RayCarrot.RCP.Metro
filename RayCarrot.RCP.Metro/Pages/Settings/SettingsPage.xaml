@@ -18,386 +18,502 @@
         <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
 
             <local:MenuItemIcon Header="{Resx Settings_EditJumpList}"
-                             ToolTip="{Resx Settings_EditJumpListInfo}"
-                             Command="{Binding Path=EditJumpListCommand}"
-                             IconKind="PencilBoxOutline"/>
+                                ToolTip="{Resx Settings_EditJumpListInfo}"
+                                Command="{Binding Path=EditJumpListCommand}"
+                                IconKind="PencilBoxOutline" />
+
+            <Separator />
+
+            <MenuItem Header="{Resx LinksPage_LinkStyleHeader}">
+
+                <MenuItem IsChecked="{Binding Path=Data.LinkItemStyle, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=List}" 
+                          Header="{Resx LinksPage_LinkStyle_List}"
+                          IsCheckable="True"/>
+
+                <MenuItem IsChecked="{Binding Path=Data.LinkItemStyle, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Group}"
+                          Header="{Resx LinksPage_LinkStyle_Group}"
+                          IsCheckable="True"/>
+
+            </MenuItem>
+
+            <MenuItem Header="{Resx LinksPage_LinkAlignmentStyleHeader}"
+                      IsEnabled="{Binding Path=Data.LinkItemStyle, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=List}">
+
+                <MenuItem IsChecked="{Binding Path=Data.LinkListHorizontalAlignment, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Left}" 
+                          Header="{Resx LinksPage_LinkAlignmentStyle_Left}"
+                          IsCheckable="True"/>
+
+                <MenuItem IsChecked="{Binding Path=Data.LinkListHorizontalAlignment, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Stretch}"
+                          Header="{Resx LinksPage_LinkAlignmentStyle_Stretch}"
+                          IsCheckable="True"/>
+
+            </MenuItem>
+
+            <Separator rwpf:UserLevelTag.MinUserLevel="Advanced"/>
+
+            <local:MenuItemIcon Header="{Resx Page_Refresh}"
+                                IconKind="Refresh"
+                                Command="{Binding Path=RefreshCommand}"
+                                rwpf:UserLevelTag.MinUserLevel="Advanced"/>
 
         </ContextMenu>
     </local:IBasePage.OverflowMenu>
 
-    <ScrollViewer Padding="15">
-        <i:Interaction.Behaviors>
-            <rwpf:FocusScrollViewerOnLoad />
-        </i:Interaction.Behaviors>
+    <ScrollViewer>
+        <metro:MetroAnimatedTabControl x:Name="SettingsTabControl"
+                                       Margin="15"
+                                       FocusVisualStyle="{x:Null}">
 
-        <StackPanel Margin="2 0">
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                <rwpf:FocusElementOnLoad />
             </i:Interaction.Behaviors>
 
-            <!-- Language -->
-
-            <StackPanel>
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
-                </i:Interaction.Behaviors>
-
-                <TextBlock Text="{Resx Settings_Language}"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
-
-                <StackPanel>
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-                    </i:Interaction.Behaviors>
-
-                    <ComboBox SelectedItem="{Binding Path=CurrentCultureInfo}"
-                              ItemsSource="{Binding Source={x:Static local:LocalizationManager.Languages}}">
-                        <ComboBox.ItemContainerStyle>
-                            <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
-                                <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
-                                <Setter Property="ToolTip" Value="{Binding Path=NativeName}" />
-                            </Style>
-                        </ComboBox.ItemContainerStyle>
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Path=EnglishName, Mode=OneTime}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-
-                    <TextBlock>
-                        <Hyperlink Command="{Binding Path=ContributeLocalizationCommand}">
-                            <TextBlock Text="{Resx Settings_LanguageContribute}" />
-                        </Hyperlink>
-                    </TextBlock>
-
-                    <CheckBox rwpf:UserLevelTag.MinUserLevel="Debug"
-                              Content="{Resx Settings_IncompleteTranslations}"
-                              IsChecked="{Binding Path=Data.ShowIncompleteTranslations}" />
-
-                </StackPanel>
-
-            </StackPanel>
-
-            <!-- User Level -->
-
-            <StackPanel DataContext="{Binding Path=Data}">
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
-                </i:Interaction.Behaviors>
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Resx Settings_UserLevel}"
-                               Style="{StaticResource LargeHeaderTextBlock}" />
-
-                    <local:InfoIcon Text="{Resx Settings_UserLevelInfo}" />
-
-                </StackPanel>
-
-                <StackPanel>
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-                    </i:Interaction.Behaviors>
-
-                    <!-- User Levels -->
-
-                    <WrapPanel>
-
-                        <i:Interaction.Behaviors>
-                            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
-                        </i:Interaction.Behaviors>
-
-                        <!-- Normal -->
-
-                        <rwpf:RadioButtonExtended Content="{Resx Settings_UserLevelNormal}"
-                                                  ToolTip="{Resx Settings_UserLevelNormalInfo}"
-                                                  IsChecked="{Binding Path=UserLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Normal}" />
-
-                        <!-- Advanced -->
-
-                        <rwpf:RadioButtonExtended Content="{Resx Settings_UserLevelAdvanced}"
-                                                  ToolTip="{Resx Settings_UserLevelAdvancedInfo}"
-                                                  IsChecked="{Binding Path=UserLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Advanced}" />
-
-                        <!-- Technical -->
-
-                        <rwpf:RadioButtonExtended Content="{Resx Settings_UserLevelTechnical}"
-                                                  ToolTip="{Resx Settings_UserLevelTechnicalInfo}"
-                                                  IsChecked="{Binding Path=UserLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Technical}" />
-
-                        <!-- Debug -->
-
-                        <rwpf:RadioButtonExtended Content="{Resx Settings_UserLevelDebug}"
-                                                  ToolTip="{Resx Settings_UserLevelDebugInfo}"
-                                                  IsChecked="{Binding Path=UserLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Debug}"
-                                                  rwpf:UserLevelTag.MinUserLevel="Technical" />
-
-                    </WrapPanel>
-
-                </StackPanel>
-
-            </StackPanel>
+            <metro:MetroAnimatedTabControl.Resources>
+                <Style TargetType="{x:Type TabPanel}" BasedOn="{StaticResource SmallTabPanel}" />
+                <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
+            </metro:MetroAnimatedTabControl.Resources>
 
             <!-- General -->
 
-            <StackPanel>
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
-                </i:Interaction.Behaviors>
+            <local:RCPTabItem IconKind="CogOutline"
+                              Header="{Resx Settings_GeneralHeader}">
 
-                <TextBlock Text="{Resx Settings_GeneralHeader}"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
-
-                <StackPanel>
+                <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
-                    <CheckBox Content="{Resx Settings_GeneralCloseOnLaunch}"
-                              DataContext="{Binding Path=Data}"
-                              IsChecked="{Binding Path=CloseAppOnGameLaunch}"/>
+                    <!-- Language -->
 
-                    <CheckBox Content="{Resx Settings_GeneralCloseOnSave}"
-                              DataContext="{Binding Path=Data}"
-                              IsChecked="{Binding Path=CloseConfigOnSave}" />
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                        </i:Interaction.Behaviors>
 
-                    <CheckBox Content="{Resx Settings_GetBetaUpdates}"
-                              DataContext="{Binding Path=Data}"
-                              IsChecked="{Binding Path=GetBetaUpdates}"
-                              rwpf:UserLevelTag.MinUserLevel="Technical"/>
+                        <TextBlock Text="{Resx Settings_Language}"
+                                   Style="{StaticResource LargeHeaderTextBlock}" />
 
-                    <CheckBox Content="{Resx Settings_ManualDownloads}"
-                              ToolTip="{Resx Settings_ManualDownloadsInfo}"
-                              DataContext="{Binding Path=Data}"
-                              IsChecked="{Binding Path=HandleDownloadsManually}"
-                              rwpf:UserLevelTag.MinUserLevel="Advanced"/>
+                        <StackPanel>
+                            <i:Interaction.Behaviors>
+                                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                            </i:Interaction.Behaviors>
 
-                    <StackPanel rwpf:UserLevelTag.MinUserLevel="Technical"
-                                DataContext="{Binding Path=Data}">
+                            <ComboBox SelectedItem="{Binding Path=CurrentCultureInfo}"
+                                      ItemsSource="{Binding Source={x:Static local:LocalizationManager.Languages}}">
+                                <ComboBox.ItemContainerStyle>
+                                    <Style TargetType="{x:Type ComboBoxItem}"
+                                           BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                                        <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                                        <Setter Property="ToolTip" Value="{Binding Path=NativeName}" />
+                                    </Style>
+                                </ComboBox.ItemContainerStyle>
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=EnglishName, Mode=OneTime}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
 
-                        <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="{Resx Settings_BinarySerializationFileLogPath}"
-                                   Margin="0 0 0 8" />
+                            <TextBlock>
+                                <Hyperlink Command="{Binding Path=ContributeLocalizationCommand}">
+                                    <TextBlock Text="{Resx Settings_LanguageContribute}" />
+                                </Hyperlink>
+                            </TextBlock>
 
-                        <rwpf:BrowseBox FileFilter="Txt (*.txt)|*.txt"
-                                        SelectedPath="{Binding Path=BinarySerializationFileLogPath}"
-                                        ToolTip="{Resx Settings_BinarySerializationFileLogPathInfo}"
-                                        BrowseType="SaveFile" />
+                            <CheckBox rwpf:UserLevelTag.MinUserLevel="Debug"
+                                      Content="{Resx Settings_IncompleteTranslations}"
+                                      IsChecked="{Binding Path=ShowIncompleteTranslations}" />
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <!-- User Level -->
+
+                    <StackPanel DataContext="{Binding Path=Data}">
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                        </i:Interaction.Behaviors>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Resx Settings_UserLevel}"
+                                       Style="{StaticResource LargeHeaderTextBlock}" />
+
+                            <local:InfoIcon Text="{Resx Settings_UserLevelInfo}" />
+
+                        </StackPanel>
+
+                        <StackPanel>
+                            <i:Interaction.Behaviors>
+                                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                            </i:Interaction.Behaviors>
+
+                            <!-- User Levels -->
+
+                            <WrapPanel>
+
+                                <i:Interaction.Behaviors>
+                                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
+                                </i:Interaction.Behaviors>
+
+                                <!-- Normal -->
+
+                                <rwpf:RadioButtonExtended Content="{Resx Settings_UserLevelNormal}"
+                                                          ToolTip="{Resx Settings_UserLevelNormalInfo}"
+                                                          IsChecked="{Binding Path=UserLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Normal}" />
+
+                                <!-- Advanced -->
+
+                                <rwpf:RadioButtonExtended Content="{Resx Settings_UserLevelAdvanced}"
+                                                          ToolTip="{Resx Settings_UserLevelAdvancedInfo}"
+                                                          IsChecked="{Binding Path=UserLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Advanced}" />
+
+                                <!-- Technical -->
+
+                                <rwpf:RadioButtonExtended Content="{Resx Settings_UserLevelTechnical}"
+                                                          ToolTip="{Resx Settings_UserLevelTechnicalInfo}"
+                                                          IsChecked="{Binding Path=UserLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Technical}" />
+
+                                <!-- Debug -->
+
+                                <rwpf:RadioButtonExtended Content="{Resx Settings_UserLevelDebug}"
+                                                          ToolTip="{Resx Settings_UserLevelDebugInfo}"
+                                                          IsChecked="{Binding Path=UserLevel, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Debug}"
+                                                          rwpf:UserLevelTag.MinUserLevel="Technical" />
+
+                            </WrapPanel>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <!-- General -->
+
+                    <StackPanel>
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                        </i:Interaction.Behaviors>
+
+                        <TextBlock Text="{Resx Settings_GeneralHeader}"
+                                   Style="{StaticResource LargeHeaderTextBlock}" />
+
+                        <StackPanel>
+                            <i:Interaction.Behaviors>
+                                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                            </i:Interaction.Behaviors>
+
+                            <CheckBox Content="{Resx Settings_GeneralCloseOnLaunch}"
+                                      DataContext="{Binding Path=Data}"
+                                      IsChecked="{Binding Path=CloseAppOnGameLaunch}" />
+
+                            <CheckBox Content="{Resx Settings_GeneralCloseOnSave}"
+                                      DataContext="{Binding Path=Data}"
+                                      IsChecked="{Binding Path=CloseConfigOnSave}" />
+
+                            <CheckBox Content="{Resx Settings_GetBetaUpdates}"
+                                      DataContext="{Binding Path=Data}"
+                                      IsChecked="{Binding Path=GetBetaUpdates}"
+                                      rwpf:UserLevelTag.MinUserLevel="Technical" />
+
+                            <CheckBox Content="{Resx Settings_ManualDownloads}"
+                                      ToolTip="{Resx Settings_ManualDownloadsInfo}"
+                                      DataContext="{Binding Path=Data}"
+                                      IsChecked="{Binding Path=HandleDownloadsManually}"
+                                      rwpf:UserLevelTag.MinUserLevel="Advanced" />
+
+                            <StackPanel rwpf:UserLevelTag.MinUserLevel="Technical"
+                                        DataContext="{Binding Path=Data}">
+
+                                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                           Text="{Resx Settings_BinarySerializationFileLogPath}"
+                                           Margin="0 0 0 8" />
+
+                                <rwpf:BrowseBox FileFilter="Txt (*.txt)|*.txt"
+                                                SelectedPath="{Binding Path=BinarySerializationFileLogPath}"
+                                                ToolTip="{Resx Settings_BinarySerializationFileLogPathInfo}"
+                                                BrowseType="SaveFile" />
+
+                            </StackPanel>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <!-- Design -->
+
+                    <StackPanel DataContext="{Binding Path=Data}">
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                        </i:Interaction.Behaviors>
+
+                        <TextBlock Text="{Resx Settings_DesignHeader}"
+                                   Style="{StaticResource LargeHeaderTextBlock}" />
+
+                        <StackPanel>
+                            <i:Interaction.Behaviors>
+                                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                            </i:Interaction.Behaviors>
+
+                            <CheckBox Content="{Resx Settings_SyncTheme}"
+                                      ToolTip="{Resx Settings_SyncThemeInfo}"
+                                      IsChecked="{Binding Path=SyncTheme}" />
+
+                            <metro:ToggleSwitch IsOn="{Binding Path=DarkMode}"
+                                                IsEnabled="{Binding Path=SyncTheme, Converter={rwpf:InvertedBooleanConverter}}"
+                                                HorizontalAlignment="Left"
+                                                OnContent="{Resx Settings_DesignDark}"
+                                                OffContent="{Resx Settings_DesignLight}" />
+
+                            <CheckBox Content="{Resx Settings_DesignAnimations}"
+                                      ToolTip="{Resx Settings_DesignAnimationsInfo}"
+                                      IsChecked="{Binding Path=EnableAnimations}" />
+
+                            <CheckBox Content="{Resx Settings_DesignSuccessMessages}"
+                                      ToolTip="{Resx Settings_DesignSuccessMessagesInfo}"
+                                      IsChecked="{Binding Path=ShowActionComplete}" />
+
+                            <CheckBox Content="{Resx Settings_DesignShowTaskBarProgress}"
+                                      ToolTip="{Resx Settings_DesignShowTaskBarProgressInfo}"
+                                      IsChecked="{Binding Path=ShowProgressOnTaskBar}" />
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                    <!-- Startup -->
+
+                    <StackPanel DataContext="{Binding Path=Data}">
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                        </i:Interaction.Behaviors>
+
+                        <TextBlock Text="{Resx Settings_StartupHeader}"
+                                   Style="{StaticResource LargeHeaderTextBlock}" />
+
+                        <StackPanel>
+                            <i:Interaction.Behaviors>
+                                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                            </i:Interaction.Behaviors>
+
+                            <CheckBox Content="{Resx Settings_StartupGameFinder}"
+                                      IsChecked="{Binding Path=AutoLocateGames}" />
+
+                            <CheckBox Content="{Resx Settings_StartupUpdateCheck}"
+                                      IsChecked="{Binding Path=AutoUpdate}" />
+
+                        </StackPanel>
 
                     </StackPanel>
 
                 </StackPanel>
 
-            </StackPanel>
-
-            <!-- Design -->
-
-            <StackPanel DataContext="{Binding Path=Data}">
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
-                </i:Interaction.Behaviors>
-
-                <TextBlock Text="{Resx Settings_DesignHeader}"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
-
-                <StackPanel>
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-                    </i:Interaction.Behaviors>
-
-                    <CheckBox Content="{Resx Settings_SyncTheme}"
-                              ToolTip="{Resx Settings_SyncThemeInfo}"
-                              IsChecked="{Binding Path=SyncTheme}" />
-
-                    <metro:ToggleSwitch IsOn="{Binding Path=DarkMode}"
-                                        IsEnabled="{Binding Path=SyncTheme, Converter={rwpf:InvertedBooleanConverter}}"
-                                        HorizontalAlignment="Left"
-                                        OnContent="{Resx Settings_DesignDark}"
-                                        OffContent="{Resx Settings_DesignLight}" />
-
-                    <CheckBox Content="{Resx Settings_DesignAnimations}"
-                              ToolTip="{Resx Settings_DesignAnimationsInfo}"
-                              IsChecked="{Binding Path=EnableAnimations}" />
-
-                    <CheckBox Content="{Resx Settings_DesignSuccessMessages}"
-                              ToolTip="{Resx Settings_DesignSuccessMessagesInfo}"
-                              IsChecked="{Binding Path=ShowActionComplete}" />
-
-                    <CheckBox Content="{Resx Settings_DesignShowTaskBarProgress}"
-                              ToolTip="{Resx Settings_DesignShowTaskBarProgressInfo}"
-                              IsChecked="{Binding Path=ShowProgressOnTaskBar}" />
-
-                </StackPanel>
-
-            </StackPanel>
+            </local:RCPTabItem>
 
             <!-- Archive Explorer -->
 
-            <StackPanel DataContext="{Binding Path=Data}">
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
-                </i:Interaction.Behaviors>
+            <local:RCPTabItem IconKind="FolderCogOutline"
+                              Header="{Resx Archive_Title}">
 
-                <TextBlock Text="{Resx Archive_Title}"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
-
-                <StackPanel>
+                <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
-                    <CheckBox Content="{Resx Settings_ArchiveGFGenerateMipmaps}"
-                              ToolTip="{Resx Settings_ArchiveGFGenerateMipmapsInfo}"
-                              IsChecked="{Binding Path=Archive_GF_GenerateMipmaps}" />
+                    <!-- Archive Explorer -->
 
-                    <CheckBox Content="{Resx Settings_ArchiveGFForce8888}"
-                              ToolTip="{Resx Settings_ArchiveGFForce8888Info}"
-                              IsChecked="{Binding Path=Archive_GF_ForceGF8888Import}" />
+                    <StackPanel DataContext="{Binding Path=Data}">
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                        </i:Interaction.Behaviors>
 
-                    <StackPanel>
+                        <TextBlock Text="{Resx Archive_Title}"
+                                   Style="{StaticResource LargeHeaderTextBlock}" />
 
-                        <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="{Resx Settings_ArchiveGFTransparency}"
-                                   Margin="0 0 0 8" />
+                        <StackPanel>
+                            <i:Interaction.Behaviors>
+                                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                            </i:Interaction.Behaviors>
 
-                        <ComboBox HorizontalAlignment="Left"
-                                  SelectedIndex="{Binding Path=Archive_GF_UpdateTransparency, Converter={rwpf:EnumToIntConverter}}">
+                            <CheckBox Content="{Resx Settings_ArchiveGFGenerateMipmaps}"
+                                      ToolTip="{Resx Settings_ArchiveGFGenerateMipmapsInfo}"
+                                      IsChecked="{Binding Path=Archive_GF_GenerateMipmaps}" />
 
-                            <ComboBox.ItemContainerStyle>
-                                <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
-                                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.ToolTip}" />
-                                </Style>
-                            </ComboBox.ItemContainerStyle>
+                            <CheckBox Content="{Resx Settings_ArchiveGFForce8888}"
+                                      ToolTip="{Resx Settings_ArchiveGFForce8888Info}"
+                                      IsChecked="{Binding Path=Archive_GF_ForceGF8888Import}" />
 
-                            <TextBlock Text="{Resx Settings_ArchiveGFTransparency_PreserveFormat}"
-                                       ToolTip="{Resx Settings_ArchiveGFTransparency_PreserveFormatInfo}"/>
+                            <StackPanel>
 
-                            <TextBlock Text="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat}"
-                                       ToolTip="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo}"/>
+                                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                           Text="{Resx Settings_ArchiveGFTransparency}"
+                                           Margin="0 0 0 8" />
 
-                            <TextBlock Text="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized}"
-                                       ToolTip="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo}"/>
+                                <ComboBox HorizontalAlignment="Left"
+                                          SelectedIndex="{Binding Path=Archive_GF_UpdateTransparency, Converter={rwpf:EnumToIntConverter}}">
 
-                        </ComboBox>
+                                    <ComboBox.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ComboBoxItem}"
+                                               BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                                            <Setter Property="ToolTip"
+                                                    Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.ToolTip}" />
+                                        </Style>
+                                    </ComboBox.ItemContainerStyle>
+
+                                    <TextBlock Text="{Resx Settings_ArchiveGFTransparency_PreserveFormat}"
+                                               ToolTip="{Resx Settings_ArchiveGFTransparency_PreserveFormatInfo}" />
+
+                                    <TextBlock Text="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat}"
+                                               ToolTip="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo}" />
+
+                                    <TextBlock
+                                        Text="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized}"
+                                        ToolTip="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo}" />
+
+                                </ComboBox>
+
+                            </StackPanel>
+
+                        </StackPanel>
 
                     </StackPanel>
 
                 </StackPanel>
 
-            </StackPanel>
+            </local:RCPTabItem>
 
-            <!-- Startup -->
+            <!-- DOSBox -->
 
-            <StackPanel DataContext="{Binding Path=Data}">
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
-                </i:Interaction.Behaviors>
+            <local:RCPTabItem IconKind="FileCogOutline"
+                              Header="{Resx Settings_DosBoxHeader}">
 
-                <TextBlock Text="{Resx Settings_StartupHeader}"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
-
-                <StackPanel>
+                <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
-                    <CheckBox Content="{Resx Settings_StartupGameFinder}"
-                              IsChecked="{Binding Path=AutoLocateGames}" />
+                    <!-- DOSBox -->
 
-                    <CheckBox Content="{Resx Settings_StartupUpdateCheck}"
-                              IsChecked="{Binding Path=AutoUpdate}" />
+                    <StackPanel DataContext="{Binding Path=Data}">
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                        </i:Interaction.Behaviors>
 
-                </StackPanel>
+                        <TextBlock Text="{Resx Settings_DosBoxHeader}"
+                                   Style="{StaticResource LargeHeaderTextBlock}" />
 
-            </StackPanel>
+                        <StackPanel>
+                            <i:Interaction.Behaviors>
+                                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                            </i:Interaction.Behaviors>
 
-            <!-- DosBox -->
+                            <StackPanel>
 
-            <StackPanel DataContext="{Binding Path=Data}">
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
-                </i:Interaction.Behaviors>
+                                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                           Text="{Resx Settings_DosBoxPath}"
+                                           Margin="0 0 0 8" />
 
-                <TextBlock Text="{Resx Settings_DosBoxHeader}"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
+                                <rwpf:BrowseBox FileFilter="Exe (*.exe)|*.exe"
+                                                SelectedPath="{Binding Path=DosBoxPath}"
+                                                ToolTip="{Resx Settings_DosBoxPathInfo}"
+                                                BrowseType="File"
+                                                PathValidation="FileExists" />
 
-                <StackPanel>
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-                    </i:Interaction.Behaviors>
+                            </StackPanel>
 
-                    <StackPanel>
+                            <StackPanel rwpf:UserLevelTag.MinUserLevel="Advanced">
 
-                        <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="{Resx Settings_DosBoxPath}"
-                                   Margin="0 0 0 8" />
+                                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                           Text="{Resx Settings_OptionalDosBoxConfigPath}"
+                                           Margin="0 0 0 8" />
 
-                        <rwpf:BrowseBox FileFilter="Exe (*.exe)|*.exe"
-                                        SelectedPath="{Binding Path=DosBoxPath}"
-                                        ToolTip="{Resx Settings_DosBoxPathInfo}"
-                                        BrowseType="File"
-                                        PathValidation="FileExists" />
+                                <!-- IDEA: Localize -->
 
-                    </StackPanel>
+                                <rwpf:BrowseBox FileFilter="Conf (*.conf)|*.conf"
+                                                SelectedPath="{Binding Path=DosBoxConfig}"
+                                                ToolTip="{Resx Settings_OptionalDosBoxConfigPathInfo}"
+                                                BrowseType="File"
+                                                PathValidation="FileExists" />
 
-                    <StackPanel rwpf:UserLevelTag.MinUserLevel="Advanced">
+                            </StackPanel>
 
-                        <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="{Resx Settings_OptionalDosBoxConfigPath}"
-                                   Margin="0 0 0 8" />
-
-                        <!-- IDEA: Localize -->
-
-                        <rwpf:BrowseBox FileFilter="Conf (*.conf)|*.conf"
-                                        SelectedPath="{Binding Path=DosBoxConfig}"
-                                        ToolTip="{Resx Settings_OptionalDosBoxConfigPathInfo}"
-                                        BrowseType="File"
-                                        PathValidation="FileExists" />
+                        </StackPanel>
 
                     </StackPanel>
 
                 </StackPanel>
 
-            </StackPanel>
+            </local:RCPTabItem>
+
+            <!-- Links -->
+
+            <local:RCPTabItem IconKind="Link"
+                              Header="{Resx LinksPageHeader}">
+
+                <ItemsControl Margin="2 0"
+                              Style="{DynamicResource LinkItemsDisplay}"
+                              ItemsSource="{Binding Path=LocalLinkItems, Mode=OneTime, IsAsync=True}"/>
+
+            </local:RCPTabItem>
 
             <!-- Debug -->
 
-            <StackPanel rwpf:UserLevelTag.MinUserLevel="Debug"
-                        DataContext="{Binding Path=Data}">
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 2" />
-                </i:Interaction.Behaviors>
+            <local:RCPTabItem IconKind="CodeBraces"
+                              Header="{Resx DebugPageHeader}"
+                              rwpf:UserLevelTag.MinUserLevel="Debug">
 
-                <TextBlock Text="{Resx Settings_DebugHeader}"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
-
-                <StackPanel>
+                <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
-                    <StackPanel>
+                    <!-- Debug -->
 
-                        <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                   Text="{Resx Settings_DebugExceptionLevel}"
-                                   Margin="0 0 0 8" />
+                    <StackPanel rwpf:UserLevelTag.MinUserLevel="Debug"
+                                DataContext="{Binding Path=Data}">
+                        <i:Interaction.Behaviors>
+                            <rwpf:UnifiedMarginBehavior Margin="0 2" />
+                        </i:Interaction.Behaviors>
 
-                        <ComboBox ItemsSource="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToListConverter}, Mode=OneTime}"
-                                  SelectedIndex="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToIntConverter}}"
-                                  ToolTip="{Resx Settings_DebugExceptionLevelInfo}"/>
+                        <TextBlock Text="{Resx Settings_DebugHeader}"
+                                   Style="{StaticResource LargeHeaderTextBlock}" />
+
+                        <StackPanel>
+                            <i:Interaction.Behaviors>
+                                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                            </i:Interaction.Behaviors>
+
+                            <StackPanel>
+
+                                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                           Text="{Resx Settings_DebugExceptionLevel}"
+                                           Margin="0 0 0 8" />
+
+                                <ComboBox
+                                    ItemsSource="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToListConverter}, Mode=OneTime}"
+                                    SelectedIndex="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToIntConverter}}"
+                                    ToolTip="{Resx Settings_DebugExceptionLevelInfo}" />
+
+                            </StackPanel>
+
+                            <CheckBox Content="{Resx Settings_ForceUpdates}"
+                                      IsChecked="{Binding Path=ForceUpdate}" />
+
+                            <CheckBox Content="{Resx Settings_DisableDowngradeWarning}"
+                                      IsChecked="{Binding Path=DisableDowngradeWarning}" />
+
+                        </StackPanel>
 
                     </StackPanel>
 
-                    <CheckBox Content="{Resx Settings_ForceUpdates}"
-                              IsChecked="{Binding Path=ForceUpdate}" />
-
-                    <CheckBox Content="{Resx Settings_DisableDowngradeWarning}"
-                              IsChecked="{Binding Path=DisableDowngradeWarning}" />
-
                 </StackPanel>
 
-            </StackPanel>
+            </local:RCPTabItem>
 
-        </StackPanel>
+        </metro:MetroAnimatedTabControl>
     </ScrollViewer>
+
+    <i:Interaction.Behaviors>
+        <local:ChildRCPTabControlBehavior ChildTabControl="{Binding ElementName=SettingsTabControl}" />
+    </i:Interaction.Behaviors>
+
 </local:BasePage>

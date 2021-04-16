@@ -21,11 +21,6 @@
         Utilities,
 
         /// <summary>
-        /// The links page
-        /// </summary>
-        Links,
-
-        /// <summary>
         /// The settings page
         /// </summary>
         Settings,

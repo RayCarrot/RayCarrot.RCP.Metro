@@ -327,14 +327,6 @@
                 <local:UtilitiesPage />
             </local:RCPTabItem>
 
-            <!-- Links -->
-
-            <local:RCPTabItem Header="{Resx LinksPageHeader}"
-                              IconKind="Link"
-                              IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Links}">
-                <local:LinksPage />
-            </local:RCPTabItem>
-
             <!-- Settings -->
 
             <local:RCPTabItem Header="{Resx SettingsPageHeader}"

@@ -713,10 +713,6 @@ namespace RayCarrot.RCP.Metro
                         this.SetTheme(Data.DarkMode, Data.SyncTheme);
                         break;
 
-                    case nameof(AppUserData.ShowIncompleteTranslations):
-                        LocalizationManager.RefreshLanguages(Data.ShowIncompleteTranslations);
-                        break;
-
                     case nameof(AppUserData.BackupLocation):
 
                         await RCPServices.App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(null, false, false, true, false));
