@@ -18,9 +18,11 @@ namespace RayCarrot.RCP.Metro
             {
                 GameMode.RaymanOriginsPC,
                 GameMode.RaymanOriginsPS3,
+                GameMode.RaymanOriginsXbox360,
                 GameMode.RaymanOriginsWii,
                 GameMode.RaymanOriginsPSVita,
                 GameMode.RaymanLegendsPC,
+                GameMode.RaymanLegendsXbox360,
                 GameMode.RaymanLegendsWiiU,
                 GameMode.RaymanLegendsPSVita,
                 GameMode.RaymanLegendsPS4,
