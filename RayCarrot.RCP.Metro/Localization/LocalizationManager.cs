@@ -48,14 +48,17 @@ namespace RayCarrot.RCP.Metro
             {
                 DefaultCulture,
 
-                // Portuguese (Portugal)
-                new CultureInfo("pt-PT"),
-
                 // Dutch (Netherlands)
                 new CultureInfo("nl-NL"),
 
+                // Italian (Italy)
+                new CultureInfo("it-IT"),
+
                 // Polish (Poland)
                 new CultureInfo("pl-PL"),
+
+                // Portuguese (Portugal)
+                new CultureInfo("pt-PT"),
 
                 // Russian (Russia)
                 new CultureInfo("ru-RU"),
@@ -66,8 +69,8 @@ namespace RayCarrot.RCP.Metro
                 // Add incomplete languages
                 Languages.AddRange(new CultureInfo[]
                 {
-                    // Swedish (Sweden)
-                    new CultureInfo("sv-SE"),
+                    // Catalan (Catalan)
+                    new CultureInfo("ca-ES"),
 
                     // Serbian (Cyrillic)
                     new CultureInfo("sr-Cyrl"), 
@@ -76,13 +79,10 @@ namespace RayCarrot.RCP.Metro
                     new CultureInfo("es-MX"), 
 
                     // Spanish (Spain)
-                    new CultureInfo("es-ES"), 
+                    new CultureInfo("es-ES"),
 
-                    // Catalan (Catalan)
-                    new CultureInfo("ca-ES"), 
-
-                    // Italian (Italy)
-                    new CultureInfo("it-IT"), 
+                    // Swedish (Sweden)
+                    new CultureInfo("sv-SE"),
                 });
             }
         }

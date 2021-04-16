@@ -20,6 +20,7 @@ Other changes:
 • The game options can now be quickly accessed by hovering on the launch button and selecting the new option
 • The name "Uplay" has been changed to "Ubisoft Connect" to reflect the official name change
 • Added ItzalDrake to the credits
+• The language selection list is now sorted
 
 
 -----   Version 10.3.1 - October 25, 2020   -----
