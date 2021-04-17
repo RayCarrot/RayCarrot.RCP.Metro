@@ -1,5 +1,4 @@
-﻿using ImageMagick;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -14,14 +13,9 @@ namespace RayCarrot.RCP.Metro
         protected override FileExtension Format => new FileExtension(".pvr");
 
         /// <summary>
-        /// The magick format
-        /// </summary>
-        protected override MagickFormat MagickFormat => MagickFormat.Unknown;
-
-        /// <summary>
         /// The magic header for the format
         /// </summary>
-        protected override uint FormatMagic => 0x50565203;
+        protected override uint? FormatMagic => 0x50565203;
 
         /// <summary>
         /// Indicates if the format is fully supported and can be read as an image

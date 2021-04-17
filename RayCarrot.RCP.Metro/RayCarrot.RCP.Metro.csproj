@@ -110,7 +110,9 @@
     <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_GNFUbiArtTex.cs" />
     <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_GTXUbiArtTex.cs" />
     <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_GXTUbiArtTex.cs" />
+    <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_Xbox360UbiArtTex.cs" />
     <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_PVRUbiArtTex.cs" />
+    <Compile Include="Helpers\DDSParser.cs" />
     <Compile Include="Archive\Manager\ArchiveDataManagerExtensions.cs" />
     <Compile Include="Archive\Manager\IArchiveDataManager.cs" />
     <Compile Include="Archive\ArchiveCreator\ArchiveCreatorDialogViewModel.cs" />

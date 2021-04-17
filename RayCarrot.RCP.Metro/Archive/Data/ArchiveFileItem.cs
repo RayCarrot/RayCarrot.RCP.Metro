@@ -23,6 +23,7 @@ namespace RayCarrot.RCP.Metro
                 new ArchiveFileType_GTXUbiArtTex(),
                 new ArchiveFileType_PVRUbiArtTex(),
                 new ArchiveFileType_GNFUbiArtTex(),
+                new ArchiveFileType_Xbox360UbiArtTex(),
             };
 
             // Set default file type

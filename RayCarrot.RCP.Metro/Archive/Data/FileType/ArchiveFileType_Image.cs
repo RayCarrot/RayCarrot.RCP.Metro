@@ -54,7 +54,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The supported formats to export to
         /// </summary>
-        public virtual FileExtension[] ExportFormats => ImportFormats;
+        public virtual FileExtension[] ExportFormats => SupportedFormats.Select(GetFormat).ToArray();
 
         /// <summary>
         /// Loads the thumbnail and display info for the file

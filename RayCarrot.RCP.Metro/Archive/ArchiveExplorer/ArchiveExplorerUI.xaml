@@ -302,7 +302,7 @@
                                         </local:MenuItemIcon>
 
                                         <local:MenuItemIcon Header="{Resx Archive_ImportFile}"
-                                                            IsEnabled="{Binding Path=IsInitialized}"
+                                                            IsEnabled="{Binding Path=CanImport}"
                                                             Command="{Binding Path=ImportCommand, Mode=OneTime}"
                                                             IconKind="FileImportOutline" />
 

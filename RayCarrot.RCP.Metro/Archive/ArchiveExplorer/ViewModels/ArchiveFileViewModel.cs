@@ -57,6 +57,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Private Fields
+
+        private bool _isInitialized;
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
@@ -107,7 +113,20 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if the file is initialized
         /// </summary>
-        public bool IsInitialized { get; set; }
+        public bool IsInitialized
+        {
+            get => _isInitialized;
+            set
+            {
+                _isInitialized = value;
+                CanImport = FileType?.ImportFormats?.Any() == true;
+            }
+        }
+
+        /// <summary>
+        /// Indicates if the file supports importing
+        /// </summary>
+        public bool CanImport { get; set; }
 
         /// <summary>
         /// The file export options for the file
@@ -369,7 +388,7 @@ namespace RayCarrot.RCP.Metro
                     var result = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                     {
                         Title = Resources.Archive_ImportFileHeader,
-                        ExtensionFilter = new FileFilterItemCollection(FileType.ExportFormats.Select(x => x.GetFileFilterItem)).CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
+                        ExtensionFilter = new FileFilterItemCollection(FileType.ImportFormats.Select(x => x.GetFileFilterItem)).CombineAll(Resources.Archive_FileSelectionGroupName).ToString()
                     });
 
                     if (result.CanceledByUser)

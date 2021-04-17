@@ -44,17 +44,29 @@ namespace RayCarrot.RCP.Metro
                 return false;
 
             // Set the Stream position
-            ReadTEXHeader(inputStream, manager);
+            var tex = ReadTEXHeader(inputStream, manager);
 
-            // Use a reader
-            using var reader = new Reader(inputStream, manager.SerializerSettings.Endian, true);
+            // Check for type match
+            if (IsOfType(inputStream, manager, tex))
+                return true;
 
-            // Get the magic header
-            var magic = reader.ReadUInt32();
+            // If the format has a magic header we check for it
+            if (FormatMagic != null)
+            {
+                // Use a reader
+                using var reader = new Reader(inputStream, manager.SerializerSettings.Endian, true);
 
-            // Check if it matches the magic
-            return magic == FormatMagic;
+                // Get the magic header
+                var magic = reader.ReadUInt32();
+
+                // Check if it matches the magic
+                return magic == FormatMagic;
+            }
+
+            return false;
         }
+
+        public virtual bool IsOfType(Stream inputStream, IArchiveDataManager manager, UbiArtTEXData tex) => false;
 
         /// <summary>
         /// The supported formats to import from
@@ -147,6 +159,9 @@ namespace RayCarrot.RCP.Metro
                 // Get the image in specified format
                 using var img = new MagickImage(inputStream, MagickFormatInfo.Create(inputFormat.FileExtensions).Format);
 
+                // Change the type to the output format
+                img.Format = MagickFormat;
+
                 // Get the image bytes
                 var bytes = img.ToByteArray();
 
@@ -233,12 +248,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The magick format
         /// </summary>
-        protected abstract MagickFormat MagickFormat { get; }
+        protected virtual MagickFormat MagickFormat => MagickFormat.Unknown;
 
         /// <summary>
         /// The magic header for the format
         /// </summary>
-        protected abstract uint FormatMagic { get; }
+        protected virtual uint? FormatMagic => null;
 
         /// <summary>
         /// Indicates if the format is fully supported and can be read as an image
