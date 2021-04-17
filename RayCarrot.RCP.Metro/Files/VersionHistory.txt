@@ -15,6 +15,7 @@
 Other changes:
 • The game specific Archive Explorer™ utilities have been replaced by a button in the game drop-down menus
 • Add support for Xbox 360 IPK files in the Archive Explorer™ for Rayman Origins & Legends
+• Added a shortcut to the Ray2Fix config file for Rayman 2 if available
 • A link to view the game maps at raym.app is now available for each supported game in the drop-down menus
 • The settings page has been categorized into tabs
 • The app data now gets verified on launch, automatically correcting any invalid/corrupt values

@@ -3310,15 +3310,15 @@ Komunikat o błędzie: {1}</value>
     <value>Lumki</value>
   </data>
   <data name="RM_RaceName_0" xml:space="preserve">
-    <value>First Ruins</value>
+    <value>Ruiny</value>
     <comment>First Ruins</comment>
   </data>
   <data name="RM_RaceName_1" xml:space="preserve">
-    <value>Nebulous Tower</value>
+    <value>Wieża Nebula</value>
     <comment>Nebulous Tower</comment>
   </data>
   <data name="RM_RaceName_2" xml:space="preserve">
-    <value>Mroczny Kanał</value>
+    <value>Mroczne Podziemia</value>
     <comment>Dark Sewer</comment>
   </data>
   <data name="RM_RaceName_3" xml:space="preserve">
@@ -3435,5 +3435,212 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="Archive_FileInfo_Format" xml:space="preserve">
     <value>Format:</value>
+  </data>
+  <data name="About_Credits_ItzalDrake" xml:space="preserve">
+    <value>Tłumacznie włoskie (Włochy) programu</value>
+  </data>
+  <data name="Archive_Sort" xml:space="preserve">
+    <value>Sortuj</value>
+  </data>
+  <data name="Archive_Sort_Default" xml:space="preserve">
+    <value>Domyślnie</value>
+  </data>
+  <data name="Archive_Sort_AlphabeticallyAscending" xml:space="preserve">
+    <value>Alfabetycznie (rosnąco)</value>
+  </data>
+  <data name="Archive_Sort_AlphabeticalDescending" xml:space="preserve">
+    <value>Alfabetycznie (malejąco)</value>
+  </data>
+  <data name="Archive_Search" xml:space="preserve">
+    <value>Szukaj</value>
+  </data>
+  <data name="Archive_Extract_Info" xml:space="preserve">
+    <value>Wypakowuje wszystkie pliki w tym folderze, włącznie z podfolderami</value>
+  </data>
+  <data name="Archive_AddFiles" xml:space="preserve">
+    <value>Dodaj pliki</value>
+  </data>
+  <data name="Archive_AddFiles_Info" xml:space="preserve">
+    <value>Dodaje wybrane pliki do folderu</value>
+  </data>
+  <data name="Archive_ExportConvert" xml:space="preserve">
+    <value>Eksportowanie i konwertowanie</value>
+  </data>
+  <data name="Archive_ExportConvert_Info" xml:space="preserve">
+    <value>Wypakowuje wszystkie pliki w tym folderze, włącznie z podfolderami oraz pozwala na ich konwersję</value>
+  </data>
+  <data name="Archive_ImportConvert" xml:space="preserve">
+    <value>Importowanie i konwertowanie</value>
+  </data>
+  <data name="Archive_ImportConvert_Info" xml:space="preserve">
+    <value>Importuje wszystkie pliki o pasujących nazwach z wybranego folderu i konwertuje je w miarę możliwości do oryginalnego formatu</value>
+  </data>
+  <data name="Archive_CreateDir" xml:space="preserve">
+    <value>Utwórz folder</value>
+  </data>
+  <data name="Archive_CreateDir_Info" xml:space="preserve">
+    <value>Tworzy pusty folder</value>
+  </data>
+  <data name="Archive_Delete" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="Archive_DeleteDir_Info" xml:space="preserve">
+    <value>Usuwa folder i całą jego zawartość, łącznie z plikami i podfolderami</value>
+  </data>
+  <data name="Archive_ExportFile" xml:space="preserve">
+    <value>Eksport</value>
+  </data>
+  <data name="Archive_ImportFile" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="Archive_Save" xml:space="preserve">
+    <value>Zapisz Archiwum</value>
+  </data>
+  <data name="Archive_ExportDirFileConflict" xml:space="preserve">
+    <value>W wybranym folderze znajduje się plik o takiej samej nazwie jak {0}</value>
+  </data>
+  <data name="Archive_Export_Format_Original" xml:space="preserve">
+    <value>Oryginalne</value>
+  </data>
+  <data name="Archive_ImportDir_Error" xml:space="preserve">
+    <value>Podczas importowania plików wystąpił błąd</value>
+  </data>
+  <data name="Archive_CreateDir_Header" xml:space="preserve">
+    <value>Wybierz nazwę folderu</value>
+  </data>
+  <data name="Archive_AddFiles_Header" xml:space="preserve">
+    <value>Wybierz pliki do dodania</value>
+  </data>
+  <data name="Archive_AddFiles_Conflict" xml:space="preserve">
+    <value>Plik '{0}' ma taką samą nazwę jak istniejący plik. Czy chcesz go zastąpić?</value>
+  </data>
+  <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
+    <value>Konflikt nazw plików</value>
+  </data>
+  <data name="Archive_FileInfo_Type" xml:space="preserve">
+    <value>Rodzaj:</value>
+  </data>
+  <data name="Archive_CreationFileStatus" xml:space="preserve">
+    <value>Dodawanie pliku {0}</value>
+  </data>
+  <data name="Archive_AddFiles_Error" xml:space="preserve">
+    <value>Podczas dodawania wystąpił błąd {0}</value>
+  </data>
+  <data name="Archive_Format_Original" xml:space="preserve">
+    <value>Oryginalne</value>
+  </data>
+  <data name="Archive_Format_Default" xml:space="preserve">
+    <value>Plik</value>
+  </data>
+  <data name="Archive_Format_GF" xml:space="preserve">
+    <value>GF (Plik graficzny)</value>
+  </data>
+  <data name="Archive_Format_Img" xml:space="preserve">
+    <value>Obrazek</value>
+  </data>
+  <data name="GameDisplay_Raymap" xml:space="preserve">
+    <value>Wyświetl mapy</value>
+  </data>
+  <data name="GameDisplay_Archives" xml:space="preserve">
+    <value>Otwórz archiwa</value>
+  </data>
+  <data name="R1Passwords_Invalid" xml:space="preserve">
+    <value>Nieprawidłowe hasło</value>
+  </data>
+  <data name="R1_LevelName_0" xml:space="preserve">
+    <value>Pink Plant Woods</value>
+  </data>
+  <data name="R1_LevelName_1" xml:space="preserve">
+    <value>Anguish Lagoon</value>
+  </data>
+  <data name="R1_LevelName_2" xml:space="preserve">
+    <value>The Swamps of Forgetfulness</value>
+  </data>
+  <data name="R1_LevelName_3" xml:space="preserve">
+    <value>Moskito's Nest</value>
+  </data>
+  <data name="R1_LevelName_4" xml:space="preserve">
+    <value>Bongo Hills</value>
+  </data>
+  <data name="R1_LevelName_5" xml:space="preserve">
+    <value>Allegro Presto</value>
+  </data>
+  <data name="R1_LevelName_6" xml:space="preserve">
+    <value>Gong Heights</value>
+  </data>
+  <data name="R1_LevelName_7" xml:space="preserve">
+    <value>Mr Sax's Hullaballoo</value>
+  </data>
+  <data name="R1_LevelName_8" xml:space="preserve">
+    <value>Twilight Gulch</value>
+  </data>
+  <data name="R1_LevelName_9" xml:space="preserve">
+    <value>The Hard Rocks</value>
+  </data>
+  <data name="R1_LevelName_10" xml:space="preserve">
+    <value>Mr Stone's Peaks</value>
+  </data>
+  <data name="R1_LevelName_11" xml:space="preserve">
+    <value>Eraser Plains</value>
+  </data>
+  <data name="R1_LevelName_12" xml:space="preserve">
+    <value>Pencil Pentathlon</value>
+  </data>
+  <data name="R1_LevelName_13" xml:space="preserve">
+    <value>Space Mama's Crater</value>
+  </data>
+  <data name="R1_LevelName_14" xml:space="preserve">
+    <value>Crystal Palace</value>
+  </data>
+  <data name="R1_LevelName_15" xml:space="preserve">
+    <value>Eat at Joe's</value>
+  </data>
+  <data name="R1_LevelName_16" xml:space="preserve">
+    <value>Mr Skops' Stalactites</value>
+  </data>
+  <data name="R1_LevelName_17" xml:space="preserve">
+    <value>Mr Dark's Dare</value>
+  </data>
+  <data name="R1Passwords_Generate" xml:space="preserve">
+    <value>Generuj</value>
+  </data>
+  <data name="R1Passwords_Load" xml:space="preserve">
+    <value>Wczytaj</value>
+  </data>
+  <data name="R1Passwords_LevUnlocked" xml:space="preserve">
+    <value>Odblokowany</value>
+  </data>
+  <data name="R1Passwords_LevAllCages" xml:space="preserve">
+    <value>Wszystkie klatki</value>
+  </data>
+  <data name="R1Passwords_FinBoss" xml:space="preserve">
+    <value>Pokonaj bossa</value>
+  </data>
+  <data name="R1Passwords_Lives" xml:space="preserve">
+    <value>Życia</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_R1Header" xml:space="preserve">
+    <value>Rayman 1 PC Archiwa (.dat)</value>
+  </data>
+  <data name="Utilities_R1Passwords_Header" xml:space="preserve">
+    <value>Rayman 1 PS1 Generator haseł</value>
+  </data>
+  <data name="Archive_ImportFile_Error" xml:space="preserve">
+    <value>Podczas importowania pliku wystąpił błąd</value>
+  </data>
+  <data name="R1Passwords_InvalidLength" xml:space="preserve">
+    <value>Hasło musi zawierać 10 znaków</value>
+  </data>
+  <data name="R1Passwords_InvalidChar" xml:space="preserve">
+    <value>Hasło zawiera znak niedozwolony {0}</value>
+  </data>
+  <data name="R1Passwords_InvalidData" xml:space="preserve">
+    <value>Hasło jest nieprawidłowe</value>
+  </data>
+  <data name="Archive_R1PC_PrimaryVersion" xml:space="preserve">
+    <value>Wersja podstawowa</value>
+  </data>
+  <data name="GameLink_R2Fix" xml:space="preserve">
+    <value>Ray2Fix</value>
   </data>
 </root>

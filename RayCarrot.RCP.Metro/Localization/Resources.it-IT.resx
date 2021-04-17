@@ -3546,4 +3546,7 @@ Messaggio di errore: {1} </value>
   <data name="Archive_R1PC_SecondaryVersion" xml:space="preserve">
     <value>Versione secondaria</value>
   </data>
+  <data name="GameLink_R2Fix" xml:space="preserve">
+    <value>Ray2Fix</value>
+  </data>
 </root>

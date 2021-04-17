@@ -75,7 +75,8 @@ namespace RayCarrot.RCP.Metro
         {
             new GameFileLink(Resources.GameLink_Setup, Game.GetInstallDir() + "GXSetup.exe"),
             new GameFileLink(Resources.GameLink_R2nGlide, Game.GetInstallDir() + "nglide_config.exe"),
-            new GameFileLink(Resources.GameLink_R2dgVoodoo, Game.GetInstallDir() + "dgVoodooCpl.exe")
+            new GameFileLink(Resources.GameLink_R2dgVoodoo, Game.GetInstallDir() + "dgVoodooCpl.exe"),
+            new GameFileLink(Resources.GameLink_R2Fix, Game.GetInstallDir() + "R2FixCfg.exe"),
         };
 
         /// <summary>

@@ -4411,6 +4411,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ray2Fix.
+        /// </summary>
+        public static string GameLink_R2Fix {
+            get {
+                return ResourceManager.GetString("GameLink_R2Fix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to nGlide config.
         /// </summary>
         public static string GameLink_R2nGlide {

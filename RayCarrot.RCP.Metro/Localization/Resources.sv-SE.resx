@@ -1866,4 +1866,7 @@ Försök igen?"</value>
     <value>Born To Slide</value>
     <comment>Born To Slide</comment>
   </data>
+  <data name="GameLink_R2Fix" xml:space="preserve">
+    <value>Ray2Fix</value>
+  </data>
 </root>

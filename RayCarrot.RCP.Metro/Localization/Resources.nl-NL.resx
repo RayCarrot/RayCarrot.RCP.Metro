@@ -3387,4 +3387,7 @@ Foutmelding: {1}</value>
   <data name="Archive_FileInfo_Format" xml:space="preserve">
     <value>Bestandsindeling:</value>
   </data>
+  <data name="GameLink_R2Fix" xml:space="preserve">
+    <value>Ray2Fix</value>
+  </data>
 </root>

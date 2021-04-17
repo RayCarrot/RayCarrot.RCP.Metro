@@ -3686,4 +3686,7 @@ passwordChar</comment>
   <data name="Archive_R1PC_SecondaryVersion" xml:space="preserve">
     <value>Secondary version</value>
   </data>
+  <data name="GameLink_R2Fix" xml:space="preserve">
+    <value>Ray2Fix</value>
+  </data>
 </root>
