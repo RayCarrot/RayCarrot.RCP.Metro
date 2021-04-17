@@ -3540,4 +3540,10 @@ Messaggio di errore: {1} </value>
   <data name="R1Passwords_InvalidData" xml:space="preserve">
     <value>I dati della password non sono validi</value>
   </data>
+  <data name="Archive_R1PC_PrimaryVersion" xml:space="preserve">
+    <value>Versione primaria</value>
+  </data>
+  <data name="Archive_R1PC_SecondaryVersion" xml:space="preserve">
+    <value>Versione secondaria</value>
+  </data>
 </root>
