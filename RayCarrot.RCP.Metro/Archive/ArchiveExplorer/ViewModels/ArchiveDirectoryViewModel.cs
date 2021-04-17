@@ -251,10 +251,10 @@ namespace RayCarrot.RCP.Metro
                                     }
 
                                     // Get the selected format
-                                    var format = forceNativeFormat || (file.FileType is ArchiveFileType_Default) ? null : selectedFormats[file.FileType];
+                                    var format = forceNativeFormat || file.FileType is ArchiveFileType_Default ? null : selectedFormats[file.FileType];
 
                                     // Get the final file name to use when exporting
-                                    FileSystemPath exportFileName = forceNativeFormat ? new FileSystemPath(file.FileName) : new FileSystemPath(file.FileName).ChangeFileExtension(format, true);
+                                    FileSystemPath exportFileName = forceNativeFormat || file.FileType is ArchiveFileType_Default ? new FileSystemPath(file.FileName) : new FileSystemPath(file.FileName).ChangeFileExtension(format, true);
 
                                     Archive.SetDisplayStatus($"{String.Format(Resources.Archive_ExportingFileStatus, file.FileName)}{Environment.NewLine}{++fileIndex}/{filesCount}");
 
