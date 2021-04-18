@@ -77,7 +77,13 @@ namespace RayCarrot.RCP.Metro
         public CultureInfo CurrentCultureInfo
         {
             get => new CultureInfo(Data.CurrentCulture);
-            set => Data.CurrentCulture = value?.Name ?? LocalizationManager.DefaultCulture.Name;
+            set
+            {
+                if (value == null)
+                    return;
+
+                Data.CurrentCulture = value.Name;
+            }
         }
 
         public bool ShowIncompleteTranslations
