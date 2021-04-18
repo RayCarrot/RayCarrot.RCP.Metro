@@ -437,10 +437,13 @@ namespace RayCarrot.RCP.Metro
         {
             // Make sure the archive supports creating directories
             if (!Archive.Manager.CanModifyDirectories)
+            {
+                RL.Logger?.LogTraceSource($"The directory {DisplayName} was not removed due to the manager not allowing directory modifications");
                 return;
+            }
 
             // We can't delete the root directory
-            if (Archive.Parent == null)
+            if (IsRoot)
                 return;
 
             RL.Logger?.LogTraceSource($"The archive directory {DisplayName} is being removed...");

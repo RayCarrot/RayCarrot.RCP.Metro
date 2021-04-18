@@ -272,7 +272,9 @@ namespace RayCarrot.RCP.Metro
 
             while (parent != null)
             {
-                parent.IsExpanded = true;
+                // Only expand if there are sub-directories
+                if (parent.Any())
+                    parent.IsExpanded = true;
                 parent = parent.Parent;
             }
 
