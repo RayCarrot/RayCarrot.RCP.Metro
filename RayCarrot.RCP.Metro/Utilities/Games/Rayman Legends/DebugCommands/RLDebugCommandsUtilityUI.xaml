@@ -15,7 +15,7 @@
         </Interactions:Interaction.Behaviors>
 
         <CheckBox Content="{Resx ROU_DebugCommandsInvincibility}"
-                  ToolTip="{Resx ROU_DebugCommandsInvincibility}"
+                  ToolTip="{Resx ROU_DebugCommandsInvincibilityInfo}"
                   IsChecked="{Binding Path=IsInvincibilityEnabled}"
                   IsThreeState="True" />
 
