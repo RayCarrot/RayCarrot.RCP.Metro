@@ -118,6 +118,11 @@ namespace RayCarrot.RCP.Metro
         public string FullPath => Archive.Manager.CombinePaths(FullID.Skip(1));
 
         /// <summary>
+        /// Indicates if the directory is the root directory
+        /// </summary>
+        public bool IsRoot => Parent == null;
+
+        /// <summary>
         /// Indicates if the directory can be deleted
         /// </summary>
         public bool CanBeDeleted => Parent != null && Archive.Manager.CanModifyDirectories;
@@ -254,7 +259,7 @@ namespace RayCarrot.RCP.Metro
                                     var format = forceNativeFormat || file.FileType is ArchiveFileType_Default ? null : selectedFormats[file.FileType];
 
                                     // Get the final file name to use when exporting
-                                    FileSystemPath exportFileName = forceNativeFormat || file.FileType is ArchiveFileType_Default ? new FileSystemPath(file.FileName) : new FileSystemPath(file.FileName).ChangeFileExtension(format, true);
+                                    FileSystemPath exportFileName = format == null ? new FileSystemPath(file.FileName) : new FileSystemPath(file.FileName).ChangeFileExtension(format, true);
 
                                     Archive.SetDisplayStatus($"{String.Format(Resources.Archive_ExportingFileStatus, file.FileName)}{Environment.NewLine}{++fileIndex}/{filesCount}");
 

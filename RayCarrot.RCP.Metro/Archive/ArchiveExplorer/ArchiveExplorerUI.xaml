@@ -195,6 +195,12 @@
                                                         InputGestureText="Del"
                                                         IsEnabled="{Binding Path=CanBeDeleted, Mode=OneTime}"/>
 
+                                    <Separator Visibility="{Binding Path=IsRoot, Mode=OneTime, Converter={rwpf:BooleanToVisibilityConverter}}" />
+
+                                    <local:MenuItemIcon Header="{Resx GameDisplay_OpenLocation}"
+                                                        Command="{Binding Path=OpenLocationCommand}"
+                                                        IconKind="FolderOutline"
+                                                        Visibility="{Binding Path=IsRoot, Mode=OneTime, Converter={rwpf:BooleanToVisibilityConverter}}" />
 
                                 </ContextMenu>
                             </Setter.Value>

@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -37,6 +38,7 @@ namespace RayCarrot.RCP.Metro
 
             // Create commands
             SaveCommand = new AsyncRelayCommand(SaveAsync);
+            OpenLocationCommand = new AsyncRelayCommand(OpenLocationAsync);
             
             // Create the file stream
             ArchiveFileStream = new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
@@ -61,6 +63,8 @@ namespace RayCarrot.RCP.Metro
         #region Commands
 
         public ICommand SaveCommand { get; }
+
+        public ICommand OpenLocationCommand { get; }
 
         #endregion
 
@@ -298,6 +302,18 @@ namespace RayCarrot.RCP.Metro
                     Archive.SetDisplayStatus(String.Empty);
                 }
             }
+        }
+
+        /// <summary>
+        /// Opens the location of the archive
+        /// </summary>
+        /// <returns>The task</returns>
+        public async Task OpenLocationAsync()
+        {
+            // Open the location
+            await RCPServices.File.OpenExplorerLocationAsync(FilePath);
+
+            RL.Logger?.LogTraceSource($"The archive {DisplayName} location was opened");
         }
 
         /// <summary>
