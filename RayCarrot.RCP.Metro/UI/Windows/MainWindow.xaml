@@ -13,8 +13,8 @@
                   Language="{UICulture}"
                   ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                   CloseWithEscape="False"
-                  Height="680"
-                  Width="950"
+                  Height="720"
+                  Width="960"
                   DataContext="{x:Static local:RCPServices.App}">
     <Window.Resources>
         <local:TaskbarIconViewModel x:Key="TaskbarIconViewModel" />
