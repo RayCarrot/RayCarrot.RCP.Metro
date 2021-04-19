@@ -229,14 +229,7 @@ namespace RayCarrot.RCP.Metro
                 // Get the type
                 FileType = FileData.GetFileType(fileStream);
 
-                // Remove previous export formats
-                FileExports.Clear();
-
-                // Add native export format
-                FileExports.Add(new ArchiveFileExportViewModel($"{Resources.Archive_Format_Original} ({FileExtension})", new AsyncRelayCommand(async () => await ExportFileAsync())));
-
-                // Get export formats
-                FileExports.AddRange(FileType.ExportFormats.Select(x => new ArchiveFileExportViewModel(x.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(x)))));
+                ResetExportOptions();
 
                 if (loadThumbnail)
                 {
@@ -269,18 +262,38 @@ namespace RayCarrot.RCP.Metro
             catch (Exception ex)
             {
                 // If the stream has closed it's not an error
-                if (ArchiveFileStream.CanRead)
+                if (!ArchiveFileStream.CanRead)
+                {
                     ex.HandleExpected("Initializing file");
+                }
                 else
+                {
                     ex.HandleError("Initializing file");
 
-                IconKind = PackIconMaterialKind.FileAlertOutline;
+                    // Initialize the file with default settings to allow the file to be exported and deleted
+                    FileType = new ArchiveFileType_Default();
+                    ResetExportOptions();
+                    IconKind = PackIconMaterialKind.FileAlertOutline;
+                    IsInitialized = true;
+                }
             }
             finally
             {
                 if (!hadStream)
                     fileStream?.Dispose();
             }
+        }
+
+        protected void ResetExportOptions()
+        {
+            // Remove previous export formats
+            FileExports.Clear();
+
+            // Add native export format
+            FileExports.Add(new ArchiveFileExportViewModel($"{Resources.Archive_Format_Original} ({FileExtension})", new AsyncRelayCommand(async () => await ExportFileAsync())));
+
+            // Get export formats
+            FileExports.AddRange(FileType.ExportFormats.Select(x => new ArchiveFileExportViewModel(x.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(x)))));
         }
 
         /// <summary>
