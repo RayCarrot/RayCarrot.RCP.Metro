@@ -6,6 +6,7 @@
 	• Sorting options have been added
 	• Performance improvements
 	• Added support for archive files for Rayman Designer, Rayman by his Fans, Rayman 60 Levels and the educational games
+	• Added support for Xbox 360 IPK files in the Archive Explorer™ for Rayman Origins & Legends
 • Added support for Rayman ReDesigner
 • Added a utility for generating Rayman 1 PS1 passwords
 • Added the progression tab for Rayman Designer, Rayman by his Fans & Rayman 60 Levels
@@ -17,7 +18,7 @@ Other changes:
 	• The game specific Archive Explorer™ utilities have been replaced by a button in the game drop-down menus
 	• The settings page has been categorized into tabs
 	• The game options can now be quickly accessed by hovering on the launch button and selecting the new option
-• Add support for Xbox 360 IPK files in the Archive Explorer™ for Rayman Origins & Legends
+	• Increased the default size of the main and news windows and increased the font size for the news text
 • Added a shortcut to the Ray2Fix config file for Rayman 2 if available
 • A link to view the game maps at raym.app is now available for each supported game in the drop-down menus
 • The app data now gets verified on launch, automatically correcting any invalid/corrupt values
@@ -25,6 +26,7 @@ Other changes:
 • The name "Uplay" has been changed to "Ubisoft Connect" to reflect the official name change
 • Added ItzalDrake to the credits
 • The language selection list is now sorted
+• Bug fixes
 
 
 -----   Version 10.3.1 - October 25, 2020   -----
