@@ -2943,7 +2943,7 @@ Komunikat o błędzie: {1}</value>
     <value>Poprawka do usuwania DRM została cofnięta</value>
   </data>
   <data name="R2U_RemoveDRM_RevertError" xml:space="preserve">
-    <value>Wystąpił błąd podczas odwracania poprawki usuwającej DRM</value>
+    <value>Wystąpił błąd podczas cofania poprawki usuwającej DRM</value>
   </data>
   <data name="R2U_RemoveDRM_Header" xml:space="preserve">
     <value>Usuń głowę robo-pirata (zabezpieczenie DRM)</value>
@@ -3322,43 +3322,43 @@ Komunikat o błędzie: {1}</value>
     <comment>Dark Sewer</comment>
   </data>
   <data name="RM_RaceName_3" xml:space="preserve">
-    <value>Dawn Sand</value>
+    <value>Plaża</value>
     <comment>Dawn Sand</comment>
   </data>
   <data name="RM_RaceName_4" xml:space="preserve">
-    <value>Water Canyon</value>
+    <value>Kanion</value>
     <comment>Water Canyon</comment>
   </data>
   <data name="RM_RaceName_5" xml:space="preserve">
-    <value>Thousand Waterfalls</value>
+    <value>Kraina Wodospadów</value>
     <comment>Thousand Waterfalls</comment>
   </data>
   <data name="RM_RaceName_6" xml:space="preserve">
-    <value>Forest Jump</value>
+    <value>Leśne Podskoki</value>
     <comment>Forest Jump</comment>
   </data>
   <data name="RM_RaceName_7" xml:space="preserve">
-    <value>Zenith Harbour</value>
+    <value>Port</value>
     <comment>Zenith Harbour</comment>
   </data>
   <data name="RM_RaceName_8" xml:space="preserve">
-    <value>Treasure Ship</value>
+    <value>Hiszpański Galeon</value>
     <comment>Treasure Ship</comment>
   </data>
   <data name="RM_RaceName_9" xml:space="preserve">
-    <value>Pipe Maze</value>
+    <value>Labirynt Rur</value>
     <comment>Pipe Maze</comment>
   </data>
   <data name="RM_RaceName_10" xml:space="preserve">
-    <value>Lava Factory</value>
+    <value>Fabryka Lawy</value>
     <comment>Lava Factory</comment>
   </data>
   <data name="RM_RaceName_11" xml:space="preserve">
-    <value>Electric Final</value>
+    <value>Elektryczny Finał</value>
     <comment>Electric Final</comment>
   </data>
   <data name="RM_RaceName_12" xml:space="preserve">
-    <value>Future</value>
+    <value>Przyszłość</value>
     <comment>Future</comment>
   </data>
   <data name="RM_RaceName_13" xml:space="preserve">
@@ -3366,11 +3366,11 @@ Komunikat o błędzie: {1}</value>
     <comment>Big Bang</comment>
   </data>
   <data name="RM_RaceName_14" xml:space="preserve">
-    <value>Speed Stress</value>
+    <value>Stres Szybkości</value>
     <comment>Speed Stress</comment>
   </data>
   <data name="RM_RaceName_15" xml:space="preserve">
-    <value>Born To Slide</value>
+    <value>Urodzony Ślizgacz</value>
     <comment>Born To Slide</comment>
   </data>
   <data name="Help_Cheats_Description" xml:space="preserve">
@@ -3422,7 +3422,7 @@ Komunikat o błędzie: {1}</value>
     <value>Skompresowany:</value>
   </data>
   <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
-    <value>Szyfrowane:</value>
+    <value>Szyfrowany:</value>
   </data>
   <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
     <value>Rozmiar:</value>
@@ -3437,7 +3437,7 @@ Komunikat o błędzie: {1}</value>
     <value>Format:</value>
   </data>
   <data name="About_Credits_ItzalDrake" xml:space="preserve">
-    <value>Tłumacznie włoskie (Włochy) programu</value>
+    <value>Tłumaczenie włoskie (Włochy) programu</value>
   </data>
   <data name="Archive_Sort" xml:space="preserve">
     <value>Sortuj</value>
@@ -3494,7 +3494,7 @@ Komunikat o błędzie: {1}</value>
     <value>Import</value>
   </data>
   <data name="Archive_Save" xml:space="preserve">
-    <value>Zapisz Archiwum</value>
+    <value>Zapisz archiwum</value>
   </data>
   <data name="Archive_ExportDirFileConflict" xml:space="preserve">
     <value>W wybranym folderze znajduje się plik o takiej samej nazwie jak {0}</value>
@@ -3503,7 +3503,7 @@ Komunikat o błędzie: {1}</value>
     <value>Oryginalne</value>
   </data>
   <data name="Archive_ImportDir_Error" xml:space="preserve">
-    <value>Podczas importowania plików wystąpił błąd</value>
+    <value>Wystąpił błąd podczas importowania plików </value>
   </data>
   <data name="Archive_CreateDir_Header" xml:space="preserve">
     <value>Wybierz nazwę folderu</value>
@@ -3524,7 +3524,7 @@ Komunikat o błędzie: {1}</value>
     <value>Dodawanie pliku {0}</value>
   </data>
   <data name="Archive_AddFiles_Error" xml:space="preserve">
-    <value>Podczas dodawania wystąpił błąd {0}</value>
+    <value>Wystąpił błąd podczas dodawania {0}</value>
   </data>
   <data name="Archive_Format_Original" xml:space="preserve">
     <value>Oryginalne</value>
@@ -3614,19 +3614,19 @@ Komunikat o błędzie: {1}</value>
     <value>Wszystkie klatki</value>
   </data>
   <data name="R1Passwords_FinBoss" xml:space="preserve">
-    <value>Pokonaj bossa</value>
+    <value>Boss pokonany</value>
   </data>
   <data name="R1Passwords_Lives" xml:space="preserve">
     <value>Życia</value>
   </data>
   <data name="Utilities_ArchiveExplorer_R1Header" xml:space="preserve">
-    <value>Rayman 1 PC Archiwa (.dat)</value>
+    <value>Archiwa Rayman 1 PC (.dat)</value>
   </data>
   <data name="Utilities_R1Passwords_Header" xml:space="preserve">
     <value>Rayman 1 PS1 Generator haseł</value>
   </data>
   <data name="Archive_ImportFile_Error" xml:space="preserve">
-    <value>Podczas importowania pliku wystąpił błąd</value>
+    <value>Wystąpił błąd podczas importowania pliku</value>
   </data>
   <data name="R1Passwords_InvalidLength" xml:space="preserve">
     <value>Hasło musi zawierać 10 znaków</value>
@@ -3642,5 +3642,17 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="GameLink_R2Fix" xml:space="preserve">
     <value>Ray2Fix</value>
+  </data>
+  <data name="Progression_GenericSave" xml:space="preserve">
+    <value>Zapis</value>
+  </data>
+  <data name="R1Passwords_HelpedMus" xml:space="preserve">
+    <value>Uratowano The Musiciana </value>
+  </data>
+  <data name="R1Passwords_Continues" xml:space="preserve">
+    <value>Ciąg dalszy</value>
+  </data>
+  <data name="Archive_R1PC_SecondaryVersion" xml:space="preserve">
+    <value>Wersja dodatkowa</value>
   </data>
 </root>

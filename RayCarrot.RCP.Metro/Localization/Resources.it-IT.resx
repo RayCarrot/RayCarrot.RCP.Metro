@@ -193,7 +193,7 @@
     <value>Schermo intero con doppio buffering</value>
   </data>
   <data name="DosBoxOptions_FullscreenDubbleBufferingInfo" xml:space="preserve">
-    <value>Usa doppio buffering con schermo intero</value>
+    <value>Usa il doppio buffering con schermo intero</value>
   </data>
   <data name="DosBoxOptions_AspectCorrection" xml:space="preserve">
     <value>Correzione formato</value>
@@ -220,10 +220,10 @@
     <value>Tipo di output da utilizzare</value>
   </data>
   <data name="DosBoxOptions_FullscreenRes" xml:space="preserve">
-    <value>Risoluzione Schermo Intero</value>
+    <value>Risoluzione schermo intero</value>
   </data>
   <data name="DosBoxOptions_FullscreenResInfo" xml:space="preserve">
-    <value>Risoluzione da usare per lo schermo intero: originale, desktop o fisso (es. 1024x768)</value>
+    <value>Risoluzione da usare per lo schermo intero: original, desktop o fisso (es. 1024x768)</value>
   </data>
   <data name="DosBoxOptions_WindowedRes" xml:space="preserve">
     <value>Risoluzione in finestra</value>
@@ -241,7 +241,7 @@
     <value>Core</value>
   </data>
   <data name="DosBoxOptions_CoreInfo" xml:space="preserve">
-    <value>Core della CPU utilizzata nell'emulazione. Se appropriato, passa automaticamente da normale a dinamico. </value>
+    <value>Core della CPU utilizzata nell'emulazione. Se appropriata, passa automaticamente da normale a dinamico. </value>
   </data>
   <data name="DosBoxOptions_Cycles" xml:space="preserve">
     <value>Cicli</value>
@@ -307,7 +307,7 @@
     <value>32 bit</value>
   </data>
   <data name="Config_Compressed" xml:space="preserve">
-    <value>Compresso</value>
+    <value>Compresse</value>
   </data>
   <data name="Config_Video" xml:space="preserve">
     <value>Video</value>
@@ -593,7 +593,7 @@ Questo è un progetto in crescita con ulteriori funzionalità pianificate per es
     <value>Traduzioni non ufficiali</value>
   </data>
   <data name="R2U_TranslationsInfo" xml:space="preserve">
-    <value>L'applicazione di una traduzione non ufficiale sostituirà una delle lingue del gioco con quella selezionata. Nella maggior parte dei casi sarà quello inglese. Le modifiche possono essere annullate in qualsiasi momento applicando la versione originale.</value>
+    <value>L'applicazione di una traduzione non ufficiale sostituirà una delle lingue del gioco con quella selezionata. Nella maggior parte dei casi sarà quella inglese. Le modifiche possono essere annullate in qualsiasi momento applicando la versione originale.</value>
   </data>
   <data name="Utility_Apply" xml:space="preserve">
     <value>Applica</value>
@@ -716,7 +716,7 @@ Questo è un progetto in crescita con ulteriori funzionalità pianificate per es
     <value>Installa dal disco</value>
   </data>
   <data name="GameDisplay_Locate" xml:space="preserve">
-    <value>Localizzare</value>
+    <value>Localizza</value>
   </data>
   <data name="GameDisplay_PurchaseGOG" xml:space="preserve">
     <value>Compra su GOG</value>
@@ -1210,7 +1210,7 @@ Riprovare?</value>
     <value>Rayman Control Panel™, utilità, colonna sonora Per-Livello, Archive Explorer, traduzioni Rayman 2, traduzione del programma in svedese (Svezia)</value>
   </data>
   <data name="About_Credits_Noserdog" xml:space="preserve">
-    <value>Patch del controller</value>
+    <value>Patch controller</value>
   </data>
   <data name="About_Credits_Janmv94" xml:space="preserve">
     <value>Rimappatura pulsanti Rayman 2</value>
@@ -1664,7 +1664,7 @@ L'esecuzione di un'applicazione in modalità compatibilità viene eseguita selez
     <value>Traduzione del programma in Olandese (Paesi Bassi), test del programma</value>
   </data>
   <data name="BrowseBox_Browse" xml:space="preserve">
-    <value>Naviga</value>
+    <value>Sfoglia</value>
   </data>
   <data name="Settings_IncompleteTranslations" xml:space="preserve">
     <value>Mostra le lingue con traduzioni incomplete</value>
@@ -3183,7 +3183,7 @@ Messaggio di errore: {1} </value>
     <value>Traduzione del programma in Polacco (Polonia)</value>
   </data>
   <data name="Utilities_Converter_RMSaveHeader" xml:space="preserve">
-    <value>File di salvataggio di Rayman M/Arena (.sav)</value>
+    <value>File di salvataggio Rayman M/Arena (.sav)</value>
   </data>
   <data name="Settings_ArchiveGFForce8888" xml:space="preserve">
     <value>Converti in 32 bit durante l'importazione (.gf)</value>
