@@ -186,7 +186,7 @@ namespace RayCarrot.RCP.Metro
 
         private void DirTreeItem_OnExpanded(object sender, RoutedEventArgs e)
         {
-            if (sender is TreeViewItem t && !t.HasItems && t.DataContext is ArchiveDirectoryViewModel d && d.Parent != null)
+            if (sender is TreeViewItem t && t.DataContext is ArchiveDirectoryViewModel d && d.Parent != null && !d.Any())
                 t.IsExpanded = false;
         }
 

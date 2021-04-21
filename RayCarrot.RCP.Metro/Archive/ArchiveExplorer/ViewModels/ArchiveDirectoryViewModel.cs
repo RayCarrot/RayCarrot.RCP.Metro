@@ -5,6 +5,7 @@ using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for a directory in an archive
     /// </summary>
+    [DebuggerDisplay("{" + nameof(FullPath) + "}")]
     public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryViewModel>, IDisposable
     {
         #region Constructors

@@ -19,7 +19,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for a file in an archive
     /// </summary>
-    [DebuggerDisplay("{FileName}")]
+    [DebuggerDisplay("{" + nameof(FileName) + "}")]
     public class ArchiveFileViewModel : BaseViewModel, IDisposable
     {
         #region Constructor
