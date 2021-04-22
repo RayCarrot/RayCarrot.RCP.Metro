@@ -561,7 +561,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a directory name.
+        ///   Looks up a localized string similar to Specify a directory name.
         /// </summary>
         public static string Archive_CreateDir_Header {
             get {
@@ -6946,7 +6946,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beat boss.
+        ///   Looks up a localized string similar to Beaten boss.
         /// </summary>
         public static string R1Passwords_FinBoss {
             get {

@@ -3501,7 +3501,7 @@ exportDirName</comment>
     <value>An error occurred when importing the files</value>
   </data>
   <data name="Archive_CreateDir_Header" xml:space="preserve">
-    <value>Select a directory name</value>
+    <value>Specify a directory name</value>
   </data>
   <data name="Archive_AddFiles_Header" xml:space="preserve">
     <value>Select files to add</value>
@@ -3649,7 +3649,7 @@ file</comment>
     <value>All cages</value>
   </data>
   <data name="R1Passwords_FinBoss" xml:space="preserve">
-    <value>Beat boss</value>
+    <value>Beaten boss</value>
   </data>
   <data name="R1Passwords_HelpedMus" xml:space="preserve">
     <value>Helped The Musician</value>

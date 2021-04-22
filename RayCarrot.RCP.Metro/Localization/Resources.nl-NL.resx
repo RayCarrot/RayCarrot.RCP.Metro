@@ -3390,4 +3390,220 @@ Foutmelding: {1}</value>
   <data name="GameLink_R2Fix" xml:space="preserve">
     <value>Ray2Fix</value>
   </data>
+  <data name="About_Credits_ItzalDrake" xml:space="preserve">
+    <value>Italiaans (Italië) programmavertaling</value>
+  </data>
+  <data name="Archive_Sort" xml:space="preserve">
+    <value>Sorteren</value>
+  </data>
+  <data name="Archive_Sort_Default" xml:space="preserve">
+    <value>Standaard</value>
+  </data>
+  <data name="Archive_Sort_AlphabeticallyAscending" xml:space="preserve">
+    <value>Alfabetisch (oplopend)</value>
+  </data>
+  <data name="Archive_Sort_AlphabeticalDescending" xml:space="preserve">
+    <value>Alfabetisch (aflopend)</value>
+  </data>
+  <data name="Archive_Search" xml:space="preserve">
+    <value>Zoeken</value>
+  </data>
+  <data name="Archive_Extract_Info" xml:space="preserve">
+    <value>Pakt alle bestanden, inclusief submappen, uit naar deze map</value>
+  </data>
+  <data name="Archive_AddFiles" xml:space="preserve">
+    <value>Bestanden toevoegen</value>
+  </data>
+  <data name="Archive_AddFiles_Info" xml:space="preserve">
+    <value>Voegt de geselecteerde bestanden toe aan de map</value>
+  </data>
+  <data name="Archive_ExportConvert" xml:space="preserve">
+    <value>Exporteren &amp; converteren</value>
+  </data>
+  <data name="Archive_ExportConvert_Info" xml:space="preserve">
+    <value>Pakt alle bestanden, inclusief submappen, uit naar deze map, en staat toe dat bestanden worden geconverteerd</value>
+  </data>
+  <data name="Archive_ImportConvert" xml:space="preserve">
+    <value>Importeren &amp; converteren</value>
+  </data>
+  <data name="Archive_ImportConvert_Info" xml:space="preserve">
+    <value>Importeert elk bestand met overeenkomende bestandsnamen uit de geselecteerde map en converteert deze waar mogelijk, zodat er een match is met de originele bestandsindeling</value>
+  </data>
+  <data name="Archive_CreateDir" xml:space="preserve">
+    <value>Map aanmaken</value>
+  </data>
+  <data name="Archive_CreateDir_Info" xml:space="preserve">
+    <value>Maakt een nieuwe, lege map aan</value>
+  </data>
+  <data name="Archive_Delete" xml:space="preserve">
+    <value>Verwijderen</value>
+  </data>
+  <data name="Archive_DeleteDir_Info" xml:space="preserve">
+    <value>Verwijdert de map en alle inhoud, inclusief bestanden en submappen</value>
+  </data>
+  <data name="Archive_ExportFile" xml:space="preserve">
+    <value>Exporteren</value>
+  </data>
+  <data name="Archive_ImportFile" xml:space="preserve">
+    <value>Importeren</value>
+  </data>
+  <data name="Archive_Save" xml:space="preserve">
+    <value>Archief Opslaan</value>
+  </data>
+  <data name="Archive_ExportDirFileConflict" xml:space="preserve">
+    <value>De geselecteerde map bevat een bestand met dezelfde naam als {0}</value>
+  </data>
+  <data name="Archive_Export_Format_Original" xml:space="preserve">
+    <value>Origineel</value>
+  </data>
+  <data name="Archive_ImportDir_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het importeren van bestanden</value>
+  </data>
+  <data name="Archive_CreateDir_Header" xml:space="preserve">
+    <value>Specificeer een mapnaam</value>
+  </data>
+  <data name="Archive_AddFiles_Header" xml:space="preserve">
+    <value>Selecteer bestanden om toe te voegen</value>
+  </data>
+  <data name="Archive_AddFiles_Conflict" xml:space="preserve">
+    <value>Het bestand '{0}' heeft dezelfde naam als een bestaand bestand. Wil je het bestand vervangen?</value>
+  </data>
+  <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
+    <value>Conflict met bestandsnaam</value>
+  </data>
+  <data name="Archive_FileInfo_Type" xml:space="preserve">
+    <value>Type:</value>
+  </data>
+  <data name="Archive_CreationFileStatus" xml:space="preserve">
+    <value>Bestand {0} toevoegen</value>
+  </data>
+  <data name="Archive_AddFiles_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het toevoegen van {0}</value>
+  </data>
+  <data name="Archive_Format_Original" xml:space="preserve">
+    <value>Origineel</value>
+  </data>
+  <data name="Archive_Format_Default" xml:space="preserve">
+    <value>Bestand</value>
+  </data>
+  <data name="Archive_Format_GF" xml:space="preserve">
+    <value>GF (Grafisch Bestand)</value>
+  </data>
+  <data name="Archive_Format_Img" xml:space="preserve">
+    <value>Afbeelding</value>
+  </data>
+  <data name="GameDisplay_Raymap" xml:space="preserve">
+    <value>Mappen inzien</value>
+  </data>
+  <data name="GameDisplay_Archives" xml:space="preserve">
+    <value>Openen archieven</value>
+  </data>
+  <data name="Progression_GenericSave" xml:space="preserve">
+    <value>Opslagbestand</value>
+  </data>
+  <data name="R1Passwords_Invalid" xml:space="preserve">
+    <value>Ongeldig wachtwoord</value>
+  </data>
+  <data name="R1_LevelName_0" xml:space="preserve">
+    <value>Pink Plant Woods</value>
+  </data>
+  <data name="R1_LevelName_1" xml:space="preserve">
+    <value>Anguish Lagoon</value>
+  </data>
+  <data name="R1_LevelName_2" xml:space="preserve">
+    <value>The Swamps of Forgetfulness</value>
+  </data>
+  <data name="R1_LevelName_3" xml:space="preserve">
+    <value>Moskito's Nest</value>
+  </data>
+  <data name="R1_LevelName_4" xml:space="preserve">
+    <value>Bongo Hills</value>
+  </data>
+  <data name="R1_LevelName_5" xml:space="preserve">
+    <value>Allegro Presto</value>
+  </data>
+  <data name="R1_LevelName_6" xml:space="preserve">
+    <value>Gong Heights</value>
+  </data>
+  <data name="R1_LevelName_7" xml:space="preserve">
+    <value>Mr Sax's Hullaballoo</value>
+  </data>
+  <data name="R1_LevelName_8" xml:space="preserve">
+    <value>Twilight Gulch</value>
+  </data>
+  <data name="R1_LevelName_9" xml:space="preserve">
+    <value>The Hard Rocks</value>
+  </data>
+  <data name="R1_LevelName_10" xml:space="preserve">
+    <value>Mr Stone's Peaks</value>
+  </data>
+  <data name="R1_LevelName_11" xml:space="preserve">
+    <value>Eraser Plains</value>
+  </data>
+  <data name="R1_LevelName_12" xml:space="preserve">
+    <value>Pencil Pentathlon</value>
+  </data>
+  <data name="R1_LevelName_13" xml:space="preserve">
+    <value>Space Mama's Crater</value>
+  </data>
+  <data name="R1_LevelName_14" xml:space="preserve">
+    <value>Crystal Palace</value>
+  </data>
+  <data name="R1_LevelName_15" xml:space="preserve">
+    <value>Eat at Joe's</value>
+  </data>
+  <data name="R1_LevelName_16" xml:space="preserve">
+    <value>Mr Skops' Stalactites</value>
+  </data>
+  <data name="R1_LevelName_17" xml:space="preserve">
+    <value>Mr Dark's Dare</value>
+  </data>
+  <data name="R1Passwords_Generate" xml:space="preserve">
+    <value>Genereren</value>
+  </data>
+  <data name="R1Passwords_Load" xml:space="preserve">
+    <value>Laden</value>
+  </data>
+  <data name="R1Passwords_LevUnlocked" xml:space="preserve">
+    <value>Ontgrendeld</value>
+  </data>
+  <data name="R1Passwords_LevAllCages" xml:space="preserve">
+    <value>Alle kooien</value>
+  </data>
+  <data name="R1Passwords_FinBoss" xml:space="preserve">
+    <value>Baas verslagen</value>
+  </data>
+  <data name="R1Passwords_HelpedMus" xml:space="preserve">
+    <value>De Muzikant geholpen</value>
+  </data>
+  <data name="R1Passwords_Lives" xml:space="preserve">
+    <value>Levens</value>
+  </data>
+  <data name="R1Passwords_Continues" xml:space="preserve">
+    <value>Hervattingen</value>
+  </data>
+  <data name="Utilities_ArchiveExplorer_R1Header" xml:space="preserve">
+    <value>Rayman 1 PC Archieven (.dat)</value>
+  </data>
+  <data name="Utilities_R1Passwords_Header" xml:space="preserve">
+    <value>Rayman 1 PS1 Wachtwoorden Generator</value>
+  </data>
+  <data name="Archive_ImportFile_Error" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden tijdens het importeren van het bestand</value>
+  </data>
+  <data name="R1Passwords_InvalidLength" xml:space="preserve">
+    <value>Wachtwoord dient 10 tekens te bevatten</value>
+  </data>
+  <data name="R1Passwords_InvalidChar" xml:space="preserve">
+    <value>Ongeldig wachtwoordteken {0}</value>
+  </data>
+  <data name="R1Passwords_InvalidData" xml:space="preserve">
+    <value>De data van het wachtwoord zijn ongeldig</value>
+  </data>
+  <data name="Archive_R1PC_PrimaryVersion" xml:space="preserve">
+    <value>Primaire versie</value>
+  </data>
+  <data name="Archive_R1PC_SecondaryVersion" xml:space="preserve">
+    <value>Secundaire versie</value>
+  </data>
 </root>

@@ -2759,7 +2759,7 @@ Messaggio di errore: {1} </value>
     <value>{0} non può essere esportato</value>
   </data>
   <data name="Archive_RepackingStatus" xml:space="preserve">
-    <value>Reimpaccando l'archivio {0}</value>
+    <value>Ricostruendo l'archivio {0}</value>
   </data>
   <data name="Archive_FileExtensionSelectionHeader" xml:space="preserve">
     <value>Selezione Estensione File</value>
@@ -2789,7 +2789,7 @@ Messaggio di errore: {1} </value>
     <value>Archivi UbiArt (.ipk)</value>
   </data>
   <data name="Utilities_Converter_GFHeader" xml:space="preserve">
-    <value>File delle texture OpenSpace (.gf)</value>
+    <value>File Texture OpenSpace (.gf)</value>
   </data>
   <data name="Utilities_Converter_Convert" xml:space="preserve">
     <value>Converti</value>
@@ -3370,7 +3370,7 @@ Messaggio di errore: {1} </value>
     <value>Si è verificato un errore durante l'importazione dei file</value>
   </data>
   <data name="Archive_CreateDir_Header" xml:space="preserve">
-    <value>Seleziona un nome di directory</value>
+    <value>Specifica un nome per la directory</value>
   </data>
   <data name="Archive_AddFiles_Header" xml:space="preserve">
     <value>Seleziona i file da aggiungere</value>
@@ -3511,7 +3511,7 @@ Messaggio di errore: {1} </value>
     <value>Tutte le gabbie</value>
   </data>
   <data name="R1Passwords_FinBoss" xml:space="preserve">
-    <value>Sconfiggi il boss</value>
+    <value>Boss sconfitto</value>
   </data>
   <data name="R1Passwords_HelpedMus" xml:space="preserve">
     <value>Musicista aiutato</value>
