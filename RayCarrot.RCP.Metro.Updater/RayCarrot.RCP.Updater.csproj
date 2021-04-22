@@ -98,7 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Costura.Fody">
-      <Version>5.2.0</Version>
+      <Version>5.3.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -108,7 +108,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="MahApps.Metro">
-      <Version>2.4.4</Version>
+      <Version>2.4.5</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
