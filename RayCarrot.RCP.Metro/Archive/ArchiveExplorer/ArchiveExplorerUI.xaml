@@ -351,35 +351,51 @@
                                       Width="64"
                                       Height="64">
 
-                                    <mah:Badged Padding="-5" 
-                                                Margin="5">
-                                        <mah:Badged.Style>
-                                            <Style TargetType="{x:Type mah:Badged}" BasedOn="{StaticResource {x:Type controlzex:BadgedEx}}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Path=HasPendingImport}" Value="True">
-                                                        <DataTrigger.Setters>
-                                                            <Setter Property="Badge" Value="{iconPacks:Material Kind=FileUploadOutline}" />
-                                                        </DataTrigger.Setters>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </mah:Badged.Style>
-                                        <Grid>
+                                    <!--<mah:Badged Padding="-5" 
+                                                    Margin="5"
+                                                    Visibility="{Binding Path=HasPendingImport, Converter={rwpf:BooleanToVisibilityConverter}}"
+                                                    Badge="{iconPacks:Material Kind=FileUploadOutline}" />-->
 
-                                            <Image Source="{Binding Path=ThumbnailSource}"
-                                                   HorizontalAlignment="Center"
-                                                   Width="64"
-                                                   Height="64" />
+                                    <Grid>
 
-                                            <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
-                                                                        Foreground="{StaticResource Archive_FileBrush}"
-                                                                        HorizontalAlignment="Center"
-                                                                        Visibility="{Binding Path=ThumbnailSource, Converter={rwpf:ObjectNullToVisibilityConverter}}"
-                                                                        Width="48"
-                                                                        Height="48" />
+                                        <Image Source="{Binding Path=ThumbnailSource}"
+                                               HorizontalAlignment="Center"
+                                               Width="64"
+                                               Height="64" />
 
-                                        </Grid>
-                                    </mah:Badged>
+                                        <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
+                                                                    Foreground="{StaticResource Archive_FileBrush}"
+                                                                    HorizontalAlignment="Center"
+                                                                    Visibility="{Binding Path=ThumbnailSource, Converter={rwpf:ObjectNullToVisibilityConverter}}"
+                                                                    Width="48"
+                                                                    Height="48" />
+
+                                    </Grid>
+
+                                    <!-- Manually implement a badge (https://github.com/MahApps/MahApps.Metro/blob/develop/src/MahApps.Metro/Themes/Badged.xaml) due to the default having a layout rendering issue when disabling the control -->
+                                    <Border MinWidth="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
+                                            MinHeight="18"
+                                            Padding="2"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Background="{DynamicResource MahApps.Brushes.Badged.Background}"
+                                            CornerRadius="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight, Converter={mah:SizeToCornerRadiusConverter}}"
+                                            RenderTransformOrigin=".5,.5"
+                                            Visibility="{Binding Path=HasPendingImport, Converter={rwpf:BooleanToVisibilityConverter}}">
+                                        <Border.RenderTransform>
+                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                        </Border.RenderTransform>
+                                        <ContentControl Margin="1 0"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Content="{iconPacks:Material Kind=FileUploadOutline}"
+                                                        Focusable="False"
+                                                        FontSize="11"
+                                                        FontWeight="DemiBold"
+                                                        Foreground="{DynamicResource MahApps.Brushes.Badged.Foreground}"
+                                                        IsTabStop="False" />
+                                    </Border>
+
                                 </Grid>
 
                                 <!-- File name -->
