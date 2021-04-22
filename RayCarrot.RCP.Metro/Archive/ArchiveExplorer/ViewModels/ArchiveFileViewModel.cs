@@ -20,7 +20,7 @@ namespace RayCarrot.RCP.Metro
     /// View model for a file in an archive
     /// </summary>
     [DebuggerDisplay("{" + nameof(FileName) + "}")]
-    public class ArchiveFileViewModel : BaseViewModel, IDisposable
+    public class ArchiveFileViewModel : BaseViewModel, IDisposable, IArchiveExplorerEntryViewModel
     {
         #region Constructor
 
@@ -101,6 +101,16 @@ namespace RayCarrot.RCP.Metro
         public string FileName => FileData.FileName;
 
         /// <summary>
+        /// The name of the item to display
+        /// </summary>
+        public string DisplayName => FileName;
+
+        /// <summary>
+        /// The full path for the file
+        /// </summary>
+        public string FullPath => ArchiveDirectory.FullPath;
+
+        /// <summary>
         /// The info about the file to display
         /// </summary>
         public ObservableCollection<DuoGridItemViewModel> FileDisplayInfo { get; }
@@ -109,6 +119,11 @@ namespace RayCarrot.RCP.Metro
         /// The icon kind to use for the file
         /// </summary>
         public PackIconMaterialKind IconKind { get; set; }
+
+        /// <summary>
+        /// The generic icon kind to use for the item
+        /// </summary>
+        public PackIconMaterialKind GenericIconKind => PackIconMaterialKind.FileOutline;
 
         /// <summary>
         /// Indicates if the file is initialized
@@ -152,6 +167,11 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the file is selected
         /// </summary>
         public bool IsSelected { get; set; }
+
+        /// <summary>
+        /// Indicates if the entry is a file, otherwise it's a directory or archive
+        /// </summary>
+        public bool IsFile => true;
 
         #endregion
 

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using MahApps.Metro.IconPacks;
 using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
@@ -20,7 +21,7 @@ namespace RayCarrot.RCP.Metro
     /// View model for a directory in an archive
     /// </summary>
     [DebuggerDisplay("{" + nameof(FullPath) + "}")]
-    public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryViewModel>, IDisposable
+    public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryViewModel>, IDisposable, IArchiveExplorerEntryViewModel
     {
         #region Constructors
 
@@ -133,6 +134,16 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if a sub-directory can be added
         /// </summary>
         public bool CanAddSubDirectory => Archive.Manager.CanModifyDirectories;
+
+        /// <summary>
+        /// The generic icon kind to use for the item
+        /// </summary>
+        public PackIconMaterialKind GenericIconKind => PackIconMaterialKind.FolderOutline;
+
+        /// <summary>
+        /// Indicates if the entry is a file, otherwise it's a directory or archive
+        /// </summary>
+        public bool IsFile => false;
 
         #endregion
 

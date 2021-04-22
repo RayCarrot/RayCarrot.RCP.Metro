@@ -74,13 +74,13 @@
                                              Margin="0 0 5 0"
                                              DisplayMember="FileName"
                                              Provider="{Binding Path=SearchProvider, Mode=OneTime}"
-                                             SelectedItem="{Binding Path=CurrentSearchFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             SelectedItem="{Binding Path=SelectedSearchEntry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                              mah:TextBoxHelper.Watermark="{Resx Archive_Search}"
                                              mah:TextBoxHelper.SelectAllOnFocus="True">
 
                     <editors:AutoCompleteTextBox.ItemTemplate>
-                        <DataTemplate DataType="local:ArchiveFileViewModel">
-                            <Grid ToolTip="{Binding Path=ArchiveDirectory.FullPath, Mode=OneTime}">
+                        <DataTemplate DataType="local:IArchiveExplorerEntryViewModel">
+                            <Grid ToolTip="{Binding Path=FullPath, Mode=OneTime}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="5" />
@@ -88,11 +88,23 @@
                                 </Grid.ColumnDefinitions>
 
                                 <iconPacks:PackIconMaterial Grid.Column="0"
-                                                            Kind="FileOutline" 
-                                                            Foreground="{StaticResource Archive_FileBrush}" />
+                                                            Kind="{Binding Path=GenericIconKind, Mode=OneTime}">
+                                    <iconPacks:PackIconMaterial.Style>
+                                        <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=IsFile, Mode=OneTime}" Value="True">
+                                                    <Setter Property="Foreground" Value="{StaticResource Archive_FileBrush}" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Path=IsFile, Mode=OneTime}" Value="False">
+                                                    <Setter Property="Foreground" Value="{StaticResource Archive_FolderBrush}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </iconPacks:PackIconMaterial.Style>
+                                </iconPacks:PackIconMaterial>
 
                                 <TextBlock Grid.Column="2"
-                                           Text="{Binding Path=FileName, Mode=OneTime}"
+                                           Text="{Binding Path=DisplayName, Mode=OneTime}"
                                            VerticalAlignment="Center"
                                            Margin="0 0 10 0" />
 

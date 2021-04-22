@@ -35,7 +35,7 @@ namespace RayCarrot.RCP.Metro
 
             // Set properties
             CurrentDirectorySuggestions = new ObservableCollection<string>();
-            SearchProvider = new BaseSuggestionProvider(x => EnumerateFiles.Where(y => y.FileName.IndexOf(x, StringComparison.InvariantCultureIgnoreCase) > -1));
+            SearchProvider = new BaseSuggestionProvider(x => EnumerateEntries.Where(y => y.DisplayName.IndexOf(x, StringComparison.InvariantCultureIgnoreCase) > -1));
 
             try
             {
@@ -87,7 +87,7 @@ namespace RayCarrot.RCP.Metro
 
         private string _currentDirectoryAddress;
 
-        private ArchiveFileViewModel _currentSearchFile;
+        private IArchiveExplorerEntryViewModel _selectedSearchEntry;
 
         #endregion
 
@@ -102,9 +102,28 @@ namespace RayCarrot.RCP.Metro
         #region Public Properties
 
         /// <summary>
+        /// Enumerates the directories in all available archives
+        /// </summary>
+        public IEnumerable<ArchiveDirectoryViewModel> EnumerateDirectories => Archives.SelectMany(y => ((ArchiveDirectoryViewModel)y).GetAllChildren(true)).SelectMany(y => y);
+
+        /// <summary>
         /// Enumerates the files in all available archives
         /// </summary>
-        public IEnumerable<ArchiveFileViewModel> EnumerateFiles => Archives.SelectMany(y => ((ArchiveDirectoryViewModel)y).GetAllChildren(true)).SelectMany(y => y.Files);
+        public IEnumerable<ArchiveFileViewModel> EnumerateFiles => EnumerateDirectories.SelectMany(y => y.Files);
+
+        /// <summary>
+        /// Enumerates the entries in all available archives
+        /// </summary>
+        public IEnumerable<IArchiveExplorerEntryViewModel> EnumerateEntries
+        {
+            get
+            {
+                // Get the directories
+                var dirs = EnumerateDirectories.ToArray();
+
+                return dirs.Cast<IArchiveExplorerEntryViewModel>().Concat(dirs.SelectMany(y => y.Files));
+            }
+        }
 
         /// <summary>
         /// Indicates if files are being initialized
@@ -177,19 +196,15 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The currently selected search file
         /// </summary>
-        public ArchiveFileViewModel CurrentSearchFile
+        public IArchiveExplorerEntryViewModel SelectedSearchEntry
         {
-            get => _currentSearchFile;
+            get => _selectedSearchEntry;
             set
             {
-                _currentSearchFile = value;
+                _selectedSearchEntry = value;
 
-                if (CurrentSearchFile != null)
-                {
-                    LoadDirectory(CurrentSearchFile.ArchiveDirectory);
-                    CurrentSearchFile.IsSelected = true;
-                    CurrentSearchFile = null;
-                }
+                if (SelectedSearchEntry != null)
+                    NavigateToSearchedEntry();
             }
         }
 
@@ -206,6 +221,17 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Protected Methods
+
+        protected void NavigateToSearchedEntry()
+        {
+            if (SelectedSearchEntry is ArchiveFileViewModel file)
+                LoadDirectory(file.ArchiveDirectory);
+            else if (SelectedSearchEntry is ArchiveDirectoryViewModel dir)
+                LoadDirectory(dir);
+
+            SelectedSearchEntry.IsSelected = true;
+            SelectedSearchEntry = null;
+        }
 
         /// <summary>
         /// Gets the directory for the specified address
