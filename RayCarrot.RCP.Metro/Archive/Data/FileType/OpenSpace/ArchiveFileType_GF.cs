@@ -102,7 +102,7 @@ namespace RayCarrot.RCP.Metro
                 new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_Size, $"{file.Width}x{file.Height}"),
                 new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_HasAlpha, $"{file.GFPixelFormat.SupportsTransparency()}"),
                 new DuoGridItemViewModel(Resources.Archive_FileInfo_Img_Mipmaps, $"{file.RealMipmapCount}"),
-                new DuoGridItemViewModel(Resources.Archive_FileInfo_Format, $"{file.Format}", UserLevel.Technical),
+                new DuoGridItemViewModel(Resources.Archive_FileInfo_Format, $"{file.GFPixelFormat.ToString().Replace("Format_", "")}", UserLevel.Technical),
             });
         }
 
