@@ -77,7 +77,7 @@ namespace RayCarrot.RCP.Metro
                 // Add update manager
                 AddUpdateManager<RCPUpdateManager>().
                 // Add the app view model
-                AddSingleton(new AppViewModel()).
+                AddSingleton(new AppViewModel(LogStartupTime)).
                 // Add App UI manager
                 AddTransient<AppUIManager>().
                 // Add backup manager
@@ -91,7 +91,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task OnSetupAsync(string[] args)
         {
-            LogStartupTime("RCP setup is starting");
+            LogStartupTime("Setup: RCP setup is starting");
 
             // Load the user data
             try
@@ -125,14 +125,18 @@ namespace RayCarrot.RCP.Metro
 
             Data = RCPServices.Data;
 
-            LogStartupTime("User data has been loaded");
+            LogStartupTime("Setup: Setting theme");
 
             // Set the theme
             this.SetTheme(Data.DarkMode, Data.SyncTheme);
 
+            LogStartupTime("Setup: Setting culture");
+
             // Apply the current culture if defaulted
             if (Data.CurrentCulture == LocalizationManager.DefaultCulture.Name)
                 LocalizationManager.SetCulture(LocalizationManager.DefaultCulture.Name);
+
+            LogStartupTime("Setup: Setup WPF trace listener");
 
             // Listen to data binding logs
             WPFTraceListener.Setup(LogLevel.Warning);
@@ -152,7 +156,7 @@ namespace RayCarrot.RCP.Metro
                 // Run post-update code
                 await PostUpdateAsync();
 
-                LogStartupTime("Post update has run");
+                LogStartupTime("Setup: Post update has run");
 
                 // Update the last version
                 Data.LastVersion = RCPServices.App.CurrentAppVersion;
@@ -220,6 +224,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the setup finished successfully or false if the application has to shut down</returns>
         protected override Task<bool> InitialSetupAsync(string[] args)
         {
+            LogStartupTime("InitialSetup: Checking Windows version");
+
             // Make sure we are on Windows Vista or higher for the Windows API Code Pack and Deployment Image Servicing and Management
             if (AppViewModel.WindowsVersion < WindowsVersion.WinVista)
             {
@@ -227,9 +233,13 @@ namespace RayCarrot.RCP.Metro
                 return Task.FromResult(false);
             }
 
+            LogStartupTime("InitialSetup: Checking license");
+
             // Make sure the license has been accepted
             if (!ShowLicense())
                 return Task.FromResult(false);
+
+            LogStartupTime("InitialSetup: Setting default directory");
 
             // Hard code the current directory
             Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location) ?? Directory.GetCurrentDirectory());
@@ -297,6 +307,8 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         private async Task BasicStartupAsync()
         {
+            LogStartupTime("BasicStartup: Start basic startup");
+
             // Track changes to the user data
             PreviousLinkItemStyle = Data.LinkItemStyle;
             PreviousBackupLocation = Data.BackupLocation;
@@ -315,6 +327,8 @@ namespace RayCarrot.RCP.Metro
             StartupComplete += App_StartupComplete_GameFinder_Async;
             StartupComplete += App_StartupComplete_Miscellaneous_Async;
 
+            LogStartupTime("BasicStartup: Check launch arguments");
+
             // Check for reset argument
             if (Services.Data.Arguments.Contains("-reset"))
                 RCPServices.Data.Reset();
@@ -329,7 +343,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ExceptionExtensions.HandleError(ex, "Setting user level from args");
+                    ex.HandleError("Setting user level from args");
                 }
             }
 
@@ -348,7 +362,7 @@ namespace RayCarrot.RCP.Metro
                 }
                 catch (Exception ex)
                 {
-                    ExceptionExtensions.HandleError(ex, "Deleting updater");
+                    ex.HandleError("Deleting updater");
                 }
             }
 
@@ -362,8 +376,12 @@ namespace RayCarrot.RCP.Metro
                 RL.Logger?.LogInformationSource("The application path has been updated");
             }
 
+            LogStartupTime("BasicStartup: Deploy files");
+
             // Deploy additional files
             await RCPServices.App.DeployFilesAsync(false);
+
+            LogStartupTime("BasicStartup: Check for first launch");
 
             // Show first launch info
             if (Data.IsFirstLaunch)
@@ -375,12 +393,12 @@ namespace RayCarrot.RCP.Metro
                 Data.IsFirstLaunch = false;
             }
 
-            LogStartupTime("Validating games");
+            LogStartupTime("BasicStartup: Validating games");
 
             // Validate the added games
             await ValidateGamesAsync();
 
-            LogStartupTime("Finished validating games");
+            LogStartupTime("BasicStartup: Finished validating games");
         }
 
         /// <summary>

@@ -39,15 +39,20 @@ namespace RayCarrot.RCP.Metro
 
         /// <summary>
         /// Default constructor
-        /// </summary>
-        public AppViewModel()
+        /// </summary>'
+        /// <param name="startupLogAction">Optional startup logging action</param>
+        public AppViewModel(Action<string> startupLogAction = null)
         {
+            startupLogAction?.Invoke("AppVM: Creating app view model");
+
             // Flag that the startup has begun
             IsStartupRunning = true;
 
             // Check if the application is running as administrator
             try
             {
+                startupLogAction?.Invoke("AppVM: Checking if running as admin");
+
                 IsRunningAsAdmin = WindowsHelpers.RunningAsAdmin;
             }
             catch (Exception ex)
@@ -55,6 +60,8 @@ namespace RayCarrot.RCP.Metro
                 MessageBox.Show(ex.Message, "Error");
                 IsRunningAsAdmin = false;
             }
+
+            startupLogAction?.Invoke("AppVM: Creating locks & commands");
 
             // Create locks
             SaveUserDataAsyncLock = new AsyncLock();
@@ -66,11 +73,15 @@ namespace RayCarrot.RCP.Metro
             RestartAsAdminCommand = new AsyncRelayCommand(RestartAsAdminAsync);
             RequestRestartAsAdminCommand = new AsyncRelayCommand(RequestRestartAsAdminAsync);
 
+            startupLogAction?.Invoke("AppVM: Reading game config");
+
             // Read the game manager configuration
             var gameConfig = Files.Games;
 
             // Set up the games manager
             GamesManager = JsonConvert.DeserializeObject<AppGamesManager>(gameConfig, new SimpleTypeConverter());
+
+            startupLogAction?.Invoke("AppVM: Finished reading game config");
         }
 
         #endregion
