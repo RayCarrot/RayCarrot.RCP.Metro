@@ -158,6 +158,9 @@ namespace RayCarrot.RCP.Metro
             data.Files = archiveFiles.Select(x => x.Entry).ToArray();
             data.FilesCount = (uint)data.Files.Length;
 
+            // Save the old base offset
+            var oldBaseOffset = data.BaseOffset;
+
             // Keep track of the current pointer position
             ulong currentOffset = 0;
 
@@ -179,8 +182,14 @@ namespace RayCarrot.RCP.Metro
                 // Add to the generator
                 fileGenerator.Add(entry, () =>
                 {
+                    // When reading the original file we need to use the old base offset
+                    var newBaseOffset = data.BaseOffset;
+                    data.BaseOffset = oldBaseOffset;
+
                     // Get the file bytes to write to the archive
                     var fileStream = file.FileItem.GetFileData(generator).Stream;
+
+                    data.BaseOffset = newBaseOffset;
 
                     // Set the offset
                     entry.Offsets[0] = currentOffset;
