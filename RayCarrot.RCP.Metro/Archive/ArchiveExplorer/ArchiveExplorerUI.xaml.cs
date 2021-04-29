@@ -190,6 +190,12 @@ namespace RayCarrot.RCP.Metro
                 t.IsExpanded = false;
         }
 
+        private void ForceRepackMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            foreach (var a in ViewModel.Archives)
+                a.AddModifiedFiles(0, true);
+        }
+
         #endregion
 
         #region Events

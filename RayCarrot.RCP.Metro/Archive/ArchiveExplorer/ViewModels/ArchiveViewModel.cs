@@ -321,9 +321,10 @@ namespace RayCarrot.RCP.Metro
         /// Adds the specified number of new files as being modified
         /// </summary>
         /// <param name="count">The number of new modified files to add</param>
-        public void AddModifiedFiles(int count = 1)
+        /// <param name="allow0">Indicates if a count of 0 should be allowed</param>
+        public void AddModifiedFiles(int count = 1, bool allow0 = false)
         {
-            if (count == 0)
+            if (count == 0 && !allow0)
                 return;
 
             // Increment by the count

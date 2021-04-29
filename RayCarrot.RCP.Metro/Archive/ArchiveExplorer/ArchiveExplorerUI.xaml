@@ -115,6 +115,8 @@
 
                 </editors:AutoCompleteTextBox>
 
+                <!-- Overflow menu -->
+
                 <local:OverflowMenu Grid.Column="2"
                                     InheritDataContext="False"
                                     Visibility="{Binding Converter={rwpf:InvertedObjectNullToVisibilityConverter}}">
@@ -138,6 +140,17 @@
                                                     Header="{Resx Archive_Sort_AlphabeticalDescending}"
                                                     IsCheckable="True"
                                                     Checked="SortMenuItem_OnChecked" />
+
+                            </local:MenuItemIcon>
+
+                            <Separator rwpf:UserLevelTag.MinUserLevel="Debug"/>
+
+                            <local:MenuItemIcon Header="{Resx DebugPageHeader}"
+                                                IconKind="CodeBraces"
+                                                rwpf:UserLevelTag.MinUserLevel="Debug">
+
+                                <local:MenuItemIcon Header="Force repack"
+                                                    Click="ForceRepackMenuItem_OnClick"/>
 
                             </local:MenuItemIcon>
                         </ContextMenu>
