@@ -214,7 +214,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Control Panel™, utilities, per-level soundtrack, Archive Explorer, Rayman 2 translations, Swedish (Sweden) program translation.
+        ///   Looks up a localized string similar to Rayman Control Panel™, utilities, per-level soundtrack, Archive Explorer™, Rayman 2 translations, Swedish (Sweden) program translation.
         /// </summary>
         public static string About_Credits_RayCarrot {
             get {
