@@ -77,7 +77,7 @@ namespace RayCarrot.RCP.Metro
                 // Add update manager
                 AddUpdateManager<RCPUpdateManager>().
                 // Add the app view model
-                AddSingleton(new AppViewModel(LogStartupTime)).
+                AddSingleton(new AppViewModel(x => LogStartupTime(x))).
                 // Add App UI manager
                 AddTransient<AppUIManager>().
                 // Add backup manager
