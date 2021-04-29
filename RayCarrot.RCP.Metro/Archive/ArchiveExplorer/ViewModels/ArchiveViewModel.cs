@@ -296,8 +296,9 @@ namespace RayCarrot.RCP.Metro
                     // Get the previously selected item
                     var previouslySelectedItem = this.GetAllChildren<ArchiveDirectoryViewModel>(true).FindItem(x => x.FullID.SequenceEqual(selected));
 
-                    // Load the previously selected directory
-                    ExplorerDialogViewModel.LoadDirectory(previouslySelectedItem);
+                    // Load the previously selected directory if it still exists
+                    if (previouslySelectedItem != null)
+                        ExplorerDialogViewModel.LoadDirectory(previouslySelectedItem);
 
                     Archive.SetDisplayStatus(String.Empty);
                 }
