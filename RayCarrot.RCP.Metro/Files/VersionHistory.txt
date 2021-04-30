@@ -1,4 +1,8 @@
-﻿-----   Version 11.0.0 - April 29, 2021   -----
+﻿-----   Version 11.1.0 - May ??, 2021   -----
+• 
+
+
+-----   Version 11.0.0 - April 29, 2021   -----
 • Updated the Archive Explorer™
 	• Files and directories can now be added/removed
 	• Multiple changes can be made to the archive before repacking
