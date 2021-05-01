@@ -8,6 +8,8 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                xmlns:dd="urn:gong-wpf-dragdrop"
+                xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                 ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
@@ -321,7 +323,7 @@
 
                     <!-- Archive Explorer -->
 
-                    <StackPanel DataContext="{Binding Path=Data}">
+                    <StackPanel>
                         <i:Interaction.Behaviors>
                             <rwpf:UnifiedMarginBehavior Margin="0 2" />
                         </i:Interaction.Behaviors>
@@ -334,13 +336,66 @@
                                 <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                             </i:Interaction.Behaviors>
 
+                            <StackPanel DataContext="{Binding Path=Data}">
+
+                                <!-- TODO-UPDATE: Localize -->
+                                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                           Text="Binary file editor"
+                                           Margin="0 0 0 8" />
+
+                                <rwpf:BrowseBox FileFilter="Exe (*.exe)|*.exe"
+                                                SelectedPath="{Binding Path=Archive_BinaryEditorExe}"
+                                                BrowseType="File"
+                                                PathValidation="FileExists" />
+
+                            </StackPanel>
+
+                            <StackPanel Visibility="{Binding Path=AssociatedPrograms, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
+
+                                <!-- TODO-UPDATE: Localize -->
+                                <TextBlock Style="{StaticResource HeaderTextBlock}"
+                                           Text="File editors"
+                                           Margin="0 0 0 8" />
+
+                                <DataGrid CanUserAddRows="False"
+                                          CanUserResizeRows="False"
+                                          CanUserResizeColumns="False"
+                                          CanUserSortColumns="True"
+                                          CanUserReorderColumns="False"
+                                          CanUserDeleteRows="True"
+                                          AutoGenerateColumns="False"
+                                          ItemsSource="{Binding Path=AssociatedPrograms, Mode=OneTime}">
+
+                                    <DataGrid.Columns>
+                                        <!-- TODO-UPDATE: Localize -->
+                                        <DataGridTextColumn Header="File extension" 
+                                                            Width="Auto" 
+                                                            Binding="{Binding Path=FileExtension, Mode=OneTime}"
+                                                            IsReadOnly="True" />
+                                        <!-- TODO-UPDATE: Localize -->
+                                        <DataGridTextColumn Header="Associated program" 
+                                                            Width="*">
+                                            <DataGridTextColumn.Binding>
+                                                <Binding Path="ExeFilePath" UpdateSourceTrigger="PropertyChanged">
+                                                    <Binding.ValidationRules>
+                                                        <rwpf:FileExistsValidationRule AllowEmpty="False" />
+                                                    </Binding.ValidationRules>
+                                                </Binding>
+                                            </DataGridTextColumn.Binding>
+                                        </DataGridTextColumn>
+                                    </DataGrid.Columns>
+
+                                </DataGrid>
+
+                            </StackPanel>
+
                             <CheckBox Content="{Resx Settings_ArchiveGFGenerateMipmaps}"
                                       ToolTip="{Resx Settings_ArchiveGFGenerateMipmapsInfo}"
-                                      IsChecked="{Binding Path=Archive_GF_GenerateMipmaps}" />
+                                      IsChecked="{Binding Path=Data.Archive_GF_GenerateMipmaps}" />
 
                             <CheckBox Content="{Resx Settings_ArchiveGFForce8888}"
                                       ToolTip="{Resx Settings_ArchiveGFForce8888Info}"
-                                      IsChecked="{Binding Path=Archive_GF_ForceGF8888Import}" />
+                                      IsChecked="{Binding Path=Data.Archive_GF_ForceGF8888Import}" />
 
                             <StackPanel>
 
@@ -349,7 +404,7 @@
                                            Margin="0 0 0 8" />
 
                                 <ComboBox HorizontalAlignment="Left"
-                                          SelectedIndex="{Binding Path=Archive_GF_UpdateTransparency, Converter={rwpf:EnumToIntConverter}}">
+                                          SelectedIndex="{Binding Path=Data.Archive_GF_UpdateTransparency, Converter={rwpf:EnumToIntConverter}}">
 
                                     <ComboBox.ItemContainerStyle>
                                         <Style TargetType="{x:Type ComboBoxItem}"
@@ -365,9 +420,8 @@
                                     <TextBlock Text="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormat}"
                                                ToolTip="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatInfo}" />
 
-                                    <TextBlock
-                                        Text="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized}"
-                                        ToolTip="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo}" />
+                                    <TextBlock Text="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilized}"
+                                               ToolTip="{Resx Settings_ArchiveGFTransparency_UpdateBasedOnPixelFormatIfUtilizedInfo}" />
 
                                 </ComboBox>
 

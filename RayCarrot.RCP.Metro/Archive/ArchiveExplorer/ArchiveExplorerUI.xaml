@@ -314,11 +314,27 @@
                                     </ItemsControl>
                                 </Setter.Value>
                             </Setter>
-                            <EventSetter Event="ToolTipOpening" Handler="EventSetter_OnHandler" />
+                            <EventSetter Event="ToolTipOpening" Handler="FileItem_ToolTipOpening" />
+                            <EventSetter Event="MouseDoubleClick" Handler="ToolTipOpening_MouseDoubleClick" />
                             <Setter Property="ContextMenu">
                                 <Setter.Value>
                                     <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                                                  d:DataContext="{d:DesignInstance local:ArchiveFileViewModel}">
+
+                                        <!-- TODO-UPDATE: Localize -->
+                                        <local:MenuItemIcon Header="View/Edit"
+                                                            IsEnabled="{Binding Path=IsInitialized}"
+                                                            IconKind="PencilOutline"
+                                                            ItemsSource="{Binding Path=EditActions, Mode=OneTime}">
+                                            <local:MenuItemIcon.ItemContainerStyle>
+                                                <Style TargetType="{x:Type MenuItem}">
+                                                    <Setter Property="Command" Value="{Binding Path=MenuCommand, Mode=OneTime}"/>
+                                                    <Setter Property="Header" Value="{Binding Path=DisplayName, Mode=OneTime}"/>
+                                                </Style>
+                                            </local:MenuItemIcon.ItemContainerStyle>
+                                        </local:MenuItemIcon>
+
+                                        <Separator />
 
                                         <local:MenuItemIcon Header="{Resx Archive_ExportFile}"
                                                             IsEnabled="{Binding Path=IsInitialized}"
@@ -326,7 +342,7 @@
                                                             ItemsSource="{Binding Path=FileExports, Mode=OneTime}">
                                             <local:MenuItemIcon.ItemContainerStyle>
                                                 <Style TargetType="{x:Type MenuItem}">
-                                                    <Setter Property="Command" Value="{Binding Path=ExportCommand, Mode=OneTime}"/>
+                                                    <Setter Property="Command" Value="{Binding Path=MenuCommand, Mode=OneTime}"/>
                                                     <Setter Property="Header" Value="{Binding Path=DisplayName, Mode=OneTime}"/>
                                                 </Style>
                                             </local:MenuItemIcon.ItemContainerStyle>

@@ -569,6 +569,12 @@ namespace RayCarrot.RCP.Metro
             if (Data.LastVersion < new Version(11, 0, 0, 0))
                 Data.ArchiveExplorerSortOption = ArchiveExplorerSort.Default;
 
+            if (Data.LastVersion < new Version(11, 1, 0, 0))
+            {
+                Data.Archive_BinaryEditorExe = FileSystemPath.EmptyPath;
+                Data.Archive_AssociatedPrograms = new Dictionary<string, FileSystemPath>();
+            }
+
             // Re-deploy files
             await RCPServices.App.DeployFilesAsync(true);
 

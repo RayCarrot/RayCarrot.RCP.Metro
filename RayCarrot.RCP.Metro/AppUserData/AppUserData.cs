@@ -4,6 +4,7 @@ using RayCarrot.UI;
 using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Windows;
 
@@ -66,6 +67,8 @@ namespace RayCarrot.RCP.Metro
             HandleDownloadsManually = false;
             Archive_GF_ForceGF8888Import = false;
             ArchiveExplorerSortOption = ArchiveExplorerSort.Default;
+            Archive_BinaryEditorExe = FileSystemPath.EmptyPath;
+            Archive_AssociatedPrograms = new Dictionary<string, FileSystemPath>();
         }
 
         /// <summary>
@@ -79,6 +82,19 @@ namespace RayCarrot.RCP.Metro
             DosBoxGames ??= new Dictionary<Games, DosBoxOptions>();
             JumpListItemIDCollection ??= new List<string>();
             InstalledGames ??= new HashSet<Games>();
+            Archive_AssociatedPrograms ??= new Dictionary<string, FileSystemPath>();
+        }
+
+        public void AddAssociatedProgram(FileExtension ext, FileSystemPath exePath)
+        {
+            Archive_AssociatedPrograms.Add(ext.PrimaryFileExtension, exePath);
+            OnPropertyChanged(nameof(Archive_AssociatedPrograms));
+        }
+
+        public void RemoveAssociatedProgram(FileExtension ext)
+        {
+            Archive_AssociatedPrograms.Remove(ext.PrimaryFileExtension);
+            OnPropertyChanged(nameof(Archive_AssociatedPrograms));
         }
 
         #endregion
@@ -317,6 +333,16 @@ namespace RayCarrot.RCP.Metro
         /// The sort option for the Archive Explorer
         /// </summary>
         public ArchiveExplorerSort ArchiveExplorerSortOption { get; set; }
+
+        /// <summary>
+        /// The executable to use when opening a binary file for editing
+        /// </summary>
+        public FileSystemPath Archive_BinaryEditorExe { get; set; }
+
+        /// <summary>
+        /// The executables to use, associated with their file extensions
+        /// </summary>
+        public Dictionary<string, FileSystemPath> Archive_AssociatedPrograms { get; set; }
 
         #endregion
     }

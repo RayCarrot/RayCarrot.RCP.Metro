@@ -1,4 +1,5 @@
 ﻿-----   Version 11.1.0 - May ??, 2021   -----
+• Files in the Archive Explorer™ can now be viewed/edited directly
 • 
 
 

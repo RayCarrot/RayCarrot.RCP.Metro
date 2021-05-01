@@ -4,6 +4,7 @@ using RayCarrot.WPF;
 using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -148,10 +149,16 @@ namespace RayCarrot.RCP.Metro
             };
         }
 
-        private void EventSetter_OnHandler(object sender, ToolTipEventArgs e)
+        private void FileItem_ToolTipOpening(object sender, ToolTipEventArgs e)
         {
             // Update the tool tip info each time it's shown
             sender.CastTo<ListBoxItem>().GetBindingExpression(ToolTipProperty)?.UpdateTarget();
+        }
+
+        private void ToolTipOpening_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is FrameworkElement f && f.DataContext is ArchiveFileViewModel file)
+                file.EditActions.FirstOrDefault()?.MenuCommand.Execute(null);
         }
 
         private void SortMenuItem_OnChecked(object sender, RoutedEventArgs e) => RefreshSort();

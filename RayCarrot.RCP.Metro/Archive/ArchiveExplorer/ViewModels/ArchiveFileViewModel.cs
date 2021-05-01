@@ -1,13 +1,18 @@
 ﻿using MahApps.Metro.IconPacks;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.UI;
+using RayCarrot.Windows.Shell;
 using RayCarrot.WPF;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
@@ -36,7 +41,8 @@ namespace RayCarrot.RCP.Metro
             ArchiveDirectory = archiveDirectory;
             IconKind = PackIconMaterialKind.FileSyncOutline;
             FileDisplayInfo = new ObservableCollection<DuoGridItemViewModel>();
-            FileExports = new ObservableCollection<ArchiveFileExportViewModel>();
+            FileExports = new ObservableCollection<ArchiveFileMenuActionViewModel>();
+            EditActions = new ObservableCollection<ArchiveFileMenuActionViewModel>();
 
             // Create commands
             ImportCommand = new AsyncRelayCommand(ImportFileAsync);
@@ -44,6 +50,7 @@ namespace RayCarrot.RCP.Metro
 
             // Enable collection synchronization
             BindingOperations.EnableCollectionSynchronization(FileExports, Application.Current);
+            BindingOperations.EnableCollectionSynchronization(EditActions, Application.Current);
             BindingOperations.EnableCollectionSynchronization(FileDisplayInfo, Application.Current);
         }
 
@@ -146,7 +153,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The file export options for the file
         /// </summary>
-        public ObservableCollection<ArchiveFileExportViewModel> FileExports { get;}
+        public ObservableCollection<ArchiveFileMenuActionViewModel> FileExports { get; }
+
+        public ObservableCollection<ArchiveFileMenuActionViewModel> EditActions { get; }
 
         /// <summary>
         /// The file type (available after having been initialized once)
@@ -249,7 +258,7 @@ namespace RayCarrot.RCP.Metro
                 // Get the type
                 FileType = FileData.GetFileType(fileStream);
 
-                ResetExportOptions();
+                ResetMenuActions();
 
                 if (loadThumbnail)
                 {
@@ -292,7 +301,7 @@ namespace RayCarrot.RCP.Metro
 
                     // Initialize the file with default settings to allow the file to be exported and deleted
                     FileType = new ArchiveFileType_Default();
-                    ResetExportOptions();
+                    ResetMenuActions();
                     IconKind = PackIconMaterialKind.FileAlertOutline;
                     IsInitialized = true;
                 }
@@ -304,16 +313,32 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        protected void ResetExportOptions()
+        protected void ResetMenuActions()
         {
+            // Get formats from the type
+            var importFormats = FileType.ImportFormats;
+            var exportFormats = FileType.ExportFormats;
+
             // Remove previous export formats
             FileExports.Clear();
 
             // Add native export format
-            FileExports.Add(new ArchiveFileExportViewModel($"{Resources.Archive_Format_Original} ({FileExtension})", new AsyncRelayCommand(async () => await ExportFileAsync())));
+            FileExports.Add(new ArchiveFileMenuActionViewModel($"{Resources.Archive_Format_Original} ({FileExtension})", new AsyncRelayCommand(async () => await ExportFileAsync())));
 
             // Get export formats
-            FileExports.AddRange(FileType.ExportFormats.Select(x => new ArchiveFileExportViewModel(x.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(x)))));
+            FileExports.AddRange(exportFormats.Select(x => new ArchiveFileMenuActionViewModel(x.DisplayName, new AsyncRelayCommand(async () => await ExportFileAsync(x)))));
+
+            // Remove previous edit actions
+            EditActions.Clear();
+
+            // Add native and binary edit actions
+            EditActions.Add(new ArchiveFileMenuActionViewModel($"{Resources.Archive_Format_Original} ({FileExtension})", new AsyncRelayCommand(async () => await EditFileAsync(null, false, false))));
+            // TODO-UPDATE: Localize
+            EditActions.Add(new ArchiveFileMenuActionViewModel($"Binary", new AsyncRelayCommand(async () => await EditFileAsync(null, false, true))));
+
+            // Get available formats to convert to/from
+            var formats = exportFormats.Where(x => importFormats.Any(f => x == f));
+            EditActions.AddRange(formats.Select(x => new ArchiveFileMenuActionViewModel(x.DisplayName, new AsyncRelayCommand(async () => await EditFileAsync(x, true, false)))));
         }
 
         /// <summary>
@@ -453,15 +478,21 @@ namespace RayCarrot.RCP.Metro
             // Open the file to be imported
             using var importFile = File.OpenRead(file);
 
+            // Import the file
+            ImportFile(importFile, file.FileExtension, convert);
+        }
+
+        public void ImportFile(Stream importFile, FileExtension fileExtension, bool convert)
+        {
             // Memory stream for converted data
             using var memStream = new MemoryStream();
 
             // Convert from the imported file to the memory stream
             if (convert)
-                FileType.ConvertFrom(file.FileExtension, FileExtension, GetDecodedFileStream(), importFile, memStream, Manager);
+                FileType.ConvertFrom(fileExtension, FileExtension, GetDecodedFileStream(), importFile, memStream, Manager);
 
             // Replace the file with the import data
-            if (ReplaceFile(convert ? (Stream)memStream : importFile))
+            if (ReplaceFile(convert ? memStream : importFile))
                 Archive.AddModifiedFiles();
         }
 
@@ -524,12 +555,173 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
+        /// Opens the file for editing
+        /// </summary>
+        /// <param name="ext">The file extension to use when opening</param>
+        /// <param name="convert">Indicates if the file should be converted when opening</param>
+        /// <param name="asBinary">Indicates if the file should be opened as a binary file</param>
+        /// <returns>The task</returns>
+        public async Task EditFileAsync(FileExtension ext, bool convert, bool asBinary)
+        {
+            RL.Logger?.LogTraceSource($"The archive file {FileName} is being opened...");
+
+            if (convert && asBinary)
+                throw new Exception("A file can't be converted when opened as binary");
+
+            if (convert && ext == null)
+                throw new Exception("A file can't be converted with the original file extension");
+
+            // Use the original file extension if none is specified
+            ext ??= FileExtension;
+
+            // Run as a load operation
+            using (Archive.LoadOperation.Run())
+            {
+                // Lock the access to the archive
+                using (await Archive.ArchiveLock.LockAsync())
+                {
+                    try
+                    {
+                        // Get a temporary file
+                        using var tempFile = new TempFile(asBinary ? new FileExtension(".bin") : ext);
+
+                        using HashAlgorithm sha1 = HashAlgorithm.Create();
+
+                        IEnumerable<byte> originalHash;
+
+                        // Decode the file data
+                        using (var decodedData = GetDecodedFileStream())
+                        {
+                            // Create the temporary file
+                            using var temp = File.Create(tempFile.TempPath);
+
+                            // Copy the file data to the temporary file
+                            if (!convert)
+                                decodedData.Stream.CopyTo(temp);
+                            else
+                                FileType.ConvertTo(FileExtension, ext, decodedData.Stream, temp, Manager);
+
+                            temp.Position = 0;
+
+                            // Get the original file hash
+                            originalHash = sha1.ComputeHash(temp);
+                        }
+
+                        // Get the program to open the file with
+                        FileSystemPath? programPath = null;
+
+                        // If not opening as binary we check for programs associated with the file extension
+                        if (!asBinary)
+                        {
+                            var extPrograms = RCPServices.Data.Archive_AssociatedPrograms;
+
+                            // Start by checking if the user has specified a default program
+                            if (extPrograms.ContainsKey(ext.PrimaryFileExtension))
+                            {
+                                var exe = extPrograms[ext.PrimaryFileExtension];
+
+                                if (exe.FileExists)
+                                    programPath = exe;
+                                else
+                                    RCPServices.Data.RemoveAssociatedProgram(ext);
+                            }
+
+                            // If not we try and get the registered default program
+                            if (programPath == null)
+                            {
+                                var exe = WindowsHelpers.FindExecutableForFile(tempFile.TempPath);
+
+                                if (exe != null)
+                                    programPath = exe;
+                            }
+                        }
+                        else
+                        {
+                            var binaryEditor = RCPServices.Data.Archive_BinaryEditorExe;
+
+                            if (binaryEditor.FileExists)
+                                programPath = binaryEditor;
+                        }
+
+                        // If it's still null we ask the user for the program to use
+                        if (programPath == null)
+                        {
+                            // TODO-UPDATE: Localize
+                            var e = asBinary ? $"binary" : $"{ext}";
+
+                            var browseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
+                            {
+                                // TODO-UPDATE: Localize
+                                Title = $"Select an executable to use for {e} files",
+                                ExtensionFilter = new FileFilterItem("*.exe", "Exe").StringRepresentation,
+                                DefaultDirectory = Environment.SpecialFolder.ProgramFiles.GetFolderPath()
+                            });
+
+                            if (browseResult.CanceledByUser)
+                                return;
+
+                            if (asBinary)
+                                RCPServices.Data.Archive_BinaryEditorExe = browseResult.SelectedFile;
+                            else
+                                RCPServices.Data.AddAssociatedProgram(ext, browseResult.SelectedFile);
+
+                            programPath = browseResult.SelectedFile;
+                        }
+
+                        // Open the file
+                        using (var p = await RCPServices.File.LaunchFileAsync(programPath.Value, arguments: $"\"{tempFile.TempPath}\""))
+                        {
+                            // Ignore if the file wasn't opened
+                            if (p == null)
+                            {
+                                RL.Logger?.LogTraceSource($"The file was not opened");
+                                return;
+                            }
+
+                            // Wait for the file to close...
+                            await p.WaitForExitAsync();
+                        }
+
+                        // Open the temp file
+                        using FileStream tempFileStream = new FileStream(tempFile.TempPath, FileMode.Open, FileAccess.Read);
+
+                        // Get the new hash
+                        var newHash = sha1.ComputeHash(tempFileStream);
+
+                        tempFileStream.Position = 0;
+
+                        // Check if the file has been modified
+                        if (!originalHash.SequenceEqual(newHash))
+                        {
+                            RL.Logger?.LogTraceSource($"The file was modified");
+
+                            // Import the modified file
+                            ImportFile(tempFileStream, ext, convert);
+                        }
+                        else
+                        {
+                            RL.Logger?.LogTraceSource($"The file was not modified");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.HandleError("Opening archive file for editing");
+
+                        // TODO-UPDATE: Localize
+                        await Services.MessageUI.DisplayExceptionMessageAsync(ex, $"An error occurred when opening the file for editing");
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Disposes the file
         /// </summary>
         public void Dispose()
         {
             // Disable collection synchronization
             BindingOperations.DisableCollectionSynchronization(FileExports);
+            BindingOperations.DisableCollectionSynchronization(EditActions);
             BindingOperations.DisableCollectionSynchronization(FileDisplayInfo);
 
             // Dispose the file data
@@ -541,30 +733,30 @@ namespace RayCarrot.RCP.Metro
         #region Classes
 
         /// <summary>
-        /// View model for an archive file export option
+        /// View model for an archive file menu action
         /// </summary>
-        public class ArchiveFileExportViewModel : BaseViewModel
+        public class ArchiveFileMenuActionViewModel : BaseViewModel
         {
             /// <summary>
             /// Default constructor
             /// </summary>
-            /// <param name="displayName">The format display name</param>
-            /// <param name="exportCommand">The export command</param>
-            public ArchiveFileExportViewModel(string displayName, ICommand exportCommand)
+            /// <param name="displayName">The action display name</param>
+            /// <param name="menuCommand">The menu command</param>
+            public ArchiveFileMenuActionViewModel(string displayName, ICommand menuCommand)
             {
                 DisplayName = displayName;
-                ExportCommand = exportCommand;
+                MenuCommand = menuCommand;
             }
 
             /// <summary>
-            /// The format display name
+            /// The action display name
             /// </summary>
             public string DisplayName { get; }
 
             /// <summary>
-            /// The export command
+            /// The menu command
             /// </summary>
-            public ICommand ExportCommand { get; }
+            public ICommand MenuCommand { get; }
         }
 
         #endregion

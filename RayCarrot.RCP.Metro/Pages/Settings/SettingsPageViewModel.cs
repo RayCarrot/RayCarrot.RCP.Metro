@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
+﻿using Microsoft.Win32;
+using Nito.AsyncEx;
+using RayCarrot.IO;
+using RayCarrot.Logging;
 using RayCarrot.UI;
+using RayCarrot.Windows.Registry;
+using RayCarrot.WPF;
+using System;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
-using Microsoft.Win32;
-using Nito.AsyncEx;
-using RayCarrot.IO;
-using RayCarrot.Logging;
-using RayCarrot.Windows.Registry;
-using RayCarrot.WPF;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -32,20 +33,38 @@ namespace RayCarrot.RCP.Metro
             // Create commands
             ContributeLocalizationCommand = new RelayCommand(ContributeLocalization);
             EditJumpListCommand = new AsyncRelayCommand(EditJumpListAsync);
-            RefreshCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await RefreshAsync(true)));
+            RefreshCommand = new AsyncRelayCommand(async () => await Task.Run(async () => await RefreshAsync(true, true)));
 
             // Create properties
             AsyncLock = new AsyncLock();
             LocalLinkItems = new LinkItemCollection();
+            AssociatedPrograms = new ObservableCollection<AssociatedProgramEntryViewModel>();
 
             // Enable collection synchronization
             BindingOperations.EnableCollectionSynchronization(LocalLinkItems, this);
 
             // Refresh on startup
-            Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync(true);
+            Metro.App.Current.StartupComplete += async (s, e) => await RefreshAsync(true, true);
 
-            Services.Data.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync(false));
-            Services.Data.UserLevelChanged += async (s, e) => await Task.Run(async () => await RefreshAsync(false));
+            Services.Data.CultureChanged += async (s, e) => await Task.Run(async () => await RefreshAsync(false, false));
+            Services.Data.UserLevelChanged += async (s, e) => await Task.Run(async () => await RefreshAsync(false, false));
+            Data.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == nameof(Data.Archive_AssociatedPrograms))
+                    RefreshAssociatedPrograms();
+            };
+            AssociatedPrograms.CollectionChanged += (s, e) =>
+            {
+                // For now you can only remove items from the UI
+                if (e.Action == NotifyCollectionChangedAction.Remove)
+                {
+                    foreach (AssociatedProgramEntryViewModel item in e.OldItems)
+                        Data.Archive_AssociatedPrograms.Remove(item.FileExtension);
+                
+                    // Make sure the check for if the collection is empty or not updates
+                    OnPropertyChanged(nameof(AssociatedPrograms));
+                }
+            };
         }
 
         #endregion
@@ -101,6 +120,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public LinkItemCollection LocalLinkItems { get; }
 
+        public ObservableCollection<AssociatedProgramEntryViewModel> AssociatedPrograms { get; }
+
         #endregion
 
         #region Public Methods
@@ -136,14 +157,19 @@ namespace RayCarrot.RCP.Metro
         /// Refreshes the page
         /// </summary>
         /// <param name="refreshLocalization">Indicates if the localization should be refreshed</param>
+        /// <param name="refreshAssociatedPrograms">Indicates if the associated programs should be refreshed</param>
         /// <returns>The task</returns>
-        public async Task RefreshAsync(bool refreshLocalization)
+        public async Task RefreshAsync(bool refreshLocalization, bool refreshAssociatedPrograms)
         {
             using (await AsyncLock.LockAsync())
             {
                 // Refresh the languages
                 if (refreshLocalization)
                     Application.Current.Dispatcher.Invoke(RefreshLanguages);
+
+                // Refresh associated programs
+                if (refreshAssociatedPrograms)
+                    RefreshAssociatedPrograms();
 
                 try
                 {
@@ -270,6 +296,18 @@ namespace RayCarrot.RCP.Metro
             OnPropertyChanged(nameof(CurrentCultureInfo));
         }
 
+        public void RefreshAssociatedPrograms()
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                AssociatedPrograms.Clear();
+
+                AssociatedPrograms.AddRange(Data.Archive_AssociatedPrograms.Select(x => new AssociatedProgramEntryViewModel(x.Key)));
+
+                OnPropertyChanged(nameof(AssociatedPrograms));
+            });
+        }
+
         #endregion
 
         #region Classes
@@ -291,6 +329,21 @@ namespace RayCarrot.RCP.Metro
                 // If there are valid items, add them
                 if (validItems.Any())
                     base.Add(validItems);
+            }
+        }
+
+        public class AssociatedProgramEntryViewModel : BaseRCPViewModel
+        {
+            public AssociatedProgramEntryViewModel(string fileExtension)
+            {
+                FileExtension = fileExtension;
+            }
+
+            public string FileExtension { get; }
+            public string ExeFilePath
+            {
+                get => Data.Archive_AssociatedPrograms[FileExtension];
+                set => Data.Archive_AssociatedPrograms[FileExtension] = value;
             }
         }
 
