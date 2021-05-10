@@ -830,6 +830,7 @@ namespace RayCarrot.RCP.Metro
                 LocalUtilities = localUtilities;
                 GameManagers = gameManagers;
                 GameInfos = gameInfos;
+                InstanceCache = new Dictionary<Type, object>();
             }
 
             /// <summary>
@@ -846,6 +847,24 @@ namespace RayCarrot.RCP.Metro
             /// The available game infos
             /// </summary>
             public Dictionary<Games, Type> GameInfos { get; }
+
+            /// <summary>
+            /// Creates a new instance of the specified type or gets an existing one from cache
+            /// </summary>
+            /// <typeparam name="T">The object type to cast to</typeparam>
+            /// <param name="t">The object type to create from</param>
+            /// <returns>The object</returns>
+            public T CreateCachedInstance<T>(Type t)
+            {
+                if (InstanceCache.ContainsKey(t))
+                    return (T)InstanceCache[t];
+
+                var obj = t.CreateInstance<T>();
+                InstanceCache[t] = obj;
+                return obj;
+            }
+
+            private Dictionary<Type, object> InstanceCache { get; }
         }
 
         #endregion
