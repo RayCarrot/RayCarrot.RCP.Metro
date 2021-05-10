@@ -1,7 +1,7 @@
-﻿using System;
-using System.Globalization;
+﻿using RayCarrot.UI;
 using RayCarrot.WPF;
-using RayCarrot.UI;
+using System;
+using System.Globalization;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -21,7 +21,7 @@ namespace RayCarrot.RCP.Metro
             Value = generator();
 
             // Subscribe to when the culture changes
-            Services.Data.CultureChanged += Data_CultureChanged;
+            CultureChangedWeakEventManager.AddHandler(Services.Data, Data_CultureChanged);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace RayCarrot.RCP.Metro
 
         public void Dispose()
         {
-            Services.Data.CultureChanged -= Data_CultureChanged;
+            CultureChangedWeakEventManager.RemoveHandler(Services.Data, Data_CultureChanged);
         }
     }
 }
