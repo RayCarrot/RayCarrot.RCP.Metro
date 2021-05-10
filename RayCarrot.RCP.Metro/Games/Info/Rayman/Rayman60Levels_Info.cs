@@ -88,6 +88,11 @@ namespace RayCarrot.RCP.Metro
         /// <param name="installDir">The game's install directory</param>
         public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => Ray1PCArchiveDataManager.GetArchiveFiles(installDir);
 
+        /// <summary>
+        /// An optional emulator to use for the game
+        /// </summary>
+        public override Emulator Emulator => new DOSBoxEmulator();
+
         #endregion
     }
 }

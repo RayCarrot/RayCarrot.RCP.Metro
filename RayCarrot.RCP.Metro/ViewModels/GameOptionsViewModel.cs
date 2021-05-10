@@ -62,6 +62,8 @@ namespace RayCarrot.RCP.Metro
             ConfigContent = gameInfo.ConfigUI;
             OptionsContent = gameInfo.OptionsUI;
             ProgressionViewModel = gameInfo.ProgressionViewModel;
+            EmulatorDisplayName = gameInfo.Emulator?.DisplayName;
+            EmulatorConfigContent = gameInfo.Emulator?.GameConfigUI;
 
             HasProgressionContent = ProgressionViewModel != null;
         }
@@ -147,6 +149,21 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if the game has config content
         /// </summary>
         public bool HasConfigContent => ConfigContent != null;
+
+        /// <summary>
+        /// The emulator config content for the game
+        /// </summary>
+        public object EmulatorConfigContent { get; set; }
+
+        /// <summary>
+        /// Indicates if the game has emulator config content
+        /// </summary>
+        public bool HasEmulatorConfigContent => EmulatorConfigContent != null;
+
+        /// <summary>
+        /// The display name for the emulator, if available
+        /// </summary>
+        public LocalizedString EmulatorDisplayName { get; }
 
         /// <summary>
         /// The progression view model for the game

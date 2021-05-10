@@ -134,6 +134,14 @@
                 <ContentPresenter Content="{Binding Path=ConfigContent}" />
             </local:RCPTabItem>
 
+            <!-- Emulator config -->
+
+            <local:RCPTabItem IconKind="FileCogOutline"
+                              Header="{Binding Path=EmulatorDisplayName.Value}"
+                              Visibility="{Binding Path=HasEmulatorConfigContent, Converter={rwpf:BooleanToVisibilityConverter}}">
+                <ContentPresenter Content="{Binding Path=EmulatorConfigContent}" />
+            </local:RCPTabItem>
+
             <!-- Utilities -->
 
             <local:RCPTabItem IconKind="BriefcaseOutline"

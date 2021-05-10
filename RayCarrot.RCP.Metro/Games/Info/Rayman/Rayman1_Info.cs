@@ -69,6 +69,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override IList<GameFileLink> GetGameFileLinks => new GameFileLink[0];
 
+        /// <summary>
+        /// An optional emulator to use for the game
+        /// </summary>
+        public override Emulator Emulator => new DOSBoxEmulator();
+
         #endregion
     }
 }

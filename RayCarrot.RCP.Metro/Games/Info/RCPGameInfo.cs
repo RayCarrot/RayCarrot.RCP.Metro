@@ -179,6 +179,11 @@ namespace RayCarrot.RCP.Metro
         /// <param name="installDir">The game's install directory</param>
         public virtual FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => null;
 
+        /// <summary>
+        /// An optional emulator to use for the game
+        /// </summary>
+        public virtual Emulator Emulator => null;
+
         #endregion
 
         #region Public Virtual Methods
