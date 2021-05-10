@@ -14,7 +14,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for generating Rayman 1 PS1 passwords
     /// </summary>
-    public class R1PasswordGeneratorUtilityViewModel : BaseRCPViewModel
+    public class R1PasswordGeneratorUtilityViewModel : BaseRCPViewModel, IDisposable
     {
         #region Constructor
 
@@ -246,7 +246,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Classes
 
-        public class LevelViewModel : BaseRCPViewModel
+        public class LevelViewModel : BaseRCPViewModel, IDisposable
         {
             public LevelViewModel(LocalizedString levelName, Action<LevelViewModel> onChangedIsUnlocked, bool branched = false, int link = -1, bool canIsUnlockedBeModified = true, Rayman1FinBossLevelFlags bossFlag = Rayman1FinBossLevelFlags.None, bool hasCages = true)
             {
@@ -299,8 +299,18 @@ namespace RayCarrot.RCP.Metro
                     BeatBoss = false;
                 }
             }
+
+            public void Dispose()
+            {
+                LevelName?.Dispose();
+            }
         }
 
         #endregion
+
+        public void Dispose()
+        {
+            Levels?.DisposeAll();
+        }
     }
 }

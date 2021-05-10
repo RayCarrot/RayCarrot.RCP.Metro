@@ -44,6 +44,7 @@ namespace RayCarrot.RCP.Metro
         public void Dispose()
         {
             Content?.Dispose();
+            Description?.Dispose();
         }
     }
 }

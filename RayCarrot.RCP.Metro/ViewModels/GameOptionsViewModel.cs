@@ -360,6 +360,7 @@ namespace RayCarrot.RCP.Metro
 
             // Dispose
             ProgressionViewModel?.Dispose();
+            EmulatorDisplayName?.Dispose();
 
             // Disable collection synchronization
             BindingOperations.DisableCollectionSynchronization(GameInfoItems);
