@@ -93,6 +93,8 @@ namespace RayCarrot.RCP.Metro
                 ChangePage(GameOptionsPage.Options);
             else if (ViewModel.HasUtilities)
                 ChangePage(GameOptionsPage.Utilities);
+            else if (ViewModel.HasEmulatorConfigContent)
+                ChangePage(GameOptionsPage.EmulatorConfig);
             else
                 ChangePage(GameOptionsPage.Information);
         }
@@ -129,15 +131,18 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
-                if (ViewModel.ConfigViewModel != null)
+                foreach (var config in ViewModel.GetGameConfigViewModels)
                 {
-                    ViewModel.ConfigViewModel.OnSave = () =>
+                    if (config != null)
                     {
-                        if (RCPServices.Data.CloseConfigOnSave)
-                            Close();
-                    };
+                        config.OnSave = () =>
+                        {
+                            if (RCPServices.Data.CloseConfigOnSave)
+                                Close();
+                        };
 
-                    await ViewModel.ConfigViewModel.SetupAsync();
+                        await config.SetupAsync();
+                    }
                 }
             }
             catch (Exception ex)
@@ -171,8 +176,14 @@ namespace RayCarrot.RCP.Metro
 
             ViewModel?.Dispose();
 
-            if (ViewModel?.ConfigViewModel != null)
-                ViewModel.ConfigViewModel.OnSave = null;
+            if (ViewModel != null)
+            {
+                foreach (var config in ViewModel.GetGameConfigViewModels)
+                {
+                    if (config != null)
+                        config.OnSave = null;
+                }
+            }
         }
 
         private Task AppGameRefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
@@ -190,7 +201,7 @@ namespace RayCarrot.RCP.Metro
 
         private async void GameOptions_OnClosingAsync(object sender, CancelEventArgs e)
         {
-            if (ForceClose || ViewModel?.ConfigViewModel?.UnsavedChanges != true)
+            if (ForceClose || ViewModel?.GetGameConfigViewModels.Any(x => x?.UnsavedChanges == true) != true)
                 return;
 
             e.Cancel = true;
@@ -233,6 +244,11 @@ namespace RayCarrot.RCP.Metro
             /// The game configuration
             /// </summary>
             Config,
+
+            /// <summary>
+            /// The emulator configuration
+            /// </summary>
+            EmulatorConfig,
 
             /// <summary>
             /// The game utilities

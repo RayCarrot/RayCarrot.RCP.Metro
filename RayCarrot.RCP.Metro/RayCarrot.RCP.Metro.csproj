@@ -113,8 +113,12 @@
     <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_GXTUbiArtTex.cs" />
     <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_Xbox360UbiArtTex.cs" />
     <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_PVRUbiArtTex.cs" />
+    <Compile Include="Emulators\DOSBox\DOSBoxEmulatorGameConfig.xaml.cs">
+      <DependentUpon>DOSBoxEmulatorGameConfig.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Emulators\Emulator.cs" />
-    <Compile Include="Emulators\DOSBoxEmulator.cs" />
+    <Compile Include="Emulators\DOSBox\DOSBoxEmulator.cs" />
+    <Compile Include="Emulators\DOSBox\DOSBoxEmulatorGameConfigViewModel.cs" />
     <Compile Include="Helpers\DDSParser.cs" />
     <Compile Include="Archive\Manager\ArchiveDataManagerExtensions.cs" />
     <Compile Include="Archive\Manager\IArchiveDataManager.cs" />
@@ -520,6 +524,10 @@
     <Page Include="Archive\Manager\UbiArt_Ipk\UbiArtIPKArchiveConfigUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Emulators\DOSBox\DOSBoxEmulatorGameConfig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Games\Options\UI\GameOptionsUI.xaml">
       <SubType>Designer</SubType>

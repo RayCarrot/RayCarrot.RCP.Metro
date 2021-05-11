@@ -1,5 +1,6 @@
 ﻿using RayCarrot.UI;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
@@ -62,8 +63,10 @@ namespace RayCarrot.RCP.Metro
             ConfigContent = gameInfo.ConfigUI;
             OptionsContent = gameInfo.OptionsUI;
             ProgressionViewModel = gameInfo.ProgressionViewModel;
-            EmulatorDisplayName = gameInfo.Emulator?.DisplayName;
-            EmulatorConfigContent = gameInfo.Emulator?.GameConfigUI;
+
+            var emu = gameInfo.Emulator;
+            EmulatorDisplayName = emu?.DisplayName;
+            EmulatorConfigContent = emu?.GameConfigUI;
 
             HasProgressionContent = ProgressionViewModel != null;
         }
@@ -141,11 +144,6 @@ namespace RayCarrot.RCP.Metro
         public object ConfigContent { get; set; }
 
         /// <summary>
-        /// The game config view model
-        /// </summary>
-        public GameConfigViewModel ConfigViewModel => (ConfigContent as FrameworkElement)?.Dispatcher?.Invoke(() => (ConfigContent as FrameworkElement)?.DataContext as GameConfigViewModel);
-
-        /// <summary>
         /// Indicates if the game has config content
         /// </summary>
         public bool HasConfigContent => ConfigContent != null;
@@ -180,6 +178,17 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool HasOptionsContent => OptionsContent != null || CanChangeLaunchMode;
 
+        public IEnumerable<GameConfigViewModel> GetGameConfigViewModels
+        {
+            get
+            {
+                yield return getVM(ConfigContent);
+                yield return getVM(EmulatorConfigContent);
+
+                static GameConfigViewModel getVM(object obj) => (obj as FrameworkElement)?.Dispatcher?.Invoke(() => (obj as FrameworkElement)?.DataContext as GameConfigViewModel);
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -211,8 +220,11 @@ namespace RayCarrot.RCP.Metro
                 RefreshGameInfo();
 
                 // Reload the config if needed
-                if (ConfigViewModel.ReloadOnGameInfoChanged)
-                    await ConfigViewModel.SetupAsync();
+                foreach (var config in GetGameConfigViewModels)
+                {
+                    if (config?.ReloadOnGameInfoChanged == true)
+                        await config.SetupAsync();
+                }
             }
         }
 

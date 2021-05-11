@@ -106,7 +106,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// An optional emulator to use for the game
         /// </summary>
-        public override Emulator Emulator => new DOSBoxEmulator();
+        public override Emulator Emulator => new DOSBoxEmulator(Game, GameType.EducationalDosBox);
 
         #endregion
     }
