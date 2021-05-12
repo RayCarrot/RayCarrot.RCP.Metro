@@ -63,6 +63,11 @@ namespace RayCarrot.RCP.Metro
         public override FrameworkElement ConfigUI => new DosBoxConfig(new RaymanDesignerConfigViewModel(Game, false));
 
         /// <summary>
+        /// The options UI, if any is available
+        /// </summary>
+        public override FrameworkElement OptionsUI => new DOSBoxOptions(Game);
+
+        /// <summary>
         /// Indicates if the game has archives which can be opened
         /// </summary>
         public override bool HasArchives => true;
@@ -77,6 +82,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="installDir">The game's install directory</param>
         public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => Ray1PCArchiveDataManager.GetArchiveFiles(installDir);
+
+        /// <summary>
+        /// An optional emulator to use for the game
+        /// </summary>
+        public override Emulator Emulator => new DOSBoxEmulator(Game, GameType.DosBox);
 
         #endregion
     }

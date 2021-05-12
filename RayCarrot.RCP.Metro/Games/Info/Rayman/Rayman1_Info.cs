@@ -55,6 +55,11 @@ namespace RayCarrot.RCP.Metro
         public override FrameworkElement ConfigUI => new DosBoxConfig(new Rayman1ConfigViewModel());
 
         /// <summary>
+        /// The options UI, if any is available
+        /// </summary>
+        public override FrameworkElement OptionsUI => new DOSBoxOptions(Game);
+
+        /// <summary>
         /// The progression view model, if any is available
         /// </summary>
         public override BaseProgressionViewModel ProgressionViewModel => new Rayman1ProgressionViewModel();

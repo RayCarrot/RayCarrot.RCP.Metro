@@ -14,7 +14,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public EducationalDosBoxGameConfigViewModel() : base(Games.EducationalDos, GameType.EducationalDosBox)
         {
-            IsMountLocationAvailable = false;
             IsGameLanguageAvailable = false;
         }
 

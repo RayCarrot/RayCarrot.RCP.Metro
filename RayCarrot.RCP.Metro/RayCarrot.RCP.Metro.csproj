@@ -119,6 +119,10 @@
     <Compile Include="Emulators\Emulator.cs" />
     <Compile Include="Emulators\DOSBox\DOSBoxEmulator.cs" />
     <Compile Include="Emulators\DOSBox\DOSBoxEmulatorGameConfigViewModel.cs" />
+    <Compile Include="Games\Options\UI\DOSBoxOptions.xaml.cs">
+      <DependentUpon>DOSBoxOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Games\Options\ViewModels\DOSBoxOptionsViewModel.cs" />
     <Compile Include="Helpers\DDSParser.cs" />
     <Compile Include="Archive\Manager\ArchiveDataManagerExtensions.cs" />
     <Compile Include="Archive\Manager\IArchiveDataManager.cs" />
@@ -526,6 +530,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Emulators\DOSBox\DOSBoxEmulatorGameConfig.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Games\Options\UI\DOSBoxOptions.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

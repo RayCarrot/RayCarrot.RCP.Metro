@@ -59,6 +59,16 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override FrameworkElement ConfigUI => new DosBoxConfig(new Rayman1ConfigViewModel(Game, true));
 
+        /// <summary>
+        /// The options UI, if any is available
+        /// </summary>
+        public override FrameworkElement OptionsUI => new DOSBoxOptions(Game);
+
+        /// <summary>
+        /// An optional emulator to use for the game
+        /// </summary>
+        public override Emulator Emulator => new DOSBoxEmulator(Game, GameType.DosBox);
+
         #endregion
     }
 }

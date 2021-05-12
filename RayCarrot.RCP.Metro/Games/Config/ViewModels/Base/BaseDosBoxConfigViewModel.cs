@@ -2,7 +2,6 @@
 using RayCarrot.Logging;
 using RayCarrot.UI;
 using System;
-using System.IO;
 using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
@@ -55,19 +54,6 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if changing the game language is available
         /// </summary>
         public bool IsGameLanguageAvailable { get; set; }
-
-        /// <summary>
-        /// Indicates if changing the game mount location is available
-        /// </summary>
-        public bool IsMountLocationAvailable { get; set; }
-
-        /// <summary>
-        /// The allowed drive types when browsing for a mount path
-        /// </summary>
-        public DriveType[] MountPathAllowedDriveTypes => new DriveType[]
-        {
-            DriveType.CDRom
-        };
 
         #endregion
 

@@ -16,24 +16,18 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Constructor for using the default game, <see cref="Games.Rayman1"/>
         /// </summary>
-        public Rayman1ConfigViewModel() : this(Games.Rayman1, true)
-        { }
+        public Rayman1ConfigViewModel() : this(Games.Rayman1, true) { }
 
         /// <summary>
         /// Constructor for specifying a game
         /// </summary>
         /// <param name="game">The game</param>
         /// <param name="isMountLocationAvailable">Indicates if changing the game mount location is available</param>
-        public Rayman1ConfigViewModel(Games game, bool isMountLocationAvailable) : base(game, GameType.DosBox)
-        {
-            IsMountLocationAvailable = isMountLocationAvailable;
-        }
+        public Rayman1ConfigViewModel(Games game, bool isMountLocationAvailable) : base(game, GameType.DosBox) { }
 
         #endregion
 
         #region Private Fields
-
-        private FileSystemPath _mountPath;
 
         private R1Languages _gameLanguage;
 
@@ -54,19 +48,6 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        /// <summary>
-        /// The file or directory to mount
-        /// </summary>
-        public FileSystemPath MountPath
-        {
-            get => _mountPath;
-            set
-            {
-                _mountPath = value;
-                UnsavedChanges = true;
-            }
-        }
-
         #endregion
 
         #region Protected Override Methods
@@ -77,11 +58,6 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override Task SetupGameAsync()
         {
-            // Get the current DosBox options for the specified game
-            var options = Data.DosBoxGames[Game];
-
-            MountPath = options.MountPath;
-
             // Default game language to not be available
             IsGameLanguageAvailable = false;
 
@@ -110,13 +86,6 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected override async Task SaveGameAsync()
         {
-            // Get the current DosBox options for the specified game
-            var options = Data.DosBoxGames[Game];
-
-            options.MountPath = MountPath;
-
-            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, false, false, false, true));
-
             // If game language is available, update it
             if (IsGameLanguageAvailable)
                 await SetR1LanguageAsync(Game.GetInstallDir() + "RAYMAN.CFG", GameLanguage);
