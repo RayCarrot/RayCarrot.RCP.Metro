@@ -4,9 +4,9 @@ using System.Windows.Controls;
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// Interaction logic for DosBoxConfig.xaml
+    /// Interaction logic for Ray_1_KIT_EDU_Config.xaml
     /// </summary>
-    public partial class DosBoxConfig : UserControl
+    public partial class Ray_1_KIT_EDU_Config : UserControl
     {
         #region Constructor
 
@@ -14,7 +14,7 @@ namespace RayCarrot.RCP.Metro
         /// Default constructor
         /// </summary>
         /// <param name="viewModel">The view model</param>
-        public DosBoxConfig(BaseDosBoxConfigViewModel viewModel)
+        public Ray_1_KIT_EDU_Config(Ray_1_KIT_EDU_BaseConfigViewModel viewModel)
         {
             InitializeComponent();
 

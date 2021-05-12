@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using RayCarrot.Rayman.Ray1;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -57,7 +58,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The config UI, if any is available
         /// </summary>
-        public override FrameworkElement ConfigUI => new DosBoxConfig(new Rayman1ConfigViewModel(Game, true));
+        public override FrameworkElement ConfigUI => new Ray_1_KIT_EDU_Config(new Rayman1ConfigViewModel(Game));
 
         /// <summary>
         /// The options UI, if any is available
