@@ -137,7 +137,7 @@ namespace RayCarrot.RCP.Metro
             if (ConfigFilePath.FileExists)
             {
                 // If a config file exists we read it
-                Config = BinarySerializableHelpers.ReadFromFile<Rayman1PCConfigData>(ConfigFilePath, Ray1Settings.GetDefaultSettings(Ray1Game, Platform.PC), App.GetBinarySerializerLogger());
+                Config = BinarySerializableHelpers.ReadFromFile<Rayman1PCConfigData>(ConfigFilePath, Ray1Settings.GetDefaultSettings(Ray1Game, Platform.PC), App.GetBinarySerializerLogger(ConfigFilePath.Name));
 
                 // Default all languages to be available. Sadly there is no way to determine which languages a specific release can use as most releases have all languages in the files, but have it hard-coded in the exe to only pick a specific one.
                 IsEnglishAvailable = true;
@@ -218,7 +218,7 @@ namespace RayCarrot.RCP.Metro
                     }
 
                     // Save the config file
-                    BinarySerializableHelpers.WriteToFile(Config, ConfigFilePath, Ray1Settings.GetDefaultSettings(Ray1Game, Platform.PC), App.GetBinarySerializerLogger());
+                    BinarySerializableHelpers.WriteToFile(Config, ConfigFilePath, Ray1Settings.GetDefaultSettings(Ray1Game, Platform.PC), App.GetBinarySerializerLogger(ConfigFilePath.Name));
                 }
                 catch (Exception ex)
                 {

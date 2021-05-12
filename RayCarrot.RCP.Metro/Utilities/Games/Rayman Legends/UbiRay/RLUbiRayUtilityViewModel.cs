@@ -123,7 +123,7 @@ namespace RayCarrot.RCP.Metro
         protected IEnumerable<PatchInfo> GetPatchInfos(Stream ipkStream)
         {
             // Deserialize the IPK file
-            var ipk = BinarySerializableHelpers.ReadFromStream<UbiArtIpkData>(ipkStream, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanLegends, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
+            var ipk = BinarySerializableHelpers.ReadFromStream<UbiArtIpkData>(ipkStream, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanLegends, Platform.PC), RCPServices.App.GetBinarySerializerLogger(IPKFilePath.Name));
 
             // Enumerate every patch
             foreach (var patchGroup in GetPatches.GroupBy(x => x.FileName))

@@ -27,7 +27,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The data</returns>
         protected override UbiArtLocStringValuePair[] Deserialize(FileSystemPath file)
         {
-            return BinarySerializableHelpers.ReadFromFile<UbiArtLocalizationData>(file, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCPServices.App.GetBinarySerializerLogger()).Strings;
+            return BinarySerializableHelpers.ReadFromFile<UbiArtLocalizationData>(file, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCPServices.App.GetBinarySerializerLogger(file.Name)).Strings;
         }
 
         /// <summary>
@@ -38,13 +38,13 @@ namespace RayCarrot.RCP.Metro
         protected override void Serialize(FileSystemPath file, UbiArtLocStringValuePair[] data)
         {
             // Read the current data to get the remaining bytes
-            var currentData = BinarySerializableHelpers.ReadFromFile<UbiArtLocalizationData>(file, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
+            var currentData = BinarySerializableHelpers.ReadFromFile<UbiArtLocalizationData>(file, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCPServices.App.GetBinarySerializerLogger(file.Name));
 
             // Replace the string data
             currentData.Strings = data;
 
             // Serialize the data
-            BinarySerializableHelpers.WriteToFile(currentData, file, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
+            BinarySerializableHelpers.WriteToFile(currentData, file, UbiArtSettings.GetDefaultSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCPServices.App.GetBinarySerializerLogger(file.Name));
         }
     }
 }

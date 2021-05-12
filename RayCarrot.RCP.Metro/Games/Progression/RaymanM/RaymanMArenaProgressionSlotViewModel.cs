@@ -36,7 +36,7 @@ namespace RayCarrot.RCP.Metro
         protected override Task ExportSaveDataAsync(FileSystemPath outputFilePath)
         {
             // Get the serialized data
-            var data = BinarySerializableHelpers.ReadFromFile<RaymanMPCSaveData>(SaveSlotFilePath, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.RaymanM, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
+            var data = BinarySerializableHelpers.ReadFromFile<RaymanMPCSaveData>(SaveSlotFilePath, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.RaymanM, Platform.PC), RCPServices.App.GetBinarySerializerLogger(SaveSlotFilePath));
 
             // Export the data
             JsonHelpers.SerializeToFile(data, outputFilePath);
@@ -55,7 +55,7 @@ namespace RayCarrot.RCP.Metro
             var data = JsonHelpers.DeserializeFromFile<RaymanMPCSaveData>(inputFilePath);
 
             // Import the data
-            BinarySerializableHelpers.WriteToFile(data, SaveSlotFilePath, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.RaymanM, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
+            BinarySerializableHelpers.WriteToFile(data, SaveSlotFilePath, OpenSpaceSettings.GetDefaultSettings(OpenSpaceGame.RaymanM, Platform.PC), RCPServices.App.GetBinarySerializerLogger(SaveSlotFilePath.Name));
 
             return Task.CompletedTask;
         }

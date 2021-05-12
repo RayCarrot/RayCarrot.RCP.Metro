@@ -130,6 +130,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         private AsyncLock OnRefreshRequiredAsyncLock { get; }
 
+        /// <summary>
+        /// Indicates if a serializer logger has been created during the app life-cycle
+        /// </summary>
+        private bool HasCreatedSerializerLogger { get; set; }
+
         #endregion
 
         #region Public Properties
@@ -210,8 +215,34 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Gets the binary serializer logger to use
         /// </summary>
+        /// <param name="name">An optional name for the logging session</param>
+        /// <param name="addr">An optional address for the logging session</param>
         /// <returns>The binary serializer logger</returns>
-        public IBinarySerializerLogger GetBinarySerializerLogger() => !RCPServices.Data.BinarySerializationFileLogPath.FullPath.IsNullOrWhiteSpace() && RCPServices.Data.BinarySerializationFileLogPath.Parent.DirectoryExists ? new BinarySerializerFileLogger(RCPServices.Data.BinarySerializationFileLogPath) : null;
+        public IBinarySerializerLogger GetBinarySerializerLogger(string name = null, long? addr = null)
+        {
+            if (RCPServices.Data.BinarySerializationFileLogPath.FullPath.IsNullOrWhiteSpace() ||
+                !RCPServices.Data.BinarySerializationFileLogPath.Parent.DirectoryExists)
+                return null;
+
+            // Get the log file path
+            var logPath = RCPServices.Data.BinarySerializationFileLogPath;
+
+            // Only re-create the file if this is the first time we create a logger
+            Stream logStream = !HasCreatedSerializerLogger ? File.Create(logPath) : File.OpenWrite(logPath);
+
+            logStream.Seek(0, SeekOrigin.End);
+
+            HasCreatedSerializerLogger = true;
+
+            var logger = new BinarySerializerFileLogger(logStream);
+
+            if (logStream.Length > 0)
+                logger.WriteLogLine(String.Empty);
+
+            logger.WriteLogLine($"=== Serializing{(name != null ? $" {name}" : String.Empty)}{(addr != null ? $" at 0x{addr:X8}" : String.Empty)} ===");
+
+            return logger;
+        }
 
         /// <summary>
         /// Gets new instances of utilities for a specific game

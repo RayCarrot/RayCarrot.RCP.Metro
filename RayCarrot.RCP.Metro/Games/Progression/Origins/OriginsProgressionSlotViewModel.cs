@@ -35,7 +35,7 @@ namespace RayCarrot.RCP.Metro
         protected override Task ExportSaveDataAsync(FileSystemPath outputFilePath)
         {
             // Get the serialized level data
-            var data = BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
+            var data = BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCPServices.App.GetBinarySerializerLogger(SaveSlotFilePath.Name));
 
             // Export the data
             JsonHelpers.SerializeToFile(data, outputFilePath);
@@ -51,13 +51,13 @@ namespace RayCarrot.RCP.Metro
         protected override Task ImportSaveDataAsync(FileSystemPath inputFilePath)
         {
             // Get the serialized data
-            var data = BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
+            var data = BinarySerializableHelpers.ReadFromFile<OriginsPCSaveData>(SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCPServices.App.GetBinarySerializerLogger(SaveSlotFilePath.Name));
 
             // Deserialize the input data
             data.SaveData = JsonHelpers.DeserializeFromFile<OriginsPCSaveData.PersistentGameData_Universe>(inputFilePath);
 
             // Import the data
-            BinarySerializableHelpers.WriteToFile<OriginsPCSaveData>(data, SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCPServices.App.GetBinarySerializerLogger());
+            BinarySerializableHelpers.WriteToFile<OriginsPCSaveData>(data, SaveSlotFilePath, UbiArtSettings.GetSaveSettings(UbiArtGame.RaymanOrigins, Platform.PC), RCPServices.App.GetBinarySerializerLogger(SaveSlotFilePath.Name));
 
             return Task.CompletedTask;
         }

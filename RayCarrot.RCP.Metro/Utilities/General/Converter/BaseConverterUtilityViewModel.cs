@@ -136,7 +136,7 @@ namespace RayCarrot.RCP.Metro
                                 }
 
                                 // Read the file data
-                                var data = BinarySerializableHelpers.ReadFromStream<T>(stream, settings, RCPServices.App.GetBinarySerializerLogger());
+                                var data = BinarySerializableHelpers.ReadFromStream<T>(stream, settings, RCPServices.App.GetBinarySerializerLogger(file.Name));
 
                                 // Get the destination file
                                 var destinationFile = destinationResult.SelectedDirectory + file.Name;
@@ -247,7 +247,7 @@ namespace RayCarrot.RCP.Metro
                                 using var destinationFileStream = File.Open(destinationFile, FileMode.Create, FileAccess.Write);
 
                                 // Save the converted data
-                                BinarySerializableHelpers.WriteToStream(data, destinationFileStream, settings, RCPServices.App.GetBinarySerializerLogger());
+                                BinarySerializableHelpers.WriteToStream(data, destinationFileStream, settings, RCPServices.App.GetBinarySerializerLogger(file.Name));
                             }
                             else
                             {
@@ -255,7 +255,7 @@ namespace RayCarrot.RCP.Metro
                                 using var encodingStream = new MemoryStream();
 
                                 // Serialize the converted data to the memory stream
-                                BinarySerializableHelpers.WriteToStream(data, encodingStream, settings, RCPServices.App.GetBinarySerializerLogger());
+                                BinarySerializableHelpers.WriteToStream(data, encodingStream, settings, RCPServices.App.GetBinarySerializerLogger(file.Name));
 
                                 // Create the destination file
                                 using var destinationFileStream = File.Open(destinationFile, FileMode.Create, FileAccess.Write);
