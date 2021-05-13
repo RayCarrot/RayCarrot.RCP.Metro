@@ -71,6 +71,7 @@
         </Grid>
 
         <metro:MetroAnimatedTabControl x:Name="ContentTabControl"
+                                       SelectionChanged="ContentTabControl_OnSelectionChangedAsync"
                                        Grid.Row="1">
 
             <metro:MetroAnimatedTabControl.Resources>

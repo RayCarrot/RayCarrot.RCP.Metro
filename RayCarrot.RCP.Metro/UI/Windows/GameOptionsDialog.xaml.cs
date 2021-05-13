@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
@@ -27,7 +28,9 @@ namespace RayCarrot.RCP.Metro
             
             // Create view model
             ViewModel = new GameOptionsViewModel(game);
-            
+
+            LoadedPages = new HashSet<GameOptionsPage>();
+
             // Subscribe to events
             Closed += Window_Closed;
 
@@ -55,6 +58,8 @@ namespace RayCarrot.RCP.Metro
         /// even though there are unsaved changes
         /// </summary>
         private bool ForceClose { get; set; }
+
+        private HashSet<GameOptionsPage> LoadedPages { get; }
 
         #endregion
 
@@ -150,24 +155,6 @@ namespace RayCarrot.RCP.Metro
                 ex.HandleError("Set up game config view model");
                 ViewModel.ConfigContent = Services.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
             }
-
-            try
-            {
-                // Make sure we have a progression view model
-                if (ViewModel.ProgressionViewModel != null)
-                {
-                    // Load the progression data
-                    await ViewModel.ProgressionViewModel.LoadDataAsync();
-
-                    // Refresh if we have progression content
-                    ViewModel.HasProgressionContent = ViewModel.ProgressionViewModel.ProgressionSlots?.Any() == true;
-                }
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Set up game progression view model");
-                ProgressionTab.Content = Services.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
-            }
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -216,6 +203,42 @@ namespace RayCarrot.RCP.Metro
             // NOTE: Not the most elegant solution - but we can't call Close() from within a closing event
             _ = Task.Run(() => Dispatcher?.Invoke(Close));
         }
+
+        private async void ContentTabControl_OnSelectionChangedAsync(object sender, SelectionChangedEventArgs e)
+        {
+            var page = (GameOptionsPage)ContentTabControl.SelectedIndex;
+
+            if (LoadedPages.Contains(page))
+                return;
+
+            LoadedPages.Add(page);
+
+            if (page == GameOptionsPage.Progression)
+            {
+                try
+                {
+                    // Make sure we have a progression view model
+                    if (ViewModel.ProgressionViewModel != null)
+                    {
+                        // Load the progression data
+                        await ViewModel.ProgressionViewModel.LoadDataAsync();
+
+                        // Refresh if we have progression content
+                        ViewModel.HasProgressionContent =
+                            ViewModel.ProgressionViewModel.ProgressionSlots?.Any() == true;
+
+                        RL.Logger?.LogInformationSource($"Loaded game progression");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Set up game progression view model");
+                    ProgressionTab.Content =
+                        Services.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
+                }
+            }
+        }
+
         #endregion
 
         #region Enums
