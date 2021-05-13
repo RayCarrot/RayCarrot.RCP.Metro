@@ -34,7 +34,8 @@ namespace RayCarrot.RCP.Metro
             // Subscribe to events
             Closed += Window_Closed;
 
-            RefreshTabs();
+            // Default to the options page
+            SelectedPage = GameOptionsPage.Options;
 
             // Set default height
             if (ViewModel.HasConfigContent || ViewModel.HasUtilities || ViewModel.HasProgressionContent)
@@ -74,34 +75,13 @@ namespace RayCarrot.RCP.Metro
             set => DataContext = value;
         }
 
-        #endregion
-
-        #region Private Methods
-
         /// <summary>
-        /// Change the current page
+        /// The selected page
         /// </summary>
-        /// <param name="page">The page to change to</param>
-        private void ChangePage(GameOptionsPage page)
+        public GameOptionsPage SelectedPage
         {
-            ContentTabControl.SelectedIndex = (int)page;
-        }
-
-        /// <summary>
-        /// Refreshes which page is to be shown
-        /// </summary>
-        private void RefreshTabs()
-        {
-            if (ViewModel.HasConfigContent)
-                ChangePage(GameOptionsPage.Config);
-            else if (ViewModel.HasOptionsContent)
-                ChangePage(GameOptionsPage.Options);
-            else if (ViewModel.HasUtilities)
-                ChangePage(GameOptionsPage.Utilities);
-            else if (ViewModel.HasEmulatorConfigContent)
-                ChangePage(GameOptionsPage.EmulatorConfig);
-            else
-                ChangePage(GameOptionsPage.Information);
+            get => (GameOptionsPage)ContentTabControl.SelectedIndex;
+            set => ContentTabControl.SelectedIndex = (int)value;
         }
 
         #endregion
@@ -193,7 +173,7 @@ namespace RayCarrot.RCP.Metro
 
             e.Cancel = true;
 
-            ChangePage(GameOptionsPage.Config);
+            SelectedPage = GameOptionsPage.Config;
 
             if (!await Services.MessageUI.DisplayMessageAsync(Metro.Resources.GameOptions_UnsavedChanges, Metro.Resources.GameOptions_UnsavedChangesHeader, MessageType.Question, true))
                 return;
@@ -206,7 +186,7 @@ namespace RayCarrot.RCP.Metro
 
         private async void ContentTabControl_OnSelectionChangedAsync(object sender, SelectionChangedEventArgs e)
         {
-            var page = (GameOptionsPage)ContentTabControl.SelectedIndex;
+            var page = SelectedPage;
 
             if (LoadedPages.Contains(page))
                 return;
@@ -224,8 +204,7 @@ namespace RayCarrot.RCP.Metro
                         await ViewModel.ProgressionViewModel.LoadDataAsync();
 
                         // Refresh if we have progression content
-                        ViewModel.HasProgressionContent =
-                            ViewModel.ProgressionViewModel.ProgressionSlots?.Any() == true;
+                        ViewModel.HasProgressionContent = ViewModel.ProgressionViewModel.ProgressionSlots?.Any() == true;
 
                         RL.Logger?.LogInformationSource($"Loaded game progression");
                     }
@@ -233,8 +212,7 @@ namespace RayCarrot.RCP.Metro
                 catch (Exception ex)
                 {
                     ex.HandleError("Set up game progression view model");
-                    ProgressionTab.Content =
-                        Services.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
+                    ProgressionTab.Content = Services.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
                 }
             }
         }
@@ -249,19 +227,14 @@ namespace RayCarrot.RCP.Metro
         public enum GameOptionsPage
         {
             /// <summary>
-            /// The game information
+            /// The primary game options
             /// </summary>
-            Information,
+            Options,
 
             /// <summary>
             /// The game progress information
             /// </summary>
             Progression,
-
-            /// <summary>
-            /// The primary game options
-            /// </summary>
-            Options,
 
             /// <summary>
             /// The game configuration

@@ -100,6 +100,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public object OptionsContent { get; }
 
+        public bool HasOptionsOrCanChangeLaunchMode => CanChangeLaunchMode || OptionsContent != null;
+
         /// <summary>
         /// The display name
         /// </summary>

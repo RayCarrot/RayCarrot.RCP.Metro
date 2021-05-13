@@ -79,24 +79,18 @@
                 <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
             </metro:MetroAnimatedTabControl.Resources>
 
-            <!-- Information -->
+            <!-- Options -->
 
-            <local:RCPTabItem IconKind="InformationOutline"
-                              Header="{Resx GameOptions_Info}">
+            <local:RCPTabItem IconKind="CogOutline"
+                              Header="{Resx GameOptions_Options}">
 
                 <ScrollViewer Padding="5">
-                    <ItemsControl ItemsSource="{Binding Path=GameInfoItems, Mode=OneTime}"
-                                  Grid.IsSharedSizeScope="True">
+                    <i:Interaction.Behaviors>
+                        <rwpf:FocusScrollViewerOnLoad />
+                    </i:Interaction.Behaviors>
 
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <local:DuoGridItem Text="{Binding Path=Text}"
-                                                   Header="{Binding Path=Header}"
-                                                   MinUserLevel="{Binding Path=MinUserLevel}" />
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
+                    <local:GameOptionsUI />
 
-                    </ItemsControl>
                 </ScrollViewer>
             </local:RCPTabItem>
 
@@ -108,22 +102,6 @@
                               Visibility="{Binding Path=HasProgressionContent, Converter={rwpf:BooleanToVisibilityConverter}}">
                 <ScrollViewer Padding="5">
                     <local:ProgressionUI DataContext="{Binding Path=ProgressionViewModel, Mode=OneTime}"/>
-                </ScrollViewer>
-            </local:RCPTabItem>
-
-            <!-- Options -->
-
-            <local:RCPTabItem IconKind="CogOutline"
-                              Header="{Resx GameOptions_Options}"
-                              Visibility="{Binding Path=HasOptionsContent, Converter={rwpf:BooleanToVisibilityConverter}}">
-
-                <ScrollViewer Padding="5">
-                    <i:Interaction.Behaviors>
-                        <rwpf:FocusScrollViewerOnLoad />
-                    </i:Interaction.Behaviors>
-
-                    <local:GameOptionsUI />
-
                 </ScrollViewer>
             </local:RCPTabItem>
 
