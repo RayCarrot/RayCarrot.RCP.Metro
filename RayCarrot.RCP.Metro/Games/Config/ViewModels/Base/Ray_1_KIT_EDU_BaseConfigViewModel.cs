@@ -246,58 +246,53 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The config instance</returns>
         protected Rayman1PCConfigData CreateDefaultConfig()
         {
-            // TODO-UPDATE: Set default values - perhaps also correct values when saving?
             return new Rayman1PCConfigData
             {
                 Language = R1Languages.English,
-                Port = 0,
-                Irq = 0,
-                Dma = 0,
+                Port = 544,
+                Irq = 5,
+                Dma = 5,
                 Param = 0,
-                DeviceID = 0,
-                NumCard = 0,
-                KeyJump = 0,
+                DeviceID = 57368,
+                NumCard = 3,
+                KeyJump = 1,
                 KeyWeapon = 0,
-                Options_jeu_10 = 0,
-                KeyAction = 0,
-                MusicCdActive = 0,
-                VolumeSound = 0,
-                Options_jeu_14 = 0,
-                EDU_VoiceSound = 0,
-                Mode_Pad = 0,
+                Options_jeu_10 = 3,
+                KeyAction = 2,
+                MusicCdActive = 1,
+                VolumeSound = 18,
+                IsStero = 1,
+                EDU_VoiceSound = 18,
+                Mode_Pad = 1,
                 Port_Pad = 0,
-                XPadMax = 0,
-                XPadMin = 0,
-                YPadMax = 0,
-                YPadMin = 0,
-                XPadCentre = 0,
-                YPadCentre = 0,
+                XPadMax = 1610,
+                XPadMin = 35,
+                YPadMax = 1610,
+                YPadMin = 35,
+                XPadCentre = 830,
+                YPadCentre = 830,
                 NotBut = new byte[]
                 {
+                    0x00, 0x00, 0x00, 0x00
                 },
                 Tab_Key = new byte[]
                 {
+                    0x4B, 0x48, 0x4D, 0x50, 0x1D, 0x38, 0x2D
                 },
                 GameModeVideo = 0,
                 P486 = 0,
                 SizeScreen = 0,
                 Frequence = 0,
-                FixOn = false,
-                BackgroundOptionOn = false,
-                ScrollDiffOn = false,
-                RefRam2VramNormalFix = new ushort[]
-                {
-                },
-                RefRam2VramNormal = new ushort[]
-                {
-                },
-                RefTransFondNormal = new ushort[]
-                {
-                },
-                RefSpriteNormal = 0,
-                RefRam2VramX = 0,
-                RefVram2VramX = 0,
-                RefSpriteX = 0
+                FixOn = true,
+                BackgroundOptionOn = true,
+                ScrollDiffOn = true,
+                RefRam2VramNormalFix = new ushort[8],
+                RefRam2VramNormal = new ushort[8],
+                RefTransFondNormal = new ushort[8],
+                RefSpriteNormal = new ushort[2],
+                RefRam2VramX = new ushort[2],
+                RefVram2VramX = new ushort[2],
+                RefSpriteX = new ushort[2]
             };
         }
 
