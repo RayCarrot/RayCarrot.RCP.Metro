@@ -62,7 +62,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The options UI, if any is available
         /// </summary>
-        public override FrameworkElement OptionsUI => new DOSBoxOptions(Game);
+        public override FrameworkElement OptionsUI => null;
 
         /// <summary>
         /// An optional emulator to use for the game
