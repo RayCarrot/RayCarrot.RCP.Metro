@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Windows;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
+using System.Collections.Generic;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -29,9 +28,9 @@ namespace RayCarrot.RCP.Metro
         public override bool CanBeDownloaded => true;
 
         /// <summary>
-        /// The config UI, if any is available
+        /// The config page view model, if any is available
         /// </summary>
-        public override FrameworkElement ConfigUI => new Ray_M_Arena_3_Config(new Rayman3ConfigViewModel(Game));
+        public override GameOptions_ConfigPageViewModel ConfigPageViewModel => new Rayman3ConfigViewModel(Game);
 
         /// <summary>
         /// Gets the file links for the game

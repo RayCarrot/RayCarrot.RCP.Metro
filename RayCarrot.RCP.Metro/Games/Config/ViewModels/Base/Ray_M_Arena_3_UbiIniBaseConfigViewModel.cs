@@ -384,6 +384,11 @@ namespace RayCarrot.RCP.Metro
 
         #region Protected Override Methods
 
+        protected override object GetPageUI() => new Ray_M_Arena_3_Config()
+        {
+            DataContext = this
+        };
+
         /// <summary>
         /// Setup
         /// </summary>

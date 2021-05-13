@@ -13,12 +13,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="viewModel">The game config view model</param>
-        public Ray_M_Arena_3_Config(GameConfigViewModel viewModel)
+        public Ray_M_Arena_3_Config()
         {
             InitializeComponent();
-
-            DataContext = viewModel;
         }
 
         #endregion

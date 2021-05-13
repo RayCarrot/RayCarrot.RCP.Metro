@@ -1,14 +1,14 @@
-﻿using System.Windows;
+﻿using MahApps.Metro.Controls;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
-using MahApps.Metro.Controls;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// Interaction logic for Rayman2Config.xaml
     /// </summary>
-    public partial class Rayman2Config : VMUserControl<Rayman2ConfigViewModel>
+    public partial class Rayman2Config : UserControl
     {
         #region Constructor
 

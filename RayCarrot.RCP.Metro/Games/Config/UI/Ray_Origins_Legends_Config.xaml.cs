@@ -13,12 +13,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="game">The game</param>
-        public Ray_Origins_Legends_Config(Games game)
+        public Ray_Origins_Legends_Config()
         {
             InitializeComponent();
-
-            DataContext = new Ray_Origins_Legends_ConfigViewModel(game);
         }
 
         #endregion

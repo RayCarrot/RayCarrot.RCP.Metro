@@ -32,8 +32,8 @@
         public override LocalizedString DisplayName => new LocalizedString(() => Resources.GameType_DosBox);
 
         /// <summary>
-        /// The emulator's game configuration UI
+        /// The emulator's game configuration view model
         /// </summary>
-        public override object GameConfigUI => new DOSBoxEmulatorGameConfig(new DOSBoxEmulatorGameConfigViewModel(Game, GameType));
+        public override GameOptions_EmulatorConfigPageViewModel GameConfigViewModel => new DOSBoxEmulatorGameConfigViewModel(Game, GameType);
     }
 }

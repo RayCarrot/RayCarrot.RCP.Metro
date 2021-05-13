@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
 {
-    public abstract class Ray_1_KIT_EDU_BaseConfigViewModel : GameConfigViewModel
+    public abstract class Ray_1_KIT_EDU_BaseConfigViewModel : GameOptions_ConfigPageViewModel
     {
         #region Constructor
 
@@ -120,15 +120,18 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Methods
+        #region Protected Methods
 
-        public abstract FileSystemPath GetConfigPath();
+        protected override object GetPageUI() => new Ray_1_KIT_EDU_Config()
+        {
+            DataContext = this
+        };
 
         /// <summary>
         /// Loads and sets up the current configuration properties
         /// </summary>
         /// <returns>The task</returns>
-        public override Task SetupAsync()
+        protected override Task LoadAsync()
         {
             RL.Logger?.LogInformationSource($"{Game} config is being set up");
 
@@ -196,6 +199,12 @@ namespace RayCarrot.RCP.Metro
             return Task.CompletedTask;
         }
 
+        #endregion
+
+        #region Public Methods
+
+        public abstract FileSystemPath GetConfigPath();
+
         /// <summary>
         /// Saves the changes
         /// </summary>
@@ -232,7 +241,7 @@ namespace RayCarrot.RCP.Metro
 
                 await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
 
-                OnSave();
+                OnSaved();
             }
         }
 

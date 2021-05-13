@@ -9,7 +9,7 @@ using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
-    public class DOSBoxEmulatorGameConfigViewModel : GameConfigViewModel
+    public class DOSBoxEmulatorGameConfigViewModel : GameOptions_EmulatorConfigPageViewModel
     {
         #region Constructor
 
@@ -18,7 +18,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="game">The DosBox game</param>
         /// <param name="gameType">The type of game</param>
-        public DOSBoxEmulatorGameConfigViewModel(Games game, GameType gameType)
+        public DOSBoxEmulatorGameConfigViewModel(Games game, GameType gameType) : base(new LocalizedString(() => Resources.GameType_DosBox))
         {
             Game = game;
             GameType = gameType;
@@ -377,13 +377,18 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Methods
+        #region Protected Methods
+
+        protected override object GetPageUI() => new DOSBoxEmulatorGameConfig()
+        {
+            DataContext = this
+        };
 
         /// <summary>
         /// Loads and sets up the current configuration properties
         /// </summary>
         /// <returns>The task</returns>
-        public override Task SetupAsync()
+        protected override Task LoadAsync()
         {
             RL.Logger?.LogInformationSource($"DOSBox emulator game config for {Game} is being set up");
 
@@ -421,6 +426,10 @@ namespace RayCarrot.RCP.Metro
             string GetString(string propName, string defaultValue = null) => configData.Configuration.TryGetValue(propName) ?? defaultValue;
             double? GetDouble(string propName) => Double.TryParse(configData.Configuration.TryGetValue(propName), out double output) ? (double?)output : null;
         }
+
+        #endregion
+
+        #region Public Methods
 
         /// <summary>
         /// Saves the changes
@@ -506,7 +515,7 @@ namespace RayCarrot.RCP.Metro
 
                 await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
 
-                OnSave();
+                OnSaved();
             }
         }
 

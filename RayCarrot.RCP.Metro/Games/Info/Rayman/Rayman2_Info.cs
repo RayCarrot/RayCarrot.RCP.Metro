@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-using System.Windows;
-using RayCarrot.IO;
+﻿using RayCarrot.IO;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -54,9 +53,9 @@ namespace RayCarrot.RCP.Metro
         public override string DefaultFileName => "Rayman2.exe";
 
         /// <summary>
-        /// The config UI, if any is available
+        /// The config page view model, if any is available
         /// </summary>
-        public override FrameworkElement ConfigUI => new Rayman2Config();
+        public override GameOptions_ConfigPageViewModel ConfigPageViewModel => new Rayman2ConfigViewModel();
 
         /// <summary>
         /// The progression view model, if any is available

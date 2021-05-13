@@ -1,16 +1,15 @@
-﻿<rwpf:VMUserControl x:Class="RayCarrot.RCP.Metro.RaymanRavingRabbidsConfig"
-                    x:TypeArguments="local:RaymanRavingRabbidsConfigViewModel"
-                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-                    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                    xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-                    ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
-                    IsTabStop="False"
-                    mc:Ignorable="d"
-                    d:DataContext="{d:DesignInstance local:RaymanRavingRabbidsConfigViewModel}">
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.RaymanRavingRabbidsConfig"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             IsTabStop="False"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:RaymanRavingRabbidsConfigViewModel}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -74,4 +73,4 @@
         </StackPanel>
 
     </Grid>
-</rwpf:VMUserControl>
+</UserControl>

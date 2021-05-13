@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using RayCarrot.Logging;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -29,25 +28,22 @@ namespace RayCarrot.RCP.Metro
             // Create view model
             ViewModel = new GameOptionsViewModel(game);
 
-            LoadedPages = new HashSet<GameOptionsPage>();
-
             // Subscribe to events
+            Loaded += GameOptions_OnLoadedAsync;
+            Closing += GameOptions_OnClosingAsync;
             Closed += Window_Closed;
 
-            // Default to the options page
-            SelectedPage = GameOptionsPage.Options;
-
             // Set default height
-            if (ViewModel.HasConfigContent || ViewModel.HasUtilities || ViewModel.HasProgressionContent)
+            if (ViewModel.Pages.Length > 1)
                 Height = 700;
             else
                 SizeToContent = SizeToContent.Height;
 
             // Set default width
-            if (ViewModel.HasUtilities && ViewModel.HasConfigContent && ViewModel.HasOptionsContent && ViewModel.HasProgressionContent)
-                Width = 650;
+            if (ViewModel.Pages.Length >= 4)
+                Width = 700;
             else
-                Width = 600;
+                Width = 625;
         }
 
         #endregion
@@ -60,8 +56,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         private bool ForceClose { get; set; }
 
-        private HashSet<GameOptionsPage> LoadedPages { get; }
-
         #endregion
 
         #region Public Properties
@@ -73,15 +67,6 @@ namespace RayCarrot.RCP.Metro
         {
             get => DataContext as GameOptionsViewModel;
             set => DataContext = value;
-        }
-
-        /// <summary>
-        /// The selected page
-        /// </summary>
-        public GameOptionsPage SelectedPage
-        {
-            get => (GameOptionsPage)ContentTabControl.SelectedIndex;
-            set => ContentTabControl.SelectedIndex = (int)value;
         }
 
         #endregion
@@ -110,47 +95,28 @@ namespace RayCarrot.RCP.Metro
 
         #region Event Handlers
 
-        private async void GameOptions_OnLoadedAsync(object sender, RoutedEventArgs e)
+        private void GameOptions_OnLoadedAsync(object sender, RoutedEventArgs e)
         {
             RCPServices.App.RefreshRequired += AppGameRefreshRequiredAsync;
 
-            try
-            {
-                foreach (var config in ViewModel.GetGameConfigViewModels)
-                {
-                    if (config != null)
-                    {
-                        config.OnSave = () =>
-                        {
-                            if (RCPServices.Data.CloseConfigOnSave)
-                                Close();
-                        };
+            foreach (var page in ViewModel.Pages)
+                page.Saved += Page_Saved;
+        }
 
-                        await config.SetupAsync();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ex.HandleError("Set up game config view model");
-                ViewModel.ConfigContent = Services.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
-            }
+        private void Page_Saved(object sender, EventArgs e)
+        {
+            if (RCPServices.Data.CloseConfigOnSave)
+                Close();
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
             RCPServices.App.RefreshRequired -= AppGameRefreshRequiredAsync;
 
-            ViewModel?.Dispose();
+            foreach (var page in ViewModel.Pages)
+                page.Saved -= Page_Saved;
 
-            if (ViewModel != null)
-            {
-                foreach (var config in ViewModel.GetGameConfigViewModels)
-                {
-                    if (config != null)
-                        config.OnSave = null;
-                }
-            }
+            ViewModel?.Dispose();
         }
 
         private Task AppGameRefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
@@ -168,12 +134,23 @@ namespace RayCarrot.RCP.Metro
 
         private async void GameOptions_OnClosingAsync(object sender, CancelEventArgs e)
         {
-            if (ForceClose || ViewModel?.GetGameConfigViewModels.Any(x => x?.UnsavedChanges == true) != true)
+            if (ForceClose)
+                return;
+
+            if (ViewModel.IsLoading)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            var unsavedPage = ViewModel.Pages.FirstOrDefault(x => x.UnsavedChanges);
+
+            if (unsavedPage == null)
                 return;
 
             e.Cancel = true;
 
-            SelectedPage = GameOptionsPage.Config;
+            ViewModel.SelectedPage = unsavedPage;
 
             if (!await Services.MessageUI.DisplayMessageAsync(Metro.Resources.GameOptions_UnsavedChanges, Metro.Resources.GameOptions_UnsavedChangesHeader, MessageType.Question, true))
                 return;
@@ -184,73 +161,7 @@ namespace RayCarrot.RCP.Metro
             _ = Task.Run(() => Dispatcher?.Invoke(Close));
         }
 
-        private async void ContentTabControl_OnSelectionChangedAsync(object sender, SelectionChangedEventArgs e)
-        {
-            var page = SelectedPage;
-
-            if (LoadedPages.Contains(page))
-                return;
-
-            LoadedPages.Add(page);
-
-            if (page == GameOptionsPage.Progression)
-            {
-                try
-                {
-                    // Make sure we have a progression view model
-                    if (ViewModel.ProgressionViewModel != null)
-                    {
-                        // Load the progression data
-                        await ViewModel.ProgressionViewModel.LoadDataAsync();
-
-                        // Refresh if we have progression content
-                        ViewModel.HasProgressionContent = ViewModel.ProgressionViewModel.ProgressionSlots?.Any() == true;
-
-                        RL.Logger?.LogInformationSource($"Loaded game progression");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Set up game progression view model");
-                    ProgressionTab.Content = Services.Data.CurrentUserLevel >= UserLevel.Technical ? ex.ToString() : null;
-                }
-            }
-        }
-
-        #endregion
-
-        #region Enums
-
-        /// <summary>
-        /// The available game options pages
-        /// </summary>
-        public enum GameOptionsPage
-        {
-            /// <summary>
-            /// The primary game options
-            /// </summary>
-            Options,
-
-            /// <summary>
-            /// The game progress information
-            /// </summary>
-            Progression,
-
-            /// <summary>
-            /// The game configuration
-            /// </summary>
-            Config,
-
-            /// <summary>
-            /// The emulator configuration
-            /// </summary>
-            EmulatorConfig,
-
-            /// <summary>
-            /// The game utilities
-            /// </summary>
-            Utilities
-        }
+        private async void PagesTabControl_OnSelectionChanged(object sender, SelectionChangedEventArgs e) => await ViewModel.LoadCurrentPageAsync();
 
         #endregion
     }

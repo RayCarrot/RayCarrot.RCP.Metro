@@ -11,8 +11,8 @@
         public abstract LocalizedString DisplayName { get; }
         
         /// <summary>
-        /// The emulator's game configuration UI
+        /// The emulator's game configuration view model
         /// </summary>
-        public abstract object GameConfigUI { get; }
+        public abstract GameOptions_EmulatorConfigPageViewModel GameConfigViewModel { get; }
     }
 }

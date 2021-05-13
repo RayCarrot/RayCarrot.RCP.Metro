@@ -12,7 +12,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// View model for the Rayman Origins and Rayman Legends configuration
     /// </summary>
-    public class Ray_Origins_Legends_ConfigViewModel : GameConfigViewModel
+    public class Ray_Origins_Legends_ConfigViewModel : GameOptions_ConfigPageViewModel
     {
         #region Constructor
 
@@ -141,13 +141,18 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Methods
+        #region Protected Methods
+
+        protected override object GetPageUI() => new Ray_Origins_Legends_Config()
+        {
+            DataContext = this
+        };
 
         /// <summary>
         /// Loads and sets up the current configuration properties
         /// </summary>
         /// <returns>The task</returns>
-        public override Task SetupAsync()
+        protected override Task LoadAsync()
         {
             RL.Logger?.LogInformationSource($"{Game} config is being set up");
 
@@ -171,6 +176,10 @@ namespace RayCarrot.RCP.Metro
 
             return Task.CompletedTask;
         }
+
+        #endregion
+
+        #region Public Methods
 
         /// <summary>
         /// Saves the changes
@@ -209,7 +218,7 @@ namespace RayCarrot.RCP.Metro
 
                 await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
 
-                OnSave();
+                OnSaved();
             }
         }
 

@@ -1,11 +1,9 @@
-﻿using System;
+﻿using RayCarrot.IO;
+using RayCarrot.Rayman;
+using RayCarrot.Rayman.UbiArt;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows;
-using RayCarrot.IO;
-using RayCarrot.Rayman;
-using RayCarrot.Rayman.OpenSpace;
-using RayCarrot.Rayman.UbiArt;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -54,9 +52,9 @@ namespace RayCarrot.RCP.Metro
         public override string DefaultFileName => "Rayman Legends.exe";
 
         /// <summary>
-        /// The config UI, if any is available
+        /// The config page view model, if any is available
         /// </summary>
-        public override FrameworkElement ConfigUI => new Ray_Origins_Legends_Config(Game);
+        public override GameOptions_ConfigPageViewModel ConfigPageViewModel => new Ray_Origins_Legends_ConfigViewModel(Game);
 
         /// <summary>
         /// The progression view model, if any is available

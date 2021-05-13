@@ -65,9 +65,9 @@ namespace RayCarrot.RCP.Metro
         public override string DefaultFileName => "RAYKIT.bat";
 
         /// <summary>
-        /// The config UI, if any is available
+        /// The config page view model, if any is available
         /// </summary>
-        public override FrameworkElement ConfigUI => new Ray_1_KIT_EDU_Config(new RaymanDesignerConfigViewModel(Game));
+        public override GameOptions_ConfigPageViewModel ConfigPageViewModel => new RaymanDesignerConfigViewModel(Game);
 
         /// <summary>
         /// The options UI, if any is available

@@ -287,6 +287,11 @@ namespace RayCarrot.RCP.Metro
 
         #region Protected Override Methods
 
+        protected override object GetPageUI() => new Rayman2Config()
+        {
+            DataContext = this
+        };
+
         /// <summary>
         /// Loads the <see cref="BaseUbiIniGameConfigViewModel{Handler}.ConfigData"/>
         /// </summary>

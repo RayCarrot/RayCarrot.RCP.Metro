@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -36,9 +35,9 @@ namespace RayCarrot.RCP.Metro
         public override string DefaultFileName => RCPServices.Data.RabbidsGoHomeLaunchData == null ? "Launcher.exe" : "LyN_f.exe";
 
         /// <summary>
-        /// The config UI, if any is available
+        /// The config page view model, if any is available
         /// </summary>
-        public override FrameworkElement ConfigUI => new RabbidsGoHomeConfig();
+        public override GameOptions_ConfigPageViewModel ConfigPageViewModel => new RabbidsGoHomeConfigViewModel();
 
         /// <summary>
         /// Gets the file links for the game

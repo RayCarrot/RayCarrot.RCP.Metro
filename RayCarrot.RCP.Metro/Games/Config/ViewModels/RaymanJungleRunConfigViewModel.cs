@@ -63,7 +63,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Override Methods
+        #region Protected Override Methods
+
+        protected override object GetPageUI() => new RaymanJungleRunConfig()
+        {
+            DataContext = this
+        };
 
         /// <summary>
         /// Sets up the game specific values

@@ -12,7 +12,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Base for Rayman Jungle/Fiesta Run config view model
     /// </summary>
-    public class BaseRayRunConfigViewModel : GameConfigViewModel
+    public abstract class BaseRayRunConfigViewModel : GameOptions_ConfigPageViewModel
     {
         #region Constructor
 
@@ -171,10 +171,6 @@ namespace RayCarrot.RCP.Metro
             stream.Write(value, 0, value.Length);
         }
 
-        #endregion
-
-        #region Protected Virtual Methods
-
         /// <summary>
         /// Sets up the game specific values
         /// </summary>
@@ -187,15 +183,11 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         protected virtual Task SaveGameAsync() => Task.CompletedTask;
 
-        #endregion
-
-        #region Public Methods
-
         /// <summary>
         /// Loads and sets up the current configuration properties
         /// </summary>
         /// <returns>The task</returns>
-        public override async Task SetupAsync()
+        protected override async Task LoadAsync()
         {
             RL.Logger?.LogInformationSource($"{Game} config is being set up");
 
@@ -214,6 +206,10 @@ namespace RayCarrot.RCP.Metro
 
             RL.Logger?.LogInformationSource($"All values have been loaded");
         }
+
+        #endregion
+
+        #region Public Methods
 
         /// <summary>
         /// Saves the changes
@@ -253,7 +249,7 @@ namespace RayCarrot.RCP.Metro
 
                 await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
 
-                OnSave();
+                OnSaved();
             }
         }
 

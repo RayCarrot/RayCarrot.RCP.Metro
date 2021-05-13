@@ -1,17 +1,14 @@
-﻿using RayCarrot.UI;
+﻿using RayCarrot.Common;
+using RayCarrot.IO;
+using RayCarrot.Logging;
+using RayCarrot.UI;
+using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
-using RayCarrot.IO;
-using RayCarrot.Common;
-using RayCarrot.Logging;
-using RayCarrot.WPF;
+using Nito.AsyncEx;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -40,35 +37,44 @@ namespace RayCarrot.RCP.Metro
             Game = game;
             DisplayName = gameInfo.DisplayName;
             IconSource = gameInfo.IconSource;
-            GameInfoItems = new ObservableCollection<DuoGridItemViewModel>();
             CanUninstall = gameInfo.CanBeUninstalled;
+            PageLoadLock = new AsyncLock();
 
-            // Enable collection synchronization
-            BindingOperations.EnableCollectionSynchronization(GameInfoItems, this);
+            // Create the page collection
+            var pages = new List<GameOptions_BasePageViewModel>();
 
-            // Refresh the game data
-            RefreshGameInfo();
+            // Add the options page
+            pages.Add(new GameOptions_OptionsPageViewModel(Game));
+
+            // Add the progression page
+            var progressionViewModel = gameInfo.ProgressionViewModel;
+
+            if (progressionViewModel != null)
+                pages.Add(new GameOptions_ProgressionPageViewModel(progressionViewModel));
+
+            // Add the config page
+            var configViewModel = gameInfo.ConfigPageViewModel;
+
+            if (configViewModel != null)
+                pages.Add(configViewModel);
+
+            // Add the emulator config page
+            var emu = gameInfo.Emulator;
+            var emuConfigViewModel = emu?.GameConfigViewModel;
+
+            if (emuConfigViewModel != null)
+                pages.Add(emuConfigViewModel);
+
+            // Add the utilities page
+            var utilities = App.GetUtilities(Game).Select(x => new UtilityViewModel(x)).ToArray();
+
+            if (utilities.Any())
+                pages.Add(new GameOptions_UtilitiesPageViewModel(utilities));
+
+            Pages = pages.ToArray();
 
             // Refresh the game data on certain events
-            Services.Data.CultureChanged += Data_CultureChanged;
             App.RefreshRequired += App_RefreshRequiredAsync;
-
-            // Check if the launch mode can be changed
-            CanChangeLaunchMode = Game.GetManager().SupportsGameLaunchMode;
-
-            // Get the utilities view models
-            Utilities = App.GetUtilities(Game).Select(x => new UtilityViewModel(x)).ToArray();
-
-            // Get the UI content, if available
-            ConfigContent = gameInfo.ConfigUI;
-            OptionsContent = gameInfo.OptionsUI;
-            ProgressionViewModel = gameInfo.ProgressionViewModel;
-
-            var emu = gameInfo.Emulator;
-            EmulatorDisplayName = emu?.DisplayName;
-            EmulatorConfigContent = emu?.GameConfigUI;
-
-            HasProgressionContent = ProgressionViewModel != null;
         }
 
         #endregion
@@ -76,31 +82,24 @@ namespace RayCarrot.RCP.Metro
         #region Public Properties
 
         /// <summary>
+        /// The available options pages
+        /// </summary>
+        public GameOptions_BasePageViewModel[] Pages { get; }
+
+        /// <summary>
+        /// The currently selected page
+        /// </summary>
+        public GameOptions_BasePageViewModel SelectedPage { get; set; }
+
+        /// <summary>
         /// The game
         /// </summary>
         public Games Game { get; }
 
         /// <summary>
-        /// The game data
-        /// </summary>
-        public GameData GameData => RCPServices.Data.Games.TryGetValue(Game);
-
-        /// <summary>
-        /// The game info items
-        /// </summary>
-        public ObservableCollection<DuoGridItemViewModel> GameInfoItems { get; }
-
-        /// <summary>
         /// Indicates if the game can be uninstalled
         /// </summary>
         public bool CanUninstall { get; }
-
-        /// <summary>
-        /// The game options content
-        /// </summary>
-        public object OptionsContent { get; }
-
-        public bool HasOptionsOrCanChangeLaunchMode => CanChangeLaunchMode || OptionsContent != null;
 
         /// <summary>
         /// The display name
@@ -112,84 +111,9 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public string IconSource { get; }
 
-        /// <summary>
-        /// Indicates if the launch mode can be changed
-        /// </summary>
-        public bool CanChangeLaunchMode { get; }
+        public AsyncLock PageLoadLock { get; }
 
-        /// <summary>
-        /// The game's launch mode
-        /// </summary>
-        public GameLaunchMode LaunchMode
-        {
-            get => GameData.LaunchMode;
-            set
-            {
-                GameData.LaunchMode = value;
-                _ = App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Game, false, true, false, false));
-            }
-        }
-
-        /// <summary>
-        /// The utilities for the game
-        /// </summary>
-        public UtilityViewModel[] Utilities { get; }
-
-        /// <summary>
-        /// Indicates if the game has utilities content
-        /// </summary>
-        public bool HasUtilities => Utilities.Any();
-
-        /// <summary>
-        /// The config content for the game
-        /// </summary>
-        public object ConfigContent { get; set; }
-
-        /// <summary>
-        /// Indicates if the game has config content
-        /// </summary>
-        public bool HasConfigContent => ConfigContent != null;
-
-        /// <summary>
-        /// The emulator config content for the game
-        /// </summary>
-        public object EmulatorConfigContent { get; set; }
-
-        /// <summary>
-        /// Indicates if the game has emulator config content
-        /// </summary>
-        public bool HasEmulatorConfigContent => EmulatorConfigContent != null;
-
-        /// <summary>
-        /// The display name for the emulator, if available
-        /// </summary>
-        public LocalizedString EmulatorDisplayName { get; }
-
-        /// <summary>
-        /// The progression view model for the game
-        /// </summary>
-        public BaseProgressionViewModel ProgressionViewModel { get; }
-
-        /// <summary>
-        /// Indicates if the game has config content
-        /// </summary>
-        public bool HasProgressionContent { get; set; }
-
-        /// <summary>
-        /// Indicates if the game has options content
-        /// </summary>
-        public bool HasOptionsContent => OptionsContent != null || CanChangeLaunchMode;
-
-        public IEnumerable<GameConfigViewModel> GetGameConfigViewModels
-        {
-            get
-            {
-                yield return getVM(ConfigContent);
-                yield return getVM(EmulatorConfigContent);
-
-                static GameConfigViewModel getVM(object obj) => (obj as FrameworkElement)?.Dispatcher?.Invoke(() => (obj as FrameworkElement)?.DataContext as GameConfigViewModel);
-            }
-        }
+        public bool IsLoading { get; set; }
 
         #endregion
 
@@ -218,34 +142,13 @@ namespace RayCarrot.RCP.Metro
         {
             if (e.GameInfoModified)
             {
-                // Refresh the game info
-                RefreshGameInfo();
-
-                // Reload the config if needed
-                foreach (var config in GetGameConfigViewModels)
+                // Reload the pages if needed
+                foreach (var page in Pages)
                 {
-                    if (config?.ReloadOnGameInfoChanged == true)
-                        await config.SetupAsync();
+                    if (page.ReloadOnGameInfoChanged)
+                        await page.LoadPageAsync();
                 }
             }
-        }
-
-        private void Data_CultureChanged(object sender, PropertyChangedEventArgs<CultureInfo> e)
-        {
-            RefreshGameInfo();
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        /// <summary>
-        /// Refreshes the game info
-        /// </summary>
-        private void RefreshGameInfo()
-        {
-            GameInfoItems.Clear();
-            GameInfoItems.AddRange(Game.GetManager().GetGameInfoItems);
         }
 
         #endregion
@@ -364,20 +267,54 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
+        /// Loads the current page
+        /// </summary>
+        public async Task LoadCurrentPageAsync()
+        {
+            using (await PageLoadLock.LockAsync())
+            {
+                // Get the selected page
+                var page = SelectedPage;
+
+                // Ignore if already loaded
+                if (page.IsLoaded)
+                    return;
+
+                try
+                {
+                    IsLoading = true;
+
+                    // Load the page
+                    await page.LoadPageAsync();
+
+                    RL.Logger?.LogInformationSource($"Loaded {page.PageName} page");
+                }
+                catch (Exception ex)
+                {
+                    ex.HandleError("Loading page", page);
+
+                    page.SetErrorState(ex);
+                }
+                finally
+                {
+                    // Set the page as loaded
+                    page.IsLoaded = true;
+
+                    IsLoading = false;
+                }
+            }
+        }
+
+        /// <summary>
         /// Disposes the view model
         /// </summary>
         public void Dispose()
         {
             // Unsubscribe events
-            Services.Data.CultureChanged -= Data_CultureChanged;
             App.RefreshRequired -= App_RefreshRequiredAsync;
 
             // Dispose
-            ProgressionViewModel?.Dispose();
-            EmulatorDisplayName?.Dispose();
-
-            // Disable collection synchronization
-            BindingOperations.DisableCollectionSynchronization(GameInfoItems);
+            Pages?.DisposeAll();
         }
 
         #endregion

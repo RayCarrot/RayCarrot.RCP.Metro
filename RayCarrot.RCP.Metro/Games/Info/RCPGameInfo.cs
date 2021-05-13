@@ -81,9 +81,9 @@ namespace RayCarrot.RCP.Metro
         public virtual FrameworkElement OptionsUI => null;
 
         /// <summary>
-        /// The config UI, if any is available
+        /// The config page view model, if any is available
         /// </summary>
-        public virtual FrameworkElement ConfigUI => null;
+        public virtual GameOptions_ConfigPageViewModel ConfigPageViewModel => null;
 
         /// <summary>
         /// The progression view model, if any is available

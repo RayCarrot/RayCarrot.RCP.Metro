@@ -14,7 +14,7 @@ namespace RayCarrot.RCP.Metro
     /// Base class for ubi.ini game config view models
     /// </summary>
     /// <typeparam name="Handler">The config handler</typeparam>
-    public abstract class BaseUbiIniGameConfigViewModel<Handler> : GameConfigViewModel
+    public abstract class BaseUbiIniGameConfigViewModel<Handler> : GameOptions_ConfigPageViewModel
         where Handler : UbiIniHandler
     {
         #region Constructor
@@ -78,42 +78,6 @@ namespace RayCarrot.RCP.Metro
         #region Public Methods
 
         /// <summary>
-        /// Loads and sets up the current configuration properties
-        /// </summary>
-        /// <returns>The task</returns>
-        public override async Task SetupAsync()
-        {
-            RL.Logger?.LogInformationSource($"{Game} config is being set up");
-
-            // Run setup code
-            await OnSetupAsync();
-
-            // Load the configuration data
-            ConfigData = await LoadConfigAsync();
-
-            RL.Logger?.LogInformationSource($"The ubi.ini file has been loaded");
-
-            // Keep track if the data had to be recreated
-            bool recreated = false;
-
-            // Re-create the section if it doesn't exist
-            if (!ConfigData.Exists)
-            {
-                ConfigData.ReCreate();
-                recreated = true;
-                RL.Logger?.LogInformationSource($"The ubi.ini section for {Game} was recreated");
-            }
-
-            // Import config data
-            await ImportConfigAsync();
-
-            // If the data was recreated we mark that there are unsaved changes available
-            UnsavedChanges = recreated;
-
-            RL.Logger?.LogInformationSource($"All section properties have been loaded");
-        }
-
-        /// <summary>
         /// Saves the changes
         /// </summary>
         /// <returns>The task</returns>
@@ -157,13 +121,49 @@ namespace RayCarrot.RCP.Metro
 
                 await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
 
-                OnSave();
+                OnSaved();
             }
         }
 
         #endregion
 
-        #region Protected Virtual Methods
+        #region Protected Methods
+
+        /// <summary>
+        /// Loads and sets up the current configuration properties
+        /// </summary>
+        /// <returns>The task</returns>
+        protected override async Task LoadAsync()
+        {
+            RL.Logger?.LogInformationSource($"{Game} config is being set up");
+
+            // Run setup code
+            await OnSetupAsync();
+
+            // Load the configuration data
+            ConfigData = await LoadConfigAsync();
+
+            RL.Logger?.LogInformationSource($"The ubi.ini file has been loaded");
+
+            // Keep track if the data had to be recreated
+            bool recreated = false;
+
+            // Re-create the section if it doesn't exist
+            if (!ConfigData.Exists)
+            {
+                ConfigData.ReCreate();
+                recreated = true;
+                RL.Logger?.LogInformationSource($"The ubi.ini section for {Game} was recreated");
+            }
+
+            // Import config data
+            await ImportConfigAsync();
+
+            // If the data was recreated we mark that there are unsaved changes available
+            UnsavedChanges = recreated;
+
+            RL.Logger?.LogInformationSource($"All section properties have been loaded");
+        }
 
         /// <summary>
         /// Override to run on setup

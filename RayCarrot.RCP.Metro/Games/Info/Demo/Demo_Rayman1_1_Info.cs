@@ -55,11 +55,6 @@ namespace RayCarrot.RCP.Metro
         public override GameType DownloadType => GameType.DosBox;
 
         /// <summary>
-        /// The config UI, if any is available
-        /// </summary>
-        public override FrameworkElement ConfigUI => null;
-
-        /// <summary>
         /// The options UI, if any is available
         /// </summary>
         public override FrameworkElement OptionsUI => null;

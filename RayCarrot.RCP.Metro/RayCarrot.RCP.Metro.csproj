@@ -512,6 +512,12 @@
     <Compile Include="AppUserData\DataModels\FiestaRunEdition.cs" />
     <Compile Include="DataModels\Enums\Pages.cs" />
     <Compile Include="Pages\Games\GameCategoryViewModel.cs" />
+    <Compile Include="ViewModels\OptionsPages\GameOptions_BasePageViewModel.cs" />
+    <Compile Include="ViewModels\OptionsPages\GameOptions_ConfigPageViewModel.cs" />
+    <Compile Include="ViewModels\OptionsPages\GameOptions_EmulatorConfigPageViewModel.cs" />
+    <Compile Include="ViewModels\OptionsPages\GameOptions_OptionsPageViewModel.cs" />
+    <Compile Include="ViewModels\OptionsPages\GameOptions_ProgressionPageViewModel.cs" />
+    <Compile Include="ViewModels\OptionsPages\GameOptions_UtilitiesPageViewModel.cs" />
     <Compile Include="ViewModels\TaskbarIconViewModel.cs" />
     <Page Include="Archive\ArchiveCreator\ArchiveCreatorUI.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -999,7 +1005,6 @@
     <Compile Include="Pages\Games\GamesPageViewModel.cs" />
     <Compile Include="ViewModels\Controls\OverflowButtonItemViewModel.cs" />
     <Compile Include="Pages\Games\GameDisplayViewModel.cs" />
-    <Compile Include="Games\Config\ViewModels\Base\GameConfigViewModel.cs" />
     <Compile Include="UI\Windows\AppNewsDialog.xaml.cs">
       <DependentUpon>AppNewsDialog.xaml</DependentUpon>
     </Compile>

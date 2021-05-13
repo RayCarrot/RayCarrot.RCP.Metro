@@ -7,14 +7,14 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                  xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                   Title="{Binding Path=DisplayName, Mode=OneTime}"
-                  Loaded="GameOptions_OnLoadedAsync"
-                  Closing="GameOptions_OnClosingAsync"
                   WindowStartupLocation="CenterOwner"
                   ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                   mc:Ignorable="d"
                   d:DataContext="{d:DesignInstance local:GameOptionsViewModel}">
-    <Grid Margin="10">
+    <Grid Margin="10"
+          IsEnabled="{Binding Path=IsLoading, Converter={rwpf:InvertedBooleanConverter}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -70,71 +70,48 @@
 
         </Grid>
 
-        <metro:MetroAnimatedTabControl x:Name="ContentTabControl"
-                                       SelectionChanged="ContentTabControl_OnSelectionChangedAsync"
-                                       Grid.Row="1">
+        <!-- Pages -->
+
+        <metro:MetroAnimatedTabControl Grid.Row="1"
+                                       ItemsSource="{Binding Path=Pages, Mode=OneTime}"
+                                       SelectedItem="{Binding Path=SelectedPage}"
+                                       SelectionChanged="PagesTabControl_OnSelectionChanged">
 
             <metro:MetroAnimatedTabControl.Resources>
                 <Style TargetType="{x:Type TabPanel}" BasedOn="{StaticResource SmallTabPanel}" />
                 <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
             </metro:MetroAnimatedTabControl.Resources>
 
-            <!-- Options -->
+            <metro:MetroAnimatedTabControl.ItemTemplate>
+                <DataTemplate DataType="local:GameOptions_BasePageViewModel">
+                    <StackPanel Orientation="Horizontal"
+                                Margin="5 2">
 
-            <local:RCPTabItem IconKind="CogOutline"
-                              Header="{Resx GameOptions_Options}">
+                        <iconPacks:PackIconMaterial Kind="{Binding Path=PageIcon, Mode=OneTime}"
+                                                    Margin="10 0"
+                                                    VerticalAlignment="Center" />
 
-                <ScrollViewer Padding="5">
-                    <i:Interaction.Behaviors>
-                        <rwpf:FocusScrollViewerOnLoad />
-                    </i:Interaction.Behaviors>
+                        <ContentControl FontSize="16"
+                                        Content="{Binding Path=PageName.Value}" />
 
-                    <local:GameOptionsUI />
+                    </StackPanel>
+                </DataTemplate>
+            </metro:MetroAnimatedTabControl.ItemTemplate>
 
-                </ScrollViewer>
-            </local:RCPTabItem>
+            <metro:MetroAnimatedTabControl.ContentTemplate>
+                <DataTemplate DataType="{x:Type local:GameOptions_BasePageViewModel}">
 
-            <!-- Progression -->
+                    <ScrollViewer Padding="5">
+                        <i:Interaction.Behaviors>
+                            <rwpf:FocusScrollViewerOnLoad />
+                        </i:Interaction.Behaviors>
 
-            <local:RCPTabItem x:Name="ProgressionTab"
-                              IconKind="TrophyVariantOutline"
-                              Header="{Resx Progression_Header}"
-                              Visibility="{Binding Path=HasProgressionContent, Converter={rwpf:BooleanToVisibilityConverter}}">
-                <ScrollViewer Padding="5">
-                    <local:ProgressionUI DataContext="{Binding Path=ProgressionViewModel, Mode=OneTime}"/>
-                </ScrollViewer>
-            </local:RCPTabItem>
+                        <ContentPresenter Content="{Binding Path=PageContent}" />
 
-            <!-- Config -->
+                    </ScrollViewer>
 
-            <local:RCPTabItem IconKind="WrenchOutline"
-                              Header="{Resx GameOptions_Config}"
-                              Visibility="{Binding Path=HasConfigContent, Converter={rwpf:BooleanToVisibilityConverter}}">
-                <ContentPresenter Content="{Binding Path=ConfigContent}" />
-            </local:RCPTabItem>
-
-            <!-- Emulator config -->
-
-            <local:RCPTabItem IconKind="FileCogOutline"
-                              Header="{Binding Path=EmulatorDisplayName.Value}"
-                              Visibility="{Binding Path=HasEmulatorConfigContent, Converter={rwpf:BooleanToVisibilityConverter}}">
-                <ContentPresenter Content="{Binding Path=EmulatorConfigContent}" />
-            </local:RCPTabItem>
-
-            <!-- Utilities -->
-
-            <local:RCPTabItem IconKind="BriefcaseOutline"
-                              Header="{Resx GameOptions_Utilities}"
-                              Visibility="{Binding Path=HasUtilities, Converter={rwpf:BooleanToVisibilityConverter}}">
-                <ScrollViewer Padding="5">
-                    <i:Interaction.Behaviors>
-                        <rwpf:FocusScrollViewerOnLoad />
-                    </i:Interaction.Behaviors>
-
-                    <local:UtilitiesContainer Utilities="{Binding Path=Utilities, Mode=OneTime}"/>
-
-                </ScrollViewer>
-            </local:RCPTabItem>
+                </DataTemplate>
+            </metro:MetroAnimatedTabControl.ContentTemplate>
 
         </metro:MetroAnimatedTabControl>
 
