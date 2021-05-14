@@ -1,11 +1,9 @@
-﻿using System;
+﻿using RayCarrot.Common;
+using RayCarrot.Logging;
+using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
-using Nito.AsyncEx;
-using RayCarrot.Common;
-using RayCarrot.Logging;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -22,13 +20,6 @@ namespace RayCarrot.RCP.Metro
         {
             Game = game;
             GameType = gameType;
-
-            // Create the async lock
-            AsyncLock = new AsyncLock();
-
-            // Create the commands
-            SaveCommand = new AsyncRelayCommand(SaveAsync);
-            UseRecommendedCommand = new RelayCommand(UseRecommended);
 
             // Set up the available resolution values
             AvailableFullscreenResolutionValues = new ObservableCollection<string>();
@@ -157,15 +148,6 @@ namespace RayCarrot.RCP.Metro
         public const string CoreKey = "core";
 
         public const string CyclesKey = "cycles";
-
-        #endregion
-
-        #region Private Properties
-
-        /// <summary>
-        /// The async lock to use for saving the configuration
-        /// </summary>
-        private AsyncLock AsyncLock { get; }
 
         #endregion
 
@@ -367,13 +349,10 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        #endregion
-
-        #region Commands
-
-        public AsyncRelayCommand SaveCommand { get; }
-
-        public RelayCommand UseRecommendedCommand { get; }
+        /// <summary>
+        /// Indicates if the option to use recommended options in the page is available
+        /// </summary>
+        public override bool CanUseRecommended => true;
 
         #endregion
 
@@ -427,102 +406,91 @@ namespace RayCarrot.RCP.Metro
             double? GetDouble(string propName) => Double.TryParse(configData.Configuration.TryGetValue(propName), out double output) ? (double?)output : null;
         }
 
-        #endregion
-
-        #region Public Methods
-
         /// <summary>
         /// Saves the changes
         /// </summary>
         /// <returns>The task</returns>
-        public async Task SaveAsync()
+        protected override async Task<bool> SaveAsync()
         {
-            using (await AsyncLock.LockAsync())
+            RL.Logger?.LogInformationSource($"DOSBox emulator game config for {Game} is saving...");
+
+            try
             {
-                RL.Logger?.LogInformationSource($"DOSBox emulator game config for {Game} is saving...");
+                // Get the config manager
+                var configManager = new DosBoxAutoConfigManager(Game.GetManager<RCPDOSBoxGame>(GameType).DosBoxConfigFile);
 
-                try
+                // Create config data
+                var configData = new DosBoxAutoConfigData();
+
+                // Add custom commands
+                configData.CustomLines.AddRange(CustomCommands.Split(new[] { Environment.NewLine }, StringSplitOptions.None));
+
+                // Add commands
+                SetProp(FullScreenKey, FullscreenEnabled);
+                SetProp(FullDoubleKey, FullDoubleEnabled);
+                SetProp(AspectCorrectionKey, AspectCorrectionEnabled);
+                SetProp(MemorySizeKey, MemorySize);
+                SetProp(FrameskipKey, Frameskip);
+                SetProp(OutputKey, SelectedOutput, true);
+                SetProp(FullscreenResolutionKey, FullscreenResolution);
+                SetProp(WindowedResolutionKey, WindowedResolution);
+                SetProp(ScalerKey, SelectedScaler, true);
+                SetProp(CoreKey, SelectedCoreMode, true);
+                SetProp(CyclesKey, SelectedCycles, true);
+
+                // Add section names
+                configData.SectionNames.Add("sdl", new[]
                 {
-                    // Get the config manager
-                    var configManager = new DosBoxAutoConfigManager(Game.GetManager<RCPDOSBoxGame>(GameType).DosBoxConfigFile);
-
-                    // Create config data
-                    var configData = new DosBoxAutoConfigData();
-
-                    // Add custom commands
-                    configData.CustomLines.AddRange(CustomCommands.Split(new[] { Environment.NewLine }, StringSplitOptions.None));
-
-                    // Add commands
-                    SetProp(FullScreenKey, FullscreenEnabled);
-                    SetProp(FullDoubleKey, FullDoubleEnabled);
-                    SetProp(AspectCorrectionKey, AspectCorrectionEnabled);
-                    SetProp(MemorySizeKey, MemorySize);
-                    SetProp(FrameskipKey, Frameskip);
-                    SetProp(OutputKey, SelectedOutput, true);
-                    SetProp(FullscreenResolutionKey, FullscreenResolution);
-                    SetProp(WindowedResolutionKey, WindowedResolution);
-                    SetProp(ScalerKey, SelectedScaler, true);
-                    SetProp(CoreKey, SelectedCoreMode, true);
-                    SetProp(CyclesKey, SelectedCycles, true);
-
-                    // Add section names
-                    configData.SectionNames.Add("sdl", new []
-                    {
                         FullScreenKey,
                         FullDoubleKey,
                         OutputKey,
                         FullscreenResolutionKey,
                         WindowedResolutionKey
                     });
-                    configData.SectionNames.Add("render", new []
-                    {
+                configData.SectionNames.Add("render", new[]
+                {
                         AspectCorrectionKey,
                         FrameskipKey,
                         ScalerKey
                     });
-                    configData.SectionNames.Add("dosbox", new []
-                    {
+                configData.SectionNames.Add("dosbox", new[]
+                {
                         MemorySizeKey,
                     });
-                    configData.SectionNames.Add("cpu", new []
-                    {
+                configData.SectionNames.Add("cpu", new[]
+                {
                         CoreKey,
                         CyclesKey
                     });
 
-                    // Write to the config file
-                    configManager.WriteFile(configData);
+                // Write to the config file
+                configManager.WriteFile(configData);
 
-                    RL.Logger?.LogInformationSource($"DOSBox emulator game config for {Game} has been saved");
+                RL.Logger?.LogInformationSource($"DOSBox emulator game config for {Game} has been saved");
 
-                    // Helper methods for setting properties
-                    void SetProp(string propName, object value, bool ignoreDefault = false)
-                    {
-                        if ((value != null && (!ignoreDefault || !value.ToString().Equals("default", StringComparison.CurrentCultureIgnoreCase))))
-                            configData.Configuration[propName] = value.ToString();
-                        else if (configData.Configuration.ContainsKey(propName))
-                            configData.Configuration.Remove(propName);
-                    }
-                }
-                catch (Exception ex)
+                return true;
+
+                // Helper methods for setting properties
+                void SetProp(string propName, object value, bool ignoreDefault = false)
                 {
-                    ex.HandleError("Saving DOSBox emulator game config data");
-                    await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_DosBoxSaveError, Resources.Config_SaveErrorHeader);
-                    return;
+                    if ((value != null && (!ignoreDefault || !value.ToString().Equals("default", StringComparison.CurrentCultureIgnoreCase))))
+                        configData.Configuration[propName] = value.ToString();
+                    else if (configData.Configuration.ContainsKey(propName))
+                        configData.Configuration.Remove(propName);
                 }
-
-                UnsavedChanges = false;
-
-                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
-
-                OnSaved();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Saving DOSBox emulator game config data");
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_DosBoxSaveError, Resources.Config_SaveErrorHeader);
+                return false;
             }
         }
 
         /// <summary>
         /// Applies the recommended settings for the specified game
         /// </summary>
-        public void UseRecommended()
+        protected override void UseRecommended()
         {
             AspectCorrectionEnabled = false;
             MemorySize = 30;

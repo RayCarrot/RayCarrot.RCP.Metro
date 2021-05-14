@@ -1,10 +1,8 @@
-﻿using Nito.AsyncEx;
-using RayCarrot.Binary;
+﻿using RayCarrot.Binary;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.Ray1;
-using RayCarrot.UI;
 using RayCarrot.WPF;
 using System;
 using System.IO;
@@ -27,12 +25,6 @@ namespace RayCarrot.RCP.Metro
             Game = game;
             Ray1Game = ray1Game;
             LangMode = langMode;
-
-            // Create the async lock
-            AsyncLock = new AsyncLock();
-
-            // Create the commands
-            SaveCommand = new AsyncRelayCommand(SaveAsync);
         }
 
         #endregion
@@ -40,15 +32,6 @@ namespace RayCarrot.RCP.Metro
         #region Private Fields
 
         private R1Languages _gameLanguage;
-
-        #endregion
-
-        #region Private Properties
-
-        /// <summary>
-        /// The async lock to use for saving the configuration
-        /// </summary>
-        private AsyncLock AsyncLock { get; }
 
         #endregion
 
@@ -111,12 +94,6 @@ namespace RayCarrot.RCP.Metro
                 UnsavedChanges = true;
             }
         }
-
-        #endregion
-
-        #region Commands
-
-        public AsyncRelayCommand SaveCommand { get; }
 
         #endregion
 
@@ -199,51 +176,44 @@ namespace RayCarrot.RCP.Metro
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Saves the changes
+        /// </summary>
+        /// <returns>The task</returns>
+        protected override async Task<bool> SaveAsync()
+        {
+            RL.Logger?.LogInformationSource($"{Game} config is saving...");
+
+            try
+            {
+                // If game language is available, update it
+                if (IsGameLanguageAvailable)
+                {
+                    if (LangMode == LanguageMode.Config)
+                        Config.Language = GameLanguage;
+                    else if (LangMode == LanguageMode.Argument)
+                        await SetBatchFileLanguageAsync(Game.GetInstallDir() + Game.GetGameInfo().DefaultFileName, GameLanguage, Game);
+                }
+
+                // Save the config file
+                BinarySerializableHelpers.WriteToFile(Config, ConfigFilePath, Ray1Settings.GetDefaultSettings(Ray1Game, Platform.PC), App.GetBinarySerializerLogger(ConfigFilePath.Name));
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError($"Saving {Game} configuration data");
+
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
+                return false;
+            }
+        }
+
         #endregion
 
         #region Public Methods
 
         public abstract FileSystemPath GetConfigPath();
-
-        /// <summary>
-        /// Saves the changes
-        /// </summary>
-        /// <returns>The task</returns>
-        public async Task SaveAsync()
-        {
-            using (await AsyncLock.LockAsync())
-            {
-                RL.Logger?.LogInformationSource($"{Game} config is saving...");
-
-                try
-                {
-                    // If game language is available, update it
-                    if (IsGameLanguageAvailable)
-                    {
-                        if (LangMode == LanguageMode.Config)
-                            Config.Language = GameLanguage;
-                        else if (LangMode == LanguageMode.Argument)
-                            await SetBatchFileLanguageAsync(Game.GetInstallDir() + Game.GetGameInfo().DefaultFileName, GameLanguage, Game);
-                    }
-
-                    // Save the config file
-                    BinarySerializableHelpers.WriteToFile(Config, ConfigFilePath, Ray1Settings.GetDefaultSettings(Ray1Game, Platform.PC), App.GetBinarySerializerLogger(ConfigFilePath.Name));
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError($"Saving {Game} configuration data");
-
-                    await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
-                    return;
-                }
-
-                UnsavedChanges = false;
-
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
-
-                OnSaved();
-            }
-        }
 
         #endregion
 

@@ -163,6 +163,11 @@ namespace RayCarrot.RCP.Metro
 
         private async void PagesTabControl_OnSelectionChanged(object sender, SelectionChangedEventArgs e) => await ViewModel.LoadCurrentPageAsync();
 
+        private void CancelButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
         #endregion
     }
 }

@@ -101,14 +101,45 @@
             <metro:MetroAnimatedTabControl.ContentTemplate>
                 <DataTemplate DataType="{x:Type local:GameOptions_BasePageViewModel}">
 
-                    <ScrollViewer Padding="5">
-                        <i:Interaction.Behaviors>
-                            <rwpf:FocusScrollViewerOnLoad />
-                        </i:Interaction.Behaviors>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                        <ContentPresenter Content="{Binding Path=PageContent}" />
+                        <ScrollViewer Grid.Row="0"
+                                      Padding="5">
+                            <i:Interaction.Behaviors>
+                                <rwpf:FocusScrollViewerOnLoad />
+                            </i:Interaction.Behaviors>
 
-                    </ScrollViewer>
+                            <ContentPresenter Content="{Binding Path=PageContent}" />
+
+                        </ScrollViewer>
+
+                        <Button Grid.Row="1"
+                                HorizontalAlignment="Left"
+                                Visibility="{Binding Path=CanUseRecommended, Mode=OneTime, Converter={rwpf:BooleanToVisibilityConverter}}"
+                                Content="{Resx DosBoxOptions_Recommended}"
+                                Command="{Binding Path=UseRecommendedCommand}" />
+
+                        <StackPanel Grid.Row="1"
+                                    Visibility="{Binding Path=CanSave, Mode=OneTime, Converter={rwpf:BooleanToVisibilityConverter}}"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Right">
+
+                            <Button Content="{Resx Cancel}"
+                                    Margin="0 0 10 0"
+                                    IsCancel="True"
+                                    Click="CancelButton_OnClick" />
+
+                            <Button Content="{Resx Save}"
+                                    IsEnabled="{Binding Path=UnsavedChanges}"
+                                    Command="{Binding Path=SaveCommand, Mode=OneTime}" />
+
+                        </StackPanel>
+
+                    </Grid>
 
                 </DataTemplate>
             </metro:MetroAnimatedTabControl.ContentTemplate>

@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -8,8 +7,6 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public partial class RabbidsGoHomeConfig : UserControl
     {
-        #region Constructor
-
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -17,16 +14,5 @@ namespace RayCarrot.RCP.Metro
         {
             InitializeComponent();
         }
-
-        #endregion
-
-        #region Event Handlers
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            App.Current.CurrentActiveWindow.Close();
-        }
-
-        #endregion
     }
 }

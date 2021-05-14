@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using RayCarrot.Logging;
+using RayCarrot.Windows.Registry;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
-using Microsoft.Win32;
-using Nito.AsyncEx;
-using RayCarrot.Logging;
-using RayCarrot.UI;
-using RayCarrot.Windows.Registry;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -27,12 +25,6 @@ namespace RayCarrot.RCP.Metro
 
             // Get the game
             Game = game;
-
-            // Create commands
-            SaveCommand = new AsyncRelayCommand(SaveAsync);
-
-            // Create properties
-            AsyncLock = new AsyncLock();
         }
 
         #endregion
@@ -56,15 +48,6 @@ namespace RayCarrot.RCP.Metro
         private const string ScreenWidthKey = "ScreenWidth";
 
         private const string FullScreenKey = "FullScreen";
-
-        #endregion
-
-        #region Private Properties
-
-        /// <summary>
-        /// The async lock to use for saving the configuration
-        /// </summary>
-        protected AsyncLock AsyncLock { get; }
 
         #endregion
 
@@ -135,12 +118,6 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Commands
-
-        public AsyncRelayCommand SaveCommand { get; }
-
-        #endregion
-
         #region Protected Methods
 
         protected override object GetPageUI() => new Ray_Origins_Legends_Config()
@@ -177,48 +154,37 @@ namespace RayCarrot.RCP.Metro
             return Task.CompletedTask;
         }
 
-        #endregion
-
-        #region Public Methods
-
         /// <summary>
         /// Saves the changes
         /// </summary>
         /// <returns>The task</returns>
-        public async Task SaveAsync()
+        protected override async Task<bool> SaveAsync()
         {
-            using (await AsyncLock.LockAsync())
+            RL.Logger?.LogInformationSource($"{Game} configuration is saving...");
+
+            try
             {
-                RL.Logger?.LogInformationSource($"{Game} configuration is saving...");
-
-                try
+                using (var key = GetKey(true))
                 {
-                    using (var key = GetKey(true))
-                    {
-                        if (key == null)
-                            throw new Exception("The Registry key could not be created");
+                    if (key == null)
+                        throw new Exception("The Registry key could not be created");
 
-                        RL.Logger?.LogInformationSource($"The key {key.Name} has been opened");
+                    RL.Logger?.LogInformationSource($"The key {key.Name} has been opened");
 
-                        key.SetValue(ScreenHeightKey, ScreenHeight.ToString());
-                        key.SetValue(ScreenWidthKey, ScreenWidth.ToString());
-                        key.SetValue(FullScreenKey, FullscreenMode ? 1 : 0);
-                    }
-
-                    RL.Logger?.LogInformationSource($"{Game} configuration has been saved");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError($"Saving {Game} registry data");
-                    await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
-                    return;
+                    key.SetValue(ScreenHeightKey, ScreenHeight.ToString());
+                    key.SetValue(ScreenWidthKey, ScreenWidth.ToString());
+                    key.SetValue(FullScreenKey, FullscreenMode ? 1 : 0);
                 }
 
-                UnsavedChanges = false;
+                RL.Logger?.LogInformationSource($"{Game} configuration has been saved");
 
-                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
-
-                OnSaved();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError($"Saving {Game} registry data");
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
+                return false;
             }
         }
 

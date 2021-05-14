@@ -1,10 +1,8 @@
-﻿using System;
+﻿using RayCarrot.Common;
+using RayCarrot.Logging;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
-using Nito.AsyncEx;
-using RayCarrot.Common;
-using RayCarrot.Logging;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -13,22 +11,6 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class RabbidsGoHomeConfigViewModel : GameOptions_ConfigPageViewModel
     {
-        #region Constructor
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public RabbidsGoHomeConfigViewModel()
-        {
-            // Create commands
-            SaveCommand = new AsyncRelayCommand(SaveAsync);
-
-            // Create properties
-            AsyncLock = new AsyncLock();
-        }
-
-        #endregion
-
         #region Private Fields
 
         private bool _enableCustomSettings;
@@ -50,15 +32,6 @@ namespace RayCarrot.RCP.Metro
         private string _bigFile;
 
         private string _customCommands;
-
-        #endregion
-
-        #region Private Properties
-
-        /// <summary>
-        /// The async lock to use for saving the configuration
-        /// </summary>
-        protected AsyncLock AsyncLock { get; }
 
         #endregion
 
@@ -204,12 +177,6 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Commands
-
-        public AsyncRelayCommand SaveCommand { get; }
-
-        #endregion
-
         #region Private Methods
 
         /// <summary>
@@ -267,36 +234,25 @@ namespace RayCarrot.RCP.Metro
             return Task.CompletedTask;
         }
 
-        #endregion
-
-        #region Public Methods
-
         /// <summary>
         /// Saves the changes
         /// </summary>
         /// <returns>The task</returns>
-        public async Task SaveAsync()
+        protected override async Task<bool> SaveAsync()
         {
-            using (await AsyncLock.LockAsync())
-            {
-                RL.Logger?.LogInformationSource($"Rabbids Go Home configuration is saving...");
+            RL.Logger?.LogInformationSource($"Rabbids Go Home configuration is saving...");
 
-                // Set the launch data
-                Data.RabbidsGoHomeLaunchData = EnableCustomSettings ? 
-                    new RabbidsGoHomeLaunchData(BigFile, GetLanguageName(Language), ResX, ResY, VSync, Fullscreen, VersionIndex, CustomCommands.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)) :
-                    null;
+            // Set the launch data
+            Data.RabbidsGoHomeLaunchData = EnableCustomSettings ?
+                new RabbidsGoHomeLaunchData(BigFile, GetLanguageName(Language), ResX, ResY, VSync, Fullscreen, VersionIndex, CustomCommands.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)) :
+                null;
 
-                // Refresh
-                await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RabbidsGoHome, false, false, false, true));
+            // Refresh
+            await App.OnRefreshRequiredAsync(new RefreshRequiredEventArgs(Games.RabbidsGoHome, false, false, false, true));
 
-                RL.Logger?.LogInformationSource($"Rabbids Go Home configuration has been saved");
+            RL.Logger?.LogInformationSource($"Rabbids Go Home configuration has been saved");
 
-                UnsavedChanges = false;
-
-                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
-
-                OnSaved();
-            }
+            return true;
         }
 
         #endregion

@@ -1,11 +1,9 @@
-﻿using System;
+﻿using RayCarrot.IO;
+using RayCarrot.Logging;
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Nito.AsyncEx;
-using RayCarrot.IO;
-using RayCarrot.Logging;
-using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -23,11 +21,7 @@ namespace RayCarrot.RCP.Metro
         protected BaseRayRunConfigViewModel(Games game)
         {
             // Create properties
-            AsyncLock = new AsyncLock();
             Game = game;
-
-            // Create commands
-            SaveCommand = new AsyncRelayCommand(SaveAsync);
         }
 
         #endregion
@@ -47,11 +41,6 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Protected Properties
-
-        /// <summary>
-        /// The async lock to use for saving the configuration
-        /// </summary>
-        protected AsyncLock AsyncLock { get; }
 
         /// <summary>
         /// The save directory
@@ -92,12 +81,6 @@ namespace RayCarrot.RCP.Metro
                 UnsavedChanges = true;
             }
         }
-
-        #endregion
-
-        #region Commands
-
-        public AsyncRelayCommand SaveCommand { get; }
 
         #endregion
 
@@ -207,49 +190,38 @@ namespace RayCarrot.RCP.Metro
             RL.Logger?.LogInformationSource($"All values have been loaded");
         }
 
-        #endregion
-
-        #region Public Methods
-
         /// <summary>
         /// Saves the changes
         /// </summary>
         /// <returns>The task</returns>
-        public async Task SaveAsync()
+        protected override async Task<bool> SaveAsync()
         {
-            using (await AsyncLock.LockAsync())
+            RL.Logger?.LogInformationSource($"{Game} configuration is saving...");
+
+            try
             {
-                RL.Logger?.LogInformationSource($"{Game} configuration is saving...");
+                // Create directory if it doesn't exist
+                Directory.CreateDirectory(SaveDir);
 
-                try
+                // Save game specific values
+                await SaveGameAsync();
+
+                // Save the volume
+                WriteMultiByteFile(SelectedVolumeFileName, new byte[]
                 {
-                    // Create directory if it doesn't exist
-                    Directory.CreateDirectory(SaveDir);
+                    MusicVolume,
+                    SoundVolume
+                });
 
-                    // Save game specific values
-                    await SaveGameAsync();
+                RL.Logger?.LogInformationSource($"{Game} configuration has been saved");
 
-                    // Save the volume
-                    WriteMultiByteFile(SelectedVolumeFileName, new byte[]
-                    {
-                        MusicVolume,
-                        SoundVolume
-                    });
-
-                    RL.Logger?.LogInformationSource($"{Game} configuration has been saved");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError($"Saving {Game} config");
-                    await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
-                    return;
-                }
-
-                UnsavedChanges = false;
-
-                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
-
-                OnSaved();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError($"Saving {Game} config");
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
+                return false;
             }
         }
 

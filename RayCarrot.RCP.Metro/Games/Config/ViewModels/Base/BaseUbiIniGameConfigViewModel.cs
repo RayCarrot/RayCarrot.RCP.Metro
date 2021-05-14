@@ -1,12 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using IniParser.Model;
-using Nito.AsyncEx;
+﻿using IniParser.Model;
 using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman.UbiIni;
-using RayCarrot.UI;
+using System;
+using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -25,12 +23,6 @@ namespace RayCarrot.RCP.Metro
         /// <param name="game">The game</param>
         protected BaseUbiIniGameConfigViewModel(Games game)
         {
-            // Create the async lock
-            AsyncLock = new AsyncLock();
-
-            // Create the commands
-            SaveCommand = new AsyncRelayCommand(SaveAsync);
-
             // Set properties
             Game = game;
             CanModifyGame = RCPServices.File.CheckDirectoryWriteAccess(Game.GetInstallDir(false));
@@ -58,75 +50,12 @@ namespace RayCarrot.RCP.Metro
         #region Protected Properties
 
         /// <summary>
-        /// The async lock to use for saving the configuration
-        /// </summary>
-        protected AsyncLock AsyncLock { get; }
-
-        /// <summary>
         /// The configuration data
         /// </summary>
         protected Handler ConfigData { get; set; }
 
         #endregion
-
-        #region Commands
-
-        public AsyncRelayCommand SaveCommand { get; }
-
-        #endregion
-
-        #region Public Methods
-
-        /// <summary>
-        /// Saves the changes
-        /// </summary>
-        /// <returns>The task</returns>
-        public async Task SaveAsync()
-        {
-            using (await AsyncLock.LockAsync())
-            {
-                RL.Logger?.LogInformationSource($"{Game} configuration is saving...");
-
-                try
-                {
-                    // Update the config data
-                    await UpdateConfigAsync();
-
-                    // Save the config data
-                    ConfigData.Save();
-
-                    RL.Logger?.LogInformationSource($"{Game} configuration has been saved");
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("Saving ubi.ini data");
-                    await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
-                    return;
-                }
-
-                try
-                {
-                    // Run save code
-                    await OnSaveAsync();
-                }
-                catch (Exception ex)
-                {
-                    ex.HandleError("On save config");
-                    await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveWarning, Resources.Config_SaveErrorHeader);
-
-                    return;
-                }
-
-                UnsavedChanges = false;
-
-                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
-
-                OnSaved();
-            }
-        }
-
-        #endregion
-
+        
         #region Protected Methods
 
         /// <summary>
@@ -163,6 +92,47 @@ namespace RayCarrot.RCP.Metro
             UnsavedChanges = recreated;
 
             RL.Logger?.LogInformationSource($"All section properties have been loaded");
+        }
+
+        /// <summary>
+        /// Saves the changes
+        /// </summary>
+        /// <returns>The task</returns>
+        protected override async Task<bool> SaveAsync()
+        {
+            RL.Logger?.LogInformationSource($"{Game} configuration is saving...");
+
+            try
+            {
+                // Update the config data
+                await UpdateConfigAsync();
+
+                // Save the config data
+                ConfigData.Save();
+
+                RL.Logger?.LogInformationSource($"{Game} configuration has been saved");
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Saving ubi.ini data");
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
+                return false;
+            }
+
+            try
+            {
+                // Run save code
+                await OnSaveAsync();
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("On save config");
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveWarning, Resources.Config_SaveErrorHeader);
+
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>

@@ -1,7 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using MahApps.Metro.IconPacks;
+﻿using MahApps.Metro.IconPacks;
+using Nito.AsyncEx;
+using RayCarrot.UI;
 using RayCarrot.WPF;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -12,14 +15,35 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Default constructor
         /// </summary>
-        /// <param name="pageContent">The page UI content</param>
         /// <param name="pageName">The name of the page</param>
         /// <param name="pageIcon">The page icon</param>
         protected GameOptions_BasePageViewModel(LocalizedString pageName, PackIconMaterialKind pageIcon)
         {
+            // Set properties
             PageName = pageName;
             PageIcon = pageIcon;
+            AsyncLock = new AsyncLock();
+
+            // Create commands
+            SaveCommand = new AsyncRelayCommand(SavePageAsync);
+            UseRecommendedCommand = new RelayCommand(UseRecommended);
         }
+
+        #endregion
+
+        #region Commands
+
+        public ICommand SaveCommand { get; }
+        public ICommand UseRecommendedCommand { get; }
+
+        #endregion
+
+        #region Private Properties
+
+        /// <summary>
+        /// The async lock to use for loading and saving
+        /// </summary>
+        private AsyncLock AsyncLock { get; }
 
         #endregion
 
@@ -55,6 +79,16 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool IsLoaded { get; set; }
 
+        /// <summary>
+        /// Indicates if the page can be saved
+        /// </summary>
+        public virtual bool CanSave => false;
+
+        /// <summary>
+        /// Indicates if the option to use recommended options in the page is available
+        /// </summary>
+        public virtual bool CanUseRecommended => false;
+
         #endregion
 
         #region Protected Methods
@@ -62,29 +96,43 @@ namespace RayCarrot.RCP.Metro
         protected abstract object GetPageUI();
 
         protected virtual Task LoadAsync() => Task.CompletedTask;
-        //protected virtual Task SaveAsync() => Task.CompletedTask;
-
-        protected void OnSaved() => Saved?.Invoke(this, EventArgs.Empty);
+        protected virtual Task<bool> SaveAsync() => Task.FromResult(false);
+        protected virtual void UseRecommended() { }
 
         #endregion
 
         #region Public Methods
 
-        public Task LoadPageAsync()
+        public async Task LoadPageAsync()
         {
-            // Create the page if it doesn't exist
-            if (PageContent == null)
-                PageContent = GetPageUI();
+            using (await AsyncLock.LockAsync())
+            {
+                // Create the page if it doesn't exist
+                if (PageContent == null)
+                    PageContent = GetPageUI();
 
-            // Load the page
-            return Task.Run(async () => await LoadAsync());
+                // Load the page
+                await Task.Run(LoadAsync);
+            }
         }
 
-        //public Task SavePageAsync()
-        //{
-        //    // Save the page
-        //    return LoadAsync();
-        //}
+        public async Task SavePageAsync()
+        {
+            using (await AsyncLock.LockAsync())
+            {
+                // Save the page
+                var result = await SaveAsync();
+
+                if (!result)
+                    return;
+
+                UnsavedChanges = false;
+
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
+
+                Saved?.Invoke(this, EventArgs.Empty);
+            }
+        }
 
         public void SetErrorState(Exception ex)
         {

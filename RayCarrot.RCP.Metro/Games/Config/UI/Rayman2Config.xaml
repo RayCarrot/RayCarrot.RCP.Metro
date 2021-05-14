@@ -1,301 +1,277 @@
 ﻿<UserControl x:Class="RayCarrot.RCP.Metro.Rayman2Config"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:Rayman2ConfigViewModel}">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <StackPanel>
+        <i:Interaction.Behaviors>
+            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+        </i:Interaction.Behaviors>
 
-        <ScrollViewer x:Name="scrollViewer"
-                      Grid.Row="0"
-                      Padding="5">
-            <StackPanel>
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-                </i:Interaction.Behaviors>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Style="{StaticResource HeaderTextBlock}"
+                       Text="{Resx Config_Resolution}" />
 
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource HeaderTextBlock}"
-                               Text="{Resx Config_Resolution}" />
-
-                    <local:InfoIcon Text="{Resx Config_ResolutionR2Info}" />
-
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <mah:NumericUpDown Value="{Binding Path=ResX}"
-                                       ToolTip="{Resx Config_ResolutionHorizontalInfo}"
-                                       Minimum="1"
-                                       Maximum="99999"
-                                       IsEnabled="{Binding Path=LockToScreenRes, Converter={rwpf:InvertedBooleanConverter}}" />
-
-                    <TextBlock Text="  x  "
-                               VerticalAlignment="Center"
-                               FontSize="14" />
-
-                    <mah:NumericUpDown Value="{Binding Path=ResY}"
-                                       ToolTip="{Resx Config_ResolutionVerticalInfo}"
-                                       Minimum="1"
-                                       Maximum="99999"
-                                       IsEnabled="{Binding Path=LockToScreenRes, Converter={rwpf:InvertedBooleanConverter}}" />
-
-                </StackPanel>
-
-                <WrapPanel>
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
-                    </i:Interaction.Behaviors>
-
-                    <CheckBox Content="{Resx Config_LockRes}"
-                              ToolTip="{Resx Config_LockResInfo}"
-                              IsChecked="{Binding Path=LockToScreenRes}" />
-
-                    <StackPanel Orientation="Horizontal">
-                        <local:AdminButton Visibility="{Binding Path=CanModifyGame, Converter={rwpf:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
-                                           Margin="0 0 5 0" />
-
-                        <CheckBox Content="{Resx Config_WidescreenSupport}"
-                                  ToolTip="{Resx Config_WidescreenSupportInfo}"
-                                  IsChecked="{Binding Path=WidescreenSupport}" 
-                                  IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}"/>
-                    </StackPanel>
-
-                </WrapPanel>
-
-                <WrapPanel Visibility="{Binding Path=WidescreenSupport, Converter={rwpf:BooleanToVisibilityConverter}}">
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
-                    </i:Interaction.Behaviors>
-
-                    <RadioButton Content="{Resx Config_WidescreenHorizontal}"
-                                 ToolTip="{Resx Config_WidescreenHorizontalInfo}"
-                                 IsChecked="{Binding Path=IsHorizontalWidescreen}" />
-
-                    <!-- TODO: Find solution to this -->
-                    <RadioButton Content="{Resx Config_VerticalHorizontal}"
-                                 ToolTip="{Resx Config_WidescreenVerticalInfo}"
-                                 IsChecked="{Binding Path=IsHorizontalWidescreen, Converter={rwpf:InvertedBooleanConverter}}"
-                                 IsEnabled="False"/>
-
-                </WrapPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource HeaderTextBlock}"
-                               Text="{Resx Config_Language}" />
-
-                    <local:InfoIcon Text="{Resx Config_LanguageR2Info}" />
-
-                </StackPanel>
-
-                <ComboBox SelectedIndex="{Binding Path=CurrentLanguage, Converter={rwpf:EnumToIntConverter}}"
-                          HorizontalAlignment="Left">
-                    <TextBlock Text="{Resx Lang_English}" />
-                    <TextBlock Text="{Resx Lang_French}" />
-                    <TextBlock Text="{Resx Lang_Spanish}" />
-                    <TextBlock Text="{Resx Lang_Italian}" />
-                    <TextBlock Text="{Resx Lang_German}" />
-                </ComboBox>
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource HeaderTextBlock}"
-                               Text="{Resx Config_Controller}" />
-
-                    <local:InfoIcon Text="{Resx Config_ControllerR2Info}" />
-
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <local:AdminButton Visibility="{Binding Path=CanModifyGame, Converter={rwpf:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
-                                       Margin="0 0 5 0" />
-
-                    <CheckBox Content="{Resx Config_EnableNativeController}"
-                              IsChecked="{Binding Path=ControllerSupport}"
-                              IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
-
-                </StackPanel>
-
-                <TextBlock Style="{StaticResource HeaderTextBlock}"
-                           Text="{Resx Config_Graphics}" />
-
-                <WrapPanel>
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
-                    </i:Interaction.Behaviors>
-
-                    <rwpf:RadioButtonExtended Content="{Resx R2Config_Graphics_DirectX}"
-                                              IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=DirectX}"/>
-
-                    <rwpf:RadioButtonExtended Content="{Resx R2Config_Graphics_nGlide}"
-                                              IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Glide}" />
-
-                    <rwpf:RadioButtonExtended Content="{Resx R2Config_Graphics_Custom}"
-                                              IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Custom}" />
-
-                </WrapPanel>
-
-                <Grid Visibility="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Custom}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" MinWidth="110" />
-                    </Grid.ColumnDefinitions>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-
-                    <Grid.Resources>
-                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
-                            <Setter Property="VerticalAlignment" Value="Center" />
-                            <Setter Property="Padding" Value="0 0 10 0" />
-                        </Style>
-                    </Grid.Resources>
-
-                    <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
-                    </i:Interaction.Behaviors>
-
-                    <TextBlock Grid.Column="0"
-                               Grid.Row="0"
-                               Text="GLI_DllFile"/>
-
-                    <TextBox Grid.Column="1"
-                             Grid.Row="0"
-                             Text="{Binding Path=GLI_DllFile}" />
-
-                    <TextBlock Grid.Column="0"
-                               Grid.Row="1"
-                               Text="GLI_Dll"/>
-
-                    <TextBox Grid.Column="1"
-                             Grid.Row="1"
-                             Text="{Binding Path=GLI_Dll}" />
-
-                    <TextBlock Grid.Column="0"
-                               Grid.Row="2"
-                               Text="GLI_Driver"/>
-
-                    <TextBox Grid.Column="1"
-                             Grid.Row="2"
-                             Text="{Binding Path=GLI_Driver}" />
-
-                    <TextBlock Grid.Column="0"
-                               Grid.Row="3"
-                               Text="GLI_Device"/>
-
-                    <TextBox Grid.Column="1"
-                             Grid.Row="3"
-                             Text="{Binding Path=GLI_Device}" />
-
-                </Grid>
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource HeaderTextBlock}"
-                               Text="{Resx Config_ButtonMapping}" />
-
-                    <local:InfoIcon Text="{Resx Config_ButtonMappingInfo}" />
-
-                </StackPanel>
-
-                <Grid IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}">
-                    <DataGrid ItemsSource="{Binding Path=KeyItems}"
-                              IsEnabled="{Binding Path=ControllerSupport, Converter={rwpf:InvertedBooleanConverter}}"
-                              AutoGenerateColumns="False"
-                              CanUserDeleteRows="False"
-                              CanUserAddRows="False"
-                              CanUserReorderColumns="False"
-                              CanUserResizeColumns="False"
-                              CanUserResizeRows="False"
-                              CanUserSortColumns="False"
-                              SelectionMode="Single"
-                              VerticalScrollBarVisibility="Disabled"
-                              ScrollViewer.CanContentScroll="False"
-                              PreviewMouseWheel="UIElement_OnPreviewMouseWheel">
-                        <DataGrid.Columns>
-
-                            <DataGridTextColumn ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
-                                                Header="{Resx Config_ButtonMappingActionHeader}"
-                                                Width="*"
-                                                IsReadOnly="True"
-                                                CanUserReorder="False"
-                                                CanUserResize="False"
-                                                CanUserSort="False"
-                                                Binding="{Binding Path=ActionName, Mode=OneTime}" />
-
-                            <DataGridTemplateColumn ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
-                                                    Header="{Resx Config_ButtonMappingKeyHeader}"
-                                                    Width="*"
-                                                    CanUserReorder="False"
-                                                    CanUserResize="False"
-                                                    CanUserSort="False">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate DataType="local:R2KeyItemViewModel">
-                                        <TextBlock Text="{Binding Path=NewKey, Converter={local:KeyToStringConverter}}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                                <DataGridTemplateColumn.CellEditingTemplate>
-                                    <DataTemplate DataType="local:R2KeyItemViewModel">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="10" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <mah:HotKeyBox Grid.Column="0" KeyDown="UIElement_OnKeyDown">
-                                                <mah:HotKeyBox.HotKey>
-                                                    <Binding Path="NewKey" Converter="{local:KeyToHotKeyConverter}"
-                                                             UpdateSourceTrigger="PropertyChanged">
-                                                        <Binding.ValidationRules>
-                                                            <local:R2HotKeyValidationRule ValidatesOnTargetUpdated="True" />
-                                                        </Binding.ValidationRules>
-                                                    </Binding>
-                                                </mah:HotKeyBox.HotKey>
-                                            </mah:HotKeyBox>
-                                            
-                                            <Button Grid.Column="2" 
-                                                    Content="{Resx Config_ButtonMappingReset}"
-                                                    Command="{Binding Path=ResetCommand}"/>
-
-                                        </Grid>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellEditingTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-
-                </Grid>
-
-            </StackPanel>
-        </ScrollViewer>
-
-        <StackPanel Grid.Row="1"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Right">
-
-            <Button Content="{Resx Cancel}"
-                    Margin="0 0 10 0"
-                    IsCancel="True"
-                    Click="ButtonBase_OnClick" />
-
-            <Button Content="{Resx Save}"
-                    IsEnabled="{Binding Path=UnsavedChanges}"
-                    Command="{Binding Path=SaveCommand}" />
+            <local:InfoIcon Text="{Resx Config_ResolutionR2Info}" />
 
         </StackPanel>
 
-    </Grid>
+        <StackPanel Orientation="Horizontal">
+            <mah:NumericUpDown Value="{Binding Path=ResX}"
+                               ToolTip="{Resx Config_ResolutionHorizontalInfo}"
+                               Minimum="1"
+                               Maximum="99999"
+                               IsEnabled="{Binding Path=LockToScreenRes, Converter={rwpf:InvertedBooleanConverter}}" />
+
+            <TextBlock Text="  x  "
+                       VerticalAlignment="Center"
+                       FontSize="14" />
+
+            <mah:NumericUpDown Value="{Binding Path=ResY}"
+                               ToolTip="{Resx Config_ResolutionVerticalInfo}"
+                               Minimum="1"
+                               Maximum="99999"
+                               IsEnabled="{Binding Path=LockToScreenRes, Converter={rwpf:InvertedBooleanConverter}}" />
+
+        </StackPanel>
+
+        <WrapPanel>
+            <i:Interaction.Behaviors>
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
+            </i:Interaction.Behaviors>
+
+            <CheckBox Content="{Resx Config_LockRes}"
+                      ToolTip="{Resx Config_LockResInfo}"
+                      IsChecked="{Binding Path=LockToScreenRes}" />
+
+            <StackPanel Orientation="Horizontal">
+                <local:AdminButton
+                    Visibility="{Binding Path=CanModifyGame, Converter={rwpf:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                    Margin="0 0 5 0" />
+
+                <CheckBox Content="{Resx Config_WidescreenSupport}"
+                          ToolTip="{Resx Config_WidescreenSupportInfo}"
+                          IsChecked="{Binding Path=WidescreenSupport}"
+                          IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
+            </StackPanel>
+
+        </WrapPanel>
+
+        <WrapPanel Visibility="{Binding Path=WidescreenSupport, Converter={rwpf:BooleanToVisibilityConverter}}">
+            <i:Interaction.Behaviors>
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
+            </i:Interaction.Behaviors>
+
+            <RadioButton Content="{Resx Config_WidescreenHorizontal}"
+                         ToolTip="{Resx Config_WidescreenHorizontalInfo}"
+                         IsChecked="{Binding Path=IsHorizontalWidescreen}" />
+
+            <!-- TODO: Find solution to this -->
+            <RadioButton Content="{Resx Config_VerticalHorizontal}"
+                         ToolTip="{Resx Config_WidescreenVerticalInfo}"
+                         IsChecked="{Binding Path=IsHorizontalWidescreen, Converter={rwpf:InvertedBooleanConverter}}"
+                         IsEnabled="False" />
+
+        </WrapPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Style="{StaticResource HeaderTextBlock}"
+                       Text="{Resx Config_Language}" />
+
+            <local:InfoIcon Text="{Resx Config_LanguageR2Info}" />
+
+        </StackPanel>
+
+        <ComboBox SelectedIndex="{Binding Path=CurrentLanguage, Converter={rwpf:EnumToIntConverter}}"
+                  HorizontalAlignment="Left">
+            <TextBlock Text="{Resx Lang_English}" />
+            <TextBlock Text="{Resx Lang_French}" />
+            <TextBlock Text="{Resx Lang_Spanish}" />
+            <TextBlock Text="{Resx Lang_Italian}" />
+            <TextBlock Text="{Resx Lang_German}" />
+        </ComboBox>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Style="{StaticResource HeaderTextBlock}"
+                       Text="{Resx Config_Controller}" />
+
+            <local:InfoIcon Text="{Resx Config_ControllerR2Info}" />
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <local:AdminButton
+                Visibility="{Binding Path=CanModifyGame, Converter={rwpf:InvertedBooleanToVisibilityConverter}, Mode=OneTime}"
+                Margin="0 0 5 0" />
+
+            <CheckBox Content="{Resx Config_EnableNativeController}"
+                      IsChecked="{Binding Path=ControllerSupport}"
+                      IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}" />
+
+        </StackPanel>
+
+        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                   Text="{Resx Config_Graphics}" />
+
+        <WrapPanel>
+            <i:Interaction.Behaviors>
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
+            </i:Interaction.Behaviors>
+
+            <rwpf:RadioButtonExtended Content="{Resx R2Config_Graphics_DirectX}"
+                                      IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=DirectX}" />
+
+            <rwpf:RadioButtonExtended Content="{Resx R2Config_Graphics_nGlide}"
+                                      IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Glide}" />
+
+            <rwpf:RadioButtonExtended Content="{Resx R2Config_Graphics_Custom}"
+                                      IsChecked="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Custom}" />
+
+        </WrapPanel>
+
+        <Grid
+            Visibility="{Binding Path=SelectedGraphicsMode, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Custom}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" MinWidth="110" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Padding" Value="0 0 10 0" />
+                </Style>
+            </Grid.Resources>
+
+            <i:Interaction.Behaviors>
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+            </i:Interaction.Behaviors>
+
+            <TextBlock Grid.Column="0"
+                       Grid.Row="0"
+                       Text="GLI_DllFile" />
+
+            <TextBox Grid.Column="1"
+                     Grid.Row="0"
+                     Text="{Binding Path=GLI_DllFile}" />
+
+            <TextBlock Grid.Column="0"
+                       Grid.Row="1"
+                       Text="GLI_Dll" />
+
+            <TextBox Grid.Column="1"
+                     Grid.Row="1"
+                     Text="{Binding Path=GLI_Dll}" />
+
+            <TextBlock Grid.Column="0"
+                       Grid.Row="2"
+                       Text="GLI_Driver" />
+
+            <TextBox Grid.Column="1"
+                     Grid.Row="2"
+                     Text="{Binding Path=GLI_Driver}" />
+
+            <TextBlock Grid.Column="0"
+                       Grid.Row="3"
+                       Text="GLI_Device" />
+
+            <TextBox Grid.Column="1"
+                     Grid.Row="3"
+                     Text="{Binding Path=GLI_Device}" />
+
+        </Grid>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Style="{StaticResource HeaderTextBlock}"
+                       Text="{Resx Config_ButtonMapping}" />
+
+            <local:InfoIcon Text="{Resx Config_ButtonMappingInfo}" />
+
+        </StackPanel>
+
+        <Grid IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}">
+            <DataGrid ItemsSource="{Binding Path=KeyItems}"
+                      IsEnabled="{Binding Path=ControllerSupport, Converter={rwpf:InvertedBooleanConverter}}"
+                      AutoGenerateColumns="False"
+                      CanUserDeleteRows="False"
+                      CanUserAddRows="False"
+                      CanUserReorderColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserResizeRows="False"
+                      CanUserSortColumns="False"
+                      SelectionMode="Single"
+                      VerticalScrollBarVisibility="Disabled"
+                      ScrollViewer.CanContentScroll="False"
+                      PreviewMouseWheel="UIElement_OnPreviewMouseWheel">
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                                        Header="{Resx Config_ButtonMappingActionHeader}"
+                                        Width="*"
+                                        IsReadOnly="True"
+                                        CanUserReorder="False"
+                                        CanUserResize="False"
+                                        CanUserSort="False"
+                                        Binding="{Binding Path=ActionName, Mode=OneTime}" />
+
+                    <DataGridTemplateColumn ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                                            Header="{Resx Config_ButtonMappingKeyHeader}"
+                                            Width="*"
+                                            CanUserReorder="False"
+                                            CanUserResize="False"
+                                            CanUserSort="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate DataType="local:R2KeyItemViewModel">
+                                <TextBlock Text="{Binding Path=NewKey, Converter={local:KeyToStringConverter}}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate DataType="local:R2KeyItemViewModel">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="10" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <mah:HotKeyBox Grid.Column="0" KeyDown="UIElement_OnKeyDown">
+                                        <mah:HotKeyBox.HotKey>
+                                            <Binding Path="NewKey" Converter="{local:KeyToHotKeyConverter}"
+                                                     UpdateSourceTrigger="PropertyChanged">
+                                                <Binding.ValidationRules>
+                                                    <local:R2HotKeyValidationRule ValidatesOnTargetUpdated="True" />
+                                                </Binding.ValidationRules>
+                                            </Binding>
+                                        </mah:HotKeyBox.HotKey>
+                                    </mah:HotKeyBox>
+
+                                    <Button Grid.Column="2"
+                                            Content="{Resx Config_ButtonMappingReset}"
+                                            Command="{Binding Path=ResetCommand}" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+    </StackPanel>
 </UserControl>

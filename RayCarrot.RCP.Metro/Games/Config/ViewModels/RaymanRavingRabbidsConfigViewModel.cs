@@ -1,10 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Win32;
-using Nito.AsyncEx;
+﻿using Microsoft.Win32;
 using RayCarrot.Logging;
-using RayCarrot.UI;
 using RayCarrot.Windows.Registry;
+using System;
+using System.Threading.Tasks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -13,22 +11,6 @@ namespace RayCarrot.RCP.Metro
     /// </summary>
     public class RaymanRavingRabbidsConfigViewModel : GameOptions_ConfigPageViewModel
     {
-        #region Constructor
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public RaymanRavingRabbidsConfigViewModel()
-        {
-            // Create commands
-            SaveCommand = new AsyncRelayCommand(SaveAsync);
-
-            // Create properties
-            AsyncLock = new AsyncLock();
-        }
-
-        #endregion
-
         #region Private Fields
 
         private bool _fullscreenMode;
@@ -46,15 +28,6 @@ namespace RayCarrot.RCP.Metro
         private const string DefaultControllerKey = "DefaultController";
 
         private const string ScreenModeKey = "ScreenMode";
-
-        #endregion
-
-        #region Private Properties
-
-        /// <summary>
-        /// The async lock to use for saving the configuration
-        /// </summary>
-        protected AsyncLock AsyncLock { get; }
 
         #endregion
 
@@ -102,12 +75,6 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Commands
-
-        public AsyncRelayCommand SaveCommand { get; }
-
-        #endregion
-
         #region Protected Methods
 
         protected override object GetPageUI() => new RaymanRavingRabbidsConfig()
@@ -144,65 +111,54 @@ namespace RayCarrot.RCP.Metro
             return Task.CompletedTask;
         }
 
-        #endregion
-
-        #region Public Methods
-
         /// <summary>
         /// Saves the changes
         /// </summary>
         /// <returns>The task</returns>
-        public async Task SaveAsync()
+        protected override async Task<bool> SaveAsync()
         {
-            using (await AsyncLock.LockAsync())
+            RL.Logger?.LogInformationSource($"Rayman Raving Rabbids configuration is saving...");
+
+            try
             {
-                RL.Logger?.LogInformationSource($"Rayman Raving Rabbids configuration is saving...");
+                // Get the key path
+                var keyPath = RegistryHelpers.CombinePaths(CommonPaths.RaymanRavingRabbidsRegistryKey, "Basic video");
 
-                try
+                RegistryKey key;
+
+                // Create the key if it doesn't exist
+                if (!RegistryHelpers.KeyExists(keyPath))
                 {
-                    // Get the key path
-                    var keyPath = RegistryHelpers.CombinePaths(CommonPaths.RaymanRavingRabbidsRegistryKey, "Basic video");
+                    key = RegistryHelpers.CreateRegistryKey(keyPath, RegistryView.Default, true);
 
-                    RegistryKey key;
-
-                    // Create the key if it doesn't exist
-                    if (!RegistryHelpers.KeyExists(keyPath))
-                    {
-                        key = RegistryHelpers.CreateRegistryKey(keyPath, RegistryView.Default, true);
-
-                        RL.Logger?.LogInformationSource($"The Registry key {key?.Name} has been created");
-                    }
-                    else
-                    {
-                        key = RegistryHelpers.GetKeyFromFullPath(keyPath, RegistryView.Default, true);
-                    }
-
-                    using (key)
-                    {
-                        if (key == null)
-                            throw new Exception("The Registry key could not be created");
-
-                        RL.Logger?.LogInformationSource($"The key {key.Name} has been opened");
-
-                        key.SetValue(WindowedModeKey, FullscreenMode ? 0 : 1);
-                        key.SetValue(DefaultControllerKey, UseController ? 1 : 0);
-                        key.SetValue(ScreenModeKey, ScreenModeIndex + 1);
-                    }
-
-                    RL.Logger?.LogInformationSource($"Rayman Raving Rabbids configuration has been saved");
+                    RL.Logger?.LogInformationSource($"The Registry key {key?.Name} has been created");
                 }
-                catch (Exception ex)
+                else
                 {
-                    ex.HandleError("Saving Rayman Raving Rabbids registry data");
-                    await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveRRRError, Resources.Config_SaveErrorHeader);
-                    return;
+                    key = RegistryHelpers.GetKeyFromFullPath(keyPath, RegistryView.Default, true);
                 }
 
-                UnsavedChanges = false;
+                using (key)
+                {
+                    if (key == null)
+                        throw new Exception("The Registry key could not be created");
 
-                await WPF.Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Config_SaveSuccess);
+                    RL.Logger?.LogInformationSource($"The key {key.Name} has been opened");
 
-                OnSaved();
+                    key.SetValue(WindowedModeKey, FullscreenMode ? 0 : 1);
+                    key.SetValue(DefaultControllerKey, UseController ? 1 : 0);
+                    key.SetValue(ScreenModeKey, ScreenModeIndex + 1);
+                }
+
+                RL.Logger?.LogInformationSource($"Rayman Raving Rabbids configuration has been saved");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Saving Rayman Raving Rabbids registry data");
+                await WPF.Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Config_SaveRRRError, Resources.Config_SaveErrorHeader);
+                return false;
             }
         }
 
