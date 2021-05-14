@@ -1,6 +1,14 @@
 ﻿-----   Version 11.1.0 - May ??, 2021   -----
 • Files in the Archive Explorer™ can now be viewed/edited directly
+• The DOSBox game config has been moved to its own page
 • 
+
+Other changes:
+• The pages in the options dialog (such as the progression and config pages) now first load when they get selected
+• The game information page has been merged with the options page
+• The mount option for the DOSBox games has been moved to the options page
+• The serializer log will now append to the same file for the current session rather than recreate it for each serialized object
+• Minor optimization fixes and icon changes
 
 
 -----   Version 11.0.0 - April 29, 2021   -----
