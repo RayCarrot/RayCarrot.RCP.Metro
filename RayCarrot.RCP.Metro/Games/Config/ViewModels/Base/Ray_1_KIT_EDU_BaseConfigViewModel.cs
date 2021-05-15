@@ -7,6 +7,7 @@ using RayCarrot.WPF;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using RayCarrot.Common;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -25,6 +26,26 @@ namespace RayCarrot.RCP.Metro
             Game = game;
             Ray1Game = ray1Game;
             LangMode = langMode;
+            IsVoicesVolumeAvailable = Ray1Game != Ray1Game.Rayman1;
+
+            FrameRateOptions_Values = new Rayman1Freq[]
+            {
+                Rayman1Freq.Freq_50,
+                Rayman1Freq.Freq_60,
+                Rayman1Freq.Freq_70,
+                Rayman1Freq.Freq_80,
+                Rayman1Freq.Freq_100,
+                Rayman1Freq.Freq_Max
+            };
+            FrameRateOptions_Names = new string[]
+            {
+                "50 hz",
+                "60 hz",
+                "70 hz",
+                "80 hz",
+                "100 hz",
+                "Max",
+            };
         }
 
         #endregion
@@ -32,10 +53,24 @@ namespace RayCarrot.RCP.Metro
         #region Private Fields
 
         private R1Languages _gameLanguage;
+        private bool _isMusicEnabled;
+        private bool _isStero;
+        private int _soundVolume;
+        private int _voicesVolume;
+        private bool _showBackground;
+        private bool _showParallaxBackground;
+        private bool _showHud;
+        private int _selectedFrameRateOption;
+        private int _zoneOfPlay;
 
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// Indicates if the option to use recommended options in the page is available
+        /// </summary>
+        public override bool CanUseRecommended => true;
 
         /// <summary>
         /// The DosBox game
@@ -62,6 +97,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public FileSystemPath ConfigFilePath { get; set; }
 
+        // Language
+
         /// <summary>
         /// Indicates if changing the game language is available
         /// </summary>
@@ -70,17 +107,17 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Indicates if <see cref="R1Languages.English"/> is available
         /// </summary>
-        public bool IsEnglishAvailable { get; set; }
+        public bool IsEnglishAvailable { get; set; } = true;
 
         /// <summary>
         /// Indicates if <see cref="R1Languages.French"/> is available
         /// </summary>
-        public bool IsFrenchAvailable { get; set; }
+        public bool IsFrenchAvailable { get; set; } = true;
 
         /// <summary>
         /// Indicates if <see cref="R1Languages.German"/> is available
         /// </summary>
-        public bool IsGermanAvailable { get; set; }
+        public bool IsGermanAvailable { get; set; } = true;
 
         /// <summary>
         /// The selected game language, if any
@@ -91,6 +128,111 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 _gameLanguage = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        // Sound
+
+        public bool IsMusicEnabled
+        {
+            get => _isMusicEnabled;
+            set
+            {
+                _isMusicEnabled = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public bool IsStero
+        {
+            get => _isStero;
+            set
+            {
+                _isStero = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public int SoundVolume
+        {
+            get => _soundVolume;
+            set
+            {
+                _soundVolume = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public bool IsVoicesVolumeAvailable { get; }
+
+        public int VoicesVolume
+        {
+            get => _voicesVolume;
+            set
+            {
+                _voicesVolume = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        // Graphics
+
+        public bool ShowBackground
+        {
+            get => _showBackground;
+            set
+            {
+                _showBackground = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public bool ShowParallaxBackground
+        {
+            get => _showParallaxBackground;
+            set
+            {
+                _showParallaxBackground = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public bool ShowHUD
+        {
+            get => _showHud;
+            set
+            {
+                _showHud = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public Rayman1Freq[] FrameRateOptions_Values { get; }
+        public string[] FrameRateOptions_Names { get; }
+
+        public int SelectedFrameRateOption
+        {
+            get => _selectedFrameRateOption;
+            set
+            {
+                _selectedFrameRateOption = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public Rayman1Freq FrameRate
+        {
+            get => FrameRateOptions_Values[SelectedFrameRateOption];
+            set => SelectedFrameRateOption = FrameRateOptions_Values.FindItemIndex(x => x == value);
+        }
+
+        public int ZoneOfPlay
+        {
+            get => _zoneOfPlay;
+            set
+            {
+                _zoneOfPlay = value;
                 UnsavedChanges = true;
             }
         }
@@ -171,7 +313,29 @@ namespace RayCarrot.RCP.Metro
                 }
             }
 
+            // Read config values
+            IsMusicEnabled = Config.MusicCdActive != 0;
+            IsStero = Config.IsStero != 0;
+            SoundVolume = Config.VolumeSound;
+            VoicesVolume = Config.EDU_VoiceSound;
+
+            ShowBackground = Config.BackgroundOptionOn;
+            ShowParallaxBackground = Config.ScrollDiffOn;
+            ShowHUD = Config.FixOn;
+            FrameRate = Config.Frequence;
+            ZoneOfPlay = Config.SizeScreen;
+
             UnsavedChanges = false;
+
+            // Verify values. If these values are incorrect they will cause the game to run without sound effects.
+            if (Config.Port != 544 || Config.Irq != 5 || Config.Dma != 5 || Config.NumCard != 3)
+            {
+                Config.Port = 544;
+                Config.Irq = 5;
+                Config.Dma = 5;
+                Config.NumCard = 3;
+                UnsavedChanges = true;
+            }
 
             return Task.CompletedTask;
         }
@@ -195,6 +359,18 @@ namespace RayCarrot.RCP.Metro
                         await SetBatchFileLanguageAsync(Game.GetInstallDir() + Game.GetGameInfo().DefaultFileName, GameLanguage, Game);
                 }
 
+                // Set config values
+                Config.MusicCdActive = (ushort)(IsMusicEnabled ? 1 : 0);
+                Config.IsStero = (ushort)(IsStero ? 1 : 0);
+                Config.VolumeSound = (ushort)SoundVolume;
+                Config.EDU_VoiceSound = (ushort)VoicesVolume;
+
+                Config.BackgroundOptionOn = ShowBackground;
+                Config.ScrollDiffOn = ShowParallaxBackground;
+                Config.FixOn = ShowHUD;
+                Config.Frequence = FrameRate;
+                Config.SizeScreen = (byte)ZoneOfPlay;
+
                 // Save the config file
                 BinarySerializableHelpers.WriteToFile(Config, ConfigFilePath, Ray1Settings.GetDefaultSettings(Ray1Game, Platform.PC), App.GetBinarySerializerLogger(ConfigFilePath.Name));
 
@@ -207,6 +383,15 @@ namespace RayCarrot.RCP.Metro
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Config_SaveError, Game.GetGameInfo().DisplayName), Resources.Config_SaveErrorHeader);
                 return false;
             }
+        }
+
+        protected override void UseRecommended()
+        {
+            IsMusicEnabled = true;
+            IsStero = true;
+            ShowBackground = true;
+            ShowParallaxBackground = true;
+            FrameRate = Rayman1Freq.Freq_60;
         }
 
         #endregion

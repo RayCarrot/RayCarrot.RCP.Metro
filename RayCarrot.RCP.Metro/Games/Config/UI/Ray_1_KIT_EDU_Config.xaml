@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
@@ -45,6 +46,104 @@
             <TextBlock Text="{Resx Lang_German}"
                        Visibility="{Binding Path=IsGermanAvailable, Converter={rwpf:BooleanToVisibilityConverter}}" />
         </ComboBox>
+
+        <!-- Sound -->
+
+        <!-- TODO-UPDATE: Localize -->
+        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                   Text="Sound" />
+
+        <!-- TODO-UPDATE: Localize -->
+        <CheckBox Content="Music"
+                  IsChecked="{Binding Path=IsMusicEnabled}" />
+
+        <!-- TODO-UPDATE: Localize -->
+        <metro:ToggleSwitch IsOn="{Binding Path=IsStero}"
+                            HorizontalAlignment="Left"
+                            OnContent="Stero"
+                            OffContent="Mono" />
+
+        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                   Text="{Resx Config_SoundVolumeHeader}" />
+
+        <Slider Value="{Binding Path=SoundVolume}"
+                Minimum="0"
+                Maximum="20"
+                TickPlacement="BottomRight"
+                TickFrequency="1"
+                IsSnapToTickEnabled="True"
+                Width="300"
+                AutoToolTipPlacement="TopLeft"
+                HorizontalAlignment="Left" />
+
+        <!-- TODO-UPDATE: Localize -->
+        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                    Visibility="{Binding Path=IsVoicesVolumeAvailable, Mode=OneTime, Converter={rwpf:BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                   Text="Voices Volume" />
+
+        <Slider Value="{Binding Path=VoicesVolume}"
+                Visibility="{Binding Path=IsVoicesVolumeAvailable, Converter={rwpf:BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
+                Minimum="0"
+                Maximum="20"
+                TickPlacement="BottomRight"
+                TickFrequency="1"
+                IsSnapToTickEnabled="True"
+                Width="300"
+                AutoToolTipPlacement="TopLeft"
+                HorizontalAlignment="Left" />
+
+        <!-- Graphics -->
+
+        <!-- TODO-UPDATE: Localize -->
+        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                   Text="Graphics" />
+
+        <!-- TODO-UPDATE: Localize -->
+        <CheckBox Content="Show Background"
+                  IsChecked="{Binding Path=ShowBackground}" />
+
+        <!-- TODO-UPDATE: Localize -->
+        <CheckBox Content="Show Parallax Background"
+                  IsEnabled="{Binding Path=ShowBackground}"
+                  IsChecked="{Binding Path=ShowParallaxBackground}" />
+
+        <!-- TODO-UPDATE: Localize -->
+        <CheckBox Content="Show HUD"
+                  IsChecked="{Binding Path=ShowHUD}" />
+
+        <!-- TODO-UPDATE: Localize -->
+        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                   Text="Frame Rate" />
+
+        <ComboBox HorizontalAlignment="Left"
+                  ItemsSource="{Binding Path=FrameRateOptions_Names, Mode=OneTime}"
+                  SelectedIndex="{Binding Path=SelectedFrameRateOption}" />
+
+        <!-- TODO-UPDATE: Localize -->
+        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                   Text="In-Game Border" />
+
+        <Slider Value="{Binding Path=ZoneOfPlay}"
+                Minimum="0"
+                Maximum="3"
+                TickPlacement="BottomRight"
+                TickFrequency="1"
+                IsSnapToTickEnabled="True"
+                Width="100"
+                AutoToolTipPlacement="TopLeft"
+                HorizontalAlignment="Left" />
+
+        <!-- Controls -->
+
+        <!-- TODO-UPDATE: Localize -->
+        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                   Text="Controls" />
+
+        <!-- Device -->
+
+        <!-- TODO-UPDATE: Localize -->
+        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                   Text="Device" />
 
     </StackPanel>
 </UserControl>
