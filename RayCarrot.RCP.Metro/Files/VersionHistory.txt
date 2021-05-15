@@ -1,6 +1,7 @@
 ﻿-----   Version 11.1.0 - May ??, 2021   -----
 • Files in the Archive Explorer™ can now be viewed/edited directly
 • The DOSBox game config has been moved to its own page
+• Added game configuration for Rayman 1, Designer, by his Fans, 60 Levels and the educational games
 • 
 
 Other changes:
