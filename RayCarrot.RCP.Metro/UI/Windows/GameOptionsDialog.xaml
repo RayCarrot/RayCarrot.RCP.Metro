@@ -117,11 +117,23 @@
 
                         </ScrollViewer>
 
-                        <Button Grid.Row="1"
-                                HorizontalAlignment="Left"
-                                Visibility="{Binding Path=CanUseRecommended, Mode=OneTime, Converter={rwpf:BooleanToVisibilityConverter}}"
-                                Content="{Resx DosBoxOptions_Recommended}"
-                                Command="{Binding Path=UseRecommendedCommand}" />
+                        <StackPanel Grid.Row="1"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Left">
+
+                            <i:Interaction.Behaviors>
+                                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
+                            </i:Interaction.Behaviors>
+
+                            <Button Visibility="{Binding Path=CanUseRecommended, Mode=OneTime, Converter={rwpf:BooleanToVisibilityConverter}}"
+                                    Content="{Resx DosBoxOptions_Recommended}"
+                                    Command="{Binding Path=UseRecommendedCommand}" />
+
+                            <ComboBox Visibility="{Binding Path=PageSelection, Mode=OneTime, Converter={rwpf:InvertedObjectNullToVisibilityConverter}}"
+                                      ItemsSource="{Binding Path=PageSelection, Mode=OneTime}"
+                                      SelectedIndex="{Binding Path=SelectedPageSelectionIndex}" />
+
+                        </StackPanel>
 
                         <StackPanel Grid.Row="1"
                                     Visibility="{Binding Path=CanSave, Mode=OneTime, Converter={rwpf:BooleanToVisibilityConverter}}"

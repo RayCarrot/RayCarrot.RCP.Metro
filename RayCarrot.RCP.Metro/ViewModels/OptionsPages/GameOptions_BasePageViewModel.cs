@@ -3,6 +3,7 @@ using Nito.AsyncEx;
 using RayCarrot.UI;
 using RayCarrot.WPF;
 using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -27,6 +28,9 @@ namespace RayCarrot.RCP.Metro
             // Create commands
             SaveCommand = new AsyncRelayCommand(SavePageAsync);
             UseRecommendedCommand = new RelayCommand(UseRecommended);
+
+            // Subscribe to events
+            App.RefreshRequired += App_RefreshRequiredAsync;
         }
 
         #endregion
@@ -35,6 +39,12 @@ namespace RayCarrot.RCP.Metro
 
         public ICommand SaveCommand { get; }
         public ICommand UseRecommendedCommand { get; }
+
+        #endregion
+
+        #region Private Fields
+
+        private int _selectedPageSelectionIndex;
 
         #endregion
 
@@ -70,11 +80,6 @@ namespace RayCarrot.RCP.Metro
         public bool UnsavedChanges { get; set; }
 
         /// <summary>
-        /// Indicates if the config should reload when the game info changes
-        /// </summary>
-        public virtual bool ReloadOnGameInfoChanged => false;
-
-        /// <summary>
         /// Indicates if the page is fully loaded
         /// </summary>
         public bool IsLoaded { get; set; }
@@ -89,6 +94,34 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public virtual bool CanUseRecommended => false;
 
+        /// <summary>
+        /// Optional selection for the page
+        /// </summary>
+        public virtual ObservableCollection<string> PageSelection => null;
+
+        /// <summary>
+        /// The selected index of <see cref="PageSelection"/>
+        /// </summary>
+        public int SelectedPageSelectionIndex
+        {
+            get => _selectedPageSelectionIndex;
+            set
+            {
+                _selectedPageSelectionIndex = value;
+                _ = OnSelectedPageSelectionIndexUpdatedAsync();
+            }
+        }
+
+        #endregion
+
+        #region Event Handlers
+
+        private async Task App_RefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
+        {
+            if (e.GameInfoModified)
+                await OnGameInfoModified();
+        }
+
         #endregion
 
         #region Protected Methods
@@ -97,7 +130,15 @@ namespace RayCarrot.RCP.Metro
 
         protected virtual Task LoadAsync() => Task.CompletedTask;
         protected virtual Task<bool> SaveAsync() => Task.FromResult(false);
+        protected virtual Task OnSelectedPageSelectionIndexUpdatedAsync() => Task.CompletedTask;
+        protected virtual Task OnGameInfoModified() => Task.CompletedTask;
         protected virtual void UseRecommended() { }
+
+        protected void ResetSelectedPageSelectionIndex()
+        {
+            _selectedPageSelectionIndex = 0;
+            OnPropertyChanged(nameof(SelectedPageSelectionIndex));
+        }
 
         #endregion
 
@@ -144,6 +185,9 @@ namespace RayCarrot.RCP.Metro
             PageName?.Dispose();
             PageContent = null;
             UnsavedChanges = false;
+
+            // Unsubscribe events
+            App.RefreshRequired -= App_RefreshRequiredAsync;
         }
 
         #endregion

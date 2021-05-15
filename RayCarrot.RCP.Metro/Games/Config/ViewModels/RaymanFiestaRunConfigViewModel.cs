@@ -1,4 +1,6 @@
-﻿namespace RayCarrot.RCP.Metro
+﻿using System.Threading.Tasks;
+
+namespace RayCarrot.RCP.Metro
 {
     /// <summary>
     /// View model for the Rayman Fiesta Run configuration
@@ -11,7 +13,7 @@
         public RaymanFiestaRunConfigViewModel() : base(Games.RaymanFiestaRun) 
         { }
 
-        public override bool ReloadOnGameInfoChanged => true;
+        protected override Task OnGameInfoModified() => LoadPageAsync();
 
         protected override object GetPageUI() => new RaymanFiestaRunConfig()
         {

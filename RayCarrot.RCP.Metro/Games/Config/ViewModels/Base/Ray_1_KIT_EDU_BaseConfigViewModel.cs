@@ -542,11 +542,12 @@ namespace RayCarrot.RCP.Metro
             UnsavedChanges = false;
 
             // Verify values. If these values are incorrect they will cause the game to run without sound effects with the default DOSBox configuration.
-            if (Port != 544 || IRQ != 5 || DMA != 5 || NumCard != 3)
+            if (Port != 544 || IRQ != 5 || DMA != 5 || DeviceID != 57368 || NumCard != 3)
             {
                 Port = 544;
                 IRQ = 5;
                 DMA = 5;
+                DeviceID = 57368;
                 NumCard = 3;
                 UnsavedChanges = true;
             }
@@ -596,12 +597,12 @@ namespace RayCarrot.RCP.Metro
                 Config.KeyJump = (ushort)GamePad_Jump;
                 Config.KeyWeapon = (ushort)GamePad_Fist;
                 Config.KeyAction = (ushort)GamePad_Action;
-                Config.XPadMax = (ushort)XPadMax;
-                Config.XPadMin = (ushort)XPadMin;
-                Config.YPadMax = (ushort)YPadMax;
-                Config.YPadMin = (ushort)YPadMin;
-                Config.XPadCentre = (ushort)XPadCenter;
-                Config.YPadCentre = (ushort)YPadCenter;
+                Config.XPadMax = (short)XPadMax;
+                Config.XPadMin = (short)XPadMin;
+                Config.YPadMax = (short)YPadMax;
+                Config.YPadMin = (short)YPadMin;
+                Config.XPadCentre = (short)XPadCenter;
+                Config.YPadCentre = (short)YPadCenter;
 
                 Config.Port = (uint)Port;
                 Config.Irq = (uint)IRQ;
@@ -635,6 +636,7 @@ namespace RayCarrot.RCP.Metro
             Port = 544;
             IRQ = 5;
             DMA = 5;
+            DeviceID = 57368;
             NumCard = 3;
         }
 

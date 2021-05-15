@@ -72,9 +72,6 @@ namespace RayCarrot.RCP.Metro
                 pages.Add(new GameOptions_UtilitiesPageViewModel(utilities));
 
             Pages = pages.ToArray();
-
-            // Refresh the game data on certain events
-            App.RefreshRequired += App_RefreshRequiredAsync;
         }
 
         #endregion
@@ -133,23 +130,6 @@ namespace RayCarrot.RCP.Metro
         /// The command for creating a shortcut to launch the game
         /// </summary>
         public ICommand ShortcutCommand { get; }
-
-        #endregion
-
-        #region Event Handlers
-
-        private async Task App_RefreshRequiredAsync(object sender, RefreshRequiredEventArgs e)
-        {
-            if (e.GameInfoModified)
-            {
-                // Reload the pages if needed
-                foreach (var page in Pages)
-                {
-                    if (page.ReloadOnGameInfoChanged)
-                        await page.LoadPageAsync();
-                }
-            }
-        }
 
         #endregion
 
@@ -310,9 +290,6 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void Dispose()
         {
-            // Unsubscribe events
-            App.RefreshRequired -= App_RefreshRequiredAsync;
-
             // Dispose
             Pages?.DisposeAll();
         }
