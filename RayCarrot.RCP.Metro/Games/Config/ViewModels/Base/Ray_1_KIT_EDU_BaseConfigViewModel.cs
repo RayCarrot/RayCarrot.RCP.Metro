@@ -1,13 +1,15 @@
 ﻿using RayCarrot.Binary;
+using RayCarrot.Common;
 using RayCarrot.IO;
 using RayCarrot.Logging;
 using RayCarrot.Rayman;
 using RayCarrot.Rayman.Ray1;
 using RayCarrot.WPF;
 using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
-using RayCarrot.Common;
+using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -45,6 +47,18 @@ namespace RayCarrot.RCP.Metro
                 "80 hz",
                 "100 hz",
                 "Max",
+            };
+
+            // TODO-UPDATE: Localize
+            KeyItems = new ObservableCollection<ButtonMappingKeyItemViewModel>()
+            {
+                new ButtonMappingKeyItemViewModel("Left", Key.NumPad4, this),
+                new ButtonMappingKeyItemViewModel("Up", Key.NumPad8, this),
+                new ButtonMappingKeyItemViewModel("Right", Key.NumPad6, this),
+                new ButtonMappingKeyItemViewModel("Down", Key.NumPad2, this),
+                new ButtonMappingKeyItemViewModel("Jump", Key.LeftCtrl, this),
+                new ButtonMappingKeyItemViewModel("Fist", Key.LeftAlt, this),
+                new ButtonMappingKeyItemViewModel("Action", Key.X, this),
             };
         }
 
@@ -237,6 +251,11 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// The key items
+        /// </summary>
+        public ObservableCollection<ButtonMappingKeyItemViewModel> KeyItems { get; }
+
         #endregion
 
         #region Protected Methods
@@ -313,6 +332,15 @@ namespace RayCarrot.RCP.Metro
                 }
             }
 
+            // Read button mapping
+            for (int i = 0; i < KeyItems.Count; i++)
+            {
+                var item = KeyItems[i];
+                var key = Config.Tab_Key[i];
+
+                item.SetInitialNewKey(DirectXKeyHelpers.GetKey(key));
+            }
+
             // Read config values
             IsMusicEnabled = Config.MusicCdActive != 0;
             IsStero = Config.IsStero != 0;
@@ -359,6 +387,14 @@ namespace RayCarrot.RCP.Metro
                         await SetBatchFileLanguageAsync(Game.GetInstallDir() + Game.GetGameInfo().DefaultFileName, GameLanguage, Game);
                 }
 
+                // Set button mapping
+                for (int i = 0; i < KeyItems.Count; i++)
+                {
+                    var item = KeyItems[i];
+
+                    Config.Tab_Key[i] = (byte)DirectXKeyHelpers.GetKeyCode(item.NewKey);
+                }
+
                 // Set config values
                 Config.MusicCdActive = (ushort)(IsMusicEnabled ? 1 : 0);
                 Config.IsStero = (ushort)(IsStero ? 1 : 0);
@@ -392,6 +428,7 @@ namespace RayCarrot.RCP.Metro
             ShowBackground = true;
             ShowParallaxBackground = true;
             FrameRate = Rayman1Freq.Freq_60;
+            ZoneOfPlay = 0;
         }
 
         #endregion

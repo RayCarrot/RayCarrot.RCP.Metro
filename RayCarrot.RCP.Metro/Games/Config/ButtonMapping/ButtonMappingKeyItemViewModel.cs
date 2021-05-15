@@ -4,9 +4,9 @@ using RayCarrot.UI;
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// A Rayman 2 key item view model
+    /// A button mapping key item view model
     /// </summary>
-    public class R2KeyItemViewModel : BaseRCPViewModel
+    public class ButtonMappingKeyItemViewModel : BaseRCPViewModel
     {
         #region Constructor
 
@@ -16,7 +16,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="actionName">The name of the action the key represents</param>
         /// <param name="originalKey">The original key for the action</param>
         /// <param name="parent">The parent view model</param>
-        public R2KeyItemViewModel(string actionName, Key originalKey, Rayman2ConfigViewModel parent)
+        public ButtonMappingKeyItemViewModel(string actionName, Key originalKey, GameOptions_ConfigPageViewModel parent)
         {
             ActionName = actionName;
             OriginalKey = _newKey = originalKey;
@@ -38,7 +38,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The parent view model
         /// </summary>
-        private Rayman2ConfigViewModel Parent { get; }
+        private GameOptions_ConfigPageViewModel Parent { get; }
 
         #endregion
 
@@ -71,7 +71,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Commands
 
-        public RelayCommand ResetCommand { get; }
+        public ICommand ResetCommand { get; }
 
         #endregion
 

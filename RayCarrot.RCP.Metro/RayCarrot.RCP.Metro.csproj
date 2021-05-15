@@ -119,6 +119,9 @@
     <Compile Include="Emulators\Emulator.cs" />
     <Compile Include="Emulators\DOSBox\DOSBoxEmulator.cs" />
     <Compile Include="Emulators\DOSBox\DOSBoxEmulatorGameConfigViewModel.cs" />
+    <Compile Include="Games\Config\ButtonMapping\ButtonMapper.xaml.cs">
+      <DependentUpon>ButtonMapper.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Games\Config\ViewModels\Rayman1ConfigViewModel.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanByHisFansConfigViewModel.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanDesignerConfigViewModel.cs" />
@@ -206,6 +209,7 @@
     <Compile Include="Games\Progression\UI\ProgressionUI.xaml.cs">
       <DependentUpon>ProgressionUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DirectXKeyHelpers.cs" />
     <Compile Include="Helpers\JsonHelpers.cs" />
     <Compile Include="App\Interfaces\IFileManager.cs" />
     <Compile Include="UI\Controls\LoaderContentControl.cs" />
@@ -538,6 +542,10 @@
     <Page Include="Emulators\DOSBox\DOSBoxEmulatorGameConfig.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Games\Config\ButtonMapping\ButtonMapper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Games\Options\UI\DOSBoxOptions.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -956,20 +964,20 @@
     <Compile Include="ViewModels\Base\BaseRCPViewModel.cs" />
     <Compile Include="Games\Config\ViewModels\Base\Ray_1_KIT_EDU_BaseConfigViewModel.cs" />
     <Compile Include="App\Implementations\AppUIManager.cs" />
-    <Compile Include="DataModels\KeyMappingItem.cs" />
+    <Compile Include="Games\Config\ButtonMapping\KeyMappingItem.cs" />
     <Compile Include="Helpers\R2ButtonMappingManager.cs" />
     <Compile Include="AppUserData\DataModels\DosBoxOptions.cs" />
     <Compile Include="UI\ValidationRules\DosBoxCyclesValidationRule.cs" />
     <Compile Include="UI\ValidationRules\DosBoxResolutionValidationRule.cs" />
     <Compile Include="Pages\Backup\GameBackupItemViewModel.cs" />
-    <Compile Include="ViewModels\R2KeyItemViewModel.cs" />
+    <Compile Include="Games\Config\ButtonMapping\ButtonMappingKeyItemViewModel.cs" />
     <Compile Include="Games\Config\UI\Rayman2Config.xaml.cs">
       <DependentUpon>Rayman2Config.xaml</DependentUpon>
     </Compile>
     <Compile Include="Games\Config\ViewModels\Rayman2ConfigViewModel.cs" />
     <Compile Include="UI\Converters\KeyToHotKeyConverter.cs" />
     <Compile Include="UI\Converters\KeyToStringConverter.cs" />
-    <Compile Include="UI\ValidationRules\R2HotKeyValidationRule.cs" />
+    <Compile Include="UI\ValidationRules\ButtonMapperHotKeyValidationRule.cs" />
     <Compile Include="ViewModels\Dialogs\GameTypeSelectionResult.cs" />
     <Compile Include="ViewModels\Dialogs\GameTypeSelectionViewModel.cs" />
     <Compile Include="UI\GameDisplay.xaml.cs">

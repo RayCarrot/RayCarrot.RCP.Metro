@@ -205,72 +205,8 @@
         </StackPanel>
 
         <Grid IsEnabled="{Binding Path=CanModifyGame, Mode=OneTime}">
-            <DataGrid ItemsSource="{Binding Path=KeyItems}"
-                      IsEnabled="{Binding Path=ControllerSupport, Converter={rwpf:InvertedBooleanConverter}}"
-                      AutoGenerateColumns="False"
-                      CanUserDeleteRows="False"
-                      CanUserAddRows="False"
-                      CanUserReorderColumns="False"
-                      CanUserResizeColumns="False"
-                      CanUserResizeRows="False"
-                      CanUserSortColumns="False"
-                      SelectionMode="Single"
-                      VerticalScrollBarVisibility="Disabled"
-                      ScrollViewer.CanContentScroll="False"
-                      PreviewMouseWheel="UIElement_OnPreviewMouseWheel">
-                <DataGrid.Columns>
-
-                    <DataGridTextColumn ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
-                                        Header="{Resx Config_ButtonMappingActionHeader}"
-                                        Width="*"
-                                        IsReadOnly="True"
-                                        CanUserReorder="False"
-                                        CanUserResize="False"
-                                        CanUserSort="False"
-                                        Binding="{Binding Path=ActionName, Mode=OneTime}" />
-
-                    <DataGridTemplateColumn ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
-                                            Header="{Resx Config_ButtonMappingKeyHeader}"
-                                            Width="*"
-                                            CanUserReorder="False"
-                                            CanUserResize="False"
-                                            CanUserSort="False">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate DataType="local:R2KeyItemViewModel">
-                                <TextBlock Text="{Binding Path=NewKey, Converter={local:KeyToStringConverter}}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                        <DataGridTemplateColumn.CellEditingTemplate>
-                            <DataTemplate DataType="local:R2KeyItemViewModel">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="10" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <mah:HotKeyBox Grid.Column="0" KeyDown="UIElement_OnKeyDown">
-                                        <mah:HotKeyBox.HotKey>
-                                            <Binding Path="NewKey" Converter="{local:KeyToHotKeyConverter}"
-                                                     UpdateSourceTrigger="PropertyChanged">
-                                                <Binding.ValidationRules>
-                                                    <local:R2HotKeyValidationRule ValidatesOnTargetUpdated="True" />
-                                                </Binding.ValidationRules>
-                                            </Binding>
-                                        </mah:HotKeyBox.HotKey>
-                                    </mah:HotKeyBox>
-
-                                    <Button Grid.Column="2"
-                                            Content="{Resx Config_ButtonMappingReset}"
-                                            Command="{Binding Path=ResetCommand}" />
-
-                                </Grid>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellEditingTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-
+            <local:ButtonMapper IsEnabled="{Binding Path=ControllerSupport, Converter={rwpf:InvertedBooleanConverter}}"
+                                ItemsSource="{Binding Path=KeyItems, Mode=OneTime}"/>
         </Grid>
 
     </StackPanel>

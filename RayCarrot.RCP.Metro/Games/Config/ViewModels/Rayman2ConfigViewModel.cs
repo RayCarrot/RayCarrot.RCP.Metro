@@ -30,27 +30,27 @@ namespace RayCarrot.RCP.Metro
             // Set default properties
             IsHorizontalWidescreen = true;
 
-            // IDEA: Localize
-            KeyItems = new ObservableCollection<R2KeyItemViewModel>()
+            // TODO-UPDATE: Localize
+            KeyItems = new ObservableCollection<ButtonMappingKeyItemViewModel>()
             {
-                new R2KeyItemViewModel("Up", Key.Up, this),
-                new R2KeyItemViewModel("Down", Key.Down, this),
-                new R2KeyItemViewModel("Left", Key.Left, this),
-                new R2KeyItemViewModel("Right", Key.Right, this),
-                new R2KeyItemViewModel("Jump / Swim up", Key.A, this),
-                new R2KeyItemViewModel("Swim down", Key.Z, this),
-                new R2KeyItemViewModel("Shoot", Key.Space, this),
-                new R2KeyItemViewModel("Walk Slowly", Key.LeftShift, this),
-                new R2KeyItemViewModel("Strafe", Key.LeftCtrl, this),
-                new R2KeyItemViewModel("Camera Right", Key.Q, this),
-                new R2KeyItemViewModel("Camera Left", Key.W, this),
-                new R2KeyItemViewModel("Center camera", Key.End, this),
-                new R2KeyItemViewModel("Look mode", Key.NumPad0, this),
-                new R2KeyItemViewModel("Screenshot", Key.F8, this),
-                new R2KeyItemViewModel("Show HUD", Key.J, this),
-                new R2KeyItemViewModel("The Knowledge of the World", Key.F1, this),
-                new R2KeyItemViewModel("Confirm", Key.Enter, this),
-                new R2KeyItemViewModel("Cancel", Key.Escape, this)
+                new ButtonMappingKeyItemViewModel("Up", Key.Up, this),
+                new ButtonMappingKeyItemViewModel("Down", Key.Down, this),
+                new ButtonMappingKeyItemViewModel("Left", Key.Left, this),
+                new ButtonMappingKeyItemViewModel("Right", Key.Right, this),
+                new ButtonMappingKeyItemViewModel("Jump / Swim up", Key.A, this),
+                new ButtonMappingKeyItemViewModel("Swim down", Key.Z, this),
+                new ButtonMappingKeyItemViewModel("Shoot", Key.Space, this),
+                new ButtonMappingKeyItemViewModel("Walk Slowly", Key.LeftShift, this),
+                new ButtonMappingKeyItemViewModel("Strafe", Key.LeftCtrl, this),
+                new ButtonMappingKeyItemViewModel("Camera Right", Key.Q, this),
+                new ButtonMappingKeyItemViewModel("Camera Left", Key.W, this),
+                new ButtonMappingKeyItemViewModel("Center camera", Key.End, this),
+                new ButtonMappingKeyItemViewModel("Look mode", Key.NumPad0, this),
+                new ButtonMappingKeyItemViewModel("Screenshot", Key.F8, this),
+                new ButtonMappingKeyItemViewModel("Show HUD", Key.J, this),
+                new ButtonMappingKeyItemViewModel("The Knowledge of the World", Key.F1, this),
+                new ButtonMappingKeyItemViewModel("Confirm", Key.Enter, this),
+                new ButtonMappingKeyItemViewModel("Cancel", Key.Escape, this)
             };
         }
 
@@ -202,7 +202,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The key items
         /// </summary>
-        public ObservableCollection<R2KeyItemViewModel> KeyItems { get; }
+        public ObservableCollection<ButtonMappingKeyItemViewModel> KeyItems { get; }
 
         /// <summary>
         /// The currently selected graphics mode
@@ -362,13 +362,13 @@ namespace RayCarrot.RCP.Metro
                 foreach (var item in result)
                 {
                     // Get the original key
-                    var originalKey = R2ButtonMappingManager.GetKey(item.OriginalKey);
+                    var originalKey = DirectXKeyHelpers.GetKey(item.OriginalKey);
 
                     // Attempt to get corresponding Rayman 2 key
                     var r2Item = KeyItems.FindItem(x => x.OriginalKey == originalKey);
 
                     // If one was found, set the new key
-                    r2Item?.SetInitialNewKey(R2ButtonMappingManager.GetKey(item.NewKey));
+                    r2Item?.SetInitialNewKey(DirectXKeyHelpers.GetKey(item.NewKey));
                 }
             }
         }
@@ -479,7 +479,7 @@ namespace RayCarrot.RCP.Metro
                         // Get only the ones that have changed
                         Where(x => x.NewKey != x.OriginalKey).
                         // Convert to a key mapping item
-                        Select(x => new KeyMappingItem(R2ButtonMappingManager.GetKeyCode(x.OriginalKey), R2ButtonMappingManager.GetKeyCode(x.NewKey))).
+                        Select(x => new KeyMappingItem(DirectXKeyHelpers.GetKeyCode(x.OriginalKey), DirectXKeyHelpers.GetKeyCode(x.NewKey))).
                         // Convert to a list
                         ToList();
 

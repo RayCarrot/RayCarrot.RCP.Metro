@@ -139,6 +139,8 @@
         <TextBlock Style="{StaticResource HeaderTextBlock}"
                    Text="Controls" />
 
+        <local:ButtonMapper ItemsSource="{Binding Path=KeyItems, Mode=OneTime}"/>
+
         <!-- Device -->
 
         <!-- TODO-UPDATE: Localize -->
