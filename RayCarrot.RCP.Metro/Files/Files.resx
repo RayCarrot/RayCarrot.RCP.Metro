@@ -151,9 +151,6 @@
   <data name="RL_Levels" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>raymanlegends\rl_levels.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="RAYMAN" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>rayman1\rayman.cfg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Rayman_Control_Panel_Updater" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>programs\rayman control panel updater.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

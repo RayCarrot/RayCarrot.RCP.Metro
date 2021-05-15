@@ -2,8 +2,7 @@
   "LocalUtilities": {
     "Rayman1": [
       "R1TPLSUtility",
-      "R1CompleteSoundtrackUtility",
-      "R1FixConfigUtility"
+      "R1CompleteSoundtrackUtility"
     ],
     "RaymanDesigner": [
       "RDReplaceFilesUtility",
@@ -27,17 +26,12 @@
     ],
     "RaymanOrigins": [
       "ROHQVideosUtility",
-      "ROLocalizationConverterUtility",
       "RODebugCommandsUtility",
       "ROUpdateUtility"
     ],
     "RaymanLegends": [
       "RLUbiRayUtility",
-      "RLLocalizationConverterUtility",
       "RLDebugCommandsUtility"
-    ],
-    "RaymanFiestaRun": [
-      "RFRLocalizationConverterUtility"
     ]
   },
   "GameManagers": {

@@ -447,32 +447,16 @@
     <Compile Include="GameBackups\RCPBackup.cs" />
     <Compile Include="Games\Progression\Base\BaseProgressionViewModel.cs" />
     <Compile Include="Games\Progression\JungleRun\JungleRunProgressionViewModel.cs" />
-    <Compile Include="Utilities\Games\Rayman 1\FixConfig\R1FixConfigUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman 1\FixConfig\R1FixConfigUtilityUI.xaml.cs">
-      <DependentUpon>R1FixConfigUtilityUI.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Utilities\Games\Rayman 1\FixConfig\R1FixConfigUtilityViewModel.cs" />
     <Compile Include="Utilities\Games\Rayman 2\DiscPatch\R2DiscPatchUtility.cs" />
     <Compile Include="Utilities\Games\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml.cs">
       <DependentUpon>R2DiscPatchUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Games\Rayman 2\DiscPatch\R2DiscPatchUtilityViewModel.cs" />
-    <Compile Include="Utilities\Games\Rayman Fiesta Run\LocalizationConverter\RFRLocalizationConverterUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman Fiesta Run\LocalizationConverter\RFRLocalizationConverterUtilityViewModel.cs" />
     <Compile Include="Utilities\Games\Rayman Legends\DebugCommands\RLDebugCommandsUtility.cs" />
     <Compile Include="Utilities\Games\Rayman Legends\DebugCommands\RLDebugCommandsUtilityUI.xaml.cs">
       <DependentUpon>RLDebugCommandsUtilityUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Games\Rayman Legends\DebugCommands\RLDebugCommandsUtilityViewModel.cs" />
-    <Compile Include="Utilities\Games\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtilityViewModel.cs" />
-    <Compile Include="Utilities\Games\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman Legends\LocalizationConverter\RLLocalizationConverterUtility.cs" />
-    <Compile Include="Utilities\Games\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtilityUI.xaml.cs">
-      <DependentUpon>BaseUbiArtLocalizationConverterUtilityUI.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Utilities\Games\Rayman Legends\LocalizationConverter\RLLocalizationConverterUtilityViewModel.cs" />
-    <Compile Include="Utilities\Games\Rayman Origins\LocalizationConverter\ROLocalizationConverterUtility.cs" />
-    <Compile Include="Utilities\Games\Rayman Origins\LocalizationConverter\ROLocalizationConverterUtilityViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\GamesSelectionResult.cs" />
     <Compile Include="ViewModels\Dialogs\GamesSelectionViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\JumpListEditResult.cs" />
@@ -703,10 +687,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Utilities\Games\Rayman 1\FixConfig\R1FixConfigUtilityUI.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Utilities\Games\Rayman 2\RemoveDRM\R2RemoveDRMUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -752,10 +732,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Utilities\Games\Rayman Designer\ReplaceFiles\RDReplaceFilesUtilityUI.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Utilities\Games\Common\UbiArtLocalizationConverter\BaseUbiArtLocalizationConverterUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -1082,7 +1058,6 @@
     <EmbeddedResource Include="Localization\Resources.sr-Cyrl.resx" />
     <EmbeddedResource Include="Localization\Resources.sv-SE.resx" />
     <None Include="Files\Games.json" />
-    <None Include="Files\Rayman1\RAYMAN.CFG" />
     <None Include="Files\Rayman2\R2_Sna_Drm_Offsets.json" />
     <None Include="Files\Rayman2\ubi.ini" />
     <None Include="Files\RaymanOrigins\RO_LevelConfig.json" />

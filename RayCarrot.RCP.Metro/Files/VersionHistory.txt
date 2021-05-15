@@ -2,6 +2,7 @@
 • Files in the Archive Explorer™ can now be viewed/edited directly
 • The DOSBox game config has been moved to its own page
 • Added game configuration for Rayman 1, Designer, by his Fans, 60 Levels and the educational games
+• Removed localization converter utilities (the converters can still be found under the main Utilities page) and the Rayman 1 config repair utility (the config will automatically repair now when saving)
 • 
 
 Other changes:

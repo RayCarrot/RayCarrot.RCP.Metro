@@ -113,16 +113,16 @@ namespace RayCarrot.RCP.Metro {
         ///      &quot;RDCreateConfigUtility&quot;
         ///    ],
         ///    &quot;Rayman2&quot;: [
-        ///      &quot;R2CNTExplorerUtility&quot;,
         ///      &quot;R2GameSyncTextureInfoUtility&quot;,
         ///      &quot;R2RemoveDRMUtility&quot;,
         ///      &quot;R2DiscPatchUtility&quot;,
         ///      &quot;R2TranslationUtility&quot;
         ///    ],
-        ///    &quot;Demo_Rayman2_1&quot;: [
-        ///      &quot;R2Demo1CNTExplorerUtility&quot;
+        ///    &quot;RaymanM&quot;: [
+        ///      &quot;RMGameSyncTextureInfoUtility&quot;
         ///    ],
-        ///    &quot;Demo_Rayman2_2&quot;:  [rest of string was truncated]&quot;;.
+        ///    &quot;RaymanArena&quot;: [
+        ///      &quot;RAGameSyncTextureInfoUtility [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Games {
             get {
@@ -188,16 +188,6 @@ namespace RayCarrot.RCP.Metro {
         public static string R2_Sna_Drm_Offsets {
             get {
                 return ResourceManager.GetString("R2_Sna_Drm_Offsets", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] RAYMAN {
-            get {
-                object obj = ResourceManager.GetObject("RAYMAN", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         
@@ -322,14 +312,16 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 9.4.0 - February ??, 2020   -----
-        ///• Added the progression tab for Rayman Origins and Legends
-        ///• Added a utility for converting Rayman Legends save files
-        ///• Updated the UbiRay utility to patch the displayed character name and description (the patch needs to be re-applied for this to update)
+        ///   Looks up a localized string similar to -----   Version 11.1.0 - May ??, 2021   -----
+        ///• Files in the Archive Explorer™ can now be viewed/edited directly
+        ///• The DOSBox game config has been moved to its own page
+        ///• Added game configuration for Rayman 1, Designer, by his Fans, 60 Levels and the educational games
+        ///• 
         ///
         ///Other changes:
-        ///• Dialog windows will no longer show in the task bar or application switcher as separate windows
-        ///• Batch importing in the Archive Explorer will now recognize file names with their orig [rest of string was truncated]&quot;;.
+        ///• The pages in the options dialog (such as the progression and config pages) now first load when they get selected
+        ///• The game information page has been merged with the options page
+        ///• The mount option for the DOSBox  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {
