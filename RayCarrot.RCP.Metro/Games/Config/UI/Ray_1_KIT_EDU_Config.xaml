@@ -7,11 +7,13 @@
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="800" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance local:Ray_1_KIT_EDU_BaseConfigViewModel}">
+
     <StackPanel>
         <i:Interaction.Behaviors>
             <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
@@ -104,6 +106,7 @@
 
         <!-- TODO-UPDATE: Localize -->
         <CheckBox Content="Show Parallax Background"
+                  Visibility="{Binding Path=Ray1Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1}"
                   IsEnabled="{Binding Path=ShowBackground}"
                   IsChecked="{Binding Path=ShowParallaxBackground}" />
 
@@ -121,9 +124,11 @@
 
         <!-- TODO-UPDATE: Localize -->
         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                   Text="In-Game Border" />
+                   Visibility="{Binding Path=Ray1Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1}"
+                   Text="Game Border" />
 
         <Slider Value="{Binding Path=ZoneOfPlay}"
+                Visibility="{Binding Path=Ray1Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1}"
                 Minimum="0"
                 Maximum="3"
                 TickPlacement="BottomRight"
@@ -141,11 +146,201 @@
 
         <local:ButtonMapper ItemsSource="{Binding Path=KeyItems, Mode=OneTime}"/>
 
+        <!-- TODO-UPDATE: Localize -->
+        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                   Text="Game Pad" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                </i:Interaction.Behaviors>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" MinWidth="50" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Padding" Value="0 0 10 0" />
+                        </Style>
+                    </Grid.Resources>
+
+                    <i:Interaction.Behaviors>
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                    </i:Interaction.Behaviors>
+
+                    <!-- TODO-UPDATE: Localize -->
+                    <TextBlock Grid.Column="0"
+                               Grid.Row="0"
+                               Text="Jump" />
+
+                    <ComboBox Grid.Column="1"
+                              Grid.Row="0"
+                              SelectedIndex="{Binding Path=GamePad_Jump}">
+                        <TextBlock Text="A" />
+                        <TextBlock Text="B" />
+                        <TextBlock Text="C" />
+                        <TextBlock Text="D" />
+                    </ComboBox>
+
+                    <!-- TODO-UPDATE: Localize -->
+                    <TextBlock Grid.Column="0"
+                               Grid.Row="1"
+                               Text="Fist" />
+
+                    <ComboBox Grid.Column="1"
+                              Grid.Row="1"
+                              SelectedIndex="{Binding Path=GamePad_Fist}">
+                        <TextBlock Text="A" />
+                        <TextBlock Text="B" />
+                        <TextBlock Text="C" />
+                        <TextBlock Text="D" />
+                    </ComboBox>
+
+                    <!-- TODO-UPDATE: Localize -->
+                    <TextBlock Grid.Column="0"
+                               Grid.Row="2"
+                               Text="Action" />
+
+                    <ComboBox Grid.Column="1"
+                              Grid.Row="2"
+                              SelectedIndex="{Binding Path=GamePad_Action}">
+                        <TextBlock Text="A" />
+                        <TextBlock Text="B" />
+                        <TextBlock Text="C" />
+                        <TextBlock Text="D" />
+                    </ComboBox>
+
+                </Grid>
+
+            </StackPanel>
+
+            <Border Grid.Column="1"
+                    Width="250" Height="250" 
+                    BorderThickness="1" 
+                    BorderBrush="{DynamicResource MahApps.Brushes.Border.NonActive}" 
+                    HorizontalAlignment="Left"
+                    rwpf:UserLevelTag.MinUserLevel="Advanced">
+                <Grid Margin="5">
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type metro:NumericUpDown}" BasedOn="{StaticResource {x:Type metro:NumericUpDown}}">
+                            <Setter Property="Maximum" Value="32767" />
+                            <Setter Property="MinWidth" Value="10" />
+                        </Style>
+                    </Grid.Resources>
+
+                    <metro:NumericUpDown Value="{Binding Path=YPadMin}" VerticalAlignment="Top" HorizontalAlignment="Center" />
+                    <metro:NumericUpDown Value="{Binding Path=YPadMax}" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+                    <metro:NumericUpDown Value="{Binding Path=XPadMax}" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                    <metro:NumericUpDown Value="{Binding Path=XPadMin}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+
+                    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <metro:NumericUpDown Grid.Column="0" Value="{Binding Path=XPadCenter}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <TextBlock Grid.Column="1" Text=" x " VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <metro:NumericUpDown Grid.Column="2" Value="{Binding Path=YPadCenter}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+
         <!-- Device -->
 
         <!-- TODO-UPDATE: Localize -->
         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                   Text="Device" />
+                   Text="Device"
+                   rwpf:UserLevelTag.MinUserLevel="Technical" />
+
+        <Grid rwpf:UserLevelTag.MinUserLevel="Technical">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" MinWidth="100" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Padding" Value="0 0 10 0" />
+                </Style>
+            </Grid.Resources>
+
+            <i:Interaction.Behaviors>
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+            </i:Interaction.Behaviors>
+
+            <!-- TODO-UPDATE: Localize -->
+            <TextBlock Grid.Column="0"
+                       Grid.Row="0"
+                       Text="Port" />
+
+            <metro:NumericUpDown Grid.Column="1" Grid.Row="0" Maximum="2147483647" Value="{Binding Path=Port}" />
+
+            <!-- TODO-UPDATE: Localize -->
+            <TextBlock Grid.Column="0"
+                       Grid.Row="1"
+                       Text="Irq" />
+
+            <metro:NumericUpDown Grid.Column="1" Grid.Row="1" Maximum="2147483647" Value="{Binding Path=IRQ}" />
+
+            <!-- TODO-UPDATE: Localize -->
+            <TextBlock Grid.Column="0"
+                       Grid.Row="2"
+                       Text="Dma" />
+
+            <metro:NumericUpDown Grid.Column="1" Grid.Row="2" Maximum="2147483647" Value="{Binding Path=DMA}" />
+
+            <!-- TODO-UPDATE: Localize -->
+            <TextBlock Grid.Column="0"
+                       Grid.Row="3"
+                       Text="Param" />
+
+            <metro:NumericUpDown Grid.Column="1" Grid.Row="3" Maximum="2147483647" Value="{Binding Path=Param}" />
+
+            <!-- TODO-UPDATE: Localize -->
+            <TextBlock Grid.Column="0"
+                       Grid.Row="4"
+                       Text="Device ID" />
+
+            <metro:NumericUpDown Grid.Column="1" Grid.Row="4" Maximum="2147483647" Value="{Binding Path=DeviceID}" />
+
+            <!-- TODO-UPDATE: Localize -->
+            <TextBlock Grid.Column="0"
+                       Grid.Row="5"
+                       Text="Cards" />
+
+            <metro:NumericUpDown Grid.Column="1" Grid.Row="5" Maximum="127" Value="{Binding Path=NumCard}" />
+
+        </Grid>
 
     </StackPanel>
 </UserControl>

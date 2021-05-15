@@ -76,6 +76,21 @@ namespace RayCarrot.RCP.Metro
         private bool _showHud;
         private int _selectedFrameRateOption;
         private int _zoneOfPlay;
+        private int _gamePadJump;
+        private int _gamePadFist;
+        private int _gamePadAction;
+        private int _xPadMax;
+        private int _xPadMin;
+        private int _yPadMax;
+        private int _yPadMin;
+        private int _xPadCenter;
+        private int _yPadCenter;
+        private int _port;
+        private int _irq;
+        private int _dma;
+        private int _param;
+        private int _deviceId;
+        private int _numCard;
 
         #endregion
 
@@ -251,10 +266,164 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        // Controls
+
         /// <summary>
         /// The key items
         /// </summary>
         public ObservableCollection<ButtonMappingKeyItemViewModel> KeyItems { get; }
+
+        public int GamePad_Jump
+        {
+            get => _gamePadJump;
+            set
+            {
+                _gamePadJump = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public int GamePad_Fist
+        {
+            get => _gamePadFist;
+            set
+            {
+                _gamePadFist = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public int GamePad_Action
+        {
+            get => _gamePadAction;
+            set
+            {
+                _gamePadAction = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public int XPadMax
+        {
+            get => _xPadMax;
+            set
+            {
+                _xPadMax = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public int XPadMin
+        {
+            get => _xPadMin;
+            set
+            {
+                _xPadMin = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public int YPadMax
+        {
+            get => _yPadMax;
+            set
+            {
+                _yPadMax = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public int YPadMin
+        {
+            get => _yPadMin;
+            set
+            {
+                _yPadMin = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public int XPadCenter
+        {
+            get => _xPadCenter;
+            set
+            {
+                _xPadCenter = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public int YPadCenter
+        {
+            get => _yPadCenter;
+            set
+            {
+                _yPadCenter = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        // Device
+
+        public int Port
+        {
+            get => _port;
+            set
+            {
+                _port = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public int IRQ
+        {
+            get => _irq;
+            set
+            {
+                _irq = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public int DMA
+        {
+            get => _dma;
+            set
+            {
+                _dma = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public int Param
+        {
+            get => _param;
+            set
+            {
+                _param = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public int DeviceID
+        {
+            get => _deviceId;
+            set
+            {
+                _deviceId = value;
+                UnsavedChanges = true;
+            }
+        }
+
+        public int NumCard
+        {
+            get => _numCard;
+            set
+            {
+                _numCard = value;
+                UnsavedChanges = true;
+            }
+        }
 
         #endregion
 
@@ -353,15 +522,32 @@ namespace RayCarrot.RCP.Metro
             FrameRate = Config.Frequence;
             ZoneOfPlay = Config.SizeScreen;
 
+            GamePad_Jump = Config.KeyJump;
+            GamePad_Fist = Config.KeyWeapon;
+            GamePad_Action = Config.KeyAction;
+            XPadMax = Config.XPadMax;
+            XPadMin = Config.XPadMin;
+            YPadMax = Config.YPadMax;
+            YPadMin = Config.YPadMin;
+            XPadCenter = Config.XPadCentre;
+            YPadCenter = Config.YPadCentre;
+
+            Port = (int)Config.Port;
+            IRQ = (int)Config.Irq;
+            DMA = (int)Config.Dma;
+            Param = (int)Config.Param;
+            DeviceID = (int)Config.DeviceID;
+            NumCard = Config.NumCard;
+
             UnsavedChanges = false;
 
-            // Verify values. If these values are incorrect they will cause the game to run without sound effects.
-            if (Config.Port != 544 || Config.Irq != 5 || Config.Dma != 5 || Config.NumCard != 3)
+            // Verify values. If these values are incorrect they will cause the game to run without sound effects with the default DOSBox configuration.
+            if (Port != 544 || IRQ != 5 || DMA != 5 || NumCard != 3)
             {
-                Config.Port = 544;
-                Config.Irq = 5;
-                Config.Dma = 5;
-                Config.NumCard = 3;
+                Port = 544;
+                IRQ = 5;
+                DMA = 5;
+                NumCard = 3;
                 UnsavedChanges = true;
             }
 
@@ -407,6 +593,23 @@ namespace RayCarrot.RCP.Metro
                 Config.Frequence = FrameRate;
                 Config.SizeScreen = (byte)ZoneOfPlay;
 
+                Config.KeyJump = (ushort)GamePad_Jump;
+                Config.KeyWeapon = (ushort)GamePad_Fist;
+                Config.KeyAction = (ushort)GamePad_Action;
+                Config.XPadMax = (ushort)XPadMax;
+                Config.XPadMin = (ushort)XPadMin;
+                Config.YPadMax = (ushort)YPadMax;
+                Config.YPadMin = (ushort)YPadMin;
+                Config.XPadCentre = (ushort)XPadCenter;
+                Config.YPadCentre = (ushort)YPadCenter;
+
+                Config.Port = (uint)Port;
+                Config.Irq = (uint)IRQ;
+                Config.Dma = (uint)DMA;
+                Config.Param = (uint)Param;
+                Config.DeviceID = (uint)DeviceID;
+                Config.NumCard = (byte)NumCard;
+
                 // Save the config file
                 BinarySerializableHelpers.WriteToFile(Config, ConfigFilePath, Ray1Settings.GetDefaultSettings(Ray1Game, Platform.PC), App.GetBinarySerializerLogger(ConfigFilePath.Name));
 
@@ -429,6 +632,10 @@ namespace RayCarrot.RCP.Metro
             ShowParallaxBackground = true;
             FrameRate = Rayman1Freq.Freq_60;
             ZoneOfPlay = 0;
+            Port = 544;
+            IRQ = 5;
+            DMA = 5;
+            NumCard = 3;
         }
 
         #endregion
@@ -464,7 +671,7 @@ namespace RayCarrot.RCP.Metro
                 VolumeSound = 18,
                 IsStero = 1,
                 EDU_VoiceSound = 18,
-                Mode_Pad = 1,
+                Mode_Pad = false,
                 Port_Pad = 0,
                 XPadMax = 1610,
                 XPadMin = 35,
