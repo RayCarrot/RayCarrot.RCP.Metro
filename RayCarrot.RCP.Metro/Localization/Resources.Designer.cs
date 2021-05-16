@@ -552,6 +552,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Binary file editor.
+        /// </summary>
+        public static string Archive_BinaryEditor {
+            get {
+                return ResourceManager.GetString("Archive_BinaryEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create directory.
         /// </summary>
         public static string Archive_CreateDir {
@@ -669,6 +678,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Binary.
+        /// </summary>
+        public static string Archive_EditBinary {
+            get {
+                return ResourceManager.GetString("Archive_EditBinary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Original.
         /// </summary>
         public static string Archive_Export_Format_Original {
@@ -773,6 +791,33 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_Extract_Info {
             get {
                 return ResourceManager.GetString("Archive_Extract_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File editors.
+        /// </summary>
+        public static string Archive_FileEditors {
+            get {
+                return ResourceManager.GetString("Archive_FileEditors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Associated program.
+        /// </summary>
+        public static string Archive_FileEditorsExe {
+            get {
+                return ResourceManager.GetString("Archive_FileEditorsExe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File extension.
+        /// </summary>
+        public static string Archive_FileEditorsExt {
+            get {
+                return ResourceManager.GetString("Archive_FileEditorsExt", resourceCulture);
             }
         }
         
@@ -1083,6 +1128,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select an executable to use for {0} files.
+        /// </summary>
+        public static string Archive_SelectEditExe {
+            get {
+                return ResourceManager.GetString("Archive_SelectEditExe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sort.
         /// </summary>
         public static string Archive_Sort {
@@ -1124,6 +1178,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_Title {
             get {
                 return ResourceManager.GetString("Archive_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View/Edit.
+        /// </summary>
+        public static string Archive_ViewEditFile {
+            get {
+                return ResourceManager.GetString("Archive_ViewEditFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when opening the file for editing.
+        /// </summary>
+        public static string Archive_ViewEditFileError {
+            get {
+                return ResourceManager.GetString("Archive_ViewEditFileError", resourceCulture);
             }
         }
         
@@ -2488,6 +2560,213 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action.
+        /// </summary>
+        public static string Config_Action_Action {
+            get {
+                return ResourceManager.GetString("Config_Action_Action", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Center camera.
+        /// </summary>
+        public static string Config_Action_CamCenter {
+            get {
+                return ResourceManager.GetString("Config_Action_CamCenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Camera left.
+        /// </summary>
+        public static string Config_Action_CamLeft {
+            get {
+                return ResourceManager.GetString("Config_Action_CamLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Camera right.
+        /// </summary>
+        public static string Config_Action_CamRight {
+            get {
+                return ResourceManager.GetString("Config_Action_CamRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Config_Action_Cancel {
+            get {
+                return ResourceManager.GetString("Config_Action_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swim down.
+        /// </summary>
+        public static string Config_Action_Config_Action_SwimDown {
+            get {
+                return ResourceManager.GetString("Config_Action_Config_Action_SwimDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string Config_Action_Confirm {
+            get {
+                return ResourceManager.GetString("Config_Action_Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Down.
+        /// </summary>
+        public static string Config_Action_Down {
+            get {
+                return ResourceManager.GetString("Config_Action_Down", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fist.
+        /// </summary>
+        public static string Config_Action_Fist {
+            get {
+                return ResourceManager.GetString("Config_Action_Fist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show HUD.
+        /// </summary>
+        public static string Config_Action_HUD {
+            get {
+                return ResourceManager.GetString("Config_Action_HUD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jump.
+        /// </summary>
+        public static string Config_Action_Jump {
+            get {
+                return ResourceManager.GetString("Config_Action_Jump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jump / Swim up.
+        /// </summary>
+        public static string Config_Action_JumpSwimUp {
+            get {
+                return ResourceManager.GetString("Config_Action_JumpSwimUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left.
+        /// </summary>
+        public static string Config_Action_Left {
+            get {
+                return ResourceManager.GetString("Config_Action_Left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Look mode.
+        /// </summary>
+        public static string Config_Action_Look {
+            get {
+                return ResourceManager.GetString("Config_Action_Look", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Knowledge of the World.
+        /// </summary>
+        public static string Config_Action_R2Guide {
+            get {
+                return ResourceManager.GetString("Config_Action_R2Guide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right.
+        /// </summary>
+        public static string Config_Action_Right {
+            get {
+                return ResourceManager.GetString("Config_Action_Right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Screenshot.
+        /// </summary>
+        public static string Config_Action_Screenshot {
+            get {
+                return ResourceManager.GetString("Config_Action_Screenshot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shoot.
+        /// </summary>
+        public static string Config_Action_Shoot {
+            get {
+                return ResourceManager.GetString("Config_Action_Shoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strafe.
+        /// </summary>
+        public static string Config_Action_Strafe {
+            get {
+                return ResourceManager.GetString("Config_Action_Strafe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Up.
+        /// </summary>
+        public static string Config_Action_Up {
+            get {
+                return ResourceManager.GetString("Config_Action_Up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Walk slowly.
+        /// </summary>
+        public static string Config_Action_WalkSlow {
+            get {
+                return ResourceManager.GetString("Config_Action_WalkSlow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Background.
+        /// </summary>
+        public static string Config_Background {
+            get {
+                return ResourceManager.GetString("Config_Background", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Border.
+        /// </summary>
+        public static string Config_Border {
+            get {
+                return ResourceManager.GetString("Config_Border", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Button Mapping (keyboard).
         /// </summary>
         public static string Config_ButtonMapping {
@@ -2605,6 +2884,78 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Controls.
+        /// </summary>
+        public static string Config_Controls {
+            get {
+                return ResourceManager.GetString("Config_Controls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device.
+        /// </summary>
+        public static string Config_Device {
+            get {
+                return ResourceManager.GetString("Config_Device", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cards.
+        /// </summary>
+        public static string Config_Device_Cards {
+            get {
+                return ResourceManager.GetString("Config_Device_Cards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dma.
+        /// </summary>
+        public static string Config_Device_Dma {
+            get {
+                return ResourceManager.GetString("Config_Device_Dma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device ID.
+        /// </summary>
+        public static string Config_Device_ID {
+            get {
+                return ResourceManager.GetString("Config_Device_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Irq.
+        /// </summary>
+        public static string Config_Device_Irq {
+            get {
+                return ResourceManager.GetString("Config_Device_Irq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Param.
+        /// </summary>
+        public static string Config_Device_Param {
+            get {
+                return ResourceManager.GetString("Config_Device_Param", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port.
+        /// </summary>
+        public static string Config_Device_Port {
+            get {
+                return ResourceManager.GetString("Config_Device_Port", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Disable disc checking.
         /// </summary>
         public static string Config_DisableDiscCheck {
@@ -2677,6 +3028,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Frame Rate.
+        /// </summary>
+        public static string Config_FPS {
+            get {
+                return ResourceManager.GetString("Config_FPS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fullscreen.
         /// </summary>
         public static string Config_Fullscreen {
@@ -2691,6 +3051,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_FullscreenInfo {
             get {
                 return ResourceManager.GetString("Config_FullscreenInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Pad.
+        /// </summary>
+        public static string Config_GamePad {
+            get {
+                return ResourceManager.GetString("Config_GamePad", resourceCulture);
             }
         }
         
@@ -2745,6 +3114,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_LockResInfo {
             get {
                 return ResourceManager.GetString("Config_LockResInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mono.
+        /// </summary>
+        public static string Config_Mono {
+            get {
+                return ResourceManager.GetString("Config_Mono", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Music.
+        /// </summary>
+        public static string Config_Music {
+            get {
+                return ResourceManager.GetString("Config_Music", resourceCulture);
             }
         }
         
@@ -2947,11 +3334,38 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show Parallax Background.
+        /// </summary>
+        public static string Config_ScrollBackground {
+            get {
+                return ResourceManager.GetString("Config_ScrollBackground", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected Save Slot.
         /// </summary>
         public static string Config_SelectedSlotHeader {
             get {
                 return ResourceManager.GetString("Config_SelectedSlotHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show HUD.
+        /// </summary>
+        public static string Config_ShowHUD {
+            get {
+                return ResourceManager.GetString("Config_ShowHUD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sound.
+        /// </summary>
+        public static string Config_Sound {
+            get {
+                return ResourceManager.GetString("Config_Sound", resourceCulture);
             }
         }
         
@@ -2970,6 +3384,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_StaticShadows {
             get {
                 return ResourceManager.GetString("Config_StaticShadows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stero.
+        /// </summary>
+        public static string Config_Stereo {
+            get {
+                return ResourceManager.GetString("Config_Stereo", resourceCulture);
             }
         }
         
@@ -3096,6 +3519,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Config_VideoGood {
             get {
                 return ResourceManager.GetString("Config_VideoGood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Voices Volume.
+        /// </summary>
+        public static string Config_VolumeVoices {
+            get {
+                return ResourceManager.GetString("Config_VolumeVoices", resourceCulture);
             }
         }
         

@@ -30,27 +30,26 @@ namespace RayCarrot.RCP.Metro
             // Set default properties
             IsHorizontalWidescreen = true;
 
-            // TODO-UPDATE: Localize
             KeyItems = new ObservableCollection<ButtonMappingKeyItemViewModel>()
             {
-                new ButtonMappingKeyItemViewModel("Up", Key.Up, this),
-                new ButtonMappingKeyItemViewModel("Down", Key.Down, this),
-                new ButtonMappingKeyItemViewModel("Left", Key.Left, this),
-                new ButtonMappingKeyItemViewModel("Right", Key.Right, this),
-                new ButtonMappingKeyItemViewModel("Jump / Swim up", Key.A, this),
-                new ButtonMappingKeyItemViewModel("Swim down", Key.Z, this),
-                new ButtonMappingKeyItemViewModel("Shoot", Key.Space, this),
-                new ButtonMappingKeyItemViewModel("Walk Slowly", Key.LeftShift, this),
-                new ButtonMappingKeyItemViewModel("Strafe", Key.LeftCtrl, this),
-                new ButtonMappingKeyItemViewModel("Camera Right", Key.Q, this),
-                new ButtonMappingKeyItemViewModel("Camera Left", Key.W, this),
-                new ButtonMappingKeyItemViewModel("Center camera", Key.End, this),
-                new ButtonMappingKeyItemViewModel("Look mode", Key.NumPad0, this),
-                new ButtonMappingKeyItemViewModel("Screenshot", Key.F8, this),
-                new ButtonMappingKeyItemViewModel("Show HUD", Key.J, this),
-                new ButtonMappingKeyItemViewModel("The Knowledge of the World", Key.F1, this),
-                new ButtonMappingKeyItemViewModel("Confirm", Key.Enter, this),
-                new ButtonMappingKeyItemViewModel("Cancel", Key.Escape, this)
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Up), Key.Up, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Down), Key.Down, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Left), Key.Left, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Right), Key.Right, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_JumpSwimUp), Key.A, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Config_Action_SwimDown), Key.Z, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Shoot), Key.Space, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_WalkSlow), Key.LeftShift, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Strafe), Key.LeftCtrl, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_CamRight), Key.Q, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_CamLeft), Key.W, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_CamCenter), Key.End, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Look), Key.NumPad0, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Screenshot), Key.F8, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_HUD), Key.J, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_R2Guide), Key.F1, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Confirm), Key.Enter, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Cancel), Key.Escape, this)
             };
         }
 
@@ -668,6 +667,18 @@ namespace RayCarrot.RCP.Metro
             }
 
             OnPropertyChanged(nameof(SelectedGraphicsMode));
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        public override void Dispose()
+        {
+            // Dispose base
+            base.Dispose();
+
+            KeyItems?.DisposeAll();
         }
 
         #endregion

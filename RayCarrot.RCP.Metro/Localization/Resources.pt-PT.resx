@@ -3588,4 +3588,26 @@ Programa de tradução Catalã (Catalunha)
   <data name="GameLink_R2Fix" xml:space="preserve">
     <value>Ray2Fix</value>
   </data>
+  <data name="Config_Device_Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Config_Device_Irq" xml:space="preserve">
+    <value>Irq</value>
+  </data>
+  <data name="Config_Device_Dma" xml:space="preserve">
+    <value>Dma</value>
+    <comment>Dma</comment>
+  </data>
+  <data name="Config_Device_Param" xml:space="preserve">
+    <value>Param</value>
+    <comment>Param</comment>
+  </data>
+  <data name="Config_Device_ID" xml:space="preserve">
+    <value>Device ID</value>
+    <comment>Device ID</comment>
+  </data>
+  <data name="Config_Device_Cards" xml:space="preserve">
+    <value>Cards</value>
+    <comment>Cards</comment>
+  </data>
 </root>

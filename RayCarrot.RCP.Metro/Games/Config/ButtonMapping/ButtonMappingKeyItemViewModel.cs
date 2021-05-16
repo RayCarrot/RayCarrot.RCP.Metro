@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using RayCarrot.UI;
 
 namespace RayCarrot.RCP.Metro
@@ -6,7 +7,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// A button mapping key item view model
     /// </summary>
-    public class ButtonMappingKeyItemViewModel : BaseRCPViewModel
+    public class ButtonMappingKeyItemViewModel : BaseRCPViewModel, IDisposable
     {
         #region Constructor
 
@@ -16,7 +17,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="actionName">The name of the action the key represents</param>
         /// <param name="originalKey">The original key for the action</param>
         /// <param name="parent">The parent view model</param>
-        public ButtonMappingKeyItemViewModel(string actionName, Key originalKey, GameOptions_ConfigPageViewModel parent)
+        public ButtonMappingKeyItemViewModel(LocalizedString actionName, Key originalKey, GameOptions_ConfigPageViewModel parent)
         {
             ActionName = actionName;
             OriginalKey = _newKey = originalKey;
@@ -47,7 +48,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The name of the action the key represents
         /// </summary>
-        public string ActionName { get; }
+        public LocalizedString ActionName { get; }
 
         /// <summary>
         /// The original key for the action
@@ -93,6 +94,11 @@ namespace RayCarrot.RCP.Metro
         {
             _newKey = newKey;
             OnPropertyChanged(nameof(NewKey));
+        }
+
+        public void Dispose()
+        {
+            ActionName?.Dispose();
         }
 
         #endregion

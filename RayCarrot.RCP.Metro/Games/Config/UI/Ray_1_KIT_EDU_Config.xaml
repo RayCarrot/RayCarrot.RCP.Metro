@@ -51,19 +51,16 @@
 
         <!-- Sound -->
 
-        <!-- TODO-UPDATE: Localize -->
         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                   Text="Sound" />
+                   Text="{Resx Config_Sound}" />
 
-        <!-- TODO-UPDATE: Localize -->
-        <CheckBox Content="Music"
+        <CheckBox Content="{Resx Config_Music}"
                   IsChecked="{Binding Path=IsMusicEnabled}" />
 
-        <!-- TODO-UPDATE: Localize -->
         <metro:ToggleSwitch IsOn="{Binding Path=IsStero}"
                             HorizontalAlignment="Left"
-                            OnContent="Stero"
-                            OffContent="Mono" />
+                            OnContent="{Resx Config_Stereo}"
+                            OffContent="{Resx Config_Mono}" />
 
         <TextBlock Style="{StaticResource HeaderTextBlock}"
                    Text="{Resx Config_SoundVolumeHeader}" />
@@ -78,10 +75,9 @@
                 AutoToolTipPlacement="TopLeft"
                 HorizontalAlignment="Left" />
 
-        <!-- TODO-UPDATE: Localize -->
         <TextBlock Style="{StaticResource HeaderTextBlock}"
                     Visibility="{Binding Path=IsVoicesVolumeAvailable, Mode=OneTime, Converter={rwpf:BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
-                   Text="Voices Volume" />
+                   Text="{Resx Config_VolumeVoices}" />
 
         <Slider Value="{Binding Path=VoicesVolume}"
                 Visibility="{Binding Path=IsVoicesVolumeAvailable, Converter={rwpf:BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
@@ -96,36 +92,30 @@
 
         <!-- Graphics -->
 
-        <!-- TODO-UPDATE: Localize -->
         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                   Text="Graphics" />
+                   Text="{Resx Config_Graphics}" />
 
-        <!-- TODO-UPDATE: Localize -->
-        <CheckBox Content="Show Background"
+        <CheckBox Content="{Resx Config_Background}"
                   IsChecked="{Binding Path=ShowBackground}" />
 
-        <!-- TODO-UPDATE: Localize -->
-        <CheckBox Content="Show Parallax Background"
+        <CheckBox Content="{Resx Config_ScrollBackground}"
                   Visibility="{Binding Path=Ray1Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1}"
                   IsEnabled="{Binding Path=ShowBackground}"
                   IsChecked="{Binding Path=ShowParallaxBackground}" />
 
-        <!-- TODO-UPDATE: Localize -->
-        <CheckBox Content="Show HUD"
+        <CheckBox Content="{Resx Config_ShowHUD}"
                   IsChecked="{Binding Path=ShowHUD}" />
 
-        <!-- TODO-UPDATE: Localize -->
         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                   Text="Frame Rate" />
+                   Text="{Resx Config_FPS}" />
 
         <ComboBox HorizontalAlignment="Left"
                   ItemsSource="{Binding Path=FrameRateOptions_Names, Mode=OneTime}"
                   SelectedIndex="{Binding Path=SelectedFrameRateOption}" />
 
-        <!-- TODO-UPDATE: Localize -->
         <TextBlock Style="{StaticResource HeaderTextBlock}"
                    Visibility="{Binding Path=Ray1Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1}"
-                   Text="Game Border" />
+                   Text="{Resx Config_Border}" />
 
         <Slider Value="{Binding Path=ZoneOfPlay}"
                 Visibility="{Binding Path=Ray1Game, Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1}"
@@ -140,15 +130,13 @@
 
         <!-- Controls -->
 
-        <!-- TODO-UPDATE: Localize -->
         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                   Text="Controls" />
+                   Text="{Resx Config_Controls}" />
 
         <local:ButtonMapper ItemsSource="{Binding Path=KeyItems, Mode=OneTime}"/>
 
-        <!-- TODO-UPDATE: Localize -->
         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                   Text="Game Pad" />
+                   Text="{Resx Config_GamePad}" />
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -184,10 +172,9 @@
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                     </i:Interaction.Behaviors>
 
-                    <!-- TODO-UPDATE: Localize -->
                     <TextBlock Grid.Column="0"
                                Grid.Row="0"
-                               Text="Jump" />
+                               Text="{Resx Config_Action_Jump}" />
 
                     <ComboBox Grid.Column="1"
                               Grid.Row="0"
@@ -198,10 +185,9 @@
                         <TextBlock Text="D" />
                     </ComboBox>
 
-                    <!-- TODO-UPDATE: Localize -->
                     <TextBlock Grid.Column="0"
                                Grid.Row="1"
-                               Text="Fist" />
+                               Text="{Resx Config_Action_Fist}" />
 
                     <ComboBox Grid.Column="1"
                               Grid.Row="1"
@@ -212,10 +198,9 @@
                         <TextBlock Text="D" />
                     </ComboBox>
 
-                    <!-- TODO-UPDATE: Localize -->
                     <TextBlock Grid.Column="0"
                                Grid.Row="2"
-                               Text="Action" />
+                               Text="{Resx Config_Action_Action}" />
 
                     <ComboBox Grid.Column="1"
                               Grid.Row="2"
@@ -267,9 +252,8 @@
 
         <!-- Device -->
 
-        <!-- TODO-UPDATE: Localize -->
         <TextBlock Style="{StaticResource HeaderTextBlock}"
-                   Text="Device"
+                   Text="{Resx Config_Device}"
                    rwpf:UserLevelTag.MinUserLevel="Technical" />
 
         <Grid rwpf:UserLevelTag.MinUserLevel="Technical">
@@ -298,45 +282,39 @@
                 <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
             </i:Interaction.Behaviors>
 
-            <!-- TODO-UPDATE: Localize -->
             <TextBlock Grid.Column="0"
                        Grid.Row="0"
-                       Text="Port" />
+                       Text="{Resx Config_Device_Port}" />
 
             <metro:NumericUpDown Grid.Column="1" Grid.Row="0" Maximum="2147483647" Value="{Binding Path=Port}" />
 
-            <!-- TODO-UPDATE: Localize -->
             <TextBlock Grid.Column="0"
                        Grid.Row="1"
-                       Text="Irq" />
+                       Text="{Resx Config_Device_Irq}" />
 
             <metro:NumericUpDown Grid.Column="1" Grid.Row="1" Maximum="2147483647" Value="{Binding Path=IRQ}" />
 
-            <!-- TODO-UPDATE: Localize -->
             <TextBlock Grid.Column="0"
                        Grid.Row="2"
-                       Text="Dma" />
+                       Text="{Resx Config_Device_Dma}" />
 
             <metro:NumericUpDown Grid.Column="1" Grid.Row="2" Maximum="2147483647" Value="{Binding Path=DMA}" />
 
-            <!-- TODO-UPDATE: Localize -->
             <TextBlock Grid.Column="0"
                        Grid.Row="3"
-                       Text="Param" />
+                       Text="{Resx Config_Device_Param}" />
 
             <metro:NumericUpDown Grid.Column="1" Grid.Row="3" Maximum="2147483647" Value="{Binding Path=Param}" />
 
-            <!-- TODO-UPDATE: Localize -->
             <TextBlock Grid.Column="0"
                        Grid.Row="4"
-                       Text="Device ID" />
+                       Text="{Resx Config_Device_ID}" />
 
             <metro:NumericUpDown Grid.Column="1" Grid.Row="4" Maximum="2147483647" Value="{Binding Path=DeviceID}" />
 
-            <!-- TODO-UPDATE: Localize -->
             <TextBlock Grid.Column="0"
                        Grid.Row="5"
-                       Text="Cards" />
+                       Text="{Resx Config_Device_Cards}" />
 
             <metro:NumericUpDown Grid.Column="1" Grid.Row="5" Maximum="127" Value="{Binding Path=NumCard}" />
 

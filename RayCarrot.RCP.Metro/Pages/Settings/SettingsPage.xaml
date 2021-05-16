@@ -338,9 +338,8 @@
 
                             <StackPanel DataContext="{Binding Path=Data}">
 
-                                <!-- TODO-UPDATE: Localize -->
                                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                           Text="Binary file editor"
+                                           Text="{Resx Archive_BinaryEditor}"
                                            Margin="0 0 0 8" />
 
                                 <rwpf:BrowseBox FileFilter="Exe (*.exe)|*.exe"
@@ -352,9 +351,8 @@
 
                             <StackPanel Visibility="{Binding Path=AssociatedPrograms, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
 
-                                <!-- TODO-UPDATE: Localize -->
                                 <TextBlock Style="{StaticResource HeaderTextBlock}"
-                                           Text="File editors"
+                                           Text="{Resx Archive_FileEditors}"
                                            Margin="0 0 0 8" />
 
                                 <DataGrid CanUserAddRows="False"
@@ -367,13 +365,11 @@
                                           ItemsSource="{Binding Path=AssociatedPrograms, Mode=OneTime}">
 
                                     <DataGrid.Columns>
-                                        <!-- TODO-UPDATE: Localize -->
-                                        <DataGridTextColumn Header="File extension" 
+                                        <DataGridTextColumn Header="{Resx Archive_FileEditorsExt}" 
                                                             Width="Auto" 
                                                             Binding="{Binding Path=FileExtension, Mode=OneTime}"
                                                             IsReadOnly="True" />
-                                        <!-- TODO-UPDATE: Localize -->
-                                        <DataGridTextColumn Header="Associated program" 
+                                        <DataGridTextColumn Header="{Resx Archive_FileEditorsExe}" 
                                                             Width="*">
                                             <DataGridTextColumn.Binding>
                                                 <Binding Path="ExeFilePath" UpdateSourceTrigger="PropertyChanged">

@@ -29,7 +29,7 @@
                                 CanUserReorder="False"
                                 CanUserResize="False"
                                 CanUserSort="False"
-                                Binding="{Binding Path=ActionName, Mode=OneTime}" />
+                                Binding="{Binding Path=ActionName.Value}" />
 
             <DataGridTemplateColumn ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                                     Header="{Resx Config_ButtonMappingKeyHeader}"

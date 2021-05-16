@@ -321,8 +321,7 @@
                                     <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                                                  d:DataContext="{d:DesignInstance local:ArchiveFileViewModel}">
 
-                                        <!-- TODO-UPDATE: Localize -->
-                                        <local:MenuItemIcon Header="View/Edit"
+                                        <local:MenuItemIcon Header="{Resx Archive_ViewEditFile}"
                                                             IsEnabled="{Binding Path=IsInitialized}"
                                                             IconKind="PencilOutline"
                                                             ItemsSource="{Binding Path=EditActions, Mode=OneTime}">

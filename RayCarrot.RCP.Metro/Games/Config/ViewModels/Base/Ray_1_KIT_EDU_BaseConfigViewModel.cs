@@ -49,16 +49,15 @@ namespace RayCarrot.RCP.Metro
                 "Max",
             };
 
-            // TODO-UPDATE: Localize
             KeyItems = new ObservableCollection<ButtonMappingKeyItemViewModel>()
             {
-                new ButtonMappingKeyItemViewModel("Left", Key.NumPad4, this),
-                new ButtonMappingKeyItemViewModel("Up", Key.NumPad8, this),
-                new ButtonMappingKeyItemViewModel("Right", Key.NumPad6, this),
-                new ButtonMappingKeyItemViewModel("Down", Key.NumPad2, this),
-                new ButtonMappingKeyItemViewModel("Jump", Key.LeftCtrl, this),
-                new ButtonMappingKeyItemViewModel("Fist", Key.LeftAlt, this),
-                new ButtonMappingKeyItemViewModel("Action", Key.X, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Left), Key.NumPad4, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Up), Key.NumPad8, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Right), Key.NumPad6, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Down), Key.NumPad2, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Jump), Key.LeftCtrl, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Fist), Key.LeftAlt, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Action), Key.X, this),
             };
         }
 
@@ -645,6 +644,14 @@ namespace RayCarrot.RCP.Metro
         #region Public Methods
 
         public abstract FileSystemPath GetConfigPath();
+
+        public override void Dispose()
+        {
+            // Dispose base
+            base.Dispose();
+
+            KeyItems?.DisposeAll();
+        }
 
         #endregion
 

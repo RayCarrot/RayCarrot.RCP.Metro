@@ -333,8 +333,7 @@ namespace RayCarrot.RCP.Metro
 
             // Add native and binary edit actions
             EditActions.Add(new ArchiveFileMenuActionViewModel($"{Resources.Archive_Format_Original} ({FileExtension})", new AsyncRelayCommand(async () => await EditFileAsync(null, false, false))));
-            // TODO-UPDATE: Localize
-            EditActions.Add(new ArchiveFileMenuActionViewModel($"Binary", new AsyncRelayCommand(async () => await EditFileAsync(null, false, true))));
+            EditActions.Add(new ArchiveFileMenuActionViewModel(Resources.Archive_EditBinary, new AsyncRelayCommand(async () => await EditFileAsync(null, false, true))));
 
             // Get available formats to convert to/from
             var formats = exportFormats.Where(x => importFormats.Any(f => x == f));
@@ -646,13 +645,11 @@ namespace RayCarrot.RCP.Metro
                         // If it's still null we ask the user for the program to use
                         if (programPath == null)
                         {
-                            // TODO-UPDATE: Localize
-                            var e = asBinary ? $"binary" : $"{ext}";
+                            var e = asBinary ? Resources.Archive_EditBinary.ToLower() : $"{ext}";
 
                             var browseResult = await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel
                             {
-                                // TODO-UPDATE: Localize
-                                Title = $"Select an executable to use for {e} files",
+                                Title = String.Format(Resources.Archive_SelectEditExe, e),
                                 ExtensionFilter = new FileFilterItem("*.exe", "Exe").StringRepresentation,
                                 DefaultDirectory = Environment.SpecialFolder.ProgramFiles.GetFolderPath()
                             });
@@ -707,8 +704,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         ex.HandleError("Opening archive file for editing");
 
-                        // TODO-UPDATE: Localize
-                        await Services.MessageUI.DisplayExceptionMessageAsync(ex, $"An error occurred when opening the file for editing");
+                        await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ViewEditFileError);
                     }
                 }
             }
