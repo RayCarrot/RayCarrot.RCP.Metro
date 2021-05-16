@@ -5893,15 +5893,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman Reanimated.
-        /// </summary>
-        public static string Links_Community_RaymanReanimated {
-            get {
-                return ResourceManager.GetString("Links_Community_RaymanReanimated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to App user data.
         /// </summary>
         public static string Links_Local_AppData {
@@ -7090,51 +7081,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The configuration could not be repaired.
-        /// </summary>
-        public static string R1U_FixConfig_Error {
-            get {
-                return ResourceManager.GetString("R1U_FixConfig_Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The configuration has been repaired.
-        /// </summary>
-        public static string R1U_FixConfig_Success {
-            get {
-                return ResourceManager.GetString("R1U_FixConfig_Success", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Repair Configuration.
-        /// </summary>
-        public static string R1U_FixConfigHeader {
-            get {
-                return ResourceManager.GetString("R1U_FixConfigHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Repairing the game configuration will fix any potential sound issues in the game. It will also reset any other settings, such as button mapping, but will not change the save slots..
-        /// </summary>
-        public static string R1U_FixConfigInfo {
-            get {
-                return ResourceManager.GetString("R1U_FixConfigInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Repair.
-        /// </summary>
-        public static string R1U_FixConfigRepair {
-            get {
-                return ResourceManager.GetString("R1U_FixConfigRepair", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 1.00.
         /// </summary>
         public static string R1U_TPLS_RayVersions_1_00 {
@@ -7972,15 +7918,6 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This utility can convert a localization for of type .loc which is used in Rayman Fiesta Run. Converting to a .JSON file will allow the files to be edited freely. When converting back you need to select an existing .loc8 file to import the changes into..
-        /// </summary>
-        public static string RFRU_LocalizationConverterHeaderInfo {
-            get {
-                return ResourceManager.GetString("RFRU_LocalizationConverterHeaderInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Once upon a Time.
         /// </summary>
         public static string RL_LevelName_1_1 {
@@ -8229,15 +8166,6 @@ namespace RayCarrot.RCP.Metro {
         public static string RL_LevelName_5_6 {
             get {
                 return ResourceManager.GetString("RL_LevelName_5_6", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This utility can convert a localization file of type .loc8 which is used in Rayman Legends, Rayman Adventures and Rayman Mini. Converting to a .JSON file will allow the files to be edited freely. When converting back you need to select an existing .loc8 file to import the changes into..
-        /// </summary>
-        public static string RLU_LocalizationConverterHeaderInfo {
-            get {
-                return ResourceManager.GetString("RLU_LocalizationConverterHeaderInfo", resourceCulture);
             }
         }
         
@@ -8634,15 +8562,6 @@ namespace RayCarrot.RCP.Metro {
         public static string ROU_HQVideosRevert {
             get {
                 return ResourceManager.GetString("ROU_HQVideosRevert", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This utility can convert a localization for of type .loc which is used in Rayman Origins. Converting to a .JSON file will allow the files to be edited freely. When converting back you need to select an existing .loc file to import the changes into..
-        /// </summary>
-        public static string ROU_LocalizationConverterHeaderInfo {
-            get {
-                return ResourceManager.GetString("ROU_LocalizationConverterHeaderInfo", resourceCulture);
             }
         }
         
@@ -9435,96 +9354,6 @@ namespace RayCarrot.RCP.Metro {
         public static string TPLS_UpdateVersionError {
             get {
                 return ResourceManager.GetString("TPLS_UpdateVersionError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Export to JSON.
-        /// </summary>
-        public static string UbiArtU_LocalizationConverterExport {
-            get {
-                return ResourceManager.GetString("UbiArtU_LocalizationConverterExport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when exporting the localization file. Make sure the file is supported..
-        /// </summary>
-        public static string UbiArtU_LocalizationConverterExportError {
-            get {
-                return ResourceManager.GetString("UbiArtU_LocalizationConverterExportError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select a localization file to export from.
-        /// </summary>
-        public static string UbiArtU_LocalizationConverterExportSelectionHeader {
-            get {
-                return ResourceManager.GetString("UbiArtU_LocalizationConverterExportSelectionHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The localization file has been successfully exported.
-        /// </summary>
-        public static string UbiArtU_LocalizationConverterExportSuccess {
-            get {
-                return ResourceManager.GetString("UbiArtU_LocalizationConverterExportSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Localization Converter.
-        /// </summary>
-        public static string UbiArtU_LocalizationConverterHeader {
-            get {
-                return ResourceManager.GetString("UbiArtU_LocalizationConverterHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Import to localization file.
-        /// </summary>
-        public static string UbiArtU_LocalizationConverterImport {
-            get {
-                return ResourceManager.GetString("UbiArtU_LocalizationConverterImport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select a localization file to import to.
-        /// </summary>
-        public static string UbiArtU_LocalizationConverterImportDestinationSelectionHeader {
-            get {
-                return ResourceManager.GetString("UbiArtU_LocalizationConverterImportDestinationSelectionHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occurred when importing the localization file. Make sure the format of the .JSON file is correct and that the localization file is supported..
-        /// </summary>
-        public static string UbiArtU_LocalizationConverterImportError {
-            get {
-                return ResourceManager.GetString("UbiArtU_LocalizationConverterImportError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The localization file has been successfully imported.
-        /// </summary>
-        public static string UbiArtU_LocalizationConverterImportSuccess {
-            get {
-                return ResourceManager.GetString("UbiArtU_LocalizationConverterImportSuccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Localization Files.
-        /// </summary>
-        public static string UbiArtU_LocalizationConverterLocFilterDescription {
-            get {
-                return ResourceManager.GetString("UbiArtU_LocalizationConverterLocFilterDescription", resourceCulture);
             }
         }
         

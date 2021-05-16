@@ -308,10 +308,6 @@
     <value>Rayman</value>
     <comment>Rayman</comment>
   </data>
-  <data name="Links_Community_RaymanReanimated" xml:space="preserve">
-    <value>Rayman Reanimated</value>
-    <comment>Rayman Reanimated</comment>
-  </data>
   <data name="Archive_Title" xml:space="preserve">
     <value>Archive Explorer™</value>
     <comment>Archive Explorer™</comment>

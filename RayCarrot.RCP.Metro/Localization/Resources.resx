@@ -2689,27 +2689,6 @@ downloadSize</comment>
   <data name="GamesPage_Category_Fan" xml:space="preserve">
     <value>Fan-games</value>
   </data>
-  <data name="Links_Community_RaymanReanimated" xml:space="preserve">
-    <value>Rayman Reanimated</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterHeader" xml:space="preserve">
-    <value>Localization Converter</value>
-  </data>
-  <data name="RLU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>This utility can convert a localization file of type .loc8 which is used in Rayman Legends, Rayman Adventures and Rayman Mini. Converting to a .JSON file will allow the files to be edited freely. When converting back you need to select an existing .loc8 file to import the changes into.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExport" xml:space="preserve">
-    <value>Export to JSON</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImport" xml:space="preserve">
-    <value>Import to localization file</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportSelectionHeader" xml:space="preserve">
-    <value>Select a localization file to export from</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterLocFilterDescription" xml:space="preserve">
-    <value>Localization Files</value>
-  </data>
   <data name="ExportDestinationSelectionHeader" xml:space="preserve">
     <value>Select a file destination to export to</value>
   </data>
@@ -2718,21 +2697,6 @@ downloadSize</comment>
   </data>
   <data name="ImportSelectionHeader" xml:space="preserve">
     <value>Select a converted JSON file to import from</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportDestinationSelectionHeader" xml:space="preserve">
-    <value>Select a localization file to import to</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportError" xml:space="preserve">
-    <value>An error occurred when importing the localization file. Make sure the format of the .JSON file is correct and that the localization file is supported.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportError" xml:space="preserve">
-    <value>An error occurred when exporting the localization file. Make sure the file is supported.</value>
-  </data>
-  <data name="ROU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>This utility can convert a localization for of type .loc which is used in Rayman Origins. Converting to a .JSON file will allow the files to be edited freely. When converting back you need to select an existing .loc file to import the changes into.</value>
-  </data>
-  <data name="RFRU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>This utility can convert a localization for of type .loc which is used in Rayman Fiesta Run. Converting to a .JSON file will allow the files to be edited freely. When converting back you need to select an existing .loc8 file to import the changes into.</value>
   </data>
   <data name="Progression_Header" xml:space="preserve">
     <value>Progression</value>
@@ -2753,12 +2717,6 @@ slotIndex</comment>
   </data>
   <data name="Progression_ImportError" xml:space="preserve">
     <value>An error occurred when importing the save file. Make sure the format of the .JSON file is correct and that the save file is supported.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportSuccess" xml:space="preserve">
-    <value>The localization file has been successfully exported</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportSuccess" xml:space="preserve">
-    <value>The localization file has been successfully imported</value>
   </data>
   <data name="UninstallGameSuccess" xml:space="preserve">
     <value>{0} was uninstalled</value>
@@ -2826,21 +2784,6 @@ gameDisplayName</comment>
   </data>
   <data name="CategorizeGames" xml:space="preserve">
     <value>Categorize games</value>
-  </data>
-  <data name="R1U_FixConfigHeader" xml:space="preserve">
-    <value>Repair Configuration</value>
-  </data>
-  <data name="R1U_FixConfigInfo" xml:space="preserve">
-    <value>Repairing the game configuration will fix any potential sound issues in the game. It will also reset any other settings, such as button mapping, but will not change the save slots.</value>
-  </data>
-  <data name="R1U_FixConfig_Success" xml:space="preserve">
-    <value>The configuration has been repaired</value>
-  </data>
-  <data name="R1U_FixConfig_Error" xml:space="preserve">
-    <value>The configuration could not be repaired</value>
-  </data>
-  <data name="R1U_FixConfigRepair" xml:space="preserve">
-    <value>Repair</value>
   </data>
   <data name="RabbidsActivityCenter_LaunchMessage" xml:space="preserve">
     <value>The game may take a few seconds to launch. If a black screen appears, then press the ESC key on your keyboard to play the game. This message will not show again.</value>

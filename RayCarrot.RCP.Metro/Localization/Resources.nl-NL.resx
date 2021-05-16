@@ -2611,28 +2611,6 @@ Foutmelding: {1}</value>
   <data name="GamesPage_Category_Fan" xml:space="preserve">
     <value>Fan-games</value>
   </data>
-  <data name="Links_Community_RaymanReanimated" xml:space="preserve">
-    <value>Rayman Reanimated</value>
-    <comment>Rayman Reanimated</comment>
-  </data>
-  <data name="UbiArtU_LocalizationConverterHeader" xml:space="preserve">
-    <value>Lokalisatie Converter</value>
-  </data>
-  <data name="RLU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>Dit hulpprogramma kan een lokalisatiebestand converteren van het type .loc8, welke extensie gebruikt wordt in Rayman Legends, Rayman Adventures en Rayman Mini. Het converteren naar een .JSON-bestand zal ervoor zorgen dat de bestanden vrij kunnen worden bewerkt. Voor het ongedaan maken van de conversie dien je een bestaand .loc8-bestand te selecteren waarin je de wijzigingen importeert.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExport" xml:space="preserve">
-    <value>Exporteren naar JSON</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImport" xml:space="preserve">
-    <value>Importeren naar lokalisatiebestand</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportSelectionHeader" xml:space="preserve">
-    <value>Selecteer een lokalisatiebestand om vanaf te exporteren</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterLocFilterDescription" xml:space="preserve">
-    <value>Lokalisatiebestanden</value>
-  </data>
   <data name="ExportDestinationSelectionHeader" xml:space="preserve">
     <value>Selecteer een bestandslocatie om naar te exporteren</value>
   </data>
@@ -2641,21 +2619,6 @@ Foutmelding: {1}</value>
   </data>
   <data name="ImportSelectionHeader" xml:space="preserve">
     <value>Selecteer een geconverteerd JSON-bestand om vanaf te importeren</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportDestinationSelectionHeader" xml:space="preserve">
-    <value>Selecteer een lokalisatiebestand om naar te importeren</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het importeren van het lokalisatiebestand. Controleer of het format van het .JSON-bestand juist is en of het lokalisatiebestand ondersteund wordt.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportError" xml:space="preserve">
-    <value>Er heeft een fout plaatsgevonden tijdens het exporteren van het lokalisatiebestand. Controleer of het bestand ondersteund wordt.</value>
-  </data>
-  <data name="ROU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>Dit hulpprogramma kan een lokalisatie converteren van het type .loc8, welke extensie gebruikt wordt in Rayman Origins. Het converteren naar een .JSON-bestand zal ervoor zorgen dat de bestanden vrij kunnen worden bewerkt. Voor het ongedaan maken van de conversie dien je een bestaand .loc8-bestand te selecteren waarin je de wijzigingen importeert.</value>
-  </data>
-  <data name="RFRU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>Dit hulpprogramma kan een lokalisatie converteren van het type .loc, welke extensie gebruikt wordt in Rayman Fiesta. Het converteren naar een .JSON-bestand zal ervoor zorgen dat de bestanden vrij kunnen worden bewerkt. Voor het ongedaan maken van de conversie dien je een bestaand .loc-bestand te selecteren waarin je de wijzigingen importeert.</value>
   </data>
   <data name="Progression_Header" xml:space="preserve">
     <value>Voortgang</value>
@@ -2674,12 +2637,6 @@ Foutmelding: {1}</value>
   </data>
   <data name="Progression_ImportError" xml:space="preserve">
     <value>Er heeft een fout plaatsgevonden tijdens het importeren van de save file. Controleer of het format van het .JSON-bestand juist is en of de save file ondersteund wordt.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportSuccess" xml:space="preserve">
-    <value>Het lokalisatiebestand is succesvol geëxporteerd</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportSuccess" xml:space="preserve">
-    <value>Het lokalisatiebestand is succesvol geïmporteerd</value>
   </data>
   <data name="UninstallGameSuccess" xml:space="preserve">
     <value>{0} is gedeïnstalleerd</value>
@@ -2737,21 +2694,6 @@ Foutmelding: {1}</value>
   </data>
   <data name="CategorizeGames" xml:space="preserve">
     <value>Categoriseer spellen</value>
-  </data>
-  <data name="R1U_FixConfigHeader" xml:space="preserve">
-    <value>Repareer Configuratie</value>
-  </data>
-  <data name="R1U_FixConfigInfo" xml:space="preserve">
-    <value>Het repareren van de spelconfiguratie zal ervoor zorgen dat elk type geluidsprobleem opgelost wordt. Hierbij worden tevens alle andere instellingen gereset, zoals die van de knoptoewijzing, maar er zullen geen wijzigingen worden aangebracht in de save slots.</value>
-  </data>
-  <data name="R1U_FixConfig_Success" xml:space="preserve">
-    <value>De configuratie is gerepareerd</value>
-  </data>
-  <data name="R1U_FixConfig_Error" xml:space="preserve">
-    <value>De configuratie kon niet gerepareerd worden</value>
-  </data>
-  <data name="R1U_FixConfigRepair" xml:space="preserve">
-    <value>Repareren</value>
   </data>
   <data name="RabbidsActivityCenter_LaunchMessage" xml:space="preserve">
     <value>Het kan een paar seconden duren voordat het spel gestart wordt. Als er een zwart scherm aanwezig blijft, druk dan op de Escape-toets om het spel te starten. Het bericht zal vervolgens niet meer worden weergegeven.</value>
@@ -3357,39 +3299,6 @@ Foutmelding: {1}</value>
   <data name="About_Credits_RaymanUniverse" xml:space="preserve">
     <value>Russische (Rusland) programmavertaling</value>
   </data>
-  <data name="Archive_FileInfo_Dir" xml:space="preserve">
-    <value>Map:</value>
-  </data>
-  <data name="Archive_FileInfo_Size" xml:space="preserve">
-    <value>Bestandsgrootte:</value>
-  </data>
-  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
-    <value>Gecomprimeerde bestandsgrootte:</value>
-  </data>
-  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
-    <value>Pointer:</value>
-  </data>
-  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
-    <value>Gecomprimeerd:</value>
-  </data>
-  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
-    <value>Versleuteld:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
-    <value>Grootte:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
-    <value>Transparant:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
-    <value>Mipmaps:</value>
-  </data>
-  <data name="Archive_FileInfo_Format" xml:space="preserve">
-    <value>Bestandsindeling:</value>
-  </data>
-  <data name="GameLink_R2Fix" xml:space="preserve">
-    <value>Ray2Fix</value>
-  </data>
   <data name="About_Credits_ItzalDrake" xml:space="preserve">
     <value>Italiaans (Italië) programmavertaling</value>
   </data>
@@ -3471,8 +3380,38 @@ Foutmelding: {1}</value>
   <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
     <value>Conflict met bestandsnaam</value>
   </data>
+  <data name="Archive_FileInfo_Dir" xml:space="preserve">
+    <value>Map:</value>
+  </data>
+  <data name="Archive_FileInfo_Size" xml:space="preserve">
+    <value>Bestandsgrootte:</value>
+  </data>
+  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
+    <value>Gecomprimeerde bestandsgrootte:</value>
+  </data>
+  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
+    <value>Pointer:</value>
+  </data>
+  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
+    <value>Gecomprimeerd:</value>
+  </data>
+  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
+    <value>Versleuteld:</value>
+  </data>
   <data name="Archive_FileInfo_Type" xml:space="preserve">
     <value>Type:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
+    <value>Grootte:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
+    <value>Transparant:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
+    <value>Mipmaps:</value>
+  </data>
+  <data name="Archive_FileInfo_Format" xml:space="preserve">
+    <value>Bestandsindeling:</value>
   </data>
   <data name="Archive_CreationFileStatus" xml:space="preserve">
     <value>Bestand {0} toevoegen</value>
@@ -3605,5 +3544,8 @@ Foutmelding: {1}</value>
   </data>
   <data name="Archive_R1PC_SecondaryVersion" xml:space="preserve">
     <value>Secundaire versie</value>
+  </data>
+  <data name="GameLink_R2Fix" xml:space="preserve">
+    <value>Ray2Fix</value>
   </data>
 </root>

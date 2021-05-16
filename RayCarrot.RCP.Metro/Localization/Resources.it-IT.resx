@@ -2584,27 +2584,6 @@ Messaggio di errore: {1} </value>
   <data name="GamesPage_Category_Fan" xml:space="preserve">
     <value>Fangames</value>
   </data>
-  <data name="Links_Community_RaymanReanimated" xml:space="preserve">
-    <value>Rayman Reanimated</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterHeader" xml:space="preserve">
-    <value>Convertitore della localizzazione</value>
-  </data>
-  <data name="RLU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>Questa utilità può convertire un file di localizzazione di tipo .loc8 utilizzato in Rayman Legends, Rayman Adventures e Rayman Mini. La conversione in un file .JSON consentirà di modificare liberamente i file. Quando si converte di nuovo è necessario selezionare un file .loc8 esistente in cui importare le modifiche.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExport" xml:space="preserve">
-    <value>Esporta in JSON</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImport" xml:space="preserve">
-    <value>Importa nel file di localizzazione</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportSelectionHeader" xml:space="preserve">
-    <value>Seleziona un file di localizzazione da cui esportare</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterLocFilterDescription" xml:space="preserve">
-    <value>File di localizzazione</value>
-  </data>
   <data name="ExportDestinationSelectionHeader" xml:space="preserve">
     <value>Seleziona una destinazione file in cui esportare</value>
   </data>
@@ -2613,21 +2592,6 @@ Messaggio di errore: {1} </value>
   </data>
   <data name="ImportSelectionHeader" xml:space="preserve">
     <value>Seleziona un file JSON convertito da cui importare</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportDestinationSelectionHeader" xml:space="preserve">
-    <value>Seleziona un file di localizzazione in cui importare</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportError" xml:space="preserve">
-    <value>Si è verificato un errore durante l'importazione del file di localizzazione. Assicurati che il formato del file .JSON sia corretto e che il file di localizzazione sia supportato.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportError" xml:space="preserve">
-    <value>Si è verificato un errore durante l'esportazione del file di localizzazione. Assicurati che il file sia supportato.</value>
-  </data>
-  <data name="ROU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>Questa utilità può convertire una localizzazione di tipo .loc utilizzata in Rayman Origins. La conversione in un file .JSON consentirà di modificare liberamente i file. Quando si converte di nuovo è necessario selezionare un file .loc esistente in cui importare le modifiche.</value>
-  </data>
-  <data name="RFRU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>Questa utilità può convertire una localizzazione di tipo .loc utilizzata in Fiesta Run. La conversione in un file .JSON consentirà di modificare liberamente i file. Quando si converte di nuovo è necessario selezionare un file .loc esistente in cui importare le modifiche.</value>
   </data>
   <data name="Progression_Header" xml:space="preserve">
     <value>Progressi</value>
@@ -2646,12 +2610,6 @@ Messaggio di errore: {1} </value>
   </data>
   <data name="Progression_ImportError" xml:space="preserve">
     <value>Si è verificato un errore durante l'importazione del file di salvataggio. Assicurati che il formato del file .JSON sia corretto e che il file di salvataggio sia supportato.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportSuccess" xml:space="preserve">
-    <value>Il file di localizzazione è stato esportato con successo</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportSuccess" xml:space="preserve">
-    <value>Il file di localizzazione è stato importato con successo</value>
   </data>
   <data name="UninstallGameSuccess" xml:space="preserve">
     <value>{0} è stato disinstallato</value>
@@ -2709,21 +2667,6 @@ Messaggio di errore: {1} </value>
   </data>
   <data name="CategorizeGames" xml:space="preserve">
     <value>Classifica i giochi</value>
-  </data>
-  <data name="R1U_FixConfigHeader" xml:space="preserve">
-    <value>Ripara la configurazione</value>
-  </data>
-  <data name="R1U_FixConfigInfo" xml:space="preserve">
-    <value>La riparazione della configurazione del gioco risolverà tutti i potenziali problemi audio nel gioco. Ripristinerà anche qualsiasi altra impostazione, come la mappatura dei pulsanti, ma non cambierà gli slot di salvataggio.</value>
-  </data>
-  <data name="R1U_FixConfig_Success" xml:space="preserve">
-    <value>La configurazione è stata riparata</value>
-  </data>
-  <data name="R1U_FixConfig_Error" xml:space="preserve">
-    <value>La configurazione non può essere riparata</value>
-  </data>
-  <data name="R1U_FixConfigRepair" xml:space="preserve">
-    <value>Ripara</value>
   </data>
   <data name="RabbidsActivityCenter_LaunchMessage" xml:space="preserve">
     <value>Il gioco potrebbe impiegare alcuni secondi per avviarsi. Se viene visualizzata una schermata nera, premere il tasto ESC sulla tastiera per giocare. Questo messaggio non verrà più visualizzato.</value>

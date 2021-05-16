@@ -2635,28 +2635,6 @@ Komunikat o błędzie: {1}</value>
   <data name="GamesPage_Category_Fan" xml:space="preserve">
     <value>Fanowskie gry</value>
   </data>
-  <data name="Links_Community_RaymanReanimated" xml:space="preserve">
-    <value>Rayman Reanimated</value>
-    <comment>Rayman Reanimated</comment>
-  </data>
-  <data name="UbiArtU_LocalizationConverterHeader" xml:space="preserve">
-    <value>Konwerter lokalizacji</value>
-  </data>
-  <data name="RLU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>To narzędzie może przekonwertować plik lokalizacyjny typu .loc8, który jest używany w Rayman Legends, Rayman Adventures i Rayman Mini. Konwersja do pliku .JSON pozwoli na swobodną edycję plików. Podczas konwersji z powrotem należy wybrać istniejący plik .loc8, do którego będą importowane zmiany.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExport" xml:space="preserve">
-    <value>Eksportuj do JSON</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImport" xml:space="preserve">
-    <value>Importuj do pliku lokalizacyjnego</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportSelectionHeader" xml:space="preserve">
-    <value>Wybierz plik lokalizacyjny, z którego chcesz eksportować</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterLocFilterDescription" xml:space="preserve">
-    <value>Pliki lokalizacyjne</value>
-  </data>
   <data name="ExportDestinationSelectionHeader" xml:space="preserve">
     <value>Wybierz miejsce docelowe pliku, który chcesz wyeksportować do</value>
   </data>
@@ -2666,21 +2644,6 @@ Komunikat o błędzie: {1}</value>
   <data name="ImportSelectionHeader" xml:space="preserve">
     <value>Wybierz przekonwertowany plik JSON, z którego chcesz importować
 </value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportDestinationSelectionHeader" xml:space="preserve">
-    <value>Wybierz plik lokalizacji do importu</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportError" xml:space="preserve">
-    <value>Wystąpił błąd podczas importowania pliku lokalizacyjnego. Upewnij się, że format pliku .JSON jest poprawny i że plik lokalizacyjny jest obsługiwany.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportError" xml:space="preserve">
-    <value>Wystąpił błąd podczas eksportowania pliku lokalizacyjnego. Upewnij się, że plik jest obsługiwany.</value>
-  </data>
-  <data name="ROU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>To narzędzie może przekonwertować lokalizację typu .loc, która jest używana w Rayman Origins. Konwersja do pliku .JSON pozwoli na swobodną edycję plików. Podczas konwersji z powrotem musisz wybrać istniejący plik .loc8, do którego chcesz zaimportować zmiany.</value>
-  </data>
-  <data name="RFRU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>To narzędzie może przekonwertować lokalizację typu .loc, która jest używana w Rayman Fiesta Run. Konwersja do pliku .JSON pozwoli na swobodną edycję plików. Podczas konwersji z powrotem musisz wybrać istniejący plik .loc, do którego chcesz zaimportować zmiany.</value>
   </data>
   <data name="Progression_Header" xml:space="preserve">
     <value>Postęp</value>
@@ -2700,12 +2663,6 @@ Komunikat o błędzie: {1}</value>
   <data name="Progression_ImportError" xml:space="preserve">
     <value>Wystąpił błąd podczas importowania pliku zapisu. Upewnij się, że format pliku .JSON jest prawidłowy i że plik zapisu jest obsługiwany.
 </value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportSuccess" xml:space="preserve">
-    <value>Plik lokalizacji został pomyślnie wyeksportowany</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportSuccess" xml:space="preserve">
-    <value>Plik lokalizacji został pomyślnie zaimportowany</value>
   </data>
   <data name="UninstallGameSuccess" xml:space="preserve">
     <value>{0} został odinstalowany</value>
@@ -2763,21 +2720,6 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="CategorizeGames" xml:space="preserve">
     <value>Kategoryzuj gry</value>
-  </data>
-  <data name="R1U_FixConfigHeader" xml:space="preserve">
-    <value>Konfiguracja naprawy</value>
-  </data>
-  <data name="R1U_FixConfigInfo" xml:space="preserve">
-    <value>Naprawa konfiguracji gry naprawi wszelkie potencjalne problemy z dźwiękiem w grze. Zresetuje również wszelkie inne ustawienia, takie jak mapowanie przycisków, ale nie zmieni miejsc zapisu.</value>
-  </data>
-  <data name="R1U_FixConfig_Success" xml:space="preserve">
-    <value>Konfiguracja została naprawiona</value>
-  </data>
-  <data name="R1U_FixConfig_Error" xml:space="preserve">
-    <value>Konfiguracja nie mogła zostać naprawiona</value>
-  </data>
-  <data name="R1U_FixConfigRepair" xml:space="preserve">
-    <value>Napraw</value>
   </data>
   <data name="RabbidsActivityCenter_LaunchMessage" xml:space="preserve">
     <value>Uruchomienie gry może potrwać kilka sekund. Jeśli pojawi się czarny ekran, naciśnij klawisz ESC na klawiaturze, aby rozpocząć grę. Ta wiadomość nie pojawi się ponownie.
@@ -3406,36 +3348,6 @@ Komunikat o błędzie: {1}</value>
   <data name="About_Credits_RaymanUniverse" xml:space="preserve">
     <value>Tłumaczenie rosyjskie (Rosja) programu</value>
   </data>
-  <data name="Archive_FileInfo_Dir" xml:space="preserve">
-    <value>Folder:</value>
-  </data>
-  <data name="Archive_FileInfo_Size" xml:space="preserve">
-    <value>Rozmiar pliku:</value>
-  </data>
-  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
-    <value>Rozmiar skompresowanego pliku:</value>
-  </data>
-  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
-    <value>Wskaźnik:</value>
-  </data>
-  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
-    <value>Skompresowany:</value>
-  </data>
-  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
-    <value>Szyfrowany:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
-    <value>Rozmiar:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
-    <value>Przezroczysty:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
-    <value>Mipmapy:</value>
-  </data>
-  <data name="Archive_FileInfo_Format" xml:space="preserve">
-    <value>Format:</value>
-  </data>
   <data name="About_Credits_ItzalDrake" xml:space="preserve">
     <value>Tłumaczenie włoskie (Włochy) programu</value>
   </data>
@@ -3517,8 +3429,38 @@ Komunikat o błędzie: {1}</value>
   <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
     <value>Konflikt nazw plików</value>
   </data>
+  <data name="Archive_FileInfo_Dir" xml:space="preserve">
+    <value>Folder:</value>
+  </data>
+  <data name="Archive_FileInfo_Size" xml:space="preserve">
+    <value>Rozmiar pliku:</value>
+  </data>
+  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
+    <value>Rozmiar skompresowanego pliku:</value>
+  </data>
+  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
+    <value>Wskaźnik:</value>
+  </data>
+  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
+    <value>Skompresowany:</value>
+  </data>
+  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
+    <value>Szyfrowany:</value>
+  </data>
   <data name="Archive_FileInfo_Type" xml:space="preserve">
     <value>Rodzaj:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
+    <value>Rozmiar:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
+    <value>Przezroczysty:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
+    <value>Mipmapy:</value>
+  </data>
+  <data name="Archive_FileInfo_Format" xml:space="preserve">
+    <value>Format:</value>
   </data>
   <data name="Archive_CreationFileStatus" xml:space="preserve">
     <value>Dodawanie pliku {0}</value>
@@ -3543,6 +3485,9 @@ Komunikat o błędzie: {1}</value>
   </data>
   <data name="GameDisplay_Archives" xml:space="preserve">
     <value>Otwórz archiwa</value>
+  </data>
+  <data name="Progression_GenericSave" xml:space="preserve">
+    <value>Zapis</value>
   </data>
   <data name="R1Passwords_Invalid" xml:space="preserve">
     <value>Nieprawidłowe hasło</value>
@@ -3616,8 +3561,14 @@ Komunikat o błędzie: {1}</value>
   <data name="R1Passwords_FinBoss" xml:space="preserve">
     <value>Boss pokonany</value>
   </data>
+  <data name="R1Passwords_HelpedMus" xml:space="preserve">
+    <value>Uratowano The Musiciana </value>
+  </data>
   <data name="R1Passwords_Lives" xml:space="preserve">
     <value>Życia</value>
+  </data>
+  <data name="R1Passwords_Continues" xml:space="preserve">
+    <value>Ciąg dalszy</value>
   </data>
   <data name="Utilities_ArchiveExplorer_R1Header" xml:space="preserve">
     <value>Archiwa Rayman 1 PC (.dat)</value>
@@ -3640,19 +3591,10 @@ Komunikat o błędzie: {1}</value>
   <data name="Archive_R1PC_PrimaryVersion" xml:space="preserve">
     <value>Wersja podstawowa</value>
   </data>
-  <data name="GameLink_R2Fix" xml:space="preserve">
-    <value>Ray2Fix</value>
-  </data>
-  <data name="Progression_GenericSave" xml:space="preserve">
-    <value>Zapis</value>
-  </data>
-  <data name="R1Passwords_HelpedMus" xml:space="preserve">
-    <value>Uratowano The Musiciana </value>
-  </data>
-  <data name="R1Passwords_Continues" xml:space="preserve">
-    <value>Ciąg dalszy</value>
-  </data>
   <data name="Archive_R1PC_SecondaryVersion" xml:space="preserve">
     <value>Wersja dodatkowa</value>
+  </data>
+  <data name="GameLink_R2Fix" xml:space="preserve">
+    <value>Ray2Fix</value>
   </data>
 </root>

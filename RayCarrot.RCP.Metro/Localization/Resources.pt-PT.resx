@@ -2616,28 +2616,6 @@ Error message: {1}</value>
   <data name="GamesPage_Category_Fan" xml:space="preserve">
     <value>Jogos de Fãs</value>
   </data>
-  <data name="Links_Community_RaymanReanimated" xml:space="preserve">
-    <value>Rayman Reanimated</value>
-    <comment>Rayman Reanimated</comment>
-  </data>
-  <data name="UbiArtU_LocalizationConverterHeader" xml:space="preserve">
-    <value>Conversor de Localização</value>
-  </data>
-  <data name="RLU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>Este utilitário pode converter um ficheiro de localização de tipo .loc8 que é utilizado no Rayman Legends, Rayman Adventures e Rayman Mini. Converter para um ficheiro .JSON irá permitir que os ficheiros sejam livremente editados. Necessitas de seleccionar um ficheiro .loc8 existente para importar as alterações para lá quando convertendo de volta.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExport" xml:space="preserve">
-    <value>Exportar para JSON</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImport" xml:space="preserve">
-    <value>Importar para ficheiro de localização</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportSelectionHeader" xml:space="preserve">
-    <value>Selecciona um ficheiro de localização para exportar</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterLocFilterDescription" xml:space="preserve">
-    <value>Ficheiros de Localização</value>
-  </data>
   <data name="ExportDestinationSelectionHeader" xml:space="preserve">
     <value>Selecciona um destino de ficheiro para a exportação</value>
   </data>
@@ -2647,21 +2625,6 @@ Error message: {1}</value>
   </data>
   <data name="ImportSelectionHeader" xml:space="preserve">
     <value>Selecciona um ficheiro JSON convertido para se importar</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportDestinationSelectionHeader" xml:space="preserve">
-    <value>Selecciona um ficheiro de localização para se importar</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportError" xml:space="preserve">
-    <value>Ocorreu um erro quando se importava o ficheiro de localização. Assegura-te que o formato do ficheiro .JSON está correcto e que o ficheiro de localização é suportado.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportError" xml:space="preserve">
-    <value>Ocorreu um erro quando se exportava o ficheiro de localização. Assegura-te que o ficheiro é suportado.</value>
-  </data>
-  <data name="ROU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>Este utilitário pode converter uma localização para o tipo .loc que é utilizado no Rayman Origins. Converter para um ficheiro .JSON irá permitir que os ficheiros sejam livremente editados. Necessitas de seleccionar um ficheiro .loc8 existente para se importar as alterações para lá quando convertendo de volta.</value>
-  </data>
-  <data name="RFRU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>Este utilitário pode converter uma localização para o tipo .loc que é utilizado no Rayman Fiesta Run. Converter para um ficheiro .JSON irá permitir que os ficheiros sejam livremente editados. Necessitas de seleccionar um ficheiro .loc existente para se importar as alterações para lá quando convertendo de volta.</value>
   </data>
   <data name="Progression_Header" xml:space="preserve">
     <value>Progressão</value>
@@ -2680,13 +2643,6 @@ Error message: {1}</value>
   </data>
   <data name="Progression_ImportError" xml:space="preserve">
     <value>Ocorreu um erro quando se importava o ficheiro de progressão. Assegura-te que o formato do ficheiro .JSON está correcto e que o ficheiro de progresso é suportado.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportSuccess" xml:space="preserve">
-    <value>Foi exportado com sucesso o ficheiro de localização
-</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportSuccess" xml:space="preserve">
-    <value>Foi importado com sucesso o ficheiro de localização</value>
   </data>
   <data name="UninstallGameSuccess" xml:space="preserve">
     <value>O {0} foi desinstalado</value>
@@ -2746,22 +2702,6 @@ Error message: {1}</value>
   </data>
   <data name="CategorizeGames" xml:space="preserve">
     <value>Categorizar jogos</value>
-  </data>
-  <data name="R1U_FixConfigHeader" xml:space="preserve">
-    <value>Reparar Configuração</value>
-  </data>
-  <data name="R1U_FixConfigInfo" xml:space="preserve">
-    <value>Reparar a configuração do jogo irá corrigir quaisquer potenciais problemas de som no jogo. Irá também reiniciar quaisquer outras definições, tais como o mapeamento de botões, mas não irá alterar os slots de progressão de jogo.</value>
-  </data>
-  <data name="R1U_FixConfig_Success" xml:space="preserve">
-    <value>Foi reparada a configuração
-</value>
-  </data>
-  <data name="R1U_FixConfig_Error" xml:space="preserve">
-    <value>Não foi reparada a configuração</value>
-  </data>
-  <data name="R1U_FixConfigRepair" xml:space="preserve">
-    <value>Reparar</value>
   </data>
   <data name="RabbidsActivityCenter_LaunchMessage" xml:space="preserve">
     <value>O jogo poderá levar alguns segundos a executar. Se surgir um ecrã negro, pressiona a tecla ESC no teu teclado para jogar o jogo. Esta mensagem não voltará a aparecer.</value>
@@ -3399,39 +3339,6 @@ Programa de tradução Catalã (Catalunha)
   <data name="About_Credits_RaymanUniverse" xml:space="preserve">
     <value>Programa de tradução Russo (Rússia)</value>
   </data>
-  <data name="Archive_FileInfo_Dir" xml:space="preserve">
-    <value>Directório:</value>
-  </data>
-  <data name="Archive_FileInfo_Size" xml:space="preserve">
-    <value>Tamanho de ficheiro:</value>
-  </data>
-  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
-    <value>Tamanho de ficheiro comprimido:</value>
-  </data>
-  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
-    <value>Pointer:</value>
-  </data>
-  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
-    <value>Comprimido:</value>
-  </data>
-  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
-    <value>Encriptado:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
-    <value>Tamanho:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
-    <value>Transparente:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
-    <value>Mipmaps:</value>
-  </data>
-  <data name="Archive_FileInfo_Format" xml:space="preserve">
-    <value>Formato:</value>
-  </data>
-  <data name="GameLink_R2Fix" xml:space="preserve">
-    <value>Ray2Fix</value>
-  </data>
   <data name="About_Credits_ItzalDrake" xml:space="preserve">
     <value>Programa de tradução Italiana (Itália)</value>
   </data>
@@ -3513,8 +3420,38 @@ Programa de tradução Catalã (Catalunha)
   <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
     <value>Conflito de nome de ficheiro</value>
   </data>
+  <data name="Archive_FileInfo_Dir" xml:space="preserve">
+    <value>Directório:</value>
+  </data>
+  <data name="Archive_FileInfo_Size" xml:space="preserve">
+    <value>Tamanho de ficheiro:</value>
+  </data>
+  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
+    <value>Tamanho de ficheiro comprimido:</value>
+  </data>
+  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
+    <value>Pointer:</value>
+  </data>
+  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
+    <value>Comprimido:</value>
+  </data>
+  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
+    <value>Encriptado:</value>
+  </data>
   <data name="Archive_FileInfo_Type" xml:space="preserve">
     <value>Tipo:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
+    <value>Tamanho:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
+    <value>Transparente:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
+    <value>Mipmaps:</value>
+  </data>
+  <data name="Archive_FileInfo_Format" xml:space="preserve">
+    <value>Formato:</value>
   </data>
   <data name="Archive_CreationFileStatus" xml:space="preserve">
     <value>A adicionar ficheiro {0}</value>
@@ -3647,5 +3584,8 @@ Programa de tradução Catalã (Catalunha)
   </data>
   <data name="Archive_R1PC_SecondaryVersion" xml:space="preserve">
     <value>Versão secundária</value>
+  </data>
+  <data name="GameLink_R2Fix" xml:space="preserve">
+    <value>Ray2Fix</value>
   </data>
 </root>

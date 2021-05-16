@@ -2578,27 +2578,6 @@
   <data name="GamesPage_Category_Fan" xml:space="preserve">
     <value>Фан-игры</value>
   </data>
-  <data name="Links_Community_RaymanReanimated" xml:space="preserve">
-    <value>Rayman Reanimated</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterHeader" xml:space="preserve">
-    <value>Преобразователь локализации</value>
-  </data>
-  <data name="RLU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>Эта утилита позволяет конвертировать файл локализации типа .loc8, который используется в Rayman Legends, Rayman Adventures и Rayman Mini. Преобразование в .JSON-файл позволит свободно редактировать файлы. При обратном преобразовании вам нужно выбрать существующий .файл loc8 для импорта изменений.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExport" xml:space="preserve">
-    <value>Экспорт в JSON</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImport" xml:space="preserve">
-    <value>Импорт в файл локализации</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportSelectionHeader" xml:space="preserve">
-    <value>Выберите файл локализации для экспорта из него</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterLocFilterDescription" xml:space="preserve">
-    <value>Файлы локализации</value>
-  </data>
   <data name="ExportDestinationSelectionHeader" xml:space="preserve">
     <value>Выберите место назначения для экспорта файла</value>
   </data>
@@ -2607,21 +2586,6 @@
   </data>
   <data name="ImportSelectionHeader" xml:space="preserve">
     <value>Выберите преобразованный JSON-файл для импорта из него</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportDestinationSelectionHeader" xml:space="preserve">
-    <value>Выберите файл локализации для импорта в него</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportError" xml:space="preserve">
-    <value>При импорте файла локализации произошла ошибка. Убедитесь в том, что формат .JSON-файла является правильным, и что файл локализации поддерживается.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportError" xml:space="preserve">
-    <value>При экспорте файла локализации произошла ошибка. Убедитесь в том, что файл поддерживается.</value>
-  </data>
-  <data name="ROU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>Эта утилита позволяет конвертировать локализацию для типа .loc, который используется в Rayman Origins. Преобразование в .JSON-файл позволит свободно редактировать файлы. При обратном преобразовании вам нужно выбрать существующий .loc8-файл для импорта изменений.</value>
-  </data>
-  <data name="RFRU_LocalizationConverterHeaderInfo" xml:space="preserve">
-    <value>Эта утилита позволяет конвертировать локализацию для типа .loc, который используется в Rayman Fiesta Run. Преобразование в .JSON-файл позволит свободно редактировать файлы. При обратном преобразовании вам нужно выбрать существующий .loc-файл для импорта изменений.</value>
   </data>
   <data name="Progression_Header" xml:space="preserve">
     <value>Прогресс</value>
@@ -2640,12 +2604,6 @@
   </data>
   <data name="Progression_ImportError" xml:space="preserve">
     <value>При импорте файла сохранения произошла ошибка. Убедитесь в том, что формат .JSON-файла является правильным, и что файл сохранения поддерживается.</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterExportSuccess" xml:space="preserve">
-    <value>Файл локализации успешно экспортирован</value>
-  </data>
-  <data name="UbiArtU_LocalizationConverterImportSuccess" xml:space="preserve">
-    <value>Файл локализации успешно импортирован</value>
   </data>
   <data name="UninstallGameSuccess" xml:space="preserve">
     <value>{0} была удалена</value>
@@ -2703,21 +2661,6 @@
   </data>
   <data name="CategorizeGames" xml:space="preserve">
     <value>Сортировать игры</value>
-  </data>
-  <data name="R1U_FixConfigHeader" xml:space="preserve">
-    <value>Восстановить настройки</value>
-  </data>
-  <data name="R1U_FixConfigInfo" xml:space="preserve">
-    <value>Восстановление настроек игры устранит любые потенциальные проблемы со звуком в игре. Оно также сбросит любые другие настройки, такие как назначение кнопок, но не изменит слоты сохранения.</value>
-  </data>
-  <data name="R1U_FixConfig_Success" xml:space="preserve">
-    <value>Настройки были восстановлены</value>
-  </data>
-  <data name="R1U_FixConfig_Error" xml:space="preserve">
-    <value>Настройки не могут быть восстановлены</value>
-  </data>
-  <data name="R1U_FixConfigRepair" xml:space="preserve">
-    <value>Восстановить</value>
   </data>
   <data name="RabbidsActivityCenter_LaunchMessage" xml:space="preserve">
     <value>Запуск игры может занять несколько секунд. Если появится черный экран, нажмите клавишу ESC на клавиатуре, чтобы начать игру. Это сообщение больше не появится.</value>
@@ -3293,39 +3236,6 @@
   <data name="About_Credits_RaymanUniverse" xml:space="preserve">
     <value>Перевод программы на русский (Россия)</value>
   </data>
-  <data name="Archive_FileInfo_Dir" xml:space="preserve">
-    <value>Папка:</value>
-  </data>
-  <data name="Archive_FileInfo_Size" xml:space="preserve">
-    <value>Размер файла:</value>
-  </data>
-  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
-    <value>Размер сжатого файла:</value>
-  </data>
-  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
-    <value>Указатель:</value>
-  </data>
-  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
-    <value>Сжат:</value>
-  </data>
-  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
-    <value>Зашифрован:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
-    <value>Размер:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
-    <value>Прозрачен:</value>
-  </data>
-  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
-    <value>Мипмапы:</value>
-  </data>
-  <data name="Archive_FileInfo_Format" xml:space="preserve">
-    <value>Формат:</value>
-  </data>
-  <data name="GameLink_R2Fix" xml:space="preserve">
-    <value>Ray2Fix</value>
-  </data>
   <data name="About_Credits_ItzalDrake" xml:space="preserve">
     <value>Перевод программы на итальянский (Италия)</value>
   </data>
@@ -3407,8 +3317,38 @@
   <data name="Archive_AddFiles_ConflictHeader" xml:space="preserve">
     <value>Конфликт названий файлов</value>
   </data>
+  <data name="Archive_FileInfo_Dir" xml:space="preserve">
+    <value>Папка:</value>
+  </data>
+  <data name="Archive_FileInfo_Size" xml:space="preserve">
+    <value>Размер файла:</value>
+  </data>
+  <data name="Archive_FileInfo_SizeComp" xml:space="preserve">
+    <value>Размер сжатого файла:</value>
+  </data>
+  <data name="Archive_FileInfo_Pointer" xml:space="preserve">
+    <value>Указатель:</value>
+  </data>
+  <data name="Archive_FileInfo_IsComp" xml:space="preserve">
+    <value>Сжат:</value>
+  </data>
+  <data name="Archive_FileInfo_IsEncrypted" xml:space="preserve">
+    <value>Зашифрован:</value>
+  </data>
   <data name="Archive_FileInfo_Type" xml:space="preserve">
     <value>Тип:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Size" xml:space="preserve">
+    <value>Размер:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_HasAlpha" xml:space="preserve">
+    <value>Прозрачен:</value>
+  </data>
+  <data name="Archive_FileInfo_Img_Mipmaps" xml:space="preserve">
+    <value>Мипмапы:</value>
+  </data>
+  <data name="Archive_FileInfo_Format" xml:space="preserve">
+    <value>Формат:</value>
   </data>
   <data name="Archive_CreationFileStatus" xml:space="preserve">
     <value>Добавление файла {0}</value>
@@ -3541,5 +3481,8 @@
   </data>
   <data name="Archive_R1PC_SecondaryVersion" xml:space="preserve">
     <value>Вторичная версия</value>
+  </data>
+  <data name="GameLink_R2Fix" xml:space="preserve">
+    <value>Ray2Fix</value>
   </data>
 </root>
