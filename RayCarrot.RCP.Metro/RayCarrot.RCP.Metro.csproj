@@ -62,6 +62,9 @@
   <PropertyGroup>
     <ApplicationIcon>Img\RCP_Metro.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>RayCarrot.RCP.Metro.Entry</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Infralution.Localization.Wpf">
       <HintPath>..\References\Infralution.Localization.Wpf.dll</HintPath>
@@ -119,6 +122,7 @@
     <Compile Include="Emulators\Emulator.cs" />
     <Compile Include="Emulators\DOSBox\DOSBoxEmulator.cs" />
     <Compile Include="Emulators\DOSBox\DOSBoxEmulatorGameConfigViewModel.cs" />
+    <Compile Include="Entry.cs" />
     <Compile Include="Games\Config\ButtonMapping\ButtonMapper.xaml.cs">
       <DependentUpon>ButtonMapper.xaml</DependentUpon>
     </Compile>
