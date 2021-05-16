@@ -68,6 +68,10 @@ namespace RayCarrot.RCP.Metro
                     Console.WriteLine($"Test command has been processed");
                     break;
 
+                case "games":
+                    Console.WriteLine(Files.Games);
+                    break;
+
                 case "wait":
                     var time = Int32.Parse(ReadArg(args, ref pos));
 
