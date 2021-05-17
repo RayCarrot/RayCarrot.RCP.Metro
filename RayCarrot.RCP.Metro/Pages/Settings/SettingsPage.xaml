@@ -366,10 +366,12 @@
 
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="{Resx Archive_FileEditorsExt}" 
+                                                            ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                                                             Width="Auto" 
                                                             Binding="{Binding Path=FileExtension, Mode=OneTime}"
                                                             IsReadOnly="True" />
                                         <DataGridTextColumn Header="{Resx Archive_FileEditorsExe}" 
+                                                            ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                                                             Width="*">
                                             <DataGridTextColumn.Binding>
                                                 <Binding Path="ExeFilePath" UpdateSourceTrigger="PropertyChanged">
