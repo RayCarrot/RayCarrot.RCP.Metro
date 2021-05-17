@@ -3665,7 +3665,7 @@ fileExt</comment>
     <value>Music</value>
   </data>
   <data name="Config_Stereo" xml:space="preserve">
-    <value>Stero</value>
+    <value>Stereo</value>
   </data>
   <data name="Config_Mono" xml:space="preserve">
     <value>Mono</value>
@@ -3777,5 +3777,8 @@ fileExt</comment>
   </data>
   <data name="Config_Action_Cancel" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>Read-Only</value>
   </data>
 </root>

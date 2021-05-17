@@ -12,7 +12,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
@@ -332,12 +331,21 @@ namespace RayCarrot.RCP.Metro
             EditActions.Clear();
 
             // Add native and binary edit actions
-            EditActions.Add(new ArchiveFileMenuActionViewModel($"{Resources.Archive_Format_Original} ({FileExtension})", new AsyncRelayCommand(async () => await EditFileAsync(null, false, false))));
-            EditActions.Add(new ArchiveFileMenuActionViewModel(Resources.Archive_EditBinary, new AsyncRelayCommand(async () => await EditFileAsync(null, false, true))));
+            EditActions.Add(new ArchiveFileMenuActionViewModel($"{Resources.Archive_Format_Original} ({FileExtension})", new AsyncRelayCommand(async () => await EditFileAsync(null, false, false, false))));
+            EditActions.Add(new ArchiveFileMenuActionViewModel(Resources.Archive_EditBinary, new AsyncRelayCommand(async () => await EditFileAsync(null, false, true, false))));
 
             // Get available formats to convert to/from
-            var formats = exportFormats.Where(x => importFormats.Any(f => x == f));
-            EditActions.AddRange(formats.Select(x => new ArchiveFileMenuActionViewModel(x.DisplayName, new AsyncRelayCommand(async () => await EditFileAsync(x, true, false)))));
+            EditActions.AddRange(exportFormats.Select(x =>
+            {
+                var readOnly = importFormats.All(f => x != f);
+
+                var name = x.DisplayName;
+
+                if (readOnly)
+                    name += $" ({Resources.ReadOnly})";
+
+                return new ArchiveFileMenuActionViewModel(name, new AsyncRelayCommand(async () => await EditFileAsync(x, true, false, readOnly)));
+            }));
         }
 
         /// <summary>
@@ -559,8 +567,9 @@ namespace RayCarrot.RCP.Metro
         /// <param name="ext">The file extension to use when opening</param>
         /// <param name="convert">Indicates if the file should be converted when opening</param>
         /// <param name="asBinary">Indicates if the file should be opened as a binary file</param>
+        /// <param name="readOnly">Indicates if the file should be opened as read-only</param>
         /// <returns>The task</returns>
-        public async Task EditFileAsync(FileExtension ext, bool convert, bool asBinary)
+        public async Task EditFileAsync(FileExtension ext, bool convert, bool asBinary, bool readOnly)
         {
             RL.Logger?.LogTraceSource($"The archive file {FileName} is being opened...");
 
@@ -665,6 +674,13 @@ namespace RayCarrot.RCP.Metro
                             programPath = browseResult.SelectedFile;
                         }
 
+                        // If read-only set the attribute
+                        if (readOnly)
+                        {
+                            var info = tempFile.TempPath.GetFileInfo();
+                            info.Attributes |= FileAttributes.ReadOnly;
+                        }
+
                         // Open the file
                         using (var p = await RCPServices.File.LaunchFileAsync(programPath.Value, arguments: $"\"{tempFile.TempPath}\""))
                         {
@@ -678,6 +694,10 @@ namespace RayCarrot.RCP.Metro
                             // Wait for the file to close...
                             await p.WaitForExitAsync();
                         }
+
+                        // If read-only we don't need to check if it has been modified
+                        if (readOnly)
+                            return;
 
                         // Open the temp file
                         using FileStream tempFileStream = new FileStream(tempFile.TempPath, FileMode.Open, FileAccess.Read);

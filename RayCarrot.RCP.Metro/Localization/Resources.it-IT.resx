@@ -3514,4 +3514,130 @@ Messaggio di errore: {1} </value>
     <value>Cards</value>
     <comment>Cards</comment>
   </data>
+  <data name="Archive_ViewEditFile" xml:space="preserve">
+    <value>Visualizza/Modifica</value>
+  </data>
+  <data name="Archive_EditBinary" xml:space="preserve">
+    <value>Binario</value>
+  </data>
+  <data name="Archive_SelectEditExe" xml:space="preserve">
+    <value>Seleziona un eseguibile da utilizzare per i file {0}</value>
+  </data>
+  <data name="Archive_ViewEditFileError" xml:space="preserve">
+    <value>Si è verificato un errore durante l'apertura del file per la modifica</value>
+  </data>
+  <data name="Archive_BinaryEditor" xml:space="preserve">
+    <value>Editor di file binari</value>
+  </data>
+  <data name="Archive_FileEditors" xml:space="preserve">
+    <value>Editor di file</value>
+  </data>
+  <data name="Archive_FileEditorsExt" xml:space="preserve">
+    <value>Estensione file</value>
+  </data>
+  <data name="Archive_FileEditorsExe" xml:space="preserve">
+    <value>Programma associato</value>
+  </data>
+  <data name="Config_Sound" xml:space="preserve">
+    <value>Suoni</value>
+  </data>
+  <data name="Config_Music" xml:space="preserve">
+    <value>Musica</value>
+  </data>
+  <data name="Config_Stereo" xml:space="preserve">
+    <value>Stereo</value>
+  </data>
+  <data name="Config_Mono" xml:space="preserve">
+    <value>Mono</value>
+  </data>
+  <data name="Config_VolumeVoices" xml:space="preserve">
+    <value>Volume voci</value>
+  </data>
+  <data name="Config_Background" xml:space="preserve">
+    <value>Mostra sfondo</value>
+  </data>
+  <data name="Config_ScrollBackground" xml:space="preserve">
+    <value>Mostra sfondo parallasse</value>
+  </data>
+  <data name="Config_ShowHUD" xml:space="preserve">
+    <value>Mostra HUD</value>
+  </data>
+  <data name="Config_FPS" xml:space="preserve">
+    <value>Frequenza dei fotogrammi </value>
+  </data>
+  <data name="Config_Border" xml:space="preserve">
+    <value>Bordo gioco</value>
+  </data>
+  <data name="Config_Controls" xml:space="preserve">
+    <value>Controlli</value>
+  </data>
+  <data name="Config_GamePad" xml:space="preserve">
+    <value>Gamepad</value>
+  </data>
+  <data name="Config_Action_Jump" xml:space="preserve">
+    <value>Salta</value>
+  </data>
+  <data name="Config_Action_Fist" xml:space="preserve">
+    <value>Pugno</value>
+  </data>
+  <data name="Config_Action_Action" xml:space="preserve">
+    <value>Azione</value>
+  </data>
+  <data name="Config_Device" xml:space="preserve">
+    <value>Dispositivo</value>
+  </data>
+  <data name="Config_Action_Left" xml:space="preserve">
+    <value>Sinistra</value>
+  </data>
+  <data name="Config_Action_Up" xml:space="preserve">
+    <value>Su</value>
+  </data>
+  <data name="Config_Action_Right" xml:space="preserve">
+    <value>Destra</value>
+  </data>
+  <data name="Config_Action_Down" xml:space="preserve">
+    <value>Giù</value>
+  </data>
+  <data name="Config_Action_JumpSwimUp" xml:space="preserve">
+    <value>Salta / Nuotare verso l'alto</value>
+  </data>
+  <data name="Config_Action_Config_Action_SwimDown" xml:space="preserve">
+    <value>Nuotare verso il basso</value>
+  </data>
+  <data name="Config_Action_Shoot" xml:space="preserve">
+    <value>Sparare</value>
+  </data>
+  <data name="Config_Action_WalkSlow" xml:space="preserve">
+    <value>Camminare lentamente</value>
+  </data>
+  <data name="Config_Action_Strafe" xml:space="preserve">
+    <value>Sparare a raffica</value>
+  </data>
+  <data name="Config_Action_CamRight" xml:space="preserve">
+    <value>Fotocamera a destra</value>
+  </data>
+  <data name="Config_Action_CamLeft" xml:space="preserve">
+    <value>Fotocamera a sinistra</value>
+  </data>
+  <data name="Config_Action_CamCenter" xml:space="preserve">
+    <value>Fotocamera centrale</value>
+  </data>
+  <data name="Config_Action_Look" xml:space="preserve">
+    <value>Modalità sguardo</value>
+  </data>
+  <data name="Config_Action_Screenshot" xml:space="preserve">
+    <value>Screenshot</value>
+  </data>
+  <data name="Config_Action_HUD" xml:space="preserve">
+    <value>Mostra HUD</value>
+  </data>
+  <data name="Config_Action_R2Guide" xml:space="preserve">
+    <value>La Conoscenza del Mondo</value>
+  </data>
+  <data name="Config_Action_Confirm" xml:space="preserve">
+    <value>Comferma</value>
+  </data>
+  <data name="Config_Action_Cancel" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
 </root>

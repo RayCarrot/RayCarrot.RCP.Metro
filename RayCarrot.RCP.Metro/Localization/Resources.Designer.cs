@@ -3388,7 +3388,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stero.
+        ///   Looks up a localized string similar to Stereo.
         /// </summary>
         public static string Config_Stereo {
             get {
@@ -8238,6 +8238,15 @@ namespace RayCarrot.RCP.Metro {
         public static string ReadingBackupError {
             get {
                 return ResourceManager.GetString("ReadingBackupError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read-Only.
+        /// </summary>
+        public static string ReadOnly {
+            get {
+                return ResourceManager.GetString("ReadOnly", resourceCulture);
             }
         }
         
