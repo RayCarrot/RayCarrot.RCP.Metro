@@ -290,6 +290,7 @@
 
                     <ListBox.InputBindings>
                         <KeyBinding Key="Delete" Command="{Binding Path=DeleteSelectedFileCommand, Mode=OneTime}" />
+                        <KeyBinding Key="F2" Command="{Binding Path=RenameSelectedFileCommand, Mode=OneTime}" />
                     </ListBox.InputBindings>
 
                     <!-- File container -->
@@ -321,9 +322,11 @@
                                     <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
                                                  d:DataContext="{d:DesignInstance local:ArchiveFileViewModel}">
 
+                                        <!-- View/Edit -->
+
                                         <local:MenuItemIcon Header="{Resx Archive_ViewEditFile}"
                                                             IsEnabled="{Binding Path=IsInitialized}"
-                                                            IconKind="PencilOutline"
+                                                            IconKind="FileEditOutline"
                                                             ItemsSource="{Binding Path=EditActions, Mode=OneTime}">
                                             <local:MenuItemIcon.ItemContainerStyle>
                                                 <Style TargetType="{x:Type MenuItem}">
@@ -333,7 +336,17 @@
                                             </local:MenuItemIcon.ItemContainerStyle>
                                         </local:MenuItemIcon>
 
+                                        <!-- Rename -->
+
+                                        <local:MenuItemIcon Header="{Resx Archive_Rename}"
+                                                            IsEnabled="{Binding Path=IsInitialized}"
+                                                            Command="{Binding Path=RenameCommand, Mode=OneTime}"
+                                                            InputGestureText="F2"
+                                                            IconKind="PencilOutline" />
+
                                         <Separator />
+
+                                        <!-- Export -->
 
                                         <local:MenuItemIcon Header="{Resx Archive_ExportFile}"
                                                             IsEnabled="{Binding Path=IsInitialized}"
@@ -347,12 +360,16 @@
                                             </local:MenuItemIcon.ItemContainerStyle>
                                         </local:MenuItemIcon>
 
+                                        <!-- Import -->
+
                                         <local:MenuItemIcon Header="{Resx Archive_ImportFile}"
                                                             IsEnabled="{Binding Path=CanImport}"
                                                             Command="{Binding Path=ImportCommand, Mode=OneTime}"
                                                             IconKind="FileImportOutline" />
 
                                         <Separator />
+
+                                        <!-- Delete -->
 
                                         <local:MenuItemIcon Header="{Resx Archive_Delete}"
                                                             IsEnabled="{Binding Path=IsInitialized}"

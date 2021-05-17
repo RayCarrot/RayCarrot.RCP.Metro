@@ -46,6 +46,7 @@ namespace RayCarrot.RCP.Metro
             // Create commands
             ImportCommand = new AsyncRelayCommand(ImportFileAsync);
             DeleteCommand = new AsyncRelayCommand(DeleteFileAsync);
+            RenameCommand = new AsyncRelayCommand(RenameFileAsync);
 
             // Enable collection synchronization
             BindingOperations.EnableCollectionSynchronization(FileExports, Application.Current);
@@ -58,8 +59,8 @@ namespace RayCarrot.RCP.Metro
         #region Commands
 
         public ICommand ImportCommand { get; }
-
         public ICommand DeleteCommand { get; }
+        public ICommand RenameCommand { get; }
 
         #endregion
 
@@ -231,6 +232,8 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        public void SetFileType(IArchiveFileType type) => FileType = type;
+
         /// <summary>
         /// Initializes the file. This sets the <see cref="FileType"/> and optionally loads the <see cref="ThumbnailSource"/> and <see cref="FileDisplayInfo"/>.
         /// </summary>
@@ -254,8 +257,9 @@ namespace RayCarrot.RCP.Metro
 
                 fileStream.SeekToBeginning();
 
-                // Get the type
-                FileType = FileData.GetFileType(fileStream);
+                // Get the type if we don't have one
+                if (FileType == null)
+                    SetFileType(FileData.GetFileType(fileStream));
 
                 ResetMenuActions();
 
@@ -299,7 +303,7 @@ namespace RayCarrot.RCP.Metro
                     ex.HandleError("Initializing file");
 
                     // Initialize the file with default settings to allow the file to be exported and deleted
-                    FileType = new ArchiveFileType_Default();
+                    SetFileType(new ArchiveFileType_Default());
                     ResetMenuActions();
                     IconKind = PackIconMaterialKind.FileAlertOutline;
                     IsInitialized = true;
@@ -521,12 +525,14 @@ namespace RayCarrot.RCP.Metro
             // Encode the data to the pending import stream
             Manager.EncodeFile(inputStream, FileData.PendingImport, FileData.ArchiveEntry);
 
-            // If no data was encoded we copy over the decoded data
+            // If no data was encoded we copy over the original data
             if (FileData.PendingImport.Length == 0)
                 inputStream.CopyTo(FileData.PendingImport);
 
             HasPendingImport = true;
 
+            inputStream.Position = 0;
+            
             // Initialize the file
             InitializeFile(new ArchiveFileStream(inputStream, false));
 
@@ -547,18 +553,23 @@ namespace RayCarrot.RCP.Metro
                 // Lock the access to the archive
                 using (await Archive.ArchiveLock.LockAsync())
                 {
-                    // Remove the file from the directory
-                    ArchiveDirectory.Files.Remove(this);
-
-                    // Dispose the file
-                    Dispose();
-
-                    // Add as modified file
-                    Archive.AddModifiedFiles();
-
-                    RL.Logger?.LogTraceSource($"The archive file has been removed");
+                    DeleteFile();
                 }
             }
+        }
+
+        public void DeleteFile()
+        {
+            // Remove the file from the directory
+            ArchiveDirectory.Files.Remove(this);
+
+            // Dispose the file
+            Dispose();
+
+            // Add as modified file
+            Archive.AddModifiedFiles();
+
+            RL.Logger?.LogTraceSource($"The archive file has been removed");
         }
 
         /// <summary>
@@ -726,6 +737,54 @@ namespace RayCarrot.RCP.Metro
 
                         await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Archive_ViewEditFileError);
                     }
+                }
+            }
+        }
+
+        public async Task RenameFileAsync()
+        {
+            // Run as a load operation
+            using (Archive.LoadOperation.Run())
+            {
+                // Lock the access to the archive
+                using (await Archive.ArchiveLock.LockAsync())
+                {
+                    var result = await RCPServices.UI.GetStringInput(new StringInputViewModel
+                    {
+                        Title = Resources.Archive_SetFileName,
+                        HeaderText = Resources.Archive_SetFileName,
+                        StringInput = FileName
+                    });
+
+                    if (result.CanceledByUser)
+                        return;
+
+                    var newName = result.StringInput;
+                    var dir = ArchiveDirectory;
+
+                    // Check if the name conflicts with an existing file
+                    if (ArchiveDirectory.Files.Any(x => x.FileName.Equals(newName, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        await Services.MessageUI.DisplayMessageAsync(Resources.Archive_FileNameConflict, Resources.Archive_AddFiles_ConflictHeader, MessageType.Error);
+                        return;
+                    }
+
+                    // Create a new file
+                    var newFile = new ArchiveFileViewModel(new ArchiveFileItem(Manager, newName, dir.FullPath, Manager.GetNewFileEntry(Archive.ArchiveData, dir.FullPath, newName)), dir);
+
+                    // Set the file type
+                    newFile.SetFileType(FileType);
+
+                    // Copy the file contents
+                    newFile.ReplaceFile(GetDecodedFileStream().Stream);
+
+                    // Add the new file
+                    dir.Files.Insert(dir.Files.IndexOf(this), newFile);
+
+                    // Delete this file
+                    DeleteFile();
+
+                    RL.Logger?.LogTraceSource($"The file {FileName} was renamed to {newName}");
                 }
             }
         }

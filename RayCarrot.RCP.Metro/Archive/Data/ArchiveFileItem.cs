@@ -38,7 +38,6 @@ namespace RayCarrot.RCP.Metro
             ArchiveEntry = archiveEntry;
         }
 
-        protected IArchiveFileType FileType { get; set; }
         protected IArchiveDataManager Manager { get; }
 
         public string FileName { get; }
@@ -70,10 +69,6 @@ namespace RayCarrot.RCP.Metro
 
         public IArchiveFileType GetFileType(ArchiveFileStream stream)
         {
-            // Check if we already got the type
-            if (FileType != null)
-                return FileType;
-
             // Get types supported by the current manager
             var types = FileTypes.Where(x => x.IsSupported(Manager)).ToArray();
 
@@ -94,8 +89,8 @@ namespace RayCarrot.RCP.Metro
             if (match == null)
                 match = DefaultFileType;
 
-            // Return and set the type
-            return FileType = match;
+            // Return the type
+            return match;
         }
 
         private static IArchiveFileType[] FileTypes { get; }

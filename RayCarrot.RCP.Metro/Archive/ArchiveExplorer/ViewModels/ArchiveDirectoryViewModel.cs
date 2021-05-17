@@ -41,6 +41,7 @@ namespace RayCarrot.RCP.Metro
             CreateDirectoryCommand = new AsyncRelayCommand(CreateDirectoryAsync);
             DeleteCommand = new AsyncRelayCommand(DeleteDirectoryAsync);
             DeleteSelectedFileCommand = new AsyncRelayCommand(DeleteSelectedFileAsync);
+            RenameSelectedFileCommand = new AsyncRelayCommand(RenameSelectedFileAsync);
             AddFilesCommand = new AsyncRelayCommand(AddFilesAsync);
 
             // Enable collection synchronization
@@ -69,6 +70,7 @@ namespace RayCarrot.RCP.Metro
             CreateDirectoryCommand = new AsyncRelayCommand(CreateDirectoryAsync);
             DeleteCommand = new AsyncRelayCommand(DeleteDirectoryAsync);
             DeleteSelectedFileCommand = new AsyncRelayCommand(DeleteSelectedFileAsync);
+            RenameSelectedFileCommand = new AsyncRelayCommand(RenameSelectedFileAsync);
             AddFilesCommand = new AsyncRelayCommand(AddFilesAsync);
 
             // Enable collection synchronization
@@ -158,6 +160,7 @@ namespace RayCarrot.RCP.Metro
         public ICommand DeleteCommand { get; }
 
         public ICommand DeleteSelectedFileCommand { get; }
+        public ICommand RenameSelectedFileCommand { get; }
         
         public ICommand AddFilesCommand { get; }
 
@@ -489,6 +492,14 @@ namespace RayCarrot.RCP.Metro
 
             if (selectedFile != null)
                 await selectedFile.DeleteFileAsync();
+        }
+
+        public async Task RenameSelectedFileAsync()
+        {
+            var selectedFile = GetSelectedFile();
+
+            if (selectedFile != null)
+                await selectedFile.RenameFileAsync();
         }
 
         public async Task AddFilesAsync()

@@ -939,6 +939,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A file with the specified name already exists.
+        /// </summary>
+        public static string Archive_FileNameConflict {
+            get {
+                return ResourceManager.GetString("Archive_FileNameConflict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Supported files.
         /// </summary>
         public static string Archive_FileSelectionGroupName {
@@ -1092,6 +1101,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rename.
+        /// </summary>
+        public static string Archive_Rename {
+            get {
+                return ResourceManager.GetString("Archive_Rename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred when repacking the archive.
         /// </summary>
         public static string Archive_RepackError {
@@ -1133,6 +1151,15 @@ namespace RayCarrot.RCP.Metro {
         public static string Archive_SelectEditExe {
             get {
                 return ResourceManager.GetString("Archive_SelectEditExe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify a file name.
+        /// </summary>
+        public static string Archive_SetFileName {
+            get {
+                return ResourceManager.GetString("Archive_SetFileName", resourceCulture);
             }
         }
         

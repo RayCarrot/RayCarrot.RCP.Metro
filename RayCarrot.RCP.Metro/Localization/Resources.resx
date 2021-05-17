@@ -3781,4 +3781,13 @@ fileExt</comment>
   <data name="ReadOnly" xml:space="preserve">
     <value>Read-Only</value>
   </data>
+  <data name="Archive_SetFileName" xml:space="preserve">
+    <value>Specify a file name</value>
+  </data>
+  <data name="Archive_FileNameConflict" xml:space="preserve">
+    <value>A file with the specified name already exists</value>
+  </data>
+  <data name="Archive_Rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
 </root>
