@@ -49,11 +49,6 @@ namespace RayCarrot.RCP.Metro
         #region Protected Properties
 
         /// <summary>
-        /// The explorer dialog view model
-        /// </summary>
-        protected ArchiveExplorerDialogViewModel ExplorerDialogViewModel { get; }
-
-        /// <summary>
         /// The current amount of modified files
         /// </summary>
         protected int ModifiedFilesCount { get; set; }
@@ -68,7 +63,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Public Methods
+        #region Public Properties
+
+        /// <summary>
+        /// The explorer dialog view model
+        /// </summary>
+        public ArchiveExplorerDialogViewModel ExplorerDialogViewModel { get; }
 
         /// <summary>
         /// The archive file generator

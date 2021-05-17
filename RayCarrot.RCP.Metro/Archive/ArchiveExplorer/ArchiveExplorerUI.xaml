@@ -282,14 +282,16 @@
                          d:DataContext="{d:DesignInstance local:ArchiveDirectoryViewModel}"
                          ItemsSource="{Binding Path=Files, Mode=OneTime}"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         SelectionChanged="FilesList_OnSelectionChanged"
                          AllowDrop="True"
+                         SelectionMode="Extended"
                          Drop="FilesList_OnDrop"
                          Padding="5">
 
                     <!-- Keyboard shortcuts -->
 
                     <ListBox.InputBindings>
-                        <KeyBinding Key="Delete" Command="{Binding Path=DeleteSelectedFileCommand, Mode=OneTime}" />
+                        <KeyBinding Key="Delete" Command="{Binding Path=DeleteSelectedFilesCommand, Mode=OneTime}" />
                         <KeyBinding Key="F2" Command="{Binding Path=RenameSelectedFileCommand, Mode=OneTime}" />
                     </ListBox.InputBindings>
 
@@ -298,6 +300,7 @@
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                             <Setter Property="Padding" Value="10" />
+                            <Setter Property="IsEnabled" Value="{Binding Path=IsInitialized}" />
                             <Setter Property="Margin" Value="0" />
                             <Setter Property="ToolTip">
                                 <Setter.Value>
@@ -317,6 +320,7 @@
                             </Setter>
                             <EventSetter Event="ToolTipOpening" Handler="FileItem_ToolTipOpening" />
                             <EventSetter Event="MouseDoubleClick" Handler="ToolTipOpening_MouseDoubleClick" />
+                            <EventSetter Event="ContextMenuOpening" Handler="FileContextMenu_OnContextMenuOpening" />
                             <Setter Property="ContextMenu">
                                 <Setter.Value>
                                     <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
@@ -325,8 +329,8 @@
                                         <!-- View/Edit -->
 
                                         <local:MenuItemIcon Header="{Resx Archive_ViewEditFile}"
-                                                            IsEnabled="{Binding Path=IsInitialized}"
                                                             IconKind="FileEditOutline"
+                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
                                                             ItemsSource="{Binding Path=EditActions, Mode=OneTime}">
                                             <local:MenuItemIcon.ItemContainerStyle>
                                                 <Style TargetType="{x:Type MenuItem}">
@@ -339,18 +343,18 @@
                                         <!-- Rename -->
 
                                         <local:MenuItemIcon Header="{Resx Archive_Rename}"
-                                                            IsEnabled="{Binding Path=IsInitialized}"
                                                             Command="{Binding Path=RenameCommand, Mode=OneTime}"
                                                             InputGestureText="F2"
-                                                            IconKind="PencilOutline" />
+                                                            IconKind="PencilOutline"
+                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:InvertedBooleanToVisibilityConverter}}" />
 
-                                        <Separator />
+                                        <Separator Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:InvertedBooleanToVisibilityConverter}}" />
 
                                         <!-- Export -->
 
                                         <local:MenuItemIcon Header="{Resx Archive_ExportFile}"
-                                                            IsEnabled="{Binding Path=IsInitialized}"
                                                             IconKind="FileExportOutline"
+                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
                                                             ItemsSource="{Binding Path=FileExports, Mode=OneTime}">
                                             <local:MenuItemIcon.ItemContainerStyle>
                                                 <Style TargetType="{x:Type MenuItem}">
@@ -363,20 +367,45 @@
                                         <!-- Import -->
 
                                         <local:MenuItemIcon Header="{Resx Archive_ImportFile}"
-                                                            IsEnabled="{Binding Path=CanImport}"
                                                             Command="{Binding Path=ImportCommand, Mode=OneTime}"
-                                                            IconKind="FileImportOutline" />
+                                                            IconKind="FileImportOutline"
+                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:InvertedBooleanToVisibilityConverter}}" />
 
-                                        <Separator />
+                                        <Separator Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:InvertedBooleanToVisibilityConverter}}" />
 
                                         <!-- Delete -->
 
                                         <local:MenuItemIcon Header="{Resx Archive_Delete}"
-                                                            IsEnabled="{Binding Path=IsInitialized}"
                                                             Command="{Binding Path=DeleteCommand, Mode=OneTime}"
                                                             IconForeground="{StaticResource Archive_DeleteItemBrush}"
                                                             InputGestureText="Del"
-                                                            IconKind="DeleteOutline" />
+                                                            IconKind="DeleteOutline"
+                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:InvertedBooleanToVisibilityConverter}}" />
+
+                                        <!-- Extract (multi-selection) -->
+
+                                        <local:MenuItemIcon Header="{Resx Archive_Extract}"
+                                                            Command="{Binding Path=ArchiveDirectory.ExtractSelectedFilesCommand}"
+                                                            IconKind="ApplicationExport"
+                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:BooleanToVisibilityConverter}}" />
+
+                                        <!-- Export (multi-selection) -->
+
+                                        <local:MenuItemIcon Header="{Resx Archive_ExportConvert}"
+                                                            Command="{Binding Path=ArchiveDirectory.ExportSelectedFilesCommand}"
+                                                            IconKind="Export"
+                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:BooleanToVisibilityConverter}}" />
+
+                                        <Separator Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:BooleanToVisibilityConverter}}" />
+
+                                        <!-- Delete (multi-selection) -->
+
+                                        <local:MenuItemIcon Header="{Resx Archive_Delete}"
+                                                            Command="{Binding Path=ArchiveDirectory.DeleteSelectedFilesCommand, Mode=OneTime}"
+                                                            IconForeground="{StaticResource Archive_DeleteItemBrush}"
+                                                            InputGestureText="Del"
+                                                            IconKind="DeleteOutline"
+                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:BooleanToVisibilityConverter}}" />
 
                                     </ContextMenu>
                                 </Setter.Value>

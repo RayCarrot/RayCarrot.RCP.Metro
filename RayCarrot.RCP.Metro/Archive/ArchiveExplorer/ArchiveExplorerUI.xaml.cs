@@ -1,15 +1,13 @@
 ﻿using MahApps.Metro.Controls;
 using RayCarrot.Common;
+using RayCarrot.IO;
 using RayCarrot.WPF;
 using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -157,6 +155,11 @@ namespace RayCarrot.RCP.Metro
 
         private void ToolTipOpening_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            // Only allow double-clicking from the left mouse button
+            if (e.LeftButton != MouseButtonState.Pressed)
+                return;
+
+            // Double-clicking calls the first view/edit action (opening the file in its native format)
             if (sender is FrameworkElement f && f.DataContext is ArchiveFileViewModel file)
                 file.EditActions.FirstOrDefault()?.MenuCommand.Execute(null);
         }
@@ -201,6 +204,33 @@ namespace RayCarrot.RCP.Metro
         {
             foreach (var a in ViewModel.Archives)
                 a.AddModifiedFiles(0, true);
+        }
+
+        private void FilesList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var count = 0;
+
+            foreach (ArchiveFileViewModel file in sender.CastTo<ListBox>().SelectedItems)
+            {
+                // If a file is selected which has not been initialized we deselect it and return (since this event will be triggered again then)
+                if (!file.IsInitialized)
+                {
+                    file.IsSelected = false;
+                    return;
+                }
+
+                count++;
+            }
+
+            // Check if multiple files are selected
+            ViewModel.AreMultipleFilesSelected = count > 1;
+        }
+
+        private void FileContextMenu_OnContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            // Don't allow the context menu to open if not initialized
+            if (((sender as FrameworkElement)?.DataContext as ArchiveFileViewModel)?.IsInitialized != true)
+                e.Handled = true;
         }
 
         #endregion

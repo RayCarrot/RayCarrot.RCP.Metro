@@ -218,6 +218,11 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public ArchiveDirectoryViewModel SelectedDir { get; set; }
 
+        /// <summary>
+        /// Indicates if multiple files are selected
+        /// </summary>
+        public bool AreMultipleFilesSelected { get; set; }
+
         #endregion
 
         #region Protected Methods
@@ -225,11 +230,16 @@ namespace RayCarrot.RCP.Metro
         protected void NavigateToSearchedEntry()
         {
             if (SelectedSearchEntry is ArchiveFileViewModel file)
+            {
                 LoadDirectory(file.ArchiveDirectory);
+                SelectFile(file);
+            }
             else if (SelectedSearchEntry is ArchiveDirectoryViewModel dir)
+            {
                 LoadDirectory(dir);
+                SelectedSearchEntry.IsSelected = true;
+            }
 
-            SelectedSearchEntry.IsSelected = true;
             SelectedSearchEntry = null;
         }
 
@@ -351,11 +361,12 @@ namespace RayCarrot.RCP.Metro
 
                     RL.Logger?.LogDebugSource($"Initializing files for archive dir {newDir.DisplayName}");
 
-                    // Remove all thumbnail image sources from memory
+                    // Remove all thumbnail image sources from memory and deselect the files
                     previousDir?.Files.ForEach(x =>
                     {
                         x.IsInitialized = false;
                         x.ThumbnailSource = null;
+                        x.IsSelected = false;
                     });
 
                     // Initialize files in the new directory
@@ -399,6 +410,20 @@ namespace RayCarrot.RCP.Metro
         }
 
         public async Task DeleteSelectedDirAsync() => await (SelectedDir?.DeleteDirectoryAsync() ?? Task.CompletedTask);
+
+        public void SelectFile(ArchiveFileViewModel file, bool resetSelection = true)
+        {
+            if (resetSelection)
+                ResetFileSelection();
+
+            file.IsSelected = true;
+        }
+
+        public void ResetFileSelection()
+        {
+            foreach (var file in SelectedDir.Files)
+                file.IsSelected = false;
+        }
 
         /// <summary>
         /// Disposes the archives

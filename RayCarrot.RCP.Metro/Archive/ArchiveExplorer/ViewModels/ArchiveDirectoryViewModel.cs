@@ -40,7 +40,9 @@ namespace RayCarrot.RCP.Metro
             ImportCommand = new AsyncRelayCommand(ImportAsync);
             CreateDirectoryCommand = new AsyncRelayCommand(CreateDirectoryAsync);
             DeleteCommand = new AsyncRelayCommand(DeleteDirectoryAsync);
-            DeleteSelectedFileCommand = new AsyncRelayCommand(DeleteSelectedFileAsync);
+            ExtractSelectedFilesCommand = new AsyncRelayCommand(async () => await ExportAsync(true, true));
+            ExportSelectedFilesCommand = new AsyncRelayCommand(async () => await ExportAsync(false, true));
+            DeleteSelectedFilesCommand = new AsyncRelayCommand(DeleteSelectedFilesAsync);
             RenameSelectedFileCommand = new AsyncRelayCommand(RenameSelectedFileAsync);
             AddFilesCommand = new AsyncRelayCommand(AddFilesAsync);
 
@@ -69,7 +71,9 @@ namespace RayCarrot.RCP.Metro
             ImportCommand = new AsyncRelayCommand(ImportAsync);
             CreateDirectoryCommand = new AsyncRelayCommand(CreateDirectoryAsync);
             DeleteCommand = new AsyncRelayCommand(DeleteDirectoryAsync);
-            DeleteSelectedFileCommand = new AsyncRelayCommand(DeleteSelectedFileAsync);
+            ExtractSelectedFilesCommand = new AsyncRelayCommand(async () => await ExportAsync(true, true));
+            ExportSelectedFilesCommand = new AsyncRelayCommand(async () => await ExportAsync(false, true));
+            DeleteSelectedFilesCommand = new AsyncRelayCommand(DeleteSelectedFilesAsync);
             RenameSelectedFileCommand = new AsyncRelayCommand(RenameSelectedFileAsync);
             AddFilesCommand = new AsyncRelayCommand(AddFilesAsync);
 
@@ -159,7 +163,9 @@ namespace RayCarrot.RCP.Metro
         public ICommand CreateDirectoryCommand { get; }
         public ICommand DeleteCommand { get; }
 
-        public ICommand DeleteSelectedFileCommand { get; }
+        public ICommand ExtractSelectedFilesCommand { get; }
+        public ICommand ExportSelectedFilesCommand { get; }
+        public ICommand DeleteSelectedFilesCommand { get; }
         public ICommand RenameSelectedFileCommand { get; }
         
         public ICommand AddFilesCommand { get; }
@@ -189,8 +195,9 @@ namespace RayCarrot.RCP.Metro
         /// Exports the directory
         /// </summary>
         /// <param name="forceNativeFormat">Indicates if the native format should be forced</param>
+        /// <param name="selectedFilesOnly">Indicates if only selected files in the current directory should be exported</param>
         /// <returns>The task</returns>
-        public async Task ExportAsync(bool forceNativeFormat)
+        public async Task ExportAsync(bool forceNativeFormat, bool selectedFilesOnly = false)
         {
             // Run as a load operation
             using (Archive.LoadOperation.Run())
@@ -226,10 +233,18 @@ namespace RayCarrot.RCP.Metro
 
                         try
                         {
-                            var allDirs = this.GetAllChildren(true).ToArray();
-                         
+                            ArchiveDirectoryViewModel[] allDirs;
+                            
+                            if (selectedFilesOnly)
+                                allDirs = new ArchiveDirectoryViewModel[]
+                                {
+                                    this
+                                };
+                            else
+                                allDirs = this.GetAllChildren(true).ToArray();
+
                             var fileIndex = 0;
-                            var filesCount = allDirs.Sum(x => x.Files.Count);
+                            var filesCount = allDirs.SelectMany(x => x.Files).Count(x => !selectedFilesOnly || x.IsSelected);
 
                             // Handle each directory
                             foreach (var item in allDirs)
@@ -241,7 +256,7 @@ namespace RayCarrot.RCP.Metro
                                 Directory.CreateDirectory(path);
 
                                 // Save each file
-                                foreach (var file in item.Files)
+                                foreach (var file in item.Files.Where(x => !selectedFilesOnly || x.IsSelected))
                                 {
                                     // Get the file stream
                                     using var fileStream = file.GetDecodedFileStream();
@@ -484,19 +499,17 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
-        public ArchiveFileViewModel GetSelectedFile() => Files.FirstOrDefault(x => x.IsSelected);
+        public IEnumerable<ArchiveFileViewModel> GetSelectedFiles() => Files.Where(x => x.IsSelected);
 
-        public async Task DeleteSelectedFileAsync()
+        public async Task DeleteSelectedFilesAsync()
         {
-            var selectedFile = GetSelectedFile();
-
-            if (selectedFile != null)
-                await selectedFile.DeleteFileAsync();
+            foreach (var file in GetSelectedFiles().ToArray())
+                await file.DeleteFileAsync();
         }
 
         public async Task RenameSelectedFileAsync()
         {
-            var selectedFile = GetSelectedFile();
+            var selectedFile = GetSelectedFiles().FirstOrDefault();
 
             if (selectedFile != null)
                 await selectedFile.RenameFileAsync();
