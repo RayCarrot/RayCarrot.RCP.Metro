@@ -3790,4 +3790,14 @@ fileExt</comment>
   <data name="Archive_Rename" xml:space="preserve">
     <value>Rename</value>
   </data>
+  <data name="Archive_Status_FilesCount" xml:space="preserve">
+    <value>{0} files</value>
+    <comment>Arguments:
+filesCount</comment>
+  </data>
+  <data name="Archive_Status_SelectedFilesCount" xml:space="preserve">
+    <value>{0} files selected</value>
+    <comment>Arguments:
+selectedFilesCount</comment>
+  </data>
 </root>

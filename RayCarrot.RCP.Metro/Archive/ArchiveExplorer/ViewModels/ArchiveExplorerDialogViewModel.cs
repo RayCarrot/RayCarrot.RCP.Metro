@@ -6,8 +6,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using AutoCompleteTextBox.Editors;
+using ByteSizeLib;
 using Nito.AsyncEx;
 using RayCarrot.Logging;
 using RayCarrot.UI;
@@ -35,7 +38,10 @@ namespace RayCarrot.RCP.Metro
 
             // Set properties
             CurrentDirectorySuggestions = new ObservableCollection<string>();
+            StatusBarItems = new ObservableCollection<LocalizedString>();
             SearchProvider = new BaseSuggestionProvider(x => EnumerateEntries.Where(y => y.DisplayName.IndexOf(x, StringComparison.InvariantCultureIgnoreCase) > -1));
+
+            BindingOperations.EnableCollectionSynchronization(StatusBarItems, Application.Current);
 
             try
             {
@@ -223,6 +229,8 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool AreMultipleFilesSelected { get; set; }
 
+        public ObservableCollection<LocalizedString> StatusBarItems { get; }
+
         #endregion
 
         #region Protected Methods
@@ -297,6 +305,40 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Methods
 
+        public void RefreshStatusBar()
+        {
+            StatusBarItems.DisposeAll();
+            StatusBarItems.Clear();
+
+            var selectedDir = SelectedDir;
+            StatusBarItems.Add(new LocalizedString(() => String.Format(Resources.Archive_Status_FilesCount, selectedDir.Files.Count)));
+
+            var selectedFilesCount = 0;
+            var selectedFilesSize = new ByteSize();
+            var invalidSize = false;
+
+            foreach (var file in selectedDir.GetSelectedFiles())
+            {
+                selectedFilesCount++;
+
+                if (invalidSize)
+                    continue;
+
+                var length = Manager.GetFileSize(file.FileData.ArchiveEntry, false);
+
+                if (length == null)
+                    invalidSize = true;
+                else
+                    selectedFilesSize = selectedFilesSize.AddBytes(length.Value);
+            }
+
+            if (selectedFilesCount > 1)
+                StatusBarItems.Add(new LocalizedString(() => String.Format(Resources.Archive_Status_SelectedFilesCount, selectedFilesCount)));
+
+            if (!invalidSize)
+                StatusBarItems.Add(new LocalizedString(() => $"{selectedFilesSize}"));
+        }
+
         /// <summary>
         /// Loads the specified directory
         /// </summary>
@@ -337,6 +379,8 @@ namespace RayCarrot.RCP.Metro
 
             // Set the selected directory
             SelectedDir = newDir;
+
+            RefreshStatusBar();
 
             // Update the address bar
             UpdateAddress();
@@ -428,7 +472,13 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Disposes the archives
         /// </summary>
-        public void Dispose() => Archives?.DisposeAll();
+        public void Dispose()
+        {
+            Archives?.DisposeAll();
+            StatusBarItems?.DisposeAll();
+
+            BindingOperations.DisableCollectionSynchronization(StatusBarItems);
+        }
 
         #endregion
 

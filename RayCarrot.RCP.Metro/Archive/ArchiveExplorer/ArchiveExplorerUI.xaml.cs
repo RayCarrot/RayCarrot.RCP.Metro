@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -224,6 +225,8 @@ namespace RayCarrot.RCP.Metro
 
             // Check if multiple files are selected
             ViewModel.AreMultipleFilesSelected = count > 1;
+
+            ViewModel.RefreshStatusBar();
         }
 
         private void FileContextMenu_OnContextMenuOpening(object sender, ContextMenuEventArgs e)
@@ -231,6 +234,13 @@ namespace RayCarrot.RCP.Metro
             // Don't allow the context menu to open if not initialized
             if (((sender as FrameworkElement)?.DataContext as ArchiveFileViewModel)?.IsInitialized != true)
                 e.Handled = true;
+        }
+
+        private void FilesList_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            HitTestResult r = VisualTreeHelper.HitTest(this, e.GetPosition(this));
+            if (r.VisualHit.GetType() != typeof(ListBoxItem))
+                (sender as ListBox)?.UnselectAll();
         }
 
         #endregion

@@ -1200,6 +1200,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} files.
+        /// </summary>
+        public static string Archive_Status_FilesCount {
+            get {
+                return ResourceManager.GetString("Archive_Status_FilesCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} files selected.
+        /// </summary>
+        public static string Archive_Status_SelectedFilesCount {
+            get {
+                return ResourceManager.GetString("Archive_Status_SelectedFilesCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Archive Explorer™.
         /// </summary>
         public static string Archive_Title {

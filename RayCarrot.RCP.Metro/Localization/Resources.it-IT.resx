@@ -3640,4 +3640,16 @@ Messaggio di errore: {1} </value>
   <data name="Config_Action_Cancel" xml:space="preserve">
     <value>Annulla</value>
   </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>Sola lettura</value>
+  </data>
+  <data name="Archive_SetFileName" xml:space="preserve">
+    <value>Specifica il nome del file</value>
+  </data>
+  <data name="Archive_FileNameConflict" xml:space="preserve">
+    <value>Esiste già un file con il nome specificato</value>
+  </data>
+  <data name="Archive_Rename" xml:space="preserve">
+    <value>Rinomina</value>
+  </data>
 </root>

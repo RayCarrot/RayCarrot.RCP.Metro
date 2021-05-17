@@ -40,6 +40,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <!-- Top Bar -->
@@ -283,6 +284,7 @@
                          ItemsSource="{Binding Path=Files, Mode=OneTime}"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          SelectionChanged="FilesList_OnSelectionChanged"
+                         MouseDown="FilesList_OnMouseDown"
                          AllowDrop="True"
                          SelectionMode="Extended"
                          Drop="FilesList_OnDrop"
@@ -563,6 +565,30 @@
 
                     </DataTemplate>
 
+                </ItemsControl.ItemTemplate>
+
+            </ItemsControl>
+
+            <!-- Status bar -->
+
+            <ItemsControl Grid.Row="3" 
+                          Grid.Column="0" 
+                          Grid.ColumnSpan="2" 
+                          Margin="0 10 0 0"
+                          ItemsSource="{Binding Path=StatusBarItems, Mode=OneTime}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Value}"
+                                   FontSize="{DynamicResource MahApps.Font.Size.StatusBar}"
+                                   VerticalAlignment="Center"
+                                   Padding="0 2 8 0" />
+                    </DataTemplate>
                 </ItemsControl.ItemTemplate>
 
             </ItemsControl>

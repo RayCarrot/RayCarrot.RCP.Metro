@@ -316,6 +316,19 @@ namespace RayCarrot.RCP.Metro
             };
         }
 
+        /// <summary>
+        /// Gets the size of the file entry
+        /// </summary>
+        /// <param name="fileEntry">The file entry object</param>
+        /// <param name="encoded">True if the size is for the encoded file, false if for the decoded file</param>
+        /// <returns>The size, or null if it could not be determined</returns>
+        public long? GetFileSize(object fileEntry, bool encoded)
+        {
+            var entry = fileEntry.CastTo<UbiArtIPKFileEntry>();
+
+            return encoded ? entry.ArchiveSize : entry.Size;
+        }
+
         #endregion
 
         #region Events
