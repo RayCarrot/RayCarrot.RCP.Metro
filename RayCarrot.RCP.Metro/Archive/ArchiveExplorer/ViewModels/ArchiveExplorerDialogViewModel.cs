@@ -104,7 +104,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Enumerates the directories in all available archives
         /// </summary>
-        public IEnumerable<ArchiveDirectoryViewModel> EnumerateDirectories => Archives.SelectMany(y => ((ArchiveDirectoryViewModel)y).GetAllChildren(true)).SelectMany(y => y);
+        public IEnumerable<ArchiveDirectoryViewModel> EnumerateDirectories => Archives.Select(y => ((ArchiveDirectoryViewModel)y).GetAllChildren(true)).SelectMany(y => y);
 
         /// <summary>
         /// Enumerates the files in all available archives

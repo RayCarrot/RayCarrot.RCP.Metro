@@ -10,6 +10,7 @@ Other changes:
 • The pages in the options dialog (such as the progression and config pages) now first load when they get selected
 • The serializer log will now append to the same file for the current session rather than recreate it for each serialized object
 • Minor optimization fixes and icon changes
+• Fixed a bug where files in the root directory of an archive would not be included in the search
 
 
 -----   Version 11.0.0 - April 29, 2021   -----
