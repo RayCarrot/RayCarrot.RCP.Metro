@@ -589,6 +589,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             Archive.AddModifiedFiles(modifiedCount);
+            Archive.ExplorerDialogViewModel.RefreshStatusBar();
         }
 
         /// <summary>

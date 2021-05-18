@@ -569,6 +569,8 @@ namespace RayCarrot.RCP.Metro
             // Add as modified file
             Archive.AddModifiedFiles();
 
+            Archive.ExplorerDialogViewModel.RefreshStatusBar();
+
             RL.Logger?.LogTraceSource($"The archive file has been removed");
         }
 
