@@ -72,6 +72,8 @@ namespace RayCarrot.RCP.Metro
                 pages.Add(new GameOptions_UtilitiesPageViewModel(utilities));
 
             Pages = pages.ToArray();
+
+            SelectedPage = Pages.FirstOrDefault();
         }
 
         #endregion
