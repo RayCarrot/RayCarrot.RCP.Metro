@@ -335,7 +335,7 @@ namespace RayCarrot.RCP.Metro
             if (selectedFilesCount > 1)
                 StatusBarItems.Add(new LocalizedString(() => String.Format(Resources.Archive_Status_SelectedFilesCount, selectedFilesCount)));
 
-            if (!invalidSize)
+            if (selectedFilesCount > 0 && !invalidSize)
                 StatusBarItems.Add(new LocalizedString(() => $"{selectedFilesSize}"));
         }
 
