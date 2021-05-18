@@ -306,6 +306,7 @@ namespace RayCarrot.RCP.Metro
                     SetFileType(new ArchiveFileType_Default());
                     ResetMenuActions();
                     IconKind = PackIconMaterialKind.FileAlertOutline;
+                    ThumbnailSource = null;
                     IsInitialized = true;
                 }
             }
