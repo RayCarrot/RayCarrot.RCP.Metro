@@ -297,7 +297,7 @@ namespace RayCarrot.RCP.Metro
                 yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_SizeComp, $"{ByteSize.FromBytes(entry.CompressedSize)}");
 
             if (ipk.Files.Contains(entry))
-                yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Pointer, $"0x{entry.Offsets.First() + ipk.BaseOffset:X8}", UserLevel.Technical);
+                yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_Pointer, $"0x{entry.Offsets.First() + ipk.BaseOffset:X16}", UserLevel.Technical);
             
             yield return new DuoGridItemViewModel(Resources.Archive_FileInfo_IsComp, $"{entry.IsCompressed}");
         }
