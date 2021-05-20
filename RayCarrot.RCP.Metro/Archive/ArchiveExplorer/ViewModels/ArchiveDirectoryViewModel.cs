@@ -267,7 +267,7 @@ namespace RayCarrot.RCP.Metro
                                     fileStream.SeekToBeginning();
 
                                     // Check if the format has not been selected
-                                    if (!forceNativeFormat && !selectedFormats.ContainsKey(file.FileType) && !(file.FileType is ArchiveFileType_Default))
+                                    if (!forceNativeFormat && !selectedFormats.ContainsKey(file.FileType) && file.FileType is not ArchiveFileType_Default)
                                     {
                                         // Get the available extensions
                                         var ext = new string[]

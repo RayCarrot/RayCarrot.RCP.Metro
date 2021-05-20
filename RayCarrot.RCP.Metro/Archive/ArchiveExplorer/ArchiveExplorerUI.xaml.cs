@@ -174,7 +174,7 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Get the files
-            if (!(e.Data.GetData(DataFormats.FileDrop) is string[] files))
+            if (e.Data.GetData(DataFormats.FileDrop) is not string[] files)
                 return;
 
             // Get the currently selected directory

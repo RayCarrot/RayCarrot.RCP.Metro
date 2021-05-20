@@ -314,7 +314,7 @@ namespace RayCarrot.RCP.Metro
             PreviousBackupLocation = Data.BackupLocation;
 
             // Subscribe to when to refresh the jump list
-            RCPServices.App.RefreshRequired += (s, e) =>
+            RCPServices.App.RefreshRequired += (_, e) =>
             {
                 if (e.GameCollectionModified || e.GameInfoModified || e.JumpListModified)
                     RefreshJumpList();

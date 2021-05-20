@@ -16,7 +16,7 @@ namespace RayCarrot.RCP.Metro
         {
             InitializeComponent();
             ButtonMapperDataGrid.DataContext = this;
-            Loaded += (s, e) => ScrollViewer = this.GetAncestors().FirstOrDefault(x => x is ScrollViewer) as ScrollViewer;
+            Loaded += (_, _) => ScrollViewer = this.GetAncestors().FirstOrDefault(x => x is ScrollViewer) as ScrollViewer;
         }
 
         private ScrollViewer ScrollViewer { get; set; }

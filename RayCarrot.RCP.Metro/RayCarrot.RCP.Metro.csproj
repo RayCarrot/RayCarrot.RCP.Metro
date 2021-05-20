@@ -17,7 +17,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>9.0</LangVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -216,6 +216,7 @@
     <Compile Include="Helpers\DirectXKeyHelpers.cs" />
     <Compile Include="Helpers\JsonHelpers.cs" />
     <Compile Include="App\Interfaces\IFileManager.cs" />
+    <Compile Include="IsExternalInit.cs" />
     <Compile Include="UI\Controls\LoaderContentControl.cs" />
     <Compile Include="Extensions\ApplicationExtensions.cs" />
     <Compile Include="UI\ValidationRules\R1PasswordValidationRule.cs" />

@@ -268,10 +268,7 @@ namespace RayCarrot.RCP.Metro
                     fileStream.SeekToBeginning();
 
                     // Load the thumbnail
-                    var thumb = FileType.LoadThumbnail(fileStream, FileExtension, 64, Manager);
-
-                    // Get the thumbnail image
-                    var img = thumb.Thumbnail;
+                    (ImageSource img, var duoGridItemViewModels) = FileType.LoadThumbnail(fileStream, FileExtension, 64, Manager);
 
                     // Freeze the image to avoid thread errors
                     img?.Freeze();
@@ -280,7 +277,7 @@ namespace RayCarrot.RCP.Metro
                     ThumbnailSource = img;
 
                     // Add display info from the type data
-                    FileDisplayInfo.AddRange(thumb.FileInfo);
+                    FileDisplayInfo.AddRange(duoGridItemViewModels);
                 }
 
                 // Set icon
