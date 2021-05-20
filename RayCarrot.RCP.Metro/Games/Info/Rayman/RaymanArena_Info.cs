@@ -122,12 +122,17 @@ namespace RayCarrot.RCP.Metro
         /// <param name="installDir">The game's install directory</param>
         public override FileSystemPath[] GetArchiveFilePaths(FileSystemPath installDir) => new FileSystemPath[]
         {
-            installDir + "FishBin" + "tex32.cnt",
-            installDir + "FishBin" + "vignette.cnt",
             installDir + "MenuBin" + "tex32.cnt",
             installDir + "MenuBin" + "vignette.cnt",
+            installDir + "MenuBin" + "Sound.cnt",
+
+            installDir + "FishBin" + "tex32.cnt",
+            installDir + "FishBin" + "vignette.cnt",
+            installDir + "FishBin" + "Sound.cnt",
+
             installDir + "TribeBin" + "tex32.cnt",
             installDir + "TribeBin" + "vignette.cnt",
+            installDir + "TribeBin" + "Sound.cnt",
         };
 
         #endregion
