@@ -3692,7 +3692,7 @@ fileExt</comment>
     <value>Controls</value>
   </data>
   <data name="Config_GamePad" xml:space="preserve">
-    <value>Game Pad</value>
+    <value>Gamepad</value>
   </data>
   <data name="Config_Action_Jump" xml:space="preserve">
     <value>Jump</value>

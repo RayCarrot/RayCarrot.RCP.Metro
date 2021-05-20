@@ -3575,7 +3575,7 @@ Messaggio di errore: {1} </value>
     <value>Gamepad</value>
   </data>
   <data name="Config_Action_Jump" xml:space="preserve">
-    <value>Salta</value>
+    <value>Saltare</value>
   </data>
   <data name="Config_Action_Fist" xml:space="preserve">
     <value>Pugno</value>
@@ -3599,7 +3599,7 @@ Messaggio di errore: {1} </value>
     <value>Giù</value>
   </data>
   <data name="Config_Action_JumpSwimUp" xml:space="preserve">
-    <value>Salta / Nuotare verso l'alto</value>
+    <value>Saltare / Nuotare verso l'alto</value>
   </data>
   <data name="Config_Action_Config_Action_SwimDown" xml:space="preserve">
     <value>Nuotare verso il basso</value>
@@ -3611,7 +3611,7 @@ Messaggio di errore: {1} </value>
     <value>Camminare lentamente</value>
   </data>
   <data name="Config_Action_Strafe" xml:space="preserve">
-    <value>Sparare a raffica</value>
+    <value>Spostarsi lateralmente</value>
   </data>
   <data name="Config_Action_CamRight" xml:space="preserve">
     <value>Fotocamera a destra</value>
@@ -3651,5 +3651,11 @@ Messaggio di errore: {1} </value>
   </data>
   <data name="Archive_Rename" xml:space="preserve">
     <value>Rinomina</value>
+  </data>
+  <data name="Archive_Status_FilesCount" xml:space="preserve">
+    <value>{0} file</value>
+  </data>
+  <data name="Archive_Status_SelectedFilesCount" xml:space="preserve">
+    <value>{0} file selezionati</value>
   </data>
 </root>

@@ -3566,4 +3566,148 @@ Foutmelding: {1}</value>
   <data name="Config_Device_Cards" xml:space="preserve">
     <value>Cards</value>
   </data>
+  <data name="Archive_ViewEditFile" xml:space="preserve">
+    <value>Bekijken/Wijzigen</value>
+  </data>
+  <data name="Archive_EditBinary" xml:space="preserve">
+    <value>Binair</value>
+  </data>
+  <data name="Archive_SelectEditExe" xml:space="preserve">
+    <value>Selecteer een uitvoerbaar bestand om te gebruiken voor {0} bestanden</value>
+  </data>
+  <data name="Archive_ViewEditFileError" xml:space="preserve">
+    <value>Er heeft een fout plaatsgevonden bij het openen van het bestand voor wijzigingen</value>
+  </data>
+  <data name="Archive_BinaryEditor" xml:space="preserve">
+    <value>Binaire bestanden-editor</value>
+  </data>
+  <data name="Archive_FileEditors" xml:space="preserve">
+    <value>Bestanden-editors</value>
+  </data>
+  <data name="Archive_FileEditorsExt" xml:space="preserve">
+    <value>Bestandsextensie</value>
+  </data>
+  <data name="Archive_FileEditorsExe" xml:space="preserve">
+    <value>Geassocieerde programma</value>
+  </data>
+  <data name="Config_Sound" xml:space="preserve">
+    <value>Geluid</value>
+  </data>
+  <data name="Config_Music" xml:space="preserve">
+    <value>Muziek</value>
+  </data>
+  <data name="Config_Stereo" xml:space="preserve">
+    <value>Stereo</value>
+  </data>
+  <data name="Config_Mono" xml:space="preserve">
+    <value>Mono</value>
+  </data>
+  <data name="Config_VolumeVoices" xml:space="preserve">
+    <value>Volume Stemmen</value>
+  </data>
+  <data name="Config_Background" xml:space="preserve">
+    <value>Weergeven Achtergrond</value>
+  </data>
+  <data name="Config_ScrollBackground" xml:space="preserve">
+    <value>Weergeven Parallax Achtergrond</value>
+  </data>
+  <data name="Config_ShowHUD" xml:space="preserve">
+    <value>Weergeven HUD</value>
+  </data>
+  <data name="Config_FPS" xml:space="preserve">
+    <value>Frame rate</value>
+  </data>
+  <data name="Config_Border" xml:space="preserve">
+    <value>Game Omlijning</value>
+  </data>
+  <data name="Config_Controls" xml:space="preserve">
+    <value>Besturing</value>
+  </data>
+  <data name="Config_GamePad" xml:space="preserve">
+    <value>Gamepad</value>
+  </data>
+  <data name="Config_Action_Jump" xml:space="preserve">
+    <value>Springen</value>
+  </data>
+  <data name="Config_Action_Fist" xml:space="preserve">
+    <value>Vuist</value>
+  </data>
+  <data name="Config_Action_Action" xml:space="preserve">
+    <value>Actie</value>
+  </data>
+  <data name="Config_Device" xml:space="preserve">
+    <value>Apparaat</value>
+  </data>
+  <data name="Config_Action_Left" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="Config_Action_Up" xml:space="preserve">
+    <value>Omhoog</value>
+  </data>
+  <data name="Config_Action_Right" xml:space="preserve">
+    <value>Rechts</value>
+  </data>
+  <data name="Config_Action_Down" xml:space="preserve">
+    <value>Omlaag</value>
+  </data>
+  <data name="Config_Action_JumpSwimUp" xml:space="preserve">
+    <value>Springen / Opwaarts zwemmen</value>
+  </data>
+  <data name="Config_Action_Config_Action_SwimDown" xml:space="preserve">
+    <value>Neerwaarts zwemmen</value>
+  </data>
+  <data name="Config_Action_Shoot" xml:space="preserve">
+    <value>Schieten</value>
+  </data>
+  <data name="Config_Action_WalkSlow" xml:space="preserve">
+    <value>Langzaam lopen</value>
+  </data>
+  <data name="Config_Action_Strafe" xml:space="preserve">
+    <value>Zijwaarts bewegen</value>
+  </data>
+  <data name="Config_Action_CamRight" xml:space="preserve">
+    <value>Camera rechts</value>
+  </data>
+  <data name="Config_Action_CamLeft" xml:space="preserve">
+    <value>Camera links</value>
+  </data>
+  <data name="Config_Action_CamCenter" xml:space="preserve">
+    <value>Camera centreren</value>
+  </data>
+  <data name="Config_Action_Look" xml:space="preserve">
+    <value>Kijkmodus</value>
+  </data>
+  <data name="Config_Action_Screenshot" xml:space="preserve">
+    <value>Schermafbeelding</value>
+  </data>
+  <data name="Config_Action_HUD" xml:space="preserve">
+    <value>Weergeven HUD</value>
+  </data>
+  <data name="Config_Action_R2Guide" xml:space="preserve">
+    <value>The Knowledge of the World</value>
+  </data>
+  <data name="Config_Action_Confirm" xml:space="preserve">
+    <value>Bevestigen</value>
+  </data>
+  <data name="Config_Action_Cancel" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>Alleen-lezen</value>
+  </data>
+  <data name="Archive_SetFileName" xml:space="preserve">
+    <value>Specificeer een bestandsnaam</value>
+  </data>
+  <data name="Archive_FileNameConflict" xml:space="preserve">
+    <value>Een bestand met de gekozen naam bestaat al</value>
+  </data>
+  <data name="Archive_Rename" xml:space="preserve">
+    <value>Hernoemen</value>
+  </data>
+  <data name="Archive_Status_FilesCount" xml:space="preserve">
+    <value>{0} bestanden</value>
+  </data>
+  <data name="Archive_Status_SelectedFilesCount" xml:space="preserve">
+    <value>{0} bestanden geselecteerd</value>
+  </data>
 </root>

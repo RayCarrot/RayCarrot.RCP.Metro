@@ -3610,4 +3610,148 @@ Programa de tradução Catalã (Catalunha)
     <value>Cards</value>
     <comment>Cards</comment>
   </data>
+  <data name="Archive_ViewEditFile" xml:space="preserve">
+    <value>Ver/Editar</value>
+  </data>
+  <data name="Archive_EditBinary" xml:space="preserve">
+    <value>Binário</value>
+  </data>
+  <data name="Archive_SelectEditExe" xml:space="preserve">
+    <value>Selecciona um executável para usar em {0} ficheiro(s)</value>
+  </data>
+  <data name="Archive_ViewEditFileError" xml:space="preserve">
+    <value>Ocorreu um erro ao abrir o ficheiro para editar</value>
+  </data>
+  <data name="Archive_BinaryEditor" xml:space="preserve">
+    <value>Editor de ficheiros binários</value>
+  </data>
+  <data name="Archive_FileEditors" xml:space="preserve">
+    <value>Editores de ficheiro</value>
+  </data>
+  <data name="Archive_FileEditorsExt" xml:space="preserve">
+    <value>Extensão de ficheiro</value>
+  </data>
+  <data name="Archive_FileEditorsExe" xml:space="preserve">
+    <value>Programa associado</value>
+  </data>
+  <data name="Config_Sound" xml:space="preserve">
+    <value>Som</value>
+  </data>
+  <data name="Config_Music" xml:space="preserve">
+    <value>Música</value>
+  </data>
+  <data name="Config_Stereo" xml:space="preserve">
+    <value>Estéreo</value>
+  </data>
+  <data name="Config_Mono" xml:space="preserve">
+    <value>Mono</value>
+  </data>
+  <data name="Config_VolumeVoices" xml:space="preserve">
+    <value>Volume das vozes</value>
+  </data>
+  <data name="Config_Background" xml:space="preserve">
+    <value>Mostrar fundo</value>
+  </data>
+  <data name="Config_ScrollBackground" xml:space="preserve">
+    <value>Mostrar fundo paralaxe</value>
+  </data>
+  <data name="Config_ShowHUD" xml:space="preserve">
+    <value>Mostrar HUD</value>
+  </data>
+  <data name="Config_FPS" xml:space="preserve">
+    <value>Taxa de Fotogramas</value>
+  </data>
+  <data name="Config_Border" xml:space="preserve">
+    <value>Moldura de jogo</value>
+  </data>
+  <data name="Config_Controls" xml:space="preserve">
+    <value>Controlos</value>
+  </data>
+  <data name="Config_GamePad" xml:space="preserve">
+    <value>Gamepad</value>
+  </data>
+  <data name="Config_Action_Jump" xml:space="preserve">
+    <value>Saltar</value>
+  </data>
+  <data name="Config_Action_Fist" xml:space="preserve">
+    <value>Punho</value>
+  </data>
+  <data name="Config_Action_Action" xml:space="preserve">
+    <value>Acção</value>
+  </data>
+  <data name="Config_Device" xml:space="preserve">
+    <value>Dispositivo</value>
+  </data>
+  <data name="Config_Action_Left" xml:space="preserve">
+    <value>Esquerda</value>
+  </data>
+  <data name="Config_Action_Up" xml:space="preserve">
+    <value>Cima</value>
+  </data>
+  <data name="Config_Action_Right" xml:space="preserve">
+    <value>Direita</value>
+  </data>
+  <data name="Config_Action_Down" xml:space="preserve">
+    <value>Baixo</value>
+  </data>
+  <data name="Config_Action_JumpSwimUp" xml:space="preserve">
+    <value>Saltar/Nadar para cima</value>
+  </data>
+  <data name="Config_Action_Config_Action_SwimDown" xml:space="preserve">
+    <value>Nadar para baixo</value>
+  </data>
+  <data name="Config_Action_Shoot" xml:space="preserve">
+    <value>Disparar</value>
+  </data>
+  <data name="Config_Action_WalkSlow" xml:space="preserve">
+    <value>Andar devagar</value>
+  </data>
+  <data name="Config_Action_Strafe" xml:space="preserve">
+    <value>Posição de combate</value>
+  </data>
+  <data name="Config_Action_CamRight" xml:space="preserve">
+    <value>Câmara direita</value>
+  </data>
+  <data name="Config_Action_CamLeft" xml:space="preserve">
+    <value>Câmara esquerda</value>
+  </data>
+  <data name="Config_Action_CamCenter" xml:space="preserve">
+    <value>Centrar câmara</value>
+  </data>
+  <data name="Config_Action_Look" xml:space="preserve">
+    <value>Modo de observar</value>
+  </data>
+  <data name="Config_Action_Screenshot" xml:space="preserve">
+    <value>Captura de ecrã</value>
+  </data>
+  <data name="Config_Action_HUD" xml:space="preserve">
+    <value>Mostrar HUD</value>
+  </data>
+  <data name="Config_Action_R2Guide" xml:space="preserve">
+    <value>The Knowledge of the World</value>
+  </data>
+  <data name="Config_Action_Confirm" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="Config_Action_Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>Só Ler</value>
+  </data>
+  <data name="Archive_SetFileName" xml:space="preserve">
+    <value>Especificar um nome de ficheiro</value>
+  </data>
+  <data name="Archive_FileNameConflict" xml:space="preserve">
+    <value>Já existe um ficheiro com o nome especificado</value>
+  </data>
+  <data name="Archive_Rename" xml:space="preserve">
+    <value>Renomear</value>
+  </data>
+  <data name="Archive_Status_FilesCount" xml:space="preserve">
+    <value>{0} ficheiro(s)</value>
+  </data>
+  <data name="Archive_Status_SelectedFilesCount" xml:space="preserve">
+    <value>{0} ficheiro(s) seleccionados</value>
+  </data>
 </root>

@@ -3757,4 +3757,10 @@ Komunikat o błędzie: {1}</value>
   <data name="Archive_Rename" xml:space="preserve">
     <value>Zmień nazwę</value>
   </data>
+  <data name="Archive_Status_FilesCount" xml:space="preserve">
+    <value>{0} plików</value>
+  </data>
+  <data name="Archive_Status_SelectedFilesCount" xml:space="preserve">
+    <value>{0} wybranych plików</value>
+  </data>
 </root>

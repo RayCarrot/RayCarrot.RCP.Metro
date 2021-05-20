@@ -3507,4 +3507,148 @@
     <value>Cards</value>
     <comment>Cards</comment>
   </data>
+  <data name="Archive_ViewEditFile" xml:space="preserve">
+    <value>Просмотр/Редактировать</value>
+  </data>
+  <data name="Archive_EditBinary" xml:space="preserve">
+    <value>Бинарный</value>
+  </data>
+  <data name="Archive_SelectEditExe" xml:space="preserve">
+    <value>Выберите исполняемый файл, который будет использоваться для {0} файлов</value>
+  </data>
+  <data name="Archive_ViewEditFileError" xml:space="preserve">
+    <value>Произошла ошибка при открытии файла для редактирования</value>
+  </data>
+  <data name="Archive_BinaryEditor" xml:space="preserve">
+    <value>Редактор двоичных файлов</value>
+  </data>
+  <data name="Archive_FileEditors" xml:space="preserve">
+    <value>Редакторы файлов</value>
+  </data>
+  <data name="Archive_FileEditorsExt" xml:space="preserve">
+    <value>Расширение файла</value>
+  </data>
+  <data name="Archive_FileEditorsExe" xml:space="preserve">
+    <value>Привязанная программа</value>
+  </data>
+  <data name="Config_Sound" xml:space="preserve">
+    <value>Звук</value>
+  </data>
+  <data name="Config_Music" xml:space="preserve">
+    <value>Музыка</value>
+  </data>
+  <data name="Config_Stereo" xml:space="preserve">
+    <value>Стерео</value>
+  </data>
+  <data name="Config_Mono" xml:space="preserve">
+    <value>Моно</value>
+  </data>
+  <data name="Config_VolumeVoices" xml:space="preserve">
+    <value>Громкость озвучки</value>
+  </data>
+  <data name="Config_Background" xml:space="preserve">
+    <value>Показать задний фон</value>
+  </data>
+  <data name="Config_ScrollBackground" xml:space="preserve">
+    <value>Показать параллаксный фон</value>
+  </data>
+  <data name="Config_ShowHUD" xml:space="preserve">
+    <value>Показать HUD</value>
+  </data>
+  <data name="Config_FPS" xml:space="preserve">
+    <value>Частота кадров</value>
+  </data>
+  <data name="Config_Border" xml:space="preserve">
+    <value>Граница игры</value>
+  </data>
+  <data name="Config_Controls" xml:space="preserve">
+    <value>Управление</value>
+  </data>
+  <data name="Config_GamePad" xml:space="preserve">
+    <value>Геймпад</value>
+  </data>
+  <data name="Config_Action_Jump" xml:space="preserve">
+    <value>Прыжок</value>
+  </data>
+  <data name="Config_Action_Fist" xml:space="preserve">
+    <value>Удар</value>
+  </data>
+  <data name="Config_Action_Action" xml:space="preserve">
+    <value>Действие</value>
+  </data>
+  <data name="Config_Device" xml:space="preserve">
+    <value>Устройство</value>
+  </data>
+  <data name="Config_Action_Left" xml:space="preserve">
+    <value>Влево</value>
+  </data>
+  <data name="Config_Action_Up" xml:space="preserve">
+    <value>Вверх</value>
+  </data>
+  <data name="Config_Action_Right" xml:space="preserve">
+    <value>Вправо</value>
+  </data>
+  <data name="Config_Action_Down" xml:space="preserve">
+    <value>Вниз</value>
+  </data>
+  <data name="Config_Action_JumpSwimUp" xml:space="preserve">
+    <value>Прыжок/Всплытие</value>
+  </data>
+  <data name="Config_Action_Config_Action_SwimDown" xml:space="preserve">
+    <value>Погружение</value>
+  </data>
+  <data name="Config_Action_Shoot" xml:space="preserve">
+    <value>Стрельба</value>
+  </data>
+  <data name="Config_Action_WalkSlow" xml:space="preserve">
+    <value>Медленная ходьба</value>
+  </data>
+  <data name="Config_Action_Strafe" xml:space="preserve">
+    <value>Боевая готовность</value>
+  </data>
+  <data name="Config_Action_CamRight" xml:space="preserve">
+    <value>Поворот камеры вправо</value>
+  </data>
+  <data name="Config_Action_CamLeft" xml:space="preserve">
+    <value>Поворот камеры влево</value>
+  </data>
+  <data name="Config_Action_CamCenter" xml:space="preserve">
+    <value>Центрирование камеры</value>
+  </data>
+  <data name="Config_Action_Look" xml:space="preserve">
+    <value>Режим осмотра</value>
+  </data>
+  <data name="Config_Action_Screenshot" xml:space="preserve">
+    <value>Скриншот</value>
+  </data>
+  <data name="Config_Action_HUD" xml:space="preserve">
+    <value>Показать HUD</value>
+  </data>
+  <data name="Config_Action_R2Guide" xml:space="preserve">
+    <value>The Knowledge of the World</value>
+  </data>
+  <data name="Config_Action_Confirm" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="Config_Action_Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>Только для чтения</value>
+  </data>
+  <data name="Archive_SetFileName" xml:space="preserve">
+    <value>Указание имени файла</value>
+  </data>
+  <data name="Archive_FileNameConflict" xml:space="preserve">
+    <value>Файл с указанным именем уже существует</value>
+  </data>
+  <data name="Archive_Rename" xml:space="preserve">
+    <value>Переименовать</value>
+  </data>
+  <data name="Archive_Status_FilesCount" xml:space="preserve">
+    <value>{0} файлов</value>
+  </data>
+  <data name="Archive_Status_SelectedFilesCount" xml:space="preserve">
+    <value>Выбрано {0} файлов</value>
+  </data>
 </root>

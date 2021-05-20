@@ -3100,7 +3100,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Game Pad.
+        ///   Looks up a localized string similar to Gamepad.
         /// </summary>
         public static string Config_GamePad {
             get {
