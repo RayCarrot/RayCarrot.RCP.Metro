@@ -8,7 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RayCarrot.Windows.Shell;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -26,7 +25,8 @@ namespace RayCarrot.RCP.Metro
         /// <param name="manager">The archive data manager</param>
         /// <param name="loadOperation">The operation to use when running an async operation which needs to load</param>
         /// <param name="explorerDialogViewModel">The explorer dialog view model</param>
-        public ArchiveViewModel(FileSystemPath filePath, IArchiveDataManager manager, Operation loadOperation, ArchiveExplorerDialogViewModel explorerDialogViewModel) : base(filePath.Name)
+        /// <param name="isDuplicateName">Indicates if the name of the archive matches the name of another loaded archive</param>
+        public ArchiveViewModel(FileSystemPath filePath, IArchiveDataManager manager, Operation loadOperation, ArchiveExplorerDialogViewModel explorerDialogViewModel, bool isDuplicateName) : base(filePath.Name)
         {
             RL.Logger?.LogInformationSource($"An archive view model is being created for {filePath.Name}");
 
@@ -35,6 +35,7 @@ namespace RayCarrot.RCP.Metro
             Manager = manager;
             LoadOperation = loadOperation;
             ExplorerDialogViewModel = explorerDialogViewModel;
+            IsDuplicateName = isDuplicateName;
 
             // Create commands
             SaveCommand = new AsyncRelayCommand(SaveAsync);
@@ -64,6 +65,11 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// Indicates if the name of the archive matches the name of another loaded archive
+        /// </summary>
+        public bool IsDuplicateName { get; }
 
         /// <summary>
         /// The explorer dialog view model
@@ -113,7 +119,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The name of the item to display
         /// </summary>
-        public override string DisplayName => FilePath.Name;
+        public override string DisplayName => IsDuplicateName ? $"{(FileSystemPath)FilePath.Parent.Name + FilePath.Name}" : FilePath.Name;
+
+        /// <summary>
+        /// The name of the item
+        /// </summary>
+        public string Name => FilePath.Name;
 
         /// <summary>
         /// The name of the directory to use when exporting

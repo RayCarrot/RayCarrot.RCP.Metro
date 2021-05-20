@@ -30,7 +30,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="manager">The archive data manager</param>
         /// <param name="filePaths">The archive file paths</param>
-        public ArchiveExplorerDialogViewModel(IArchiveDataManager manager, IEnumerable<FileSystemPath> filePaths)
+        public ArchiveExplorerDialogViewModel(IArchiveDataManager manager, FileSystemPath[] filePaths)
         {
             // Create commands
             NavigateToAddressCommand = new RelayCommand(NavigateToAddress);
@@ -55,7 +55,7 @@ namespace RayCarrot.RCP.Metro
                 var load = new Operation(() => IsLoading = true, () => IsLoading = false, true);
 
                 // Get the archives
-                Archives = filePaths.Select(x => new ArchiveViewModel(x, manager, load, this)).ToArray();
+                Archives = filePaths.Select(x => new ArchiveViewModel(x, manager, load, this, filePaths.Any(f => f != x && f.Name == x.Name))).ToArray();
 
                 // Set the archive lock
                 ArchiveLock = new AsyncLock();
@@ -94,6 +94,12 @@ namespace RayCarrot.RCP.Metro
         private string _currentDirectoryAddress;
 
         private IArchiveExplorerEntryViewModel _selectedSearchEntry;
+
+        #endregion
+
+        #region Constants
+
+        private const char SourceSeparator = ':';
 
         #endregion
 
@@ -178,18 +184,19 @@ namespace RayCarrot.RCP.Metro
 
                 CurrentDirectorySuggestions.Clear();
 
-                var separatorIndex = CurrentDirectoryAddress.LastIndexOf(Manager.PathSeparatorCharacter);
-                if (separatorIndex == -1)
+                var sourceIndex = CurrentDirectoryAddress.IndexOf(SourceSeparator);
+                if (sourceIndex == -1)
                 {
-                    CurrentDirectorySuggestions.AddRange(Archives.Select(x => $"{x.DisplayName}:{Manager.PathSeparatorCharacter}"));
+                    CurrentDirectorySuggestions.AddRange(Archives.Select(x => $"{x.DisplayName}{SourceSeparator}{Manager.PathSeparatorCharacter}"));
                 }
                 else
                 {
+                    var separatorIndex = CurrentDirectoryAddress.LastIndexOf(Manager.PathSeparatorCharacter);
                     var parentDir = CurrentDirectoryAddress.Substring(0, separatorIndex);
                     var dir = GetDirectory(parentDir);
 
                     if (dir != null)
-                        CurrentDirectorySuggestions.AddRange(dir.Select(x => $"{x.Archive.DisplayName}:{Manager.PathSeparatorCharacter}{x.FullPath}"));
+                        CurrentDirectorySuggestions.AddRange(dir.Select(x => $"{x.Archive.DisplayName}{SourceSeparator}{Manager.PathSeparatorCharacter}{x.FullPath}"));
                 }
             }
         }
@@ -258,9 +265,15 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The directory, or null if no match was found</returns>
         protected ArchiveDirectoryViewModel GetDirectory(string address)
         {
-            var paths = address.TrimEnd(Manager.PathSeparatorCharacter).Split(Manager.PathSeparatorCharacter);
+            var sourceIndex = address.IndexOf(SourceSeparator);
 
-            ArchiveDirectoryViewModel dir = Archives.FirstOrDefault(x => x.DisplayName.Equals(paths.FirstOrDefault()?.TrimEnd(':'), StringComparison.OrdinalIgnoreCase));
+            if (sourceIndex == -1)
+                return null;
+
+            var source = address.Substring(0, sourceIndex);
+            var paths = address.Substring(sourceIndex + 1).TrimEnd(Manager.PathSeparatorCharacter).Split(Manager.PathSeparatorCharacter);
+
+            ArchiveDirectoryViewModel dir = Archives.FirstOrDefault(x => x.DisplayName.Equals(source, StringComparison.OrdinalIgnoreCase));
 
             if (dir == null)
                 return null;
@@ -297,7 +310,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         protected void UpdateAddress()
         {
-            CurrentDirectoryAddress = $"{SelectedDir.Archive.DisplayName}:{SelectedDir.Archive.Manager.PathSeparatorCharacter}{SelectedDir.FullPath}";
+            CurrentDirectoryAddress = $"{SelectedDir.Archive.DisplayName}{SourceSeparator}{SelectedDir.Archive.Manager.PathSeparatorCharacter}{SelectedDir.FullPath}";
             OnPropertyChanged(nameof(CurrentDirectoryAddress)); // Temp fix - without this the text box won't update if going back to a parent directory, why? The event gets triggered correctly and the value gets updated
         }
 

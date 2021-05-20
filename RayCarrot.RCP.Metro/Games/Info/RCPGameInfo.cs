@@ -280,7 +280,7 @@ namespace RayCarrot.RCP.Metro
                         actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_Archives, PackIconMaterialKind.FolderMultipleOutline, new AsyncRelayCommand(async () =>
                         {
                             // Show the archive explorer
-                            await RCPServices.UI.ShowArchiveExplorerAsync(GetArchiveDataManager, GetArchiveFilePaths(Game.GetInstallDir()).Where(x => x.FileExists));
+                            await RCPServices.UI.ShowArchiveExplorerAsync(GetArchiveDataManager, GetArchiveFilePaths(Game.GetInstallDir()).Where(x => x.FileExists).ToArray());
                         }), UserLevel.Advanced));
                     }
 

@@ -2,6 +2,7 @@
 using RayCarrot.UI;
 using RayCarrot.WPF;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -91,7 +92,7 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             // Show the Archive Explorer
-            await RCPServices.UI.ShowArchiveExplorerAsync(manager, fileResult.SelectedFiles);
+            await RCPServices.UI.ShowArchiveExplorerAsync(manager, fileResult.SelectedFiles.ToArray());
         }
 
         /// <summary>
