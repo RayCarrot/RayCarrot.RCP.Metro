@@ -1,21 +1,26 @@
-﻿-----   Version 11.1.0 - May ??, 2021   -----
+﻿-----   Version 11.1.0 - May 20, 2021   -----
 • Updated the Archive Explorer™
 	• Files can now be viewed/edited directly
 	• Files can now be renamed
 	• Multiple files can now be selected at once, allowing extracting, exporting and deleting
 	• Added a status bar, showing the amount of files in the directory and the size of the selected files
-• The DOSBox game config has been moved to its own page
 • Added game configuration for Rayman 1, Designer, by his Fans, 60 Levels and the educational games
+• The DOSBox game config has been moved to its own page
 • Removed the localization converter utilities (the converters can still be found under the main utilities page) and the Rayman 1 config repair utility (the config will automatically repair now when saving)
 
 Other changes:
+• Other changes to the Archive Explorer™
+	• Files can now be deselected by clicking in an empty area
+	• The compressed file size for files in an IPK archive now only shows if the file is compressed
+	• The file pointers now show as 64-bit addresses for files in an IPK archive
+	• The archive files for Rayman Arena now include the sound.cnt files
+	• If multiple loaded archive files share the same name they will now show the parent directory name
+	• Fixed a bug where files in the root directory of an archive would not be included in the search
 • The game information page has been merged with the options page
 • The mount option for the DOSBox games has been moved to the options page
 • The pages in the options dialog (such as the progression and config pages) now first load when they get selected
 • The serializer log will now append to the same file for the current session rather than recreate it for each serialized object
-• Files in the Archive Explorer™ can now be deselected by clicking in an empty area
 • Minor optimization fixes and icon changes
-• Fixed a bug where files in the root directory of an archive would not be included in the search
 
 
 -----   Version 11.0.0 - April 29, 2021   -----
