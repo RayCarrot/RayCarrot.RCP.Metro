@@ -638,9 +638,9 @@ namespace RayCarrot.RCP.Metro
                             var extPrograms = RCPServices.Data.Archive_AssociatedPrograms;
 
                             // Start by checking if the user has specified a default program
-                            if (extPrograms.ContainsKey(ext.PrimaryFileExtension))
+                            if (extPrograms.ContainsKey(ext.FileExtensions))
                             {
-                                var exe = extPrograms[ext.PrimaryFileExtension];
+                                var exe = extPrograms[ext.FileExtensions];
 
                                 if (exe.FileExists)
                                     programPath = exe;

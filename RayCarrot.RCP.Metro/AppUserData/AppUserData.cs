@@ -87,13 +87,13 @@ namespace RayCarrot.RCP.Metro
 
         public void AddAssociatedProgram(FileExtension ext, FileSystemPath exePath)
         {
-            Archive_AssociatedPrograms.Add(ext.PrimaryFileExtension, exePath);
+            Archive_AssociatedPrograms.Add(ext.FileExtensions, exePath);
             OnPropertyChanged(nameof(Archive_AssociatedPrograms));
         }
 
         public void RemoveAssociatedProgram(FileExtension ext)
         {
-            Archive_AssociatedPrograms.Remove(ext.PrimaryFileExtension);
+            Archive_AssociatedPrograms.Remove(ext.FileExtensions);
             OnPropertyChanged(nameof(Archive_AssociatedPrograms));
         }
 
