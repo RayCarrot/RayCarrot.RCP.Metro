@@ -1,4 +1,14 @@
-﻿-----   Version 11.1.0 - May 20, 2021   -----
+﻿-----   Version 11.2.0 - June ??, 2021   -----
+• Updated the Archive Explorer™
+	• Thumbnails are now cached when switching between directories
+
+Other changes:
+• Other changes to the Archive Explorer™
+	• Fixed a bug where dropping in a folder would cause an error to show 
+• More information is now shown if an error occurs when checking for updates
+
+
+-----   Version 11.1.0 - May 20, 2021   -----
 • Updated the Archive Explorer™
 	• Files can now be viewed/edited directly
 	• Files can now be renamed
