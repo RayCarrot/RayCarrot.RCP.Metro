@@ -314,6 +314,22 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        /// <summary>
+        /// Unloads the file if it has been initialized. This does NOT dispose all resources the file uses. To fully dispose it, call <see cref="Dispose"/>. Unloading should be used when the file might be initialized again.
+        /// </summary>
+        public void Unload()
+        {
+            // Mark the file as not being initialized
+            IsInitialized = false;
+
+            // TODO-UPDATE: Implement caching with max size to avoid it always getting reloaded?
+            // Unload the thumbnail
+            ThumbnailSource = null;
+            
+            // Deselect the file (this makes sure that the selection is cleared when the file is loaded the next time)
+            IsSelected = false;
+        }
+
         protected void ResetMenuActions()
         {
             // Get formats from the type

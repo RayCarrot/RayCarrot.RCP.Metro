@@ -21,7 +21,7 @@ namespace RayCarrot.RCP.Metro
     /// View model for a directory in an archive
     /// </summary>
     [DebuggerDisplay("{" + nameof(FullPath) + "}")]
-    public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryViewModel>, IDisposable, IArchiveExplorerEntryViewModel
+    public class ArchiveDirectoryViewModel : HierarchicalViewModel<ArchiveDirectoryViewModel>, IArchiveExplorerEntryViewModel
     {
         #region Constructors
 

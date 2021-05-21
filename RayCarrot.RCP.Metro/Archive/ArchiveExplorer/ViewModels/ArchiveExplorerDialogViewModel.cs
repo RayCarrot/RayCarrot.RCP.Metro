@@ -33,13 +33,13 @@ namespace RayCarrot.RCP.Metro
         public ArchiveExplorerDialogViewModel(IArchiveDataManager manager, FileSystemPath[] filePaths)
         {
             // Create commands
-            NavigateToAddressCommand = new RelayCommand(NavigateToAddress);
+            NavigateToAddressCommand = new RelayCommand(() => LoadDirectory(CurrentDirectoryAddress));
             DeleteSelectedDirCommand = new AsyncRelayCommand(DeleteSelectedDirAsync);
 
             // Set properties
             CurrentDirectorySuggestions = new ObservableCollection<string>();
             StatusBarItems = new ObservableCollection<LocalizedString>();
-            SearchProvider = new BaseSuggestionProvider(x => EnumerateEntries.Where(y => y.DisplayName.IndexOf(x, StringComparison.InvariantCultureIgnoreCase) > -1));
+            SearchProvider = new BaseSuggestionProvider(SearchForEntries);
 
             BindingOperations.EnableCollectionSynchronization(StatusBarItems, Application.Current);
 
@@ -92,7 +92,6 @@ namespace RayCarrot.RCP.Metro
         #region Private Fields
 
         private string _currentDirectoryAddress;
-
         private IArchiveExplorerEntryViewModel _selectedSearchEntry;
 
         #endregion
@@ -100,13 +99,13 @@ namespace RayCarrot.RCP.Metro
         #region Constants
 
         private const char SourceSeparator = ':';
+        private const StringComparison StringValueComparison = StringComparison.InvariantCultureIgnoreCase;
 
         #endregion
 
         #region Commands
 
         public ICommand NavigateToAddressCommand { get; }
-
         public ICommand DeleteSelectedDirCommand { get; }
 
         #endregion
@@ -181,23 +180,8 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 _currentDirectoryAddress = value;
-
-                CurrentDirectorySuggestions.Clear();
-
-                var sourceIndex = CurrentDirectoryAddress.IndexOf(SourceSeparator);
-                if (sourceIndex == -1)
-                {
-                    CurrentDirectorySuggestions.AddRange(Archives.Select(x => $"{x.DisplayName}{SourceSeparator}{Manager.PathSeparatorCharacter}"));
-                }
-                else
-                {
-                    var separatorIndex = CurrentDirectoryAddress.LastIndexOf(Manager.PathSeparatorCharacter);
-                    var parentDir = CurrentDirectoryAddress.Substring(0, separatorIndex);
-                    var dir = GetDirectory(parentDir);
-
-                    if (dir != null)
-                        CurrentDirectorySuggestions.AddRange(dir.Select(x => $"{x.Archive.DisplayName}{SourceSeparator}{Manager.PathSeparatorCharacter}{x.FullPath}"));
-                }
+                
+                RefreshDirectorySuggestions();
             }
         }
 
@@ -216,8 +200,12 @@ namespace RayCarrot.RCP.Metro
             {
                 _selectedSearchEntry = value;
 
+                // If an entry has been selected we navigate to it and then clear the value
                 if (SelectedSearchEntry != null)
-                    NavigateToSearchedEntry();
+                {
+                    NavigateToEntry(SelectedSearchEntry);
+                    SelectedSearchEntry = null;
+                }
             }
         }
 
@@ -236,26 +224,70 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public bool AreMultipleFilesSelected { get; set; }
 
+        /// <summary>
+        /// The items to show for the status bar
+        /// </summary>
         public ObservableCollection<LocalizedString> StatusBarItems { get; }
 
         #endregion
 
         #region Protected Methods
 
-        protected void NavigateToSearchedEntry()
+        /// <summary>
+        /// Searches for archive entries using the specified search string
+        /// </summary>
+        /// <param name="search">The search string</param>
+        /// <returns>The matching entries</returns>
+        protected IEnumerable<IArchiveExplorerEntryViewModel> SearchForEntries(string search)
         {
-            if (SelectedSearchEntry is ArchiveFileViewModel file)
+            return EnumerateEntries.Where(y => y.DisplayName.IndexOf(search, StringValueComparison) > -1);
+        }
+
+        /// <summary>
+        /// Navigates to the specified archive entry
+        /// </summary>
+        /// <param name="entry">The entry to navigate to</param>
+        protected void NavigateToEntry(IArchiveExplorerEntryViewModel entry)
+        {
+            // Check the entry type
+            if (entry is ArchiveFileViewModel file)
             {
                 LoadDirectory(file.ArchiveDirectory);
                 SelectFile(file);
             }
-            else if (SelectedSearchEntry is ArchiveDirectoryViewModel dir)
+            else if (entry is ArchiveDirectoryViewModel dir)
             {
                 LoadDirectory(dir);
-                SelectedSearchEntry.IsSelected = true;
+                entry.IsSelected = true;
             }
+            else
+            {
+                RL.Logger?.LogWarningSource($"Attempted to navigate to unsupported archive entry type {entry}");
+            }
+        }
 
-            SelectedSearchEntry = null;
+        /// <summary>
+        /// Gets the formatted address for a directory based on a source and path
+        /// </summary>
+        /// <param name="source">The directory source</param>
+        /// <param name="path">The directory path</param>
+        /// <returns>The directory address</returns>
+        protected string GetDirectoryAddress(string source, string path)
+        {
+            return $"{source}{SourceSeparator}{Manager.PathSeparatorCharacter}{path}";
+        }
+
+        /// <summary>
+        /// Gets the formatted address for a directory
+        /// </summary>
+        /// <param name="dir">The directory to get the address for</param>
+        /// <returns>The directory address</returns>
+        protected string GetDirectoryAddress(ArchiveDirectoryViewModel dir)
+        {
+            var source = dir.Archive.DisplayName;
+            var path = dir.FullPath;
+
+            return GetDirectoryAddress(source, path);
         }
 
         /// <summary>
@@ -265,22 +297,37 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The directory, or null if no match was found</returns>
         protected ArchiveDirectoryViewModel GetDirectory(string address)
         {
+            // Find the source separator
             var sourceIndex = address.IndexOf(SourceSeparator);
 
+            // If there is no source separator the address is invalid
             if (sourceIndex == -1)
                 return null;
 
+            // Get the source
             var source = address.Substring(0, sourceIndex);
-            var paths = address.Substring(sourceIndex + 1).TrimEnd(Manager.PathSeparatorCharacter).Split(Manager.PathSeparatorCharacter);
 
-            ArchiveDirectoryViewModel dir = Archives.FirstOrDefault(x => x.DisplayName.Equals(source, StringComparison.OrdinalIgnoreCase));
+            // Find the matching archive based on the source
+            ArchiveDirectoryViewModel dir = Archives.FirstOrDefault(x => x.DisplayName.Equals(source, StringValueComparison));
 
+            // If none was found it's invalid
             if (dir == null)
                 return null;
 
+            // Get all path sections
+            var paths = address.
+                // Ignore the source and source separator
+                Substring(sourceIndex + 1).
+                // Trim the path separators so the split will give us a correct result
+                TrimEnd(Manager.PathSeparatorCharacter).
+                // Split the path into sections
+                Split(Manager.PathSeparatorCharacter);
+
+            // Enumerate every path section, skipping the initial one (the source)
             foreach (var path in paths.Skip(1))
             {
-                dir = dir.FirstOrDefault(x => x.ID.Equals(path, StringComparison.OrdinalIgnoreCase));
+                // Find the matching sub-directory
+                dir = dir.FirstOrDefault(x => x.ID.Equals(path, StringValueComparison));
 
                 if (dir == null)
                     return null;
@@ -290,66 +337,94 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Attempts to load the directory specified by the address
-        /// </summary>
-        /// <param name="address">The address of the directory to load</param>
-        protected void LoadDirectory(string address)
-        {
-            RL.Logger.LogDebugSource($"Loading directory from address: {address}");
-
-            // Get the directory
-            var dir = GetDirectory(address);
-
-            // Load the directory if not null
-            if (dir != null)
-                LoadDirectory(dir);
-        }
-
-        /// <summary>
         /// Updates the current directory address
         /// </summary>
         protected void UpdateAddress()
         {
-            CurrentDirectoryAddress = $"{SelectedDir.Archive.DisplayName}{SourceSeparator}{SelectedDir.Archive.Manager.PathSeparatorCharacter}{SelectedDir.FullPath}";
-            OnPropertyChanged(nameof(CurrentDirectoryAddress)); // Temp fix - without this the text box won't update if going back to a parent directory, why? The event gets triggered correctly and the value gets updated
+            _currentDirectoryAddress = GetDirectoryAddress(SelectedDir);
+            OnPropertyChanged(nameof(CurrentDirectoryAddress));
+        }
+
+        /// <summary>
+        /// Refreshes the current directory suggestions
+        /// </summary>
+        protected void RefreshDirectorySuggestions()
+        {
+            // Clear previous suggestions
+            CurrentDirectorySuggestions.Clear();
+
+            // Get the source separator index from the address
+            var sourceIndex = CurrentDirectoryAddress.IndexOf(SourceSeparator);
+
+            // If none was found we only include the archives (sources) in the suggestions
+            if (sourceIndex == -1)
+            {
+                CurrentDirectorySuggestions.AddRange(Archives.Select(x => GetDirectoryAddress(x.DisplayName, null)));
+            }
+            // If a source is specified we search within the source
+            else
+            {
+                var separatorIndex = CurrentDirectoryAddress.LastIndexOf(Manager.PathSeparatorCharacter);
+                var parentDir = CurrentDirectoryAddress.Substring(0, separatorIndex);
+                var dir = GetDirectory(parentDir);
+
+                if (dir != null)
+                    CurrentDirectorySuggestions.AddRange(dir.Select(GetDirectoryAddress));
+            }
         }
 
         #endregion
 
         #region Public Methods
 
+        /// <summary>
+        /// Refreshes the status bar
+        /// </summary>
         public void RefreshStatusBar()
         {
+            // Dispose and clear the previous items
             StatusBarItems.DisposeAll();
             StatusBarItems.Clear();
 
+            // Get the selected directory
             var selectedDir = SelectedDir;
+
+            // Show the file count
             StatusBarItems.Add(new LocalizedString(() => String.Format(Resources.Archive_Status_FilesCount, selectedDir.Files.Count)));
 
             var selectedFilesCount = 0;
             var selectedFilesSize = new ByteSize();
             var invalidSize = false;
 
+            // Enumerate every selected file
             foreach (var file in selectedDir.GetSelectedFiles())
             {
+                // Keep track of the count
                 selectedFilesCount++;
 
                 if (invalidSize)
                     continue;
 
+                // Get the file size
                 var length = Manager.GetFileSize(file.FileData.ArchiveEntry, false);
 
+                // If the file size was invalid we assume the current archive type does not support retrieving the size and thus ignore it
                 if (length == null)
                     invalidSize = true;
                 else
+                    // Add the size (if multiple files are selected we show the total size)
                     selectedFilesSize = selectedFilesSize.AddBytes(length.Value);
             }
 
+            // Show the selected files count if multiple ones are selected
             if (selectedFilesCount > 1)
                 StatusBarItems.Add(new LocalizedString(() => String.Format(Resources.Archive_Status_SelectedFilesCount, selectedFilesCount)));
 
+            // Show the total file size for all selected files if any are selected
             if (selectedFilesCount > 0 && !invalidSize)
                 StatusBarItems.Add(new LocalizedString(() => $"{selectedFilesSize}"));
+
+            RL.Logger?.LogTraceSource($"Refreshed the status bar");
         }
 
         /// <summary>
@@ -366,6 +441,8 @@ namespace RayCarrot.RCP.Metro
                 // Only expand if there are sub-directories
                 if (parent.Any())
                     parent.IsExpanded = true;
+
+                // Get the next parent
                 parent = parent.Parent;
             }
 
@@ -373,9 +450,25 @@ namespace RayCarrot.RCP.Metro
             if (dir.IsSelected)
                 // Run async without awaiting
                 _ = ChangeLoadedDirAsync(null, dir);
-            // Otherwise select the item and let the thumbnails get automatically reloaded
+            // Otherwise select the item and let it automatically get initialized
             else
                 dir.IsSelected = true;
+        }
+
+        /// <summary>
+        /// Attempts to load the directory specified by the address
+        /// </summary>
+        /// <param name="address">The address of the directory to load</param>
+        public void LoadDirectory(string address)
+        {
+            RL.Logger.LogDebugSource($"Loading directory from address: {address}");
+
+            // Get the directory
+            var dir = GetDirectory(address);
+
+            // Load the directory if not null
+            if (dir != null)
+                LoadDirectory(dir);
         }
 
         /// <summary>
@@ -384,7 +477,10 @@ namespace RayCarrot.RCP.Metro
         /// <returns>The task</returns>
         public async Task ChangeLoadedDirAsync(ArchiveDirectoryViewModel previousDir, ArchiveDirectoryViewModel newDir)
         {
-            RL.Logger?.LogDebugSource($"The loaded archive directory is changing from {previousDir?.DisplayName ?? "NULL"} to {newDir?.DisplayName ?? "NULL"}");
+            if (newDir == null)
+                throw new ArgumentNullException(nameof(newDir));
+
+            RL.Logger?.LogDebugSource($"The loaded archive directory is changing from {previousDir?.DisplayName ?? "NULL"} to {newDir.DisplayName}");
 
             // Stop refreshing thumbnails
             if (IsInitializingFiles)
@@ -393,6 +489,7 @@ namespace RayCarrot.RCP.Metro
             // Set the selected directory
             SelectedDir = newDir;
 
+            // Refresh the status bar
             RefreshStatusBar();
 
             // Update the address bar
@@ -418,13 +515,8 @@ namespace RayCarrot.RCP.Metro
 
                     RL.Logger?.LogDebugSource($"Initializing files for archive dir {newDir.DisplayName}");
 
-                    // Remove all thumbnail image sources from memory and deselect the files
-                    previousDir?.Files.ForEach(x =>
-                    {
-                        x.IsInitialized = false;
-                        x.ThumbnailSource = null;
-                        x.IsSelected = false;
-                    });
+                    // Unload the files
+                    previousDir?.Files.ForEach(x => x.Unload());
 
                     // Initialize files in the new directory
                     await Task.Run(() =>
@@ -458,16 +550,22 @@ namespace RayCarrot.RCP.Metro
         }
 
         /// <summary>
-        /// Attempts to navigate to the currently address
+        /// Deletes the selected directory, if one is selected
         /// </summary>
-        public void NavigateToAddress()
+        /// <returns>The task</returns>
+        public async Task DeleteSelectedDirAsync()
         {
-            LoadDirectory(CurrentDirectoryAddress);
-            UpdateAddress();
+            if (SelectedDir == null)
+                return;
+
+            await SelectedDir.DeleteDirectoryAsync();
         }
 
-        public async Task DeleteSelectedDirAsync() => await (SelectedDir?.DeleteDirectoryAsync() ?? Task.CompletedTask);
-
+        /// <summary>
+        /// Selects the specified file
+        /// </summary>
+        /// <param name="file">The file to select</param>
+        /// <param name="resetSelection">Indicates if the file selection should be reset</param>
         public void SelectFile(ArchiveFileViewModel file, bool resetSelection = true)
         {
             if (resetSelection)
@@ -476,6 +574,9 @@ namespace RayCarrot.RCP.Metro
             file.IsSelected = true;
         }
 
+        /// <summary>
+        /// Clears the current file selection, deselecting all files in the current directory
+        /// </summary>
         public void ResetFileSelection()
         {
             foreach (var file in SelectedDir.Files)
@@ -487,9 +588,13 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public void Dispose()
         {
+            // Dispose every archive
             Archives?.DisposeAll();
+
+            // Dispose the status bar items
             StatusBarItems?.DisposeAll();
 
+            // Disable collection synchronization
             BindingOperations.DisableCollectionSynchronization(StatusBarItems);
         }
 
