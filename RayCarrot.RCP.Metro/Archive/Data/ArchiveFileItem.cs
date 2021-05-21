@@ -17,6 +17,7 @@ namespace RayCarrot.RCP.Metro
             FileTypes = new IArchiveFileType[]
             {
                 new ArchiveFileType_GF(),
+                new ArchiveFileType_WAV(),
                 new ArchiveFileType_Image(),
                 new ArchiveFileType_DDSUbiArtTex(),
                 new ArchiveFileType_GXTUbiArtTex(),

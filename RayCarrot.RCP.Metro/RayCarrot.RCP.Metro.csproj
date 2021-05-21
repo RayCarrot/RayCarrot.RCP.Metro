@@ -110,6 +110,7 @@
     <Compile Include="Archive\ArchiveExplorer\ViewModels\IArchiveExplorerEntryViewModel.cs" />
     <Compile Include="Archive\Data\ArchiveData.cs" />
     <Compile Include="Archive\Data\ArchiveDirectory.cs" />
+    <Compile Include="Archive\Data\FileType\ArchiveFileType_WAV.cs" />
     <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_BaseUbiArtTex.cs" />
     <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_DDSUbiArtTex.cs" />
     <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_GNFUbiArtTex.cs" />

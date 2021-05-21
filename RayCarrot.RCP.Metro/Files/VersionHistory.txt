@@ -4,6 +4,7 @@
 
 Other changes:
 • Other changes to the Archive Explorer™
+	• Add support for .wav files 
 	• Fixed a bug where dropping in a folder would cause an error to show 
 • More information is now shown if an error occurs when checking for updates
 
