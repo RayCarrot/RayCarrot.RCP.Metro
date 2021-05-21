@@ -41,13 +41,17 @@ namespace RayCarrot.RCP.Metro
         /// <param name="exception">The exception</param>
         /// <param name="message">The message</param>
         /// <param name="header">The message header</param>
+        /// <param name="allowCancel">True if the option to cancel is present</param>
         /// <param name="origin">The caller member name (leave at default for compiler-time value)</param>
         /// <param name="filePath">The caller file path (leave at default for compiler-time value)</param>
         /// <param name="lineNumber">The caller line number (leave at default for compiler-time value)</param>
-        public static async Task DisplayExceptionMessageAsync(this IMessageUIManager messageUIManager, Exception exception, string message = null, string header = null, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
+        public static async Task DisplayExceptionMessageAsync(this IMessageUIManager messageUIManager, Exception exception, string message = null, string header = null, bool allowCancel = false, [CallerMemberName] string origin = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
+            var msg = String.Format(Resources.App_ExceptionMessage, message ?? Resources.App_ExceptionMessageDefaultMessage, exception?.Message);
+            header ??= Resources.App_ExceptionMessageDefaultHeader;
+
             // Show the message
-            await messageUIManager.DisplayMessageAsync(String.Format(Resources.App_ExceptionMessage, message ?? Resources.App_ExceptionMessageDefaultMessage, exception?.Message), header ?? Resources.App_ExceptionMessageDefaultHeader, MessageType.Error, origin, filePath, lineNumber);
+            await messageUIManager.DisplayMessageAsync(msg, header, MessageType.Error, allowCancel, origin, filePath, lineNumber);
         }
     }
 }
