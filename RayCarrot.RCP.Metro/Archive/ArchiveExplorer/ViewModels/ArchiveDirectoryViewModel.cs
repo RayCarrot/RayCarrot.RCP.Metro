@@ -262,7 +262,7 @@ namespace RayCarrot.RCP.Metro
                                     using var fileStream = file.GetDecodedFileStream();
 
                                     // Initialize the file without loading the thumbnail
-                                    file.InitializeFile(fileStream, false);
+                                    file.InitializeFile(fileStream, ArchiveFileViewModel.ThumbnailLoadMode.None);
 
                                     fileStream.SeekToBeginning();
 
@@ -373,7 +373,7 @@ namespace RayCarrot.RCP.Metro
                                     using var fileStream = file.GetDecodedFileStream();
 
                                     // Initialize the file without loading the thumbnail
-                                    file.InitializeFile(fileStream, false);
+                                    file.InitializeFile(fileStream, ArchiveFileViewModel.ThumbnailLoadMode.None);
 
                                     // Check if the base file exists without changing the extensions
                                     if (baseFilePath.FileExists)

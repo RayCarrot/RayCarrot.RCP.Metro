@@ -42,6 +42,7 @@ namespace RayCarrot.RCP.Metro
             FileDisplayInfo = new ObservableCollection<DuoGridItemViewModel>();
             FileExports = new ObservableCollection<ArchiveFileMenuActionViewModel>();
             EditActions = new ObservableCollection<ArchiveFileMenuActionViewModel>();
+            FullFilePath = Manager.CombinePaths(FullPath, FileName);
 
             // Create commands
             ImportCommand = new AsyncRelayCommand(ImportFileAsync);
@@ -71,7 +72,7 @@ namespace RayCarrot.RCP.Metro
         #endregion
 
         #region Public Properties
-
+        
         /// <summary>
         /// The archive the file belongs to
         /// </summary>
@@ -116,6 +117,11 @@ namespace RayCarrot.RCP.Metro
         /// The full path for the file
         /// </summary>
         public string FullPath => ArchiveDirectory.FullPath;
+
+        /// <summary>
+        /// The full path for the file including the file name
+        /// </summary>
+        public string FullFilePath { get; }
 
         /// <summary>
         /// The info about the file to display
@@ -238,8 +244,8 @@ namespace RayCarrot.RCP.Metro
         /// Initializes the file. This sets the <see cref="FileType"/> and optionally loads the <see cref="ThumbnailSource"/> and <see cref="FileDisplayInfo"/>.
         /// </summary>
         /// <param name="fileStream">The file stream, if available</param>
-        /// <param name="loadThumbnail">Indicates if the thumbnail should be loaded</param>
-        public void InitializeFile(ArchiveFileStream fileStream = null, bool loadThumbnail = true)
+        /// <param name="thumbnailLoadMode">Indicates how the thumbnail should be loaded</param>
+        public void InitializeFile(ArchiveFileStream fileStream = null, ThumbnailLoadMode thumbnailLoadMode = ThumbnailLoadMode.LoadThumbnail)
         {
             var hadStream = fileStream != null;
 
@@ -263,12 +269,22 @@ namespace RayCarrot.RCP.Metro
 
                 ResetMenuActions();
 
-                if (loadThumbnail)
+                if (thumbnailLoadMode != ThumbnailLoadMode.None)
                 {
-                    fileStream.SeekToBeginning();
+                    // Get the thumbnail data
+                    if (thumbnailLoadMode == ThumbnailLoadMode.ReloadThumbnail || !Archive.ThumbnailCache.TryGetCachedItem(this, out ArchiveFileThumbnailData thumb))
+                    {
+                        fileStream.SeekToBeginning();
 
-                    // Load the thumbnail
-                    (ImageSource img, var duoGridItemViewModels) = FileType.LoadThumbnail(fileStream, FileExtension, 64, Manager);
+                        // Load the thumbnail
+                        thumb = FileType.LoadThumbnail(fileStream, FileExtension, 64, Manager);
+
+                        // Cache the thumbnail
+                        Archive.ThumbnailCache.AddToCache(this, thumb);
+                    }
+
+                    // Get the thumbnail image
+                    var img = thumb.Thumbnail;
 
                     // Freeze the image to avoid thread errors
                     img?.Freeze();
@@ -277,7 +293,7 @@ namespace RayCarrot.RCP.Metro
                     ThumbnailSource = img;
 
                     // Add display info from the type data
-                    FileDisplayInfo.AddRange(duoGridItemViewModels);
+                    FileDisplayInfo.AddRange(thumb.FileInfo);
                 }
 
                 // Set icon
@@ -322,7 +338,6 @@ namespace RayCarrot.RCP.Metro
             // Mark the file as not being initialized
             IsInitialized = false;
 
-            // TODO-UPDATE: Implement caching with max size to avoid it always getting reloaded?
             // Unload the thumbnail
             ThumbnailSource = null;
             
@@ -548,7 +563,7 @@ namespace RayCarrot.RCP.Metro
             inputStream.Position = 0;
             
             // Initialize the file
-            InitializeFile(new ArchiveFileStream(inputStream, false));
+            InitializeFile(new ArchiveFileStream(inputStream, false), ThumbnailLoadMode.ReloadThumbnail);
 
             return !wasModified;
         }
@@ -821,7 +836,28 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
-        #region Classes
+        #region Data Types
+
+        /// <summary>
+        /// The mode to use when loading a thumbnail
+        /// </summary>
+        public enum ThumbnailLoadMode
+        {
+            /// <summary>
+            /// Don't load the thumbnail
+            /// </summary>
+            None,
+
+            /// <summary>
+            /// Loads the thumbnail, unless already loaded
+            /// </summary>
+            LoadThumbnail,
+
+            /// <summary>
+            /// Force reload the thumbnail even if already loaded
+            /// </summary>
+            ReloadThumbnail
+        }
 
         /// <summary>
         /// View model for an archive file menu action

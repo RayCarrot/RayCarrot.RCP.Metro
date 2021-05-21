@@ -36,6 +36,7 @@ namespace RayCarrot.RCP.Metro
             LoadOperation = loadOperation;
             ExplorerDialogViewModel = explorerDialogViewModel;
             IsDuplicateName = isDuplicateName;
+            ThumbnailCache = new ArchiveThumbnailCache();
 
             // Create commands
             SaveCommand = new AsyncRelayCommand(SaveAsync);
@@ -150,6 +151,8 @@ namespace RayCarrot.RCP.Metro
         /// Indicates if there are modified files
         /// </summary>
         public bool HasModifiedFiles { get; protected set; }
+
+        public ArchiveThumbnailCache ThumbnailCache { get; }
 
         #endregion
 
@@ -367,6 +370,9 @@ namespace RayCarrot.RCP.Metro
 
             // Dispose the generator
             ArchiveFileGenerator?.Dispose();
+
+            // Dispose the cache
+            ThumbnailCache?.Dispose();
 
             RL.Logger?.LogInformationSource($"The archive {DisplayName} has been disposed");
         }

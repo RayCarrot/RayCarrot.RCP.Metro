@@ -535,7 +535,7 @@ namespace RayCarrot.RCP.Metro
                             }
 
                             // Initialize the file
-                            x.InitializeFile(loadThumbnail: true);
+                            x.InitializeFile(thumbnailLoadMode: ArchiveFileViewModel.ThumbnailLoadMode.LoadThumbnail);
                         }
                     });
 
