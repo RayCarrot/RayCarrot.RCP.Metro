@@ -190,7 +190,7 @@ namespace RayCarrot.RCP.Metro
                 using (await dir.Archive.ArchiveLock.LockAsync())
                 {
                     // Add the files
-                    await dir.AddFilesAsync(files.Select(x => new FileSystemPath(x)));
+                    await dir.AddFilesAsync(files.Select(x => new FileSystemPath(x)).Where(x => x.FileExists));
                 }
             }
         }
