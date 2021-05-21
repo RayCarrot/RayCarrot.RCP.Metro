@@ -241,7 +241,7 @@
     <Compile Include="Utilities\Games\Rayman M\SyncTextureInfo\RMGameSyncTextureInfoUtility.cs" />
     <Compile Include="Helpers\ImageHelpers.cs" />
     <Compile Include="Archive\Manager\UbiArt_Ipk\UbiArtIPKArchiveConfigViewModel.cs" />
-    <Compile Include="Archive\ArchiveExplorer\ArchiveExplorerUI.xaml.cs">
+    <Compile Include="Archive\ArchiveExplorer\UI\ArchiveExplorerUI.xaml.cs">
       <DependentUpon>ArchiveExplorerUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ByteArrayHexConverter.cs" />
@@ -518,7 +518,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Archive\ArchiveExplorer\ArchiveExplorerUI.xaml">
+    <Page Include="Archive\ArchiveExplorer\UI\ArchiveExplorer.Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Archive\ArchiveExplorer\UI\ArchiveExplorer.Templates.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Archive\ArchiveExplorer\UI\ArchiveExplorer.ContextMenus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Archive\ArchiveExplorer\UI\ArchiveExplorerUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

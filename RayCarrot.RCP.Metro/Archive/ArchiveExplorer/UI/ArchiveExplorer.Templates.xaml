@@ -1,0 +1,89 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                    xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                    mc:Ignorable="d">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ArchiveExplorer.Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- File -->
+
+    <DataTemplate x:Key="FileDataTemplate" DataType="{x:Type local:ArchiveFileViewModel}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="*" SharedSizeGroup="FileName" />
+            </Grid.RowDefinitions>
+
+            <!-- File thumbnail -->
+
+            <Grid Grid.Row="0"
+                  Width="64"
+                  Height="64">
+
+                <Grid>
+
+                    <!-- Thumbnail image -->
+
+                    <Image Source="{Binding Path=ThumbnailSource}"
+                           HorizontalAlignment="Center"
+                           Width="64"
+                           Height="64" />
+
+                    <!-- Fallback icon -->
+
+                    <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
+                                                Foreground="{StaticResource Archive_FileBrush}"
+                                                HorizontalAlignment="Center"
+                                                Visibility="{Binding Path=ThumbnailSource, Converter={rwpf:ObjectNullToVisibilityConverter}}"
+                                                Width="48"
+                                                Height="48" />
+
+                </Grid>
+
+                <!-- Manually implement a badge (https://github.com/MahApps/MahApps.Metro/blob/develop/src/MahApps.Metro/Themes/Badged.xaml) due to the default having a layout rendering issue when disabling the control -->
+                <Border MinWidth="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
+                        MinHeight="18"
+                        Padding="2"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="{DynamicResource MahApps.Brushes.Badged.Background}"
+                        CornerRadius="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight, Converter={mah:SizeToCornerRadiusConverter}}"
+                        RenderTransformOrigin=".5,.5"
+                        Visibility="{Binding Path=HasPendingImport, Converter={rwpf:BooleanToVisibilityConverter}}">
+                    <Border.RenderTransform>
+                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                    </Border.RenderTransform>
+                    <ContentControl Margin="1 0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Content="{iconPacks:Material Kind=FileUploadOutline}"
+                                    Focusable="False"
+                                    FontSize="11"
+                                    FontWeight="DemiBold"
+                                    Foreground="{DynamicResource MahApps.Brushes.Badged.Foreground}"
+                                    IsTabStop="False" />
+                </Border>
+
+            </Grid>
+
+            <!-- File name -->
+
+            <TextBlock Grid.Row="2"
+                       Width="70"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"
+                       Text="{Binding Path=FileName}"
+                       TextWrapping="Wrap" />
+
+        </Grid>
+    </DataTemplate>
+
+</ResourceDictionary>

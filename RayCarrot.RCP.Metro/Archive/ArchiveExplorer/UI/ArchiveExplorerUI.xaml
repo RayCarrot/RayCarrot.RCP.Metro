@@ -1,15 +1,14 @@
 ﻿<UserControl x:Class="RayCarrot.RCP.Metro.ArchiveExplorerUI"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:editors="http://wpfcontrols.com/"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:controlzex="urn:controlzex"
              xmlns:wpfTextBoxAutoComplete="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
-             xmlns:editors="http://wpfcontrols.com/"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ArchiveExplorerDialogViewModel}"
              Language="{UICulture}"
@@ -18,10 +17,13 @@
              MinWidth="600">
 
     <UserControl.Resources>
-        <SolidColorBrush x:Key="Archive_FileBrush" Color="DarkMagenta" />
-        <SolidColorBrush x:Key="Archive_FolderBrush" Color="DarkOrange" />
-        <SolidColorBrush x:Key="Archive_AddItemBrush" Color="Green" />
-        <SolidColorBrush x:Key="Archive_DeleteItemBrush" Color="Red" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ArchiveExplorer.Colors.xaml" />
+                <ResourceDictionary Source="ArchiveExplorer.ContextMenus.xaml" />
+                <ResourceDictionary Source="ArchiveExplorer.Templates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <local:LoaderContentControl HorizontalLoadingIconAlignment="Center"
@@ -157,6 +159,7 @@
                         </ContextMenu>
                     </local:OverflowMenu.ContextMenu>
                 </local:OverflowMenu>
+
             </Grid>
 
             <!-- Directory Tree View -->
@@ -177,60 +180,7 @@
 
                 <TreeView.ItemContainerStyle>
                     <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
-                        <Setter Property="ContextMenu">
-                            <Setter.Value>
-                                <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
-                                             d:DataContext="{d:DesignInstance local:ArchiveDirectoryViewModel}">
-
-                                    <local:MenuItemIcon Header="{Resx Archive_Extract}"
-                                                        ToolTip="{Resx Archive_Extract_Info}"
-                                                        Command="{Binding Path=ExtractCommand}"
-                                                        IconKind="ApplicationExport" />
-
-                                    <local:MenuItemIcon Header="{Resx Archive_AddFiles}"
-                                                        ToolTip="{Resx Archive_AddFiles_Info}"
-                                                        Command="{Binding Path=AddFilesCommand}"
-                                                        IconKind="FilePlusOutline" />
-
-                                    <Separator />
-
-                                    <local:MenuItemIcon Header="{Resx Archive_ExportConvert}"
-                                                        ToolTip="{Resx Archive_ExportConvert_Info}"
-                                                        Command="{Binding Path=ExportCommand}"
-                                                        IconKind="Export" />
-
-                                    <local:MenuItemIcon Header="{Resx Archive_ImportConvert}"
-                                                        ToolTip="{Resx Archive_ImportConvert_Info}"
-                                                        Command="{Binding Path=ImportCommand}"
-                                                        IconKind="Import" />
-
-                                    <Separator />
-
-                                    <local:MenuItemIcon Header="{Resx Archive_CreateDir}"
-                                                        ToolTip="{Resx Archive_CreateDir_Info}"
-                                                        Command="{Binding Path=CreateDirectoryCommand}"
-                                                        IconForeground="{StaticResource Archive_AddItemBrush}"
-                                                        IconKind="FolderPlusOutline"
-                                                        IsEnabled="{Binding Path=CanAddSubDirectory, Mode=OneTime}" />
-
-                                    <local:MenuItemIcon Header="{Resx Archive_Delete}"
-                                                        ToolTip="{Resx Archive_DeleteDir_Info}"
-                                                        Command="{Binding Path=DeleteCommand}"
-                                                        IconForeground="{StaticResource Archive_DeleteItemBrush}"
-                                                        IconKind="DeleteOutline"
-                                                        InputGestureText="Del"
-                                                        IsEnabled="{Binding Path=CanBeDeleted, Mode=OneTime}"/>
-
-                                    <Separator Visibility="{Binding Path=IsRoot, Mode=OneTime, Converter={rwpf:BooleanToVisibilityConverter}}" />
-
-                                    <local:MenuItemIcon Header="{Resx GameDisplay_OpenLocation}"
-                                                        Command="{Binding Path=OpenLocationCommand}"
-                                                        IconKind="FolderOutline"
-                                                        Visibility="{Binding Path=IsRoot, Mode=OneTime, Converter={rwpf:BooleanToVisibilityConverter}}" />
-
-                                </ContextMenu>
-                            </Setter.Value>
-                        </Setter>
+                        <Setter Property="ContextMenu" Value="{StaticResource DirContextMenu_Single}" />
                         <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
                         <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}" />
                         <Setter Property="ToolTip" Value="{Binding Path=DisplayDescription}" />
@@ -282,6 +232,7 @@
                          DataContext="{Binding ElementName=DirTreeView, Path=SelectedItem}"
                          d:DataContext="{d:DesignInstance local:ArchiveDirectoryViewModel}"
                          ItemsSource="{Binding Path=Files, Mode=OneTime}"
+                         ItemTemplate="{StaticResource FileDataTemplate}"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          SelectionChanged="FilesList_OnSelectionChanged"
                          MouseDown="FilesList_OnMouseDown"
@@ -323,96 +274,17 @@
                             <EventSetter Event="ToolTipOpening" Handler="FileItem_ToolTipOpening" />
                             <EventSetter Event="MouseDoubleClick" Handler="ToolTipOpening_MouseDoubleClick" />
                             <EventSetter Event="ContextMenuOpening" Handler="FileContextMenu_OnContextMenuOpening" />
-                            <Setter Property="ContextMenu">
-                                <Setter.Value>
-                                    <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
-                                                 d:DataContext="{d:DesignInstance local:ArchiveFileViewModel}">
-
-                                        <!-- View/Edit -->
-
-                                        <local:MenuItemIcon Header="{Resx Archive_ViewEditFile}"
-                                                            IconKind="FileEditOutline"
-                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
-                                                            ItemsSource="{Binding Path=EditActions, Mode=OneTime}">
-                                            <local:MenuItemIcon.ItemContainerStyle>
-                                                <Style TargetType="{x:Type MenuItem}">
-                                                    <Setter Property="Command" Value="{Binding Path=MenuCommand, Mode=OneTime}"/>
-                                                    <Setter Property="Header" Value="{Binding Path=DisplayName, Mode=OneTime}"/>
-                                                </Style>
-                                            </local:MenuItemIcon.ItemContainerStyle>
-                                        </local:MenuItemIcon>
-
-                                        <!-- Rename -->
-
-                                        <local:MenuItemIcon Header="{Resx Archive_Rename}"
-                                                            Command="{Binding Path=RenameCommand, Mode=OneTime}"
-                                                            InputGestureText="F2"
-                                                            IconKind="PencilOutline"
-                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:InvertedBooleanToVisibilityConverter}}" />
-
-                                        <Separator Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:InvertedBooleanToVisibilityConverter}}" />
-
-                                        <!-- Export -->
-
-                                        <local:MenuItemIcon Header="{Resx Archive_ExportFile}"
-                                                            IconKind="FileExportOutline"
-                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
-                                                            ItemsSource="{Binding Path=FileExports, Mode=OneTime}">
-                                            <local:MenuItemIcon.ItemContainerStyle>
-                                                <Style TargetType="{x:Type MenuItem}">
-                                                    <Setter Property="Command" Value="{Binding Path=MenuCommand, Mode=OneTime}"/>
-                                                    <Setter Property="Header" Value="{Binding Path=DisplayName, Mode=OneTime}"/>
-                                                </Style>
-                                            </local:MenuItemIcon.ItemContainerStyle>
-                                        </local:MenuItemIcon>
-
-                                        <!-- Import -->
-
-                                        <local:MenuItemIcon Header="{Resx Archive_ImportFile}"
-                                                            Command="{Binding Path=ImportCommand, Mode=OneTime}"
-                                                            IconKind="FileImportOutline"
-                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:InvertedBooleanToVisibilityConverter}}" />
-
-                                        <Separator Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:InvertedBooleanToVisibilityConverter}}" />
-
-                                        <!-- Delete -->
-
-                                        <local:MenuItemIcon Header="{Resx Archive_Delete}"
-                                                            Command="{Binding Path=DeleteCommand, Mode=OneTime}"
-                                                            IconForeground="{StaticResource Archive_DeleteItemBrush}"
-                                                            InputGestureText="Del"
-                                                            IconKind="DeleteOutline"
-                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:InvertedBooleanToVisibilityConverter}}" />
-
-                                        <!-- Extract (multi-selection) -->
-
-                                        <local:MenuItemIcon Header="{Resx Archive_Extract}"
-                                                            Command="{Binding Path=ArchiveDirectory.ExtractSelectedFilesCommand}"
-                                                            IconKind="ApplicationExport"
-                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:BooleanToVisibilityConverter}}" />
-
-                                        <!-- Export (multi-selection) -->
-
-                                        <local:MenuItemIcon Header="{Resx Archive_ExportConvert}"
-                                                            Command="{Binding Path=ArchiveDirectory.ExportSelectedFilesCommand}"
-                                                            IconKind="Export"
-                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:BooleanToVisibilityConverter}}" />
-
-                                        <Separator Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:BooleanToVisibilityConverter}}" />
-
-                                        <!-- Delete (multi-selection) -->
-
-                                        <local:MenuItemIcon Header="{Resx Archive_Delete}"
-                                                            Command="{Binding Path=ArchiveDirectory.DeleteSelectedFilesCommand, Mode=OneTime}"
-                                                            IconForeground="{StaticResource Archive_DeleteItemBrush}"
-                                                            InputGestureText="Del"
-                                                            IconKind="DeleteOutline"
-                                                            Visibility="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected, Converter={rwpf:BooleanToVisibilityConverter}}" />
-
-                                    </ContextMenu>
-                                </Setter.Value>
-                            </Setter>
                             <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected}" Value="False">
+                                    <Setter Property="ContextMenu" Value="{StaticResource FileContextMenu_Single}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Archive.ExplorerDialogViewModel.AreMultipleFilesSelected}" Value="True">
+                                    <Setter Property="ContextMenu" Value="{StaticResource FileContextMenu_Multi}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+
                         </Style>
                     </ListBox.ItemContainerStyle>
 
@@ -421,83 +293,6 @@
                             <WrapPanel />
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
-
-                    <!-- File item -->
-
-                    <ListBox.ItemTemplate>
-                        <DataTemplate DataType="local:ArchiveFileViewModel">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="5" />
-                                    <RowDefinition Height="*" SharedSizeGroup="FileName" />
-                                </Grid.RowDefinitions>
-
-                                <!-- File thumbnail -->
-
-                                <Grid Grid.Row="0"
-                                      Width="64"
-                                      Height="64">
-
-                                    <!--<mah:Badged Padding="-5" 
-                                                    Margin="5"
-                                                    Visibility="{Binding Path=HasPendingImport, Converter={rwpf:BooleanToVisibilityConverter}}"
-                                                    Badge="{iconPacks:Material Kind=FileUploadOutline}" />-->
-
-                                    <Grid>
-
-                                        <Image Source="{Binding Path=ThumbnailSource}"
-                                               HorizontalAlignment="Center"
-                                               Width="64"
-                                               Height="64" />
-
-                                        <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
-                                                                    Foreground="{StaticResource Archive_FileBrush}"
-                                                                    HorizontalAlignment="Center"
-                                                                    Visibility="{Binding Path=ThumbnailSource, Converter={rwpf:ObjectNullToVisibilityConverter}}"
-                                                                    Width="48"
-                                                                    Height="48" />
-
-                                    </Grid>
-
-                                    <!-- Manually implement a badge (https://github.com/MahApps/MahApps.Metro/blob/develop/src/MahApps.Metro/Themes/Badged.xaml) due to the default having a layout rendering issue when disabling the control -->
-                                    <Border MinWidth="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight}"
-                                            MinHeight="18"
-                                            Padding="2"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Top"
-                                            Background="{DynamicResource MahApps.Brushes.Badged.Background}"
-                                            CornerRadius="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight, Converter={mah:SizeToCornerRadiusConverter}}"
-                                            RenderTransformOrigin=".5,.5"
-                                            Visibility="{Binding Path=HasPendingImport, Converter={rwpf:BooleanToVisibilityConverter}}">
-                                        <Border.RenderTransform>
-                                            <ScaleTransform ScaleX="1" ScaleY="1" />
-                                        </Border.RenderTransform>
-                                        <ContentControl Margin="1 0"
-                                                        HorizontalAlignment="Center"
-                                                        VerticalAlignment="Center"
-                                                        Content="{iconPacks:Material Kind=FileUploadOutline}"
-                                                        Focusable="False"
-                                                        FontSize="11"
-                                                        FontWeight="DemiBold"
-                                                        Foreground="{DynamicResource MahApps.Brushes.Badged.Foreground}"
-                                                        IsTabStop="False" />
-                                    </Border>
-
-                                </Grid>
-
-                                <!-- File name -->
-
-                                <TextBlock Grid.Row="2"
-                                           Width="70"
-                                           HorizontalAlignment="Center"
-                                           TextAlignment="Center"
-                                           Text="{Binding Path=FileName}"
-                                           TextWrapping="Wrap" />
-
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
 
                 </ListBox>
 
