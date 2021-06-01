@@ -679,7 +679,23 @@ namespace RayCarrot.RCP.Metro
                             // If not we try and get the registered default program
                             if (programPath == null)
                             {
-                                var exe = WindowsHelpers.FindExecutableForFile(tempFile.TempPath);
+                                var exe = WindowsHelpers.FindExecutableForFile(tempFile.TempPath, out uint? errorCode);
+
+                                if (errorCode != null)
+                                {
+                                    if (errorCode == 2)
+                                        RL.Logger?.LogWarningSource($"Executable was not found due to file not existing");
+                                    else if (errorCode == 3)
+                                        RL.Logger?.LogWarningSource($"Executable was not found due to the path being invalid");
+                                    else if (errorCode == 5)
+                                        RL.Logger?.LogWarningSource($"Executable was not found due to that the file could not be accessed");
+                                    else if (errorCode == 8)
+                                        RL.Logger?.LogWarningSource($"Executable was not found due to the system being out of memory");
+                                    else if (errorCode == 31)
+                                        RL.Logger?.LogWarningSource($"Executable was not found due to there not being an association for the specified file type with an executable file");
+                                    else
+                                        RL.Logger?.LogWarningSource($"Executable was not found due to an unknown error");
+                                }
 
                                 if (exe != null)
                                     programPath = exe;

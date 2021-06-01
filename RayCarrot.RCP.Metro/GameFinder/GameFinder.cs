@@ -251,7 +251,7 @@ namespace RayCarrot.RCP.Metro
                     try
                     {
                         // Attempt to get the shortcut target path
-                        targetDir = WindowsHelpers.GetShortCutTarget(shortcut).Parent;
+                        targetDir = ((FileSystemPath)WindowsHelpers.GetShortCutTarget(shortcut)).Parent;
                     }
                     catch (Exception ex)
                     {
@@ -275,7 +275,7 @@ namespace RayCarrot.RCP.Metro
                     try
                     {
                         // Attempt to get the shortcut target path
-                        targetDir = WindowsHelpers.GetShortCutTarget(shortcut).Parent;
+                        targetDir = ((FileSystemPath)WindowsHelpers.GetShortCutTarget(shortcut)).Parent;
                     }
                     catch (Exception ex)
                     {

@@ -244,7 +244,7 @@ namespace RayCarrot.RCP.Metro
 
                                 try
                                 {
-                                    return new OverflowButtonItemViewModel(x.Header, new FileSystemPath(x.Path).GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource(), command);
+                                    return new OverflowButtonItemViewModel(x.Header, WindowsHelpers.GetIconOrThumbnail(x.Path, ShellThumbnailSize.Small).ToImageSource(), command);
                                 }
                                 catch (Exception ex)
                                 {

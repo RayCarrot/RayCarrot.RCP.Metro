@@ -38,7 +38,7 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                IconImageSource = IconSource == null ? null : new FileSystemPath(IconSource).GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource();
+                IconImageSource = IconSource == null ? null : WindowsHelpers.GetIconOrThumbnail(IconSource, ShellThumbnailSize.Small).ToImageSource();
             }
             catch (Exception ex)
             {

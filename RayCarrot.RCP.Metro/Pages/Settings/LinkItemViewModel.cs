@@ -213,7 +213,7 @@ namespace RayCarrot.RCP.Metro
             // ReSharper disable once PossibleNullReferenceException
             return Application.Current.Dispatcher.Invoke(() =>
             {
-                var image = path.GetIconOrThumbnail(ShellThumbnailSize.Small).ToImageSource();
+                var image = WindowsHelpers.GetIconOrThumbnail(path, ShellThumbnailSize.Small).ToImageSource();
 
                 image.Freeze();
 
