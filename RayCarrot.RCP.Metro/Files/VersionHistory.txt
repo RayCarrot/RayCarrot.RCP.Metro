@@ -7,6 +7,7 @@ Other changes:
 	• Add support for .wav files 
 	• Fixed a bug where dropping in a folder would cause an error to show 
 • More information is now shown if an error occurs when checking for updates
+• Fixed the highlighting for flat buttons with an icon
 
 
 -----   Version 11.1.0 - May 20, 2021   -----

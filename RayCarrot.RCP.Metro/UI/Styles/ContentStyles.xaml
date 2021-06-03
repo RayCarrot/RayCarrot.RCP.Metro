@@ -154,22 +154,15 @@
     <Style x:Key="FlatButton" TargetType="{x:Type Button}">
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{DynamicResource GrayHoverBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Highlight}" />
             </Trigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="True" />
-                </MultiTrigger.Conditions>
-                <Setter Property="Foreground" Value="{DynamicResource HighlightBrush}" />
-            </MultiTrigger>
         </Style.Triggers>
 
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{DynamicResource GrayNormalBrush}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <ContentControl Background="{TemplateBinding Background}"
+                                    Foreground="{TemplateBinding Foreground}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     ContentStringFormat="{TemplateBinding ContentStringFormat}"
