@@ -63,6 +63,16 @@
 
             </local:RCPTabItem>
 
+            <!-- External Tools -->
+
+            <!-- TODO-UPDATE: Localize -->
+            <local:RCPTabItem IconKind="Launch"
+                              Header="External Tools">
+
+                <local:UtilitiesContainer Utilities="{Binding Path=ExternalToolViewModels, Mode=OneTime}" />
+
+            </local:RCPTabItem>
+
         </mah:MetroAnimatedTabControl>
     </ScrollViewer>
 

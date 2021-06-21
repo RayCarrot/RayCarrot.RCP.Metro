@@ -46,6 +46,10 @@
                 new UtilityViewModel(new SyncTextureInfoUtility()),
                 new UtilityViewModel(new R1PasswordGeneratorUtility()),
             };
+            ExternalToolViewModels = new UtilityViewModel[]
+            {
+                new UtilityViewModel(new Ray1EditorUtility()),
+            };
         }
 
         #endregion
@@ -71,6 +75,11 @@
         /// View models for the other utilities
         /// </summary>
         public UtilityViewModel[] OtherViewModels { get; }
+
+        /// <summary>
+        /// View models for the external tool utilities
+        /// </summary>
+        public UtilityViewModel[] ExternalToolViewModels { get; }
 
         #endregion
     }

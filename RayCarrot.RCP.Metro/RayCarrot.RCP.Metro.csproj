@@ -305,11 +305,16 @@
     <Compile Include="Utilities\General\Decoder\R3Save\R3SaveDecoderViewModel.cs" />
     <Compile Include="Utilities\General\Decoder\R2SnaDsb\R2SnaDsbDecoderUtility.cs" />
     <Compile Include="Utilities\General\Decoder\R2SnaDsb\R2SnaDsbDecoderViewModel.cs" />
+    <Compile Include="Utilities\General\ExternalTool\Ray1Editor\Ray1EditorUtilityUI.xaml.cs">
+      <DependentUpon>Ray1EditorUtilityUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\General\ExternalTool\Ray1Editor\Ray1EditorUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Other\R1PasswordGenerator\R1PasswordGeneratorUtilityViewModel.cs" />
     <Compile Include="Utilities\General\Other\R1PasswordGenerator\R1PasswordGeneratorUtility.cs" />
     <Compile Include="Utilities\General\Other\R1PasswordGenerator\R1PasswordGeneratorUtilityUI.xaml.cs">
       <DependentUpon>R1PasswordGeneratorUtilityUI.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\General\ExternalTool\Ray1Editor\Ray1EditorUtility.cs" />
     <Compile Include="Utilities\General\Other\SyncTextureInfo\SyncTextureInfoUtility.cs" />
     <Compile Include="Utilities\General\Other\SyncTextureInfo\SyncTextureInfoUtilityUI.xaml.cs">
       <DependentUpon>SyncTextureInfoUtilityUI.xaml</DependentUpon>
@@ -784,6 +789,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Utilities\General\ExternalTool\Ray1Editor\Ray1EditorUtilityUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Utilities\General\Other\R1PasswordGenerator\R1PasswordGeneratorUtilityUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1167,6 +1176,9 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Utilities\General\ExternalTool\Ray1Editor\Screenshots\LayerEditor.png" />
+    <Resource Include="Utilities\General\ExternalTool\Ray1Editor\Screenshots\ObjEditor.png" />
+    <Resource Include="Utilities\General\ExternalTool\Ray1Editor\Screenshots\TileEditor.png" />
     <Resource Include="Img\GameIcons\RaymanGardenPLUS.png" />
     <Resource Include="Img\GameIcons\RaymanRedesigner.png" />
     <Resource Include="Img\ProgressionIcons\R1_Flag.png" />

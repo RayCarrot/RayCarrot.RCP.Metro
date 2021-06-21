@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Ray1EditorUtilityUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:Ray1EditorUtilityViewModel}">
+
+    <StackPanel>
+        <i:Interaction.Behaviors>
+            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+        </i:Interaction.Behaviors>
+
+        <metro:FlipView HorizontalAlignment="Left"
+                        CircularNavigation="True" 
+                        ShowIndex="False"
+                        MouseHoverBorderEnabled="False"
+                        Width="650"
+                        RenderOptions.BitmapScalingMode="Linear"
+                        IsBannerEnabled="False">
+            <Image Source="Screenshots/ObjEditor.png" />
+            <Image Source="Screenshots/TileEditor.png" />
+            <Image Source="Screenshots/LayerEditor.png" />
+        </metro:FlipView>
+
+        <!-- TODO-UPDATE: Localize -->
+        <Button VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Command="{Binding Path=OpenHomePageCommand, Mode=OneTime}"
+                ToolTip="{Binding Path=HomePageURL, Mode=OneTime}"
+                Content="More info" />
+
+    </StackPanel>
+
+</UserControl>
