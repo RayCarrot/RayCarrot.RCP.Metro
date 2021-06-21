@@ -65,9 +65,8 @@
 
             <!-- External Tools -->
 
-            <!-- TODO-UPDATE: Localize -->
             <local:RCPTabItem IconKind="Launch"
-                              Header="External Tools">
+                              Header="{Resx Utilities_ExternalTools_Header}">
 
                 <local:UtilitiesContainer Utilities="{Binding Path=ExternalToolViewModels, Mode=OneTime}" />
 

@@ -28,12 +28,11 @@
             <Image Source="Screenshots/LayerEditor.png" />
         </metro:FlipView>
 
-        <!-- TODO-UPDATE: Localize -->
         <Button VerticalAlignment="Center"
                 HorizontalAlignment="Left"
                 Command="{Binding Path=OpenHomePageCommand, Mode=OneTime}"
                 ToolTip="{Binding Path=HomePageURL, Mode=OneTime}"
-                Content="More info" />
+                Content="{Resx Utilities_R1E_Homepage}" />
 
     </StackPanel>
 

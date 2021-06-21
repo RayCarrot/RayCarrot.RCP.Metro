@@ -12,7 +12,7 @@ namespace RayCarrot.RCP.Metro
     {
         #region Constants
 
-        // TODO-UPDATE: Allow these values to be changed in settings?
+        // IDEA: Allow these values to be changed in settings?
         private const int CacheMaxCount = 250;
         private const int CacheClearCycleCount = 15;
 

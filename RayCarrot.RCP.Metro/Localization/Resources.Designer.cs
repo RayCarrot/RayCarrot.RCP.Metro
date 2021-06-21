@@ -993,6 +993,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sound.
+        /// </summary>
+        public static string Archive_Format_Snd {
+            get {
+                return ResourceManager.GetString("Archive_Format_Snd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import &amp; convert.
         /// </summary>
         public static string Archive_ImportConvert {
@@ -9925,6 +9934,16 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The update check failed. {0}
+        ///To manually update the app, go to {1} and download the latest version..
+        /// </summary>
+        public static string Update_CheckFailed {
+            get {
+                return ResourceManager.GetString("Update_CheckFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred when updating the application.
         /// </summary>
         public static string Update_Error {
@@ -10432,11 +10451,38 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to External Tools.
+        /// </summary>
+        public static string Utilities_ExternalTools_Header {
+            get {
+                return ResourceManager.GetString("Utilities_ExternalTools_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Other.
         /// </summary>
         public static string Utilities_Other_Header {
             get {
                 return ResourceManager.GetString("Utilities_Other_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ray1Editor - Rayman 1 Level Editor.
+        /// </summary>
+        public static string Utilities_R1E_Header {
+            get {
+                return ResourceManager.GetString("Utilities_R1E_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More info.
+        /// </summary>
+        public static string Utilities_R1E_Homepage {
+            get {
+                return ResourceManager.GetString("Utilities_R1E_Homepage", resourceCulture);
             }
         }
         

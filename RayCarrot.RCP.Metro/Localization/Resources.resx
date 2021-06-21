@@ -3800,4 +3800,24 @@ filesCount</comment>
     <comment>Arguments:
 selectedFilesCount</comment>
   </data>
+  <data name="Update_CheckFailed" xml:space="preserve">
+    <value>The update check failed. {0}
+To manually update the app, go to {1} and download the latest version.</value>
+    <comment>Arguments:
+errorMessage
+rcpURL</comment>
+  </data>
+  <data name="Archive_Format_Snd" xml:space="preserve">
+    <value>Sound</value>
+  </data>
+  <data name="Utilities_ExternalTools_Header" xml:space="preserve">
+    <value>External Tools</value>
+  </data>
+  <data name="Utilities_R1E_Header" xml:space="preserve">
+    <value>Ray1Editor - Rayman 1 Level Editor</value>
+    <comment>Don't translate 'Ray1Editor'</comment>
+  </data>
+  <data name="Utilities_R1E_Homepage" xml:space="preserve">
+    <value>More info</value>
+  </data>
 </root>

@@ -24,7 +24,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The header for the utility. This property is retrieved again when the current culture is changed.
         /// </summary>
-        public string DisplayHeader => "Ray1Editor - Rayman 1 Level Editor"; // TODO-UPDATE: Localize
+        public string DisplayHeader => Resources.Utilities_R1E_Header;
 
         /// <summary>
         /// The utility information text (optional). This property is retrieved again when the current culture is changed.

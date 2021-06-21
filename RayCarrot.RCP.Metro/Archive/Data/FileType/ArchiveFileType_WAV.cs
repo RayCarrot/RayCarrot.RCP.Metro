@@ -15,7 +15,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The display name for the file type
         /// </summary>
-        public virtual string TypeDisplayName => "Sound"; // TODO-UPDATE: Localize
+        public virtual string TypeDisplayName => Resources.Archive_Format_Snd;
 
         /// <summary>
         /// The default icon kind for the type

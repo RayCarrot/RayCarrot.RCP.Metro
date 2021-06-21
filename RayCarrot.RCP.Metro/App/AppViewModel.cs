@@ -757,8 +757,8 @@ namespace RayCarrot.RCP.Metro
                 // Check if there is an error
                 if (result.ErrorMessage != null)
                 {
-                    // TODO-UPDATE: Localize
-                    await Services.MessageUI.DisplayExceptionMessageAsync(result.Exception, $"The update check failed. {result.ErrorMessage}{Environment.NewLine}To manually update the app, go to {CommonUrls.RCPBaseUrl} and download the latest version.", Resources.Update_ErrorHeader);
+                    await Services.MessageUI.DisplayExceptionMessageAsync(result.Exception,
+                        String.Format(Resources.Update_CheckFailed, result.ErrorMessage, CommonUrls.RCPBaseUrl), Resources.Update_ErrorHeader);
 
                     RCPServices.Data.IsUpdateAvailable = false;
 
