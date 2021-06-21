@@ -123,6 +123,9 @@
     "RaymanBowling2": {
       "Win32": "RaymanBowling2_Win32"
     },
+    "RaymanGardenPLUS": {
+      "Win32": "RaymanGardenPLUS_Win32"
+    },
     "RabbidsCoding": {
       "Win32": "RabbidsCoding_Win32"
     },
@@ -189,6 +192,7 @@
     "RaymanRedemption": "RaymanRedemption_Info",
     "RaymanRedesigner": "RaymanRedesigner_Info",
     "RaymanBowling2": "RaymanBowling2_Info",
+    "RaymanGardenPLUS": "RaymanGardenPLUS_Info",
     "RabbidsCoding": "RabbidsCoding_Info",
     "Demo_Rayman3_1": "Demo_Rayman3_1_Info",
     "Demo_Rayman3_2": "Demo_Rayman3_2_Info",

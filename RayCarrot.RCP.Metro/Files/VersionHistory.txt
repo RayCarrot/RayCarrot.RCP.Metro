@@ -1,6 +1,7 @@
 ﻿-----   Version 11.2.0 - June ??, 2021   -----
 • Updated the Archive Explorer™
 	• Thumbnails are now cached when switching between directories
+• Added support for Rayman Garden PLUS
 
 Other changes:
 • Other changes to the Archive Explorer™

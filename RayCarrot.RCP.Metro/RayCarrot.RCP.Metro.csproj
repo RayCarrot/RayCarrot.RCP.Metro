@@ -132,6 +132,8 @@
     <Compile Include="Games\Config\ViewModels\RaymanByHisFansConfigViewModel.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanDesignerConfigViewModel.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanEduDosConfigViewModel.cs" />
+    <Compile Include="Games\Info\Fan\RaymanGardenPLUS_Info.cs" />
+    <Compile Include="Games\Manager\Fan\RaymanGardenPLUS_Win32.cs" />
     <Compile Include="Games\Options\UI\DOSBoxOptions.xaml.cs">
       <DependentUpon>DOSBoxOptions.xaml</DependentUpon>
     </Compile>
@@ -1165,6 +1167,7 @@
     <Resource Include="Img\GameIcons\RaymanRavingRabbids.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Img\GameIcons\RaymanGardenPLUS.png" />
     <Resource Include="Img\GameIcons\RaymanRedesigner.png" />
     <Resource Include="Img\ProgressionIcons\R1_Flag.png" />
     <Resource Include="Img\GameIcons\RaymanBowling2.png" />

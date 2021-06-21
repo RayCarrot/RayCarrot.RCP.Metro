@@ -184,6 +184,11 @@ namespace RayCarrot.RCP.Metro
         RaymanBowling2,
 
         /// <summary>
+        /// Rayman Garden PLUS
+        /// </summary>
+        RaymanGardenPLUS,
+
+        /// <summary>
         /// Globox Moment
         /// </summary>
         GloboxMoment,
