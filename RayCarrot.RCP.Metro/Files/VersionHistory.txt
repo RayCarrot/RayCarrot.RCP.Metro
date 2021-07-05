@@ -1,12 +1,10 @@
-﻿-----   Version 11.2.0 - June ??, 2021   -----
+﻿-----   Version 11.2.0 - July 5, 2021   -----
 • Updated the Archive Explorer™
 	• Thumbnails are now cached when switching between directories
-• Added support for Rayman Garden PLUS
-
-Other changes:
-• Other changes to the Archive Explorer™
 	• Add support for .wav files 
 	• Fixed a bug where dropping in a folder would cause an error to show 
+• Added support for Rayman Garden PLUS
+• Added the External Tools section under the utilities page
 • More information is now shown if an error occurs when checking for updates
 • Fixed the highlighting for flat buttons with an icon
 
