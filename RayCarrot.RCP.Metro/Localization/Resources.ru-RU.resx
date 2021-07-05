@@ -3651,4 +3651,20 @@
   <data name="Archive_Status_SelectedFilesCount" xml:space="preserve">
     <value>Выбрано {0} файлов</value>
   </data>
+  <data name="Update_CheckFailed" xml:space="preserve">
+    <value>Проверка наличия обновлений не удалась. {0}
+Чтобы вручную обновить приложение, перейдите на {1} и загрузите последнюю версию.</value>
+  </data>
+  <data name="Archive_Format_Snd" xml:space="preserve">
+    <value>Звук</value>
+  </data>
+  <data name="Utilities_ExternalTools_Header" xml:space="preserve">
+    <value>Внешние инструменты</value>
+  </data>
+  <data name="Utilities_R1E_Header" xml:space="preserve">
+    <value>Ray1Editor - Редактор Уровней в Rayman 1</value>
+  </data>
+  <data name="Utilities_R1E_Homepage" xml:space="preserve">
+    <value>Подробности</value>
+  </data>
 </root>

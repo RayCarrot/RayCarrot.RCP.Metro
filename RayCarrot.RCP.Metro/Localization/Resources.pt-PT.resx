@@ -3754,4 +3754,20 @@ Programa de tradução Catalã (Catalunha)
   <data name="Archive_Status_SelectedFilesCount" xml:space="preserve">
     <value>{0} ficheiro(s) seleccionados</value>
   </data>
+  <data name="Update_CheckFailed" xml:space="preserve">
+    <value>Falhou a verificação por actualizações. {0}
+Para instalar a aplicação manualmente, vai a {1} e descarrega a última versão.</value>
+  </data>
+  <data name="Archive_Format_Snd" xml:space="preserve">
+    <value>Som</value>
+  </data>
+  <data name="Utilities_ExternalTools_Header" xml:space="preserve">
+    <value>Ferramentas externas</value>
+  </data>
+  <data name="Utilities_R1E_Header" xml:space="preserve">
+    <value>Ray1Editor - Editor de Níveis Rayman 1</value>
+  </data>
+  <data name="Utilities_R1E_Homepage" xml:space="preserve">
+    <value>Mais informação</value>
+  </data>
 </root>

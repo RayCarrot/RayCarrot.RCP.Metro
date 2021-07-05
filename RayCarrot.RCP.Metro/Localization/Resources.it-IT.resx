@@ -3658,4 +3658,20 @@ Messaggio di errore: {1} </value>
   <data name="Archive_Status_SelectedFilesCount" xml:space="preserve">
     <value>{0} file selezionati</value>
   </data>
+  <data name="Update_CheckFailed" xml:space="preserve">
+    <value>Il controllo dell'aggiornamento non è riuscito. {0}
+Per aggiornare manualmente l'app, vai su {1} e scarica l'ultima versione.</value>
+  </data>
+  <data name="Archive_Format_Snd" xml:space="preserve">
+    <value>Suono</value>
+  </data>
+  <data name="Utilities_ExternalTools_Header" xml:space="preserve">
+    <value>Strumenti esterni</value>
+  </data>
+  <data name="Utilities_R1E_Header" xml:space="preserve">
+    <value>Ray1Editor - Editor di livelli Rayman 1</value>
+  </data>
+  <data name="Utilities_R1E_Homepage" xml:space="preserve">
+    <value>Più informazioni</value>
+  </data>
 </root>

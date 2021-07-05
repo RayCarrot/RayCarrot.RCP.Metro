@@ -3710,4 +3710,20 @@ Foutmelding: {1}</value>
   <data name="Archive_Status_SelectedFilesCount" xml:space="preserve">
     <value>{0} bestanden geselecteerd</value>
   </data>
+  <data name="Update_CheckFailed" xml:space="preserve">
+    <value>De update-controle is mislukt. {0}
+Voor het handmatig updaten van het programma, ga je naar {1) en download je vervolgens de laatste versie.</value>
+  </data>
+  <data name="Archive_Format_Snd" xml:space="preserve">
+    <value>Geluid</value>
+  </data>
+  <data name="Utilities_ExternalTools_Header" xml:space="preserve">
+    <value>Externe Tools</value>
+  </data>
+  <data name="Utilities_R1E_Header" xml:space="preserve">
+    <value>Ray1Editor - Rayman 1 Level Bewerker</value>
+  </data>
+  <data name="Utilities_R1E_Homepage" xml:space="preserve">
+    <value>Meer informatie</value>
+  </data>
 </root>

@@ -3763,4 +3763,19 @@ Komunikat o błędzie: {1}</value>
   <data name="Archive_Status_SelectedFilesCount" xml:space="preserve">
     <value>{0} wybranych plików</value>
   </data>
+  <data name="Update_CheckFailed" xml:space="preserve">
+    <value>Sprawdzanie aktualizacji nie powiodło się. {0} Aby ręcznie zaaktualizować aplikację, przejdź na stronę {1} i pobierz najnowszą wersję.</value>
+  </data>
+  <data name="Archive_Format_Snd" xml:space="preserve">
+    <value>Dźwięk</value>
+  </data>
+  <data name="Utilities_ExternalTools_Header" xml:space="preserve">
+    <value>Narzędzia zewnętrzne</value>
+  </data>
+  <data name="Utilities_R1E_Header" xml:space="preserve">
+    <value>Ray1Editor - Rayman 1 Edytor Poziomów</value>
+  </data>
+  <data name="Utilities_R1E_Homepage" xml:space="preserve">
+    <value>Więcej informacji</value>
+  </data>
 </root>
