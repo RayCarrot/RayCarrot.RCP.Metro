@@ -1,4 +1,8 @@
-﻿-----   Version 11.2.0 - July 5, 2021   -----
+﻿-----   Version 11.3.0 - August ??, 2021   -----
+• Added the mods page
+
+
+-----   Version 11.2.0 - July 5, 2021   -----
 • Updated the Archive Explorer™
 	• Thumbnails are now cached when switching between directories
 	• Add support for .wav files 
