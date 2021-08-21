@@ -21,6 +21,11 @@
         Utilities,
 
         /// <summary>
+        /// The mods page
+        /// </summary>
+        Mods,
+
+        /// <summary>
         /// The settings page
         /// </summary>
         Settings,
