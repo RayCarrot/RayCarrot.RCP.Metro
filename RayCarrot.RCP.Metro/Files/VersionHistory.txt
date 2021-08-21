@@ -1,5 +1,6 @@
 ﻿-----   Version 11.3.0 - August ??, 2021   -----
 • Added the mods page
+• Updated the save file backup for the Steam version of Rayman Raving Rabbids to include the VirtualStore redirected save location
 
 
 -----   Version 11.2.0 - July 5, 2021   -----

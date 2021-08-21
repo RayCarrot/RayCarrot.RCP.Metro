@@ -1,8 +1,7 @@
-﻿using System;
+﻿using RayCarrot.IO;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows;
-using RayCarrot.IO;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -20,13 +19,12 @@ namespace RayCarrot.RCP.Metro
         {
             get
             {
+                // By default the save file is located in the game directory, but if not running as admin it might get redirected to VirtualStore
                 var dirs = new List<BackupDir>()
                 {
-                    new BackupDir(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0)
+                    new BackupDir(Game.GetInstallDir(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0),
+                    new BackupDir(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "VirtualStore" + Game.GetInstallDir().RemoveRoot(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0)
                 };
-
-                if (Game.GetGameType() == GameType.Win32)
-                    dirs.Add(new BackupDir(Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "VirtualStore" + Game.GetInstallDir().RemoveRoot(), SearchOption.TopDirectoryOnly, "*.sav", "0", 0));
 
                 return dirs;
             }
