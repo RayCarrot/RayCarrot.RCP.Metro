@@ -108,6 +108,12 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Private Fields
+
+        private Pages _selectedPage;
+
+        #endregion
+
         #region Private Properties
 
         /// <summary>
@@ -182,7 +188,19 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The currently selected page
         /// </summary>
-        public Pages SelectedPage { get; set; }
+        public Pages SelectedPage
+        {
+            get => _selectedPage;
+            set
+            {
+                if (_selectedPage == value)
+                    return;
+
+                var oldValue = _selectedPage;
+                _selectedPage = value;
+                OnSelectedPageChanged(new PropertyChangedEventArgs<Pages>(oldValue, value));
+            }
+        }
 
         /// <summary>
         /// A flag indicating if an update check is in progress
@@ -207,6 +225,15 @@ namespace RayCarrot.RCP.Metro
         /// The Windows version the program is running on
         /// </summary>
         public static WindowsVersion WindowsVersion { get; }
+
+        #endregion
+
+        #region Protected Methods
+
+        protected virtual void OnSelectedPageChanged(PropertyChangedEventArgs<Pages> e)
+        {
+            SelectedPageChanged?.Invoke(this, e);
+        }
 
         #endregion
 
@@ -841,6 +868,11 @@ namespace RayCarrot.RCP.Metro
         /// Occurs when a refresh is required for the app
         /// </summary>
         public event AsyncEventHandler<RefreshRequiredEventArgs> RefreshRequired;
+
+        /// <summary>
+        /// Occurs when the selected page changes
+        /// </summary>
+        public event EventHandler<PropertyChangedEventArgs<Pages>> SelectedPageChanged;
 
         #endregion
 
