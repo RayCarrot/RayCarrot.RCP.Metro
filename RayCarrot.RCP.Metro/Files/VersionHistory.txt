@@ -1,5 +1,6 @@
 ﻿-----   Version 11.3.0 - August ??, 2021   -----
 • Added the mods page
+• Updated the browse button icon to be outlined, matching the rest of the icons
 • Updated the save file backup for the Steam version of Rayman Raving Rabbids to include the VirtualStore redirected save location
 
 
