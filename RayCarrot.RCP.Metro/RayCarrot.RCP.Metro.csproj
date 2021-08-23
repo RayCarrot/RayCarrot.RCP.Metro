@@ -221,11 +221,22 @@
     <Compile Include="Helpers\JsonHelpers.cs" />
     <Compile Include="App\Interfaces\IFileManager.cs" />
     <Compile Include="IsExternalInit.cs" />
+    <Compile Include="Mods\RaymanRavingRabbids\MemoryPatcher\Mod_RRR_MemoryPatch.cs" />
+    <Compile Include="Mods\RaymanRavingRabbids\MemoryPatcher\Mod_RRR_MemoryManager.cs" />
+    <Compile Include="Mods\RaymanRavingRabbids\MemoryPatcher\Mod_RRR_MemoryPatcher.cs" />
+    <Compile Include="Mods\RaymanRavingRabbids\Mod_RRR_UI.xaml.cs">
+      <DependentUpon>Mod_RRR_UI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Mods\BaseModViewModel.cs" />
     <Compile Include="Pages\Mods\ModsPageViewModel.cs" />
     <Compile Include="Pages\Mods\ModsPage.xaml.cs">
       <DependentUpon>ModsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Mods\RaymanRavingRabbids\MemoryPatcher\Mod_RRR_AI2C_fctDef.cs" />
+    <Compile Include="Mods\RaymanRavingRabbids\ViewModels\Mod_RRR_BFModToggleViewModel.cs" />
+    <Compile Include="Mods\RaymanRavingRabbids\ViewModels\Mod_RRR_MemoryModsSectonViewModel.cs" />
+    <Compile Include="Mods\RaymanRavingRabbids\ViewModels\Mod_RRR_MemoryModToggleViewModel.cs" />
+    <Compile Include="Mods\RaymanRavingRabbids\Mod_RRR_ViewModel.cs" />
     <Compile Include="UI\Controls\LoaderContentControl.cs" />
     <Compile Include="Extensions\ApplicationExtensions.cs" />
     <Compile Include="UI\ValidationRules\R1PasswordValidationRule.cs" />
@@ -575,6 +586,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Games\Progression\UI\ProgressionUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mods\RaymanRavingRabbids\Mod_RRR_UI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

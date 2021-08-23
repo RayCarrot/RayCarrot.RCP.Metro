@@ -15,7 +15,7 @@ namespace RayCarrot.RCP.Metro
         {
             Mods = new BaseModViewModel[]
             {
-
+                new Mod_RRR_ViewModel(),
             };
 
             App.SelectedPageChanged += App_SelectedPageChangedAsync;

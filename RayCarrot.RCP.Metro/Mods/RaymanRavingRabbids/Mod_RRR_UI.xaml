@@ -1,0 +1,356 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.Mod_RRR_UI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             mc:Ignorable="d" 
+             d:DesignWidth="800" d:DesignHeight="500" d:DataContext="{d:DesignInstance local:Mod_RRR_ViewModel}">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!-- Memory Mods -->
+
+        <Grid Grid.Column="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal"
+                        Margin="{StaticResource DefaultVerticalStackMargin}">
+
+                <!-- TODO-UPDATE: Localize -->
+                <TextBlock Text="Memory Mods"
+                           Style="{StaticResource LargeHeaderTextBlock}" />
+
+                <!-- TODO-UPDATE: Localize -->
+                <local:InfoIcon Text="Enable removed prototype features in the game by selecting the mods you want and then apply them. This requires the game to be running and only works with the GOG and Steam versions. A controller is required for the mods to work. Applied mods will only be in effect when the game is running and will be reset when closed." />
+
+            </StackPanel>
+
+            <!-- Sections -->
+
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
+                          Margin="{StaticResource DefaultVerticalStackMargin}">
+
+                <ItemsControl ItemsSource="{Binding Path=MemoryModSections, Mode=OneTime}">
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type local:Mod_RRR_MemoryModsSectonViewModel}">
+
+                            <StackPanel IsEnabled="{Binding Path=IsEnabled}">
+
+                                <!-- Section header -->
+
+                                <StackPanel Orientation="Horizontal">
+
+                                    <TextBlock Text="{Binding Path=Header.Value}"
+                                               Style="{StaticResource HeaderTextBlock}"
+                                               Margin="{StaticResource DefaultVerticalStackMargin}" />
+
+                                    <local:InfoIcon Text="{Binding Path=Info.Value}"
+                                                    Visibility="{Binding Path=Info, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}" />
+
+                                </StackPanel>
+
+                                <!-- Mod toggles -->
+
+                                <ItemsControl ItemsSource="{Binding Path=ModToggles, Mode=OneTime}">
+
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type local:Mod_RRR_MemoryModToggleViewModel}">
+                                            <Grid>
+
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+
+                                                <CheckBox Grid.Row="0"
+                                                          Margin="{StaticResource SmallVerticalStackMargin}"
+                                                          IsChecked="{Binding Path=IsToggled}">
+
+                                                    <StackPanel>
+
+                                                        <TextBlock Text="{Binding Path=Header.Value}"
+                                                                   TextWrapping="Wrap"
+                                                                   Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentPresenter}, Path=(TextElement.Foreground)}"
+                                                                   Margin="0 0 0 2" />
+
+                                                        <TextBlock FontSize="11"
+                                                                   Text="{Binding Path=Description.Value}"
+                                                                   TextWrapping="Wrap"
+                                                                   Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentPresenter}, Path=(TextElement.Foreground)}" />
+
+                                                    </StackPanel>
+
+                                                </CheckBox>
+
+                                                <ComboBox Grid.Row="1"
+                                                          IsEnabled="{Binding Path=IsToggled}"
+                                                          HorizontalAlignment="Left"
+                                                          Visibility="{Binding Path=SelectionOptions, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                                          ItemsSource="{Binding Path=SelectionOptions, Mode=OneTime}"
+                                                          DisplayMemberPath="Value"
+                                                          SelectedIndex="{Binding Path=SelectedSelectionIndex}"
+                                                          Margin="{StaticResource SmallVerticalStackMargin}" />
+
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+
+                                </ItemsControl>
+
+                            </StackPanel>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                </ItemsControl>
+
+            </ScrollViewer>
+
+            <Button Grid.Row="2"
+                    Command="{Binding Path=ApplyMemoryPatchCommand, Mode=OneTime}"
+                    HorizontalAlignment="Left"
+                    Margin="{StaticResource DefaultVerticalStackMargin}">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconMaterial Kind="AutoFix"
+                                                VerticalAlignment="Center" />
+
+                    <!-- TODO-UPDATE: Localize -->
+                    <TextBlock Margin="10 0"
+                               Text="Apply to running game"
+                               VerticalAlignment="Center" />
+
+                </StackPanel>
+            </Button>
+
+        </Grid>
+
+        <!-- BF Mods -->
+
+        <Grid Grid.Column="2">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="{StaticResource DefaultVerticalStackMargin}">
+
+                <!-- TODO-UPDATE: Localize -->
+                <TextBlock Text="BF Mods"
+                           Style="{StaticResource LargeHeaderTextBlock}" />
+
+                <!-- TODO-UPDATE: Localize -->
+                <local:InfoIcon Text="Modified .bf files. These will only be used when running the game from the option below." />
+
+            </StackPanel>
+
+            <!-- Game Directory -->
+
+            <StackPanel Grid.Row="1">
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                </i:Interaction.Behaviors>
+
+                <!-- TODO-UPDATE: Localize -->
+                <TextBlock Text="Game Directory"
+                           Style="{StaticResource HeaderTextBlock}" />
+
+                <rwpf:BrowseBox SelectedPath="{Binding Path=GameDirectoryPath}"
+                                BrowseType="Directory"
+                                PathValidation="DirectoryExists" />
+
+            </StackPanel>
+
+            <!-- Patch Buttons -->
+
+            <StackPanel Grid.Row="2">
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                </i:Interaction.Behaviors>
+
+                <!-- TODO-UPDATE: Localize -->
+                <Button HorizontalAlignment="Left"
+                        ToolTip="The executable patch is required for patched BF files due to a memory limit"
+                        Command="{Binding Path=ApplyExePatchCommand, Mode=OneTime}"
+                        Visibility="{Binding Path=IsExePatched, Converter={rwpf:InvertedBooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="AutoFix"
+                                                    VerticalAlignment="Center" />
+
+                        <!-- TODO-UPDATE: Localize -->
+                        <TextBlock Margin="10 0"
+                                   Text="Apply executable patch"
+                                   VerticalAlignment="Center" />
+
+                    </StackPanel>
+                </Button>
+
+                <!-- TODO-UPDATE: Localize -->
+                <Button HorizontalAlignment="Left"
+                        ToolTip="The executable patch is required for patched BF files due to a memory limit"
+                        Command="{Binding Path=RevertExePatchCommand, Mode=OneTime}"
+                        Visibility="{Binding Path=IsExePatched, Converter={rwpf:BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="UndoVariant"
+                                                    VerticalAlignment="Center" />
+
+                        <!-- TODO-UPDATE: Localize -->
+                        <TextBlock Margin="10 0"
+                                   Text="Revert executable patch"
+                                   VerticalAlignment="Center" />
+
+                    </StackPanel>
+                </Button>
+
+                <Button HorizontalAlignment="Left"
+                        IsEnabled="{Binding Path=CanDownloadPatchedBF}"
+                        Command="{Binding Path=DownloadPatchedBFCommand, Mode=OneTime}"
+                        Visibility="{Binding Path=IsPatchedBFDownloaded, Converter={rwpf:InvertedBooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="DownloadOutline"
+                                                    VerticalAlignment="Center" />
+
+                        <!-- TODO-UPDATE: Localize -->
+                        <TextBlock Margin="10 0"
+                                   Text="Download patched BF"
+                                   VerticalAlignment="Center" />
+
+                    </StackPanel>
+                </Button>
+
+                <Button HorizontalAlignment="Left"
+                        Command="{Binding Path=RemovePatchedBFCommand, Mode=OneTime}"
+                        Visibility="{Binding Path=IsPatchedBFDownloaded, Converter={rwpf:BooleanToVisibilityConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="DeleteOutline"
+                                                    VerticalAlignment="Center" />
+
+                        <!-- TODO-UPDATE: Localize -->
+                        <TextBlock Margin="10 0"
+                                   Text="Remove patched BF"
+                                   VerticalAlignment="Center" />
+
+                    </StackPanel>
+                </Button>
+
+            </StackPanel>
+
+            <!-- Patches Header -->
+
+            <!-- TODO-UPDATE: Localize -->
+            <TextBlock Grid.Row="3"
+                       Text="Patches"
+                       Style="{StaticResource HeaderTextBlock}"
+                       Margin="{StaticResource DefaultVerticalStackMargin}" />
+
+            <!-- Patches -->
+
+            <ScrollViewer Grid.Row="4"
+                          VerticalScrollBarVisibility="Auto"
+                          Margin="{StaticResource DefaultVerticalStackMargin}">
+
+                <ItemsControl ItemsSource="{Binding Path=BFModToggles, Mode=OneTime}"
+                              IsEnabled="{Binding Path=CanUpdatePatchedBF}">
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <CheckBox Grid.Row="0"
+                                          Margin="{StaticResource SmallVerticalStackMargin}"
+                                          IsChecked="{Binding Path=IsToggled}">
+                                    <TextBlock Text="{Binding Path=Header.Value}" 
+                                               TextWrapping="Wrap"
+                                               Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentPresenter}, Path=(TextElement.Foreground)}"/>
+                                </CheckBox>
+
+                                <ComboBox Grid.Row="1"
+                                          IsEnabled="{Binding Path=IsToggled}"
+                                          HorizontalAlignment="Left"
+                                          Visibility="{Binding Path=SelectionOptions, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                          ItemsSource="{Binding Path=SelectionOptions, Mode=OneTime}"
+                                          DisplayMemberPath="Value"
+                                          SelectedIndex="{Binding Path=SelectedSelectionIndex}"
+                                          Margin="{StaticResource SmallVerticalStackMargin}" />
+
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                </ItemsControl>
+
+            </ScrollViewer>
+
+            <!-- Apply Buttons -->
+
+            <StackPanel Grid.Row="5">
+                <i:Interaction.Behaviors>
+                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                </i:Interaction.Behaviors>
+
+                <Button Command="{Binding Path=UpdatePatchedBFCommand, Mode=OneTime}"
+                        HorizontalAlignment="Left"
+                        IsEnabled="{Binding Path=CanUpdatePatchedBF}">
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="FileEditOutline"
+                                                    VerticalAlignment="Center" />
+
+                        <!-- TODO-UPDATE: Localize -->
+                        <TextBlock Margin="10 0"
+                                   Text="Update patched BF"
+                                   VerticalAlignment="Center" />
+
+                    </StackPanel>
+                </Button>
+
+                <Button Command="{Binding Path=LaunchWithPatchedBFCommand, Mode=OneTime}"
+                        HorizontalAlignment="Left"
+                        IsEnabled="{Binding Path=IsPatchedBFDownloaded}">
+                    <StackPanel Orientation="Horizontal">
+                        <iconPacks:PackIconMaterial Kind="PlayOutline"
+                                                    VerticalAlignment="Center" />
+
+                        <!-- TODO-UPDATE: Localize -->
+                        <TextBlock Margin="10 0"
+                                   Text="Launch with patched BF"
+                                   VerticalAlignment="Center" />
+
+                    </StackPanel>
+                </Button>
+
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+</UserControl>
