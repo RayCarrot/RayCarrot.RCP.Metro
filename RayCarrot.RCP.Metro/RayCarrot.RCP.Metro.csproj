@@ -162,6 +162,9 @@
       <DependentUpon>UbiArtIPKArchiveConfigUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Archive\Manager\UbiArt_Ipk\UbiArtIPKArchiveDataManager.cs" />
+    <Compile Include="Mods\RaymanRavingRabbids\BigFile\Serializable\JADE_BIG_BigFile.cs" />
+    <Compile Include="Mods\RaymanRavingRabbids\BigFile\Serializable\JADE_BIG_FatFile.cs" />
+    <Compile Include="Mods\RaymanRavingRabbids\BigFile\Mod_RRR_BigFilePatch.cs" />
     <Compile Include="Patcher\FilePatcher_Patch.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanMDemoConfigViewModel.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_2_Info.cs" />

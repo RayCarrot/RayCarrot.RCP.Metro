@@ -7,9 +7,12 @@ using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RayCarrot.Binary;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -224,12 +227,12 @@ namespace RayCarrot.RCP.Metro
             {
                 new Mod_RRR_BFModToggleViewModel(
                     header: new LocalizedString(() => "Fix sound effects"),
-                    toggleAction: x => {},
-                    isToggled: true),
+                    patches: Mod_RRR_BigFilePatch.FixSoundEffects,
+                    isDefaultToggled: true),
                 new Mod_RRR_BFModToggleViewModel(
                     header: new LocalizedString(() => "Change playable character"),
-                    toggleAction: x => {},
-                    isToggled: false,
+                    patch: Mod_RRR_BigFilePatch.PlayableCharacters,
+                    isDefaultToggled: false,
                     selectionOptions: new ObservableCollection<LocalizedString>()
                     {
                         new LocalizedString(() => "Baby Globox"),
@@ -240,36 +243,35 @@ namespace RayCarrot.RCP.Metro
                         new LocalizedString(() => "Terminator Rabbid (Pink)"),
                         new LocalizedString(() => "Sam Fisher Rabbid"),
                         new LocalizedString(() => "Nurgle Demon"),
-                    },
-                    selectionAction: x => {}),
+                    }),
                 new Mod_RRR_BFModToggleViewModel(
                     header: new LocalizedString(() => "Make bat sound like eagle"),
-                    toggleAction: x => {},
-                    isToggled: false),
+                    patch: Mod_RRR_BigFilePatch.MakeBatSoundLikeEagle,
+                    isDefaultToggled: false),
                 new Mod_RRR_BFModToggleViewModel(
                     header: new LocalizedString(() => "Make spider robot sound like spider"),
-                    toggleAction: x => {},
-                    isToggled: false),
+                    patches: Mod_RRR_BigFilePatch.MakeSpiderRobotsSoundLikeSpider,
+                    isDefaultToggled: false),
                 new Mod_RRR_BFModToggleViewModel(
                     header: new LocalizedString(() => "Add custom helicopter texture"),
-                    toggleAction: x => {},
-                    isToggled: true),
+                    patch: Mod_RRR_BigFilePatch.AddCustomHelicopterTexture,
+                    isDefaultToggled: true),
                 new Mod_RRR_BFModToggleViewModel(
                     header: new LocalizedString(() => "Add fur to rabbids"),
-                    toggleAction: x => {},
-                    isToggled: false),
+                    patches: Mod_RRR_BigFilePatch.AddFurToRabbids,
+                    isDefaultToggled: false),
                 new Mod_RRR_BFModToggleViewModel(
                     header: new LocalizedString(() => "Enable flashlight (toggle with LB)"),
-                    toggleAction: x => {},
-                    isToggled: true),
+                    patch: Mod_RRR_BigFilePatch.EnableFlashlight,
+                    isDefaultToggled: true),
                 new Mod_RRR_BFModToggleViewModel(
                     header: new LocalizedString(() => "Add flashlight to Bunnies Love Digging Tunnels"),
-                    toggleAction: x => {},
-                    isToggled: false),
+                    patches: Mod_RRR_BigFilePatch.AddFlashlightToMines,
+                    isDefaultToggled: false),
                 new Mod_RRR_BFModToggleViewModel(
                     header: new LocalizedString(() => "Add unused rabbid items to Bunnies Aren't Scared Of The Dark"),
-                    toggleAction: x => {},
-                    isToggled: false),
+                    patches: Mod_RRR_BigFilePatch.ModdedRabbidItems,
+                    isDefaultToggled: false),
             };
 
             ApplyMemoryPatchCommand = new AsyncRelayCommand(ApplyMemoryPatchAsync);
@@ -309,8 +311,6 @@ namespace RayCarrot.RCP.Metro
         #region Private Fields
 
         private FileSystemPath _gameDirectoryPath;
-        private bool _isExePatched;
-        private bool _isPatchedBfDownloaded;
 
         #endregion
 
@@ -412,24 +412,8 @@ namespace RayCarrot.RCP.Metro
         public ObservableCollection<Mod_RRR_MemoryModsSectonViewModel> MemoryModSections { get; }
 
         // BF Mods
-        public bool IsExePatched
-        {
-            get => _isExePatched;
-            set
-            {
-                _isExePatched = value;
-                CanUpdatePatchedBF = IsPatchedBFDownloaded && IsExePatched;
-            }
-        }
-        public bool IsPatchedBFDownloaded
-        {
-            get => _isPatchedBfDownloaded;
-            set
-            {
-                _isPatchedBfDownloaded = value;
-                CanUpdatePatchedBF = IsPatchedBFDownloaded && IsExePatched;
-            }
-        }
+        public bool IsExePatched { get; set; }
+        public bool IsPatchedBFDownloaded { get; set; }
         public bool CanDownloadPatchedBF { get; set; }
         public bool CanUpdatePatchedBF { get; set; }
         public ObservableCollection<Mod_RRR_BFModToggleViewModel> BFModToggles { get; }
@@ -443,6 +427,8 @@ namespace RayCarrot.RCP.Metro
             IsExePatched = CheckIsExePatched();
             CanDownloadPatchedBF = IsExePatched;
             IsPatchedBFDownloaded = CheckIsPatchedBFDownloaded();
+            CanUpdatePatchedBF = IsPatchedBFDownloaded && IsExePatched;
+            RefreshBFPatches();
         }
 
         #endregion
@@ -555,6 +541,7 @@ namespace RayCarrot.RCP.Metro
                 if (version == GameVersion.Unknown)
                 {
                     IsExePatched = false;
+                    CanUpdatePatchedBF = false;
                     CanDownloadPatchedBF = false;
                     return;
                 }
@@ -564,14 +551,15 @@ namespace RayCarrot.RCP.Metro
 
                 // Update patched state
                 IsExePatched = enablePatch;
+                CanUpdatePatchedBF = IsPatchedBFDownloaded && IsExePatched;
 
                 // Display message
                 if (enablePatch)
                     // TODO-UPDATE: Localize
-                    await Services.MessageUI.DisplayMessageAsync("The executable was successfully patched", MessageType.Success);
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The executable was successfully patched");
                 else
                     // TODO-UPDATE: Localize
-                    await Services.MessageUI.DisplayMessageAsync("The executable patch was successfully reverted", MessageType.Success);
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The executable patch was successfully reverted");
             }
             catch (Exception ex)
             {
@@ -586,6 +574,8 @@ namespace RayCarrot.RCP.Metro
 
             CanDownloadPatchedBF = IsExePatched;
             IsPatchedBFDownloaded = CheckIsPatchedBFDownloaded();
+            CanUpdatePatchedBF = IsPatchedBFDownloaded && IsExePatched;
+            RefreshBFPatches();
         }
 
         public async Task DownloadPatchedBFAsync()
@@ -611,6 +601,14 @@ namespace RayCarrot.RCP.Metro
                 return;
 
             IsPatchedBFDownloaded = true;
+            CanUpdatePatchedBF = IsExePatched;
+            RefreshBFPatches();
+
+            // Apply default patches
+            foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
+                bfMod.IsToggled = bfMod.IsDefaultToggled;
+
+            await UpdatePatchedBFAsync();
         }
 
         public async Task RemovePatchedBFAsync()
@@ -618,25 +616,92 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 PatchedBFFilePath.DeleteFile();
+
+                IsPatchedBFDownloaded = false;
+                CanUpdatePatchedBF = false;
+                RefreshBFPatches();
+
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The patched BF file has been removed");
             }
             catch (Exception ex)
             {
                 ex.HandleError("Deleting patched BF file");
 
                 // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayMessageAsync("Unable to remove patched BF file", MessageType.Error);
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "Unable to remove patched BF file");
+            }
+        }
+
+        public void RefreshBFPatches()
+        {
+            if (!PatchedBFFilePath.FileExists)
+            {
+                foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
+                    bfMod.IsToggled = false;
 
                 return;
             }
 
-            IsPatchedBFDownloaded = false;
-            // TODO-UPDATE: Localize
-            await Services.MessageUI.DisplayMessageAsync("The patched BF file has been removed", MessageType.Success);
+            try
+            {
+                using Stream bfFileStream = File.Open(PatchedBFFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+                var serializerSettings = new BinarySerializerSettings(Endian.Little, Encoding.GetEncoding(1252));
+                JADE_BIG_BigFile bf = BinarySerializableHelpers.ReadFromStream<JADE_BIG_BigFile>(bfFileStream, serializerSettings, App.GetBinarySerializerLogger(name: PatchedBFFilePath.Name));
+
+                foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
+                {
+                    var loggerName = $"{PatchedBFFilePath.Name} - Patch ({bfMod.Header.Value})";
+                    var s = new BinaryDeserializer(serializerSettings, bfFileStream, App.GetBinarySerializerLogger(name: loggerName));
+
+                    var patch = bfMod.Patches[0];
+
+                    bfMod.SelectedPatch = patch.GetAppliedPatch(s, bf);
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Refreshing BF patches");
+
+                foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
+                    bfMod.IsToggled = false;
+            }
         }
 
         public async Task UpdatePatchedBFAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                using Stream bfFileStream = File.Open(PatchedBFFilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
+
+                var serializerSettings = new BinarySerializerSettings(Endian.Little, Encoding.GetEncoding(1252));
+                JADE_BIG_BigFile bf = BinarySerializableHelpers.ReadFromStream<JADE_BIG_BigFile>(bfFileStream, serializerSettings, App.GetBinarySerializerLogger(name: PatchedBFFilePath.Name));
+
+                foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
+                {
+                    var loggerName = $"{PatchedBFFilePath.Name} - Patch ({bfMod.Header.Value})";
+                    var s = new BinarySerializer(serializerSettings, bfFileStream, App.GetBinarySerializerLogger(name: loggerName));
+
+                    foreach (Mod_RRR_BigFilePatch patch in bfMod.Patches)
+                    {
+                        patch.Apply(
+                            s: s,
+                            bf: bf,
+                            patchToApply: bfMod.SelectedPatch);
+                    }
+                }
+
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The patched BF file was successfully updated");
+            }
+            catch (Exception ex)
+            {
+                ex.HandleError("Updating patched BF");
+
+                // TODO-UPDATE: Localize
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when updating the patched BF file");
+            }
         }
 
         public async Task LaunchWithPatchedBFAsync()

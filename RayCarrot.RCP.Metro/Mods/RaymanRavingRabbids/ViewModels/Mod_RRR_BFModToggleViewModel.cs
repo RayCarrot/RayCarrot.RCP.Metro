@@ -5,39 +5,52 @@ namespace RayCarrot.RCP.Metro
 {
     public class Mod_RRR_BFModToggleViewModel : BaseRCPViewModel, IDisposable
     {
-        public Mod_RRR_BFModToggleViewModel(LocalizedString header, Action<bool> toggleAction, bool isToggled, ObservableCollection<LocalizedString> selectionOptions = null, Action<int> selectionAction = null)
+        public Mod_RRR_BFModToggleViewModel(LocalizedString header, Mod_RRR_BigFilePatch patch, bool isDefaultToggled, ObservableCollection<LocalizedString> selectionOptions = null) : this(header, new Mod_RRR_BigFilePatch[] { patch }, isDefaultToggled, selectionOptions)
+        { }
+
+        public Mod_RRR_BFModToggleViewModel(LocalizedString header, Mod_RRR_BigFilePatch[] patches, bool isDefaultToggled, ObservableCollection<LocalizedString> selectionOptions = null)
         {
             Header = header;
-            ToggleAction = toggleAction;
-            IsToggled = isToggled;
+            Patches = patches;
+            IsDefaultToggled = isDefaultToggled;
             SelectionOptions = selectionOptions;
-            SelectionAction = selectionAction;
             SelectedSelectionIndex = 0;
         }
 
-        private bool _isToggled;
-        private int _selectedSelectionIndex;
-
         public LocalizedString Header { get; }
-        public Action<bool> ToggleAction { get; }
-        public bool IsToggled
-        {
-            get => _isToggled;
-            set
-            {
-                _isToggled = value;
-                ToggleAction(value);
-            }
-        }
+        public Mod_RRR_BigFilePatch[] Patches { get; }
+        public bool IsDefaultToggled { get; }
+        public bool IsToggled { get; set; }
+
         public ObservableCollection<LocalizedString> SelectionOptions { get; }
-        public Action<int> SelectionAction { get; }
-        public int SelectedSelectionIndex
+        public int SelectedSelectionIndex { get; set; }
+
+        public int SelectedPatch
         {
-            get => _selectedSelectionIndex;
+            get
+            {
+                if (!IsToggled)
+                    return 0;
+
+                if (SelectionOptions != null)
+                    return SelectedSelectionIndex + 1;
+                else
+                    return 1;
+            }
             set
             {
-                _selectedSelectionIndex = value;
-                SelectionAction(value);
+                if (value <= 0)
+                {
+                    IsToggled = false;
+                    SelectedSelectionIndex = 0;
+                }
+                else
+                {
+                    IsToggled = true;
+
+                    if (SelectionOptions != null)
+                        SelectedSelectionIndex = value - 1;
+                }
             }
         }
 
