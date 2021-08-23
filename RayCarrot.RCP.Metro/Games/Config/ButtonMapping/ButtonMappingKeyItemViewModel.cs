@@ -16,12 +16,12 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="actionName">The name of the action the key represents</param>
         /// <param name="originalKey">The original key for the action</param>
-        /// <param name="parent">The parent view model</param>
-        public ButtonMappingKeyItemViewModel(LocalizedString actionName, Key originalKey, GameOptions_ConfigPageViewModel parent)
+        /// <param name="keyChangedAction">Action to invoke when the key is changed</param>
+        public ButtonMappingKeyItemViewModel(LocalizedString actionName, Key originalKey, Action keyChangedAction = null)
         {
             ActionName = actionName;
             OriginalKey = _newKey = originalKey;
-            Parent = parent;
+            KeyChangedAction = keyChangedAction;
 
             ResetCommand = new RelayCommand(Reset);
         }
@@ -37,9 +37,9 @@ namespace RayCarrot.RCP.Metro
         #region Private Properties
 
         /// <summary>
-        /// The parent view model
+        /// Action to invoke when the key is changed
         /// </summary>
-        private GameOptions_ConfigPageViewModel Parent { get; }
+        private Action KeyChangedAction { get; }
 
         #endregion
 
@@ -64,7 +64,7 @@ namespace RayCarrot.RCP.Metro
             set
             {
                 _newKey = value;
-                Parent.UnsavedChanges = true;
+                KeyChangedAction?.Invoke();
             }
         }
 

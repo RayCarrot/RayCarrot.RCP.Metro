@@ -49,15 +49,17 @@ namespace RayCarrot.RCP.Metro
                 "Max",
             };
 
+            void keyChanged() => UnsavedChanges = true;
+
             KeyItems = new ObservableCollection<ButtonMappingKeyItemViewModel>()
             {
-                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Left), Key.NumPad4, this),
-                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Up), Key.NumPad8, this),
-                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Right), Key.NumPad6, this),
-                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Down), Key.NumPad2, this),
-                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Jump), Key.LeftCtrl, this),
-                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Fist), Key.LeftAlt, this),
-                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Action), Key.X, this),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Left), Key.NumPad4, keyChanged),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Up), Key.NumPad8, keyChanged),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Right), Key.NumPad6, keyChanged),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Down), Key.NumPad2, keyChanged),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Jump), Key.LeftCtrl, keyChanged),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Fist), Key.LeftAlt, keyChanged),
+                new ButtonMappingKeyItemViewModel(new LocalizedString(() => Resources.Config_Action_Action), Key.X, keyChanged),
             };
         }
 
