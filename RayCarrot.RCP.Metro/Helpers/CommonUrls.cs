@@ -2,6 +2,8 @@
 
 namespace RayCarrot.RCP.Metro
 {
+    // TODO: Update urls to be lower-case
+
     /// <summary>
     /// Commons URLs used in the Rayman Control Panel
     /// </summary>
@@ -33,6 +35,11 @@ namespace RayCarrot.RCP.Metro
         /// The base URL for downloading utilities
         /// </summary>
         public const string UtilityBaseUrl = BaseResourceUrl + "Utilities/";
+
+        /// <summary>
+        /// The base URL for downloading mods
+        /// </summary>
+        public const string ModsBaseUrl = BaseResourceUrl + "Mods/";
 
         /// <summary>
         /// The base URL for downloading games
@@ -235,6 +242,20 @@ namespace RayCarrot.RCP.Metro
         /// The Rayman Origins updater URL
         /// </summary>
         public const string RO_Updater_URL = UtilityBaseUrl + "RO/Updater.zip";
+
+        #endregion
+
+        #region Mods
+
+        /// <summary>
+        /// The Rayman Raving Rabbids patched Big File (Steam) URL
+        /// </summary>
+        public const string RRR_PatchedBF_Steam_URL = ModsBaseUrl + "RRR/RRR_Patched_Steam.zip";
+
+        /// <summary>
+        /// The Rayman Raving Rabbids patched Big File (GOG) URL
+        /// </summary>
+        public const string RRR_PatchedBF_GOG_URL = ModsBaseUrl + "RRR/RRR_Patched_GOG.zip";
 
         #endregion
 
