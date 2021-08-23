@@ -84,7 +84,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The available game patches
         /// </summary>
-        protected abstract GamePatcherData[] Patches { get; }
+        protected abstract FilePatcher_Patch[] Patches { get; }
 
         #endregion
 
@@ -93,7 +93,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game patcher to use for patching the disc check
         /// </summary>
-        protected GamePatcher Patcher { get; set; }
+        protected FilePatcher Patcher { get; set; }
 
         #endregion
 
@@ -413,7 +413,7 @@ namespace RayCarrot.RCP.Metro
                 // Check if it exists
                 if (gameFile.FileExists)
                 {
-                    Patcher = new GamePatcher(gameFile, Patches);
+                    Patcher = new FilePatcher(gameFile, Patches);
 
                     var result = Patcher.GetIsOriginal();
 
@@ -555,7 +555,7 @@ namespace RayCarrot.RCP.Metro
                 {
                     try
                     {
-                        Patcher = new GamePatcher(Game.GetInstallDir() + Game.GetGameInfo().DefaultFileName, Patches);
+                        Patcher = new FilePatcher(Game.GetInstallDir() + Game.GetGameInfo().DefaultFileName, Patches);
 
                         var result = Patcher.GetIsOriginal();
 

@@ -7,9 +7,9 @@ using RayCarrot.Logging;
 namespace RayCarrot.RCP.Metro
 {
     /// <summary>
-    /// Handles patching for game executable files
+    /// Handles patching for game files
     /// </summary>
-    public class GamePatcher
+    public class FilePatcher
     {
         #region Constructor
 
@@ -18,7 +18,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="gameFile">The game file to patch</param>
         /// <param name="patches">The patches to use</param>
-        public GamePatcher(FileSystemPath gameFile, GamePatcherData[] patches)
+        public FilePatcher(FileSystemPath gameFile, FilePatcher_Patch[] patches)
         {
             GameFile = gameFile;
             Patches = patches;
@@ -39,7 +39,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The patches to use
         /// </summary>
-        public GamePatcherData[] Patches { get; set; }
+        public FilePatcher_Patch[] Patches { get; set; }
 
         #endregion
 
@@ -51,7 +51,7 @@ namespace RayCarrot.RCP.Metro
         /// <returns>True if the game is not patched or false if it is. Null is returned if the game file can not be found or if neither the original or patched bytes are found.</returns>
         public bool? GetIsOriginal()
         {
-            RL.Logger?.LogInformationSource("Getting if game file is patched or original...");
+            RL.Logger?.LogInformationSource("Getting if game file is patched or original");
 
             try
             {
@@ -67,14 +67,17 @@ namespace RayCarrot.RCP.Metro
                     return null;
                 }
 
+                // Check the first patch entry
+                FilePatcher_Patch.PatchEntry patchEntry = patch.PatchEntries[0];
+
                 // Create a buffer
-                byte[] currentBytes = new byte[patch.OriginalBytes.Length];
+                byte[] currentBytes = new byte[patchEntry.OriginalBytes.Length];
 
                 // Open the file as a stream
                 using (Stream stream = File.Open(GameFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
                     // Set the position
-                    stream.Position = patch.PatchOffset;
+                    stream.Position = patchEntry.PatchOffset;
 
                     // Read the bytes
                     var read = stream.Read(currentBytes, 0, currentBytes.Length);
@@ -83,12 +86,12 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Check if they match
-                if (currentBytes.SequenceEqual(patch.OriginalBytes))
+                if (currentBytes.SequenceEqual(patchEntry.OriginalBytes))
                 {
                     RL.Logger?.LogInformationSource("The game file was detected as original");
                     return true;
                 }
-                else if (currentBytes.SequenceEqual(patch.PatchedBytes))
+                else if (currentBytes.SequenceEqual(patchEntry.PatchedBytes))
                 {
                     RL.Logger?.LogInformationSource("The game file was detected as patched");
                     return false;
@@ -122,11 +125,15 @@ namespace RayCarrot.RCP.Metro
                 // Find matching patch
                 var patch = Patches.First(x => x.FileSize == stream.Length);
 
-                // Set the position
-                stream.Position = patch.PatchOffset;
+                // Apply each patch entry
+                foreach (FilePatcher_Patch.PatchEntry patchEntry in patch.PatchEntries)
+                {
+                    // Set the position
+                    stream.Position = patchEntry.PatchOffset;
 
-                // Write the bytes
-                stream.Write(useOriginalBytes ? patch.OriginalBytes : patch.PatchedBytes, 0, patch.OriginalBytes.Length);
+                    // Write the bytes
+                    stream.Write(useOriginalBytes ? patchEntry.OriginalBytes : patchEntry.PatchedBytes, 0, patchEntry.OriginalBytes.Length);
+                }
 
                 RL.Logger?.LogInformationSource("Game file was patched");
             }

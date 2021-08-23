@@ -26,7 +26,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The available game patches
         /// </summary>
-        protected override GamePatcherData[] Patches => null;
+        protected override FilePatcher_Patch[] Patches => null;
 
         #endregion
 

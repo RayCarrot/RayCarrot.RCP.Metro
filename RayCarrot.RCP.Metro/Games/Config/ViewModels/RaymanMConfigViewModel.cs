@@ -26,38 +26,44 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The available game patches
         /// </summary>
-        protected override GamePatcherData[] Patches => new GamePatcherData[]
+        protected override FilePatcher_Patch[] Patches => new FilePatcher_Patch[]
         {
-            new GamePatcherData(0x263D, new byte[]
+            new FilePatcher_Patch(0x1C4000, new FilePatcher_Patch.PatchEntry[]
             {
-                0xE8,
-                0x3E,
-                0xBE,
-                0x02,
-                0x00,
-            }, new byte[]
+                new FilePatcher_Patch.PatchEntry(0x263D, new byte[]
+                {
+                    0xE8,
+                    0x3E,
+                    0xBE,
+                    0x02,
+                    0x00,
+                }, new byte[]
+                {
+                    0xE9,
+                    0x00,
+                    0x00,
+                    0x00,
+                    0x00,
+                })
+            }), 
+            new FilePatcher_Patch(0x1C3000, new FilePatcher_Patch.PatchEntry[]
             {
-                0xE9,
-                0x00,
-                0x00,
-                0x00,
-                0x00,
-            }, 0x1C4000), 
-            new GamePatcherData(0x21EE, new byte[]
-            {
-                0xE8,
-                0xEd,
-                0xBD,
-                0x02,
-                0x00,
-            }, new byte[]
-            {
-                0xE9,
-                0x00,
-                0x00,
-                0x00,
-                0x00,
-            }, 0x1C3000), 
+                new FilePatcher_Patch.PatchEntry(0x21EE, new byte[]
+                {
+                    0xE8,
+                    0xEd,
+                    0xBD,
+                    0x02,
+                    0x00,
+                }, new byte[]
+                {
+                    0xE9,
+                    0x00,
+                    0x00,
+                    0x00,
+                    0x00,
+                })
+            }), 
         };
 
         #endregion

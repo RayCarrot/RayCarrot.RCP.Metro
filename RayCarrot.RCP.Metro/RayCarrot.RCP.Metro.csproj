@@ -162,7 +162,7 @@
       <DependentUpon>UbiArtIPKArchiveConfigUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Archive\Manager\UbiArt_Ipk\UbiArtIPKArchiveDataManager.cs" />
-    <Compile Include="Games\Config\Patcher\GamePatcherData.cs" />
+    <Compile Include="Patcher\FilePatcher_Patch.cs" />
     <Compile Include="Games\Config\ViewModels\RaymanMDemoConfigViewModel.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_2_Info.cs" />
     <Compile Include="Games\Info\Demo\Demo_Rayman1_1_Info.cs" />
@@ -409,7 +409,7 @@
     <Compile Include="GameFinder\Results\BaseFinderResult.cs" />
     <Compile Include="GameFinder\FinderItems\FinderItem.cs" />
     <Compile Include="GameFinder\Results\FinderResult.cs" />
-    <Compile Include="Games\Config\Patcher\GamePatcher.cs" />
+    <Compile Include="Patcher\FilePatcher.cs" />
     <Compile Include="GameFinder\GameFinder.cs" />
     <Compile Include="GameFinder\FinderItems\GameFinderItem.cs" />
     <Compile Include="GameFinder\Results\GameFinderResult.cs" />
