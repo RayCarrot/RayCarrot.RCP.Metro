@@ -40,7 +40,7 @@
                            Style="{StaticResource LargeHeaderTextBlock}" />
 
                 <!-- TODO-UPDATE: Localize -->
-                <local:InfoIcon Text="Enable removed prototype features in the game by selecting the mods you want and then apply them. This requires the game to be running and only works with the GOG and Steam versions. A controller is required for the mods to work. Applied mods will only be in effect when the game is running and will be reset when closed." />
+                <local:InfoIcon Text="Enable removed prototype features in the game by selecting the mods you want and then apply them. This requires the game to be running and only works with the GOG and Steam versions. Applied mods will only be in effect when the game is running and will be reset when closed." />
 
             </StackPanel>
 
