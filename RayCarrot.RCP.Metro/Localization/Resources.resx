@@ -4237,4 +4237,22 @@ rcpURL</comment>
   <data name="Mod_RRR_BFPatch_UpdatePatchedBFError" xml:space="preserve">
     <value>An error occurred when updating the patched BF file</value>
   </data>
+  <data name="Mod_RRR_MemMod_NoInstaKill" xml:space="preserve">
+    <value>Reduce damage taken</value>
+  </data>
+  <data name="Mod_RRR_MemMod_NoInstaKillInfo" xml:space="preserve">
+    <value>Instead of instantly dying Rayman will now die after 4 hits</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UnlockAllMinigames" xml:space="preserve">
+    <value>Unlock everything</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UnlockAllMinigamesInfo" xml:space="preserve">
+    <value>A developer cheat. Everything in score mode and the bonus section is unlocked regardless of your progress in the game.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_CheatPage" xml:space="preserve">
+    <value>Set cheat page</value>
+  </data>
+  <data name="Mod_RRR_MemMod_CheatPageInfo" xml:space="preserve">
+    <value>Displays various debug info</value>
+  </data>
 </root>

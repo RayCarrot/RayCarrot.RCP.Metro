@@ -7459,6 +7459,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set cheat page.
+        /// </summary>
+        public static string Mod_RRR_MemMod_CheatPage {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_CheatPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Displays various debug info.
+        /// </summary>
+        public static string Mod_RRR_MemMod_CheatPageInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_CheatPageInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Climb walls.
         /// </summary>
         public static string Mod_RRR_MemMod_ClimbWalls {
@@ -7774,6 +7792,24 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reduce damage taken.
+        /// </summary>
+        public static string Mod_RRR_MemMod_NoInstaKill {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_NoInstaKill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Instead of instantly dying Rayman will now die after 4 hits.
+        /// </summary>
+        public static string Mod_RRR_MemMod_NoInstaKillInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_NoInstaKillInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pigs act like plums.
         /// </summary>
         public static string Mod_RRR_MemMod_PigsActLikePlums {
@@ -7932,6 +7968,24 @@ namespace RayCarrot.RCP.Metro {
         public static string Mod_RRR_MemMod_TameMountsInfo {
             get {
                 return ResourceManager.GetString("Mod_RRR_MemMod_TameMountsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unlock everything.
+        /// </summary>
+        public static string Mod_RRR_MemMod_UnlockAllMinigames {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_UnlockAllMinigames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A developer cheat. Everything in score mode and the bonus section is unlocked regardless of your progress in the game..
+        /// </summary>
+        public static string Mod_RRR_MemMod_UnlockAllMinigamesInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_UnlockAllMinigamesInfo", resourceCulture);
             }
         }
         

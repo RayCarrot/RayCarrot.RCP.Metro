@@ -19,6 +19,9 @@ namespace RayCarrot.RCP.Metro
         public bool addPlaytestMenu = false; // Replaces game type selection with Playtest menu. Playing with this makes you unable to pause, so include as an option, but it is advised to leave off
         public bool addDuel = true; // Duel replaces Traite des vaches Variante (Bunnies don't milk cows part 2). Play it with multiple players!
         public bool addCameraControls = true; // Essential
+        public bool unlockAllMinigames = false;
+        public bool setCheatPage = false;
+        public int cheatPage = 1; // Range: 0 (off), 1-5 (on, different debug info)
 
         // Rayman
         public bool addLookMode = true;  // Add a look mode on LT. This was disabled in the code with "if(button) lookmode = true; lookmode = false;"
@@ -36,12 +39,13 @@ namespace RayCarrot.RCP.Metro
         public bool allpowers = false; // The powerup value is barely used anymore, but this used to set flags for being able to use certain mounts, having a longer hook etc. Now it's just longer helicopter (game names it infinite but it isn't) + infinite wall climb
         public bool disableMinigameIntro = false; // Minigame intro cinematics change the state of the world and sometimes deactivate Rayman
         public bool disableFootstepSound = false; // Rayman's soundbank is nulled in all levels aside from the prison cell & the arena... and the carrot juice game
+        public bool drawHealthMana = false;
+        public bool noInstaKill = true;
 
         // Rabbids
         public bool rabbidsDropItems = false; // Super nice, but should be an option
         public bool rabbidsIncreasedHP = false; // 100 HP for each rabbid? Madness!
         public bool randomProtoRabbidPowers = false; // With a 1/10 chance each, rabbids are given one of these powers: suck, blow, mole, get back up
-        public bool drawHealthMana = false;
 
         // Mounts
         public bool makeRhinosAggressive = false; // Chaos
@@ -117,6 +121,9 @@ namespace RayCarrot.RCP.Metro
 
                 if (addDuel)
                     AddDuel(handle);
+
+                DebugCheats(handle);
+
                 //IntMIG_AFaireToutLeTempsAUDEBUT__AddCheatCheck.Apply(processHandle, isSteam);
 
                 /* Continuous_ForceSectoMode(processHandle);
@@ -297,6 +304,11 @@ namespace RayCarrot.RCP.Metro
                 MG_Traire_ETAT_MiniGame__DrawFloat.Apply(processHandle, isSteam);
                 raym_track_end__CallDrawFloat1.Apply(processHandle, isSteam);
                 raym_track_end__CallDrawFloat2.Apply(processHandle, isSteam);
+            }
+            if (noInstaKill)
+            {
+                MG_Traire_reflex__AddHitFunction.Apply(processHandle, isSteam);
+                raym_ETAT_paf__RemoveInstaKill.Apply(processHandle, isSteam);
             }
         }
 
@@ -504,6 +516,31 @@ namespace RayCarrot.RCP.Metro
             }
         }
 
+        private readonly Dictionary<int, int> UniversVariables_Cheat_Int = new Dictionary<int, int>()
+        {
+            [0x000080C4] = 1, // i_cheat_all_unlocked
+            [0x000080D0] = -1, // i_FinalCheat_Unlocked
+        };
+        private int UniversVariables_CheatPage => 0x00001574;
+
+        private void DebugCheats(int processHandle)
+        {
+            int off_univBuffer = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, off_univers_ptr);
+
+            if (unlockAllMinigames)
+            {
+                foreach (var var in UniversVariables_Cheat_Int)
+                {
+                    int read = Mod_RRR_MemoryManager.ReadProcessMemoryInt32(processHandle, off_univBuffer + var.Key);
+
+                    if (read != var.Value)
+                        Mod_RRR_MemoryManager.WriteProcessMemoryInt32(processHandle, off_univBuffer + var.Key, var.Value);
+                }
+            }
+            
+            if (setCheatPage)
+                Mod_RRR_MemoryManager.WriteProcessMemoryInt32(processHandle, off_univBuffer + UniversVariables_CheatPage, cheatPage);
+        }
         private void FixKeyboardControls(int processHandle)
         {
             SetWorldKeyMapping__FixKeyboardControls1.Apply(processHandle, isSteam);
@@ -749,6 +786,31 @@ namespace RayCarrot.RCP.Metro
             0x68, 0x00, 0x00, 0x00, 0x41, // Default value = 4 ( 00 00 80 40 )
             0x68, 0x00, 0x00, 0x00, 0x41, // Modded value = 8 ( 00 00 00 41 )
             0xC7, 0x86, 0xF8, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41
+        });
+
+        private Mod_RRR_MemoryPatch MG_Traire_reflex__AddHitFunction => new Mod_RRR_MemoryPatch(0x006868C0, 0x006868B0, new byte[] {
+            0x50,                                                        // push    eax
+            0x56,                                                        // push    esi
+            0x8B, 0x74, 0x24, 0x0C,                                      // mov     esi, [esp+8+4]
+            0x68, 0x00, 0x00, 0x80, 0xBF,                                // push    0BF800000h
+            0x6A, 0x00,                                                  // push    0
+            0xE8, (byte)(isSteam ? 0x5E : 0x6E), 0x62, 0xF5, 0xFF,                                // call    Proc_RM_LifeGet__Fv
+            0xD8, 0x25, (byte)(isSteam ? 0xFC : 0x6C), (byte)(isSteam ? 0x6C : 0x6D), 0x80, 0x00,                          // fsub    dword ptr [flt_806D6C]
+            0xD9, 0x1C, 0x24,                                            // fstp    dword ptr [esp]
+            0xE8, (byte)(isSteam ? 0x70 : 0x80), 0x62, 0xF5, 0xFF,                                // call    Proc_RM_LifeManaSet__Fff
+            0x83, 0xC4, 0x08,                                            // add     esp, 8
+            0xC7, 0x86, 0x20, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40,  // mov     dword ptr [esi+620h], 40000000h
+            0x5E,                                                        // pop     esi
+            0x58,                                                        // pop     eax
+            0xC3,                                                        // ret
+        });
+
+        private Mod_RRR_MemoryPatch raym_ETAT_paf__RemoveInstaKill => new Mod_RRR_MemoryPatch(0x00679D3F, 0x00679D2F, new byte[] {
+            0x56,                               // push    esi
+            0xE8, 0x7B, 0xCB, 0x00, 0x00,       // call    MG_Traire_reflex
+            0x90,                               // nop
+            0x8B, 0x86, 0x34, 0x06, 0x00, 0x00, // mov     eax, [esi+634h]
+            0x83, 0xC4, 0x04,                   // add     esp, 4
         });
 
         // These do not work

@@ -55,6 +55,25 @@ namespace RayCarrot.RCP.Metro
                             description: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddPlaytestMenuInfo),
                             toggleAction: x => MemoryPatcher.addPlaytestMenu = x,
                             isToggled: false),
+                        new Mod_RRR_MemoryModToggleViewModel(
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_UnlockAllMinigames),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_UnlockAllMinigamesInfo),
+                            toggleAction: x => MemoryPatcher.unlockAllMinigames = x,
+                            isToggled: false),
+                        new Mod_RRR_MemoryModToggleViewModel(
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_CheatPage),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_CheatPageInfo),
+                            toggleAction: x => MemoryPatcher.setCheatPage = x,
+                            isToggled: false,
+                            selectionOptions: new ObservableCollection<LocalizedString>()
+                            {
+                                new LocalizedString(() => "1"),
+                                new LocalizedString(() => "2"),
+                                new LocalizedString(() => "3"),
+                                new LocalizedString(() => "4"),
+                                new LocalizedString(() => "5"),
+                            },
+                            selectionAction: x => MemoryPatcher.cheatPage = x + 1),
                     }),
 
                 // Rayman
@@ -145,6 +164,11 @@ namespace RayCarrot.RCP.Metro
                             description: new LocalizedString(() => Resources.Mod_RRR_MemMod_DrawHealthManaInfo),
                             toggleAction: x => MemoryPatcher.drawHealthMana = x,
                             isToggled: false),
+                        new Mod_RRR_MemoryModToggleViewModel(
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_NoInstaKill),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_NoInstaKillInfo),
+                            toggleAction: x => MemoryPatcher.noInstaKill = x,
+                            isToggled: true),
                     }),
 
                 // Rabbids
