@@ -37,6 +37,7 @@ namespace RayCarrot.RCP.Metro
                             {
                                 MemoryPatcher.enableProtoRaymanEverywhere = x;
                                 MemoryModSections?.Skip(1).ForEach(section => section.IsEnabled = x);
+                                IsCustomButtonMappingEnabled = x;
                             },
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
@@ -227,6 +228,7 @@ namespace RayCarrot.RCP.Metro
                     }),
             };
 
+            IsCustomButtonMappingEnabled = true;
             UseCustomButtonMapping = true;
 
             // TODO-UPDATE: Localize
@@ -433,6 +435,7 @@ namespace RayCarrot.RCP.Metro
         // Memory Mods
         public Mod_RRR_MemoryPatcher MemoryPatcher { get; }
         public ObservableCollection<Mod_RRR_MemoryModsSectonViewModel> MemoryModSections { get; }
+        public bool IsCustomButtonMappingEnabled { get; set; }
         public bool UseCustomButtonMapping
         {
             get => MemoryPatcher.fixKeyboardControls;

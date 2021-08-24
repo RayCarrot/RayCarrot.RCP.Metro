@@ -135,7 +135,7 @@
 
                     <!-- Keyboard Button Mapping -->
 
-                    <StackPanel Grid.Row="1">
+                    <StackPanel Grid.Row="1" IsEnabled="{Binding Path=IsCustomButtonMappingEnabled}">
 
                         <!-- TODO-UPDATE: Localize -->
                         <TextBlock Text="Keyboard Button Mapping"
