@@ -41,6 +41,7 @@ namespace RayCarrot.RCP.Metro
         public bool rabbidsDropItems = false; // Super nice, but should be an option
         public bool rabbidsIncreasedHP = false; // 100 HP for each rabbid? Madness!
         public bool randomProtoRabbidPowers = false; // With a 1/10 chance each, rabbids are given one of these powers: suck, blow, mole, get back up
+        public bool drawHealthMana = false;
 
         // Mounts
         public bool makeRhinosAggressive = false; // Chaos
@@ -58,6 +59,9 @@ namespace RayCarrot.RCP.Metro
         public bool activateAllActivatorTriggers = false; // Chaos
         public bool dontDestroyBipods = false;
         public bool activateAllPivotInBVTriggers = false; // Causes crashes in some levels, but spawns more rabbids in others
+
+        // Keyboard controls
+        public bool fixKeyboardControls = true;
 
         // Leave out
         public bool mergeAllSBWithRayman = false; // (Leave off) Merge all soundbanks with Rayman's. Fixes his footstep sound in FPS levels but also plays even more annoying grunts
@@ -101,6 +105,9 @@ namespace RayCarrot.RCP.Metro
                     LapinChanges(handle);
                     EnableRaymanMoveset(handle);
                     DisableMinigameStuff(handle);
+                    
+                    if (fixKeyboardControls) 
+                        FixKeyboardControls(handle);
                 }
                 if (addCameraControls)
                     AddCameraControls(handle);
@@ -285,6 +292,12 @@ namespace RayCarrot.RCP.Metro
                 raym_exec_read_joy__RemoveBoostCheck_2.Apply(processHandle, isSteam);
             }
             if (lowerSlippery) raym_init__ChangeFriction.Apply(processHandle, isSteam);
+            if (drawHealthMana)
+            {
+                MG_Traire_ETAT_MiniGame__DrawFloat.Apply(processHandle, isSteam);
+                raym_track_end__CallDrawFloat1.Apply(processHandle, isSteam);
+                raym_track_end__CallDrawFloat2.Apply(processHandle, isSteam);
+            }
         }
 
         private void DisableMinigameStuff(int processHandle)
@@ -489,6 +502,19 @@ namespace RayCarrot.RCP.Metro
                 }
                 //Console.WriteLine(written);
             }
+        }
+
+        private void FixKeyboardControls(int processHandle)
+        {
+            SetWorldKeyMapping__FixKeyboardControls1.Apply(processHandle, isSteam);
+            SetWorldKeyMapping__FixKeyboardControls2.Apply(processHandle, isSteam);
+            SetWorldKeyMapping__FixKeyboardControls3.Apply(processHandle, isSteam);
+            CheckControlMode_Gladiator__FixKeyboardControls4.Apply(processHandle, isSteam);
+            
+            var keycodes = KeyboardKeycodes;
+
+            for (int i = 0; i < keycodes.Length; i++)
+                Mod_RRR_MemoryManager.WriteProcessMemoryInt32(processHandle, addr_KeyboardKeycodes + i * 4, keycodes[i]);
         }
 
         private static IntPtr GetRRRProcessHandle()
@@ -772,6 +798,94 @@ namespace RayCarrot.RCP.Metro
             [0x00001200] = 200f, // f_Traction_Boost,
             [0x00002538] = 100f // f_RM_Mana
         };
+        #endregion
+
+        #region Health & Mana
+        // reuse MG_Traire_ETAT_Minigame
+        private Mod_RRR_MemoryPatch MG_Traire_ETAT_MiniGame__DrawFloat => new Mod_RRR_MemoryPatch(0x00685A50, 0x00685A40, isSteam ? new byte[] {
+            0x53, 0x57, 0x6A, 0x00, 0x8D, 0x5C, 0x24, 0x18, 0x53, 0xBB, 0x14, 0x74, 0x80, 0x00, 0x53, 0xE8,
+            0x2C, 0x2D, 0x0B, 0x00, 0x89, 0xC7, 0x83, 0xC4, 0x0C, 0x8B, 0x5C, 0x24, 0x20, 0x6A, 0x06, 0x53,
+            0x57, 0xE8, 0xAA, 0x2A, 0x0B, 0x00, 0xBB, 0x74, 0x89, 0x80, 0x00, 0x53, 0x57, 0xE8, 0x2E, 0x29,
+            0x0B, 0x00, 0x83, 0xC4, 0x14, 0x8B, 0x5C, 0x24, 0x24, 0x53, 0x57, 0xE8, 0x50, 0x2A, 0x0B, 0x00,
+            0x68, 0xCC, 0x66, 0x80, 0x00, 0x57, 0xE8, 0x15, 0x29, 0x0B, 0x00, 0x83, 0xC4, 0x10, 0x8B, 0x5C,
+            0x24, 0x0C, 0x53, 0x57, 0xE8, 0x07, 0x29, 0x0B, 0x00, 0x83, 0xC4, 0x08, 0x8B, 0x5C, 0x24, 0x10,
+            0x6A, 0x02, 0x53, 0x57, 0xE8, 0x67, 0x2A, 0x0B, 0x00, 0x83, 0xC4, 0x0C, 0x5F, 0x5B, 0xC3,
+        } : new byte[] {
+            0x53, 0x57, 0x6A, 0x00, 0x8D, 0x5C, 0x24, 0x18, 0x53, 0xBB, 0x84, 0x74, 0x80, 0x00, 0x53, 0xE8,
+            0xCC, 0x2D, 0x0B, 0x00, 0x89, 0xC7, 0x83, 0xC4, 0x0C, 0x8B, 0x5C, 0x24, 0x20, 0x6A, 0x06, 0x53,
+            0x57, 0xE8, 0x4A, 0x2B, 0x0B, 0x00, 0xBB, 0xDC, 0x89, 0x80, 0x00, 0x53, 0x57, 0xE8, 0xCE, 0x29,
+            0x0B, 0x00, 0x83, 0xC4, 0x14, 0x8B, 0x5C, 0x24, 0x24, 0x53, 0x57, 0xE8, 0xF0, 0x2A, 0x0B, 0x00,
+            0x68, 0x3C, 0x67, 0x80, 0x00, 0x57, 0xE8, 0xB5, 0x29, 0x0B, 0x00, 0x83, 0xC4, 0x10, 0x8B, 0x5C,
+            0x24, 0x0C, 0x53, 0x57, 0xE8, 0xA7, 0x29, 0x0B, 0x00, 0x83, 0xC4, 0x08, 0x8B, 0x5C, 0x24, 0x10,
+            0x6A, 0x02, 0x53, 0x57, 0xE8, 0x07, 0x2B, 0x0B, 0x00, 0x83, 0xC4, 0x0C, 0x5F, 0x5B, 0xC3,
+        });
+        /* Arguments:
+            esp+
+            4    arg0 = string
+            8    arg1 = float
+            12    arg2.x = vector
+            16        .y
+            20        .z
+            24    arg3 = size
+            28    arg4 = color
+
+         * Full code:
+                push ebx
+                push edi
+                push 0
+                lea ebx, [esp+12+12]
+                push ebx
+                mov ebx, aJyH // "\jy\\h"
+                push ebx
+                call    STRDATA_i_CreateText
+                mov edi, eax
+                add esp, 12
+
+                mov ebx, [esp+8+24]
+                push 6
+                push ebx
+                push edi
+                call STRDATA_AppendFloat
+                mov ebx, aC_1 // "\\c", found in Duel wait
+                push ebx
+                push edi
+                call STRDATA_AppendText
+                add esp, 20
+
+                mov ebx, [esp+8+28]
+                push ebx
+                push edi
+                call STRDATA_AppendHexa
+                push asc_80673C // "\"
+                push edi
+                call STRDATA_AppendText
+                add esp, 16
+
+                mov ebx, [esp+8+4]
+                push ebx
+                push edi
+                call STRDATA_AppendText
+                add esp, 8
+
+                mov ebx, [esp+8+8]
+                push 2
+                push ebx
+                push edi
+                call STRDATA_AppendFloat
+                add esp, 12
+                pop edi
+                pop ebx
+                ret
+        */
+
+        private Mod_RRR_MemoryPatch raym_track_end__CallDrawFloat1 => new Mod_RRR_MemoryPatch(0x006CC239, 0x006CC279,
+            isSteam ? new byte[] { 0xE8, 0x12, 0x98, 0xFB, 0xFF }
+                    : new byte[] { 0xE8, 0xC2, 0x97, 0xFB, 0xFF } // call MG_Traire_ETAT_MiniGame
+        );
+        private Mod_RRR_MemoryPatch raym_track_end__CallDrawFloat2 => new Mod_RRR_MemoryPatch(0x006CC423, 0x006CC463,
+            isSteam ? new byte[] { 0xE8, 0x28, 0x96, 0xFB, 0xFF }
+                    : new byte[] { 0xE8, 0xD8, 0x95, 0xFB, 0xFF }
+        );
         #endregion
 
         #region Dance system
@@ -1127,6 +1241,67 @@ namespace RayCarrot.RCP.Metro
         private const int off_AE_Init_GOG = 0x004C7D10;
 
         private int off_AI2C_fctDefs => 0x00834050; // Same for GOG & Steam versions
+        #endregion
+
+        #region Keyboard controls
+        /*MemoryPatch SetWorldKeyMapping__FixKeyboardControls1 => new MemoryPatch(0, 0x007C3140, new byte[] {
+            0x90, 0x90, 0x90, 0x90, 0x90
+        });
+        MemoryPatch SetWorldKeyMapping__FixKeyboardControls2 => new MemoryPatch(0, 0x007C3179, new byte[] {
+            0x90, 0x90, 0x90, 0x90, 0x90
+        });*/
+        private Mod_RRR_MemoryPatch SetWorldKeyMapping__FixKeyboardControls1 => new Mod_RRR_MemoryPatch(0x007C3070, 0x007C3140, new byte[] {
+            0x90, 0x90, 0x90, 0x90, 0x90,
+            0xC7, 0x05, (byte)(isSteam ? 0x4C : 0x74), 0x71, 0xC8, 0x00, (byte)(isSteam ? 0xA0 : 0x70), (byte)(isSteam ? 0x28 : 0x29), 0x7C, 0x00
+        });
+        private Mod_RRR_MemoryPatch SetWorldKeyMapping__FixKeyboardControls2 => new Mod_RRR_MemoryPatch(0x007C30A9, 0x007C3179, new byte[] {
+            0x90, 0x90, 0x90, 0x90, 0x90,
+            0xC7, 0x05, (byte)(isSteam ? 0x4C : 0x74), 0x71, 0xC8, 0x00, (byte)(isSteam ? 0xA0 : 0x70), (byte)(isSteam ? 0x28 : 0x29), 0x7C, 0x00
+        });
+        private Mod_RRR_MemoryPatch SetWorldKeyMapping__FixKeyboardControls3 => new Mod_RRR_MemoryPatch(0x007C3021, 0x007C30F1, new byte[] {
+            0xEB
+        });
+        private Mod_RRR_MemoryPatch CheckControlMode_Gladiator__FixKeyboardControls4 => new Mod_RRR_MemoryPatch(0x007C2AFD, 0x007C2BCD, new byte[] {
+            0xD8, 0x0D, (byte)(isSteam ? 0x3C : 0xAC), 0x66, 0x80, 0x00
+        });
+        private int addr_KeyboardKeycodes => isSteam ? 0x00856F98 : 0x00856FA8;
+        public int[] KeyboardKeycodes { get; } = new int[] 
+        {
+             0x1E, // 00. (A) Jump               - Default: A
+             0x1C, // 01. (A)                    - Default: Enter
+             0x0E, // 02. (B)                    - Default: Backspace
+             0,    // 03. (B)
+             0x39, // 04. (X) Attack             - Default: Space
+             0,    // 05. (X)
+             0x1F, // 06. (Y) Grapple hook       - Default key: S
+             0,    // 07. (Y)
+             0x1D, // 08. (LB) Light/Tempo       - Default key: LCtrl
+             0,    // 09. (LB)
+             0x2D, // 10. (RB) Attack (Finisher) - Default key: X
+             0,    // 11. (RB)
+             0x12, // 12. (LT) Look mode         - Default key: E
+             0,    // 13. (LT)        
+             0x2C, // 14. (RT) Roll/Ground pound - Default key: W
+             0,    // 15. (RT)
+             0x19, // 16. (Back) Noclip          - Default key: P
+             0,    // 17. (Back)
+             0x01, // 18. (Start) Pause          - Default key: Esc
+             0,    // 19. (Start)
+             0x25, // 20. (???)                  - Default key: K
+             0,    // 21. (???)          
+             0x24, // 22. (???)                  - Default key: J
+             0,    // 23. (???)            
+             0x20, // 24. (DPad Up) Dance Toggle - Default key: D
+             0,    // 25. (DPad Up)
+             0x32, // 26. (???)                  - Default key: ,
+             0,    // 27. (???)
+             0x2A, // 28. (Analog modifier) Walk - Default key: left shift
+             0,    // 29. (Analog modifier)
+             0,    // 30. (???)
+             0,    // 31. (???)
+             0,    // 32. Open Menu (same as Start)
+             0,    // 33. Open Menu (same as Start)
+        };
         #endregion
     }
 }

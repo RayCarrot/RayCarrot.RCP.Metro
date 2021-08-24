@@ -103,4 +103,14 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
     }
+
+    public class ButtonMappingKeyItemViewModel<T> : ButtonMappingKeyItemViewModel
+    {
+        public ButtonMappingKeyItemViewModel(LocalizedString actionName, Key originalKey, T keyObj, Action keyChangedAction = null) : base(actionName, originalKey, keyChangedAction)
+        {
+            KeyObj = keyObj;
+        }
+
+        public T KeyObj { get; }
+    }
 }

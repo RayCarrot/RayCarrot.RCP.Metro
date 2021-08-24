@@ -137,6 +137,11 @@ namespace RayCarrot.RCP.Metro
                             description: new LocalizedString(() => "Rayman feels slippery by default, this slightly improves that"),
                             toggleAction: x => MemoryPatcher.lowerSlippery = x,
                             isToggled: false),
+                        new Mod_RRR_MemoryModToggleViewModel(
+                            header: new LocalizedString(() => "Enable health & mana debug display"),
+                            description: new LocalizedString(() => "Whenever Rayman performs a special attack or gets hit, his HP and Mana will be displayed"),
+                            toggleAction: x => MemoryPatcher.drawHealthMana = x,
+                            isToggled: false),
                     }),
                 new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => "Rabbids"), null, 
                     new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
@@ -220,6 +225,24 @@ namespace RayCarrot.RCP.Metro
                             toggleAction: x => MemoryPatcher.activateAllPivotInBVTriggers = x,
                             isToggled: false),
                     }),
+            };
+
+            UseCustomButtonMapping = true;
+
+            // TODO-UPDATE: Localize
+            ButtonMappingItems = new ObservableCollection<ButtonMappingKeyItemViewModel<int>>()
+            {
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Jump"), Key.A, 0),
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Attack"), Key.Space, 4),
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Grapple hook"), Key.S, 6),
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Light/Tempo"), Key.LeftCtrl, 8),
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Attack (finisher)"), Key.X, 10),
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Look mode"), Key.E, 12),
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Roll/Ground pound"), Key.W, 14),
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "No-clip"), Key.P, 16),
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Pause"), Key.Escape, 18),
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Dance toggle"), Key.D, 24),
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Walk"), Key.LeftShift, 28),
             };
 
             // TODO-UPDATE: Localize
@@ -410,6 +433,12 @@ namespace RayCarrot.RCP.Metro
         // Memory Mods
         public Mod_RRR_MemoryPatcher MemoryPatcher { get; }
         public ObservableCollection<Mod_RRR_MemoryModsSectonViewModel> MemoryModSections { get; }
+        public bool UseCustomButtonMapping
+        {
+            get => MemoryPatcher.fixKeyboardControls;
+            set => MemoryPatcher.fixKeyboardControls = value;
+        }
+        public ObservableCollection<ButtonMappingKeyItemViewModel<int>> ButtonMappingItems { get; }
 
         // BF Mods
         public bool IsExePatched { get; set; }
@@ -437,7 +466,18 @@ namespace RayCarrot.RCP.Metro
 
         public override Task InitializeAsync()
         {
+            // Set the default directory to that of the game, if it's been added
             GameDirectoryPath = Games.RaymanRavingRabbids.GetInstallDir(false);
+
+            // Restore saved button mapping
+            foreach (var buttonItem in Data.Mod_RRR_KeyboardButtonMapping)
+            {
+                var matchingItem = ButtonMappingItems.FirstOrDefault(x => x.KeyObj == buttonItem.Key);
+
+                if (matchingItem != null)
+                    matchingItem.NewKey = buttonItem.Value;
+            }
+
             return Task.CompletedTask;
         }
 
@@ -447,6 +487,16 @@ namespace RayCarrot.RCP.Metro
 
             try
             {
+                // Update keyboard controls
+                if (UseCustomButtonMapping)
+                {
+                    foreach (var buttonMappingItem in ButtonMappingItems)
+                        MemoryPatcher.KeyboardKeycodes[buttonMappingItem.KeyObj] = DirectXKeyHelpers.GetKeyCode(buttonMappingItem.NewKey);
+
+                    // Save the button mapping
+                    Data.Mod_RRR_KeyboardButtonMapping = ButtonMappingItems.ToDictionary(x => x.KeyObj, x => x.NewKey);
+                }
+
                 MemoryPatcher.Patch();
 
                 RL.Logger?.LogInformationSource("RRR memory patch applied");

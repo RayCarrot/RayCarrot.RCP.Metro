@@ -17,6 +17,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Shell;
 using Microsoft.Extensions.DependencyInjection;
 using RayCarrot.Logging;
@@ -574,6 +575,9 @@ namespace RayCarrot.RCP.Metro
                 Data.Archive_BinaryEditorExe = FileSystemPath.EmptyPath;
                 Data.Archive_AssociatedPrograms = new Dictionary<string, FileSystemPath>();
             }
+
+            if (Data.LastVersion < new Version(11, 3, 0, 0))
+                Data.Mod_RRR_KeyboardButtonMapping = new Dictionary<int, Key>();
 
             // Re-deploy files
             await RCPServices.App.DeployFilesAsync(true);

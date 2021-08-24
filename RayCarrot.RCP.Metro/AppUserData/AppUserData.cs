@@ -4,9 +4,9 @@ using RayCarrot.UI;
 using RayCarrot.WPF;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Input;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -69,6 +69,7 @@ namespace RayCarrot.RCP.Metro
             ArchiveExplorerSortOption = ArchiveExplorerSort.Default;
             Archive_BinaryEditorExe = FileSystemPath.EmptyPath;
             Archive_AssociatedPrograms = new Dictionary<string, FileSystemPath>();
+            Mod_RRR_KeyboardButtonMapping = new Dictionary<int, Key>();
         }
 
         /// <summary>
@@ -83,6 +84,7 @@ namespace RayCarrot.RCP.Metro
             JumpListItemIDCollection ??= new List<string>();
             InstalledGames ??= new HashSet<Games>();
             Archive_AssociatedPrograms ??= new Dictionary<string, FileSystemPath>();
+            Mod_RRR_KeyboardButtonMapping ??= new Dictionary<int, Key>();
         }
 
         public void AddAssociatedProgram(FileExtension ext, FileSystemPath exePath)
@@ -343,6 +345,11 @@ namespace RayCarrot.RCP.Metro
         /// The executables to use, associated with their file extensions
         /// </summary>
         public Dictionary<string, FileSystemPath> Archive_AssociatedPrograms { get; set; }
+
+        /// <summary>
+        /// The saved button mapping for the Rayman Raving Rabbids memory mod
+        /// </summary>
+        public Dictionary<int, Key> Mod_RRR_KeyboardButtonMapping { get; set; }
 
         #endregion
     }

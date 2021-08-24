@@ -44,85 +44,116 @@
 
             </StackPanel>
 
-            <!-- Sections -->
+            <!-- Mods -->
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
                           Margin="{StaticResource DefaultVerticalStackMargin}">
 
-                <ItemsControl ItemsSource="{Binding Path=MemoryModSections, Mode=OneTime}">
+                <Grid>
 
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate DataType="{x:Type local:Mod_RRR_MemoryModsSectonViewModel}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                            <StackPanel IsEnabled="{Binding Path=IsEnabled}">
+                    <!-- Sections -->
 
-                                <!-- Section header -->
+                    <ItemsControl Grid.Row="0" ItemsSource="{Binding Path=MemoryModSections, Mode=OneTime}">
 
-                                <StackPanel Orientation="Horizontal">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type local:Mod_RRR_MemoryModsSectonViewModel}">
 
-                                    <TextBlock Text="{Binding Path=Header.Value}"
-                                               Style="{StaticResource HeaderTextBlock}"
-                                               Margin="{StaticResource DefaultVerticalStackMargin}" />
+                                <StackPanel IsEnabled="{Binding Path=IsEnabled}">
 
-                                    <local:InfoIcon Text="{Binding Path=Info.Value}"
-                                                    Visibility="{Binding Path=Info, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}" />
+                                    <!-- Section header -->
+
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <TextBlock Text="{Binding Path=Header.Value}"
+                                                   Style="{StaticResource HeaderTextBlock}"
+                                                   Margin="{StaticResource DefaultVerticalStackMargin}" />
+
+                                        <local:InfoIcon Text="{Binding Path=Info.Value}"
+                                                        Visibility="{Binding Path=Info, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}" />
+
+                                    </StackPanel>
+
+                                    <!-- Mod toggles -->
+
+                                    <ItemsControl ItemsSource="{Binding Path=ModToggles, Mode=OneTime}">
+
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate DataType="{x:Type local:Mod_RRR_MemoryModToggleViewModel}">
+                                                <Grid>
+
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <CheckBox Grid.Row="0"
+                                                              Margin="{StaticResource SmallVerticalStackMargin}"
+                                                              IsChecked="{Binding Path=IsToggled}">
+
+                                                        <StackPanel>
+
+                                                            <TextBlock Text="{Binding Path=Header.Value}"
+                                                                       TextWrapping="Wrap"
+                                                                       Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentPresenter}, Path=(TextElement.Foreground)}"
+                                                                       Margin="0 0 0 2" />
+
+                                                            <TextBlock FontSize="11"
+                                                                       Text="{Binding Path=Description.Value}"
+                                                                       TextWrapping="Wrap"
+                                                                       Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentPresenter}, Path=(TextElement.Foreground)}" />
+
+                                                        </StackPanel>
+
+                                                    </CheckBox>
+
+                                                    <ComboBox Grid.Row="1"
+                                                              IsEnabled="{Binding Path=IsToggled}"
+                                                              HorizontalAlignment="Left"
+                                                              Visibility="{Binding Path=SelectionOptions, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
+                                                              ItemsSource="{Binding Path=SelectionOptions, Mode=OneTime}"
+                                                              DisplayMemberPath="Value"
+                                                              SelectedIndex="{Binding Path=SelectedSelectionIndex}"
+                                                              Margin="{StaticResource SmallVerticalStackMargin}" />
+
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+
+                                    </ItemsControl>
 
                                 </StackPanel>
 
-                                <!-- Mod toggles -->
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
 
-                                <ItemsControl ItemsSource="{Binding Path=ModToggles, Mode=OneTime}">
+                    </ItemsControl>
 
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate DataType="{x:Type local:Mod_RRR_MemoryModToggleViewModel}">
-                                            <Grid>
+                    <!-- Keyboard Button Mapping -->
 
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*" />
-                                                    <RowDefinition Height="Auto" />
-                                                </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1">
 
-                                                <CheckBox Grid.Row="0"
-                                                          Margin="{StaticResource SmallVerticalStackMargin}"
-                                                          IsChecked="{Binding Path=IsToggled}">
+                        <!-- TODO-UPDATE: Localize -->
+                        <TextBlock Text="Keyboard Button Mapping"
+                                   Style="{StaticResource HeaderTextBlock}"
+                                   Margin="{StaticResource SmallVerticalStackMargin}"/>
 
-                                                    <StackPanel>
+                        <!-- TODO-UPDATE: Localize -->
+                        <CheckBox Content="Use custom keyboard button mapping"
+                                  Margin="{StaticResource SmallVerticalStackMargin}"
+                                  IsChecked="{Binding Path=UseCustomButtonMapping}"/>
 
-                                                        <TextBlock Text="{Binding Path=Header.Value}"
-                                                                   TextWrapping="Wrap"
-                                                                   Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentPresenter}, Path=(TextElement.Foreground)}"
-                                                                   Margin="0 0 0 2" />
+                        <local:ButtonMapper ItemsSource="{Binding Path=ButtonMappingItems, Mode=OneTime}"
+                                            IsEnabled="{Binding Path=UseCustomButtonMapping}"
+                                            Margin="{StaticResource SmallVerticalStackMargin}"/>
 
-                                                        <TextBlock FontSize="11"
-                                                                   Text="{Binding Path=Description.Value}"
-                                                                   TextWrapping="Wrap"
-                                                                   Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ContentPresenter}, Path=(TextElement.Foreground)}" />
+                    </StackPanel>
 
-                                                    </StackPanel>
-
-                                                </CheckBox>
-
-                                                <ComboBox Grid.Row="1"
-                                                          IsEnabled="{Binding Path=IsToggled}"
-                                                          HorizontalAlignment="Left"
-                                                          Visibility="{Binding Path=SelectionOptions, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"
-                                                          ItemsSource="{Binding Path=SelectionOptions, Mode=OneTime}"
-                                                          DisplayMemberPath="Value"
-                                                          SelectedIndex="{Binding Path=SelectedSelectionIndex}"
-                                                          Margin="{StaticResource SmallVerticalStackMargin}" />
-
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-
-                                </ItemsControl>
-
-                            </StackPanel>
-
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-
-                </ItemsControl>
+                </Grid>
 
             </ScrollViewer>
 
