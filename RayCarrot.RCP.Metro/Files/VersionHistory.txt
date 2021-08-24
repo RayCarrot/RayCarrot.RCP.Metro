@@ -1,4 +1,4 @@
-﻿-----   Version 11.3.0 - August ??, 2021   -----
+﻿-----   Version 11.3.0 - August 25, 2021   -----
 • Added the mods page
 • Added a mod for Rayman Raving Rabbids, allowing unused prototype mechanics (such as full movement for Rayman) to be restored
 
