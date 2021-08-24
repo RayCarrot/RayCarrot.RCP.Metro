@@ -9,6 +9,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
              Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
              mc:Ignorable="d" 
              d:DesignWidth="800" d:DesignHeight="500" d:DataContext="{d:DesignInstance local:Mod_RRR_ViewModel}">
     <Grid>
@@ -35,12 +36,10 @@
                         Orientation="Horizontal"
                         Margin="{StaticResource DefaultVerticalStackMargin}">
 
-                <!-- TODO-UPDATE: Localize -->
-                <TextBlock Text="Memory Mods"
+                <TextBlock Text="{Resx Mod_RRR_MemoryModsHeader}"
                            Style="{StaticResource LargeHeaderTextBlock}" />
 
-                <!-- TODO-UPDATE: Localize -->
-                <local:InfoIcon Text="Enable removed prototype features in the game by selecting the mods you want and then apply them. This requires the game to be running and only works with the GOG and Steam versions. Applied mods will only be in effect when the game is running and will be reset when closed." />
+                <local:InfoIcon Text="{Resx Mod_RRR_MemoryModsInfo}" />
 
             </StackPanel>
 
@@ -137,13 +136,11 @@
 
                     <StackPanel Grid.Row="1" IsEnabled="{Binding Path=IsCustomButtonMappingEnabled}">
 
-                        <!-- TODO-UPDATE: Localize -->
-                        <TextBlock Text="Keyboard Button Mapping"
+                        <TextBlock Text="{Resx Mod_RRR_ButtonMappingHeader}"
                                    Style="{StaticResource HeaderTextBlock}"
                                    Margin="{StaticResource SmallVerticalStackMargin}"/>
 
-                        <!-- TODO-UPDATE: Localize -->
-                        <CheckBox Content="Use custom keyboard button mapping"
+                        <CheckBox Content="{Resx Mod_RRR_ButtonMappingToggle}"
                                   Margin="{StaticResource SmallVerticalStackMargin}"
                                   IsChecked="{Binding Path=UseCustomButtonMapping}"/>
 
@@ -165,9 +162,8 @@
                     <iconPacks:PackIconMaterial Kind="AutoFix"
                                                 VerticalAlignment="Center" />
 
-                    <!-- TODO-UPDATE: Localize -->
                     <TextBlock Margin="10 0"
-                               Text="Apply to running game"
+                               Text="{Resx Mod_RRR_ApplyMemoryMod}"
                                VerticalAlignment="Center" />
 
                 </StackPanel>
@@ -192,12 +188,10 @@
 
             <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="{StaticResource DefaultVerticalStackMargin}">
 
-                <!-- TODO-UPDATE: Localize -->
-                <TextBlock Text="BF Mods"
+                <TextBlock Text="{Resx Mod_RRR_BFModsHeader}"
                            Style="{StaticResource LargeHeaderTextBlock}" />
 
-                <!-- TODO-UPDATE: Localize -->
-                <local:InfoIcon Text="Modified .bf files. These will only be used when running the game from the option below." />
+                <local:InfoIcon Text="{Resx Mod_RRR_BFModsInfo}" />
 
             </StackPanel>
 
@@ -208,8 +202,7 @@
                     <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                 </i:Interaction.Behaviors>
 
-                <!-- TODO-UPDATE: Localize -->
-                <TextBlock Text="Game Directory"
+                <TextBlock Text="{Resx Mod_RRR_GameDirHeader}"
                            Style="{StaticResource HeaderTextBlock}" />
 
                 <rwpf:BrowseBox SelectedPath="{Binding Path=GameDirectoryPath}"
@@ -225,39 +218,41 @@
                     <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
                 </i:Interaction.Behaviors>
 
-                <!-- TODO-UPDATE: Localize -->
+                <!-- Apply Exe Patch -->
+
                 <Button HorizontalAlignment="Left"
-                        ToolTip="The executable patch is required for patched BF files due to a memory limit"
+                        ToolTip="{Resx Mod_RRR_ApplyExePatchInfo}"
                         Command="{Binding Path=ApplyExePatchCommand, Mode=OneTime}"
                         Visibility="{Binding Path=IsExePatched, Converter={rwpf:InvertedBooleanToVisibilityConverter}}">
                     <StackPanel Orientation="Horizontal">
                         <iconPacks:PackIconMaterial Kind="AutoFix"
                                                     VerticalAlignment="Center" />
 
-                        <!-- TODO-UPDATE: Localize -->
                         <TextBlock Margin="10 0"
-                                   Text="Apply executable patch"
+                                   Text="{Resx Mod_RRR_ApplyExePatch}"
                                    VerticalAlignment="Center" />
 
                     </StackPanel>
                 </Button>
 
-                <!-- TODO-UPDATE: Localize -->
+                <!-- Revert Exe Patch -->
+
                 <Button HorizontalAlignment="Left"
-                        ToolTip="The executable patch is required for patched BF files due to a memory limit"
+                        ToolTip="{Resx Mod_RRR_ApplyExePatchInfo}"
                         Command="{Binding Path=RevertExePatchCommand, Mode=OneTime}"
                         Visibility="{Binding Path=IsExePatched, Converter={rwpf:BooleanToVisibilityConverter}}">
                     <StackPanel Orientation="Horizontal">
                         <iconPacks:PackIconMaterial Kind="UndoVariant"
                                                     VerticalAlignment="Center" />
 
-                        <!-- TODO-UPDATE: Localize -->
                         <TextBlock Margin="10 0"
-                                   Text="Revert executable patch"
+                                   Text="{Resx Mod_RRR_RevertExePatch}"
                                    VerticalAlignment="Center" />
 
                     </StackPanel>
                 </Button>
+
+                <!-- Download Patched BF -->
 
                 <Button HorizontalAlignment="Left"
                         IsEnabled="{Binding Path=CanDownloadPatchedBF}"
@@ -267,13 +262,14 @@
                         <iconPacks:PackIconMaterial Kind="DownloadOutline"
                                                     VerticalAlignment="Center" />
 
-                        <!-- TODO-UPDATE: Localize -->
                         <TextBlock Margin="10 0"
-                                   Text="Download patched BF"
+                                   Text="{Resx Mod_RRR_DownloadBFPatch}"
                                    VerticalAlignment="Center" />
 
                     </StackPanel>
                 </Button>
+
+                <!-- Remove Patched BF -->
 
                 <Button HorizontalAlignment="Left"
                         Command="{Binding Path=RemovePatchedBFCommand, Mode=OneTime}"
@@ -282,9 +278,8 @@
                         <iconPacks:PackIconMaterial Kind="DeleteOutline"
                                                     VerticalAlignment="Center" />
 
-                        <!-- TODO-UPDATE: Localize -->
                         <TextBlock Margin="10 0"
-                                   Text="Remove patched BF"
+                                   Text="{Resx Mod_RRR_RemoveBFPatch}"
                                    VerticalAlignment="Center" />
 
                     </StackPanel>
@@ -294,9 +289,8 @@
 
             <!-- Patches Header -->
 
-            <!-- TODO-UPDATE: Localize -->
             <TextBlock Grid.Row="3"
-                       Text="Patches"
+                       Text="{Resx Mod_RRR_BFPatchesHeader}"
                        Style="{StaticResource HeaderTextBlock}"
                        Margin="{StaticResource DefaultVerticalStackMargin}" />
 
@@ -356,9 +350,8 @@
                         <iconPacks:PackIconMaterial Kind="FileEditOutline"
                                                     VerticalAlignment="Center" />
 
-                        <!-- TODO-UPDATE: Localize -->
                         <TextBlock Margin="10 0"
-                                   Text="Update patched BF"
+                                   Text="{Resx Mod_RRR_UpdateBFPatch}"
                                    VerticalAlignment="Center" />
 
                     </StackPanel>
@@ -371,9 +364,8 @@
                         <iconPacks:PackIconMaterial Kind="PlayOutline"
                                                     VerticalAlignment="Center" />
 
-                        <!-- TODO-UPDATE: Localize -->
                         <TextBlock Margin="10 0"
-                                   Text="Launch with patched BF"
+                                   Text="{Resx Mod_RRR_LaunchBFPatch}"
                                    VerticalAlignment="Center" />
 
                     </StackPanel>

@@ -329,8 +329,7 @@
 
             <!-- Mods -->
 
-            <!-- TODO-UPDATE: Localize -->
-            <local:RCPTabItem Header="Mods"
+            <local:RCPTabItem Header="{Resx ModsPageHeader}"
                               IconKind="CircleEditOutline"
                               IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Mods}">
                 <local:ModsPage />

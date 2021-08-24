@@ -24,15 +24,15 @@ namespace RayCarrot.RCP.Metro
         {
             MemoryPatcher = new Mod_RRR_MemoryPatcher();
 
-            // TODO-UPDATE: Localize
             MemoryModSections = new ObservableCollection<Mod_RRR_MemoryModsSectonViewModel>()
             {
-                new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => "Main"), null, 
+                // Main
+                new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => Resources.Mod_RRR_MemMod_MainHeader), null, 
                     new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
                     {
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Enable prototype features"), 
-                            description: new LocalizedString(() => "Rayman's prototype behavior is enabled in all levels"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_EnableProtoFeatures), 
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_EnableProtoFeaturesInfo),
                             toggleAction: x =>
                             {
                                 MemoryPatcher.enableProtoRaymanEverywhere = x;
@@ -41,188 +41,196 @@ namespace RayCarrot.RCP.Metro
                             },
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Add camera controls"), 
-                            description: new LocalizedString(() => "Camera controls are mapped to the right stick"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddCamControls), 
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddCamControlsInfo),
                             toggleAction: x => MemoryPatcher.addCameraControls = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Add Duel, the lost minigame"), 
-                            description: new LocalizedString(() => "\"Bunnies are shooting all over the place\" replaces \"Bunnies don't milk cows part 2\". Play it in multiplayer!"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddDuel), 
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddDuelInfo),
                             toggleAction: x => MemoryPatcher.addDuel = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Enable playtest menu"), 
-                            description: new LocalizedString(() => "Not recommended. The playtest menu replaces the game type selection, but you cannot pause or exit loaded levels."),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddPlaytestMenu), 
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddPlaytestMenuInfo),
                             toggleAction: x => MemoryPatcher.addPlaytestMenu = x,
                             isToggled: false),
                     }),
-                new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => "Rayman"), new LocalizedString(() => "For an Xbox 360 controller, the controls are mapped as follows:\r\n    A: Jump / Hold in the air to use helicopter\r\n    X: Attack\r\n    Y: Use grappling hook\r\n    LB: Toggle light / Hold to control dance tempo if enabled\r\n    LT: Look mode if enabled\r\n    RB: Attack / Press or hold to use finishers if enabled\r\n    RT: Dodge roll / Ground pound / Roll and jump multiple times to boost if enabled\r\n    D-Pad Up: Toggle dance mode. In dance mode, press ABXY or use the left analog stick to perform dance moves\r\n    Left analog stick: Move Rayman\r\n    Right analog stick: Camera controls if enabled\r\n    Back: Noclip mode\r\n    Start: Pause"), 
+
+                // Rayman
+                new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => Resources.Mod_RRR_MemMod_RaymanHeader), new LocalizedString(() => Resources.Mod_RRR_MemMod_RaymanInfo), 
                     new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
                     {
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Add look mode"),
-                            description: new LocalizedString(() => "A first-person look mode is added and mapped to LT"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddLookMode),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddLookModeInfo),
                             toggleAction: x => MemoryPatcher.addLookMode = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Add boost button"),
-                            description: new LocalizedString(() => "Normally reserved to an item not present in the game, pressing RT will make Rayman run really fast and enable speed attacks"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddBoostButton),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddBoostButtonInfo),
                             toggleAction: x => MemoryPatcher.addBoostButton = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Add finishers"),
-                            description: new LocalizedString(() => "Hold or press RB to add finishers into your combos"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddFinishers),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_AddFinishersInfo),
                             toggleAction: x => MemoryPatcher.addFinishers = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Climb walls"),
-                            description: new LocalizedString(() => "Allows Rayman to grab hold of any wall by using his hook"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_ClimbWalls),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_ClimbWallsInfo),
                             toggleAction: x => MemoryPatcher.climbWalls = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Hang from grab spots"),
-                            description: new LocalizedString(() => "Breaks hook behavior but enables a broken system for using the hook as a rope to hang and jump from"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_HangFromSpots),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_HangFromSpotsInfo),
                             toggleAction: x => MemoryPatcher.hangFromHotspots = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Change hook graphics"),
-                            description: new LocalizedString(() => "Enables even earlier looks for Rayman's hook"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_GrappinGFX),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_GrappinGFXInfo),
                             toggleAction: x => MemoryPatcher.setGrappinGFX = x,
                             isToggled: false,
                             selectionOptions: new ObservableCollection<LocalizedString>()
                             {
-                                new LocalizedString(() => "Line"),
-                                new LocalizedString(() => "Lightning"),
-                                new LocalizedString(() => "Sparks"),
-                                new LocalizedString(() => "Rope"),
-                                new LocalizedString(() => "None"),
+                                new LocalizedString(() => Resources.Mod_RRR_MemMod_GrappinGFX_0),
+                                new LocalizedString(() => Resources.Mod_RRR_MemMod_GrappinGFX_1),
+                                new LocalizedString(() => Resources.Mod_RRR_MemMod_GrappinGFX_2),
+                                new LocalizedString(() => Resources.Mod_RRR_MemMod_GrappinGFX_3),
+                                new LocalizedString(() => Resources.Mod_RRR_MemMod_GrappinGFX_4),
                             },
                             selectionAction: x => MemoryPatcher.GrappinGFX = (byte)x),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Upgraded powers"),
-                            description: new LocalizedString(() => "Allows Rayman to use the helicopter for a longer time and, if Climb walls is enabled, hold onto walls infinitely"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_UpgradedPowers),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_UpgradedPowersInfo),
                             toggleAction: x => MemoryPatcher.allpowers = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Immortal"),
-                            description: new LocalizedString(() => "A developer cheat - Rayman does not die"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_Immortal),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_ImmortalInfo),
                             toggleAction: x => MemoryPatcher.immortal = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Dance: control tempo"),
-                            description: new LocalizedString(() => "In dance mode, holding LB will start a beat for Rayman to dance to"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_ControlTempo),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_ControlTempoInfo),
                             toggleAction: x => MemoryPatcher.controlTempo = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Dance: groovy moveset"),
-                            description: new LocalizedString(() => "Rayman uses different dance moves"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_GroovyMoveset),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_GroovyMovesetInfo),
                             toggleAction: x => MemoryPatcher.groovyRaymanDanceMoveset = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Use selected disguise"),
-                            description: new LocalizedString(() => "Rayman's costume will always be based on the player's costume selection in the menu"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_SetCostume),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_SetCostumeInfo),
                             toggleAction: x => MemoryPatcher.setPlayer1Costume = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Disable minigame intros"),
-                            description: new LocalizedString(() => "Minigame intro cinematics change the state of the world and sometimes deactivate Rayman (e.g. Bunnies don't give gifts)"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_DisableIntros),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_DisableIntrosInfo),
                             toggleAction: x => MemoryPatcher.disableMinigameIntro = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Disable footstep sound"),
-                            description: new LocalizedString(() => "If BF mods aren't activated, Rayman's footstep sound in most areas can be annoying - use this option to turn it off"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_DisableFootstepSound),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_DisableFootstepSoundInfo),
                             toggleAction: x => MemoryPatcher.disableFootstepSound = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Make Rayman less slippery"),
-                            description: new LocalizedString(() => "Rayman feels slippery by default, this slightly improves that"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_LessSlippery),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_LessSlipperyInfo),
                             toggleAction: x => MemoryPatcher.lowerSlippery = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Enable health & mana debug display"),
-                            description: new LocalizedString(() => "Whenever Rayman performs a special attack or gets hit, his HP and Mana will be displayed"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_DrawHealthMana),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_DrawHealthManaInfo),
                             toggleAction: x => MemoryPatcher.drawHealthMana = x,
                             isToggled: false),
                     }),
-                new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => "Rabbids"), null, 
+
+                // Rabbids
+                new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => Resources.Mod_RRR_MemMod_RabbidsHeader), null, 
                     new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
                     {
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Rabbids drop items"),
-                            description: new LocalizedString(() => "Rabbids drop their items for Rayman to use"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_RabbidsDropItems),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_RabbidsDropItemsInfo),
                             toggleAction: x => MemoryPatcher.rabbidsDropItems = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Increased HP"),
-                            description: new LocalizedString(() => "Each Rabbid has 100 HP"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_IncreasedRabbidHP),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_IncreasedRabbidHPInfo),
                             toggleAction: x => MemoryPatcher.rabbidsIncreasedHP = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Random prototype powers"),
-                            description: new LocalizedString(() => "Some Rabbids are given one of 4 prototype powers. Discover them while playing!"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_RandomProtoRabbidPowers),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_RandomProtoRabbidPowersInfo),
                             toggleAction: x => MemoryPatcher.randomProtoRabbidPowers = x,
                             isToggled: false),
                     }),
-                new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => "Mounts"), null, 
+
+                // Mounts
+                new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => Resources.Mod_RRR_MemMod_MountsHeader), null, 
                     new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
                     {
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Tame mounts"),
-                            description: new LocalizedString(() => "Mounts become controllable when you first ride them"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_TameMounts),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_TameMountsInfo),
                             toggleAction: x => MemoryPatcher.tameMounts = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Bats act like eagles"),
-                            description: new LocalizedString(() => "Bats become huge and act like the eagle with different animations"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_BatsActLikeEagles),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_BatsActLikeEaglesInfo),
                             toggleAction: x => MemoryPatcher.makeBatsIntoEagles = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Pigs act like plums"),
-                            description: new LocalizedString(() => "Pigs use plum behavior and become very bouncy. Try throwing them onto the rabbids' heads!"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_PigsActLikePlums),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_PigsActLikePlumsInfo),
                             toggleAction: x => MemoryPatcher.makePigsIntoPlums = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Rhinos become aggressive"),
-                            description: new LocalizedString(() => "The rhinos from the races will attack you. Be prepared to die (or use the immortal cheat)!"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_AggressiveRhinos),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_AggressiveRhinosInfo),
                             toggleAction: x => MemoryPatcher.makeRhinosAggressive = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Spider robots can jump"),
-                            description: new LocalizedString(() => "When riding the spider-like robots, you can jump like spiders could in the prototype"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_SpiderJump),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_SpiderJumpInfo),
                             toggleAction: x => MemoryPatcher.makeSpidersJump = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Bats can shoot"),
-                            description: new LocalizedString(() => "Bats can shoot projectiles with the attack button"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_BatShoot),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_BatShootInfo),
                             toggleAction: x => MemoryPatcher.makeBatShoot = x,
                             isToggled: true),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Saucers start off flying"),
-                            description: new LocalizedString(() => "Saucers can be found flying around, but this makes them harder to mount"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_SaucersStartFlying),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_SaucersStartFlyingInfo),
                             toggleAction: x => MemoryPatcher.saucersStartFlying = x,
                             isToggled: false),
                     }),
-                new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => "Bunny hunts"), null, 
+
+                // Bunny hunts
+                new Mod_RRR_MemoryModsSectonViewModel(new LocalizedString(() => Resources.Mod_RRR_MemMod_BunnyHuntsHeader), null, 
                     new ObservableCollection<Mod_RRR_MemoryModToggleViewModel>()
                     {
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Missile launchers target Rayman"),
-                            description: new LocalizedString(() => "Missiles will target Rayman, but 1 hit from them will kill Rayman!"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_MissileLaunchersTarget),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_MissileLaunchersTargetInfo),
                             toggleAction: x => MemoryPatcher.missileLaunchersTargetPlayer = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Don't destroy bipods"),
-                            description: new LocalizedString(() => "Most bipods collapse by default when not in FPS mode. This prevents them from being destroyed."),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_DontDestroyBipods),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_DontDestroyBipodsInfo),
                             toggleAction: x => MemoryPatcher.dontDestroyBipods = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Activate all activator triggers"),
-                            description: new LocalizedString(() => "Forces all activator triggers to be true constantly. Causes chaos in many levels and spawns many more enemies (and Globox babies)"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_ActivatorTriggers),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_ActivatorTriggersInfo),
                             toggleAction: x => MemoryPatcher.activateAllActivatorTriggers = x,
                             isToggled: false),
                         new Mod_RRR_MemoryModToggleViewModel(
-                            header: new LocalizedString(() => "Activate all bounding volume triggers"),
-                            description: new LocalizedString(() => "Some rabbid spawn triggers are difficult to reach. This triggers them, but beware, it also causes crashes in many levels!"),
+                            header: new LocalizedString(() => Resources.Mod_RRR_MemMod_BoundingVolumeTriggers),
+                            description: new LocalizedString(() => Resources.Mod_RRR_MemMod_BoundingVolumeTriggersInfo),
                             toggleAction: x => MemoryPatcher.activateAllPivotInBVTriggers = x,
                             isToggled: false),
                     }),
@@ -231,70 +239,68 @@ namespace RayCarrot.RCP.Metro
             IsCustomButtonMappingEnabled = true;
             UseCustomButtonMapping = true;
 
-            // TODO-UPDATE: Localize
             ButtonMappingItems = new ObservableCollection<ButtonMappingKeyItemViewModel<int>>()
             {
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Jump"), Key.A, 0),
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Attack"), Key.Space, 4),
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Grapple hook"), Key.S, 6),
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Light/Tempo"), Key.LeftCtrl, 8),
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Attack (finisher)"), Key.X, 10),
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Look mode"), Key.E, 12),
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Roll/Ground pound"), Key.W, 14),
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "No-clip"), Key.P, 16),
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Pause"), Key.Escape, 18),
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Dance toggle"), Key.D, 24),
-                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => "Walk"), Key.LeftShift, 28),
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_0), Key.A, 0), // Jump
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_4), Key.Space, 4), // Attack
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_10), Key.X, 10), // Attack (finisher)
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_6), Key.S, 6), // Grapple hook
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_14), Key.W, 14), // Roll/Ground pound
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_28), Key.LeftShift, 28), // Walk
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_8), Key.LeftCtrl, 8), // Light/Tempo
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_24), Key.D, 24), // Dance toggle
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_12), Key.E, 12), // Look mode
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_16), Key.P, 16), // No-clip
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_18), Key.Escape, 18), // Pause
             };
 
-            // TODO-UPDATE: Localize
             BFModToggles = new ObservableCollection<Mod_RRR_BFModToggleViewModel>()
             {
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => "Fix sound effects"),
+                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_FixSounds),
                     patches: Mod_RRR_BigFilePatch.FixSoundEffects,
                     isDefaultToggled: true),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => "Change playable character"),
+                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer),
                     patch: Mod_RRR_BigFilePatch.PlayableCharacters,
                     isDefaultToggled: false,
                     selectionOptions: new ObservableCollection<LocalizedString>()
                     {
-                        new LocalizedString(() => "Baby Globox"),
-                        new LocalizedString(() => "Serguei"),
-                        new LocalizedString(() => "Rabbid"),
-                        new LocalizedString(() => "Grey Leader Rabbid"),
-                        new LocalizedString(() => "Superman Rabbid"),
-                        new LocalizedString(() => "Terminator Rabbid (Pink)"),
-                        new LocalizedString(() => "Sam Fisher Rabbid"),
-                        new LocalizedString(() => "Nurgle Demon"),
+                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_BabyGlobox), // Baby Globox
+                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_Serguei), // Serguei
+                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_Rabbid), // Rabbid
+                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_LeaderRabbid), // Grey Leader Rabbid
+                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_SupermanRabbid), // Superman Rabbid
+                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_TerminatorRabbid), // Terminator Rabbid (Pink)
+                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_SamFisherRabbid), // Sam Fisher Rabbid
+                        new LocalizedString(() => Resources.Mod_RRR_BFPatch_ChangePlayer_NurgleDemon), // Nurgle Demon
                     }),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => "Make bat sound like eagle"),
+                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_BatSoundLikeEagle),
                     patch: Mod_RRR_BigFilePatch.MakeBatSoundLikeEagle,
                     isDefaultToggled: false),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => "Make spider robot sound like spider"),
+                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_SpiderRobotSoundLikeSpider),
                     patches: Mod_RRR_BigFilePatch.MakeSpiderRobotsSoundLikeSpider,
                     isDefaultToggled: false),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => "Add custom helicopter texture"),
+                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_CustomHelicoTexture),
                     patch: Mod_RRR_BigFilePatch.AddCustomHelicopterTexture,
                     isDefaultToggled: true),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => "Add fur to rabbids"),
+                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_RabbidsFur),
                     patches: Mod_RRR_BigFilePatch.AddFurToRabbids,
                     isDefaultToggled: false),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => "Enable flashlight (toggle with LB)"),
+                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_Flashlight),
                     patch: Mod_RRR_BigFilePatch.EnableFlashlight,
                     isDefaultToggled: true),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => "Add flashlight to Bunnies Love Digging Tunnels"),
+                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_FlashlightMines),
                     patches: Mod_RRR_BigFilePatch.AddFlashlightToMines,
                     isDefaultToggled: false),
                 new Mod_RRR_BFModToggleViewModel(
-                    header: new LocalizedString(() => "Add unused rabbid items to Bunnies Aren't Scared Of The Dark"),
+                    header: new LocalizedString(() => Resources.Mod_RRR_BFPatch_RabbidItems),
                     patches: Mod_RRR_BigFilePatch.ModdedRabbidItems,
                     isDefaultToggled: false),
             };
@@ -325,7 +331,7 @@ namespace RayCarrot.RCP.Metro
         #region Mods Page
 
         public override PackIconMaterialKind Icon => PackIconMaterialKind.GamepadVariantOutline;
-        public override LocalizedString Header => new LocalizedString(() => "Rayman Raving Rabbids"); // TODO-UPDATE: Localize
+        public override LocalizedString Header => new LocalizedString(() => Resources.Mod_RRR_Header);
         public override object UIContent => new Mod_RRR_UI()
         {
             DataContext = this
@@ -504,15 +510,13 @@ namespace RayCarrot.RCP.Metro
 
                 RL.Logger?.LogInformationSource("RRR memory patch applied");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayMessageAsync("Memory patch applied successfully");
+                await Services.MessageUI.DisplayMessageAsync(Resources.Mod_RRR_MemMod_ApplySuccess);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Applying RRR memory patch");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "The memory patch could not be applied");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Mod_RRR_MemMod_ApplyError);
             }
         }
 
@@ -522,8 +526,7 @@ namespace RayCarrot.RCP.Metro
 
             if (!exe.FileExists)
             {
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayMessageAsync("The game install directory is invalid", MessageType.Error);
+                await Services.MessageUI.DisplayMessageAsync(Resources.Mod_RRR_BFPatch_InvalidGameDir, MessageType.Error);
                 return GameVersion.Unknown;
             }
 
@@ -537,8 +540,7 @@ namespace RayCarrot.RCP.Metro
             {
                 ex.HandleError("Getting RRR exe file size");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "Unable to determine game version");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Mod_RRR_BFPatch_DetermineGameVerError);
 
                 return GameVersion.Unknown;
             }
@@ -546,10 +548,7 @@ namespace RayCarrot.RCP.Metro
             GameVersion version = ExePatches.FirstOrDefault(x => x.Value.FileSize == fileSize).Key;
 
             if (version == GameVersion.Unknown)
-            {
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayMessageAsync("The game version is not supported", MessageType.Error);
-            }
+                await Services.MessageUI.DisplayMessageAsync(Resources.Mod_RRR_BFPatch_UnsupportedGameExe, MessageType.Error);
 
             return version;
         }
@@ -608,18 +607,15 @@ namespace RayCarrot.RCP.Metro
 
                 // Display message
                 if (enablePatch)
-                    // TODO-UPDATE: Localize
-                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The executable was successfully patched");
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Mod_RRR_BFPatch_ApplyExePatchSuccess);
                 else
-                    // TODO-UPDATE: Localize
-                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The executable patch was successfully reverted");
+                    await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Mod_RRR_BFPatch_RevertExePatchSuccess);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Patching RRR exe");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when patching the executable");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Mod_RRR_BFPatch_ApplyExePatchError);
 
                 // Update the patched state
                 IsExePatched = CheckIsExePatched();
@@ -674,15 +670,13 @@ namespace RayCarrot.RCP.Metro
                 CanUpdatePatchedBF = false;
                 RefreshBFPatches();
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The patched BF file has been removed");
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Mod_RRR_BFPatch_RemovePatchedBFSuccess);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Deleting patched BF file");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "Unable to remove patched BF file");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Mod_RRR_BFPatch_RemovePatchedBFError);
             }
         }
 
@@ -745,15 +739,13 @@ namespace RayCarrot.RCP.Metro
                     }
                 }
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplaySuccessfulActionMessageAsync("The patched BF file was successfully updated");
+                await Services.MessageUI.DisplaySuccessfulActionMessageAsync(Resources.Mod_RRR_BFPatch_UpdatePatchedBFSuccess);
             }
             catch (Exception ex)
             {
                 ex.HandleError("Updating patched BF");
 
-                // TODO-UPDATE: Localize
-                await Services.MessageUI.DisplayExceptionMessageAsync(ex, "An error occurred when updating the patched BF file");
+                await Services.MessageUI.DisplayExceptionMessageAsync(ex, Resources.Mod_RRR_BFPatch_UpdatePatchedBFError);
             }
         }
 

@@ -6784,6 +6784,1230 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply executable patch.
+        /// </summary>
+        public static string Mod_RRR_ApplyExePatch {
+            get {
+                return ResourceManager.GetString("Mod_RRR_ApplyExePatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The executable patch is required for patched BF files due to a memory limit.
+        /// </summary>
+        public static string Mod_RRR_ApplyExePatchInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_ApplyExePatchInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply to running game.
+        /// </summary>
+        public static string Mod_RRR_ApplyMemoryMod {
+            get {
+                return ResourceManager.GetString("Mod_RRR_ApplyMemoryMod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BF Mods.
+        /// </summary>
+        public static string Mod_RRR_BFModsHeader {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFModsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modified .bf files. These will only be used when running the game from the option below..
+        /// </summary>
+        public static string Mod_RRR_BFModsInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFModsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when patching the executable.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_ApplyExePatchError {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_ApplyExePatchError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The executable was successfully patched.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_ApplyExePatchSuccess {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_ApplyExePatchSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make bat sound like eagle.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_BatSoundLikeEagle {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_BatSoundLikeEagle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change playable character.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_ChangePlayer {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_ChangePlayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Baby Globox.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_ChangePlayer_BabyGlobox {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_ChangePlayer_BabyGlobox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grey Leader Rabbid.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_ChangePlayer_LeaderRabbid {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_ChangePlayer_LeaderRabbid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nurgle Demon.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_ChangePlayer_NurgleDemon {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_ChangePlayer_NurgleDemon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rabbid.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_ChangePlayer_Rabbid {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_ChangePlayer_Rabbid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sam Fisher Rabbid.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_ChangePlayer_SamFisherRabbid {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_ChangePlayer_SamFisherRabbid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serguei.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_ChangePlayer_Serguei {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_ChangePlayer_Serguei", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Superman Rabbid.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_ChangePlayer_SupermanRabbid {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_ChangePlayer_SupermanRabbid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terminator Rabbid (Pink).
+        /// </summary>
+        public static string Mod_RRR_BFPatch_ChangePlayer_TerminatorRabbid {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_ChangePlayer_TerminatorRabbid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add custom helicopter texture.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_CustomHelicoTexture {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_CustomHelicoTexture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to determine game version.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_DetermineGameVerError {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_DetermineGameVerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fix sound effects.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_FixSounds {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_FixSounds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable flashlight (toggle with LB).
+        /// </summary>
+        public static string Mod_RRR_BFPatch_Flashlight {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_Flashlight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add flashlight to Bunnies Love Digging Tunnels.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_FlashlightMines {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_FlashlightMines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game install directory is invalid.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_InvalidGameDir {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_InvalidGameDir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add unused rabbid items to Bunnies Aren&apos;t Scared Of The Dark.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_RabbidItems {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_RabbidItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add fur to rabbids.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_RabbidsFur {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_RabbidsFur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to remove patched BF file.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_RemovePatchedBFError {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_RemovePatchedBFError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The patched BF file has been removed.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_RemovePatchedBFSuccess {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_RemovePatchedBFSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The executable patch was successfully reverted.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_RevertExePatchSuccess {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_RevertExePatchSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make spider robot sound like spider.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_SpiderRobotSoundLikeSpider {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_SpiderRobotSoundLikeSpider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The game version is not supported.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_UnsupportedGameExe {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_UnsupportedGameExe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occurred when updating the patched BF file.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_UpdatePatchedBFError {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_UpdatePatchedBFError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The patched BF file was successfully updated.
+        /// </summary>
+        public static string Mod_RRR_BFPatch_UpdatePatchedBFSuccess {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatch_UpdatePatchedBFSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patches.
+        /// </summary>
+        public static string Mod_RRR_BFPatchesHeader {
+            get {
+                return ResourceManager.GetString("Mod_RRR_BFPatchesHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keyboard Button Mapping.
+        /// </summary>
+        public static string Mod_RRR_ButtonMappingHeader {
+            get {
+                return ResourceManager.GetString("Mod_RRR_ButtonMappingHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use custom keyboard button mapping.
+        /// </summary>
+        public static string Mod_RRR_ButtonMappingToggle {
+            get {
+                return ResourceManager.GetString("Mod_RRR_ButtonMappingToggle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download patched BF.
+        /// </summary>
+        public static string Mod_RRR_DownloadBFPatch {
+            get {
+                return ResourceManager.GetString("Mod_RRR_DownloadBFPatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Directory.
+        /// </summary>
+        public static string Mod_RRR_GameDirHeader {
+            get {
+                return ResourceManager.GetString("Mod_RRR_GameDirHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman Raving Rabbids.
+        /// </summary>
+        public static string Mod_RRR_Header {
+            get {
+                return ResourceManager.GetString("Mod_RRR_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jump.
+        /// </summary>
+        public static string Mod_RRR_KeyAction_0 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_KeyAction_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attack (finisher).
+        /// </summary>
+        public static string Mod_RRR_KeyAction_10 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_KeyAction_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Look mode.
+        /// </summary>
+        public static string Mod_RRR_KeyAction_12 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_KeyAction_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roll/Ground pound.
+        /// </summary>
+        public static string Mod_RRR_KeyAction_14 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_KeyAction_14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No-clip.
+        /// </summary>
+        public static string Mod_RRR_KeyAction_16 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_KeyAction_16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pause.
+        /// </summary>
+        public static string Mod_RRR_KeyAction_18 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_KeyAction_18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dance toggle.
+        /// </summary>
+        public static string Mod_RRR_KeyAction_24 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_KeyAction_24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Walk.
+        /// </summary>
+        public static string Mod_RRR_KeyAction_28 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_KeyAction_28", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attack.
+        /// </summary>
+        public static string Mod_RRR_KeyAction_4 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_KeyAction_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grapple hook.
+        /// </summary>
+        public static string Mod_RRR_KeyAction_6 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_KeyAction_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light/Tempo.
+        /// </summary>
+        public static string Mod_RRR_KeyAction_8 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_KeyAction_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Launch with patched BF.
+        /// </summary>
+        public static string Mod_RRR_LaunchBFPatch {
+            get {
+                return ResourceManager.GetString("Mod_RRR_LaunchBFPatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activate all activator triggers.
+        /// </summary>
+        public static string Mod_RRR_MemMod_ActivatorTriggers {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_ActivatorTriggers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forces all activator triggers to be true constantly. Causes chaos in many levels and spawns many more enemies (and Globox babies).
+        /// </summary>
+        public static string Mod_RRR_MemMod_ActivatorTriggersInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_ActivatorTriggersInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add boost button.
+        /// </summary>
+        public static string Mod_RRR_MemMod_AddBoostButton {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_AddBoostButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normally reserved to an item not present in the game, pressing RT will make Rayman run really fast and enable speed attacks.
+        /// </summary>
+        public static string Mod_RRR_MemMod_AddBoostButtonInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_AddBoostButtonInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add camera controls.
+        /// </summary>
+        public static string Mod_RRR_MemMod_AddCamControls {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_AddCamControls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Camera controls are mapped to the right stick.
+        /// </summary>
+        public static string Mod_RRR_MemMod_AddCamControlsInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_AddCamControlsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Duel, the lost minigame.
+        /// </summary>
+        public static string Mod_RRR_MemMod_AddDuel {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_AddDuel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Bunnies are shooting all over the place&quot; replaces &quot;Bunnies don&apos;t milk cows part 2&quot;. Play it in multiplayer!.
+        /// </summary>
+        public static string Mod_RRR_MemMod_AddDuelInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_AddDuelInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add finishers.
+        /// </summary>
+        public static string Mod_RRR_MemMod_AddFinishers {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_AddFinishers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hold or press RB to add finishers into your combos.
+        /// </summary>
+        public static string Mod_RRR_MemMod_AddFinishersInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_AddFinishersInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add look mode.
+        /// </summary>
+        public static string Mod_RRR_MemMod_AddLookMode {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_AddLookMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A first-person look mode is added and mapped to LT.
+        /// </summary>
+        public static string Mod_RRR_MemMod_AddLookModeInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_AddLookModeInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable playtest menu.
+        /// </summary>
+        public static string Mod_RRR_MemMod_AddPlaytestMenu {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_AddPlaytestMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not recommended. The playtest menu replaces the game type selection, but you cannot pause or exit loaded levels..
+        /// </summary>
+        public static string Mod_RRR_MemMod_AddPlaytestMenuInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_AddPlaytestMenuInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rhinos become aggressive.
+        /// </summary>
+        public static string Mod_RRR_MemMod_AggressiveRhinos {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_AggressiveRhinos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The rhinos from the races will attack you. Be prepared to die (or use the immortal cheat)!.
+        /// </summary>
+        public static string Mod_RRR_MemMod_AggressiveRhinosInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_AggressiveRhinosInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The memory patch could not be applied.
+        /// </summary>
+        public static string Mod_RRR_MemMod_ApplyError {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_ApplyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Memory patch applied successfully.
+        /// </summary>
+        public static string Mod_RRR_MemMod_ApplySuccess {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_ApplySuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bats act like eagles.
+        /// </summary>
+        public static string Mod_RRR_MemMod_BatsActLikeEagles {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_BatsActLikeEagles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bats become huge and act like the eagle with different animations.
+        /// </summary>
+        public static string Mod_RRR_MemMod_BatsActLikeEaglesInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_BatsActLikeEaglesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bats can shoot.
+        /// </summary>
+        public static string Mod_RRR_MemMod_BatShoot {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_BatShoot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bats can shoot projectiles with the attack button.
+        /// </summary>
+        public static string Mod_RRR_MemMod_BatShootInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_BatShootInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Activate all bounding volume triggers.
+        /// </summary>
+        public static string Mod_RRR_MemMod_BoundingVolumeTriggers {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_BoundingVolumeTriggers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some rabbid spawn triggers are difficult to reach. This triggers them, but beware, it also causes crashes in many levels!.
+        /// </summary>
+        public static string Mod_RRR_MemMod_BoundingVolumeTriggersInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_BoundingVolumeTriggersInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunny hunts.
+        /// </summary>
+        public static string Mod_RRR_MemMod_BunnyHuntsHeader {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_BunnyHuntsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Climb walls.
+        /// </summary>
+        public static string Mod_RRR_MemMod_ClimbWalls {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_ClimbWalls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allows Rayman to grab hold of any wall by using his hook.
+        /// </summary>
+        public static string Mod_RRR_MemMod_ClimbWallsInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_ClimbWallsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dance: control tempo.
+        /// </summary>
+        public static string Mod_RRR_MemMod_ControlTempo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_ControlTempo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In dance mode, holding LB will start a beat for Rayman to dance to.
+        /// </summary>
+        public static string Mod_RRR_MemMod_ControlTempoInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_ControlTempoInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable footstep sound.
+        /// </summary>
+        public static string Mod_RRR_MemMod_DisableFootstepSound {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_DisableFootstepSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If BF mods aren&apos;t activated, Rayman&apos;s footstep sound in most areas can be annoying - use this option to turn it off.
+        /// </summary>
+        public static string Mod_RRR_MemMod_DisableFootstepSoundInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_DisableFootstepSoundInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable minigame intros.
+        /// </summary>
+        public static string Mod_RRR_MemMod_DisableIntros {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_DisableIntros", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minigame intro cinematics change the state of the world and sometimes deactivate Rayman (e.g. Bunnies don&apos;t give gifts).
+        /// </summary>
+        public static string Mod_RRR_MemMod_DisableIntrosInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_DisableIntrosInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t destroy bipods.
+        /// </summary>
+        public static string Mod_RRR_MemMod_DontDestroyBipods {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_DontDestroyBipods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Most bipods collapse by default when not in FPS mode. This prevents them from being destroyed..
+        /// </summary>
+        public static string Mod_RRR_MemMod_DontDestroyBipodsInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_DontDestroyBipodsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable health &amp; mana debug display.
+        /// </summary>
+        public static string Mod_RRR_MemMod_DrawHealthMana {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_DrawHealthMana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Whenever Rayman performs a special attack or gets hit, his HP and Mana will be displayed.
+        /// </summary>
+        public static string Mod_RRR_MemMod_DrawHealthManaInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_DrawHealthManaInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable prototype features.
+        /// </summary>
+        public static string Mod_RRR_MemMod_EnableProtoFeatures {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_EnableProtoFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman&apos;s prototype behavior is enabled in all levels.
+        /// </summary>
+        public static string Mod_RRR_MemMod_EnableProtoFeaturesInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_EnableProtoFeaturesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change hook graphics.
+        /// </summary>
+        public static string Mod_RRR_MemMod_GrappinGFX {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_GrappinGFX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line.
+        /// </summary>
+        public static string Mod_RRR_MemMod_GrappinGFX_0 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_GrappinGFX_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lightning.
+        /// </summary>
+        public static string Mod_RRR_MemMod_GrappinGFX_1 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_GrappinGFX_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sparks.
+        /// </summary>
+        public static string Mod_RRR_MemMod_GrappinGFX_2 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_GrappinGFX_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rope.
+        /// </summary>
+        public static string Mod_RRR_MemMod_GrappinGFX_3 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_GrappinGFX_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string Mod_RRR_MemMod_GrappinGFX_4 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_GrappinGFX_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enables even earlier looks for Rayman&apos;s hook.
+        /// </summary>
+        public static string Mod_RRR_MemMod_GrappinGFXInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_GrappinGFXInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dance: groovy moveset.
+        /// </summary>
+        public static string Mod_RRR_MemMod_GroovyMoveset {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_GroovyMoveset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman uses different dance moves.
+        /// </summary>
+        public static string Mod_RRR_MemMod_GroovyMovesetInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_GroovyMovesetInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hang from grab spots.
+        /// </summary>
+        public static string Mod_RRR_MemMod_HangFromSpots {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_HangFromSpots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Breaks hook behavior but enables a broken system for using the hook as a rope to hang and jump from.
+        /// </summary>
+        public static string Mod_RRR_MemMod_HangFromSpotsInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_HangFromSpotsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Immortal.
+        /// </summary>
+        public static string Mod_RRR_MemMod_Immortal {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_Immortal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A developer cheat - Rayman does not die.
+        /// </summary>
+        public static string Mod_RRR_MemMod_ImmortalInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_ImmortalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Increased enemy HP.
+        /// </summary>
+        public static string Mod_RRR_MemMod_IncreasedRabbidHP {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_IncreasedRabbidHP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Each Rabbid has 100 HP.
+        /// </summary>
+        public static string Mod_RRR_MemMod_IncreasedRabbidHPInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_IncreasedRabbidHPInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make Rayman less slippery.
+        /// </summary>
+        public static string Mod_RRR_MemMod_LessSlippery {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_LessSlippery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman feels slippery by default, this slightly improves that.
+        /// </summary>
+        public static string Mod_RRR_MemMod_LessSlipperyInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_LessSlipperyInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main.
+        /// </summary>
+        public static string Mod_RRR_MemMod_MainHeader {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_MainHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missile launchers target Rayman.
+        /// </summary>
+        public static string Mod_RRR_MemMod_MissileLaunchersTarget {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_MissileLaunchersTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missiles will target Rayman, but 1 hit from them will kill Rayman!.
+        /// </summary>
+        public static string Mod_RRR_MemMod_MissileLaunchersTargetInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_MissileLaunchersTargetInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mounts.
+        /// </summary>
+        public static string Mod_RRR_MemMod_MountsHeader {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_MountsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pigs act like plums.
+        /// </summary>
+        public static string Mod_RRR_MemMod_PigsActLikePlums {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_PigsActLikePlums", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pigs use plum behavior and become very bouncy. Try throwing them onto the rabbids&apos; heads!.
+        /// </summary>
+        public static string Mod_RRR_MemMod_PigsActLikePlumsInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_PigsActLikePlumsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rabbids drop items.
+        /// </summary>
+        public static string Mod_RRR_MemMod_RabbidsDropItems {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_RabbidsDropItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rabbids drop their items for Rayman to use.
+        /// </summary>
+        public static string Mod_RRR_MemMod_RabbidsDropItemsInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_RabbidsDropItemsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rabbids.
+        /// </summary>
+        public static string Mod_RRR_MemMod_RabbidsHeader {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_RabbidsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rabbids receive randomized prototype powers.
+        /// </summary>
+        public static string Mod_RRR_MemMod_RandomProtoRabbidPowers {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_RandomProtoRabbidPowers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some Rabbids are given one of 4 prototype powers. Discover them while playing!.
+        /// </summary>
+        public static string Mod_RRR_MemMod_RandomProtoRabbidPowersInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_RandomProtoRabbidPowersInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman.
+        /// </summary>
+        public static string Mod_RRR_MemMod_RaymanHeader {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_RaymanHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For an Xbox 360 controller, the controls are mapped as follows:
+        ///    A: Jump / Hold in the air to use helicopter
+        ///    X: Attack
+        ///    Y: Use grappling hook
+        ///    LB: Toggle light / Hold to control dance tempo if enabled
+        ///    LT: Look mode if enabled
+        ///    RB: Attack / Press or hold to use finishers if enabled
+        ///    RT: Dodge roll / Ground pound / Roll and jump multiple times to boost if enabled
+        ///    D-Pad Up: Toggle dance mode. In dance mode, press ABXY or use the left analog stick to perform dance moves
+        ///    L [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string Mod_RRR_MemMod_RaymanInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_RaymanInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saucers start off flying.
+        /// </summary>
+        public static string Mod_RRR_MemMod_SaucersStartFlying {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_SaucersStartFlying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saucers can be found flying around, but this makes them harder to mount.
+        /// </summary>
+        public static string Mod_RRR_MemMod_SaucersStartFlyingInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_SaucersStartFlyingInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use selected disguise.
+        /// </summary>
+        public static string Mod_RRR_MemMod_SetCostume {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_SetCostume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rayman&apos;s costume will always be based on the player&apos;s costume selection in the menu.
+        /// </summary>
+        public static string Mod_RRR_MemMod_SetCostumeInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_SetCostumeInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spider robots can jump.
+        /// </summary>
+        public static string Mod_RRR_MemMod_SpiderJump {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_SpiderJump", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When riding the spider-like robots, you can jump like spiders could in the prototype.
+        /// </summary>
+        public static string Mod_RRR_MemMod_SpiderJumpInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_SpiderJumpInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tame mounts.
+        /// </summary>
+        public static string Mod_RRR_MemMod_TameMounts {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_TameMounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mounts become controllable when you first ride them.
+        /// </summary>
+        public static string Mod_RRR_MemMod_TameMountsInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_TameMountsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upgraded powers.
+        /// </summary>
+        public static string Mod_RRR_MemMod_UpgradedPowers {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_UpgradedPowers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allows Rayman to use the helicopter for a longer time and, if Climb walls is enabled, hold onto walls infinitely.
+        /// </summary>
+        public static string Mod_RRR_MemMod_UpgradedPowersInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemMod_UpgradedPowersInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Memory Mods.
+        /// </summary>
+        public static string Mod_RRR_MemoryModsHeader {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemoryModsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable removed prototype features in the game by selecting the mods you want and then apply them. This requires the game to be running and only works with the GOG and Steam versions. Applied mods will only be in effect when the game is running and will be reset when closed..
+        /// </summary>
+        public static string Mod_RRR_MemoryModsInfo {
+            get {
+                return ResourceManager.GetString("Mod_RRR_MemoryModsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove patched BF.
+        /// </summary>
+        public static string Mod_RRR_RemoveBFPatch {
+            get {
+                return ResourceManager.GetString("Mod_RRR_RemoveBFPatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revert executable patch.
+        /// </summary>
+        public static string Mod_RRR_RevertExePatch {
+            get {
+                return ResourceManager.GetString("Mod_RRR_RevertExePatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update patched BF.
+        /// </summary>
+        public static string Mod_RRR_UpdateBFPatch {
+            get {
+                return ResourceManager.GetString("Mod_RRR_UpdateBFPatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mods.
+        /// </summary>
+        public static string ModsPageHeader {
+            get {
+                return ResourceManager.GetString("ModsPageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drive.
         /// </summary>
         public static string MountOption_Drive {
