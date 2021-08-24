@@ -106,7 +106,7 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rayman reverse engineering.
+        ///   Looks up a localized string similar to Rayman reverse engineering, Rayman Raving Rabbids mod.
         /// </summary>
         public static string About_Credits_Droolie {
             get {
