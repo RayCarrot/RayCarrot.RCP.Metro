@@ -7180,6 +7180,15 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dance mode: turn.
+        /// </summary>
+        public static string Mod_RRR_KeyAction_2 {
+            get {
+                return ResourceManager.GetString("Mod_RRR_KeyAction_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dance toggle.
         /// </summary>
         public static string Mod_RRR_KeyAction_24 {

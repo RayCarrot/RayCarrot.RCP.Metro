@@ -273,6 +273,7 @@ namespace RayCarrot.RCP.Metro
                 new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_28), Key.LeftShift, 28), // Walk
                 new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_8), Key.LeftCtrl, 8), // Light/Tempo
                 new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_24), Key.D, 24), // Dance toggle
+                new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_2), Key.B, 2), // Dance mode: turn
                 new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_12), Key.E, 12), // Look mode
                 new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_16), Key.P, 16), // No-clip
                 new ButtonMappingKeyItemViewModel<int>(new LocalizedString(() => Resources.Mod_RRR_KeyAction_18), Key.Escape, 18), // Pause

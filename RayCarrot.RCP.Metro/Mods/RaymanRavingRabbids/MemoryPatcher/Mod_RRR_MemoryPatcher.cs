@@ -1331,7 +1331,7 @@ namespace RayCarrot.RCP.Metro
         {
              0x1E, // 00. (A) Jump               - Default: A
              0x1C, // 01. (A)                    - Default: Enter
-             0x0E, // 02. (B)                    - Default: Backspace
+             0x0E, // 02. (B) Dance mode: turn   - Default: Backspace
              0,    // 03. (B)
              0x39, // 04. (X) Attack             - Default: Space
              0,    // 05. (X)

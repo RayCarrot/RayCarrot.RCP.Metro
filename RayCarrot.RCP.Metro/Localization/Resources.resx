@@ -4255,4 +4255,7 @@ rcpURL</comment>
   <data name="Mod_RRR_MemMod_CheatPageInfo" xml:space="preserve">
     <value>Displays various debug info</value>
   </data>
+  <data name="Mod_RRR_KeyAction_2" xml:space="preserve">
+    <value>Dance mode: turn</value>
+  </data>
 </root>
