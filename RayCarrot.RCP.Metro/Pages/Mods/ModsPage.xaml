@@ -38,7 +38,8 @@
                                                 VerticalAlignment="Center" />
 
                     <ContentControl FontSize="16"
-                                    Content="{Binding Path=Header.Value}" />
+                                    DataContext="{Binding Path=Header, Mode=OneTime}"
+                                    Content="{Binding Path=Value}" />
 
                 </StackPanel>
             </DataTemplate>
