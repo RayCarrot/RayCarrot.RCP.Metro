@@ -487,6 +487,7 @@ namespace RayCarrot.RCP.Metro
 
         protected void GameDirectoryUpdated()
         {
+            RL.Logger?.LogTraceSource("Updating RRR mod directory");
             IsExePatched = CheckIsExePatched();
             CanDownloadPatchedBF = IsExePatched;
             IsPatchedBFDownloaded = CheckIsPatchedBFDownloaded();
@@ -547,10 +548,13 @@ namespace RayCarrot.RCP.Metro
 
         public async Task<GameVersion> DetermineGameVersionAsync()
         {
+            RL.Logger?.LogInformationSource("Determining RRR game version");
+
             FileSystemPath exe = ExeFilePath;
 
             if (!exe.FileExists)
             {
+                RL.Logger?.LogInformationSource("RRR exe does not exist");
                 await Services.MessageUI.DisplayMessageAsync(Resources.Mod_RRR_BFPatch_InvalidGameDir, MessageType.Error);
                 return GameVersion.Unknown;
             }
@@ -560,6 +564,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 fileSize = (long)exe.GetSize().Bytes;
+                RL.Logger?.LogInformationSource($"RRR exe size is {fileSize} bytes");
             }
             catch (Exception ex)
             {
@@ -571,6 +576,8 @@ namespace RayCarrot.RCP.Metro
             }
 
             GameVersion version = ExePatches.FirstOrDefault(x => x.Value.FileSize == fileSize).Key;
+
+            RL.Logger?.LogInformationSource($"RRR game version detected as {version}");
 
             if (version == GameVersion.Unknown)
                 await Services.MessageUI.DisplayMessageAsync(Resources.Mod_RRR_BFPatch_UnsupportedGameExe, MessageType.Error);
@@ -585,9 +592,9 @@ namespace RayCarrot.RCP.Metro
             bool? isOriginal = ExePatcher.GetIsOriginal();
 
             if (isOriginal == true)
-                RL.Logger?.LogInformationSource("RRR exe is patched");
-            else if (isOriginal == false)
                 RL.Logger?.LogInformationSource("RRR exe is not patched");
+            else if (isOriginal == false)
+                RL.Logger?.LogInformationSource("RRR exe is patched");
             else if (isOriginal == null)
                 RL.Logger?.LogInformationSource("Could not determine if RRR exe is patched");
             
@@ -612,6 +619,8 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
+                RL.Logger?.LogInformationSource("Patching RRR exe");
+
                 // Verify that the version is supported first
                 GameVersion version = await DetermineGameVersionAsync();
 
@@ -654,6 +663,8 @@ namespace RayCarrot.RCP.Metro
 
         public async Task DownloadPatchedBFAsync()
         {
+            RL.Logger?.LogInformationSource("Downloading patched RRR BF");
+
             // Determine the game version
             GameVersion version = await DetermineGameVersionAsync();
 
@@ -687,6 +698,8 @@ namespace RayCarrot.RCP.Metro
 
         public async Task RemovePatchedBFAsync()
         {
+            RL.Logger?.LogInformationSource("Removing patched RRR BF");
+
             try
             {
                 PatchedBFFilePath.DeleteFile();
@@ -707,6 +720,8 @@ namespace RayCarrot.RCP.Metro
 
         public void RefreshBFPatches()
         {
+            RL.Logger?.LogInformationSource("Refreshing RRR BF patches");
+
             if (!PatchedBFFilePath.FileExists)
             {
                 foreach (Mod_RRR_BFModToggleViewModel bfMod in BFModToggles)
@@ -743,6 +758,8 @@ namespace RayCarrot.RCP.Metro
 
         public async Task UpdatePatchedBFAsync()
         {
+            RL.Logger?.LogInformationSource("Updating patched RRR BF");
+
             try
             {
                 using Stream bfFileStream = File.Open(PatchedBFFilePath, FileMode.Open, FileAccess.ReadWrite, FileShare.Read);
@@ -776,6 +793,8 @@ namespace RayCarrot.RCP.Metro
 
         public async Task LaunchWithPatchedBFAsync()
         {
+            RL.Logger?.LogInformationSource("Launching RRR with patched BF");
+
             // Launch the game exe passing in the path to the patched BF
             (await RCPServices.File.LaunchFileAsync(ExeFilePath, arguments: PatchedBFFilePath.Name))?.Dispose();
         }
