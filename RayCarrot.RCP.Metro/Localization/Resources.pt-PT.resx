@@ -2756,7 +2756,7 @@ Error message: {1}</value>
   </data>
   <data name="About_Credits_Droolie" xml:space="preserve">
     <value>Engenharia Reversa do Rayman
-</value>
+, mod Rayman Raving Rabbids</value>
   </data>
   <data name="About_Credits_Hakyra" xml:space="preserve">
     <value>Programa de tradução Espanhola (Espanha),
@@ -3769,5 +3769,443 @@ Para instalar a aplicação manualmente, vai a {1} e descarrega a última versã
   </data>
   <data name="Utilities_R1E_Homepage" xml:space="preserve">
     <value>Mais informação</value>
+  </data>
+  <data name="Mod_RRR_Header" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="Mod_RRR_MemoryModsHeader" xml:space="preserve">
+    <value>Modificações de Memória</value>
+  </data>
+  <data name="Mod_RRR_MemoryModsInfo" xml:space="preserve">
+    <value>Activa no jogo características do protótipo removidas ao seleccionar as modificações que queres e depois aplicá-las. Isto requer que o jogo esteja a ser executado e só funciona nas versões do Steam e do GOG. Modificações aplicadas terão o seu efeito apenas quando o jogo estiver em execução e serão reiniciados quando fechado.</value>
+  </data>
+  <data name="Mod_RRR_ButtonMappingHeader" xml:space="preserve">
+    <value>Mapeamento de botões do teclado</value>
+  </data>
+  <data name="Mod_RRR_ButtonMappingToggle" xml:space="preserve">
+    <value>Utilizar o mapeamento de botões do teclado personalizados</value>
+  </data>
+  <data name="Mod_RRR_ApplyMemoryMod" xml:space="preserve">
+    <value>Aplicar ao jogo em execução</value>
+  </data>
+  <data name="Mod_RRR_BFModsHeader" xml:space="preserve">
+    <value>Modificações BF</value>
+  </data>
+  <data name="Mod_RRR_BFModsInfo" xml:space="preserve">
+    <value>Ficheiros .bf modificados. Estes irão apenas ser utilizados ao executar o jogo através da opção abaixo.</value>
+  </data>
+  <data name="Mod_RRR_GameDirHeader" xml:space="preserve">
+    <value>Directório do jogo</value>
+  </data>
+  <data name="Mod_RRR_ApplyExePatch" xml:space="preserve">
+    <value>Aplicar patch executável</value>
+  </data>
+  <data name="Mod_RRR_ApplyExePatchInfo" xml:space="preserve">
+    <value>O patch executável é requerido para os ficheiros BF com patch devido a uma limitação da memória</value>
+  </data>
+  <data name="Mod_RRR_RevertExePatch" xml:space="preserve">
+    <value>Reverter patch executável</value>
+  </data>
+  <data name="Mod_RRR_DownloadBFPatch" xml:space="preserve">
+    <value>Descarregar BF com patch</value>
+  </data>
+  <data name="Mod_RRR_RemoveBFPatch" xml:space="preserve">
+    <value>Remover BF que tem patch</value>
+  </data>
+  <data name="Mod_RRR_BFPatchesHeader" xml:space="preserve">
+    <value>Patches</value>
+  </data>
+  <data name="Mod_RRR_UpdateBFPatch" xml:space="preserve">
+    <value>Actualizar BF com patch</value>
+  </data>
+  <data name="Mod_RRR_LaunchBFPatch" xml:space="preserve">
+    <value>Executar com BF que tem patch</value>
+  </data>
+  <data name="ModsPageHeader" xml:space="preserve">
+    <value>Modificações</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MainHeader" xml:space="preserve">
+    <value>Principal</value>
+  </data>
+  <data name="Mod_RRR_MemMod_EnableProtoFeatures" xml:space="preserve">
+    <value>Activar características dos protótipos</value>
+  </data>
+  <data name="Mod_RRR_MemMod_EnableProtoFeaturesInfo" xml:space="preserve">
+    <value>O comportamento protótipo do Rayman é activado em todos os níveis</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddCamControls" xml:space="preserve">
+    <value>Adicionar controlos de câmara</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddCamControlsInfo" xml:space="preserve">
+    <value>Os controlos de câmara estão mapeados com o analógico direito</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddDuel" xml:space="preserve">
+    <value>Adicionar Duel, o minijogo perdido</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddDuelInfo" xml:space="preserve">
+    <value>"Bunnies are shooting all over the place" substitui "Bunnies don't milk cows part 2". Joga-o em multijogador!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddPlaytestMenu" xml:space="preserve">
+    <value>Activar menu playtest</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddPlaytestMenuInfo" xml:space="preserve">
+    <value>Não recomendado. O menu playtest substitui a selecção do tipo de jogo, mas tu não podes pausar ou sair dos níveis carregados.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RaymanHeader" xml:space="preserve">
+    <value>Rayman Raving Rabbids</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RaymanInfo" xml:space="preserve">
+    <value>Para um comando Xbox 360, os controlos estão mapeados da seguinte maneira:
+A: Saltar / Manter pressionado no ar para utilizar o helicóptero
+X: Atacar
+Y: Utilizar o gancho-garra
+LB: Activar luz / Manter pressionado para controlar o tempo de dança se activado
+LT: Modo de observação se activado
+RB: Atacar / Pressionar ou manter pressionado para utilizar os finalizadores se activado
+RT: Rolar de desvio / Bater no chão / Rolar e saltar múltiplas vezes para impulsionar se activado
+D-Pad Cima: Activar/Desactivar modo de dança. No modo de dança, pressiona ABXY ou usa o analógico esquerdo para realizar movimentos de dança
+Analógico esquerdo: Mover Rayman
+Analógico direito: Controlos de câmara se activados
+Back: Modo noclip
+Start: Pausa</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddLookMode" xml:space="preserve">
+    <value>Adicionar modo de observação</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddLookModeInfo" xml:space="preserve">
+    <value>Um modo de observação em primeira-pessoa é acrescentado e activado no LT</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddBoostButton" xml:space="preserve">
+    <value>Adicionar botão de impulso</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddBoostButtonInfo" xml:space="preserve">
+    <value>Normalmente reservado a um item não presente no jogo, pressionar RT fará com que o Rayman corra muito depressa e possibilitar ataques de velocidade</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddFinishers" xml:space="preserve">
+    <value>Adicionar finalizadores</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AddFinishersInfo" xml:space="preserve">
+    <value>Manter ou pressionar RB para acrescentar finalizadores nos teus combos</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ClimbWalls" xml:space="preserve">
+    <value>Trepar paredes</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ClimbWallsInfo" xml:space="preserve">
+    <value>Permite que o Rayman se segure em qualquer parede ao utilizar o seu gancho</value>
+  </data>
+  <data name="Mod_RRR_MemMod_HangFromSpots" xml:space="preserve">
+    <value>Pendurar através de pontos de segurar</value>
+  </data>
+  <data name="Mod_RRR_MemMod_HangFromSpotsInfo" xml:space="preserve">
+    <value>Quebra o comportamento do gancho mas activa um sistema quebrado para utilizar o gancho como corda para segurar e saltar de</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX" xml:space="preserve">
+    <value>Alterar gráficos do gancho</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFXInfo" xml:space="preserve">
+    <value>Activa aspectos ainda mais antigos para o gancho do Rayman</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_0" xml:space="preserve">
+    <value>Linha</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_1" xml:space="preserve">
+    <value>Iluminação</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_2" xml:space="preserve">
+    <value>Faíscas</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_3" xml:space="preserve">
+    <value>Corda</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GrappinGFX_4" xml:space="preserve">
+    <value>Nenhum</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UpgradedPowers" xml:space="preserve">
+    <value>Poderes melhorados</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UpgradedPowersInfo" xml:space="preserve">
+    <value>Permite que o Rayman utilize o helicóptero por mais tempo e, se o Trepar paredes estiver activo, segurar as paredes infinitamente</value>
+  </data>
+  <data name="Mod_RRR_MemMod_Immortal" xml:space="preserve">
+    <value>Imortal</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ImmortalInfo" xml:space="preserve">
+    <value>Uma batota de desenvolvedor - O Rayman não morre</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ControlTempo" xml:space="preserve">
+    <value>Dança: Controlar Tempo</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ControlTempoInfo" xml:space="preserve">
+    <value>Em modo de dança, manter pressionado LB vai iniciar uma batida para o Rayman poder dançar</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GroovyMoveset" xml:space="preserve">
+    <value>Dança: Moveset Groovy</value>
+  </data>
+  <data name="Mod_RRR_MemMod_GroovyMovesetInfo" xml:space="preserve">
+    <value>O Rayman utiliza movimentos de dança diferentes</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SetCostume" xml:space="preserve">
+    <value>Utilizar disfarce seleccionado</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SetCostumeInfo" xml:space="preserve">
+    <value>O disfarce do Rayman irá sempre ser baseado no fato seleccionado do jogador no menu</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableIntros" xml:space="preserve">
+    <value>Desactivar introduções dos minijogos</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableIntrosInfo" xml:space="preserve">
+    <value>Os cinemáticos das introduções dos minijogos mudam o estado do mundo e às vezes desactivam o Rayman (Ex. Bunnies don't give gifts)</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableFootstepSound" xml:space="preserve">
+    <value>Desactivar som de passo</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DisableFootstepSoundInfo" xml:space="preserve">
+    <value>Se as modificações BF não estão activadas, o som do passo do Rayman poderá ser irritante na maior parte das áreas - Utiliza esta opção para o desligar</value>
+  </data>
+  <data name="Mod_RRR_MemMod_LessSlippery" xml:space="preserve">
+    <value>Fazer com que o Rayman se torne menos escorregadio</value>
+  </data>
+  <data name="Mod_RRR_MemMod_LessSlipperyInfo" xml:space="preserve">
+    <value>O Rayman sente-te escorregadio por defeito, isto melhora ligeiramente isso</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DrawHealthMana" xml:space="preserve">
+    <value>Activar visualização de saúde &amp; mana</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DrawHealthManaInfo" xml:space="preserve">
+    <value>Sempre que o Rayman realize um ataque especial ou é atingido, os seus pontos de saúde e Mana serão exibidos</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RabbidsHeader" xml:space="preserve">
+    <value>Rabbids</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RabbidsDropItems" xml:space="preserve">
+    <value>Rabbids deixam cair itens</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RabbidsDropItemsInfo" xml:space="preserve">
+    <value>Rabbids deixam cair os seus itens para o Rayman os usar</value>
+  </data>
+  <data name="Mod_RRR_MemMod_IncreasedRabbidHP" xml:space="preserve">
+    <value>Pontos de saúde do inimigo aumentados</value>
+  </data>
+  <data name="Mod_RRR_MemMod_IncreasedRabbidHPInfo" xml:space="preserve">
+    <value>Cada Rabbid tem 100 pontos de saúde</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RandomProtoRabbidPowers" xml:space="preserve">
+    <value>Os Rabbids recebem poderes aleatórios do protótipo</value>
+  </data>
+  <data name="Mod_RRR_MemMod_RandomProtoRabbidPowersInfo" xml:space="preserve">
+    <value>Alguns Rabbods são dados um dos 4 poderes protótipo. Descobre-os enquanto jogas!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MountsHeader" xml:space="preserve">
+    <value>Montes</value>
+  </data>
+  <data name="Mod_RRR_MemMod_TameMounts" xml:space="preserve">
+    <value>Domar montagens</value>
+  </data>
+  <data name="Mod_RRR_MemMod_TameMountsInfo" xml:space="preserve">
+    <value>As montagens tornam-se controláveis quando os montas na primeira volta</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatsActLikeEagles" xml:space="preserve">
+    <value>Morcegos agem como águias</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatsActLikeEaglesInfo" xml:space="preserve">
+    <value>Os morcegos tornam-se enormes e agem como a águia com diferentes animações </value>
+  </data>
+  <data name="Mod_RRR_MemMod_PigsActLikePlums" xml:space="preserve">
+    <value>Porcos agem como ameixas</value>
+  </data>
+  <data name="Mod_RRR_MemMod_PigsActLikePlumsInfo" xml:space="preserve">
+    <value>Os porcos utilizam o comportamento da ameixa e tornam-se muito saltitões. Tenta atirá-los às cabeças dos Rabbids!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AggressiveRhinos" xml:space="preserve">
+    <value>Os rinocerontes tornam-se agressivos</value>
+  </data>
+  <data name="Mod_RRR_MemMod_AggressiveRhinosInfo" xml:space="preserve">
+    <value>Os rinocerontes das corridas vão atacar-te. Prepara-te para morrer (ou usa a batota imortal)!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SpiderJump" xml:space="preserve">
+    <value>Os robôs aranha podem saltar</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SpiderJumpInfo" xml:space="preserve">
+    <value>Quando a montar os robôs tipo-aranha podes saltar como as aranhas podiam no protótipo</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatShoot" xml:space="preserve">
+    <value>Os morcegos podem disparar</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BatShootInfo" xml:space="preserve">
+    <value>Os morcegos podem disparar projectéis com o botão de ataque</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SaucersStartFlying" xml:space="preserve">
+    <value>Os discos começam a voar</value>
+  </data>
+  <data name="Mod_RRR_MemMod_SaucersStartFlyingInfo" xml:space="preserve">
+    <value>Os discos podem ser encontrados a voar à volta, mas isto faz com que sejam mais difíceis de montar</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BunnyHuntsHeader" xml:space="preserve">
+    <value>Caça ao coelho</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MissileLaunchersTarget" xml:space="preserve">
+    <value>Os lançadores de mísseis têm o Rayman na mira</value>
+  </data>
+  <data name="Mod_RRR_MemMod_MissileLaunchersTargetInfo" xml:space="preserve">
+    <value>Os mísseis vão ter o Rayman na mira, mas 1 golpe deles vai matar o Rayman!</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DontDestroyBipods" xml:space="preserve">
+    <value>Não destruir bipods</value>
+  </data>
+  <data name="Mod_RRR_MemMod_DontDestroyBipodsInfo" xml:space="preserve">
+    <value>A maioria dos bipods colapsam por defeito quando não estão em modo FPS. Isto previne-os de serem destruídos.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ActivatorTriggers" xml:space="preserve">
+    <value>Activar todos os triggers de activação</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ActivatorTriggersInfo" xml:space="preserve">
+    <value>Força todos os triggers de activação a serem constantemente verdadeiros. Causa caos em tantos nívels e gera muitos mais inimigos (e Globox bebés)</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BoundingVolumeTriggers" xml:space="preserve">
+    <value>Activar todos os triggers de volume de activação</value>
+  </data>
+  <data name="Mod_RRR_MemMod_BoundingVolumeTriggersInfo" xml:space="preserve">
+    <value>Alguns triggers de geradores de Rabbids são difíceis de alcançar. Isto activa-os, mas cuidado, isto provoca crashes em vários níveis!</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_0" xml:space="preserve">
+    <value>Saltar</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_4" xml:space="preserve">
+    <value>Atacar</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_6" xml:space="preserve">
+    <value>Gancho de garra</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_8" xml:space="preserve">
+    <value>Luz/Tempo</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_10" xml:space="preserve">
+    <value>Atacar (Terminar)</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_12" xml:space="preserve">
+    <value>Modo de observação</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_14" xml:space="preserve">
+    <value>Rolar/Bater em terra</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_16" xml:space="preserve">
+    <value>No-clip</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_18" xml:space="preserve">
+    <value>Pausa</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_24" xml:space="preserve">
+    <value>Activar/Desactivar dança</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_28" xml:space="preserve">
+    <value>Caminhar</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_FixSounds" xml:space="preserve">
+    <value>Corrigir efeitos sonoros</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer" xml:space="preserve">
+    <value>Mudar personagem jogável</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_BabyGlobox" xml:space="preserve">
+    <value>Baby Globox</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_Serguei" xml:space="preserve">
+    <value>Serguei</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_Rabbid" xml:space="preserve">
+    <value>Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_LeaderRabbid" xml:space="preserve">
+    <value>Grey Leader Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_SupermanRabbid" xml:space="preserve">
+    <value>Superman Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_TerminatorRabbid" xml:space="preserve">
+    <value>Terminator Rabbid (Rosa)</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_SamFisherRabbid" xml:space="preserve">
+    <value>Sam Fisher Rabbid</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ChangePlayer_NurgleDemon" xml:space="preserve">
+    <value>Nurgle Demon</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_BatSoundLikeEagle" xml:space="preserve">
+    <value>Fazer com que o morcego soe como uma águia</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_SpiderRobotSoundLikeSpider" xml:space="preserve">
+    <value>Fazer com que o robô aranha soe como uma aranha</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_CustomHelicoTexture" xml:space="preserve">
+    <value>Adicionar textura personalizada do helicóptero</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RabbidsFur" xml:space="preserve">
+    <value>Adicionar pelo aos Rabbids</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_Flashlight" xml:space="preserve">
+    <value>Activar lanterna (Activar com LB)</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_FlashlightMines" xml:space="preserve">
+    <value>Adicionar lanterna a Bunnies Love Digging Tunnels</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RabbidItems" xml:space="preserve">
+    <value>Adicionar itens inutilizados dos Rabbids ao Bunnies Aren't Scared Of The Dark</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ApplySuccess" xml:space="preserve">
+    <value>Patch de memória aplicado com sucesso</value>
+  </data>
+  <data name="Mod_RRR_MemMod_ApplyError" xml:space="preserve">
+    <value>O patch de memória não pode ser aplicado</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_InvalidGameDir" xml:space="preserve">
+    <value>O directório de instalação do jogo é inválido</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_DetermineGameVerError" xml:space="preserve">
+    <value>Impossível de determinar a versão do jogo</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_UnsupportedGameExe" xml:space="preserve">
+    <value>A versão do jogo não é suportada</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ApplyExePatchSuccess" xml:space="preserve">
+    <value>O executável foi corrigido com sucesso</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RevertExePatchSuccess" xml:space="preserve">
+    <value>O patch executável foi revertido com sucesso</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_ApplyExePatchError" xml:space="preserve">
+    <value>Ocorreu um erro ao corrigir o executável</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RemovePatchedBFSuccess" xml:space="preserve">
+    <value>O ficheiro BF com patch foi removido</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_RemovePatchedBFError" xml:space="preserve">
+    <value>Impossível remover o ficheiro BF com patch</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_UpdatePatchedBFSuccess" xml:space="preserve">
+    <value>O ficheiro BF com patch foi actualizado com sucesso</value>
+  </data>
+  <data name="Mod_RRR_BFPatch_UpdatePatchedBFError" xml:space="preserve">
+    <value>Ocorreu um erro ao actualizar o ficheiro BF com patch</value>
+  </data>
+  <data name="Mod_RRR_MemMod_NoInstaKill" xml:space="preserve">
+    <value>Reduzir dano obtido</value>
+  </data>
+  <data name="Mod_RRR_MemMod_NoInstaKillInfo" xml:space="preserve">
+    <value>Em vez de morrer instantâneamente, o Rayman irá agora morrer depois de 4 golpes</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UnlockAllMinigames" xml:space="preserve">
+    <value>Desbloquear tudo</value>
+  </data>
+  <data name="Mod_RRR_MemMod_UnlockAllMinigamesInfo" xml:space="preserve">
+    <value>Uma batota de desenvolvedor. Tudo é desbloqueado no modo de pontuação e da secção bonus independentemente do teu progresso no jogo.</value>
+  </data>
+  <data name="Mod_RRR_MemMod_CheatPage" xml:space="preserve">
+    <value>Definir página de batota</value>
+  </data>
+  <data name="Mod_RRR_MemMod_CheatPageInfo" xml:space="preserve">
+    <value>Mostra várias informações de debug</value>
+  </data>
+  <data name="Mod_RRR_KeyAction_2" xml:space="preserve">
+    <value>Modo de dança: Virar</value>
   </data>
 </root>
