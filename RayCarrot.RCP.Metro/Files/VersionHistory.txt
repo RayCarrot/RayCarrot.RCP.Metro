@@ -4,6 +4,7 @@
 
 Other changes:
 • Updated the browse button icon to be outlined, matching the rest of the icons
+• Minor layout changes to the about page such as adding more space between the credits lines
 • Updated the save file backup for the Steam version of Rayman Raving Rabbids to include the VirtualStore redirected save location
 
 

@@ -12,42 +12,57 @@
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignWidth="800" d:DataContext="{d:DesignInstance local:AboutPageViewModel}">
-    <ScrollViewer Padding="15">
-        <Grid MaxWidth="800">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+    <Grid MaxWidth="800" Margin="15 8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="0">
-                <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="0 15" />
-                </i:Interaction.Behaviors>
+        <!-- App Info -->
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Margin="{StaticResource DefaultVerticalStackMargin}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0"
-                               FontSize="14"
-                               Text="{Resx About_ProgramInfo}"
-                               TextWrapping="WrapWithOverflow" />
+            <TextBlock Grid.Column="0"
+                       FontSize="14"
+                       Text="{Resx About_ProgramInfo}"
+                       TextWrapping="WrapWithOverflow" />
 
-                    <Image Grid.Column="1"
-                           Margin="10"
-                           Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/Splash Screen.png"
-                           Height="128" Width="128" />
+            <Image Grid.Column="1"
+                   Margin="10"
+                   Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/Splash Screen.png"
+                   Height="128" Width="128" />
 
-                </Grid>
+        </Grid>
 
-                <TextBlock Text="{Resx About_Credits}"
-                           Style="{StaticResource LargeHeaderTextBlock}"
-                           HorizontalAlignment="Center" />
+        <!-- Credits Header -->
+
+        <TextBlock Grid.Row="1"
+                   Margin="{StaticResource DefaultVerticalStackMargin}"
+                   Text="{Resx About_Credits}"
+                   Style="{StaticResource LargeHeaderTextBlock}"
+                   HorizontalAlignment="Center" />
+
+        <!-- Credits -->
+
+        <ScrollViewer Grid.Row="2" Margin="{StaticResource DefaultVerticalStackMargin}">
+
+            <StackPanel>
 
                 <ItemsControl HorizontalAlignment="Center"
                               Grid.IsSharedSizeScope="True">
+
+                    <ItemsControl.Resources>
+                        <Style TargetType="{x:Type local:DuoGridItem}"
+                               BasedOn="{StaticResource {x:Type local:DuoGridItem}}">
+                            <Setter Property="Margin" Value="0 0 0 4" />
+                        </Style>
+                    </ItemsControl.Resources>
 
                     <local:DuoGridItem Header="RayCarrot"
                                        Text="{Resx About_Credits_RayCarrot}" />
@@ -106,6 +121,7 @@
                 </ItemsControl>
 
                 <TextBlock Text="{Resx About_SpecialThanks}"
+                           Margin="0 8 0 0"
                            MaxWidth="600"
                            TextAlignment="Center"
                            TextWrapping="Wrap"
@@ -113,11 +129,19 @@
 
             </StackPanel>
 
-            <StackPanel Grid.Row="1"
-                        Margin="10"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Bottom">
+        </ScrollViewer>
+
+        <!-- Bottom Bar -->
+
+        <Grid Grid.Row="3" Margin="8 8 8 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0"
+                        Orientation="Horizontal">
 
                 <local:IconButton IconKind="TooltipTextOutline"
                                   ToolTip="{Resx About_UpdateHistory}"
@@ -135,7 +159,8 @@
 
             </StackPanel>
 
-            <StackPanel Grid.Row="1"
+            <StackPanel Grid.Column="1"
+                        HorizontalAlignment="Center"
                         VerticalAlignment="Bottom">
 
                 <TextBlock Text="{Binding Path=App.CurrentAppVersion, Mode=OneTime, FallbackValue=UnknownVersion}"
@@ -147,10 +172,8 @@
 
             </StackPanel>
 
-            <StackPanel Grid.Row="1"
-                        Margin="10"
+            <StackPanel Grid.Column="2"
                         Orientation="Horizontal"
-                        HorizontalAlignment="Right"
                         VerticalAlignment="Bottom">
 
                 <local:IconButton IconKind="Github"
@@ -165,7 +188,7 @@
 
                 <local:IconButton IconKind="Youtube"
                                   ToolTip="{Resx About_YouTube}"
-                                  Foreground="Red"
+                                  Foreground="#FF0000"
                                   Command="{Binding Path=OpenUrlCommand}"
                                   CommandParameter="{x:Static local:CommonUrls.YouTubeUrl}" />
 
@@ -177,12 +200,13 @@
 
                 <local:IconButton IconKind="EmailOutline"
                                   ToolTip="{Resx About_Email}"
-                                  Foreground="Purple"
+                                  Foreground="#8E24AA"
                                   Command="{Binding Path=OpenUrlCommand}"
                                   CommandParameter="{x:Static local:CommonUrls.EmailUrl}" />
 
             </StackPanel>
 
         </Grid>
-    </ScrollViewer>
+
+    </Grid>
 </local:BasePage>
