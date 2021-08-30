@@ -31,8 +31,15 @@ namespace RayCarrot.RCP.Metro
 
         private void DataGrid_OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            // Temporary solution for scrolling over data grid
-            ScrollViewer?.ScrollToVerticalOffset(ScrollViewer.ContentVerticalOffset - (e.Delta / 2d));
+            // Redirect the mouse wheel movement to allow scrolling
+
+            var eventArg = new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta)
+            {
+                RoutedEvent = MouseWheelEvent, Source = e.Source
+            };
+
+            ScrollViewer?.RaiseEvent(eventArg);
+            e.Handled = true;
         }
 
         private void HotKeyBox_OnKeyDown(object sender, KeyEventArgs e)
