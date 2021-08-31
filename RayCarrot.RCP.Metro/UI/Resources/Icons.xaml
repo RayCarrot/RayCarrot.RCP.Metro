@@ -1,0 +1,81 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
+
+    <!-- Icons -->
+
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Games">GamepadVariantOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Backup">BackupRestore</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities">BriefcaseOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Mods">CircleEditOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Settings">CogOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Help">HelpCircleOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Info">InformationOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Debug">CodeBraces</iconPacks:PackIconMaterialKind>
+
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_ArchiveExplorer">FolderMultipleOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Converters">SwapVertical</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Decoders">LockOpenOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_Other">Buffer</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Utilities_ExternalTools">Launch</iconPacks:PackIconMaterialKind>
+
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Settings_ArchiveExplorer">FolderCogOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.Settings_Emulator">FileCogOutline</iconPacks:PackIconMaterialKind>
+    
+    <iconPacks:PackIconMaterialKind x:Key="Icons.GameOptions_Config">WrenchOutline</iconPacks:PackIconMaterialKind>
+    <iconPacks:PackIconMaterialKind x:Key="Icons.GameOptions_Progression">TrophyVariantOutline</iconPacks:PackIconMaterialKind>
+
+    <!-- Colors -->
+
+    <SolidColorBrush x:Key="Colors.Games" Color="#9C27B0" />
+    <SolidColorBrush x:Key="Colors.OtherGames" Color="#00BCD4" />
+    <SolidColorBrush x:Key="Colors.Progression" Color="#E91E63" />
+    <SolidColorBrush x:Key="Colors.Utilities" Color="#4CAF50" />
+    <SolidColorBrush x:Key="Colors.Mods" Color="#673AB7" />
+    <SolidColorBrush x:Key="Colors.Settings" Color="#FFC107" />
+    <SolidColorBrush x:Key="Colors.Help" Color="#F44336" />
+    <SolidColorBrush x:Key="Colors.Info" Color="#2196F3" />
+    <SolidColorBrush x:Key="Colors.Debug" Color="#9E9E9E" />
+    <SolidColorBrush x:Key="Colors.ArchiveExplorer" Color="#FF9800" />
+    <SolidColorBrush x:Key="Colors.Emulator" Color="#FFEB3B" />
+    <SolidColorBrush x:Key="Colors.GameConfig" Color="#3F51B5" />
+
+    <!-- Generic Icons (used from C# code) -->
+
+    <local:GenericIcon x:Key="GenericIcons.Games" 
+                       IconKind="{StaticResource Icons.Games}" 
+                       IconColor="{StaticResource Colors.Games}" />
+    <local:GenericIcon x:Key="GenericIcons.Games_Rayman" 
+                       IconKind="{StaticResource Icons.Games}" 
+                       IconColor="{StaticResource Colors.Games}" />
+    <local:GenericIcon x:Key="GenericIcons.Games_Rabbids" 
+                       IconKind="{StaticResource Icons.Games}" 
+                       IconColor="{StaticResource Colors.Games}" />
+    <local:GenericIcon x:Key="GenericIcons.Games_Demos" 
+                       IconKind="{StaticResource Icons.Games}" 
+                       IconColor="{StaticResource Colors.OtherGames}" />
+    <local:GenericIcon x:Key="GenericIcons.Games_Other" 
+                       IconKind="{StaticResource Icons.Games}" 
+                       IconColor="{StaticResource Colors.OtherGames}" />
+    <local:GenericIcon x:Key="GenericIcons.Games_FanGames" 
+                       IconKind="{StaticResource Icons.Games}" 
+                       IconColor="{StaticResource Colors.OtherGames}" />
+
+    <local:GenericIcon x:Key="GenericIcons.GameOptions_General" 
+                       IconKind="{StaticResource Icons.Settings}" 
+                       IconColor="{StaticResource Colors.Settings}" />
+    <local:GenericIcon x:Key="GenericIcons.GameOptions_Progression" 
+                       IconKind="{StaticResource Icons.GameOptions_Progression}"
+                       IconColor="{StaticResource Colors.Progression}" />
+    <local:GenericIcon x:Key="GenericIcons.GameOptions_Config" 
+                       IconKind="{StaticResource Icons.GameOptions_Config}"
+                       IconColor="{StaticResource Colors.GameConfig}" />
+    <local:GenericIcon x:Key="GenericIcons.GameOptions_Emulator" 
+                       IconKind="{StaticResource Icons.Settings_Emulator}"
+                       IconColor="{StaticResource Colors.Emulator}" />
+    <local:GenericIcon x:Key="GenericIcons.GameOptions_Utilities" 
+                       IconKind="{StaticResource Icons.Utilities}"
+                       IconColor="{StaticResource Colors.Utilities}" />
+    
+</ResourceDictionary>

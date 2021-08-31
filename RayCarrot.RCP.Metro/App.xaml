@@ -19,6 +19,8 @@
 
                 <!-- Local -->
 
+                <ResourceDictionary Source="UI/Resources/Icons.xaml" />
+
                 <ResourceDictionary Source="UI/Styles/UnifiedMargins.xaml" />
                 <ResourceDictionary Source="UI/Styles/InfoIconStyles.xaml" />
                 <ResourceDictionary Source="UI/Styles/TextStyles.xaml" />

@@ -22,12 +22,6 @@
         <Setter Property="HorizontalAlignment" Value="Left" />
     </Style>-->
 
-    <!-- Tab item with no padding -->
-
-    <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
-        <Setter Property="Padding" Value="0" />
-    </Style>
-
     <!-- Tab control with underline -->
 
     <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource {x:Type TabControl}}">
@@ -103,27 +97,66 @@
 
     <Style TargetType="{x:Type mah:MetroAnimatedTabControl}" BasedOn="{StaticResource {x:Type mah:MetroAnimatedTabControl}}">
         <Setter Property="mah:TabControlHelper.Transition" Value="{Binding Source={x:Static local:RCPServices.Data}, Path=EnableAnimations, Converter={local:BooleanToTransitionTypeConverter}}" />
+        <Setter Property="mah:TabControlHelper.Underlined" Value="TabItems" />
     </Style>
 
-    <!-- Default RCP tab item -->
+    <!-- Default tab item -->
 
-    <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+    <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="local:TabItemProperties.HeaderFontSize" Value="16" />
+        <Setter Property="local:TabItemProperties.IconForeground" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
+        <Setter Property="mah:TabControlHelper.UnderlineSelectedBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
+        <Setter Property="mah:TabControlHelper.UnderlineBrush" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
+        <Setter Property="mah:TabControlHelper.UnderlineMouseOverBrush" Value="{DynamicResource MahApps.Brushes.Gray.MouseOver}" />
+        <Setter Property="mah:TabControlHelper.UnderlineMouseOverSelectedBrush" Value="{DynamicResource MahApps.Brushes.Highlight}" />
         <Setter Property="HeaderTemplate">
             <Setter.Value>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal"
-                                Margin="5 2"
-                                DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:RCPTabItem}}}">
+                                Margin="8 2"
+                                DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}}">
 
-                        <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
-                                                    Margin="10 0"
+                        <iconPacks:PackIconMaterial Kind="{Binding Path=(local:TabItemProperties.IconKind)}"
+                                                    Foreground="{Binding Path=(local:TabItemProperties.IconForeground)}"
+                                                    Margin="0 0 7 0"
                                                     VerticalAlignment="Center"
-                                                    Visibility="{Binding Path=IconVisibility}" />
+                                                    Visibility="{Binding Path=(local:TabItemProperties.IconVisibility)}" />
 
-                        <ContentControl ContentStringFormat="{Binding Path=HeaderStringFormat}" 
-                                        FontSize="{Binding Path=HeaderFontSize}"
+                        <ContentControl x:Name="TabItemHeaderContent" 
+                                        ContentStringFormat="{Binding Path=HeaderStringFormat}" 
+                                        FontSize="{Binding Path=(local:TabItemProperties.HeaderFontSize)}"
                                         Content="{Binding Path=Header}"
-                                        VerticalAlignment="Center" />
+                                        VerticalAlignment="Center">
+
+                            <ContentControl.Style>
+                                <Style TargetType="{x:Type ContentControl}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IsSelected}" Value="True">
+                                            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=IsSelected}" Value="False">
+                                            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
+                                        </DataTrigger>
+
+                                        <!-- Need to find ancestor for the mouse over to get the border containing the tab header 
+                                             and underline: https://github.com/MahApps/MahApps.Metro/blob/develop/src/MahApps.Metro/Styles/Controls.TabControl.xaml#L119 -->
+                                        <DataTrigger Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}}}" Value="True">
+                                            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray.MouseOver}" />
+                                        </DataTrigger>
+
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}}}" Value="True" />
+                                                <Condition Binding="{Binding Path=IsSelected}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Highlight}" />
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ContentControl.Style>
+
+                        </ContentControl>
 
                     </StackPanel>
                 </DataTemplate>
@@ -131,10 +164,10 @@
         </Setter>
     </Style>
 
-    <!-- Small Tab Item -->
+    <!-- Large Tab Item -->
 
-    <Style x:Key="SmallTabItem" TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource {x:Type local:RCPTabItem}}">
-        <Setter Property="HeaderFontSize" Value="16" />
+    <Style x:Key="LargeTabItem" TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+        <Setter Property="local:TabItemProperties.HeaderFontSize" Value="24" />
     </Style>
 
     <!-- Default Menu Item Icon -->
@@ -174,9 +207,9 @@
         </Setter>
     </Style>
 
-    <!-- Small Tab Panel -->
+    <!-- Default Tab Panel -->
 
-    <Style x:Key="SmallTabPanel" TargetType="{x:Type TabPanel}">
+    <Style TargetType="{x:Type TabPanel}">
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="Margin" Value="0 5 0 10" />
     </Style>

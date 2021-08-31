@@ -70,15 +70,11 @@
                 <rwpf:FocusElementOnLoad />
             </i:Interaction.Behaviors>
 
-            <metro:MetroAnimatedTabControl.Resources>
-                <Style TargetType="{x:Type TabPanel}" BasedOn="{StaticResource SmallTabPanel}" />
-                <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
-            </metro:MetroAnimatedTabControl.Resources>
-
             <!-- General -->
 
-            <local:RCPTabItem IconKind="CogOutline"
-                              Header="{Resx Settings_GeneralHeader}">
+            <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Settings}"
+                     local:TabItemProperties.IconForeground="{StaticResource Colors.Settings}"
+                     Header="{Resx Settings_GeneralHeader}">
 
                 <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
@@ -309,12 +305,13 @@
 
                 </StackPanel>
 
-            </local:RCPTabItem>
+            </TabItem>
 
             <!-- Archive Explorer -->
 
-            <local:RCPTabItem IconKind="FolderCogOutline"
-                              Header="{Resx Archive_Title}">
+            <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Settings_ArchiveExplorer}"
+                     local:TabItemProperties.IconForeground="{StaticResource Colors.ArchiveExplorer}"
+                     Header="{Resx Archive_Title}">
 
                 <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
@@ -431,12 +428,13 @@
 
                 </StackPanel>
 
-            </local:RCPTabItem>
+            </TabItem>
 
             <!-- DOSBox -->
 
-            <local:RCPTabItem IconKind="FileCogOutline"
-                              Header="{Resx Settings_DosBoxHeader}">
+            <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Settings_ArchiveExplorer}"
+                     local:TabItemProperties.IconForeground="{StaticResource Colors.Emulator}"
+                     Header="{Resx Settings_DosBoxHeader}">
 
                 <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
@@ -494,24 +492,26 @@
 
                 </StackPanel>
 
-            </local:RCPTabItem>
+            </TabItem>
 
             <!-- Links -->
 
-            <local:RCPTabItem IconKind="Link"
-                              Header="{Resx LinksPageHeader}">
+            <TabItem local:TabItemProperties.IconKind="Link"
+                     local:TabItemProperties.IconForeground="{StaticResource Colors.Info}"
+                     Header="{Resx LinksPageHeader}">
 
                 <ItemsControl Margin="2 0"
                               Style="{DynamicResource LinkItemsDisplay}"
                               ItemsSource="{Binding Path=LocalLinkItems, Mode=OneTime, IsAsync=True}"/>
 
-            </local:RCPTabItem>
+            </TabItem>
 
             <!-- Debug -->
 
-            <local:RCPTabItem IconKind="CodeBraces"
-                              Header="{Resx DebugPageHeader}"
-                              rwpf:UserLevelTag.MinUserLevel="Debug">
+            <TabItem local:TabItemProperties.IconKind="CodeBraces"
+                     local:TabItemProperties.IconForeground="{StaticResource Colors.Debug}"
+                     Header="{Resx DebugPageHeader}"
+                     rwpf:UserLevelTag.MinUserLevel="Debug">
 
                 <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
@@ -559,7 +559,7 @@
 
                 </StackPanel>
 
-            </local:RCPTabItem>
+            </TabItem>
 
         </metro:MetroAnimatedTabControl>
     </ScrollViewer>

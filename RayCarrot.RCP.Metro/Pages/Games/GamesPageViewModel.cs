@@ -38,11 +38,11 @@ namespace RayCarrot.RCP.Metro
                 new GameCategoryViewModel(App.GetGames), 
                 
                 // Create the categories
-                new GameCategoryViewModel(games[GameCategory.Rayman], new LocalizedString(() => Resources.GamesPage_Category_Rayman), PackIconMaterialKind.GamepadVariantOutline), 
-                new GameCategoryViewModel(games[GameCategory.Rabbids], new LocalizedString(() => Resources.GamesPage_Category_Rabbids), PackIconMaterialKind.GamepadVariantOutline), 
-                new GameCategoryViewModel(games[GameCategory.Demo], new LocalizedString(() => Resources.GamesPage_Category_Demos), PackIconMaterialKind.ShoppingMusic),
-                new GameCategoryViewModel(games[GameCategory.Other], new LocalizedString(() => Resources.GamesPage_Category_Other), PackIconMaterialKind.Buffer), 
-                new GameCategoryViewModel(games[GameCategory.Fan], new LocalizedString(() => Resources.GamesPage_Category_Fan), PackIconMaterialKind.Earth),
+                new GameCategoryViewModel(games[GameCategory.Rayman], new LocalizedString(() => Resources.GamesPage_Category_Rayman), GenericIconKind.Games_Rayman), 
+                new GameCategoryViewModel(games[GameCategory.Rabbids], new LocalizedString(() => Resources.GamesPage_Category_Rabbids), GenericIconKind.Games_Rabbids), 
+                new GameCategoryViewModel(games[GameCategory.Demo], new LocalizedString(() => Resources.GamesPage_Category_Demos), GenericIconKind.Games_Demos),
+                new GameCategoryViewModel(games[GameCategory.Other], new LocalizedString(() => Resources.GamesPage_Category_Other), GenericIconKind.Games_Other), 
+                new GameCategoryViewModel(games[GameCategory.Fan], new LocalizedString(() => Resources.GamesPage_Category_Fan), GenericIconKind.Games_FanGames),
             };
 
             // Create commands

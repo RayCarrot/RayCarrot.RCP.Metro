@@ -390,7 +390,7 @@
     <Compile Include="UI\Controls\OverflowMenu.xaml.cs">
       <DependentUpon>OverflowMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Controls\RCPTabItem.cs" />
+    <Compile Include="UI\AttachedProperties\TabItemProperties.cs" />
     <Compile Include="UI\Converters\GameModeToDisplayNameConverter.cs" />
     <Compile Include="UI\Converters\AppendSpacesToStringConverter.cs" />
     <Compile Include="UI\Converters\BooleanToTransitionTypeConverter.cs" />
@@ -539,6 +539,10 @@
     <Compile Include="ViewModels\OptionsPages\GameOptions_OptionsPageViewModel.cs" />
     <Compile Include="ViewModels\OptionsPages\GameOptions_ProgressionPageViewModel.cs" />
     <Compile Include="ViewModels\OptionsPages\GameOptions_UtilitiesPageViewModel.cs" />
+    <Compile Include="UI\GenericIcon\GenericIcon.cs" />
+    <Compile Include="UI\GenericIcon\GenericIconKind.cs" />
+    <Compile Include="UI\GenericIcon\GenericIconToBrushConverter.cs" />
+    <Compile Include="UI\GenericIcon\GenericIconToIconKindConverter.cs" />
     <Compile Include="ViewModels\TaskbarIconViewModel.cs" />
     <Page Include="Archive\ArchiveCreator\ArchiveCreatorUI.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -627,6 +631,10 @@
     <Page Include="UI\Controls\OverflowMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Resources\Icons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Styles\InfoIconStyles.xaml">
       <SubType>Designer</SubType>
@@ -1329,13 +1337,6 @@
     <Content Include="Files\Rayman2\Rayman2_GOG.exe" />
     <Content Include="Files\Rayman3\dinput8_controller.dll" />
     <Content Include="Files\Programs\Uninstaller.exe" />
-    <Resource Include="Img\RayIcons\DarkNSNH.png" />
-    <Resource Include="Img\RayIcons\DarkLightSH.png" />
-    <Resource Include="Img\RayIcons\DarkNSH.png" />
-    <Resource Include="Img\RayIcons\DarkSNH.png" />
-    <Resource Include="Img\RayIcons\LightNSH.png" />
-    <Resource Include="Img\RayIcons\LightNSNH.png" />
-    <Resource Include="Img\RayIcons\LightSNH.png" />
     <Resource Include="Files\RaymanOrigins\RO_Levels.txt" />
     <Resource Include="Img\GameLogos\RaymanArena_Logo.png" />
     <Resource Include="Img\GameLogos\RaymanM_Logo.png" />

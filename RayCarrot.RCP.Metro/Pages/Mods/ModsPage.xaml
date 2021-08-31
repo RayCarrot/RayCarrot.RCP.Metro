@@ -23,27 +23,13 @@
             <rwpf:FocusElementOnLoad />
         </i:Interaction.Behaviors>
 
-        <mah:MetroAnimatedTabControl.Resources>
-            <Style TargetType="{x:Type TabPanel}" BasedOn="{StaticResource SmallTabPanel}" />
-            <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
-        </mah:MetroAnimatedTabControl.Resources>
-
-        <mah:MetroAnimatedTabControl.ItemTemplate>
-            <DataTemplate DataType="{x:Type local:BaseModViewModel}">
-                <StackPanel Orientation="Horizontal"
-                            Margin="5 2">
-
-                    <iconPacks:PackIconMaterial Kind="{Binding Path=Icon, Mode=OneTime}"
-                                                Margin="10 0"
-                                                VerticalAlignment="Center" />
-
-                    <ContentControl FontSize="16"
-                                    DataContext="{Binding Path=Header, Mode=OneTime}"
-                                    Content="{Binding Path=Value}" />
-
-                </StackPanel>
-            </DataTemplate>
-        </mah:MetroAnimatedTabControl.ItemTemplate>
+        <mah:MetroAnimatedTabControl.ItemContainerStyle>
+            <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+                <Setter Property="Header" Value="{Binding Path=Header, Mode=OneTime}" />
+                <Setter Property="local:TabItemProperties.IconKind" Value="{Binding Path=Icon, Converter={local:GenericIconToIconKindConverter}, Mode=OneTime}" />
+                <Setter Property="local:TabItemProperties.IconForeground" Value="{Binding Path=Icon, Converter={local:GenericIconToBrushConverter}, Mode=OneTime}" />
+            </Style>
+        </mah:MetroAnimatedTabControl.ItemContainerStyle>
 
         <mah:MetroAnimatedTabControl.ContentTemplate>
             <DataTemplate DataType="{x:Type local:BaseModViewModel}">

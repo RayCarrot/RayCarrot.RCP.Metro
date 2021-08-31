@@ -53,31 +53,14 @@
                         <rwpf:FocusElementOnLoad />
                     </i:Interaction.Behaviors>
 
-                    <mah:MetroAnimatedTabControl.Resources>
-                        <Style TargetType="{x:Type TabPanel}" BasedOn="{StaticResource SmallTabPanel}" />
-                    </mah:MetroAnimatedTabControl.Resources>
-
                     <mah:MetroAnimatedTabControl.ItemContainerStyle>
                         <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
                             <Setter Property="Visibility" Value="{Binding Path=IsVisible, Converter={rwpf:BooleanToVisibilityConverter}}" />
+                            <Setter Property="Header" Value="{Binding Path=DisplayName.Value, Mode=OneTime}" />
+                            <Setter Property="local:TabItemProperties.IconKind" Value="{Binding Path=Icon, Converter={local:GenericIconToIconKindConverter}, Mode=OneTime}" />
+                            <Setter Property="local:TabItemProperties.IconForeground" Value="{Binding Path=Icon, Converter={local:GenericIconToBrushConverter}, Mode=OneTime}" />
                         </Style>
                     </mah:MetroAnimatedTabControl.ItemContainerStyle>
-
-                    <mah:MetroAnimatedTabControl.ItemTemplate>
-                        <DataTemplate DataType="local:GameCategoryViewModel">
-                            <StackPanel Orientation="Horizontal"
-                                        Margin="5 2">
-
-                                <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
-                                                            Margin="10 0"
-                                                            VerticalAlignment="Center" />
-
-                                <ContentControl FontSize="16"
-                                                Content="{Binding Path=DisplayName.Value}" />
-
-                            </StackPanel>
-                        </DataTemplate>
-                    </mah:MetroAnimatedTabControl.ItemTemplate>
 
                     <mah:MetroAnimatedTabControl.ContentTemplate>
                         <DataTemplate DataType="{x:Type local:GameCategoryViewModel}">

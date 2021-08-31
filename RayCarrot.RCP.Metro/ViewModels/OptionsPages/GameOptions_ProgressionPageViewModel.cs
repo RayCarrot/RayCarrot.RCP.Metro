@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MahApps.Metro.IconPacks;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -9,7 +8,7 @@ namespace RayCarrot.RCP.Metro
         #region Constructor
 
         public GameOptions_ProgressionPageViewModel(BaseProgressionViewModel progressionViewModel) 
-            : base(new LocalizedString(() => Resources.Progression_Header), PackIconMaterialKind.TrophyVariantOutline)
+            : base(new LocalizedString(() => Resources.Progression_Header), GenericIconKind.GameOptions_Progression)
         {
             ProgressionViewModel = progressionViewModel ?? throw new ArgumentNullException(nameof(progressionViewModel));
         }

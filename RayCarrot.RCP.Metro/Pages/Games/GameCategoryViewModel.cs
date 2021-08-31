@@ -1,5 +1,4 @@
-﻿using MahApps.Metro.IconPacks;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -18,13 +17,13 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="games">The games in this category</param>
         /// <param name="displayName">The display name</param>
-        /// <param name="iconKind">The category icon</param>
-        public GameCategoryViewModel(IEnumerable<Games> games, LocalizedString displayName, PackIconMaterialKind iconKind)
+        /// <param name="icon">The category icon</param>
+        public GameCategoryViewModel(IEnumerable<Games> games, LocalizedString displayName, GenericIconKind icon)
         {
             // Set properties
             Games = games.ToArray();
             DisplayName = displayName;
-            IconKind = iconKind;
+            Icon = icon;
             IsMaster = false;
             
             // Create properties
@@ -75,7 +74,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The category icon
         /// </summary>
-        public PackIconMaterialKind IconKind { get; }
+        public GenericIconKind Icon { get; }
 
         /// <summary>
         /// The installed games in this category

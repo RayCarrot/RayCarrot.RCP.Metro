@@ -1,5 +1,4 @@
-﻿using MahApps.Metro.IconPacks;
-using Nito.AsyncEx;
+﻿using Nito.AsyncEx;
 using RayCarrot.UI;
 using RayCarrot.WPF;
 using System;
@@ -18,7 +17,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="pageName">The name of the page</param>
         /// <param name="pageIcon">The page icon</param>
-        protected GameOptions_BasePageViewModel(LocalizedString pageName, PackIconMaterialKind pageIcon)
+        protected GameOptions_BasePageViewModel(LocalizedString pageName, GenericIconKind pageIcon)
         {
             // Set properties
             PageName = pageName;
@@ -72,7 +71,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The page icon
         /// </summary>
-        public PackIconMaterialKind PageIcon { get; }
+        public GenericIconKind PageIcon { get; }
 
         /// <summary>
         /// Indicates if there are any unsaved changes

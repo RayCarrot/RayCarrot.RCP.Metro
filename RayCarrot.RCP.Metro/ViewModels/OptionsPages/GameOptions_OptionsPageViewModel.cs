@@ -1,11 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using RayCarrot.Common;
+using RayCarrot.UI;
+using RayCarrot.WPF;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using MahApps.Metro.IconPacks;
-using RayCarrot.Common;
-using RayCarrot.UI;
-using RayCarrot.WPF;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -14,7 +13,7 @@ namespace RayCarrot.RCP.Metro
         #region Constructor
 
         public GameOptions_OptionsPageViewModel(Games game) 
-            : base(new LocalizedString(() => Resources.GameOptions_Options), PackIconMaterialKind.CogOutline)
+            : base(new LocalizedString(() => Resources.GameOptions_Options), GenericIconKind.GameOptions_General)
         {
             // Get the info
             var gameInfo = game.GetGameInfo();

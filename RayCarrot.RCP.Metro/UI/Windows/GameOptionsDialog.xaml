@@ -77,26 +77,13 @@
                                        SelectedItem="{Binding Path=SelectedPage}"
                                        SelectionChanged="PagesTabControl_OnSelectionChanged">
 
-            <metro:MetroAnimatedTabControl.Resources>
-                <Style TargetType="{x:Type TabPanel}" BasedOn="{StaticResource SmallTabPanel}" />
-                <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
-            </metro:MetroAnimatedTabControl.Resources>
-
-            <metro:MetroAnimatedTabControl.ItemTemplate>
-                <DataTemplate DataType="local:GameOptions_BasePageViewModel">
-                    <StackPanel Orientation="Horizontal"
-                                Margin="5 2">
-
-                        <iconPacks:PackIconMaterial Kind="{Binding Path=PageIcon, Mode=OneTime}"
-                                                    Margin="10 0"
-                                                    VerticalAlignment="Center" />
-
-                        <ContentControl FontSize="16"
-                                        Content="{Binding Path=PageName.Value}" />
-
-                    </StackPanel>
-                </DataTemplate>
-            </metro:MetroAnimatedTabControl.ItemTemplate>
+            <metro:MetroAnimatedTabControl.ItemContainerStyle>
+                <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource {x:Type TabItem}}">
+                    <Setter Property="Header" Value="{Binding Path=PageName.Value, Mode=OneTime}" />
+                    <Setter Property="local:TabItemProperties.IconKind" Value="{Binding Path=PageIcon, Converter={local:GenericIconToIconKindConverter}, Mode=OneTime}" />
+                    <Setter Property="local:TabItemProperties.IconForeground" Value="{Binding Path=PageIcon, Converter={local:GenericIconToBrushConverter}, Mode=OneTime}" />
+                </Style>
+            </metro:MetroAnimatedTabControl.ItemContainerStyle>
 
             <metro:MetroAnimatedTabControl.ContentTemplate>
                 <DataTemplate DataType="{x:Type local:GameOptions_BasePageViewModel}">

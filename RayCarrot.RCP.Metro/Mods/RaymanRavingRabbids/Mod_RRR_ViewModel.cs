@@ -355,7 +355,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Mods Page
 
-        public override PackIconMaterialKind Icon => PackIconMaterialKind.GamepadVariantOutline;
+        public override GenericIconKind Icon => GenericIconKind.Games;
         public override LocalizedString Header => new LocalizedString(() => Resources.Mod_RRR_Header);
         public override object UIContent => new Mod_RRR_UI()
         {

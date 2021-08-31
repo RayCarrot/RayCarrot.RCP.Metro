@@ -1,10 +1,8 @@
-﻿using MahApps.Metro.IconPacks;
-
-namespace RayCarrot.RCP.Metro
+﻿namespace RayCarrot.RCP.Metro
 {
     public class GameOptions_UtilitiesPageViewModel : GameOptions_BasePageViewModel
     {
-        public GameOptions_UtilitiesPageViewModel(UtilityViewModel[] utilities) : base(new LocalizedString(() => Resources.GameOptions_Utilities), PackIconMaterialKind.BriefcaseOutline)
+        public GameOptions_UtilitiesPageViewModel(UtilityViewModel[] utilities) : base(new LocalizedString(() => Resources.GameOptions_Utilities), GenericIconKind.GameOptions_Utilities)
         {
             Utilities = utilities;
         }

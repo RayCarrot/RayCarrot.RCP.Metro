@@ -22,55 +22,55 @@
                 <rwpf:FocusElementOnLoad />
             </i:Interaction.Behaviors>
 
-            <mah:MetroAnimatedTabControl.Resources>
-                <Style TargetType="{x:Type TabPanel}" BasedOn="{StaticResource SmallTabPanel}" />
-                <Style TargetType="{x:Type local:RCPTabItem}" BasedOn="{StaticResource SmallTabItem}" />
-            </mah:MetroAnimatedTabControl.Resources>
-
             <!-- Archive Explorer -->
 
-            <local:RCPTabItem IconKind="FolderMultipleOutline"
-                              Header="{Resx Utilities_ArchiveExplorer_Header}">
+            <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Utilities_ArchiveExplorer}"
+                     local:TabItemProperties.IconForeground="{StaticResource Colors.ArchiveExplorer}"
+                     Header="{Resx Utilities_ArchiveExplorer_Header}">
 
                 <local:UtilitiesContainer Utilities="{Binding Path=ArchiveExplorerViewModels, Mode=OneTime}" />
 
-            </local:RCPTabItem>
+            </TabItem>
 
             <!-- Converters -->
 
-            <local:RCPTabItem IconKind="SwapVertical"
-                              Header="{Resx Utilities_Converter_Header}">
+            <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Utilities_Converters}"
+                     local:TabItemProperties.IconForeground="{StaticResource Colors.Utilities}"
+                     Header="{Resx Utilities_Converter_Header}">
 
                 <local:UtilitiesContainer Utilities="{Binding Path=ConverterViewModels, Mode=OneTime}" />
 
-            </local:RCPTabItem>
+            </TabItem>
 
             <!-- Decoders -->
 
-            <local:RCPTabItem IconKind="LockOpenOutline"
-                              Header="{Resx Utilities_Decoder_Header}">
+            <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Utilities_Decoders}"
+                     local:TabItemProperties.IconForeground="{StaticResource Colors.Utilities}"
+                     Header="{Resx Utilities_Decoder_Header}">
 
                 <local:UtilitiesContainer Utilities="{Binding Path=DecoderViewModels, Mode=OneTime}" />
 
-            </local:RCPTabItem>
+            </TabItem>
 
             <!-- Other -->
 
-            <local:RCPTabItem IconKind="Buffer"
-                              Header="{Resx Utilities_Other_Header}">
+            <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Utilities_Other}"
+                     local:TabItemProperties.IconForeground="{StaticResource Colors.Utilities}"
+                     Header="{Resx Utilities_Other_Header}">
 
                 <local:UtilitiesContainer Utilities="{Binding Path=OtherViewModels, Mode=OneTime}" />
 
-            </local:RCPTabItem>
+            </TabItem>
 
             <!-- External Tools -->
 
-            <local:RCPTabItem IconKind="Launch"
-                              Header="{Resx Utilities_ExternalTools_Header}">
+            <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Utilities_ExternalTools}"
+                     local:TabItemProperties.IconForeground="{StaticResource Colors.Utilities}"
+                     Header="{Resx Utilities_ExternalTools_Header}">
 
                 <local:UtilitiesContainer Utilities="{Binding Path=ExternalToolViewModels, Mode=OneTime}" />
 
-            </local:RCPTabItem>
+            </TabItem>
 
         </mah:MetroAnimatedTabControl>
     </ScrollViewer>
