@@ -3,6 +3,7 @@
 
 Other changes:
 • Improved scrolling with the mouse wheel over button mapping controls
+• Fixed the version history window not being centered when opened from the about page
 
 
 -----   Version 11.3.0 - August 25, 2021   -----
