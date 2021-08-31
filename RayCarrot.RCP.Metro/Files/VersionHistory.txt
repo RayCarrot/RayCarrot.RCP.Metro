@@ -1,4 +1,11 @@
-﻿-----   Version 11.3.0 - August 25, 2021   -----
+﻿-----   Version 12.0.0 - September ??, 2021   -----
+• 
+
+Other changes:
+• Improved scrolling with the mouse wheel over button mapping controls
+
+
+-----   Version 11.3.0 - August 25, 2021   -----
 • Added the mods page
 • Added a mod for Rayman Raving Rabbids, allowing unused prototype mechanics (such as full movement for Rayman) to be restored
 
