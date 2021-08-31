@@ -8,7 +8,7 @@
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-                ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignWidth="800" d:DataContext="{d:DesignInstance local:AboutPageViewModel}">
@@ -22,7 +22,7 @@
 
         <!-- App Info -->
 
-        <Grid Grid.Row="0" Margin="{StaticResource DefaultVerticalStackMargin}">
+        <Grid Grid.Row="0" Margin="{StaticResource Thickness.Vertical}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -43,14 +43,14 @@
         <!-- Credits Header -->
 
         <TextBlock Grid.Row="1"
-                   Margin="{StaticResource DefaultVerticalStackMargin}"
+                   Margin="{StaticResource Thickness.Vertical}"
                    Text="{Resx About_Credits}"
-                   Style="{StaticResource LargeHeaderTextBlock}"
+                   Style="{StaticResource TextBlock.HeaderLarge}"
                    HorizontalAlignment="Center" />
 
         <!-- Credits -->
 
-        <ScrollViewer Grid.Row="2" Margin="{StaticResource DefaultVerticalStackMargin}">
+        <ScrollViewer Grid.Row="2" Margin="{StaticResource Thickness.Vertical}">
 
             <StackPanel>
 

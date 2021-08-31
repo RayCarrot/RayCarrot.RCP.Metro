@@ -6,7 +6,7 @@
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   mc:Ignorable="d"
                   WindowStartupLocation="CenterOwner"
-                  ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                  ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                   Title="{Resx AppNews_Title}" 
                   Height="640" Width="960">
     <Grid Margin="10">
@@ -18,7 +18,7 @@
 
         <TextBlock Grid.Row="0"
                    Text="{Resx AppNews_Header}"
-                   Style="{StaticResource HeaderTextBlock}"
+                   Style="{StaticResource TextBlock.Header}"
                    HorizontalAlignment="Center"/>
 
         <TextBox Grid.Row="1"

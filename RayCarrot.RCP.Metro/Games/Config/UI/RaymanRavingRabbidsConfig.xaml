@@ -6,16 +6,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:RaymanRavingRabbidsConfigViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
-        <TextBlock Style="{StaticResource HeaderTextBlock}"
+        <TextBlock Style="{StaticResource TextBlock.Header}"
                    Text="{Resx Config_Resolution}" />
 
         <CheckBox Content="{Resx Config_Fullscreen}"
@@ -24,7 +24,7 @@
 
         <StackPanel Orientation="Horizontal"
                     rwpf:UserLevelTag.MinUserLevel="Advanced">
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Config_RRRScreenMode}" />
 
             <local:InfoIcon Text="{Resx Config_RRRScreenModeInfo}" />
@@ -39,7 +39,7 @@
             <TextBlock Text="{Resx Config_RRRScreenMode_16_9}" />
         </ComboBox>
 
-        <TextBlock Style="{StaticResource HeaderTextBlock}"
+        <TextBlock Style="{StaticResource TextBlock.Header}"
                    Text="{Resx Config_Controller}" />
 
         <CheckBox Content="{Resx Config_UseController}"

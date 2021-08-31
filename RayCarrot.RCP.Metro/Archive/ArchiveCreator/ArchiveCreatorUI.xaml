@@ -9,7 +9,7 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ArchiveCreatorDialogViewModel}"
              Language="{UICulture}"
-             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              MinHeight="250"
              MinWidth="400">
     <local:LoaderContentControl HorizontalLoadingIconAlignment="Center"
@@ -27,17 +27,17 @@
             <ScrollViewer Grid.Row="0">
                 <StackPanel>
                     <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
                     </i:Interaction.Behaviors>
 
-                    <TextBlock Style="{StaticResource HeaderTextBlock}"
+                    <TextBlock Style="{StaticResource TextBlock.Header}"
                                Text="{Resx Archive_CreateInputDir}" />
 
                     <rwpf:BrowseBox SelectedPath="{Binding Path=InputDirectory}"
                                     PathValidation="DirectoryExistsAndNotEmpty"
                                     BrowseType="Directory"/>
 
-                    <TextBlock Style="{StaticResource HeaderTextBlock}"
+                    <TextBlock Style="{StaticResource TextBlock.Header}"
                                Text="{Resx Archive_CreateOutputFile}" />
 
                     <rwpf:BrowseBox SelectedPath="{Binding Path=OutputFile}"

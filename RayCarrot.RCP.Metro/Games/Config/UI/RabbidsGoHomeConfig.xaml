@@ -7,17 +7,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:RabbidsGoHomeConfigViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
         <StackPanel Orientation="Horizontal">
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx GoHomeConfig_CustomLaunchHeader}" />
 
             <local:InfoIcon Text="{Resx GoHomeConfig_CustomLaunchInfo}" />
@@ -32,10 +32,10 @@
         <StackPanel IsEnabled="{Binding Path=EnableCustomSettings}"
                     rwpf:UnifiedMargin.Ignored="True">
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
             </i:Interaction.Behaviors>
 
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Config_Resolution}" />
 
             <StackPanel Orientation="Horizontal">
@@ -68,7 +68,7 @@
             <CheckBox Content="{Resx Config_VSync}"
                       IsChecked="{Binding Path=VSync}" />
 
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Config_Language}" />
 
             <ComboBox SelectedIndex="{Binding Path=Language, Converter={rwpf:EnumToIntConverter}}"
@@ -81,7 +81,7 @@
                 <TextBlock Text="{Resx Lang_Dutch}" />
             </ComboBox>
 
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx GoHomeConfig_VersionIndex}" />
 
             <metro:NumericUpDown Value="{Binding Path=VersionIndex}"
@@ -89,14 +89,14 @@
                                  Maximum="5"
                                  HorizontalAlignment="Left" />
 
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx GoHomeConfig_BigFile}"
                        rwpf:UserLevelTag.MinUserLevel="Technical" />
 
             <TextBox Text="{Binding Path=BigFile}"
                      rwpf:UserLevelTag.MinUserLevel="Technical" />
 
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx GoHomeConfig_Commands}"
                        rwpf:UserLevelTag.MinUserLevel="Technical" />
 

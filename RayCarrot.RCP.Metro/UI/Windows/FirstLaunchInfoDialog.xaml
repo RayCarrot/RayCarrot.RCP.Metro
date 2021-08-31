@@ -5,7 +5,7 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                   mc:Ignorable="d"
-                  ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                  ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                   Title="{Resx FirstLaunchInfo_Title}"
                   Height="450" Width="800">
     <Grid Margin="5">
@@ -33,7 +33,7 @@
                 <ScrollViewer Padding="10">
                     <StackPanel>
                         <TextBlock HorizontalAlignment="Center"
-                                   Style="{StaticResource LargeHeaderTextBlock}"
+                                   Style="{StaticResource TextBlock.HeaderLarge}"
                                    TextWrapping="Wrap"
                                    Text="{Resx FirstLaunchInfo_Header}" />
 

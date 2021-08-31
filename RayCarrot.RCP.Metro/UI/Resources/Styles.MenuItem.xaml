@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
+
+    <!-- Default Menu Item Icon -->
+
+    <Style TargetType="{x:Type local:MenuItemIcon}" BasedOn="{StaticResource {x:Type MenuItem}}">
+        <Setter Property="IconForeground" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Foreground}" />
+    </Style>
+
+</ResourceDictionary>

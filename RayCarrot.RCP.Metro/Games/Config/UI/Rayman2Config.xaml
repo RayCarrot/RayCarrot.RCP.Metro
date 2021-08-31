@@ -7,17 +7,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:Rayman2ConfigViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
         <StackPanel Orientation="Horizontal">
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Config_Resolution}" />
 
             <local:InfoIcon Text="{Resx Config_ResolutionR2Info}" />
@@ -45,7 +45,7 @@
 
         <WrapPanel>
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
             </i:Interaction.Behaviors>
 
             <CheckBox Content="{Resx Config_LockRes}"
@@ -67,7 +67,7 @@
 
         <WrapPanel Visibility="{Binding Path=WidescreenSupport, Converter={rwpf:BooleanToVisibilityConverter}}">
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
             </i:Interaction.Behaviors>
 
             <RadioButton Content="{Resx Config_WidescreenHorizontal}"
@@ -83,7 +83,7 @@
         </WrapPanel>
 
         <StackPanel Orientation="Horizontal">
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Config_Language}" />
 
             <local:InfoIcon Text="{Resx Config_LanguageR2Info}" />
@@ -100,7 +100,7 @@
         </ComboBox>
 
         <StackPanel Orientation="Horizontal">
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Config_Controller}" />
 
             <local:InfoIcon Text="{Resx Config_ControllerR2Info}" />
@@ -118,12 +118,12 @@
 
         </StackPanel>
 
-        <TextBlock Style="{StaticResource HeaderTextBlock}"
+        <TextBlock Style="{StaticResource TextBlock.Header}"
                    Text="{Resx Config_Graphics}" />
 
         <WrapPanel>
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
             </i:Interaction.Behaviors>
 
             <rwpf:RadioButtonExtended Content="{Resx R2Config_Graphics_DirectX}"
@@ -159,7 +159,7 @@
             </Grid.Resources>
 
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
             </i:Interaction.Behaviors>
 
             <TextBlock Grid.Column="0"
@@ -197,7 +197,7 @@
         </Grid>
 
         <StackPanel Orientation="Horizontal">
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Config_ButtonMapping}" />
 
             <local:InfoIcon Text="{Resx Config_ButtonMappingInfo}" />

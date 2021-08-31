@@ -5,21 +5,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-             xmlns:metro="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              Language="{UICulture}"
-             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance metro:UbiArtIPKArchiveConfigViewModel}">
+             d:DataContext="{d:DesignInstance local:UbiArtIPKArchiveConfigViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
         <CheckBox Content="{Resx Archive_IPK_CompressEntireBlock}"
                   IsEnabled="{Binding Path=CanCompressEntireBlock, Mode=OneTime}"
                   IsChecked="{Binding Path=CompressEntireBlock}"/>
 
-        <TextBlock Style="{StaticResource HeaderTextBlock}"
+        <TextBlock Style="{StaticResource TextBlock.Header}"
                    Text="{Resx Archive_IPK_CompressExtensions}" />
 
         <TextBox Text="{Binding Path=CompressedExtensions}"

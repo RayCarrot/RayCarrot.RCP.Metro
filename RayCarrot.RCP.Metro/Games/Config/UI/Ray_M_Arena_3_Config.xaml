@@ -8,16 +8,16 @@
              xmlns:ubiIni="clr-namespace:RayCarrot.Rayman.UbiIni;assembly=RayCarrot.Rayman"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:Rayman3ConfigViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
-        <TextBlock Style="{StaticResource HeaderTextBlock}"
+        <TextBlock Style="{StaticResource TextBlock.Header}"
                    Text="{Resx Config_Resolution}" />
 
         <StackPanel Orientation="Horizontal">
@@ -47,7 +47,7 @@
                   ToolTip="{Resx Config_FullscreenInfo}"
                   IsChecked="{Binding Path=FullscreenMode}" />
 
-        <TextBlock Style="{StaticResource HeaderTextBlock}"
+        <TextBlock Style="{StaticResource TextBlock.Header}"
                    Text="{Resx Config_Graphics}" />
 
         <CheckBox Content="{Resx Config_TriLinear}"
@@ -73,7 +73,7 @@
                       Margin="0 8" />
         </Grid>
 
-        <TextBlock Style="{StaticResource HeaderTextBlock}"
+        <TextBlock Style="{StaticResource TextBlock.Header}"
                    Text="{Resx Config_Textures}" />
 
         <StackPanel Orientation="Horizontal">
@@ -87,7 +87,7 @@
         <CheckBox Content="{Resx Config_Compressed}"
                   IsChecked="{Binding Path=CompressedTextures}" />
 
-        <TextBlock Style="{StaticResource HeaderTextBlock}"
+        <TextBlock Style="{StaticResource TextBlock.Header}"
                    Text="{Resx Config_Video}" />
 
         <StackPanel>
@@ -133,7 +133,7 @@
 
         </StackPanel>
 
-        <TextBlock Style="{StaticResource HeaderTextBlock}"
+        <TextBlock Style="{StaticResource TextBlock.Header}"
                    Text="{Resx Config_Language}" />
 
         <ComboBox SelectedIndex="{Binding Path=CurrentLanguage, Converter={rwpf:EnumToIntConverter}}"
@@ -164,7 +164,7 @@
 
         <StackPanel Orientation="Horizontal">
 
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Config_Controller}" />
 
             <local:InfoIcon Text="{Resx Config_ControllerInfo}" />
@@ -207,7 +207,7 @@
                 HorizontalAlignment="Left"
                 Visibility="{Binding Path=HasControllerConfig, Converter={rwpf:BooleanToVisibilityConverter}}" />
 
-        <TextBlock Style="{StaticResource HeaderTextBlock}"
+        <TextBlock Style="{StaticResource TextBlock.Header}"
                    Text="{Resx Config_Network}"
                    Visibility="{Binding Path=HasNetworkConfig, Converter={rwpf:BooleanToVisibilityConverter}}" />
 
@@ -219,7 +219,7 @@
         <StackPanel Orientation="Horizontal"
                     Visibility="{Binding Path=CanRemoveDiscCheck, Converter={rwpf:BooleanToVisibilityConverter}}">
 
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Config_DiscCheck}" />
 
             <local:InfoIcon Text="{Resx Config_DiscCheckInfo}" />

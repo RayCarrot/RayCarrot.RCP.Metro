@@ -10,7 +10,7 @@
                   xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                   Title="{Binding Path=DisplayName, Mode=OneTime}"
                   WindowStartupLocation="CenterOwner"
-                  ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                  ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                   mc:Ignorable="d"
                   d:DataContext="{d:DesignInstance local:GameOptionsViewModel}">
     <Grid Margin="10"
@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
         <!-- Header -->
@@ -42,7 +42,7 @@
             <!-- Title -->
 
             <TextBlock Grid.Column="1"
-                       Style="{StaticResource LargeHeaderTextBlock}"
+                       Style="{StaticResource TextBlock.HeaderLarge}"
                        Text="{Binding Path=DisplayName, Mode=OneTime}"
                        VerticalAlignment="Center"
                        TextTrimming="WordEllipsis"
@@ -53,7 +53,7 @@
             <local:OverflowMenu Grid.Column="2"
                                 Margin="7">
                 <local:OverflowMenu.ContextMenu>
-                    <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
+                    <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
                         <local:MenuItemIcon Header="{Resx GameOptions_CreateShortcut}"
                                             Command="{Binding Path=ShortcutCommand}"
                                             IconKind="Link"/>
@@ -109,7 +109,7 @@
                                     HorizontalAlignment="Left">
 
                             <i:Interaction.Behaviors>
-                                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
+                                <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
                             </i:Interaction.Behaviors>
 
                             <Button Visibility="{Binding Path=CanUseRecommended, Mode=OneTime, Converter={rwpf:BooleanToVisibilityConverter}}"

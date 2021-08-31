@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
-             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:GameTypeSelectionViewModel}">
     <Grid Margin="10">
@@ -19,7 +19,7 @@
                    VerticalAlignment="Center">
 
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
             </i:Interaction.Behaviors>
 
             <!-- Win32 -->

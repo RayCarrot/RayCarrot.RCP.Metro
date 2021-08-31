@@ -12,7 +12,7 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ArchiveExplorerDialogViewModel}"
              Language="{UICulture}"
-             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              MinHeight="400"
              MinWidth="600">
 
@@ -124,7 +124,7 @@
                                     InheritDataContext="False"
                                     Visibility="{Binding Converter={rwpf:InvertedObjectNullToVisibilityConverter}}">
                     <local:OverflowMenu.ContextMenu>
-                        <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                        <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                                      DataContext="{x:Static local:RCPServices.Data}">
                             <local:MenuItemIcon Header="{Resx Archive_Sort}"
                                                 IconKind="Sort" >

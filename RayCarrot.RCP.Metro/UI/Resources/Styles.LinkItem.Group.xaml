@@ -4,7 +4,7 @@
                     xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
-    <Style x:Key="LinkItemsDisplay" TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}">
+    <Style x:Key="ItemsControl.LinkItemsDisplay" TargetType="{x:Type ItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}">
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>

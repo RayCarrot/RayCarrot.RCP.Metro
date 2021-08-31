@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Thickness x:Key="Thickness.Vertical">0 8</Thickness>
+
+    <Thickness x:Key="Thickness.VerticalSmall">0 4</Thickness>
+
+    <Thickness x:Key="Thickness.Horizontal">0 0 8 0</Thickness>
+
+</ResourceDictionary>

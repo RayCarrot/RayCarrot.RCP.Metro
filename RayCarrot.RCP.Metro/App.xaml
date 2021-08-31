@@ -19,14 +19,19 @@
 
                 <!-- Local -->
 
-                <ResourceDictionary Source="UI/Resources/Icons.xaml" />
-
-                <ResourceDictionary Source="UI/Styles/UnifiedMargins.xaml" />
-                <ResourceDictionary Source="UI/Styles/InfoIconStyles.xaml" />
-                <ResourceDictionary Source="UI/Styles/TextStyles.xaml" />
-                <ResourceDictionary Source="UI/Styles/Strings.xaml" />
-                <ResourceDictionary Source="UI/Styles/ContentStyles.xaml" />
-                <ResourceDictionary Source="UI/Styles/LinkItemStyles - List.xaml" />
+                <ResourceDictionary Source="UI/Resources/Resources.Icons.xaml" />
+                <ResourceDictionary Source="UI/Resources/Resources.Margins.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.InfoIcon.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.TextBlock.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.RadioButton.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.TabControl.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.MenuItem.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.Button.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.NumericUpDown.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.DuoGridItem.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.BrowseBox.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.AutoCompleteTextBox.xaml" />
+                <ResourceDictionary Source="UI/Resources/Styles.LinkItem.List.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 

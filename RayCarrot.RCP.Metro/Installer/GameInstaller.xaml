@@ -10,7 +10,7 @@
                   Closing="GameInstaller_OnClosingAsync"
                   ResizeMode="NoResize"
                   SizeToContent="WidthAndHeight"
-                  ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                  ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                   mc:Ignorable="d"
                   d:DataContext="{d:DesignInstance local:GameInstallerViewModel}">
     <StackPanel Margin="20">
@@ -25,7 +25,7 @@
 
         <StackPanel Orientation="Horizontal">
             <i:Interaction.Behaviors>
-                <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
             </i:Interaction.Behaviors>
 
             <CheckBox Content="{Resx Installer_CreateDesktopShortcut}"

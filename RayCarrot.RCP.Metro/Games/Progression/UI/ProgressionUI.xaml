@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:wpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-             xmlns:metro="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignInstance metro:BaseProgressionViewModel}">
+             d:DesignHeight="450" d:DesignWidth="800" d:DataContext="{d:DesignInstance local:BaseProgressionViewModel}">
     <ItemsControl ItemsSource="{Binding Path=ProgressionSlots, Mode=OneTime}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
@@ -16,24 +16,24 @@
 
                     <Grid>
                         <TextBlock Text="{Binding Path=SlotName.Value}"
-                                   Style="{StaticResource HeaderTextBlock}"
-                                   Margin="{StaticResource SmallVerticalStackMargin}" />
+                                   Style="{StaticResource TextBlock.Header}"
+                                   Margin="{StaticResource Thickness.VerticalSmall}" />
 
                         <Grid HorizontalAlignment="Right"
                               Visibility="{Binding Path=CanModify, Converter={wpf:BooleanToVisibilityConverter}, Mode=OneTime}">
-                            <metro:OverflowMenu wpf:UserLevelTag.MinUserLevel="Technical"
+                            <local:OverflowMenu wpf:UserLevelTag.MinUserLevel="Technical"
                                                 Margin="7">
-                                <metro:OverflowMenu.ContextMenu>
-                                    <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
-                                        <metro:MenuItemIcon Header="{Resx Progression_Export}"
+                                <local:OverflowMenu.ContextMenu>
+                                    <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
+                                        <local:MenuItemIcon Header="{Resx Progression_Export}"
                                                             Command="{Binding Path=ExportCommand, Mode=OneTime}"
                                                             IconKind="FileExportOutline" />
-                                        <metro:MenuItemIcon Header="{Resx Progression_Import}"
+                                        <local:MenuItemIcon Header="{Resx Progression_Import}"
                                                             Command="{Binding Path=ImportCommand, Mode=OneTime}"
                                                             IconKind="FileImportOutline" />
                                     </ContextMenu>
-                                </metro:OverflowMenu.ContextMenu>
-                            </metro:OverflowMenu>
+                                </local:OverflowMenu.ContextMenu>
+                            </local:OverflowMenu>
                         </Grid>
 
                     </Grid>

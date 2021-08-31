@@ -11,7 +11,7 @@
                   xmlns:behaviours="http://metro.mahapps.com/winfx/xaml/shared"
                   mc:Ignorable="d"
                   Language="{UICulture}"
-                  ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                  ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                   CloseWithEscape="False"
                   Height="720"
                   Width="960"
@@ -58,7 +58,7 @@
 
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu Padding="5"
-                             ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
+                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
                     <MenuItem Header="{Resx TaskBarIcon_Open}"
                               Command="{Binding Path=OpenFromTaskbarCommand}">
                         <MenuItem.Icon>
@@ -76,7 +76,7 @@
         </tb:TaskbarIcon>
 
         <mah:MetroAnimatedTabControl x:Name="PageTabControl"
-                                     ItemContainerStyle="{StaticResource LargeTabItem}"
+                                     ItemContainerStyle="{StaticResource TabItem.Large}"
                                      Padding="5">
             <!-- Override the style to use the overflow menu -->
             <mah:MetroAnimatedTabControl.Style>

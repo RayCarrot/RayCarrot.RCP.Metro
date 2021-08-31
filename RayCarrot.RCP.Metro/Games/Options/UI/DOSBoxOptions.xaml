@@ -6,18 +6,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:DOSBoxOptionsViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
         <!-- Mount path -->
 
         <StackPanel Orientation="Horizontal">
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx MountPathHeader}" />
 
             <local:InfoIcon Text="{Resx MountPathInfo}" />

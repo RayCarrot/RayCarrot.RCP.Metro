@@ -9,14 +9,14 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-                ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignHeight="450" d:DesignWidth="800"
                 d:DataContext="{d:DesignInstance local:GamesPageViewModel}">
 
     <local:IBasePage.OverflowMenu>
-        <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
+        <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
 
             <MenuItem Header="{Resx CategorizeGames}"
                       IsCheckable="True"
@@ -100,7 +100,7 @@
                                 <Grid Visibility="{Binding Path=AnyInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}">
                                     <TextBlock Text="{Resx Games_Installed}"
                                                Padding="10 0 0 0"
-                                               Style="{StaticResource LargeHeaderTextBlock}"
+                                               Style="{StaticResource TextBlock.HeaderLarge}"
                                                Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
                                 </Grid>
 
@@ -110,7 +110,7 @@
                                 <Grid Visibility="{Binding Path=AnyNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}">
                                     <TextBlock Text="{Resx Games_NotInstalled}"
                                                Padding="10 0 0 0"
-                                               Style="{StaticResource LargeHeaderTextBlock}"
+                                               Style="{StaticResource TextBlock.HeaderLarge}"
                                                Visibility="{Binding Path=Data.ShowNotInstalledGames, Converter={rwpf:BooleanToVisibilityConverter}}" />
                                 </Grid>
 

@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Default NumericUpDown -->
+
+    <Style TargetType="{x:Type metro:NumericUpDown}" BasedOn="{StaticResource {x:Type metro:NumericUpDown}}">
+        <Setter Property="HideUpDownButtons" Value="True" />
+        <Setter Property="TextAlignment" Value="Left" />
+        <Setter Property="MinWidth" Value="50" />
+        <Setter Property="NumericInputMode" Value="Numbers" />
+    </Style>
+
+</ResourceDictionary>

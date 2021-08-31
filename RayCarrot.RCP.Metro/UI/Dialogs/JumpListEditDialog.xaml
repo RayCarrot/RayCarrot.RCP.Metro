@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
              xmlns:dd="urn:gong-wpf-dragdrop"
-             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:JumpListEditViewModel}"
              Height="400"
@@ -74,13 +74,13 @@
             <TextBlock Grid.Column="0"
                        Grid.Row="0"
                        Text="{Resx JumpListEditor_IncludedHeader}"
-                       Style="{StaticResource HeaderTextBlock}"
+                       Style="{StaticResource TextBlock.Header}"
                        HorizontalAlignment="Center"/>
 
             <TextBlock Grid.Column="2"
                        Grid.Row="0"
                        Text="{Resx JumpListEditor_NotIncludedHeader}"
-                       Style="{StaticResource HeaderTextBlock}"
+                       Style="{StaticResource TextBlock.Header}"
                        HorizontalAlignment="Center"/>
 
             <ScrollViewer Grid.Column="0"

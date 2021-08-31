@@ -7,7 +7,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              IsTabStop="False"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -19,27 +19,27 @@
             <DataTemplate>
                 <StackPanel>
                     <i:Interaction.Behaviors>
-                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                        <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
                     </i:Interaction.Behaviors>
 
                     <Separator x:Name="ItemSeparator"/>
 
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource HeaderTextBlock}"
+                        <TextBlock Style="{StaticResource TextBlock.Header}"
                                    Text="{Binding Path=DisplayHeader.Value}" />
 
-                        <local:InfoIcon Style="{StaticResource AdditionalFilesRequired}"
+                        <local:InfoIcon Style="{StaticResource InfoIcon.AdditionalFilesRequired}"
                                         Text="{Resx Utility_AdditionalFilesRequired}"
                                         Visibility="{Binding Path=Utility.RequiresAdditionalFiles, Converter={rwpf:BooleanToVisibilityConverter}, Mode=OneTime}"/>
 
                         <local:InfoIcon Text="{Binding Path=InfoText.Value}"
                                         Visibility="{Binding Path=InfoText.Value, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}"/>
 
-                        <local:InfoIcon Style="{StaticResource WIP}"
+                        <local:InfoIcon Style="{StaticResource InfoIcon.WorkInProgress}"
                                         Text="{Resx Utility_WIP}"
                                         Visibility="{Binding Path=Utility.IsWorkInProcess, Converter={rwpf:BooleanToVisibilityConverter}, Mode=OneTime}"/>
 
-                        <local:InfoIcon Style="{StaticResource Warning}"
+                        <local:InfoIcon Style="{StaticResource InfoIcon.Warning}"
                                         Text="{Binding Path=WarningText.Value}"
                                         Visibility="{Binding Path=WarningText.Value, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}" />
 
@@ -56,7 +56,7 @@
 
                                                 <StackPanel HorizontalAlignment="Center"
                                                             VerticalAlignment="Center"
-                                                            ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
+                                                            ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
                                                     <StackPanel Orientation="Horizontal">
 
                                                         <iconPacks:PackIconMaterial Kind="Security"

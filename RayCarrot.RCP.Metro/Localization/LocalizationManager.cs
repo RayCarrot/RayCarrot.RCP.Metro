@@ -141,5 +141,14 @@ namespace RayCarrot.RCP.Metro
         public static ObservableCollection<CultureInfo> Languages { get; }
 
         #endregion
+
+        #region Constants
+
+        /// <summary>
+        /// The path to the resource files
+        /// </summary>
+        public const string ResourcePath = "RayCarrot.RCP.Metro.Localization.Resources";
+
+        #endregion
     }
 }

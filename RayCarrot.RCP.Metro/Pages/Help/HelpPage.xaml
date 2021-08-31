@@ -7,7 +7,7 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-                ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignHeight="450" d:DesignWidth="800"
@@ -98,35 +98,35 @@
 
                             <DataGrid.Columns>
 
-                                <DataGridTextColumn ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                                <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                                                     Header="{Resx Help_Cheats_Description}"
                                                     Binding="{Binding Path=CheatDescription}"
                                                     ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
 
-                                <DataGridTextColumn ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                                <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                                                     Header="{Resx Help_Cheats_Location}"
                                                     Binding="{Binding Path=InputLocation}"
                                                     ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
 
-                                <DataGridTextColumn ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                                <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                                                     Header="{Resx Help_Cheats_Cheats}"
                                                     Visibility="{Binding Path=Data.(local:HelpItemViewModel.CheatCodeItemsType), Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Generic, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
                                                     Binding="{Binding Path=(local:GenericCheatCodeItemViewModel.Input)}"
                                                     ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
 
-                                <DataGridTextColumn ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                                <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                                                     Header="{Resx Help_Cheats_Cheats1}"
                                                     Visibility="{Binding Path=Data.(local:HelpItemViewModel.CheatCodeItemsType), Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
                                                     Binding="{Binding Path=(local:Rayman1CheatCodeItemViewModel.Input1)}"
                                                     ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
 
-                                <DataGridTextColumn ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                                <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                                                     Header="{Resx Help_Cheats_Cheats2}"
                                                     Visibility="{Binding Path=Data.(local:HelpItemViewModel.CheatCodeItemsType), Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
                                                     Binding="{Binding Path=(local:Rayman1CheatCodeItemViewModel.Input2)}"
                                                     ElementStyle="{StaticResource DataGridColumnElementStyle}"/>
 
-                                <DataGridTextColumn ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                                <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                                                     Header="{Resx Help_Cheats_Cheats3}"
                                                     Visibility="{Binding Path=Data.(local:HelpItemViewModel.CheatCodeItemsType), Converter={rwpf:EnumVisibilityConverter}, ConverterParameter=Rayman1, FallbackValue=Collapsed, Source={StaticResource DataGridProxy}}"
                                                     Binding="{Binding Path=(local:Rayman1CheatCodeItemViewModel.Input3)}"

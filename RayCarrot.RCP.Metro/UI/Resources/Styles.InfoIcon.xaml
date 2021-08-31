@@ -2,16 +2,16 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:RayCarrot.RCP.Metro">
 
-    <Style x:Key="AdditionalFilesRequired" TargetType="{x:Type local:InfoIcon}">
+    <Style x:Key="InfoIcon.AdditionalFilesRequired" TargetType="{x:Type local:InfoIcon}">
         <Setter Property="IconKind" Value="CloudDownload" />
     </Style>
 
-    <Style x:Key="Warning" TargetType="{x:Type local:InfoIcon}">
+    <Style x:Key="InfoIcon.Warning" TargetType="{x:Type local:InfoIcon}">
         <Setter Property="IconKind" Value="InformationOutline" />
         <Setter Property="Foreground" Value="Red" />
     </Style>
 
-    <Style x:Key="WIP" TargetType="{x:Type local:InfoIcon}">
+    <Style x:Key="InfoIcon.WorkInProgress" TargetType="{x:Type local:InfoIcon}">
         <Setter Property="IconKind" Value="InformationOutline" />
         <Setter Property="Foreground" Value="DarkOrange" />
     </Style>

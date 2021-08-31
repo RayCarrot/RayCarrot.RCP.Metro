@@ -9,7 +9,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
              Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
-             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d" 
              d:DesignWidth="800" d:DesignHeight="500" d:DataContext="{d:DesignInstance local:Mod_RRR_ViewModel}">
     <Grid>
@@ -34,10 +34,10 @@
 
             <StackPanel Grid.Row="0"
                         Orientation="Horizontal"
-                        Margin="{StaticResource DefaultVerticalStackMargin}">
+                        Margin="{StaticResource Thickness.Vertical}">
 
                 <TextBlock Text="{Resx Mod_RRR_MemoryModsHeader}"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
+                           Style="{StaticResource TextBlock.HeaderLarge}" />
 
                 <local:InfoIcon Text="{Resx Mod_RRR_MemoryModsInfo}" />
 
@@ -46,7 +46,7 @@
             <!-- Mods -->
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
-                          Margin="{StaticResource DefaultVerticalStackMargin}">
+                          Margin="{StaticResource Thickness.Vertical}">
 
                 <Grid>
 
@@ -69,8 +69,8 @@
                                     <StackPanel Orientation="Horizontal">
 
                                         <TextBlock Text="{Binding Path=Header.Value}"
-                                                   Style="{StaticResource HeaderTextBlock}"
-                                                   Margin="{StaticResource DefaultVerticalStackMargin}" />
+                                                   Style="{StaticResource TextBlock.Header}"
+                                                   Margin="{StaticResource Thickness.Vertical}" />
 
                                         <local:InfoIcon Text="{Binding Path=Info.Value}"
                                                         Visibility="{Binding Path=Info, Converter={rwpf:InvertedObjectNullToVisibilityConverter}, Mode=OneTime}" />
@@ -91,7 +91,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <CheckBox Grid.Row="0"
-                                                              Margin="{StaticResource SmallVerticalStackMargin}"
+                                                              Margin="{StaticResource Thickness.VerticalSmall}"
                                                               IsChecked="{Binding Path=IsToggled}">
 
                                                         <StackPanel>
@@ -117,7 +117,7 @@
                                                               ItemsSource="{Binding Path=SelectionOptions, Mode=OneTime}"
                                                               DisplayMemberPath="Value"
                                                               SelectedIndex="{Binding Path=SelectedSelectionIndex}"
-                                                              Margin="{StaticResource SmallVerticalStackMargin}" />
+                                                              Margin="{StaticResource Thickness.VerticalSmall}" />
 
                                                 </Grid>
                                             </DataTemplate>
@@ -137,16 +137,16 @@
                     <StackPanel Grid.Row="1" IsEnabled="{Binding Path=IsCustomButtonMappingEnabled}">
 
                         <TextBlock Text="{Resx Mod_RRR_ButtonMappingHeader}"
-                                   Style="{StaticResource HeaderTextBlock}"
-                                   Margin="{StaticResource SmallVerticalStackMargin}"/>
+                                   Style="{StaticResource TextBlock.Header}"
+                                   Margin="{StaticResource Thickness.VerticalSmall}"/>
 
                         <CheckBox Content="{Resx Mod_RRR_ButtonMappingToggle}"
-                                  Margin="{StaticResource SmallVerticalStackMargin}"
+                                  Margin="{StaticResource Thickness.VerticalSmall}"
                                   IsChecked="{Binding Path=UseCustomButtonMapping}"/>
 
                         <local:ButtonMapper ItemsSource="{Binding Path=ButtonMappingItems, Mode=OneTime}"
                                             IsEnabled="{Binding Path=UseCustomButtonMapping}"
-                                            Margin="{StaticResource SmallVerticalStackMargin}"/>
+                                            Margin="{StaticResource Thickness.VerticalSmall}"/>
 
                     </StackPanel>
 
@@ -157,7 +157,7 @@
             <Button Grid.Row="2"
                     Command="{Binding Path=ApplyMemoryPatchCommand, Mode=OneTime}"
                     HorizontalAlignment="Left"
-                    Margin="{StaticResource DefaultVerticalStackMargin}">
+                    Margin="{StaticResource Thickness.Vertical}">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconMaterial Kind="AutoFix"
                                                 VerticalAlignment="Center" />
@@ -186,10 +186,10 @@
 
             <!-- Header -->
 
-            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="{StaticResource DefaultVerticalStackMargin}">
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="{StaticResource Thickness.Vertical}">
 
                 <TextBlock Text="{Resx Mod_RRR_BFModsHeader}"
-                           Style="{StaticResource LargeHeaderTextBlock}" />
+                           Style="{StaticResource TextBlock.HeaderLarge}" />
 
                 <local:InfoIcon Text="{Resx Mod_RRR_BFModsInfo}" />
 
@@ -199,11 +199,11 @@
 
             <StackPanel Grid.Row="1">
                 <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
                 </i:Interaction.Behaviors>
 
                 <TextBlock Text="{Resx Mod_RRR_GameDirHeader}"
-                           Style="{StaticResource HeaderTextBlock}" />
+                           Style="{StaticResource TextBlock.Header}" />
 
                 <rwpf:BrowseBox SelectedPath="{Binding Path=GameDirectoryPath}"
                                 BrowseType="Directory"
@@ -215,7 +215,7 @@
 
             <StackPanel Grid.Row="2">
                 <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
                 </i:Interaction.Behaviors>
 
                 <!-- Apply Exe Patch -->
@@ -291,14 +291,14 @@
 
             <TextBlock Grid.Row="3"
                        Text="{Resx Mod_RRR_BFPatchesHeader}"
-                       Style="{StaticResource HeaderTextBlock}"
-                       Margin="{StaticResource DefaultVerticalStackMargin}" />
+                       Style="{StaticResource TextBlock.Header}"
+                       Margin="{StaticResource Thickness.Vertical}" />
 
             <!-- Patches -->
 
             <ScrollViewer Grid.Row="4"
                           VerticalScrollBarVisibility="Auto"
-                          Margin="{StaticResource DefaultVerticalStackMargin}">
+                          Margin="{StaticResource Thickness.Vertical}">
 
                 <ItemsControl ItemsSource="{Binding Path=BFModToggles, Mode=OneTime}"
                               IsEnabled="{Binding Path=CanUpdatePatchedBF}">
@@ -312,7 +312,7 @@
                                 </Grid.RowDefinitions>
 
                                 <CheckBox Grid.Row="0"
-                                          Margin="{StaticResource SmallVerticalStackMargin}"
+                                          Margin="{StaticResource Thickness.VerticalSmall}"
                                           IsChecked="{Binding Path=IsToggled}">
                                     <TextBlock Text="{Binding Path=Header.Value}" 
                                                TextWrapping="Wrap"
@@ -326,7 +326,7 @@
                                           ItemsSource="{Binding Path=SelectionOptions, Mode=OneTime}"
                                           DisplayMemberPath="Value"
                                           SelectedIndex="{Binding Path=SelectedSelectionIndex}"
-                                          Margin="{StaticResource SmallVerticalStackMargin}" />
+                                          Margin="{StaticResource Thickness.VerticalSmall}" />
 
                             </Grid>
                         </DataTemplate>
@@ -340,7 +340,7 @@
 
             <StackPanel Grid.Row="5">
                 <i:Interaction.Behaviors>
-                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+                    <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
                 </i:Interaction.Behaviors>
 
                 <Button Command="{Binding Path=UpdatePatchedBFCommand, Mode=OneTime}"

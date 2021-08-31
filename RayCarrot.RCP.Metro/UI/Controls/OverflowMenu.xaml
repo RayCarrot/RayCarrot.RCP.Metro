@@ -5,7 +5,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Style="{StaticResource FlatButton}"
+        Style="{StaticResource Button.Flat}"
         Click="OverflowMenu_OnClick"
         ContextMenuOpening="OverflowMenu_OnContextMenuOpening"
         Width="22"

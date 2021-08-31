@@ -5,18 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:wpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-             xmlns:metro="clr-namespace:RayCarrot.RCP.Metro"
-             ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="650" d:DataContext="{d:DesignInstance metro:GameOptionsViewModel}">
+             d:DesignHeight="300" d:DesignWidth="650" d:DataContext="{d:DesignInstance local:GameOptionsViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <wpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+            <wpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
         <!-- Information -->
 
-        <TextBlock Style="{StaticResource HeaderTextBlock}"
+        <TextBlock Style="{StaticResource TextBlock.Header}"
                    Text="{Resx GameOptions_Info}" />
 
         <ItemsControl ItemsSource="{Binding Path=GameInfoItems, Mode=OneTime}"
@@ -24,7 +24,7 @@
 
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <metro:DuoGridItem Text="{Binding Path=Text}"
+                    <local:DuoGridItem Text="{Binding Path=Text}"
                                        Header="{Binding Path=Header}"
                                        MinUserLevel="{Binding Path=MinUserLevel}" />
                 </DataTemplate>
@@ -39,10 +39,10 @@
         <StackPanel Orientation="Horizontal"
                     Visibility="{Binding Path=CanChangeLaunchMode, Converter={wpf:BooleanToVisibilityConverter}}">
 
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx GameOptions_LaunchMode}" />
 
-            <metro:InfoIcon Text="{Resx GameOptions_LaunchModeInfo}" />
+            <local:InfoIcon Text="{Resx GameOptions_LaunchModeInfo}" />
 
         </StackPanel>
 
@@ -50,7 +50,7 @@
                     Visibility="{Binding Path=CanChangeLaunchMode, Converter={wpf:BooleanToVisibilityConverter}}">
 
             <i:Interaction.Behaviors>
-                <wpf:UnifiedMarginBehavior Margin="{StaticResource DefaultHorizontalStackMargin}" />
+                <wpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
             </i:Interaction.Behaviors>
 
             <wpf:RadioButtonExtended Content="{Resx GameOptions_LaunchMode_AsInvoker}"

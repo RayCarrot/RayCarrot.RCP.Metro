@@ -8,13 +8,13 @@
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignWidth="800"
                 d:DataContext="{d:DesignInstance local:BackupPageViewModel}">
     <local:IBasePage.OverflowMenu>
-        <ContextMenu ResxExtension.DefaultResxName="{StaticResource ResourcePath}">
+        <ContextMenu ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}">
 
             <MenuItem Header="{Resx Backup_Compress}"
                       ToolTip="{Resx Backup_CompressInfo}"
@@ -45,7 +45,7 @@
 
         <StackPanel>
 
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Settings_BackupLocation}" />
 
             <rwpf:BrowseBox SelectedPath="{Binding Path=Data.BackupLocation, UpdateSourceTrigger=LostFocus}"
@@ -71,7 +71,7 @@
                 <!-- Last Backup -->
 
                 <TextBlock Grid.Column="2"
-                           Style="{StaticResource HeaderTextBlock}"
+                           Style="{StaticResource TextBlock.Header}"
                            Text="{Resx Backup_LastBackupDate}"
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Center" />
@@ -81,7 +81,7 @@
                 <TextBlock Grid.Column="3"
                            rwpf:UserLevelTag.MinUserLevel="Advanced"
                            MinWidth="100"
-                           Style="{StaticResource HeaderTextBlock}"
+                           Style="{StaticResource TextBlock.Header}"
                            Text="{Resx Backup_LastBackupSize}"
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Center"
@@ -92,7 +92,7 @@
                 <TextBlock Grid.Column="4"
                            rwpf:UserLevelTag.MinUserLevel="Debug"
                            MinWidth="100"
-                           Style="{StaticResource HeaderTextBlock}"
+                           Style="{StaticResource TextBlock.Header}"
                            Text="Debug Info"
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Center"
@@ -125,7 +125,7 @@
                             <!-- Title -->
 
                             <TextBlock Grid.Column="1"
-                                       Style="{StaticResource LargeHeaderTextBlock}"
+                                       Style="{StaticResource TextBlock.HeaderLarge}"
                                        Text="{Binding Path=DisplayName, Mode=OneTime}"
                                        VerticalAlignment="Center" 
                                        HorizontalAlignment="Left" 

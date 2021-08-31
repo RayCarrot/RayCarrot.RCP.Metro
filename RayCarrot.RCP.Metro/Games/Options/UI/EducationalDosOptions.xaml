@@ -9,17 +9,17 @@
                     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     xmlns:dd="urn:gong-wpf-dragdrop"
-                    ResxExtension.DefaultResxName="{StaticResource ResourcePath}"
+                    ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                     mc:Ignorable="d"
                     d:DataContext="{d:DesignInstance local:EducationalDosOptionsViewModel}">
     <StackPanel>
         <i:Interaction.Behaviors>
-            <rwpf:UnifiedMarginBehavior Margin="{StaticResource DefaultVerticalStackMargin}" />
+            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
         <StackPanel Orientation="Horizontal">
 
-            <TextBlock Style="{StaticResource HeaderTextBlock}"
+            <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx EducationalOptions_Header}" />
 
             <local:InfoIcon Text="{Resx EducationalOptions_Info}" />
@@ -78,7 +78,7 @@
 
                             <Button Grid.Column="2"
                                     ToolTip="{Resx EducationalOptions_Edit}"
-                                    Style="{StaticResource FlatButton}"
+                                    Style="{StaticResource Button.Flat}"
                                     Command="{Binding Path=EditGameCommand}"
                                     VerticalAlignment="Center"
                                     Margin="15 0 10 0">
@@ -90,7 +90,7 @@
 
                             <Button Grid.Column="3"
                                     ToolTip="{Resx GameDisplay_OpenLocation}"
-                                    Style="{StaticResource FlatButton}"
+                                    Style="{StaticResource Button.Flat}"
                                     Command="{Binding Path=OpenLocationCommand}"
                                     VerticalAlignment="Center"
                                     Margin="15 0 10 0">
@@ -102,7 +102,7 @@
 
                             <Button Grid.Column="4"
                                     ToolTip="{Resx EducationalOptions_Remove}"
-                                    Style="{StaticResource FlatButton}"
+                                    Style="{StaticResource Button.Flat}"
                                     Command="{Binding Path=RemoveGameCommand}"
                                     VerticalAlignment="Center"
                                     Margin="15 0 10 0">
@@ -120,7 +120,7 @@
         </ItemsControl>
 
         <Button ToolTip="{Resx EducationalOptions_AddNew}"
-                Style="{StaticResource FlatButton}"
+                Style="{StaticResource Button.Flat}"
                 HorizontalAlignment="Left"
                 Command="{Binding Path=AddGameCommand}">
             <iconPacks:PackIconMaterial Background="Transparent"
