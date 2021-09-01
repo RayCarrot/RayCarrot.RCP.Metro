@@ -1,5 +1,7 @@
 ﻿-----   Version 12.0.0 - September ??, 2021   -----
-• 
+• Visual changes:
+	• Redesigned the tab headers to use colored icons and underlines
+	• Controls now have rounded corners and slightly thicker borders
 
 Other changes:
 • Improved scrolling with the mouse wheel over button mapping controls
