@@ -8,11 +8,13 @@
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignHeight="450" d:DesignWidth="800"
                 d:DataContext="{d:DesignInstance local:HelpPageViewModel}">
-    <Grid>
+    <Grid Margin="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"
                               MaxWidth="300" />

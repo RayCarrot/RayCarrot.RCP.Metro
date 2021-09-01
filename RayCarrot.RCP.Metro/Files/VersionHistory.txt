@@ -2,6 +2,7 @@
 • Visual changes:
 	• Redesigned the tab headers to use colored icons and underlines
 	• Controls now have rounded corners and slightly thicker borders
+	• Changed which areas of pages use scroll bars
 
 Other changes:
 • Improved scrolling with the mouse wheel over button mapping controls

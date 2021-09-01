@@ -8,9 +8,9 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
                 xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
-                xmlns:dd="urn:gong-wpf-dragdrop"
-                xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignWidth="800"
@@ -61,21 +61,21 @@
         </ContextMenu>
     </local:IBasePage.OverflowMenu>
 
-    <ScrollViewer>
-        <metro:MetroAnimatedTabControl x:Name="SettingsTabControl"
-                                       Margin="15"
-                                       FocusVisualStyle="{x:Null}">
+    <metro:MetroAnimatedTabControl x:Name="SettingsTabControl"
+                                   Margin="15"
+                                   FocusVisualStyle="{x:Null}">
 
-            <i:Interaction.Behaviors>
-                <rwpf:FocusElementOnLoad />
-            </i:Interaction.Behaviors>
+        <i:Interaction.Behaviors>
+            <rwpf:FocusElementOnLoad />
+        </i:Interaction.Behaviors>
 
-            <!-- General -->
+        <!-- General -->
 
-            <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Settings}"
-                     local:TabItemProperties.IconForeground="{StaticResource Colors.Settings}"
-                     Header="{Resx Settings_GeneralHeader}">
+        <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Settings}"
+                 local:TabItemProperties.IconForeground="{StaticResource Colors.Settings}"
+                 Header="{Resx Settings_GeneralHeader}">
 
+            <ScrollViewer>
                 <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
@@ -304,15 +304,17 @@
                     </StackPanel>
 
                 </StackPanel>
+            </ScrollViewer>
 
-            </TabItem>
+        </TabItem>
 
-            <!-- Archive Explorer -->
+        <!-- Archive Explorer -->
 
-            <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Settings_ArchiveExplorer}"
-                     local:TabItemProperties.IconForeground="{StaticResource Colors.ArchiveExplorer}"
-                     Header="{Resx Archive_Title}">
+        <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Settings_ArchiveExplorer}"
+                 local:TabItemProperties.IconForeground="{StaticResource Colors.ArchiveExplorer}"
+                 Header="{Resx Archive_Title}">
 
+            <ScrollViewer>
                 <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
@@ -346,7 +348,8 @@
 
                             </StackPanel>
 
-                            <StackPanel Visibility="{Binding Path=AssociatedPrograms, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
+                            <StackPanel
+                                Visibility="{Binding Path=AssociatedPrograms, Converter={rwpf:EnumerableEmptyVisibilityConverter}}">
 
                                 <TextBlock Style="{StaticResource TextBlock.Header}"
                                            Text="{Resx Archive_FileEditors}"
@@ -362,12 +365,12 @@
                                           ItemsSource="{Binding Path=AssociatedPrograms, Mode=OneTime}">
 
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="{Resx Archive_FileEditorsExt}" 
+                                        <DataGridTextColumn Header="{Resx Archive_FileEditorsExt}"
                                                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
-                                                            Width="Auto" 
+                                                            Width="Auto"
                                                             Binding="{Binding Path=FileExtension, Mode=OneTime}"
                                                             IsReadOnly="True" />
-                                        <DataGridTextColumn Header="{Resx Archive_FileEditorsExe}" 
+                                        <DataGridTextColumn Header="{Resx Archive_FileEditorsExe}"
                                                             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                                                             Width="*">
                                             <DataGridTextColumn.Binding>
@@ -427,15 +430,17 @@
                     </StackPanel>
 
                 </StackPanel>
+            </ScrollViewer>
 
-            </TabItem>
+        </TabItem>
 
-            <!-- DOSBox -->
+        <!-- DOSBox -->
 
-            <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Settings_ArchiveExplorer}"
-                     local:TabItemProperties.IconForeground="{StaticResource Colors.Emulator}"
-                     Header="{Resx Settings_DosBoxHeader}">
+        <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Settings_ArchiveExplorer}"
+                 local:TabItemProperties.IconForeground="{StaticResource Colors.Emulator}"
+                 Header="{Resx Settings_DosBoxHeader}">
 
+            <ScrollViewer>
                 <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
@@ -491,28 +496,32 @@
                     </StackPanel>
 
                 </StackPanel>
+            </ScrollViewer>
 
-            </TabItem>
+        </TabItem>
 
-            <!-- Links -->
+        <!-- Links -->
 
-            <TabItem local:TabItemProperties.IconKind="Link"
-                     local:TabItemProperties.IconForeground="{StaticResource Colors.Info}"
-                     Header="{Resx LinksPageHeader}">
+        <TabItem local:TabItemProperties.IconKind="Link"
+                 local:TabItemProperties.IconForeground="{StaticResource Colors.Info}"
+                 Header="{Resx LinksPageHeader}">
 
+            <ScrollViewer>
                 <ItemsControl Margin="2 0"
                               Style="{DynamicResource ItemsControl.LinkItemsDisplay}"
-                              ItemsSource="{Binding Path=LocalLinkItems, Mode=OneTime, IsAsync=True}"/>
+                              ItemsSource="{Binding Path=LocalLinkItems, Mode=OneTime, IsAsync=True}" />
+            </ScrollViewer>
 
-            </TabItem>
+        </TabItem>
 
-            <!-- Debug -->
+        <!-- Debug -->
 
-            <TabItem local:TabItemProperties.IconKind="CodeBraces"
-                     local:TabItemProperties.IconForeground="{StaticResource Colors.Debug}"
-                     Header="{Resx DebugPageHeader}"
-                     rwpf:UserLevelTag.MinUserLevel="Debug">
+        <TabItem local:TabItemProperties.IconKind="CodeBraces"
+                 local:TabItemProperties.IconForeground="{StaticResource Colors.Debug}"
+                 Header="{Resx DebugPageHeader}"
+                 rwpf:UserLevelTag.MinUserLevel="Debug">
 
+            <ScrollViewer>
                 <StackPanel Margin="2 0">
                     <i:Interaction.Behaviors>
                         <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
@@ -540,10 +549,9 @@
                                            Text="{Resx Settings_DebugExceptionLevel}"
                                            Margin="0 0 0 8" />
 
-                                <ComboBox
-                                    ItemsSource="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToListConverter}, Mode=OneTime}"
-                                    SelectedIndex="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToIntConverter}}"
-                                    ToolTip="{Resx Settings_DebugExceptionLevelInfo}" />
+                                <ComboBox ItemsSource="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToListConverter}, Mode=OneTime}"
+                                          SelectedIndex="{Binding Path=DisplayExceptionLevel, Converter={rwpf:EnumToIntConverter}}"
+                                          ToolTip="{Resx Settings_DebugExceptionLevelInfo}" />
 
                             </StackPanel>
 
@@ -558,11 +566,11 @@
                     </StackPanel>
 
                 </StackPanel>
+            </ScrollViewer>
 
-            </TabItem>
+        </TabItem>
 
-        </metro:MetroAnimatedTabControl>
-    </ScrollViewer>
+    </metro:MetroAnimatedTabControl>
 
     <i:Interaction.Behaviors>
         <local:ChildRCPTabControlBehavior ChildTabControl="{Binding ElementName=SettingsTabControl}" />

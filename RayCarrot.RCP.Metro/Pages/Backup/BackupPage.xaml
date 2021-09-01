@@ -9,6 +9,8 @@
                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignWidth="800"
@@ -35,15 +37,16 @@
         </ContextMenu>
     </local:IBasePage.OverflowMenu>
 
-    <ScrollViewer x:Name="BackupPageScrollViewer"
-                  Padding="15" 
-                  Grid.IsSharedSizeScope="True"
-                  HorizontalScrollBarVisibility="Auto">
-        <i:Interaction.Behaviors>
-            <rwpf:FocusScrollViewerOnLoad />
-        </i:Interaction.Behaviors>
+    <Grid Margin="15" Grid.IsSharedSizeScope="True">
 
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
 
             <TextBlock Style="{StaticResource TextBlock.Header}"
                        Text="{Resx Settings_BackupLocation}" />
@@ -52,57 +55,64 @@
                             UseCurrentPathAsDefaultLocationIfValid="True"
                             BrowseType="Directory"
                             PathValidation="DirectoryExistsAndNotEmpty"
-                            Margin="0 8"/>
+                            Margin="0 8" />
 
-            <Separator Margin="0 5" />
+        </StackPanel>
 
-            <!-- Header -->
+        <Separator Grid.Row="1" Margin="0 5" />
 
-            <Grid Margin="0 15">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" SharedSizeGroup="GameImage" />
-                    <ColumnDefinition Width="*" MaxWidth="550" />
-                    <ColumnDefinition Width="Auto" SharedSizeGroup="LastBackup" MinWidth="100" />
-                    <ColumnDefinition Width="Auto" SharedSizeGroup="BackupSize" />
-                    <ColumnDefinition Width="Auto" SharedSizeGroup="DebugInfo" />
-                    <ColumnDefinition Width="Auto" SharedSizeGroup="Actions" />
-                </Grid.ColumnDefinitions>
+        <!-- Header -->
 
-                <!-- Last Backup -->
+        <Grid Grid.Row="2" Margin="0 15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="GameImage" />
+                <ColumnDefinition Width="*" MaxWidth="550" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="LastBackup" MinWidth="100" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="BackupSize" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="DebugInfo" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Actions" />
+            </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="2"
-                           Style="{StaticResource TextBlock.Header}"
-                           Text="{Resx Backup_LastBackupDate}"
-                           VerticalAlignment="Center" 
-                           HorizontalAlignment="Center" />
+            <!-- Last Backup -->
 
-                <!-- Backup Size -->
+            <TextBlock Grid.Column="2"
+                       Style="{StaticResource TextBlock.Header}"
+                       Text="{Resx Backup_LastBackupDate}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" />
 
-                <TextBlock Grid.Column="3"
-                           rwpf:UserLevelTag.MinUserLevel="Advanced"
-                           MinWidth="100"
-                           Style="{StaticResource TextBlock.Header}"
-                           Text="{Resx Backup_LastBackupSize}"
-                           VerticalAlignment="Center" 
-                           HorizontalAlignment="Center"
-                           Margin="10 0 0 0"/>
+            <!-- Backup Size -->
 
-                <!-- Debug Info -->
-                <!-- NOTE: Not localized -->
-                <TextBlock Grid.Column="4"
-                           rwpf:UserLevelTag.MinUserLevel="Debug"
-                           MinWidth="100"
-                           Style="{StaticResource TextBlock.Header}"
-                           Text="Debug Info"
-                           VerticalAlignment="Center" 
-                           HorizontalAlignment="Center"
-                           Margin="10 0 0 0"/>
+            <TextBlock Grid.Column="3"
+                       rwpf:UserLevelTag.MinUserLevel="Advanced"
+                       MinWidth="100"
+                       Style="{StaticResource TextBlock.Header}"
+                       Text="{Resx Backup_LastBackupSize}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="10 0 0 0" />
 
-            </Grid>
+            <!-- Debug Info -->
+            <!-- NOTE: Not localized -->
+            <TextBlock Grid.Column="4"
+                       rwpf:UserLevelTag.MinUserLevel="Debug"
+                       MinWidth="100"
+                       Style="{StaticResource TextBlock.Header}"
+                       Text="Debug Info"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Margin="10 0 0 0" />
+
+        </Grid>
+
+        <ScrollViewer Grid.Row="3" HorizontalScrollBarVisibility="Auto">
+            <i:Interaction.Behaviors>
+                <rwpf:FocusScrollViewerOnLoad />
+            </i:Interaction.Behaviors>
 
             <!-- TODO: Make setting for showing debug info -->
 
-            <ItemsControl DataContext="{Binding Path=GameBackupItems}" 
+            <ItemsControl DataContext="{Binding Path=GameBackupItems}"
                           ItemsSource="{Binding IsAsync=True}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -111,7 +121,7 @@
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="GameImage" />
                                 <ColumnDefinition Width="*" MaxWidth="550" />
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="LastBackup" MinWidth="100" />
-                                <ColumnDefinition Width="Auto" SharedSizeGroup="BackupSize"  />
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="BackupSize" />
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="DebugInfo" />
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Actions" />
                             </Grid.ColumnDefinitions>
@@ -127,8 +137,8 @@
                             <TextBlock Grid.Column="1"
                                        Style="{StaticResource TextBlock.HeaderLarge}"
                                        Text="{Binding Path=DisplayName, Mode=OneTime}"
-                                       VerticalAlignment="Center" 
-                                       HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
                                        TextWrapping="WrapWithOverflow"
                                        MaxWidth="510"
                                        Margin="20 0" />
@@ -141,7 +151,7 @@
                                            Text="{Binding Path=LastBackupDisplay}"
                                            VerticalAlignment="Center"
                                            Margin="20 0"
-                                           Visibility="{Binding Path=CanRestore, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+                                           Visibility="{Binding Path=CanRestore, Converter={rwpf:BooleanToVisibilityConverter}}" />
 
                             </Grid>
 
@@ -155,7 +165,7 @@
                                            Text="{Binding Path=BackupSize}"
                                            VerticalAlignment="Center"
                                            Margin="20 0"
-                                           Visibility="{Binding Path=CanRestore, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+                                           Visibility="{Binding Path=CanRestore, Converter={rwpf:BooleanToVisibilityConverter}}" />
 
                             </Grid>
 
@@ -168,7 +178,7 @@
                                 <TextBlock FontSize="14"
                                            Text="{Binding Path=DebugInfo}"
                                            VerticalAlignment="Center"
-                                           Margin="20 0"/>
+                                           Margin="20 0" />
 
                             </Grid>
 
@@ -185,7 +195,7 @@
                                 <local:IconButton IconKind="FolderDownloadOutline"
                                                   Command="{Binding Path=RestoreCommand}"
                                                   ToolTip="{Resx Backup_Restore}"
-                                                  IsEnabled="{Binding Path=CanRestore}"/>
+                                                  IsEnabled="{Binding Path=CanRestore}" />
 
                                 <mah:ProgressRing Visibility="{Binding Path=ShowBackupRestoreIndicator, Converter={rwpf:BooleanToVisibilityHiddenConverter}}" />
 
@@ -196,6 +206,8 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-        </StackPanel>
-    </ScrollViewer>
+        </ScrollViewer>
+
+    </Grid>
+
 </local:BasePage>

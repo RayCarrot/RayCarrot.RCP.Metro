@@ -9,10 +9,12 @@
                 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                 ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                 IsTabStop="False"
                 mc:Ignorable="d"
                 d:DesignWidth="800" d:DataContext="{d:DesignInstance local:AboutPageViewModel}">
-    <Grid MaxWidth="800" Margin="15 8">
+    <Grid MaxWidth="800" Margin="15">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
