@@ -16,17 +16,23 @@
             <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
         </i:Interaction.Behaviors>
 
-        <metro:FlipView HorizontalAlignment="Left"
-                        CircularNavigation="True" 
-                        ShowIndex="False"
-                        MouseHoverBorderEnabled="False"
-                        Width="650"
-                        RenderOptions.BitmapScalingMode="Linear"
-                        IsBannerEnabled="False">
-            <Image Source="Screenshots/ObjEditor.png" />
-            <Image Source="Screenshots/TileEditor.png" />
-            <Image Source="Screenshots/LayerEditor.png" />
-        </metro:FlipView>
+        <Border BorderThickness="{StaticResource Thickness.Border.Default}" 
+                CornerRadius="{StaticResource CornerRadius.Default}"
+                BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}"
+                HorizontalAlignment="Left">
+
+            <metro:FlipView CircularNavigation="True" 
+                            ShowIndex="False"
+                            MouseHoverBorderEnabled="False"
+                            Width="650"
+                            RenderOptions.BitmapScalingMode="Linear"
+                            IsBannerEnabled="False">
+                <Image Source="Screenshots/ObjEditor.png" />
+                <Image Source="Screenshots/TileEditor.png" />
+                <Image Source="Screenshots/LayerEditor.png" />
+            </metro:FlipView>
+
+        </Border>
 
         <Button VerticalAlignment="Center"
                 HorizontalAlignment="Left"

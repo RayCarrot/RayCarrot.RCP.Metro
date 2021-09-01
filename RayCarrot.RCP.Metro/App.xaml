@@ -19,6 +19,7 @@
 
                 <!-- Local -->
 
+                <ResourceDictionary Source="UI/Resources/Theme.RoundedCorners.xaml" />
                 <ResourceDictionary Source="UI/Resources/Resources.Icons.xaml" />
                 <ResourceDictionary Source="UI/Resources/Resources.Margins.xaml" />
                 <ResourceDictionary Source="UI/Resources/Styles.InfoIcon.xaml" />

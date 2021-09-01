@@ -14,12 +14,13 @@
 
     <Grid UseLayoutRounding="True" x:Name="ContainerGrid">
         <Border x:Name="MainBorder"
-                Background="Transparent"
-                BorderBrush="{DynamicResource MahApps.Brushes.ThemeForeground}"
-                BorderThickness="1"
+                Background="Transparent" 
+                BorderBrush="{DynamicResource MahApps.Brushes.Button.Border}"
+                CornerRadius="{StaticResource CornerRadius.Default}"
+                BorderThickness="2"
                 SnapsToDevicePixels="True">
 
-            <mah:ClipBorder SnapsToDevicePixels="True">
+            <mah:ClipBorder SnapsToDevicePixels="True" CornerRadius="{StaticResource CornerRadius.Default}">
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -32,10 +33,6 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
                             HorizontalContentAlignment="Stretch"
-                            VerticalContentAlignment="Stretch"
-                            Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
-                            BorderBrush="{DynamicResource MahApps.Brushes.ThemeForeground}"
-                            Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
                             SnapsToDevicePixels="True"
                             Command="{Binding Path=MainCommand}"
                             Style="{DynamicResource MahApps.Styles.Button.Split}">
@@ -114,51 +111,53 @@
                Closed="PopupClosed"
                StaysOpen="True">
 
-            <ItemsControl x:Name="MainItemsControl"
+            <Border BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}"
+                    BorderThickness="{StaticResource Thickness.Border.Default}"
+                    CornerRadius="{StaticResource CornerRadius.Default}"
+                    SnapsToDevicePixels="True">
+                <ItemsControl x:Name="MainItemsControl"
                           MinWidth="{Binding ActualWidth, ElementName=ContainerGrid}"
                           ItemsSource="{Binding Path=OverflowItemSource}"
                           Margin="0"
-                          BorderBrush="{DynamicResource MahApps.Brushes.ThemeForeground
-}"
-                          BorderThickness="1"
                           SnapsToDevicePixels="True">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="local:OverflowButtonItemViewModel">
-                        <Grid Background="{StaticResource MahApps.Brushes.Control.Background}"
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="local:OverflowButtonItemViewModel">
+                            <Grid Background="{StaticResource MahApps.Brushes.Control.Background}"
                               rwpf:UserLevelTag.MinUserLevel="{Binding Path=MinUserLevel}">
-                            <MenuItem Header="{Binding Path=Header}"
+                                <MenuItem Header="{Binding Path=Header}"
                                       Command="{Binding Path=Command}"
                                       Visibility="{Binding Path=IsSeparator, Converter={rwpf:InvertedBooleanToVisibilityConverter}}"
                                       Click="MenuItem_OnClick">
-                                <MenuItem.Style>
-                                    <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource {x:Type MenuItem}}">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Path=IconSource}" Value="{x:Null}">
-                                                <Setter Property="Icon">
-                                                    <Setter.Value>
-                                                        <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
+                                    <MenuItem.Style>
+                                        <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=IconSource}" Value="{x:Null}">
+                                                    <Setter Property="Icon">
+                                                        <Setter.Value>
+                                                            <iconPacks:PackIconMaterial Kind="{Binding Path=IconKind}"
                                                                                     VerticalAlignment="Center"
                                                                                     HorizontalAlignment="Center" />
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                        <Setter Property="Icon">
-                                            <Setter.Value>
-                                                <Image Source="{Binding Path=IconSource}"
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                            <Setter Property="Icon">
+                                                <Setter.Value>
+                                                    <Image Source="{Binding Path=IconSource}"
                                                        MaxWidth="16"
                                                        MaxHeight="16"/>
-                                            </Setter.Value>
-                                        </Setter>
+                                                </Setter.Value>
+                                            </Setter>
 
-                                    </Style>
-                                </MenuItem.Style>
-                            </MenuItem>
-                            <Separator Visibility="{Binding Path=IsSeparator, Converter={rwpf:BooleanToVisibilityConverter}}"/>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                                        </Style>
+                                    </MenuItem.Style>
+                                </MenuItem>
+                                <Separator Visibility="{Binding Path=IsSeparator, Converter={rwpf:BooleanToVisibilityConverter}}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Border>
         </Popup>
     </Grid>
 </UserControl>
