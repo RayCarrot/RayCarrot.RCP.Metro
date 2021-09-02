@@ -30,22 +30,22 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The cheat code item type
         /// </summary>
-        public CheatCodeItemsTypes CheatCodeItemsType
+        public CheatCodeItemsType CheatCodeType
         {
             get
             {
                 if (CheatCodeItems?.Any() != true)
-                    return CheatCodeItemsTypes.None;
+                    return CheatCodeItemsType.None;
 
                 var item = CheatCodeItems.First();
 
                 if (item is Rayman1CheatCodeItemViewModel)
-                    return CheatCodeItemsTypes.Rayman1;
+                    return CheatCodeItemsType.Rayman1;
 
                 if (item is GenericCheatCodeItemViewModel)
-                    return CheatCodeItemsTypes.Generic;
+                    return CheatCodeItemsType.Generic;
 
-                return CheatCodeItemsTypes.None;
+                return CheatCodeItemsType.None;
             }
         }
 
@@ -71,7 +71,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The available cheat code item types
         /// </summary>
-        public enum CheatCodeItemsTypes
+        public enum CheatCodeItemsType
         {
             /// <summary>
             /// None

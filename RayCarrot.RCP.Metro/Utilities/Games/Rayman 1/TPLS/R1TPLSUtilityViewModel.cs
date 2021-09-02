@@ -27,7 +27,7 @@ namespace RayCarrot.RCP.Metro
             if (!CommonPaths.R1TPLSDir.DirectoryExists)
                 Data.TPLSData = null;
             else if (Data.TPLSData == null)
-                Data.TPLSData = new TPLSData(CommonPaths.R1TPLSDir);
+                Data.TPLSData = new UserData_TPLSData(CommonPaths.R1TPLSDir);
 
             if (Data.TPLSData != null)
             {
@@ -138,7 +138,7 @@ namespace RayCarrot.RCP.Metro
                 }
 
                 // Save
-                RCPServices.Data.TPLSData = new TPLSData(CommonPaths.R1TPLSDir);
+                RCPServices.Data.TPLSData = new UserData_TPLSData(CommonPaths.R1TPLSDir);
 
                 // Update the version
                 await Data.TPLSData.UpdateConfigAsync();

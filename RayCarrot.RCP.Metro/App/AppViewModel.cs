@@ -110,7 +110,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Private Fields
 
-        private Pages _selectedPage;
+        private AppPage _selectedPage;
 
         #endregion
 
@@ -188,7 +188,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The currently selected page
         /// </summary>
-        public Pages SelectedPage
+        public AppPage SelectedPage
         {
             get => _selectedPage;
             set
@@ -198,7 +198,7 @@ namespace RayCarrot.RCP.Metro
 
                 var oldValue = _selectedPage;
                 _selectedPage = value;
-                OnSelectedPageChanged(new PropertyChangedEventArgs<Pages>(oldValue, value));
+                OnSelectedPageChanged(new PropertyChangedEventArgs<AppPage>(oldValue, value));
             }
         }
 
@@ -230,7 +230,7 @@ namespace RayCarrot.RCP.Metro
 
         #region Protected Methods
 
-        protected virtual void OnSelectedPageChanged(PropertyChangedEventArgs<Pages> e)
+        protected virtual void OnSelectedPageChanged(PropertyChangedEventArgs<AppPage> e)
         {
             SelectedPageChanged?.Invoke(this, e);
         }
@@ -331,7 +331,7 @@ namespace RayCarrot.RCP.Metro
             var manager = game.GetManager(type);
 
             // Add the game
-            Data.Games.Add(game, new GameData(type, installDirectory));
+            Data.Games.Add(game, new UserData_GameData(type, installDirectory));
 
             RL.Logger?.LogInformationSource($"The game {game} has been added");
 
@@ -410,7 +410,7 @@ namespace RayCarrot.RCP.Metro
                 await Services.MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
 
                 // Attempt to change the permission
-                await RunAdminWorkerAsync(AdminWorkerModes.GrantFullControl, CommonPaths.UbiIniPath1);
+                await RunAdminWorkerAsync(AdminWorkerMode.GrantFullControl, CommonPaths.UbiIniPath1);
 
                 RL.Logger?.LogInformationSource($"The ubi.ini file permission was changed");
             }
@@ -443,7 +443,7 @@ namespace RayCarrot.RCP.Metro
                 RL.Logger?.LogTraceSource($"The following games were added to the game checker: {games.JoinItems(", ")}");
 
                 // Get additional finder items
-                var finderItems = new List<FinderItem>(1);
+                var finderItems = new List<GameFinder_GenericItem>(1);
 
                 // Create DOSBox finder item if it doesn't exist
                 if (!File.Exists(Data.DosBoxPath))
@@ -467,7 +467,7 @@ namespace RayCarrot.RCP.Metro
                         Data.DosBoxPath = installDir + "DOSBox.exe";
                     }
 
-                    finderItems.Add(new FinderItem(names, "DosBox", x => (x + "DOSBox.exe").FileExists ? x : null, foundAction, "DOSBox"));
+                    finderItems.Add(new GameFinder_GenericItem(names, "DosBox", x => (x + "DOSBox.exe").FileExists ? x : null, foundAction, "DOSBox"));
                 }
 
                 // Run the game finder and get the result
@@ -480,7 +480,7 @@ namespace RayCarrot.RCP.Metro
                     await foundItem.HandleItemAsync();
 
                     // If a game, add to list
-                    if (foundItem is GameFinderResult game)
+                    if (foundItem is GameFinder_GameResult game)
                         addedGames.Add(game.Game);
                 }
 
@@ -488,8 +488,8 @@ namespace RayCarrot.RCP.Metro
                 if (foundItems.Count > 0)
                 {
                     // Split into found games and items and sort
-                    var gameFinderResults = foundItems.OfType<GameFinderResult>().OrderBy(x => x.Game).Select(x => x.DisplayName);
-                    var finderResults = foundItems.OfType<FinderResult>().OrderBy(x => x.DisplayName).Select(x => x.DisplayName);
+                    var gameFinderResults = foundItems.OfType<GameFinder_GameResult>().OrderBy(x => x.Game).Select(x => x.DisplayName);
+                    var finderResults = foundItems.OfType<GameFinder_GenericResult>().OrderBy(x => x.DisplayName).Select(x => x.DisplayName);
 
                     await Services.MessageUI.DisplayMessageAsync($"{Resources.GameFinder_GamesFound}{Environment.NewLine}{Environment.NewLine}• {gameFinderResults.Concat(finderResults).JoinItems(Environment.NewLine + "• ")}", Resources.GameFinder_GamesFoundHeader, MessageType.Success);
 
@@ -609,10 +609,10 @@ namespace RayCarrot.RCP.Metro
                 // Show the dialog
                 dialog.ShowDialog();
 
-                RL.Logger?.LogInformationSource($"The download finished with the result of {dialog.ViewModel.DownloadState}");
+                RL.Logger?.LogInformationSource($"The download finished with the result of {dialog.ViewModel.CurrentDownloadState}");
 
                 // Return the result
-                return dialog.ViewModel.DownloadState == DownloaderViewModel.DownloadStates.Succeeded;
+                return dialog.ViewModel.CurrentDownloadState == DownloaderViewModel.DownloadState.Succeeded;
             }
             catch (Exception ex)
             {
@@ -689,7 +689,7 @@ namespace RayCarrot.RCP.Metro
         public async Task RestartAsAdminAsync()
         {
             // Run the admin worker, setting it to restart this process as admin
-            await RunAdminWorkerAsync(AdminWorkerModes.RestartAsAdmin, Process.GetCurrentProcess().Id.ToString());
+            await RunAdminWorkerAsync(AdminWorkerMode.RestartAsAdmin, Process.GetCurrentProcess().Id.ToString());
         }
 
         /// <summary>
@@ -698,7 +698,7 @@ namespace RayCarrot.RCP.Metro
         /// <param name="mode">The mode to run in</param>
         /// <param name="args">The mode arguments</param>
         /// <returns>The task</returns>
-        public async Task RunAdminWorkerAsync(AdminWorkerModes mode, params string[] args)
+        public async Task RunAdminWorkerAsync(AdminWorkerMode mode, params string[] args)
         {
             // Lock
             using (await AdminWorkerAsyncLock.LockAsync())
@@ -872,7 +872,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Occurs when the selected page changes
         /// </summary>
-        public event EventHandler<PropertyChangedEventArgs<Pages>> SelectedPageChanged;
+        public event EventHandler<PropertyChangedEventArgs<AppPage>> SelectedPageChanged;
 
         #endregion
 

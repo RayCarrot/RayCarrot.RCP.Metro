@@ -103,8 +103,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AppUserData\DataModels\Archive_GF_TransparencyMode.cs" />
-    <Compile Include="AppUserData\DataModels\ArchiveExplorerSort.cs" />
+    <Compile Include="AppData\DataModels\UserData_Archive_GF_TransparencyMode.cs" />
+    <Compile Include="AppData\DataModels\UserData_Archive_Sort.cs" />
     <Compile Include="Archive\ArchiveExplorer\Converters\ArchiveExplorerIsFolderExpandedToIconConverter.cs" />
     <Compile Include="Archive\Data\ArchiveThumbnailCache.cs" />
     <Compile Include="Archive\ArchiveExplorer\ViewModels\IArchiveExplorerEntryViewModel.cs" />
@@ -118,26 +118,32 @@
     <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_GXTUbiArtTex.cs" />
     <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_Xbox360UbiArtTex.cs" />
     <Compile Include="Archive\Data\FileType\UbiArt\ArchiveFileType_PVRUbiArtTex.cs" />
-    <Compile Include="Emulators\DOSBox\DOSBoxEmulatorGameConfig.xaml.cs">
-      <DependentUpon>DOSBoxEmulatorGameConfig.xaml</DependentUpon>
+    <Compile Include="Emulators\DOSBox\Emulator_DOSBox_ConfigUI.xaml.cs">
+      <DependentUpon>Emulator_DOSBox_ConfigUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Emulators\Emulator.cs" />
-    <Compile Include="Emulators\DOSBox\DOSBoxEmulator.cs" />
-    <Compile Include="Emulators\DOSBox\DOSBoxEmulatorGameConfigViewModel.cs" />
+    <Compile Include="Emulators\DOSBox\Emulator_DOSBox.cs" />
+    <Compile Include="Emulators\DOSBox\Emulator_DOSBox_ConfigViewModel.cs" />
     <Compile Include="Entry.cs" />
-    <Compile Include="Games\Config\ButtonMapping\ButtonMapper.xaml.cs">
+    <Compile Include="Games\Manager\Demo\GameManager_Rayman1Demo2_DOSBox.cs" />
+    <Compile Include="Games\Manager\Demo\GameManager_Rayman2Demo2_Win32.cs" />
+    <Compile Include="Games\Manager\Demo\GameManager_Rayman3Demo2_Win32.cs" />
+    <Compile Include="Games\Manager\Demo\GameManager_Rayman3Demo3_Win32.cs" />
+    <Compile Include="Games\Manager\Demo\GameManager_Rayman3Demo4_Win32.cs" />
+    <Compile Include="Games\Manager\Demo\GameManager_Rayman3Demo5_Win32.cs" />
+    <Compile Include="UI\Controls\ButtonMapping\ButtonMapper.xaml.cs">
       <DependentUpon>ButtonMapper.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Config\ViewModels\Rayman1ConfigViewModel.cs" />
-    <Compile Include="Games\Config\ViewModels\RaymanByHisFansConfigViewModel.cs" />
-    <Compile Include="Games\Config\ViewModels\RaymanDesignerConfigViewModel.cs" />
-    <Compile Include="Games\Config\ViewModels\RaymanEduDosConfigViewModel.cs" />
-    <Compile Include="Games\Info\Fan\RaymanGardenPLUS_Info.cs" />
-    <Compile Include="Games\Manager\Fan\RaymanGardenPLUS_Win32.cs" />
-    <Compile Include="Games\Options\UI\DOSBoxOptions.xaml.cs">
-      <DependentUpon>DOSBoxOptions.xaml</DependentUpon>
+    <Compile Include="Games\Config\Ray1\Config_Rayman1_ViewModel.cs" />
+    <Compile Include="Games\Config\Ray1\Config_RaymanByHisFans_ViewModel.cs" />
+    <Compile Include="Games\Config\Ray1\Config_RaymanDesigner_ViewModel.cs" />
+    <Compile Include="Games\Config\Ray1\Config_RaymanEduDos_ViewModel.cs" />
+    <Compile Include="Games\Info\Fan\GameInfo_RaymanGardenPLUS.cs" />
+    <Compile Include="Games\Manager\Fan\GameManager_RaymanGardenPLUS_Win32.cs" />
+    <Compile Include="Games\Options\DOSBox\GameOptions_DOSBox_UI.xaml.cs">
+      <DependentUpon>GameOptions_DOSBox_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Options\ViewModels\DOSBoxOptionsViewModel.cs" />
+    <Compile Include="Games\Options\DOSBox\GameOptions_DOSBox_ViewModel.cs" />
     <Compile Include="Helpers\DDSParser.cs" />
     <Compile Include="Archive\Manager\ArchiveDataManagerExtensions.cs" />
     <Compile Include="Archive\Manager\IArchiveDataManager.cs" />
@@ -166,63 +172,63 @@
     <Compile Include="Mods\RaymanRavingRabbids\BigFile\Serializable\JADE_BIG_FatFile.cs" />
     <Compile Include="Mods\RaymanRavingRabbids\BigFile\Mod_RRR_BigFilePatch.cs" />
     <Compile Include="Patcher\FilePatcher_Patch.cs" />
-    <Compile Include="Games\Config\ViewModels\RaymanMDemoConfigViewModel.cs" />
-    <Compile Include="Games\Info\Demo\Demo_Rayman1_2_Info.cs" />
-    <Compile Include="Games\Info\Demo\Demo_Rayman1_1_Info.cs" />
-    <Compile Include="Games\Info\Demo\Demo_Rayman2_BaseInfo.cs" />
-    <Compile Include="Games\Info\Demo\Demo_Rayman3_BaseInfo.cs" />
-    <Compile Include="Games\Info\Demo\Demo_RaymanGold_Info.cs" />
-    <Compile Include="Games\Info\Demo\Demo_Rayman2_2_Info.cs" />
-    <Compile Include="Games\Info\Demo\Demo_Rayman2_1_Info.cs" />
-    <Compile Include="Games\Info\Demo\Demo_RaymanM_Info.cs" />
-    <Compile Include="Games\Info\Demo\Demo_Rayman3_2_Info.cs" />
-    <Compile Include="Games\Info\Demo\Demo_Rayman3_3_Info.cs" />
-    <Compile Include="Games\Info\Demo\Demo_Rayman3_4_Info.cs" />
-    <Compile Include="Games\Info\Demo\Demo_Rayman3_5_Info.cs" />
-    <Compile Include="Games\Info\Fan\RaymanBowling2_Info.cs" />
-    <Compile Include="Games\Info\Fan\RaymanRedesigner_Info.cs" />
-    <Compile Include="Games\Info\Fan\RaymanRedemption_Info.cs" />
-    <Compile Include="Games\Info\Other\Ray1Minigames_Info.cs" />
-    <Compile Include="Games\Info\Other\RaymanPremiersClics_Info.cs" />
-    <Compile Include="Games\Info\Other\RaymanDictées_Info.cs" />
-    <Compile Include="Games\Manager\Demo\Demo_Rayman2_Win32.cs" />
-    <Compile Include="Games\Manager\Demo\Demo_Rayman1_DOSBox.cs" />
-    <Compile Include="Games\Manager\Demo\Demo_Rayman3_Win32.cs" />
-    <Compile Include="Games\Manager\Demo\Demo_RaymanM_Win32.cs" />
-    <Compile Include="Games\Manager\Demo\Demo_RaymanGold_DOSBox.cs" />
-    <Compile Include="Games\Manager\Fan\RaymanBowling2_Win32.cs" />
-    <Compile Include="Games\Manager\Fan\RaymanRedesigner_Win32.cs" />
-    <Compile Include="Games\Manager\Fan\RaymanRedemption_Win32.cs" />
-    <Compile Include="Games\Manager\Other\Ray1Minigames_Win32.cs" />
-    <Compile Include="Games\Manager\Other\RaymanPremiersClics_Win32.cs" />
-    <Compile Include="Games\Manager\Other\RaymanDictées_Win32.cs" />
-    <Compile Include="Games\Options\UI\GameOptionsUI.xaml.cs">
-      <DependentUpon>GameOptionsUI.xaml</DependentUpon>
+    <Compile Include="Games\Config\UbiIni\UbiIni3\Config_RaymanMDemo_ViewModel.cs" />
+    <Compile Include="Games\Info\Demo\GameInfo_Rayman1Demo2.cs" />
+    <Compile Include="Games\Info\Demo\GameInfo_Rayman1Demo1.cs" />
+    <Compile Include="Games\Info\Demo\GameInfo_BaseRayman2Demo.cs" />
+    <Compile Include="Games\Info\Demo\GameInfo_BaseRayman3Demo.cs" />
+    <Compile Include="Games\Info\Demo\GameInfo_RaymanGoldDemo.cs" />
+    <Compile Include="Games\Info\Demo\GameInfo_Rayman2Demo2.cs" />
+    <Compile Include="Games\Info\Demo\GameInfo_Rayman2Demo1.cs" />
+    <Compile Include="Games\Info\Demo\GameInfo_RaymanMDemo.cs" />
+    <Compile Include="Games\Info\Demo\GameInfo_Rayman3Demo2.cs" />
+    <Compile Include="Games\Info\Demo\GameInfo_Rayman3Demo3.cs" />
+    <Compile Include="Games\Info\Demo\GameInfo_Rayman3Demo4.cs" />
+    <Compile Include="Games\Info\Demo\GameInfo_Rayman3Demo5.cs" />
+    <Compile Include="Games\Info\Fan\GameInfo_RaymanBowling2.cs" />
+    <Compile Include="Games\Info\Fan\GameInfo_RaymanRedesigner.cs" />
+    <Compile Include="Games\Info\Fan\GameInfo_RaymanRedemption.cs" />
+    <Compile Include="Games\Info\Other\GameInfo_Ray1Minigames.cs" />
+    <Compile Include="Games\Info\Other\GameInfo_RaymanPremiersClics.cs" />
+    <Compile Include="Games\Info\Other\GameInfo_RaymanDictées.cs" />
+    <Compile Include="Games\Manager\Demo\GameManager_Rayman2Demo1_Win32.cs" />
+    <Compile Include="Games\Manager\Demo\GameManager_Rayman1Demo1_DOSBox.cs" />
+    <Compile Include="Games\Manager\Demo\GameManager_Rayman3Demo1_Win32.cs" />
+    <Compile Include="Games\Manager\Demo\GameManager_RaymanMDemo_Win32.cs" />
+    <Compile Include="Games\Manager\Demo\GameManager_RaymanGoldDemo_DOSBox.cs" />
+    <Compile Include="Games\Manager\Fan\GameManager_RaymanBowling2_Win32.cs" />
+    <Compile Include="Games\Manager\Fan\GameManager_RaymanRedesigner_Win32.cs" />
+    <Compile Include="Games\Manager\Fan\GameManager_RaymanRedemption_Win32.cs" />
+    <Compile Include="Games\Manager\Other\GameManager_Ray1Minigames_Win32.cs" />
+    <Compile Include="Games\Manager\Other\GameManager_RaymanPremiersClics_Win32.cs" />
+    <Compile Include="Games\Manager\Other\GameManager_RaymanDictées_Win32.cs" />
+    <Compile Include="Games\Options\GameOptions_UI.xaml.cs">
+      <DependentUpon>GameOptions_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Options\UI\Ray1MinigamesOptions.xaml.cs">
-      <DependentUpon>Ray1MinigamesOptions.xaml</DependentUpon>
+    <Compile Include="Games\Options\Ray1Minigames\GameOptions_Ray1Minigames_UI.xaml.cs">
+      <DependentUpon>GameOptions_Ray1Minigames_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Options\ViewModels\Ray1MinigamesOptionsViewModel.cs" />
-    <Compile Include="Games\Progression\Origins\OriginsProgressionSlotViewModel.cs" />
-    <Compile Include="Games\Progression\Origins\OriginsProgressionViewModel.cs" />
-    <Compile Include="Games\Progression\Legends\LegendsProgressionSlotViewModel.cs" />
-    <Compile Include="Games\Progression\Legends\LegendsProgressionViewModel.cs" />
-    <Compile Include="Games\Progression\RaymanDesigner\RaymanDesignerProgressionSlotViewModel.cs" />
-    <Compile Include="Games\Progression\RaymanDesigner\RaymanDesignerProgressionViewModel.cs" />
-    <Compile Include="Games\Progression\Rayman2\Rayman2ProgressionSlotViewModel.cs" />
-    <Compile Include="Games\Progression\Rayman2\Rayman2ProgressionViewModel.cs" />
-    <Compile Include="Games\Progression\Rayman1\Rayman1ProgressionSlotViewModel.cs" />
-    <Compile Include="Games\Progression\Rayman1\Rayman1ProgressionViewModel.cs" />
-    <Compile Include="Games\Progression\RaymanM\RaymanMArenaProgressionSlotViewModel.cs" />
-    <Compile Include="Games\Progression\RaymanM\RaymanArenaProgressionViewModel.cs" />
-    <Compile Include="Games\Progression\RaymanM\RaymanMProgressionViewModel.cs" />
-    <Compile Include="Games\Progression\RaymanM\RaymanMArenaProgressionViewModel.cs" />
-    <Compile Include="Games\Progression\UI\ProgressionUI.xaml.cs">
-      <DependentUpon>ProgressionUI.xaml</DependentUpon>
+    <Compile Include="Games\Options\Ray1Minigames\GameOptions_Ray1Minigames_ViewModel.cs" />
+    <Compile Include="Games\Progression\Origins\GameProgression_Origins_SlotViewModel.cs" />
+    <Compile Include="Games\Progression\Origins\GameProgression_Origins_ViewModel.cs" />
+    <Compile Include="Games\Progression\Legends\GameProgression_Legends_SlotViewModel.cs" />
+    <Compile Include="Games\Progression\Legends\GameProgression_Legends_ViewModel.cs" />
+    <Compile Include="Games\Progression\RaymanDesigner\GameProgression_RaymanDesigner_SlotViewModel.cs" />
+    <Compile Include="Games\Progression\RaymanDesigner\GameProgression_RaymanDesigner_ViewModel.cs" />
+    <Compile Include="Games\Progression\Rayman2\GameProgression_Rayman2_SlotViewModel.cs" />
+    <Compile Include="Games\Progression\Rayman2\GameProgression_Rayman2_ViewModel.cs" />
+    <Compile Include="Games\Progression\Rayman1\GameProgression_Rayman1_SlotViewModel.cs" />
+    <Compile Include="Games\Progression\Rayman1\GameProgression_Rayman1_ViewModel.cs" />
+    <Compile Include="Games\Progression\RaymanM\GameProgression_RaymanMArena_SlotViewModel.cs" />
+    <Compile Include="Games\Progression\RaymanM\GameProgression_RaymanArena_ViewModel.cs" />
+    <Compile Include="Games\Progression\RaymanM\GameProgression_RaymanM_ViewModel.cs" />
+    <Compile Include="Games\Progression\RaymanM\GameProgression_RaymanMArena_ViewModel.cs" />
+    <Compile Include="Games\Progression\GameProgression_UI.xaml.cs">
+      <DependentUpon>GameProgression_UI.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DirectXKeyHelpers.cs" />
     <Compile Include="Helpers\JsonHelpers.cs" />
-    <Compile Include="App\Interfaces\IFileManager.cs" />
+    <Compile Include="App\Abstraction\File\IFileManager.cs" />
     <Compile Include="IsExternalInit.cs" />
     <Compile Include="Mods\RaymanRavingRabbids\MemoryPatcher\Mod_RRR_MemoryPatch.cs" />
     <Compile Include="Mods\RaymanRavingRabbids\MemoryPatcher\Mod_RRR_MemoryManager.cs" />
@@ -241,7 +247,7 @@
     <Compile Include="Mods\RaymanRavingRabbids\ViewModels\Mod_RRR_MemoryModToggleViewModel.cs" />
     <Compile Include="Mods\RaymanRavingRabbids\Mod_RRR_ViewModel.cs" />
     <Compile Include="UI\Controls\LoaderContentControl.cs" />
-    <Compile Include="Extensions\ApplicationExtensions.cs" />
+    <Compile Include="Helpers\Extensions\ApplicationExtensions.cs" />
     <Compile Include="UI\ValidationRules\R1PasswordValidationRule.cs" />
     <Compile Include="Utilities\Games\Common\SyncTextureInfo\BaseGameSyncTextureInfoUtilityUI.xaml.cs">
       <DependentUpon>BaseGameSyncTextureInfoUtilityUI.xaml</DependentUpon>
@@ -256,7 +262,7 @@
     <Compile Include="Utilities\Games\Rayman 3\SyncTextureInfo\R3GameSyncTextureInfoUtility.cs" />
     <Compile Include="Utilities\Games\Rayman Arena\SyncTextureInfo\RAGameSyncTextureInfoUtility.cs" />
     <Compile Include="Helpers\SimpleTypeConverter.cs" />
-    <Compile Include="Games\Info\Demo\Demo_Rayman3_1_Info.cs" />
+    <Compile Include="Games\Info\Demo\GameInfo_Rayman3Demo1.cs" />
     <Compile Include="Utilities\Games\Rayman 1\TPLS\TPLSRaymanVersion.cs" />
     <Compile Include="Helpers\LocalizedString.cs" />
     <Compile Include="Utilities\Games\Rayman M\SyncTextureInfo\RMGameSyncTextureInfoUtility.cs" />
@@ -341,43 +347,43 @@
     <Compile Include="Utilities\General\Other\SyncTextureInfo\GeneralSyncTextureInfoUtilityViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\FileExtensionSelectionDialogResult.cs" />
     <Compile Include="ViewModels\Dialogs\FileExtensionSelectionDialogViewModel.cs" />
-    <Compile Include="Games\Config\UI\RaymanFiestaRunConfig.xaml.cs">
-      <DependentUpon>RaymanFiestaRunConfig.xaml</DependentUpon>
+    <Compile Include="Games\Config\UbiArtRun\Config_RaymanFiestaRun_UI.xaml.cs">
+      <DependentUpon>Config_RaymanFiestaRun_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Config\UI\RaymanJungleRunConfig.xaml.cs">
-      <DependentUpon>RaymanJungleRunConfig.xaml</DependentUpon>
+    <Compile Include="Games\Config\UbiArtRun\Config_RaymanJungleRun_UI.xaml.cs">
+      <DependentUpon>Config_RaymanJungleRun_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Config\ViewModels\Base\BaseRayRunConfigViewModel.cs" />
-    <Compile Include="Games\Config\ViewModels\RaymanFiestaRunConfigViewModel.cs" />
-    <Compile Include="Games\Config\ViewModels\RaymanJungleRunConfigViewModel.cs" />
-    <Compile Include="Games\Info\Other\RaymanRavingRabbidsActivityCenter_Info.cs" />
-    <Compile Include="Games\Info\Other\RaymanActivityCenter_Info.cs" />
-    <Compile Include="Games\Info\Rabbids\RabbidsCoding_Info.cs" />
-    <Compile Include="Games\Manager\Other\RaymanActivityCenter_Win32.cs" />
-    <Compile Include="Games\Manager\Other\RaymanRavingRabbidsActivityCenter_Win32.cs" />
-    <Compile Include="Games\Manager\Rabbids\RabbidsCoding_Win32.cs" />
-    <Compile Include="Games\Progression\Base\ProgressionIcons.cs" />
-    <Compile Include="Games\Progression\Base\ProgressionInfoItemViewModel.cs" />
-    <Compile Include="Games\Progression\Base\ProgressionSlotViewModel.cs" />
-    <Compile Include="Games\Progression\JungleRun\JungleRunProgressionSlotViewModel.cs" />
-    <Compile Include="Games\Progression\Rayman3\Rayman3ProgressionSlotViewModel.cs" />
-    <Compile Include="Games\Progression\Rayman3\Rayman3ProgressionViewModel.cs" />
+    <Compile Include="Games\Config\UbiArtRun\Config_UbiArtRun_BaseViewModel.cs" />
+    <Compile Include="Games\Config\UbiArtRun\Config_RaymanFiestaRun_ViewModel.cs" />
+    <Compile Include="Games\Config\UbiArtRun\Config_RaymanJungleRun_ViewModel.cs" />
+    <Compile Include="Games\Info\Other\GameInfo_RaymanRavingRabbidsActivityCenter.cs" />
+    <Compile Include="Games\Info\Other\GameInfo_RaymanActivityCenter.cs" />
+    <Compile Include="Games\Info\Rabbids\GameInfo_RabbidsCoding.cs" />
+    <Compile Include="Games\Manager\Other\GameManager_RaymanActivityCenter_Win32.cs" />
+    <Compile Include="Games\Manager\Other\GameManager_RaymanRavingRabbidsActivityCenter_Win32.cs" />
+    <Compile Include="Games\Manager\Rabbids\GameManager_RabbidsCoding_Win32.cs" />
+    <Compile Include="Games\Progression\GameProgression_Icon.cs" />
+    <Compile Include="Games\Progression\GameProgression_InfoItemViewModel.cs" />
+    <Compile Include="Games\Progression\GameProgression_BaseSlotViewModel.cs" />
+    <Compile Include="Games\Progression\JungleRun\GameProgression_JungleRun_SlotViewModel.cs" />
+    <Compile Include="Games\Progression\Rayman3\GameProgression_Rayman3_SlotViewModel.cs" />
+    <Compile Include="Games\Progression\Rayman3\GameProgression_Rayman3_ViewModel.cs" />
     <Compile Include="Helpers\CommonPaths.cs" />
     <Compile Include="Localization\LocalizationManager.cs" />
-    <Compile Include="Extensions\MessageUIManagerExtensions.cs" />
+    <Compile Include="Helpers\Extensions\MessageUIManagerExtensions.cs" />
     <Compile Include="App\ServiceCollectionExtensions.cs" />
-    <Compile Include="App\Implementations\FileLogger.cs" />
-    <Compile Include="App\Implementations\RCPDialogBaseManager.cs" />
-    <Compile Include="App\Implementations\RCPExceptionHandler.cs" />
-    <Compile Include="App\Implementations\RCPMessageUIManager.cs" />
-    <Compile Include="Games\Base\GameData.cs" />
-    <Compile Include="Games\Base\GameLaunchMode.cs" />
-    <Compile Include="Games\Base\Games.cs" />
-    <Compile Include="Games\Base\GameType.cs" />
+    <Compile Include="App\FileLogger.cs" />
+    <Compile Include="App\Abstraction\Dialog\RCPDialogBaseManager.cs" />
+    <Compile Include="App\Abstraction\ExceptionHandler\RCPExceptionHandler.cs" />
+    <Compile Include="App\Abstraction\MessageUI\RCPMessageUIManager.cs" />
+    <Compile Include="AppData\DataModels\UserData_GameData.cs" />
+    <Compile Include="AppData\DataModels\UserData_GameLaunchMode.cs" />
+    <Compile Include="Games\Games.cs" />
+    <Compile Include="Games\GameType.cs" />
     <Compile Include="Helpers\Operation.cs" />
-    <Compile Include="App\Implementations\RCPFileManager.cs" />
+    <Compile Include="App\Abstraction\File\RCPFileManager.cs" />
     <Compile Include="Utilities\General\EnumSelectionViewModel.cs" />
-    <Compile Include="Extensions\GameModeExtensions.cs" />
+    <Compile Include="Helpers\Extensions\GameModeExtensions.cs" />
     <Compile Include="Utilities\General\ArchiveExplorer\BaseArchiveExplorerUtilityViewModel.cs" />
     <Compile Include="UI\Behaviors\ChildRCPTabControlBehavior.cs" />
     <Compile Include="UI\Controls\DuoGridItem.cs" />
@@ -415,71 +421,71 @@
     <Compile Include="UI\Dialogs\JumpListEditDialog.xaml.cs">
       <DependentUpon>JumpListEditDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Options\UI\PrintStudioOptions.xaml.cs">
-      <DependentUpon>PrintStudioOptions.xaml</DependentUpon>
+    <Compile Include="Games\Options\PrintStudio\GameOptions_PrintStudio_UI.xaml.cs">
+      <DependentUpon>GameOptions_PrintStudio_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GameFinder\FinderItems\BaseFinderItem.cs" />
-    <Compile Include="GameFinder\FinderItems\FoundActionResult.cs" />
-    <Compile Include="GameFinder\Results\BaseFinderResult.cs" />
-    <Compile Include="GameFinder\FinderItems\FinderItem.cs" />
-    <Compile Include="GameFinder\Results\FinderResult.cs" />
+    <Compile Include="Games\GameFinder\FinderItems\GameFinder_BaseItem.cs" />
+    <Compile Include="Games\GameFinder\FinderItems\GameFinder_FoundResult.cs" />
+    <Compile Include="Games\GameFinder\Results\GameFinder_BaseResult.cs" />
+    <Compile Include="Games\GameFinder\FinderItems\GameFinder_GenericItem.cs" />
+    <Compile Include="Games\GameFinder\Results\GameFinder_GenericResult.cs" />
     <Compile Include="Patcher\FilePatcher.cs" />
-    <Compile Include="GameFinder\GameFinder.cs" />
-    <Compile Include="GameFinder\FinderItems\GameFinderItem.cs" />
-    <Compile Include="GameFinder\Results\GameFinderResult.cs" />
-    <Compile Include="Games\Base\GameCategory.cs" />
-    <Compile Include="Games\Info\RCPGameInfo.cs" />
-    <Compile Include="Games\Manager\RCPGameManager.cs" />
-    <Compile Include="Games\Info\Fan\TheDarkMagiciansReignofTerror_Info.cs" />
-    <Compile Include="Games\Info\Other\EducationalDos_Info.cs" />
-    <Compile Include="Games\Info\Other\PrintStudio_Info.cs" />
-    <Compile Include="Games\Info\Rabbids\RabbidsBigBang_Info.cs" />
-    <Compile Include="Games\Info\Fan\GloboxMoment_Info.cs" />
-    <Compile Include="Games\Info\Rayman\RaymanFiestaRun_Info.cs" />
-    <Compile Include="Games\Info\Rayman\RaymanJungleRun_Info.cs" />
-    <Compile Include="Games\Info\Rayman\RaymanLegends_Info.cs" />
-    <Compile Include="Games\Info\Rayman\RaymanOrigins_Info.cs" />
-    <Compile Include="Games\Info\Rabbids\RabbidsGoHome_Info.cs" />
-    <Compile Include="Games\Info\Rabbids\RaymanRavingRabbids2_Info.cs" />
-    <Compile Include="Games\Info\Rabbids\RaymanRavingRabbids_Info.cs" />
-    <Compile Include="Games\Info\Rayman\RaymanArena_Info.cs" />
-    <Compile Include="Games\Info\Rayman\Rayman3_Info.cs" />
-    <Compile Include="Games\Info\Rayman\RaymanM_Info.cs" />
-    <Compile Include="Games\Info\Rayman\Rayman60Levels_Info.cs" />
-    <Compile Include="Games\Info\Rayman\RaymanByHisFans_Info.cs" />
-    <Compile Include="Games\Info\Rayman\RaymanDesigner_Info.cs" />
-    <Compile Include="Games\Info\Rayman\Rayman1_Info.cs" />
-    <Compile Include="Games\Info\Rayman\Rayman2_Info.cs" />
-    <Compile Include="Games\Manager\Other\PrintStudio_Win32.cs" />
-    <Compile Include="Games\Manager\Fan\GloboxMoment_Win32.cs" />
-    <Compile Include="Games\Manager\Base\RCPEducationalDOSBoxGame.cs" />
-    <Compile Include="Games\Manager\Base\RCPDOSBoxGame.cs" />
-    <Compile Include="Games\Manager\Base\RCPWinStoreGame.cs" />
-    <Compile Include="Games\Manager\Fan\TheDarkMagiciansReignofTerror_Win32.cs" />
-    <Compile Include="Games\Manager\Other\EducationalDos_EducationalDOSBox.cs" />
-    <Compile Include="Games\Manager\Rabbids\RabbidsGoHome_Win32.cs" />
-    <Compile Include="Games\Manager\Rayman\RaymanFiestaRun_WinStore.cs" />
-    <Compile Include="Games\Manager\Rabbids\RabbidsBigBang_WinStore.cs" />
-    <Compile Include="Games\Manager\Rayman\RaymanJungleRun_WinStore.cs" />
-    <Compile Include="Games\Manager\Rayman\RaymanLegends_Steam.cs" />
-    <Compile Include="Games\Manager\Rayman\RaymanOrigins_Steam.cs" />
-    <Compile Include="Games\Manager\Rayman\RaymanLegends_Win32.cs" />
-    <Compile Include="Games\Manager\Rayman\RaymanOrigins_Win32.cs" />
-    <Compile Include="Games\Manager\Rabbids\RaymanRavingRabbids_Steam.cs" />
-    <Compile Include="Games\Manager\Rabbids\RaymanRavingRabbids2_Win32.cs" />
-    <Compile Include="Games\Manager\Rabbids\RaymanRavingRabbids_Win32.cs" />
-    <Compile Include="Games\Manager\Rayman\Rayman3_Win32.cs" />
-    <Compile Include="Games\Manager\Rayman\RaymanArena_Win32.cs" />
-    <Compile Include="Games\Manager\Rayman\RaymanM_Win32.cs" />
-    <Compile Include="Games\Manager\Rayman\RaymanByHisFans_DOSBox.cs" />
-    <Compile Include="Games\Manager\Rayman\Rayman60Levels_DOSBox.cs" />
-    <Compile Include="Games\Manager\Rayman\RaymanDesigner_DOSBox.cs" />
-    <Compile Include="Games\Manager\Rayman\Rayman2_Steam.cs" />
-    <Compile Include="Games\Manager\Base\RCPWin32Game.cs" />
-    <Compile Include="Games\Manager\Rayman\Rayman1_DOSBox.cs" />
-    <Compile Include="GameBackups\RCPBackup.cs" />
-    <Compile Include="Games\Progression\Base\BaseProgressionViewModel.cs" />
-    <Compile Include="Games\Progression\JungleRun\JungleRunProgressionViewModel.cs" />
+    <Compile Include="Games\GameFinder\GameFinder.cs" />
+    <Compile Include="Games\GameFinder\FinderItems\GameFinder_GameItem.cs" />
+    <Compile Include="Games\GameFinder\Results\GameFinder_GameResult.cs" />
+    <Compile Include="Games\GameCategory.cs" />
+    <Compile Include="Games\Info\GameInfo.cs" />
+    <Compile Include="Games\Manager\GameManager.cs" />
+    <Compile Include="Games\Info\Fan\GameInfo_TheDarkMagiciansReignofTerror.cs" />
+    <Compile Include="Games\Info\Other\GameInfo_EducationalDos.cs" />
+    <Compile Include="Games\Info\Other\GameInfo_PrintStudio.cs" />
+    <Compile Include="Games\Info\Rabbids\GameInfo_RabbidsBigBang.cs" />
+    <Compile Include="Games\Info\Fan\GameInfo_GloboxMoment.cs" />
+    <Compile Include="Games\Info\Rayman\GameInfo_RaymanFiestaRun.cs" />
+    <Compile Include="Games\Info\Rayman\GameInfo_RaymanJungleRun.cs" />
+    <Compile Include="Games\Info\Rayman\GameInfo_RaymanLegends.cs" />
+    <Compile Include="Games\Info\Rayman\GameInfo_RaymanOrigins.cs" />
+    <Compile Include="Games\Info\Rabbids\GameInfo_RabbidsGoHome.cs" />
+    <Compile Include="Games\Info\Rabbids\GameInfo_RaymanRavingRabbids2.cs" />
+    <Compile Include="Games\Info\Rabbids\GameInfo_RabbidsGoHomeRaymanRavingRabbids.cs" />
+    <Compile Include="Games\Info\Rayman\GameInfo_RaymanArena.cs" />
+    <Compile Include="Games\Info\Rayman\GameInfo_Rayman3.cs" />
+    <Compile Include="Games\Info\Rayman\GameInfo_RaymanM.cs" />
+    <Compile Include="Games\Info\Rayman\GameInfo_Rayman60Levels.cs" />
+    <Compile Include="Games\Info\Rayman\GameInfo_RaymanByHisFans.cs" />
+    <Compile Include="Games\Info\Rayman\GameInfo_RaymanDesigner.cs" />
+    <Compile Include="Games\Info\Rayman\GameInfo_Rayman1.cs" />
+    <Compile Include="Games\Info\Rayman\GameInfo_Rayman2.cs" />
+    <Compile Include="Games\Manager\Other\GameManager_PrintStudio_Win32.cs" />
+    <Compile Include="Games\Manager\Fan\GameManager_GloboxMoment_Win32.cs" />
+    <Compile Include="Games\Manager\Base\GameManager_EducationalDOSBox.cs" />
+    <Compile Include="Games\Manager\Base\GameManager_DOSBox.cs" />
+    <Compile Include="Games\Manager\Base\GameManager_WinStore.cs" />
+    <Compile Include="Games\Manager\Fan\GameManager_TheDarkMagiciansReignofTerror_Win32.cs" />
+    <Compile Include="Games\Manager\Other\GameManager_EducationalDos_EducationalDOSBox.cs" />
+    <Compile Include="Games\Manager\Rabbids\GameManager_RabbidsGoHome_Win32.cs" />
+    <Compile Include="Games\Manager\Rayman\GameManager_RaymanFiestaRun_WinStore.cs" />
+    <Compile Include="Games\Manager\Rabbids\GameManager_RabbidsBigBang_WinStore.cs" />
+    <Compile Include="Games\Manager\Rayman\GameManager_RaymanJungleRun_WinStore.cs" />
+    <Compile Include="Games\Manager\Rayman\GameManager_RaymanLegends_Steam.cs" />
+    <Compile Include="Games\Manager\Rayman\GameManager_RaymanOrigins_Steam.cs" />
+    <Compile Include="Games\Manager\Rayman\GameManager_RaymanLegends_Win32.cs" />
+    <Compile Include="Games\Manager\Rayman\GameManager_RaymanOrigins_Win32.cs" />
+    <Compile Include="Games\Manager\Rabbids\GameManager_RaymanRavingRabbids_Steam.cs" />
+    <Compile Include="Games\Manager\Rabbids\GameManager_RaymanRavingRabbids2_Win32.cs" />
+    <Compile Include="Games\Manager\Rabbids\GameManager_RaymanRavingRabbids_Win32.cs" />
+    <Compile Include="Games\Manager\Rayman\GameManager_Rayman3_Win32.cs" />
+    <Compile Include="Games\Manager\Rayman\GameManager_RaymanArena_Win32.cs" />
+    <Compile Include="Games\Manager\Rayman\GameManager_RaymanM_Win32.cs" />
+    <Compile Include="Games\Manager\Rayman\GameManager_RaymanByHisFans_DOSBox.cs" />
+    <Compile Include="Games\Manager\Rayman\GameManager_Rayman60Levels_DOSBox.cs" />
+    <Compile Include="Games\Manager\Rayman\GameManager_RaymanDesigner_DOSBox.cs" />
+    <Compile Include="Games\Manager\Rayman\GameManager_Rayman2_Steam.cs" />
+    <Compile Include="Games\Manager\Base\GameManager_Win32.cs" />
+    <Compile Include="Games\Manager\Rayman\GameManager_Rayman1_DOSBox.cs" />
+    <Compile Include="Games\GameBackups\GameBackups_ExistingBackup.cs" />
+    <Compile Include="Games\Progression\GameProgression_BaseViewModel.cs" />
+    <Compile Include="Games\Progression\JungleRun\GameProgression_JungleRun_ViewModel.cs" />
     <Compile Include="Utilities\Games\Rayman 2\DiscPatch\R2DiscPatchUtility.cs" />
     <Compile Include="Utilities\Games\Rayman 2\DiscPatch\R2DiscPatchUtilityUI.xaml.cs">
       <DependentUpon>R2DiscPatchUtilityUI.xaml</DependentUpon>
@@ -495,43 +501,43 @@
     <Compile Include="ViewModels\Dialogs\JumpListEditResult.cs" />
     <Compile Include="ViewModels\Dialogs\JumpListEditViewModel.cs" />
     <Compile Include="ViewModels\JumpListItemViewModel.cs" />
-    <Compile Include="Games\Config\UI\RabbidsGoHomeConfig.xaml.cs">
-      <DependentUpon>RabbidsGoHomeConfig.xaml</DependentUpon>
+    <Compile Include="Games\Config\RabbidsGoHome\Config_RabbidsGoHome_UI.xaml.cs">
+      <DependentUpon>Config_RabbidsGoHome_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AppUserData\DataModels\RabbidsGoHomeLaunchData.cs" />
-    <Compile Include="Games\Manager\Rayman\Rayman2_Win32.cs" />
-    <Compile Include="Games\Manager\Base\RCPSteamGame.cs" />
-    <Compile Include="Games\Base\RCPGame.cs" />
-    <Compile Include="Games\Config\ViewModels\RabbidsGoHomeConfigViewModel.cs" />
-    <Compile Include="Games\Options\UI\RavingRabbids2Options.xaml.cs">
-      <DependentUpon>RavingRabbids2Options.xaml</DependentUpon>
+    <Compile Include="AppData\DataModels\UserData_RabbidsGoHomeLaunchData.cs" />
+    <Compile Include="Games\Manager\Rayman\GameManager_Rayman2_Win32.cs" />
+    <Compile Include="Games\Manager\Base\GameManager_Steam.cs" />
+    <Compile Include="Games\BaseGameData.cs" />
+    <Compile Include="Games\Config\RabbidsGoHome\Config_RabbidsGoHome_ViewModel.cs" />
+    <Compile Include="Games\Options\RavingRabbids2\GameOptions_RavingRabbids2_UI.xaml.cs">
+      <DependentUpon>GameOptions_RavingRabbids2_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GameBackups\BaseBackupInfo.cs" />
-    <Compile Include="GameBackups\IBackupInfo.cs" />
+    <Compile Include="Games\GameBackups\GameBackups_BackupInfo.cs" />
+    <Compile Include="Games\GameBackups\IGameBackups_BackupInfo.cs" />
     <Compile Include="UI\Dialogs\EducationalDosGameEditDialog.xaml.cs">
       <DependentUpon>EducationalDosGameEditDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AppUserData\DataModels\RRR2LaunchMode.cs" />
+    <Compile Include="AppData\DataModels\UserData_RRR2LaunchMode.cs" />
     <Compile Include="ViewModels\Dialogs\EducationalDosGameEditResult.cs" />
     <Compile Include="ViewModels\Dialogs\EducationalDosGameEditViewModel.cs" />
-    <Compile Include="Games\Options\UI\EducationalDosOptions.xaml.cs">
-      <DependentUpon>EducationalDosOptions.xaml</DependentUpon>
+    <Compile Include="Games\Options\EducationalDos\GameOptions_EducationalDos_UI.xaml.cs">
+      <DependentUpon>GameOptions_EducationalDos_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Options\UI\FiestaRunOptions.xaml.cs">
-      <DependentUpon>FiestaRunOptions.xaml</DependentUpon>
+    <Compile Include="Games\Options\FiestaRun\GameOptions_FiestaRun_UI.xaml.cs">
+      <DependentUpon>GameOptions_FiestaRun_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AppUserData\DataModels\EducationalDosBoxGameData.cs" />
+    <Compile Include="AppData\DataModels\UserData_EducationalDosBoxGameData.cs" />
     <Compile Include="ViewModels\Controls\DuoGridItemViewModel.cs" />
-    <Compile Include="Games\Options\ViewModels\EducationalDosBoxGameInfoViewModel.cs" />
-    <Compile Include="Games\Options\ViewModels\EducationalDosOptionsViewModel.cs" />
-    <Compile Include="DataModels\EducationalGameCollectionDropHandler.cs" />
-    <Compile Include="Games\Options\ViewModels\PrintStudioOptionsViewModel.cs" />
-    <Compile Include="Games\Options\ViewModels\FiestaRunOptionsViewModel.cs" />
+    <Compile Include="Games\Options\EducationalDos\GameOptions_EducationalDos_GameInfoItemViewModel.cs" />
+    <Compile Include="Games\Options\EducationalDos\GameOptions_EducationalDos_ViewModel.cs" />
+    <Compile Include="Games\Options\EducationalDos\GameOptions_EducationalDos_GameCollectionDropHandler.cs" />
+    <Compile Include="Games\Options\PrintStudio\GameOptions_PrintStudio_ViewModel.cs" />
+    <Compile Include="Games\Options\FiestaRun\GameOptions_FiestaRun_ViewModel.cs" />
     <Compile Include="Pages\Utilities\UtilitiesPage.xaml.cs">
       <DependentUpon>UtilitiesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AppUserData\DataModels\FiestaRunEdition.cs" />
-    <Compile Include="DataModels\Enums\Pages.cs" />
+    <Compile Include="AppData\DataModels\UserData_FiestaRunEdition.cs" />
+    <Compile Include="DataModels\Enums\AppPage.cs" />
     <Compile Include="Pages\Games\GameCategoryViewModel.cs" />
     <Compile Include="ViewModels\OptionsPages\GameOptions_BasePageViewModel.cs" />
     <Compile Include="ViewModels\OptionsPages\GameOptions_ConfigPageViewModel.cs" />
@@ -572,27 +578,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Emulators\DOSBox\DOSBoxEmulatorGameConfig.xaml">
+    <Page Include="Emulators\DOSBox\Emulator_DOSBox_ConfigUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Config\ButtonMapping\ButtonMapper.xaml">
+    <Page Include="UI\Controls\ButtonMapping\ButtonMapper.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Games\Options\UI\DOSBoxOptions.xaml">
+    <Page Include="Games\Options\DOSBox\GameOptions_DOSBox_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Options\UI\GameOptionsUI.xaml">
+    <Page Include="Games\Options\GameOptions_UI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Games\Options\UI\Ray1MinigamesOptions.xaml">
+    <Page Include="Games\Options\Ray1Minigames\GameOptions_Ray1Minigames_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Progression\UI\ProgressionUI.xaml">
+    <Page Include="Games\Progression\GameProgression_UI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -612,11 +618,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Config\UI\RaymanFiestaRunConfig.xaml">
+    <Page Include="Games\Config\UbiArtRun\Config_RaymanFiestaRun_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Config\UI\RaymanJungleRunConfig.xaml">
+    <Page Include="Games\Config\UbiArtRun\Config_RaymanJungleRun_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -720,43 +726,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Games\Config\UI\Ray_1_KIT_EDU_Config.xaml">
+    <Page Include="Games\Config\Ray1\Config_Ray1_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Config\UI\RabbidsGoHomeConfig.xaml">
+    <Page Include="Games\Config\RabbidsGoHome\Config_RabbidsGoHome_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Config\UI\Ray_Origins_Legends_Config.xaml">
+    <Page Include="Games\Config\UbiArt\Config_UbiArt_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Config\UI\RaymanRavingRabbidsConfig.xaml">
+    <Page Include="Games\Config\RaymanRavingRabbids\Config_RaymanRavingRabbids_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Config\UI\Ray_M_Arena_3_Config.xaml">
+    <Page Include="Games\Config\UbiIni\UbiIni3\Config_UbiIni3_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Config\UI\Rayman2Config.xaml">
+    <Page Include="Games\Config\UbiIni\Rayman2\Config_Rayman2_UI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Games\Options\UI\EducationalDosOptions.xaml">
+    <Page Include="Games\Options\EducationalDos\GameOptions_EducationalDos_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Options\UI\PrintStudioOptions.xaml">
+    <Page Include="Games\Options\PrintStudio\GameOptions_PrintStudio_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Options\UI\RavingRabbids2Options.xaml">
+    <Page Include="Games\Options\RavingRabbids2\GameOptions_RavingRabbids2_UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Games\Options\UI\FiestaRunOptions.xaml">
+    <Page Include="Games\Options\FiestaRun\GameOptions_FiestaRun_UI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -909,7 +915,7 @@
       <DependentUpon>Files.resx</DependentUpon>
     </Compile>
     <Compile Include="DataModels\EventArgs\RefreshRequiredEventArgs.cs" />
-    <Compile Include="DataModels\Enums\AdminWorkerModes.cs" />
+    <Compile Include="DataModels\Enums\AdminWorkerMode.cs" />
     <Compile Include="Helpers\SecretCodeManager.cs" />
     <Compile Include="UI\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
@@ -917,7 +923,7 @@
     <Compile Include="Pages\About\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AppUserData\DataModels\LinkItemStyles.cs" />
+    <Compile Include="AppData\DataModels\UserData_LinkItemStyle.cs" />
     <Compile Include="Utilities\Games\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtility.cs" />
     <Compile Include="Utilities\Games\Rayman 1\CompleteSoundtrack\R1CompleteSoundtrackUtilityUI.xaml.cs">
       <DependentUpon>R1CompleteSoundtrackUtilityUI.xaml</DependentUpon>
@@ -976,8 +982,8 @@
     <Compile Include="Pages\Utilities\UtilitiesPageViewModel.cs" />
     <Compile Include="Pages\Help\Cheats\Rayman1CheatCodeItemViewModel.cs" />
     <Compile Include="UI\Converters\BooleanToFluidMoveDurationConverter.cs" />
-    <Compile Include="DataModels\DosBoxAutoConfigData.cs" />
-    <Compile Include="Helpers\DosBoxAutoConfigManager.cs" />
+    <Compile Include="Emulators\DOSBox\Config\Emulator_DOSBox_AutoConfigData.cs" />
+    <Compile Include="Emulators\DOSBox\Config\Emulator_DOSBox_AutoConfigManager.cs" />
     <Compile Include="Localization\Resources.Designer.cs">
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -987,36 +993,36 @@
     <Compile Include="Utilities\Games\Rayman 2\Translations\R2TranslationUtilityViewModel.cs" />
     <Compile Include="Helpers\CommonUrls.cs" />
     <Compile Include="DataModels\EventArgs\ValueEventArgs.cs" />
-    <Compile Include="AppUserData\DataModels\TPLSData.cs" />
-    <Compile Include="Games\Config\ViewModels\Ray_Origins_Legends_ConfigViewModel.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Games\Config\ViewModels\RaymanRavingRabbidsConfigViewModel.cs" />
-    <Compile Include="Games\Config\UI\Ray_Origins_Legends_Config.xaml.cs">
-      <DependentUpon>Ray_Origins_Legends_Config.xaml</DependentUpon>
+    <Compile Include="AppData\DataModels\UserData_TPLSData.cs" />
+    <Compile Include="Games\Config\UbiArt\Config_UbiArt_ViewModel.cs" />
+    <Compile Include="Helpers\Extensions\StringExtensions.cs" />
+    <Compile Include="Games\Config\RaymanRavingRabbids\Config_RaymanRavingRabbids_ViewModel.cs" />
+    <Compile Include="Games\Config\UbiArt\Config_UbiArt_UI.xaml.cs">
+      <DependentUpon>Config_UbiArt_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Config\UI\RaymanRavingRabbidsConfig.xaml.cs">
-      <DependentUpon>RaymanRavingRabbidsConfig.xaml</DependentUpon>
+    <Compile Include="Games\Config\RaymanRavingRabbids\Config_RaymanRavingRabbids_UI.xaml.cs">
+      <DependentUpon>Config_RaymanRavingRabbids_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Config\ViewModels\Base\BaseUbiIniGameConfigViewModel.cs" />
-    <Compile Include="Games\Config\UI\Ray_1_KIT_EDU_Config.xaml.cs">
-      <DependentUpon>Ray_1_KIT_EDU_Config.xaml</DependentUpon>
+    <Compile Include="Games\Config\UbiIni\Config_UbiIni_BaseViewModel.cs" />
+    <Compile Include="Games\Config\Ray1\Config_Ray1_UI.xaml.cs">
+      <DependentUpon>Config_Ray1_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Config\UI\Ray_M_Arena_3_Config.xaml.cs">
-      <DependentUpon>Ray_M_Arena_3_Config.xaml</DependentUpon>
+    <Compile Include="Games\Config\UbiIni\UbiIni3\Config_UbiIni3_UI.xaml.cs">
+      <DependentUpon>Config_UbiIni3_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Config\ViewModels\Rayman3ConfigViewModel.cs" />
-    <Compile Include="Games\Config\ViewModels\RaymanArenaConfigViewModel.cs" />
-    <Compile Include="Games\Config\ViewModels\RaymanMConfigViewModel.cs" />
+    <Compile Include="Games\Config\UbiIni\UbiIni3\Config_Rayman3_ViewModel.cs" />
+    <Compile Include="Games\Config\UbiIni\UbiIni3\Config_RaymanArena_ViewModel.cs" />
+    <Compile Include="Games\Config\UbiIni\UbiIni3\Config_RaymanM_ViewModel.cs" />
     <Compile Include="Pages\Help\HelpPage.xaml.cs">
       <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Backup\BackupPage.xaml.cs">
       <DependentUpon>BackupPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Config\ViewModels\Base\Ray_M_Arena_3_UbiIniBaseConfigViewModel.cs" />
+    <Compile Include="Games\Config\UbiIni\UbiIni3\Config_UbiIni3_BaseViewModel.cs" />
     <Compile Include="Pages\Help\HelpPageViewModel.cs" />
-    <Compile Include="GameBackups\BackupDir.cs" />
-    <Compile Include="GameBackups\BackupManager.cs" />
+    <Compile Include="Games\GameBackups\GameBackups_Directory.cs" />
+    <Compile Include="Games\GameBackups\GameBackups_Manager.cs" />
     <Compile Include="Installer\GameInstaller.xaml.cs">
       <DependentUpon>GameInstaller.xaml</DependentUpon>
     </Compile>
@@ -1035,19 +1041,19 @@
     <Compile Include="Pages\Help\HelpItemViewModel.cs" />
     <Compile Include="Pages\Backup\BackupPageViewModel.cs" />
     <Compile Include="ViewModels\Base\BaseRCPViewModel.cs" />
-    <Compile Include="Games\Config\ViewModels\Base\Ray_1_KIT_EDU_BaseConfigViewModel.cs" />
-    <Compile Include="App\Implementations\AppUIManager.cs" />
-    <Compile Include="Games\Config\ButtonMapping\KeyMappingItem.cs" />
+    <Compile Include="Games\Config\Ray1\Config_Ray1_BaseViewModel.cs" />
+    <Compile Include="App\Abstraction\AppUI\AppUIManager.cs" />
+    <Compile Include="UI\Controls\ButtonMapping\KeyMappingItem.cs" />
     <Compile Include="Helpers\R2ButtonMappingManager.cs" />
-    <Compile Include="AppUserData\DataModels\DosBoxOptions.cs" />
+    <Compile Include="AppData\DataModels\UserData_DosBoxOptions.cs" />
     <Compile Include="UI\ValidationRules\DosBoxCyclesValidationRule.cs" />
     <Compile Include="UI\ValidationRules\DosBoxResolutionValidationRule.cs" />
     <Compile Include="Pages\Backup\GameBackupItemViewModel.cs" />
-    <Compile Include="Games\Config\ButtonMapping\ButtonMappingKeyItemViewModel.cs" />
-    <Compile Include="Games\Config\UI\Rayman2Config.xaml.cs">
-      <DependentUpon>Rayman2Config.xaml</DependentUpon>
+    <Compile Include="UI\Controls\ButtonMapping\ButtonMappingKeyItemViewModel.cs" />
+    <Compile Include="Games\Config\UbiIni\Rayman2\Config_Rayman2_UI.xaml.cs">
+      <DependentUpon>Config_Rayman2_UI.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Games\Config\ViewModels\Rayman2ConfigViewModel.cs" />
+    <Compile Include="Games\Config\UbiIni\Rayman2\Config_Rayman2_ViewModel.cs" />
     <Compile Include="UI\Converters\KeyToHotKeyConverter.cs" />
     <Compile Include="UI\Converters\KeyToStringConverter.cs" />
     <Compile Include="UI\ValidationRules\ButtonMapperHotKeyValidationRule.cs" />
@@ -1059,10 +1065,7 @@
     <Compile Include="UI\OverflowButton.xaml.cs">
       <DependentUpon>OverflowButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DataModels\GameLaunchInfo.cs" />
-    <Compile Include="DataModels\GamePurchaseLink.cs" />
-    <Compile Include="DataModels\GameFileLink.cs" />
-    <Compile Include="Extensions\GamesExtensions.cs" />
+    <Compile Include="Helpers\Extensions\GamesExtensions.cs" />
     <Compile Include="App\RCPServices.cs" />
     <Compile Include="Img\Images.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1078,7 +1081,7 @@
     <Compile Include="Pages\Settings\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AppUserData\AppUserData.cs" />
+    <Compile Include="AppData\AppUserData.cs" />
     <Compile Include="ViewModels\ActionItemViewModel.cs" />
     <Compile Include="App\AppViewModel.cs" />
     <Compile Include="Pages\Debug\DebugPageViewModel.cs" />
@@ -1099,7 +1102,7 @@
     <Compile Include="UI\Windows\GameOptionsDialog.xaml.cs">
       <DependentUpon>GameOptionsDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\GameOptionsViewModel.cs" />
+    <Compile Include="Games\Options\GameOptions_ViewModel.cs" />
     <Compile Include="UI\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

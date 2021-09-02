@@ -26,7 +26,7 @@ namespace RayCarrot.RCP.Metro
             InitializeComponent();
             
             // Create view model
-            ViewModel = new GameOptionsViewModel(game);
+            ViewModel = new GameOptions_ViewModel(game);
 
             // Subscribe to events
             Loaded += GameOptions_OnLoadedAsync;
@@ -63,9 +63,9 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The window view model
         /// </summary>
-        public GameOptionsViewModel ViewModel
+        public GameOptions_ViewModel ViewModel
         {
-            get => DataContext as GameOptionsViewModel;
+            get => DataContext as GameOptions_ViewModel;
             set => DataContext = value;
         }
 

@@ -23,7 +23,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         /// <param name="game">The game</param>
         /// <param name="backupInfo">The backup info</param>
-        public GameBackupItemViewModel(Games game, IBackupInfo backupInfo)
+        public GameBackupItemViewModel(Games game, IGameBackups_BackupInfo backupInfo)
         {
             // Get the info
             var gameInfo = game.GetGameInfo();
@@ -63,7 +63,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The backup info
         /// </summary>
-        public IBackupInfo BackupInfo { get; }
+        public IGameBackups_BackupInfo BackupInfo { get; }
 
         /// <summary>
         /// Indicates if there is a backup available to restore from

@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.GameOptions_RavingRabbids2_UI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+             Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+             Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+             mc:Ignorable="d">
+    <StackPanel>
+        <i:Interaction.Behaviors>
+            <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Vertical}" />
+        </i:Interaction.Behaviors>
+
+        <StackPanel Orientation="Horizontal">
+
+            <TextBlock Style="{StaticResource TextBlock.Header}"
+                       Text="{Resx RR2Options_GameModeHeader}" />
+
+            <local:InfoIcon Text="{Resx RR2Options_GameModeInfo}" />
+
+        </StackPanel>
+
+        <ComboBox SelectedIndex="{Binding Source={x:Static local:RCPServices.Data}, Path=RRR2LaunchMode, Converter={rwpf:EnumToIntConverter}}"
+                  HorizontalAlignment="Left">
+
+            <TextBlock Text="{Resx RR2Options_GameMode_All}" />
+
+            <TextBlock Text="{Resx RR2Options_GameMode_Orange}" />
+
+            <TextBlock Text="{Resx RR2Options_GameMode_Red}" />
+
+            <TextBlock Text="{Resx RR2Options_GameMode_Green}" />
+
+            <TextBlock Text="{Resx RR2Options_GameMode_Blue}" />
+
+        </ComboBox>
+
+    </StackPanel>
+</UserControl>

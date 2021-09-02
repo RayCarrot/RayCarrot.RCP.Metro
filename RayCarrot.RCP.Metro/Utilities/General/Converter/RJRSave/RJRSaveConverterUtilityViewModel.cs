@@ -52,7 +52,7 @@ namespace RayCarrot.RCP.Metro
             }, new FileFilterItem("*.dat", "DAT").ToString(), new[]
             {
                 ".json"
-            }, Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + Games.RaymanJungleRun.GetManager<RCPWinStoreGame>().FullPackageName + "LocalState");
+            }, Environment.SpecialFolder.LocalApplicationData.GetFolderPath() + "Packages" + Games.RaymanJungleRun.GetManager<GameManager_WinStore>().FullPackageName + "LocalState");
         }
 
         /// <summary>

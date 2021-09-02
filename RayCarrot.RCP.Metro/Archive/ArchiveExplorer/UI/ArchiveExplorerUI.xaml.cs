@@ -77,12 +77,12 @@ namespace RayCarrot.RCP.Metro
 
             switch (RCPServices.Data.ArchiveExplorerSortOption)
             {
-                case ArchiveExplorerSort.AlphabeticalAscending:
+                case UserData_Archive_Sort.AlphabeticalAscending:
                     FilesList?.Items.SortDescriptions.Add(new SortDescription(nameof(ArchiveFileViewModel.FileName), ListSortDirection.Ascending));
                     DirTreeView?.Items.SortDescriptions.Add(new SortDescription(nameof(ArchiveDirectoryViewModel.DisplayName), ListSortDirection.Ascending));
                     break;
 
-                case ArchiveExplorerSort.AlphabeticalDescending:
+                case UserData_Archive_Sort.AlphabeticalDescending:
                     FilesList?.Items.SortDescriptions.Add(new SortDescription(nameof(ArchiveFileViewModel.FileName), ListSortDirection.Descending));
                     DirTreeView?.Items.SortDescriptions.Add(new SortDescription(nameof(ArchiveDirectoryViewModel.DisplayName), ListSortDirection.Descending));
                     break;

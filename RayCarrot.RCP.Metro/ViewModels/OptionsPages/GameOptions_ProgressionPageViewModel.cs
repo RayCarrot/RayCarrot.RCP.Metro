@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro
     {
         #region Constructor
 
-        public GameOptions_ProgressionPageViewModel(BaseProgressionViewModel progressionViewModel) 
+        public GameOptions_ProgressionPageViewModel(GameProgression_BaseViewModel progressionViewModel) 
             : base(new LocalizedString(() => Resources.Progression_Header), GenericIconKind.GameOptions_Progression)
         {
             ProgressionViewModel = progressionViewModel ?? throw new ArgumentNullException(nameof(progressionViewModel));
@@ -17,13 +17,13 @@ namespace RayCarrot.RCP.Metro
 
         #region Public Properties
 
-        public BaseProgressionViewModel ProgressionViewModel { get; }
+        public GameProgression_BaseViewModel ProgressionViewModel { get; }
 
         #endregion
 
         #region Protected Methods
 
-        protected override object GetPageUI() => new ProgressionUI()
+        protected override object GetPageUI() => new GameProgression_UI()
         {
             DataContext = ProgressionViewModel
         };

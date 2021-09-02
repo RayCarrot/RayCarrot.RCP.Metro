@@ -25,7 +25,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The backup manager
         /// </summary>
-        public static BackupManager Backup => BaseApp.Current.GetService<BackupManager>();
+        public static GameBackups_Manager Backup => BaseApp.Current.GetService<GameBackups_Manager>();
 
         /// <summary>
         /// The update manager

@@ -12,7 +12,7 @@
                   WindowStartupLocation="CenterOwner"
                   ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
                   mc:Ignorable="d"
-                  d:DataContext="{d:DesignInstance local:GameOptionsViewModel}">
+                  d:DataContext="{d:DesignInstance local:GameOptions_ViewModel}">
     <Grid Margin="10"
           IsEnabled="{Binding Path=IsLoading, Converter={rwpf:InvertedBooleanConverter}}">
         <Grid.RowDefinitions>

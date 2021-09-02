@@ -7,7 +7,7 @@ namespace RayCarrot.RCP.Metro
     /// <summary>
     /// Utility view model for decoding Rayman 1 .lng files
     /// </summary>
-    public class R1LngDecoderViewModel : BaseDecoderUtilityViewModel<R1LngDecoderViewModel.Rayman1Versions>
+    public class R1LngDecoderViewModel : BaseDecoderUtilityViewModel<R1LngDecoderViewModel.Rayman1Version>
     {
         #region Constructor
 
@@ -16,13 +16,13 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public R1LngDecoderViewModel()
         {
-            GameModeSelection = new EnumSelectionViewModel<Rayman1Versions>(Rayman1Versions.Ray_1_21, new Rayman1Versions[]
+            GameModeSelection = new EnumSelectionViewModel<Rayman1Version>(Rayman1Version.Ray_1_21, new Rayman1Version[]
             {
-                Rayman1Versions.Ray_1_00,
-                Rayman1Versions.Ray_1_10,
-                Rayman1Versions.Ray_1_12,
-                Rayman1Versions.Ray_Japan,
-                Rayman1Versions.Ray_1_21,
+                Rayman1Version.Ray_1_00,
+                Rayman1Version.Ray_1_10,
+                Rayman1Version.Ray_1_12,
+                Rayman1Version.Ray_Japan,
+                Rayman1Version.Ray_1_21,
             });
         }
 
@@ -47,7 +47,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game mode selection
         /// </summary>
-        public override EnumSelectionViewModel<Rayman1Versions> GameModeSelection { get; }
+        public override EnumSelectionViewModel<Rayman1Version> GameModeSelection { get; }
 
         #endregion
 
@@ -60,7 +60,7 @@ namespace RayCarrot.RCP.Metro
         {
             return GameModeSelection.SelectedValue switch
             {
-                Rayman1Versions.Ray_1_00 => new SegmentedDataEncoder(new SegmentedDataEncoder.SegmentedDataInfo[]
+                Rayman1Version.Ray_1_00 => new SegmentedDataEncoder(new SegmentedDataEncoder.SegmentedDataInfo[]
                 {
                     // English
                     new SegmentedDataEncoder.SegmentedDataInfo(new XORDataEncoder(154), 4175 - 0),
@@ -72,7 +72,7 @@ namespace RayCarrot.RCP.Metro
                     new SegmentedDataEncoder.SegmentedDataInfo(new XORDataEncoder(70), 13587 - 8791),
                 }),
 
-                Rayman1Versions.Ray_1_10 => new SegmentedDataEncoder(new SegmentedDataEncoder.SegmentedDataInfo[]
+                Rayman1Version.Ray_1_10 => new SegmentedDataEncoder(new SegmentedDataEncoder.SegmentedDataInfo[]
                 {
                     // English
                     new SegmentedDataEncoder.SegmentedDataInfo(new XORDataEncoder(220), 4176 - 0),
@@ -84,7 +84,7 @@ namespace RayCarrot.RCP.Metro
                     new SegmentedDataEncoder.SegmentedDataInfo(new XORDataEncoder(192), 13607 - 8796),
                 }),
 
-                Rayman1Versions.Ray_1_12 => new SegmentedDataEncoder(new SegmentedDataEncoder.SegmentedDataInfo[]
+                Rayman1Version.Ray_1_12 => new SegmentedDataEncoder(new SegmentedDataEncoder.SegmentedDataInfo[]
                 {
                     // English
                     new SegmentedDataEncoder.SegmentedDataInfo(new XORDataEncoder(75), 4175 - 0),
@@ -96,7 +96,7 @@ namespace RayCarrot.RCP.Metro
                     new SegmentedDataEncoder.SegmentedDataInfo(new XORDataEncoder(178), 13606 - 8795),
                 }),
 
-                Rayman1Versions.Ray_Japan => new SegmentedDataEncoder(new SegmentedDataEncoder.SegmentedDataInfo[]
+                Rayman1Version.Ray_Japan => new SegmentedDataEncoder(new SegmentedDataEncoder.SegmentedDataInfo[]
                 {
                     // English
                     new SegmentedDataEncoder.SegmentedDataInfo(new XORDataEncoder(252), 4234 - 0),
@@ -111,7 +111,7 @@ namespace RayCarrot.RCP.Metro
                     new SegmentedDataEncoder.SegmentedDataInfo(new XORDataEncoder(89), 16361 - 13850),
                 }),
 
-                Rayman1Versions.Ray_1_21 => new SegmentedDataEncoder(new SegmentedDataEncoder.SegmentedDataInfo[]
+                Rayman1Version.Ray_1_21 => new SegmentedDataEncoder(new SegmentedDataEncoder.SegmentedDataInfo[]
                 {
                     // English
                     new SegmentedDataEncoder.SegmentedDataInfo(new XORDataEncoder(48), 4234 - 0),
@@ -142,7 +142,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The available Rayman 1 PC versions for the .lng decoder
         /// </summary>
-        public enum Rayman1Versions
+        public enum Rayman1Version
         {
             [GameModeBase("Rayman 1 (PC - 1.00)")]
             Ray_1_00,

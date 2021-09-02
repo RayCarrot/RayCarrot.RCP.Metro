@@ -36,174 +36,182 @@
   },
   "GameManagers": {
     "Rayman1": {
-      "DosBox": "Rayman1_DOSBox"
+      "DosBox": "GameManager_Rayman1_DOSBox"
     },
     "RaymanDesigner": {
-      "DosBox": "RaymanDesigner_DOSBox"
+      "DosBox": "GameManager_RaymanDesigner_DOSBox"
     },
     "RaymanByHisFans": {
-      "DosBox": "RaymanByHisFans_DOSBox"
+      "DosBox": "GameManager_RaymanByHisFans_DOSBox"
     },
     "Rayman60Levels": {
-      "DosBox": "Rayman60Levels_DOSBox"
+      "DosBox": "GameManager_Rayman60Levels_DOSBox"
     },
     "Rayman2": {
-      "Win32": "Rayman2_Win32",
-      "Steam": "Rayman2_Steam"
+      "Win32": "GameManager_Rayman2_Win32",
+      "Steam": "GameManager_Rayman2_Steam"
     },
     "RaymanM": {
-      "Win32": "RaymanM_Win32"
+      "Win32": "GameManager_RaymanM_Win32"
     },
     "RaymanArena": {
-      "Win32": "RaymanArena_Win32"
+      "Win32": "GameManager_RaymanArena_Win32"
     },
     "Rayman3": {
-      "Win32": "Rayman3_Win32"
-    },
-    "RaymanRavingRabbids": {
-      "Win32": "RaymanRavingRabbids_Win32",
-      "Steam": "RaymanRavingRabbids_Steam"
-    },
-    "RaymanRavingRabbids2": {
-      "Win32": "RaymanRavingRabbids2_Win32"
-    },
-    "RabbidsGoHome": {
-      "Win32": "RabbidsGoHome_Win32"
+      "Win32": "GameManager_Rayman3_Win32"
     },
     "RaymanOrigins": {
-      "Win32": "RaymanOrigins_Win32",
-      "Steam": "RaymanOrigins_Steam"
+      "Win32": "GameManager_RaymanOrigins_Win32",
+      "Steam": "GameManager_RaymanOrigins_Steam"
     },
     "RaymanLegends": {
-      "Win32": "RaymanLegends_Win32",
-      "Steam": "RaymanLegends_Steam"
+      "Win32": "GameManager_RaymanLegends_Win32",
+      "Steam": "GameManager_RaymanLegends_Steam"
     },
     "RaymanJungleRun": {
-      "WinStore": "RaymanJungleRun_WinStore"
+      "WinStore": "GameManager_RaymanJungleRun_WinStore"
     },
     "RaymanFiestaRun": {
-      "WinStore": "RaymanFiestaRun_WinStore"
+      "WinStore": "GameManager_RaymanFiestaRun_WinStore"
+    },
+
+    "RaymanRavingRabbids": {
+      "Win32": "GameManager_RaymanRavingRabbids_Win32",
+      "Steam": "GameManager_RaymanRavingRabbids_Steam"
+    },
+    "RaymanRavingRabbids2": {
+      "Win32": "GameManager_RaymanRavingRabbids2_Win32"
+    },
+    "RabbidsGoHome": {
+      "Win32": "GameManager_RabbidsGoHome_Win32"
     },
     "RabbidsBigBang": {
-      "WinStore": "RabbidsBigBang_WinStore"
-    },
-    "EducationalDos": {
-      "EducationalDosBox": "EducationalDos_EducationalDOSBox"
-    },
-    "Ray1Minigames": {
-      "Win32": "Ray1Minigames_Win32"
-    },
-    "PrintStudio": {
-      "Win32": "PrintStudio_Win32"
-    },
-    "RaymanDictées": {
-      "Win32": "RaymanDictées_Win32"
-    },
-    "RaymanPremiersClics": {
-      "Win32": "RaymanPremiersClics_Win32"
-    },
-    "RaymanActivityCenter": {
-      "Win32": "RaymanActivityCenter_Win32"
-    },
-    "RaymanRavingRabbidsActivityCenter": {
-      "Win32": "RaymanRavingRabbidsActivityCenter_Win32"
-    },
-    "GloboxMoment": {
-      "Win32": "GloboxMoment_Win32"
-    },
-    "TheDarkMagiciansReignofTerror": {
-      "Win32": "TheDarkMagiciansReignofTerror_Win32"
-    },
-    "RaymanRedemption": {
-      "Win32": "RaymanRedemption_Win32"
-    },
-    "RaymanRedesigner": {
-      "Win32": "RaymanRedesigner_Win32"
-    },
-    "RaymanBowling2": {
-      "Win32": "RaymanBowling2_Win32"
-    },
-    "RaymanGardenPLUS": {
-      "Win32": "RaymanGardenPLUS_Win32"
+      "WinStore": "GameManager_RabbidsBigBang_WinStore"
     },
     "RabbidsCoding": {
-      "Win32": "RabbidsCoding_Win32"
+      "Win32": "GameManager_RabbidsCoding_Win32"
     },
-    "Demo_Rayman3_1": {
-      "Win32": "Demo_Rayman3_1_Win32"
-    },
-    "Demo_Rayman3_2": {
-      "Win32": "Demo_Rayman3_2_Win32"
-    },
-    "Demo_Rayman3_3": {
-      "Win32": "Demo_Rayman3_3_Win32"
-    },
-    "Demo_Rayman3_4": {
-      "Win32": "Demo_Rayman3_4_Win32"
-    },
-    "Demo_Rayman3_5": {
-      "Win32": "Demo_Rayman3_5_Win32"
-    },
-    "Demo_RaymanM": {
-      "Win32": "Demo_RaymanM_Win32"
-    },
-    "Demo_Rayman2_1": {
-      "Win32": "Demo_Rayman2_1_Win32"
-    },
-    "Demo_Rayman2_2": {
-      "Win32": "Demo_Rayman2_2_Win32"
-    },
-    "Demo_RaymanGold": {
-      "DOSBox": "Demo_RaymanGold_DOSBox"
-    },
+
     "Demo_Rayman1_1": {
-      "DOSBox": "Demo_Rayman1_1_DOSBox"
+      "DOSBox": "GameManager_Rayman1Demo1_DOSBox"
     },
     "Demo_Rayman1_2": {
-      "DOSBox": "Demo_Rayman1_2_DOSBox"
+      "DOSBox": "GameManager_Rayman1Demo2_DOSBox"
+    },
+    "Demo_RaymanGold": {
+      "DOSBox": "GameManager_RaymanGoldDemo_DOSBox"
+    },
+    "Demo_Rayman2_1": {
+      "Win32": "GameManager_Rayman2Demo1_Win32"
+    },
+    "Demo_Rayman2_2": {
+      "Win32": "GameManager_Rayman2Demo2_Win32"
+    },
+    "Demo_RaymanM": {
+      "Win32": "GameManager_RaymanMDemo_Win32"
+    },
+    "Demo_Rayman3_1": {
+      "Win32": "GameManager_Rayman3Demo1_Win32"
+    },
+    "Demo_Rayman3_2": {
+      "Win32": "GameManager_Rayman3Demo2_Win32"
+    },
+    "Demo_Rayman3_3": {
+      "Win32": "GameManager_Rayman3Demo3_Win32"
+    },
+    "Demo_Rayman3_4": {
+      "Win32": "GameManager_Rayman3Demo4_Win32"
+    },
+    "Demo_Rayman3_5": {
+      "Win32": "GameManager_Rayman3Demo5_Win32"
+    },
+
+    "Ray1Minigames": {
+      "Win32": "GameManager_Ray1Minigames_Win32"
+    },
+    "EducationalDos": {
+      "EducationalDosBox": "GameManager_EducationalDos_EducationalDOSBox"
+    },
+    "RaymanDictées": {
+      "Win32": "GameManager_RaymanDictées_Win32"
+    },
+    "RaymanPremiersClics": {
+      "Win32": "GameManager_RaymanPremiersClics_Win32"
+    },
+    "PrintStudio": {
+      "Win32": "GameManager_PrintStudio_Win32"
+    },
+    "RaymanActivityCenter": {
+      "Win32": "GameManager_RaymanActivityCenter_Win32"
+    },
+    "RaymanRavingRabbidsActivityCenter": {
+      "Win32": "GameManager_RaymanRavingRabbidsActivityCenter_Win32"
+    },
+
+    "TheDarkMagiciansReignofTerror": {
+      "Win32": "GameManager_TheDarkMagiciansReignofTerror_Win32"
+    },
+    "RaymanRedemption": {
+      "Win32": "GameManager_RaymanRedemption_Win32"
+    },
+    "RaymanRedesigner": {
+      "Win32": "GameManager_RaymanRedesigner_Win32"
+    },
+    "RaymanBowling2": {
+      "Win32": "GameManager_RaymanBowling2_Win32"
+    },
+    "RaymanGardenPLUS": {
+      "Win32": "GameManager_RaymanGardenPLUS_Win32"
+    },
+    "GloboxMoment": {
+      "Win32": "GameManager_GloboxMoment_Win32"
     }
   },
   "GameInfos": {
-    "Rayman1": "Rayman1_Info",
-    "RaymanDesigner": "RaymanDesigner_Info",
-    "RaymanByHisFans": "RaymanByHisFans_Info",
-    "Rayman60Levels": "Rayman60Levels_Info",
-    "Rayman2": "Rayman2_Info",
-    "RaymanM": "RaymanM_Info",
-    "RaymanArena": "RaymanArena_Info",
-    "Rayman3": "Rayman3_Info",
-    "RaymanRavingRabbids": "RaymanRavingRabbids_Info",
-    "RaymanRavingRabbids2": "RaymanRavingRabbids2_Info",
-    "RabbidsGoHome": "RabbidsGoHome_Info",
-    "RaymanOrigins": "RaymanOrigins_Info",
-    "RaymanLegends": "RaymanLegends_Info",
-    "RaymanJungleRun": "RaymanJungleRun_Info",
-    "RaymanFiestaRun": "RaymanFiestaRun_Info",
-    "RabbidsBigBang": "RabbidsBigBang_Info",
-    "EducationalDos": "EducationalDos_Info",
-    "Ray1Minigames": "Ray1Minigames_Info",
-    "PrintStudio": "PrintStudio_Info",
-    "RaymanDictées": "RaymanDictées_Info",
-    "RaymanPremiersClics": "RaymanPremiersClics_Info",
-    "RaymanActivityCenter": "RaymanActivityCenter_Info",
-    "RaymanRavingRabbidsActivityCenter": "RaymanRavingRabbidsActivityCenter_Info",
-    "GloboxMoment": "GloboxMoment_Info",
-    "TheDarkMagiciansReignofTerror": "TheDarkMagiciansReignofTerror_Info",
-    "RaymanRedemption": "RaymanRedemption_Info",
-    "RaymanRedesigner": "RaymanRedesigner_Info",
-    "RaymanBowling2": "RaymanBowling2_Info",
-    "RaymanGardenPLUS": "RaymanGardenPLUS_Info",
-    "RabbidsCoding": "RabbidsCoding_Info",
-    "Demo_Rayman3_1": "Demo_Rayman3_1_Info",
-    "Demo_Rayman3_2": "Demo_Rayman3_2_Info",
-    "Demo_Rayman3_3": "Demo_Rayman3_3_Info",
-    "Demo_Rayman3_4": "Demo_Rayman3_4_Info",
-    "Demo_Rayman3_5": "Demo_Rayman3_5_Info",
-    "Demo_RaymanM": "Demo_RaymanM_Info",
-    "Demo_Rayman2_1": "Demo_Rayman2_1_Info",
-    "Demo_Rayman2_2": "Demo_Rayman2_2_Info",
-    "Demo_RaymanGold": "Demo_RaymanGold_Info",
-    "Demo_Rayman1_1": "Demo_Rayman1_1_Info",
-    "Demo_Rayman1_2": "Demo_Rayman1_2_Info"
+    "Rayman1": "GameInfo_Rayman1",
+    "RaymanDesigner": "GameInfo_RaymanDesigner",
+    "RaymanByHisFans": "GameInfo_RaymanByHisFans",
+    "Rayman60Levels": "GameInfo_Rayman60Levels",
+    "Rayman2": "GameInfo_Rayman2",
+    "RaymanM": "GameInfo_RaymanM",
+    "RaymanArena": "GameInfo_RaymanArena",
+    "Rayman3": "GameInfo_Rayman3",
+    "RaymanOrigins": "GameInfo_RaymanOrigins",
+    "RaymanLegends": "GameInfo_RaymanLegends",
+    "RaymanJungleRun": "GameInfo_RaymanJungleRun",
+    "RaymanFiestaRun": "GameInfo_RaymanFiestaRun",
+
+    "RaymanRavingRabbids": "GameInfo_RaymanRavingRabbids",
+    "RaymanRavingRabbids2": "GameInfo_RaymanRavingRabbids2",
+    "RabbidsGoHome": "GameInfo_RabbidsGoHome",
+    "RabbidsBigBang": "GameInfo_RabbidsBigBang",
+    "RabbidsCoding": "GameInfo_RabbidsCoding",
+
+    "Demo_Rayman1_1": "GameInfo_Rayman1Demo1",
+    "Demo_Rayman1_2": "GameInfo_Rayman1Demo2",
+    "Demo_RaymanGold": "GameInfo_RaymanGoldDemo",
+    "Demo_Rayman2_1": "GameInfo_Rayman2Demo1",
+    "Demo_Rayman2_2": "GameInfo_Rayman2Demo2",
+    "Demo_RaymanM": "GameInfo_RaymanMDemo",
+    "Demo_Rayman3_1": "GameInfo_Rayman3Demo1",
+    "Demo_Rayman3_2": "GameInfo_Rayman3Demo2",
+    "Demo_Rayman3_3": "GameInfo_Rayman3Demo3",
+    "Demo_Rayman3_4": "GameInfo_Rayman3Demo4",
+    "Demo_Rayman3_5": "GameInfo_Rayman3Demo5",
+
+    "Ray1Minigames": "GameInfo_Ray1Minigames",
+    "EducationalDos": "GameInfo_EducationalDos",
+    "RaymanDictées": "GameInfo_RaymanDictées",
+    "RaymanPremiersClics": "GameInfo_RaymanPremiersClics",
+    "PrintStudio": "GameInfo_PrintStudio",
+    "RaymanActivityCenter": "GameInfo_RaymanActivityCenter",
+    "RaymanRavingRabbidsActivityCenter": "GameInfo_RaymanRavingRabbidsActivityCenter",
+
+    "TheDarkMagiciansReignofTerror": "GameInfo_TheDarkMagiciansReignofTerror",
+    "RaymanRedemption": "GameInfo_RaymanRedemption",
+    "RaymanRedesigner": "GameInfo_RaymanRedesigner",
+    "RaymanBowling2": "GameInfo_RaymanBowling2",
+    "RaymanGardenPLUS": "GameInfo_RaymanGardenPLUS",
+    "GloboxMoment": "GameInfo_GloboxMoment"
   }
 }

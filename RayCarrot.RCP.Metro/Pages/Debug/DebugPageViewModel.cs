@@ -52,12 +52,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The selected dialog type
         /// </summary>
-        public DebugDialogTypes SelectedDialog { get; set; }
+        public DebugDialogType SelectedDialog { get; set; }
 
         /// <summary>
         /// The selected data output type
         /// </summary>
-        public DebugDataOutputTypes SelectedDataOutputType { get; set; }
+        public DebugDataOutputType SelectedDataOutputType { get; set; }
 
         /// <summary>
         /// The current data output
@@ -86,7 +86,7 @@ namespace RayCarrot.RCP.Metro
         {
             switch (SelectedDialog)
             {
-                case DebugDialogTypes.GameTypeSelection:
+                case DebugDialogType.GameTypeSelection:
                     await new GameTypeSelectionDialog(new GameTypeSelectionViewModel()
                     {
                         Title = "Debug",
@@ -98,32 +98,32 @@ namespace RayCarrot.RCP.Metro
                     }).ShowDialogAsync();
                     break;
 
-                case DebugDialogTypes.Message:
+                case DebugDialogType.Message:
                     await Services.MessageUI.DisplayMessageAsync("Debug message", "Debug header", MessageType.Information);
                     break;
 
-                case DebugDialogTypes.Directory:
+                case DebugDialogType.Directory:
                     await Services.BrowseUI.BrowseDirectoryAsync(new DirectoryBrowserViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
-                case DebugDialogTypes.Drive:
+                case DebugDialogType.Drive:
                     await Services.BrowseUI.BrowseDriveAsync(new DriveBrowserViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
-                case DebugDialogTypes.File:
+                case DebugDialogType.File:
                     await Services.BrowseUI.BrowseFileAsync(new FileBrowserViewModel()
                     {
                         Title = "Debug"
                     });
                     break;
 
-                case DebugDialogTypes.SaveFile:
+                case DebugDialogType.SaveFile:
                     await Services.BrowseUI.SaveFileAsync(new SaveFileViewModel()
                     {
                         Title = "Debug"
@@ -178,7 +178,7 @@ namespace RayCarrot.RCP.Metro
 
                 switch (SelectedDataOutputType)
                 {
-                    case DebugDataOutputTypes.ReferencedAssemblies:
+                    case DebugDataOutputType.ReferencedAssemblies:
                         foreach (AssemblyName assemblyName in Assembly.GetEntryAssembly()?.GetReferencedAssemblies() ?? new AssemblyName[0])
                         {
                             Assembly assembly = null;
@@ -212,7 +212,7 @@ namespace RayCarrot.RCP.Metro
                         }
                         break;
 
-                    case DebugDataOutputTypes.AppUserData:
+                    case DebugDataOutputType.AppUserData:
                         // Save app user data to update the file
                         await App.SaveUserDataAsync();
 
@@ -221,7 +221,7 @@ namespace RayCarrot.RCP.Metro
 
                         break;
 
-                    case DebugDataOutputTypes.UpdateManifest:
+                    case DebugDataOutputType.UpdateManifest:
 
                         // Download the manifest as a string and display it
                         using (WebClient wc = new WebClient())
@@ -229,7 +229,7 @@ namespace RayCarrot.RCP.Metro
 
                         break;
 
-                    case DebugDataOutputTypes.AppWindows:
+                    case DebugDataOutputType.AppWindows:
                         var mainWindow = Application.Current.MainWindow;
 
                         foreach (Window window in Application.Current.Windows)
@@ -250,7 +250,7 @@ namespace RayCarrot.RCP.Metro
                         
                         break;
 
-                    case DebugDataOutputTypes.GameFinder:
+                    case DebugDataOutputType.GameFinder:
                         // Select the games to find
                         var selectionResult = await RCPServices.UI.SelectGamesAsync(new GamesSelectionViewModel());
 
@@ -261,11 +261,11 @@ namespace RayCarrot.RCP.Metro
                         var result = await new GameFinder(selectionResult.SelectedGames, null).FindGamesAsync();
                         
                         // Output the found games
-                        DataOutput = result.OfType<GameFinderResult>().Select(x => $"{x.Game} ({x.GameType}) - {x.InstallLocation}").JoinItems(Environment.NewLine);
+                        DataOutput = result.OfType<GameFinder_GameResult>().Select(x => $"{x.Game} ({x.GameType}) - {x.InstallLocation}").JoinItems(Environment.NewLine);
                         
                         break;
 
-                    case DebugDataOutputTypes.GameInfo:
+                    case DebugDataOutputType.GameInfo:
 
                         // Helper method for adding a new line of text
                         void AddLine(string header, object content) => DataOutput += $"{header}: {content}{Environment.NewLine}";
@@ -294,7 +294,7 @@ namespace RayCarrot.RCP.Metro
 
                         break;
 
-                    case DebugDataOutputTypes.GameSizes:
+                    case DebugDataOutputType.GameSizes:
 
                         // IDEA: Update with new system when done
 
@@ -393,7 +393,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The available debug dialog types
         /// </summary>
-        public enum DebugDialogTypes
+        public enum DebugDialogType
         {
             /// <summary>
             /// A game type selection dialog
@@ -429,7 +429,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The available debug data output types
         /// </summary>
-        public enum DebugDataOutputTypes
+        public enum DebugDataOutputType
         {
             /// <summary>
             /// Displays a list of the referenced assemblies

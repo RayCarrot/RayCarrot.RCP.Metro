@@ -66,12 +66,12 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The game data
         /// </summary>
-        public GameData GameData => RCPServices.Data.Games.TryGetValue(Game);
+        public UserData_GameData GameData => RCPServices.Data.Games.TryGetValue(Game);
 
         /// <summary>
         /// The game's launch mode
         /// </summary>
-        public GameLaunchMode LaunchMode
+        public UserData_GameLaunchMode LaunchMode
         {
             get => GameData.LaunchMode;
             set
@@ -112,7 +112,7 @@ namespace RayCarrot.RCP.Metro
             GameInfoItems.AddRange(Game.GetManager().GetGameInfoItems);
         }
 
-        protected override object GetPageUI() => new GameOptionsUI()
+        protected override object GetPageUI() => new GameOptions_UI()
         {
             DataContext = this
         };

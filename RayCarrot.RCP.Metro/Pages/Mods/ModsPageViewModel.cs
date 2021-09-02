@@ -23,9 +23,9 @@ namespace RayCarrot.RCP.Metro
         
         private bool _hasInitialized;
 
-        private async void App_SelectedPageChangedAsync(object sender, PropertyChangedEventArgs<Pages> e)
+        private async void App_SelectedPageChangedAsync(object sender, PropertyChangedEventArgs<AppPage> e)
         {
-            if (e.NewValue != Pages.Mods)
+            if (e.NewValue != AppPage.Mods)
                 return;
 
             if (_hasInitialized)

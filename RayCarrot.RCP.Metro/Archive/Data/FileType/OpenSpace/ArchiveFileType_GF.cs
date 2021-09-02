@@ -165,13 +165,13 @@ namespace RayCarrot.RCP.Metro
                     gf.GFPixelFormat = gf.GFPixelFormat.SupportsTransparency() ? OpenSpaceGFFormat.Format_32bpp_BGRA_8888 : OpenSpaceGFFormat.Format_24bpp_BGR_888;
 
                 // Check if the format should be updated for transparency
-                if (RCPServices.Data.Archive_GF_UpdateTransparency != Archive_GF_TransparencyMode.PreserveFormat)
+                if (RCPServices.Data.Archive_GF_UpdateTransparency != UserData_Archive_GF_TransparencyMode.PreserveFormat)
                 {
                     // NOTE: Only 24 and 32 bpp bitmaps are supported
                     // Check if the imported file is transparent
                     var isTransparent = bmp.PixelFormat switch
                     {
-                        PixelFormat.Format32bppArgb => (RCPServices.Data.Archive_GF_UpdateTransparency == Archive_GF_TransparencyMode.UpdateBasedOnPixelFormat ||
+                        PixelFormat.Format32bppArgb => (RCPServices.Data.Archive_GF_UpdateTransparency == UserData_Archive_GF_TransparencyMode.UpdateBasedOnPixelFormat ||
                                                         bmpLock.UtilizesAlpha()),
                         PixelFormat.Format24bppRgb => false,
                         _ => (bool?)null

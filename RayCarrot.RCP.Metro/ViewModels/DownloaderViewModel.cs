@@ -35,7 +35,7 @@ namespace RayCarrot.RCP.Metro
             FileManager = RCPServices.File;
 
             // Set properties
-            DownloadState = DownloadStates.Paused;
+            CurrentDownloadState = DownloadState.Paused;
             TotalMaxProgress = InputSources.Count * 100;
 
             if (IsCompressed)
@@ -321,7 +321,7 @@ namespace RayCarrot.RCP.Metro
             if (OperationRunning)
                 throw new InvalidOperationException("The downloader can not start while running");
 
-            DownloadState = DownloadStates.Running;
+            CurrentDownloadState = DownloadState.Running;
 
             // Flag the operation as running
             OperationRunning = true;
@@ -369,7 +369,7 @@ namespace RayCarrot.RCP.Metro
 
                         // Flag that the operation is no longer running
                         OperationRunning = false;
-                        DownloadState = CancellationRequested ? DownloadStates.Canceled : DownloadStates.Failed;
+                        CurrentDownloadState = CancellationRequested ? DownloadState.Canceled : DownloadState.Failed;
                         OnDownloadComplete();
                         return;
                     }
@@ -384,7 +384,7 @@ namespace RayCarrot.RCP.Metro
             // Flag the operation as complete
             OperationRunning = false;
 
-            DownloadState = DownloadStates.Succeeded;
+            CurrentDownloadState = DownloadState.Succeeded;
 
             RL.Logger?.LogInformationSource($"The download operation has completed");
 
@@ -477,7 +477,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The current state of the download
         /// </summary>
-        public DownloadStates DownloadState { get; private set; }
+        public DownloadState CurrentDownloadState { get; private set; }
 
         /// <summary>
         /// Indicates if the operation is running
@@ -501,7 +501,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The state of a download
         /// </summary>
-        public enum DownloadStates
+        public enum DownloadState
         {
             /// <summary>
             /// The download is paused or has not started

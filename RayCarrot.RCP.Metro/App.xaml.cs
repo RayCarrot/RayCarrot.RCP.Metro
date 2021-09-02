@@ -82,7 +82,7 @@ namespace RayCarrot.RCP.Metro
                 // Add App UI manager
                 AddTransient<AppUIManager>().
                 // Add backup manager
-                AddTransient<BackupManager>();
+                AddTransient<GameBackups_Manager>();
         }
 
         /// <summary>
@@ -415,7 +415,7 @@ namespace RayCarrot.RCP.Metro
 
             if (Data.LastVersion < new Version(4, 5, 0, 0))
             {
-                Data.LinkItemStyle = LinkItemStyles.List;
+                Data.LinkItemStyle = UserData_LinkItemStyle.List;
                 Data.ApplicationPath = Assembly.GetEntryAssembly()?.Location;
                 Data.ForceUpdate = false;
                 Data.GetBetaUpdates = false;
@@ -427,7 +427,7 @@ namespace RayCarrot.RCP.Metro
             if (Data.LastVersion < new Version(5, 0, 0, 0))
             {
                 Data.CompressBackups = true;
-                Data.FiestaRunVersion = FiestaRunEdition.Default;
+                Data.FiestaRunVersion = UserData_FiestaRunEdition.Default;
 
                 // Due to the fiesta run version system being changed the game has to be removed and then re-added
                 Data.Games.Remove(Games.RaymanFiestaRun);
@@ -447,7 +447,7 @@ namespace RayCarrot.RCP.Metro
                         var isWin10 = appData["IsFiestaRunWin10Edition"].Value<bool>();
 
                         // Set the current edition
-                        Data.FiestaRunVersion = isWin10 ? FiestaRunEdition.Win10 : FiestaRunEdition.Default;
+                        Data.FiestaRunVersion = isWin10 ? UserData_FiestaRunEdition.Win10 : UserData_FiestaRunEdition.Default;
 
                         RCPServices.File.MoveDirectory(fiestaBackupDir, Data.BackupLocation + AppViewModel.BackupFamily + Games.RaymanFiestaRun.GetGameInfo().BackupName, true, true);
                     }
@@ -475,7 +475,7 @@ namespace RayCarrot.RCP.Metro
             if (Data.LastVersion < new Version(6, 0, 0, 0))
             {
                 Data.EducationalDosBoxGames = null;
-                Data.RRR2LaunchMode = RRR2LaunchMode.AllGames;
+                Data.RRR2LaunchMode = UserData_RRR2LaunchMode.AllGames;
                 Data.RabbidsGoHomeLaunchData = null;
             }
 
@@ -552,7 +552,7 @@ namespace RayCarrot.RCP.Metro
             if (Data.LastVersion < new Version(9, 4, 0, 0))
             {
                 Data.Archive_GF_GenerateMipmaps = true;
-                Data.Archive_GF_UpdateTransparency = Archive_GF_TransparencyMode.PreserveFormat;
+                Data.Archive_GF_UpdateTransparency = UserData_Archive_GF_TransparencyMode.PreserveFormat;
             }
 
             if (Data.LastVersion < new Version(9, 5, 0, 0))
@@ -568,7 +568,7 @@ namespace RayCarrot.RCP.Metro
                 Data.Archive_GF_ForceGF8888Import = false;
 
             if (Data.LastVersion < new Version(11, 0, 0, 0))
-                Data.ArchiveExplorerSortOption = ArchiveExplorerSort.Default;
+                Data.ArchiveExplorerSortOption = UserData_Archive_Sort.Default;
 
             if (Data.LastVersion < new Version(11, 1, 0, 0))
             {
@@ -760,7 +760,7 @@ namespace RayCarrot.RCP.Metro
                         break;
 
                     case nameof(AppUserData.LinkItemStyle):
-                        static string GetStyleSource(LinkItemStyles linkItemStye) => $"{AppViewModel.WPFApplicationBasePath}/UI/Resources/Styles.LinkItem.{linkItemStye}.xaml";
+                        static string GetStyleSource(UserData_LinkItemStyle linkItemStye) => $"{AppViewModel.WPFApplicationBasePath}/UI/Resources/Styles.LinkItem.{linkItemStye}.xaml";
 
                         // Get previous source
                         var oldSource = GetStyleSource(PreviousLinkItemStyle);
@@ -874,7 +874,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The saved previous link item style
         /// </summary>
-        private LinkItemStyles PreviousLinkItemStyle { get; set; }
+        private UserData_LinkItemStyle PreviousLinkItemStyle { get; set; }
 
         #endregion
 
