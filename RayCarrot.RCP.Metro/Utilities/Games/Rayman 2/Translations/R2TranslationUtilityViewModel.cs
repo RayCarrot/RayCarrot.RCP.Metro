@@ -140,19 +140,19 @@ namespace RayCarrot.RCP.Metro
             switch (translation)
             {
                 case Rayman2Translation.Original:
-                    return CommonUrls.R2_OriginalFixSna_URL;
+                    return AppURLs.R2_OriginalFixSna_URL;
 
                 case Rayman2Translation.Irish:
-                    return CommonUrls.R2_IrishFixSna_URL;
+                    return AppURLs.R2_IrishFixSna_URL;
 
                 case Rayman2Translation.Swedish:
-                    return CommonUrls.R2_SwedishFixSna_URL;
+                    return AppURLs.R2_SwedishFixSna_URL;
 
                 case Rayman2Translation.Portuguese:
-                    return CommonUrls.R2_PortugueseFixSna_URL;
+                    return AppURLs.R2_PortugueseFixSna_URL;
 
                 case Rayman2Translation.Slovak:
-                    return CommonUrls.R2_SlovakFixSna_URL;
+                    return AppURLs.R2_SlovakFixSna_URL;
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(translation), translation, null);
@@ -169,19 +169,19 @@ namespace RayCarrot.RCP.Metro
             switch (translation)
             {
                 case Rayman2Translation.Original:
-                    return CommonUrls.R2_OriginalTexturesCnt_URL;
+                    return AppURLs.R2_OriginalTexturesCnt_URL;
 
                 case Rayman2Translation.Irish:
-                    return CommonUrls.R2_OriginalTexturesCnt_URL;
+                    return AppURLs.R2_OriginalTexturesCnt_URL;
 
                 case Rayman2Translation.Swedish:
-                    return CommonUrls.R2_SwedishTexturesCnt_URL;
+                    return AppURLs.R2_SwedishTexturesCnt_URL;
 
                 case Rayman2Translation.Portuguese:
-                    return CommonUrls.R2_PortugueseTexturesCnt_URL;
+                    return AppURLs.R2_PortugueseTexturesCnt_URL;
 
                 case Rayman2Translation.Slovak:
-                    return CommonUrls.R2_SlovakTexturesCnt_URL;
+                    return AppURLs.R2_SlovakTexturesCnt_URL;
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(translation), translation, null);

@@ -46,7 +46,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Check if the utility has been applied, i.e. if a backup exists
-            HasBeenApplied = CommonPaths.R2RemoveDRMDir.DirectoryExists;
+            HasBeenApplied = AppFilePaths.R2RemoveDRMDir.DirectoryExists;
         }
 
         #endregion
@@ -96,7 +96,7 @@ namespace RayCarrot.RCP.Metro
                 IsLoading = true;
 
                 // Only create a new backup if one doesn't already exist
-                var createBackup = !CommonPaths.R2RemoveDRMDir.DirectoryExists;
+                var createBackup = !AppFilePaths.R2RemoveDRMDir.DirectoryExists;
 
                 await Task.Run(() =>
                 {
@@ -105,7 +105,7 @@ namespace RayCarrot.RCP.Metro
                     {
                         if (createBackup)
                             // Backup the file
-                            RCPServices.File.CopyFile(sna.Key, CommonPaths.R2RemoveDRMDir + (sna.Key - BaseDirectory), true);
+                            RCPServices.File.CopyFile(sna.Key, AppFilePaths.R2RemoveDRMDir + (sna.Key - BaseDirectory), true);
 
                         // Create the encoder
                         var encoder = new Rayman2SNADataEncoder();
@@ -157,10 +157,10 @@ namespace RayCarrot.RCP.Metro
                 await Task.Run(() =>
                 {
                     // Move back the files
-                    RCPServices.File.MoveFiles(new IOSearchPattern(CommonPaths.R2RemoveDRMDir), BaseDirectory, true);
+                    RCPServices.File.MoveFiles(new IOSearchPattern(AppFilePaths.R2RemoveDRMDir), BaseDirectory, true);
 
                     // Delete the backup directory
-                    RCPServices.File.DeleteDirectory(CommonPaths.R2RemoveDRMDir);
+                    RCPServices.File.DeleteDirectory(AppFilePaths.R2RemoveDRMDir);
                 });
 
                 HasBeenApplied = false;

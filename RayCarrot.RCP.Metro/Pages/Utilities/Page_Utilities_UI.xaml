@@ -1,0 +1,92 @@
+﻿<local:BasePage x:Class="RayCarrot.RCP.Metro.Page_Utilities_UI"
+                x:TypeArguments="local:Page_Utilities_ViewModel"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                mc:Ignorable="d"
+                d:DesignHeight="450" d:DesignWidth="800"
+                d:DataContext="{d:DesignInstance local:Page_Utilities_ViewModel}">
+
+    <mah:MetroAnimatedTabControl x:Name="UtilitiesTabControl"
+                                 Margin="15"
+                                 FocusVisualStyle="{x:Null}">
+
+        <i:Interaction.Behaviors>
+            <rwpf:FocusElementOnLoad />
+        </i:Interaction.Behaviors>
+
+        <!-- Archive Explorer -->
+
+        <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Utilities_ArchiveExplorer}"
+                 local:TabItemProperties.IconForeground="{StaticResource Colors.ArchiveExplorer}"
+                 Header="{Resx Utilities_ArchiveExplorer_Header}">
+
+            <ScrollViewer>
+                <local:UtilitiesContainer Utilities="{Binding Path=ArchiveExplorerViewModels, Mode=OneTime}" />
+            </ScrollViewer>
+
+        </TabItem>
+
+        <!-- Converters -->
+
+        <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Utilities_Converters}"
+                 local:TabItemProperties.IconForeground="{StaticResource Colors.Utilities}"
+                 Header="{Resx Utilities_Converter_Header}">
+
+            <ScrollViewer>
+                <local:UtilitiesContainer Utilities="{Binding Path=ConverterViewModels, Mode=OneTime}" />
+            </ScrollViewer>
+
+        </TabItem>
+
+        <!-- Decoders -->
+
+        <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Utilities_Decoders}"
+                 local:TabItemProperties.IconForeground="{StaticResource Colors.Utilities}"
+                 Header="{Resx Utilities_Decoder_Header}">
+
+            <ScrollViewer>
+                <local:UtilitiesContainer Utilities="{Binding Path=DecoderViewModels, Mode=OneTime}" />
+            </ScrollViewer>
+
+        </TabItem>
+
+        <!-- Other -->
+
+        <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Utilities_Other}"
+                 local:TabItemProperties.IconForeground="{StaticResource Colors.Utilities}"
+                 Header="{Resx Utilities_Other_Header}">
+
+            <ScrollViewer>
+                <local:UtilitiesContainer Utilities="{Binding Path=OtherViewModels, Mode=OneTime}" />
+            </ScrollViewer>
+
+        </TabItem>
+
+        <!-- External Tools -->
+
+        <TabItem local:TabItemProperties.IconKind="{StaticResource Icons.Utilities_ExternalTools}"
+                 local:TabItemProperties.IconForeground="{StaticResource Colors.Utilities}"
+                 Header="{Resx Utilities_ExternalTools_Header}">
+
+            <ScrollViewer>
+                <local:UtilitiesContainer Utilities="{Binding Path=ExternalToolViewModels, Mode=OneTime}" />
+            </ScrollViewer>
+
+        </TabItem>
+
+    </mah:MetroAnimatedTabControl>
+
+    <i:Interaction.Behaviors>
+        <local:SubTabControlBehavior ChildTabControl="{Binding ElementName=UtilitiesTabControl}" />
+    </i:Interaction.Behaviors>
+
+</local:BasePage>

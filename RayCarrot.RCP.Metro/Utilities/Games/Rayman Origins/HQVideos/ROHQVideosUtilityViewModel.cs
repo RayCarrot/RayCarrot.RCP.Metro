@@ -85,7 +85,7 @@ namespace RayCarrot.RCP.Metro
                 // Download the files
                 var succeeded = await App.DownloadAsync(new Uri[]
                 {
-                    new Uri(IsOriginalVideos ? CommonUrls.RO_HQVideos_URL : CommonUrls.RO_OriginalVideos_URL),
+                    new Uri(IsOriginalVideos ? AppURLs.RO_HQVideos_URL : AppURLs.RO_OriginalVideos_URL),
                 }, true, VideoDir);
 
                 if (succeeded)

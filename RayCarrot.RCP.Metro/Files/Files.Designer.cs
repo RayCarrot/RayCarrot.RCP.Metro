@@ -105,8 +105,7 @@ namespace RayCarrot.RCP.Metro {
         ///  &quot;LocalUtilities&quot;: {
         ///    &quot;Rayman1&quot;: [
         ///      &quot;R1TPLSUtility&quot;,
-        ///      &quot;R1CompleteSoundtrackUtility&quot;,
-        ///      &quot;R1FixConfigUtility&quot;
+        ///      &quot;R1CompleteSoundtrackUtility&quot;
         ///    ],
         ///    &quot;RaymanDesigner&quot;: [
         ///      &quot;RDReplaceFilesUtility&quot;,
@@ -122,7 +121,10 @@ namespace RayCarrot.RCP.Metro {
         ///      &quot;RMGameSyncTextureInfoUtility&quot;
         ///    ],
         ///    &quot;RaymanArena&quot;: [
-        ///      &quot;RAGameSyncTextureInfoUtility [rest of string was truncated]&quot;;.
+        ///      &quot;RAGameSyncTextureInfoUtility&quot;
+        ///    ],
+        ///    &quot;Rayman3&quot;: [
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Games {
             get {
@@ -137,6 +139,19 @@ namespace RayCarrot.RCP.Metro {
             get {
                 object obj = ResourceManager.GetObject("GXSetup_GOG", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copyright (c) 2021 RayCarrot
+        ///
+        ///Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+        ///
+        ///The above copyright notice and this permissi [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string License {
+            get {
+                return ResourceManager.GetString("License", resourceCulture);
             }
         }
         
@@ -312,16 +327,20 @@ namespace RayCarrot.RCP.Metro {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -----   Version 11.1.0 - May ??, 2021   -----
-        ///• Files in the Archive Explorer™ can now be viewed/edited directly
-        ///• The DOSBox game config has been moved to its own page
-        ///• Added game configuration for Rayman 1, Designer, by his Fans, 60 Levels and the educational games
-        ///• 
+        ///   Looks up a localized string similar to -----   Version 12.0.0 - September ??, 2021   -----
+        ///• Visual changes:
+        ///	• Redesigned the tab headers to use colored icons and underlines
+        ///	• Controls now have rounded corners and slightly thicker borders
+        ///	• Changed which areas of pages use scroll bars
         ///
         ///Other changes:
-        ///• The pages in the options dialog (such as the progression and config pages) now first load when they get selected
-        ///• The game information page has been merged with the options page
-        ///• The mount option for the DOSBox  [rest of string was truncated]&quot;;.
+        ///• Improved scrolling with the mouse wheel over button mapping controls
+        ///• Fixed the version history window not being centered when opened from the about page
+        ///
+        ///
+        ///-----   Version 11.3.0 - August 25, 2021   -----
+        ///• Added the mods page
+        ///• A [rest of string was truncated]&quot;;.
         /// </summary>
         public static string VersionHistory {
             get {

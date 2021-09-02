@@ -13,6 +13,6 @@
         /// <summary>
         /// The emulator's game configuration view model
         /// </summary>
-        public abstract GameOptions_EmulatorConfigPageViewModel GameConfigViewModel { get; }
+        public abstract GameOptionsDialog_EmulatorConfigPageViewModel GameConfigViewModel { get; }
     }
 }

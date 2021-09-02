@@ -28,17 +28,17 @@ namespace RayCarrot.RCP.Metro
         /// <param name="game">The game to get the installer items for</param>
         /// <param name="outputPath">The output path for the installation</param>
         /// <returns>The installer items</returns>
-        public static List<RayGameInstallItem> GetInstallerItems(this Games game, FileSystemPath outputPath)
+        public static List<GameInstaller_Item> GetInstallerItems(this Games game, FileSystemPath outputPath)
         {
             // Create the result
-            var result = new List<RayGameInstallItem>();
+            var result = new List<GameInstaller_Item>();
 
             // Attempt to get the text file containing the items
-            if (!(InstallerGames.ResourceManager.GetObject($"{game}") is string file))
+            if (InstallerGames.ResourceManager.GetObject($"{game}") is not string file)
                 throw new Exception("Installer item not found");
 
             // Create a string reader
-            using StringReader reader = new StringReader(file);
+            using var reader = new StringReader(file);
 
             // Keep track of the current line
             string line;
@@ -54,7 +54,7 @@ namespace RayCarrot.RCP.Metro
                     line = line.Substring(1);
 
                 // Add the item
-                result.Add(new RayGameInstallItem(line, outputPath + line, optional));
+                result.Add(new GameInstaller_Item(line, outputPath + line, optional));
             }
 
             // Return the items

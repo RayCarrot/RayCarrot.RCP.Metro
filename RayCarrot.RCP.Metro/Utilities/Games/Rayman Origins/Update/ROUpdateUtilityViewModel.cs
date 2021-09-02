@@ -47,7 +47,7 @@ namespace RayCarrot.RCP.Metro
                 // Download the file
                 var succeeded = await App.DownloadAsync(new Uri[]
                 {
-                    new Uri(CommonUrls.RO_Updater_URL)
+                    new Uri(AppURLs.RO_Updater_URL)
                 }, true, KnownFolders.Downloads.Path);
 
                 if (succeeded)

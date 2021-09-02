@@ -34,6 +34,6 @@
         /// <summary>
         /// The emulator's game configuration view model
         /// </summary>
-        public override GameOptions_EmulatorConfigPageViewModel GameConfigViewModel => new Emulator_DOSBox_ConfigViewModel(Game, GameType);
+        public override GameOptionsDialog_EmulatorConfigPageViewModel GameConfigViewModel => new Emulator_DOSBox_ConfigViewModel(Game, GameType);
     }
 }

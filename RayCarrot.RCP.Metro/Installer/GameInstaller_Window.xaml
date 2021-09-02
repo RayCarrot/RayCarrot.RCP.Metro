@@ -1,0 +1,96 @@
+﻿<local:BaseWindow x:Class="RayCarrot.RCP.Metro.GameInstaller_Window"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                  xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                  xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                  xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
+                  Closing="GameInstaller_OnClosingAsync"
+                  ResizeMode="NoResize"
+                  SizeToContent="WidthAndHeight"
+                  ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                  mc:Ignorable="d"
+                  d:DataContext="{d:DesignInstance local:GameInstaller_ViewModel}">
+    <StackPanel Margin="20">
+        <i:Interaction.Behaviors>
+            <rwpf:UnifiedMarginBehavior Margin="0 0 0 15" />
+        </i:Interaction.Behaviors>
+
+        <rwpf:BrowseBox BrowseType="Directory"
+                        PathValidation="DirectoryExistsAndNotEmpty" 
+                        SelectedPath="{Binding Path=InstallDir, Converter={rwpf:FileSystemPathToStringConverter}, UpdateSourceTrigger=LostFocus}"
+                        IsEnabled="{Binding Path=InstallerRunning, Converter={rwpf:InvertedBooleanConverter}}"/>
+
+        <StackPanel Orientation="Horizontal">
+            <i:Interaction.Behaviors>
+                <rwpf:UnifiedMarginBehavior Margin="{StaticResource Thickness.Horizontal}" />
+            </i:Interaction.Behaviors>
+
+            <CheckBox Content="{Resx Installer_CreateDesktopShortcut}"
+                      IsChecked="{Binding Path=CreateDesktopShortcut}"/>
+
+            <CheckBox Content="{Resx Installer_CreateStartMenuShortcut}" 
+                      IsChecked="{Binding Path=CreateStartMenuShortcut}"/>
+
+            <CheckBox Content="{Resx Installer_InstallAllUsers}"
+                      IsChecked="{Binding Path=CreateShortcutsForAllUsers}"/>
+
+        </StackPanel>
+
+        <Border Background="Black" Padding="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0"
+                       Source="{Binding Path=GameLogoSource}"
+                       Width="330"/>
+
+                <Image Grid.Column="1"
+                       gif:AnimationBehavior.SourceUri="{Binding Path=CurrentGifImageSource}"
+                       Height="128"
+                       Width="128"/>
+
+            </Grid>
+        </Border>
+
+        <StackPanel>
+            <TextBlock Text="{Resx Installer_TotalProgress}"
+                       FontSize="14"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 5"/>
+            <ProgressBar Value="{Binding Path=TotalCurrentProgress}"
+                         Maximum="{Binding Path=TotalMaxProgress}" />
+        </StackPanel>
+
+        <StackPanel>
+            <TextBlock Text="{Resx Installer_CurrentProgress}"
+                       FontSize="14"
+                       HorizontalAlignment="Center"
+                       Margin="0 0 0 5"/>
+            <ProgressBar Value="{Binding Path=ItemCurrentProgress}"
+                         Maximum="{Binding Path=ItemMaxProgress}" />
+        </StackPanel>
+
+        <TextBlock Text="{Binding Path=CurrentItemInfo}"
+                   Visibility="{Binding Path=InstallerRunning, Converter={rwpf:BooleanToVisibilityConverter}}"
+                   TextWrapping="Wrap"
+                   HorizontalAlignment="Center"
+                   rwpf:UserLevelTag.MinUserLevel="Advanced"
+                   MaxWidth="450"
+                   Height="50"/>
+
+        <Button Content="{Resx Installer_Install}"
+                Command="{Binding Path=InstallCommand}"
+                IsEnabled="{Binding Path=InstallerRunning, Converter={rwpf:InvertedBooleanConverter}}"/>
+
+        <Button Content="{Resx Cancel}"
+                Command="{Binding Path=CancelCommand}"
+                IsEnabled="{Binding Path=InstallerRunning}" />
+
+    </StackPanel>
+</local:BaseWindow>

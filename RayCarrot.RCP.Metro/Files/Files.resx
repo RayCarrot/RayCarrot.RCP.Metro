@@ -163,4 +163,7 @@
   <data name="RO_LevelConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>raymanorigins\ro_levelconfig.json;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="License" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>license.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

@@ -30,7 +30,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override IList<Uri> DownloadURLs => new Uri[]
         {
-            new Uri(CommonUrls.Games_R2Demo2_Url),
+            new Uri(AppURLs.Games_R2Demo2_Url),
         };
 
         #endregion

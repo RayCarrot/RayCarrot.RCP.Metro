@@ -1,0 +1,214 @@
+﻿<local:BasePage x:Class="RayCarrot.RCP.Metro.Page_About_UI"
+                x:TypeArguments="local:Page_About_ViewModel"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+                xmlns:rwpf="clr-namespace:RayCarrot.WPF;assembly=RayCarrot.WPF"
+                xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                Background="{DynamicResource MahApps.Brushes.ThemeBackground}"
+                Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}"
+                IsTabStop="False"
+                mc:Ignorable="d"
+                d:DesignWidth="800" d:DataContext="{d:DesignInstance local:Page_About_ViewModel}">
+    <Grid MaxWidth="800" Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- App Info -->
+
+        <Grid Grid.Row="0" Margin="{StaticResource Thickness.Vertical}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       FontSize="14"
+                       Text="{Resx About_ProgramInfo}"
+                       TextWrapping="WrapWithOverflow" />
+
+            <Image Grid.Column="1"
+                   Margin="10"
+                   Source="pack://application:,,,/RayCarrot.RCP.Metro;component/Files/Splash Screen.png"
+                   Height="128" Width="128" />
+
+        </Grid>
+
+        <!-- Credits Header -->
+
+        <TextBlock Grid.Row="1"
+                   Margin="{StaticResource Thickness.Vertical}"
+                   Text="{Resx About_Credits}"
+                   Style="{StaticResource TextBlock.HeaderLarge}"
+                   HorizontalAlignment="Center" />
+
+        <!-- Credits -->
+
+        <ScrollViewer Grid.Row="2" Margin="{StaticResource Thickness.Vertical}">
+
+            <StackPanel>
+
+                <ItemsControl HorizontalAlignment="Center"
+                              Grid.IsSharedSizeScope="True">
+
+                    <ItemsControl.Resources>
+                        <Style TargetType="{x:Type local:DuoGridItem}"
+                               BasedOn="{StaticResource {x:Type local:DuoGridItem}}">
+                            <Setter Property="Margin" Value="0 0 0 4" />
+                        </Style>
+                    </ItemsControl.Resources>
+
+                    <local:DuoGridItem Header="RayCarrot"
+                                       Text="{Resx About_Credits_RayCarrot}" />
+
+                    <local:DuoGridItem Header="432 Hz"
+                                       Text="{Resx About_Credits_432Hz}" />
+
+                    <local:DuoGridItem Header="Droolie"
+                                       Text="{Resx About_Credits_Droolie}" />
+
+                    <local:DuoGridItem Header="Fabiosek"
+                                       Text="{Resx About_Credits_Fabiosek}" />
+
+                    <local:DuoGridItem Header="Hakyra"
+                                       Text="{Resx About_Credits_Hakyra}" />
+
+                    <local:DuoGridItem Header="Haruka Tavares"
+                                       Text="{Resx About_Credits_HarukaTavares}" />
+
+                    <local:DuoGridItem Header="ICUP321"
+                                       Text="{Resx About_Credits_ICUP321}" />
+
+                    <local:DuoGridItem Header="ItzalDrake"
+                                       Text="{Resx About_Credits_ItzalDrake}" />
+
+                    <local:DuoGridItem Header="Juanmv94"
+                                       Text="{Resx About_Credits_Janmv94}" />
+
+                    <local:DuoGridItem Header="Noserdog"
+                                       Text="{Resx About_Credits_Noserdog}" />
+
+                    <local:DuoGridItem Header="OldClassicGamer"
+                                       Text="{Resx About_Credits_OldClassicGamer}" />
+
+                    <local:DuoGridItem Header="Pixelise"
+                                       Text="{Resx About_Credits_Pixelise}" />
+
+                    <local:DuoGridItem Header="PluMGMK"
+                                       Text="{Resx About_Credits_PluMGMK}" />
+
+                    <local:DuoGridItem Header="RayActivity"
+                                       Text="{Resx About_Credits_RayActivity}" />
+
+                    <local:DuoGridItem Header="Rayman Universe - Рэйман и его Вселенная"
+                                       Text="{Resx About_Credits_RaymanUniverse}" />
+
+                    <local:DuoGridItem Header="RibShark"
+                                       Text="{Resx About_Credits_RibShark}" />
+
+                    <local:DuoGridItem Header="Robin"
+                                       Text="{Resx About_Credits_Robin}" />
+
+                    <local:DuoGridItem Header="Snagglebee"
+                                       Text="{Resx About_Credits_Snagglebee}" />
+
+                </ItemsControl>
+
+                <TextBlock Text="{Resx About_SpecialThanks}"
+                           Margin="0 8 0 0"
+                           MaxWidth="600"
+                           TextAlignment="Center"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Center" />
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+        <!-- Bottom Bar -->
+
+        <Grid Grid.Row="3" Margin="8 8 8 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0"
+                        Orientation="Horizontal">
+
+                <local:IconButton IconKind="TooltipTextOutline"
+                                  ToolTip="{Resx About_UpdateHistory}"
+                                  Command="{Binding Path=ShowVersionHistoryCommand}" />
+
+                <mah:Badged Badge="{Binding Path=UpdateBadge}" Padding="-5" Margin="5">
+                    <local:IconButton IconKind="Update"
+                                      ToolTip="{Resx About_UpdateCheck}"
+                                      Command="{Binding Path=CheckForUpdatesCommand}" />
+                </mah:Badged>
+
+                <local:IconButton IconKind="DeleteForeverOutline"
+                                  ToolTip="{Resx About_Uninstall}"
+                                  Command="{Binding Path=UninstallCommand}" />
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom">
+
+                <TextBlock Text="{Binding Path=App.CurrentAppVersion, Mode=OneTime, FallbackValue=UnknownVersion}"
+                           HorizontalAlignment="Center" />
+
+                <TextBlock Text="{Resx About_BetaTag}"
+                           Visibility="{Binding Path=App.IsBeta, Converter={rwpf:BooleanToVisibilityConverter}}"
+                           HorizontalAlignment="Center" />
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="2"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Bottom">
+
+                <local:IconButton IconKind="Github"
+                                  ToolTip="{Resx About_GitHub}"
+                                  Command="{Binding Path=OpenUrlCommand}"
+                                  CommandParameter="{x:Static local:AppURLs.GitHubUrl}" />
+
+                <local:IconButton IconKind="Steam"
+                                  ToolTip="{Resx About_Steam}"
+                                  Command="{Binding Path=OpenUrlCommand}"
+                                  CommandParameter="{x:Static local:AppURLs.SteamUrl}" />
+
+                <local:IconButton IconKind="Youtube"
+                                  ToolTip="{Resx About_YouTube}"
+                                  Foreground="#FF0000"
+                                  Command="{Binding Path=OpenUrlCommand}"
+                                  CommandParameter="{x:Static local:AppURLs.YouTubeUrl}" />
+
+                <local:IconButton IconKind="Twitter"
+                                  ToolTip="{Resx About_Twitter}"
+                                  Foreground="#38A1F3"
+                                  Command="{Binding Path=OpenUrlCommand}"
+                                  CommandParameter="{x:Static local:AppURLs.TwitterUrl}" />
+
+                <local:IconButton IconKind="EmailOutline"
+                                  ToolTip="{Resx About_Email}"
+                                  Foreground="#8E24AA"
+                                  Command="{Binding Path=OpenUrlCommand}"
+                                  CommandParameter="{x:Static local:AppURLs.EmailUrl}" />
+
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+</local:BasePage>

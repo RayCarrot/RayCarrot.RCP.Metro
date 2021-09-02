@@ -48,7 +48,7 @@ namespace RayCarrot.RCP.Metro
                 ShowInTaskbar = false;
 
             // Due to a WPF glitch the main window needs to be focused upon closing
-            Closed += (s, e) =>
+            Closed += (_, _) =>
             {
                 if (this != Application.Current.MainWindow)
                     Application.Current.MainWindow?.Focus();

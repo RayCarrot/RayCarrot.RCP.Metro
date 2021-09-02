@@ -78,7 +78,7 @@ namespace RayCarrot.RCP.Metro
                 // Download the files
                 var succeeded = await App.DownloadAsync(new Uri[]
                 {
-                    new Uri(IsOriginalMusic ? CommonUrls.R1_CompleteOST_URL : CommonUrls.R1_IncompleteOST_URL)
+                    new Uri(IsOriginalMusic ? AppURLs.R1_CompleteOST_URL : AppURLs.R1_IncompleteOST_URL)
                 }, true, MusicDir);
 
                 if (succeeded)

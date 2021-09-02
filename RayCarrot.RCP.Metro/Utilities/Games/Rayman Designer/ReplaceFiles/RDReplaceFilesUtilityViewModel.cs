@@ -51,12 +51,12 @@ namespace RayCarrot.RCP.Metro
             // Find the files to be replaced
             var files = new Tuple<string, Uri>[]
             {
-                new Tuple<string, Uri>("CLIENT.EXE", new Uri(CommonUrls.RD_ClientExe_URL)),
-                new Tuple<string, Uri>("RAYRUN.EXE", new Uri(CommonUrls.RD_RayrunExe_URL)),
-                new Tuple<string, Uri>("STARTUP.EXE", new Uri(CommonUrls.RD_StartupExe_URL)),
+                new Tuple<string, Uri>("CLIENT.EXE", new Uri(AppURLs.RD_ClientExe_URL)),
+                new Tuple<string, Uri>("RAYRUN.EXE", new Uri(AppURLs.RD_RayrunExe_URL)),
+                new Tuple<string, Uri>("STARTUP.EXE", new Uri(AppURLs.RD_StartupExe_URL)),
                 new Tuple<string, Uri>("MAPPER.EXE", new Uri(
-                    MapperLanguage == RaymanDesignerMapperLanguage.English ? CommonUrls.RD_USMapperExe_URL :
-                        MapperLanguage == RaymanDesignerMapperLanguage.French ? CommonUrls.RD_FRMapperExe_URL : CommonUrls.RD_ALMapperExe_URL)),
+                    MapperLanguage == RaymanDesignerMapperLanguage.English ? AppURLs.RD_USMapperExe_URL :
+                        MapperLanguage == RaymanDesignerMapperLanguage.French ? AppURLs.RD_FRMapperExe_URL : AppURLs.RD_ALMapperExe_URL)),
             };
 
             // Get the game install dir

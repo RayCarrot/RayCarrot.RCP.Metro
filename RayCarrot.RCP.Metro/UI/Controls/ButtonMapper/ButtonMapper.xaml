@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="RayCarrot.RCP.Metro.ButtonMapper"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RayCarrot.RCP.Metro"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DataGrid x:Name="ButtonMapperDataGrid"
+              d:DataContext="{d:DesignInstance local:ButtonMapper}"
+              ItemsSource="{Binding Path=ItemsSource}"
+              AutoGenerateColumns="False"
+              CanUserDeleteRows="False"
+              CanUserAddRows="False"
+              CanUserReorderColumns="False"
+              CanUserResizeColumns="False"
+              CanUserResizeRows="False"
+              CanUserSortColumns="False"
+              SelectionMode="Single"
+              VerticalScrollBarVisibility="Disabled"
+              ScrollViewer.CanContentScroll="False"
+              PreviewMouseWheel="DataGrid_OnPreviewMouseWheel">
+        <DataGrid.Columns>
+            <DataGridTextColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                                Header="{Resx Config_ButtonMappingActionHeader}"
+                                Width="*"
+                                IsReadOnly="True"
+                                CanUserReorder="False"
+                                CanUserResize="False"
+                                CanUserSort="False"
+                                Binding="{Binding Path=ActionName.Value}" />
+
+            <DataGridTemplateColumn ResxExtension.DefaultResxName="{x:Static local:LocalizationManager.ResourcePath}"
+                                    Header="{Resx Config_ButtonMappingKeyHeader}"
+                                    Width="*"
+                                    CanUserReorder="False"
+                                    CanUserResize="False"
+                                    CanUserSort="False">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate DataType="local:ButtonMapperKeyItemViewModel">
+                        <TextBlock Text="{Binding Path=NewKey, Converter={local:KeyToStringConverter}}" />
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+                <DataGridTemplateColumn.CellEditingTemplate>
+                    <DataTemplate DataType="local:ButtonMapperKeyItemViewModel">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <mah:HotKeyBox Grid.Column="0" KeyDown="HotKeyBox_OnKeyDown">
+                                <mah:HotKeyBox.HotKey>
+                                    <Binding Path="NewKey" 
+                                             Converter="{local:KeyToHotKeyConverter}"
+                                             UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <local:ButtonMapperHotKeyValidationRule ValidatesOnTargetUpdated="True" />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </mah:HotKeyBox.HotKey>
+                            </mah:HotKeyBox>
+
+                            <Button Grid.Column="2"
+                                    Content="{Resx Config_ButtonMappingReset}"
+                                    Command="{Binding Path=ResetCommand}" />
+
+                        </Grid>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellEditingTemplate>
+            </DataGridTemplateColumn>
+        </DataGrid.Columns>
+    </DataGrid>
+</UserControl>

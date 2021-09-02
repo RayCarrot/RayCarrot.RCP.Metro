@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace RayCarrot.RCP.Metro
 {
-    public class Emulator_DOSBox_ConfigViewModel : GameOptions_EmulatorConfigPageViewModel
+    public class Emulator_DOSBox_ConfigViewModel : GameOptionsDialog_EmulatorConfigPageViewModel
     {
         #region Constructor
 

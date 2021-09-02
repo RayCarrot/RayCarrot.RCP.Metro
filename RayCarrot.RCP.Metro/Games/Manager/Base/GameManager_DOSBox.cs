@@ -93,7 +93,7 @@ namespace RayCarrot.RCP.Metro
         /// Gets the DosBox configuration file path for the auto config file
         /// </summary>
         /// <returns>The file path</returns>
-        public FileSystemPath DosBoxConfigFile => CommonPaths.UserDataBaseDir + "DosBox" + (Game + ".ini");
+        public FileSystemPath DosBoxConfigFile => AppFilePaths.UserDataBaseDir + "DosBox" + (Game + ".ini");
 
         #endregion
 

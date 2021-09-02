@@ -1,11 +1,12 @@
-﻿using System;
+﻿using RayCarrot.Common;
 using RayCarrot.IO;
+using RayCarrot.Rayman;
 using RayCarrot.Rayman.OpenSpace;
+using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Threading.Tasks;
-using RayCarrot.Common;
-using RayCarrot.Rayman;
 
 namespace RayCarrot.RCP.Metro
 {
@@ -52,6 +53,43 @@ namespace RayCarrot.RCP.Metro
 
         #endregion
 
+        #region Private Methods
+
+        /// <summary>
+        /// Gets the commonly supported bitmap file extensions
+        /// </summary>
+        /// <returns>The commonly supported bitmap file extensions</returns>
+        private string[] GetSupportedBitmapExtensions()
+        {
+            return new string[]
+            {
+                ".png",
+                ".jpg",
+                ".jpeg",
+                ".bmp",
+            };
+        }
+
+        /// <summary>
+        /// Gets the <see cref="ImageFormat"/> from the specified file extension
+        /// </summary>
+        /// <param name="fileExtension">The file extension</param>
+        /// <returns>The image format</returns>
+        private ImageFormat GetImageFormat(FileExtension fileExtension)
+        {
+            // Get the format
+            return fileExtension.PrimaryFileExtension switch
+            {
+                ".png" => ImageFormat.Png,
+                ".jpeg" => ImageFormat.Jpeg,
+                ".jpg" => ImageFormat.Jpeg,
+                ".bmp" => ImageFormat.Bmp,
+                _ => throw new Exception($"The specified file format {fileExtension} is not supported")
+            };
+        }
+
+        #endregion
+
         #region Public Override Methods
 
         /// <summary>
@@ -69,8 +107,8 @@ namespace RayCarrot.RCP.Metro
                 using var bmp = data.GetRawBitmapData().GetBitmap();
 
                 // Save the image
-                bmp.Save(filePath, ImageHelpers.GetImageFormat(filePath.FileExtension));
-            }, new FileFilterItem("*.gf", "GF").ToString(), ImageHelpers.GetSupportedBitmapExtensions(), null);
+                bmp.Save(filePath, GetImageFormat(filePath.FileExtension));
+            }, new FileFilterItem("*.gf", "GF").ToString(), GetSupportedBitmapExtensions(), null);
         }
 
         /// <summary>
@@ -101,7 +139,7 @@ namespace RayCarrot.RCP.Metro
 
                 // Return the data
                 return gf;
-            }, new FileFilterItemCollection(ImageHelpers.GetSupportedBitmapExtensions().Select(x => new FileFilterItem($"*{x}",
+            }, new FileFilterItemCollection(GetSupportedBitmapExtensions().Select(x => new FileFilterItem($"*{x}",
                 x.Substring(1).ToUpper()))).ToString(), new FileExtension(".gf"), Enum.GetNames(typeof(OpenSpaceGFFormat)));
         }
 

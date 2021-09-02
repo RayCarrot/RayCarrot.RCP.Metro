@@ -76,7 +76,7 @@ namespace RayCarrot.RCP.Metro
                 // Add dialog base manager
                 AddDialogBaseManager<RCPDialogBaseManager>().
                 // Add update manager
-                AddUpdateManager<RCPUpdateManager>().
+                AddUpdateManager<RCPUpdaterManager>().
                 // Add the app view model
                 AddSingleton(new AppViewModel(x => LogStartupTime(x))).
                 // Add App UI manager
@@ -97,9 +97,9 @@ namespace RayCarrot.RCP.Metro
             // Load the user data
             try
             {
-                if (CommonPaths.AppUserDataPath.FileExists)
+                if (AppFilePaths.AppUserDataPath.FileExists)
                 {
-                    JsonConvert.PopulateObject(File.ReadAllText(CommonPaths.AppUserDataPath), RCPServices.Data);
+                    JsonConvert.PopulateObject(File.ReadAllText(AppFilePaths.AppUserDataPath), RCPServices.Data);
                     RL.Logger?.LogInformationSource($"The app user data has been loaded");
 
                     // Verify the data
@@ -273,7 +273,7 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Get the license value, if one exists
-                int regValue = Registry.GetValue(CommonPaths.RegistryBaseKey, CommonPaths.RegistryLicenseValue, 0)?.CastTo<int>() ?? 0;
+                int regValue = Registry.GetValue(AppFilePaths.RegistryBaseKey, AppFilePaths.RegistryLicenseValue, 0)?.CastTo<int>() ?? 0;
 
                 // Check if it has been accepted
                 if (regValue == 1)
@@ -290,7 +290,7 @@ namespace RayCarrot.RCP.Metro
 
                 // Set Registry value if accepted
                 if (licenseDialog.Accepted)
-                    Registry.SetValue(CommonPaths.RegistryBaseKey, CommonPaths.RegistryLicenseValue, 1);
+                    Registry.SetValue(AppFilePaths.RegistryBaseKey, AppFilePaths.RegistryLicenseValue, 1);
 
                 // Return if it was accepted
                 return licenseDialog.Accepted;
@@ -440,7 +440,7 @@ namespace RayCarrot.RCP.Metro
                     try
                     {
                         // Read the app data file
-                        JObject appData = new StringReader(File.ReadAllText(CommonPaths.AppUserDataPath)).RunAndDispose(x =>
+                        JObject appData = new StringReader(File.ReadAllText(AppFilePaths.AppUserDataPath)).RunAndDispose(x =>
                             new JsonTextReader(x).RunAndDispose(y => JsonSerializer.Create().Deserialize(y))).CastTo<JObject>();
 
                         // Get the previous Fiesta Run version
@@ -654,12 +654,12 @@ namespace RayCarrot.RCP.Metro
 
         private static async Task App_StartupComplete_Updater_Async(object sender, EventArgs eventArgs)
         {
-            if (CommonPaths.UpdaterFilePath.FileExists)
+            if (AppFilePaths.UpdaterFilePath.FileExists)
             {
                 int retryTime = 0;
 
                 // Wait until we can write to the file (i.e. it closing after an update)
-                while (!RCPServices.File.CheckFileWriteAccess(CommonPaths.UpdaterFilePath))
+                while (!RCPServices.File.CheckFileWriteAccess(AppFilePaths.UpdaterFilePath))
                 {
                     retryTime++;
 
@@ -688,7 +688,7 @@ namespace RayCarrot.RCP.Metro
                 try
                 {
                     // Remove the updater
-                    RCPServices.File.DeleteFile(CommonPaths.UpdaterFilePath);
+                    RCPServices.File.DeleteFile(AppFilePaths.UpdaterFilePath);
 
                     RL.Logger?.LogInformationSource($"The updater has been removed");
                 }

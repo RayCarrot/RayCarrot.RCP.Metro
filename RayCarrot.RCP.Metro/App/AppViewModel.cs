@@ -394,14 +394,14 @@ namespace RayCarrot.RCP.Metro
         {
             try
             {
-                if (!CommonPaths.UbiIniPath1.FileExists)
+                if (!AppFilePaths.UbiIniPath1.FileExists)
                 {
                     RL.Logger?.LogInformationSource("The ubi.ini file was not found");
                     return;
                 }
 
                 // Check if we have write access
-                if (RCPServices.File.CheckFileWriteAccess(CommonPaths.UbiIniPath1))
+                if (RCPServices.File.CheckFileWriteAccess(AppFilePaths.UbiIniPath1))
                 {
                     RL.Logger?.LogDebugSource("The ubi.ini file has write access");
                     return;
@@ -410,7 +410,7 @@ namespace RayCarrot.RCP.Metro
                 await Services.MessageUI.DisplayMessageAsync(Resources.UbiIniWriteAccess_InfoMessage);
 
                 // Attempt to change the permission
-                await RunAdminWorkerAsync(AdminWorkerMode.GrantFullControl, CommonPaths.UbiIniPath1);
+                await RunAdminWorkerAsync(AdminWorkerMode.GrantFullControl, AppFilePaths.UbiIniPath1);
 
                 RL.Logger?.LogInformationSource($"The ubi.ini file permission was changed");
             }
@@ -703,7 +703,7 @@ namespace RayCarrot.RCP.Metro
             // Lock
             using (await AdminWorkerAsyncLock.LockAsync())
                 // Launch the admin worker with the specified launch arguments
-                await RCPServices.File.LaunchFileAsync(CommonPaths.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
+                await RCPServices.File.LaunchFileAsync(AppFilePaths.AdminWorkerPath, true, $"{mode} {args.Select(x => $"\"{x}\"").JoinItems(" ")}");
         }
 
         /// <summary>
@@ -715,17 +715,17 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Deploy the uninstaller
-                if (overwrite || !CommonPaths.UninstallFilePath.FileExists)
+                if (overwrite || !AppFilePaths.UninstallFilePath.FileExists)
                 {
-                    Directory.CreateDirectory(CommonPaths.UninstallFilePath.Parent);
-                    File.WriteAllBytes(CommonPaths.UninstallFilePath, Files.Uninstaller);
+                    Directory.CreateDirectory(AppFilePaths.UninstallFilePath.Parent);
+                    File.WriteAllBytes(AppFilePaths.UninstallFilePath, Files.Uninstaller);
                 }
 
                 // Deploy the admin worker
-                if (overwrite || !CommonPaths.AdminWorkerPath.FileExists)
+                if (overwrite || !AppFilePaths.AdminWorkerPath.FileExists)
                 {
-                    Directory.CreateDirectory(CommonPaths.AdminWorkerPath.Parent);
-                    File.WriteAllBytes(CommonPaths.AdminWorkerPath, Files.AdminWorker);
+                    Directory.CreateDirectory(AppFilePaths.AdminWorkerPath.Parent);
+                    File.WriteAllBytes(AppFilePaths.AdminWorkerPath, Files.AdminWorker);
                 }
             }
             catch (Exception ex)
@@ -785,7 +785,7 @@ namespace RayCarrot.RCP.Metro
                 if (result.ErrorMessage != null)
                 {
                     await Services.MessageUI.DisplayExceptionMessageAsync(result.Exception,
-                        String.Format(Resources.Update_CheckFailed, result.ErrorMessage, CommonUrls.RCPBaseUrl), Resources.Update_ErrorHeader);
+                        String.Format(Resources.Update_CheckFailed, result.ErrorMessage, AppURLs.RCPBaseUrl), Resources.Update_ErrorHeader);
 
                     RCPServices.Data.IsUpdateAvailable = false;
 
@@ -848,7 +848,7 @@ namespace RayCarrot.RCP.Metro
                     try
                     {
                         // Save the user data
-                        JsonHelpers.SerializeToFile(RCPServices.Data, CommonPaths.AppUserDataPath);
+                        JsonHelpers.SerializeToFile(RCPServices.Data, AppFilePaths.AppUserDataPath);
 
                         RL.Logger?.LogInformationSource($"The application user data was saved");
                     }

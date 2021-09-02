@@ -16,7 +16,7 @@
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
-                                <DataTemplate DataType="{x:Type local:LinkItemViewModel}">
+                                <DataTemplate DataType="{x:Type local:Page_Settings_LinkItemViewModel}">
                                     <Grid>
                                         <Grid Margin="0 5">
                                             <Button Grid.Column="0"

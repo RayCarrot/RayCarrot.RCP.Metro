@@ -162,16 +162,16 @@ namespace RayCarrot.RCP.Metro
             try
             {
                 // Create the parent directory for the update file
-                Directory.CreateDirectory(CommonPaths.UpdaterFilePath.Parent);
+                Directory.CreateDirectory(AppFilePaths.UpdaterFilePath.Parent);
 
                 // Deploy the updater
-                File.WriteAllBytes(CommonPaths.UpdaterFilePath, Files.Rayman_Control_Panel_Updater);
+                File.WriteAllBytes(AppFilePaths.UpdaterFilePath, Files.Rayman_Control_Panel_Updater);
 
                 RL.Logger?.LogInformationSource($"The updater was created");
             }
             catch (Exception ex)
             {
-                ex.HandleError("Writing updater to temp path", CommonPaths.UpdaterFilePath);
+                ex.HandleError("Writing updater to temp path", AppFilePaths.UpdaterFilePath);
 
                 await Services.MessageUI.DisplayExceptionMessageAsync(ex, String.Format(Resources.Update_UpdaterError, UserFallbackURL), Resources.Update_UpdaterErrorHeader);
 
@@ -179,7 +179,7 @@ namespace RayCarrot.RCP.Metro
             }
 
             // Launch the updater and capture the process
-            using var updateProcess = await RCPServices.File.LaunchFileAsync(CommonPaths.UpdaterFilePath, asAdmin, 
+            using var updateProcess = await RCPServices.File.LaunchFileAsync(AppFilePaths.UpdaterFilePath, asAdmin, 
                 // Arg 1: Program path
                 $"\"{Assembly.GetEntryAssembly()?.Location}\" " +
                 // Arg 2: Dark mode

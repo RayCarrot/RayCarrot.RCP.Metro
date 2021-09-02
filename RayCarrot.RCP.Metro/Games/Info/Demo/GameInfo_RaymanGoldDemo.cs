@@ -49,7 +49,7 @@ namespace RayCarrot.RCP.Metro
         /// </summary>
         public override IList<Uri> DownloadURLs => new Uri[]
         {
-            new Uri(CommonUrls.Games_RGoldDemo_Url),
+            new Uri(AppURLs.Games_RGoldDemo_Url),
         };
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The config page view model, if any is available
         /// </summary>
-        public override GameOptions_ConfigPageViewModel ConfigPageViewModel => new Config_RaymanDesigner_ViewModel(Game);
+        public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_RaymanDesigner_ViewModel(Game);
 
         /// <summary>
         /// The options UI, if any is available

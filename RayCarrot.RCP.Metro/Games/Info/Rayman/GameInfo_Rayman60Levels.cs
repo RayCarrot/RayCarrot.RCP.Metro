@@ -55,7 +55,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The config page view model, if any is available
         /// </summary>
-        public override GameOptions_ConfigPageViewModel ConfigPageViewModel => new Config_RaymanByHisFans_ViewModel(Game);
+        public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_RaymanByHisFans_ViewModel(Game);
 
         /// <summary>
         /// The options UI, if any is available
@@ -70,7 +70,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// Optional RayMap URL
         /// </summary>
-        public override string RayMapURL => CommonUrls.GetRay1MapGameURL("Rayman60LevelsPC", "r1/pc_60n");
+        public override string RayMapURL => AppURLs.GetRay1MapGameURL("Rayman60LevelsPC", "r1/pc_60n");
 
         /// <summary>
         /// Gets the file links for the game

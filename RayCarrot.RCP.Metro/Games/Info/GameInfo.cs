@@ -83,7 +83,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The config page view model, if any is available
         /// </summary>
-        public virtual GameOptions_ConfigPageViewModel ConfigPageViewModel => null;
+        public virtual GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => null;
 
         /// <summary>
         /// The progression view model, if any is available
@@ -205,7 +205,7 @@ namespace RayCarrot.RCP.Metro
         /// Gets a display view model for the game
         /// </summary>
         /// <returns>A new display view model</returns>
-        public GameDisplayViewModel GetDisplayViewModel()
+        public Page_Games_GameViewModel GetDisplayViewModel()
         {
             try
             {
@@ -311,7 +311,7 @@ namespace RayCarrot.RCP.Metro
 
                     actions.Add(optionsAction);
 
-                    return new GameDisplayViewModel(
+                    return new Page_Games_GameViewModel(
                         game: Game, 
                         displayName: DisplayName, 
                         iconSource: IconSource, 
@@ -367,7 +367,7 @@ namespace RayCarrot.RCP.Metro
                         // Add disc installer action
                         actions.Add(new OverflowButtonItemViewModel(Resources.GameDisplay_DiscInstall, PackIconMaterialKind.Disc, new RelayCommand(() =>
                             // NOTE: This is a blocking dialog
-                            new GameInstaller(Game).ShowDialog())));
+                            new GameInstaller_Window(Game).ShowDialog())));
                     }
 
                     // If the last option is a separator, remove it
@@ -380,7 +380,7 @@ namespace RayCarrot.RCP.Metro
                         : downloadItem;
 
                     // Return the view model
-                    return new GameDisplayViewModel(Game, DisplayName, IconSource, mainAction, null, actions);
+                    return new Page_Games_GameViewModel(Game, DisplayName, IconSource, mainAction, null, actions);
                 }
             }
             catch (Exception ex)
@@ -471,7 +471,7 @@ namespace RayCarrot.RCP.Metro
                 RL.Logger?.LogTraceSource($"The game {Game} is being downloaded...");
 
                 // Get the game directory
-                var gameDir = CommonPaths.GamesBaseDir + Game.ToString();
+                var gameDir = AppFilePaths.GamesBaseDir + Game.ToString();
 
                 // Download the game
                 var downloaded = await RCPServices.App.DownloadAsync(DownloadURLs, true, gameDir, true);

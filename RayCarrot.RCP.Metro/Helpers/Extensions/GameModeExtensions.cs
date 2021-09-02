@@ -33,7 +33,7 @@ namespace RayCarrot.RCP.Metro
                 GameMode.RaymanOriginsPC => Games.RaymanOrigins,
                 GameMode.RaymanLegendsPC => Games.RaymanLegends,
 
-                _ => (null as Games?)
+                _ => null
             };
         }
     }

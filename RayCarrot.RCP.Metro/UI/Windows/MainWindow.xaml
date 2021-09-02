@@ -203,7 +203,7 @@
                      local:TabItemProperties.IconKind="{StaticResource Icons.Games}"
                      local:TabItemProperties.IconForeground="{StaticResource Colors.Games}"
                      IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Games}">
-                <local:GamesPage />
+                <local:Page_Games_UI />
             </TabItem>
 
             <!-- Backup/Restore -->
@@ -213,7 +213,7 @@
                      local:TabItemProperties.IconKind="{StaticResource Icons.Backup}"
                      local:TabItemProperties.IconForeground="{StaticResource Colors.Progression}"
                      IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=BackupRestore}">
-                <local:BackupPage />
+                <local:Page_Backup_UI />
             </TabItem>
 
             <!-- Utilities -->
@@ -222,7 +222,7 @@
                      local:TabItemProperties.IconKind="{StaticResource Icons.Utilities}"
                      local:TabItemProperties.IconForeground="{StaticResource Colors.Utilities}"
                      IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Utilities}">
-                <local:UtilitiesPage />
+                <local:Page_Utilities_UI />
             </TabItem>
 
             <!-- Mods -->
@@ -231,7 +231,7 @@
                      local:TabItemProperties.IconKind="{StaticResource Icons.Mods}"
                      local:TabItemProperties.IconForeground="{StaticResource Colors.Mods}"
                      IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Mods}">
-                <local:ModsPage />
+                <local:Page_Mods_UI />
             </TabItem>
 
             <!-- Settings -->
@@ -240,7 +240,7 @@
                      local:TabItemProperties.IconKind="{StaticResource Icons.Settings}"
                      local:TabItemProperties.IconForeground="{StaticResource Colors.Settings}"
                      IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Settings}">
-                <local:SettingsPage />
+                <local:Page_Settings_UI />
             </TabItem>
 
             <!-- Help -->
@@ -249,7 +249,7 @@
                      local:TabItemProperties.IconKind="{StaticResource Icons.Help}"
                      local:TabItemProperties.IconForeground="{StaticResource Colors.Help}"
                      IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Help}">
-                <local:HelpPage />
+                <local:Page_Help_UI />
 
             </TabItem>
 
@@ -259,7 +259,7 @@
                      local:TabItemProperties.IconKind="{StaticResource Icons.Info}"
                      local:TabItemProperties.IconForeground="{StaticResource Colors.Info}"
                      IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=About}">
-                <local:AboutPage />
+                <local:Page_About_UI />
             </TabItem>
 
             <!-- Debug -->
@@ -269,7 +269,7 @@
                      local:TabItemProperties.IconForeground="{StaticResource Colors.Debug}"
                      IsSelected="{Binding Path=SelectedPage, Converter={rwpf:EnumBooleanConverter}, ConverterParameter=Debug}"
                      rwpf:UserLevelTag.MinUserLevel="Debug">
-                <local:DebugPage />
+                <local:Page_Debug_UI />
             </TabItem>
 
         </mah:MetroAnimatedTabControl>

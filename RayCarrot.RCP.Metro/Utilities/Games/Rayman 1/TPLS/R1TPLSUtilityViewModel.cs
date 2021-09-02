@@ -24,10 +24,10 @@ namespace RayCarrot.RCP.Metro
             UninstallTPLSCommand = new AsyncRelayCommand(UninstallTPLSAsync);
 
             // Check if TPLS is installed under the default location
-            if (!CommonPaths.R1TPLSDir.DirectoryExists)
+            if (!AppFilePaths.R1TPLSDir.DirectoryExists)
                 Data.TPLSData = null;
             else if (Data.TPLSData == null)
-                Data.TPLSData = new UserData_TPLSData(CommonPaths.R1TPLSDir);
+                Data.TPLSData = new UserData_TPLSData(AppFilePaths.R1TPLSDir);
 
             if (Data.TPLSData != null)
             {
@@ -122,23 +122,23 @@ namespace RayCarrot.RCP.Metro
                 RL.Logger?.LogInformationSource($"The TPLS utility is downloading...");
 
                 // Check if the directory exists
-                if (CommonPaths.R1TPLSDir.DirectoryExists)
+                if (AppFilePaths.R1TPLSDir.DirectoryExists)
                     // Delete the directory
-                    RCPServices.File.DeleteDirectory(CommonPaths.R1TPLSDir);
+                    RCPServices.File.DeleteDirectory(AppFilePaths.R1TPLSDir);
 
                 // Download the files
                 if (!await App.DownloadAsync(new Uri[]
                 {
-                    new Uri(CommonUrls.R1_TPLS_Url),
-                }, true, CommonPaths.R1TPLSDir))
+                    new Uri(AppURLs.R1_TPLS_Url),
+                }, true, AppFilePaths.R1TPLSDir))
                 {
                     // If canceled, delete the directory
-                    RCPServices.File.DeleteDirectory(CommonPaths.R1TPLSDir);
+                    RCPServices.File.DeleteDirectory(AppFilePaths.R1TPLSDir);
                     return;
                 }
 
                 // Save
-                RCPServices.Data.TPLSData = new UserData_TPLSData(CommonPaths.R1TPLSDir);
+                RCPServices.Data.TPLSData = new UserData_TPLSData(AppFilePaths.R1TPLSDir);
 
                 // Update the version
                 await Data.TPLSData.UpdateConfigAsync();

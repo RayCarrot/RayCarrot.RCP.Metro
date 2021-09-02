@@ -121,7 +121,7 @@
                 <ComboBox.Text>
                     <Binding Path="FullscreenResolution">
                         <Binding.ValidationRules>
-                            <local:DosBoxResolutionValidationRule />
+                            <local:Emulator_DOSBox_ResolutionValidationRule />
                         </Binding.ValidationRules>
                     </Binding>
                 </ComboBox.Text>
@@ -140,7 +140,7 @@
                 <ComboBox.Text>
                     <Binding Path="WindowedResolution">
                         <Binding.ValidationRules>
-                            <local:DosBoxResolutionValidationRule />
+                            <local:Emulator_DOSBox_ResolutionValidationRule />
                         </Binding.ValidationRules>
                     </Binding>
                 </ComboBox.Text>
@@ -179,7 +179,7 @@
                 <ComboBox.Text>
                     <Binding Path="SelectedCycles">
                         <Binding.ValidationRules>
-                            <local:DosBoxCyclesValidationRule />
+                            <local:Emulator_DOSBox_CyclesValidationRule />
                         </Binding.ValidationRules>
                     </Binding>
                 </ComboBox.Text>

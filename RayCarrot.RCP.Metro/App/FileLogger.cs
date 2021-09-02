@@ -50,8 +50,8 @@ namespace RayCarrot.RCP.Metro
                     // Attempt to remove log file if over 2 Mb
                     try
                     {
-                        if (CommonPaths.LogFile.FileExists && CommonPaths.LogFile.GetSize() > ByteSize.FromMegaBytes(2))
-                            File.Delete(CommonPaths.LogFile);
+                        if (AppFilePaths.LogFile.FileExists && AppFilePaths.LogFile.GetSize() > ByteSize.FromMegaBytes(2))
+                            File.Delete(AppFilePaths.LogFile);
                     }
                     catch (Exception ex)
                     {
@@ -61,8 +61,8 @@ namespace RayCarrot.RCP.Metro
                     try
                     {
                         // Create the parent directory if it doesn't exist
-                        if (!CommonPaths.LogFile.Parent.DirectoryExists)
-                            Directory.CreateDirectory(CommonPaths.LogFile.Parent);
+                        if (!AppFilePaths.LogFile.Parent.DirectoryExists)
+                            Directory.CreateDirectory(AppFilePaths.LogFile.Parent);
                     }
                     catch (Exception ex)
                     {
@@ -72,7 +72,7 @@ namespace RayCarrot.RCP.Metro
                     try
                     {
                         // Open the file stream
-                        App.Current.AppLogFileStream = File.AppendText(CommonPaths.LogFile);
+                        App.Current.AppLogFileStream = File.AppendText(AppFilePaths.LogFile);
                     }
                     catch (Exception ex)
                     {

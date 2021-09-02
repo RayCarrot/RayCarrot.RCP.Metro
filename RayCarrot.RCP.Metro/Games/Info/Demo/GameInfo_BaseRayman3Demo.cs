@@ -30,7 +30,7 @@ namespace RayCarrot.RCP.Metro
         /// <summary>
         /// The config page view model, if any is available
         /// </summary>
-        public override GameOptions_ConfigPageViewModel ConfigPageViewModel => new Config_Rayman3_ViewModel(Game);
+        public override GameOptionsDialog_ConfigPageViewModel ConfigPageViewModel => new Config_Rayman3_ViewModel(Game);
 
         /// <summary>
         /// Gets the file links for the game

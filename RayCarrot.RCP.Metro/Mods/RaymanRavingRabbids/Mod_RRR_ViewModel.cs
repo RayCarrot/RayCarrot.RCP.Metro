@@ -16,7 +16,7 @@ using RayCarrot.Binary;
 
 namespace RayCarrot.RCP.Metro
 {
-    public class Mod_RRR_ViewModel : BaseModViewModel, IDisposable
+    public class Mod_RRR_ViewModel : Mod_BaseViewModel, IDisposable
     {
         #region Constructor
 
@@ -676,8 +676,8 @@ namespace RayCarrot.RCP.Metro
             {
                 version switch
                 {
-                    GameVersion.Steam => new Uri(CommonUrls.RRR_PatchedBF_Steam_URL),
-                    GameVersion.GOG => new Uri(CommonUrls.RRR_PatchedBF_GOG_URL),
+                    GameVersion.Steam => new Uri(AppURLs.RRR_PatchedBF_Steam_URL),
+                    GameVersion.GOG => new Uri(AppURLs.RRR_PatchedBF_GOG_URL),
                     _ => throw new Exception("Invalid game version")
                 }
             }, true, GameDirectoryPath);
